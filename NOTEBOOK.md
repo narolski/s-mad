@@ -41,7 +41,7 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 
 | ID | Question in plain words | Status | Result | Verdict | Next |
 |---|---|---|---|---|---|
-| T0 | First signal: twin-trained head on frozen CLIP, existing StyleGAN3 and DiffAE sets | planned | | | 2 h on the DGX |
+| T0 | First signal: twin-trained head on frozen features, existing StyleGAN3 and DiffAE sets | partly done by Codex, 11 Nov | no transfer between generators (0.26 to 0.52); held-out sets 0.46 to 0.63; only 16 to 90 training pairs | no (underpowered) | rerun at 2,000 pairs |
 | T2 | Do released detectors' features hold the signal if only the last layer is refit on twins? | planned | | | after features |
 | T3 | Is a morph a more "average" face in face-recognition space? | planned | | | after features |
 | T4 | Twin-trained detector, 3 backbones × 5 seeds, held-out tool and generator | planned | | | after TwinSet |
@@ -90,7 +90,7 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 ## Open decisions and blockers
 
 - Codex transcript "Eksperymenty z S-MAD" to be read first; then the start signal.
-- Hand-over of the DGX and WCSS slots from the other loop.
+- Codex loop is paused; its DGX controllers still run (20 CLIP fits, up to 66 h). See `12_STATE_AT_HANDOVER.md`.
 - No x86 build of MIPGAN yet (GAN causal test depends on it).
 - For our own networks, FERET and FRGC have no unsealed held-out persons; unseen-source tests use CASIA or Multi-PIE.
 

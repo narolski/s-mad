@@ -20,6 +20,7 @@ people.
 | `09_DATASET_EXTENSION_ANALYSIS.md` | What past data-extension runs show, gaps, minimum additions |
 | `10_ASSET_INVENTORY.md` | Released detectors, corrected MAD22 location, generators, photo pools |
 | `11_AUDIT_PLAN.md` | Audit experiments per morph family with fixed verdict rules |
+| `12_STATE_AT_HANDOVER.md` | State and rulings taken over from the Codex loop on 11 Nov |
 | `NOTEBOOK.md` | Live state of every idea, one line each |
 | `WORKFLOW.md` | Roles, review loop, spending and cluster rules |
 | `prior/INDEX.md` | Index of all experiments before 11 Nov |
