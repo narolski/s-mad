@@ -24,6 +24,18 @@ at most, each lease justified; ablations on WCSS.
   the training set (large).
 - Polls follow job ETAs. One SSH connection at a time.
 
+## Choosing a rented card (author, 11 Nov)
+
+Pick the cheapest card that fits the measured peak memory, ranked by price per unit of work and by the
+host's reliability score. Smaller cards (RTX 3080, 4080, 5080; 10 to 16 GB) are preferred for
+generation and scoring; 24 to 32 GB cards (RTX 4090, 5090) for LoRA training of large backbones. An
+RTX Pro 6000 or larger is used only when a measured peak exceeds 32 GB. Every task logs its peak
+memory in its smoke test, and the lease is sized from that number.
+
+Host filter: reliability at least 0.98, verified, x86 with a CUDA 12 driver, download speed enough to
+receive the input pack in under 10 minutes. A host that fails to start within 10 minutes, or shows a
+different card than advertised, is replaced and noted.
+
 ## When Vast is used, and what it returns
 
 Vast is a way to skip the WCSS queue for data that many experiments wait on. A lease is opened only
