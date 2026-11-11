@@ -1,7 +1,7 @@
 # Alpha-field probe on frozen features (AF0): result
 
-Owner's page. Facts only; the lead draws conclusions. Status 11 Nov 20:40 CET: full design measured on three
-backbones; DINOv3 wave-2 readouts being finished. Full record: `README.md`. Pre-registration: `experiments/AF0/prereg.md` (unchanged).
+Owner's page. Facts only; the lead draws conclusions. Status 11 Nov 20:55 CET: full design and waves 2-4 measured
+(waves 3-4 on CLIP-224 only); no runs left. Full record: `README.md`. Pre-registration: `experiments/AF0/prereg.md` (unchanged).
 
 Terms used here. The landmark ladder (AR1) rungs, in words: R0 = the untouched aligned camera photo; R1 = the camera
 photo with the benchmark's shrink-and-enlarge history (existing E7 frames, FRLL only); R2 = the landmark tool run on one
@@ -56,7 +56,7 @@ a(x) = 0 everywhere, i.e. the host warped, no texture from the partner: it is th
 Released MADation ViT-L/14 (FRLL rows, registered scores): AMSL 18.2, WebMorph 5.9, FaceMorpher 1.0, OpenCV 1.5.
 Floors on the same contrasts (wave 3): Laplacian variance alone 0.72-0.77 on the ladder contrasts, best simple statistic
 0.89-0.93; on every benchmark cell a single simple statistic reaches 0.97-1.00. CN0 verdict: fails (single statistic
-0.93 > 0.80). Wave 2 (CLIP-224): the ghost-energy head neither fails nor brings a gain. Wave 3 ablation (CLIP-224): the
+0.93 > 0.80). Wave 2: the ghost-energy head never fails; it brings no gain on CLIP-224 and on DINOv3 ridge, and on DINOv3 MLP only through a 0.002-0.008 lower E7 shift. Wave 3 ablation (CLIP-224): the
 measured map does not beat the image label with halves (by 0.03 AUC or a halved shift). Wave 4 (CLIP-224): both
 conditions of the fixed reading hold, the flag-rate condition already before softened training.
 
@@ -522,3 +522,46 @@ MADation score exists (not rescored).
 - FRGC neutral / environment labels come from AR1's `candidates()` (bbaselite dump); not re-checked.
 - MADation ViT-L/14 has no score on the corrected MAD22 and was not rescored; its ladder numbers are AR1's.
 - DINOv3 versions of the wave-3 arms, border blanking and wave 4 were not run.
+
+## AF0 wave 2 on DINOv3 ViT-L/16 at 512 (`wave2_dinov3_512.json`, `metrics_dinov3_512_w2_*.json`)
+
+Same scale and targets as the CLIP-224 block.
+
+| target | head | pooling | F1 rho | pair swap | FM R2w vs R4 (floor) | CV R2w vs R4 | FM R3 vs R4 | CV R3 vs R4 | CV R3m vs R4 | FRLL E7 shift (max) | MAD22 FM E7 shift | R0->R2w FM / CV | EER AMSL / WebMorph | Poisson AUC |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| alpha | ridge | mean | 0.228 | 0.193 | 0.998 (0.723) | 0.996 | 0.858 | 0.835 | 0.741 | 0.086 | 0.099 | 0.743 / 0.247 | 21.040 / 13.700 | 0.876 |
+| alpha | ridge | top10 | 0.228 | 0.193 | 0.998 (0.723) | 0.996 | 0.854 | 0.827 | 0.718 | 0.089 | 0.115 | 0.759 / 0.236 | 20.630 / 11.300 | 0.875 |
+| alpha | ridge | inner | 0.228 | 0.193 | 0.997 (0.723) | 0.994 | 0.856 | 0.832 | 0.749 | 0.091 | 0.152 | 0.732 / 0.245 | 21.120 / 17.160 | 0.884 |
+| alpha | ridge | periph | 0.228 | 0.193 | 1.000 (0.723) | 1.000 | 0.841 | 0.826 | 0.811 | 0.074 | 0.147 | 0.469 / 0.309 | 26.980 / 4.870 | 0.822 |
+| alpha | mlp_s401 | mean | 0.378 | 0.314 | 0.999 (0.723) | 0.999 | 0.871 | 0.858 | 0.757 | 0.110 | 0.249 | 0.791 / 0.267 | 12.710 / 7.340 | 0.875 |
+| alpha | mlp_s401 | top10 | 0.378 | 0.314 | 0.999 (0.723) | 0.999 | 0.865 | 0.849 | 0.736 | 0.106 | 0.227 | 0.813 / 0.247 | 14.190 / 9.740 | 0.873 |
+| alpha | mlp_s401 | inner | 0.378 | 0.314 | 0.999 (0.723) | 0.998 | 0.868 | 0.853 | 0.758 | 0.118 | 0.255 | 0.777 / 0.261 | 14.190 / 10.810 | 0.878 |
+| alpha | mlp_s401 | periph | 0.378 | 0.314 | 1.000 (0.723) | 1.000 | 0.858 | 0.846 | 0.814 | 0.153 | 0.347 | 0.463 / 0.246 | 29.950 / 2.480 | 0.844 |
+| g | ridge | mean | 0.219 | 0.118 | 0.997 (0.723) | 0.996 | 0.850 | 0.820 | 0.725 | 0.116 | -0.014 | 0.898 / 0.310 | 25.410 / 14.690 | 0.875 |
+| g | ridge | top10 | 0.219 | 0.118 | 0.995 (0.723) | 0.996 | 0.850 | 0.816 | 0.709 | 0.114 | -0.022 | 1.028 / 0.303 | 26.490 / 10.810 | 0.874 |
+| g | ridge | inner | 0.219 | 0.118 | 0.996 (0.723) | 0.994 | 0.845 | 0.814 | 0.738 | 0.114 | 0.010 | 0.816 / 0.300 | 27.480 / 20.630 | 0.876 |
+| g | ridge | periph | 0.219 | 0.118 | 1.000 (0.723) | 1.000 | 0.839 | 0.824 | 0.817 | 0.111 | 0.076 | 0.463 / 0.358 | 27.970 / 2.970 | 0.803 |
+| g | mlp_s401 | mean | 0.295 | 0.152 | 0.999 (0.723) | 0.999 | 0.868 | 0.848 | 0.751 | 0.108 | 0.243 | 0.813 / 0.291 | 13.200 / 7.340 | 0.865 |
+| g | mlp_s401 | top10 | 0.295 | 0.152 | 0.998 (0.723) | 0.999 | 0.862 | 0.841 | 0.740 | 0.098 | 0.167 | 0.913 / 0.258 | 17.660 / 8.330 | 0.858 |
+| g | mlp_s401 | inner | 0.295 | 0.152 | 0.998 (0.723) | 0.997 | 0.864 | 0.843 | 0.747 | 0.108 | 0.205 | 0.767 / 0.265 | 16.670 / 11.880 | 0.857 |
+| g | mlp_s401 | periph | 0.295 | 0.152 | 1.000 (0.723) | 1.000 | 0.848 | 0.834 | 0.829 | 0.235 | 0.464 | 0.443 / 0.371 | 24.010 / 1.490 | 0.819 |
+| D | ridge | mean | 0.157 | 0.108 | 0.994 (0.723) | 0.992 | 0.830 | 0.787 | 0.659 | 0.072 | 0.222 | 1.017 / 0.305 | 18.650 / 12.710 | 0.875 |
+| D | ridge | top10 | 0.157 | 0.108 | 0.991 (0.723) | 0.987 | 0.822 | 0.770 | 0.630 | 0.082 | 0.222 | 1.064 / 0.301 | 20.710 / 10.400 | 0.860 |
+| D | ridge | inner | 0.157 | 0.108 | 0.992 (0.723) | 0.986 | 0.822 | 0.779 | 0.677 | 0.068 | 0.212 | 0.943 / 0.311 | 24.010 / 21.450 | 0.875 |
+| D | ridge | periph | 0.157 | 0.108 | 1.000 (0.723) | 1.000 | 0.791 | 0.770 | 0.767 | 0.104 | 0.341 | 0.428 / 0.399 | 23.510 / 3.470 | 0.776 |
+| D | mlp_s401 | mean | 0.172 | 0.147 | 0.997 (0.723) | 0.997 | 0.851 | 0.825 | 0.732 | 0.077 | 0.363 | 0.877 / 0.312 | 18.070 / 13.200 | 0.882 |
+| D | mlp_s401 | top10 | 0.172 | 0.147 | 0.995 (0.723) | 0.995 | 0.839 | 0.809 | 0.713 | 0.080 | 0.311 | 0.929 / 0.267 | 23.100 / 11.300 | 0.866 |
+| D | mlp_s401 | inner | 0.172 | 0.147 | 0.996 (0.723) | 0.994 | 0.844 | 0.821 | 0.723 | 0.077 | 0.281 | 0.790 / 0.284 | 22.520 / 19.140 | 0.877 |
+| D | mlp_s401 | periph | 0.172 | 0.147 | 1.000 (0.723) | 1.000 | 0.798 | 0.779 | 0.795 | 0.169 | 0.440 | 0.426 / 0.249 | 28.470 / 3.050 | 0.830 |
+| G | ridge | mean | 0.441 | 0.102 | 0.994 (0.723) | 0.992 | 0.842 | 0.814 | 0.705 | 0.052 | -0.244 | 0.617 / 0.214 | 25.990 / 18.150 | 0.865 |
+| G | ridge | top10 | 0.441 | 0.102 | 0.992 (0.723) | 0.987 | 0.854 | 0.819 | 0.736 | 0.061 | -0.082 | 0.651 / 0.181 | 21.120 / 13.700 | 0.865 |
+| G | ridge | inner | 0.441 | 0.102 | 0.989 (0.723) | 0.986 | 0.834 | 0.809 | 0.722 | 0.049 | -0.208 | 0.528 / 0.194 | 24.590 / 23.020 | 0.861 |
+| G | ridge | periph | 0.441 | 0.102 | 1.000 (0.723) | 1.000 | 0.837 | 0.823 | 0.809 | 0.044 | -0.298 | 0.459 / 0.246 | 26.490 / 5.360 | 0.780 |
+| G | mlp_s401 | mean | 0.448 | 0.110 | 0.995 (0.723) | 0.992 | 0.840 | 0.819 | 0.698 | 0.025 | 0.143 | 0.483 / 0.161 | 17.660 / 14.270 | 0.807 |
+| G | mlp_s401 | top10 | 0.448 | 0.110 | 0.991 (0.723) | 0.985 | 0.837 | 0.808 | 0.711 | 0.028 | 0.066 | 0.539 / 0.106 | 20.130 / 14.110 | 0.789 |
+| G | mlp_s401 | inner | 0.448 | 0.110 | 0.990 (0.723) | 0.986 | 0.827 | 0.810 | 0.689 | 0.030 | 0.101 | 0.418 / 0.127 | 20.130 / 18.650 | 0.782 |
+| G | mlp_s401 | periph | 0.448 | 0.110 | 1.000 (0.723) | 1.000 | 0.827 | 0.818 | 0.797 | 0.147 | 0.086 | 0.378 / 0.206 | 26.900 / 2.970 | 0.773 |
+
+Registered wave-2 reading for g on DINOv3: fails? no for both heads (FaceMorpher warp-only vs two-person 0.995-0.999; FRLL native -> E7 shift at most 0.116). Gain? ridge: no (same-person vs two-person 0.850 vs alpha 0.854-0.858; E7 shift 0.114-0.116 vs alpha 0.086-0.089, higher). MLP seed 401: by the literal rule yes, through the E7 shift only (0.108 vs alpha 0.110 with mean pooling, 0.098 vs 0.106 with top tenth; same-person vs two-person 0.862-0.868 vs alpha 0.865-0.871, i.e. not 0.03 better). The most learnable target is again G (F1 0.44-0.45), which failed the sanity rule.
+
+Other DINOv3 readouts: Poisson set (A27) AUC: full MLP 0.848-0.868, ridge 0.859, logistic 0.861 (Laplacian floor 0.566). Graded set (m = 0 ... 0.5): full MLP mean score 0.034-0.037 / 0.151-0.154 / 0.265-0.267 / 0.354-0.356 / 0.412-0.413 / 0.431-0.433, AUC vs m = 0 for m = 0.1 / 0.2: 0.865-0.872 / 0.977-0.982 (ridge 0.865 / 0.975, logistic 0.948 / 0.995); Page trend monotone (p < 1e-280) for every head. Morph vs own halves on AF0 validation (wave 3, control 1): full heads 0.996-1.000, wave-2 heads 0.994-0.9999 (floors 0.760 / 0.748; best simple 0.823 / 0.812). Median pooling: FRLL native -> E7 (opencv) 0.07-0.08, R0 -> R2w FaceMorpher 0.65-0.74 (as with the mean).

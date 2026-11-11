@@ -193,6 +193,12 @@ def main():
         K.dump(r, out / f"{arm}_s{seed}.json")
         if arm != "A" and ("A", seed) in S:
             comp[f"{arm}_vs_A_s{seed}"] = pg_bootstrap(S[("A", seed)], S[(arm, seed)], P, B=a.boot)
+    for seed in SEEDS:                     # amendment 4 item 4: C's gating miss against B's (JPEG mark)
+        if ("B", seed) in S and ("C", seed) in S:
+            comp[f"C_vs_B_s{seed}"] = pg_bootstrap(S[("B", seed)], S[("C", seed)], P, B=a.boot)
+            st = RD.storage_marks(R[("C", seed)])
+            comp[f"C_vs_B_s{seed}"]["C_jpeg50_le10_both_thresholds"] = st["jpeg50_le10_both"]
+            comp[f"C_vs_B_s{seed}"]["C_jpeg_flags"] = st["jpeg_flags"]
     viol = {}
     for seed in SEEDS:
         if ("A", seed) in R:

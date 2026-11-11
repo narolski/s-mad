@@ -1,75 +1,129 @@
-# Mirror-asymmetry test (AS0): result of phase 1
+# Mirror-asymmetry test (AS0): result (closed 11 Nov 2026)
 
-11 Nov 2026, about 20:30 CET. Owner of the mirror-asymmetry test (AS0). Registration `prereg.md` (amendments A1-A13,
-all before any contrast); full record `README.md`; all tables `tables.md`; numbers `contrasts.csv`, `history.csv`,
-`dose.csv`, `shares.csv`, `verdict.json`, `analysis.json`, `typ_detected.csv`, `blank_vs_primary_same_hosts.json`.
+Version 2, 11 Nov 2026, about 21:00 CET, after the independent review (`experiments/reviews/REVIEW_AS0_20261111.md`,
+verdict "needs qualification"; corrections applied here) and amendment A14. Owner of the mirror-asymmetry test (AS0).
+Registration `prereg.md` (A1-A14, each before the numbers it governs); full record `README.md`; tables `tables.md`;
+numbers in `contrasts.csv`, `history.csv`, `dose.csv`, `shares.csv`, `verdict.json`, `analysis.json`,
+`typ_detected.csv`, `blank_vs_primary_same_hosts.json`, `a14.csv`, `a14.json`, `posthoc_addendum.json` (post hoc).
 Statistic: L = ln(E_A / E_S), energies of the mirror-asymmetric and mirror-symmetric parts in octave bands B1..B5
 (half-power wavelengths IOD to IOD/32) inside a symmetric face mask; luminance; lossless flip about the frame centre.
 AUC = P(L(X) < L(Y)); 95% two-way person bootstrap, B = 2,000. No detector score was opened; no image was built.
 
 ## Registered verdict: **weak**
 
-Primary pool, landmark ladder (AR1), 536 FRGC / colorFERET hosts, both engines pooled. Two-person morph (R4) against
-same-person morph (R3), all R3 cross-session:
+Landmark ladder (AR1), 536 FRGC / colorFERET hosts, both engines pooled; two-person morph (R4) against same-person
+morph (R3); every R3 and every R4 is a mix of two captures from different sessions:
 
-| band | B1 | B2 | B3 | B4 | B5 | B1-B5 |
-|---|---|---|---|---|---|---|
-| AUC | 0.563 [0.525, 0.603] | 0.599 [0.556, 0.635] | **0.618 [0.578, 0.655]** | 0.562 [0.522, 0.599] | 0.524 [0.484, 0.564] | 0.611 [0.570, 0.648] |
-| history shift d, FaceMorpher E7 (own landmarks) | -0.018 | +0.048 | +0.102 | +0.095 | +0.016 (above cut-off) | -0.175 |
+- **Selection-free, all bands B1-B5: 0.611 [0.573, 0.651].**
+- Per band: 0.563 [0.526, 0.603], 0.599 [0.561, 0.640], **0.618 [0.580, 0.659]** (best of five, B3), 0.562 [0.522,
+  0.605], 0.524 [0.483, 0.565].
+- No band reaches 0.70: the pass rule fails. Only one band, B3, is at or above the kill mark of 0.60 (B2 is 0.599), so
+  the line between "weak" and "kill" is within noise.
+- Without the 8 reserved persons: 0.615 (B1-B5), 0.622 (B3). OpenCV 0.625 and FaceMorpher 0.611 (B3); person-disjoint
+  halves 0.635 and 0.624 (B3). Mostly an FRGC result: FRGC 0.634, colorFERET 0.581 [0.499, 0.661] (B3).
+- External prediction of the identity-shrinkage review (A11): best band 0.618 with dose slope 0.535 there, inside the
+  predicted zone: **not falsified**.
 
-No band reaches 0.70 (pass fails); B2 and B3 are at or above 0.60 (kill does not fire). Positive control: the mirror
-self-morph (R3m) collapses in every band (median ratio to R2w <= 0.003, AUC 1.000; by construction, same flip). Without
-the 8 reserved persons 0.567 / 0.603 / 0.622 / 0.567 / 0.526; OpenCV 0.625, FaceMorpher 0.611 (B3); two person-disjoint
-halves 0.635 / 0.624 (B3). External prediction of the identity-shrinkage review (A11: best band 0.58-0.70 with dose
-slope below 0.7): best band 0.618, slope 0.535 there: **inside the predicted zone**.
+## Controls
 
-## What carries the 0.62
+- The mirror self-blend control (R3m: AUC 1.000, ratio to R2w at most 0.003) is **algebra**. It was built with the
+  same flip as the statistic, so it checks the code, not the sensitivity.
+- The informative positive control is the **dose curve** (graded FaceMorpher, 300 hosts). It is monotone; m = 0.5
+  against m = 0 gives 0.71 in B3. But it shrinks at only 0.54-0.63 of the square-root-law rate in B1-B3 (slopes 0.63
+  [0.54, 0.72], 0.60 [0.53, 0.68], 0.54 [0.47, 0.60]), and at 0.27 and 0.08 in B4-B5.
+- **Storage history: history-stable, not history-free.**
+  - FaceMorpher E7 copies (204 FRLL photos), own landmarks: d = -0.02, +0.05, +0.10, +0.10 SD (B1-B4, all below the
+    cut-off). That is 8-42% of the R3-to-R4 gap in L.
+  - In B3, the band that carries the effect, the shift is at or above the registered 0.1 mark in every variant:
+    +0.20 with native landmarks; +0.12 to +0.17 on the ladder's own softened warp-only images.
+  - With the primary frame-centre flip the shift points toward the genuine side: no shift below the cut-off is more
+    negative than -0.03 in 84 rows. So the ratio cannot flag stored genuine photos; it can only hide stored morphs.
+  - Exception (owner's check of the review's statement): with the landmark-midline flip F1 and own landmarks, the
+    FaceMorpher E7 shift is -0.08 (B3) and -0.14 (B4), toward the morph side. The "genuine side only" statement holds
+    for F0, not for every variant.
+- **Pool level.** The level of the ratio differs between photo pools more than between morph types. Genuine FRGC
+  against genuine colorFERET photos: 0.74 / 0.76 / 0.72 / 0.67 / 0.57 (B1-B5). The ratio is usable only within one
+  pool on the same hosts, never as one threshold across pools.
+- Softness does not explain the key contrast within the pool: 0.627 (B3) after partialling out Laplacian variance;
+  Laplacian variance alone 0.530. Blanking outside the mask in memory: 0.651 against 0.642 on the same 187 hosts.
 
-- Geometry: partialling out shape asymmetry, three midline offsets and mask size leaves 0.596 (B3); shape asymmetry
-  alone (calculated from source landmark files, arithmetic) 0.595; on landmarks detected on the built images 0.590.
-  Symmetrising only the shape (R2wm against R0) already lowers the ratio at 0.56 / 0.66 / 0.71 / 0.73 / 0.74.
-- Softness does not explain it (residual after Laplacian variance 0.627; Laplacian variance alone 0.530). Pose and
-  lighting: residual 0.604; |yaw| tertiles 0.59 / 0.64 / 0.59. Low-band leakage: blanking outside the mask in memory
-  gives 0.651 against 0.642 on the same 187-host subsample (B3).
-- Capture-specific averaging is real. Same-person cross-session morphs lose asymmetry against warp-only images (R3
-  against R2w 0.58 / 0.58 / 0.58 / 0.56 / 0.53); within colorFERET, cross-session same-person morphs (record's r8 arms)
-  are below same-session ones at 0.587 / 0.574 / 0.616 / 0.573 / 0.541 (620 / 1,172). Two-person morph against
-  same-session same-person morph, colorFERET only: 0.61 / 0.62 / **0.69 [0.61, 0.77]** / 0.63 / 0.56; against
-  cross-session (K1 within colorFERET) 0.56 / 0.56 / 0.58 / 0.52 / 0.51. (A same-session rung on the same hosts does
-  not exist: phase 2.)
-- The two-person morph does not halve the asymmetric energy: median ratio to R2w 0.61 / 0.65 / 0.68 / 0.81 / 0.95
-  (predicted 0.5). Dose curve (graded FaceMorpher, 300 hosts): slope 0.63 [0.54, 0.72], 0.60 [0.53, 0.68], 0.54 [0.47,
-  0.60] in B1-B3, 0.27 and 0.08 in B4-B5: shrinks less than the square-root law. Person-specific share of the
-  asymmetric energy 0.49-0.75 (B1-B3, bounds pi_A / pi_L).
+## Geometry-matched reference (amendment A14, registered before reading)
 
-## Storage history
+R2w4 is the host photo warped to the two-person target shape, with no second texture. B3, pooled:
 
-FaceMorpher E7 (204 FRLL photos, canonical frame, scale 0.47, B1-B4 below the cut-off), own landmarks: d = -0.02,
-+0.05, +0.10, +0.10 (B1-B4); the shift is 8 to 42% of the R3-R4 difference in L. With the native's landmarks it is
-larger in B2-B3 (+0.11, +0.20). AR1 photos through the same 61.2 px path (Lsoft fm61, own landmarks): R0 +0.02 / -0.01
-/ +0.03 / +0.04, R2w +0.03 to +0.13 (B3-B4 above 0.1). OpenCV / Webmorph / AMSL / FaceMorpher-FRLL-Morphs copies:
-|d| <= 0.07. SMDD 80 px copies: +0.035, +0.060 (B1-B2, below their Nyquist). So the ratio is history-stable within
-0.1 SD in B1-B2 and at the 0.1 edge in B3-B4.
+| quantity | value | registered prediction | result |
+|---|---|---|---|
+| R2w4 against R2w (geometry only) | 0.540 [0.503, 0.576] | 0.55-0.60 | below the range |
+| median exp(L_R2w4 - L_R2w) | 0.903 [0.878, 0.938] | 0.82-0.90; falsified if >= 0.95 | not falsified on this count |
+| R4 against R2w4 | **0.655 [0.628, 0.685]** | 0.58-0.64; falsified if >= 0.65 | **falsified** |
+| texture excess (R4 vs R2w4 minus R3 vs R2w 0.576) | **+0.079** | revisit a learned version only if >= 0.03 | rule met |
+| geometry share of the R3-to-R4 gap | **0.33 [0.23, 0.43]** | 0.40-0.70 | below the range |
+
+- Geometry share in the other bands: B1 0.17, B2 0.30, B4 0.51, B1-B5 0.24.
+- R4 against R2w4 in the other bands: B1 0.63, B2 0.65, B4 0.59, B5 0.53, B1-B5 0.70.
+- **H-new-1 ("geometry carries most of the key contrast") is falsified.** Shape accounts for about a third of the
+  B3 gap. Blending in a second person's texture lowers the ratio more than blending in a second capture of the same
+  person (0.655 against 0.576).
+- Detected-landmark typicality (H-new-2): R4 against R2w4 0.528 [0.505, 0.552] (prediction 0.44-0.56); R2w4 against
+  R3 0.626 [0.590, 0.662] (prediction >= 0.62). **Not falsified**: the detected typicality reads the target shape,
+  not blend artefacts, so the A10 conclusion stands. Detected typicality of R4 against R3 is 0.653 [0.616, 0.692]
+  (0.687 from source files): not falsified, lower bound above 0.60.
+
+## Session and capture
+
+- About half of a photo's coarse-band asymmetry belongs to the capture, not the person (person-specific share 0.49 to
+  0.75 in B1-B3).
+- Same-person cross-session morphs lose asymmetry against warp-only images: 0.58 / 0.58 / 0.58 / 0.56 / 0.53.
+- Within colorFERET, cross-session same-person morphs sit below same-session ones: 0.587 / 0.574 / 0.616 / 0.573 /
+  0.541.
+- Because R3 and R4 are both cross-session, the capture loss appears in both arms of K1 and cancels to first order.
+  K1 fades with the session gap: 0.642 at 60 days or less, 0.563 above 365 days.
+- **Not to be quoted:**
+  - The 0.69 of two-person against same-session same-person morphs: colorFERET only, best of five bands, adds capture
+    averaging.
+  - The pooled 0.84 of two-person against same-session morphs: it mixes databases, and the pool offset is larger than
+    the effect.
 
 ## Other families (descriptive readings)
 
-- GAN latent blocks (StyleGAN3, 64 blocks): two-person morph against same-person mix (x3 against x2) **0.48-0.52**
-  (does not separate); any two-code mix against a one-code reconstruction 0.61-0.68 (x3 against x1, x2 against x1);
-  reconstruction against photo 0.52-0.65. The ratio reads "two codes were mixed", not "two persons".
-- Diffusion autoencoder (A43, FRLL): two-person morph against same-person mix (B20 against C20) 0.65 / 0.71 / **0.74
-  [0.65, 0.82]** / 0.69 / 0.61; but the same-person mix (neutral + smiling, one session) is MORE asymmetric than the
-  one-photo reconstruction (C20 against D20 0.37-0.46), and B20 against D20 is only 0.61 / 0.63 / 0.60 / 0.57 / 0.50.
-  The same on the stored crops (0.72 in B3). Mirror mix against its reconstruction (AD1b full run, 32 persons): 1.000. The lead's face-box number
-  reproduces on persons 001-004 (photo 19.4, D20 17.7, C20 18.7, B20 12.0, mirror mix 2.1) but on all persons the gap
-  is small (12.9 / 11.8 / 13.4 / 10.9).
-- Detected landmarks on the built ladder images (A10, review H-new-2): ID0 typicality, R4 against R3, **0.653 [0.616,
-  0.692]** (calculated from source files 0.687): supported (>= 0.65) by 0.003.
+- **GAN latent blocks** (StyleGAN3, 64 blocks): two-person against same-person mix 0.48-0.52 (no two-person
+  reading). Any two-code mix against the one-code reconstruction: 0.61-0.68. Reconstruction against photo: up to 0.65
+  (the inversion itself symmetrises).
+- **Diffusion autoencoder** (A43): two-person morph against same-person mix 0.74 [0.65, 0.82] (B3). This is mainly
+  that mix being unusually asymmetric: same-person mix against reconstruction is 0.37-0.46, while its inputs are not
+  asymmetric (neutral against smiling FRLL photos 0.46-0.54, post hoc). Two-person morph against reconstruction: 0.60.
+  Mirror mix against its reconstruction (32 persons): 1.000 (algebra, as above).
+- **Context** (review F8): released detectors already score R4 against R3 on this ladder at 0.60-0.75. The ratio is
+  a floor that most of them clear, not a method.
 
-## Failed, cut or not verified
+## Post hoc addendum (lead's request after the review; not registered; `posthoc_addendum.json`)
 
-- Cut because of the CPU load (about 140 on 20 cores from 18:50): expanded123 DiffAE blocks not measured; R8 measured
-  on colorFERET pairs only; blank run on a host subsample and on R3 / R4 only (no R3m there); Fe on two families.
-- Not verified: whether the FRGC "environment" field (a camera id) matters; same-session same-person morphs on the
-  AR1 hosts (do not exist); the R4 reference at its own H-B mean shape (needs warp-only images toward that shape,
-  phase 2); the geometry share as registered
-  (log ratio to the mirror self-morph) is degenerate because R3m is near zero; the energy version is in `shares.csv`.
+- **Pool offset** (review F2), genuine FRGC against colorFERET (427 / 109):
+  - Raw: 0.743 [0.691, 0.795], 0.761 [0.706, 0.813], 0.720 [0.666, 0.769], 0.667 [0.613, 0.717], 0.567 [0.513,
+    0.617].
+  - With yaw, nose offset and lighting partialled out: 0.780, 0.790, 0.739, 0.682, 0.569. So the offset is **not pose
+    or lighting**.
+  - With log Laplacian variance added: 0.539 [0.476, 0.599], 0.532, 0.520, 0.537, 0.506. The offset follows the
+    pools' capture sharpness and detail.
+- **Logistic ceiling** (5 strictly person-disjoint folds, out-of-fold, reserved persons dropped):
+  - Same-person against two-person: five bands 0.632 [0.588, 0.674]; plus calculated shape 0.635; plus detected shape
+    0.634; detected shape alone 0.589.
+  - Warp-only against two-person: five bands 0.701 [0.660, 0.741]; plus shape 0.700.
+  - Combining the bands adds little over the best band.
+- **F9** (partner similarity): Spearman of cos_HB with L_R4 - L_R2w is -0.10 [-0.18, -0.01] (B2-B3, both engines;
+  B4-B5 -0.12 to -0.15). More similar partners lose slightly more asymmetry. The look-alike explanation of the weak
+  halving is disfavoured and dropped.
+- **F8:** neutral against smiling FRLL photos 0.46-0.54 per band; recorded with the released-detector context above.
+
+## Cut, dropped or not verified
+
+- Dropped (lead): the expanded123 DiffAE blocks and the R8 FRGC pairs.
+- Reduced because of CPU load: the blank run (host subsample, R3 / R4 only) and Fe (two families).
+- Not before 14 Nov: the learned head on f(x) - f(flip x), and same-session FRGC morphs.
+- To the frozen read of the new diffusion ladder (FZ2): the diffusion expression-mix reading (review H-new-3).
+- Not verified: whether the FRGC camera id matters; same-session same-person morphs on the AR1 hosts (none exist).
+- The registered geometry share in log units (relative to R3m) is degenerate; its energy version is in `shares.csv`.
+
+**Paper wording (review):** "averaging two captures, and to a lesser degree two persons, lowers mirror asymmetry";
+never "the ratio detects a second person". About a third of the identity part is face shape; the rest is the
+person-specific texture asymmetry that the blend averages.

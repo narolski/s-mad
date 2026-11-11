@@ -64,6 +64,10 @@ the owner. Nothing may be submitted or probed until then.
   R3 2.953 / 1.246, R3m 3.247 / 1.331, R4 5.474 / 5.550, RT 2.947, AG3(0.3) 4.785; MIPGAN-II R2 2.429 / 0.735, R3
   3.304 / 1.457, R3m 3.545 / 1.520, R4 5.676 / 5.706 (persons frll_001 / frll_010). Production estimate 19.9 A100
   GPU-h; array time limit raised to 10 h (longest shard, MIPGAN-II FRLL 00, about 4.5 h).
+- ~21:20 Per-tar flow tested end to end on the two smoke-based test tars (`/mnt/t7/smad_next/AG1/tests/manifest/`):
+  `shard` x 2 (11 + 8 images, aligned 1.000, oracle 19 / 0 fail, RT 1), `frames` (3,030 rows), `oracle` (623
+  embedded = 604 camera + 19 generated), `rt`, `pins`, `ag1_baselines.py` (3,030 frames), `ag1_read.py --gate-only`;
+  all exit 0 under the thread caps. Test frames removed afterwards.
 - ~21:00 Disk alert (T7 reached 100% at about 20:40): removed my own temporary test directories (26 GB -> 6.1 GB;
   extracted weights, MADation test extraction, build intermediates; all rebuildable). The GAN weights were not stored
   twice (hard links). Proposed for the author's approval list, not deleted: `athena/ag1_pack.tar` (2.8 GB, copy on
@@ -282,6 +286,11 @@ Not verified:
 
 ## 10. Handover state (11 Nov ~17:45 CET)
 
+- **Update ~21:25:** DGX loop running (this owner's shell, background): every 15 min it calls
+  `src/AG1/fetch_and_process.sh` until 16 shards (8 core, 4 graded mixing, 4 spread) are processed; logs
+  `/mnt/t7/smad_next/AG1/fetch_<HHMM>.log`; ledger `experiments/AG1/fetched_tars.csv`. If it dies, rerun the script
+  by hand: it skips processed shards and only fetches results that exist on Athena. Core task 3544797_0 started
+  about 20:50.
 - **Update 19:40:** spread-matched renders 3545819 (4 tasks, wait for the core array). Facts table goes to the lead
   before any interpretation (amendment 3, rule 7).
 - **Update 19:05:** Athena jobs: smoke 3544188 (failed, 0.06 GPU-h), smoke 3544209 (passed, 0.17 GPU-h); production

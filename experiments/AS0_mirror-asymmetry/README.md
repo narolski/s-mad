@@ -19,18 +19,21 @@ Question (lead, 11 Nov): averaging two different persons averages two independen
 two-person morph should have a lower ratio of asymmetric to symmetric energy than a same-person morph, and the ratio
 should not move with softness or storage history. Is this a single-image signal for a second identity?
 
-Status 11 Nov 2026, 20:30 CET: **phase 1 finished** (CPU only; no detector score opened; no image built). Short
-verdict in `result.md`. Registered verdict on the primary cell: **weak**. On the landmark ladder (536 hosts, both
-engines) the two-person morph (R4) has a lower asymmetry ratio than the same-person morph (R3) in every band, but only
-at AUC 0.52 to 0.62 (best band B3 0.618 [0.578, 0.655]; broadband 0.611); no band reaches 0.70, so the pass rule fails;
-the kill rule does not fire. The mirror self-morph control collapses (by construction); the FaceMorpher storage history
-moves the ratio by -0.02 to +0.10 SD in the bands below its cut-off; softness and low-band leakage do not explain the
-contrast; geometry explains part of it (B3 0.596 after partialling out). Capture-specific asymmetry is real: within
-colorFERET, cross-session same-person morphs are below same-session ones (0.62 in B3), and two-person morphs against
-same-session same-person morphs reach 0.69 (B3). GAN latent morphs: no separation of two-person from same-person mixes
-(0.48-0.52). Diffusion autoencoder: 0.74 (B3) against the same-person mix, but that mix is more asymmetric than the
-one-photo reconstruction, and two-person morph against reconstruction is 0.60. Detected landmarks on the built
-images carry the identity-shrinkage typicality at 0.653 (calculated 0.687).
+Status 11 Nov 2026, 21:00 CET: **closed** (after the independent review and amendment A14; CPU only; no detector
+score opened; no image built). Short verdict in `result.md` (version 2). Registered verdict: **weak**. On the
+landmark ladder (536 hosts, both engines) the two-person morph (R4) has a lower asymmetry ratio than the same-person
+morph (R3): 0.611 [0.573, 0.651] over all bands B1-B5 (selection-free), 0.618 [0.580, 0.659] in the best of five
+bands (B3); only B3 clears the kill mark of 0.60. The mirror self-blend control is algebra; the dose curve, the
+informative control, shrinks at about 0.54-0.63 of the square-root-law rate. The ratio is history-stable, not
+history-free (FaceMorpher storage history up to +0.10 SD with own landmarks, +0.20 with native landmarks in B3; with
+the primary flip always toward the genuine side), and its level differs between photo pools (genuine FRGC against
+genuine colorFERET 0.72 in B3, post hoc; follows capture sharpness, not pose or lighting) more than between morph
+types: usable only within a pool on the same hosts. The geometry-matched warp-only reference (A14) gives geometry a
+third of the key contrast (0.33 [0.23, 0.43] in B3) and a texture excess of +0.08 (two-person against R2w4 0.655
+against same-person against R2w 0.576): the review's H-new-1 is falsified; detected-landmark typicality reads the
+target shape (R4 against R2w4 0.528), H-new-2 not falsified. GAN latent morphs: no two-person reading (0.48-0.52);
+diffusion: the 0.74 against the same-person mix is that mix being unusually asymmetric (against the reconstruction
+0.60).
 
 ## 2. Timeline (11 Nov 2026, CET)
 
@@ -107,7 +110,19 @@ images carry the identity-shrinkage typicality at 0.653 (calculated 0.687).
   a43_stored 63.68, smdd256 63.73 (smdd80 19.92), stylegan_raw1024 256.09 (all renders). (The "note" on ar1_512 in
   that file, "also used for canon512", is stale: since A8 canon512 uses its own value.)
 
-Amendments to the registration: A1-A13 (prereg.md), all registered before any contrast was computed.
+- 20:33 report to the lead. About 20:50 the independent review (`experiments/reviews/REVIEW_AS0_20261111.md`, verdict
+  "needs qualification") and the lead's five instructions arrived. 20:45 amendment A14 registered in prereg.md (sha256
+  1a75d8bf...) before any R2w4 statistic; seen beforehand: one AR1 README line on R2w4 in other statistics (recorded
+  in A14).
+- 20:46 post hoc addendum (`as0_posthoc.py`, seconds, `posthoc_addendum.json`), labelled post hoc.
+- 20:46-20:49 `chain_a14.sh` (one process, OMP 2, nice 10; machine load had fallen to about 9): R2w4 measured (set
+  L4, 1,072) and its landmarks detected (set LD4, 1,072, no image without a face). 20:49 `as0_a14.py` -> `a14.csv`,
+  `a14.json`.
+- 20:50-21:00 `result.md` version 2 and this README corrected as the review and the lead asked; one statement of the
+  review checked and qualified (the "always toward the genuine side" holds for the primary flip F0; with the
+  landmark-midline flip and own landmarks the FaceMorpher shift is -0.08 in B3 and -0.14 in B4). Closed.
+
+Amendments to the registration: A1-A14 (prereg.md), each registered before the numbers it governs.
 
 ## 3. Data
 
@@ -136,7 +151,7 @@ images), `meas_blank/` and `meas_blank_all.npz` (1,360 images), `geom.npz` (midl
 (`landmarks*.log`, `measure_*.log`, `chain_*.log`, `analyse_1.log`, `analyse_2.log`, `typ.log`,
 `as0_analyse_pre_amend.py.txt` = the analysis script before the amendments).
 
-Measured in phase 1: L 9,304; Lsoft 1,200 (+ LsoftN 600, LsoftO 1,200 with own landmarks); R8 colorFERET 1,792;
+Measured in phase 1: L 9,304 (+ L4 = R2w4 1,072 and its detected landmarks LD4 1,072, amendment A14); Lsoft 1,200 (+ LsoftN 600, LsoftO 1,200 with own landmarks); R8 colorFERET 1,792;
 G 768; D 910; M 8; Ds 910; Fm 816 and FmO (FaceMorpher) 204; Fe native, amsl, facemorpher (612); S 4,000. Detected
 landmarks on the built ladder images LD1 2,680 and LD2 3,752 (A10). Not measured: X (expanded123), R8 FRGC pairs, LD3
 (graded), FeO, FmO OpenCV / Webmorph. Items without a face or with a mask under 1,000 pixels: none in the analysed
@@ -156,6 +171,8 @@ sets (`analysis.json`); 42 items had E_A floored (A5; mirror self-morphs).
 | `as0_typ.py` | shape statistics on detected landmarks of the built ladder images: ID0 typicality (imported unchanged) and shape asymmetry (A10) |
 | `as0_tables.py` | `tables.md` from the CSV / JSON outputs |
 | `as0_lmcheck.py` | landmark-source check (written, not run; the detected-versus-calculated error is reported by `as0_typ.py`) |
+| `as0_posthoc.py` | post hoc addendum after the review: pool offset with pose / lighting / softness partialled out, person-disjoint logistic ceiling, partner-similarity Spearman (F9), neutral against smiling (F8) |
+| `as0_a14.py` | amendment A14: geometry-matched warp-only reference R2w4 (H-new-1) and detected typicality (H-new-2) |
 | `chain_*.sh` | the compute chains (one process each, nice 10); `chain_a3.sh` and `chain_b5.sh` are the ones that finished the work |
 
 Run order: `as0_lists.py` -> `as0_landmarks.py` (+ `--merge`) -> `as0_measure.py --iod` -> `as0_measure.py --sets ...`
@@ -177,12 +194,15 @@ persons, two-way person bootstrap B = 2,000):
 
 | band | K1 R4 vs R3 | K1 without the 8 reserved persons | OpenCV / FaceMorpher | halves (person-disjoint) | history d, FaceMorpher E7, own landmarks (below cut-off) | d, native landmarks | R3m collapse |
 |---|---|---|---|---|---|---|---|
-| B1 | 0.563 [0.525, 0.603] | 0.567 | 0.573 / 0.553 | 0.582 / 0.592 | -0.018 [-0.052, +0.012] (yes) | -0.013 | yes (AUC 1.000) |
-| B2 | 0.599 [0.556, 0.635] | 0.603 | 0.608 / 0.590 | 0.620 / 0.596 | +0.048 [+0.017, +0.081] (yes) | +0.106 | yes |
-| B3 | 0.618 [0.578, 0.655] | 0.622 | 0.625 / 0.611 | 0.635 / 0.624 | +0.102 [+0.062, +0.151] (yes) | +0.204 | yes |
-| B4 | 0.562 [0.522, 0.599] | 0.567 | 0.567 / 0.557 | 0.584 / 0.559 | +0.095 [+0.041, +0.154] (yes) | +0.124 | yes |
-| B5 | 0.524 [0.484, 0.564] | 0.526 | 0.529 / 0.519 | 0.523 / 0.492 | +0.016 [-0.102, +0.135] (no) | +0.014 | yes |
-| B1-B5 | 0.611 [0.570, 0.648] | 0.615 | 0.621 / 0.601 | 0.627 / 0.627 | -0.175 | -0.142 | - |
+| B1 | 0.563 [0.526, 0.603] | 0.567 | 0.573 / 0.553 | 0.582 / 0.592 | -0.018 [-0.052, +0.012] (yes) | -0.013 | yes (AUC 1.000) |
+| B2 | 0.599 [0.561, 0.640] | 0.603 | 0.608 / 0.590 | 0.620 / 0.596 | +0.048 [+0.017, +0.081] (yes) | +0.106 | yes |
+| B3 | 0.618 [0.580, 0.659] | 0.622 | 0.625 / 0.611 | 0.635 / 0.624 | +0.102 [+0.062, +0.151] (yes) | +0.204 | yes |
+| B4 | 0.562 [0.522, 0.605] | 0.567 | 0.567 / 0.557 | 0.584 / 0.559 | +0.095 [+0.041, +0.154] (yes) | +0.124 | yes |
+| B5 | 0.524 [0.483, 0.565] | 0.526 | 0.529 / 0.519 | 0.523 / 0.492 | +0.016 [-0.102, +0.135] (no) | +0.014 | yes |
+| B1-B5 | 0.611 [0.573, 0.651] | 0.615 | 0.621 / 0.601 | 0.627 / 0.627 | -0.175 | -0.142 | - |
+
+(Intervals corrected 21:00 to the final run, `analyse_3.log`; the first version of this table had the 19:22 run's
+intervals, whose person draw did not include the R8 persons.) Only B3 is at or above 0.60 (B2 0.5991).
 
 Verdict (registered rule): **weak**. External prediction of the ID0 review (A11): best band 0.618 with dose slope
 0.535 in that band, inside the predicted zone (0.58-0.70, slope < 0.7); not falsified.
@@ -212,6 +232,31 @@ Storage history (Y, F0; d in native-SD units, [shift / (mean L_R3 - mean L_R4)])
 B1-B4 below the cut-off), own landmarks: B1 -0.018 [-0.08], B2 +0.048 [+0.15], B3 +0.102 [+0.21], B4 +0.095 [+0.42],
 B5 +0.016, broadband -0.175; with the native landmarks the shifts are larger in B2-B3 (+0.106, +0.204). OpenCV and
 Webmorph E7 copies that differ from the native frame: 28 each, |d| <= 0.04.
+
+Geometry-matched reference R2w4 (A14; `a14.csv`, `a14.json`; Y, F0, both engines pooled, 1,072 / 1,072; B1 / B2 / B3 /
+B4 / B5 / B1-B5):
+- R2w4 against R2w (shape change only): 0.513 / 0.526 / 0.540 [0.503, 0.576] / 0.534 / 0.521 / 0.526.
+- R4 against R2w4 (second texture only): 0.629 / 0.649 / 0.655 [0.628, 0.685] / 0.587 / 0.534 / 0.701 [0.669, 0.736]
+  (OpenCV 0.648, FaceMorpher 0.661 in B3); R3 against R2w (same-person analogue) 0.583 / 0.579 / 0.576 / 0.555 / 0.528
+  / 0.619; texture excess in B3 +0.079.
+- R2w4 against R3: 0.430 / 0.446 / 0.462 / 0.477 / 0.491 (the warp-only image toward the two-person shape keeps more
+  asymmetry than the same-person morph).
+- Paired median exp(L_R2w4 - L_R2w): 0.972 / 0.939 / 0.903 [0.878, 0.938] / 0.934 / 0.972; geometry share of the
+  R3-to-R4 gap 0.17 [0.06, 0.30] / 0.30 [0.20, 0.40] / 0.33 [0.23, 0.43] / 0.51 [0.24, 0.74] / undefined (B5 gap near
+  zero) / 0.24 [0.15, 0.32]; without the reserved persons B3 0.33 [0.22, 0.43].
+- Readings: H-new-1 falsified (R4 against R2w4 0.655 >= 0.65; median ratio 0.903 < 0.95); H-new-2 not falsified
+  (detected typicality R4 against R2w4 0.528 [0.505, 0.552], R2w4 against R3 0.626 [0.590, 0.662]; total typicality
+  0.530 and 0.632; detected shape asymmetry 0.537 and 0.554).
+
+Post hoc addendum (lead's request after the review, `posthoc_addendum.json`; not registered): genuine FRGC against
+colorFERET photos (427 / 109), AUC = P(L_FRGC < L_FERET): raw 0.743 / 0.761 / 0.720 / 0.667 / 0.567, after |yaw|, yaw,
+nose offset and lighting 0.780 / 0.790 / 0.739 / 0.682 / 0.569, after adding log Laplacian variance 0.539 / 0.532 /
+0.520 / 0.537 / 0.506; mean L gap FRGC - colorFERET -0.79 / -0.68 / -0.42 / -0.26 / -0.09 nats. Person-disjoint
+logistic ceiling (5 folds, out of fold): same-person against two-person: bands 0.632 [0.588, 0.674], + calculated
+shape 0.635, + detected shape 0.634, detected shape alone 0.589; warp-only against two-person: bands 0.701 [0.660,
+0.741], + shape 0.700. Partner similarity (F9): Spearman(cos_HB, L_R4 - L_R2w) -0.06 to -0.15 (B2-B3 -0.10 [-0.18,
+-0.01] both engines). Neutral against smiling FRLL photos (F8): 0.505 / 0.507 / 0.488 / 0.543 / 0.464. Review F8's
+released-detector values (0.60-0.75 on R4 against R3) are quoted from the review, not re-read.
 
 Shape statistics on landmarks DETECTED on the built ladder images (A10, review hypothesis H-new-2; `as0_typ.py`,
 19:53; `typ_detected.csv`, `typ_detected.json`; LD1 = R0, R3, R4, both engines; 2,680 detections, no image without a
@@ -300,28 +345,30 @@ camera id, not tested.
 - Symmetrising only the geometry (R2wm) removes a large part of the asymmetric energy in B3-B5 (AUC 0.71-0.74
   against R0): much of the per-band asymmetry of an aligned face photo is shape, which the landmark statistics already
   measure.
-- The two-person landmark morph keeps 61-68% of the warp-only asymmetric-energy ratio in B1-B3 instead of 50%; possible
-  reasons (not tested): look-alike partner assignment (AR1 Hungarian on FR similarity), ghosting adding asymmetric
-  energy, R2w having the H-S mean shape rather than the H-B one.
+- The two-person landmark morph keeps 61-68% of the warp-only asymmetric-energy ratio in B1-B3 instead of 50%. The
+  look-alike explanation first written here is disfavoured and withdrawn (21:00): partner similarity correlates with
+  a slightly LARGER loss (Spearman -0.10 [-0.18, -0.01], review F9, recomputed post hoc). R2w having the H-S mean
+  shape is answered by A14 (geometry is a third of the gap).
+- Statements corrected after the review (21:00): "clean" with respect to storage history is replaced by
+  "history-stable, not history-free"; the mirror self-blend positive control is algebra (built with the statistic's
+  flip), the dose curve is the informative control; the 0.69 against same-session same-person morphs (colorFERET only,
+  best band) and the pooled 0.84 (mixes databases) are not to be quoted; "B2 and B3 at or above 0.60" was wrong (only
+  B3).
 
 ## 9. Open items and next steps
 
-Phase 2 is not started (lead's decision). Proposed, in order of information per hour:
-1. Geometry-matched texture test (reviewer improvement 1; needs lead approval to build images with the approved AR1
-   warp path): warp-only images of H toward the H-B mean shape (R2wB); compare L(R4) - L(R2wB) with L(R3) - L(R2w).
-   Decides whether any image signal remains beyond the averaged geometry. CPU minutes.
-2. Same-session same-person morphs on the AR1 colorFERET hosts (fa + fb of the host session, unchanged tools), so that
-   R4 against a same-session R3 is measured on the same hosts.
-3. A learned version: a head on the difference between frozen features of an image and of its mirror, f(x) - f(flip x),
-   which is exactly zero for any mirror-symmetric image whatever was done to it; trained on R4 against R3 (and R3m as
-   negatives), read against the registered controls here (history shift, R3m at the bottom, R2wm, GAN x3 against x2).
-4. Finish the cut sets (X, R8 FRGC, LD3, AD1b 32 persons) if the lead wants them.
+**Closed** (lead, 11 Nov 21:00). Remains for after the deadline (not before 14 Nov):
+- the learned head on f(x) - f(flip x) of frozen features (the A14 texture excess +0.08 meets the review's rule for
+  revisiting it);
+- same-session same-person morphs on FRGC (session split on 80% of the pool).
+Dropped: the expanded123 DiffAE blocks (X) and the R8 FRGC pairs. The diffusion expression-mix read (review H-new-3)
+belongs to the frozen read of the new diffusion ladder (FZ2), not to this experiment.
 
-## 10. Handover state (20:30 CET)
+## 10. Handover state (21:00 CET)
 
-No AS0 process is running (all chains ended: `chain_b5.log` "done 20:14", `chain_a3.log` "done 20:20"; superseded
-chains stopped). Nothing queued. All outputs are on the T7 drive and in this folder. Compute: CPU only (DGX, nice 10,
-at most two processes); 0 GPU-hours; 0 USD.
+No AS0 process is running (last: `chain_a14.sh`, "done 20:49"; `as0_a14.py` and `as0_posthoc.py` ran in the
+foreground). Nothing queued. Outputs on the T7 drive (`/mnt/t7/smad_next/AS0/`, 56 GB free at 20:46) and in this
+folder. Compute: CPU only (DGX, nice 10, at most two processes, one in the last step); 0 GPU-hours; 0 USD.
 
 ## 11. Reproduce from scratch
 
@@ -341,6 +388,8 @@ nice -n 10 $P -I as0_measure.py --blank --sets L --roles R3,R4 --subsample 3
 nice -n 10 $P -I as0_measure.py --blank --sets Fm,FmO --roles native,e7_FaceMorpher
 $P -I as0_measure.py --merge; $P -I as0_measure.py --merge --blank; $P -I as0_check.py; $P -I as0_geom.py
 nice -n 10 $P -I as0_analyse.py --B 2000; $P -I as0_typ.py; $P -I as0_tables.py
+# after the review: post hoc addendum, then A14 (list rows L4 / LD4 added by as0_lists.py)
+$P -I as0_posthoc.py; $P -I as0_lists.py; ./chain_a14.sh; $P -I as0_a14.py
 ```
 
 ## Log of README updates
@@ -349,3 +398,4 @@ nice -n 10 $P -I as0_analyse.py --B 2000; $P -I as0_typ.py; $P -I as0_tables.py
 - 11 Nov 18:47 CET: review, amendments A1-A13, chains.
 - 11 Nov 19:40 CET: primary results (section 5), restructured chains.
 - 11 Nov 20:30 CET: final phase-1 state: all families, R8, detected landmarks, blank run, next steps, handover.
+- 11 Nov 21:00 CET: review corrections, post hoc addendum, A14, closed.

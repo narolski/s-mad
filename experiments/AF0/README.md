@@ -12,15 +12,12 @@ The lead added four waves the same afternoon (registered in `result.md` before t
 (CN0) and the mirror distance (free rider); wave 2 (ghost-energy target), wave 3 (controls: softness can meet the pass
 marks), wave 4 (softened examples through the approved shrink-and-enlarge path).
 
-Status 11 Nov 19:30 CET: running. Pre-registered F1, F2, F3 (registered rungs) and F5 are measured on DINOv3 ViT-L/16
-at 512 and CLIP ViT-L/14 at 224 (CLIP-336 features being extracted); F4 measured on CLIP-224 (DINOv3 running).
-DINOv3 MLP heads pass F1 (0.51-0.52, 5 of 5 seeds; lower bounds about 0.46), ridge 0.285; CLIP-224 MLP 0.26-0.28,
-ridge 0.125. F2 (FaceMorpher R2 vs R4) 0.997-1.000 everywhere, but the same contrast is reached by one band-power
-statistic at 0.905 and by Laplacian variance at 0.753 (wave-3 floors). F3 on the registered rungs is at most 0.11
-(R2) and 0.09 (FRLL E7) for the dense heads; on the lead's warp-only rung R2w DINOv3 heads shift 0.65-0.73
-(FaceMorpher). F4 on CLIP-224: logistic baseline drops 0.73, dense heads drop 0.39-0.44 (registered falsifier: a drop
-above 0.15 makes the central claim false). CN0 verdict "fails" (single statistic 0.93 > 0.80). Waves 2-4 and the PN1
-softened-ladder copies are in progress (section 10). No conclusions drawn here.
+Status 11 Nov 21:00 CET: finished for tonight; no AF0 process running. Pre-registered F1-F5 measured on DINOv3
+ViT-L/16-512, CLIP ViT-L/14-336 and CLIP ViT-L/14-224 (ridge, MLP x5, logistic, thumbnail); CN0, mirror distance,
+waves 2 (both DINOv3 and CLIP-224), 3 and 4 (CLIP-224) and the PN1 softened-ladder copies done. Outcomes against the
+fixed thresholds are tabulated at the top of `result.md`: F1 passes only for DINOv3 MLP heads (0.51-0.52); F2 met
+everywhere (0.997-1.000) but simple statistics reach 0.72-0.93 on the same contrasts; F3 met on the registered rungs;
+F4 dense-head drops 0.35-0.60 on all backbones (registered falsifier: above 0.15). No conclusions drawn here.
 
 ## 2. Timeline (11 Nov 2026, CET)
 
@@ -119,6 +116,9 @@ softened-ladder copies are in progress (section 10). No conclusions drawn here.
   `feat/clip336/DELETED_TOKENS.txt` records it and the regeneration command. Also removed the 8-image smoke cache
   `feat/dinov3_512/ar1_limit8.*` (16 MB). Mean-pooled DINOv3 tokens written beside every full cache
   (`<list>.meanpool.npy`, `pool_tokens.py`) so the full 512-px caches can go if the author agrees.
+- 20:45-21:00 DINOv3 wave-2 metrics and verdict (`wave2_dinov3_512.json`), graded set and floors for DINOv3, DINOv3
+  full metrics rerun with the Poisson set and median pooling; mean-pooled DINOv3 tokens for every list
+  (`feat/dinov3_512/<list>.meanpool.npy`, float32, N x 1024).
 
 Amendments / deviations so far (all reported in `result.md` when final): bench subsample (`bench_s`); wave 2 / 3 / 4
 at reduced scale (ghost targets and halves only for wave-1 pairs plus all uniform-0.5 pairs; softened copies only of
@@ -253,24 +253,22 @@ Not verified: CLIP transforms beyond timm's own config; FRGC neutral = BlankStar
 
 ## 9. Open items and next steps
 
-Full DINOv3 heads -> F1-F5 + F4 + shuffled maps; CLIP-224 heads; CN0 (CLIP-224, DINOv3); wave 2 (g, D vs alpha);
-wave 3 controls 1-7; wave 4 arms; contact sheets; CLIP-336 if the GPU allows; MADation ViT-L/14 comparison numbers
-(A12REL eval scores for FRLL; AR1's scores when written; corrected MAD22 has no score).
+- DINOv3 and CLIP-336 versions of the wave-3 ablation, border blanking and wave 4 (not run: compute and disk).
+- F4 with more FRGC persons (only 10 on the crossed test's negative side).
+- Wave 2 at full scale (targets and halves exist only for 1,640 of 5,000 pairs).
+- Lead's disk decision on the DINOv3 512-px token caches (list in section 10).
 
-## 10. Handover state (20:20 CET)
+## 10. Handover state (21:00 CET)
 
-Running (logs in `/mnt/t7/smad_next/AF0/`; every step skips finished outputs, rerun the chain script if it dies):
-- `chain_clip224_rest.sh` (log `chain_clip224_rest.log`): wave-4 arms a4-e4 with F4 variants (e4 left), then
-  `arms.py read --backbone clip224` -> `arms_clip224.json` (includes wave 3 and wave 4).
-- `chain_dino_rest.sh` (log `chain_dino_rest.log`): DINOv3 wave 2 (w2_alpha, w2_g done; D, G left; eval af0_w1,
-  af0_h, ar1, bench_s), then scoring of the full heads and w2 heads on h1, af0_h and ar1g.
-- `chain_clip336.sh` (log `chain_clip336.log`): CLIP-336 F4 conf / unconf, then `f4.py read` -> `f4_clip336.json`.
-- GPU queues idle or finishing (`queue_clip336.txt` done after h1).
-After these: `run_w2_metrics.sh dinov3_512` + `w2report.py dinov3_512`; `metrics.py --backbone dinov3_512 --tag full
-... --keys score,score_top10,score_median` (adds the Poisson set and the graded set); `graded.py dinov3_512:full
-dinov3_512:w2_alpha ...`; `wave3_floor.py read --specs dinov3_512:full`; `arms.py` and `border.py` exist only for
-CLIP-224 (DINOv3 arms not run: compute).
-Compute so far: about 6 h of shared-GB10 wall time; no USD; WCSS / Athena untouched.
+No AF0 process is running; all queues and chains finished (logs in `/mnt/t7/smad_next/AF0/`). Disk: 55 GB free on
+/mnt/t7 at 20:58. Candidates for removal, awaiting the author (nothing below deleted): the DINOv3 512-px patch-token
+caches, 59.9 GB in total, all under `/mnt/t7/smad_next/AF0/feat/dinov3_512/`: ar1.tokens.npy 17.4 GB, bench_s 12.4 GB,
+af0_w2 8.8 GB, af0_h 6.5 GB, ladsoft 5.3 GB, ar1g 3.8 GB, af0_w1 3.2 GB, h1 2.5 GB. Every planned head was fitted and
+scored from them; per-patch predictions are saved under `heads/dinov3_512/*/pred_*.npz` and mean-pooled tokens beside
+each cache (`<list>.meanpool.npy`). Removing them rules out new DINOv3 patch-level fits (e.g. the wave-3/4 arms on
+DINOv3) without re-extraction (about 2.5 GPU-hours on the shared GB10). Already deleted at 20:39 (before the disk rule):
+CLIP-336 caches, 24 GB (`feat/clip336/DELETED_TOKENS.txt`). CLIP-224 caches (21 GB) are kept.
+Compute: about 7.5 h of shared-GB10 wall time; no USD; WCSS / Athena / Vast untouched.
 
 ## 11. Reproduce from scratch
 
