@@ -1,6 +1,6 @@
 # Where image sets and checkpoints live on disk
 
-Directory listings only, taken 11 Nov 2026 on the DGX Spark (`ls`, one level deep). Nothing was opened. Where a one-line description rests on a README or on `CONCLUSIONS.md`, the source is named; otherwise the description is read off the folder name and marked "from the name". Sizes were not measured (a disk-usage scan timed out). No top-level entry in these four directories carries a sealed-data marker in its name.
+Directory listings only, taken 11 Nov 2026 on the DGX Spark (`ls`, one level deep). No image or score file was opened; only the READMEs and draft files named below were read. Where a one-line description rests on a README or on `CONCLUSIONS.md`, the source is named; otherwise the description is read off the folder name and marked "from the name". Sizes were not measured (a disk-usage scan timed out). No top-level entry in these four directories carries a sealed-data marker in its name.
 
 Terms: **T7** = the 1.8 TB data drive mounted at `/mnt/t7`. **WCSS** = the Wroclaw supercomputing cluster. **Held-out** = evaluation sets never used for training. **A41g, A43 and so on** = experiment IDs in `INDEX.md`. **H1 to H4** = held-out morph families: Poisson-blended, diffusion embedding-midpoint, StyleGAN3 and MIPGAN-I.
 
