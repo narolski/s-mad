@@ -1,7 +1,7 @@
 # Morph-free networks (AD4): result
 
 Status 11 Nov 2026, 23:50 CET. ViT-B/16 recipe: read; flagged "not reproduced on this stack"; descriptive until the WCSS
-cluster rerun decides. ViT-L/14 recipe: running on Athena (3 of 10 networks back); not read. Every statement below is
+cluster rerun decides. ViT-L/14 recipe: 7 of 10 networks back; read descriptively as "incomplete (2 of 5)". Every statement below is
 **in our preprocessing** (our alignment of every benchmark, "our frames"). Full tables: `ad4_reading_m3.md`, post hoc
 addendum `posthoc_m3.md` (prereg Amendment 3); record: `README.md`. Wording follows the independent review
 `experiments/reviews/REVIEW_AD4_VITB_20261111.md`.
@@ -52,6 +52,28 @@ references; they show the effect needs the true labels, not which feature carrie
   MAD22 FaceMorpher 1.000), and inside each cell the network score
   rises with smaller file size (Spearman 0.14 to 0.89 in native cells). Our aligner's border around smaller morph files
   lowers file size, so softness and border are confounded in our frames (posthoc_m3 C).
+
+## ViT-L/14 recipe, in our preprocessing: incomplete (2 of 5 morph-free networks), descriptive only
+
+Athena A100; 7 of 10 networks (morph-free 401 and 402, all five label-permuted); morph-free 403 to 405 rerun once unchanged after slow
+nodes (array 3546123, pending). No refusal; sample-order gate 7 of 7. Same training task (only shrink-and-enlarge copies of synthetic
+faces; natives at logit -4.07, copies +4.02). No verdict until five morph-free networks exist. Tables `ad4_reading_m3l.md`,
+`posthoc_m3l.md`.
+- MorDIFF native 0.0 and 0.0% (references 41.2 to 52.0%); the morph-trained ViT-L/14 recipe (A12BR, 5 seeds, same files) reaches 48.7%.
+- DiM natives 0.0 to 6.9% per seed; the morph-trained recipe 10.2 to 29.7%.
+- Resolution-history matching reverses the DiM cells in both seeds (AUC 0.02 to 0.27); it does not remove the cue on MorDIFF (2.0, 8.9%),
+  FRLL AMSL (8.3, 17.6%) or Webmorph (6.5, 14.2%).
+- 0.5 rule: 0.0% of genuine photos flagged, with 12.7 and 98.9% of MorDIFF and 99.8 to 100% of DiM and FRLL morphs missed. FRLL-5%:
+  0.0% of MorDIFF morphs missed with 25.5% of MorDIFF's own genuine photos flagged.
+
+## Follow-ups of the review (post hoc, Amendment 4)
+
+- Face-only softness (ViT-B/16, our frames): a statistic of high-frequency power in a fixed face box separates morphs from genuine photos
+  at AUC 1.000 in all 8 native cells the networks pass at AUC >= 0.99; the networks' scores follow it with Spearman >= 0.7 in 4 of the 8
+  (H-new-1: mixed). Across the 7 diffusion history-matched cells the networks' AUC follows how much softer the morphs are than the
+  history-matched photos (Spearman 0.86; H-new-2: consistent with overshoot). `fu_sharpness_m3.md`.
+- Border-blanked re-score (H-new-3), ladder same-person and two-person morphs (H-new-5) and held-out generator renders (H-new-4): queued on
+  Athena (smoke job 3546199), not yet run.
 
 ## Withdrawn
 

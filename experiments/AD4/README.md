@@ -1004,3 +1004,17 @@ Headline rows (EER %, morph-free seed mean [95% person-bootstrap interval of the
   - 0.5 rule: 0.0% genuine flagged; misses 12.7 and 98.9% (MorDIFF), 99.8 to 100% (DiM and FRLL). FRLL-5%: MorDIFF morphs missed 0.0%
     while 25.5% of MorDIFF's own unprocessed genuine photos are flagged (39.2, 11.8).
   - Label-permuted networks: own-label accuracy 0.514 to 0.519; true-label accuracy 0.357 to 0.683.
+
+### Handover state, 12 Nov 00:01 (reading owner)
+
+| Where | What | Id | Expected | If it fails |
+|---|---|---|---|---|
+| Athena | ViT-L/14 morph-free reruns, seeds 403 to 405 (lead) | array 3546123_[2-4], PENDING (priority 2143) | about 3 h 45 min each after start | the prereg's one rerun is used; a second failure leaves the arm "incomplete (k of 5)" |
+| Athena | follow-up smoke job, 8 images per manifest | 3546199, PENDING (priority 2007) | about 10 min after start | read `.../smad-next/logs/AD4FU-3546199.out`; fix, re-test on 8 images on the DGX, resubmit |
+| Athena | follow-up production job | not yet submitted | after the smoke passes: `sbatch src/athena/ad4_fu.sbatch` from `.../smad-next` (FU_LIMIT unset) | as above |
+| DGX | watcher of 3546199 (one ssh per 10 min) | background task of the reading owner | ends when 3546199 ends | none |
+
+Next steps: when the three reruns are back, copy with hash check, `summarise.py --stage gates` then `--stage read` and `posthoc_m3.py`
+for `m3l` (the 23:59 interim copies stay in `/mnt/t7/smad_next/AD4/read/incomplete2_*`). When the production follow-up tar is back
+(`.../smad-next/results/AD4_fu/fu_<job>_limit0.tar`): copy, check the unblanked-score gate, then read H-new-3, H-new-4 and H-new-5 (reader
+for these still to be written; registered rules in Amendment 4). Compute so far for follow-ups: none on GPU.
