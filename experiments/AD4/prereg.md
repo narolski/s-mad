@@ -77,7 +77,7 @@ part of the reference and are scored on the DGX together with this registration 
 - **Pre-run review:** pending (lead).
 - **Result:** pending.
 
-## Amendment 1 (11 Nov 2026, 16:25 CET; written before any trained network of the morph-free networks experiment (AD4) exists)
+## Amendment 1 (11 Nov 2026, about 16:21 CET; written before any trained network of the morph-free networks experiment (AD4) exists)
 
 Source: the independent pre-run review of 11 Nov, the lease change, and the lead's instructions. Nothing below was
 chosen after seeing a trained network. The only scores read so far are the untrained ViT-B/16 network's
@@ -165,7 +165,7 @@ last two "E7 partial (n identical)". Every other E7 cell has 0 identical copies.
    `ad4_score.py` on the DGX, must agree with its registered `scores_eval_last.npz` on every shared cell:
    |AUC difference| ≤ 0.005 and Kendall tau ≥ 0.99 per cell.
 
-## Amendment 1b (11 Nov 2026, 16:40 CET; written before any trained network of the morph-free networks experiment (AD4) exists)
+## Amendment 1b (11 Nov 2026, 16:37 CET; written before any trained network of the morph-free networks experiment (AD4) exists)
 
 The rented path changes again (author's suggestion). It replaces point (a) of Amendment 1. Points (b) to (f)
 and the gates stand.
@@ -180,11 +180,13 @@ and the gates stand.
   class instead of H100).
   - **Machine A** (`vast/leaseA`): instance 60226054, NVIDIA A100-SXM4-40GB, 0.433 USD/h. It runs the five
     ViT-B/16 morph-free networks (AD4_m3mf_s401..405).
-  - **Machine B** (`vast/leaseB`): instance 60226099, offer 56042632, 1.00 USD/h. It runs the five ViT-B/16
-    label-permuted networks (AD4_m3perm_s401..405). Its card is recorded here once the machine is reachable.
-- **Within a recipe all ten networks share image and pins.** If the two machines turn out to carry different
-  card models, that is printed beside every number. The morph-free arm and its permuted reference would then sit
-  on different card models (same software).
+  - **Machine B** (`vast/leaseB`): instance 60227348, NVIDIA RTX 6000 Ada Generation (48 GB), 0.738 USD/h.
+    It runs the five ViT-B/16 label-permuted networks (AD4_m3perm_s401..405). It replaced instance 60226099
+    (offer 56042632, 1.00 USD/h), which was destroyed at 16:44 after it stayed unreachable for 13 minutes; no
+    task ran on it. Card filled in at 16:46, before any trained network existed.
+- **Within a recipe all ten networks share image and pins.** The two machines carry different card models
+  (A100 for the morph-free arm, RTX 6000 Ada for the permuted reference; same software). This is printed beside
+  every number.
 - **Batch fixed.** If the registered batch of 256 does not fit in 40 GB, the machine is replaced by a 48 GB or
   80 GB card. The batch, steps or any other recipe value is never changed.
 - **Cap and watchdogs.** The global cap of 10 USD is enforced through the account-level drop in credit from the

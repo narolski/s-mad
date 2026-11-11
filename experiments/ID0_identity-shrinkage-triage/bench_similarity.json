@@ -1,0 +1,130 @@
+{
+ "FRLL-Morphs opencv": {
+  "n": 1221,
+  "q10": -0.066,
+  "median": 0.037,
+  "q90": 0.144,
+  "min": -0.188,
+  "max": 1.0
+ },
+ "FRLL-Morphs facemorpher": {
+  "n": 1222,
+  "q10": -0.066,
+  "median": 0.037,
+  "q90": 0.144,
+  "min": -0.188,
+  "max": 1.0
+ },
+ "FRLL-Morphs amsl": {
+  "n": 2175,
+  "q10": -0.061,
+  "median": 0.038,
+  "q90": 0.144,
+  "min": -0.188,
+  "max": 0.4
+ },
+ "FRLL-Morphs webmorph": {
+  "n": 1221,
+  "q10": -0.066,
+  "median": 0.037,
+  "q90": 0.144,
+  "min": -0.188,
+  "max": 1.0
+ },
+ "FRLL-Morphs stylegan": {
+  "n": 1222,
+  "q10": -0.066,
+  "median": 0.037,
+  "q90": 0.144,
+  "min": -0.188,
+  "max": 1.0
+ },
+ "MAD22 corrected FaceMorpher": {
+  "n": 1000,
+  "q10": 0.048,
+  "median": 0.114,
+  "q90": 0.188,
+  "min": -0.071,
+  "max": 0.4
+ },
+ "MAD22 corrected MIPGAN_I": {
+  "n": 1000,
+  "q10": 0.048,
+  "median": 0.114,
+  "q90": 0.188,
+  "min": -0.071,
+  "max": 0.4
+ },
+ "MAD22 corrected MIPGAN_II": {
+  "n": 999,
+  "q10": 0.048,
+  "median": 0.114,
+  "q90": 0.188,
+  "min": -0.071,
+  "max": 0.4
+ },
+ "MAD22 corrected OpenCV": {
+  "n": 984,
+  "q10": 0.047,
+  "median": 0.114,
+  "q90": 0.188,
+  "min": -0.071,
+  "max": 0.4
+ },
+ "MAD22 corrected Webmorph": {
+  "n": 500,
+  "q10": 0.053,
+  "median": 0.116,
+  "q90": 0.19,
+  "min": -0.071,
+  "max": 0.4
+ },
+ "MorDIFF published": {
+  "n": 1000,
+  "q10": 0.048,
+  "median": 0.114,
+  "q90": 0.188,
+  "min": -0.071,
+  "max": 0.4
+ },
+ "DiM dim_c (neutral photos assumed)": {
+  "n": 500,
+  "q10": 0.053,
+  "median": 0.116,
+  "q90": 0.19,
+  "min": -0.071,
+  "max": 0.4
+ },
+ "DiM greedy_dim (neutral photos assumed)": {
+  "n": 500,
+  "q10": 0.053,
+  "median": 0.116,
+  "q90": 0.19,
+  "min": -0.071,
+  "max": 0.4
+ },
+ "DiM greedy_dim_s (neutral photos assumed)": {
+  "n": 500,
+  "q10": 0.053,
+  "median": 0.116,
+  "q90": 0.19,
+  "min": -0.071,
+  "max": 0.4
+ },
+ "AR1 FRGC+colorFERET pool (cos_HB)": {
+  "n": 536,
+  "q10": 0.163,
+  "median": 0.234,
+  "q90": 0.31,
+  "min": 0.084,
+  "max": 0.686
+ },
+ "AR1 FRGC+colorFERET same-person (cos_HS)": {
+  "n": 536,
+  "q10": 0.804,
+  "median": 0.868,
+  "q90": 0.918,
+  "min": 0.679,
+  "max": 0.967
+ }
+}

@@ -9,6 +9,11 @@ In `experiments/<ID>/`: `prereg.md` (from `prereg/TEMPLATE.md`, written before a
 `result.md` (numbers with intervals, source paths, what failed, what you could not verify), small
 result files (CSV/JSON). Code in `src/<ID>/`. Large outputs in `/mnt/t7/smad_next/<ID>/`.
 Write only inside those three places. Do not run `git add`, `commit` or `push`; the lead commits.
+
+**Documentation (author's instruction, 11 Nov).** Every experiment folder also holds a `README.md` that follows
+`DOCUMENTATION.md`: the full record of what was done, including dead ends, exact commands, paths, hashes and the
+handover state. Write it for the work done so far, then update it at every milestone, before every long wait and
+at least hourly. Nothing that matters stays in `/tmp`, `/dev/shm` or a scratchpad.
 Report facts only. The lead draws conclusions.
 
 ## Naming (author's request, 11 Nov)

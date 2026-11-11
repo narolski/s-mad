@@ -1,0 +1,61 @@
+label,kind,score,auc,ci95,n_neg,n_pos,c_arm_median,pred_closed,pred_spectrum,pred_closed_c0
+frgcferet exact R0 vs R4,photo_vs_morph,iss,0.7254,"[0.6892, 0.7581]",528,520,0.3671,0.6866,0.6693,0.7953
+frgcferet exact R0 vs R4,photo_vs_morph,typ,0.7461,"[0.7114, 0.7786]",528,520,,,,
+frgcferet exact R0 vs R4,photo_vs_morph,ses,0.5339,"[0.4967, 0.5707]",528,520,,,,
+frgcferet exact R0 vs R3 (= R2w shape),photo_vs_same,iss,0.5476,"[0.5359, 0.5591]",528,528,,,,
+frgcferet exact R0 vs R3 (= R2w shape),photo_vs_same,typ,0.5588,"[0.5461, 0.5711]",528,528,,,,
+frgcferet exact R0 vs R3 (= R2w shape),photo_vs_same,ses,0.5313,"[0.5181, 0.5453]",528,528,,,,
+frgcferet exact R3 vs R4 (R2w vs R4 shape),one_vs_morph,iss,0.6866,"[0.6498, 0.7204]",528,520,0.3671,0.6866,0.6693,0.7953
+frgcferet exact R3 vs R4 (R2w vs R4 shape),one_vs_morph,typ,0.6969,"[0.6602, 0.7304]",528,520,,,,
+frgcferet exact R3 vs R4 (R2w vs R4 shape),one_vs_morph,ses,0.5004,"[0.4663, 0.5358]",528,520,,,,
+frgcferet exact R3m vs R4,same_vs_morph,iss,0.6515,"[0.614, 0.6868]",528,520,0.3671,0.6866,0.6693,0.7953
+frgcferet exact R3m vs R4,same_vs_morph,typ,0.6438,"[0.6058, 0.6803]",528,520,,,,
+frgcferet exact R3m vs R4,same_vs_morph,ses,0.5347,"[0.4973, 0.5719]",528,520,,,,
+frgcferet exact R0 vs R3m,photo_vs_same,iss,0.5719,"[0.5647, 0.5813]",528,528,,,,
+frgcferet exact R0 vs R3m,photo_vs_same,typ,0.6007,"[0.5909, 0.613]",528,528,,,,
+frgcferet exact R0 vs R3m,photo_vs_same,ses,0.4993,"[0.4965, 0.502]",528,528,,,,
+frll exact R0 vs R4,photo_vs_morph,iss,0.7974,"[0.7205, 0.8687]",102,102,0.3682,0.6862,0.669,0.7953
+frll exact R0 vs R4,photo_vs_morph,typ,0.8522,"[0.7739, 0.9186]",102,102,,,,
+frll exact R0 vs R4,photo_vs_morph,ses,0.8267,"[0.7513, 0.8861]",102,102,,,,
+frll exact R0 vs R3 (= R2w shape),photo_vs_same,iss,0.5545,"[0.5304, 0.584]",102,102,,,,
+frll exact R0 vs R3 (= R2w shape),photo_vs_same,typ,0.6045,"[0.5732, 0.6412]",102,102,,,,
+frll exact R0 vs R3 (= R2w shape),photo_vs_same,ses,0.7956,"[0.7331, 0.8504]",102,102,,,,
+frll exact R3 vs R4 (R2w vs R4 shape),one_vs_morph,iss,0.7543,"[0.6755, 0.8312]",102,102,0.3682,0.6862,0.669,0.7953
+frll exact R3 vs R4 (R2w vs R4 shape),one_vs_morph,typ,0.7733,"[0.693, 0.8516]",102,102,,,,
+frll exact R3 vs R4 (R2w vs R4 shape),one_vs_morph,ses,0.5285,"[0.4419, 0.6204]",102,102,,,,
+frll exact R3m vs R4,same_vs_morph,iss,0.7427,"[0.6594, 0.8201]",102,102,0.3682,0.6862,0.669,0.7953
+frll exact R3m vs R4,same_vs_morph,typ,0.7809,"[0.6951, 0.8578]",102,102,,,,
+frll exact R3m vs R4,same_vs_morph,ses,0.8263,"[0.7503, 0.8871]",102,102,,,,
+frll exact R0 vs R3m,photo_vs_same,iss,0.5689,"[0.5561, 0.5925]",102,102,,,,
+frll exact R0 vs R3m,photo_vs_same,typ,0.6037,"[0.5827, 0.6362]",102,102,,,,
+frll exact R0 vs R3m,photo_vs_same,ses,0.5067,"[0.4974, 0.5191]",102,102,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs opencv pairs",photo_vs_morph,iss,0.7368,"[0.6822, 0.7889]",102,1221,0.5395,0.6336,0.6189,0.7953
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs opencv pairs",photo_vs_morph,typ,0.7622,"[0.7072, 0.8158]",102,1221,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs opencv pairs",photo_vs_morph,ses,0.4597,"[0.4139, 0.5071]",102,1221,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs facemorpher pairs",photo_vs_morph,iss,0.7365,"[0.682, 0.7882]",102,1222,0.5395,0.6336,0.6189,0.7953
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs facemorpher pairs",photo_vs_morph,typ,0.7619,"[0.7072, 0.8153]",102,1222,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs facemorpher pairs",photo_vs_morph,ses,0.4598,"[0.4142, 0.5071]",102,1222,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs amsl pairs",photo_vs_morph,iss,0.7313,"[0.6748, 0.7855]",102,2175,0.5557,0.6287,0.6143,0.7953
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs amsl pairs",photo_vs_morph,typ,0.757,"[0.699, 0.8145]",102,2175,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs amsl pairs",photo_vs_morph,ses,0.4566,"[0.4021, 0.5117]",102,2175,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs webmorph pairs",photo_vs_morph,iss,0.7368,"[0.6822, 0.7889]",102,1221,0.5395,0.6336,0.6189,0.7953
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs webmorph pairs",photo_vs_morph,typ,0.7622,"[0.7072, 0.8158]",102,1221,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs webmorph pairs",photo_vs_morph,ses,0.4597,"[0.4139, 0.5071]",102,1221,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs stylegan pairs",photo_vs_morph,iss,0.7365,"[0.682, 0.7882]",102,1222,0.5395,0.6336,0.6189,0.7953
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs stylegan pairs",photo_vs_morph,typ,0.7619,"[0.7072, 0.8153]",102,1222,,,,
+"FRLL photo (neutral) vs exact pair mean, FRLL-Morphs stylegan pairs",photo_vs_morph,ses,0.4598,"[0.4142, 0.5071]",102,1222,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 FaceMorpher pairs",photo_vs_morph,iss,0.7569,"[0.7093, 0.8036]",204,1000,0.4847,0.6504,0.6347,0.7953
+"FRLL photo (all) vs exact pair mean, MAD22 FaceMorpher pairs",photo_vs_morph,typ,0.7882,"[0.7458, 0.8306]",204,1000,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 FaceMorpher pairs",photo_vs_morph,ses,0.5403,"[0.5085, 0.574]",204,1000,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 MIPGAN_I pairs",photo_vs_morph,iss,0.7569,"[0.7093, 0.8036]",204,1000,0.4847,0.6504,0.6347,0.7953
+"FRLL photo (all) vs exact pair mean, MAD22 MIPGAN_I pairs",photo_vs_morph,typ,0.7882,"[0.7458, 0.8306]",204,1000,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 MIPGAN_I pairs",photo_vs_morph,ses,0.5403,"[0.5085, 0.574]",204,1000,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 MIPGAN_II pairs",photo_vs_morph,iss,0.7569,"[0.7093, 0.8036]",204,999,0.4851,0.6503,0.6346,0.7953
+"FRLL photo (all) vs exact pair mean, MAD22 MIPGAN_II pairs",photo_vs_morph,typ,0.7883,"[0.7458, 0.8307]",204,999,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 MIPGAN_II pairs",photo_vs_morph,ses,0.5402,"[0.5084, 0.574]",204,999,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 OpenCV pairs",photo_vs_morph,iss,0.7584,"[0.7106, 0.8057]",204,984,0.4827,0.651,0.6353,0.7953
+"FRLL photo (all) vs exact pair mean, MAD22 OpenCV pairs",photo_vs_morph,typ,0.7894,"[0.7467, 0.8317]",204,984,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 OpenCV pairs",photo_vs_morph,ses,0.5395,"[0.507, 0.5733]",204,984,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 Webmorph pairs",photo_vs_morph,iss,0.7358,"[0.6816, 0.7875]",204,500,0.5357,0.6348,0.62,0.7953
+"FRLL photo (all) vs exact pair mean, MAD22 Webmorph pairs",photo_vs_morph,typ,0.7767,"[0.7273, 0.8234]",204,500,,,,
+"FRLL photo (all) vs exact pair mean, MAD22 Webmorph pairs",photo_vs_morph,ses,0.4719,"[0.4157, 0.5278]",204,500,,,,

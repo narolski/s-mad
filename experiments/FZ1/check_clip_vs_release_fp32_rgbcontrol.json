@@ -1,0 +1,34 @@
+{
+ "logit_max_abs": 12.437758445739746,
+ "logit_mean_abs": 4.370605486134688,
+ "logit_ref_absmean": 5.233946951727073,
+ "score_corr": 0.41614357157144977,
+ "encoder_tensors": 297,
+ "encoder_max_abs": 0.0,
+ "extra_release_keys": [],
+ "n_images": 72,
+ "score_max_abs": 0.9792102910578251,
+ "score_mean_abs": 0.3707024315712143,
+ "tf32": false,
+ "passes": false,
+ "info": {
+  "timm": "vit_large_patch14_clip_quickgelu_224",
+  "weights": "/home/narolski/.cache/huggingface/hub/models--timm--vit_large_patch14_clip_224.openai/snapshots/18d0535469bb561bf468d76c1d73aa35156c922b/pytorch_model.bin",
+  "missing": [],
+  "norm": {
+   "bgr": false,
+   "mean": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "std": [
+    0.5,
+    0.5,
+    0.5
+   ]
+  },
+  "timm_version": "1.0.27",
+  "control": "wrong channel order (RGB)"
+ }
+}

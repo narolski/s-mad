@@ -1,0 +1,190 @@
+{
+ "own_selfmad": {
+  "frgcferet/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.9090171808866118,
+    "ci95": [
+     0.8829373031406341,
+     0.9310778968885083
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 2048
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 2048
+   },
+   "G_c_readable": true
+  },
+  "frgcferet/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.9308518044107819,
+    "ci95": [
+     0.9093508942858158,
+     0.9481801805449834
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 2048
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 2048
+   },
+   "G_c_readable": true
+  },
+  "frll/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.992887351018839,
+    "ci95": [
+     0.976291135335253,
+     0.999826732315345
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 2048
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 2048
+   },
+   "G_c_readable": true
+  },
+  "frll/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.9954825067281815,
+    "ci95": [
+     0.9853980179028133,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 2048
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 2048
+   },
+   "G_c_readable": true
+  }
+ },
+ "nets_M3_s1": {
+  "frgcferet/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.88853656159501,
+    "ci95": [
+     0.8622543150547768,
+     0.9122355121137014
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true
+  },
+  "frgcferet/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.8775827021608376,
+    "ci95": [
+     0.8491101923935142,
+     0.9052998339632251
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true
+  },
+  "frll/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.9878892733564014,
+    "ci95": [
+     0.969070468108192,
+     0.9993921987399611
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "G_c_readable": true
+  },
+  "frll/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.9905805459438678,
+    "ci95": [
+     0.9668104196450832,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "G_c_readable": true
+  }
+ }
+}

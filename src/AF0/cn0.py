@@ -71,13 +71,13 @@ def read(a):
     by = collections.defaultdict(dict)        # (tool, rung) -> {host: id}
     for r in R:
         by[(r["tool"], r["rung"])][r["p1"]] = r["id"]
-    B = [r for r in L.rows("bench") if r["cell"].startswith("frllm_") and r["rung"] == "e7"]
+    B = [r for r in L.rows("bench_s") if r["cell"].startswith("frllm_") and r["rung"] == "e7"]
     res = {}
     # ---- (b) single cues
-    z = np.load(L.OUT / "cn0_cues.npz")
+    z = np.load(L.OUT / "cues" / "ar1.npz")          # cues_all.py: 26 cue_floor statistics + PNG bytes
     cidx = {i: k for k, i in enumerate(z["ids"])}
-    feats = np.concatenate([z["cues"], z["png_bytes"][:, None]], 1)
-    names = list(z["names"]) + ["png_bytes"]
+    feats = z["cues"]
+    names = list(z["names"])
     cue = {}
     for tool in TOOLS:
         for neg in ("R2", "R2w"):
@@ -98,7 +98,7 @@ def read(a):
     # ---- (a) image-level heads
     for bb in a.backbones.split(","):
         P = pooled(bb, "ar1")
-        PB = pooled(bb, "bench") if (L.OUT / "feat" / bb / "bench.done").exists() else {}
+        PB = pooled(bb, "bench_s") if (L.OUT / "feat" / bb / "bench_s.done").exists() else {}
         e7_ids = [r["id"] for r in B if r["id"] in PB]
         e7_lm = [r["id"] for r in B if r["id"] in PB and r["tool"] in TOOLS]
         out = {}
@@ -147,7 +147,7 @@ def read(a):
                     continue
                 z = np.load(p)
                 S = dict(zip(z["ids"], z["score"]))
-                pb = d / f"pred_{head}_bench.npz"
+                pb = d / f"pred_{head}_bench_s.npz"
                 SB = dict(zip(np.load(pb)["ids"], np.load(pb)["score"])) if pb.exists() else {}
                 out = {}
                 for te_tool in TOOLS:

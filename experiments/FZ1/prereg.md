@@ -1,6 +1,6 @@
 # FZ1 Do frozen foundation features read the mixing step of a morph, where adapted detectors do not?
 
-Written 11 Nov 2026, about 15:45 CET, by the FZ1 owner, **before any new score, feature or statistic was
+Written 11 Nov 2026, 15:26 CET (file time; an earlier draft of this line said "about 15:45"), by the FZ1 owner, **before any new score, feature or statistic was
 computed**. Known before writing: the reviewer preview numbers quoted in the task message (released MADation FE
 ViT-L/14 on A43: B20 vs D20 0.655 [0.581, 0.731], B vs D 0.852 [0.799, 0.903], C vs D 0.721, D vs R0 0.459,
 D20 vs R0 0.561, StyleGAN3 morph vs one-identity render 0.505) and AD1 / AG5 results. P1 is therefore **post

@@ -1,0 +1,21 @@
+{
+ "conf": {
+  "frgc/u25": 400,
+  "frgc/u50": 400,
+  "frgc/grad": 400,
+  "frgc/bump": 400,
+  "feret/zero": 400
+ },
+ "unconf": {
+  "frgc/zero": 200,
+  "frgc/u25": 195,
+  "frgc/u50": 182,
+  "frgc/grad": 199,
+  "frgc/bump": 224,
+  "feret/zero": 200,
+  "feret/u25": 186,
+  "feret/u50": 196,
+  "feret/grad": 218,
+  "feret/bump": 200
+ }
+}

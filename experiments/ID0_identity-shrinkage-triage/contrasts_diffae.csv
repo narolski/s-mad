@@ -1,0 +1,79 @@
+label,kind,score,auc,ci95,n_neg,n_pos,c_arm_median,pred_closed,pred_spectrum,pred_closed_c0
+frgcferet opencv R0 vs R4,photo_vs_morph,iss,0.6951,"[0.6591, 0.7322]",528,520,1.3961,0.2578,0.2755,0.9879
+frgcferet opencv R0 vs R4,photo_vs_morph,typ,0.69,"[0.6559, 0.7268]",528,520,,,,
+frgcferet opencv R0 vs R4,photo_vs_morph,ses,0.461,"[0.4206, 0.5051]",528,520,,,,
+frgcferet opencv R2w vs R4,one_vs_morph,iss,0.6921,"[0.6566, 0.7289]",528,520,1.3961,0.2578,0.2755,0.9879
+frgcferet opencv R2w vs R4,one_vs_morph,typ,0.6863,"[0.6511, 0.7234]",528,520,,,,
+frgcferet opencv R2w vs R4,one_vs_morph,ses,0.4487,"[0.4101, 0.4924]",528,520,,,,
+frgcferet opencv R3 vs R4,same_vs_morph,iss,0.6761,"[0.6375, 0.7148]",528,520,1.3961,0.2578,0.2755,0.9879
+frgcferet opencv R3 vs R4,same_vs_morph,typ,0.669,"[0.6316, 0.7077]",528,520,,,,
+frgcferet opencv R3 vs R4,same_vs_morph,ses,0.4806,"[0.4406, 0.522]",528,520,,,,
+frgcferet opencv R3m vs R4,same_vs_morph,iss,0.8069,"[0.7725, 0.8398]",528,520,1.3961,0.2578,0.2755,0.9879
+frgcferet opencv R3m vs R4,same_vs_morph,typ,0.8047,"[0.7717, 0.8378]",528,520,,,,
+frgcferet opencv R3m vs R4,same_vs_morph,ses,0.4891,"[0.4475, 0.5306]",528,520,,,,
+frgcferet opencv R2w vs R3,one_vs_same,iss,0.537,"[0.518, 0.5553]",528,528,,,,
+frgcferet opencv R2w vs R3,one_vs_same,typ,0.5375,"[0.5188, 0.556]",528,528,,,,
+frgcferet opencv R2w vs R3,one_vs_same,ses,0.47,"[0.4503, 0.4878]",528,528,,,,
+frgcferet opencv R0 vs R2w,photo_vs_one,iss,0.5063,"[0.5027, 0.5103]",528,528,,,,
+frgcferet opencv R0 vs R2w,photo_vs_one,typ,0.5069,"[0.5035, 0.511]",528,528,,,,
+frgcferet opencv R0 vs R2w,photo_vs_one,ses,0.5116,"[0.5062, 0.5173]",528,528,,,,
+frgcferet opencv R0 vs R3,photo_vs_same,iss,0.5427,"[0.5231, 0.5627]",528,528,,,,
+frgcferet opencv R0 vs R3,photo_vs_same,typ,0.5445,"[0.5251, 0.5638]",528,528,,,,
+frgcferet opencv R0 vs R3,photo_vs_same,ses,0.4823,"[0.4616, 0.5013]",528,528,,,,
+control native vs E7 opencv,control,iss,0.5149,"[0.5097, 0.5229]",204,204,,,,
+control native vs E7 opencv,control,typ,0.5241,"[0.5193, 0.5331]",204,204,,,,
+control native vs E7 opencv,control,ses,0.5418,"[0.5365, 0.5516]",204,204,,,,
+control native vs E7 facemorpher,control,iss,0.5141,"[0.5095, 0.5216]",204,204,,,,
+control native vs E7 facemorpher,control,typ,0.5215,"[0.5168, 0.5299]",204,204,,,,
+control native vs E7 facemorpher,control,ses,0.5369,"[0.5322, 0.5464]",204,204,,,,
+control native vs E7 stylegan,control,iss,0.5,"[0.5, 0.5]",204,204,,,,
+control native vs E7 stylegan,control,typ,0.5,"[0.5, 0.5]",204,204,,,,
+control native vs E7 stylegan,control,ses,0.5,"[0.5, 0.5]",204,204,,,,
+control native vs E7 mordiff,control,iss,0.0001,"[0.0, 0.0003]",204,204,,,,
+control native vs E7 mordiff,control,typ,0.0001,"[0.0, 0.0003]",204,204,,,,
+control native vs E7 mordiff,control,ses,0.4754,"[0.4143, 0.5366]",204,204,,,,
+MorDIFF stored E vs B20,photo_vs_morph,iss,0.3242,"[0.2509, 0.3987]",204,200,1.6485,0.1576,0.1768,0.9879
+MorDIFF stored E vs B20,photo_vs_morph,typ,0.2712,"[0.2017, 0.3398]",204,200,,,,
+MorDIFF stored E vs B20,photo_vs_morph,ses,0.1817,"[0.1252, 0.2473]",204,200,,,,
+MorDIFF stored D20 vs B20,one_vs_morph,iss,0.4615,"[0.3848, 0.5338]",204,200,1.6485,0.1576,0.1768,0.9879
+MorDIFF stored D20 vs B20,one_vs_morph,typ,0.4582,"[0.3842, 0.527]",204,200,,,,
+MorDIFF stored D20 vs B20,one_vs_morph,ses,0.4049,"[0.3277, 0.4814]",204,200,,,,
+MorDIFF stored C20 vs B20,same_vs_morph,iss,0.3572,"[0.2734, 0.4372]",102,200,1.6485,0.1576,0.1768,0.9879
+MorDIFF stored C20 vs B20,same_vs_morph,typ,0.3724,"[0.2897, 0.4509]",102,200,,,,
+MorDIFF stored C20 vs B20,same_vs_morph,ses,0.4938,"[0.4013, 0.5824]",102,200,,,,
+MorDIFF stored D20 vs C20,one_vs_same,iss,0.6054,"[0.558, 0.6559]",204,102,,,,
+MorDIFF stored D20 vs C20,one_vs_same,typ,0.5869,"[0.542, 0.6341]",204,102,,,,
+MorDIFF stored D20 vs C20,one_vs_same,ses,0.4178,"[0.3705, 0.4648]",204,102,,,,
+MorDIFF stored E vs D20,photo_vs_one,iss,0.3664,"[0.3269, 0.4023]",204,204,,,,
+MorDIFF stored E vs D20,photo_vs_one,typ,0.321,"[0.283, 0.3568]",204,204,,,,
+MorDIFF stored E vs D20,photo_vs_one,ses,0.2714,"[0.2366, 0.3026]",204,204,,,,
+MorDIFF stored E vs A (published),photo_vs_morph,iss,0.3119,"[0.2378, 0.3887]",204,200,1.6485,0.1576,0.1768,0.9879
+MorDIFF stored E vs A (published),photo_vs_morph,typ,0.2593,"[0.1876, 0.3311]",204,200,,,,
+MorDIFF stored E vs A (published),photo_vs_morph,ses,0.2159,"[0.1554, 0.285]",204,200,,,,
+MorDIFF stored D20 vs A (published),one_vs_morph,iss,0.4495,"[0.3695, 0.524]",204,200,1.6485,0.1576,0.1768,0.9879
+MorDIFF stored D20 vs A (published),one_vs_morph,typ,0.4433,"[0.3666, 0.5151]",204,200,,,,
+MorDIFF stored D20 vs A (published),one_vs_morph,ses,0.4605,"[0.3802, 0.544]",204,200,,,,
+MorDIFF DiffAE-native a256 vs B20,photo_vs_morph,iss,0.6869,"[0.6118, 0.7569]",204,200,0.5696,0.8046,0.7802,0.9879
+MorDIFF DiffAE-native a256 vs B20,photo_vs_morph,typ,0.7061,"[0.632, 0.7768]",204,200,,,,
+MorDIFF DiffAE-native a256 vs B20,photo_vs_morph,ses,0.854,"[0.806, 0.8994]",204,200,,,,
+MorDIFF DiffAE-native D20 vs B20,one_vs_morph,iss,0.6881,"[0.6263, 0.7491]",204,200,0.5696,0.8046,0.7802,0.9879
+MorDIFF DiffAE-native D20 vs B20,one_vs_morph,typ,0.6509,"[0.5829, 0.7172]",204,200,,,,
+MorDIFF DiffAE-native D20 vs B20,one_vs_morph,ses,0.5955,"[0.5269, 0.662]",204,200,,,,
+MorDIFF DiffAE-native C20 vs B20,same_vs_morph,iss,0.7473,"[0.6847, 0.8066]",102,200,0.5696,0.8046,0.7802,0.9879
+MorDIFF DiffAE-native C20 vs B20,same_vs_morph,typ,0.7531,"[0.686, 0.8168]",102,200,,,,
+MorDIFF DiffAE-native C20 vs B20,same_vs_morph,ses,0.6404,"[0.5645, 0.7143]",102,200,,,,
+MorDIFF DiffAE-native D20 vs C20,one_vs_same,iss,0.445,"[0.4142, 0.4754]",204,102,,,,
+MorDIFF DiffAE-native D20 vs C20,one_vs_same,typ,0.4042,"[0.3694, 0.4379]",204,102,,,,
+MorDIFF DiffAE-native D20 vs C20,one_vs_same,ses,0.4567,"[0.4091, 0.5057]",204,102,,,,
+MorDIFF DiffAE-native a256 vs D20,photo_vs_one,iss,0.4975,"[0.4663, 0.53]",204,204,,,,
+MorDIFF DiffAE-native a256 vs D20,photo_vs_one,typ,0.5509,"[0.526, 0.5793]",204,204,,,,
+MorDIFF DiffAE-native a256 vs D20,photo_vs_one,ses,0.7593,"[0.7308, 0.7904]",204,204,,,,
+StyleGAN3 h3_bona vs h3_sg3,one_vs_morph,iss,0.5972,"[0.5684, 0.6275]",423,423,,,,0.9879
+StyleGAN3 h3_bona vs h3_sg3,one_vs_morph,typ,0.6064,"[0.577, 0.6375]",423,423,,,,
+StyleGAN3 h3_bona vs h3_sg3,one_vs_morph,ses,0.4896,"[0.457, 0.5241]",423,423,,,,
+StyleGAN3 a37spread vs h3_sg3,one_vs_morph,iss,0.503,"[0.4758, 0.5314]",423,423,,,,0.9879
+StyleGAN3 a37spread vs h3_sg3,one_vs_morph,typ,0.5129,"[0.4844, 0.5424]",423,423,,,,
+StyleGAN3 a37spread vs h3_sg3,one_vs_morph,ses,0.52,"[0.4893, 0.5512]",423,423,,,,
+StyleGAN3 FRLL native photo vs h3_sg3 (cross-pool),photo_vs_morph_xpool,iss,0.0042,"[0.0014, 0.008]",204,423,,,,0.9879
+StyleGAN3 FRLL native photo vs h3_sg3 (cross-pool),photo_vs_morph_xpool,typ,0.001,"[0.0002, 0.0023]",204,423,,,,
+StyleGAN3 FRLL native photo vs h3_sg3 (cross-pool),photo_vs_morph_xpool,ses,0.0447,"[0.029, 0.0633]",204,423,,,,

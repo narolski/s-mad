@@ -91,3 +91,34 @@ applied). Their E7 cells therefore equal the native cells and carry no extra inf
     1.26.4, and Pillow is the image's own.
   - No apptainer. `AD4_LOCAL=1` with the same `run.sh` and the same pack.
   - Cards are RTX 4090 instead of H100; 7 loader workers, as on WCSS.
+
+## Rented path as run, and the gates of Amendment 1 of the morph-free networks experiment (AD4)
+
+**Leases**
+- Two aborted leases, nothing ran on either, 0.27 USD in total: lease 1 (2x RTX 4090, too small for batch 256)
+  and lease 2 (2x RTX PRO 5000, never reachable over SSH).
+- Machine A, the morph-free arm: instance 60226054, A100-SXM4-40GB, 0.433 USD/h.
+- Machine B, the permuted arm: instance 60227348, RTX 6000 Ada (48 GB), 0.738 USD/h. It replaced instance
+  60226099, which stayed unreachable.
+- Both machines use image `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime` with Python 3.10.13, torch 2.2.1 and
+  timm 1.0.27.
+
+**Smoke test, machine A** (200 steps, 8 scored images, `vast/leaseA/smoke.txt`)
+- rc 0.
+- Speed 1.83 it/s at step 100 and 1.90 it/s at step 200.
+- Peak GPU memory 30,839 MiB (nvidia-smi).
+- Projection: 6,250 steps / 1.9 it/s = 0.91 h of training, plus about 10 min of staging and scoring, so about
+  1.1 h per network. Five networks run one after another: about 5.5 h and 2.4 USD on machine A.
+
+**Gate 3, scorer equivalence: pass.** One ViT-B/16 network of the original morph-free run (A47 I-3) was
+re-scored with `ad4_score.py` on the DGX: seed 1, last checkpoint, sha256 f9e391c4…, which equals its
+registered list line. It was compared with its registered `scores_eval_last.npz` on the 24 shared cells
+(diffusion and FRLL, native and E7).
+- Largest |AUC difference|: 0.0011. Smallest Kendall tau: 0.9962. EERs are equal to 0.1 point.
+- File: `gate_scorer_equivalence.json`.
+
+**Gate 1 predictor, sample order:** `src/AD4/gates.py order` reproduces the recorded order of that original run
+exactly (200 of 200 batches, seed 1). For seed 401 it gives [[139,117,0],[125,131,0],[124,132,0]], which
+matches the reviewer's expectation and the DGX smoke test. Applied to each network when its result arrives.
+
+**Gate 2, reproduction:** computed when the five morph-free ViT-B/16 networks are in.

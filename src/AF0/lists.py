@@ -10,7 +10,7 @@ Sets:
   bench : FRLL-Morphs (eval.csv set frllm: frll_bona orig; amsl, facemorpher, opencv, webmorph orig; their E7
           'resmatch' genuine frames) and corrected MAD22 (canonical E7 inputs v3: native BonaFide, FaceMorpher,
           OpenCV, Webmorph; e7 FaceMorpher, OpenCV, Webmorph).  Evaluation only.
-  python3 -I lists.py
+  python3 -I lists.py [af0] [ar1] [bench]   (only the named sets are rewritten; never rewrite a list under extraction)
 """
 import collections
 import csv
@@ -45,6 +45,8 @@ def write(name, rows):
 
 
 def main():
+    import sys
+    want = set(sys.argv[1:]) or {"af0", "ar1", "bench"}
     rows = []
     for r in csv.DictReader(open(OUT / "manifest.csv")):
         if r["kind"] == "morph":
@@ -56,7 +58,10 @@ def main():
             rows.append(dict(id=r["id"], path=r["image"], set="af0", cell=r["split"], rung="photo", tool=r["db"],
                              p1=r["pid_A"], p2=r["pid_A"], geom="tem", g1=r["A"][:-4] + ".tem",
                              g2=r["A"][:-4] + ".tem", w1="1.0"))
-    write("af0", rows)
+    if "af0" in want:
+        write("af0", rows)
+    if "ar1" not in want and "bench" not in want:
+        return
     rows = []
     for r in csv.DictReader(open(AR1 / "manifest.csv")):
         if r["pool"] in ("frgcferet", "frll") and r["rung"] in ("R0", "R2", "R2w", "R3", "R3m", "R4", "NC"):
@@ -65,7 +70,10 @@ def main():
             rows.append(dict(id="ar1_" + r["id"], path=r["path"], set="ar1", cell=r["pool"], rung=r["rung"],
                              tool=r["tool"], p1=r["p1"], p2=r["p2"], geom="tem", g1=r["tem1"], g2=r["tem2"],
                              w1=r["w1"]))
-    write("ar1", rows)
+    if "ar1" in want:
+        write("ar1", rows)
+    if "bench" not in want:
+        return
     rows = []
     for r in csv.DictReader(open(DATA / "manifests/eval.csv")):
         if r["set"] != "frllm":

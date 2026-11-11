@@ -1,7 +1,7 @@
 # Running on Athena (Cyfronet, PLGrid)
 
 Verified live on 11 Nov 2026 from the DGX. The author's instruction: use as much of Athena as is
-useful. Budget: 10,000 GPU-hours on the current account, valid to 30 Mar 2027.
+useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 Nov), valid to 16 Aug 2027.
 
 ## Access
 
@@ -15,7 +15,11 @@ useful. Budget: 10,000 GPU-hours on the current account, valid to 30 Mar 2027.
 
 ## Account, partition, billing
 
-- Account `plgmultivision-gpu-a100` (the author's decision until `plgrestorearc` appears on Athena).
+- Account `plgrestorearc-gpu-a100` (30,000 GPU-hours to 16 Aug 2027; it appeared in `hpc-grants` on 11 Nov at
+  17:20). `plgmultivision-gpu-a100` is the author's fallback.
+- **11 Nov 17:25: Slurm does not accept either account yet** ("Invalid account or account/partition combination";
+  the user has no Slurm association although both grants are listed). Do not submit and do not probe: the lead's
+  watcher `src/athena/wait_and_submit_smoke.sh` asks every 20 minutes and the lead tells owners when it works.
 - Partition `plgrid-gpu-a100`: A100 with 40 GB, 8 per node, x86, limit 48 hours.
 - Billing is one GPU-hour per GPU and hour while a job stays within 16 CPU cores and 128 GB per GPU.
   Ask for `-c 8 --mem=64G --gres=gpu:1` unless you need more.

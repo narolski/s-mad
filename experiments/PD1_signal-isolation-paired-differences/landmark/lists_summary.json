@@ -1,0 +1,107 @@
+{
+ "ar1": {
+  "n": 7018,
+  "duplicates_dropped": 1276,
+  "cells": {
+   "frgcferet|facemorpher|R2w|": 536,
+   "frgcferet|facemorpher|R2wm|": 536,
+   "frgcferet|facemorpher|R3|": 536,
+   "frgcferet|facemorpher|R3m|": 536,
+   "frgcferet|facemorpher|R4|": 536,
+   "frgcferet|none|R0|": 536,
+   "frgcferet|opencv|R2w|": 536,
+   "frgcferet|opencv|R2wm|": 536,
+   "frgcferet|opencv|R3|": 536,
+   "frgcferet|opencv|R3m|": 536,
+   "frgcferet|opencv|R4|": 536,
+   "frll|facemorpher|R2w|": 102,
+   "frll|facemorpher|R2wm|": 102,
+   "frll|facemorpher|R3|": 102,
+   "frll|facemorpher|R3m|": 102,
+   "frll|facemorpher|R4|": 102,
+   "frll|none|R0|": 102,
+   "frll|opencv|R2w|": 102,
+   "frll|opencv|R2wm|": 102,
+   "frll|opencv|R3|": 102,
+   "frll|opencv|R3m|": 102,
+   "frll|opencv|R4|": 102
+  }
+ },
+ "ar1g": {
+  "n": 1800,
+  "duplicates_dropped": 0,
+  "cells": {
+   "frgcferet|facemorpher_lib|G|": 1800
+  }
+ },
+ "af0": {
+  "n": 3715,
+  "duplicates_dropped": 0,
+  "cells": {
+   "feret|opencv|photo|train": 519,
+   "feret|opencv|photo|val": 133,
+   "feret|opencv|u25|train": 400,
+   "feret|opencv|u25|val": 100,
+   "feret|opencv|u50|train": 400,
+   "feret|opencv|u50|val": 100,
+   "feret|opencv|zero|train": 400,
+   "feret|opencv|zero|val": 100,
+   "frgc|opencv|photo|train": 50,
+   "frgc|opencv|photo|val": 13,
+   "frgc|opencv|u25|train": 400,
+   "frgc|opencv|u25|val": 100,
+   "frgc|opencv|u50|train": 400,
+   "frgc|opencv|u50|val": 100,
+   "frgc|opencv|zero|train": 400,
+   "frgc|opencv|zero|val": 100
+  }
+ },
+ "smdd": {
+  "n": 3000,
+  "duplicates_dropped": 0,
+  "cells": {
+   "smdd|smdd|render|fit": 1000,
+   "smdd|smdd|render|test": 500,
+   "smdd|smdd|small|fit": 1000,
+   "smdd|smdd|small|test": 500
+  }
+ },
+ "bench": {
+  "n": 5936,
+  "duplicates_dropped": 0,
+  "cells": {
+   "frllm_amsl|amsl|e7|": 204,
+   "frllm_amsl|amsl|morph|": 600,
+   "frllm_facemorpher|facemorpher|e7|": 204,
+   "frllm_facemorpher|facemorpher|morph|": 600,
+   "frllm_frll_bona|frll_bona|native|": 204,
+   "frllm_opencv|opencv|e7|": 204,
+   "frllm_opencv|opencv|morph|": 600,
+   "frllm_webmorph|webmorph|e7|": 204,
+   "frllm_webmorph|webmorph|morph|": 600,
+   "mad22_BonaFide|BonaFide|native|": 204,
+   "mad22_FaceMorpher|FaceMorpher|e7|": 204,
+   "mad22_FaceMorpher|FaceMorpher|morph|": 600,
+   "mad22_OpenCV|OpenCV|e7|": 204,
+   "mad22_OpenCV|OpenCV|morph|": 600,
+   "mad22_Webmorph|Webmorph|e7|": 204,
+   "mad22_Webmorph|Webmorph|morph|": 500
+  }
+ },
+ "h1": {
+  "n": 1196,
+  "duplicates_dropped": 0,
+  "cells": {
+   "h1poisson|poisson|bona|": 598,
+   "h1poisson|poisson|morph|": 598
+  }
+ },
+ "frll_persons_in_lists": {
+  "ar1": 1122,
+  "ar1g": 0,
+  "af0": 0,
+  "smdd": 0,
+  "bench": 5936,
+  "h1": 0
+ }
+}

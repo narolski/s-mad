@@ -1,0 +1,17 @@
+{
+ "stage": "pool",
+ "n": 12,
+ "seconds": 100.2,
+ "images_per_minute": 7.2,
+ "workers": 2,
+ "no_face": 0,
+ "no_face_names": [],
+ "with_embedding": 8,
+ "bfcheck_max_abs_px_vs_if106": [
+  0.01425933837890625,
+  3.0517578125e-05,
+  2.288818359375e-05,
+  3.814697265625e-05
+ ],
+ "bfcheck_pass": true
+}

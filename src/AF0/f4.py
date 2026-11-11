@@ -29,10 +29,11 @@ MIXED = ("u25", "u50", "grad", "bump")
 def make(a):
     R = [r for n in a.af0.split(",") for r in L.rows(n) if r["cell"] == "train" and r["rung"] != "photo"]
     conf = [r["id"] for r in R if (r["rung"] in MIXED and r["tool"] == "frgc") or (r["rung"] == "zero" and r["tool"] == "feret")]
+    cs = set(conf)
     rng = random.Random(401)
     unconf = []
     for cls in ("mixed", "zero"):
-        want = sum(1 for r in R if r["id"] in set(conf) and ((r["rung"] in MIXED) == (cls == "mixed")))
+        want = sum(1 for r in R if r["id"] in cs and ((r["rung"] in MIXED) == (cls == "mixed")))
         for db in ("frgc", "feret"):
             pool = [r["id"] for r in R if r["tool"] == db and ((r["rung"] in MIXED) == (cls == "mixed"))]
             # keep the field-type mix of the confounded mixed class (all four types, equal shares)

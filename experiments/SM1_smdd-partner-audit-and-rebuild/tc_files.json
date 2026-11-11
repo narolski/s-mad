@@ -1,0 +1,36 @@
+{
+ "train": {
+  "csv": "/mnt/t7/Datasety/downloads/SMDD/SMDD_release_train/train.csv",
+  "rows": 40000,
+  "duplicates": 0,
+  "folders": [
+   "m15k_t",
+   "os25k_bf_t"
+  ],
+  "files_on_disk": 40000,
+  "listed_missing": 0,
+  "on_disk_not_listed": 0,
+  "label_by_folder": {
+   "m15k_t:attack": 15000,
+   "os25k_bf_t:bonafide": 25000
+  },
+  "morph_names_parsed": 15000
+ },
+ "eval": {
+  "csv": "/mnt/t7/Datasety/downloads/SMDD/SMDD_release_evaluation/evaluation.csv",
+  "rows": 40000,
+  "duplicates": 0,
+  "folders": [
+   "m15k_e",
+   "os25k_bf_e"
+  ],
+  "files_on_disk": 40000,
+  "listed_missing": 0,
+  "on_disk_not_listed": 0,
+  "label_by_folder": {
+   "m15k_e:attack": 15000,
+   "os25k_bf_e:bonafide": 25000
+  },
+  "morph_names_parsed": 15000
+ }
+}

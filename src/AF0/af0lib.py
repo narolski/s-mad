@@ -8,7 +8,7 @@ import numpy as np
 
 OUT = pathlib.Path("/mnt/t7/smad_next/AF0")
 RES = pathlib.Path("/home/narolski/smad-next/experiments/AF0")
-GRID = {"dinov3_512": 32, "clip336": 24, "clip224": 16}
+GRID = {"dinov3_512": 32, "clip336": 24, "clip224": 16, "thumb": 32}
 FACE_MIN = 0.5            # a patch is "inside the face hull" if >= half of its footprint lies inside the hull
 
 
@@ -92,15 +92,33 @@ def prep(listname, g):
         pts = geometry(r)
         face[i] = can if pts is None else patch_mean(hull_mask(pts), W).reshape(-1)
         if r["set"] == "af0":
-            if r["rung"] == "photo":
-                tgt[i] = 0.0
-            else:
-                mp = OUT / "maps" / r["cell"] / r["rung"] / (r["id"] + ".npy")
+            base, sid = r["rung"].split("_soft_")[0], (r["id"].rsplit("_", 1)[0] if "_soft_" in r["rung"] else r["id"])
+            if base in ("photo", "halfA", "halfB", "zero"):
+                tgt[i] = 0.0          # softened negatives (wave 4) keep the all-zero map
+            else:                     # softened positives keep the map of their source morph
+                mp = OUT / "maps" / r["cell"] / base / (sid + ".npy")
                 tgt[i] = patch_mean(np.load(mp).astype(np.float64), W).reshape(-1)
     p.parent.mkdir(parents=True, exist_ok=True)
     ids = np.array([r["id"] for r in R])
     np.savez(p, ids=ids, face=face, target=tgt)
     return dict(ids=ids, face=face, target=tgt)
+
+
+def prep_inner(listname, g):
+    """per-patch fraction inside the inner-face hull (insightface 106 points 33-105: eyebrows, eyes, nose, mouth);
+    contour points are 0-32 (checked on a plotted frame). Periphery = outside the full landmark hull (face < FACE_MIN)."""
+    p = OUT / "prep" / f"g{g}_{listname}_inner.npz"
+    if p.exists():
+        return np.load(p)["inner"]
+    R = rows(listname)
+    W = area_matrix(g)
+    can = patch_mean(hull_mask(canonical_hull()[33:]), W).reshape(-1)
+    inner = np.zeros((len(R), g * g), np.float32)
+    for i, r in enumerate(R):
+        pts = geometry(r)
+        inner[i] = can if pts is None else patch_mean(hull_mask(pts[33:]), W).reshape(-1)
+    np.savez(p, ids=np.array([r["id"] for r in R]), inner=inner)
+    return inner
 
 
 # ---------------------------------------------------------------- statistics (record helpers, imported unchanged)

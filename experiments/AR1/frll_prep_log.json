@@ -1,0 +1,12 @@
+{
+ "aligner": "/home/narolski/mambamorph-code/scripts/73_delin_align.py",
+ "aligner_sha256": "47eefed3171d7ee63880b22e986e9666582a55fc3a62839671b9d8104e7e68e0",
+ "attempted": 204,
+ "aligned": 204,
+ "failed": [],
+ "seconds": 46.2,
+ "bridge_opencv": 1221,
+ "bridge_facemorpher": 1222,
+ "persons": 102,
+ "cos_HS_median": 0.9129129648208618
+}

@@ -1,0 +1,140 @@
+3,4c3
+<     ap.add_argument("--det", required=True)
+<     ap.add_argument("--mode", required=True, choices=("rel", "own", "nets"))
+---
+>     ap.add_argument("--det", required=True, choices=sorted(WEIGHTS))
+7c6
+<     ap.add_argument("--lm-from", default=None, help="own mode: column with the original image for landmarks")
+---
+>     ap.add_argument("--root", default="/")
+10d8
+<     ap.add_argument("--run", default=None)
+12c10
+<     ap.add_argument("--workers", type=int, default=6)
+---
+>     ap.add_argument("--workers", type=int, default=5)
+17,20c15,18
+<     K.add_paths(K.MC, K.W46 / "smadcvpr")
+<     for p in K.PINS:
+<         if p.parent == K.W46 / "smadcvpr":
+<             assert K.sha(p) == K.PINS[p], p
+---
+>     for p, s in A12_PINS.items():
+>         assert K.sha(p) == s, p
+>     for p in (K.MC, K.W46 / "smadcvpr"):
+>         sys.path.insert(0, str(p))
+33c31,41
+<     feats = []
+---
+>     torch.backends.cuda.matmul.allow_tf32 = True
+>     torch.backends.cudnn.allow_tf32 = True
+>     spec = R.RELEASES[a.det]
+>     ck = WEIGHTS[a.det]
+>     assert K.sha(ck) == WEIGHT_SHA[a.det], ck
+>     model = R.build_release(spec)
+>     model.load_state_dict(R.extract_state(R.load_release(ck), spec), strict=True)
+>     model.to(dev).eval()
+>     fwd = lambda x: R.head_logit(model(R.adapt_input(x, spec)), spec["classes"], spec["morph_index"])  # noqa: E731
+>     dl = torch.utils.data.DataLoader(C.ImageItems([(r[a.col], 0) for r in rows], spec["res"], root=a.root),
+>                                      batch_size=a.bs, num_workers=a.workers)
+35,109c43,52
+<     if a.mode in ("rel", "nets"):
+<         torch.backends.cuda.matmul.allow_tf32 = True
+<         torch.backends.cudnn.allow_tf32 = True
+<         if a.mode == "rel":
+<             spec = R.RELEASES[a.det]
+<             ck = K.WEIGHTS[a.det]
+<             assert K.sha(ck) == K.WEIGHT_SHA[a.det], ck
+<             model = R.build_release(spec)
+<             model.load_state_dict(R.extract_state(R.load_release(ck), spec), strict=True)
+<             res = spec["res"]
+<             fwd = lambda x: R.head_logit(model(R.adapt_input(x, spec)), spec["classes"], spec["morph_index"])  # noqa
+<         else:
+<             meta = json.load(open(K.A12BR_META / a.run / "meta.json"))
+<             model, _ = C.build_run_model(meta)
+<             model.load_state_dict(torch.load(K.A12BR_RUNS / a.run / "last.pt", map_location="cpu", weights_only=True),
+<                                   strict=True)
+<             res = meta["res"]
+<             fwd = lambda x: C.forward_logit(model, x)[0].float().reshape(-1)  # noqa
+<         model.to(dev).eval()
+<         grab = {}
+<         h = last_linear(model).register_forward_pre_hook(lambda m, inp: grab.__setitem__("f", inp[0].detach()))
+<         dl = torch.utils.data.DataLoader(C.ImageItems([(r[a.col], 0) for r in rows], res, root="/"),
+<                                          batch_size=a.bs, num_workers=a.workers)
+<         s_tta, s_one, z_one = [], [], []
+<         with torch.no_grad():
+<             for x, _ in dl:
+<                 x = x.to(dev, non_blocking=True)
+<                 l0 = fwd(x)
+<                 feats.append(grab["f"].float().reshape(len(x), -1).cpu().numpy())
+<                 l1 = fwd(torch.flip(x, dims=[3]))
+<                 p0, p1 = torch.sigmoid(l0), torch.sigmoid(l1)
+<                 z_one += l0.cpu().tolist()
+<                 s_one += p0.cpu().tolist()
+<                 s_tta += ((p0 + p1) / 2).cpu().tolist()
+<         h.remove()
+<         sc = dict(score=np.array(s_tta, np.float32), score_noTTA=np.array(s_one, np.float32),
+<                   logit_noTTA=np.array(z_one, np.float32))
+<     else:
+<         import cv2
+<         import a41g_score as S
+<         import rsx_selfmad_own as RO
+<         ck = K.WEIGHTS[a.det]
+<         assert K.sha(ck) == K.WEIGHT_SHA[a.det], ck
+<         model = S.selfmad_net(R, str(ck), torch).eval()
+<         grab = {}
+<         h = last_linear(model).register_forward_pre_hook(lambda m, inp: grab.__setitem__("f", inp[0].detach()))
+<         global _RO, _LMCOL, _COL
+<         _RO, _LMCOL, _COL = RO, a.lm_from, a.col
+<         scores, logits, cropped, batch = [], [], [], []
+< 
+<         def flush():
+<             x = torch.from_numpy(np.stack(batch)).to(dev)
+<             with torch.no_grad():
+<                 out = model(x).float()
+<             feats.append(grab["f"].float().reshape(len(x), -1).cpu().numpy())
+<             scores.extend(out.softmax(1)[:, 1].cpu().tolist())
+<             logits.extend((out[:, 1] - out[:, 0]).cpu().tolist())
+<             batch.clear()
+< 
+<         import multiprocessing as mp
+<         # as a41g_score.run_own: a fork Pool with rsx_selfmad_own._init; the workers never touch CUDA
+<         with mp.get_context("fork").Pool(a.workers, initializer=RO._init, initargs=(str(K.PREDICTOR81),)) as pool:
+<             model.to(dev)                                 # after the fork, as a41g_score.run_own
+<             for img, okc in pool.imap(_own_prep, rows, chunksize=8):
+<                 batch.append(img)
+<                 cropped.append(okc)
+<                 if len(batch) == 32:
+<                     flush()
+<         if batch:
+<             flush()
+<         h.remove()
+<         sc = dict(score=np.array(scores, np.float32), score_noTTA=np.array(scores, np.float32),
+<                   logit_noTTA=np.array(logits, np.float32), cropped=np.array(cropped))
+<     F = np.concatenate(feats).astype(np.float32)
+<     assert len(F) == len(ids) and all(len(v) == len(ids) for v in sc.values())
+---
+>     s_tta, s_one, z_one = [], [], []
+>     with torch.no_grad():
+>         for x, _ in dl:
+>             x = x.to(dev, non_blocking=True)
+>             l0 = fwd(x)
+>             l1 = fwd(torch.flip(x, dims=[3]))
+>             p0, p1 = torch.sigmoid(l0), torch.sigmoid(l1)
+>             z_one += l0.cpu().tolist()
+>             s_one += p0.cpu().tolist()
+>             s_tta += ((p0 + p1) / 2).cpu().tolist()
+111,115c54,60
+<     np.savez(od / f"feat_{a.tag}{sfx}.npz", id=ids, feat=F)
+<     np.savez(od / f"scores_{a.tag}{sfx}.npz", id=ids, det=a.det, mode=a.mode, run=a.run or "",
+<              manifest_sha256=K.sha(a.manifest), script_sha256=K.sha(__file__), **sc)
+<     print(f"{a.tag}: {len(ids)} images, feat dim {F.shape[1]}, {time.time() - t0:.1f}s "
+<           f"({len(ids) / (time.time() - t0):.1f} img/s); scores written, not opened", flush=True)
+---
+>     np.savez(od / f"scores_{a.tag}{sfx}.npz", id=ids, det=a.det, score=np.array(s_tta, np.float32),
+>              score_noTTA=np.array(s_one, np.float32), logit_noTTA=np.array(z_one, np.float32),
+>              manifest_sha256=K.sha(a.manifest), script_sha256=K.sha(__file__), weight_sha256=WEIGHT_SHA[a.det])
+>     dt = time.time() - t0
+>     mem = torch.cuda.max_memory_allocated() / 2 ** 30 if dev == "cuda" else 0
+>     print(f"{a.tag}: {len(ids)} images, {dt:.1f}s ({len(ids) / dt:.1f} img/s), max GPU mem {mem:.1f} GB; "
+>           f"scores written, not opened", flush=True)

@@ -1,0 +1,13 @@
+detector,contrast,auc,auc_pt,mordiff_label,n_pos,n_neg,src
+SelfMAD release (HRNet-W18),stored-small photo E vs photo,"1.000 [0.999, 1.000]",0.9996,no published number,204,204,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),reconstruction D20 vs stored-small photo E,"0.152 [0.119, 0.181]",0.1517,no published number,204,204,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),reconstruction D (100 steps) vs stored-small photo E,"0.224 [0.183, 0.255]",0.224,no published number,204,204,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),our morph B20 vs reconstruction D20,"0.403 [0.323, 0.456]",0.4028,no published number,200,204,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),our morph B (100 steps) vs reconstruction D,"0.293 [0.237, 0.345]",0.2933,no published number,200,204,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),published A vs our morph B20,"0.481 [0.452, 0.512]",0.4807,no published number,200,200,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),published A vs our morph B,"0.577 [0.530, 0.634]",0.5771,no published number,200,200,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),same-person mix C20 vs reconstruction D20,"0.678 [0.641, 0.712]",0.6775,no published number,102,204,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),our morph B20 vs same-person mix C20,"0.252 [0.195, 0.308]",0.2525,no published number,200,102,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),published A vs stored-small photo E,"0.095 [0.060, 0.132]",0.0945,no published number,200,204,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),published A vs photo,"0.994 [0.986, 0.999]",0.9935,no published number,200,204,photo: SelfMAD crop of our aligned frames (A43 own); controls: SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),EER photo vs published A (200 sampled),"1.98 [0.66, 4.59]",1.98,no published number,200,204,SelfMAD crop of our aligned frames (A43 own)
