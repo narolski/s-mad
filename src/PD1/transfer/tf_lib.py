@@ -160,8 +160,9 @@ def refs():
                        soft=[r["id"] for r in dit if r["set"] == "ev" and r["arm"] == "mordiff|resmatch"],
                        name="FRLL E7 (MorDIFF history)")
     f = [r for r in dit if r["set"] == "f256"]
-    R["D_f256"] = {a: {r["persons"] if a != "B20" else r["id"]: r["id"] for r in f if r["arm"] == a}
+    R["D_f256"] = {a: {r["host"] if a != "B20" else r["id"]: r["id"] for r in f if r["arm"] == a}
                    for a in ("D20", "rec100", "B20")}
+    assert len(R["D_f256"]["D20"]) == 204 and len(R["D_f256"]["rec100"]) == 204 and len(R["D_f256"]["B20"]) == 200
     R["D_f256_rows"] = {r["id"]: r for r in f if r["arm"] in ("D20", "rec100", "B20")}
     return R
 

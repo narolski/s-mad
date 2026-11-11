@@ -218,3 +218,22 @@ the registered flag set `ev` MorDIFF native and E7, 408; the FRLL decoding-step 
 used. Exception, descriptive only: the diffusion verifier's face-box-only and face-blanked CLIP features
 (`blank_clip.npz`, TF32 off) are scored as they are; the difference (cosine at least 0.9999996) is far below any
 reading. Check outputs: `/mnt/t7/smad_next/PD1/transfer/feats/check_common_space_{clip,dinov3}.json`.
+
+## Amendment 2 (11 Nov 2026, 21:24 CET by the machine clock; post hoc, after the full results of the two CLIP features had been seen, before any of the numbers below)
+
+Seen: the registered heads fail for every held-out family on both CLIP features; the descriptive mean-direction head
+(unfitted) separates landmark morphs at a high AUC when trained on diffusion and GAN, and the registered C choice
+(inner leave-one-family-out over the two training families) matters for the landmark held-out cell. Two descriptive
+additions, labelled post hoc everywhere, which do not change any registered reading:
+
+(a) **Pairwise single-family transfer.** For each ordered pair (training family A, held-out family T): the one-person
+head O, the two-person head T2 and the mean-direction head, trained on A alone (A's hosts purged of T's persons), C by
+inner 3-fold grouped cross-validation inside A (the in-family recipe, criterion the paired share on the head's own
+training contrast), scored on all of T: AUC x1 vs x3 with the registered bootstrap, excess over T's floor, T's primary
+flag rate, and the registered reading rule applied with the label "post hoc".
+
+(b) **Probes of the mean-direction heads** of the registered leave-one-family-out runs: the same threat probes as
+registered for the fitted one-person head (landmark: mirror self-morph, blanked face-only and surround-only, matched
+geometry; diffusion: x3 vs x2, FRLL decoding steps, blanked; GAN: set H spread-matched renders).
+
+Code: `src/PD1/transfer/tf_posthoc.py`, output `/mnt/t7/smad_next/PD1/transfer/res/<feature>_posthoc.json`.

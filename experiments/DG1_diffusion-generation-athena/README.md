@@ -270,6 +270,16 @@ here. No answer yet.
   3545877_1 2,023 s, _3 1,789 s. **Total 10,734 s = 2.98 GPU-hours** (smoke 0.27, set A 0.49, set B 1.92, lost on
   t0010 0.31). Add-on 3545907: tasks 0, 1 running on t0016 since 20:50, tasks 2–7 pending (ReqNodeNotAvail).
 
+- 11 Nov 21:09–21:12. Set B manifest: `src/DG1/dg1_merge_manifests.py --out /mnt/t7/smad_next/DG1/validity/setB/manifest.csv
+  <validity/setB_s0..3>:<setB_s0..3>` (3,616 rows), then `dg1_manifest_extra.py` (`manifest_full.csv` sha256
+  263478b8…, `validity_full.json`). First run counted 0 greyscale photos because the test was exact R = G = B; the
+  reviewer's 7 grey colorFERET photos carry 1–2 grey levels of channel noise after alignment, so the rule is now channel
+  spread ≤ 2 at every pixel (7 found, matching the review). Checks against the review's counts: test-read hosts 191,
+  validation-reserved hosts 8, PN1 roles test 200 / train 156 / dev 100 / excluded 80, PD1-training hosts 152,
+  partner cycles 88, two-person morphs with a validation-reserved partner 8. Set A: `manifest_full.csv` sha256
+  95f3f8b3…. Copies (under 2 MB): `experiments/DG1_diffusion-generation-athena/validity/{setA,setB}_manifest.csv`,
+  `{setA,setB}_summary.csv`, `*_validity_full.json`.
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):

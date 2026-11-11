@@ -219,6 +219,13 @@ No retrain and no score exist yet.
   20 min). Fix: short jobs build their environment in the RAM disk from the local wheels (`build_env_local`); the
   score job prints per-call times and the scorer's own img/s line, and keeps its logs on SIGTERM. code_v4 updated in
   place (no task reads it; CODE_SHA256SUMS b6fd552d...). Resubmitted as **3546004**.
+- 11 Nov 21:15-21:30. Uploaded for the oracle diagnostic: `packs/AD5/selfmad_oracle_cache.tar` (sha256 f12bc071...,
+  3.2 GB; `rsync -n -c` shows no difference) and `packs/AD5/selfmad_release.safetensors` (0ad8db6f...); local tar
+  copies deleted (no second local copies; the cache stays in `oracle_cache/`, the release file in AR1's folder). The
+  local tar was written with 60 GB free (rule: at least 50 GB). Scripts: `score/selfmad_oracle_athena.py` and
+  `athena/ad5_selfmad_oracle.sbatch` (to be placed in a code_v5 tree when the SelfMAD epochs exist).
+- 11 Nov 21:20. Queue: MADation tasks have the highest priority of the pending sprint jobs (6396) but wait for free
+  nodes (23 nodes failed, 13 reserved, 11 mixed, 1 allocated); MixFaceNet-MAD and SelfMAD wait for nodes too.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
