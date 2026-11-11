@@ -57,7 +57,7 @@ morph literature note to `narolski/research`.
 ## Still open
 
 1. **Class definitions:** the three categories of `14_CLASS_DEFINITIONS.md` (genuine; morphing attack; single-subject manipulation) await a yes or no.
-2. **PLGrid access:** not yet usable. The key is refused for `plgpnarolski` on the Cyfronet clusters, and since about 16:55 on 11 Nov the Helios and WCSS login nodes refuse all connections from our address (probably a block after repeated failed logins). One login attempt is planned when Helios opens again.
+2. **PLGrid access:** Athena works (author activated the access service; jobs are charged to `plgmultivision-gpu-a100` until `plgrestorearc` appears on Athena, by the author's decision). The Helios and WCSS login nodes still refuse connections from our address since about 16:55 on 11 Nov.
 3. **Half-exchange images** for the smiling-half follow-up (a rectangular pixel copy): permitted image code or not.
 
 ## To do when the experiments stage ends
