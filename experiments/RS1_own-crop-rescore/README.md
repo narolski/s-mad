@@ -181,6 +181,17 @@ missing); a pack is ready there for later.
   `/mnt/t7/smad_next/vast/rs1`). **Starting `drive.sh` was denied by the permission system ("Data Exfiltration"
   classifier).** Not worked around; reported to the lead with the exact command so the main session or the author can
   run it. Athena jobs 3545972 / 3545973 left queued.
+- 22:00. The lead started `drive.sh` from the main session (author's approval). Machine 1 (137.175.22.196) closed the
+  ssh connection every 3 to 13 min; `rs1a_pack.tar` used all 5 upload tries; the lead then rented a replacement
+  (rs1b: RTX 3090, 79.117.37.190:29866, lease `/mnt/t7/smad_next/vast/rs1b`, log `/mnt/t7/smad_next/RS1/rented_drive_b.log`).
+- 23:21. On rs1b the 8-image gate failed: largest |logit difference| 10.84 vs Athena smoke 3545869
+  (`results_rented/smoke_compare.txt`). My breakdown (23:30): the dropped image `rs1a43001217` (A43 stored photo
+  003_08) is dropped by the unchanged SMDD script on both machines; crops byte-identical v1 416/463, v2 379/464 (the
+  rest: different detector boxes). Images above 0.05 logit, v1: FE-B 91, FE-L 97, FS-B 33, FS-L 55, ViT-B 38, ViT-L 27,
+  MixFaceNet 88; v2: 79, 77, 20, 67, 44, 5, 80. **On byte-identical crops the scores still differ:** v1 up to 5.9
+  logits (ViT-L/14), 19 to 53 images per release, almost all JPEG crop files (decoding differs between the machines
+  although both run Pillow 10.2.0); v2 (PNG): ViT-B/16 13 images (max 0.19), FE ViT-B/16 1, others none. Per the
+  lead's rule no resume command was given.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.

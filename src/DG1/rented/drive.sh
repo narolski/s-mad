@@ -20,7 +20,9 @@ mkdir -p "$OUT"
 exec > >(tee -a "$L/dg1_drive.log") 2>&1
 r() { $SSH root@$H "$@"; }
 log() { echo "$(date +%H:%M:%S) $*"; }
-finish() { touch "$L/RELEASE"; log "RELEASE written ($1)"; echo "DRIVE_END $1"; exit "${2:-0}"; }
+getlogs() { mkdir -p "$L/remote_logs"; rsync -a -e "$SSH" "root@$H:/root/dg1/*.log" "root@$H:/root/dg1/out_*/*.log" "$L/remote_logs/" 2>/dev/null; log "remote logs copied to $L/remote_logs/ ($(ls "$L/remote_logs" 2>/dev/null | tr '\n' ' '))"; }
+finish() { [ "${2:-0}" = 0 ] || getlogs; touch "$L/RELEASE"; log "RELEASE written ($1)"; echo "DRIVE_END $1"; exit "${2:-0}"; }
+hold() { getlogs; log "NO RELEASE: machine kept up for a fix ($1); the guard still stops it at the cap"; echo "DRIVE_HOLD $1"; exit "${2:-1}"; }
 log "start host $H port $PT lease $L"
 r 'hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; df -h /root | tail -1' || finish "no ssh" 1
 r 'mkdir -p /root/dg1/packs /root/dg1/results'
@@ -30,7 +32,7 @@ for f in dg1_pack.tar dg1_pack.tar.sha256 dg1_addon_pack.tar dg1_addon_pack.tar.
 done
 rsync -a -e "$SSH" "$S/rented/remote_run.sh" root@$H:/root/dg1/ || finish "upload of remote_run.sh failed" 2
 log "uploaded"
-r 'bash /root/dg1/remote_run.sh setup > /root/dg1/setup.log 2>&1; tail -4 /root/dg1/setup.log; grep -q SETUP_OK /root/dg1/setup.log' || finish "setup failed (see /root/dg1/setup.log)" 3
+r 'bash /root/dg1/remote_run.sh setup > /root/dg1/setup.log 2>&1; tail -4 /root/dg1/setup.log; grep -q SETUP_OK /root/dg1/setup.log' || hold "setup failed (see $L/remote_logs/setup.log)" 3
 rsync -a -e "$SSH" root@$H:/root/dg1/versions.txt "$OUT/versions_rented.txt"
 
 remote_task() {   # $1 = remote_run.sh arguments, $2 = tag; waits for the end, fetches the image tar, verifies

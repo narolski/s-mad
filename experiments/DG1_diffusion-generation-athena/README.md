@@ -316,6 +316,20 @@ here. No answer yet.
   unpacking in setup (fails setup instead of the gate). The unpack + check tested on the DGX. The gate itself was not
   reached; no rented image exists.
 
+- 11 Nov 23:14–23:20. Second rented run (RTX 3090, 79.112.108.70:39744): setup failed at the pack manifest check,
+  `./repo/.git/index: FAILED`. Script fault introduced by the first fix: the new `git status` repo check ran BEFORE the
+  manifest check, and `git status` rewrites `.git/index`, which is listed in the pack manifest. Fixes: `remote_run.sh`
+  (sha256 bf1f33f6…) checks the pack manifests first, then git, then the per-file repo manifest; `drive.sh` (sha256
+  13b2fbe6…) copies `/root/dg1/*.log` and `out_*/*.log` to `LEASE_FOLDER/remote_logs/` before any RELEASE, and on a setup
+  failure writes no RELEASE (machine kept for a fix; the guard stops it at the cap).
+- 11 Nov 23:35. Rehearsal of the whole remote setup on the DGX in a clean folder (`DG1_ROOT=<scratch> DG1_REHEARSE=1`,
+  fresh venv as python3, fresh HOME): pack sha OK, unpack with `--no-same-owner`, pack manifests OK, git HEAD and clean
+  status OK, repo file manifest OK, `pip install uv`, `uv python install 3.12.3` OK; x86_64 resolution with `uv pip
+  compile --python-platform x86_64-manylinux_2_28`: torch 2.12.1+cu130 / torchvision 0.27.1+cu130 resolve (cu128 has no
+  torch 2.12.1, so a driver < 580 would fail at setup), and the full pin set resolves with numpy 1.26.4, pillow 12.2.0,
+  scipy 1.17.1, pandas 2.2.3, pytorch-lightning 2.5.5. Not rehearsable here: the x86 install itself and the GPU run
+  (the first rented run did install and import everything). Scratch folder removed.
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):

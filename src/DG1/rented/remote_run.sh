@@ -6,7 +6,7 @@
 #   remote_run.sh shard K      add-on shard K through dg1_addon.py -> results/DG1_addon_sK.tar and _codes.tar
 # Every tar gets a .sha256. A generator failure still writes the tar (exit code kept).
 set -uo pipefail
-R=/root/dg1
+R=${DG1_ROOT:-/root/dg1}
 PY=$R/venv/bin/python
 K=$R/work/dg1pack
 A=$R/work/dg1addon
@@ -26,12 +26,26 @@ setup)
   # root keeps the tar's owner (uid 1000) by default, and git then refuses the repo as "dubious ownership" (HEAD '';
   # the first rented run, 11 Nov 22:57): extract as root-owned and also mark exactly this repo as safe
   tar --no-same-owner -C "$R/work" -xf "$R/packs/dg1_pack.tar"; tar --no-same-owner -C "$R/work" -xf "$R/packs/dg1_addon_pack.tar"
-  git config --global --add safe.directory "$K/repo" 2>/dev/null || true
-  if command -v git >/dev/null; then [ "$(git -C "$K/repo" rev-parse HEAD)" = 00c57d3f626f28bf9ed8aff58d90baab25de3af4 ] && [ -z "$(git -C "$K/repo" status --porcelain)" ] || { echo "repo check failed after unpack"; exit 6; }; fi
+  # the pack manifest is checked BEFORE any git command: `git status` refreshes .git/index, which is in the manifest
+  # (second rented run, 11 Nov 23:20: "./repo/.git/index: FAILED")
   ( cd "$K" && sha256sum -c --quiet MANIFEST.sha256 ); ( cd "$A" && sha256sum -c --quiet MANIFEST.sha256 )
   echo "packs ok"
+  git config --global --add safe.directory "$K/repo" 2>/dev/null || true
+  if command -v git >/dev/null; then [ "$(git -C "$K/repo" rev-parse HEAD)" = 00c57d3f626f28bf9ed8aff58d90baab25de3af4 ] && [ -z "$(git -C "$K/repo" status --porcelain)" ] || { echo "repo check failed after unpack"; exit 6; }; echo "repo ok (git)"; fi
+  ( cd "$K/repo" && sha256sum -c --quiet ../repo_manifest.sha256 ) && echo "repo ok (file manifest)"
   python3 -m pip install -q uv
   UV="python3 -m uv"
+  if [ "${DG1_REHEARSE:-0}" = 1 ]; then   # DGX rehearsal: resolve the exact x86_64 wheel set for driver class DG1_DRV
+    $UV python install 3.12.3
+    for CU in cu130 cu128; do
+      $UV pip compile --python-version 3.12.3 --python-platform x86_64-manylinux_2_28 --no-header --index-url "https://download.pytorch.org/whl/$CU" <(printf 'torch==2.12.1\ntorchvision==0.27.1\n') > "$R/rehearse_torch_$CU.txt" && echo "torch $CU resolves: $(grep -E '^torch==|^torchvision==' "$R/rehearse_torch_$CU.txt" | tr '\n' ' ')"
+    done
+    printf 'torch==2.12.1+cu130\ntorchvision==0.27.1+cu130\nnumpy==1.26.4\npillow==12.2.0\n' > "$R/constraints.txt"
+    $UV pip compile --python-version 3.12.3 --python-platform x86_64-manylinux_2_28 --no-header -c "$R/constraints.txt" \
+      --extra-index-url https://download.pytorch.org/whl/cu130 --index-strategy unsafe-best-match <(printf '%s\n' $PINS torch==2.12.1+cu130 torchvision==0.27.1+cu130) > "$R/rehearse_all.txt"
+    grep -E '^(numpy|pillow|torch|torchvision|scipy|pandas|pytorch-lightning)==' "$R/rehearse_all.txt"
+    echo REHEARSAL_OK; exit 0
+  fi
   $UV python install 3.12.3
   rm -rf "$R/venv"; $UV venv --python 3.12.3 "$R/venv"
   DRV=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -1); DMAJ=${DRV%%.*}
