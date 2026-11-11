@@ -36,6 +36,22 @@ printed. For generators, R2 is the reconstruction of one photo (inversion and re
 optimiser with A = B); it is treated as a processed genuine image, and this reading is printed beside
 every generator cell so it can be judged.
 
+### Amendment, 11 Nov 15:40 CET (before any landmark ladder score was read)
+
+Measured: for the landmark tools, "tool on one photo" returns the photo itself (OpenCV: pixel-identical
+on 60 of 60 files; FaceMorpher: within 1 grey level). R2 as defined is therefore R0 for this family.
+Two rungs are added for landmark tools; the verdict rules apply with R2w in place of R2.
+
+| Rung | Image | Made how |
+|---|---|---|
+| R2w | warp-only | the host photo warped by the tool's own routine to the mean shape of the host and its same-person photo; texture from the host only; no blending |
+| R3m | mirror self-morph | the host photo morphed with its own mirror image by the unchanged tool; one photograph, one person, real warp and real averaging; no expression confound |
+
+R2w is the "processed genuine image" for landmark tools. Whether R3m counts as a morph or as a genuine
+image is the author's call (same question as for same-person morphs); it is reported as its own rung.
+Also registered now: the clean-negative test CN0 and the mirror-distance score (definitions and fixed
+verdicts in the lead's message to the AF0 owner, copied into `experiments/AF0/result.md`).
+
 ### Composition rule for twins
 
 R3 and R4 always use the same tool, the same host photo A, and the same kinds of photo on both sides:

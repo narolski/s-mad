@@ -106,3 +106,4 @@ Last update: 11 Nov 2026, 15:15 CET. Started. WCSS: 48 one-GPU slots queued (job
 - 11 Nov: author rulings recorded. Main contrast is now processed genuine image against morph; same-person morphs are a side study.
 - 11 Nov 14:22: transcript read; start. 48 WCSS slots submitted. Owners assigned to first-round experiments.
 - 11 Nov 15:15: first results in (AD1, AG5, C1 to C4), under independent review. Alpha-field probe AF0 pre-registered and assigned. WCSS: 108 slots queued, none started.
+- 11 Nov 15:40: found that the landmark "tool on one photo" rung is pixel-identical to the photo. Added warp-only and mirror self-morph rungs (amendment in `11_AUDIT_PLAN.md`). Strategist's 16 ideas in `ideas/IDEAS_v1.md`.
