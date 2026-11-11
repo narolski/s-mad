@@ -24,6 +24,8 @@ def r3(x):
 def main():
     res = {}
     for bb, kind in L.FEATS:
+        if (bb, kind) == ("dinov3", "patch"):
+            continue  # identical vectors to DINOv3 pooled: timm's DINOv3 global_pool is 'avg' over patch tokens (checked)
         p = L.OUT / f"res_{bb}_{kind}.json"
         if p.exists():
             res[(bb, kind)] = json.load(open(p))
@@ -104,7 +106,8 @@ def main():
         verdict = "mixed"
     summ = dict(readings_one_person_head={fn: v for (fn, h), v in readings.items() if h == HEADS[0]},
                 readings_two_person_head={fn: v for (fn, h), v in readings.items() if h == HEADS[1]},
-                family_verdict=verdict, features_done=[L.FNAME[k] for k in res])
+                family_verdict=verdict, features_done=[L.FNAME[k] for k in res],
+                note="DINOv3 pooled (timm pooled pre-logits, global_pool='avg') is identical to the DINOv3 mean patch token (max |diff| 0.0); one feature")
     json.dump(summ, open(L.OUT / "summary.json", "w"), indent=1)
     print(json.dumps(summ, indent=1))
 

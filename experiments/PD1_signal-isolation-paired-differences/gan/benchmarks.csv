@@ -35,3 +35,21 @@ CLIP mean patch token,one-person head O (x2 vs x1),(b) pipeline removed,correcte
 CLIP mean patch token,two-person head T (x3 vs x1),(b) pipeline removed,FRLL-Morphs StyleGAN,,,0.6945,0.64,0.7445,0.3577,,
 CLIP mean patch token,two-person head T (x3 vs x1),(b) pipeline removed,corrected MAD22 MIPGAN-I,,,0.461,0.4046,0.5149,0.5099,,
 CLIP mean patch token,two-person head T (x3 vs x1),(b) pipeline removed,corrected MAD22 MIPGAN-II,,,0.3997,0.3466,0.449,0.5542,,
+DINOv3 pooled,one-person head O (x2 vs x1),none,FRLL-Morphs StyleGAN,1222,204,0.7488,0.6778,0.8153,0.3332,0.8142,0.266
+DINOv3 pooled,one-person head O (x2 vs x1),none,corrected MAD22 MIPGAN-I,1000,204,0.453,0.3915,0.5121,0.5451,0.5471,0.021
+DINOv3 pooled,one-person head O (x2 vs x1),none,corrected MAD22 MIPGAN-II,999,204,0.4943,0.4304,0.5573,0.5097,0.5885,0.027
+DINOv3 pooled,two-person head T (x3 vs x1),none,FRLL-Morphs StyleGAN,1222,204,0.7433,0.6708,0.8114,0.3283,0.8308,0.2586
+DINOv3 pooled,two-person head T (x3 vs x1),none,corrected MAD22 MIPGAN-I,1000,204,0.4551,0.4017,0.5078,0.5337,0.5639,0.018
+DINOv3 pooled,two-person head T (x3 vs x1),none,corrected MAD22 MIPGAN-II,999,204,0.5325,0.4761,0.5885,0.4943,0.6457,0.033
+DINOv3 pooled,one-person head O (x2 vs x1),(a) softening removed,FRLL-Morphs StyleGAN,,,0.7513,0.6774,0.8217,0.3279,,
+DINOv3 pooled,one-person head O (x2 vs x1),(a) softening removed,corrected MAD22 MIPGAN-I,,,0.5165,0.458,0.5732,0.505,,
+DINOv3 pooled,one-person head O (x2 vs x1),(a) softening removed,corrected MAD22 MIPGAN-II,,,0.5667,0.5069,0.6259,0.4463,,
+DINOv3 pooled,two-person head T (x3 vs x1),(a) softening removed,FRLL-Morphs StyleGAN,,,0.761,0.69,0.8257,0.3136,,
+DINOv3 pooled,two-person head T (x3 vs x1),(a) softening removed,corrected MAD22 MIPGAN-I,,,0.5458,0.4944,0.5995,0.4802,,
+DINOv3 pooled,two-person head T (x3 vs x1),(a) softening removed,corrected MAD22 MIPGAN-II,,,0.6405,0.5864,0.6954,0.4066,,
+DINOv3 pooled,one-person head O (x2 vs x1),(b) pipeline removed,FRLL-Morphs StyleGAN,,,0.7734,0.7044,0.8376,0.3099,,
+DINOv3 pooled,one-person head O (x2 vs x1),(b) pipeline removed,corrected MAD22 MIPGAN-I,,,0.4966,0.4354,0.5539,0.5144,,
+DINOv3 pooled,one-person head O (x2 vs x1),(b) pipeline removed,corrected MAD22 MIPGAN-II,,,0.5378,0.4776,0.5989,0.4854,,
+DINOv3 pooled,two-person head T (x3 vs x1),(b) pipeline removed,FRLL-Morphs StyleGAN,,,0.8482,0.7972,0.8963,0.2257,,
+DINOv3 pooled,two-person head T (x3 vs x1),(b) pipeline removed,corrected MAD22 MIPGAN-I,,,0.563,0.508,0.6196,0.4559,,
+DINOv3 pooled,two-person head T (x3 vs x1),(b) pipeline removed,corrected MAD22 MIPGAN-II,,,0.6566,0.599,0.716,0.3972,,

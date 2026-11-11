@@ -56,20 +56,24 @@ md.append(table("D", "all", title="Diffusion-autoencoder ladder, DiffAE-native 2
 md.append(table("Ds", "all", flip="F1", title="A43 stored crops (Y, F1)"))
 md.append(table("X", "all", title="expanded123 DiffAE blocks (Y, F0)"))
 h = list(csv.DictReader(open(R / "history.csv")))
-md += ["\n**Storage-history shifts d = mean(L copy - L native) / SD(L native), Y, F0 (x = band below the cut-off)**\n",
-       "| set | copy | n | scale | " + " | ".join(["B1", "B2", "B3", "B4", "B5", "BB"]) + " |", "|---|---|---|---|" + "---|" * 6]
-for key in dict.fromkeys((r["set"], r["copy"]) for r in h):
+md += ["\n**Storage-history shifts d = mean(L copy - L native) / SD(L native), Y, F0 (x = band below the cut-off); "
+       "[shift / (mean L_R3 - mean L_R4)] in brackets after the interval**\n",
+       "| set | copy | landmarks | n | scale | " + " | ".join(["B1", "B2", "B3", "B4", "B5", "BB"]) + " |",
+       "|---|---|---|---|---|" + "---|" * 6]
+for key in dict.fromkeys((r["set"], r["copy"], r["landmarks"]) for r in h):
     cells = []
     n = sc = ""
     for b in ["B1", "B2", "B3", "B4", "B5", "BB"]:
-        m = [r for r in h if (r["set"], r["copy"]) == key and r["band"] == b and r["channel"] == "Y" and r["flip"] == "F0"]
+        m = [r for r in h if (r["set"], r["copy"], r["landmarks"]) == key and r["band"] == b and r["channel"] == "Y"
+             and r["flip"] == "F0"]
         if m:
             r = m[0]
-            cells.append(f"{float(r['d']):+.3f} [{float(r['lo']):+.3f}, {float(r['hi']):+.3f}]" + (" x" if r["below_cutoff"] == "1" else ""))
+            cells.append(f"{float(r['d']):+.3f} [{float(r['lo']):+.3f}, {float(r['hi']):+.3f}]" + (" x" if r["below_cutoff"] == "1" else "")
+                         + (f" [{float(r['shift_over_K1']):+.2f}]" if r.get("shift_over_K1") not in ("", None) else ""))
             n, sc = r["n"], r["scale"]
         else:
             cells.append("")
-    md.append(f"| {key[0]} | {key[1]} | {n} | {sc} | " + " | ".join(cells) + " |")
+    md.append(f"| {key[0]} | {key[1]} | {key[2]} | {n} | {sc} | " + " | ".join(cells) + " |")
 d = list(csv.DictReader(open(R / "dose.csv")))
 md += ["\n**Dose curve (graded FaceMorpher, paired dL = L(m) - L(0); predicted ln(m^2 + (1-m)^2))**\n",
        "| band | n | beta [CI] | reading | dL m=.1 / .2 / .3 / .4 / .5 (pred -0.198 / -0.386 / -0.545 / -0.654 / -0.693) | AUC vs m=0 at .1 ... .5 |",
@@ -80,16 +84,28 @@ for r in d:
               + " / ".join(f"{float(r[f'auc_m{m:02d}_vs_m00']):.3f}" for m in (10, 20, 30, 40, 50)) + " |")
 s = list(csv.DictReader(open(R / "shares.csv")))
 md += ["\n**Paired ratios per host (median exp(L_rung - L_R2w)) and person-specific share pi = 2 x R3 ratio - 1**\n",
-       "| subset | band | n | R3/R2w [CI] | pi [CI] | R4/R2w [CI] (pred 0.5) | R3m/R2w [CI] |", "|---|---|---|---|---|---|---|"]
+       "| subset | band | n | R3/R2w [CI] | pi_L [CI] | E_A ratio R3/R2w, pi_A | E_S ratio R3/R2w | R4/R2w [CI] (pred 0.5) | R3m/R2w [CI] | geometry share (R2wm) |",
+       "|---|---|---|---|---|---|---|---|---|---|"]
 for r in s:
     md.append(f"| {r['subset']} | {r['band']} | {r['n_hosts_x_tools']} | {r['med_ratio_R3_over_R2w']} {r['ci_R3']} | "
-              f"{r['person_share_pi']} {r['ci_pi']} | {r['med_ratio_R4_over_R2w']} {r['ci_R4']} | "
-              f"{r['med_ratio_R3m_over_R2w']} {r['ci_R3m']} |")
+              f"{r['person_share_pi']} {r['ci_pi']} | {r['med_EA_ratio_R3_over_R2w']}, {r['person_share_pi_A']} | "
+              f"{r['med_ES_ratio_R3_over_R2w']} | {r['med_ratio_R4_over_R2w']} {r['ci_R4']} | "
+              f"{r['med_ratio_R3m_over_R2w']} {r['ci_R3m']} | {r['geometry_share_R2wm']} |")
 v = json.load(open(R / "verdict.json"))
 md += ["\n**Registered verdict**\n", f"verdict: **{v['verdict']}**; passing bands: {v['passing_bands']}", "",
        "| band | K1 AUC [CI] | history d [CI] (below cut-off) | R3m/R2w | K5 AUC | collapse | passes |", "|---|---|---|---|---|---|---|"]
 for b, x in v["per_band"].items():
     md.append(f"| {b} | {x['K1_auc']:.3f} {x['K1_ci']} | {x['history_d']} {x['history_ci']} ({x['history_below_cutoff']}) | "
               f"{x['R3m_ratio']} | {x['K5_auc']} | {x['collapse']} | {x['passes']} |")
+md += ["\n**Qualifiers per band**\n", "```", json.dumps({b: x["qualifiers"] for b, x in v["per_band"].items()}, indent=1),
+       "```", f"External prediction (A11): {json.dumps(v.get('external_prediction_A11'))}",
+       f"Items with floored E_A (A5): {v.get('n_items_floored_A5')}"]
+if (R / "typ_detected.csv").exists():
+    t = list(csv.DictReader(open(R / "typ_detected.csv")))
+    md += ["\n**Shape statistics on DETECTED landmarks of the built images vs calculated from source landmark files (A9, A10)**\n",
+           "| kind | statistic | engine | contrast | is_val dropped | AUC [CI] | n X / n Y |", "|---|---|---|---|---|---|---|"]
+    for r in t:
+        md.append(f"| {r['kind']} | {r['stat']} | {r['engine']} | {r['contrast']} | {r['is_val_dropped']} | "
+                  f"{float(r['auc']):.3f} [{float(r['lo']):.3f}, {float(r['hi']):.3f}] | {r['nX']} / {r['nY']} |")
 (R / "tables.md").write_text("\n".join(md) + "\n")
 print("wrote", R / "tables.md")

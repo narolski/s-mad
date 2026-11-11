@@ -382,15 +382,24 @@ def main():
             todo.append(("ridge", lambda x: predict_ridge(H, x, dev)))
         for s, net in nets.items():
             todo.append((f"mlp_s{s}", lambda x, net=net: predict_mlp(net, x, H["mu"], H["sd"], dev)))
+        parts = {h: [] for h, _ in todo}
+        pooled_parts = []
+        for c in range(0, N, 64):                  # read each chunk once, apply every head
+            x = np.asarray(ev.tok[n][c:min(c + 64, N)])
+            for h, fn in todo:
+                parts[h].append(fn(x).astype(np.float16))
+            if LR is not None:
+                with torch.no_grad():
+                    pooled_parts.append(torch.from_numpy(np.ascontiguousarray(x)).to(dev).float().mean(1).cpu().numpy())
         for h, fn in todo:
-            P = np.concatenate([fn(np.asarray(ev.tok[n][c:min(c + 64, N)])).astype(np.float16) for c in range(0, N, 64)])
+            P = np.concatenate(parts[h])
             Pf = P.astype(np.float32)
             top, inn, per = region_scores(Pf, face, inner)
             med = np.array([np.median(p[m]) for p, m in zip(Pf, face >= L.FACE_MIN)])
             np.savez(od / f"pred_{h}_{n}.npz", ids=ids, patch=P, score=image_scores(Pf, face), score_top10=top,
                      score_inner=inn, score_periph=per, score_median=med)
         if LR is not None:
-            Xe = pooled_gpu(ev.tok[n], N, dev)
+            Xe = np.concatenate(pooled_parts)
             np.savez(od / f"pred_logreg_{n}.npz", ids=ids, score=((Xe - LR["mean"]) / LR["scale"]) @ LR["coef"] + LR["b"])
         print(f"scored {n} ({N}) {time.time() - t0:.0f}s", flush=True)
     log["seconds_last"] = round(time.time() - t0, 1)

@@ -15,3 +15,11 @@ CLIP mean patch token,(c) softening and pipeline removed,one-person head O (x2 v
 CLIP mean patch token,(c) softening and pipeline removed,two-person head T (x3 vs x1),0.794,0.7969,0.0029,0.6578,0.6622,0.8182,0.1927,0.0686,0.0686,0.057,0.8683,0.4401,True,True,works,0.7533,0.8393
 CLIP mean patch token,"(d) latent spread (set H) removed, G only, descriptive",one-person head O (x2 vs x1),0.666,0.798,0.132,0.5104,0.6496,0.5128,0.0647,0.0686,0.0833,0.121,0.5427,0.5446,False,True,in-between,0.6296,0.7052
 CLIP mean patch token,"(d) latent spread (set H) removed, G only, descriptive",two-person head T (x3 vs x1),0.7253,0.7969,0.0716,0.5895,0.6303,0.7614,0.1241,0.0686,0.0686,0.085,0.5118,0.5175,False,True,in-between,0.6832,0.7709
+DINOv3 pooled,(a) softening removed,one-person head O (x2 vs x1),0.7682,0.7752,0.007,0.5776,0.7016,0.7118,0.1669,0.0588,0.049,0.047,0.8566,0.483,True,True,works,0.7299,0.8108
+DINOv3 pooled,(a) softening removed,two-person head T (x3 vs x1),0.8401,0.8284,-0.0117,0.6229,0.7443,0.7231,0.2389,0.0441,0.049,0.063,0.8793,0.4482,True,True,works,0.8028,0.8788
+DINOv3 pooled,(b) pipeline removed,one-person head O (x2 vs x1),0.7926,0.7752,-0.0174,0.5888,0.7169,0.8148,0.1914,0.0539,0.049,0.095,0.8599,0.475,True,True,works,0.7601,0.8298
+DINOv3 pooled,(b) pipeline removed,two-person head T (x3 vs x1),0.8389,0.8284,-0.0105,0.6254,0.7443,0.8445,0.2376,0.0588,0.049,0.122,0.8765,0.4377,True,True,works,0.8023,0.877
+DINOv3 pooled,(c) softening and pipeline removed,one-person head O (x2 vs x1),0.782,0.7752,-0.0068,0.5851,0.7138,0.8139,0.1808,0.0588,0.049,0.049,0.8563,0.4779,True,True,works,0.7471,0.8206
+DINOv3 pooled,(c) softening and pipeline removed,two-person head T (x3 vs x1),0.8272,0.8284,0.0012,0.6135,0.7395,0.8353,0.226,0.0539,0.049,0.064,0.8763,0.4392,True,True,works,0.7924,0.8647
+DINOv3 pooled,"(d) latent spread (set H) removed, G only, descriptive",one-person head O (x2 vs x1),0.6552,0.7752,0.1201,0.5201,0.6339,0.5294,0.0539,0.049,0.049,0.06,0.5498,0.5487,False,True,in-between,0.61,0.7014
+DINOv3 pooled,"(d) latent spread (set H) removed, G only, descriptive",two-person head T (x3 vs x1),0.7451,0.8284,0.0833,0.587,0.6654,0.5496,0.1438,0.0539,0.049,0.121,0.5143,0.5143,False,True,in-between,0.7093,0.7844

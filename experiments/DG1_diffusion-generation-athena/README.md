@@ -100,6 +100,24 @@ here. No answer yet.
   `.../results/DG1/DG1_smoke_3544197.tar`. If it fails: read the log, fix, re-upload the changed script, resubmit
   (the environment folder `envs/DG1/venv` may need removal by the owner if the build broke half-way).
 
+- 11 Nov 18:31–18:39. **Smoke job 3544197 FAILED after 4 s** (node t0016, exit 1:0, 0.001 GPU-hours): `module load
+  Python/3.12.3` is refused on Athena unless its prerequisite `GCCcore/13.3.0` is loaded first (`module spider
+  Python/3.12.3`). Nothing else ran. A first status check at 18:35 returned nothing because `flock -w 120` on the
+  single shared lock timed out (another owner's long upload); a flock timeout is a local wait, not a refused login.
+- 11 Nov 18:38. Lead: (1) `-C localfs` gives only 4.0 GB of `$SCRATCH_LOCAL` on Athena (the lead's first smoke died
+  with 'No space left on device'); use `-C memfs` and `$MEMFS` (RAM disk, counts toward `--mem`, at most 120G per
+  GPU to stay billed as one GPU). Our task would also have failed there: it copied the 2.9 GB tar and then extracted
+  it (5.8 GB peak). (2) Two locks from now on: short commands take `/tmp/smadnext-athena-cmd.lock` (`-w 300`),
+  transfers take `/tmp/smadnext-athena.lock` (`-w 1800`).
+- 11 Nov 18:41. Fixes: both job files load `GCCcore/13.3.0 Python/3.12.3`, use `#SBATCH -C memfs`, `TMPDIR=$MEMFS/tmp`,
+  `--mem=64G` (data in the RAM disk about 3 GB for the extracted pack + up to a few GB of pip temporary files; process
+  about 10 GB). `dg1_run_task.sh` now checks the pack's sha256 on the project store and extracts it straight into
+  `$MEMFS` (no copy of the tar). Upload of the four small scripts queued on the transfer lock, then resubmission.
+
+- 11 Nov 18:47. Scripts uploaded (transfer lock, rsync exit 0; sha256 `dg1_run_task.sh` 476d1939…, `dg1_smoke.sbatch`
+  de19e077…, `dg1_prod.sbatch` ad59138c…, `dg1_env.sh` unchanged 56a1a9a3…). **Smoke job resubmitted: Athena job
+  3544215** (log `.../smad-next/logs/DG1-smoke-3544215.out`, result `.../results/DG1/DG1_smoke_3544215.tar`).
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):
@@ -227,7 +245,7 @@ manifest check runs regardless).
 
 ## 10. Handover state
 
-18:31: Athena smoke job 3544197 submitted (see timeline). Before that: no Athena job. Files staged on Athena:
+18:47: Athena smoke job 3544215 submitted (3544197 failed at module load; see timeline). Before that: no Athena job. Files staged on Athena:
 `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/DG1/{dg1_pack.tar,dg1_pack.tar.sha256,dg1_env.sh,dg1_run_task.sh,dg1_smoke.sbatch,dg1_prod.sbatch}`.
 Compute spent: 0 Athena GPU-hours; DGX GB10 about 0.45 GPU-hours (8-image check, shared) plus CPU alignment.
 

@@ -30,8 +30,7 @@ def load(tag):
         return None
     z = np.load(p)
     S = dict(zip(z["id"].tolist(), z["logit_noTTA"].astype(float)))
-    pe = SC / f"scores_{tag}__extra.npz"                 # the appended R2wm rows (scored in a second pass)
-    if pe.exists():
+    for pe in sorted(SC.glob(f"scores_{tag}__extra*.npz")):   # appended rows (R2wm: __extra, R2w4: __extra2)
         ze = np.load(pe)
         S.update(zip(ze["id"].tolist(), ze["logit_noTTA"].astype(float)))
     return S
@@ -124,7 +123,8 @@ def ladder(P, S, tool, man, retrain, base="R2", twin="R3"):
     reps = {}
     steps = [("R0->" + base, base, "R0"), (base + "->" + twin, twin, base), (twin + "->R4", "R4", twin)]
     extra = [(base + "vsR4", "R4", base), ("R0vsR4", "R4", "R0"), ("NCvsR3", "NC", "R3"), ("R3mvsR3", "R3m", "R3"),
-             (base + "->R3", "R3", base), ("R3->R4", "R4", "R3")]
+             (base + "->R3", "R3", base), ("R3->R4", "R4", "R3"), ("R2w4vsR4", "R4", "R2w4"), ("R2wvsR2w4", "R2w4", "R2w"),
+             ("R0vsR2w4", "R2w4", "R0")]
     for name, pos, neg in steps + extra:
         if name in out:
             continue
@@ -151,7 +151,7 @@ def ladder(P, S, tool, man, retrain, base="R2", twin="R3"):
     t, e = bench_threshold(man, S, tool, retrain)
     if t is not None:
         out["bench_threshold"] = dict(t=t, bench_eer=100 * e)
-        for g in ("R0", "R2", "R2w", "R2wm", "R3", "R3m", "R4", "NC"):
+        for g in ("R0", "R2", "R2w", "R2wm", "R2w4", "R3", "R3m", "R4", "NC"):
             s_, _ = grp(S, P.rows(tool, g))
             if len(s_):
                 k = int((s_ >= t).sum())
@@ -226,24 +226,37 @@ def graded(man, S):
     return o
 
 
-def baseline_compare(man, S, P, tool, contrast_name, pos, neg, oofz):
+def _best(P, S, tool, pos, neg, oofz, names):
     best, best_rep, best_key = None, None, None
-    for b in ("bytes", "border", "background"):
+    for b in names:
         key = f"{P.pool}|{tool}|{pos}vs{neg}|{b}"
         if key + "|id" not in oofz:
             continue
         sc = dict(zip(oofz[key + "|id"].tolist(), oofz[key + "|score"].astype(float)))
         a, rep, _, _ = contrast(P.D, sc, P.rows(tool, pos), P.rows(tool, neg))
-        if a < 0.5:
+        if a < 0.5:                     # orientation folded (conservative toward the baseline)
             a, rep = 1 - a, 1 - rep
         if best is None or a > best:
             best, best_rep, best_key = a, rep, b
+    return best, best_rep, best_key
+
+
+def baseline_compare(man, S, P, tool, contrast_name, pos, neg, oofz):
+    """detector AUC minus the best baseline on the same contrast, paired person bootstrap. Two sets: the plan's
+    non-content baselines (bytes, border mask, background) and amendment 6's simple baselines (thumbnail, background,
+    band power, Laplacian variance, plus bytes and border)."""
     da, drep, _, _ = contrast(P.D, S, P.rows(tool, pos), P.rows(tool, neg))
-    if best is None:
-        return dict(best_noncontent=None, detector_auc=da, note="no baseline for this contrast")
-    diff = drep - best_rep
-    return dict(best_noncontent=best_key, best_auc=best, detector_auc=da, diff=da - best, diff_ci95=stats.ci(diff),
-                beats=bool(stats.ci(diff)[0] > 0))
+    out = dict(detector_auc=da)
+    for lab, names in (("noncontent", ("bytes", "border", "background")),
+                       ("simple", ("thumb32", "background", "band", "lapvar", "bytes", "border"))):
+        best, best_rep, key = _best(P, S, tool, pos, neg, oofz, names)
+        if best is None:
+            out[lab] = dict(best=None, note="no baseline for this contrast")
+            continue
+        diff = drep - best_rep
+        out[lab] = dict(best=key, best_auc=best, excess=da - best, excess_ci95=stats.ci(diff),
+                        beats=bool(stats.ci(diff)[0] is not None and stats.ci(diff)[0] > 0))
+    return out
 
 
 VAL8 = {r["person"] for r in csv.DictReader(open(K.RES / "pool_person_split.csv")) if r["is_val"] == "true"}
@@ -275,15 +288,20 @@ def main():
             r = res.setdefault(name, dict(block=block, tag=tag))
             for pool, P in pools.items():
                 for tool in ("opencv", "facemorpher"):
-                    for base, twin in (("R2", "R3"), ("R2w", "R3"), ("R2w", "R3m"), ("R2wm", "R3m")):
+                    for base, twin in (("R2", "R3"), ("R2w", "R3"), ("R2w", "R3m"), ("R2wm", "R3m"), ("R2w4", "R3")):
+                        if base == "R2w4" and pool != "frgcferet":
+                            continue
                         lad, _ = ladder(P, S, tool, man, retrain, base, twin)
                         if pool == "frll":
                             lad["label"] = ("confounded by capture detail and expression (R4 partner, and R2w / R3 "
                                             "where used, involve a smiling FRLL file); verdict rules not applied")
                             lad["main_verdict"] = lad["side_twin_vs_R4"] = lad["side_base_vs_twin"] = "not applied"
                         else:
-                            lad["vs_best_noncontent_main"] = baseline_compare(man, S, P, tool, base + "vsR4", "R4",
-                                                                              base, oofz)
+                            lad["vs_baselines"] = {}
+                            for cn, pos_, neg_ in ((base + "vsR4", "R4", base), ("R0->" + base, base, "R0"),
+                                                   (twin + "->R4", "R4", twin), ("R3->R4", "R4", "R3"),
+                                                   ("R2w4vsR4", "R4", "R2w4"), ("R2wvsR2w4", "R2w4", "R2w")):
+                                lad["vs_baselines"][cn] = baseline_compare(man, S, P, tool, cn, pos_, neg_, oofz)
                         if pool == "frgcferet":
                             lad["sensitivity_without_val8"] = sens_val8(P, S, tool, base)
                         r[f"{pool}/{tool}/{base}-{twin}"] = lad

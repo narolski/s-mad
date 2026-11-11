@@ -807,3 +807,23 @@ DGX, in this order. `P=/home/narolski/mambamorph-code/.venv-spark/bin/python`.
     (offer ids are those used on 11 Nov; offers change; 111.58 was the credit baseline then).
 11. Athena path: section 10.4.
 12. Reading: section 10.4 (`summarise.py --order --reading` per recipe), then the results-reviewer.
+
+## Addendum by the lead, 11 Nov 18:49 CET (Athena)
+
+- 18:25: Slurm on Athena accepted the account `plgrestorearc-gpu-a100` (refused from 17:20 to 18:05; the user's
+  association had not been synchronised).
+- Job 3544186 (environment build and smoke test): the environment was built
+  (`/net/pr2/projects/plgrid/plggrestoration/smad-next/venv`: python 3.10.4, torch 2.2.1+cu121, timm 1.0.27,
+  numpy 1.26.4, pillow 10.2.0, safetensors 0.8.0), then the job FAILED copying the pack: node-local scratch
+  (`-C localfs`) is only 4.0 GB (measured by job 3544200). Dead end recorded in `ATHENA.md`.
+- Job files changed to the RAM disk (`-C memfs`, `--mem=120G`, work in `$MEMFS`); `run.sh` unchanged.
+- Job 3544204 (smoke test again): COMPLETED in 3 min 16 s on an A100-SXM4-40GB. One ViT-L/14 task
+  (`AD4_m3lmf_s401`, 40 steps, 8 scored images): pack check 33 s, training 136 s including start-up, peak GPU
+  memory 14,263 MiB, peak process memory 13.3 GB, exit 0. The log prints no step rate at 40 steps; 136 s for 40
+  steps bounds a full fit of 6,250 steps at 5.9 hours.
+- Job array 3544219_[0-9], submitted 18:49: the ten ViT-L/14 tasks (five morph-free, five label-permuted), 10-hour
+  limit each, one A100 each. Results go to `.../smad-next/results/AD4/<TASK>.tar` with `.sha256`; logs
+  `.../smad-next/logs/AD4L-3544219_<n>.out`. Amendment 1c (prereg) fixes that the Athena result of each task is
+  the registered one.
+- To do when they end: copy the ten tars to `/mnt/t7/smad_next/AD4/results_athena/`, verify hashes, then the lead's
+  reading (the reader still lacks the registered person bootstrap and the ViT-L/14 twin of Amendment 1(d)).

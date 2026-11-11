@@ -24,7 +24,8 @@ import stats  # noqa: E402
 
 CONTRASTS = (("R0", "R2"), ("R2", "R3"), ("R3", "R4"), ("R2", "R4"), ("R0", "R4"), ("R3", "NC"),
              ("R0", "R2w"), ("R2w", "R4"), ("R2w", "R3m"), ("R3m", "R4"), ("R2w", "R3"),
-             ("R2wm", "R4"), ("R0", "R2wm"), ("R2wm", "R3m"))
+             ("R2wm", "R4"), ("R0", "R2wm"), ("R2wm", "R3m"), ("R2w4", "R4"), ("R2w", "R2w4"), ("R0", "R2w4"))
+BASES = ("bytes", "border", "background", "thumb32", "face", "band", "lapvar")
 
 
 def blocks(img):
@@ -34,12 +35,16 @@ def blocks(img):
 
 def feats(args):
     import cv2
+    import stats as _st   # a41_read luminance / power_profile / band_shares (unchanged)
     i, p, bgp, fap = args
     img = cv2.imread(p)
     z = (img == 0).all(2).astype(np.float32)
+    Y = _st.M.luminance(img[..., ::-1])
     f = dict(bytes=np.array([os.path.getsize(p)], np.float32),
              border=np.r_[z.mean(), blocks(z[..., None])].astype(np.float32),
-             thumb32=blocks(img.astype(np.float32)))
+             thumb32=blocks(img.astype(np.float32)),
+             band=np.array(_st.M.band_shares(_st.M.power_profile(Y)[0]), np.float32),
+             lapvar=np.array([cv2.Laplacian(Y, cv2.CV_64F).var()], np.float32))
     if fap:
         f["background"] = blocks(cv2.imread(fap).astype(np.float32))
         f["face"] = blocks(cv2.imread(bgp).astype(np.float32))
@@ -50,13 +55,14 @@ def main():
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", default="", help="compute only contrasts containing this rung and merge into the outputs")
+    ap.add_argument("--feats", default="", help="comma list of baselines to compute (default all); merged into outputs")
     a = ap.parse_args()
     from gate_c import oof
     man = {r["id"]: r for r in csv.DictReader(open(K.OUT / "manifest.csv"))}
     bl = {r["id"]: r for r in csv.DictReader(open(K.OUT / "blank/blank_manifest.csv"))}
     todo = [(i, r["path"], bl[i]["bg_path"] if i in bl else "", bl[i]["face_path"] if i in bl else "")
             for i, r in man.items() if r["pool"] in ("frgcferet", "frll") and (not a.only or r["rung"] in
-                                                                                  ("R0", "R3m", "R4", a.only)) and r["rung"] in ("R0", "R2", "R3", "R4", "NC", "R2w", "R3m", "R2wm")]
+                                                                                  ("R0", "R3m", "R4", "R2w", a.only)) and r["rung"] in ("R0", "R2", "R3", "R4", "NC", "R2w", "R3m", "R2wm", "R2w4")]
     with Pool(12) as p:
         F = dict(p.map(feats, todo, chunksize=16))
     oofs, summ = {}, {}
@@ -67,7 +73,7 @@ def main():
         r0 = [r for r in man.values() if r["pool"] == pool and r["rung"] == "R0"]
         for tool in ("opencv", "facemorpher"):
             rows = {g: [r for r in man.values() if r["pool"] == pool and r["tool"] == tool and r["rung"] == g]
-                    for g in ("R2", "R3", "R4", "NC", "R2w", "R3m", "R2wm")}
+                    for g in ("R2", "R3", "R4", "NC", "R2w", "R3m", "R2wm", "R2w4")}
             rows["R0"] = r0
             for neg, pos in CONTRASTS:
                 if a.only and a.only not in (neg, pos):
@@ -77,19 +83,22 @@ def main():
                 g = np.array([r["p1"] for r in rr])
                 P = [(r["p1"], r["p2"]) for r in rows[pos]]
                 N = [(r["p1"], r["p2"]) for r in rows[neg]]
-                for b in ("bytes", "border", "background", "thumb32", "face"):
-                    if b not in F[rr[0]["id"]]:
+                if not rows[neg] or not rows[pos]:
+                    continue
+                for b in BASES:
+                    if (a.feats and b not in a.feats.split(",")) or b not in F[rr[0]["id"]]:
                         continue
                     X = np.stack([F[r["id"]][b] for r in rr])
-                    s = X[:, 0] if b == "bytes" else (oof(X, y, g) if np.ptp(X) > 0 else np.zeros(len(y)))
+                    s = X[:, 0] if b in ("bytes", "lapvar") else (oof(X, y, g) if np.ptp(X) > 0 else np.zeros(len(y)))
                     au, c = stats.wauc_ci(D, s[y == 1], P, s[y == 0], N)
                     key = f"{pool}|{tool}|{pos}vs{neg}|{b}"
                     oofs[key + "|id"] = np.array([r["id"] for r in rr])
                     oofs[key + "|score"] = s.astype(np.float32)
                     summ[key] = dict(auc=au, ci95=c, folded=stats.fold(au),
-                                     kind="non-content" if b in ("bytes", "border", "background") else "content")
+                                     kind="non-content" if b in ("bytes", "border", "background") else
+                                     ("low-level statistic" if b in ("band", "lapvar") else "content"))
                     print(key, round(au, 3), [round(x, 3) for x in c], flush=True)
-    if a.only:
+    if a.only or a.feats:
         old = dict(np.load(K.OUT / "scores/baselines_oof.npz"))
         old.update(oofs)
         np.savez(K.OUT / "scores/baselines_oof.npz", **old)

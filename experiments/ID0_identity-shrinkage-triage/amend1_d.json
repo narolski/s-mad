@@ -1,0 +1,521 @@
+{
+ "part": "d",
+ "amendment": "prereg.md amendment 1 (11 Nov 18:45)",
+ "B": 2000,
+ "seconds": 14.7,
+ "result": [
+  {
+   "family": "opencv",
+   "primary": true,
+   "n": 204,
+   "cos_native_copy_median": 0.996,
+   "ISS": {
+    "auc_copy_vs_native": 0.5056,
+    "ci95": [
+     0.5,
+     0.5123
+    ],
+    "share_lower": 0.4363,
+    "share_lower_ci95": [
+     0.3726,
+     0.5
+    ],
+    "median_shift_sd": 0.026,
+    "median_shift_ci95": [
+     0.0004,
+     0.0416
+    ]
+   },
+   "virtual head": {
+    "auc_copy_vs_native": 0.496,
+    "ci95": [
+     0.4893,
+     0.502
+    ],
+    "share_lower": 0.549,
+    "share_lower_ci95": [
+     0.4785,
+     0.6193
+    ],
+    "median_shift_sd": -0.0124,
+    "median_shift_ci95": [
+     -0.0314,
+     0.005
+    ]
+   },
+   "mean-direction projection": {
+    "auc_copy_vs_native": 0.5043,
+    "ci95": [
+     0.4996,
+     0.5107
+    ],
+    "share_lower": 0.4314,
+    "share_lower_ci95": [
+     0.3704,
+     0.5
+    ],
+    "median_shift_sd": 0.0148,
+    "median_shift_ci95": [
+     0.0,
+     0.0272
+    ]
+   }
+  },
+  {
+   "family": "facemorpher",
+   "primary": true,
+   "n": 204,
+   "cos_native_copy_median": 0.9964,
+   "ISS": {
+    "auc_copy_vs_native": 0.509,
+    "ci95": [
+     0.5033,
+     0.5164
+    ],
+    "share_lower": 0.3873,
+    "share_lower_ci95": [
+     0.32,
+     0.455
+    ],
+    "median_shift_sd": 0.0295,
+    "median_shift_ci95": [
+     0.0111,
+     0.0476
+    ]
+   },
+   "virtual head": {
+    "auc_copy_vs_native": 0.4969,
+    "ci95": [
+     0.491,
+     0.5019
+    ],
+    "share_lower": 0.5784,
+    "share_lower_ci95": [
+     0.5093,
+     0.6528
+    ],
+    "median_shift_sd": -0.0183,
+    "median_shift_ci95": [
+     -0.0293,
+     -0.0012
+    ]
+   },
+   "mean-direction projection": {
+    "auc_copy_vs_native": 0.5044,
+    "ci95": [
+     0.4996,
+     0.511
+    ],
+    "share_lower": 0.4216,
+    "share_lower_ci95": [
+     0.3571,
+     0.4912
+    ],
+    "median_shift_sd": 0.0137,
+    "median_shift_ci95": [
+     0.0022,
+     0.0243
+    ]
+   }
+  },
+  {
+   "family": "stylegan",
+   "primary": true,
+   "n": 204,
+   "cos_native_copy_median": 1.0,
+   "ISS": {
+    "auc_copy_vs_native": 0.5003,
+    "ci95": [
+     0.4995,
+     0.5016
+    ],
+    "share_lower": 0.4412,
+    "share_lower_ci95": [
+     0.3765,
+     0.505
+    ],
+    "median_shift_sd": 0.0,
+    "median_shift_ci95": [
+     -0.0,
+     0.0
+    ]
+   },
+   "virtual head": {
+    "auc_copy_vs_native": 0.5003,
+    "ci95": [
+     0.4995,
+     0.5019
+    ],
+    "share_lower": 0.4314,
+    "share_lower_ci95": [
+     0.3602,
+     0.5
+    ],
+    "median_shift_sd": 0.0,
+    "median_shift_ci95": [
+     -0.0,
+     0.0
+    ]
+   },
+   "mean-direction projection": {
+    "auc_copy_vs_native": 0.5001,
+    "ci95": [
+     0.4991,
+     0.5014
+    ],
+    "share_lower": 0.4706,
+    "share_lower_ci95": [
+     0.401,
+     0.5413
+    ],
+    "median_shift_sd": 0.0,
+    "median_shift_ci95": [
+     -0.0,
+     0.0
+    ]
+   }
+  },
+  {
+   "family": "mordiff",
+   "primary": true,
+   "n": 204,
+   "cos_native_copy_median": 0.9785,
+   "ISS": {
+    "auc_copy_vs_native": 0.5062,
+    "ci95": [
+     0.4886,
+     0.5239
+    ],
+    "share_lower": 0.4755,
+    "share_lower_ci95": [
+     0.3967,
+     0.5556
+    ],
+    "median_shift_sd": 0.0106,
+    "median_shift_ci95": [
+     -0.0328,
+     0.0655
+    ]
+   },
+   "virtual head": {
+    "auc_copy_vs_native": 0.4153,
+    "ci95": [
+     0.3962,
+     0.4272
+    ],
+    "share_lower": 0.8824,
+    "share_lower_ci95": [
+     0.8265,
+     0.9279
+    ],
+    "median_shift_sd": -0.3013,
+    "median_shift_ci95": [
+     -0.349,
+     -0.2643
+    ]
+   },
+   "mean-direction projection": {
+    "auc_copy_vs_native": 0.493,
+    "ci95": [
+     0.4796,
+     0.5069
+    ],
+    "share_lower": 0.5,
+    "share_lower_ci95": [
+     0.4159,
+     0.5833
+    ],
+    "median_shift_sd": -0.0002,
+    "median_shift_ci95": [
+     -0.0594,
+     0.0289
+    ]
+   }
+  },
+  {
+   "family": "dim_c",
+   "primary": false,
+   "n": 204,
+   "cos_native_copy_median": 0.991,
+   "ISS": {
+    "auc_copy_vs_native": 0.5121,
+    "ci95": [
+     0.5042,
+     0.5214
+    ],
+    "share_lower": 0.3922,
+    "share_lower_ci95": [
+     0.3233,
+     0.4639
+    ],
+    "median_shift_sd": 0.0338,
+    "median_shift_ci95": [
+     0.0144,
+     0.0728
+    ]
+   },
+   "virtual head": {
+    "auc_copy_vs_native": 0.4804,
+    "ci95": [
+     0.4713,
+     0.487
+    ],
+    "share_lower": 0.6569,
+    "share_lower_ci95": [
+     0.5857,
+     0.7267
+    ],
+    "median_shift_sd": -0.0638,
+    "median_shift_ci95": [
+     -0.0919,
+     -0.0375
+    ]
+   },
+   "mean-direction projection": {
+    "auc_copy_vs_native": 0.5027,
+    "ci95": [
+     0.4961,
+     0.5102
+    ],
+    "share_lower": 0.5,
+    "share_lower_ci95": [
+     0.4216,
+     0.5783
+    ],
+    "median_shift_sd": -0.0002,
+    "median_shift_ci95": [
+     -0.0216,
+     0.0159
+    ]
+   }
+  },
+  {
+   "family": "greedy_dim",
+   "primary": false,
+   "n": 204,
+   "cos_native_copy_median": 0.9909,
+   "ISS": {
+    "auc_copy_vs_native": 0.5131,
+    "ci95": [
+     0.5047,
+     0.5235
+    ],
+    "share_lower": 0.4216,
+    "share_lower_ci95": [
+     0.3517,
+     0.4913
+    ],
+    "median_shift_sd": 0.043,
+    "median_shift_ci95": [
+     0.0103,
+     0.0627
+    ]
+   },
+   "virtual head": {
+    "auc_copy_vs_native": 0.4821,
+    "ci95": [
+     0.4732,
+     0.4882
+    ],
+    "share_lower": 0.6716,
+    "share_lower_ci95": [
+     0.6034,
+     0.7441
+    ],
+    "median_shift_sd": -0.0643,
+    "median_shift_ci95": [
+     -0.0967,
+     -0.0391
+    ]
+   },
+   "mean-direction projection": {
+    "auc_copy_vs_native": 0.5046,
+    "ci95": [
+     0.498,
+     0.5123
+    ],
+    "share_lower": 0.4363,
+    "share_lower_ci95": [
+     0.3632,
+     0.5138
+    ],
+    "median_shift_sd": 0.0108,
+    "median_shift_ci95": [
+     -0.0074,
+     0.0402
+    ]
+   }
+  },
+  {
+   "family": "greedy_dim_s",
+   "primary": false,
+   "n": 204,
+   "cos_native_copy_median": 0.9911,
+   "ISS": {
+    "auc_copy_vs_native": 0.511,
+    "ci95": [
+     0.5027,
+     0.5203
+    ],
+    "share_lower": 0.4412,
+    "share_lower_ci95": [
+     0.3687,
+     0.5147
+    ],
+    "median_shift_sd": 0.0315,
+    "median_shift_ci95": [
+     -0.0076,
+     0.0645
+    ]
+   },
+   "virtual head": {
+    "auc_copy_vs_native": 0.4823,
+    "ci95": [
+     0.4735,
+     0.4882
+    ],
+    "share_lower": 0.6569,
+    "share_lower_ci95": [
+     0.5909,
+     0.7246
+    ],
+    "median_shift_sd": -0.0668,
+    "median_shift_ci95": [
+     -0.094,
+     -0.034
+    ]
+   },
+   "mean-direction projection": {
+    "auc_copy_vs_native": 0.5046,
+    "ci95": [
+     0.4981,
+     0.5119
+    ],
+    "share_lower": 0.451,
+    "share_lower_ci95": [
+     0.3774,
+     0.5294
+    ],
+    "median_shift_sd": 0.0203,
+    "median_shift_ci95": [
+     -0.0081,
+     0.0388
+    ]
+   }
+  },
+  {
+   "family": "amsl",
+   "primary": false,
+   "n": 204,
+   "cos_native_copy_median": 0.9951,
+   "ISS": {
+    "auc_copy_vs_native": 0.508,
+    "ci95": [
+     0.5017,
+     0.515
+    ],
+    "share_lower": 0.4412,
+    "share_lower_ci95": [
+     0.3723,
+     0.509
+    ],
+    "median_shift_sd": 0.0189,
+    "median_shift_ci95": [
+     -0.0022,
+     0.0432
+    ]
+   },
+   "virtual head": {
+    "auc_copy_vs_native": 0.4927,
+    "ci95": [
+     0.486,
+     0.4984
+    ],
+    "share_lower": 0.5784,
+    "share_lower_ci95": [
+     0.5044,
+     0.6495
+    ],
+    "median_shift_sd": -0.0239,
+    "median_shift_ci95": [
+     -0.0562,
+     -0.0006
+    ]
+   },
+   "mean-direction projection": {
+    "auc_copy_vs_native": 0.5048,
+    "ci95": [
+     0.5002,
+     0.5108
+    ],
+    "share_lower": 0.4314,
+    "share_lower_ci95": [
+     0.367,
+     0.5044
+    ],
+    "median_shift_sd": 0.012,
+    "median_shift_ci95": [
+     -0.0018,
+     0.0257
+    ]
+   }
+  },
+  {
+   "family": "webmorph",
+   "primary": false,
+   "n": 204,
+   "cos_native_copy_median": 0.9951,
+   "ISS": {
+    "auc_copy_vs_native": 0.5062,
+    "ci95": [
+     0.5,
+     0.5138
+    ],
+    "share_lower": 0.4363,
+    "share_lower_ci95": [
+     0.3687,
+     0.5
+    ],
+    "median_shift_sd": 0.0205,
+    "median_shift_ci95": [
+     0.0,
+     0.0376
+    ]
+   },
+   "virtual head": {
+    "auc_copy_vs_native": 0.4931,
+    "ci95": [
+     0.4861,
+     0.4988
+    ],
+    "share_lower": 0.598,
+    "share_lower_ci95": [
+     0.5227,
+     0.6721
+    ],
+    "median_shift_sd": -0.0312,
+    "median_shift_ci95": [
+     -0.0489,
+     -0.0107
+    ]
+   },
+   "mean-direction projection": {
+    "auc_copy_vs_native": 0.5049,
+    "ci95": [
+     0.4999,
+     0.5107
+    ],
+    "share_lower": 0.4314,
+    "share_lower_ci95": [
+     0.3565,
+     0.505
+    ],
+    "median_shift_sd": 0.0112,
+    "median_shift_ci95": [
+     -0.0007,
+     0.0288
+    ]
+   }
+  }
+ ]
+}

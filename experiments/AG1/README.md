@@ -56,6 +56,8 @@ the owner. Nothing may be submitted or probed until then.
   the 7 smoke images (`test_score_pipeline.py`, `/mnt/t7/smad_next/AG1/tests/score_pipeline/`): pins, check_scope and
   the strict weight load of MADation ViT-B/16 passed; the move to the GPU failed with CUDA out of memory (the GB10 had
   12 GB free; about 17 other GPU processes of other owners). To retry when the GPU is quieter.
+- 18:45 Smoke job resubmitted with the fixes (`ag1_task.sh` 216ad6d3, `ag1_smoke.sbatch` 719406d8, `ag1_array.sbatch`
+  c8ef41f9): Athena job 3544209.
 - 18:31 Smoke job 3544188 FAILED after 3 min 49 s (0.06 GPU-h): the environment build succeeded (python 3.10.4, torch
   2.2.1+cu121, torchvision 0.17.1+cu121, numpy 1.26.4, pillow 10.2.0, A100-SXM4-40GB on node t0014; `envs/AG1` kept),
   then "No space left on device" while unpacking the 2.9 GB pack in `$SCRATCH_LOCAL` (`-C localfs` is only 4.0 GB on

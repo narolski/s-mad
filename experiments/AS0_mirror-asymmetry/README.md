@@ -44,9 +44,31 @@ contrast computed yet. Answer: none yet.
 - 18:19 `as0_measure.py` written. Nominal IOD: ar1_512 130.51 px (1,072 genuine shapes). The SMDD landmark file
   stores coordinates divided by the image size (first IOD read 0.249); fixed by scaling with 256 (IOD 63.7 px).
   8-image tests of L, Lsoft, R8, S (0.19 s per 512 image). `as0_check.py`: implementation checks (section 6).
-- 18:21 measurement of L, Lsoft, R8, S launched (log `/mnt/t7/smad_next/AS0/logs/measure_a.log`).
+- 18:21 measurement of L, Lsoft, R8, S launched (PID 2250330, log `/mnt/t7/smad_next/AS0/logs/measure_a.log`).
+  8-image smoke outputs `meas/smoke_*` deleted unread. Prereg time stamps corrected to the file times (18:21:55 save;
+  only three time strings changed).
+- 18:22-18:30 `as0_analyse.py` (contrasts, bootstrap, verdict) and `as0_tables.py` written; README first version;
+  volatile inputs byte-copied to `/mnt/t7/smad_next/AS0/inputs/` (r8_pairs.csv sha256 e7bca16c...,
+  smdd_bona_landmarks_if106.npz f167eaf8...; `COPY_SHA256.txt`).
+- about 18:35 reviewer: GO WITH FIXES (no rule violation); 8 findings (geometry can produce the contrast; timeline;
+  history cut-off scale and re-aligned copies; low-band leakage; numerical floor; dose/share bias; database mix in the
+  strata; canon512 IOD). 18:38-18:45 registered as amendments A1-A8 (prereg section "Review result and amendments").
+- 18:40 base landmark detection stopped by me before the secondary X set (PID 2241441; parts for G, Fm, D, M, Ds,
+  Fe complete) to give the primary history control priority.
+- about 18:40 lead message (review of the identity-shrinkage triage (ID0)): five additions, registered 18:45 as A9-A13
+  (calculated shapes are arithmetic; detected landmarks on the built ladder images with ID0's typicality score and
+  the shape asymmetry; external prediction 0.58-0.70 with dose slope < 0.7; drop the 8 validation-reserved persons from
+  fits and report with and without; all R3 cross-session). prereg sha256 after A13: ee1ae0de...
+- 18:41 `as0_lists.py` extended (appended rows only; existing ids unchanged): copies with own detected landmarks
+  (FmO, FeO, LsoftO, 2,628) and Lsoft natives detected (LsoftN, 600); 18:40 detected-landmark ladder sets LD1 (R0,
+  S0, R3, R4; 3,216), LD2 (R2w, R3m, R2wm; 3,216), LD3 (graded; 1,800). items.csv now 36,620 rows, 15,688 to detect.
+- 18:41 compute chains started (one process each, nice 10): `src/AS0/chain_b.sh` (PID 2272290: detect FmO and X,
+  merge, nominal IOD, measure Fm, FmO, G, D, M, Ds, Fe, X, detect LsoftN, LsoftO, FeO, measure them, blank run) and
+  `src/AS0/chain_a.sh` (PID 2272291: waits for PID 2250330, then detects LD1, LD2, LD3). `as0_geom.py` (midline
+  geometry, A1) and `as0_typ.py` (A10) written; `as0_analyse.py` patched for A1-A8 and A12 (pre-amendment copy
+  `/mnt/t7/smad_next/AS0/logs/as0_analyse_pre_amend.py.txt`).
 
-Amendments to the registration: none yet.
+Amendments to the registration: A1-A13 (prereg.md), all registered before any contrast was computed.
 
 ## 3. Data
 
@@ -124,8 +146,9 @@ Finish detection and measurement, write `as0_analyse.py`, compute the registered
 
 | Process | PID | Log | Expected end | If it fails |
 |---|---|---|---|---|
-| landmark detection (all sets) | 2241441 | `/mnt/t7/smad_next/AS0/logs/landmarks.log` | about 19:00 | rerun the same command (finished parts are skipped), then `--merge` |
-| measurement L, Lsoft, R8, S | see `pgrep -f as0_measure` | `/mnt/t7/smad_next/AS0/logs/measure_a.log` | about 19:30 | rerun the same command (finished parts are skipped) |
+| measurement L, Lsoft, R8, S | 2250330 | `/mnt/t7/smad_next/AS0/logs/measure_a.log` | about 19:10 | rerun `as0_measure.py --sets L,Lsoft,R8,S` (finished parts are skipped) |
+| chain B | 2272290 | `/mnt/t7/smad_next/AS0/logs/chain_b.log` (+ landmarks_b, iod, measure_b, measure_blank logs) | about 20:10 | rerun `src/AS0/chain_b.sh` (every step resumes from parts) |
+| chain A | 2272291 | `/mnt/t7/smad_next/AS0/logs/chain_a.log` (+ landmarks_a.log) | about 20:30 | rerun `src/AS0/chain_a.sh <pid or 0>` |
 
 Compute: CPU only; 0 GPU-hours; 0 USD.
 
@@ -145,3 +168,4 @@ OMP_NUM_THREADS=1 nice -n 10 $P -I as0_analyse.py
 ## Log of README updates
 
 - 11 Nov 18:25 CET: first version.
+- 11 Nov 18:47 CET: review, amendments A1-A13, chains.

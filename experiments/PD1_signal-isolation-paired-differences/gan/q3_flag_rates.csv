@@ -31,3 +31,19 @@ CLIP mean patch token,two-person head T (x3 vs x1),Fe e7_facemorpher,204,12,0.05
 CLIP mean patch token,two-person head T (x3 vs x1),Fe e7_opencv,204,12,0.0588,0.0308,0.1005,0.0139,0.6373
 CLIP mean patch token,two-person head T (x3 vs x1),Fe e7_webmorph,204,13,0.0637,0.0344,0.1065,0.0167,0.6471
 CLIP mean patch token,two-person head T (x3 vs x1),S_test SMDD render E7 copy,1000,92,0.092,0.0748,0.1116,0.2615,0.844
+DINOv3 pooled,one-person head O (x2 vs x1),Fm e7_FaceMorpher,204,10,0.049,0.0238,0.0883,-0.0001,0.5245
+DINOv3 pooled,one-person head O (x2 vs x1),Fm e7_OpenCV,96,3,0.0312,0.0065,0.0886,0.017,0.625
+DINOv3 pooled,one-person head O (x2 vs x1),Fm e7_Webmorph,100,2,0.02,0.0024,0.0704,0.0157,0.55
+DINOv3 pooled,one-person head O (x2 vs x1),Fe e7_amsl,204,12,0.0588,0.0308,0.1005,0.0146,0.598
+DINOv3 pooled,one-person head O (x2 vs x1),Fe e7_facemorpher,204,11,0.0539,0.0272,0.0944,0.008,0.5392
+DINOv3 pooled,one-person head O (x2 vs x1),Fe e7_opencv,204,12,0.0588,0.0308,0.1005,0.0137,0.5588
+DINOv3 pooled,one-person head O (x2 vs x1),Fe e7_webmorph,204,11,0.0539,0.0272,0.0944,0.0105,0.5637
+DINOv3 pooled,one-person head O (x2 vs x1),S_test SMDD render E7 copy,1000,100,0.1,0.0821,0.1203,0.3357,0.861
+DINOv3 pooled,two-person head T (x3 vs x1),Fm e7_FaceMorpher,204,10,0.049,0.0238,0.0883,0.0191,0.5735
+DINOv3 pooled,two-person head T (x3 vs x1),Fm e7_OpenCV,96,2,0.0208,0.0025,0.0732,0.011,0.6042
+DINOv3 pooled,two-person head T (x3 vs x1),Fm e7_Webmorph,100,2,0.02,0.0024,0.0704,0.0068,0.51
+DINOv3 pooled,two-person head T (x3 vs x1),Fe e7_amsl,204,9,0.0441,0.0204,0.0821,0.0085,0.5245
+DINOv3 pooled,two-person head T (x3 vs x1),Fe e7_facemorpher,204,10,0.049,0.0238,0.0883,0.0023,0.5588
+DINOv3 pooled,two-person head T (x3 vs x1),Fe e7_opencv,204,12,0.0588,0.0308,0.1005,0.0077,0.5343
+DINOv3 pooled,two-person head T (x3 vs x1),Fe e7_webmorph,204,9,0.0441,0.0204,0.0821,0.0056,0.5245
+DINOv3 pooled,two-person head T (x3 vs x1),S_test SMDD render E7 copy,1000,136,0.136,0.1154,0.1588,0.3719,0.92

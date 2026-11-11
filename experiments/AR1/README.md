@@ -58,6 +58,11 @@ Facts already established (no detector involved):
 - 16:40-17:50 G-c for SelfMAD and M3 seed 1; ViT-B/16 scored (18,239 images, 24 min). MixFaceNet scoring failed twice
   with CUDA out of memory (16 owners' processes on the GPU, 103 of 121 GB RAM used); retry wrappers added to all chains.
 - 17:20 Author instruction: this README.
+- about 19:00 Lead (ID0): 8 hosts are validation-reserved persons; `pool_person_split.csv` written; sensitivity line.
+- about 19:45 Lead (ideation round 3): amendment 4-6 registered in prereg.md, then R2w4 built (`variants.py warp2`,
+  536 + 536 images, 11 s / 34 s), warp check (`verify_warp.py`: 8 hosts, then all), manifest appended to 20,587 rows
+  (`manifest_extra2.csv`, ids 019515-020586), chain D `run_extra2.sh` started; baselines extended with band power and
+  Laplacian variance (`baselines.py --feats band,lapvar`, then `--only R2w4`; log `baselines2.log`).
 
 Amendments to the registration (all before any score was opened): R2w, R3m (lead 15:00), R2wm and FRLL clean ladder
 (lead 16:45), FRLL genuine class neutral-only, G-c extended with R4 vs R3m, MTCNN batching (speed; boxes equal to
@@ -94,6 +99,8 @@ Rungs (built per host, per tool unless stated; PNG 512 x 512, the tools' own fra
 - R2w, warp-only toward the same person's other photo: H warped by the tool's own warp to the mean shape of H and S,
   texture from H only.
 - R2wm, warp-only toward its own mirror shape: H warped to the mean shape of H and its mirror, H file only.
+- R2w4, warp-only toward the two-person mean shape (primary pool only): H warped to the mean shape of H and B (the
+  same geometry as R4), H texture only. R4 vs R2w4 differs only by the blended second texture.
 - R3, twin: tool(H, S), S = the same person, neutral, another session (FRLL: neutral + smiling, confounded).
 - R3m, mirror self-morph: tool(H, mirror of H) with the mirrored, re-indexed landmarks.
 - R4, morph: tool(H, B), B = another person's S photo (FRLL: another person's smiling photo, confounded).
@@ -131,7 +138,8 @@ scored here. FRLL persons are the benchmark bona fide; never trained on.
 | `build.py` | runs unchanged `scripts/78_tool_morph.py` (OpenCV) and `scripts/96_facemorpher_tool.py` (FaceMorpher) |
 | `graded_fm.py` | AR2 graded mixing with the unchanged face_morpher library functions |
 | `mirror_perm.py` | measures the 106-point left-right permutation |
-| `variants.py` | `mirror` (flip + mirrored tem), `warp` (R2w), `warpmirror` (R2wm) |
+| `variants.py` | `mirror` (flip + mirrored tem), `warp` (R2w), `warpmirror` (R2wm), `warp2` (R2w4) |
+| `verify_warp.py` | checks that warp-only images averaged with the matching partner-side warp reproduce the tool's R4 / R3 |
 | `verify_variants.py` | pixel difference and FR cosine of R2w / R2wm / R3m vs R3 / R4 |
 | `manifest.py` | master manifest (rows appended, ids stable) |
 | `blank.py` | constant-colour blanking with the landmark hull |
@@ -143,7 +151,7 @@ scored here. FRLL persons are the benchmark bona fide; never trained on.
 | `stats.py` | a41_read.Draw, a36_read.wauc, a41_read.dprime / ci (imported unchanged) |
 | `analyse.py`, `tables.py` | reader and markdown tables |
 | `check_a46.py` | platform check against the A46 RGB-only score files |
-| `run_rel.sh`, `run_own_nets.sh`, `run_extra.sh` | scoring chains A, B, C; `run_scoring.sh` is the superseded first chain |
+| `run_rel.sh`, `run_own_nets.sh`, `run_extra.sh`, `run_extra2.sh` | scoring chains A, B, C (R2wm rows), D (R2w4 rows); `run_scoring.sh` is the superseded first chain |
 
 Environment: `/home/narolski/mambamorph-code/.venv-spark/bin/python` (Python 3.12, torch 2.12.1+cu130, timm, insightface,
 dlib, scikit-learn, scipy); MTCNN in `/mnt/t7/thirdparty/facenet_pytorch_2.6.0_20261107/venv` (facenet_pytorch 2.6.0).
@@ -187,6 +195,10 @@ photo of the person, R3m does not. The registered gate (cosine to H) passes.
 Gate G-c (probe on frozen features, R4 vs R3, 5-fold by host), so far (`experiments/AR1/gate_c.json`):
 SelfMAD 0.909 [0.883, 0.931] (FRGC+FERET OpenCV), 0.931 [0.909, 0.948] (FaceMorpher); M3 seed 1 0.889 / 0.878;
 FRLL cells 0.988-0.995 (confounded). All readable (>= 0.65). Remaining tags pending.
+
+Warp check (amendment 4), 8 hosts (`experiments/AR1/warp_check_smoke.json`; all hosts in `warp_check.json`):
+R2w4 and R2w averaged with the partner-side warp reproduce the tool's R4 / R3 to at most 0.5 grey level over the whole
+frame (OpenCV; the 0.5 is the halving of an odd sum) and exactly (0) inside the face mask (FaceMorpher).
 
 Detector results: none opened yet.
 
@@ -268,17 +280,20 @@ $P -I $S/build.py --pairs $O/bridge_frll_opencv.csv --name frll_bridge --tools o
 $P -I $S/build.py --pairs $O/bridge_frll_facemorpher.csv --name frll_bridge --tools facemorpher --workers 12
 $P -I $S/mirror_perm.py --n 24          # then apply the index-34 correction recorded in mirror_perm106.json
 $P -I $S/variants.py mirror; $P -I $S/variants.py warp --workers 12; $P -I $S/variants.py warpmirror --workers 10
+$P -I $S/variants.py warp2 --workers 10; $P -I $S/verify_warp.py
 $P -I $S/build.py --pool $O/pool_m.csv --name frgcferet --rungs R3m --workers 12
 $P -I $S/build.py --pool $O/pool_frll_m.csv --name frll --rungs R3m --workers 12
 $P -I $S/manifest.py > $O/manifest.log
 $P -I $S/blank.py --pools frgcferet,frll --rungs R0,R2,R3,R4,NC,R2w,R3m,R2wm
 $P -I $S/gate_b.py; $P -I $S/verify_variants.py
-bash $S/run_rel.sh; bash $S/run_own_nets.sh; bash $S/run_extra.sh
+bash $S/run_rel.sh; bash $S/run_own_nets.sh; bash $S/run_extra.sh; bash $S/run_extra2.sh
 $P -I $S/gate_c.py --tags <all feature tags>      # before opening any score
-$P -I $S/baselines.py; $P -I $S/analyse.py; $P -I $S/tables.py; $P -I $S/check_a46.py compare
+$P -I $S/baselines.py; $P -I $S/baselines.py --only R2wm; $P -I $S/baselines.py --feats band,lapvar
+$P -I $S/baselines.py --only R2w4; $P -I $S/analyse.py; $P -I $S/tables.py; $P -I $S/check_a46.py compare
 ```
 
 ## Log of README updates
+- 11 Nov about 20:00 CET: R2w4, amendments 4-6, warp check, chain D, extra baselines.
 - 11 Nov about 18:00 CET: first version.
 - 11 Nov about 19:00 CET: person split table and the 8 validation-reserved hosts (section 3); training rule (section 8);
   `analyse.py` gains a sensitivity line without those 8 hosts.

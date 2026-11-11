@@ -1,0 +1,102 @@
+{
+ "part": "c",
+ "amendment": "prereg.md amendment 1 (11 Nov 18:45)",
+ "B": 2000,
+ "seconds": 10.3,
+ "result": {
+  "clip": {
+   "n": 520,
+   "ISS_vs_lapvar_face": {
+    "rho": 0.1612,
+    "ci95": [
+     0.0063,
+     0.313
+    ],
+    "n": 520
+   },
+   "ISS_vs_lapvar_whole": {
+    "rho": 0.0789,
+    "ci95": [
+     -0.0682,
+     0.2339
+    ],
+    "n": 520
+   },
+   "TYP_vs_lapvar_face": {
+    "rho": 0.0528,
+    "ci95": [
+     -0.0975,
+     0.1952
+    ],
+    "n": 520
+   },
+   "median_detail_loss_log": 0.6454,
+   "median_shift_iss": -4.2193
+  },
+  "diffae": {
+   "n": 520,
+   "ISS_vs_lapvar_face": {
+    "rho": 0.0778,
+    "ci95": [
+     -0.0724,
+     0.2197
+    ],
+    "n": 520
+   },
+   "ISS_vs_lapvar_whole": {
+    "rho": 0.2111,
+    "ci95": [
+     0.0561,
+     0.3512
+    ],
+    "n": 520
+   },
+   "TYP_vs_lapvar_face": {
+    "rho": 0.0734,
+    "ci95": [
+     -0.0754,
+     0.2149
+    ],
+    "n": 520
+   },
+   "median_detail_loss_log": 0.6454,
+   "median_shift_iss": 6.2238
+  },
+  "dino": {
+   "n": 520,
+   "ISS_vs_lapvar_face": {
+    "rho": 0.02,
+    "ci95": [
+     -0.1322,
+     0.1695
+    ],
+    "n": 520
+   },
+   "ISS_vs_lapvar_whole": {
+    "rho": -0.0015,
+    "ci95": [
+     -0.1456,
+     0.1514
+    ],
+    "n": 520
+   },
+   "TYP_vs_lapvar_face": {
+    "rho": -0.0142,
+    "ci95": [
+     -0.1584,
+     0.1359
+    ],
+    "n": 520
+   },
+   "median_detail_loss_log": 0.6454,
+   "median_shift_iss": 1.3214
+  },
+  "H-new-1": {
+   "clip_abs_rho": 0.1612,
+   "diffae_abs_rho": 0.0778,
+   "clip_ge_0_3": false,
+   "diffae_below_0_15": true,
+   "falsified_clip_below_0_1": false
+  }
+ }
+}

@@ -1,15 +1,19 @@
 {
  "readings_one_person_head": {
   "CLIP pooled": "works",
-  "CLIP mean patch token": "works"
+  "CLIP mean patch token": "works",
+  "DINOv3 pooled": "works"
  },
  "readings_two_person_head": {
   "CLIP pooled": "works",
-  "CLIP mean patch token": "works"
+  "CLIP mean patch token": "works",
+  "DINOv3 pooled": "works"
  },
  "family_verdict": "idea works",
  "features_done": [
   "CLIP pooled",
-  "CLIP mean patch token"
- ]
+  "CLIP mean patch token",
+  "DINOv3 pooled"
+ ],
+ "note": "DINOv3 pooled (timm pooled pre-logits, global_pool='avg') is identical to the DINOv3 mean patch token (max |diff| 0.0); one feature"
 }

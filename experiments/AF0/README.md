@@ -65,6 +65,22 @@ shift is 0.08 / 0.00. Full design, F3-F5, CN0, mirror, waves 2-4 are in progress
   `pgrep -f "ghost.py --wave"` and blocked it for ~10 min; killed by PID (18:05).
 - 18:05 CN0 rerun inside `chain_clip224_full.sh` died with CUDA out of memory (system RAM); `heads.cuda_ok()` now
   retries 10 x 60 s and then falls back to the CPU.
+- 18:10-18:20 wave-3 target sanity (`wave3_target_sanity.json`, section 5): only D passes the lead's rule; the
+  registered g fails (higher on flat skin); G and Dm fail on the contrast correlation. Arms (d)/(e) switched to D.
+- 18:18 first `soften.py build --list soft_src` died at the face detector's model load (CUDA out of memory; the
+  detector in prep_eval is the torch-on-GPU `dmad.quads.gpuface.gpu_face_app`, not onnxruntime); `chain_soft.sh` now
+  retries up to 10 x 60 s; resumed (outputs already written are skipped).
+- 18:30 CLIP ViT-L/14-336 extraction split into its own queue (`queue_clip336.txt`) so it does not wait behind the
+  softened list; the CLIP-224 queue file was truncated in place after its current line (bash reads queue files
+  lazily; a new inode would not have been seen).
+- 18:37 CLIP-224 full heads done and metrics written (`metrics_clip224_full.json`, section 5).
+- 18:40 MADation ViT-L/14 reference numbers from the registered A12REL eval scores (`madation_vitl14_ref.json`).
+- 18:45 Lead's round-3 task: softened copies (112.7 px and 61.2 px) of AR1 OpenCV R4, R3 (536 hosts) and R3m (200
+  ar1soft hosts) for the protocol-network tests (PN1): `chain_ladsoft.sh` (soften.py unchanged; outputs hard-linked
+  under `img/soft_ladder/<rung>_<strength>/`; lead's list `lists/ar1soft_ladder.csv`; extraction list
+  `lists/ladsoft.csv`; then cue statistics; CLIP-224 and DINOv3 extraction appended to both queues).
+- 18:48 Scoring loop rewritten to read each token chunk once for all heads (it re-read 17 GB per head on the ladder);
+  DINOv3 full scoring restarted with `--score-only` (heads were already saved).
 
 Amendments / deviations so far (all reported in `result.md` when final): bench subsample (`bench_s`); wave 2 / 3 / 4
 at reduced scale (ghost targets and halves only for wave-1 pairs plus all uniform-0.5 pairs; softened copies only of
@@ -166,9 +182,14 @@ Not verified: CLIP transforms beyond timm's own config; FRGC neutral = BlankStar
 - `lists_extra.py` failed under `python -I` (script folder not on sys.path) -> path insert.
 - Self-killing `pkill -f` (17:00) and a self-matching `pgrep` waiter (17:12): chains rewritten as script files.
 - Wave-2 halves/targets cut to wave-1 + u50 pairs; softened copies cut (CPU-bound face detector on CPU provider).
-- The registered contrast-normalised ghost target g: the lead's reviewer measured it highest on flat skin (0.97 vs
-  0.73 on eyes and mouth); our own check (`sanity.py`) is pending. A flat-excluding target G (gradient disagreement)
-  and Dm (D above median contrast) were added for wave 3.
+- The registered contrast-normalised ghost target g fails the flat-skin check on our data too: on 1,000 uniform-0.5
+  morphs its median on the flattest quartile of in-hull patches is 1.031 against 0.873 on the busiest (contrast rank
+  correlation -0.13). The flat-excluding variants fail the other half of the rule: gradient disagreement G (flat 1.57
+  < busy 3.78 but contrast correlation 0.70) and D above median contrast Dm (0 < 12.9, correlation 0.82). Only the
+  plain disagreement D passes (flat 11.66 < busy 12.89, correlation 0.10). Same-person / two-person ratios on the
+  OpenCV engine (100 AR1 hosts): g 0.72, D 0.86, G 0.89, Dm 0.83; mirror / two-person: g 0.76, D 0.50, G 0.90, Dm 0.50.
+- Softening failures: CUDA out of memory at detector load (18:18 and once more), handled by retries.
+- Each token chunk was re-read once per head during scoring (seven heads x 17 GB on the ladder): fixed 18:48.
 
 ## 8. Observations and ideas
 

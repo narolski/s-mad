@@ -106,6 +106,13 @@ detector score of this experiment has been read yet; landmark, build and feature
   changed accordingly.
 - 18:44 GPU image tars done: test 8.90 GB (sha256 59cb6455…), base 5.52 GB (5c79a7b8…), armsc 6.63 GB (3df23935…),
   audit 1.52 GB (344a6c32…), arme 0.62 GB (aeb57d6b…); armsb follows the leaseB task b.
+- 18:44 Amendment A9 registered (LoRA fits on Athena, arms a, c, d, e x seeds 401 to 405, record's M3L command,
+  AD4 scorer on AD4's evaluation manifest and the AR1 manifest). Prepared: `lora_lists.py` → 20 training manifests
+  (`/mnt/t7/smad_next/SM1/lora/manifests/train_sm1<arm>_s<seed>.csv`, 39,734 rows each; d and e drawn per seed) and
+  `sm1_ar1_eval.csv` (20,587 rows); `sm1lora_manifests.tar` (74.7 MB); `lora_run.sh` (task script modelled on AD4's
+  run.sh; images from the GPU tars already on Athena, so no second image upload) and `athena_lora.sbatch` (array
+  0..19, memfs, 120G, 12 h). Not run on the DGX first: the job needs the 11 GB AD4 pack plus 23 GB of SM1 tars in a
+  RAM disk and the DGX CPU is saturated; the Athena smoke (3 steps, 8 images scored) is the 8-image test.
 
 ## 3. Data
 

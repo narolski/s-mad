@@ -9,6 +9,8 @@ R2w  warp-only: H warped by the tool's OWN warp routine to the mean shape of H a
                      calls it, blender.mask_from_points, blender.overlay_image over H itself (no averaged background).
 R2wm warp-only toward H's own mirrored shape (lead request 2): as R2w with S replaced by Hm (mean of H's points and its
      mirrored, re-indexed points); uses the H file only (the clean FRLL one-person control, no smiling photo).
+R2w4 warp-only toward the two-person mean shape (amendment 4): as R2w with S replaced by B, the R4 partner, so the
+     geometry equals R4's; primary pool only.
 R3m  mirror self-morph: the unchanged tool on (H, Hm), Hm = cv2.flip(H, 1) (lossless), Hm's .tem = the mirrored
      coordinates (x -> W-1-x) re-indexed by the measured 106-point left-right permutation (mirror_perm106.json).
      Built by build.py (role R3m) from pool_m.csv / pool_frll_m.csv written here.
@@ -124,12 +126,14 @@ def one(job):
     return 1
 
 
-def warp(limit, workers, target="S", rung="R2w"):
+def warp(limit, workers, target="S", rung="R2w", pools=("frgcferet", "frll")):
     """target S: R2w (toward the same-person photo's shape); target M: R2wm (toward H's own mirrored shape, H file only)."""
     log = {}
     for tool in ("opencv", "facemorpher"):
         jobs = []
         for pool, src, msrc in POOLS:
+            if pool not in pools:
+                continue
             rows = list(csv.DictReader(open(K.OUT / (src if target == "S" else msrc))))[: limit or None]
             d = K.OUT / "img" / (pool if not limit else "smoke_" + pool) / tool / rung
             d.mkdir(parents=True, exist_ok=True)
@@ -148,7 +152,7 @@ def warp(limit, workers, target="S", rung="R2w"):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("stage", choices=("mirror", "warp", "warpmirror"))
+    ap.add_argument("stage", choices=("mirror", "warp", "warpmirror", "warp2"))
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=12)
     a = ap.parse_args()
@@ -156,8 +160,10 @@ def main():
         mirror()
     elif a.stage == "warp":
         warp(a.limit, a.workers)
-    else:
+    elif a.stage == "warpmirror":
         warp(a.limit, a.workers, target="M", rung="R2wm")
+    else:                                              # R2w4: toward the R4 mean shape (H and B), primary pool only
+        warp(a.limit, a.workers, target="B", rung="R2w4", pools=("frgcferet",))
 
 
 if __name__ == "__main__":

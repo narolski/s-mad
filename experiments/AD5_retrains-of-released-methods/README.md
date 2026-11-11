@@ -11,11 +11,11 @@ morphing development set), seeds 401 to 405, last checkpoint, do the retrains be
 the readings the own-crop re-score of the audit rows (RS1) takes (history-matched genuine photos, flag rates under
 benign processing, the smiling half of the FRLL genuine class, the MorDIFF control images)?
 
-Status 11 Nov 2026, 18:20 CET: inventory done; `prereg.md` written (18:10); patches, environments (wheel
-houses), Athena job scripts and packs prepared; 8-image checks on the DGX passed for the SMDD crop, the SelfMAD
-landmarks and MixFaceNet-MAD, the MADation one is retrying (shared GPU out of memory). SelfMAD landmarks of the 25,000
-training renders are being built on the DGX CPU. Athena (Cyfronet A100 cluster) does not accept jobs yet (no Slurm
-association for the grant accounts; lead's message 17:30); nothing has been submitted. No retrain and no score exist.
+Status 11 Nov 2026, 18:55 CET: `prereg.md` written (18:10). All 8-image checks passed on the DGX (SMDD crop,
+MADation ViT-B/16 and ViT-L/14 training, MixFaceNet-MAD training, SelfMAD landmarks, face labels and training,
+conversion and scoring wrappers). Packs uploaded to Athena. Smoke jobs running on Athena (A100): smoke A 3544216
+(environment + SMDD crop), then smoke B 3544217 (MADation L/B + MixFaceNet-MAD speed), SelfMAD smoke 3544218.
+No retrain and no score exist yet.
 
 ## 2. Timeline
 
@@ -73,6 +73,30 @@ association for the grant accounts; lead's message 17:30); nothing has been subm
   through the wrapper and through RS1's `rs1_score.py` on 8 A46 crops: score, score_noTTA, logit_noTTA and features
   identical (max abs difference 0). First wrapper version imported the A46 tree's own `score.py` (sys.path order):
   fixed by importing RS1's score.py first and asserting its path.
+- 11 Nov 18:25. Lead: Athena accepts jobs (account `plgrestorearc-gpu-a100`).
+- 11 Nov 18:27. Upload 2: code/ (rebuilt) and `selfmad_landmarks.tar`; 18:29 upload of `wheels_score.tar`
+  (70a966d4...). Submitted smoke A = job **3544190** (1 GPU) and smoke B = job **3544192** (2 GPUs, after A).
+- 11 Nov 18:29-18:33. Job 3544190 on t0016 (A100-SXM4-40GB, driver 595.91.07): the MADation environment
+  `envs/AD5/madation` built from the wheels in about 3 min (pip freeze in the job log; `AD5_ENV_OK` written), then the
+  job FAILED at 3:53 while extracting the SMDD pack: "No space left on device" (`-C localfs` gives only 4.0 GB, see
+  ATHENA.md). Cost 0.065 GPU-hours. Job 3544192 never started (dependency) and was cancelled (scancel).
+- 11 Nov 18:34. 8-image check, SelfMAD training (`checks/dgx_selfmad8.sh`): the patched `train__.py -v last` ran
+  1 epoch (2 steps) on the 8 renders after face labels were made by the unchanged `face_labels.py` (it does not create
+  its output directory; the job script now does); `epoch_1.tar` has keys epoch / model / optimizer and its model
+  state dict has the release's 1,956 keys and shapes.
+- 11 Nov 18:36. Lead's two Athena facts recorded: (1) work in the RAM disk `$MEMFS` (`-C memfs`, counts toward
+  `--mem`, at most 120G per GPU); every AD5 job file now uses it (`ad5_common.sh` sets SCRATCH_LOCAL=$MEMFS);
+  (2) two locks: `/tmp/smadnext-athena-cmd.lock` (`-w 300`) for short commands, `/tmp/smadnext-athena.lock`
+  (`-w 1800`) for transfers; a flock timeout returns 1 silently (seen once at 18:32: an empty ssh result, rc 1).
+  Smoke A resubmitted after the fix (job number below).
+- 11 Nov 18:41-18:47. Script sync waited about 6 min for the transfer lock (other owners' uploads). Submitted smoke A =
+  job **3544216**, smoke B = job **3544217** (`--dependency=afterok:3544216`), SelfMAD smoke = job **3544218**.
+  3544216 started 18:49.
+- 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
+  safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
+  score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
+- 11 Nov 18:50. Analysis script `src/AD5/ad5_analyse.py` written (imports `src/RS1/analyse.py` unchanged; gate,
+  readings, agreement rule and verdicts as prereg.md); not run (no scores).
 
 ## 3. Data
 
@@ -85,7 +109,10 @@ Training set of all three methods: SMDD training split, local copy `/mnt/t7/Data
   indices; sha256 bcaecd29...) is the same group's crop and is assumed. Whether it yields exactly 39,730 survivors is
   a check to run (section 6).
 - SelfMAD trains on the 25,000 genuine renders only, plus dlib 81-point landmarks and face-parsing label maps that
-  its own preprocessing scripts produce (not yet built).
+  its own preprocessing scripts produce. Landmarks: `/mnt/t7/smad_next/AD5/data/selfmad/SMDD_landmarks/os25k_bf_t/`
+  (24,982 files; 18 renders without a face listed in `no_face.txt`; per-file hashes `landmarks_SHA256SUMS`, sha256 of
+  that list d83319a6...), packed as `packs/selfmad_landmarks.tar` (a43776b6...). Face labels: built on Athena by the
+  SelfMAD smoke job -> `packs/AD5/selfmad_labels.tar.gz` (Athena only, then copied back).
 - MixFaceNet-MAD trains on the cropped SMDD training split (same crop script, SMDD README).
 - Test images: those of the own-crop re-score (RS1), its manifest `/mnt/t7/smad_next/RS1/manifest.csv` and its Athena
   pack (`/mnt/t7/smad_next/RS1/athena/`); not copied here.
@@ -136,6 +163,10 @@ Our scripts (`/home/narolski/smad-next/src/AD5/`), in run order:
 - `athena/ad5_score_rel.sbatch` (1 GPU): RS1 crops (made once, kept as `results/AD5/rs1_crops.tar`), conversion of
   MADation retrains, scoring of retrains and releases -> `results/AD5/scores_<TAG>.tar`.
 - `env/score_requirements.txt`: the RS1 Athena environment as wheels (torch 2.2.1, timm 1.0.27, ...).
+- `score/convert_selfmad.py EPOCH_TAR OUT.safetensors RELEASE`: SelfMAD retrain -> release storage format.
+- `score/ad5_score_dgx.py --name N --weights F -- <score.py args>`: DGX scoring through RS1's score.py (SelfMAD own).
+- `checks/dgx_selfmad8.sh`, `checks/dgx_wrapper_check.sh`: the 8-image SelfMAD check and the wrapper equality check.
+- `ad5_analyse.py --scores DIR`: reproduction gate, readings, verdicts -> `ad5_{gate,readings,verdicts}.csv`.
 Patches: `madation_ad5.patch`, `mixfacenet_ad5.patch` (the SMDD main.py has CRLF line ends; the patch keeps them),
 `selfmad_ad5.patch`. Model files: OpenAI-format CLIP from HF `timm/vit_base_patch16_clip_224.openai` (sha256
 53b40183...) and `timm/vit_large_patch14_clip_224.openai` (eb70c15b...); HRNet-W18 ImageNet weights HF
@@ -177,20 +208,23 @@ what the log shows; how the SelfMAD and MixFaceNet-MAD releases were selected.
 
 ## 9. Open items and next steps
 
-1. Finish the MADation 8-image DGX check and the landmark build; pack `selfmad_landmarks.tar`.
-2. Upload packs and code to `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/` (allowed now).
-3. When the lead says Athena accepts the account: smoke A, then smoke B (MADation + MixFaceNet), then the L and B
-   production arrays; SelfMAD smoke, then its array; MixFaceNet array.
-4. Scoring path for retrains (convert with a36_madation.py; RS1 score.py wrapper; SelfMAD own mode), analysis with
-   RS1's functions.
+1. Smoke A / B / SelfMAD smoke results -> timing to the lead (3 lines), GPU-hour estimates in this README.
+2. Production arrays: MADation L and B (8 GPUs per seed), MixFaceNet-MAD X, SelfMAD S; then F if budget allows.
+3. Scoring: `ad5_score_rel.sbatch` per finished arm (Athena; needs RS1's pack in packs/RS1), SelfMAD on the DGX.
+4. `ad5_analyse.py`, result.md, report.
 
 ## 10. Handover state
 
-DGX processes (started by this owner): the landmark build (`src/AD5/selfmad_landmarks.sh`, 4 dlib processes at
-nice 10, log `/mnt/t7/smad_next/AD5/data/selfmad_landmarks.log`, expected end about 19:00; if it dies, rerun the script:
-it re-links and recomputes all shards); the pack builder (`build_packs.sh`, log `/mnt/t7/smad_next/AD5/build_packs.log`;
-rerun is safe); the MADation 8-image check (`checks/dgx_madation8.sh B`, log `checks/madation8/check_B.log`).
-No Athena job submitted. Compute spent: 0 GPU-hours.
+DGX: no AD5 process running. Athena jobs (logs in
+`/net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-<name>-<jobid>.out`):
+| Job | What | GPUs x limit | State | If it fails |
+|---|---|---|---|---|
+| 3544190 | smoke A, first try | 1 x 30 min | FAILED 3:53 (localfs full), 0.065 GPU-h | fixed (memfs), resubmitted |
+| 3544192 | smoke B, first try | 2 x 15 min | cancelled before start, 0 GPU-h | resubmitted |
+| 3544216 | smoke A: env (exists) + SMDD crop -> packs/AD5/smdd_train_cropped.tar | 1 x 30 min | running | read log; resubmit `ad5_smokeA_env_crop.sbatch` |
+| 3544217 | smoke B: MADation L/B DDP 2 GPUs, MixFaceNet-MAD 1 epoch | 2 x 15 min | pending (after 3544216) | resubmit with `--dependency=afterok:<A>` |
+| 3544218 | SelfMAD: env, face labels -> packs/AD5/selfmad_labels.tar.gz, 1-epoch smoke | 1 x 55 min | pending | resubmit; it skips the labels if the tar exists |
+Compute spent so far: 0.065 GPU-hours (plus running jobs).
 
 ## 11. Reproduce from scratch
 

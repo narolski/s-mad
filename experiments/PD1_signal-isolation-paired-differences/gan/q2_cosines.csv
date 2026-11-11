@@ -89,3 +89,48 @@ CLIP mean patch token,H latent spread | itself (split-half reliability),0.9712,0
 CLIP mean patch token,H morph beyond spread | itself (split-half reliability),0.4635,0.3426,0.5649,split halves (200)
 CLIP mean patch token,S softening (SMDD) | itself (split-half reliability),0.9932,0.9914,0.9944,split halves (200)
 CLIP mean patch token,FRLL softening (diagnostic of FRLL images) | itself (split-half reliability),0.9016,0.8799,0.9196,split halves (200)
+DINOv3 pooled,G pipeline | G same-person mixing,-0.2507,-0.2618,-0.2375,cross-fitted half splits (200)
+DINOv3 pooled,G pipeline | G second identity,-0.0422,-0.0718,-0.0178,cross-fitted half splits (200)
+DINOv3 pooled,G pipeline | G whole morph,-0.215,-0.2267,-0.2021,cross-fitted half splits (200)
+DINOv3 pooled,G same-person mixing | G second identity,0.3264,0.2781,0.3691,cross-fitted half splits (200)
+DINOv3 pooled,G same-person mixing | G whole morph,0.8066,0.765,0.8343,cross-fitted half splits (200)
+DINOv3 pooled,G second identity | G whole morph,0.3987,0.2996,0.4756,cross-fitted half splits (200)
+DINOv3 pooled,H whole morph | H latent spread,0.9414,0.93,0.9493,cross-fitted half splits (200)
+DINOv3 pooled,H whole morph | H morph beyond spread,-0.2881,-0.3166,-0.2624,cross-fitted half splits (200)
+DINOv3 pooled,H latent spread | H morph beyond spread,-0.3635,-0.3918,-0.3267,cross-fitted half splits (200)
+DINOv3 pooled,G pipeline | H whole morph,-0.146,-0.1995,-0.0767,"full directions, cluster bootstrap"
+DINOv3 pooled,G pipeline | H latent spread,-0.0877,-0.1396,-0.0338,"full directions, cluster bootstrap"
+DINOv3 pooled,G pipeline | H morph beyond spread,-0.1927,-0.2962,-0.0133,"full directions, cluster bootstrap"
+DINOv3 pooled,G pipeline | S softening (SMDD),0.0237,-0.0192,0.063,"full directions, cluster bootstrap"
+DINOv3 pooled,G pipeline | FRLL softening (diagnostic of FRLL images),-0.0783,-0.1149,-0.0357,"full directions, cluster bootstrap"
+DINOv3 pooled,G same-person mixing | H whole morph,0.7966,0.6872,0.7984,"full directions, cluster bootstrap"
+DINOv3 pooled,G same-person mixing | H latent spread,0.7757,0.6876,0.7851,"full directions, cluster bootstrap"
+DINOv3 pooled,G same-person mixing | H morph beyond spread,-0.1997,-0.3253,0.0568,"full directions, cluster bootstrap"
+DINOv3 pooled,G same-person mixing | S softening (SMDD),0.2405,0.1813,0.2797,"full directions, cluster bootstrap"
+DINOv3 pooled,G same-person mixing | FRLL softening (diagnostic of FRLL images),-0.1223,-0.189,-0.0417,"full directions, cluster bootstrap"
+DINOv3 pooled,G second identity | H whole morph,0.4876,0.1935,0.5268,"full directions, cluster bootstrap"
+DINOv3 pooled,G second identity | H latent spread,0.5094,0.2276,0.5415,"full directions, cluster bootstrap"
+DINOv3 pooled,G second identity | H morph beyond spread,-0.2679,-0.3673,0.041,"full directions, cluster bootstrap"
+DINOv3 pooled,G second identity | S softening (SMDD),0.0978,-0.0272,0.1762,"full directions, cluster bootstrap"
+DINOv3 pooled,G second identity | FRLL softening (diagnostic of FRLL images),0.0196,-0.0982,0.1271,"full directions, cluster bootstrap"
+DINOv3 pooled,G whole morph | H whole morph,0.8259,0.7076,0.8262,"full directions, cluster bootstrap"
+DINOv3 pooled,G whole morph | H latent spread,0.8194,0.72,0.8292,"full directions, cluster bootstrap"
+DINOv3 pooled,G whole morph | H morph beyond spread,-0.2709,-0.3858,0.0096,"full directions, cluster bootstrap"
+DINOv3 pooled,G whole morph | S softening (SMDD),0.2277,0.1716,0.2634,"full directions, cluster bootstrap"
+DINOv3 pooled,G whole morph | FRLL softening (diagnostic of FRLL images),-0.0855,-0.1478,-0.012,"full directions, cluster bootstrap"
+DINOv3 pooled,H whole morph | S softening (SMDD),0.265,0.2307,0.2881,"full directions, cluster bootstrap"
+DINOv3 pooled,H whole morph | FRLL softening (diagnostic of FRLL images),-0.1744,-0.2172,-0.1162,"full directions, cluster bootstrap"
+DINOv3 pooled,H latent spread | S softening (SMDD),0.2673,0.2486,0.2828,"full directions, cluster bootstrap"
+DINOv3 pooled,H latent spread | FRLL softening (diagnostic of FRLL images),-0.1552,-0.1976,-0.1051,"full directions, cluster bootstrap"
+DINOv3 pooled,H morph beyond spread | S softening (SMDD),-0.1053,-0.1796,0.0152,"full directions, cluster bootstrap"
+DINOv3 pooled,H morph beyond spread | FRLL softening (diagnostic of FRLL images),-0.018,-0.1201,0.0852,"full directions, cluster bootstrap"
+DINOv3 pooled,S softening (SMDD) | FRLL softening (diagnostic of FRLL images),0.0593,0.0206,0.0982,"full directions, cluster bootstrap"
+DINOv3 pooled,G pipeline | itself (split-half reliability),0.9466,0.913,0.9667,split halves (200)
+DINOv3 pooled,G same-person mixing | itself (split-half reliability),0.8245,0.7296,0.8661,split halves (200)
+DINOv3 pooled,G second identity | itself (split-half reliability),0.2763,0.0738,0.4307,split halves (200)
+DINOv3 pooled,G whole morph | itself (split-half reliability),0.83,0.7576,0.8797,split halves (200)
+DINOv3 pooled,H whole morph | itself (split-half reliability),0.925,0.8942,0.9456,split halves (200)
+DINOv3 pooled,H latent spread | itself (split-half reliability),0.9781,0.971,0.9828,split halves (200)
+DINOv3 pooled,H morph beyond spread | itself (split-half reliability),0.3302,0.1306,0.4828,split halves (200)
+DINOv3 pooled,S softening (SMDD) | itself (split-half reliability),0.9969,0.9957,0.9974,split halves (200)
+DINOv3 pooled,FRLL softening (diagnostic of FRLL images) | itself (split-half reliability),0.9446,0.9242,0.9602,split halves (200)

@@ -119,3 +119,32 @@ and the A46 published anchors (`smadcvpr/plans/A46/A46_published.json`). Nothing
   (smoke outputs under `/mnt/t7/smad_next/AR1/img/smoke`) before the full run.
 - **Pre-run review:** not run (owner brief does not require it for this round; flagged to the lead).
 - **Result:** `experiments/AR1/result.md`.
+
+## Amendments (all registered before the detector scores they concern were opened)
+
+1. 11 Nov about 15:00 CET (lead): new one-photo rungs. R2w, warp-only: host photo H warped by the tool's own warp
+   routine to the mean shape of H and its same-person photo S, texture from H only, no blending. R3m, mirror
+   self-morph: the unchanged tool on H and its lossless left-right mirror, with mirrored and re-indexed landmarks
+   (measured 106-point permutation). Verdict rules applied with R2w in place of R2; R2 kept and labelled
+   "identical to R0" for OpenCV. Validity: R2w differs from H; R3m cosine to H >= R3 (both checked, passed).
+2. 11 Nov about 16:45 CET (lead): FRLL smiling files differ in capture detail (larger files, noisier backdrop).
+   Every FRLL rung that uses a smiling file (R2w, R3, R4 with a smiling partner, NC) is labelled "confounded by capture
+   detail and expression" and gets no verdict. Clean FRLL controls: R2wm (H warped toward its own mirrored shape,
+   neutral file only) and R3m; FRLL clean ladder R0 -> R2wm -> R3m -> R4nn (our neutral+neutral two-person morphs of
+   the published pairs). FRLL genuine class neutral-only wherever FRLL photos enter a contrast, all-photo number beside.
+3. 11 Nov about 19:00 CET (lead, ID0): 8 primary hosts are validation-reserved persons (prep_train.is_val); results
+   carry a sensitivity line without them. No rebuild.
+4. 11 Nov about 19:45 CET (lead, ideation round 3): new rung R2w4, warp-only toward the two-person mean shape: H warped
+   with the same warp routine to the SAME mean shape its R4 uses (mean of H's and B's landmarks), texture from H only,
+   no blending; all primary hosts, both tools. Contrasts: R4 vs R2w4 (geometry held equal; only the blending of the
+   second texture differs) and R2w4 vs R2w (what warp size alone does). Verification against the unchanged tool:
+   averaging the A-side warp (R2w4) with the matching B-side warp must reproduce the tool's R4 inside the face
+   (OpenCV: within rounding everywhere; FaceMorpher: inside the face mask), checked on 8 hosts and then on all.
+5. Same date, reading rule: the mirror self-blend R3m is not a matched twin (a symmetry score isolates it, and a
+   32-pixel thumbnail separates it from a two-person morph at about 0.93 in our AR3 baselines). R3m is read for
+   trace contrasts only (processing / blending traces) and never supports a statement about a second person.
+6. Same date, presentation rule: every detector row is printed beside the best simple baseline on the same contrast
+   (32-pixel thumbnail, background-only thumbnail, band power, Laplacian variance, and the non-content baselines), as
+   the excess AUC over that baseline with a paired person-bootstrap interval. Band power = the a41_read
+   power_profile / band_shares luminance band shares (logistic, out-of-fold by host); Laplacian variance = variance of
+   the 3x3 Laplacian of the luminance (one scalar, orientation folded). Both are measurements; no image is written.

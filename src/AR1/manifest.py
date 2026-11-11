@@ -100,6 +100,13 @@ def main():
                 s = r["pid"].replace(":", "_")
                 add(path=str(K.OUT / "img" / pool / tool / "R2wm" / f"{s}.png"), pool=pool, tool=tool, rung="R2wm",
                     p1=r["pid"], p2=r["pid"], kind="frame512", tem1=tem(r["H"]), tem2=tem(r["M"]), w1=0.5)
+    # amendment 4 (appended): R2w4, warp-only toward the R4 mean shape (H and B), primary pool, both tools
+    if (K.OUT / "img/frgcferet/opencv/R2w4").exists():
+        for tool in ("opencv", "facemorpher"):
+            for r in csv.DictReader(open(K.OUT / "pool.csv")):
+                s = r["pid"].replace(":", "_")
+                add(path=str(K.OUT / "img/frgcferet" / tool / "R2w4" / f"{s}.png"), pool="frgcferet", tool=tool,
+                    rung="R2w4", p1=r["pid"], p2=r["pid"], kind="frame512", tem1=tem(r["H"]), tem2=tem(r["B"]), w1=0.5)
     for r in rows:
         assert not K.forbidden(r["path"])
     cols = ["id", "path", "pool", "tool", "rung", "p1", "p2", "level", "kind", "tem1", "tem2", "w1"]

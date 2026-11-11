@@ -65,6 +65,38 @@ def main():
             s0.update(id=f"{r['src_id']}_{r['strength']}", path=r["path"], rung=f"{s0['rung']}_soft_{r['strength']}",
                       set="ar1soft")
             rows.append(s0)
+    elif which == "ladsoft_src":  # lead 18:45: OpenCV R4 + R3 of all 536 primary hosts, R3m of the 200 ar1soft hosts
+        keep = {r["p1"] for r in csv.DictReader(open(LS.OUT / "lists" / "ar1soft_src.csv"))}
+        for r in csv.DictReader(open(LS.OUT / "lists" / "ar1.csv")):
+            if r["cell"] == "frgcferet" and r["tool"] == "opencv" and (
+                    r["rung"] in ("R4", "R3") or (r["rung"] == "R3m" and r["p1"] in keep)):
+                rows.append(r)
+    elif which == "ladsoft":      # after soften.py build: hard links under img/soft_ladder/<rung>_<strength>/,
+        import hashlib            # the lead's list lists/ar1soft_ladder.csv, and the extraction list lists/ladsoft.csv
+        import os
+        src = {r["id"]: r for r in csv.DictReader(open(LS.OUT / "lists" / "ladsoft_src.csv"))}
+        lead = []
+        for r in csv.DictReader(open(LS.OUT / "soft_ladsoft_src.csv")):
+            if not r["path"]:
+                continue
+            s0 = dict(src[r["src_id"]])
+            d = LS.OUT / "img" / "soft_ladder" / f"{s0['rung']}_{r['strength']}"
+            d.mkdir(parents=True, exist_ok=True)
+            dst = d / (s0["p1"].replace(":", "_") + ".png")
+            if not dst.exists():
+                os.link(r["path"], dst)
+            sha = hashlib.sha256(open(dst, "rb").read()).hexdigest()
+            lead.append(dict(host=s0["p1"], person=s0["p2"], rung=s0["rung"], strength=r["strength"],
+                             target_ied_px={"amsl112": 112.71795654296875, "fm61": 61.21146774291992}[r["strength"]],
+                             source_path=s0["path"], output_path=str(dst), sha256=sha, aligned=r["aligned"],
+                             native_ied=r["native_ied"], scale=r["scale"]))
+            s0.update(id=f"{r['src_id']}_{r['strength']}", path=str(dst), rung=f"{s0['rung']}_soft_{r['strength']}",
+                      set="ladsoft")
+            rows.append(s0)
+        with open(LS.OUT / "lists" / "ar1soft_ladder.csv", "w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(lead[0]))
+            w.writeheader()
+            w.writerows(lead)
     elif which == "af0_h":
         for r in csv.DictReader(open(LS.OUT / "halves.csv")):
             rows.append(dict(id=r["id"], path=r["path"], set="af0", cell=r["split"], rung=r["field"], tool=r["db"],

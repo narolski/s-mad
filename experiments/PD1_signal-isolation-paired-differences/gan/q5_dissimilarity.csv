@@ -3,3 +3,5 @@ CLIP pooled,one-person head O (x2 vs x1),0.0848,-0.1754,0.34,False,0.2015,0.2788
 CLIP pooled,two-person head T (x3 vs x1),0.2819,0.047,0.491,True,0.334,0.3531,0.0884,-0.0085,0.1874,0.1226,0.0305,0.2186
 CLIP mean patch token,one-person head O (x2 vs x1),0.1125,-0.1465,0.3672,False,0.1781,0.3109,0.0889,-0.0057,0.1782,0.1378,0.0471,0.2283
 CLIP mean patch token,two-person head T (x3 vs x1),0.2107,-0.0252,0.4316,False,0.2126,0.3568,0.1337,0.04,0.2266,0.1609,0.0721,0.2533
+DINOv3 pooled,one-person head O (x2 vs x1),-0.0314,-0.2967,0.2151,False,0.2266,0.2745,0.0546,-0.046,0.154,0.0931,-0.0064,0.1902
+DINOv3 pooled,two-person head T (x3 vs x1),0.2445,0.02,0.4482,True,0.1992,0.2951,0.0461,-0.0519,0.1424,0.0736,-0.0234,0.1699
