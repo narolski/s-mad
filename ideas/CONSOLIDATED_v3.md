@@ -1,6 +1,6 @@
 # Ideation round 3: what the lead takes from it
 
-11 Nov 2026, 19:05 CET. Five lenses each proposed up to three ideas from today's numbers; each set was
+11 Nov 2026, 18:40 CET. Five lenses each proposed up to three ideas from today's numbers; each set was
 then attacked by a hostile reviewer (novelty search, cheapest confound, feasibility by 14 Nov). Brief:
 `ROUND3_BRIEF.md`. Full write-ups: `round3/<lens>_ideas.md` and `round3/<lens>_vetting.md`. Raw
 structured output: `ROUND3_raw.json`. The four cross-field analyses (deepfake, GAN-image, anti-spoofing,
@@ -69,8 +69,8 @@ reduced to evaluation rows or dropped.
 8. **Corrected MAD22 FaceMorpher is not evidence of morph detection without blanking**: a network that
    never saw a morph reaches 0.55% EER there under the history control.
 9. Everything measured today reads "two captures were averaged". The paper should use those words.
-10. Notebook entries of the lead between 17:15 and 17:40 were stamped up to 15 minutes ahead of the
-    machine clock.
+10. Notebook entries of the lead before 18:42 were stamped by estimate, up to 25 minutes ahead of the
+    machine clock; git commit times are authoritative.
 
 ## 4. The method candidate ("protocol network"), as vetted
 

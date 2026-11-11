@@ -194,7 +194,7 @@ and the gates stand.
 - **Results:** they arrive in `/mnt/t7/smad_next/AD4/results_vast/` and are read with the reader and gates of
   Amendment 1.
 
-## Amendment 1c (11 Nov 2026, 18:35 CET, lead; before any ViT-L/14 result exists or is read)
+## Amendment 1c (11 Nov 2026, committed 18:28 CET as 7f0630f, lead; before any ViT-L/14 result exists or is read)
 
 Platform and precedence, written because the same ten ViT-L/14 tasks (five morph-free, five label-permuted) are
 staged in two places and one of them cannot be reached.
