@@ -12,7 +12,7 @@ DiffAE morphs above one-photo DiffAE reconstructions without ranking reconstruct
 the fully adapted MADation release loses this. Trigger: the released MADation "FE" ViT-L/14 (frozen CLIP + trained
 linear head) gives B vs D 0.852 on the A43 MorDIFF material, unlike every adapted release.
 
-Status 11 Nov 19:29 CET: **running** (P3 waits for SMDD features). Done so far:
+Status 11 Nov 20:15 CET: **finished** (all four parts run). Results:
 - P1 (re-read of existing release scores): the six reviewer-preview AUCs reproduce to three decimals.
 - P2 (probe = gate G-c): a cross-validated logistic probe on frozen features separates every A43 contrast
   (B20 vs D20, B vs D, C20 vs D20, B20 vs C20) at AUC 0.945–1.000 on all four feature sets (CLIP with MADation
@@ -21,7 +21,11 @@ Status 11 Nov 19:29 CET: **running** (P3 waits for SMDD features). Done so far:
 - P4 (simple statistics): on the 224 input no single statistic matches the probe; on the central 256 × 256 of
   the 512 frame Laplacian variance alone gives 0.966 for B vs D (morphs higher), and a 7-statistic logistic
   0.988 matches the probe there; for B20 vs D20 the statistics stay at 0.66–0.70.
-- P3 (five SMDD-only heads with the MADation FE recipe): not yet run (needs SMDD features, extraction running).
+- P3 (five SMDD-only heads with the MADation FE recipe, seeds 401–405): B vs D 0.789–0.792, D vs R0
+  0.508–0.512 in every seed, so the registered prediction (≥ 4 of 5 seeds with B vs D ≥ 0.75 and D vs R0 ≤ 0.60)
+  is met 5 of 5 ("supported"). Same heads: B20 vs D20 0.626–0.628, C20 vs D20 0.51, StyleGAN3 0.48–0.50,
+  MorDIFF EER 40.2–40.7%. The heads are nearly identical across seeds and correlate 0.87–0.88 (Spearman) with
+  the released FE head.
 
 ## 2. Timeline
 
@@ -71,6 +75,14 @@ All times CET, 11 Nov 2026.
   `fz1_feats.py`, merge by `merge_parts.py` with an id-order check against `train.csv`). 6 CPU processes,
   about 4.6 GB GPU memory in total. Smoke of the part path ok 18:27; both halves running from 18:28.
 - 19:29 Both halves at batch 190 of 313 (13–25 s per batch, varying with the load); expected end about 20:00.
+- 20:03–20:05 Both halves finished (try 1 each); merged into `feats/clip_mad/smdd.npz` and `smdd_flip.npz`
+  (40,000 × 768 each; ids checked against `train.csv` order).
+- 20:05 P3 smoke (`fz1_heads.py --smoke`, 1 seed, 2 epochs) found bug 5 (the prediction summary iterated over
+  the `_release_head_on_our_features` entry); fixed, smoke rerun ok.
+- 20:06–20:08 P3 full run (`OMP_NUM_THREADS=4 python -I src/FZ1/fz1_heads.py`, log `logs/p3_heads.log`) →
+  `experiments/FZ1/p3_heads.json`, head weights `/mnt/t7/smad_next/FZ1/heads/head_s40{1..5}.pt`, A43 scores
+  `heads/scores_a43.npz`. Prediction met in 5 of 5 seeds ("supported" under the registered rule).
+- 20:15 `result.md` completed; README updated.
 
 ## 3. Data
 
@@ -158,7 +170,12 @@ Full tables are in `result.md` (P1, P2, P4) and in the json files. Headlines wit
   AMSL 21.6 / 23.0, FaceMorpher 3.9 / 4.4, OpenCV 4.4 / 4.9, WebMorph 9.8 / 10.3, MorDIFF 34.8 / 32.4.
 - P2: see section 1; per-cell numbers in `result.md` and `p2_probe.json`.
 - P4: see section 1; per-statistic numbers in `result.md` and `p4_stats.json`.
-- P3: pending.
+- P3: full per-seed tables in `result.md`; `p3_heads.json`. B vs D 0.789 [0.725, 0.850] to 0.792 [0.728,
+  0.853]; D vs R0 0.508–0.512 (intervals about ±0.03); B20 vs D20 0.626–0.628; C vs D 0.667–0.671; C20 vs D20
+  0.510–0.514; E vs R0 0.455–0.458; R1 vs R0 0.520–0.523; flag change R0→R1 0.0 to +1.5 points; neutral above
+  smiling 0.588–0.608; EER native / E7: AMSL 22.5–23.5 / 28.0–28.4, FaceMorpher 4.4 / 4.9–5.4, OpenCV 4.8–4.9 /
+  5.9–6.4, WebMorph 7.9–8.3 / 11.3–12.3, MorDIFF 40.2–40.7 / 40.7–41.2. Released FE head on our features
+  reproduces every stored AUC within 2.7e-4.
 
 ## 6. Checks
 
@@ -175,7 +192,8 @@ Not verified:
 - The pre-registered 2e-3 tolerance itself (missed; see section 7).
 - That our SMDD copy equals MADation's `smdd_train_cropped.csv` (39,730 images in its log against our 40,000;
   crops may differ).
-- The end-to-end check on all A43 rows (release head on our features vs stored AUCs) runs inside P3.
+- End-to-end check done in P3: released FE head on our fp32 features vs stored scores, all 2,024 A43 rows: max
+  |Δ score| 9.2e-3, mean 4.6e-4; every A43 / StyleGAN3 AUC within 2.7e-4; benchmark EERs within 0.07 points.
 
 ## 7. Dead ends and failures
 
@@ -197,6 +215,7 @@ Not verified:
    ~140/625 (about 37 min of GPU work discarded) to restart as two parallel halves (`run_feats4.sh`).
 7. 17:13 a fp32-vs-TF32 speed test died with CUDA out of memory (machine memory 106/121 GB used, swap full). Not
    retried; running extraction unaffected.
+9. 20:05 bug 5 in `fz1_heads.py` (prediction summary read the check entry as a seed); fixed before the full run.
 
 ## 8. Observations and ideas
 
@@ -213,24 +232,17 @@ Not verified:
 
 ## 9. Open items and next steps
 
-- Finish SMDD features, run `fz1_heads.py` (P3), apply the falsifier, add P3 to `result.md` and this file.
+- None inside the registration. Lead's review pending.
 - Not planned here (lead's call): probes trained on one arm pair and tested on another generator or step count;
   a probe on the central crop only.
 
 ## 10. Handover state (17:31 CET)
 
-Running on the DGX (all mine, all FZ1), as of 18:31:
-- `run_feats4.sh` (started 18:25; stdout `/mnt/t7/smad_next/FZ1/run_feats4.out`): two parallel
-  `fz1_feats.py --backbone clip_mad --set smdd+flip --part k/2 --workers 2` (TF32), logs
-  `/mnt/t7/smad_next/FZ1/logs/smdd_part{1,2}of2_try<k>.log`; then `merge_parts.py clip_mad smdd 2` →
-  `feats/clip_mad/smdd.npz`, `smdd_flip.npz`, log `logs/merge_parts.log`. Find PIDs with
-  `pgrep -af "src/FZ1/run_feats4.sh|fz1_feats.py --backbone clip_mad"`. Expected end about 20:00–21:00.
-- All earlier runners (`run_feats.sh`, `run_feats2.sh`, `run_feats3.sh`, `run_feats3b.sh`) have ended.
-If it fails: rerun the failed half by hand, e.g. `python -I src/FZ1/fz1_feats.py --backbone clip_mad --set
-smdd+flip --part 2/2 --workers 2` (a finished half is skipped; no partial files are written), then
-`python -I src/FZ1/merge_parts.py clip_mad smdd 2`. Then `OMP_NUM_THREADS=4 python -I src/FZ1/fz1_heads.py
---smoke` and the full command (P3).
-Compute so far: about 1.5 GB10-hours of shared GPU time (all feature extraction), CPU minutes for P1, P2, P4.
+Nothing of FZ1 is running (checked 20:15). All feature files, probes, heads and logs are on the T7 drive
+(`/mnt/t7/smad_next/FZ1/`); small results in this folder. The scratchpad copies of the release files are
+duplicated in `/mnt/t7/smad_next/FZ1/release/`; the scratchpad is no longer needed.
+Compute: about 3.5 GB10-hours of shared GPU time (all feature extraction, including about 0.6 h discarded when
+stage 3b was killed), CPU minutes for P1, P2, P3, P4.
 No WCSS, Athena or Vast use.
 
 ## 11. Reproduce from scratch

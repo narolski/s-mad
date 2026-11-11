@@ -1,6 +1,6 @@
 # Diffusion-autoencoder generation on Athena (DG1): result
 
-Status 11 Nov 2026 19:16 CET: **equivalence gate passed; production running** (Athena array job 3545841). Full record:
+Status 11 Nov 2026 20:10 CET: **equivalence gate passed; set A done; set B 2 of 4 shards done; add-on queued.** Full record:
 `README.md` in this folder.
 
 ## Equivalence gate (registered reading: equivalent if every image's mean |difference| ≤ 2 grey levels)
@@ -26,20 +26,34 @@ idle GB10: 13.1 s).
 
 ## What was generated (counts per rung)
 
-Production running. Planned: set A 914 files, set B 3,616 files (`prereg.md`).
+Set A (FRLL, `/mnt/t7/smad_next/DG1/gen/setA/out_setA/setA/`): genuine same-storage 102; reconstruction 102 + 102 (20 /
+100 steps); mirror mix 102 + 102; two-person morph 100 + 100 (A43 neutral pairs); neutral+smiling mix (confounded)
+102 + 102. Total 914, all finite, genuine writes 102 of 102 lossless.
+Set B (FRGC / colorFERET): shards 1 and 3 done (904 + 908 files); shards 0 and 2 running (array 3545877). Planned
+3,616: genuine 1,072; REC / MIR / SAME / X 536 each; dose 4 × 100.
+Add-on (amendment 2, array 3545907): queued.
 
 ## Athena jobs and GPU-hours
 
-| Job | Purpose | Result | GPU-hours |
-|---|---|---|---|
-| 3544197 | smoke | failed at `module load` (Python/3.12.3 needs GCCcore/13.3.0) | 0.001 |
-| 3544215 | smoke | failed: venv held numpy 2.5.4 (DiffAE needs < 2) | 0.185 |
-| 3544800 | smoke | passed | 0.083 |
-| 3545841_0–4 | production: set A, set B shards 0–3 | running | estimate 2.6 (at most 3.5) |
+| Job | Account | Purpose | Result | GPU-hours |
+|---|---|---|---|---|
+| 3544197 | plgrestorearc | smoke | failed at `module load` (Python/3.12.3 needs GCCcore/13.3.0) | 0.001 |
+| 3544215 | plgrestorearc | smoke | failed: venv held numpy 2.5.4 (DiffAE needs < 2) | 0.185 |
+| 3544800 | plgrestorearc | smoke | passed | 0.083 |
+| 3545841_0 (3545857) | plgrestorearc | set A | done, 1,705 s | 0.47 |
+| 3545841_1, _3 | plgrestorearc | set B shards 0, 2 | cancelled at about 10 min on slow node t0010 (18.8 s per inversion) | about 0.33 |
+| 3545841_2 (3545865) | plgrestorearc | set B shard 1 | done, 1,454 s | 0.40 |
+| 3545841_4 (3545841) | plgrestorearc | set B shard 3 | done, 1,577 s | 0.44 |
+| 3545877_1, _3 | plgmultivision (moved by the lead) | set B shards 0, 2 (resubmitted, t0010 excluded) | queued | — |
+| 3545907_0–7 | plgmultivision | add-on (amendment 2) | queued (start estimate 12 Nov 06:37) | estimate 3.3 |
 
 ## Validity numbers per rung
 
-Not computed yet (after copy-back).
+Set A (`validity/setA_validity.csv`; glint cosine to the raw photos, median; verification at FMR 1e-3; asymmetry and
+Laplacian variance in the face box, median): genuine 0.984, asym 14.1, lapvar 289; REC20 0.964 / 12.8 / 158; REC100
+0.980 / 13.6 / 214; MIR20 0.902 / 4.1 / 224; MIR100 0.896 / 6.0 / 529; X20 host 0.534, partner 0.535, both verify 99 of
+100, asym 11.8, lapvar 198; X100 0.541 / 0.541, both 99 of 100, 13.2 / 497; CONF20 0.895 / 0.885, 14.3 / 269; CONF100
+0.885 / 0.874, 16.0 / 570. Every one-person image verifies against its host. Set B: after all shards are in.
 
 ## What failed
 

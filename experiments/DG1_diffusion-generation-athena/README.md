@@ -299,7 +299,41 @@ that was an arithmetic slip, corrected at 18:16.
 
 ## 5. Results
 
-None yet.
+### Equivalence gate (smoke job 3544800; `equivalence.json`, `smoke8_athena_vs_dgx.json`)
+
+Equivalent by the registered reading. Per-image mean |difference| Athena vs stored DGX A43 file: D20 001_03 0.023,
+002_03 0.020, 003_03 0.022, 004_03 0.017; B20 draws 0–3: 0.032, 0.033, 0.047, 0.059 (pooled 0.032); max 1, 1, 1, 1,
+1, 2, 3, 4; glint cosine 0.99989–0.99995. Image statistics move by at most 0.0098 between-image SD.
+
+### A100 speed (Athena; batch 16 in production)
+
+Inversion (250 steps): 3.01–3.19 s per image in production (3.28–3.38 s at batch 8–12 in the smoke job). Render: 20
+steps 0.24–0.27 s, 100 steps 1.24–1.42 s per image. Unpack of the 2.9 GB pack into the RAM disk 7–32 s.
+
+### Set A validity (FRLL, 102 persons; `validity/setA_validity.csv`, full: `/mnt/t7/smad_next/DG1/validity/setA/`)
+
+Glint cosine to the raw FRLL photos; verification at 0.239399 (FMR 1e-3); asymmetry and Laplacian variance in the face
+box of the 256 frame; median [IQR]; every face found (914 of 914).
+
+| Rung (pool) | n | cos host | cos partner | verify host / partner / both | asymmetry | Laplacian var. | PNG bytes (median) |
+|---|---|---|---|---|---|---|---|
+| genuine, same storage (A_G) | 102 | 0.984 [0.981, 0.987] | — | 1.00 | 14.1 [11.5, 16.8] | 289 [254, 328] | 77,087 |
+| reconstruction 20 (A_REC20) | 102 | 0.964 [0.959, 0.968] | — | 1.00 | 12.8 [10.3, 16.1] | 158 [133, 183] | 62,101 |
+| reconstruction 100 (A_REC100) | 102 | 0.980 [0.978, 0.983] | — | 1.00 | 13.6 [11.1, 16.6] | 214 [187, 248] | 73,758 |
+| mirror mix 20 (A_MIR20) | 102 | 0.902 [0.878, 0.928] | — | 1.00 | 4.1 [3.6, 4.3] | 224 [180, 266] | 66,966 |
+| mirror mix 100 (A_MIR100) | 102 | 0.896 [0.874, 0.916] | — | 1.00 | 6.0 [5.5, 6.5] | 529 [461, 589] | 84,149 |
+| two-person morph 20 (A_X20) | 100 | 0.534 [0.452, 0.596] | 0.535 [0.464, 0.613] | 1.00 / 0.99 / 0.99 | 11.8 [9.8, 14.0] | 198 [171, 237] | 68,603 |
+| two-person morph 100 (A_X100) | 100 | 0.541 [0.459, 0.600] | 0.541 [0.470, 0.611] | 1.00 / 0.99 / 0.99 | 13.2 [11.5, 15.6] | 497 [459, 556] | 86,436 |
+| neutral+smiling mix 20, confounded (A_CONF20) | 102 | 0.895 [0.858, 0.915] | 0.885 [0.844, 0.911] | 1.00 / 1.00 / 1.00 | 14.3 [12.1, 17.2] | 269 [213, 340] | 71,762 |
+| neutral+smiling mix 100, confounded (A_CONF100) | 102 | 0.885 [0.852, 0.903] | 0.874 [0.837, 0.897] | 1.00 / 1.00 / 1.00 | 16.0 [13.8, 18.7] | 570 [471, 708] | 85,468 |
+
+Descriptive (amendment 1): no detector statement follows from these columns. Plain facts: 99 of 100 two-person
+morphs verify against both contributors at both step counts (gate G-b asks ≥ 70%); every one-person rung verifies
+against its host; 100-step renders have 2.5–3.4 times the Laplacian variance of 20-step renders of the same rung; the
+mirror mix has about a third of the asymmetry of the photo.
+
+Set B: shards 1 and 3 fetched (setB_s1 tar sha256 8b917ce3…, setB_s3 1c3f3678…), shards 0 and 2 running
+(array 3545877); validity after all four are in.
 
 ## 6. Checks
 

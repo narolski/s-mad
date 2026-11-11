@@ -36,6 +36,11 @@ useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 No
 - Athena is **GPU-only**: no CPU-only workloads (data builds, statistics). Those stay on the DGX or
   go to the WCSS CPU partition.
 
+- Order inside our own queue (11 Nov 20:09): `scontrol top` is not permitted. To let short, decisive jobs start
+  first, the lead gives long arrays a nice value (`scontrol update JobId=<id> Nice=400`; done for the ViT-L/14
+  fits of the SMDD rebuild and the MixFaceNet retrains) and shortens time limits to the measured need plus a
+  margin (shorter limits are scheduled into gaps earlier). Slurm's printed start times assume every running job
+  uses its full limit; with 12 of 48 nodes working they were up to two days out on 11 Nov.
 - Slow node (11 Nov 19:56): the diffusion-generation owner measured node `t0010` about six times slower than the
   others (18.8 s against 3.1 s per inversion). Jobs may be submitted with `--exclude=t0010`. Check the step rate
   in the first minutes of every job and tell the lead about any other slow node.

@@ -215,8 +215,8 @@ test-person R2: untouched source photos flagged 8.6-10.6% (CLIP-224), 3.5-10.3% 
 (opencv + facemorpher) 3.2-5.4% (CLIP-224), 0.8-9.2% (DINOv3). Same reads with R2w as the negative: within those
 ranges. (b) Best single simple statistic for R2 vs R4: band power 0.125-0.25 cycles/px, folded AUC 0.905 (FaceMorpher),
 0.928 (OpenCV); R2w vs R4: 0.889 / 0.886. Fixed verdict: (b) exceeds 0.80, so "the image-level class definition fails"
-for both lines. Dense CLIP-224 heads' mean prediction at the same thresholds: source photos 7.8-11.0%, FRLL E7
-0.7-3.2%. The DINOv3 dense reads will be added when its scores are complete.
+for both lines. Dense heads' mean prediction at the same thresholds: CLIP-224 source photos 7.8-11.0%, FRLL E7
+0.7-3.2%; DINOv3 source photos 7.6-10.3% (R2 threshold) and 2.1-8.4% (R2w threshold), FRLL E7 0.0-1.7%.
 
 Target sanity (wave 3, control 2; `wave3_target_sanity.json`; 1,000 uniform-0.5 morphs; 32 x 32 patches in the hull):
 | target | median flattest quartile | median busiest quartile | rank corr. with patch contrast | accepted (flat < busy and abs(corr) < 0.3) | same-person / two-person | mirror / two-person |

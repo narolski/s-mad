@@ -1,7 +1,7 @@
 # FZ1 result: do frozen foundation features read the mixing step of a DiffAE morph?
 
 Owner run, 11 Nov 2026. Prereg (`prereg.md`) written about 15:25 CET before any new number was computed
-(P1 is a post hoc re-read; P2–P4 are new). Runs 15:30–RUN_END CET, DGX only (shared GB10; peak GPU memory of
+(P1 is a post hoc re-read; P2–P4 are new). Runs 15:30–20:08 CET, DGX only (shared GB10; peak GPU memory of
 our processes 2.3 GB; at most 6 of our CPU processes at a time). Code in `src/FZ1/`; small results in
 `experiments/FZ1/`; feature caches, out-of-fold probabilities, head weights and logs in `/mnt/t7/smad_next/FZ1/`.
 Every interval is a 95% bootstrap interval: A43 / FRLL contrasts use AD1's two-way person (pigeonhole) draw
@@ -47,6 +47,8 @@ draw (seed [20261111, 5, 1], B = 10,000). AUC: positive class = first named.
 4. DINOv3's timm pooled pre-logits are the mean of the patch tokens (`global_pool = avg`); DINOv2's are the CLS
    token. The prereg said "timm pooled pre-logits" without naming the pooling.
 5. P4: 30 images per arm were used for the 8-image smoke test, because the nested CV cannot run on 8.
+6. The SMDD extraction ran as two contiguous halves in parallel and was merged with an id-order check
+   (`merge_parts.py`), because the single pass was GPU-bound on the shared GPU (no effect on the numbers).
 
 ## P1: released MADation FE / FS re-read (post hoc; existing score files only)
 
@@ -189,4 +191,84 @@ A43 file (descriptive). PNG size is the same file in both views.
   center-256 Laplacian variance is 0.41 over B ∪ D pooled, but −0.22 within B and −0.16 within D; over
   B20 ∪ D20 it is −0.14 (within −0.28 / −0.21).
 
-PENDING
+## P3: five SMDD-only heads on frozen CLIP-L/14 (MADation FE recipe), the H-new-3 test
+
+Recipe as registered (release code and FE ViT-L/14 `training.log`): Linear(768, 2) on L2-normalised projected
+CLIP embedding, BCE on one-hot targets, AdamW lr 0.01 (constant under the release's scheduler; printed per epoch),
+wd 0.05, 40 epochs, batch 256, drop_last (156 steps per epoch), gradient clip 5, horizontal flip p 0.5; trained on
+the 40,000 SMDD images only; last epoch; score = softmax probability of the attack class. Columns = seeds.
+
+**End-to-end check first (released FE head on our features, all rows):** A43 max |Δ score| 9.2e-3, mean 4.6e-4
+over 2,024 images; every A43 and StyleGAN3 contrast AUC within 2.7e-4 of the stored release value; benchmark EERs
+within 0.07 points (`p3_heads.json` → `_release_head_on_our_features`).
+
+| Contrast | 401 | 402 | 403 | 404 | 405 |
+|---|---|---|---|---|---|
+| B20 vs D20 | 0.626 [0.555, 0.698] | 0.628 [0.556, 0.700] | 0.626 [0.555, 0.698] | 0.626 [0.554, 0.698] | 0.626 [0.554, 0.698] |
+| B vs D | 0.789 [0.725, 0.850] | 0.792 [0.728, 0.853] | 0.790 [0.726, 0.851] | 0.792 [0.728, 0.853] | 0.791 [0.726, 0.852] |
+| C20 vs D20 | 0.511 [0.464, 0.559] | 0.512 [0.464, 0.560] | 0.512 [0.465, 0.561] | 0.510 [0.462, 0.558] | 0.514 [0.466, 0.562] |
+| C vs D | 0.667 [0.617, 0.717] | 0.670 [0.619, 0.720] | 0.671 [0.620, 0.721] | 0.668 [0.618, 0.718] | 0.670 [0.621, 0.720] |
+| B20 vs C20 | 0.621 [0.527, 0.711] | 0.621 [0.527, 0.712] | 0.620 [0.525, 0.710] | 0.622 [0.527, 0.712] | 0.618 [0.523, 0.707] |
+| B vs C | 0.656 [0.558, 0.750] | 0.657 [0.558, 0.751] | 0.655 [0.557, 0.749] | 0.657 [0.559, 0.752] | 0.654 [0.555, 0.748] |
+| D vs R0 | 0.512 [0.483, 0.542] | 0.511 [0.481, 0.540] | 0.510 [0.481, 0.540] | 0.508 [0.479, 0.538] | 0.510 [0.481, 0.539] |
+| D20 vs R0 | 0.535 [0.504, 0.567] | 0.535 [0.504, 0.568] | 0.533 [0.502, 0.565] | 0.530 [0.499, 0.563] | 0.531 [0.501, 0.564] |
+| E vs R0 | 0.458 [0.435, 0.480] | 0.456 [0.432, 0.478] | 0.457 [0.433, 0.479] | 0.455 [0.431, 0.476] | 0.455 [0.431, 0.477] |
+| R1 vs R0 | 0.523 [0.506, 0.540] | 0.522 [0.505, 0.539] | 0.522 [0.505, 0.539] | 0.520 [0.504, 0.537] | 0.522 [0.506, 0.539] |
+| A vs R0 | 0.649 [0.572, 0.727] | 0.650 [0.573, 0.728] | 0.647 [0.570, 0.725] | 0.644 [0.567, 0.721] | 0.645 [0.568, 0.723] |
+| B20 vs R0 | 0.656 [0.578, 0.733] | 0.658 [0.579, 0.735] | 0.655 [0.577, 0.732] | 0.652 [0.573, 0.729] | 0.653 [0.575, 0.730] |
+| B vs R0 | 0.796 [0.728, 0.860] | 0.798 [0.729, 0.861] | 0.796 [0.728, 0.860] | 0.795 [0.726, 0.859] | 0.795 [0.727, 0.859] |
+| SG3 morph vs render | 0.502 [0.471, 0.533] | 0.503 [0.472, 0.534] | 0.503 [0.472, 0.534] | 0.501 [0.470, 0.533] | 0.503 [0.472, 0.534] |
+| SG3 morph vs spread | 0.480 [0.451, 0.509] | 0.480 [0.451, 0.509] | 0.480 [0.450, 0.509] | 0.480 [0.451, 0.510] | 0.479 [0.450, 0.509] |
+| flag rate R0 → R1 at own MorDIFF EER thr (pts) | 40.7% → 40.7% (+0.0 [-4.9, +4.9]) | 40.2% → 41.7% (+1.5 [-2.9, +5.9]) | 40.7% → 40.7% (+0.0 [-4.9, +4.9]) | 40.7% → 41.2% (+0.5 [-3.9, +4.9]) | 40.7% → 42.2% (+1.5 [-2.9, +5.9]) |
+| same, threshold from the 200 sampled morphs | 41.2% → 42.6% (+1.5 [-2.9, +5.9]) | 40.7% → 42.6% (+2.0 [-2.5, +6.4]) | 41.2% → 42.6% (+1.5 [-2.9, +5.9]) | 41.7% → 42.2% (+0.5 [-4.4, +5.4]) | 41.7% → 44.1% (+2.5 [-2.5, +7.4]) |
+| neutral above smiling, frll_bona | 0.598 [0.500, 0.686] | 0.588 [0.490, 0.676] | 0.608 [0.510, 0.696] | 0.588 [0.490, 0.676] | 0.588 [0.490, 0.676] |
+| neutral above smiling, mordiff_bona_R0 | 0.441 [0.343, 0.539] | 0.441 [0.343, 0.539] | 0.451 [0.353, 0.549] | 0.422 [0.324, 0.520] | 0.431 [0.333, 0.529] |
+
+| Benchmark EER % (native / E7) | 401 | 402 | 403 | 404 | 405 |
+|---|---|---|---|---|---|
+| FRLLM/amsl | 22.5 [17.7, 28.4] / 28.4 [23.1, 33.6] | 22.6 [17.7, 28.2] / 28.4 [23.1, 33.3] | 23.0 [17.7, 28.0] / 28.0 [23.1, 33.3] | 22.5 [17.7, 28.3] / 28.4 [23.1, 33.4] | 23.5 [17.9, 28.5] / 28.4 [23.5, 33.9] |
+| FRLLM/facemorpher | 4.4 [1.9, 6.8] / 5.4 [2.5, 8.3] | 4.4 [1.8, 6.8] / 5.3 [2.5, 8.3] | 4.4 [1.7, 6.4] / 4.9 [2.4, 8.2] | 4.4 [1.9, 6.8] / 5.4 [2.5, 8.3] | 4.4 [1.9, 6.9] / 5.4 [2.5, 8.4] |
+| FRLLM/opencv | 4.8 [2.4, 7.9] / 6.4 [3.0, 9.5] | 4.9 [2.3, 7.8] / 6.4 [3.0, 9.4] | 4.8 [2.2, 7.7] / 5.9 [3.0, 9.2] | 4.9 [2.3, 7.8] / 6.4 [3.0, 9.6] | 4.9 [2.4, 8.0] / 6.4 [3.1, 9.7] |
+| FRLLM/webmorph | 7.9 [4.7, 11.3] / 11.3 [7.8, 15.7] | 7.9 [4.7, 11.3] / 11.8 [7.9, 15.7] | 8.3 [4.5, 11.3] / 11.3 [7.8, 15.7] | 8.3 [4.7, 11.3] / 11.8 [7.9, 15.7] | 7.9 [4.8, 11.3] / 12.3 [8.0, 16.1] |
+| MorDIFF | 40.7 [35.4, 45.2] / 40.7 [35.8, 45.5] | 40.2 [35.3, 45.1] / 40.7 [35.8, 45.1] | 40.7 [35.8, 45.5] / 40.7 [36.1, 45.3] | 40.6 [35.8, 45.6] / 40.7 [36.3, 45.5] | 40.7 [35.8, 45.4] / 41.2 [36.3, 45.6] |
+
+| | 401 | 402 | 403 | 404 | 405 |
+|---|---|---|---|---|---|
+| train AUC (SMDD) | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| Spearman vs released FE ViT-L/14 (A43 rows) | 0.876 | 0.879 | 0.874 | 0.877 | 0.877 |
+
+**Prediction / falsifier (fixed in the prereg), per seed:**
+
+| Seed | B vs D | D vs R0 | B vs D ≥ 0.75 and D vs R0 ≤ 0.60 | B vs D ≥ 0.70 |
+|---|---|---|---|---|
+| 401 | 0.789 [0.725, 0.850] | 0.512 [0.483, 0.542] | yes | yes |
+| 402 | 0.792 [0.728, 0.853] | 0.511 [0.481, 0.540] | yes | yes |
+| 403 | 0.790 [0.726, 0.851] | 0.510 [0.481, 0.540] | yes | yes |
+| 404 | 0.792 [0.728, 0.853] | 0.508 [0.479, 0.538] | yes | yes |
+| 405 | 0.791 [0.726, 0.852] | 0.510 [0.481, 0.539] | yes | yes |
+
+- Fixed reading applied: 5 of 5 seeds meet the prediction (≥ 4 required) → **"supported"** under the
+  registered rule. Falsifier (fewer than 3 seeds at ≥ 0.70) not met.
+- Same heads, descriptive: B20 vs D20 0.626–0.628; C vs D 0.667–0.671; C20 vs D20 0.510–0.514; B20 vs C20
+  0.618–0.622; E vs R0 0.455–0.458; R1 vs R0 0.520–0.523; StyleGAN3 morph vs render 0.501–0.503, vs spread
+  0.479–0.480. R0 → R1 flag change 0.0 to +1.5 points (intervals include 0). Neutral above smiling 0.588–0.608
+  (FRLL-Morphs genuine). MorDIFF EER 40.2–40.7% native and 40.7–41.2% E7 (released FE head on the same frames:
+  34.8 / 32.4); FRLL-Morphs landmark EERs close to the release's (e.g. FaceMorpher 4.4 vs 3.9, WebMorph 7.9–8.3
+  vs 9.8).
+- The five heads are nearly identical (all AUCs within 0.004 across seeds); Spearman correlation with the
+  released FE ViT-L/14 scores on the A43 rows 0.874–0.879. SMDD training AUC 1.000 for every seed (final
+  training loss 0.0085–0.0087).
+
+## What could not be verified
+
+- That our SMDD files equal MADation's `smdd_train_cropped.csv` (its log: 39,730 images; ours: 40,000; crop
+  procedure not compared).
+- The registered 2e-3 tolerance of check (ii): missed on 72 images (fp32 2.6e-3) and on all 2,024 A43 rows
+  (9.2e-3 max, 4.6e-4 mean), although every AUC matches the release within 2.7e-4 (deviation 1).
+- The released FE head's published benchmark numbers in our pipeline (see P1 reference note: not within
+  3 points).
+- No test of whether the frozen-feature signal on A43 is identity mixing rather than a decoding difference:
+  P2 separates same-person mixes from reconstructions as well (C20 vs D20 ≥ 0.991), and P4 finds a centre-crop
+  Laplacian-variance difference for the 100-step arms. These are reported, not interpreted.
+- G-b fails for the StyleGAN3 sets (AG5), so StyleGAN3 probe cells carry no identity reading.
+- Partner-identity leakage in the A43 probe folds (prereg limitation) was not quantified.

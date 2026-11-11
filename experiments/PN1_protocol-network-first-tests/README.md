@@ -68,6 +68,21 @@ lead's GO (pre-run review restarted by the lead). No conclusion is drawn here.
 - 19:46 to 19:49 JPEG copies for manifest C (`jpeg_c.py build`, CPU, 2,549 copies; 8-image test first).
 - 19:52 final manifests A, B, C and evaluation manifest; tier 0 report to the lead (CLIP).
 - 19:53 full pack being written (`build_pack.py`); then the DINOv3 tar for Athena (`build_featx.py`).
+- 19:58 Independent pre-run review in (`experiments/reviews/PRERUN_PN1_20261111.md`, GO WITH FIXES): the whole-manifest
+  class balance made "stored at 61.2 px" a cue for "morph" in B (odds ratio about 2.3) and left a database cue in A
+  (attack share 0.688 FRGC against 0.359 colorFERET). 20:00 the pack build was stopped before completion (PIDs 2430592,
+  2435752). 20:05 lead's decisions registered as amendment 4 (the lead's "amendment 3"); first tier-0 tables moved to
+  `tier0_v1_provisional*` (disclosed: read by owner and lead before the review). Code changed: `mkmanifests.py`
+  (database x history strata, Bn draw), `tier0.py` (same strata, Bn0, partner-safe inner folds, 224-px floor),
+  `reads.py` (τ_cam, τ_V, storage marks, partner-cycle bootstrap), `pn1lib.py` (cycle map, person folds), `cert.py`
+  (random person folds with dropping; nuisance-only certificate), `run.sh` (arm Bn accepted), job files (eight fits,
+  smoke on arm Bn), `tier1.py` written (reader with P-g bootstrap). 20:01 fixed manifests and pack build restarted
+  (`chain_cpu4.sh`); 20:02 tier 0 recompute queued behind the certificate cues (`chain_cpu3.sh`).
+- 20:12 Amendment 5: reference row "standard recipe on released SMDD" (eight A12-BR ViT-B/16 R retrains, last
+  checkpoints; sha256 in `ref_smdd_m3_last_sha256.txt`), scored by `score_ref.sh` on Athena; tar `build_refnets.py`.
+- Note: `lists.py cert_a` was rerun at about 19:58 after the ladder copies joined the catalogue, so `cert_a.csv` now
+  lists more rows than the cue file `cert_cert_a.npz` (computed from the 11,573-row version); the ladder copies get
+  their cues from the separate `ladsoft` cue job.
 
 ## 3. Data
 

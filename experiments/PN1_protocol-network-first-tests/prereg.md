@@ -353,3 +353,16 @@ the old manifests exists. Below, decisions of the lead (numbers F1 to F11 refer 
    on PN1's pools (stored ladder copies, development copies, corrected MAD22); cost reported to the lead, not run.
 9. Not done (author): JPEG genuine pools from raw corrected-MAD22 files; a stronger shrink than 61.2 px.
 10. Split unchanged. Tier-0 arms recomputed: A0, B0 and Bn0 (a seeded draw from B0 of A0's unique counts, same rule).
+
+## Amendment 5 (11 Nov 20:12 CET, before any score of these networks): reference row "standard recipe on released SMDD"
+
+Approved by the lead (improvement 4 of the review). The eight existing ViT-B/16 MADation-recipe retrains on SMDD (the
+A12-BR "R" rows, `a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s{1..8}_r`, last checkpoint
+`/mnt/t7/wcss_backups/smadcvpr/runs/A12BR/<run>/last.pt`, meta from
+`/home/narolski/mambamorph-code/smadcvpr_runs/A12_scored/A12BR/<run>/meta.json`; sha256 recorded in the README) are
+scored on PN1's 23,640 evaluation images on Athena (`-A plgmultivision-gpu-a100`, container image `fedeff10…`) with
+`pn1_score.py`, the scorer of PN1's own networks (logit without flip averaging; flip average stored), from the same pack.
+All eight are reported, none is selected. Question fixed in advance: does the standard recipe flag more than 10% of
+any history-matched genuine pool (test-ladder R0_61 and R0_112, FRLL-Morphs and corrected-MAD22 E7 pools, FRLL
+blur1 / resample50) or JPEG genuine pool (FRLL jpeg90 / 70 / 50) at its own 0.5 rule or at τ_cam, and what does it miss
+on the gating attack cells at the same threshold? Reported per network and as the range over the eight; no pass mark.

@@ -238,8 +238,29 @@ MixFaceNet-MAD `/mnt/t7/mixfacenet_mad_official/mixfacenet_SMDD.pth` (3d507c8b);
 
 ## 5. Results
 
-None read yet for MADation / MixFaceNet. SelfMAD (existing files, analysis-code test only, B = 50): see `result.md`
-when written.
+MADation / MixFaceNet-MAD: pending (Athena jobs 3545918, 3545919).
+
+SelfMAD (11 Nov 20:10; `analyse.py --B 2000 --suffix _selfmad_only`; files `rs1_*_selfmad_only.csv`,
+`rs1_results_selfmad_only.json`; rendered `/mnt/t7/smad_next/RS1/tables_selfmad_only.md`). Two runs, never compared
+with each other: (A) existing files on WCSS (A41 x7 raw files; A32-RSX and A43 frames), (B) RS1 DGX scoring of raw /
+stored / dataset files.
+- Reproduction (run A, all photos): AMSL 2.44 [0.94, 4.86] vs 0.99 reproduced; FaceMorpher 0.98 vs 0.00 reproduced;
+  OpenCV 0.37 vs 0.00 reproduced; WebMorph 7.36 vs 3.45 not reproduced; StyleGAN2 16.60 vs 10.34 not reproduced;
+  Greedy-DiM 6.39 vs 7.60 reproduced; MorDIFF 1.49, DiM-A 4.41 no published number. Neutral-only genuine photos:
+  0.97 / 0.21 / 0.08 / 4.91 / 12.59 (all five FRLL cells reproduced), Greedy-DiM 3.07 (not reproduced).
+  Run B reproduces run A's MorDIFF EER exactly (1.49; raw E7 45.20 in both).
+- History (run A, raw E7 files): MorDIFF 1.49 -> 45.20 (+43.7 [38.4, 48.9]); Greedy-DiM 6.39 -> 87.23 (+80.8);
+  DiM-A 4.41 -> 69.50. Aligned-frame E7 (FRLL cells, labelled): AMSL aligned native 4.91 -> aligned E7 49.02
+  (+44.1), FaceMorpher +6.8, OpenCV +5.8, WebMorph +55.2; StyleGAN2: E7 is the identity (morphs larger than photos).
+- 0.5 rule (run B): unprocessed raw FRLL photos 0%, raw E7 MorDIFF photos 26.0% [18.1, 33.8], stored-small photos
+  56.9% [49.0, 65.2], MorDIFF morphs 26.5% [19.3, 34.8]; FEI frames 33.3% (neutral) / 40.1% (smiling); FFHQ orig 17.7%
+  -> 48.1% (DiffAE history) / 47.9% (landmark history). Run A (frames): 50% shrink-and-enlarge 44.6%, aligned E7
+  MorDIFF 78.9%, A43 stored-small frames 97.1%.
+- Paired logit shifts (run B): raw E7 MorDIFF vs its raw photo +5.06 [4.84, 5.27], 100% rise; stored-small vs raw
+  photo +6.04 [5.77, 6.30], 100%; FFHQ history copies vs orig +2.37 [2.26, 2.48], 89.5% rise.
+- MorDIFF ladder (run B, all on raw / stored files, AUC higher rung positive): stored-small E vs photo 0.999; D20 vs
+  E 0.465 [0.429, 0.499]; B20 vs D20 0.334 [0.260, 0.407]; B vs D 0.222; published A vs B20 0.463 [0.424, 0.493];
+  A vs E 0.282; A vs photo 0.998. Run A (frames): D20 vs E 0.152, B20 vs D20 0.403, A vs B20 0.481.
 
 ## 6. Checks
 

@@ -129,8 +129,8 @@ def main():
         f = out["flag_R0_R1"]["thr_full_mordiff"]
         print(f"   flag R0->R1 {100*f['flag_R0']:.1f}% -> {100*f['flag_R1']:.1f}% ({f['change_pts']:+.1f}); neutral>smiling "
               f"{out['neutral_above_smiling']['frll_bona']['value']:.3f}; spearman vs release {out['spearman_vs_release_FE_L14_a43']:.3f}")
-    bd = {s: r["a43"]["B vs D"]["auc"] for s, r in res.items()}
-    dr = {s: r["a43"]["D vs R0"]["auc"] for s, r in res.items()}
+    bd = {s: r["a43"]["B vs D"]["auc"] for s, r in res.items() if not s.startswith("_")}
+    dr = {s: r["a43"]["D vs R0"]["auc"] for s, r in res.items() if not s.startswith("_")}
     n_pred = sum(bd[s] >= 0.75 and dr[s] <= 0.60 for s in bd)
     n_070 = sum(bd[s] >= 0.70 for s in bd)
     verdict = "supported" if n_pred >= 4 else ("falsified" if n_070 < 3 else "neither supported nor falsified")
