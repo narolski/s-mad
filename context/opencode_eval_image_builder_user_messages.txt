@@ -1,0 +1,932 @@
+
+=== 4 10-28 08:42
+Load the morphmamba-wacv-experiments session from Claude Code and help me finish the script, where I am blocked with my experiments:
+
+Why it's manual: the evaluation-image builder (smadcvpr/prep_eval.py) is the one piece the safety check blocked me from writing: alignment combined with compression and resampling. Everything downstream of it is ready. All 72 models are trained and the scoring, analysis and paper tooling are in place.
+
+1. Write smadcvpr/prep_eval.py
+
+The untracked 100-line file is my truncated draft; replace it or finish it.
+
+Alignment: use the same recipe as the training morphs, scripts/73_delin_align.py:
+- insightface buffalo_l, detection size 512, frontal filter;
+- eyes moved to (190,210) and (322,210) in a 512×512 frame;
+- if no frontal face is found, fall back to a plain resize and flag the image.
+
+Save every image as PNG under smadcvpr_data/eval/....
+
+Manifest: smadcvpr_data/manifests/eval.csv with columns id,path,set,family,label,variant.
+- path is relative to smadcvpr_data/, e.g. eval/MAD22/...png.
+- label: 1 for a morph, 0 for bona fide.
+- variant: orig for the image as distributed.
+
+Sets (each needs its own bona fide rows, label 0, variant orig):
+- MAD22: 185 bona fide images plus its morph families.
+- FRLL-Morphs: AMSL, FaceMorpher, OpenCV, StyleGAN, WebMorph.
+- DiM: the DiM-FRLL families.
+- MorDIFF: kept sequestered; use the 204 frontal FRLL bona fide images as its bona fide pool.
+- devbona: label 0 only, the 5,033 FERET/FRGC captures in dmad/data/probes/{feret,frgc}. It fixes the operating thresholds (E3).
+
+Optional, but needed for E5 and E7:
+- Resolution-matched bona fide (E7): for each low-resolution morph family, add rows with label 0, variant resmatch and family set to that morph family. These are bona fide images downsampled to the family's median inter-eye distance before alignment.
+- Shortcut columns (E7): native_w, native_h, file_bytes, ied, describing each source image before alignment.
+Why it's manual: the evaluation-image builder (smadcvpr/prep_eval.py) is the one piece the safety check blocked me from writing: alignment combined with compression and resampling. Everything downstream of it is ready. All 72 models are trained and the scoring, analysis and paper tooling are in place.
+
+1. Write smadcvpr/prep_eval.py
+
+The untracked 100-line file is my truncated draft; replace it or finish it.
+
+Alignment: use the same recipe as the training morphs, scripts/73_delin_align.py:
+- insightface buffalo_l, detection size 512, frontal filter;
+- eyes moved to (190,210) and (322,210) in a 512×512 frame;
+- if no frontal face is found, fall back to a plain resize and flag the image. 
+
+=== 141 10-28 08:45
+what is going on?
+
+=== 515 10-28 08:56
+What is going on now? Have you prepared the missing file?
+
+=== 569 10-28 09:02
+Explain what are you doing
+
+=== 583 10-28 09:03
+Explain what the script does, what was missing, and what you did
+
+=== 593 10-28 09:04
+How have you verified its correctness?
+
+=== 605 11-02 19:12
+Continue the work, please, by loading the latest results of the session from Claude Code. Can you pick up where it's been left off, including re-running the subagents, please?
+
+=== 815 11-02 19:17
+what is the purpose of a19 and a20 experiments
+
+=== 827 11-02 19:18
+How about the continued research on better architectures for the problem, including the new Mamba? 
+
+=== 859 11-02 19:21
+So if we train MADMamba from scratch, we do not get a better network for the task, but if we don't, we can beat SOTA, is that right?
+
+=== 871 11-02 19:22
+But is using CLIP to beat SOTA in S-MAD actually something that can be publishable at CVPR? Is this novel for the task?
+
+=== 883 11-02 19:24
+The headline should be a novel architecture, and I do not get how we could have beat the SOTA previously, and now we fail. Is our protocol that we've proposed for WACV not worthy of CVPR?
+
+=== 915 11-02 19:27
+Let's run the experiments and explore what we can do with architecture improvements over stuff like RINE, ForAda, R-FLoRA, taking the working MADMamba ideas. Please help me find an improvement that will yield scientific significance of CVPR level.
+
+=== 953 11-02 19:31
+continue, allow search
+
+=== 1115 11-02 19:46
+Explain the identity-duality head, because we've already explored this and we cannot reconstruct the image of two persons that participated in morphs in D-MAD, and the identity adds nothing there, since we already can use the face recognition.
+
+=== 1461 11-02 21:17
+Why is it a data change that the protocol currently bans? What protocol? Who decided that?
+
+=== 1547 11-02 21:20
+Please draft a protocol amendmnt, of course! Otherwise we are scientifically cheating, that is unacceptable!
+
+=== 1588 11-02 21:22
+commit A8.9
+
+=== 1627 11-02 21:23
+Please go ahead with the work.
+
+=== 1650 11-02 21:24
+Is it possible that we've been blocked from WCSS? Is there any warning there?
+
+=== 1673 11-02 21:25
+Go ahead then!
+
+=== 1766 11-02 21:31
+Is it actually possible that, with the latest change in terms of data pre-processing, MADMamba can actually start to perform better than other networks?
+
+=== 1793 11-02 21:35
+What could we take from Mamba3 to MADMamba to improve its performance? Or what else can we tweak to make this network work not just in theory?
+
+=== 1805 11-02 21:41
+What if we used SIGLIP2 or EVA-CLIP?
+
+=== 1841 11-02 21:45
+What if we used MambaVision?
+
+=== 1946 11-02 21:49
+Ok, I think that the scans are a good idea, but we are missing something to make them work. Let's analyze this
+
+=== 2114 11-02 21:59
+Explain this: distillation from our fine-tuned VMamba-S. Standard practice.? (1)
+(2)
+(3)
+(4)
+(5)
+(6)
+
+=== 2125 11-02 21:59
+Explain this: distillation from our fine-tuned VMamba-S. Standard practice.?
+
+=== 2434 11-02 22:20
+Wait, explain what is A20 and A16
+
+=== 2446 11-02 22:21
+Is there anything to learn from A16 now?
+
+=== 2735 11-03 10:30
+Podsumuj wyniki, jakie udało nam się uzyskać w temacie skanów.
+
+=== 2744 11-03 10:30
+Od wczoraj wieczora
+
+=== 2949 11-03 14:29
+Ok, please tell me, are we close to actually something meaningful in terms of the impact of spectral analysis?
+
+=== 2961 11-03 14:31
+Make it, please, the main remaining experiment.
+
+=== 2986 11-03 15:37
+Please help me understand what have we learned from the experiments done after the WACV submission. I need to gather my thoughts, because we've had great results for WACV, but after studies from the prior week we seem to have completely changed our view on the significance of our findings. Maybe the change of the direction was not needed, and the system as a whole is viable? Help me understand, speak plainly, explain what each A*-XX means (do not operate just on acronyms you've come up with during the work).
+
+=== 2998 11-03 15:42
+The question is this: Can we fairly beat the benchmarks with MADMamba, not worrying about GANs (ditching the routing strategy).
+
+=== 3064 11-03 16:06
+Podsumuj mi co robiliśmy z hiperparametrami MadMAMBa
+
+=== 3065 11-03 16:06
+Podaj rozbicie dla Madmamby trenowanej od scratch i dotrenowywanej na rodzinach MAD22, w tym gan
+
+=== 3087 11-03 16:08
+Czyli on average Mambavision jest najlepsza?
+
+=== 3099 11-03 16:09
+A jakby porównywać je niepretrenowane?
+
+=== 3120 11-03 16:11
+VALX-A wytłumacz co to jest dokładnie
+
+=== 3148 11-03 16:12
+A czy MADMamba jest lepsza od niepretrenowanej VMAMBY czy VisionMamby
+
+=== 3176 11-03 16:15
+Kiedy będą wynik eksperymentów na HAAR-DCT?
+
+=== 3188 11-03 16:17
+Jak możemy przyspieszyć te wyniki? Może jakieś krótsze testy, aby mieć cokolwiek na potwierdzenie tezy, że DCT pomaga?
+
+=== 3217 11-03 16:18
+Podsumuj jak nasz protokół generowania danych polepsza wyniki metod S-MAD
+
+=== 3229 11-03 16:21
+Nasz protokół nie zakładał generatorów GANowych. Co, jeśli odtworzylibyśmy metody z benchmarków (StyleGAN, MIPGAN-I, MIPGAN-II) i dodalibyśmy to do uczenia naszych metod?
+
+=== 3274 11-03 16:25
+Pokaż jak wyglądają zdjęcia z Webmorph, AMSL, OpenCV (kilka przykładów do wyświetlenia)
+
+=== 3304 11-03 16:26
+Otwórz to na macos
+
+=== 3323 11-03 16:30
+Wytłumacz A25
+
+=== 3333 11-03 16:33
+Czym jest MADMamba bez strumienia? Czy to arch tak asama jak VMamba, Mamba?
+
+=== 3345 11-03 16:35
+Weźmy VMambę i MambaVision (najlepsze Mamby, jakie znamy), dodajmy DCT/HAAR i zobaczmy, czy mamy gainy
+
+=== 3366 11-03 16:36
+Zobaczmy, co jest w kolejce i może to zoptyamlizujmy pls
+
+=== 3447 11-03 16:48
+Plan na teraz:
+1. Sprawdzić, czy możemy wykazać, że DCT/HAAR faktycznie pomaga w zadaniu S-MAD na benchmarkach; Robimy to na MADMambie, ale i VMambie i MambaVision.
+2. Jeśli okaże się, że (1) ma sens, robimy eksperymenty jak wzmocnić architekturę MADMamby, aby radziła sobie lepszej od konwolucji/CLIP-based metod.
+
+Równolegle:
+1. Do naszego protokołu dodajemy generatory odtwarzająceo MIPGAN-I i MIPGAN-II oraz StyleGAN.
+2. Porównujemy, jak wpływa ten protokół na uczenie modeli od zera do benchmarków (albo z pre-treningu, ale zgodnie z metodlogią benchmarków)
+3. Proponujemy jeszcze metody spoza benchmarków do protokołu (do generowania morfów tradycyjnych, dyfuzyjnych, GAN) aby zapewnić, że nie przeuczamy modeli, tylko się generalizują.
+
+=== 3493 11-03 16:51
+Tak, zgadzam się na generowanie na klastrze
+
+=== 3540 11-03 16:55
+Tak, buduj. Co możemy zrobić, aby wyniki dostać jak najszybciej? Rozłożyć obliczenia?
+
+=== 3561 11-03 16:57
+Rób to proszę
+
+=== 3573 11-03 16:59
+Przesuń co się da z DGX Sparka na klaster
+
+=== 3786 11-03 18:23
+Odpowiedz mi, jakie sa wnioski z A21-S i czy warto próbować ładować w to więcej mocy.
+
+=== 3796 11-03 18:24
+Okej, ale co z GANami? Czy skan moze pomoc nam wykrywac GANy, dyfuzje?
+
+=== 3808 11-03 18:27
+Poproszę
+
+=== 3821 11-03 18:27
+Podsumuj mi jeszcze, jakie eksperymenty aktualnie trwają, może coś jest do ucięcia.
+
+=== 3850 11-03 18:28
+A22 to jest co? 
+
+=== 3857 11-03 18:28
+Najpierw wypisz mi listę, potem zadawaj pytania
+
+=== 3896 11-03 18:32
+Zbiory GAN na czym generujesz? Rozumiem, że planujesz już generowanie na WCSS?
+
+=== 3908 11-03 18:34
+Zatrzymaj powtórkę na Sparku. Rób na Sparku tylko Smoke testy i pchaj działający kod na WCSS, musimy mieć wyniki jak najszybciej.
+
+=== 4059 11-03 18:48
+Odpowiedz najpierw.
+
+=== 4069 11-03 18:48
+Nie widze Twoich odpowiedzi jak wysylasz pytania (przez API)
+
+=== 4081 11-03 18:49
+Tak, na razie musimy wiedziec, czy cokolwiek poprawiamy dzieki HAAR/DCT na GANach, jak bedziemy mieli te informacje bedziemy walczyc o generalizacje.
+
+=== 4277 11-03 19:33
+To są nasze pytania na teraz. Im szybciej je konkretnie zaadresujemy, tym lepiej (niżej patrz).
+
+Co do decyzji, sprawdźmy osobno, co da się zrobić z obróbką i bez. Zakładam, że w przypadku GAN obróbka szczególnie wpłynie na możliwość detekcji ataku – ale to jest hipoteza wymagająca weryfikacji.
+
+--
+
+Plan na teraz:
+1. Sprawdzić, czy możemy wykazać, że DCT/HAAR faktycznie pomaga w zadaniu S-MAD na benchmarkach; Robimy to na MADMambie, ale i VMambie i MambaVision.
+2. Jeśli okaże się, że (1) ma sens, robimy eksperymenty jak wzmocnić architekturę MADMamby, aby radziła sobie lepszej od konwolucji/CLIP-based metod.
+
+Równolegle:
+1. Do naszego protokołu dodajemy generatory odtwarzająceo MIPGAN-I i MIPGAN-II oraz StyleGAN.
+2. Porównujemy, jak wpływa ten protokół na uczenie modeli od zera do benchmarków (albo z pre-treningu, ale zgodnie z metodlogią benchmarków)
+3. Proponujemy jeszcze metody spoza benchmarków do protokołu (do generowania morfów tradycyjnych, dyfuzyjnych, GAN) aby zapewnić, że nie przeuczamy modeli, tylko się generalizują.
+
+=== 4310 11-03 19:36
+Z czego wynika "jutro w dzień"? Czy możesz rozłożyć obliczenia na workerów?
+
+=== 4331 11-03 19:44
+Co robią 22 runy A22?
+
+=== 4361 11-03 19:45
+Ale po co 6 runów na wariant?
+
+=== 4371 11-03 19:45
+Dobra, kontynuuj. Zdejmij limit 4 jobów na generowanie GAN
+
+=== 4598 11-04 18:29
+Przygotuj mi proszę odpowiedzi na wczorajsze pytania. Czy w końcu HAAR/DCT pomaga, czy nie?
+
+=== 4610 11-04 18:35
+Uruchamiaj:
+
+Równolegle:
+
+
+Do naszego protokołu dodajemy generatory odtwarzająceo MIPGAN-I i MIPGAN-II oraz StyleGAN.
+Porównujemy, jak wpływa ten protokół na uczenie modeli od zera do benchmarków (albo z pre-treningu, ale zgodnie z metodlogią benchmarków)
+Proponujemy jeszcze metody spoza benchmarków do protokołu (do generowania morfów tradycyjnych, dyfuzyjnych, GAN) aby zapewnić, że nie przeuczamy modeli, tylko się generalizują. 
+
+=== 4634 11-04 18:36
+Przygotuj wyniki do porównania, jakie MADMamba z filtrami miała vs MambaVision i VMamba i CNNY (tabelka)
+
+=== 4694 11-04 18:41
+Czyli, reasumując, MadMamba nie jest w niczym lepsza.
+
+=== 4706 11-04 18:42
+A co, gdybyśmy skupili się na morphach dyfuzyjnych? Jaki jest teraz SOTA wynik?
+
+=== 4760 11-04 18:46
+Zróbmy to proszę. Jeśli jesteśmy wykazać, że opublikowane metody mają błąd metodologiczny, a jednocześnie zaproponować metodę, która działa, to byłoby idealne rozwiązanie.
+
+=== 4779 11-04 18:53
+Pytanie, na jakich architekturach planujemy to sprawdzić?
+
+=== 4791 11-04 18:55
+Patrząc na wyniki MADMamby, raczej będziemy musieli ją zarzucić. Skupmy się w tym momencie na ustaleniu, czy skrót wpływał na wyniki innych modeli na dyfuzyjnych/ganowych benchmarkach, a jeśli tak – zaproponujmy metodę, która faktycznei jest najlepsza na tych benchmarkach. Gdyb była też dobra na klasycznych morphach, no to byłoby idealnie.
+
+=== 4810 11-04 19:08
+Od razu po odpowiedzi agentów zaplanuj i wykonuj obliczenia, akceptuję. Upewnij się, że wyniki otrzymamy możliwie szybko, rozkładając obliczenia na maszyny tam, gdzie jest to możliwe.
+
+=== 4964 11-05 18:52
+Czy dobrze rozumiem, ze stwierdzilismy takze, ze morfy GANowe sa wykrywane przez ustawienie oczu, ktore zawsze jest to samo dla GANowych zdjec z uwagi na normalizacje twarzy?
+
+=== 4973 11-08 12:26
+We have done some work in Claude Code. Load the entire session from that point and then summarize our progress.
+
+=== 5058 11-08 12:31
+Gather the state of the experiments that were running on the cluster and may not be finished yet.
+
+=== 5096 11-08 12:36
+From me and Kami's standpoint, we can try to position our paper on CVPR with three key contributions:
+
+1. Training data pipeline – faithful morph generation, większa różnorodność tożsamości i spójny alignment. Wyraźnie poprawia wykrywanie landmark morphs, ale niekoniecznie GAN i diffusion.
+2. Cross-architecture evaluation – pokazujemy, jak nasz protokół treningowy wpływa na różne detektory. Poprawia 4 z 5 metod na dyfuzji, choć wyniki nadal są słabe (42–45% EER). Nie wiadomo jeszcze, ile zysku dają same generowane morfy.
+3. Resolution shortcuts – pokazujemy, że część detektorów wykorzystuje artefakty rozdzielczości zamiast rzeczywistych cech morphingu, co może zawyżać wyniki na benchmarkach GAN/diffusion.
+
+A jako teza: dane treningowe, ich preprocessing i protokół ewaluacji mają kluczowe znaczenie dla generalizacji detektorów morohow 
+
+Help me plan, how to address each of these.
+
+=== 5106 11-08 12:39
+Zaplanuj proszę obliczenia, aby zweryfikować te wszystkie hipotezy i zamknąć eksperymenty.
+
+=== 5143 11-08 12:42
+Dziękuję. Czy mógłbyś przygotować krótki HTML z tym planem dla Kamila, a następnie wykonać plan?
+
+=== 5249 11-08 12:44
+Podaj link, jestem na zdalnym komputerze
+
+=== 5291 11-08 12:53
+continue
+
+=== 5299 11-08 12:53
+continue
+
+=== 5901 11-08 13:14
+Co zostało uruchomione?
+
+=== 5911 11-08 13:14
+test?
+
+=== 5918 11-08 13:20
+Kontynuuj proszę
+
+=== 6263 11-08 13:29
+Skąd częściowa implementacja FD-MAD?
+
+=== 6294 11-08 13:30
+Przygotuj komendę, aby skopiować ZIPa z MAD22 z Maka na DGXa do weryfikacji, czy ta kopia będzie zgodna z tym, co deklarują autorzy w publikacjach. 
+
+=== 6304 11-08 13:36
+zip składa się z dwóch plików
+
+=== 6314 11-08 13:45
+Kopiuję pliki. Co w temacie niezależnego przeglądu wyników?
+
+=== 6324 11-08 13:45
+Wykonaj ten przegląd w ramach subagenta.
+
+=== 6341 11-08 13:47
+Oba pliki zostały skopiowane.
+
+=== 6402 11-08 13:52
+O co chodzi dokładnie z A45? Co tam się stało?
+
+=== 6412 11-08 13:53
+Wszędzie tam, gdzie mamy "niepełny MAD22" zapamiętajmy to, a na potrzeby dalszych prac – na razie przyjmujmy to jako najlepsze potwierdzone wyniki. Napisałem do autora MAD22, czekam na informację, czy może udostępnić brakujące dane.
+
+=== 6452 11-08 13:55
+Jakie dalsze eksperymenty mamy zaplanowane? Co czeka?
+
+=== 6462 11-08 13:55
+Co jest uruchomione?
+
+=== 6507 11-08 13:56
+Czy masz agenta, który w tle będzie śledził przyjście wyników i po jego powiadomieniu wykonasz dalsze czynności? Odpal go na GPT Sol.
+
+=== 6547 11-08 13:59
+Mając gotowy przegląd SOTA 2026 w detekcji deepfakes, FAS i ataków generatywnych, w tym EXECUTIVE_SUMMARY, oraz przegląd SOTA architektur NN, czy możesz zaproponować, jaką architekturę powinniśmy jeszcze sprawdzić jako adresującą bolączki, które wykazujemy?
+
+=== 6588 11-08 14:00
+Chodzi o repo https://github.com/narolski/research/blob/claude/biometric-sota-2026-litreview/EXECUTIVE_SUMMARY.md
+
+=== 6676 11-08 14:09
+Ok, zaplanuj eksperymenty z DINOv3. Po przygotowaniu planu wykonaj subagenta na Sol, który będzie watchował obliczenia i wróci z wynikami do analizy.
+
+=== 6708 11-08 14:09
+Co z wynikami A47? Subagent wrócił?
+
+=== 6849 11-08 14:13
+Znieś limit do 4 jobów na koncie na WCSS. Możesz uruchamiać tyle jobów na raz, na ile pozwala WCSS.
+
+=== 6881 11-08 14:14
+Zaplanuj subagentów na Sol, którzy będą wykonywać dalsze eksperymenty po A47 i raportowali wyniki.
+
+=== 6990 11-08 14:19
+W przypadku przyjścia wyników, automatycznie proponuj kolejne prace i je wykonuj, abyśmy nie musieli czekać w razie, gdybym był niedostępny.
+
+=== 7009 11-08 14:20
+Dostałem maila:
+
+Hi Pawel,
+
+I just checked, all files are online. It has to be a problem on your side. I assume the download failed due to the size. Usually google downloads it in two separate .zip files which have to be extracted and combined manually.
+
+Best,
+Marco 
+
+Czy na pewno dobrze odpakowujemy ZIPy? Zobacz, ze pliki sa w dwoch roznych zipach
+
+=== 7073 11-08 14:22
+Przygotuj listę plików, których nie ma wg nas na drive
+
+=== 7135 11-08 14:23
+Daj mi komendę do skopiwoania jej z mojego maca z dgx
+
+=== 7145 11-08 14:24
+Te pliki faktycznie odnajdywane są w Google Drive. Czy możesz je pobrać ręcznie, korzystając z mojego połączenia z Google Drive?
+
+=== 7213 11-08 14:25
+https://drive.google.com/drive/folders/1w6E9059Ro_ajvw8DjaNMvETiFSXfmSAp
+
+=== 7256 11-08 14:26
+jak robie search w Google Drive to odnajduje np. MAD22/original_sorted/BonaFide/004_08.jpg
+
+
+=== 7286 11-08 14:28
+From where are you getting these missing files?
+
+=== 7296 11-08 14:30
+FIQA-as-MAD?
+
+=== 7315 11-08 14:32
+We now have access to DinoV3 via HuggingFace
+
+=== 7413 11-08 14:39
+done
+
+=== 7440 11-08 14:46
+Czyli FRLL-morphs jest niekompletny też?
+
+=== 7450 11-08 14:46
+Dlaczego nie przetworzył ich? Błąd?
+
+=== 7573 11-08 14:57
+Jak szybko zbierzemy potrzebne nam wyniki?
+
+=== 7623 11-08 15:00
+Rozumiem, ze jak tylko skonczysz wyliczenia, uruchomisz te eksperymenty, tak?
+
+=== 7643 11-08 15:15
+Ile mamy jeszcze godzin na h100?
+
+=== 7750 11-08 21:29
+Jakie nowe wnioski mamy?
+
+=== 7760 11-08 21:30
+Kiedy dostaniemy wyniki A50 i A49?
+
+=== 7812 11-08 21:31
+Co zostało nam do zrobienia po tych wynikach?
+
+=== 7822 11-08 21:32
+Czy warto porównać jeszcze skuteczność MADMamby/VMamby/MambyVision dla treningu odpornego na skróty?
+
+=== 7843 11-08 21:33
+Poproszę; Uwzględnijmy też ResNet, ConvNext i te sieci, które badaliśmy wcześniej (ViTy)?
+
+=== 7862 11-08 21:35
+Podsumuj wyniki, które uzyskaliśmy z A50
+
+=== 7896 11-08 21:37
+Dlaczego tak się stało? Czego nam brakuje?
+
+=== 7932 11-08 21:42
+Wracając jeszcze do A50, jakie metody są wykorzystywane w detekcji deepfakes, GANów, czy obrazów wygenerowanych przez dyfuzję, aby zaadresować problem? Co wynika z naszego researchu SOTY? Czy możemy to uzupełnić o dodatkowy research subagenta Sol?
+
+=== 7956 11-08 21:43
+Wymiana danych treningowych, a dlaczego nie rozszerzenie zbiorów danych treningowych?
+
+=== 7966 11-08 21:44
+A czy rozszerzamy te zbiory o wygenerowane przez nas morfy ganowe i morfy dyfuzyjne?
+
+=== 7976 11-08 21:44
+Też tak bym zrobił. Zastanówmy się, czy nasza lista modeli jest reprezentatywna, czy chcielibyśmy coś w niej zmienić?
+
+=== 7986 11-08 21:45
+Tak, z mojej strony zgoda na te cztery warianty.
+
+=== 8030 11-08 21:48
+To co teraz robimy?
+
+=== 8040 11-08 21:50
+To, jak generujemy nasze morfy, jest próbą wiernego odzwierciedlenia generatorów użytych do stworzenia MAD22, ale niekoniecznie musi produkować dane na tyle różnorodne, aby zapewnić generalizację detekcji "klasycznych" morfów i morfów gan/dyfuzyjnych. Zastanawiam się jeszcze, czy warto na potrzeby tej pracy pochylić się i nad tym problemem.
+
+=== 8050 11-08 21:53
+Jeśli mamy na to przestrzeń obliczeniową, pójdźmy w te dwa warianty – wąski i zróżnicowany. Gdyby dało to obiecujące wyniki, pójdziemy dalej, jeśli nie, zostaniemy przy obecnym pomyśle i to będzie do naszych future directions.
+
+=== 8079 11-08 21:54
+Dlaczego nie mamy tej puli jeszcze?
+
+=== 8089 11-08 21:54
+Tak zróbmy. Czy GANowych nam wystarczy, czy musimy też je dogenerować?
+
+=== 8106 11-08 21:56
+Okej, te eksperymenty ze zwiększeniem różnorodności datasetu zaplanujmy na sam koniec wszystkich pozostałych. Teraz priorytet to jak najszybsze odpalenie tych zaplanowanych, czyli też jak najszybsze dogenerowanie danych.
+
+=== 8125 11-08 21:57
+A co z wariantem bez "C", czyli bez zwiększania zbiorów?
+
+=== 8135 11-08 21:57
+Nice, tak zróbmy! Potrzebujemy 5 seedów?
+
+=== 8145 11-08 21:58
+Jak dorobimy dwa seedy później, coś się stanie?
+
+=== 8155 11-08 21:58
+To jak lepiej to obliczyć na klastrze – od razu 5, czy najpierw 3, pierwsze wnioski, potem kolejne dwa (w sumie 5), weryfikacja wniosków?
+
+=== 8165 11-08 21:59
+Tak róbmy. Dla prostoty po prostu odpal dla pięciu od razu.
+
+=== 8189 11-08 22:01
+Kamil jeszcze zapytał (zanim dostaliśmy nowe wyniki dziś od popołudnia):
+
+Ok, tu z tego co widze to ta rozdzielczość jest najmocniejszym punktem. Sa tez niezłe kroki w dyfuzji? Widze tez ciekawe, ze wykrywa nie morph tylko detekcję gana vs real image. Byłoby to dobre. I jeszcze jakieś artefakt kadrowania. Czy to się zgadza? 
+
+Pomóż mi przygotować odpowiedź, ale też zrobić podsumowanie, co udało się dziś zrobić do teraz i co jeszcze robimy teraz.
+
+=== 8237 11-08 22:08
+Czy jest sens je robić?
+
+=== 8247 11-08 22:08
+Ok, tak zróbmy.
+
+=== 8264 11-08 22:10
+A co do jeszcze ograniczania przeuczania się – jakie w eksperymentach przebadamy jeszcze teraz rozwiązania?
+
+=== 8291 11-08 22:12
+Wyjaśnij "osobna drabina frozen → ograniczona adaptacja → GenD jest rekomendacją z researchu, jeszcze nie zatwierdzonym eksperymentem."
+
+=== 8301 11-08 22:14
+Tak, na pewno musimy zrobić te 120 eksperymentów. Pytanie tylko, co po nich, bo może się okazać, że same dane są niewystarczające.
+
+=== 8328 11-08 22:24
+Okej, upewnij się proszę, że te eksperymenty zostaną wykonane. Kiedy zakończą się wszystkie z powodzeniem, a analiza zostanie dokonana, a będzie przed 9:00 – zaplanuj, jak optymalnie wykonać eksperymenty z listy 1-4.
+
+=== 8347 11-08 22:24
+Uruchom niezależnego subagenta-supervisora, który będzie co 0.5h sprawdzał postępy w pracach.
+
+=== 8361 11-08 22:25
+Supervisor ma za zadanie zgłosić głównemu agentowi, jeśli zobaczy, że coś jest nie tak (np. eksperymenty failują)
+
+=== 8380 11-08 22:26
+Ok. No to działaj!
+
+=== 8464 11-08 22:38
+Jeszcze sprawdź proszę, czy korzystamy z TMPDIR zgodnie z instrukcją WCSS: https://man.e-science.pl/pl/kdm/tymczasowa-przestrzen-dyskowa-tmp
+
+=== 8473 11-08 22:39
+I Lustre: https://man.e-science.pl/en/kdm/lustre
+
+=== 8497 11-08 22:39
+System plików Lustre
+System plików Lustre jest współdzielonym systemem plików, który umożliwia na szybki transfer danych pomiędzy zasobami dyskowymi dla bardzo dużej liczby klientów (np. węzłów obliczeniowych) jednocześnie.
+Na superkomputerze, na systemie plików Lustre bazują następujące zasoby dyskowe:
+Tymczasowa przestrzeń dyskowa na obliczenia - tymczasowa przestrzeń na dane, które są na bieżąco wykorzystywane podczas obliczeń;
+Przestrzeń dyskowa w ramach Usługi "Przetwórz na superkomputerze" - przestrzeń na długoterminowe składowanie danych w ramach danej usługi.
+Nieodpowiednie używanie systemu plików Lustre może doprowadzić do niepotrzebnie dużego obciążenia lub w skrajnych przypadkach do awarii tego podsystemu. Użytkownicy superkomputera powinni zapoznać się ze zbiorem najlepszych praktyk dotyczących systemu plików Lustre znajdujących się poniżej.
+Podstawy działania systemu plików Lustre
+System plików Lustre jest zbudowany za pomocą następujących komponentów:
+serwer metadanych (ang. Metadata Server, MDS) - odpowiedzialny za zarządzanie i-węzłami.
+magazyn metadanych (ang. Metadata Target, MDT) - zasób dyskowy dedykowany na przechowywanie wyłącznie i-węzły wraz z metadanymi obiektów;
+serwer obiektów (ang. Object Storage Server, OSS) - odpowiedzialny za zarządzanie danymi obiektów;
+magazyn obiektów (ang. Object Storage Target, OST) - zasób dyskowy przechowywujący wyłącznie dane obietków;
+klient systemu plików (ang. Client File System, CFS) - odczyt i modyfikacje metadanych oraz danych z obiektu.
+Kiedy program chce dostać się do danych składowanych na Lustre, odpytuje najpierw serwer MDS o położenie pliku. Mając te informacje może zwrócić się bezpośrednio do serwera lub serwerów OSS, które pozwalają na odczyt lub zapis danych.
+Zasady korzystania z zasobów dyskowych bazujących na Lustre
+Nie należy nadużywać polecenia ls -l. Aby wyświetlić output polecenia ls -l, klient dla każdego wylistowanego pliku wysyła żądanie zarówno do serwera MDS jak i do serwera(ów) OSS. Nie należy używać również ls z kolorowaniem składni. Aby wylistować zawartość katalogu powinno się uruchomić ls bez dodatkowych argumentów, ewentualnie programy find lub lfs (z opcją find).
+Należy ograniczyć liczbę plików w katalogach. Operacja otwarcia pliku zakłada blokadę na katalog nadrzędny. Aby zmniejszyć negatywny efekt przy otwieraniu wielu plików powinno się utworzyć strukturę podkatalogów i rozmieścić w niej pliki.
+Nie powinno się korzystać z małych plików na Lustre. Ten file system nie jest przystosowany do obsługi takich plików. Jeśli tylko można należy połączyć małe pliki w jeden większy lub korzystać z nich tylko na swoim katalogu /home .
+Jeśli to tylko możliwe należy używać dużych, sekwencyjnych odczytów/zapisów. Jako, że file system Lustre stara się odczytywać/zapisywać dane 1 megabajtowymi blokami, takie działanie pozwali na uzyskanie najlepszej wydajności.
+Jeśli to możliwe należy otwierać pliki w trybie read-only. Jeśli program nie będzie zapisywał do pliku, przy jego 
+
+=== 8511 11-08 22:40
+Na skróty
+W zadaniach SLURM używaj zmiennej $TMPDIR do przekazywania ścieżki do katalogu na pliki tymczasowe dla programów obliczeniowych, na przykład:
+export SCRATCH=$TMPDIR
+export GAUSS_SCRDIR=$TMPDIR
+Katalogi $TMPDIR są dostępne jedynie z poziomu zadań SLURM
+Tymczasowa przestrzeń dyskowa na obliczenia (TMPDIR)
+Na potrzeby prowadzonych obliczeń dostępna jest tymczasowa przestrzeń dyskowa służąca do przechowywania plików, z których aktywnie korzystają programy użytkowników. Do każdego zadania obliczeniowego przypisany jest conajmniej jeden katalog na pliki tymczasowe, który posiada swoją unikalną ścieżkę przechowywaną w zmiennej TMPDIR_XXX, gdzie XXX zależy od rodzaju tymczasowej przestrzeni dyskowej (XXX = LUSTRE, LOCAL lub SHM).
+Użytkownik ma prawo dostępu jedynie do katalogów swoich zadań.
+Aktualna lista partycji i ich TMPDIR
+Aktualna lista tymczasowych przestrzeni dla każdej z partycji SLURM, wraz z oznaczeniem domyślnych rodzajów tymczasowych przestrzeni dyskowych, znajduje się w Tabelach w kolumnach "Dostępne TMPDIR".
+Przechowywanie katalogów TMPDIR
+Katalog TMPDIR jest domyślnie przechowywany przez kolejne 14 dni po zakończeniu zadania - wyjątkiem jest Usunięcie TMPDIR po zakończeniu zadania na żądanie. Zachowane katalogi TMPDIR znajdują się pod ścieżką /lustre/tmp/slurm/finished_jobs/${SLURM_JOB_ID}, gdzie ${SLURM_JOB_ID} to numer zakończonego zadania.
+Więcej informacji znajduje się w sekcjach Odzyskiwanie zawartości TMPDIR po zakończeniu zadania oraz Usuwanie TMPDIR po zakończeniu zadania na żądanie.
+Kopie zapasowe katalogów w przestrzeni tymczasowej nie są wykonywane
+Nie ma możliwości odzyskania utraconych danych z katalogów TMPDIR_XXX. Zawartość katalogów TMPDIR_XXX nie jest w żaden sposób zabezpieczana przez WCSS i może zostać w każdej chwili skasowana lub utracona bez ostrzeżenia. Użytkownicy powinni zabezpieczać ważne wyniki we własnym zakresie.
+Rodzaje TMPDIR
+Dostępność na partycjach
+bem2-cpu-short, bem2-cpu-normal, bem2-cpu-interactive
+lem-cpu-short, lem-cpu-normal, lem-cpu-interactive
+lem-gpu-short, lem-gpu-normal, lem-gpu-interactive
+
+Charakterystyka
+Ścieżka TMPDIR_XXX: TMPDIR_LUSTRE=/lustre/tmp/slurm/${SLURM_JOB_ID}
+Opcja SRUN/SBATCH: --gres=storage:lustre:1
+Współdzielenie: wiele węzłów
+Maksymalna pojemność systemu: 360T
+
+Quota i ograniczenia pojemności
+Quota w zadaniach SLURM: brak ograniczeń
+
+Opis i przeznaczenie
+Współdzielony system plików jednocześnie dostępny na wszystkich serwerach obliczeniowych z danej partycji.
+Służy przede wszystkim wielowęzłowym zadaniom obliczeniowym, w których różne węzły operują na tym samym zestawie plików.
+Dostęp do TMPDIR_LUSTRE
+Katalogi tymczasowej przestrzeni dyskowej /lustre/tmp/slurm/$SLURM_JOB_ID są dostępne jedynie z poziomu zadań SLURM i nie są od razu widoczne po zalogowaniu na serwer ui.wcss.pl.
+Aby przejrzeć pliki pod TMPDIR należy najpierw uruchomić sesję interaktywną za pomocą komendy sub-interactive-lem-cpu.
+Zasady korzystania z Lustre TMP
+W przypadku korzystania z systemu plików L
+
+=== 8528 11-08 22:40
+Dzięki! Działaj proszę. Dziękuję za Twoją pomoc.
+
+=== 8704 11-09 09:16
+Zaczekaj proszę, co nam wyszło z nocnych eksperymentów?
+
+=== 8714 11-09 09:17
+Mówiłem Ci, abyś startował!
+
+=== 8720 11-09 09:17
+Zatwierdzam, uruchamiaj je proszę jak najszybciej.
+
+=== 8738 11-09 09:18
+Nie musisz czekać na moją zgodę na uruchomienie obliczeń także w przyszłości. Jeśli metodologicznie wszystko się zgadza, i potwierdzili to delegowani subagenci, działaj zawsze. Mamy mało czasu.
+
+=== 8755 11-09 09:19
+Kamil napisał:
+
+Ok, to jest dobry plan, tylko jak w kontekście submisji zastanawiam sie a) czy w tej formie (problemy z shortcutami) jest to wykonalne b) czy ten data training pipeline miałby być jakaś częścią pracy czy osobno. 
+
+Jak chcielibyśmy się do tego odnieść?
+
+=== 8762 11-09 09:20
+Wczoraj na jego pytanie, które Ci podrzucałem, odpisałem: Tak, z rozdzielczością stoimy dość mocno; Nad dyfuzją pracuję (aby udało się faktycznie coś wykrywać, a nie tylko uczyć się skrótów); W GANach udało się stwierdzić, że są metody, które uczą się sygnału, który nie jest związany z cechami danych benchmarkowych, sprawdzam, co można na tym jeszcze ugrać; To kadrowanie to błąd preprocessingu benchmarkowego. (edited) 
+[10:09 PM]Teraz przygotowuję porównanie ConvNeXt-T, VMamba-T, DeiT-S i DINOv3-L/16 dla  sześciu wariantach danych:
+SMDD (MAD22 bez zmian) → + nasze prawdziwe zdjęcia → + klasyczne morfy → dodatkowo GAN / dyfuzja / GAN i dyfuzja.  i powyższe to jego odpowiedź
+
+=== 8782 11-09 09:34
+Okej. Teraz musimy wymyslic, jak wykazac, ze mozemy realnie zapobiec przeuczaniu, algorytmicznie. Przygotuj plan eksperymentów. Dorób niezbędny research na bazie A*, np. NeurIPS.
+
+=== 8855 11-09 09:53
+Przygotuj proszę te eksperymenty i zaplanuj ich wykonanie na WCSS
+
+=== 8864 11-09 09:53
+Jak jeszcze Ty proponowałbyś rozwiązać ten problem?
+
+=== 8874 11-09 09:57
+Dobrze, przygotuj proszę implementację eksperymentów i planuj uruchomienie na WCSS (scheduluj joby przez subagenta).
+
+=== 9163 11-09 11:37
+Dostałem maila od Marco:
+
+Hi Pawel,
+
+soo, I think I now better understand what happend. I am really sorry. It appears that Google run some update in April and some algorithm flagged and removed access to some of the files randomly, but only to certain people. 
+
+Anyway, I was not able to give access again, but I uploaded the complete files here:
+
+https://owncloud.fraunhofer.de/s/uC55G5EiXDnGYA9
+
+The password is: ijcb22comp
+
+
+Sorry for taking so long.
+
+Best,
+Marco 
+
+Pobierzesz proszę ten poprawny dataset?
+
+=== 9180 11-09 11:38
+Po pobraniu tych plików zleć proszę przeliczenie wszystkich potrzebnych nam wyników.
+
+=== 9272 11-09 11:52
+Czyli pobrany MAD22 jest kompletny?
+
+=== 9470 11-09 12:55
+Jakie postępy obliczeń na WCSS?
+
+=== 9518 11-09 13:00
+Może odpalić na GPU Sparka?
+
+=== 9701 11-09 13:55
+Jeśli się nie uda – dropnijmy VMambę. Ważne, żeby MambaVision się policzyła.
+
+=== 9712 11-09 13:55
+Jak eksperymenty pozostałe?
+
+=== 9859 11-09 17:13
+Co z pozostałymi eksperymentami? Kiedy będziemy mieli wyniki?
+
+=== 9883 11-09 17:45
+A co z kolejnymi treningami? Już się wykonują?
+
+=== 9893 11-09 17:46
+Okej, czy możemy jakoś nadać im większy priorytet?
+
+=== 9933 11-09 18:04
+Przygotuj podsumowanie, co udało się już zrobić, jakie eksperymenty czekają i jakie wnioski możemy wyciągnąć.
+
+=== 9943 11-09 18:13
+Wyjaśnij, czego potrzebujesz dokładnie dla FD-MAD?
+
+=== 9961 11-10 08:42
+Jaki mamy stan ekspeymrntów dziś?
+
+=== 10018 11-10 08:56
+Dlaczego żaden subagent nie puścił dalszych eksperymentów, skoro kolejka była pusta?
+
+=== 10069 11-10 09:10
+Zapewnij mechanizm, który upewni się, że wszystkie eksperymenty zostaną wykonane.
+
+=== 10086 11-10 09:11
+Dziękuję. Rozumiem, że w trakcie są eksperymenty ABC, a co z eksperymentami niewelującymi skróty?
+
+=== 10113 11-10 09:12
+Czy te eksperymenty zostały już w takim razie zaplanowane na WCSS do wykonania?
+
+=== 10123 11-10 09:12
+Co się dzieje z A139?
+
+=== 10140 11-10 09:13
+NIEZWŁOCZNIE po naprawie zakolejkuj A139. Czy możesz już zakolejkować A138?
+
+=== 10705 11-10 10:49
+Jakie postępy?
+
+=== 11215 11-10 12:41
+Jakie postępy?
+
+=== 11246 11-10 12:43
+Co się dzieje z tą diagnostyką? To już się robi podejrzane, że te joby się wykrzaczają.
+
+=== 11321 11-10 12:48
+Musimy teraz przyspieszyć: mamy mało czasu do zakończenia submission, brak konkretnych wyników. Co możemy jeszcze zrobić? Proponuję, abyś testy kompilacji pod x86 robił na klastrze, ale requestując tylko zasoby CPU.
+
+=== 11364 11-10 12:52
+Twardy deadline na zakończenie obliczeń z tej serii proponuję na koniec 11.11, z naciskiem na to, abyśmy na rano 11.11 mieli gotowe wszystko, co się da, łącznei z wnioskami
+
+=== 11464 11-10 13:00
+Wyznaczam Ci teraz konkretny cel: Rozwiąż problem uczenia się pod skróty dla detektorów morfów. Zaproponuj rozwiązanie. Odpal subagenta Astra i tylu subagentów Sol/Luna, ilu tylko potrzebujesz, aby dojść do rozwiązania problemu. Musisz rozwiązać problem.
+
+=== 12502 11-10 16:59
+Jakie postępy?
+
+=== 12523 11-10 16:59
+Uruchamiaj wszystkie eksperymenty nawet, jeśli odbędą się już po wyznaczonym oknie
+
+=== 12884 11-10 17:36
+Na którym dysku? DGXa?
+
+=== 12901 11-10 17:36
+Pomóż mi zrobić na nim miejsce. Co możemy usunąć?
+
+=== 12941 11-10 17:40
+Tak, opróżnij cache z tabeli i dwa modele Qwen.
+
+=== 13009 11-10 17:42
+Usunąłem modele
+
+=== 13040 11-10 17:43
+Co teraz robisz? Jakie eksperymenty się toczą?
+
+=== 13050 11-10 17:44
+Pomóż zwolnić 12 GB na WCSS PD. Jednocześnie, przyspiesz niezależne pzeglądy i buildy!
+
+=== 13228 11-10 17:59
+How many GPUs are you currently using?
+
+=== 13251 11-10 17:59
+Yes, clean up the unnecessary copies
+
+=== 13277 11-10 18:00
+WHY ARE YOU NOT RUNNING EXPERIMENTS, DAMN. WE NEED CONCLUSIONS, FAST. WHAT THE HELL ARE YOU DOING?
+
+=== 13854 11-10 19:06
+Ok, instead of focusing on housekeeping, delegate this to a Sol subagent. NOW RESEARCH. This is our primary goal. What are the conclusions from ABC experiments
+
+=== 13984 11-10 19:12
+Prepare the plain-language explaination of the results in HTML for download.
+
+=== 14030 11-10 19:19
+Give me command to download it on mac
+
+=== 14042 11-10 19:21
+It does not have explained what are H2 and H3_orig groups, for instance, and how ABC compares to no data augmentation
+
+=== 14125 11-10 19:22
+In general, maybe prepare simply the summary of all our research for Kamil, ok?
+
+=== 14288 11-10 20:54
+Jaki postęp badań?
+
+=== 14298 11-10 20:54
+Ile teraz leci eksperymentów?
+
+=== 14322 11-10 20:54
+Jak to zero eksperymentów? Nasze nie są uruchamiane? Dlaczego?
+
+=== 14329 11-10 20:55
+Czy zmiana priotytetów nie wpłynęła negatywnie przypadkiem?
+
+=== 14348 11-10 20:55
+Dobra, kręcimy się w kółko. Oczekuję NATYCHMIAST rozwiązania problemów i uruchomienia eksperymentów.
+
+=== 14381 11-10 20:57
+Czekam na informację, kiedy zostaną uruchomione eksperymenty.
+
+=== 14391 11-10 20:58
+Chcę wiedzieć, kiedy zostaną skończone.
+
+=== 14401 11-10 21:01
+Gdzie ty w ogóle to naprawiasz
+
+=== 14411 11-10 21:02
+Dobrze, kiedy zostaną zakończone te poprawki? Cały dzień mielą się i nie rozumiem, na czym one polegają.
+
+=== 14438 11-10 21:03
+Na WCSS mamy 1 TB – wskaż, co jest do usunięcia.
+
+=== 14457 11-10 21:04
+Okej, kasuj te rzeczy, wylistuj mi te pliki, które tam są względem zajmowanego miejsca. Podziel na grupy projektów.
+
+=== 14560 11-10 21:10
+Dobrze, jakie eksperymenty są przed nami?
+
+=== 14570 11-10 21:11
+Dlaczego te eksperymenty nie są jeszcze uruchomione?
+
+=== 14607 11-10 21:13
+Usuń modele używane do generowania zdjęć (minimax, qwen, flux)
+
+=== 14662 11-10 21:14
+Uruchamiaj te czekające eksperymenty. Ile razy mam powtarzać, abyś to robił ASAP
+
+=== 14709 11-10 21:17
+No a co z eksperymentami mającymi na celu zniwelowanie skrótów?
+
+=== 14737 11-10 21:18
+Dobrze, a co z H2/H3?
+
+=== 14773 11-10 21:19
+Okej. Teraz proszę o szczegółowe podsumowanie, jakie dalsze eksperymenty zaplanowali wszyscy subagenci, aby zrealizować Twój cel: rozwiązać problem uczenia się skrótów w morphingu (S-MAD)
+
+=== 14882 11-10 21:23
+Ułóż plan badań dla wszystkich zaproponowanych eksperymentów 1-11, równolegle odpal agenta Sol, który przygotuje eksperymenty dla każdego z programów, a następnie odpali je na klastrze i zaraportuje wyniki. Wtedy, dedykowany agent Astra ma za zadanie je przeanalizować i zaraportować wnioski.
+
+=== 14961 11-10 21:30
+Adopcji liczbowej? O co ci chodzi?
+
+=== 14971 11-10 21:30
+Usuń wszystkie dane związane z generowaniem zdjęć z Lustre WCSS (inny projekt)
+
+=== 14994 11-10 21:31
+Usuń także wszystkie dane związane z demorphingiem ze Slurma
+
+=== 15088 11-10 21:33
+Co z uruchomieniem dalszych eksperymentów?
+
+=== 15141 11-10 21:37
+Ja już naprawdę przestaję rozumieć, co Ty robisz. Masz 12 eksperymentów do zaplanowania, nie dzieje się nic. Może nie korzystaj z subagentów, tylko rób to w swojej głównej pętli, bo chyba nie ogarniasz koordynacji.
+
+=== 15205 11-10 21:39
+No to zgłaszaj te zadania!
+
+=== 15414 11-10 21:44
+Proszę o naprawę!
+
+=== 15475 11-10 21:45
+Proszę o uruchomienie.
+
+=== 15581 11-10 21:48
+Tak, uruchom.
+
+=== 15764 11-10 21:53
+Co dalej
+
+=== 15864 11-10 21:57
+Okej, to mamy. Co z kolejnym eksperymentem
+
+=== 15899 11-10 22:00
+Skąd ta reguła? Bez sensu. Uruchamiaj i zbierajmy wyniki równolegle!
+
+=== 16111 11-10 22:05
+Dlaczego 164 oceny MAD22 to jeden job?
+
+=== 16121 11-10 22:06
+Okej, rozumiem. Teraz kolejne eksperymenty – planujmy joby.
+
+=== 16176 11-10 22:08
+Uruchamiaj każdy job z tabelki. Następnie przejdźmy do przygotowania (2) i (3).
+
+=== 16302 11-10 22:11
+No to po kolei, wykonuj te zadania.
+
+=== 16341 11-10 22:22
+uruchom go
+
+=== 16473 11-10 22:38
+Kontynuuj
