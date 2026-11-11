@@ -5,7 +5,7 @@ One line per idea. Newest state only; history is in git. Updated by the lead aft
 Status: `planned` → `ready` (pre-registered, command tested) → `running` → `done` → `reviewed`.
 Verdict: `yes`, `no`, `mixed`, or blank.
 
-Last update: 11 Nov 2026, 14:25 CET. Started. WCSS: 48 one-GPU slots queued (jobs 6301498, 6301499).
+Last update: 11 Nov 2026, 15:15 CET. Started. WCSS: 48 one-GPU slots queued (jobs 6301498, 6301499).
 
 ## Where we stand, in five lines
 
@@ -26,7 +26,7 @@ Last update: 11 Nov 2026, 14:25 CET. Started. WCSS: 48 one-GPU slots queued (job
 | AR4 | Do detectors still work with the face blanked, or the background blanked? | planned | | | |
 | AR5 | Photo-history control with identical borders | planned | | | |
 | AR7 | Landmark: does the signal weaken for look-alike pairs? | planned | | | after AR1 |
-| AD1 | MorDIFF: three-number test for all four released detectors | planned | | | data mostly on disk (A43) |
+| AD1 | MorDIFF: ladder for the released detectors (re-read of existing scores, post hoc) | done, in review | Morph vs one-photo reconstruction: 0.48 (ViT-B/16), 0.49 (ViT-L/14), 0.40 (SelfMAD). At the benchmark threshold 54% / 51% / 98% of history-matched genuine photos are flagged. Benchmark numbers not reproduced on the 200-morph sample, so descriptive | reads the benchmark (all three, descriptive) | MixFaceNet not scored; expression-matched twins missing |
 | AD2 | DiM and Greedy-DiM: same | planned | | | needs twin generation |
 | AD3 | Photo-history control on a second photo pool (not FRLL) | planned | | | scoring only |
 | AD4 | Can a network that never saw a morph pass the benchmarks? 4 recipes × 5 seeds, fixed checkpoint | planned | A47: yes for one recipe, once | | WCSS, submit first |
@@ -35,7 +35,7 @@ Last update: 11 Nov 2026, 14:25 CET. Started. WCSS: 48 one-GPU slots queued (job
 | AG2 | MIPGAN: does accuracy vanish when genuine photos are GAN reconstructions? | planned | | | needs x86 GPU |
 | AG3 | GAN: score against two-person mixing fraction | planned | | | with AG1 |
 | AG4 | Can a network that never saw a morph pass the GAN cells? | planned | A47: no, for the photo-history cue | | WCSS |
-| AG5 | Existing StyleGAN3 sets under the common verdict rules | planned | old result: no detector above 0.59 | | minutes |
+| AG5 | Existing StyleGAN3 sets under the ladder rules (post hoc) | done, in review | 42 of 51 networks separate morphs from camera photos; 41 of those do not separate morphs from one-person renders (best 0.61). All three releases the same. Only 48% of these morphs verify against both contributors, so this stays an absence result | reads the benchmark (absence) | needs AG1 for a causal reading |
 
 ## Method: can a detector read identity blending
 
@@ -47,6 +47,13 @@ Last update: 11 Nov 2026, 14:25 CET. Started. WCSS: 48 one-GPU slots queued (job
 | T4 | Twin-trained detector, 3 backbones × 5 seeds, held-out tool and generator | planned | | | after TwinSet |
 | T5 | Can a head recover both contributors' identities from one image? | planned | | | after T4 gate |
 | T6 | Mixing fraction regression: ramp or step? | planned | | | after T4 gate |
+
+## New method line: targets that vary inside the image
+
+| ID | Question in plain words | Status | Result | Verdict | Next |
+|---|---|---|---|---|---|
+| AF0 | Can a per-patch head on frozen features learn a mixing-fraction map, and does its mean separate real morphs from processed genuine photos without reacting to photo history? Includes a deliberately confounded training set as a stress test | running (owner assigned 15:10) | | | falsifiers in `experiments/AF0/prereg.md` |
+| ID1 | Ideation round 1: seven independent idea generators | running | | | lead consolidates, then a vetting round |
 
 ## Data extension: does more or different training data remove cue use
 
@@ -64,10 +71,10 @@ Last update: 11 Nov 2026, 14:25 CET. Started. WCSS: 48 one-GPU slots queued (job
 
 | ID | Question in plain words | Status | Result | Verdict | Next |
 |---|---|---|---|---|---|
-| C1 | Are expressions balanced between classes in each benchmark cell? | planned | | | file lists |
-| C2 | Do any persons appear in both training sets and test benchmarks? | planned | | | manifests |
-| C3 | Do colour statistics alone separate the classes? | planned | | | |
-| C4 | Does chroma subsampling alone separate the classes? | planned | only on MAD22 Webmorph so far | | |
+| C1 | Are expressions balanced between classes in each benchmark cell? | done, in review | No in 11 of 17 cells: genuine class is half smiling, morphs are neutral (DiM x6 by README, FRLL-Morphs x5 by a probe, corrected MAD22 Webmorph by file names). Expression alone gives AUC up to 0.75 | cue exists; use untested | score neutral and smiling genuine photos separately |
+| C2 | Do any persons appear in both training sets and test benchmarks? | done, in review | No FRLL image in any audited training set by path or label. SelfMAD's shipped configuration picks the checkpoint by FRLL-Morphs test error; whether the release used it is unknown | no overlap found; one selection risk | face-matching check not run |
+| C3 | Do colour statistics alone separate the classes? | done, in review | Yes on aligned crops: AUC 0.71 to 1.00 per cell (0.61 to 0.98 without the border) | cue exists; use untested | |
+| C4 | Does chroma subsampling alone separate the classes? | done, in review | Only corrected MAD22 Webmorph (AUC 1.00); elsewhere it coincides with PNG vs JPEG | cue exists in one cell | |
 
 ## Data builds
 
@@ -98,3 +105,4 @@ Last update: 11 Nov 2026, 14:25 CET. Started. WCSS: 48 one-GPU slots queued (job
 - 11 Nov: plan, evidence dossier, cue matrix, audit plan and workflow written. Repository created.
 - 11 Nov: author rulings recorded. Main contrast is now processed genuine image against morph; same-person morphs are a side study.
 - 11 Nov 14:22: transcript read; start. 48 WCSS slots submitted. Owners assigned to first-round experiments.
+- 11 Nov 15:15: first results in (AD1, AG5, C1 to C4), under independent review. Alpha-field probe AF0 pre-registered and assigned. WCSS: 108 slots queued, none started.
