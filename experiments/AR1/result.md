@@ -60,7 +60,7 @@ Rungs, in words (512 x 512 PNG, the tools' own aligned frame; tools run unchange
 - R4: two-person morph.
 - S4: spliced morph, R4 inside the hull and R2w4 outside.
 - S3: spliced twin, R3 inside the hull and R2w outside.
-- S0: seam-matched negative, the R2w face pasted onto R2w4 through the same hull.
+- S0: the R2w face pasted onto R2w4 through the same hull. With OpenCV its seam matches S4 in size but not in kind (see amendment 9). With FaceMorpher it has almost no seam: those reads are "seam not matched".
 Pools: primary FRGC + colorFERET, 536 hosts (FRGC 427, FERET 109); secondary FRLL, 102 persons.
 
 ## Gates
@@ -270,9 +270,12 @@ MixFaceNet 0.568 / 0.782; verdicts as for OpenCV.
 
 ## Amendments 7 / 7b: spliced inner-face morph (one hull per host, pixel copy only), `soft_splice.json`
 
-Seam: in the 3-pixel band on the hull boundary (about 2,322 px), the median number of pixels that differ from the
-outside image is about 1,156 for S4 and S3 with both tools; for S0 it is 1,152 (OpenCV) and 159 (FaceMorpher)
-(`splice_seam_pixels.csv`). Pasting R2w4 into itself is pixel-identical, so S0 uses the R2w face.
+Seam (corrected wording, review of the spliced reads): pixel counts do not measure the seam. Counting pixels that
+differ in the 3-pixel band only gives the inner half of the band. With OpenCV the seam has the same size in both
+classes but not the same kind. The step size matches (mean absolute step 12.25 vs 12.17 grey levels, reviewer), but S4
+carries a signed colour step of half the partner's skin tone, and one such number separates S4 from S0 at about 0.71.
+With FaceMorpher the negative has almost no seam (step 1.06 vs 15.83). **Every FaceMorpher spliced read below is "seam
+not matched"** and is not used for conclusions.
 
 | Detector | R2w4 vs S4 (OC / FM) | S0 vs S4 | S3 vs S4 | R2w4 vs S0 | Unspliced R2w4 vs R4 | Excess of R2w4 vs S4 over best simple baseline (band 0.72) |
 |---|---|---|---|---|---|---|
@@ -297,6 +300,38 @@ S3 vs S4 (the second identity, inner face only) is 0.47-0.67.
 
 Transfer read on the existing Poisson-blended set (H1, A27/A36, not rescored): the record has ViT-B/16 0.770 and
 ViT-L/14 0.718 above a file-size floor of 0.620 (via the dossier); no SelfMAD or MixFaceNet H1 number is quoted here.
+
+## Amendment 9 (after the review of the spliced reads; OpenCV-style tool only), `sp_floor.json`
+
+- Evaluation set: the 3-statistic floor (seam tone luma and R-G, sharpness ratio, band5 at 224 px), fitted on the 100
+  PN1 development hosts. On the 436 other non-validation hosts it gives S0 vs S4 0.861 [0.834, 0.886].
+- Excess of S0 vs S4 over the floor, same images, paired:
+
+  | Detector | S0 vs S4 | Excess over floor |
+  |---|---|---|
+  | SelfMAD | 0.882 | +0.021 [-0.013, 0.057] |
+  | ViT-B/16 | 0.677 | -0.185 [-0.23, -0.14] |
+  | ViT-L/14 | 0.723 | -0.138 [-0.19, -0.09] |
+  | MixFaceNet | 0.631 | -0.231 [-0.27, -0.18] |
+
+- Inside tone-matched fifths, S0 vs S4 changes by at most 0.015: SelfMAD 0.886, ViT-B/16 0.681, ViT-L/14 0.708,
+  MixFaceNet 0.641. H-new-1's predicted drop of 0.05 is not seen. Its falsifier (drop <= 0.02 AND floor < 0.75) is not
+  met, because the floor is 0.86.
+- Swap-splice SW: the partner's warped half pasted, unblended, through the same hull onto R2w4. Median absolute seam
+  statistics (luma tone / R-G tone / step): S4 9.3 / 5.4 / 7.8, S0 4.9 / 3.1 / 4.3, SW 15.6 / 9.1 / 15.2
+  (`swap_seam.csv`).
+- S4 (positive) vs SW, all 536 hosts:
+
+  | Detector | S4 vs SW |
+  |---|---|
+  | SelfMAD | 0.888 [0.849, 0.922] |
+  | ViT-B/16 | 0.723 [0.691, 0.759] |
+  | ViT-L/14 | 0.616 [0.581, 0.652] |
+  | MixFaceNet | 0.688 [0.665, 0.718] |
+
+  The registered prediction (SelfMAD AUC <= 0.5, i.e. it reads a patch boundary) is falsified (>= 0.75). SelfMAD
+  scores the spliced blend above the unblended patch, even though the patch has twice the colour step. SelfMAD does
+  not exceed the 3-statistic floor on S0 vs S4 (+0.02, interval includes 0).
 
 ## Gaps and what was not done
 

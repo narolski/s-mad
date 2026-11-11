@@ -153,7 +153,7 @@ def athena_pools(det, a46_crops=False, variant=None):
         if r["origin"] == "check" or (r["origin"] == "a46") != a46_crops and (r["origin"] == "a46" or i.startswith("xr_")):
             continue
         by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"], r["photo"]))
-    lab = {"v1": "SMDD crop script unchanged (Athena)", "v2": "corrected crop, PNG (Athena)"}[variant]
+    lab = {"v1": "SMDD crop script unchanged (rented RTX 3090)", "v2": "corrected crop, PNG (rented RTX 3090)"}[variant]
     return {s_: Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], lab, "logit",
                      [v[3] for v in L]) for s_, L in by.items()}
 
@@ -493,7 +493,7 @@ def main():
             if p:
                 runs.append((d, "DGX", p))
     if not a.smoke:
-        for v, plat in (("v1", "Athena, SMDD crop script unchanged (primary)"), ("v2", "Athena, corrected crop PNG (secondary)")):
+        for v, plat in (("v1", "variant 1: SMDD crop script unchanged (primary)"), ("v2", "variant 2: corrected crop, PNG (secondary)")):
             for d in REL_ATH:
                 p = athena_pools(d, variant=v)
                 if p:

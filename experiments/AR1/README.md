@@ -314,6 +314,13 @@ $P -I $S/baselines.py --only R2w4; $P -I $S/analyse.py; $P -I $S/tables.py; $P -
 ```
 
 ## Log of README updates
+- 12 Nov (amendment 9, after REVIEW_SPLICE_20261111): registered in prereg.md before running.
+  - New code: `src/AR1/swap.py` (swap-splice SW, 536 PNG in `img/frgcferet/opencv/SW/`, 189 MB, `manifest_swap.csv`;
+    seam statistics in `experiments/AR1/swap_seam.csv`), `run_swap.sh`, and `sp_floor.py` (floor excess,
+    tone-matched fifths, S4 vs SW; `experiments/AR1/sp_floor.json`).
+  - Floor scores came from PN1 `posthoc2.floor3`, imported unchanged and saved to
+    `/mnt/t7/smad_next/AR1/floor3_pn1.json`.
+  - result.md now uses the review's seam wording, and FaceMorpher spliced reads are labelled "seam not matched".
 - 11 Nov about 22:50 CET: review applied (`experiments/reviews/REVIEW_AR1_20261111.md`).
   - Post hoc addendum P1-P4, amendment 8 (softened AF0 copies) and amendment 7 / 7b (spliced inner-face morph, one R4
     hull per host, arms S4 / S3 / S0) were registered in prereg.md before running.

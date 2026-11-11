@@ -981,3 +981,26 @@ Headline rows (EER %, morph-free seed mean [95% person-bootstrap interval of the
   - Pack streamed to Athena without a local tar (`tar -chf - | tee >(sha256sum) | ssh … cat >`): `.../smad-next/packs/AD4/fu_pack.tar`,
     1,680,128,000 bytes, sha256 `ee117981…`, checked on Athena.
   - 23:55: smoke job **3546199** submitted (`FU_LIMIT=8`, 30 min limit).
+
+### ViT-L/14 recipe: copy-back, gates and the descriptive "incomplete (2 of 5)" reading (11 Nov 23:56 to 23:59)
+
+- Copied with hash check to `/mnt/t7/smad_next/AD4/results_athena/`: morph-free 401, 402; label-permuted 401 to 405 (tasks 0, 1, 5 to 9 of
+  array 3544219, COMPLETED; 3 h 38 min to 4 h 13 min each; `train_hours` 3.53 to 4.07; all A100-SXM4-40GB, torch 2.2.1+cu121).
+  Morph-free 403 to 405: rerun array 3546123_[2-4] PENDING at 23:56.
+- Gates (`gates_m3l_2357.log`, `ad4_gates_m3l.json`): no refusal, meta seed and arch correct, **sample-order gate 7 of 7 pass** (200/200,
+  micro-batch 32). No reproduction gate is registered for ViT-L/14.
+- Descriptive reading of the incomplete arm, reader `8fd182b4…` unchanged, and `posthoc_m3.py --recipe m3l` (Amendment 3 readings applied
+  to this recipe, as the lead asked that the review's corrections carry over). Logs `read_m3l_incomplete2.log`, `posthoc_m3l_incomplete2.log`;
+  tables `experiments/AD4/ad4_reading_m3l.md`, `posthoc_m3l.md`; copies of this state `/mnt/t7/smad_next/AD4/read/incomplete2_*`.
+  Every verdict column reads "incomplete (2 of 5)". Our frames, in our preprocessing:
+  - Floor: training natives at logit -4.07 to -4.06, copies +4.02 (medians); FRLL-5% threshold p 0.019.
+  - MorDIFF native: 0.0 and 0.0%; references 41.2 to 52.0% (untrained 50.0); morph-trained twin (A12BR M3L R x d0, seeds 1 to 5, old
+    manifest, same files) 48.7% (34.8 to 56.9). MorDIFF history-matched 2.0 and 8.9%.
+  - DiM natives 0.0 to 6.9% per seed (means 0.5 to 3.5); twin 10.2 to 29.7%. DiM history-matched cells reversed in both seeds
+    (AUC 0.02 to 0.27).
+  - FRLL AMSL 0.0 and 7.3%, Webmorph 0.0 and 4.0%, FaceMorpher 5.0 and 35.8% (wide), OpenCV 18.6 and 45.6%, StyleGAN reversed;
+    twin 0.1 to 1.1% on the landmark cells. Corrected MAD22 FaceMorpher 0.0% native, 44.6 and 55.4% history-matched; MIPGAN-I and -II
+    reversed; OpenCV 45.8, Webmorph 37.7 (no twin on corrected MAD22).
+  - 0.5 rule: 0.0% genuine flagged; misses 12.7 and 98.9% (MorDIFF), 99.8 to 100% (DiM and FRLL). FRLL-5%: MorDIFF morphs missed 0.0%
+    while 25.5% of MorDIFF's own unprocessed genuine photos are flagged (39.2, 11.8).
+  - Label-permuted networks: own-label accuracy 0.514 to 0.519; true-label accuracy 0.357 to 0.683.
