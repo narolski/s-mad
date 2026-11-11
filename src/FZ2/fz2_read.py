@@ -125,9 +125,12 @@ def add_input_columns(items, pool):
 
 
 def add_baselines(items, workers=4):
-    from multiprocessing import Pool
-    with Pool(workers) as pl:
-        res = pl.map(_base_one, [it["path"] for it in items], chunksize=64)
+    if workers <= 1:
+        res = [_base_one(it["path"]) for it in items]
+    else:
+        from multiprocessing import Pool
+        with Pool(workers) as pl:
+            res = pl.map(_base_one, [it["path"] for it in items], chunksize=64)
     for it, r in zip(items, res):
         it.update(r)
 

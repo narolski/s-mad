@@ -171,6 +171,16 @@ missing); a pack is ready there for later.
 - 20:50. Because crops no longer come back, the border check (amendment 2 d) now runs inside the job
   (`border_fraction.csv`: black-pixel fraction of every crop). 3545970 / 3545971 (never started) cancelled and
   resubmitted as **3545972 (variant 1)** and **3545973 (variant 2)**.
+- 21:35. Lead: Athena forecasts 13 Nov; with the author's approval the lead rents one GPU machine. Prepared
+  `src/RS1/rented/` (`rs1_run.sh` = the Athena job body for a plain Docker machine, packs unpacked once and deleted
+  after hash check for the 80 GB disk; `drive.sh` = upload, setup with pinned versions, 8-image gate against Athena
+  smoke 3545869 via `compare_smoke.py` (pass: same images dropped, every release's max |logit difference| < 0.5),
+  cancel of Athena 3545972 / 3545973 after the gate, variant 1 then variant 2, copy back to
+  `/mnt/t7/smad_next/RS1/results_rented/` with sha check, RELEASE file). Amendment 5 registered.
+- 21:40. READY from the lead: RTX 3090 24 GB, 80 GB disk, 0.23 USD/h, guard 3 USD / 5 h (lease folder
+  `/mnt/t7/smad_next/vast/rs1`). **Starting `drive.sh` was denied by the permission system ("Data Exfiltration"
+  classifier).** Not worked around; reported to the lead with the exact command so the main session or the author can
+  run it. Athena jobs 3545972 / 3545973 left queued.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.

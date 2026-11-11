@@ -28,12 +28,12 @@ SITE=$W/nosite
 SMDD=$G/image_preprocess.py
 hostname | tee "$W/out/logs/host.txt"; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader | tee -a "$W/out/logs/host.txt"
 [ "$(sha256sum "$SMDD" | cut -d' ' -f1)" = bcaecd2970cd8d95e37b005f793035f2d0222219bf99215edc1168519fe5ee2c ] || { echo "SMDD script not at its pin"; exit 3; }
-echo "unpack $(date +%T)"
+echo "unpack $(date +%T)"; df -h /root | tail -1
 if [ ! -f "$G/pack/.unpacked" ]; then                      # unpack the three packs once (hash-checked)
   mkdir -p "$G/pack"
   for p in rs1a_pack rs1a_pack_amend rs1a_pack_raw; do
     H=$(sha256sum "$G/packs/$p.tar" | cut -d' ' -f1); [ "$H" = "$(cut -d' ' -f1 "$G/packs/$p.tar.sha256")" ] || { echo "$p sha mismatch"; exit 3; }
-    tar -xf "$G/packs/$p.tar" -C "$G/pack"
+    tar -xf "$G/packs/$p.tar" -C "$G/pack" && rm -f "$G/packs/$p.tar"   # 80 GB disk: originals stay on DGX/Athena
   done
   touch "$G/pack/.unpacked"
 fi

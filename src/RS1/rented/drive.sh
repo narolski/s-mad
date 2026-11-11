@@ -19,10 +19,11 @@ for f in rs1a_pack.tar rs1a_pack.tar.sha256 rs1a_pack_amend.tar rs1a_pack_amend.
   for k in 1 2 3 4 5; do rsync -a --partial -e "$SSH" $A/$f root@$H:/root/rs1/packs/ && break; log "retry $f $k"; sleep 10; done
 done
 rsync -a -e "$SSH" /mnt/t7/thirdparty/smdd_9683229_20261107/image_preprocess.py $S/rented/rs1_run.sh root@$H:/root/rs1/ || exit 1
-log "packs uploaded"; r 'cd /root/rs1/packs && sha256sum -c rs1a_pack.tar.sha256 rs1a_pack_amend.tar.sha256 rs1a_pack_raw.tar.sha256' || exit 3
+log "packs uploaded"; r 'cd /root/rs1/packs && sha256sum -c rs1a_pack.tar.sha256 rs1a_pack_amend.tar.sha256 rs1a_pack_raw.tar.sha256; df -h /root | tail -1' || exit 3
 log "setup"; r 'bash /root/rs1/rs1_run.sh setup > /root/rs1/setup.log 2>&1; tail -3 /root/rs1/setup.log' || exit 4
 rsync -a -e "$SSH" root@$H:/root/rs1/setup_versions.txt root@$H:/root/rs1/setup_pip_freeze.txt $OUT/
 run_variant() {  # $1 = v1|v2, $2 = limit
+  r 'df -h /root | tail -1; nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader'
   local tag=$([ "$2" = 0 ] && echo prod || echo smoke)_$1_rented
   r "cd /root/rs1 && nohup bash -c 'RS1_VARIANT=$1 RS1_LIMIT=$2 bash rs1_run.sh run; echo EXIT_CODE \$?' > /root/rs1/run_$tag.log 2>&1 &"
   until r "grep -q '^EXIT_CODE' /root/rs1/run_$tag.log"; do sleep 60; done
@@ -36,6 +37,7 @@ run_variant v1 8 && run_variant v2 8 || { log "smoke failed"; exit 5; }
 $P -I $S/rented/compare_smoke.py $OUT/smoke_v1_rented $OUT/smoke_v2_rented $A/smoke_3545869 | tee $OUT/smoke_compare.txt
 grep -q "^PASS" $OUT/smoke_compare.txt || { log "smoke comparison failed; stopping before production"; exit 6; }
 log "SMOKE_PASSED"
+flock -w 300 /tmp/smadnext-athena-cmd.lock ssh -o BatchMode=yes plgpnarolski@athena.cyfronet.pl 'scancel 3545972 3545973; squeue -u plgpnarolski -h -o "%i %T" | grep "354597[23]" || echo cancelled' && log "Athena 3545972/3545973 cancelled"
 run_variant v1 0 || exit 7
 run_variant v2 0 || exit 8
 touch $L/RELEASE && log "RELEASE written"

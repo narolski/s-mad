@@ -105,3 +105,7 @@ morph literature note to `narolski/research`.
 
 - The command that replaces the account-wide spending stop of the two running rented machines by fixed end times was approved through the permission settings, and applied (ends 23:15 and 00:25).
 - "I approve you to spend up to $50 this night" on rented machines.
+
+## Author's decision of 11 Nov, 21:43: uploads to rented machines
+
+- "I approve the upload... Data is safe for processing across devices." Uploads of experiment data to machines rented or approved for the sprint are authorised; allow rules for the upload scripts of the own-crop re-score (RS1) and the protocol-network tests (PN1) were added to the project settings.
