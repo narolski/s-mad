@@ -158,6 +158,10 @@ missing); a pack is ready there for later.
   one job per variant with a 2.5 h limit, which the scheduler can backfill more easily: **3545918 (variant 1, SMDD
   script unchanged)** and **3545919 (variant 2, corrected PNG crop)**, both `-A plgmultivision-gpu-a100`,
   `RS1_VARIANT=v1|v2`; result tars `results/RS1/rs1a_prod_v1_3545918.tar`, `rs1a_prod_v2_3545919.tar`.
+- 20:12. Lead: `scontrol top` is not permitted on Athena; the lead gave the long training arrays nice 400 so the two
+  RS1 jobs are ahead, and excluded the slow node t0010. I lowered both RS1 jobs to a 2 h limit (`scontrol update
+  JobId=... TimeLimit=02:00:00`; estimate from the smoke: about 70 to 85 min per variant). If they have not started by
+  21:30 the lead looks for another machine.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.
