@@ -1,0 +1,327 @@
+{
+ "B": 2000,
+ "seed": 20261111,
+ "falsifiers": {
+  "invariance_audit": {
+   "power_in_landmark_families": {
+    "amsl": "no power (no oracle embeddings)",
+    "facemorpher": "no power (no oracle embeddings)",
+    "opencv": "no power (no oracle embeddings)",
+    "webmorph": "no power (no oracle embeddings)"
+   },
+   "applicable": false,
+   "per_network": {
+    "MADation ViT-L/14 release": {
+     "all_four_flat": false,
+     "n_families_flat": 1
+    },
+    "M3L seed 1": {
+     "all_four_flat": false,
+     "n_families_flat": 2
+    },
+    "M3L seed 2": {
+     "all_four_flat": false,
+     "n_families_flat": 2
+    },
+    "M3L seed 3": {
+     "all_four_flat": false,
+     "n_families_flat": 2
+    },
+    "M3L seed 4": {
+     "all_four_flat": false,
+     "n_families_flat": 2
+    },
+    "M3L seed 5": {
+     "all_four_flat": false,
+     "n_families_flat": 2
+    }
+   },
+   "reading": "not applicable: power not shown in the FRLL landmark families"
+  },
+  "identity_audit": {
+   "MADation ViT-B/16 release": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "MADation ViT-L/14 release": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "MADation FE ViT-B/16 release": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "MADation FE ViT-L/14 release": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "MADation FS ViT-B/16 release": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "MADation FS ViT-L/14 release": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral"
+    ],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "MADation ViT-B/16 dnorm (diagnostic variant)": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "MADation ViT-B/16 dscale (diagnostic variant)": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "SelfMAD release, our pipeline": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [
+     "greedy_dim neutral-neutral"
+    ],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "MixFaceNet-MAD release, our frames": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral"
+    ],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "SelfMAD release, own preprocessing": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [
+     "greedy_dim neutral-neutral"
+    ],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3 seed 1": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3 seed 2": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3 seed 3": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [
+     "greedy_dim neutral-neutral"
+    ],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3 seed 4": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3 seed 5": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3 seed 6": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3 seed 7": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3 seed 8": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3L seed 1": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3L seed 2": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [
+     "greedy_dim neutral-neutral"
+    ],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3L seed 3": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3L seed 4": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   },
+   "M3L seed 5": {
+    "families_with_power": [
+     "mordiff neutral-neutral",
+     "mordiff smiling-smiling",
+     "dim_c neutral-neutral",
+     "greedy_dim neutral-neutral",
+     "greedy_dim_s neutral-neutral"
+    ],
+    "no_identity_reading_in": [],
+    "statement_holds_in_every_powered_generator_family": false
+   }
+  }
+ }
+}

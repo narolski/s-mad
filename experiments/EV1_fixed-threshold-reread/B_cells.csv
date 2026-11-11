@@ -1,0 +1,18 @@
+cell,n_morph,n_genuine,best_noncontent_null,best_noncontent_O,diagnostic_primary,best_aligned_null,best_aligned_O,diagnostic_aligned_only,thumbnail_auc,best_morph_free_auc,diagnostic_primary_and_morph_free,best_per_image_noncontent_null
+amsl,2175,204,file: width,1.0,False,border: zero-border fraction,0.999535722334911,False,0.9998129366689205,1.0,False,file: width
+facemorpher,1222,204,file: width,1.0,False,border: zero-border fraction,1.0,False,1.0,0.9993461378004557,False,file: width
+opencv,1221,204,file: width,1.0,False,border: zero-border fraction,1.0,False,1.0,0.9533691445456152,False,file: width
+stylegan,1222,204,file: width,1.0,False,border: zero-border fraction,0.9995868232726806,False,0.9977616251083085,0.9022897211257662,False,file: width
+webmorph,1221,204,file: width,1.0,False,border: zero-border fraction,0.9925527131409484,False,0.9974707327648504,1.0,False,file: width
+mordiff,1000,204,file: width,1.0,False,"colour: 6 statistics, aligned frame",0.7805833333333333,True,0.968392156862745,1.0,False,file: width
+dim_a,500,204,file: width,1.0,False,border: zero-border fraction,0.9989901960784314,False,0.9996274509803922,1.0,False,file: width
+dim_c,500,204,file: width,1.0,False,border: zero-border fraction,0.9969705882352942,False,0.9988921568627451,1.0,False,file: width
+fast_dim,500,204,file: width,1.0,False,border: zero-border fraction,0.9989901960784314,False,0.9996470588235294,1.0,False,file: width
+fast_dim_ode,499,204,file: width,1.0,False,border: zero-border fraction,0.998988172423278,False,0.9986738182246847,0.9998329993319973,False,file: width
+greedy_dim,500,204,file: width,1.0,False,border: zero-border fraction,0.9989901960784314,False,0.9998431372549019,1.0,False,file: width
+greedy_dim_s,500,204,file: width,1.0,False,border: zero-border fraction,1.0,False,0.9992549019607843,1.0,False,file: width
+MAD22c FaceMorpher,1000,204,file: width,1.0,False,border: zero-border fraction,0.9994950980392157,False,0.9977941176470588,,,file: width
+MAD22c MIPGAN_I,1000,204,file: width,1.0,False,border: zero-border fraction,1.0,False,0.9851960784313726,,,file: width
+MAD22c MIPGAN_II,999,204,file: width,1.0,False,border: zero-border fraction,1.0,False,0.9841459106164988,,,file: width
+MAD22c OpenCV,984,204,file: width,1.0,False,"colour: 6 statistics, aligned frame",0.7611639167862266,True,0.6230920213613901,,,file: width
+MAD22c Webmorph,500,204,file: chroma subsampling,1.0,False,"colour: 6 statistics, aligned frame",0.767078431372549,True,0.7695882352941177,,,file: chroma subsampling

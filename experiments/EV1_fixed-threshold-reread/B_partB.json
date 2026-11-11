@@ -1,0 +1,30 @@
+{
+ "B": 2000,
+ "seed": 20261111,
+ "summary": {
+  "n_cells": 17,
+  "diagnostic_primary": [],
+  "diagnostic_aligned_only": [
+   "mordiff",
+   "MAD22c OpenCV",
+   "MAD22c Webmorph"
+  ],
+  "diagnostic_primary_and_morph_free": [],
+  "release_cells_with_overlap_primary": 11,
+  "nullcond_within_0.03_all": false,
+  "nullcond_aligned_within_0.03_all": false,
+  "release_cells_with_overlap_aligned": 132,
+  "nullcond_aligned_max_abs_diff": 0.5654451242686537,
+  "expression_eer_gap_max_points": 98.03631269257069,
+  "expression_row_crossed_out": false,
+  "morph_free_cells_eer_le_2.6": {
+   "morph-free M3 seed 1": 10,
+   "morph-free M3 seed 2": 9,
+   "morph-free M3 seed 3": 10,
+   "morph-free M1 seed 1": 0,
+   "morph-free M1 seed 2": 0,
+   "morph-free M1 seed 3": 1
+  },
+  "falsifier_dropped_10plus_diagnostic": false
+ }
+}

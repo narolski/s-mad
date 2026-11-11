@@ -1,0 +1,49 @@
+family,stratum,gender_pair,n,rho_oracle,lo95,hi95,power
+amsl,neutral-neutral,FF,1069,,,,no power (no oracle embeddings)
+amsl,neutral-neutral,MM,1106,,,,no power (no oracle embeddings)
+amsl,smiling-smiling,FF,0,,,,fewer than 30 morphs
+amsl,smiling-smiling,MM,0,,,,fewer than 30 morphs
+facemorpher,neutral-neutral,FF,620,,,,no power (no oracle embeddings)
+facemorpher,neutral-neutral,MM,599,,,,no power (no oracle embeddings)
+facemorpher,smiling-smiling,FF,0,,,,fewer than 30 morphs
+facemorpher,smiling-smiling,MM,0,,,,fewer than 30 morphs
+opencv,neutral-neutral,FF,620,,,,no power (no oracle embeddings)
+opencv,neutral-neutral,MM,599,,,,no power (no oracle embeddings)
+opencv,smiling-smiling,FF,0,,,,fewer than 30 morphs
+opencv,smiling-smiling,MM,0,,,,fewer than 30 morphs
+stylegan,neutral-neutral,FF,620,,,,no power (no oracle embeddings)
+stylegan,neutral-neutral,MM,599,,,,no power (no oracle embeddings)
+stylegan,smiling-smiling,FF,0,,,,fewer than 30 morphs
+stylegan,smiling-smiling,MM,0,,,,fewer than 30 morphs
+webmorph,neutral-neutral,FF,620,,,,no power (no oracle embeddings)
+webmorph,neutral-neutral,MM,599,,,,no power (no oracle embeddings)
+webmorph,smiling-smiling,FF,0,,,,fewer than 30 morphs
+webmorph,smiling-smiling,MM,0,,,,fewer than 30 morphs
+mordiff,neutral-neutral,FF,250,0.5388132290116641,0.3780962429940701,0.6657639220356941,power
+mordiff,neutral-neutral,MM,250,0.44870695531128496,0.26003836616873743,0.6052862659096717,power
+mordiff,smiling-smiling,FF,250,0.4783076849229587,0.2922230832278728,0.6238079309463499,power
+mordiff,smiling-smiling,MM,250,0.45836778188451016,0.25769567489624023,0.60608319491148,power
+dim_a,neutral-neutral,FF,250,,,,no power (no oracle embeddings)
+dim_a,neutral-neutral,MM,250,,,,no power (no oracle embeddings)
+dim_a,smiling-smiling,FF,0,,,,fewer than 30 morphs
+dim_a,smiling-smiling,MM,0,,,,fewer than 30 morphs
+dim_c,neutral-neutral,FF,250,0.5504470791532664,0.39480352252721784,0.6815758928656578,power
+dim_c,neutral-neutral,MM,250,0.4375907454519272,0.23615802116692067,0.6051281049847602,power
+dim_c,smiling-smiling,FF,0,,,,fewer than 30 morphs
+dim_c,smiling-smiling,MM,0,,,,fewer than 30 morphs
+fast_dim,neutral-neutral,FF,250,,,,no power (no oracle embeddings)
+fast_dim,neutral-neutral,MM,250,,,,no power (no oracle embeddings)
+fast_dim,smiling-smiling,FF,0,,,,fewer than 30 morphs
+fast_dim,smiling-smiling,MM,0,,,,fewer than 30 morphs
+fast_dim_ode,neutral-neutral,FF,249,,,,no power (no oracle embeddings)
+fast_dim_ode,neutral-neutral,MM,250,,,,no power (no oracle embeddings)
+fast_dim_ode,smiling-smiling,FF,0,,,,fewer than 30 morphs
+fast_dim_ode,smiling-smiling,MM,0,,,,fewer than 30 morphs
+greedy_dim,neutral-neutral,FF,250,0.6508570057120913,0.5196854516863822,0.749417296051979,power
+greedy_dim,neutral-neutral,MM,250,0.5715228723659578,0.3978861629962921,0.7104527443647384,power
+greedy_dim,smiling-smiling,FF,0,,,,fewer than 30 morphs
+greedy_dim,smiling-smiling,MM,0,,,,fewer than 30 morphs
+greedy_dim_s,neutral-neutral,FF,250,0.5684853837661402,0.4107270836830139,0.6838997915387154,power
+greedy_dim_s,neutral-neutral,MM,250,0.45547314357029706,0.26387750431895257,0.6197601601481436,power
+greedy_dim_s,smiling-smiling,FF,0,,,,fewer than 30 morphs
+greedy_dim_s,smiling-smiling,MM,0,,,,fewer than 30 morphs

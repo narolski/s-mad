@@ -1,0 +1,59 @@
+cell,genuine_class,split,n_morph_sel,n_gen_sel,n_morph_rep,n_gen_rep,chosen_null,O_on_selection_half,auc_on_report_half,diagnostic_on_report_half
+amsl,all photos,"choose on half 0, report on half 1",471,102,591,102,file: width,1.0,1.0,False
+amsl,all photos,"choose on half 1, report on half 0",591,102,471,102,file: width,1.0,1.0,False
+amsl,neutral-only,"choose on half 0, report on half 1",471,51,591,51,file: width,1.0,1.0,False
+amsl,neutral-only,"choose on half 1, report on half 0",591,51,471,51,file: width,1.0,1.0,False
+facemorpher,all photos,"choose on half 0, report on half 1",280,102,319,102,file: width,1.0,1.0,False
+facemorpher,all photos,"choose on half 1, report on half 0",319,102,280,102,file: width,1.0,1.0,False
+facemorpher,neutral-only,"choose on half 0, report on half 1",280,51,319,51,file: width,1.0,1.0,False
+facemorpher,neutral-only,"choose on half 1, report on half 0",319,51,280,51,file: width,1.0,1.0,False
+opencv,all photos,"choose on half 0, report on half 1",280,102,318,102,file: width,1.0,1.0,False
+opencv,all photos,"choose on half 1, report on half 0",318,102,280,102,file: width,1.0,1.0,False
+opencv,neutral-only,"choose on half 0, report on half 1",280,51,318,51,file: width,1.0,1.0,False
+opencv,neutral-only,"choose on half 1, report on half 0",318,51,280,51,file: width,1.0,1.0,False
+stylegan,all photos,"choose on half 0, report on half 1",280,102,319,102,file: width,1.0,1.0,False
+stylegan,all photos,"choose on half 1, report on half 0",319,102,280,102,file: width,1.0,1.0,False
+stylegan,neutral-only,"choose on half 0, report on half 1",280,51,319,51,file: width,1.0,1.0,False
+stylegan,neutral-only,"choose on half 1, report on half 0",319,51,280,51,file: width,1.0,1.0,False
+webmorph,all photos,"choose on half 0, report on half 1",280,102,318,102,file: width,1.0,1.0,False
+webmorph,all photos,"choose on half 1, report on half 0",318,102,280,102,file: width,1.0,1.0,False
+webmorph,neutral-only,"choose on half 0, report on half 1",280,51,318,51,file: width,1.0,1.0,False
+webmorph,neutral-only,"choose on half 1, report on half 0",318,51,280,51,file: width,1.0,1.0,False
+mordiff,all photos,"choose on half 0, report on half 1",248,102,246,102,file: width,1.0,1.0,False
+mordiff,all photos,"choose on half 1, report on half 0",246,102,248,102,file: width,1.0,1.0,False
+dim_a,all photos,"choose on half 0, report on half 1",122,102,129,102,file: width,1.0,1.0,False
+dim_a,all photos,"choose on half 1, report on half 0",129,102,122,102,file: width,1.0,1.0,False
+dim_a,neutral-only,"choose on half 0, report on half 1",122,51,129,51,file: width,1.0,1.0,False
+dim_a,neutral-only,"choose on half 1, report on half 0",129,51,122,51,file: width,1.0,1.0,False
+dim_c,all photos,"choose on half 0, report on half 1",122,102,129,102,file: width,1.0,1.0,False
+dim_c,all photos,"choose on half 1, report on half 0",129,102,122,102,file: width,1.0,1.0,False
+dim_c,neutral-only,"choose on half 0, report on half 1",122,51,129,51,file: width,1.0,1.0,False
+dim_c,neutral-only,"choose on half 1, report on half 0",129,51,122,51,file: width,1.0,1.0,False
+fast_dim,all photos,"choose on half 0, report on half 1",122,102,129,102,file: width,1.0,1.0,False
+fast_dim,all photos,"choose on half 1, report on half 0",129,102,122,102,file: width,1.0,1.0,False
+fast_dim,neutral-only,"choose on half 0, report on half 1",122,51,129,51,file: width,1.0,1.0,False
+fast_dim,neutral-only,"choose on half 1, report on half 0",129,51,122,51,file: width,1.0,1.0,False
+fast_dim_ode,all photos,"choose on half 0, report on half 1",122,102,129,102,file: width,1.0,1.0,False
+fast_dim_ode,all photos,"choose on half 1, report on half 0",129,102,122,102,file: width,1.0,1.0,False
+fast_dim_ode,neutral-only,"choose on half 0, report on half 1",122,51,129,51,file: width,1.0,1.0,False
+fast_dim_ode,neutral-only,"choose on half 1, report on half 0",129,51,122,51,file: width,1.0,1.0,False
+greedy_dim,all photos,"choose on half 0, report on half 1",122,102,129,102,file: width,1.0,1.0,False
+greedy_dim,all photos,"choose on half 1, report on half 0",129,102,122,102,file: width,1.0,1.0,False
+greedy_dim,neutral-only,"choose on half 0, report on half 1",122,51,129,51,file: width,1.0,1.0,False
+greedy_dim,neutral-only,"choose on half 1, report on half 0",129,51,122,51,file: width,1.0,1.0,False
+greedy_dim_s,all photos,"choose on half 0, report on half 1",122,102,129,102,file: width,1.0,1.0,False
+greedy_dim_s,all photos,"choose on half 1, report on half 0",129,102,122,102,file: width,1.0,1.0,False
+greedy_dim_s,neutral-only,"choose on half 0, report on half 1",122,51,129,51,file: width,1.0,1.0,False
+greedy_dim_s,neutral-only,"choose on half 1, report on half 0",129,51,122,51,file: width,1.0,1.0,False
+MAD22c FaceMorpher,all photos,"choose on half 0, report on half 1",248,102,246,102,file: width,1.0,1.0,False
+MAD22c FaceMorpher,all photos,"choose on half 1, report on half 0",246,102,248,102,file: width,1.0,1.0,False
+MAD22c MIPGAN_I,all photos,"choose on half 0, report on half 1",248,102,246,102,file: width,1.0,1.0,False
+MAD22c MIPGAN_I,all photos,"choose on half 1, report on half 0",246,102,248,102,file: width,1.0,1.0,False
+MAD22c MIPGAN_II,all photos,"choose on half 0, report on half 1",247,102,246,102,file: width,1.0,1.0,False
+MAD22c MIPGAN_II,all photos,"choose on half 1, report on half 0",246,102,247,102,file: width,1.0,1.0,False
+MAD22c OpenCV,all photos,"choose on half 0, report on half 1",243,102,242,102,file: width,1.0,1.0,False
+MAD22c OpenCV,all photos,"choose on half 1, report on half 0",242,102,243,102,file: width,1.0,1.0,False
+MAD22c Webmorph,all photos,"choose on half 0, report on half 1",122,102,129,102,file: chroma subsampling,1.0,1.0,False
+MAD22c Webmorph,all photos,"choose on half 1, report on half 0",129,102,122,102,file: chroma subsampling,1.0,1.0,False
+MAD22c Webmorph,neutral-only,"choose on half 0, report on half 1",122,51,129,51,file: chroma subsampling,1.0,1.0,False
+MAD22c Webmorph,neutral-only,"choose on half 1, report on half 0",129,51,122,51,file: chroma subsampling,1.0,1.0,False

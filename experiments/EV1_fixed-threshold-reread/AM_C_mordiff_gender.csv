@@ -1,0 +1,249 @@
+detector,block,family,stratum,n,spearman,lo95,hi95
+MADation ViT-B/16 release,release,mordiff,"neutral-neutral, female",250,-0.01458570537128594,-0.22912939377129077,0.1945187740027903
+MADation ViT-B/16 release,release,mordiff,"neutral-neutral, male",250,0.015485815773052367,-0.21328505873680115,0.21427790634334082
+MADation ViT-B/16 release,release,mordiff,"smiling-smiling, female",250,-0.08307012912206593,-0.2844607077538967,0.1277012802660464
+MADation ViT-B/16 release,release,mordiff,"smiling-smiling, male",250,-0.006049248787980607,-0.20975870303809643,0.21112748533487297
+MADation ViT-L/14 release,release,mordiff,"neutral-neutral, female",250,0.06008428934862957,-0.16461941078305245,0.2656676322221755
+MADation ViT-L/14 release,release,mordiff,"neutral-neutral, male",250,-0.028326981231699702,-0.24933530017733574,0.2022549923509358
+MADation ViT-L/14 release,release,mordiff,"smiling-smiling, female",250,0.04515029040464647,-0.14193543531000613,0.24073723740875713
+MADation ViT-L/14 release,release,mordiff,"smiling-smiling, male",250,0.009584409350549609,-0.19645892418920993,0.22450727671384807
+MADation FE ViT-B/16 release,release,mordiff,"neutral-neutral, female",250,-0.0005863773820381126,-0.20784276425838472,0.20950283892452715
+MADation FE ViT-B/16 release,release,mordiff,"neutral-neutral, male",250,0.04133096529544472,-0.20101396478712558,0.2640784010291099
+MADation FE ViT-B/16 release,release,mordiff,"smiling-smiling, female",250,0.07266279460471367,-0.15407940335571765,0.3007323898375034
+MADation FE ViT-B/16 release,release,mordiff,"smiling-smiling, male",250,-0.005555416886670187,-0.20588759519159794,0.1982650779187679
+MADation FE ViT-L/14 release,release,mordiff,"neutral-neutral, female",250,-0.020914126626026014,-0.20164328254759312,0.1785355281084772
+MADation FE ViT-L/14 release,release,mordiff,"neutral-neutral, male",250,0.08703691259060144,-0.11087562367320061,0.27498245239257796
+MADation FE ViT-L/14 release,release,mordiff,"smiling-smiling, female",250,0.0198296932750924,-0.19938060268759727,0.25302458480000495
+MADation FE ViT-L/14 release,release,mordiff,"smiling-smiling, male",250,0.0626847789564633,-0.16086384207010268,0.27934165969491004
+MADation FS ViT-B/16 release,release,mordiff,"neutral-neutral, female",250,-0.0017875547786764493,-0.21435870602726936,0.22257923558354367
+MADation FS ViT-B/16 release,release,mordiff,"neutral-neutral, male",250,0.032433598982891186,-0.17826648540794848,0.2283802967518567
+MADation FS ViT-B/16 release,release,mordiff,"smiling-smiling, female",250,0.02083622938753007,-0.15332954935729504,0.21448299363255474
+MADation FS ViT-B/16 release,release,mordiff,"smiling-smiling, male",250,0.02829555248910979,-0.18843309991061688,0.23256165981292704
+MADation FS ViT-L/14 release,release,mordiff,"neutral-neutral, female",250,-0.032041856669706714,-0.26082668676972387,0.21078827306628198
+MADation FS ViT-L/14 release,release,mordiff,"neutral-neutral, male",250,-0.05405387761873488,-0.27158604338765147,0.19141023084521291
+MADation FS ViT-L/14 release,release,mordiff,"smiling-smiling, female",250,-0.013631073948684036,-0.24966077022254468,0.18584214858710763
+MADation FS ViT-L/14 release,release,mordiff,"smiling-smiling, male",250,-0.048965831861980585,-0.24180770069360732,0.16349737346172313
+MADation ViT-B/16 dnorm (diagnostic variant),release,mordiff,"neutral-neutral, female",250,0.008571401142418278,-0.20095967315137386,0.20313557423651216
+MADation ViT-B/16 dnorm (diagnostic variant),release,mordiff,"neutral-neutral, male",250,-0.09758863341813469,-0.279625578969717,0.12838051058351985
+MADation ViT-B/16 dnorm (diagnostic variant),release,mordiff,"smiling-smiling, female",250,0.03527211635386166,-0.19360833428800106,0.2483447920531033
+MADation ViT-B/16 dnorm (diagnostic variant),release,mordiff,"smiling-smiling, male",250,-0.15993894302308836,-0.3533736489713192,0.05416853707283722
+MADation ViT-B/16 dscale (diagnostic variant),release,mordiff,"neutral-neutral, female",250,-0.042860077761244175,-0.22835950329899787,0.15962023213505744
+MADation ViT-B/16 dscale (diagnostic variant),release,mordiff,"neutral-neutral, male",250,-0.013618777900446407,-0.2325968399643898,0.1858004178851842
+MADation ViT-B/16 dscale (diagnostic variant),release,mordiff,"smiling-smiling, female",250,-0.11848471175538806,-0.30899959728121756,0.0891522606834769
+MADation ViT-B/16 dscale (diagnostic variant),release,mordiff,"smiling-smiling, male",250,-0.09399049584793356,-0.27697780057787896,0.11644986737519471
+"SelfMAD release, our pipeline",release,mordiff,"neutral-neutral, female",250,0.12380012480199681,-0.07962320614606141,0.329651905596256
+"SelfMAD release, our pipeline",release,mordiff,"neutral-neutral, male",250,0.01270945135122162,-0.21769378818571566,0.23409412764012807
+"SelfMAD release, our pipeline",release,mordiff,"smiling-smiling, female",250,0.04227638842221475,-0.16350813284516336,0.23770579434931274
+"SelfMAD release, our pipeline",release,mordiff,"smiling-smiling, male",250,-0.06663850621609946,-0.2508483618497849,0.13419925495982157
+"MixFaceNet-MAD release, our frames",release,mordiff,"neutral-neutral, female",250,0.03642720683530937,-0.19428314082324505,0.272947622090578
+"MixFaceNet-MAD release, our frames",release,mordiff,"neutral-neutral, male",250,-0.16088283012528198,-0.36507859230041506,0.0701939875259994
+"MixFaceNet-MAD release, our frames",release,mordiff,"smiling-smiling, female",250,0.09343829501272019,-0.13481963314116,0.3212070003151893
+"MixFaceNet-MAD release, our frames",release,mordiff,"smiling-smiling, male",250,-0.20708875342005473,-0.3799693875014782,0.0036169349972623678
+"SelfMAD release, own preprocessing",release,mordiff,"neutral-neutral, female",250,0.08271493932029898,-0.11706833057105541,0.2868125967681405
+"SelfMAD release, own preprocessing",release,mordiff,"neutral-neutral, male",250,0.006686698987183795,-0.22207773849368095,0.2289397407323121
+"SelfMAD release, own preprocessing",release,mordiff,"smiling-smiling, female",250,-0.08124072385158163,-0.2676849365234375,0.11288546416908501
+"SelfMAD release, own preprocessing",release,mordiff,"smiling-smiling, male",250,-0.10087649402390438,-0.28938923999667165,0.09343655072152607
+M1 seed 1,other recipe,mordiff,"neutral-neutral, female",250,0.009535256564105024,,
+M1 seed 1,other recipe,mordiff,"neutral-neutral, male",250,-0.18937915806652905,,
+M1 seed 1,other recipe,mordiff,"smiling-smiling, female",250,0.03300187202995248,,
+M1 seed 1,other recipe,mordiff,"smiling-smiling, male",250,-0.2283043248691979,,
+M1 seed 2,other recipe,mordiff,"neutral-neutral, female",250,0.03346959151346421,,
+M1 seed 2,other recipe,mordiff,"neutral-neutral, male",250,-0.1745457687322997,,
+M1 seed 2,other recipe,mordiff,"smiling-smiling, female",250,0.08683262132194114,,
+M1 seed 2,other recipe,mordiff,"smiling-smiling, male",250,-0.2183547256756108,,
+M1 seed 3,other recipe,mordiff,"neutral-neutral, female",250,0.0348543176690827,,
+M1 seed 3,other recipe,mordiff,"neutral-neutral, male",250,-0.1540137282196515,,
+M1 seed 3,other recipe,mordiff,"smiling-smiling, female",250,0.08669130706091296,,
+M1 seed 3,other recipe,mordiff,"smiling-smiling, male",250,-0.19477674842797482,,
+M1 seed 4,other recipe,mordiff,"neutral-neutral, female",250,0.017537944607113713,,
+M1 seed 4,other recipe,mordiff,"neutral-neutral, male",250,-0.16506388902222435,,
+M1 seed 4,other recipe,mordiff,"smiling-smiling, female",250,0.09723150770412325,,
+M1 seed 4,other recipe,mordiff,"smiling-smiling, male",250,-0.21902904046464744,,
+M1 seed 5,other recipe,mordiff,"neutral-neutral, female",250,0.03309633754140066,,
+M1 seed 5,other recipe,mordiff,"neutral-neutral, male",250,-0.1509048144770316,,
+M1 seed 5,other recipe,mordiff,"smiling-smiling, female",250,0.08182057312917006,,
+M1 seed 5,other recipe,mordiff,"smiling-smiling, male",250,-0.17622080353285652,,
+M2 seed 1,other recipe,mordiff,"neutral-neutral, female",250,0.017442711083377332,,
+M2 seed 1,other recipe,mordiff,"neutral-neutral, male",250,-0.11337051792828684,,
+M2 seed 1,other recipe,mordiff,"smiling-smiling, female",250,0.10591311860989774,,
+M2 seed 1,other recipe,mordiff,"smiling-smiling, male",250,-0.15930456487303796,,
+M2 seed 2,other recipe,mordiff,"neutral-neutral, female",250,-0.04358738539816637,,
+M2 seed 2,other recipe,mordiff,"neutral-neutral, male",250,-0.20168271492343873,,
+M2 seed 2,other recipe,mordiff,"smiling-smiling, female",250,0.10353458455335285,,
+M2 seed 2,other recipe,mordiff,"smiling-smiling, male",250,-0.2338532136514184,,
+M2 seed 3,other recipe,mordiff,"neutral-neutral, female",250,-0.04650429606873709,,
+M2 seed 3,other recipe,mordiff,"neutral-neutral, male",250,-0.0526668266692267,,
+M2 seed 3,other recipe,mordiff,"smiling-smiling, female",250,0.11796092737483797,,
+M2 seed 3,other recipe,mordiff,"smiling-smiling, male",250,-0.08961205779292468,,
+M2 seed 4,other recipe,mordiff,"neutral-neutral, female",250,0.046038880622089946,,
+M2 seed 4,other recipe,mordiff,"neutral-neutral, male",250,-0.11088062208995343,,
+M2 seed 4,other recipe,mordiff,"smiling-smiling, female",250,0.14784121345941534,,
+M2 seed 4,other recipe,mordiff,"smiling-smiling, male",250,-0.20264964239427827,,
+M2 seed 5,other recipe,mordiff,"neutral-neutral, female",250,0.0026891950271204336,,
+M2 seed 5,other recipe,mordiff,"neutral-neutral, male",250,0.13399932798924782,,
+M2 seed 5,other recipe,mordiff,"smiling-smiling, female",250,0.10585398166370659,,
+M2 seed 5,other recipe,mordiff,"smiling-smiling, male",250,0.030505832093313485,,
+M3 seed 1,M3,mordiff,"neutral-neutral, female",250,0.007814141026256419,-0.23679651878774166,0.25881556645035725
+M3 seed 1,M3,mordiff,"neutral-neutral, male",250,-0.08800384006144098,-0.2920211747288704,0.1075183061882851
+M3 seed 1,M3,mordiff,"smiling-smiling, female",250,-0.07635155762492199,-0.27570957541465757,0.13809771351516226
+M3 seed 1,M3,mordiff,"smiling-smiling, male",250,-0.09022646762348198,-0.2908021077513695,0.1317626301199196
+M3 seed 2,M3,mordiff,"neutral-neutral, female",250,0.0119207027312437,-0.25222054943442346,0.27519300803542135
+M3 seed 2,M3,mordiff,"neutral-neutral, male",250,-0.0066475303604857676,-0.22188544683158398,0.1937133200466631
+M3 seed 2,M3,mordiff,"smiling-smiling, female",250,-0.008179714875438006,-0.1982208162546158,0.18279316164553133
+M3 seed 2,M3,mordiff,"smiling-smiling, male",250,-0.0332676042816685,-0.2282876968383789,0.17336087599396693
+M3 seed 3,M3,mordiff,"neutral-neutral, female",250,0.0339480631690107,-0.16507230326533318,0.2309487700462339
+M3 seed 3,M3,mordiff,"neutral-neutral, male",250,-0.09975366005856093,-0.27831333205103875,0.09580853842198843
+M3 seed 3,M3,mordiff,"smiling-smiling, female",250,-0.06567695483127729,-0.26088135689496994,0.1314462516456841
+M3 seed 3,M3,mordiff,"smiling-smiling, male",250,-0.03502251236019776,-0.25159272029995916,0.1724442549049854
+M3 seed 4,M3,mordiff,"neutral-neutral, female",250,0.027293236691787067,-0.21615235209465028,0.27993333637714374
+M3 seed 4,M3,mordiff,"neutral-neutral, male",250,-0.05544242307876926,-0.26587685719132426,0.14146522879600523
+M3 seed 4,M3,mordiff,"smiling-smiling, female",250,-0.07694599913598617,-0.2706758454442024,0.12459035534411664
+M3 seed 4,M3,mordiff,"smiling-smiling, male",250,-0.08216694667114673,-0.2979281358420849,0.14126393459737296
+M3 seed 5,M3,mordiff,"neutral-neutral, female",250,0.10232573321173137,-0.13562851548194885,0.3355599299073215
+M3 seed 5,M3,mordiff,"neutral-neutral, male",250,0.0073203091249459985,-0.19197224639356136,0.2016339976340531
+M3 seed 5,M3,mordiff,"smiling-smiling, female",250,-0.024370181922910763,-0.2201590932905674,0.17547415867447835
+M3 seed 5,M3,mordiff,"smiling-smiling, male",250,0.03048432774924398,-0.20625954903662205,0.2371355872601268
+M3 seed 6,M3,mordiff,"neutral-neutral, female",250,0.0712742283876542,-0.15480321757495402,0.30911357924342137
+M3 seed 6,M3,mordiff,"neutral-neutral, male",250,-0.06323237171794747,-0.2743021063506603,0.1416920442134141
+M3 seed 6,M3,mordiff,"smiling-smiling, female",250,-0.06395737531800508,-0.25463652089238165,0.13367577716708182
+M3 seed 6,M3,mordiff,"smiling-smiling, male",250,-0.05573580377286036,-0.2587325729429722,0.16839030161499968
+M3 seed 7,M3,mordiff,"neutral-neutral, female",250,0.025718811500984012,-0.19710002578794955,0.2516349576413631
+M3 seed 7,M3,mordiff,"neutral-neutral, male",250,-0.050414246627946045,-0.2685199148952961,0.14799632504582405
+M3 seed 7,M3,mordiff,"smiling-smiling, female",250,-0.06978505256084096,-0.25823941081762314,0.11447489764541365
+M3 seed 7,M3,mordiff,"smiling-smiling, male",250,-0.048971919550712804,-0.25785488486289976,0.17024940438568587
+M3 seed 8,M3,mordiff,"neutral-neutral, female",250,0.015704699275188402,-0.2294265829026699,0.2656377755105494
+M3 seed 8,M3,mordiff,"neutral-neutral, male",250,-0.011648058368933902,-0.22161249332129956,0.18660146743059156
+M3 seed 8,M3,mordiff,"smiling-smiling, female",250,0.03200960015360245,-0.15925512090325356,0.22405302822589848
+M3 seed 8,M3,mordiff,"smiling-smiling, male",250,-0.02190793452695243,-0.24409765526652336,0.19124083332717412
+M3L seed 1,M3L,mordiff,"neutral-neutral, female",250,0.014916718667498677,-0.195676726102829,0.20973761565983276
+M3L seed 1,M3L,mordiff,"neutral-neutral, male",250,0.031940479047664755,-0.18564290106296538,0.22470066808164119
+M3L seed 1,M3L,mordiff,"smiling-smiling, female",250,0.08656535304564872,-0.150477859377861,0.31728379502892473
+M3L seed 1,M3L,mordiff,"smiling-smiling, male",250,0.027492919886718186,-0.18602852374315262,0.22550715878605795
+M3L seed 2,M3L,mordiff,"neutral-neutral, female",250,0.017166226659626554,-0.20628511309623718,0.23418324738740914
+M3L seed 2,M3L,mordiff,"neutral-neutral, male",250,0.05384956559304949,-0.1560884542763233,0.23537038154900072
+M3L seed 2,M3L,mordiff,"smiling-smiling, female",250,0.04383775740411846,-0.17729177959263326,0.2541626028716564
+M3L seed 2,M3L,mordiff,"smiling-smiling, male",250,0.05389641434262948,-0.15909852646291256,0.2512914635241031
+M3L seed 3,M3L,mordiff,"neutral-neutral, female",250,0.00522133154130466,-0.2110628265887499,0.2112170722335576
+M3L seed 3,M3L,mordiff,"neutral-neutral, male",250,0.04806873709979359,-0.154729488492012,0.2516547828912733
+M3L seed 3,M3L,mordiff,"smiling-smiling, female",250,0.06820371525944413,-0.14293745532631874,0.28868818059563633
+M3L seed 3,M3L,mordiff,"smiling-smiling, male",250,0.05401468823501176,-0.16471713744103908,0.24745494015514846
+M3L seed 4,M3L,mordiff,"neutral-neutral, female",250,-0.023440887054192866,-0.24244372621178628,0.18912907280027863
+M3L seed 4,M3L,mordiff,"neutral-neutral, male",250,0.03741794268708299,-0.17553951516747474,0.23138592056930066
+M3L seed 4,M3L,mordiff,"smiling-smiling, female",250,0.059331637306196894,-0.17045273557305335,0.28467954397201484
+M3L seed 4,M3L,mordiff,"smiling-smiling, male",250,0.008565257044112706,-0.2053204257041216,0.21204976625740526
+M3L seed 5,M3L,mordiff,"neutral-neutral, female",250,-0.027584313349013585,-0.23528222143650054,0.17254976592957963
+M3L seed 5,M3L,mordiff,"neutral-neutral, male",250,0.07179263668218691,-0.12884206250309943,0.2721600621938705
+M3L seed 5,M3L,mordiff,"smiling-smiling, female",250,0.039734267748283966,-0.17264491766691206,0.2774689219892024
+M3L seed 5,M3L,mordiff,"smiling-smiling, male",250,0.05126674026784428,-0.14575776904821394,0.22724506407976097
+M4 seed 1,other recipe,mordiff,"neutral-neutral, female",250,-0.023575289204627273,,
+M4 seed 1,other recipe,mordiff,"neutral-neutral, male",250,-0.10634090145442326,,
+M4 seed 1,other recipe,mordiff,"smiling-smiling, female",250,0.014478183650938415,,
+M4 seed 1,other recipe,mordiff,"smiling-smiling, male",250,0.015094897518360292,,
+M4 seed 2,other recipe,mordiff,"neutral-neutral, female",250,-0.037222099553592854,,
+M4 seed 2,other recipe,mordiff,"neutral-neutral, male",250,-0.0853925982815725,,
+M4 seed 2,other recipe,mordiff,"smiling-smiling, female",250,-0.00900840013440215,,
+M4 seed 2,other recipe,mordiff,"smiling-smiling, male",250,0.026817837085393367,,
+M4 seed 3,other recipe,mordiff,"neutral-neutral, female",250,-0.01695809532952527,,
+M4 seed 3,other recipe,mordiff,"neutral-neutral, male",250,-0.07980070081121297,,
+M4 seed 3,other recipe,mordiff,"smiling-smiling, female",250,0.01853405654490472,,
+M4 seed 3,other recipe,mordiff,"smiling-smiling, male",250,0.05659136946191139,,
+M4 seed 4,other recipe,mordiff,"neutral-neutral, female",250,-0.021805020880334085,,
+M4 seed 4,other recipe,mordiff,"neutral-neutral, male",250,-0.08801536024576392,,
+M4 seed 4,other recipe,mordiff,"smiling-smiling, female",250,0.001481879710075361,,
+M4 seed 4,other recipe,mordiff,"smiling-smiling, male",250,0.04724696395142322,,
+M4 seed 5,other recipe,mordiff,"neutral-neutral, female",250,-0.04560495367925887,,
+M4 seed 5,other recipe,mordiff,"neutral-neutral, male",250,-0.10724792396678345,,
+M4 seed 5,other recipe,mordiff,"smiling-smiling, female",250,0.01626458023328373,,
+M4 seed 5,other recipe,mordiff,"smiling-smiling, male",250,0.06521921950751211,,
+M5 seed 1,other recipe,mordiff,"neutral-neutral, female",250,-0.10081582105313684,,
+M5 seed 1,other recipe,mordiff,"neutral-neutral, male",250,0.1121555224883598,,
+M5 seed 1,other recipe,mordiff,"smiling-smiling, female",250,-0.10816262660202562,,
+M5 seed 1,other recipe,mordiff,"smiling-smiling, male",250,0.00625046800748812,,
+M5 seed 2,other recipe,mordiff,"neutral-neutral, female",250,0.042696491143858296,,
+M5 seed 2,other recipe,mordiff,"neutral-neutral, male",250,0.03970969135506168,,
+M5 seed 2,other recipe,mordiff,"smiling-smiling, female",250,0.03913675418806701,,
+M5 seed 2,other recipe,mordiff,"smiling-smiling, male",250,-0.06629136466183458,,
+M5 seed 3,other recipe,mordiff,"neutral-neutral, female",250,-0.04215120241923871,,
+M5 seed 3,other recipe,mordiff,"neutral-neutral, male",250,0.05565593049488791,,
+M5 seed 3,other recipe,mordiff,"smiling-smiling, female",250,0.04692977487639802,,
+M5 seed 3,other recipe,mordiff,"smiling-smiling, male",250,0.0722488359813757,,
+M5 seed 4,other recipe,mordiff,"neutral-neutral, female",250,-0.040515336245379924,,
+M5 seed 4,other recipe,mordiff,"neutral-neutral, male",250,0.10061383382134113,,
+M5 seed 4,other recipe,mordiff,"smiling-smiling, female",250,0.024723467575481203,,
+M5 seed 4,other recipe,mordiff,"smiling-smiling, male",250,0.03521374741995871,,
+M5 seed 5,other recipe,mordiff,"neutral-neutral, female",250,0.04765861853789661,,
+M5 seed 5,other recipe,mordiff,"neutral-neutral, male",250,-0.043446071137138186,,
+M5 seed 5,other recipe,mordiff,"smiling-smiling, female",250,-0.03695636730187682,,
+M5 seed 5,other recipe,mordiff,"smiling-smiling, male",250,0.04343378294052704,,
+M5 seed 6,other recipe,mordiff,"neutral-neutral, female",250,-0.028419142706283297,,
+M5 seed 6,other recipe,mordiff,"neutral-neutral, male",250,0.1868324293188691,,
+M5 seed 6,other recipe,mordiff,"smiling-smiling, female",250,-0.025416982671722748,,
+M5 seed 6,other recipe,mordiff,"smiling-smiling, male",250,0.008202755244083903,,
+M5 seed 7,other recipe,mordiff,"neutral-neutral, female",250,-0.13592243075889213,,
+M5 seed 7,other recipe,mordiff,"neutral-neutral, male",250,0.096249987999808,,
+M5 seed 7,other recipe,mordiff,"smiling-smiling, female",250,-0.08217923486775787,,
+M5 seed 7,other recipe,mordiff,"smiling-smiling, male",250,-0.024999183986943792,,
+M5 seed 8,other recipe,mordiff,"neutral-neutral, female",250,-0.04011443383094129,,
+M5 seed 8,other recipe,mordiff,"neutral-neutral, male",250,-0.03711304180866894,,
+M5 seed 8,other recipe,mordiff,"smiling-smiling, female",250,-0.013032016512264197,,
+M5 seed 8,other recipe,mordiff,"smiling-smiling, male",250,0.012697549598723335,,
+M6 seed 1,other recipe,mordiff,"neutral-neutral, female",250,0.05792156674506791,,
+M6 seed 1,other recipe,mordiff,"neutral-neutral, male",250,-0.0189234387750204,,
+M6 seed 1,other recipe,mordiff,"smiling-smiling, female",250,0.13915806652906446,,
+M6 seed 1,other recipe,mordiff,"smiling-smiling, male",250,0.006114529832477319,,
+M6 seed 2,other recipe,mordiff,"neutral-neutral, female",250,-0.022999279988479816,,
+M6 seed 2,other recipe,mordiff,"neutral-neutral, male",250,-0.03732962127394038,,
+M6 seed 2,other recipe,mordiff,"smiling-smiling, female",250,0.0648390534248548,,
+M6 seed 2,other recipe,mordiff,"smiling-smiling, male",250,-0.04605884894158306,,
+M6 seed 3,other recipe,mordiff,"neutral-neutral, female",250,0.059068977103633645,,
+M6 seed 3,other recipe,mordiff,"neutral-neutral, male",250,-0.06006048096769548,,
+M6 seed 3,other recipe,mordiff,"smiling-smiling, female",250,0.028193347093553495,,
+M6 seed 3,other recipe,mordiff,"smiling-smiling, male",250,-0.10970402726443623,,
+M6 seed 4,other recipe,mordiff,"neutral-neutral, female",250,0.03239975039600634,,
+M6 seed 4,other recipe,mordiff,"neutral-neutral, male",250,-0.026263332213315407,,
+M6 seed 4,other recipe,mordiff,"smiling-smiling, female",250,0.06369394710315365,,
+M6 seed 4,other recipe,mordiff,"smiling-smiling, male",250,-0.20654653674458787,,
+M6 seed 5,other recipe,mordiff,"neutral-neutral, female",250,0.0799512312196995,,
+M6 seed 5,other recipe,mordiff,"neutral-neutral, male",250,-0.05129208467335477,,
+M6 seed 5,other recipe,mordiff,"smiling-smiling, female",250,0.12076878030048478,,
+M6 seed 5,other recipe,mordiff,"smiling-smiling, male",250,-0.08328056448903182,,
+M8 seed 1,other recipe,mordiff,"neutral-neutral, female",250,0.08477895646330341,,
+M8 seed 1,other recipe,mordiff,"neutral-neutral, male",250,0.016125570009120144,,
+M8 seed 1,other recipe,mordiff,"smiling-smiling, female",250,0.09762165794652714,,
+M8 seed 1,other recipe,mordiff,"smiling-smiling, male",250,-0.14586127778044447,,
+M8 seed 2,other recipe,mordiff,"neutral-neutral, female",250,0.011098161570585128,,
+M8 seed 2,other recipe,mordiff,"neutral-neutral, male",250,-0.013740891854269667,,
+M8 seed 2,other recipe,mordiff,"smiling-smiling, female",250,0.09154437671002737,,
+M8 seed 2,other recipe,mordiff,"smiling-smiling, male",250,-0.13923102769644313,,
+M8 seed 3,other recipe,mordiff,"neutral-neutral, female",250,0.06326462823405174,,
+M8 seed 3,other recipe,mordiff,"neutral-neutral, male",250,-0.11576671626746028,,
+M8 seed 3,other recipe,mordiff,"smiling-smiling, female",250,0.09329774876398021,,
+M8 seed 3,other recipe,mordiff,"smiling-smiling, male",250,-0.12311352181634905,,
+M8 seed 4,other recipe,mordiff,"neutral-neutral, female",250,0.01254125666010656,,
+M8 seed 4,other recipe,mordiff,"neutral-neutral, male",250,-0.1946546344741516,,
+M8 seed 4,other recipe,mordiff,"smiling-smiling, female",250,0.06372159554552873,,
+M8 seed 4,other recipe,mordiff,"smiling-smiling, male",250,-0.18862343397494358,,
+M8 seed 5,other recipe,mordiff,"neutral-neutral, female",250,0.06587126194019104,,
+M8 seed 5,other recipe,mordiff,"neutral-neutral, male",250,-0.17215187442999086,,
+M8 seed 5,other recipe,mordiff,"smiling-smiling, female",250,0.09067652282436518,,
+M8 seed 5,other recipe,mordiff,"smiling-smiling, male",250,-0.22508404934478954,,
+M8O seed 1,other recipe,mordiff,"neutral-neutral, female",250,0.1078523496375942,,
+M8O seed 1,other recipe,mordiff,"neutral-neutral, male",250,-0.03176306820909134,,
+M8O seed 1,other recipe,mordiff,"smiling-smiling, female",250,0.07215206643306292,,
+M8O seed 1,other recipe,mordiff,"smiling-smiling, male",250,-0.14958383334133346,,
+M8O seed 2,other recipe,mordiff,"neutral-neutral, female",250,-0.012012096193539094,,
+M8O seed 2,other recipe,mordiff,"neutral-neutral, male",250,-0.09595967935486967,,
+M8O seed 2,other recipe,mordiff,"smiling-smiling, female",250,0.011058224931598904,,
+M8O seed 2,other recipe,mordiff,"smiling-smiling, male",250,-0.16873037968607496,,
+M8O seed 3,other recipe,mordiff,"neutral-neutral, female",250,0.047499215926883095,,
+M8O seed 3,other recipe,mordiff,"neutral-neutral, male",250,0.051489609001216255,,
+M8O seed 3,other recipe,mordiff,"smiling-smiling, female",250,-0.11462342530128605,,
+M8O seed 3,other recipe,mordiff,"smiling-smiling, male",250,0.0902501897638736,,
+M8O seed 4,other recipe,mordiff,"neutral-neutral, female",250,0.08055258484135747,,
+M8O seed 4,other recipe,mordiff,"neutral-neutral, male",250,-0.1111816829069265,,
+M8O seed 4,other recipe,mordiff,"smiling-smiling, female",250,-0.05182508520136322,,
+M8O seed 4,other recipe,mordiff,"smiling-smiling, male",250,-0.004871885950175202,,
+M8O seed 5,other recipe,mordiff,"neutral-neutral, female",250,-0.01666625066001056,,
+M8O seed 5,other recipe,mordiff,"neutral-neutral, male",250,-0.05283502136034176,,
+M8O seed 5,other recipe,mordiff,"smiling-smiling, female",250,0.036719819517112263,,
+M8O seed 5,other recipe,mordiff,"smiling-smiling, male",250,-0.15432016512264193,,

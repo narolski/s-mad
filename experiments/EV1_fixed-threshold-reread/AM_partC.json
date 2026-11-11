@@ -1,0 +1,43 @@
+{
+ "B": 2000,
+ "seed": 20261111,
+ "n_mordiff_without_gender_folder": 0,
+ "strata_n": {
+  "amsl neutral-neutral": 2175,
+  "facemorpher neutral-neutral": 1219,
+  "opencv neutral-neutral": 1219,
+  "stylegan neutral-neutral": 1219,
+  "webmorph neutral-neutral": 1219,
+  "mordiff neutral-neutral": 500,
+  "mordiff neutral-neutral, female": 250,
+  "mordiff neutral-neutral, male": 250,
+  "mordiff smiling-smiling": 500,
+  "mordiff smiling-smiling, female": 250,
+  "mordiff smiling-smiling, male": 250,
+  "dim_a neutral-neutral": 500,
+  "dim_c neutral-neutral": 500,
+  "fast_dim neutral-neutral": 500,
+  "fast_dim_ode neutral-neutral": 499,
+  "greedy_dim neutral-neutral": 500,
+  "greedy_dim_s neutral-neutral": 500
+ },
+ "readings": {
+  "amsl neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)",
+  "facemorpher neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)",
+  "opencv neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)",
+  "stylegan neutral-neutral": "the dose test can be produced by construction here: a control has a slope (morph-free M3 seed 2; morph-free M3 seed 3)",
+  "webmorph neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)",
+  "mordiff neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)",
+  "mordiff neutral-neutral, female": "no control has a slope (both controls' 95% intervals include 0)",
+  "mordiff neutral-neutral, male": "no control has a slope (both controls' 95% intervals include 0)",
+  "mordiff smiling-smiling": "no control has a slope (both controls' 95% intervals include 0)",
+  "mordiff smiling-smiling, female": "no control has a slope (both controls' 95% intervals include 0)",
+  "mordiff smiling-smiling, male": "no control has a slope (both controls' 95% intervals include 0)",
+  "dim_a neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)",
+  "dim_c neutral-neutral": "the dose test can be produced by construction here: a control has a slope (file size of the stored morph (bytes))",
+  "fast_dim neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)",
+  "fast_dim_ode neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)",
+  "greedy_dim neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)",
+  "greedy_dim_s neutral-neutral": "no control has a slope (both controls' 95% intervals include 0)"
+ }
+}

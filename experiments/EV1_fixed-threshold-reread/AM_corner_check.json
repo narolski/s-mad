@@ -1,0 +1,18 @@
+{
+ "FEI": {
+  "n_persons": 187,
+  "median_noise_neutral": 1.0244089863854056,
+  "median_noise_smiling": 1.0157730393188062,
+  "median_ratio_smiling_over_neutral": 0.9936543429160466,
+  "share_smiling_noisier": 0.44385026737967914,
+  "equal_backdrop_noise": true
+ },
+ "FRLL": {
+  "n_persons": 102,
+  "median_noise_neutral": 0.8257627692467526,
+  "median_noise_smiling": 1.0201589831874496,
+  "median_ratio_smiling_over_neutral": 1.2435416046169037,
+  "share_smiling_noisier": 0.8529411764705882,
+  "equal_backdrop_noise": false
+ }
+}

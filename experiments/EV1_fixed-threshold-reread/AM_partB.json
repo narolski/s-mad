@@ -1,0 +1,46 @@
+{
+ "B": 2000,
+ "seed": 20261111,
+ "summary": {
+  "all photos": {
+   "n_cells": 17,
+   "diagnostic": [],
+   "diagnostic_aligned_only": [
+    "mordiff",
+    "MAD22c OpenCV",
+    "MAD22c Webmorph"
+   ],
+   "choose on half 0, report on half 1": {
+    "diagnostic": [],
+    "n": 17,
+    "not_measurable": []
+   },
+   "choose on half 1, report on half 0": {
+    "diagnostic": [],
+    "n": 17,
+    "not_measurable": []
+   },
+   "split_count_unstable": false
+  },
+  "neutral-only": {
+   "n_cells": 12,
+   "diagnostic": [],
+   "diagnostic_aligned_only": [
+    "MAD22c Webmorph"
+   ],
+   "choose on half 0, report on half 1": {
+    "diagnostic": [],
+    "n": 12,
+    "not_measurable": []
+   },
+   "choose on half 1, report on half 0": {
+    "diagnostic": [],
+    "n": 12,
+    "not_measurable": []
+   },
+   "split_count_unstable": false
+  },
+  "headline_diagnostic_cells": [],
+  "headline_n_cells": 17
+ }
+}
