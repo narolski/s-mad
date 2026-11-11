@@ -468,6 +468,15 @@ self-pairs (061_061 …) are intended.
 
 ## 10. Handover state
 
+19:25 CET: one ID0 process running: `amend1.py --part b` (PID 2324274, DGX, nice 10, log
+`/mnt/t7/smad_next/ID0/logs/amend1_b.log`), now on the last variant (one-hidden-layer network, 5 folds + one
+refit), starved by a machine load of about 150 (it got 5 CPU-minutes in 35 minutes); expected end unknown,
+possibly 1–2 h. It writes `amend1_b.json` / `amend1_b.csv` (adds the network row and, for every variant, the
+real-contrast columns). The logistic and projection rows are already saved from its log in
+`amend1_b_partial.csv` and in `result.md`. If it fails or is killed: rerun
+`cd /home/narolski/smad-next/src/ID0 && OMP_NUM_THREADS=1 nice -n 10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I amend1.py --part b`
+(redoes all fits, about 30 CPU-minutes). Nothing else running or queued; no GPU in use.
+
 18:25 CET: no ID0 process is running; nothing queued; no file in progress. Compute: GPU processes about 3 h of
 wall time on a GB10 shared with about 12 other processes (actual GPU work estimated under 30 GPU-minutes);
 CPU analyses about 1 h; no WCSS, no Vast, no USD.
