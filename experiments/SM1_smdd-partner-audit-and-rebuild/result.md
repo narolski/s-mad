@@ -170,6 +170,7 @@ Smoke reading of the registered SMDD-T rules (descriptive at this size): (c) −
 | d c + halves as genuine | 7.44 [5.79, 9.11] | 9.29 | +1.85 | 14.39 | +7.20 | 8.61 | 0.026 [0.017, 0.036] | 0.088 | 0.025 | 0.572 | 0.59 |
 | d+ (halves added, unequal count) | 6.85 | 8.70 | +1.86 | 15.22 | +6.82 | 8.18 | 0.022 | 0.092 | 0.026 | 0.580 | 0.63 |
 | e d + history crossing | 9.38 [7.65, 11.04] | 10.24 | +0.86 [0.58, 1.37] | 13.69 | +3.47 [2.06, 4.85] | 11.38 | 0.023 | 0.071 | 0.028 | 0.546 | 0.53 |
+| f e + JPEG 90 / 70 copies | 8.45 [6.84, 10.23] | 9.61 | +1.16 [0.77, 1.50] | 15.06 | +3.61 [2.47, 4.97] | 10.55 | 0.023 | 0.066 | 0.029 | 0.546 | 0.56 |
 | FE ViT-L/14 release header (reference) | 8.37 | 8.97 | +0.60 | 19.51 | +3.33 | 12.73 | 0.076 | 0.073 | 0.075 | 0.541 | 0.34 |
 
 Seed spread is small (e.g. landmark-7 native EER per seed, arm c: 3.25, 3.24, 3.24, 3.29, 3.23). The GAN-3 E7 rise is 0
@@ -189,6 +190,41 @@ Steps between arms (difference of 5-seed means, paired person bootstrap; `p3_ful
 | d → e | history crossing | +1.94 [+0.91, +2.91] | −0.99 [−1.39, −0.46] | −0.70 | −3.73 [−5.43, −1.99] | −0.003 | −0.06 |
 | a → a256 | drop the 733 off-size files | +0.19 | +0.17 | +0.99 | −0.17 | +0.003 | 0.00 |
 
+
+**JPEG reads (A10; FRLL genuine photos under JPEG, 204 each; miss = FRLL-Morphs landmark-4 pooled morphs at the same
+threshold; 5-seed means).** "own" = the head's own rule (logit ≥ 0); "dev" = flags 5% of the AR1 camera photos.
+
+| Arm | own: jpeg90 / 70 / 50 / native flagged | own: miss | dev: jpeg90 / 70 / 50 / native flagged | dev: miss |
+|---|---|---|---|---|
+| a | 0.005 / 0.001 / 0.013 / 0.000 | 0.508 | 0.098 / 0.130 / 0.287 / 0.091 | 0.187 |
+| b | 0.004 / 0.004 / 0.019 / 0.000 | 0.524 | 0.125 / 0.164 / 0.323 / 0.117 | 0.178 |
+| bp | 0.015 / 0.023 / 0.103 / 0.014 | 0.208 | 0.046 / 0.110 / 0.270 / 0.046 | 0.104 |
+| cr | 0.028 / 0.042 / 0.133 / 0.033 | 0.182 | 0.049 / 0.102 / 0.269 / 0.053 | 0.126 |
+| c | 0.123 / 0.242 / 0.357 / 0.134 | 0.031 | 0.031 / 0.079 / 0.147 / 0.026 | 0.091 |
+| d | 0.033 / 0.048 / 0.063 / 0.035 | 0.332 | 0.113 / 0.138 / 0.187 / 0.116 | 0.211 |
+| e | 0.045 / 0.058 / 0.067 / 0.046 | 0.361 | 0.133 / 0.162 / 0.169 / 0.136 | 0.235 |
+| f | 0.025 / 0.050 / 0.068 / 0.027 | 0.369 | 0.125 / 0.160 / 0.200 / 0.132 | 0.220 |
+| d50 | 0.018 / 0.027 / 0.158 / 0.020 | 0.236 | 0.023 / 0.046 / 0.241 / 0.025 | 0.181 |
+| d500 | 0.015 / 0.019 / 0.079 / 0.012 | 0.250 | 0.056 / 0.114 / 0.293 / 0.055 | 0.133 |
+| FE header (reference) | 0.005 / 0.005 / 0.000 / 0.005 | 0.457 | 0.250 / 0.260 / 0.289 / 0.265 | 0.069 |
+
+**History-matched genuine pools (A11; E7 copies; flag rate of the pool and miss rate of that cell's morphs at the
+same threshold; the three most-flagged pools per arm; 5-seed means).** Validity condition: arm (a) flags more than
+10% of some pool (MorDIFF E7: 0.267 at its own rule, 0.770 at the camera-photo threshold), so the storage
+comparison counts for the frozen heads.
+
+| Arm | own rule: pool flagged (morph miss) | camera-photo 5% threshold: pool flagged (morph miss) |
+|---|---|---|
+| a | mordiff:mordiff 0.27 (0.72); dim:dim_a 0.02 (0.72); dim:greedy_dim 0.02 (0.82) | mordiff:mordiff 0.77 (0.20); dim:fast_dim_ode 0.35 (0.29); dim:greedy_dim 0.35 (0.28) |
+| b | mordiff:mordiff 0.21 (0.74); dim:fast_dim 0.05 (0.91); mad22:FaceMorpher 0.04 (0.00) | mordiff:mordiff 0.75 (0.15); dim:fast_dim 0.46 (0.39); dim:fast_dim_ode 0.46 (0.25) |
+| bp | mordiff:mordiff 0.65 (0.14); mad22:FaceMorpher 0.36 (0.00); dim:fast_dim_ode 0.36 (0.16) | mordiff:mordiff 0.87 (0.03); mad22:FaceMorpher 0.61 (0.00); dim:fast_dim 0.60 (0.15) |
+| cr | mordiff:mordiff 0.64 (0.14); mad22:FaceMorpher 0.44 (0.00); dim:dim_a 0.43 (0.14) | mordiff:mordiff 0.81 (0.07); mad22:FaceMorpher 0.57 (0.00); dim:fast_dim 0.55 (0.20) |
+| c | mordiff:mordiff 0.95 (0.01); mad22:FaceMorpher 0.91 (0.00); dim:greedy_dim 0.90 (0.01) | mordiff:mordiff 0.84 (0.07); mad22:FaceMorpher 0.73 (0.00); dim:dim_a 0.72 (0.06) |
+| d | mordiff:mordiff 0.40 (0.29); mad22:FaceMorpher 0.12 (0.00); dim:fast_dim 0.12 (0.46) | mordiff:mordiff 0.65 (0.10); mad22:FaceMorpher 0.31 (0.00); dim:fast_dim 0.30 (0.23) |
+| e | mordiff:mordiff 0.42 (0.22); mad22:FaceMorpher 0.10 (0.00); dim:greedy_dim_s 0.09 (0.08) | mordiff:mordiff 0.64 (0.08); dim:greedy_dim 0.25 (0.14); dim:fast_dim 0.25 (0.17) |
+| f | mordiff:mordiff 0.43 (0.23); dim:dim_a 0.07 (0.38); dim:dim_c 0.07 (0.27) | mordiff:mordiff 0.72 (0.06); dim:dim_a 0.25 (0.13); mad22:FaceMorpher 0.25 (0.00) |
+| FE header (reference) | mordiff:mordiff 0.17 (0.58); dim:dim_c 0.01 (0.68); dim:fast_dim_ode 0.01 (0.63) | mordiff:mordiff 0.72 (0.04); dim:fast_dim_ode 0.38 (0.11); dim:fast_dim 0.37 (0.16) |
+
 Registered falsifiers (descriptive, because no rebuilt arm passed the Laplacian acceptance):
 - SMDD-T partner part, EER condition: (c) − (b) = −4.36 [−6.27, −2.81] points; |diff| < 1 with interval including 0
   does **not** hold. (The second half of the condition, the releases' partner gap, is the Part 2 reading below.)
@@ -198,7 +234,8 @@ Registered falsifiers (descriptive, because no rebuilt arm passed the Laplacian 
   excludes 0).
 - SMDD-X frozen-head analogue (not the registered ViT-B/16 LoRA test): diffusion-cell E7 rise 11.3 (a), 7.2 (d),
   3.5 (e); FRLL FaceMorpher / OpenCV E7 EER per arm in `p3_full.json`.
-- JPEG reads (A10) and arm (f): pending (features of the JPEG frames and of arm f's copies, Athena job 3545893).
+- Arm (f) vs (e) (JPEG copies added): landmark-7 native EER 8.45 vs 9.38; FRLL genuine jpeg50 flagged at the
+  camera-photo threshold 0.200 vs 0.169 (no reduction); at the own rule 0.068 vs 0.067.
 
 ## Checks
 

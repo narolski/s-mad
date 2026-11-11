@@ -12,7 +12,7 @@ DiffAE morphs above one-photo DiffAE reconstructions without ranking reconstruct
 the fully adapted MADation release loses this. Trigger: the released MADation "FE" ViT-L/14 (frozen CLIP + trained
 linear head) gives B vs D 0.852 on the A43 MorDIFF material, unlike every adapted release.
 
-Status 11 Nov 20:15 CET: **finished** (all four parts run). Results:
+Status 11 Nov 20:10 CET: **finished** (all four parts run). Results:
 - P1 (re-read of existing release scores): the six reviewer-preview AUCs reproduce to three decimals.
 - P2 (probe = gate G-c): a cross-validated logistic probe on frozen features separates every A43 contrast
   (B20 vs D20, B vs D, C20 vs D20, B20 vs C20) at AUC 0.945–1.000 on all four feature sets (CLIP with MADation
@@ -82,7 +82,7 @@ All times CET, 11 Nov 2026.
 - 20:06–20:08 P3 full run (`OMP_NUM_THREADS=4 python -I src/FZ1/fz1_heads.py`, log `logs/p3_heads.log`) →
   `experiments/FZ1/p3_heads.json`, head weights `/mnt/t7/smad_next/FZ1/heads/head_s40{1..5}.pt`, A43 scores
   `heads/scores_a43.npz`. Prediction met in 5 of 5 seeds ("supported" under the registered rule).
-- 20:15 `result.md` completed; README updated.
+- 20:10 `result.md` completed; README updated.
 
 ## 3. Data
 
@@ -210,10 +210,10 @@ Not verified:
 6. Throughput: the shared GB10 under load 90–140 gives 3–5 images/s for ViT-L at 224 in fp32; SMDD (80,000
    forward passes) would take hours. Stage 1 was killed after its StyleGAN3 file (planned), stage 2 will be killed
    after the eval file (planned) and SMDD done with TF32 in stage 3.
-8. 17:41 stage 3 (`run_feats3.sh`) died with CUDA out of memory at model load (machine memory full); retried by
+7. 17:41 stage 3 (`run_feats3.sh`) died with CUDA out of memory at model load (machine memory full); retried by
    `run_feats3b.sh`, whose full pass failed once more the same way (17:45) and then ran; killed 18:25 at batch
    ~140/625 (about 37 min of GPU work discarded) to restart as two parallel halves (`run_feats4.sh`).
-7. 17:13 a fp32-vs-TF32 speed test died with CUDA out of memory (machine memory 106/121 GB used, swap full). Not
+8. 17:13 a fp32-vs-TF32 speed test died with CUDA out of memory (machine memory 106/121 GB used, swap full). Not
    retried; running extraction unaffected.
 9. 20:05 bug 5 in `fz1_heads.py` (prediction summary read the check entry as a seed); fixed before the full run.
 
@@ -238,7 +238,7 @@ Not verified:
 
 ## 10. Handover state (17:31 CET)
 
-Nothing of FZ1 is running (checked 20:15). All feature files, probes, heads and logs are on the T7 drive
+Nothing of FZ1 is running (checked 20:10). All feature files, probes, heads and logs are on the T7 drive
 (`/mnt/t7/smad_next/FZ1/`); small results in this folder. The scratchpad copies of the release files are
 duplicated in `/mnt/t7/smad_next/FZ1/release/`; the scratchpad is no longer needed.
 Compute: about 3.5 GB10-hours of shared GPU time (all feature extraction, including about 0.6 h discarded when

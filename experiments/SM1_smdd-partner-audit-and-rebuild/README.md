@@ -178,6 +178,9 @@ descriptive.
   3545914 cancelled (smoke task name collided with production); resubmitted 3545916 (smoke) → 3545917_[0-9].
 - 20:08 `read_p3.py` gained the A11 reads (history-matched pool flag and miss per cell at the own rule and at the
   camera-photo 5% threshold).
+- 20:15 `run_p3f.sh` done: all saved heads rescored with the JPEG frames (`heads.py --rescore`), arm (f) heads
+  (5 seeds + bootstrap), readers rerun (`p3_full.json` now 13 arms with JPEG and history-pool reads); Laplacian
+  acceptance of (f) 0.724 at the loader size (`lapvar_f.json`; not accepted). Tables in `result.md`.
 
 ## 3. Data
 
