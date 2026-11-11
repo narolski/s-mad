@@ -39,7 +39,7 @@ statistics (Laplacian variance, high-frequency energy, mirror asymmetry, three c
   Fast-DiM-ODE, Greedy-DiM, Greedy-DiM-S (499 or 500 each), FRLL genuine photos native (204) and history-matched (204 per
   family).
 - **Features:** CLIP ViT-L/14 pooled (768), CLIP ViT-L/14 mean patch token (1,024), DINOv3 ViT-L/16 pooled (1,024),
-  frozen, 224 input via the existing loader, fp32. 12,627 images per model. **DINOv3 "pooled" is the timm default
+  frozen, 224 input via the existing loader, fp32. 12,627 images per model, plus 64 mirror-mix images added later. **DINOv3 "pooled" is the timm default
   average of the patch tokens, so the registered DINOv3 mean-patch set is identical to it (max |Δ| = 0) and was not
   analysed separately**; three distinct feature sets. Reuse check against the caches of frozen features read mixing (FZ1) on 72 frames of the MorDIFF control set: CLIP max
   |Δ| 1.9e-6, DINOv3 0 (pass).
@@ -109,9 +109,10 @@ Diagnostic (FRLL, training direction applied unchanged, no reading): pipeline 20
 | same-person mixing vs second identity | **−0.70** | −0.34 | −0.36 | (no rule) anti-aligned |
 | whole morph vs softening | −0.22 | −0.09 | 0.06 | (no rule) |
 
-Split-half reliabilities 0.76 to 1.00 (the point value of the reliability can exceed its bootstrap upper bound because
-the replicates resample with duplicates). Upper bounds of several off-diagonal intervals sit at the point value for the
-same reason; the intervals are printed as computed. Diagnostics on FRLL (CLIP pooled; directions from FRLL images
+Split-half reliabilities 0.76 to 1.00. Resampling with replacement leaves fewer distinct blocks in each half of a
+replicate, which makes the replicate directions noisier and pulls their cosines towards 0; several point values
+therefore sit at or above the upper bound of their interval. The intervals are printed as computed and are
+conservative towards 0. Diagnostics on FRLL (CLIP pooled; directions from FRLL images
 only, no fit): the SMDD softening direction agrees with the FRLL E7 direction (cos 0.53) and the FRLL stored-small
 direction (0.54) (CLIP patch 0.18 / 0.14, DINOv3 0.32 / 0.19); the FRLL whole-morph direction at 256 px is aligned with
 the training mixing direction (0.67); the 32-person mirror-mix direction has cos 0.65 with it (CLIP patch 0.36, DINOv3
@@ -156,7 +157,7 @@ projections leave the x3-vs-x1 excess over the floor at +0.107 or more (point).
 | DINOv3 pooled | +0.309 [0.182, 0.429] | rises | +0.136 [−0.012, 0.278] | no rise detected |
 
 Descriptive: the DiffAE semantic-code distance of the two contributors correlates more strongly (ρ +0.45 to +0.58 with
-the score, +0.40 to +0.56 with the paired step). Same-person mixes (dissimilarity near 0) nevertheless score highest
+the score, +0.40 to +0.56 with the paired step). Same-person mixes (the least dissimilar contributors) nevertheless score highest
 (x3 vs x2 above), so the relation is not monotone across the rungs.
 
 ## External scoring, no refit (FRLL persons; descriptive; equal step count and storage only)
@@ -224,3 +225,11 @@ Full table `bench.csv` (all heads, variants, EERs and intervals).
   separation of morph from reconstruction is 0.67 to 0.86 at that storage against 0.82 to 0.94 at 256 px (CLIP mean
   patch at 100 steps is the exception: 0.853 stored against 0.842).
 - One feature extraction per image (no augmentation), convex heads with no seed; no network was trained.
+
+## First end-to-end pass (kept for the record; 18:11 CET)
+
+CLIP pooled, fold 0 only (26 blocks, 104 held-out hosts), written to this page at once (`first_pass.json`): H1 morph vs
+reconstruction 0.955 [0.892, 0.993], excess over the PNG-size floor (0.731 on that fold) +0.225 [0.116, 0.353]; same-
+person mix vs morph inversion already visible (x3 vs x2 0.249); reconstructions below photos (0.260). Q1 shares
+1.000 / 0.942 / 0.856 (lower bound 0.648, "not consistent" on that fold) / 0.913 / 0.990. The full five-fold run
+above supersedes these numbers.

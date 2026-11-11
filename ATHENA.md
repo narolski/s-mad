@@ -107,4 +107,6 @@ failure, one result tar with a `.sha256` beside it.
   up to 150 GPU-hours per experiment. More needs the lead.
 - Every job ID, its purpose and its GPU-hours go into the experiment's `result.md`. `scancel` only for
   your own jobs.
-- Results are copied back to `/mnt/t7/smad_next/<ID>/` with a hash check before they are read.
+- Copy back to `/mnt/t7/smad_next/<ID>/`, with a hash check, only what will be read on the DGX (score files, small
+  tables, images a DGX step needs). Large packs and image sets stay in the Athena project folder (10 TB); the DGX
+  data drive filled up on 11 Nov.

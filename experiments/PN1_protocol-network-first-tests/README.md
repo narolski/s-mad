@@ -80,6 +80,20 @@ lead's GO (pre-run review restarted by the lead). No conclusion is drawn here.
   (`chain_cpu4.sh`); 20:02 tier 0 recompute queued behind the certificate cues (`chain_cpu3.sh`).
 - 20:12 Amendment 5: reference row "standard recipe on released SMDD" (eight A12-BR ViT-B/16 R retrains, last
   checkpoints; sha256 in `ref_smdd_m3_last_sha256.txt`), scored by `score_ref.sh` on Athena; tar `build_refnets.py`.
+- 20:15 pack pinned (sha256 `5c642790…`, 10,159,360,000 bytes) in the registration and in the job files; 20:15 to
+  20:23 upload of pack and DINOv3 tar (439 s), hashes checked on Athena; 20:23 smoke job 3545947 submitted
+  (plgmultivision-gpu-a100); 20:24 reference tar uploaded and checked.
+- 20:21 certificates and matched-subsample test computed (section 5.1b, 5.1c).
+- 20:24 to 20:28 smoke job 3545947 (t0015, A100-SXM4-40GB): the pack copy and check passed (67 s), then `apptainer`
+  failed: the job file set `PN1_ROOT` to the smoke folder and `run.sh` derives the image path from it
+  ("could not open image /memfs/3545947/smoke/root/containers/..."); SMOKE_RC 255. The DINOv3 extraction part ran
+  (eq64 and 6,421 images at about 110 images/s) and wrote `results/PN1/featx_out.tar`. Fix in the smoke job file only
+  (`PN1_SIF` passed explicitly; DINOv3 part skipped when its output exists); `run.sh` unchanged. Resubmitted as
+  3545968 at 20:37.
+- 20:38 T7 drive full (8 KB free; a copy-back failed with "No space left on device"). PN1 deleted only its own
+  intermediates (symlink trees, the 8-image test pack, the DINOv3 and reference tars already verified on Athena; hashes
+  in `deleted_local_tars_sha256.txt`): 12 GB free. Lead told.
+- 20:39 DINOv3 means from Athena installed (`postfeatx.py install`, files `ath_*.mean.npy`); tier 0 on DINOv3 started.
 - Note: `lists.py cert_a` was rerun at about 19:58 after the ladder copies joined the catalogue, so `cert_a.csv` now
   lists more rows than the cue file `cert_cert_a.npz` (computed from the 11,573-row version); the ladder copies get
   their cues from the separate `ladsoft` cue job.

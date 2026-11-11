@@ -30,7 +30,7 @@ cp "$G/tasks/PN1/run.sh" "$S/task/run.sh"
 printf 'TASK=PN1_Bn_s401_smoke\nARM=Bn\nSEED=401\n' > "$S/task/task.env"
 ( while :; do nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader,nounits >> "$S/gpumem.csv"; sleep 5; done ) & SM=$!
 set +e
-( cd "$S/work" && TASK_DIR="$S/task" TASK_WORK="$S/work" PN1_ROOT="$S/root" PN1_PACK="$G/packs/PN1/pn1_pack.tar" \
+( cd "$S/work" && TASK_DIR="$S/task" TASK_WORK="$S/work" PN1_ROOT="$S/root" PN1_PACK="$G/packs/PN1/pn1_pack.tar" PN1_SIF="$SIF" \
   PN1_STEPS=${SMOKE_STEPS:-200} PN1_LIMIT=64 PN1_WORKERS=7 bash "$S/task/run.sh" ) > "$S/smoke_run.log" 2>&1
 rc=$?
 set -e
@@ -43,7 +43,7 @@ mkdir -p "$G/results/PN1/smoke"
 cp "$S/smoke_run.log" "$S/gpumem.csv" "$G/results/PN1/smoke/" || true
 cp "$S"/root/results/PN1/*.tar* "$G/results/PN1/smoke/" 2>/dev/null || true
 # optional tier-0 features
-if [ -f "$G/packs/PN1/featx.tar" ]; then
+if [ -f "$G/packs/PN1/featx.tar" ] && [ ! -f "$G/results/PN1/featx_out.tar" ]; then
   X=$MEMFS/featx; mkdir -p "$X"
   cp "$G/packs/PN1/featx.tar" "$MEMFS/featx.tar"
   [ "$(sha256sum "$MEMFS/featx.tar" | cut -c1-64)" = "$(cut -c1-64 "$G/packs/PN1/featx.tar.sha256")" ] || { echo "featx sha256"; exit 1; }

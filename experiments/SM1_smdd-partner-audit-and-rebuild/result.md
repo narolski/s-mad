@@ -1,8 +1,9 @@
 # SMDD five-partner audit and rebuild of the standard training set (SM1): result
 
 Owner run, 11 Nov 2026. Pre-registration: `prereg.md` (with amendment A1 from the pre-run review, registered before
-any score). Code: `src/SM1/`. Large outputs: `/mnt/t7/smad_next/SM1/`. Status: **in progress** (sections below are
-filled as stages finish).
+any score). Code: `src/SM1/`. Large outputs: `/mnt/t7/smad_next/SM1/`. Full record: `README.md`. Status 11 Nov
+20:45: Part 1, T-A, T-B, T-C, Part 2 (primary), Part 3 frozen heads (13 arms x 5 seeds) done; still running: Part 2
+secondary passes (DGX), 25 ViT-L/14 and 10 ViT-B/16 LoRA fits (Athena).
 
 ## Part 1: documentation (done; no score involved)
 
@@ -130,7 +131,34 @@ Difference-in-differences (key bootstrap, 10,000 draws): gap(a) − gap(c′) = 
 release's structure on these features (positive control), and the released FE ViT-L/14 header shows it on
 whole-image features.
 
-**Released detectors through their own crop path (primary) and whole files (secondary):** scoring running.
+**Released detectors through their own crop path (primary; A46 RGB MTCNN crop + release adapters, no TTA logit;
+`p2_full.json` "detectors").** Gap in logits; interval from 10,000 key-bootstrap draws; two-way = keys x slots.
+
+| Release | gap [95%] | two-way [95%] | AUC KP vs KU [95%] | per-slot gaps (img054553, img282038, img496816, img337488, img099545) | sign-flip p | placebo p (trained ranks among 30) | responsive (AUC morphs vs key renders) | verdict (A1.1) |
+|---|---|---|---|---|---|---|---|---|
+| MADation ViT-B/16 | 1.72 [1.48, 1.99] | [0.42, 3.27] | 0.807 [0.795, 0.819] | 1.83, 0.41, 4.55, 1.94, −0.12 | 0.062 | 0.0004 (4, 3, 2, 6, 8) | 1.000 | partner memorisation |
+| MADation ViT-L/14 | 3.50 [3.10, 3.93] | [1.40, 5.53] | 0.837 [0.828, 0.846] | 5.18, 2.46, 6.64, 3.26, −0.01 | 0.062 | 0.0044 (3, 2, 6, 14, 7) | 1.000 | partner memorisation |
+| MADation FE ViT-B/16 | 4.43 [4.21, 4.65] | [3.38, 5.54] | 0.819 [0.806, 0.832] | 2.84, 3.31, 6.21, 5.17, 4.60 | 0.031 | < 1e-4 (5, 4, 2, 3, 1) | 0.998 | partner memorisation |
+| MADation FE ViT-L/14 | 5.17 [4.93, 5.41] | [2.93, 7.74] | 0.764 [0.752, 0.776] | 3.46, 2.23, 9.98, 6.58, 3.60 | 0.031 | < 1e-4 (2, 8, 3, 4, 1) | 0.999 | partner memorisation |
+| MixFaceNet-MAD | 16.16 [15.57, 16.76] | [13.33, 18.71] | 0.922 [0.912, 0.931] | 16.55, 19.33, 19.22, 11.24, 14.48 | 0.031 | < 1e-4 (5, 3, 4, 2, 1) | 0.999 | partner memorisation |
+
+(Slot order in the table header is the order of `K.PARTNERS`; the per-slot list follows it.) Mean logits: key x
+trained partner / key x matched unused / partner x partner / unused x unused / key renders: ViT-B/16 11.6 / 9.8 /
+11.6 / 7.9 / −12.2; ViT-L/14 12.2 / 8.7 / 12.3 / 0.6 / −12.9; FE ViT-B/16 9.7 / 5.3 / 11.5 / 5.6 / −10.2;
+FE ViT-L/14 12.1 / 7.0 / 14.1 / 7.0 / −12.6; MixFaceNet 22.4 / 6.2 / 39.2 / 2.3 / −17.9. Percentile of the five
+trained partner renders among the 500 key renders (crop path): ViT-B/16 0.57, 0.92, 0.28, 0.03, 0.60; ViT-L/14
+0.09, 0.13, 0.02, 0.01, 0.31; FE ViT-B/16 1.00, 0.99, 0.98, 0.98, 0.83; FE ViT-L/14 1.00, 0.99, 0.99, 1.00, 0.99;
+MixFaceNet 1.00, 0.99, 0.99, 0.98, 0.94 (matched unused renders: 0.02 to 0.99, no pattern).
+
+**Registered readings.** Lead's falsifier ("no partner memorisation if the paired gap interval includes 0 for every
+detector"): **does not hold**; every primary release's interval lies above 0, and the placebo test passes for all
+five. SMDD-T partner condition (A1.2): does not hold (and its EER half does not hold either), so the partner claim
+is not dropped. Context from T-A: for MADation ViT-B/16 the evaluation-split miss rate is still within 1 point of
+the training-split rate, so memorisation is present but not needed for its SMDD evaluation score; for the other
+four the evaluation split costs 4 to 9.5 points.
+
+Secondary readings (FS variants; whole-file path; bridge to the original tool with the evaluation-split partners)
+are being scored and will be added to `p2_full.json` by `read_p2.py`.
 
 ## Part 3: rebuild arms on frozen features
 
@@ -292,4 +320,13 @@ Registered falsifiers (descriptive, because no rebuilt arm passed the Laplacian 
 
 ## Not verified / caveats
 
-- pending
+- Every rebuilt-arm number is descriptive: no arm passes the Laplacian acceptance (best 0.72; bar 0.65).
+- T-A / T-B use the registered 7,810-image subsample and the whole-file path (A6, A8), not the releases' crops.
+- The T-A training morphs are the releases' own training images; a larger evaluation-split miss rate can come from
+  memorising images, not only partners.
+- Our engine differs from SMDD's dlib tool (fixed warp factor 0.5 vs random in [0, 1]); the audit and rebuilt
+  morphs are ours. The bridge to the original tool (evaluation-split partners) is pending.
+- The FE header reproduction of the A12REL scores missed 1e-3 (0.0062); platform numerics, not verified further.
+- Origin of the `os25k_m_t` / `os25k_m_e` folders on disk is not recorded.
+- The expression check is a geometry substitute trained on FRLL photos (domain shift); the pixel probe did not run.
+- LoRA fits (A9, A10, A11) are not finished; their readings are not in this file yet.

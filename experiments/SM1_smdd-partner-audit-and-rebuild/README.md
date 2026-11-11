@@ -188,6 +188,10 @@ descriptive.
 - 20:30 Frozen-head partner audit (`p2_full.json` heads / did): heads trained with the five partners show a gap of
   5.8 to 6.1 logits (placebo p < 1e-5); heads trained without them 0.1 to 1.3; the FE ViT-L/14 release header 4.92
   (p 0.0006). Written to `result.md`.
+- 20:45 Part 2 primary (releases on own crops) read (`p2_full.json`): every primary release shows partner
+  memorisation under the registered rule (gap 1.7 to 16.2 logits, intervals above 0, placebo p ≤ 0.0044). The lead's
+  falsifier does not hold. Report sent to the lead. Still running: `run_p2.sh` (FS crops, whole-file pass, then
+  `read_p2.py` for the bridge and the secondary readings) and the Athena fits.
 
 ## 3. Data
 
@@ -324,17 +328,23 @@ then `read_p3.py --dir /mnt/t7/smad_next/SM1/lora_scores --name lora_vitl` (and 
 for the frozen heads is in `read_p2.py`. Arm (a)'s history-matched flag rate decides whether the storage comparison
 counts (A11).
 
-## 10. Handover state (20:10)
+## 10. Handover state (20:45)
 
-- DGX: `run_p2.sh` (Part 2 scoring, log `logs_p2.log`; rerun skips finished detectors); `run_p3f.sh 3545893` queued
-  behind the boot readers (log `logs_p3f.log`; safe to rerun).
-- Athena (account plgmultivision-gpu-a100 for the fits): 3545823_[0-19] ViT-L/14 fits (arms a, c, d, e; tasks 0 and
-  1 running), 3545894_[20-24] ViT-L/14 arm (f), 3545916 ViT-B/16 smoke → 3545917_[0-9] ViT-B/16 fits (afterok).
-  Results land in `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/SM1/<task>.tar` with `.sha256`;
-  logs in `.../logs/SM1L-*`, `SM1B-*`. If a task fails, rerun once with the same seed (A9).
+- DGX: `run_p2.sh` still running (FS pair on the audit crops, then the whole-file pass of the five primary releases,
+  then `read_p2.py`, which rewrites `p2_full.json` with `whole_file_secondary` and `bridge`); log
+  `/mnt/t7/smad_next/SM1/logs_p2.log`; if it dies, rerun `run_p2.sh` (finished detectors are skipped).
+- Athena (account plgmultivision-gpu-a100): ViT-L/14 fits 3545823_[0-19] (arms a, c, d, e; tasks 0 and 1 at step
+  ~1,000 of 6,250 at 20:30, 0.49 it/s), 3545894_[20-24] (arm f); ViT-B/16 smoke 3545956 → 3545957_[0-9] (afterok).
+  Results: `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/SM1/SM1L_<arm>_s<seed>.tar` and
+  `SM1B_<arm>_s<seed>.tar` with `.sha256`. To read: copy back with one flock rsync, check sha256, extract into
+  `/mnt/t7/smad_next/SM1/athena/lora/`, `python3 -I src/SM1/lora_read.py /mnt/t7/smad_next/SM1/athena/lora`
+  (writes `lora_scores/`; put ViT-B/16 tars in a separate folder and pass that folder, then move its output to
+  `lora_scores_vitb/`), then `read_p3.py --dir /mnt/t7/smad_next/SM1/lora_scores --name lora_vitl --arms a,c,d,e,f`
+  and the same for ViT-B/16 with `--seeds 401,402`. A failed fit is rerun once with the same seed (A9).
 - leaseB: nothing running; `/workspace/sm1` holds the venv, packs and logs (volatile, ends about 23:00).
 - WCSS: job 6301971 stale (will fail).
-- Compute so far: Athena about 1 GPU-h (features + smokes); planned fits about 100 + 9 A100-hours (within 150).
+- Compute: Athena about 1.5 GPU-h so far (features, smokes, the hung ViT-B smoke 23 min); planned fits about
+  100 (ViT-L/14) + 9 (ViT-B/16) A100-hours, within 150.
 
 ## 11. Reproduce from scratch
 

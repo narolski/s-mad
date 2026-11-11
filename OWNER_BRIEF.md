@@ -10,6 +10,14 @@ In `experiments/<ID>/`: `prereg.md` (from `prereg/TEMPLATE.md`, written before a
 result files (CSV/JSON). Code in `src/<ID>/`. Large outputs in `/mnt/t7/smad_next/<ID>/`.
 Write only inside those three places. Do not run `git add`, `commit` or `push`; the lead commits.
 
+**Disk space (11 Nov 20:39: the data drive `/mnt/t7` reached 100% and writes failed).** Before any write of more than
+1 GB check `df -h /mnt/t7` and keep at least 50 GB free. Large packs, image sets and feature files that are needed
+on Athena stay on Athena (the project folder has 10 TB); copy back to the DGX only what will be read here (score
+files, small tables, images that a DGX step really needs). Do not keep a second local copy of something that
+exists unpacked (a tar of a folder that is still there). You may remove your own unfinished temporary files.
+Anything else is deleted only with the author's approval: send the lead a list (path, size, where the verified
+copy is) instead of deleting.
+
 **DGX load (11 Nov, measured load average 189 on 20 cores).** Start every DGX process with
 `OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 nice -n 10 ...`; at most 2 such
 processes per owner besides one GPU job. Numerical libraries otherwise start 20 threads each and slow everyone.
