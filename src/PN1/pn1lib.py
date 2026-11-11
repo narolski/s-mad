@@ -26,6 +26,23 @@ def read(p):
     return list(csv.DictReader(open(p)))
 
 
+def cycle_map():
+    """ladder host -> partner-cycle id (cycles of the host -> partner permutation; src/AR1/folds.py's units)."""
+    lad = {r["pid"]: r["partner_B"] for r in read(SPLIT / "ladder_split.csv")}
+    cyc, seen = {}, set()
+    for p in sorted(lad):
+        if p in seen:
+            continue
+        q, members = p, []
+        while q not in seen:
+            seen.add(q)
+            members.append(q)
+            q = lad[q]
+        for m in members:
+            cyc[m] = "cyc:" + min(members)
+    return cyc
+
+
 def split_tables():
     lad = {r["pid"]: r for r in read(SPLIT / "ladder_split.csv")}
     af = {r["pid"]: r for r in read(SPLIT / "af0_split.csv")}
@@ -193,32 +210,45 @@ def load_features(bb, want=None, check_dupes=True):
 
 
 # ------------------------------------------------------------------ heads
-def fit_head(X, y, groups, seed, Cs=(0.001, 0.01, 0.1, 1.0, 10.0), folds=5):
-    """StandardScaler + LogisticRegression (L2, lbfgs, balanced classes); C by grouped inner CV (AUC), refit on all."""
+def person_folds(persons, seed, folds=5):
+    """amendment 4 (F7, F11): persons dealt to folds at random; -> (fold of each row or -1 if it straddles, n_dropped)."""
+    allp = sorted({p for ps in persons for p in ps})
+    rng = np.random.default_rng(seed)
+    fo = dict(zip(rng.permutation(allp), np.arange(len(allp)) % folds))
+    f = []
+    for ps in persons:
+        ks = {fo[p] for p in ps}
+        f.append(ks.pop() if len(ks) == 1 else -1)
+    f = np.array(f)
+    return f, fo, int((f < 0).sum())
+
+
+def fit_head(X, y, persons, seed, Cs=(0.001, 0.01, 0.1, 1.0, 10.0), folds=5):
+    """StandardScaler + LogisticRegression (L2, lbfgs, balanced classes); C by partner-safe inner CV (persons dealt to
+    folds at random; a row is validated in fold k only if all its persons are in k and trained on only if none is),
+    AUC; refit on all rows. persons: list of tuples (a plain id is taken as a 1-tuple)."""
     from sklearn.linear_model import LogisticRegression
     from sklearn.preprocessing import StandardScaler
-    g = np.asarray(groups)
-    ug = np.unique(g)
-    rng = np.random.default_rng(seed)
-    fold_of = dict(zip(rng.permutation(ug), np.arange(len(ug)) % folds))
-    f = np.array([fold_of[x] for x in g])
+    persons = [tuple(p) if isinstance(p, (tuple, list)) else (p,) for p in persons]
+    f, fo, ndrop = person_folds(persons, seed, folds)
     best, cv = None, {}
     for C in Cs:
         aucs = []
         for k in range(folds):
-            tr, te = f != k, f == k
-            if len(np.unique(y[te])) < 2:
+            te = f == k
+            tr = np.array([all(fo[p] != k for p in ps) for ps in persons])
+            if len(np.unique(y[te])) < 2 or len(np.unique(y[tr])) < 2:
                 continue
             sc = StandardScaler().fit(X[tr])
             m = LogisticRegression(C=C, max_iter=5000, class_weight="balanced").fit(sc.transform(X[tr]), y[tr])
-            aucs.append(auc(m.decision_function(sc.transform(X[te]))[y[te] == 1],
-                            m.decision_function(sc.transform(X[te]))[y[te] == 0]))
-        cv[C] = float(np.mean(aucs))
+            d = m.decision_function(sc.transform(X[te]))
+            aucs.append(auc(d[y[te] == 1], d[y[te] == 0]))
+        cv[C] = float(np.mean(aucs)) if aucs else float("nan")
         if best is None or cv[C] > cv[best]:
             best = C
     sc = StandardScaler().fit(X)
     m = LogisticRegression(C=best, max_iter=5000, class_weight="balanced").fit(sc.transform(X), y)
-    return dict(scaler=sc, model=m, C=best, cv=cv)
+    return dict(scaler=sc, model=m, C=best, cv=cv, inner_dropped_rows=ndrop)
 
 
 def head_score(h, X):

@@ -12,8 +12,16 @@ the evaluation split has five other partners. The paper's sentence reads natural
 image; the release differs from that natural reading (not called a bug). Questions: (1) do released SMDD-trained
 detectors memorise the five partners (Part 2 and the no-new-image tests T-A, T-B); (2) does rebuilding SMDD with
 balanced partners, warped halves as genuine images and history crossing change what a head on frozen CLIP
-features learns (Part 3), and later the same with LoRA fits on Athena. **Status 11 Nov 17:40: Part 1 done; no
-detector score of this experiment has been read yet; landmark, build and feature stages running.**
+features learns (Part 3), and the same with LoRA fits on Athena. **Status 11 Nov 20:10:** Part 1, T-A, T-B, T-C,
+the Laplacian acceptance and the frozen-head Part 3 (12 arms x 5 seeds) are done (`result.md`). Running: Part 2
+scoring on the DGX, arm (f) frozen heads and JPEG reads, 25 ViT-L/14 and 10 ViT-B/16 LoRA fits on Athena. Plain
+summary so far: the release differs from the natural reading of the paper (five partners per split); on the
+release's own training split the ViT-B/16 release misses no more evaluation-split morphs than training morphs (within
+1 point), the other four primary releases miss 4 to 9.5 points more; three of five releases rank the five training
+partner renders higher than other renders more often than chance; on frozen CLIP heads, replacing the five partners
+by 50 or more partners lowers the landmark-cell EER by about 3 points, and adding halves and history copies lowers
+the rise under history matching; no rebuilt arm passes the sharpness acceptance, so all Part 3 numbers are
+descriptive.
 
 ## 2. Timeline
 
@@ -162,6 +170,14 @@ detector score of this experiment has been read yet; landmark, build and feature
   `heads.py` gained `--rescore` (recompute saved heads on an extended test bank, for the JPEG frames).
 - 19:55 T-A / T-B FS pair scored (7,810 x 2, 1,589 s); `tab_sub.json` rewritten with all seven releases. Part 2
   scoring started (`run_p2.sh`). LoRA tasks 3545823_0 and _1 running on t0016 (arm a, seeds 401, 402).
+- 19:58 Athena feature job 3545893 (MODE=f) done: test_eval_jpeg (612) and train_armf_jpeg (46,330) features;
+  `run_p3f.sh 3545893` queued (rescore all heads with the JPEG frames, arm f heads, readers).
+- 20:05 Amendment A11 (lead, after the protocol-network pre-run review): 10 ViT-B/16 LoRA fits (arms a, c, d, e, f x
+  seeds 401, 402; `athena_lora_b.sbatch`, `lora_run.sh` with RECIPE=m3), history-matched pool flag reads, validity
+  condition on arm (a), storage strata checked (class balance holds in every stratum). First submission 3545913 /
+  3545914 cancelled (smoke task name collided with production); resubmitted 3545916 (smoke) → 3545917_[0-9].
+- 20:08 `read_p3.py` gained the A11 reads (history-matched pool flag and miss per cell at the own rule and at the
+  camera-photo 5% threshold).
 
 ## 3. Data
 
@@ -173,24 +189,35 @@ Inputs (read only):
 - Stored landmarks of the genuine renders `.../SMDD/smdd_bona_landmarks_if106.npz` (sha256 f167eaf8…, 25,000 x 106,
   normalised; 3 NaN); look-alike table `smdd_bona_lookalikes.npz` (32 ArcFace neighbours, `os25k_bf_t` only).
 - Shrunk copies of the genuine renders (a47, 80 px) `/mnt/t7/smad_heldout/a47/data47/i3/train/smdd_a47e7/os25k_bf_t`.
-- Test frames: `eval.csv` FRLL-Morphs / MorDIFF / DiM rows (orig, resmatch) under
-  `/home/narolski/mambamorph-code/smadcvpr_data/eval`; corrected MAD22
+- Test frames: `eval.csv` FRLL-Morphs / MorDIFF / DiM rows (orig, resmatch) and the FRLL genuine jpeg90/70/50 rows
+  under `/home/narolski/mambamorph-code/smadcvpr_data/eval`; corrected MAD22
   `/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z/{native,e7}`; AR1 ladder
-  `/mnt/t7/smad_next/AR1/manifest.csv` (18,239 rows) and its frames.
+  `/mnt/t7/smad_next/AR1/manifest.csv` (19,515 rows when snapshotted, sha256 9c69d44f…, copy
+  `/mnt/t7/smad_next/SM1/ar1_manifest_snapshot_9c69d44f.csv`) and its frames.
 
 Produced (all under `/mnt/t7/smad_next/SM1/` unless said):
-- `lm/srcm_if106_pool.npz` (3,025: 3,000 seeded non-contributors + 5 partners + 20 check renders; with ArcFace
-  embeddings), `lm/srcm_if106_evalp.npz` (5 evaluation partners), `lm/srcm_if106_contrib.npz` (running).
-- `tem/{bf,src,srce}/<name>.tem` (24,630 / 2,963 / 5 admissible renders; pixel = normalised x 256).
-- `lists/`: `armc_15k.csv`, `armcr_15k.csv` (15,000 each, A5 rule), `smoke_armc.csv`, `smoke_armcr.csv` (prefixes),
-  `audit.csv` (9,520 rows: 2,500 KP, 2,500 KU, 2,500 KE, 2,000 KX, 10 PP, 10 UU), `audit_renders.csv` (535),
-  `smoke_audit.csv` (750), `ar1h.csv` (536). Pending: `armb, armbp, armd50, armd500, armc, armcr` (need N).
-- `img/armc/`, `img/armcr/`: smoke builds (500 morphs + 1,000 halves; 500 morphs).
-- `flists/`: feature lists `test_eval.csv` (14,120), `test_mad22.csv` (5,707), `test_ar1.csv` (18,239),
-  `train_bf.csv` (25,000), `train_m15k.csv` (15,000), `tab.csv` (50,010, T-A / T-B).
-- `wcss/packs/SM1/sm1_c_pack.tar` (rebuilding with A5 lists), `wcss/staging/SM1/cpu/SM1_cpu_c/` (run.sh, cpus,
-  est_minutes, task.env), `wcss/test_c/` (DGX test of the task).
-- `madation_convert/A12REL/*/convert.json` (extracted from the MADation release tar; maps release names to sha256).
+- Landmarks `lm/srcm_if106_{pool (3,025), contrib (3,858), evalp (5)}.npz`; `.tem` files `tem/{bf,src,srce}/`.
+- Lists `lists/`: `arm{b,bp,c,cr,d50,d500}.csv` (14,734 each), `arma.csv` / `arma256.csv` (14,734 / 14,236 release
+  files), `armc_15k.csv`, `armcr_15k.csv`, `audit.csv` (9,520), `audit_renders.csv` (535), `ar1h.csv` (536),
+  `jpeg_assign.csv` (46,330), `shrink_armc.csv`, smoke lists. Summary `pairs_all.log`, `experiments/.../pairs_summary.json`.
+- Images `img/`: `armb, armbp, armd50, armd500` (14,734 each), `armc` (15,000 morphs + 30,000 halves; the first
+  14,734 pairs are the arm), `armcr` (15,000), `arme` (45,000 80-px copies), `armf/{jpeg90,jpeg70}` (46,330),
+  `audit` (9,520), `ar1h` (536 morphs + 1,072 halves). Builds of b, b′, c, c′, K = 50, K = 500, audit, ar1h on leaseB
+  (tars and logs in `lease/`); e and f on the DGX.
+- Storage strata per arm: a to d, K = 50, K = 500 hold 256-px files (a also the 733 release files 257 to 264 px tall);
+  e holds 256 px and 80 px copies, half each, in both classes (morph share 0.371 in each stratum); f adds JPEG
+  90 / 70 copies to about a third of e's images (morph share 0.363 to 0.379 per stratum, overall 0.371).
+- Feature lists `flists/` (test_eval 14,120; test_mad22 5,707; test_ar1 19,515; test_ar1h 1,072; test_eval_jpeg
+  612; audit 10,055; train lists of every arm; tab.csv 50,010 and tab_sub.csv 7,810).
+- Athena features merged per list: `feat_athena/<list>.npz` (jobs 3545820 and 3545893); DGX features
+  `feat/test_eval.npz` (equivalence check only).
+- Arm compositions `compose/<arm>_s<seed>.json`; LoRA manifests `lora/manifests/` (tar `gpupack/sm1lora_manifests_v2.tar`).
+- GPU packs `gpupack/`: `sm1gpu_code.tar`, `sm1gpu_code_v2.tar`, `sm1gpu_img_{test,base,armsc,audit,arme,armsb,
+  jpegeval,armf}.tar` (+ `.sha256`); same files on Athena `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/SM1/`.
+- Scores: `heads/` (frozen heads, 5 seeds and boot variant; `feref.npz`), `heads/smoke/`, `p2scores/` (releases on
+  audit crops), `p2scores/whole/`, `p2scores/tab_sub/`; Athena results `athena/`.
+- `madation_convert/A12REL/*/convert.json` (maps release names to sha256); `sources/` (SMDD README and paper HTML
+  as fetched 11 Nov).
 
 ## 4. Code (`/home/narolski/smad-next/src/SM1/`)
 
@@ -199,93 +226,112 @@ Produced (all under `/mnt/t7/smad_next/SM1/` unless said):
 | `sm1_common.py` | paths, partners (training and evaluation), sha, `.tem` writer, if106 loader |
 | `p1_document.py` | Part 1 structure audit → `p1_structure.json` |
 | `landmarks.py` | insightface buffalo_l pass (det 512, 106 points, ArcFace where needed), stages pool / contrib / evalp |
-| `pairs.py` | `.tem` files (`tems`), 15k (c)/(c′) lists (`c15k`), audit lists (`lists audit`), all lists (`lists`) |
+| `pairs.py` | `.tem` files, (c)/(c′) 15k lists, audit lists, all lists (A5 frame rule, dose arms) |
 | `build.py` | unchanged 68/78 engine via a recorder wrapper; halves; asserts; `--verify-cli`, `--compare`, `--root` |
-| `wcss_prep.py`, `wcss_run.sh` | one-tar-in / one-tar-out CPU task (WCSS or leaseB) |
-| `featlists.py` | feature lists (train, test, audit, smoke) |
-| `feats.py` | frozen CLIP ViT-L/14 features (FE release convention) and the feature-path check |
-| `heads.py` | Part 3 logistic heads per arm and seed, scores on all test and audit images; FE header reference |
-| `read_p3.py`, `read_p2.py` | Part 3 and Part 2 readers (registered statistics) |
-| `sm1_stats.py` | person bootstrap Draw, weighted AUC, weighted EER |
-| `rel_score.py`, `rel_multi.py` | released detectors (AR1 release path); multi-detector one-pass scorer |
-| `tab.py` | T-C file check, T-A / T-B lists and reader |
-| `shrink.py` | arm (e) shrink step = `a47_data._one` unchanged (verify, run) |
-| `lapvar.py` | Laplacian-variance acceptance per arm |
+| `wcss_prep.py`, `wcss_run.sh`, `lease_sm1.sh` | one-tar-in / one-tar-out CPU tasks (WCSS or leaseB) and the leaseB driver |
+| `shrink.py` | arm (e) shrink step = `a47_data._one` unchanged |
+| `jpeg_arm.py` | arm (f): JPEG verification, assignment, build with `prep_eval.degrade` unchanged |
+| `featlists.py`, `compose.py` | feature lists; arm compositions |
+| `feats.py`, `feats_gpu.py`, `gpu_pack.py`, `athena_feats.sbatch`, `merge_feats.py` | features (DGX check; Athena pass; packs; merge; equivalence) |
+| `heads.py`, `read_p3.py`, `pool_cue.py`, `lapvar.py` | Part 3 heads, reader, pool-cue check, sharpness acceptance |
+| `rel_score.py`, `rel_multi.py`, `ar1copy/crop_rgb.py`, `run_crops.sh`, `run_p2.sh`, `read_p2.py` | Part 2 |
+| `tab.py`, `run_tab_multi.sh` | T-A / T-B / T-C |
+| `lora_lists.py`, `lora_run.sh`, `athena_lora.sbatch`, `athena_lora_b.sbatch`, `lora_read.py` | LoRA fits |
 | `expr_geom.py` | geometry-only smile probe (A3 substitute) |
-| `run_p2.sh`, `run_tab.sh`, `run_feats.sh`, `run_contrib.sh` | chains |
+| `run_p3.sh`, `run_p3f.sh`, `run_feats.sh`, `run_contrib.sh`, `run_gpupack.sh`, `athena_up.sh` | chains |
+| `heads_v1_unused.py`, `run_p2_v1_unused.sh` | superseded first versions, never run to a result |
 
 Environment: DGX `/home/narolski/mambamorph-code/.venv-spark/bin/python` (Python 3.12.3, torch 2.12.1+cu130,
 timm 1.0.27, cv2 4.11.0, numpy 1.26.4, insightface 1.0.1, onnxruntime 1.27.0); facenet venv
-`/mnt/t7/thirdparty/facenet_pytorch_2.6.0_20261107/venv` for MTCNN crops (AR1 `crop_rgb.py`, unchanged). Engine
-sha256: 68_hires_morph.py 71643aad…, 78_tool_morph.py b8a389f1…. Release weights (staged payload, by sha256):
-MADation ViT-B/16 ddb1455b…, ViT-L/14 bb452ded…, FE ViT-B/16 6a4d93ba…, FE ViT-L/14 74dd7fbc…, FS ViT-B/16
-a7cacd47…, FS ViT-L/14 6071ec7b…; MixFaceNet-MAD 3d507c8b…. CLIP tower: timm
-`vit_large_patch14_clip_quickgelu_224` with the cached `timm/vit_large_patch14_clip_224.openai` weights. Seeds:
-heads 401 to 405; data draws 20261111 (+ offsets in the scripts).
+`/mnt/t7/thirdparty/facenet_pytorch_2.6.0_20261107/venv` (MTCNN crops); leaseB venv `/workspace/sm1/venv` (Python
+3.10.13, numpy 1.26.4, opencv-python-headless 4.11.0.86); Athena shared venv (Python 3.10.4, torch 2.2.1+cu121,
+timm 1.0.27, numpy 1.26.4, pillow 10.2.0). Engine sha256: 68_hires_morph.py 71643aad…, 78_tool_morph.py b8a389f1….
+prep_eval.py 374408ab…, a47_data.py fcd48e1a…. Release weights (staged payload, by sha256): MADation ViT-B/16
+ddb1455b…, ViT-L/14 bb452ded…, FE ViT-B/16 6a4d93ba…, FE ViT-L/14 74dd7fbc…, FS ViT-B/16 a7cacd47…, FS ViT-L/14
+6071ec7b…; MixFaceNet-MAD 3d507c8b…. CLIP tower: timm `vit_large_patch14_clip_quickgelu_224` with the cached
+`timm/vit_large_patch14_clip_224.openai` weights (sha256 eb70c15b…). Seeds: heads and fits 401 to 405; data draws
+20261111 (+ offsets in the scripts).
 
 ## 5. Results
 
-Part 1 and T-C only so far (see `result.md`, `p1_structure.json`, `tc_files.json`). No detector score read.
-Partner matching for the audit (`pairs_summary_audit.json`): trained → matched unused partner with (mean cos to
-keys, sd, IOD px, yaw proxy): img054553 (0.063, 0.070, 63.2, 0.00) → img167417 (0.054, 0.069, 63.7, −0.03);
-img282038 → img029400; img496816 → img200961; img337488 → img380037; img099545 → img197375. Mean ArcFace cosine key
-to partner: trained 0.037, matched unused 0.035, placebo 0.028.
+See `result.md` for every table: Part 1 and T-C; expression; T-A / T-B (`tab_sub.json`); Laplacian acceptance
+(`lapvar.json`, `lapvar_f.json`); Part 3 smoke (`p3_smoke.json`) and full (`p3_full.json`, `p3_full_seeds.csv`,
+bootstrap variant `p3_full_boot.json`); Part 2 (`p2_full.json`, pending). Partner matching for the audit
+(`pairs_summary_audit.json`): trained → matched unused partner: img054553 → img167417, img282038 → img029400,
+img496816 → img200961, img337488 → img380037, img099545 → img197375; mean ArcFace cosine key to partner: trained
+0.037, matched unused 0.035, placebo 0.028.
 
 ## 6. Checks
 
 Verified: landmark pass reproduces stored if106 points (max 0.014 px over 20 renders); wrapper = unchanged 78 command
-line (max 0 on 8 + 8 pairs); halves average within 0.5 grey level of the morph on every built pair; shrink call =
-stored a47 copies byte for byte (8 of 8); CLIP tower = FE release tower (0.0); release CSVs vs folders (T-C).
-Not verified / failed: FE header reproduction within 1e-3 (missed, 0.0062); where `os25k_m_*` came from; WCSS
-OpenCV 5.0 vs DGX 4.11 equality (job never ran successfully).
+line (max 0 on every task's 8-pair check, DGX and leaseB); leaseB outputs = DGX outputs (32 per task + 2,000 smoke
+files, max 0); our AR1 morphs = AR1's R4 files (536 of 536); halves average within 0.5 grey level of every morph;
+shrink call = stored a47 copies byte for byte (8 of 8); `prep_eval` jpeg70 path reproduces two evaluation files byte
+for byte; CLIP tower = FE release tower (0.0); `feats_gpu.py` = `feats.py` on the DGX (1.2e-7); Athena vs DGX features
+on 14,120 frames (max 1.0e-3, AUC Δ 1e-5); pool-cue AUC 0.507; release CSVs vs folders (T-C).
+Not verified / failed: FE header reproduction of A12REL scores within 1e-3 (0.0062); where `os25k_m_*` came from;
+the T-A / T-B full 50,010-image set (only the registered 7,810-image subsample); WCSS OpenCV 5.0 equality.
 
 ## 7. Dead ends and failures
 
 - `pkill -f` / `pgrep -f` / `grep` over `ps` with a pattern that also occurs in my own command line killed my
-  own shell three times (exit 144). Fix: start long jobs from a script file (`run_contrib.sh`) and select PIDs by a
-  pattern that does not appear in the killing command.
+  own shell three times (exit 144). Fix: start long jobs from script files and select PIDs by patterns that do not
+  appear in the killing command.
 - npz member re-read in a dict comprehension (25,000 reads of a 21 MB array): fixed by reading members once.
-- The first `rel_multi.py` 8-image test printed a CUDA error (text lost to a `tail -3`); the identical rerun
-  passed (8 images x 7 detectors). Not reproduced; cause unknown (shared GPU).
-- WCSS job 6301971 (task `SM1_cpu_c`, old lists) will fail: build.py stopped on engine errors before A5. Not
-  re-staged because the WCSS login node refuses connections since 16:54.
-- Arm (e) was skipped in the first registration (shrunk copies are 80 px); re-enabled by the author's approval (A4).
-- The cue-check pixel expression probe cannot run on 256-px FFHQ-aligned renders without an aligner; replaced by a
-  geometry probe (A3 note).
-- FE header check tolerance (1e-3) missed; attributed to platform numerics, not further verified.
+- `rel_multi.py` with 7 releases at once ran out of GPU memory (GB10 unified memory, ~20 GB free system-wide; the
+  first 8-image test's "CUDA error" was the same); fixed by detector groups of at most 5.
+- WCSS job 6301971 (task `SM1_cpu_c`, pre-A5 lists): would fail on engine errors; WCSS refused connections from
+  16:54, so it was never re-staged; all builds went to leaseB / the DGX instead.
+- First smoke build crashed on an engine error for out-of-frame landmarks → A5 (705 files deleted).
+- The DGX feature pass ran at 3.4 images/s (CPU decode under load 70 to 190); moved to Athena (A7).
+- The AR1 crop script changed while in use by another owner; a frozen copy is used (`ar1copy/`).
+- A single MTCNN crop process ran at 1.3 images/s; split into 3 shards.
+- The T-A / T-B full set would have taken hours on the shared GPU; registered subsample (A8).
+- `lapvar.py` arm-f branch: loop variable shadowed the sample size (TypeError); fixed and rerun.
+- The ViT-B/16 smoke job was first submitted without a `_smoke` task suffix (it would have written the production
+  task's result name); cancelled with its dependent array and resubmitted (3545916 smoke, 3545917 production).
+- On Athena I ran `sha256sum -c` over the pack tars on the login node once (against the rule); not repeated.
+- Arm (e) was first skipped (80-px copies) and then approved (A4); the pixel expression probe could not run (A3 note).
 
 ## 8. Observations and ideas
 
 - 367 of 24,997 genuine renders and 42 of 3,005 pool renders have landmark points outside the 256-px frame
-  (chins below the frame mostly: 362 above 255).
-- SMDD morph files 257 to 264 px tall (733 training, 417 evaluation) are an image-size cue unique to the attack class.
+  (mostly chins below the frame: 362 above 255).
+- SMDD morph files 257 to 264 px tall (733 training, 417 evaluation) are an image-size cue unique to the attack class;
+  dropping them (a256) changes the frozen-head numbers by at most 1 EER point.
 - The pairing condition of the SMDD terms covers our audit morphs and arms (b), (b′), dose (release source data).
+- One evaluation-split partner (img005071) is missed far more often than the other four by four of five releases.
+- Frozen heads on arm (c) (look-alike pairs) have the largest diffusion-cell rise under history matching (+21 points);
+  adding halves (d) or history copies (e) brings it to +7 and +3.5 at a landmark-cell cost of +4 and +6 EER points.
 
 ## 9. Open items and next steps
 
-Contributor landmarks → all lists → leaseB build of (c), (c′) [and (b), (b′), K = 50, 500] → copy back with hashes →
-arm (e) shrink on the DGX → Laplacian acceptance → features → heads (smoke, then 5 seeds) → readers. Part 2: smoke
-audit build (750) → crops → scores → full audit. T-A / T-B: `rel_multi.py` on `tab.csv`. Athena LoRA fits after the
-arms exist (account plgrestorearc-gpu-a100; Slurm associations missing; do not submit until the lead says so).
+Part 2 reading (after the DGX scoring, about 21:00 to 22:30); arm (f) frozen heads and the JPEG / history-pool reads
+(`run_p3f.sh`); LoRA fits: fetch each `SM1L_*` / `SM1B_*` tar from Athena results with its sha256, `lora_read.py`,
+then `read_p3.py --dir /mnt/t7/smad_next/SM1/lora_scores --name lora_vitl` (and a ViT-B/16 folder); DiD of the audit
+for the frozen heads is in `read_p2.py`. Arm (a)'s history-matched flag rate decides whether the storage comparison
+counts (A11).
 
-## 10. Handover state (17:40)
+## 10. Handover state (20:10)
 
-- DGX: contributor landmarks (`run_contrib.sh`, log `/mnt/t7/smad_next/SM1/landmarks_contrib.log`, output
-  `lm/srcm_if106_contrib.npz`; rerun the script if it dies). Feature pass `run_feats.sh 0 test_eval test_mad22
-  test_ar1 train_bf train_m15k` (log `feats_run1.log`; outputs `feat/<name>.npz`; rerun skips finished lists).
-  Pack c rebuild `wcss_prep.py --task c` (log `wcss/prep_c_v2.log`).
-- WCSS: job 6301971 (will fail; stale). Nothing else.
-- leaseB (89.221.67.144:17736, volatile, ends about 23:00): `/workspace/sm1/{venv,packs,results,tmp,logs}`.
-- Compute: GPU about 1 h on the DGX (shared); no rented cost of our own.
+- DGX: `run_p2.sh` (Part 2 scoring, log `logs_p2.log`; rerun skips finished detectors); `run_p3f.sh 3545893` queued
+  behind the boot readers (log `logs_p3f.log`; safe to rerun).
+- Athena (account plgmultivision-gpu-a100 for the fits): 3545823_[0-19] ViT-L/14 fits (arms a, c, d, e; tasks 0 and
+  1 running), 3545894_[20-24] ViT-L/14 arm (f), 3545916 ViT-B/16 smoke → 3545917_[0-9] ViT-B/16 fits (afterok).
+  Results land in `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/SM1/<task>.tar` with `.sha256`;
+  logs in `.../logs/SM1L-*`, `SM1B-*`. If a task fails, rerun once with the same seed (A9).
+- leaseB: nothing running; `/workspace/sm1` holds the venv, packs and logs (volatile, ends about 23:00).
+- WCSS: job 6301971 stale (will fail).
+- Compute so far: Athena about 1 GPU-h (features + smokes); planned fits about 100 + 9 A100-hours (within 150).
 
 ## 11. Reproduce from scratch
 
 1. `python3 -I src/SM1/p1_document.py`; `python3 -I src/SM1/tab.py tc`.
 2. `python3 -I src/SM1/landmarks.py --stage pool|contrib|evalp --workers 4`.
-3. `python3 -I src/SM1/pairs.py tems`; `pairs.py c15k`; `pairs.py lists` (after contrib).
-4. Builds: `python3 -I src/SM1/build.py --list <list> --workers N` (or `wcss_prep.py --task c|b` + `wcss_run.sh`).
-5. `python3 -I src/SM1/shrink.py verify`; `shrink.py run --list ... --out-dir /mnt/t7/smad_next/SM1/img/arme`.
-6. `python3 -I src/SM1/featlists.py test|train|audit|smoke`; `run_feats.sh W <lists>`.
-7. `python3 -I src/SM1/heads.py [--smoke]`; `heads.py --fe-ref`; `read_p3.py`; `read_p2.py`.
-8. Part 2: `run_p2.sh smoke|full`; T-A / T-B: `rel_multi.py --manifest flists/tab.csv --out-dir p2scores/tab`,
-   `tab.py read`.
+3. `python3 -I src/SM1/pairs.py tems`; `pairs.py c15k`; `pairs.py lists`.
+4. Builds: `wcss_prep.py --task c|b|a` + `lease_sm1.sh up|run8|run|fetch` (or `build.py --list <list>`).
+5. `shrink.py verify`; `shrink.py run --list lists/shrink_armc.csv --out-dir img/arme`; `jpeg_arm.py verify|assign|build`.
+6. `featlists.py test|train|audit|test_jpeg`; `compose.py`; `gpu_pack.py code [name]`; `gpu_pack.py images SET lists`;
+   `athena_up.sh <tars>`; `sbatch athena_feats.sbatch` (MODE=smoke|full|f); `run_p3.sh JOB`; `run_p3f.sh JOB`.
+7. Part 2: `run_crops.sh`; `run_p2.sh`. T-A / T-B: `run_tab_multi.sh` (TABLIST=tab_sub).
+8. LoRA: `lora_lists.py`; tar the manifests; `sbatch athena_lora.sbatch` / `athena_lora_b.sbatch`; `lora_read.py`.

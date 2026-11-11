@@ -293,3 +293,63 @@ expose SMDD's five recurring partners, and it applies to both classes). Nothing 
   plgrestorearc-gpu-a100); one A100, `-C memfs`, `--mem=120G`, 8 CPUs, as before.
 - JPEG call verified (amendment 1, item 1): 4 of 4 FRLL jpeg70 evaluation files reproduced pixel for pixel and byte for
   byte (`jpeg_verify.json`).
+
+## Amendment 4 (11 Nov 20:05 CET; the lead's "amendment 3"): fixes from the independent pre-run review
+
+Disclosure. The tier-0 tables (CLIP heads A0 and B0) were computed by the owner at 19:42 to 19:53, read by the owner and
+reported to the lead at about 19:53, before the pre-run review arrived. The review
+(`experiments/reviews/PRERUN_PN1_20261111.md`, verdict GO WITH FIXES) was written by a reviewer who had not opened any
+score file or tier-0 result; its fixes come from counting manifest rows. Those first tier-0 tables are provisional:
+they are kept under new names (`tier0_v1_provisional/`, `tier0_v1_provisional_tables.md`, `tier0_v1_provisional_key.csv`)
+and are recomputed after the fixes. The ladder hosts were also read by the landmark ladder (AR1) and the alpha-field
+probe (AF0) while PN1 was designed. Pack building had started and was stopped at 20:00 before completion; no pack of
+the old manifests exists. Below, decisions of the lead (numbers F1 to F11 refer to the review).
+
+1. F1, F2 (stratified balance). In A, B, Bn and C, and in the tier-0 arms, the class balance of section 4 is applied
+   inside each stratum of database (FRGC, colorFERET) by storage history (native, 61.2 px; for C also jpeg90 and jpeg70,
+   crossed with size), by seeded repetition of the smaller class (each row ⌊r⌋ or ⌈r⌉ times, rng 20261111 + stratum
+   index). No new image.
+2. F3 (storage marks). The primary fixed threshold for every mark is now τ_cam = 5% false alarms on development camera
+   photos only (development-ladder R0 and AF0 validation photos; the larger of the two pool thresholds), beside τ_0.5.
+   τ_dev of section 5 (camera photos plus their stored copies) is printed only. Sensitivity row: τ_V from AF0
+   validation photos only (F11). P-c becomes: shift R0 → R0_61 ≤ 0.3 SD and ≤ 10% of R0_61 flagged at τ_0.5 and at
+   τ_cam. New mark P-c2 (sizes and kernels never trained): shift R0 → R0_112 ≤ 0.3 SD and ≤ 10% of R0_112 flagged at
+   τ_0.5 and τ_cam; at most 10% flagged at both thresholds on FRLL blur1, FRLL resample50 and the E7 pools whose strength
+   is not 61.2 px (FRLL-Morphs AMSL, FaceMorpher, OpenCV, Webmorph E7; corrected MAD22 OpenCV and Webmorph E7).
+   Registered reading: B flat at 61.2 px but shifting at 112.7 px = "the trained size was memorised"; if A does not
+   shift at 112.7 px either, that read is "uninformative".
+3. F4 (data volume). New arm Bn: a seeded draw from B (rng 20261121), within kinds in proportion to B's kind counts, of
+   A's unique counts (674 negatives, 852 attacks), then the stratified balance; seeds 401 and 402. Reading: Bn close to
+   B = the protocol; Bn close to A = data volume. Printed for every network: mean logit of training rows minus mean logit
+   of held-out images of the same kind (AF0 validation photo, zero, halves, u50; development-ladder R0, R2w, R4; their
+   61.2 px copies where held-out copies exist).
+4. F5 (manifest C). C is labelled a small-data check; the decisive JPEG test is the SMDD rebuild's (SM1) arm with JPEG
+   crossing against the one without. A has a JPEG violation if more than 10% of FRLL jpeg50 photos are flagged at τ_0.5
+   or τ_cam on both A seeds. C passes the JPEG mark if at most 10% of FRLL jpeg50 are flagged at both thresholds on both
+   seeds with the gating-family miss at τ_cam not worse than B's by more than 3 points. Reading: C low on jpeg70 but high
+   on jpeg50 = the trained qualities were memorised. Pipeline difference, stated: training JPEG copies are compressed on
+   the aligned 512 frame and stored as PNG; the FRLL evaluation copies were compressed on the raw photo and then aligned.
+5. F6 (headline and middle outcomes). Registered mark P-g: family-mean miss over the gating attack cells (test R4 OpenCV,
+   MAD22 OpenCV, MAD22 Webmorph, H1) at τ_cam, B (and Bn, C) against A of the same seed, paired bootstrap (B = 2,000;
+   resampling partner cycles of the test ladder, FRLL persons for MAD22, CASIA persons for H1 and development camera
+   pools with τ_cam refitted in each draw). Non-inferiority: upper bound of (B − A) ≤ +3 points; "B lowers the miss" only
+   if the upper bound is below 0. Fixed sentence "inconclusive, no claim" for every middle outcome: P-b between 0.75 and
+   0.90, one seed passing and one failing any mark, P-f unread. The label "passes P-a to P-e" is dropped. P-e uses point
+   EERs (interval about ±2 points with 204 photos), stated with it.
+6. F7, F8, F9, F11. Certificate folds: persons dealt to 5 folds at random (seed 401); an image is tested in fold k only
+   if all its persons are in fold k and trained on only if none is; images that straddle folds are dropped and their
+   share printed. THE certificate is the nuisance-only classifier (history, engine, pool, border, person frequency); the
+   classifier with softness cues is printed beside it. The simple-statistic floor of read (a) is the maximum over the 27
+   statistics on the 512 frame and the 12 certificate cues at 224 px. Bootstrap unit on the ladder: partner cycles
+   (the host -> partner permutation's cycles, as `src/AR1/folds.py`). Tier-0 inner folds partner-safe (same fold rule).
+   The choice between B and C and any later configuration choice use development-ladder and AF0-validation reads only;
+   PN1's test-ladder, corrected-MAD22 and Poisson numbers are "first-test data, read once".
+7. F10. Manifest C is built before the pack (done: 2,549 JPEG copies). The pack's sha256 is pinned in this file (line
+   added below, before any submission) and checked by the job file before `run.sh` runs. The test-ladder stored copies
+   of the morphs (AF0, 19:42) are in the evaluation manifest (764 test attack rows), so no rescoring job is needed for
+   them. The job time limit is checked against the smoke job's step rate. Infrastructure failures are rerun unchanged
+   once; a run with non-finite loss or weights is never rerun. Tier 1 = eight fits: A, B, Bn, C at seeds 401 and 402.
+8. Improvement 4 (reference row from the existing ViT-B/16 recipe retrains on SMDD): no scores of these networks exist
+   on PN1's pools (stored ladder copies, development copies, corrected MAD22); cost reported to the lead, not run.
+9. Not done (author): JPEG genuine pools from raw corrected-MAD22 files; a stronger shrink than 61.2 px.
+10. Split unchanged. Tier-0 arms recomputed: A0, B0 and Bn0 (a seeded draw from B0 of A0's unique counts, same rule).

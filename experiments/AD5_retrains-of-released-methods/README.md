@@ -164,6 +164,12 @@ No retrain and no score exist yet.
   with `-A plgmultivision-gpu-a100` on the sbatch command line (the job files still say plgrestorearc). Accounts per job:
   3544190, 3544192, 3544216, 3544217, 3544218, 3545815, 3545882: plgrestorearc-gpu-a100; 3545813, 3545814, 3545870:
   submitted under plgrestorearc, moved to plgmultivision before starting.
+- 11 Nov 19:38. DGX scoring of the SelfMAD release (one run over 23,145 images) was killed by the DGX ("Killed",
+  BrokenPipe in the dlib workers; memory pressure from other jobs). `score/run_selfmad_dgx.sh` rewritten to score in
+  parts of 2,500 images (`/mnt/t7/smad_next/AD5/scores_selfmad/parts/`), each retried up to 6 times, then merged;
+  restarted 20:02 (4 dlib workers, nice 10), log `/mnt/t7/smad_next/AD5/scores_selfmad_release.log`. No score opened.
+- 11 Nov 20:03. SelfMAD smoke 3545882: the environment rebuild on the project file system is slow (torch and CUDA
+  wheels installed between 19:39 and 20:01).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.

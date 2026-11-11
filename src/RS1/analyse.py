@@ -128,6 +128,7 @@ def rel_pools(det, man, smoke):
 
 
 EXPECTED = {}
+ATH_RUNS = {}
 ATH_RUN = None                                          # set in main(): the unpacked production result folder
 
 
@@ -139,7 +140,8 @@ def athena_pools(det, a46_crops=False, variant=None):
     xr_<A46 id>); the reused A46 crops (GB10) are skipped. a46_crops=True: the crop-platform check, the A46 crops in
     place of their Athena re-crops."""
     variant = variant or VARIANT
-    f = ATH / ATH_RUN / "scores" / f"scores_rel_{det}__{variant}.npz" if ATH_RUN else pathlib.Path("/nonexistent")
+    run = ATH_RUNS.get(variant) or ATH_RUN
+    f = ATH / run / "scores" / f"scores_rel_{det}__{variant}.npz" if run else pathlib.Path("/nonexistent")
     if not f.exists():
         return None
     man = {r["id"]: r for r in csv.DictReader(open(ATH / "athena_manifest.csv"))}
@@ -465,10 +467,13 @@ def main():
     ap.add_argument("--dgx", action="store_true", help="also tabulate the DGX MADation scores (platform check only)")
     ap.add_argument("--crop-check", action="store_true")
     ap.add_argument("--suffix", default="")
+    ap.add_argument("--athena-v1", default=None)
+    ap.add_argument("--athena-v2", default=None)
     ap.add_argument("--athena", default=None, help="unpacked Athena result folder name under /mnt/t7/smad_next/RS1/athena")
     a = ap.parse_args()
     global ATH_RUN
     ATH_RUN = a.athena
+    ATH_RUNS.update({k: v for k, v in (("v1", a.athena_v1), ("v2", a.athena_v2)) if v})
     man = manifest()
     global EXPECTED
     EXPECTED = collections.Counter(r["set"] for r in man.values())

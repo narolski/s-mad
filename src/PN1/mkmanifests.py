@@ -21,7 +21,7 @@ import pn1lib as K  # noqa: E402
 
 M = K.PN1 / "manifests"
 AD4X = pathlib.Path("/mnt/t7/smad_next/AD4/test/work/task_AD4_m3mf_s401/ad4")
-TRCOLS = ["path", "label", "source", "tool", "arm", "val", "mixed", "id", "kind"]
+TRCOLS = ["path", "label", "source", "tool", "arm", "val", "mixed", "id", "kind", "db", "hist"]
 
 
 def soft_rows():
@@ -37,6 +37,35 @@ def soft_rows():
             s0 = dict(src[r["src_id"]])
             s0.update(id=f"{r['src_id']}_{r['strength']}", path=r["path"], rung=f"{s0['rung']}_soft_{r['strength']}")
             out.append(s0)
+    return out
+
+
+def db_of(r):
+    """database of a training image: AF0 / SM1-half ids carry it (train_<db>_..., sm1h_<db>_...); ladder rows: pool."""
+    i = r["id"]
+    if i.startswith(("train_", "sm1h_")):
+        d = i.split("_")[1]
+    else:
+        d = r["pool"].split("_")[1]
+    assert d in ("frgc", "feret"), r
+    return d
+
+
+def draw_bn(rowsB, nneg, natt, seed=20261121):
+    """amendment 4 item 3: within kinds, in proportion to B's kind counts, A's unique counts per class."""
+    rng = np.random.default_rng(seed)
+    out = []
+    for lab, n in (("0", nneg), ("1", natt)):
+        rs = [r for r in rowsB if r["label"] == lab]
+        kinds = sorted({r["kind"] for r in rs})
+        cnt = {k: sum(1 for r in rs if r["kind"] == k) for k in kinds}
+        quota = {k: n * cnt[k] / len(rs) for k in kinds}
+        take = {k: int(np.floor(q)) for k, q in quota.items()}
+        for k in sorted(kinds, key=lambda k: -(quota[k] - take[k]))[: n - sum(take.values())]:
+            take[k] += 1
+        for k in kinds:
+            ks = [r for r in rs if r["kind"] == k]
+            out += [ks[i] for i in sorted(rng.permutation(len(ks))[: take[k]])]
     return out
 
 
@@ -80,15 +109,25 @@ def sources():
     M.mkdir(parents=True, exist_ok=True)
     summ = {"kinds": {k: len(v) for k, v in sorted(by.items())}}
     for name, spec in (("A", A), ("B", B)):
-        rows = [dict(id=r["id"], src=r["path"], kind=k, label=lab) for k, lab in spec for r in by[k]]
+        rows = [dict(id=r["id"], src=r["path"], kind=k, label=lab, db=db_of(r), hist="s61" if k.endswith("61") else "native")
+                for k, lab in spec for r in by[k]]
         ids = [r["id"] for r in rows]
         assert len(ids) == len(set(ids)), f"duplicate ids in {name}"
         with open(M / f"src_{name}.csv", "w", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=["id", "src", "kind", "label"])
+            w = csv.DictWriter(f, fieldnames=["id", "src", "kind", "label", "db", "hist"])
             w.writeheader()
             w.writerows(rows)
         summ[name] = dict(n=len(rows), by_label=dict(collections.Counter(r["label"] for r in rows)),
                           by_kind=dict(collections.Counter(r["kind"] for r in rows)), sha256=K.sha(M / f"src_{name}.csv"))
+    rowsA = list(csv.DictReader(open(M / "src_A.csv")))
+    rowsB0 = list(csv.DictReader(open(M / "src_B.csv")))
+    bn = draw_bn(rowsB0, sum(r["label"] == "0" for r in rowsA), sum(r["label"] == "1" for r in rowsA))
+    with open(M / "src_Bn.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["id", "src", "kind", "label", "db", "hist"])
+        w.writeheader()
+        w.writerows(bn)
+    summ["Bn"] = dict(n=len(bn), by_label=dict(collections.Counter(r["label"] for r in bn)),
+                      by_kind=dict(collections.Counter(r["kind"] for r in bn)), sha256=K.sha(M / "src_Bn.csv"))
     # amendment 1 selection over B: 50% of each kind, half jpeg90 half jpeg70
     rng = np.random.default_rng(20261119)
     sel = []
@@ -125,12 +164,27 @@ def balanced(rows, seed=20261111):
     return out, q + (rem > 0) * 0, rem
 
 
+def balanced_strata(rows):
+    """amendment 4 item 1: the class balance inside each stratum of database x storage history."""
+    out, rep = [], {}
+    strata = sorted({(r["db"], r["hist"]) for r in rows})
+    for i, st in enumerate(strata):
+        rs = [r for r in rows if (r["db"], r["hist"]) == st]
+        n0, n1 = sum(r["label"] == "0" for r in rs), sum(r["label"] == "1" for r in rs)
+        if n0 == 0 or n1 == 0:
+            raise SystemExit(f"stratum {st} has one class only ({n0}, {n1})")
+        b, q, rem = balanced(rs, seed=20261111 + i)
+        out += b
+        rep["|".join(st)] = dict(unique_neg=n0, unique_att=n1, rows=len(b))
+    return out, rep
+
+
 def final():
     files = {}           # pack path -> source file
     summ = {}
     jb = {r["src_id"]: r for r in csv.DictReader(open(K.PN1 / "jpeg_build.csv"))} if (K.PN1 / "jpeg_build.csv").exists() \
         else {}
-    for name in ("A", "B", "C"):
+    for name in ("A", "B", "Bn", "C"):
         base = "B" if name == "C" else name
         src = list(csv.DictReader(open(M / f"src_{base}.csv")))
         if name == "C":
@@ -139,22 +193,24 @@ def final():
                 continue
             sel = list(csv.DictReader(open(K.PN1 / "lists" / "jpeg_sel.csv")))
             assert all(r["id"] in jb for r in sel), "JPEG copies missing"
+            hb = {r["id"]: r for r in src}
             src = src + [dict(id=f"{r['id']}_{r['op']}", src=jb[r["id"]]["path"], kind=r["kind"] + "_" + r["op"],
-                              label=r["label"]) for r in sel]
+                              label=r["label"], db=hb[r["id"]]["db"], hist=hb[r["id"]]["hist"] + "_" + r["op"])
+                         for r in sel]
         rows = []
         for r in src:
             pp = f"train/{r['kind']}/{r['id']}.png"
             assert files.get(pp, r["src"]) == r["src"]
             files[pp] = r["src"]
             rows.append(dict(path=pp, label=r["label"], source="smdd", tool="smdd", arm="smdd", val="0", mixed="0",
-                             id=r["id"], kind=r["kind"]))
-        bal, q, rem = balanced(rows)
+                             id=r["id"], kind=r["kind"], db=r["db"], hist=r["hist"]))
+        bal, strata = balanced_strata(rows)
         with open(M / f"train_{name}.csv", "w", newline="") as f:
             w = csv.DictWriter(f, fieldnames=TRCOLS)
             w.writeheader()
             w.writerows(bal)
         summ[name] = dict(unique_images=len(rows), unique_by_label=dict(collections.Counter(r["label"] for r in rows)),
-                          rows=len(bal), rows_per_label=len(bal) // 2, repeat_quotient=q, repeat_extra=rem,
+                          rows=len(bal), rows_per_label=len(bal) // 2, strata=strata,
                           by_kind=dict(collections.Counter(r["kind"] for r in rows)),
                           draws_per_row_6250x256=round(6250 * 256 / len(bal), 1), sha256=K.sha(M / f"train_{name}.csv"))
     # evaluation manifest

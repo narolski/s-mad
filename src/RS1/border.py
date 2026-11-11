@@ -40,12 +40,13 @@ def main():
     import sys
     lim = int(sys.argv[1]) if len(sys.argv) > 1 else 0
     cut = (lambda L: L[:lim]) if lim else (lambda L: L)
-    ath = sys.argv[2] if len(sys.argv) > 2 else None        # an unpacked Athena result folder (amendment 4 crops)
+    ath = sys.argv[2:4] if len(sys.argv) > 2 else None     # unpacked Athena result folders: variant 1, variant 2
     rows = []
     if ath:
-        A = OUT / "athena" / ath
         man = {r["id"]: r for r in csv.DictReader(open(OUT / "athena/athena_manifest.csv"))}
-        for v, tag in (("v1", "SMDD crop script unchanged (variant 1)"), ("v2", "corrected crop, PNG (variant 2)")):
+        for (v, tag), folder in zip((("v1", "SMDD crop script unchanged (variant 1)"),
+                                     ("v2", "corrected crop, PNG (variant 2)")), ath):
+            A = OUT / "athena" / folder
             by = collections.defaultdict(list)
             for r in cut(list(csv.DictReader(open(A / f"score_{v}.csv")))):
                 by[man[r["id"]]["set"]].append(zero_frac(A / "crops" / v / pathlib.Path(r["path"]).name))

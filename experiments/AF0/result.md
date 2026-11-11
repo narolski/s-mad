@@ -360,3 +360,24 @@ logistic baseline 1.000 -> 0.002 [0.000, 0.013] (drop 0.998; prediction at least
 [0.224, 0.589] (drop 0.60); MLP seeds 401-405: 0.976-0.990 -> 0.515-0.574 (drops 0.41-0.46; confounded intervals about
 [0.29, 0.80]). Prediction for the dense head: at most 0.05; registered falsifier: above 0.15 makes the central claim
 false. Measured drops 0.41-0.60 on DINOv3 and 0.39-0.44 on CLIP-224.
+
+## AF0 wave 3, control 4: five-arm ablation, CLIP ViT-L/14 at 224 (`arms_clip224.json`)
+
+Positives: the 800 training uniform-0.5 morphs only (one global mixing weight). Negatives: (a) 569 photos; (b) the
+1,600 training halves of the uniform-0.5 pairs; (c) halves, target 0.5 inside the face hull; (d) halves, measured map D
+(the only target accepted by control 2); (e) photos, measured map D. Ridge per patch for (c)-(e), logistic for (a), (b).
+Reads (AUC [higher rung positive]; OpenCV-style engine decides, FaceMorpher descriptive, Poisson set = unseen tool and
+unseen CASIA persons; floors: Laplacian variance OpenCV R2w vs R4 0.774, FaceMorpher 0.723, Poisson 0.566):
+
+| arm | OpenCV R2w vs R4 | FaceMorpher R2w vs R4 | Poisson morph vs genuine | OpenCV R4 vs softened R2w (61.2 / 112.7 px) | FRLL native -> E7 shift, mean pooling (top tenth) | flag rate of FRLL E7 frames at the 5% native threshold | softened R0 flagged at 5% (112.7 / 61.2 px) | F4 drop (conf. AUC) |
+|---|---|---|---|---|---|---|---|---|
+| (a) image label, photos | 0.9985 | 0.9993 | 0.885 | 0.998 / 0.9985 | 0.014-0.022 | 4.9-5.9% | 5.5 / 6.5% | 0.73 (0.270) |
+| (b) image label, halves | 0.999 | 0.9997 | 0.886 | 0.9987 / 0.999 | -0.013 to -0.005 | 4.9-5.9% | 5.5 / 7.5% | 0.76 (0.240) |
+| (c) constant map, halves | 0.997 | 0.998 | 0.876 | 0.994 / 0.996 | -0.001-0.009 (-0.021 to -0.006) | 4.9% | 9.0 / 9.5% | 0.98 (0.019) |
+| (d) measured map D, halves | 0.977 | 0.987 | 0.868 | 0.974 / 0.976 | -0.067 to -0.040 (-0.085 to -0.054) | 4.4-4.9% | 6.0 / 7.0% | 0.67 (0.323) |
+| (e) measured map D, photos | 0.959 | 0.974 | 0.851 | 0.947 / 0.953 | -0.061 to -0.038 (-0.078 to -0.051) | 3.4-4.9% | 5.5 / 7.0% | 0.61 (0.377) |
+Fixed reading (lead): the map earns its place only if (d) beats (b) by at least 0.03 AUC or halves the history shift.
+(d) - (b): OpenCV R2w vs R4 -0.022, FaceMorpher -0.013, Poisson -0.018; history shift (d) 0.040-0.067 in absolute
+value against (b) 0.005-0.013. Neither condition holds on CLIP-224. (Softened R2w here = AR1 warp-only images of 200
+hosts passed through the approved shrink-and-enlarge path; FRLL stays evaluation only; F4 crossed test: colorFERET
+validation u50 vs FRGC validation zero-field + halves.)

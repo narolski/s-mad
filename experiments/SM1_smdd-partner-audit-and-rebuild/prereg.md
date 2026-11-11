@@ -346,6 +346,25 @@ reported, never replaced by another seed.
   intervals; every seed printed. Running LoRA tasks score the JPEG frames only if the frames reach Athena before
   they start; otherwise a scoring-only job re-scores the saved trainable parameters (no retraining).
 
+## Amendment A11 (20:05 CET, lead's message after the protocol-network pre-run review F4 / improvement 7; before any of these networks exists)
+
+- **ViT-B/16 LoRA fits** with the record's MADation ViT-B/16 recipe (AD4's M3 command: `--arch a12_clip_vitb16_madation
+  --bs=256`, every other flag as A9), last checkpoint, seeds 401 and 402, on `-A plgmultivision-gpu-a100`, for arms
+  (a) release, (c) balanced partners, (d) balanced partners with halves as genuine, (e) history-crossed, (f)
+  JPEG-crossed: 10 fits (the lead's list named "the rebuilt arm with halves (c)"; both c and d are run so either reading
+  is covered; about 9 A100-hours). Same compositions, scorers and manifests as A9 / A10.
+- **Additional read for every network (ViT-L/14 and ViT-B/16 fits, frozen heads):** flag rate of each
+  history-matched genuine pool (the E7 copies of every FRLL-Morphs, MorDIFF, DiM and corrected-MAD22 cell) at (i) the
+  network's own 0.5 rule and (ii) a development threshold set on camera photos only (the score flagging 5% of the
+  AR1 FRGC/colorFERET R0 photos), each with the miss rate of that cell's morphs at the same threshold.
+- **Validity condition fixed now:** the storage-history comparison counts only if arm (a) shows the failure, i.e. more
+  than 10% of some history-matched genuine pool flagged at one of the two thresholds, for that recipe; otherwise the
+  storage half of the question is reported as "failure not reproduced for this recipe".
+- **Storage strata (checked before any fit):** arms a to d, K = 50, K = 500 hold 256-px files only (arm a also the 733
+  release files 257 to 264 px tall); arm e holds 256 px and the 80-px a47-style copies; arm f holds 256 px, 256 px +
+  JPEG, 80 px, 80 px + JPEG. Morph share per stratum (seed 401): e 0.371 / 0.371; f 0.367 / 0.379 / 0.370 / 0.372
+  (overall 0.371), so class balance holds inside each storage stratum and no seeded repetition is needed.
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 

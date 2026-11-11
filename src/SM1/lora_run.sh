@@ -39,12 +39,18 @@ df -h "$W" | tail -1
 ENVS=(SMAD_DATA=$W/data HF_HOME=$W/ad4/hf HF_HUB_OFFLINE=1 PYTHONUNBUFFERED=1)
 py() { env "${ENVS[@]}" "$PY" "$@"; }
 py -c "import torch, timm, sys; print('SM1L env', sys.version.split()[0], torch.__version__, timm.__version__, torch.cuda.is_available())"
-RUN=$W/runs/SM1/a12_clip_vitl14_madation_r224_d0_train90_none_lr3.33e-06_s${SEED}_sm1${ARM}
-py "$W/ad4/code/smadcvpr/train.py" --arch a12_clip_vitl14_madation --regime d0 --split train90 --lofo none --lr 3.33e-06 \
+RECIPE=${RECIPE:-m3l}                                       # A11: m3 = the ViT-B/16 recipe (AD4's M3 row)
+case "$RECIPE" in
+  m3l) ARCH=a12_clip_vitl14_madation; BSX=(--bs=32 --accum=8) ;;
+  m3)  ARCH=a12_clip_vitb16_madation; BSX=(--bs=256) ;;
+  *) die "recipe $RECIPE" ;;
+esac
+RUN=$W/runs/SM1/${ARCH}_r224_d0_train90_none_lr3.33e-06_s${SEED}_sm1${ARM}
+py "$W/ad4/code/smadcvpr/train.py" --arch "$ARCH" --regime d0 --split train90 --lofo none --lr 3.33e-06 \
   --seed "$SEED" --res 224 --workers "$WORKERS" --out "$RUN" \
   --recipe=v1 --label-smoothing=0 --drop-path=0 --sampler=prior --final=last --steps="$STEPS" --ft=lora \
   --lora-targets=qv --lora-r=2 --lora-alpha=4 --lora-rs --lora-dropout=0.4 --lora-train-norms=0 --opt=adamw \
-  --wd=0.05 --head-lr=3.33e-05 --bs=32 --accum=8 --aug=flip --sched=const --clip-grad=5 --pos-weight=1 2>&1 | tee "$W/train.log"
+  --wd=0.05 --head-lr=3.33e-05 "${BSX[@]}" --aug=flip --sched=const --clip-grad=5 --pos-weight=1 2>&1 | tee "$W/train.log"
 [ -f "$RUN/last.pt" ] && [ -f "$RUN/meta.json" ] || die "train.py returned without last.pt / meta.json"
 echo "SM1L trained ($((SECONDS - T0)) s)"
 R=$W/res/$TASK; mkdir -p "$R"
@@ -57,7 +63,7 @@ if [ -f "$W/data/manifests/sm1_jpeg_eval.csv" ] && [[ " $SETS " == *" jpegeval "
     --train-manifest train_head8.csv --true-manifest train_head8.csv --out "$R/jpegeval" --workers "$WORKERS" --limit "$LIMIT"
 fi
 cp "$RUN/meta.json" "$W/train.log" "$R/"
-echo "task $TASK arm $ARM seed $SEED steps $STEPS limit $LIMIT wall_s $((SECONDS - T0)) host $(hostname)" > "$R/task_info.txt"
+echo "task $TASK recipe $RECIPE arm $ARM seed $SEED steps $STEPS limit $LIMIT wall_s $((SECONDS - T0)) host $(hostname)" > "$R/task_info.txt"
 tar -C "$W/res" -cf "$W/$TASK.tar" "$TASK"
 (cd "$W" && sha256sum "$TASK.tar") > "$W/$TASK.tar.sha256"
 cp "$W/$TASK.tar" "$OUT/$TASK.tar.part" && mv "$OUT/$TASK.tar.part" "$OUT/$TASK.tar"

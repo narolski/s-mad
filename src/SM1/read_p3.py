@@ -170,6 +170,23 @@ def one(R, z):
             f = (z[ix] < t).astype(float)
             W = R.w(ix)
             m[f"jmiss:{tn}:landmark4"] = (float(f.mean()), (W * f).sum(1) / np.maximum(W.sum(1), 1e-12))
+    # ---- A11: history-matched genuine pools flagged, with the miss rate at the same threshold, per cell
+    for tn, t in jthr.items():
+        worst = None
+        for c, (gn, ge, mo) in cells().items():
+            ig, im = R.sel(*ge), R.sel(*mo)
+            if not len(ig) or not len(im):
+                continue
+            f = (z[ig] >= t).astype(float)
+            W = R.w(ig)
+            m[f"e7flag:{tn}:{c}"] = (float(f.mean()), (W * f).sum(1) / np.maximum(W.sum(1), 1e-12))
+            f2 = (z[im] < t).astype(float)
+            W2 = R.w(im)
+            m[f"e7miss:{tn}:{c}"] = (float(f2.mean()), (W2 * f2).sum(1) / np.maximum(W2.sum(1), 1e-12))
+            if worst is None or f.mean() > worst[0]:
+                worst = (float(f.mean()), c)
+        if worst:
+            m[f"e7flag_max:{tn}"] = (worst[0], None)
     # ---- neutral above smiling, within person
     for cell in ("frllm:bona", "mad22:bona"):
         ix = R.sel(cell, "0", "native")

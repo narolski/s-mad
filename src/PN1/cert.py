@@ -94,23 +94,25 @@ def nuisance_design(rows, cues):
     return X, cats
 
 
-def oof_auc(X, y, groups, seed=401, folds=5):
+def oof_auc(X, y, persons, seed=401, folds=5):
+    """amendment 4 item 6 (F7): persons dealt to folds at random; an image is tested in fold k only if all its persons
+    are in k and trained on only if none is; straddling images are dropped (share printed). Two classifiers
+    (logistic on standardised cues; histogram gradient boosting); bootstrap over the first person of each image."""
     from sklearn.ensemble import HistGradientBoostingClassifier
     from sklearn.linear_model import LogisticRegression
     from sklearn.preprocessing import StandardScaler
-    ug = np.unique(groups)
-    if len(np.unique(y)) < 2 or len(ug) < folds:
-        return dict(note="one class or too few groups", n=len(y))
-    rng = np.random.default_rng(seed)
-    fo = dict(zip(rng.permutation(ug), np.arange(len(ug)) % folds))
-    f = np.array([fo[g] for g in groups])
-    res = {}
+    persons = [tuple(p) if p else ("img",) for p in persons]
+    f, fo, ndrop = K.person_folds(persons, seed, folds)
+    if len(np.unique(y)) < 2:
+        return dict(note="one class", n=len(y))
+    res = dict(n=len(y), n_dropped_straddling=ndrop, share_dropped=ndrop / len(y))
+    keep = f >= 0
     for name in ("logistic", "hgb"):
-        s = np.zeros(len(y))
+        s = np.full(len(y), np.nan)
         for k in range(folds):
-            tr, te = f != k, f == k
-            if len(np.unique(y[tr])) < 2:
-                s[te] = 0.5
+            te = f == k
+            tr = np.array([all(fo[p] != k for p in ps) for ps in persons])
+            if te.sum() == 0 or len(np.unique(y[tr])) < 2:
                 continue
             if name == "logistic":
                 sc = StandardScaler().fit(X[tr])
@@ -119,25 +121,38 @@ def oof_auc(X, y, groups, seed=401, folds=5):
             else:
                 m = HistGradientBoostingClassifier(random_state=seed).fit(X[tr], y[tr])
                 s[te] = m.predict_proba(X[te])[:, 1]
-        a = K.auc(s[y == 1], s[y == 0])
-        # bootstrap over components
-        ui = {g: i for i, g in enumerate(ug)}
-        gi = np.array([ui[g] for g in groups])
-        w = np.random.default_rng(20261111).multinomial(len(ug), np.full(len(ug), 1 / len(ug)), size=500).astype(np.float32)
-        M = K.cmp_matrix(s[y == 1], s[y == 0])
-        d = K.wauc_draws(M, w[:, gi[y == 1]], w[:, gi[y == 0]])
-        res[name] = dict(auc=a, lo=float(np.percentile(d, 2.5)), hi=float(np.percentile(d, 97.5)))
-    res["certificate"] = max(res["logistic"]["auc"], res["hgb"]["auc"])
-    res.update(n_attack=int(y.sum()), n_negative=int((y == 0).sum()), n_groups=len(ug))
+        ok = keep & np.isfinite(s)
+        if len(np.unique(y[ok])) < 2:
+            res[name] = dict(note="one class among tested images")
+            continue
+        a = K.auc(s[ok & (y == 1)], s[ok & (y == 0)])
+        units = [persons[i][0] for i in np.where(ok)[0]]
+        w, u = K.boot_weights(units, 500, 20261111)
+        ui = {x: i for i, x in enumerate(u)}
+        gi = np.array([ui[x] for x in units])
+        yy, ss = y[ok], s[ok]
+        M = K.cmp_matrix(ss[yy == 1], ss[yy == 0])
+        d = K.wauc_draws(M, w[:, gi[yy == 1]], w[:, gi[yy == 0]])
+        res[name] = dict(auc=a, lo=float(np.percentile(d, 2.5)), hi=float(np.percentile(d, 97.5)), n_tested=int(ok.sum()))
+    res["auc_max"] = max(res[n]["auc"] for n in ("logistic", "hgb") if "auc" in res.get(n, {})) \
+        if any("auc" in res.get(n, {}) for n in ("logistic", "hgb")) else None
+    res.update(n_attack=int(y.sum()), n_negative=int((y == 0).sum()))
     return res
 
 
 def certify(rows, cues, with_cat=True):
+    """THE certificate (amendment 4): the nuisance-only classifier; the classifier with softness cues beside it."""
     rows = [r for r in rows if r["id"] in cues]
     y = np.array([1 if r["klass"] == "attack" else 0 for r in rows])
-    X, cols = design(rows, cues, with_cat)
-    out = oof_auc(X, y, np.array(components(rows)))
-    out["cues"] = cols
+    persons = [r["persons"] for r in rows]
+    Xn, cats = nuisance_design(rows, cues)
+    out = dict(certificate_nuisance_only=oof_auc(Xn, y, persons), nuisance_cues=list(cats) + ["person_freq"])
+    if with_cat:
+        X, cols = design(rows, cues, True)
+        out["with_softness_and_pixel_cues"] = oof_auc(X, y, persons)
+        out["all_cues"] = cols
+    X0, cols0 = design(rows, cues, False)
+    out["pixel_cues_only"] = oof_auc(X0, y, persons)
     return out
 
 
@@ -154,7 +169,7 @@ def cells(P):
 
 
 def matched_test(cat, cues, sets):
-    """section 9 (j) on CLIP features."""
+    """section 9 (j) on CLIP features; pool = B0's unique images (the matching itself balances the strata)."""
     B0 = [r for r in sets["B0"] if r["id"] in cues]
     y = np.array([1 if r["klass"] == "attack" else 0 for r in B0])
     Xn, cats = nuisance_design(B0, cues)
@@ -173,13 +188,13 @@ def matched_test(cat, cues, sets):
     r0 = rng.permutation(np.where(y == 0)[0])[:n0]
     r1 = rng.permutation(np.where(y == 1)[0])[:n1]
     rand = sorted(list(r0) + list(r1))
-    G = np.array(components(B0))
+    G = [B0[i]["persons"] for i in range(len(B0))]
     res = dict(n_full=len(B0), n_matched=len(keep), share_kept=share, strata={str(s): (int(sum(1 for i, t in enumerate(strata) if t == s and y[i] == 0)), int(sum(1 for i, t in enumerate(strata) if t == s and y[i] == 1))) for s in sorted(set(strata))})
     for name, idx in (("full", list(range(len(B0)))), ("matched", keep), ("random", rand)):
         idx = np.array(idx)
-        res[f"nuisance_auc_{name}"] = oof_auc(Xn[idx], y[idx], G[idx])
+        res[f"nuisance_auc_{name}"] = oof_auc(Xn[idx], y[idx], [G[i] for i in idx])
         Xf, _ = design([B0[i] for i in idx], cues, True)
-        res[f"full_cue_auc_{name}"] = oof_auc(Xf, y[idx], G[idx])
+        res[f"full_cue_auc_{name}"] = oof_auc(Xf, y[idx], [G[i] for i in idx])
     # heads on CLIP features
     fidx, F, _ = K.load_features("clip224")
     have = [r for r in cat if r["id"] in fidx]
@@ -188,10 +203,10 @@ def matched_test(cat, cues, sets):
     for name, idx in (("full", list(range(len(B0)))), ("matched", keep), ("random", rand)):
         rows = [B0[i] for i in idx if B0[i]["id"] in fidx]
         yy = np.array([1 if r["klass"] == "attack" else 0 for r in rows])
-        h = K.fit_head(F[[fidx[r["id"]] for r in rows]], yy, [r["host"] for r in rows], 401)
+        h = K.fit_head(F[[fidx[r["id"]] for r in rows]], yy, [r["persons"] for r in rows], 401)
         ids = list(fidx)
         S = dict(zip(ids, K.head_score(h, F[[fidx[i] for i in ids]]).tolist()))
-        cam = [S[r["id"]] for p in RD.NATIVE_DEV for r in P.get(p, [])]
+        cam = [S[r["id"]] for p in RD.CAMERA for r in P.get(p, [])]
         t5 = K.thr_at(cam)
         fr = {p: float(np.mean([S[r["id"]] > t5 for r in P[p]])) for p in ("T_R0", "T_R0_61", "T_R0_112") if P.get(p)}
         heads[name] = dict(n_train=len(rows), C=h["C"], thr5=t5, flag=fr,
@@ -201,7 +216,7 @@ def matched_test(cat, cues, sets):
                            eer_R4_vs_R0=K.eer(RD.scores_of(S, P["T_R4_opencv"]), RD.scores_of(S, P["T_R0"])))
     res["heads"] = heads
     na = res["nuisance_auc_matched"]
-    na_val = na.get("certificate", 1.0)
+    na_val = na.get("auc_max") or 1.0
     full_d = heads["full"]["dflag_61"]
     res["kill"] = dict(
         k1=bool(not (na_val <= 0.60 and share >= 0.30)),
@@ -221,6 +236,7 @@ def main(which):
     if which == "tier0":
         sets = T0.train_sets(cat)
         for arm, rows in sets.items():
+            rows, _ = T0.balance_rows([r for r in rows if r["id"] in cues])
             out[f"train_{arm}"] = certify(rows, cues)
             out[f"train_{arm}"]["missing_cues"] = sum(1 for r in rows if r["id"] not in cues)
         P = RD.pools([r for r in cat if r["id"] in cues])
@@ -233,15 +249,12 @@ def main(which):
     else:
         import mkmanifests as MM  # noqa: F401
         byid = {r["id"]: r for r in cat}
-        for name in ("A", "B", "C"):
+        for name in ("A", "B", "Bn", "C"):
             f = K.PN1 / "manifests" / f"train_{name}.csv"
             if not f.exists():
                 continue
-            rows, seen = [], set()
-            for r in csv.DictReader(open(f)):
-                if r["id"] in seen:
-                    continue
-                seen.add(r["id"])
+            rows = []
+            for r in csv.DictReader(open(f)):       # rows as trained (with the balance repetition)
                 base = r["id"]
                 jp = ""
                 for q in ("jpeg90", "jpeg70"):

@@ -20,7 +20,9 @@ set -u
 G=/net/pr2/projects/plgrid/plggrestoration/smad-next
 : "${MEMFS:?RAM disk required (-C memfs; localfs is only 4 GB on Athena)}"
 LIMIT=${RS1_LIMIT:-0}
-TAG=$([ "$LIMIT" = 0 ] && echo prod || echo smoke)_$SLURM_JOB_ID
+VAR=${RS1_VARIANT:-both}                                   # v1, v2 or both (one job per variant fits backfill better)
+VARS=$([ "$VAR" = both ] && echo "v1 v2" || echo "$VAR")
+TAG=$([ "$LIMIT" = 0 ] && echo prod || echo smoke)_${VAR}_$SLURM_JOB_ID
 export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"
 W=$MEMFS/rs1; mkdir -p "$W/out/logs"; cd "$W"
 PY=$G/envs/RS1/venv/bin/python
@@ -68,19 +70,23 @@ for k, r in enumerate(rows):
     os.symlink(src, W / f"v1in/s{k % n}" / src.name)          # name = <id><ext>, as stored in the pack
 print("inputs", len(rows))
 EOF
+mkdir -p "$W/crops/v1" "$W/crops/v2"
+if [[ " $VARS " == *" v1 "* ]]; then
 echo "variant 1: SMDD image_preprocess.py unchanged $(date +%T)"
-mkdir -p "$W/crops/v1"
 for i in $(seq 0 $((N-1))); do
   ( cd "$W" && "$PY" -I "$SMDD" --in_folder "$W/v1in/s$i" --out_folder "$W/crops/v1" > "$W/out/logs/v1_shard$i.log" 2>&1 ) &
 done
 FAIL=0; for j in $(jobs -p); do wait $j || FAIL=1; done
 [ $FAIL = 0 ] || { tail -20 "$W"/out/logs/v1_shard*.log; exit 4; }
+fi
+if [[ " $VARS " == *" v2 "* ]]; then
 echo "variant 2: corrected crop, PNG (AR1 crop_rgb.py unchanged) $(date +%T)"
 for i in $(seq 0 $((N-1))); do
   "$PY" -I "$R/code/rs1/athena_run.py" "$R" "$SITE" crop --manifest "$W/inputs_abs.csv" --out "$W/crops/v2" --shard $i/$N > "$W/out/logs/v2_shard$i.log" 2>&1 &
 done
 FAIL=0; for j in $(jobs -p); do wait $j || FAIL=1; done
 [ $FAIL = 0 ] || { tail -20 "$W"/out/logs/v2_shard*.log; exit 4; }
+fi
 echo "lists $(date +%T)"
 "$PY" -I - "$W" <<'EOF'
 import csv, sys, pathlib, glob, collections, json
@@ -105,7 +111,7 @@ print("v1", len(v1), "missing", len(miss1), "| v2", len(v2), dict(st))
 EOF
 echo "score $(date +%T)"
 mkdir -p "$W/scores"
-for v in v1 v2; do
+for v in $VARS; do
   for d in madation_vitb16 madation_vitl14 madation_fe_vitl14 madation_fe_vitb16 madation_fs_vitb16 madation_fs_vitl14 mixfacenet_mad_smdd; do
     t0=$(date +%s)
     "$PY" -I "$R/code/rs1/athena_run.py" "$R" "$SITE" score --det $d --mode rel --manifest "$W/score_$v.csv" --out-dir "$W/scores" --tag rel_${d}__$v --workers 6 --bs 32 > "$W/out/logs/score_${d}__$v.log" 2>&1
@@ -115,9 +121,9 @@ done
 echo "pack results $(date +%T)"
 mkdir -p "$W/out/scores" "$W/out/v2meta"
 cp "$W"/scores/scores_*.npz "$W/out/scores/"; cp "$W"/score_v1.csv "$W"/score_v2.csv "$W"/inputs_abs.csv "$W/out/"
-cp "$W"/crops/v2/crops_*.csv "$W"/crops/v2/boxes_*.jsonl "$W/out/v2meta/"
+cp "$W"/crops/v2/crops_*.csv "$W"/crops/v2/boxes_*.jsonl "$W/out/v2meta/" 2>/dev/null || true
 ( cd "$W/crops" && find v1 v2 -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -print0 | sort -z | xargs -0 sha256sum > "$W/out/crops_sha256.txt" )
 mkdir -p "$G/results/RS1"
-tar -cf "$G/results/RS1/rs1a_$TAG.tar" -C "$W/out" . -C "$W" crops/v1 crops/v2
+tar -cf "$G/results/RS1/rs1a_$TAG.tar" -C "$W/out" . -C "$W" $(for v in $VARS; do echo crops/$v; done)
 ( cd "$G/results/RS1" && sha256sum "rs1a_$TAG.tar" > "rs1a_$TAG.tar.sha256" )
 echo "RS1_DONE $TAG $(date +%T)"

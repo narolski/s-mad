@@ -64,6 +64,10 @@ the owner. Nothing may be submitted or probed until then.
   R3 2.953 / 1.246, R3m 3.247 / 1.331, R4 5.474 / 5.550, RT 2.947, AG3(0.3) 4.785; MIPGAN-II R2 2.429 / 0.735, R3
   3.304 / 1.457, R3m 3.545 / 1.520, R4 5.676 / 5.706 (persons frll_001 / frll_010). Production estimate 19.9 A100
   GPU-h; array time limit raised to 10 h (longest shard, MIPGAN-II FRLL 00, about 4.5 h).
+- 19:55 Capped oracle test on the smoke-based test manifest: 3,030 images embedded with glintr100, 0 without a face;
+  `ag1_read.py --gate-only` on it runs end to end (G-b computed for mip1 / mip2 FRLL on the two smoke hosts, RT 1
+  pair mean 2.6 grey levels on the A100; code test only, two hosts are no gate). Outputs
+  `/mnt/t7/smad_next/AG1/tests/manifest/{data, read}`.
 - 19:48 (lead, author-approved) all waiting jobs moved in place to account plgmultivision-gpu-a100: core 3544797,
   graded mixing 3544798 / 3544799, spread 3545819. Accounts per job: smoke 3544188 and 3544209 ran on
   plgrestorearc-gpu-a100; the four production arrays on plgmultivision-gpu-a100. Local sbatch files now carry

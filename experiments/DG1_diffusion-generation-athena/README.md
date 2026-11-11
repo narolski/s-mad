@@ -147,7 +147,8 @@ here. No answer yet.
   change of any image statistic is 0.01 of the between-image standard deviation of that rung (Laplacian variance).
   Cross-check beside it (not registered): the 10 `smoke8` files from Athena vs the same 10 jobs on the DGX:
   mean 0.019–0.066, max 4, genuine writes identical (`smoke8_athena_vs_dgx.json`). Reading: Athena images may be
-  combined with DGX images of this generator; every manifest row still carries `gen_run`.
+  combined with DGX images of this generator; every manifest row still carries `gen_run`. **[Withdrawn 19:45 by
+  amendment 1 and review finding 7: DGX and Athena images are never combined inside one contrast.]**
 - 11 Nov 19:14. Estimate (upper bound with margin: 3.4 s per encode, 0.4 s per 20-step render, 2.0 s per 100-step
   render, 2 min overhead per task): set A (306 encodes, 406 + 406 renders) about 36 min; each set B shard (about 404
   encodes, about 636 renders) about 30 min; total about 2.6 GPU-hours, at most 3.5. Timing sent to the lead.
@@ -203,6 +204,22 @@ here. No answer yet.
 - 11 Nov 19:48. Lead moved our pending jobs (the production tasks 3545877_1 and _3) in place to account
   `plgmultivision-gpu-a100` (higher priority tonight); smoke jobs and production tasks 3545841_0, _2, _4 ran on
   `plgrestorearc-gpu-a100`.
+
+- 11 Nov 19:53. **Set A finished** (task 3545841_0 = Slurm id 3545857, node t0013, 1,705 s task / 1,646 s generator,
+  0.47 GPU-hours): 914 files, all finite, min std 0.172, genuine writes 102 of 102 lossless, GPU peak 13,251 MiB;
+  306 encodes at 3.16 s; renders 0.24–0.27 s (20 steps) and 1.24–1.42 s (100 steps) per image. Set B shard 1
+  (task 3545841_2, node t0019) finished at 19:51 (1,454 s). Both fetched: `bash src/DG1/dg1_fetch.sh setA setB_s1`
+  (sha OK; `DG1_setA.tar` sha256 053ca8f2f98ebdebeadfb777de18d6d72782852298383b39bd7f6191bc7e9399) into
+  `/mnt/t7/smad_next/DG1/gen/setA/out_setA/setA/` and `/mnt/t7/smad_next/DG1/gen/setB_s1/out_setB_s1/setB_s1/`.
+  Lead told that set A exists (19:56).
+- 11 Nov 19:56. Set A manifest and validity started on the DGX (after amendment 1): `.venv-spark/bin/python -I
+  src/DG1/dg1_validity.py manifest --gen-root /mnt/t7/smad_next/DG1/gen/setA --pool .../AR1/pool.csv --out-dir
+  /mnt/t7/smad_next/DG1/validity/setA --gen-run athena_DG1` (log `/mnt/t7/smad_next/DG1/validity_setA.log`); about
+  1,118 embeddings at about 1.4 per second on the shared GB10.
+- 11 Nov 19:58. `src/DG1/dg1_manifest_extra.py` written (review findings 5, 6, 8): PNG bytes, verification against the
+  independent reference, database, partner cycle id, PN1 role / test-read / validation-reserved host and partner,
+  PD1-training person, wedge / greyscale / twin-pair / shared-date flags, pair disagreement; per-pool summaries for
+  all, unflagged and per database.
 
 ## 3. Data
 
@@ -316,6 +333,12 @@ manifest check runs regardless).
   in set A (they still have every one-person rung).
 - The DGX GPU was at 96% use with about 20 processes and 5 GB of free host memory at 17:19 (swap full); the AD1b full
   run (PID 1953728) holds 13 GB.
+
+- Two faces in one photo (review finding 8): part 1 of the alignment logged 263 iterations for 262 files, i.e. one photo
+  (`frgc_04700_S`, identified by the reviewer) had two dlib detections. `align.py` writes the crop of the FIRST
+  detection and skips the second (`work_landmark` returns when the output file exists), and the reviewer's re-run shows
+  the first detection is the 268-px face, so the aligned file is the right face. The AD1b README's note ('the second face
+  overwrote the first') does not match the code; told to the lead.
 
 ## 9. Open items and next steps
 

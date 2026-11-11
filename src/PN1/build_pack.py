@@ -66,7 +66,7 @@ def main():
     M = PN1 / "manifests"
     keep = None
     mans = {}
-    for n in ("train_A", "train_B", "train_C", "pn1_eval"):
+    for n in ("train_A", "train_B", "train_Bn", "train_C", "pn1_eval"):
         f = M / f"{n}.csv"
         if not f.exists():
             print("missing manifest", f)

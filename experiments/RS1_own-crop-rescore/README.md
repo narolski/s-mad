@@ -153,6 +153,11 @@ missing); a pack is ready there for later.
   `plgrestorearc-gpu-a100`; production 3545884 was submitted under `plgrestorearc-gpu-a100` and moved in place by the
   lead (19:48, author's approval) to `plgmultivision-gpu-a100`. New jobs use `-A plgmultivision-gpu-a100`
   (`athena_rs1.sbatch` updated).
+- 20:05. Production 3545884 was still pending with an estimated start of 12 Nov 05:13 (4 h request). Smoke timing
+  implies about 2 h for both variants in one job, so I cancelled 3545884 (never started, 0 GPU-hours) and submitted
+  one job per variant with a 2.5 h limit, which the scheduler can backfill more easily: **3545918 (variant 1, SMDD
+  script unchanged)** and **3545919 (variant 2, corrected PNG crop)**, both `-A plgmultivision-gpu-a100`,
+  `RS1_VARIANT=v1|v2`; result tars `results/RS1/rs1a_prod_v1_3545918.tar`, `rs1a_prod_v2_3545919.tar`.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.

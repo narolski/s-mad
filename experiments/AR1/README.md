@@ -294,6 +294,14 @@ $P -I $S/baselines.py --only R2w4; $P -I $S/analyse.py; $P -I $S/tables.py; $P -
 ```
 
 ## Log of README updates
+- 11 Nov about 20:15 CET: gates complete for the four releases and M3 seeds 1-7 (strict folds; G-c all >= 0.65,
+  MixFaceNet lowest 0.68 / 0.69 on the primary pool). Release scores opened (after G-b and G-c) for a preliminary read
+  with the leaky baselines still in place (`/mnt/t7/smad_next/AR1/result_tables_prelim.json`; its baseline columns are
+  superseded). Preliminary picture, primary pool, releases: R0 -> R2 AUC 0.49-0.50 for all (identical images);
+  R2 -> R3 (blend of two photos of one person) 0.86-0.98; R3 -> R4 (second identity) 0.60-0.75; R2w vs R4 0.89-0.99;
+  R2w vs R2w4 0.49-0.52 (warp size alone does nothing); R2w4 vs R4 0.89-0.99 (blending a second photograph, geometry
+  equal); twins flagged at the FRLL benchmark threshold in 64-100% vs morphs 76-100%. Face-blanked SelfMAD still
+  separates R2w from R4 at 0.89 / 0.92 (frame / periphery). Final numbers in result.md after the remaining scoring.
 - 11 Nov about 20:45 CET: lead's load note (load average 189): my baselines.py (950% CPU) and gate_c.py (540%) were
   thread-oversubscribed. Both killed; reviewers' note (PLANNING_RECORD section 15 item 7) confirmed a real leak: folds
   by host only put morph(H_p, S_q) and twin(H_q, S_q), which share the photo S_q, on opposite sides of a fold. New

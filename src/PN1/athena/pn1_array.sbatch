@@ -9,16 +9,16 @@
 #SBATCH --gres=gpu:1
 #SBATCH --time=03:00:00
 #SBATCH -C memfs
-#SBATCH --array=0-5
+#SBATCH --array=0-7
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/results/PN1/logs/fit-%A_%a.out
-# Protocol network, first tests (PN1), tier 1: six ViT-B/16 LoRA fits (manifests A, B, C x seeds 401, 402), each through
+# Protocol network, first tests (PN1), tier 1: eight ViT-B/16 LoRA fits (manifests A, B, Bn, C x seeds 401, 402), each through
 # the unchanged run.sh (unchanged train.py of the AD4 pack), all work in the RAM disk, one result tar per task.
 set -eo pipefail
 module load Python/3.10.4 2>&1 || echo "module Python/3.10.4 not loadable"
 set -u
 G=/net/pr2/projects/plgrid/plggrestoration/smad-next
 : "${MEMFS:?RAM disk required (-C memfs)}"
-TASKS=(PN1_A_s401 PN1_B_s401 PN1_C_s401 PN1_A_s402 PN1_B_s402 PN1_C_s402)
+TASKS=(PN1_A_s401 PN1_B_s401 PN1_Bn_s401 PN1_C_s401 PN1_A_s402 PN1_B_s402 PN1_Bn_s402 PN1_C_s402)
 T=${TASKS[$SLURM_ARRAY_TASK_ID]}
 W=$MEMFS/work_$T; mkdir -p "$W"; export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"
 hostname; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader

@@ -10,7 +10,7 @@
 #SBATCH --time=00:50:00
 #SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/results/PN1/logs/smoke-%j.out
-# Protocol network, first tests (PN1): smoke test of one manifest-B task through the unchanged run.sh on the real pack
+# Protocol network, first tests (PN1): smoke test of one manifest-Bn task through the unchanged run.sh on the real pack
 # (200 steps, 64 scored rows per manifest), timing and peak GPU memory; optional tier-0 feature extraction
 # (featx.tar present in packs/PN1) for DINOv3 sets the DGX could not extract within its GPU allowance.
 set -eo pipefail
@@ -25,7 +25,7 @@ echo "SIF_SHA256 $(sha256sum "$SIF" | cut -c1-64)"
 apptainer exec --nv -B "$G:$G" -B "$MEMFS:$MEMFS" "$SIF" python -c "import sys, torch, timm, numpy, PIL; print('python', sys.version.split()[0], 'torch', torch.__version__, 'timm', timm.__version__, 'numpy', numpy.__version__, 'pillow', PIL.__version__, 'cuda', torch.cuda.is_available())"
 S=$MEMFS/smoke; mkdir -p "$S/root/results" "$S/work" "$S/task"
 cp "$G/tasks/PN1/run.sh" "$S/task/run.sh"
-printf 'TASK=PN1_B_s401_smoke\nARM=B\nSEED=401\n' > "$S/task/task.env"
+printf 'TASK=PN1_Bn_s401_smoke\nARM=Bn\nSEED=401\n' > "$S/task/task.env"
 ( while :; do nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader,nounits >> "$S/gpumem.csv"; sleep 5; done ) & SM=$!
 set +e
 ( cd "$S/work" && TASK_DIR="$S/task" TASK_WORK="$S/work" PN1_ROOT="$S/root" PN1_PACK="$G/packs/PN1/pn1_pack.tar" \
