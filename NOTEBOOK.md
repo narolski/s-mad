@@ -26,7 +26,7 @@ Last update: 11 Nov 2026, 15:15 CET. Started. WCSS: 48 one-GPU slots queued (job
 | AR4 | Do detectors still work with the face blanked, or the background blanked? | planned | | | |
 | AR5 | Photo-history control with identical borders | planned | | | |
 | AR7 | Landmark: does the signal weaken for look-alike pairs? | planned | | | after AR1 |
-| AD1 | MorDIFF: ladder for the released detectors (re-read of existing scores, post hoc) | done, in review | Morph vs one-photo reconstruction: 0.48 (ViT-B/16), 0.49 (ViT-L/14), 0.40 (SelfMAD). At the benchmark threshold 54% / 51% / 98% of history-matched genuine photos are flagged. Benchmark numbers not reproduced on the 200-morph sample, so descriptive | reads the benchmark (all three, descriptive) | MixFaceNet not scored; expression-matched twins missing |
+| AD1 | MorDIFF: ladder for the released detectors (re-read of existing scores, post hoc) | reviewed (accept-qualified) | Three adapted releases: morph vs one-photo reconstruction 0.48 / 0.49 / 0.40. One frozen-encoder release (MADation FE ViT-L/14) does separate them: 0.66 at 20 steps, 0.85 at 100, without reacting to rendering. Giving genuine photos the morphs' resolution history raises the share flagged from 5 to 54% (ViT-B/16), 26 to 51% (ViT-L/14), 2 to 98% (SelfMAD), at each detector's own EER threshold. Descriptive: published error not reproduced on our frames | adapted releases: no reaction to the mixing step; one frozen-encoder release: yes | FZ1 (frozen features), AD1b (identical and mirrored inputs), own-crop re-score |
 | AD2 | DiM and Greedy-DiM: same | planned | | | needs twin generation |
 | AD3 | Photo-history control on a second photo pool (not FRLL) | planned | | | scoring only |
 | AD4 | Can a network that never saw a morph pass the benchmarks? 4 recipes × 5 seeds, fixed checkpoint | planned | A47: yes for one recipe, once | | WCSS, submit first |
@@ -35,7 +35,7 @@ Last update: 11 Nov 2026, 15:15 CET. Started. WCSS: 48 one-GPU slots queued (job
 | AG2 | MIPGAN: does accuracy vanish when genuine photos are GAN reconstructions? | planned | | | needs x86 GPU |
 | AG3 | GAN: score against two-person mixing fraction | planned | | | with AG1 |
 | AG4 | Can a network that never saw a morph pass the GAN cells? | planned | A47: no, for the photo-history cue | | WCSS |
-| AG5 | Existing StyleGAN3 sets under the ladder rules (post hoc) | done, in review | 42 of 51 networks separate morphs from camera photos; 41 of those do not separate morphs from one-person renders (best 0.61). All three releases the same. Only 48% of these morphs verify against both contributors, so this stays an absence result | reads the benchmark (absence) | needs AG1 for a causal reading |
+| AG5 | Existing StyleGAN3 sets under the ladder rules (post hoc) | reviewed (wording corrected) | No network of 55 separates StyleGAN3 two-identity morphs from one-identity renders (best 0.61). Absence result; only 48% of these morphs verify against both contributors | absence | AG1 for a causal reading |
 
 ## Method: can a detector read identity blending
 
@@ -54,6 +54,9 @@ Last update: 11 Nov 2026, 15:15 CET. Started. WCSS: 48 one-GPU slots queued (job
 |---|---|---|---|---|---|
 | AF0 | Can a per-patch head on frozen features learn a mixing-fraction map, and does its mean separate real morphs from processed genuine photos without reacting to photo history? Includes a deliberately confounded training set as a stress test | running (owner assigned 15:10) | | | falsifiers in `experiments/AF0/prereg.md` |
 | ID1 | Ideation round 1: seven independent idea generators | running | | | lead consolidates, then a vetting round |
+| FZ1 | Do frozen foundation features read the mixing step of diffusion and GAN morphs, where adapted detectors do not? Probe, plus five fresh heads on frozen CLIP ViT-L/14 trained on SMDD | running | | | falsifiers in its prereg |
+| C1b | Is the expression imbalance used by detectors? All detectors, all cells, neutral-only genuine column | running | | | zero GPU |
+| AD1b | Is a diffusion morph of two identical photos the reconstruction, and does a horizontal flip give a real second image? | running | | | fixed readings in its prereg |
 
 ## Data extension: does more or different training data remove cue use
 
@@ -71,7 +74,7 @@ Last update: 11 Nov 2026, 15:15 CET. Started. WCSS: 48 one-GPU slots queued (job
 
 | ID | Question in plain words | Status | Result | Verdict | Next |
 |---|---|---|---|---|---|
-| C1 | Are expressions balanced between classes in each benchmark cell? | done, in review | No in 11 of 17 cells: genuine class is half smiling, morphs are neutral (DiM x6 by README, FRLL-Morphs x5 by a probe, corrected MAD22 Webmorph by file names). Expression alone gives AUC up to 0.75 | cue exists; use untested | score neutral and smiling genuine photos separately |
+| C1 | Are expressions balanced between classes in each benchmark cell? | reviewed | No in 11 of 17 cells: genuine class is half smiling, morphs are neutral (DiM x6 by README, FRLL-Morphs x5 by a probe, corrected MAD22 Webmorph by file names). Expression alone gives AUC up to 0.75 | cue exists; reviewer preview: used by CLIP-based MADation networks (ViT-L/14 release scores neutral above smiling in 101 of 102 persons; AMSL error 17.7 to 24.5 with neutral-only genuine photos), not by CNN recipes or SelfMAD | C1b registers and reruns it |
 | C2 | Do any persons appear in both training sets and test benchmarks? | done, in review | No FRLL image in any audited training set by path or label. SelfMAD's shipped configuration picks the checkpoint by FRLL-Morphs test error; whether the release used it is unknown | no overlap found; one selection risk | face-matching check not run |
 | C3 | Do colour statistics alone separate the classes? | done, in review | Yes on aligned crops: AUC 0.71 to 1.00 per cell (0.61 to 0.98 without the border) | cue exists; use untested | |
 | C4 | Does chroma subsampling alone separate the classes? | done, in review | Only corrected MAD22 Webmorph (AUC 1.00); elsewhere it coincides with PNG vs JPEG | cue exists in one cell | |
@@ -107,3 +110,4 @@ Last update: 11 Nov 2026, 15:15 CET. Started. WCSS: 48 one-GPU slots queued (job
 - 11 Nov 14:22: transcript read; start. 48 WCSS slots submitted. Owners assigned to first-round experiments.
 - 11 Nov 15:15: first results in (AD1, AG5, C1 to C4), under independent review. Alpha-field probe AF0 pre-registered and assigned. WCSS: 108 slots queued, none started.
 - 11 Nov 15:40: found that the landmark "tool on one photo" rung is pixel-identical to the photo. Added warp-only and mirror self-morph rungs (amendment in `11_AUDIT_PLAN.md`). Strategist's 16 ideas in `ideas/IDEAS_v1.md`.
+- 11 Nov 16:40: independent review of AD1, AG5, cue checks in `experiments/reviews/`. Two earlier sentences withdrawn (flag-rate range; "41 of 42"). New: one frozen-encoder release reads the mixing step; CLIP-based networks use expression. Owners assigned: FZ1, C1b, AD1b.
