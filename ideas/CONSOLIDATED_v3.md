@@ -101,7 +101,9 @@ Taken by the lead (say if wrong):
 - The three class categories of `14_CLASS_DEFINITIONS.md` are the working rule for table layout until the
   author rules: genuine; morphing attack (two or more persons); single-subject manipulation (reported
   separately).
-- Warp-only images are genuine (the author's rule: a processed genuine image called a morph is an error).
+- Warp-only images are not attacks: they are negatives in training and are reported in the single-subject table
+  of `14_CLASS_DEFINITIONS.md`, not inside the genuine error rate (the author's rule: a processed genuine image
+  called a morph is an error).
 - New owner for the protocol network (PN1); the softened ladder copies and the warp-only rung toward the
   two-person mean shape are added to the running experiments.
 
