@@ -31,7 +31,7 @@ def main():
     od.mkdir(parents=True, exist_ok=True)
     out = {}
     for t in sorted(d.glob("SM1L_*_s*")):
-        if t.name.endswith("_smoke"):
+        if t.name.endswith("_smoke") or not t.is_dir():
             continue
         arm, seed = t.name.split("_")[1], t.name.split("_")[2][1:]
         ids, z = [], []
