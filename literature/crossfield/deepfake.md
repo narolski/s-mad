@@ -30,8 +30,8 @@ How to read this file.
    detectors. That is the same finding as our paired-difference result (a head trained only on one-person mixes
    ranks two-person morphs at 0.78).
 2. The field's label for a one-image blend is "fake". Ours must be "not an attack". The construction transfers; the
-   label does not. One deepfake paper (ED4) already shows what happens when real-with-real composites are labelled
-   real: cross-dataset AUC 0.82; removed: 0.68; labelled fake: 0.54 to 0.61.
+   label does not. One deepfake paper (ED4) already shows what the label does to composites of real faces:
+   labelled real, average cross-dataset AUC 0.82; left out, 0.68; labelled fake, 0.54 to 0.61 per dataset.
 3. A face swap puts two sources in two places. A morph puts two sources in the same place. So everything that
    compares regions (blending boundary, patch consistency, inner against outer identity) has nothing to compare in
    a full-face morph. It survives only if we build the second region ourselves, in training.
@@ -169,8 +169,10 @@ What survives the difference.
   give an inner and an outer identity vector; ArcFace loss on both; a consistency loss that pulls the inner vector
   of a swap to the outer vector of the reverse swap, applied only when both are classified correctly. Score at
   test: distance between the two vectors. Average AUC 87.01 over five sets; with a reference set of real
-  identities 96.34 (their Table 1). Without the consistency loss: 51.48 on Celeb-DF v2 (their ablation). Robust to
-  JPEG down to quality 20 (their Figure 5). Stated limit: reenactment, where identity does not change.
+  identities 96.34 (their Table 1). Without the consistency loss: 51.48 on Celeb-DF v2 (their ablation). Under
+  five levels of degradation (JPEG quality 90 down to 20, among others) it stays high where the baselines fall,
+  except under strong Gaussian noise (their Figure 5; values only in the figure). Stated limit: reenactment,
+  where identity does not change.
 - **Implicit identity driven detection** (Huang et al., CVPR 2023): a swapped face has an explicit identity (what
   an FR network reads) and an implicit one (the target's); for a real face the two agree.
 - **ID-Reveal** (Cozzolino et al., ICCV 2021) and **FACTOR** (Reiss et al., arXiv 2311.01458): compare the media
@@ -187,7 +189,8 @@ What survives the difference.
 
 - **Frozen CLIP with a linear probe or nearest neighbour** (Ojha et al., CVPR 2023, for generated images): a
   trained classifier makes the real class a "sink" for everything that lacks the trained fake pattern.
-- **Effort** (Yan et al., arXiv 2411.15633): decompose each pretrained weight by SVD, freeze the principal part,
+- **Effort** (Yan et al., "Orthogonal Subspace Decomposition", arXiv 2411.15633): decompose each pretrained
+  weight by singular value decomposition (SVD), freeze the principal part,
   train only the residual. Diagnosis: full fine-tuning collapses the feature space; effective rank 160 for the
   untouched model, 57 after full fine-tuning, 137 with LoRA, 159 with their method (their Table 8, face domain).
   Cross-dataset average AUC 0.917 with CLIP ViT-L/14 trained on FaceForensics++ (their Table 1).
@@ -254,8 +257,7 @@ What survives the difference.
 - **"Low resolution implies fake."** In DF40 the real training data have more high-frequency content than the
   fake training data. Detectors learn "higher resolution, higher probability to be real". On a sharp unseen fake
   set (StyleCLIP) AUC falls far below chance: 0.006 for Xception, 0.009 for another detector (Yan et al., their
-  Table 5). Applying a super-resolution tool raises detection from 0.772 to 0.983 (their Table 8). This is our
-  storage-history finding with the sign visible.
+  Table 5). This is our storage-history finding with the sign visible.
 - **Compression removes the blend evidence.** Face X-ray: 87.35 to 61.6 under heavy compression. QAD (Le and Woo,
   ICCV 2023): one model, trained on several quality versions of the same image, with a loss that maximises the
   dependence between their representations; their bound says the error on low quality is the classification loss
@@ -274,8 +276,8 @@ What survives the difference.
   anchor-based module that decides on local windows, because "local areas usually do not reflect the identity",
   trained with multi-scale swaps of windows between a fake and its source.
 - **Irregular swaps** (Trinh and Liu, IJCAI 2021). Swaps across gender or race make the detector tie the look of
-  the face to "fake". Detectors trained on Face X-ray's blended images showed the strongest bias. Error-rate gaps
-  between groups up to 10.7%.
+  the face to "fake". Detectors trained on Face X-ray's blended images developed a systematic bias against some
+  groups. Error-rate gaps between groups up to 10.7%.
 - DF40 also suspects Xception of being "overfitted to ID".
 
 ### 3.3 Content, position, background
@@ -284,8 +286,11 @@ What survives the difference.
   spatial (the detector expects the forgery at the image centre). Remedy at data level. ClockMix splices sectors
   of up to four aligned faces around the face centre. The label rule: a composite is fake only if it contains a
   fake part; a composite of real faces is real. Without the real-with-real composites the cross-dataset average
-  falls from 0.8195 to 0.6832, below the baseline 0.7512 (their Table VII). With real composites labelled fake it
-  collapses to 0.54 to 0.61 (their Table IV). The evidence for the spatial bias is qualitative (attention maps).
+  falls from 0.8195 to 0.6832, below the baseline 0.7512 (their Table VII). With real composites labelled fake
+  AUC is 0.6061, 0.5419 and 0.5351 on three test sets, against 0.8765, 0.8394 and 0.7427 (their Table IV). The
+  authors' explanation: the detector "mistakenly takes the ClockMix splicing patterns as the indicator of
+  forgery". Replace "splicing" by "blending" and this is what the self-blend label does in morph detection. The
+  evidence for the spatial bias is qualitative (attention maps).
 - **Token shuffling and mixing** (Fu et al., arXiv 2501.04376): position and content bias; mixes tokens between
   two images of the same label.
 - **Paired data** (Yermakov et al., WACV 2026). 20 training splits in which each fake shares the background video
@@ -295,12 +300,13 @@ What survives the difference.
 ### 3.4 Method fingerprints
 
 - UCF and ProDet (2.6). **S3** (Wang et al., arXiv 2606.01843, June 2026): fit a linear probe that names the
-  forgery method, take the top singular directions of its weights as the "method-sensitive subspace". Removing it
-  keeps training-domain AUC and changes unseen-domain AUC strongly (their Figure 2b). Two remedies: project the
-  gradients away from the subspace during training; scale down the neurons that are both decision-critical and
-  method-sensitive at inference. Example: Xception trained on reenactment, tested on face editing, 0.3774 to
-  0.9066 with the inference edit alone (their Table 1). The two remedies together are not additive (0.7636 in the
-  same cell). Preprint, one dataset, single runs.
+  forgery method, take the top singular directions of its weights as the "method-sensitive subspace". Keeping
+  only the part of the features inside that subspace "retains most performance" on the training domain, while on
+  unseen domains "its AUC collapses" (their Figure 2b): the subspace alone carries the in-domain decision. Two
+  remedies: project the gradients away from the subspace during training (rank 2 or 3 works best); scale down the
+  neurons that are both decision-critical and method-sensitive at inference (rank 1). Example: Xception trained
+  on reenactment, tested on face editing, 0.3774 to 0.9066 with the inference edit alone (their Table 1). The two
+  remedies together are not additive (0.7636 in the same cell). Preprint, one dataset, single runs.
 
 ### 3.5 Evaluation
 
@@ -376,7 +382,8 @@ carries its own identity label); ED4 (composites of real material are real, and 
 sector, not the seam).
 
 **The gap it closes.** Our alpha-field probe (AF0) contrasts a blended region with an unblended one. The blended
-region is softer. The head learned softness and warp (the round-2 forensics review predicted it; AF0 shows it).
+region is softer. The head learned softness and warp (the round-2 forensics review predicted it; the first pass
+of the probe shows it).
 In the deepfake field the reference region is free: the outer face. A morph has none. So we build one, and we
 make it equally blended.
 
@@ -385,18 +392,21 @@ make it equally blended.
 1. Run the alpha-field wrapper (`src/AF0/af_morph.py`, verified pixel-identical to the unchanged engine at a
    uniform 0.5) on the pair (H', P) with a spatial field a(x): a sector, a half, or one of the existing gradient
    and bump fields. Result Q: a second layer that is the same person where a = 0 and the other person where a = 1.
-2. Run the unchanged morphing tool on (H, Q) at 0.5, with the mean of the two landmark files as landmarks of Q.
+2. Run the same wrapper on (H, Q) with a uniform 0.5, which equals the unchanged tool. The landmarks of Q are the
+   mean of the landmark files of H' and P; the wrapper warps to the mean shape whatever the field is.
 
 Every pixel of the result is a 50% blend of the host with a warped second layer. The two parts differ in one
 thing: whose face the second layer is. Target map: a(x). Uniform images keep their labels: R0, R1, R2w, R3m, R3
 are zero everywhere; R4 is one everywhere. The existing shrink-and-enlarge path is run unchanged on a random half
 of the composites, after compositing, so both parts always share one history.
 
-**A softness cross.** Two persons cancel more detail than two photos of one person, so inside one image the
-two-person part can still be the softer part. The graded-mixing set breaks this: use a two-person part at mixing
-fraction 0.25 to 0.3 against a one-person part at 0.5. Weights 0.75 and 0.25 keep 0.625 of the variance of
-independent detail; weights 0.5 and 0.5 keep 0.5. In those images the one-person part is the softer one. Across
-the training set local softness then does not predict the target.
+**A softness cross.** The Laplacian-variance statistic measures fine detail, which is independent between any two
+photos. At equal weights both parts keep half of it. To stop the head from reading it locally, use a field in
+step 2 as well for a share of the composites: second-layer weight 0.5 on the one-person part and 0.25 to 0.3 on
+the two-person part. Independent fine detail then keeps 0.5 of its variance on the one-person part and 0.58 to
+0.63 on the two-person part (0.7^2 + 0.3^2 and 0.75^2 + 0.25^2). In those images the one-person part is the
+softer one, so across the training set local fine-detail softness does not predict the target. This does not,
+and should not, cross the doubled contours where two different faces do not line up. That is the evidence.
 
 **Network.** One network. A dense head on the patch tokens (as LAA-Net's heatmap branch and Forensics Adapter's
 boundary head sit beside the classifier), trained with a per-patch loss plus the pairwise-consistency loss of Zhao
@@ -410,19 +420,22 @@ target. The ladder contrasts that show it: R0 to R1 and R0 to R2w must not move 
 must.
 
 **First test (one day, CPU build plus cached-feature heads).** Build 2,000 composites from the landmark ladder
-(AR1) hosts (each has a second photo and a partner), 5 folds by person, both engines; the wrapper built 1,165
-images per minute at 6 processes. Extract DINOv3 patch tokens at 512 as in the alpha-field probe. Fit the ridge
-patch head of that probe on the new target. Read on held-out persons, tool left out:
+(AR1) hosts (each has a second photo and a partner), 5 folds by person, with the wrapper's own engine; it built
+1,165 images per minute at 6 processes. Extract DINOv3 patch tokens at 512 as in the alpha-field probe. Fit the
+ridge patch head of that probe on the new target. Read on held-out persons, on the ladder rungs of both tools.
+As registered for the alpha-field probe, the OpenCV-style engine decides and FaceMorpher is descriptive; for
+this head FaceMorpher is also a tool it never saw.
 
 - within-image AUC, patches of the two-person part against patches of the one-person part;
 - pooled score, R3 against R4 and R3m against R4;
-- shifts R0 to R2w (both engines) and R0 to R1 (FRLL genuine photos with history);
+- shifts R0 to R2w (both tools) and R0 to R1 (FRLL genuine photos with history);
 - the same numbers on the softness-crossed composites alone.
 
 **Pass.** Within-image AUC at least 0.75; R3 against R4 at least 0.85 with a lower bound above 0.80; both shifts
 at most 0.3 standard deviations; history-matched genuine photos flagged at most 10%.
+
 **Kill.** Within-image AUC below 0.60, or within-image AUC on the softness-crossed composites below 0.55 (then it
-is reading local softness), or a warp-only shift above 0.5 standard deviations on either engine.
+is reading local softness), or a warp-only shift above 0.5 standard deviations on the OpenCV-style engine.
 
 **State of the art.** Used as an auxiliary head inside the MADation recipe (CLIP with LoRA) on the rebuilt
 training set. Published landmark cells contain two-person morphs against photos, where the two-person head
@@ -430,8 +443,9 @@ already reaches 0.98 to 0.99 on the ladder. Generator cells: the field is silent
 
 **Risks.** Real morphs are uniform, so the head must work from absolute evidence at test time (the old critique
 of the alpha field; the pooled R3 against R4 number is the direct check). The second layer is interpolated twice.
-Step 2 needs landmarks for Q that were not detected on Q. The class of a composite is a ruling for the author: it
-contains two persons in a part of the face.
+The shape of the whole composite contains a quarter of the partner's shape, also in the one-person part. Running
+the wrapper twice in a row is a new use of approved code and needs the author's yes. The class of a composite is
+a ruling for the author: it contains two persons in a part of the face.
 
 ### 5.2 A cumulative ladder code instead of one "morph" label
 
@@ -472,6 +486,7 @@ paired-difference experiment (trained against warp-only images).
 **Pass.** Third bit: R3 against R4 at least 0.85 and R3m against R4 at least 0.85, lower bounds above 0.80; R2w
 against R4 stays at or above 0.95; shifts R0 to R1 and R0 to R2w at most 0.3 standard deviations; excess over the
 best simple statistic for R3 against R4 at least 0.05.
+
 **Kill.** R3 against R4 below 0.80 under direct supervision, or the excess over the best simple statistic below
 0.05 (then "second person" is the cancellation statistic again), or more than 20% of history-matched genuine
 photos flagged. On the GAN blocks report the third bit beside the 0.65 already measured; no kill number there,
@@ -490,21 +505,25 @@ The third bit may be weak for look-alike pairs.
 ### 5.3 History-subspace surgery: first an audit of released detectors, then a training rule
 
 **Source.** S3 (Wang et al., 2026): find the shortcut subspace with a probe, show by projection that the
-benchmark number depends on it, then keep gradients out of it. QAD (Le and Woo, ICCV 2023): tie the
+in-domain decision lives in it, then keep gradients out of it. QAD (Le and Woo, ICCV 2023): tie the
 representations of quality versions of one image. Latent-space augmentation (Yan et al., CVPR 2024).
 
 **Transfer.** Our subspace does not come from labels. It comes from interventions: the feature difference between
 a genuine photo and the same photo with storage history (R1 minus R0), and between a photo and its warp-only
 version (R2w minus R0). Take the leading directions of these paired differences at the layer before the head.
 
-Step A, audit (new for morph detection). For each released detector whose features we can read, remove the
-subspace from the features and leave the head untouched. Report, before and after: the share of history-matched
-genuine photos flagged at the fixed threshold; the benchmark EER; R3 against R4. Three outcomes, each usable:
+Step A, audit (new for morph detection). For each released detector whose features we can read, leave the head
+untouched and score twice: with only the part of the features inside the subspace (S3's test), and with that
+part removed. Report each time: the share of history-matched genuine photos flagged at the fixed threshold; the
+benchmark EER; R3 against R4. Outcomes, each usable:
 
-- flags fall, EER holds: the cue was not needed; a cheap repair exists;
-- flags fall, EER rises strongly: the published number rested on the history subspace. This is causal evidence
-  at feature level, beside the image-level interventions of the audit;
-- flags do not fall for any small rank: the cue is not a low-rank linear direction at that layer.
+- subspace only, benchmark EER stays low: the benchmark can be solved from the directions that storage history
+  moves. This is S3's Figure 2b for morph detection;
+- subspace removed, flags fall, EER holds: the cue was not needed; a cheap repair exists;
+- subspace removed, flags fall, EER rises strongly: the published number rested on the history subspace. This is
+  causal evidence at feature level, beside the image-level interventions of the audit;
+- subspace removed, flags do not fall for any small rank: the cue is not a low-rank linear direction at that
+  layer.
 
 Step B, training. In the LoRA fit, project the gradient at that layer away from the subspace (re-estimated every
 epoch from a few hundred fixed photo pairs). A second arm randomises instead of removing: add sampled history
@@ -521,6 +540,7 @@ FRLL landmark cells and on the landmark ladder.
 
 **Pass.** At some rank of at most 16 the flag rate of history-matched genuine photos falls by at least half and
 native EER on the landmark cells rises by at most 2 points.
+
 **Kill (for the training rule).** No rank up to 16 lowers the flag rate by at least a quarter. An EER rise above
 5 points with falling flags does not kill the audit; it is the audit's finding.
 
@@ -558,6 +578,7 @@ patch tokens of the landmark ladder, 5 folds by person, one engine held out.
 
 **Pass.** R3 against R4 at least 0.80; the true partner in the top 5 for at least 20% of held-out morphs among at
 least 100 held-out persons (chance 5%); shifts R0 to R1 and R0 to R2w at most 0.3 standard deviations.
+
 **Kill.** Partner in the top 5 for at most 10%, or R3 against R4 below 0.70.
 
 **State of the art.** Needs a training set with many partners. On SMDD as released the second slot can learn five
@@ -586,8 +607,8 @@ can at best read how average the face is. An identity reader can be bound to the
    detector for one construction is a gate by another name.
 2. **Self-blends as attacks.** The label is wrong under our rule, and the signal is "two layers" plus softness.
    SelfMAD is this transfer; its behaviour under storage history is in our record.
-3. **Patch consistency and source features.** No contrast inside a uniform blend. Sensor-noise traces do not
-   survive the shrink-and-enlarge history.
+3. **Patch consistency and source features.** No contrast inside a uniform blend. Sensor-noise traces are
+   unlikely to survive the shrink-and-enlarge history (not tested here).
 4. **Inner against outer identity.** Needs an untouched surround from one contributor. Tight crops remove it. It
    could serve as an audit probe for spliced-morph cells only.
 5. **Frequency methods.** They read generator up-sampling or the spectral change of a blend. For us the first is
@@ -638,8 +659,8 @@ Deepfake detection. "read" = read beyond the abstract.
    2023. https://arxiv.org/abs/2210.14457 (read, PDF text)
 6. Protecting Celebrities from DeepFake with Identity Consistency Transformer. X. Dong. CVPR 2022.
    https://arxiv.org/abs/2203.01318 (read)
-7. Effort: Orthogonal subspace decomposition for generalizable AI-generated image detection (title as on the
-   arXiv page; venue not re-checked here, our planning record says ICML 2025). Z. Yan.
+7. Orthogonal Subspace Decomposition for Generalizable AI-Generated Image Detection (method name: Effort). Z.
+   Yan. arXiv 2024; the arXiv page names no venue, our planning record says ICML 2025.
    https://arxiv.org/abs/2411.15633 (read)
 8. ED4: Explicit Data-level Debiasing for Deepfake Detection. J. Cheng. arXiv 2024.
    https://arxiv.org/abs/2408.06779 (read)
@@ -705,9 +726,8 @@ Deepfake detection. "read" = read beyond the abstract.
     H.-H. Nguyen-Le. IJCAI 2025. https://arxiv.org/abs/2505.18787
 39. An Examination of Fairness of AI Models for Deepfake Detection. L. Trinh. IJCAI 2021.
     https://arxiv.org/abs/2105.00558
-40. Circumventing shortcuts in audio-visual deepfake detection datasets with unsupervised learning (title as in
-    our planning record; the arXiv number and the finding were confirmed by search). S. Smeu. CVPR 2025.
-    https://arxiv.org/abs/2412.00175
+40. Circumventing shortcuts in audio-visual deepfake detection datasets with unsupervised learning. S. Smeu. CVPR
+    2025 (highlight). https://arxiv.org/abs/2412.00175
 41. The Alpha Blending Hypothesis: Compositing Shortcut in Deepfake Detection. A. Yermakov. arXiv, May 2026;
     withdrawn 4 Nov 2026. https://arxiv.org/abs/2605.10334
 42. DeepfakeBench: A Comprehensive Benchmark of Deepfake Detection. Z. Yan. arXiv 2023 (the page names no venue).
@@ -745,7 +765,7 @@ Morph attack detection.
     https://christoph-busch.de/files/Debiasi-PRNU-variance-MAD-BTAS-2018.pdf
 57. Face Morphing Attack Detection with Denoising Diffusion Probabilistic Models. M. Ivanovska. IWBF 2023.
     https://arxiv.org/abs/2306.15733
-58. SRL-MAD (structured residual Fourier representations, one-class). D. J. Paulo. arXiv, March 2026.
+58. SRL-MAD: Structured Residual Latents for One-Class Morphing Attack Detection. D. J. Paulo. IWBF 2026.
     https://arxiv.org/abs/2603.15050
 59. FD-MAD: Frequency-Domain Residual Analysis for Face Morphing Attack Detection. D. J. Paulo. arXiv 2026.
     https://arxiv.org/abs/2601.20656
@@ -764,13 +784,13 @@ Morph attack detection.
     https://bmva-archive.org.uk/bmvc/2025/assets/workshops/PFATCV/Paper_3/paper.pdf
 66. Generalized Single-Image-Based Morphing Attack Detection Using Deep Representations from Vision Transformer.
     H. Zhang. CVPR 2024 workshops. https://arxiv.org/abs/2501.09817
-67. R-FLoRA: Residual-Statistic-Gated Low-Rank Adaptation for Single-Image Face Morphing Attack Detection. arXiv
-    2026 (first author not read). https://arxiv.org/abs/2604.17321
+67. R-FLoRA: Residual-Statistic-Gated Low-Rank Adaptation for Single-Image Face Morphing Attack Detection. R.
+    Ramachandra. Preprint, accepted in IEEE TIFS 2026. https://arxiv.org/abs/2604.17321
 68. Facial De-morphing: Extracting Component Faces from a Single Morph. S. Banerjee. IJCB 2022.
     https://arxiv.org/abs/2209.02933
-69. Demorphing guided by multimodal language models (title not read in full). N. Shukla. arXiv 2026.
+69. Enhancing Single-Image Facial Demorphing using Multimodal Large Language Models. N. Shukla. arXiv 2026.
     https://arxiv.org/abs/2605.25442
-70. Demographic bias of single-image morph detectors, a 2021 study (title not retrieved).
+70. Algorithmic Fairness in Face Morphing Attack Detection. R. Ramachandra. WACV 2022 workshops.
     https://arxiv.org/abs/2111.12115
 
 ### 7.2 Recalled, not verified in this task

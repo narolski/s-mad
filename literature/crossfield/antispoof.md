@@ -23,9 +23,9 @@ evidence.
 
 ## 0. The page in twelve lines
 
-1. Anti-spoofing went through our problem ten years earlier. Detectors that were perfect inside one
-   data set failed on the next. The field named the causes: resolution, blur, camera, session,
-   background, identity [16][25][39][36].
+1. Anti-spoofing met our problem years before us. By 2019 its own evaluation papers showed that
+   detectors with near-zero error inside one data set failed on the next [39]. The field named the
+   causes: resolution, blur, camera, session, background, identity [16][25][39][36].
 2. Its first cure was "make features equal across data sets" (2019). It did not hold. Three later
    corrections matter for us.
 3. Correction one, asymmetry: only the bona fide class is pulled together across domains. Attacks are
@@ -41,8 +41,9 @@ evidence.
    tomatoes, potatoes and onions reaches 92.70% mean AUC on four face benchmarks [30]. The face is
    incidental. The detectors read the recapture process.
 8. The operational view (NIST, 82 algorithms) reports errors at fixed thresholds on 21,218 sequestered
-   bona fide stills, and includes a matched control: the same print or replay attack with and without
-   the visible frame and hands. Errors rise for all algorithms when that context is removed [44].
+   bona fide stills, and includes a matched control: print and replay attacks with and without the
+   visible frame and hands (1,417 stills each). Errors rise for all algorithms when that context is
+   removed [44].
 9. Morph detection has borrowed pixel-wise supervision, one-class models, CLIP with low-rank adaptation,
    and once an adversarial consistency scheme. I found no morph paper with the asymmetric treatment, with
    threshold alignment, with feature-statistic (style) removal, or with processed-genuine sub-classes.
@@ -61,8 +62,8 @@ evidence.
 
 ## 1. Map of the field's solutions, 2019 to 2026
 
-Grouped by the idea behind them; the grouping follows the field's own survey [9] where it can.
-"Leave-one-out" below means the standard cross-domain protocol: four data sets (OULU-NPU, CASIA, Idiap
+Grouped by the idea behind them. The field's survey [9] (abstract level) covers the first, second and
+fourth group: pixel-wise supervision, domain generalisation, unseen attacks. "Leave-one-out" below means the standard cross-domain protocol: four data sets (OULU-NPU, CASIA, Idiap
 Replay-Attack, MSU-MFSD; letters O, C, I, M), train on three, test on the fourth.
 
 ### 1.1 Auxiliary supervision: give the network a dense target that an attack cannot fake
@@ -197,9 +198,10 @@ Replay-Attack, MSU-MFSD; letters O, C, I, M), train on three, test on the fourth
   - "PAD performance varied widely across algorithms, use cases, and PA types, with only a small
     percentage of algorithms evaluated demonstrating notable detection capabilities."
   - Print and replay attacks are detected well by several developers when "the frame of the printed
-    photo/electronic tablet and the subject's hands are typically visible". "When the view is zoomed in
-    such that the frame ... and the subject's hands are not visible, detection error rates increase
-    across all algorithms, and in some cases, quite significantly." Best APCER at BPCER = 0.01 in the
+    photo/electronic tablet and the subject's hands are typically visible". But "when the view is zoomed
+    in such that the frame ... and the subject's hands are not visible, detection error rates increase
+    across all algorithms, and in some cases, quite significantly" (1,417 stills in each condition,
+    Table 5). Best APCER at BPCER = 0.01 in the
     impersonation task: 0.0 with context, 0.005 zoomed (Table 1). In the evasion task: 0.009 and 0.06
     (Table 2).
   - Bona fide error by demographic group is read at one fixed threshold, the one that gives BPCER 0.03
@@ -208,8 +210,8 @@ Replay-Attack, MSU-MFSD; letters O, C, I, M), train on three, test on the fourth
     Video beat stills for many algorithms.
   - The report names our application: "if a passport photo is collected in a retail outlet using a
     generic portrait camera, the passport issuer may check for presentation attack".
-- Challenges with industry participation follow the same direction: a 2023 challenge on in-the-wild
-  data covered 17 attack types and reports known-type and unknown-type protocols [43] (abstract level).
+- A 2023 challenge on in-the-wild data covered 17 attack types, with one protocol for known and one
+  for unknown attack types [43] (abstract level).
 - Synthetic bona fide data is used for privacy reasons: 25,000 generated faces, presented as prints and
   replays to real sensors [42] (abstract level). Trained on it alone, the FoundPAD recipe is clearly
   weaker than trained on vegetables (27.56 against 14.15% HTER, Table 2 of [30]).
@@ -258,7 +260,7 @@ it uses the target set's EER threshold; [29] does not say).
    high-resolution OULU data in training may explain high-resolution attacks called real (its Figures 4
    and 6) [25]. This is said, not measured, in both papers.
 3. **Context is a cue, and it has been measured.** NIST's zoomed print and replay attacks [44] are the
-   same attacks without the visible frame and hands; errors rise for every algorithm. "Myope models"
+   same attack type without the visible frame and hands; errors rise for every algorithm. "Myope models"
    [40] finds that results are "consistently better when the background is present". PatchNet's score
    maps deviate at background and boundary regions, and its authors state that cues should come from
    the face region "but not the background's biases" [7].

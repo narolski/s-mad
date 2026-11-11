@@ -38,9 +38,9 @@ closer to real set). LPIPS = a learned perceptual image distance. SD = standard 
    separate them. Our 0.89 to 0.94 is a truncation reading. Our 0.58 to 0.63 against spread-matched renders is
    what the theory predicts, plus a small remainder with four testable causes (section 4).
 4. **The published GAN morph cells measure generated-image detection.** A ResNet-50 trained only on ProGAN
-   images of bedrooms, cars and cats, which never saw a morph, reaches 0.00%, 0.56% and 0.00% EER on three GAN
-   morph sets (Colbois and Marcel, BIOSIG 2022, Table 2). Its authors conclude that detecting GAN morphs "is
-   strongly equivalent" to detecting GAN images.
+   images of 20 object and scene categories, which never saw a morph, reaches 0.00%, 0.56% and 0.00% EER on
+   three GAN morph sets (Colbois and Marcel, BIOSIG 2022, Table 2). Its authors conclude that detecting GAN
+   morphs is "strongly equivalent" to detecting GAN images.
 5. **Five proposals follow** (section 5): a radius-crossed generator ladder that removes averageness by design
    and measures what is left; truncation-dose training with no morph and no partner; a declared "re-synthesised"
    output built by the field's aligned-pair recipe; morph-free mechanism readers from this field as independent
@@ -61,7 +61,7 @@ closer to real set). LPIPS = a learned perceptual image distance. SD = standard 
 | D. Patch and local texture | Small receptive fields. Local texture is more stereotyped than global layout. | Chai et al. 2020; Liu et al. 2020 (Gram-Net); Li et al. 2025 (SAFE) | Generalises across resolution and seeds. For whole generated faces the decisive patches are hair and background (Chai et al., Section 4.2). |
 | E. Gradient and residual representations | Remove the image content first, then classify what is left (gradients of a fixed network, a denoiser's residual). | Tan et al. 2023 (LGrad); Liu et al. 2022 (LNP) | Good cross-GAN numbers. Sensitive to any processing, because processing is what the residual shows. |
 | F. Frozen foundation features | Do not train the encoder. Nearest neighbour or a linear layer on CLIP features. | Ojha et al. 2023 (UnivFD); Cozzolino et al. 2024 (CLIP, few-shot); Koutlis and Papadopoulos 2024 (RINE); Yan et al. 2025 (Effort) | A strong baseline since 2023. Later work shows it still inherits data bias (section 2) and that end-to-end training on aligned data is better (B-Free, Table 3: linear probe 68.5% bAcc, end-to-end 95.2%). |
-| G. One-class, real-only, training-free | Model real images only. Flag what the model finds surprising or unstable. | Cozzolino et al. 2024 (ZED); He et al. 2024 (RIGID); Liu et al. 2022 (LNP); Ricker et al. 2024 (AEROBLADE) | No generator-specific bias by construction. ZED: 90.0% average AUC on 30 generators with one statistic. Authors warn that strong compression or resizing may make it unreliable. |
+| G. One-class, real-only, training-free | Model real images only. Flag what the model finds surprising or unstable. | Cozzolino et al. 2024 (ZED); He et al. 2024 (RIGID); Liu et al. 2022 (LNP); Ricker et al. 2024 (AEROBLADE) | No generator-specific bias by construction. ZED: 90.0% average AUC over 30 test sets with one statistic. Authors warn that strong compression or resizing may make it unreliable. |
 | H. Inversion and reconstruction tests | Ask whether a given generator can reproduce the image. | Karras et al. 2020, Section 5; Albright and McCloskey 2019; Wang et al. 2023 (DIRE); Ricker et al. 2024; Cazenavette et al. 2024; Pasquini et al. 2023 | Answers "was it made by this generator", well for StyleGAN2 in W, well for latent diffusion. Needs the generator. |
 | I. Aligned, bias-free training data | Make each fake from a real image so the classes differ only in the generator trace. Then also align compression. | Rajan et al. 2025; Guillaro et al. 2025 (B-Free); Chen et al. 2025 (DDA); Chen et al. 2024 (DRCT); Rajan and Lee 2025 (Stay-Positive) | **Leads the generalisation benchmarks.** B-Free: 96.3% average bAcc over 27 generators, 20.7 points above the second best (Table 5). DDA: 90.7% over 11 benchmarks, 15.7 points above the second best (Table 2). |
 | J. Scale of generator diversity | Thousands of generators in training. | Park and Owens 2025; Wang et al. 2020 (diversity of classes matters more than image count) | Works, at a cost we cannot pay in three days. |
@@ -87,16 +87,17 @@ closer to real set). LPIPS = a learned perceptual image distance. SD = standard 
 This is not detection work, but it decides what a detector can know about a latent morph.
 
 - **Truncation** (Karras et al. 2019, read in full text). w′ = w̄ + ψ(w − w̄). Smaller ψ gives higher average
-  quality and less variation. At ψ = 0 "all faces converge to the mean face". The same paper's default figure
-  uses ψ = 0.7.
+  quality and less variation. At ψ = 0 "all faces converge to the "mean" face of FFHQ" (Figure 8 caption). The
+  paper's sample figure uses ψ = 0.7 on the coarse and middle layers only (resolutions 4² to 32²), so the
+  customary truncation is not uniform over layers.
 - **Truncation trades diversity for fidelity** (Kynkäänniemi et al. 2019, read in full text, Figure 5): at
-  ψ = 0 precision is high and recall is zero. Moving all codes toward the mean "raises precision" (Appendix C).
+  ψ = 0 precision is high and recall is zero. Moving all codes toward the mean raises precision (Appendix C).
 - **Midpoints look real.** Of 500,000 straight paths in W whose two ends lie on the real-image manifold, only
   2.4% cross unrealistic regions. The authors call the realistic part of W "highly convex" (Kynkäänniemi et al.,
   Figure 9 and text).
 - **Midpoints have the wrong radius.** For independent prior samples the midpoint has half the variance per
-  coordinate (factor t² + (1−t)² = 1/2 at t = 1/2). In 100 dimensions the midpoint norms are "strong outliers"
-  against the prior. For a Gaussian prior the fix is one scalar: multiply by √2 (Agustsson et al. 2019, read in
+  coordinate (factor t² + (1−t)² = 1/2 at t = 1/2). In 100 dimensions the midpoint norms are "(strong)
+  outliers" against the prior. For a Gaussian prior the fix is one scalar: multiply by √2 (Agustsson et al. 2019, read in
   full text). White 2016 made the same point informally and proposed spherical interpolation.
 - **W is not Gaussian.** Every layer of the mapping network, the last one included, ends in a leaky ReLU with
   slope 0.2 (Karras et al. 2019; the official StyleGAN3 code, read). Marginals of W are "heavily skewed".
@@ -109,8 +110,9 @@ This is not detection work, but it decides what a detector can know about a late
   2021, e4e). With a Gaussian prior as regulariser, midpoints between inverted faces were preferred by users in
   89.9% of judgments (Wulff and Torralba 2020, user study).
 - **Style mixing is in-distribution by training.** StyleGAN is trained with two codes switched at a random layer
-  for 90% of images (Karras et al. 2019, Table 2). A crossover of two codes is something the discriminator was
-  trained to accept.
+  for a set share of the training images (0, 50, 90 and 100% are compared in Karras et al. 2019, Table 2; 90%
+  gave the best FID when several codes are mixed at test time). A crossover of two codes is something the
+  discriminator was trained to accept.
 - **Projection as attribution.** A StyleGAN2 output can be projected back into W "so well that" it "can be
   almost unambiguously attributed to the generating network"; real images cannot. W+ "enables projecting
   arbitrary images that should have no latent representation" (Karras et al. 2020, Section 5).
@@ -123,9 +125,9 @@ This is not detection work, but it decides what a detector can know about a late
 |---|---|---|---|
 | Format is a label. Real images are JPEG, fakes are PNG. | GenImage: most real images at JPEG quality 96, all fakes uncompressed. A Midjourney-trained ResNet-50 calls uncompressed real FFHQ photos real in 80.45% of cases; after JPEG at quality 95, 90, 80, 60 this becomes 94.84, 98.93, 99.95, 100% (Grommelt et al. 2024, Table 2). | Train only on quality-96 images in both classes. Result: cross-generator accuracy +11.06 points for ResNet-50 and +11.74 for Swin-T (Table 4). | In all 17 of our benchmark cells a file attribute separates the classes perfectly. |
 | Size is a label. Each generator has one output size. | A BigGAN (128 px) detector misclassifies real images with a side of 100 to 150 px (Grommelt et al., Figure 3). | Restrict real images to the generators' size window. | The SelfMAD release flags 97% of photos stored small. |
-| Resize direction is a label. | "Corvi associates downsampling with real images and upsampling with fake images" (Rajan et al. 2025, Figure 2). A frozen-CLIP detector's accuracy on real images rises from 54.16 to 83.58% when real images are downsampled, while accuracy on fakes falls from 69.56 to 29.83% (Table 5). | Make each fake by passing a real image through the generator's autoencoder only, at the real image's own size. The aligned detector stays flat across the resize range. Also 10 times cheaper to build. | Our 50% shrink-and-enlarge result (0% to 45% flagged). The remedy is our pipeline-matched, history-crossed rebuild. |
+| Resize direction is a label. | A leading detector (Corvi) "associates downsampling with real images and upsampling with fake images" (Rajan et al. 2025, Figure 2 caption). For a frozen-CLIP detector of the UnivFD kind trained on latent-diffusion data, accuracy on real images rises from 54.16 to 83.58% when the images are downsampled, while accuracy on fakes falls from 69.56 to 29.83% (Table 5). | Make each fake by passing a real image through the generator's autoencoder only, at the real image's own size. The aligned detector stays flat across the resize range. Also 10 times cheaper to build. | Our 50% shrink-and-enlarge result (0% to 45% flagged). The remedy is our pipeline-matched, history-crossed rebuild. |
 | Post-processing of one class is learned as that class. | Real images in one training set were WEBP-compressed; the detector learned "WEBP = real" (Rajan and Lee 2025, Section 3.1). | Retrain only the last layer with non-negative weights, so that no feature can vote for "real" (Stay-Positive). | Storage history of the morph class. But see the limit in section 6. |
-| Aligning pixels is not enough: a frequency band still differs. | A reconstruction restores high-frequency detail that JPEG had removed from the real image. A frequency-based detector flags about 93% of such reconstructions; masking a few high-frequency coefficients makes detection collapse (Chen et al. 2025, Figures 4 and 5). | Apply the real image's own JPEG quality to its reconstruction (Dual Data Alignment). 90.7% bAcc over 11 benchmarks, worst case 81.4%. | Our softness floor: a morph has 0.52 times the Laplacian variance of its own halves. The band points the other way, the mechanism is the same. |
+| Aligning pixels is not enough: a frequency band still differs. | A reconstruction restores high-frequency detail that JPEG had removed from the real image. A frequency-based detector flags about 93% of such reconstructions; masking a few high-frequency coefficients makes detection collapse (Chen et al. 2025, Figures 4 and 5). | Apply the real image's own JPEG quality to its reconstruction, plus a pixel mix of the pair (Dual Data Alignment). 90.7% bAcc over 11 benchmarks, worst case 81.4%. The introduction speaks of "high-frequency fusion"; the method section, as read, describes matched compression. Check the PDF before describing the mechanism in print. | Our softness floor: a morph has 0.52 times the Laplacian variance of its own halves. The band points the other way, the mechanism is the same. |
 | Content and source are labels. | The same generated images are called real or fake by three CLIP-based detectors depending on which real photo collection they are paired with (Guillaro et al. 2025, Figure 2). | Self-conditioned reconstruction plus inpainted variants; content alignment alone lifts bAcc from 61.9 to about 81 (Table 2). | Half-smiling genuine class in 12 of 17 cells; five partners in SMDD. |
 | Preprocessing in the training pipeline creates bias. | Small mismatches in interpolation, initial size or file format between classes give near-perfect AP that is only a formatting difference (Chai et al. 2020, Table 5). Resizing in training weakens the traces (Li et al. 2025). | Pass real images through the generator's own data transform; save both classes losslessly; resize both the same way (Chai et al.). Crop instead of resize (Li et al.; Guillaro et al.). | Our aligner leaves a black border around smaller morph files. |
 | A fixed threshold is the hard part. | "Accuracy results are much less encouraging, since a fixed threshold is used" (Gragnaniello et al. 2021). A 2-times downsampling is "catastrophic". Accuracy on scraped StyleGAN faces falls from 83.6% to 74.9% after resizing (Wang et al. 2020). | Report detection at a fixed false-alarm rate; only ZED claims one global threshold across real-image sets. | Our fixed-threshold re-read (experiment EV1). |
@@ -147,7 +149,7 @@ resize direction, then the frequency band). None of these papers claims its trai
 | Family | Used in MAD? | Reference, or the searches that found nothing |
 |---|---|---|
 | A. Learned classifier with augmentation | Yes, it is the standard. | MIPGAN paper, Tables XII and XIII (Zhang et al. 2021); SMDD (Damer et al. 2022); MADation (Caldeira et al. 2025). |
-| A, zero-shot: a generated-image detector applied to morphs with no morph training | **Yes, for GAN morphs.** | Colbois and Marcel, BIOSIG 2022: the released ProGAN-trained ResNet-50 of Wang et al. gives AUC 1.00 and EER 0.00 / 0.56 / 0.00% on FRLL-StyleGAN2, FRGC-StyleGAN2 and FRGC-MIPGAN (Table 2). Bona fide images are camera photos; there is no one-person render control. Not found for landmark morphs or for up-sampling readers (search: "synthetic image detector zero-shot applied to face morphing attack detection landmark morphs NPR UnivFD"). |
+| A, zero-shot: a generated-image detector applied to morphs with no morph training | **Yes, for GAN morphs.** | Colbois and Marcel, BIOSIG 2022: the released ProGAN-trained ResNet-50 of Wang et al. gives AUC 1.00 and EER 0.00 / 0.56 / 0.00% on FRLL-StyleGAN2, FRGC-StyleGAN2 and FRGC-MIPGAN (Table 2). Genuine images come from the source photo sets; there is no one-person render control. Not found for landmark morphs or for up-sampling readers (search: "synthetic image detector zero-shot applied to face morphing attack detection landmark morphs NPR UnivFD"). |
 | B. Spectral features | Yes. | Fourier radial bands with a linear classifier: 16 to 17% EER within a StyleGAN2 morph set, 53.25% across sets (Colbois and Marcel 2022, Tables 1 and 2). FD-MAD (Paulo et al., arXiv 2601.20656) and SRL-MAD (arXiv 2603.15050) use Fourier residuals. An ICME 2018 paper uses the Fourier spectrum of sensor pattern noise (seen in search results only). |
 | C. Fingerprints, sensor noise, attribution | Yes. | PRNU (camera sensor noise) analysis: Debiasi et al., IWBF 2018 and BTAS 2018. Morph-tool "fingerprinting" as multi-class attribution over eight morphing algorithms: Zhang, Jia, Lyu and Li, arXiv 2210.15510. |
 | D. Patch and pixel-wise supervision | Yes. | PW-MAD (Damer et al., ISVC 2021). |
@@ -155,16 +157,16 @@ resize direction, then the frequency band). None of these papers claims its trai
 | F. Frozen foundation features | Yes. | Colbois and Marcel, IJCB 2024 (DINOv2, CLIP, AIM, DNADet with a linear SVM or a one-class Gaussian mixture); MADation; Zhang et al., CVPRW 2024 (ViT-L features and SVM). |
 | G. One-class, real-only | Yes. | Damer et al., BTAS 2019; SPL-MAD (Fang et al., IJCB 2022); MAD-DDPM (Ivanovska and Štruc, IWBF 2023). |
 | H. Reconstruction error | Yes, as one-class reconstruction. | SPL-MAD (autoencoder); MAD-DDPM (diffusion). Both report that morphs reconstruct more easily than genuine images. GAN inversion is used for making morphs and for differential demorphing (SFDemorpher, arXiv 2603.28322), **not found** as a single-image detector that reads the inverted code (searches: "morphing attack detection GAN inversion latent code encoder StyleGAN detect morph single image"; "single image morphing attack detection StyleGAN encoder latent code Mahalanobis typicality inversion pSp e4e"). |
-| I. Aligned negatives | Partly. | Zhang et al., CVPRW 2024 (arXiv 2501.09817): for GAN morph sets the genuine images are GAN reconstructions, "to learn morphing artifacts rather than general GAN artifacts"; print-scan and compression applied to both classes. No radius-matched or history-crossed design found. |
+| I. Aligned negatives | Partly. | Zhang et al., CVPRW 2024 (arXiv 2501.09817): "reconstructed bona fide images are applied to the datasets with GAN-based morphing algorithms", so that the classifier learns morphing traces and not general GAN traces; print-scan and compression are applied to both classes. No radius-matched or history-crossed design found. |
 | Latent averageness, truncation | **Not found.** | Searches: "morphing attack detection StyleGAN latent space truncation averageness one-identity render control"; "face morphing attack truncation StyleGAN mean face pseudo-morph training"; "detect interpolated latent code GAN truncation classifier". No MAD paper discusses the radius of the mixed code, a truncated control, or truncation as a pseudo-morph. |
 | Higher-order statistics of mixing | **Not found.** | Search: "morphing attack detection kurtosis non-Gaussianity higher-order statistics blend superposition". Nearest: Laplacian mean, variance and energy (R-FLoRA). |
 | Norm-preserving morph generation (the attacker's side) | Yes. | MLSD-GAN (Reddy et al., arXiv 2404.12679, abstract) makes morphs by spherical interpolation of StyleGAN latents. MorCode and one pSp-based pipeline also use spherical interpolation (seen in search results only). |
 
 Two older results fit the same picture. Venkatesh et al. (IWBF 2020, Table II) detect StyleGAN morphs against
-camera photos at 0 to 0.68% EER with hand-made texture features and name "residual noise from the GAN" as the
-reason. Sarkar et al. (ICASSP 2022) built the FRLL StyleGAN2 morphs in W, not W+, and report that they fool
-FaceNet in only 5.9% (as references) and 11.0% (as probes) of cases, because "StyleGAN2 interpolation produces a
-new identity rather than a blend".
+camera photos at 0 to 0.68% EER with four simple detectors, against 1.57 to 15.42% for landmark morphs, and
+attribute this to residual noise left by the GAN. Sarkar et al. (ICASSP 2022) built the FRLL StyleGAN2 morphs in
+W, not W+, and report that they fool FaceNet in only 5.9% (as references) and 11.0% (as probes) of cases on
+FRLL. Their explanation is that the interpolation produces a new identity, not a blend of two.
 
 ---
 
@@ -195,7 +197,9 @@ If codes were Gaussian around w̄ with covariance Σ, then midpoints of independ
 single codes truncated with ψ = 1/√2 follow N(w̄, Σ/2) as well. These are the same distribution. A render is a
 function of the code and of noise that does not depend on how the code was made. So the two sets of images have
 the same distribution, and every detector has AUC 0.5 between them, at any sample size. Agustsson et al. state
-the mirror image of this: multiplying a Gaussian midpoint by √2 gives back the prior exactly.
+the mirror image of this: multiplying a Gaussian midpoint by √2 gives back the prior exactly. Our spread-matched
+control applies the same idea pair by pair: it moves one contributor's code to the radius of that pair's
+midpoint.
 
 A truncated one-person code is also, literally, a morph of that person with the mean face, with weight 1 − ψ on
 the mean face. So the spread-matched render is not a neutral control. It is a morph whose partner is nobody.
@@ -218,9 +222,10 @@ on same-person mixes ranks two-person morphs above reconstructions at 0.78. The 
 this without any identity signal. Two photos of one person differ in pose, expression and light. Their midpoint
 shrinks along those directions only. A two-person midpoint shrinks along those and along identity directions.
 Both are "more average than a single code", by different amounts. A head that reads averageness ranks
-x1 below x2 below x3, which is the observed order (0.67, 0.65, 0.73). Prediction to check: the head's score is a
-monotone function of the latent radius, and a spread-matched render scores like the morph. PD1 already records
-the latent radius, so this is a re-read, not a new run.
+x1 below x2 below x3. That is the observed order: the step from reconstruction to same-person mix is separable
+at 0.67, the step from same-person mix to two-person morph at 0.65, and the whole step at 0.73. Prediction to
+check: the head's score is a monotone function of the latent radius, and a spread-matched render scores like
+the morph. PD1 already records the latent radius, so this is a re-read, not a new run.
 
 ### 4.4 Consequences
 
@@ -320,12 +325,15 @@ truncation is visible in simple image properties at 0.96.
 **First test, at most one day.** All images exist: the trunc50, trunc70, re-decoded and spread-matched pools
 and the 423 morphs of the StyleGAN3 set. Fit the FZ1 probe on trunc70 against plain renders, folds by person.
 Score the morphs and the one-identity renders. Pass: AUC at or above 0.85 (the morph-trained probe reaches
-0.89 to 0.94). Kill: below 0.75; then truncation is not the whole story and section 4 needs revising. Side
-check, same day: score SMDD's genuine renders against fresh renders of the same generator. SMDD keeps the 50,000
-highest-quality of 250,000 renders (Damer et al. 2022); if the kept renders score as truncated, SMDD's genuine
-class is shifted toward the mean face, and SMDD-trained detectors learn "average render = genuine". That would
-explain why the SelfMAD release scores truncated renders as less morph-like (0.883 against trunc50 in A37).
-This is a hypothesis; the paper does not state a ψ.
+0.89 to 0.94). Kill: below 0.75; then truncation is not the whole story and section 4 needs revising.
+
+A later check, not part of the first test. SMDD keeps the 50,000 highest-quality of each 250,000 renders,
+ranked by a face-image-quality score (Damer et al. 2022); its paper states no ψ. If quality selection favours
+renders near the mean code, SMDD's genuine class is shifted toward the mean face, and a detector trained on it
+learns "average render = genuine". That would fit one line of our record: the SelfMAD release, which by its
+paper trains on SMDD's genuine renders, scores truncated renders as less morph-like than the morphs (AUC 0.883
+for morphs against the ψ = 0.5 pool; `docs/sources/methods_table/gather_gan.md`, section 4b). This is a hypothesis. Testing it needs unselected renders of the
+same StyleGAN2-ADA generator, which are not on disk.
 
 **Risk.** The head may read simple image properties rather than facial averageness; the floor decides. The
 existing truncated pools may have been built on other base codes or layers than assumed; check the generation
@@ -372,8 +380,9 @@ history as the releases do, and the class cannot be offered.
 
 **Risk.** Our first-pass number for reconstruction against camera photo (0.98) includes frame, background and
 resolution changes; after alignment it may fall. The field's lesson is that each alignment exposes the next
-cue. A detector trained on two generators may not transfer to a third (Rajan et al. report 3 to 26% accuracy on
-a new autoencoder family).
+cue. A detector trained on two generators may not transfer to a third: the aligned detectors of Rajan et al.
+reach only 9.59% and 25.87% accuracy on images of a generator with a different autoencoder (their limitations
+section).
 
 **State of the art.** Under the policy "re-synthesised is inadmissible" this is the route to the published
 generator rows. Under the other policy it changes nothing in the tables and still reports the class.
@@ -408,7 +417,9 @@ above 0.90 on at least one benchmark cell, separates a photo from its history-ma
 stays at or below 0.60 between same-person and two-person morphs. Kill: no reader reaches 0.75 on any cell.
 
 **Risk.** NPR was trained on four ProGAN object classes at fixed size; its behaviour on our frames is unknown.
-A negative outcome proves nothing about the cells. Licence terms of the weights must be read first.
+That NPR's weights are public is from memory; the repository of the ProGAN-trained classifier is confirmed by
+Colbois and Marcel's use of it. A negative outcome proves nothing about the cells. Licence terms of the weights
+must be read first.
 
 **State of the art.** None directly. It strengthens the audit half of the paper.
 
@@ -431,7 +442,8 @@ The same quantity can serve as an auxiliary regression target for the main netwo
 test time still uses one network.
 
 **Why shortcut-free.** The code of the coarse and middle layers cannot represent file format, file size, border
-or fine softness; the encoder works at 256 px from low-resolution feature maps. Ladder contrasts: photo against
+or fine softness; the encoder works at 256 px and builds these layers from low-resolution feature maps (from
+memory of the encoder design; check against the code on disk). Ladder contrasts: photo against
 history-matched copy and photo against warp-only image must stay within 0.3 SD; two-person morph against its own
 warped halves and against the same-person morph carries the claim; the graded-mixing rungs must rise with dose.
 
@@ -465,8 +477,8 @@ published rows.
    and softening both make pixels more predictable. In our own record PNG size alone reaches 0.80 on one
    diffusion contrast. These methods would formalise the softness cue.
 4. **Stay-Positive.** It stops features from voting for the genuine class. Our failure is a spurious feature
-   voting for the morph class (softness). The paper says so itself: "upsampled real images are still classified
-   as fake" (Section 6).
+   voting for the morph class (softness). The paper names this limit itself: fake-associated patterns can also
+   be spurious, and upsampled real images are still classified as fake (Section 6).
 5. **Blur and JPEG augmentation** (Wang et al. 2020). Barred by our image-operation rule. It also hides small
    edits: face-aware liquify edits were detected at chance, and DeepFake AP fell from 98.2 to 89.0 with
    augmentation (same paper).

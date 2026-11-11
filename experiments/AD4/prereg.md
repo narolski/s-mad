@@ -193,3 +193,20 @@ and the gates stand.
   baseline of 111.58 USD. Each machine has its own watchdog.
 - **Results:** they arrive in `/mnt/t7/smad_next/AD4/results_vast/` and are read with the reader and gates of
   Amendment 1.
+
+## Amendment 1c (11 Nov 2026, 18:35 CET, lead; before any ViT-L/14 result exists or is read)
+
+Platform and precedence, written because the same ten ViT-L/14 tasks (five morph-free, five label-permuted) are
+staged in two places and one of them cannot be reached.
+
+- The ten ViT-L/14 tasks run on Athena (Cyfronet, A100 40 GB, x86, the environment of
+  `src/athena/env_and_smoke.sbatch`: torch 2.2.1 with CUDA 12.1, timm 1.0.27, pillow 10.2.0, numpy 1.26.4), through
+  the unchanged `run.sh` with `AD4_LOCAL=1`. **The Athena result of each task is the registered one.**
+- The same ten tasks also sit in the WCSS ready queue (staged before WCSS closed to our address on 11 Nov). They
+  cannot be removed while WCSS is unreachable, and slot jobs submitted earlier may run them. If a WCSS result of a
+  task appears, it is kept and reported only as a cross-platform repeat (difference in each cell's error rate and
+  AUC against the Athena result); it never replaces or is averaged with the Athena result, and no choice between
+  the two is made after seeing numbers.
+- The ViT-B/16 arm ran on two rented x86 machines (A100 40 GB for the morph-free fits, RTX 6000 Ada for the
+  label-permuted fits) with the same package versions. Its results are the registered ones for that arm.
+- Unchanged: recipes, seeds 401 to 405, last checkpoint, no selection, the gates of amendments 1 and 1b.

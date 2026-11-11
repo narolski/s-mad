@@ -56,6 +56,8 @@ the owner. Nothing may be submitted or probed until then.
   the 7 smoke images (`test_score_pipeline.py`, `/mnt/t7/smad_next/AG1/tests/score_pipeline/`): pins, check_scope and
   the strict weight load of MADation ViT-B/16 passed; the move to the GPU failed with CUDA out of memory (the GB10 had
   12 GB free; about 17 other GPU processes of other owners). To retry when the GPU is quieter.
+- 18:27 Lead: Athena accepts jobs (account plgrestorearc-gpu-a100). Smoke job submitted: Athena job 3544188
+  (`tasks/AG1/ag1_smoke.sbatch`, log `.../smad-next/logs/AG1smoke-3544188.out`).
 - 17:41 Local mip2 smoke (WCSS `run.sh` logic, GB10, code before amendment 1) finished: 4 / 4 images, exit 0, tar
   sha256 a0827cbe... Per image on the shared GB10 832 to 1,114 s (incl. e4e). Final loss R2 2.43, R3 3.29 / 1.46, R4
   5.66; generator-side w600k cosine R4 0.720 / 0.710, R3 0.959 / 0.968. Log
