@@ -119,3 +119,4 @@ Last update: 11 Nov 2026, 15:15 CET. Started. WCSS: 48 one-GPU slots queued (job
 - 11 Nov 18:15: morph-free networks (AD4) staged, tested locally, released; WCSS forecasts no start before 13 Nov 23:20, so the ViT-B/16 arm goes to one rented machine (cap 10 USD). PLGrid account `plgpnarolski` is not provisioned on WCSS (checked).
 - 11 Nov 18:40: expression cue use (C1b) finished: pre-registered test held; count corrected to 12 of 17 imbalanced cells. Cue table updated (dated list at its top).
 - 11 Nov 19:00: literature check on class definitions done (126 claims re-opened by a second agent). Formal definitions count subjects; labelling of same-person morphs is split and undiscussed; no convention for one-photo reconstructions. Proposal in `14_CLASS_DEFINITIONS.md` awaits the author.
+- 11 Nov 19:40: author approved the rented-GPU run of the ViT-B/16 arm of the morph-free networks experiment (AD4); owner resumed. Lease: 2x RTX 4090, 0.73 USD per hour, cap 10 USD.

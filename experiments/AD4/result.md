@@ -55,3 +55,20 @@ natives). So an untrained network is not at 0.5 on the FRLL landmark cells (AUC 
 Note on E7 cells: FRLL StyleGAN and corrected MAD22 MIPGAN-I / MIPGAN-II E7 photos are byte-identical to the native
 bona fide (checked with cmp on one file each; those families' IED is not below the photos', so no resampling is
 applied). Their E7 cells therefore equal the native cells and carry no extra information.
+
+## Vast lease for the ViT-B/16 arm of the morph-free networks experiment (AD4): not opened
+
+11 Nov, about 16:00 CET. The lead authorised one lease (cap 10 USD) for the ten ViT-B/16 tasks. Preparation done:
+- Live Vast credit read: 111.85 USD. No instance of ours existed before or after.
+- Container torch found in the WCSS logs: 2.2.1 / CUDA 12.1 / Python 3.10. Planned rented environment:
+  `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime` + timm 1.0.27, huggingface_hub 0.36.2, safetensors 0.8.0,
+  numpy 1.26.4.
+- Chosen offer: 58777466, 2x RTX 4090 (China), 0.73 USD/h, reliability 0.997. It had the lowest price per unit
+  of work among the 4090/5090 offers. Fallbacks: Quebec 58852161 (0.94 USD/h) and Slovakia 50305477 (1.07 USD/h).
+- Scripts written but never run against a rented machine: `src/AD4/vast_api.py`, `src/AD4/vast/remote_setup.sh`,
+  `src/AD4/vast/remote_queue.sh` and `src/AD4/vast/watchdog.py`. The watchdog stops at the cost cap, after 8 h,
+  or when the queue is done and every result is copied back to the DGX and to WCSS.
+- The instance-creation call was refused by this session's permission system (category "real-world
+  transactions"). Nothing was rented and nothing was spent.
+- The ten task directories were moved from WCSS `queue/ready` to `staging/AD4` before the attempt and then moved
+  back to `queue/ready`. All 20 AD4 tasks are now in `ready/`.

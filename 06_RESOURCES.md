@@ -47,7 +47,7 @@ if the forecast WCSS start is later than the Vast finish.
 | V2 | GAN and DiffAE twin pairs for training | T4 on generator morphs | 40 USD, only after gate 0 is positive |
 | V3 | Reserve for one rerun | — | 40 USD, needs the author's yes |
 
-No training and no ablation runs on Vast. Each lease uses one task queue per machine, one worker per
+No training and no ablation runs on Vast, with one exception approved by the author on 11 Nov: the ten ViT-B/16 fits of the morph-free networks experiment (AD4), cap 10 USD, because WCSS forecast no start before 13 Nov 23:20. Each lease uses one task queue per machine, one worker per
 GPU, results copied back every 30 minutes, and a watchdog that closes it at the cap.
 
 A B200 is not needed: the work is many small independent tasks, and several ordinary cards finish
