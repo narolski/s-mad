@@ -46,7 +46,8 @@ them sooner per dollar.
 | Need | Why | Who |
 |---|---|---|
 | Hand-over of the DGX from the other loop | all quick work runs there | author |
-| x86 builds of MIPGAN, the StyleGAN inverter and DiffAE in one container | the DGX is ARM; the earlier x86 DiffAE build failed | us; first task on WCSS CPU |
+| x86 build of MIPGAN and the StyleGAN inverter | StyleGAN inversion has only run on x86 so far; DiffAE already runs on the DGX | us; first task on WCSS CPU |
+| SelfMAD release weights copied back from WCSS | local copies are placeholders | us, first WCSS connection |
 | 150 GB on `/mnt/t7` | TwinSet; 357 GB free | fine |
 | Released weights of further detectors | wider audit table | see `10_ASSET_INVENTORY.md` |
 | Two hours of Kamil's time on Saturday | human read of tables and claim wording | author |

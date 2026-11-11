@@ -79,10 +79,21 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 | D4 | DiffAE and DiM twins | planned | | WCSS, Vast as fallback |
 | F1 | Feature cache for all detectors and backbones | planned | | DGX |
 
+## Facts to work from (see `10_ASSET_INVENTORY.md`)
+
+- Corrected MAD22, raw: `/mnt/t7/smad_heldout/mad22_incoming/marco_owncloud_20261109T103840Z/author_files/original_sorted/` (204 genuine; 1,000 / 984 / 500 / 1,000 / 999 morphs). Aligned: `/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z/`. Never `Datasety/downloads/MAD22` or `eval.csv` (old subset).
+- Nothing has been scored on the corrected MAD22 yet. Old scores cannot be merged in.
+- Released weights on this machine: MADation (all variants), MixFaceNet-MAD. SelfMAD is on WCSS only. SPL-MAD is public, not downloaded. No public weights: PW-MAD, Inception-MAD, MorphHRNet, MorDeephy, FD-MAD, SRL-MAD, R-FLoRA.
+- Twin material that exists: 5,000 landmark self-morphs (OpenCV, FaceMorpher; training persons), StyleGAN3 and DiffAE self-morphs (FERET, FRGC), FRLL self-morphs from A41 and A43.
+- Copied out of volatile storage on 11 Nov: `/mnt/t7/smad_next/volatile_backup_20261111/` (landmark self-morphs, corrected-MAD22 manifest).
+
 ## Open decisions and blockers
 
 - Start signal from the author (plan is under review).
 - Hand-over of the DGX and WCSS slots from the other loop.
+- Design questions 1 to 5 at the end of `11_AUDIT_PLAN.md`.
+- No x86 build of MIPGAN yet (GAN causal test depends on it).
+- For our own networks, FERET and FRGC have no unsealed held-out persons; unseen-source tests use CASIA or Multi-PIE.
 
 ## Log
 

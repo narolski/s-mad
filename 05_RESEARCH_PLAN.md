@@ -66,7 +66,7 @@ No new blur, resampling or JPEG code is written. The shared chain uses the exist
 | D1 | Pair lists: same-person and two-person pairs, pose-matched, identity splits | decision 1 | DGX CPU | 3 h |
 | D2 | Landmark morphs and self-morphs, 2 tools | D1 | WCSS CPU array or DGX CPU | 4 h wall |
 | D3 | MIPGAN and StyleGAN twins, inversions | D1 | WCSS; Vast as overflow | 15 GPU-h audit set, 70 training set |
-| D4 | DiffAE and DiM twins | D1 | WCSS; Vast as overflow | 20 GPU-h audit set, 80 training set |
+| D4 | DiffAE and DiM twins | D1 | DGX (DiffAE runs on it); WCSS as overflow | 20 GPU-h audit set, 80 training set |
 | F1 | Feature cache: CLIP-L, DINOv3-L, ArcFace, AdaFace, each released detector's penultimate layer | D2–D4, rolling | DGX | 6 GPU-h |
 | T1 | Audit: three-number test per family (AR1, AD1, AD2, AG1; see `11_AUDIT_PLAN.md`) | F1 | DGX | minutes |
 | T2 | Audit: last-layer refit of released detectors (A3) | F1 | DGX CPU | minutes |

@@ -14,9 +14,16 @@ people.
 | `04_HYPOTHESES.md` | Hypotheses in plain terms, each with a test that can fail |
 | `05_RESEARCH_PLAN.md` | Workstreams, day-by-day schedule, gates, and what the paper says under each outcome |
 | `06_RESOURCES.md` | Compute needed, rental recommendation, how rented machines are kept busy |
-| `07_DECISIONS_NEEDED.md` | Nine decisions for the author, each with a default |
+| `07_DECISIONS_NEEDED.md` | Decisions made, assumptions, open questions |
 | `prereg/TEMPLATE.md` | One-page pre-registration form used for every experiment |
-| `context/` | Source material (user messages of the OpenCode session) |
+| `08_CUE_MATRIX.md` | Every candidate benchmark cue: where present, whether detector use was tested, status |
+| `09_DATASET_EXTENSION_ANALYSIS.md` | What past data-extension runs show, gaps, minimum additions |
+| `10_ASSET_INVENTORY.md` | Released detectors, corrected MAD22 location, generators, photo pools |
+| `11_AUDIT_PLAN.md` | Audit experiments per morph family with fixed verdict rules |
+| `NOTEBOOK.md` | Live state of every idea, one line each |
+| `WORKFLOW.md` | Roles, review loop, spending and cluster rules |
+| `prior/INDEX.md` | Index of all experiments before 11 Nov |
+| `experiments/` | One folder per new experiment |
 | `src/` | Empty; code goes here once the plan is approved |
 
 Related repositories: `mambamorph-code` (experiments and ledger), `mambamorph` (paper),
