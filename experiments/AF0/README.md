@@ -110,6 +110,15 @@ softened-ladder copies are in progress (section 10). No conclusions drawn here.
   (`metrics_clip336_full.json`); graded set (`graded.py`, `graded_ar1g.json`); CLIP-224 metrics rerun with the
   Poisson set and median pooling; benchmark floors found at 0.97-1.00 for single statistics. PN1 DINOv3 tokens
   complete and order-checked (20:15).
+- 20:20-20:35 wave-4 arms done and read (`arms_clip224.json`); CLIP-336 F4 (`f4_clip336.json`); graded set on CLIP-224.
+- 20:36 The T7 drive reached 100%: `chain_dino_rest.sh` hit "No space left on device" twice. Damage check of every
+  .npz written in the last 3 h: one file corrupt (`heads/dinov3_512/w2_G/pred_ridge_bench_s.npz`, 8 KB) and its MLP
+  sibling missing; both removed / redone (20:45); all other outputs load. At 20:39 (before the lead's disk rule
+  arrived) I deleted my own CLIP-336 patch-token caches (af0_w1, af0_w2, ar1, bench_s, h1; 24 GB) after every planned
+  CLIP-336 analysis had finished (heads, scores, metrics, F4); ids, meta and done files kept;
+  `feat/clip336/DELETED_TOKENS.txt` records it and the regeneration command. Also removed the 8-image smoke cache
+  `feat/dinov3_512/ar1_limit8.*` (16 MB). Mean-pooled DINOv3 tokens written beside every full cache
+  (`<list>.meanpool.npy`, `pool_tokens.py`) so the full 512-px caches can go if the author agrees.
 
 Amendments / deviations so far (all reported in `result.md` when final): bench subsample (`bench_s`); wave 2 / 3 / 4
 at reduced scale (ghost targets and halves only for wave-1 pairs plus all uniform-0.5 pairs; softened copies only of
@@ -229,6 +238,9 @@ Not verified: CLIP transforms beyond timm's own config; FRGC neutral = BlankStar
   rule adopted: never rewrite a list after a queue line can see it; the run was redone on the final list.
 - Wave 2 on CLIP-224: the registered ghost-energy head neither fails nor brings a gain (result.md); its F1 is low
   (0.11-0.14); the most learnable target is G (0.30), which failed the target-sanity rule.
+
+- Disk full (20:36) and the CLIP-336 cache deletion: see the timeline. New rule (lead): check `df -h /mnt/t7` before
+  any write over 1 GB, keep 50 GB free, no new 512-px patch-token files on the DGX.
 
 ## 8. Observations and ideas
 

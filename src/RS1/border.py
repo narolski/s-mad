@@ -48,8 +48,13 @@ def main():
                                      ("v2", "corrected crop, PNG (variant 2)")), ath):
             A = OUT / "athena" / folder
             by = collections.defaultdict(list)
-            for r in cut(list(csv.DictReader(open(A / f"score_{v}.csv")))):
-                by[man[r["id"]]["set"]].append(zero_frac(A / "crops" / v / pathlib.Path(r["path"]).name))
+            if (A / "border_fraction.csv").exists():         # computed inside the Athena job (crops stay there)
+                for r in cut(list(csv.DictReader(open(A / "border_fraction.csv")))):
+                    if r["variant"] == v and r["black_frac"] != "":
+                        by[man[r["id"]]["set"]].append(float(r["black_frac"]))
+            else:
+                for r in cut(list(csv.DictReader(open(A / f"score_{v}.csv")))):
+                    by[man[r["id"]]["set"]].append(zero_frac(A / "crops" / v / pathlib.Path(r["path"]).name))
             rows += summarise(tag, by)
     else:
         man = {r["id"]: r for r in csv.DictReader(open(OUT / "manifest.csv"))}

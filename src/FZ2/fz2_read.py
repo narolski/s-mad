@@ -234,7 +234,12 @@ def heads(Fc):
 
 
 # ---------------------------------------------------------------- baselines per contrast
+_BCACHE = {}
+
+
 def baselines(R, pos, neg, mask=None):
+    if mask is None and (pos, neg) in _BCACHE:
+        return _BCACHE[(pos, neg)]
     ia, ib = R.idx(pos, mask), R.idx(neg, mask)
     res, reps = {}, {}
     for nm in ("png_bytes", "lapvar_box", "asym_box"):
@@ -251,6 +256,8 @@ def baselines(R, pos, neg, mask=None):
         res[nm] = {"auc": pt, "ci": ci(rep), "Cs": cs}
         reps[nm] = rep
     best = max(res, key=lambda k: res[k].get("auc_folded", res[k].get("auc")))
+    if mask is None:
+        _BCACHE[(pos, neg)] = (res, reps, best)
     return res, reps, best
 
 
@@ -338,8 +345,7 @@ def main():
         res = {}
         # H-new-1
         if have("SAME20", "REC20"):
-            apply = ["FRESH1_20", "FRESH2_20", "X20", "MIR20", "NOISES20", "SEMS20", "NOISEX20", "SEMX20"] + \
-                    [f"DOSE{t}_{s}" for t in ("X", "S") for s in ()]
+            apply = ["FRESH1_20", "FRESH2_20", "X20", "MIR20", "NOISES20", "SEMS20", "NOISEX20", "SEMX20"]
             s_sr, cs = R.probe(X, "SAME20", "REC20", apply)
             scores[f"{b}|D_SR"] = s_sr
             d = {"Cs": cs}

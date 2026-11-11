@@ -168,6 +168,9 @@ missing); a pack is ready there for later.
   verified Athena copies (the three packs, 12 GB; the two fetched smoke tars). The job now writes a small result tar
   (copied back) and `rs1a_<tag>_crops.tar` (stays on Athena). Jobs 3545918 / 3545919 (never started) cancelled and
   resubmitted as **3545970 (variant 1)** and **3545971 (variant 2)**, 2 h limit, `-A plgmultivision-gpu-a100`.
+- 20:50. Because crops no longer come back, the border check (amendment 2 d) now runs inside the job
+  (`border_fraction.csv`: black-pixel fraction of every crop). 3545970 / 3545971 (never started) cancelled and
+  resubmitted as **3545972 (variant 1)** and **3545973 (variant 2)**.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.
@@ -248,7 +251,7 @@ MixFaceNet-MAD `/mnt/t7/mixfacenet_mad_official/mixfacenet_SMDD.pth` (3d507c8b);
 
 ## 5. Results
 
-MADation / MixFaceNet-MAD: pending (Athena jobs 3545970, 3545971).
+MADation / MixFaceNet-MAD: pending (Athena jobs 3545972, 3545973).
 
 SelfMAD (11 Nov 20:10; `analyse.py --B 2000 --suffix _selfmad_only`; files `rs1_*_selfmad_only.csv`,
 `rs1_results_selfmad_only.json`; rendered `/mnt/t7/smad_next/RS1/tables_selfmad_only.md`). Two runs, never compared

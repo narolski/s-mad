@@ -118,6 +118,18 @@ for v in $VARS; do
     echo "$d $v $(( $(date +%s) - t0 )) s" | tee -a "$W/out/logs/score_times.txt"
   done
 done
+echo "border check $(date +%T)"
+# amendment 2 (d): fraction of black pixels (all three channels 0) in every crop, per crop file (summarised on the DGX)
+"$PY" -I - "$W" "$VARS" <<'EOF'
+import csv, sys, pathlib, cv2
+W, vars_ = pathlib.Path(sys.argv[1]), sys.argv[2].split()
+with open(W / "out/border_fraction.csv", "w", newline="") as f:
+    w = csv.writer(f); w.writerow(["variant", "id", "black_frac"])
+    for v in vars_:
+        for r in csv.DictReader(open(W / f"score_{v}.csv")):
+            im = cv2.imread(r["path"], cv2.IMREAD_COLOR)
+            w.writerow([v, r["id"], "" if im is None else round(float((im.max(axis=2) == 0).mean()), 6)])
+EOF
 echo "pack results $(date +%T)"
 mkdir -p "$W/out/scores" "$W/out/v2meta"
 cp "$W"/scores/scores_*.npz "$W/out/scores/"; cp "$W"/score_v1.csv "$W"/score_v2.csv "$W"/inputs_abs.csv "$W/out/"

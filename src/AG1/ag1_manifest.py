@@ -69,8 +69,25 @@ def detector():
     return prep_eval
 
 
+_TARS = {}
+
+
+def read_img(path):
+    """BGR image from a file path or from 'tar://<tar>::<member>' (generated images are read straight out of their
+    verified result tar; no extracted second copy on the T7 drive, lead's disk rule of 11 Nov)."""
+    import cv2
+    if path.startswith("tar://"):
+        t, mem = path[6:].split("::", 1)
+        if t not in _TARS:
+            _TARS[t] = tarfile.open(t)
+        buf = _TARS[t].extractfile(mem).read()
+        return cv2.imdecode(np.frombuffer(buf, np.uint8), cv2.IMREAD_COLOR)
+    return cv2.imread(path, cv2.IMREAD_COLOR)
+
+
 def unpack():
-    """every shard tar next to its .sha256, checked, extracted once to results/x/<shard>/."""
+    """every result tar (not smoke) checked against its .sha256 -> [(tar path, shard dir name, log rows)]; nothing is
+    extracted. Each PNG's bytes are checked against its log line when it is read (stage_frames)."""
     out = []
     for t in sorted(RES.glob("AG1_*.tar")):
         if "smoke" in t.name:                                   # smoke shards never enter the data
@@ -78,11 +95,9 @@ def unpack():
         want = open(str(t) + ".sha256").read().split()[0]
         if sha(t) != want:
             sys.exit(f"{t}: sha256 mismatch")
-        d = RES / "x" / t.stem
-        if not d.exists():
-            with tarfile.open(t) as tf:
-                tf.extractall(RES / "x", filter="data")
-        out.append(d)
+        with tarfile.open(t) as tf:
+            log = list(csv.DictReader(tf.extractfile(f"{t.stem}/log.csv").read().decode().splitlines()))
+        out.append((t, t.stem, log))
     return out
 
 
@@ -100,7 +115,7 @@ def stage_frames():
     def frame(src, dst):
         dst.parent.mkdir(parents=True, exist_ok=True)
         if not dst.exists() or str(dst) not in flags:
-            img, ok, _ = PE.align(cv2.imread(str(src), cv2.IMREAD_COLOR))
+            img, ok, _ = PE.align(read_img(str(src)))
             cv2.imwrite(str(dst), img)
             flags[str(dst)] = bool(ok)
         return flags[str(dst)]
@@ -161,17 +176,19 @@ def stage_frames():
                          "rung": "PUB", "gen": gen, "db": "frll", "pa": f"frll_{a[:3]}", "pb": f"frll_{b[:3]}",
                          "photo_a": a, "photo_b": b, "alpha": 0.5, "source": "published", "aligned": True})
     # ours
-    for d in unpack():
-        for r in csv.DictReader(open(d / "log.csv")):
-            src = d / "png" / f"{r['stem']}.png"
-            if sha(src) != r["png_sha256"]:
-                sys.exit(f"{src}: sha256 differs from its log line")
-            fp = DATA / "frames" / r["rung"] / f"{r['stem']}.png"
-            ok = frame(src, fp)
-            pa, pb = r["a"].split("__")[0], r["b"].split("__")[0]
-            rows.append({"id": r["stem"], "path": str(fp), "raw": str(src), "rung": r["rung"], "gen": r["gen"],
-                         "db": pa.split("_")[0], "pa": pa, "pb": pb, "photo_a": r["a"], "photo_b": r["b"],
-                         "alpha": r["alpha"], "source": "ours", "aligned": ok})
+    for t, root, log in unpack():
+        with tarfile.open(t) as tf:
+            for r in log:
+                mem = f"{root}/png/{r['stem']}.png"
+                if hashlib.sha256(tf.extractfile(mem).read()).hexdigest() != r["png_sha256"]:
+                    sys.exit(f"{t}::{mem}: sha256 differs from its log line")
+                src = f"tar://{t}::{mem}"
+                fp = DATA / "frames" / r["rung"] / f"{r['stem']}.png"
+                ok = frame(src, fp)
+                pa, pb = r["a"].split("__")[0], r["b"].split("__")[0]
+                rows.append({"id": r["stem"], "path": str(fp), "raw": src, "rung": r["rung"], "gen": r["gen"],
+                             "db": pa.split("_")[0], "pa": pa, "pb": pb, "photo_a": r["a"], "photo_b": r["b"],
+                             "alpha": r["alpha"], "source": "ours", "aligned": ok})
     json.dump(flags, open(flags_p, "w"))
     for r in rows:
         r["label"] = LABEL[r["rung"]]
@@ -200,7 +217,7 @@ def stage_oracle():
     rows = list(csv.DictReader(open(DATA / "manifests/ag1_raw.csv")))
     ids, crops, fail = [], [], []
     for r in rows:
-        img = cv2.imread(r["path"], cv2.IMREAD_COLOR)
+        img = read_img(r["path"])
         k = PE.kps(img)
         if k is None:
             fail.append(r["id"])
@@ -221,8 +238,8 @@ def stage_rt():
         if r["rung"] != "RT":
             continue
         twin = i.replace("_RT_", "_R3_")
-        a = cv2.imread(r["path"]).astype(int)
-        b = cv2.imread(rows[twin]["path"]).astype(int)
+        a = read_img(r["path"]).astype(int)
+        b = read_img(rows[twin]["path"]).astype(int)
         d = np.abs(a - b)
         out.append({"id": i, "twin": twin, "gen": r["gen"], "db": r["db"], "max": int(d.max()), "mean": float(d.mean())})
     json.dump(out, open(DATA / "rt_check.json", "w"), indent=0)
