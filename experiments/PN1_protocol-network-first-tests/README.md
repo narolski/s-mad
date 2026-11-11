@@ -104,6 +104,10 @@ lead's GO (pre-run review restarted by the lead). No conclusion is drawn here.
   with `scontrol update` (fits 3 h -> 2 h 15 min, reference 2 h -> 1 h) to match the smoke rate; forecast unchanged at
   21:00. `sbatch --test-only` forecasts for a new job: 16 Nov (plgmultivision) and 20 Dec (plgrestorearc). Lead told;
   decision on priority is the lead's.
+- 21:06 Lead: keep waiting; a rented A100 may be arranged by the lead as fallback. Amendment 6 (one platform for all
+  tier-1 networks) registered; runbook and scripts in `src/PN1/rented/` (RUNBOOK.md, drive.sh, pull_loop.sh,
+  remote_setup.sh, remote_smoke.sh, remote_queue.sh, score_ref_local.sh = score_ref.sh with host Python and local
+  paths only). `refnets.tar` rebuilt (byte-identical, sha256 `101da1e5…`). "Runbook ready" sent.
 - 20:39 DINOv3 means from Athena installed (`postfeatx.py install`, files `ath_*.mean.npy`); tier 0 on DINOv3 started.
 - Note: `lists.py cert_a` was rerun at about 19:58 after the ladder copies joined the catalogue, so `cert_a.csv` now
   lists more rows than the cue file `cert_cert_a.npz` (computed from the 11,573-row version); the ladder copies get

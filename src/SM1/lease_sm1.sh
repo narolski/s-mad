@@ -21,11 +21,12 @@ LOC=/mnt/t7/smad_next/SM1
 LOG=$LOC/lease/lease_log.txt
 mkdir -p "$LOC/lease"
 echo "$(date -Is) $STEP $T" >> "$LOG"
-ENV="SM1_PACK=$B/packs/sm1_${T}_pack.tar SM1_RESULTS=$B/results SM1_PY=$B/venv/bin/python TMPDIR=$B/tmp/$T"
+PT=${PACKT:-$T}   # A12 item 11: PACKT=b reuses pack b already on the lease (overlay task d5)
+ENV="SM1_PACK=$B/packs/sm1_${PT}_pack.tar SM1_RESULTS=$B/results SM1_PY=$B/venv/bin/python TMPDIR=$B/tmp/$T"
 case "$STEP" in
   up)
     T0=$SECONDS
-    RS "$LOC/wcss/packs/SM1/sm1_${T}_pack.tar" "root@$HOST:$B/packs/"
+    [ "$PT" = "$T" ] && RS "$LOC/wcss/packs/SM1/sm1_${T}_pack.tar" "root@$HOST:$B/packs/"
     RS "$LOC/wcss/staging/SM1/cpu/SM1_cpu_${T}/" "root@$HOST:$B/task_${T}/"
     echo "upload $((SECONDS - T0)) s" | tee -a "$LOG"
     R "df -h /workspace | tail -1; free -g | sed -n 2p; ls -la $B/packs $B/task_${T}"

@@ -427,6 +427,19 @@ GPU and build work (each scored for the first time after this registration; Athe
     experiment (`/mnt/t7/smad_next/AF0/img/`) scored by the arm (e) and (f) frozen heads (features on Athena) and,
     if cheap, by their LoRA fits: flag rate at both thresholds against the 80-px copies of the same photos.
 
+A12 implementation notes (11 Nov 21:15, before any score of items 5 to 13):
+- Item 10: `sm1_lora_audit.py` + `athena_lora_audit.sbatch` (one scoring-only job over the finished fits, FITS list);
+  the network = `common.build_run_model(meta)` + `ad4eval/last_trainable.pt` of the fit's result tar; a fit is
+  scored only if 256 rows of its own AD4 evaluation scores are reproduced within 2e-3. Logit = log(p / (1 − p)) of
+  the no-TTA score (as `lora_read.py`); the reader of item 1 is applied per fit family (ViT-L/14, ViT-B/16).
+- Item 11: the list `armd5.csv` (`pairs_d5.py`: the dose construction of `pairs.py` with K = 5, seed SEED + 35; the
+  pool reconstruction must reproduce `armd50.csv` and `armd500.csv` exactly); built on leaseB as an overlay task on
+  pack b (same engine and `build.py` files, sha256 checked; 8-pair DGX reference check); features on Athena; heads
+  and reads as Part 3 (arm name d5; steps b → d5 and d5 → K = 50 added).
+- Item 12: `athena_lora_b2.sbatch` (ARMS b, bp; RECIPE m3; MANIFESTS `sm1lora_manifests_b`); `lora_run.sh` gains
+  only the manifest-tar variable (default unchanged) and the armsb image set for b and b′.
+- Item 9 uses a 500-draw image bootstrap per class (stated in the script).
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 

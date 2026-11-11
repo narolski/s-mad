@@ -23,13 +23,15 @@ rm -rf "$W/ad4/data/train"                                  # not used by SM1 (f
 mkdir -p "$W/data/x" "$W/data/manifests"
 SETS="base armsc arme test audit"
 [ "$ARM" = f ] && SETS="$SETS armf"                                 # A10: the JPEG copies of arm (f)
+case "$ARM" in b|bp) SETS="$SETS armsb" ;; esac                     # A12 item 12: arms b, b' (ViT-B/16)
 [ -f "$G/packs/SM1/sm1gpu_img_jpegeval.tar.sha256" ] && SETS="$SETS jpegeval"   # A10: FRLL genuine JPEG frames
 for s in $SETS; do
   (cd "$G/packs/SM1" && sha256sum -c --quiet "sm1gpu_img_$s.tar.sha256") || die "sm1gpu_img_$s sha256"
   tar -C "$W/data/x" -xf "$G/packs/SM1/sm1gpu_img_$s.tar"
 done
-(cd "$G/packs/SM1" && sha256sum -c --quiet sm1lora_manifests_v2.tar.sha256) || die "manifests sha256"
-tar -C "$W/data/manifests" -xf "$G/packs/SM1/sm1lora_manifests_v2.tar"
+MAN=${MANIFESTS:-sm1lora_manifests_v2}                             # A12 item 12: sm1lora_manifests_b for b, b'
+(cd "$G/packs/SM1" && sha256sum -c --quiet "$MAN.tar.sha256") || die "manifests sha256"
+tar -C "$W/data/manifests" -xf "$G/packs/SM1/$MAN.tar"
 ln -s "$W/ad4/data/eval" "$W/data/eval"
 for f in "$W"/ad4/data/manifests/ad4_eval.csv; do ln -s "$f" "$W/data/manifests/"; done
 cp "$W/data/manifests/train_sm1${ARM}_s${SEED}.csv" "$W/data/manifests/train.csv"

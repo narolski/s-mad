@@ -100,3 +100,8 @@ morph literature note to `narolski/research`.
 ## Author's decision of 11 Nov, 20:20: rented fallback
 
 - "Absolutely": if the two scoring jobs of the own-crop re-score (RS1) have not started on Athena by 21:30, they may run on a rented A100 (under 3 USD); the same fallback applies to the eight fits of the protocol-network tests (PN1, about 4 USD) if Athena is still jammed when they are ready. Each comparison stays on one machine type. Rental commands are run from the main session.
+
+## Author's decisions of 11 Nov, 21:11: rentals tonight
+
+- The command that replaces the account-wide spending stop of the two running rented machines by fixed end times was approved through the permission settings, and applied (ends 23:15 and 00:25).
+- "I approve you to spend up to $50 this night" on rented machines.

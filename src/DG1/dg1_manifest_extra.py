@@ -8,7 +8,8 @@
                            validation-reserved host / partner (prep_train.is_val, as written in the split file)
   pd1_host, pd1_partner    person used to fit the existing paired-differences heads (PD1 DiffAE items.csv, set 'tr')
   wedge_in, grey_in        the inputs of this image include a photo with a black wedge (share of exact-black pixels in
-                           the DiffAE-aligned 256 input > 0.01) / a greyscale photo (R = G = B everywhere)
+                           the DiffAE-aligned 256 input > 0.01) / a greyscale photo (channel spread max - min <= 2 grey levels
+                           at every pixel; the aligner leaves at most 2 levels of colour noise in grey sources)
   twin_pair                host and partner are one of the two probable twin pairs (frgc:04637/04638, frgc:04692/04856)
   same_date                the two input photos share a capture date (H_session of the host = S_session of the partner)
   pair_disagree            mean |first input - second input| in the face box (rows 70-220, columns 64-192), grey levels
@@ -69,7 +70,7 @@ def main():
             x = np.asarray(Image.open(al / f"{stem}.png").convert("RGB")).astype(np.int16)
             arr[stem] = x
             stats[stem] = {"black": float((x.max(2) == 0).mean()),
-                           "grey": bool((x[..., 0] == x[..., 1]).all() and (x[..., 1] == x[..., 2]).all())}
+                           "grey": bool(int(x.max(2).astype(int).__sub__(x.min(2)).max()) <= 2)}
         return arr[stem], stats[stem]
 
     rows = list(csv.DictReader(open(a.manifest)))

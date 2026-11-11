@@ -212,6 +212,13 @@ No retrain and no score exist yet.
   8.9e-4, mean 5e-7, 11 images above 1e-4, crop flags equal (`oracle_scores/check_cached_vs_scorepy.json`); the cache
   has 0 images without a face. Because per-epoch weights stay on Athena, the oracle `score` step will run there (the
   cache, 3.2 GB, to be uploaded).
+- 11 Nov 20:31-21:05. Scoring smoke 3545960 (t0015): environment built on the project file system (about 20 min),
+  RS1 smoke crops verified by hash (927 files), lists of 303 / 304 crops; but the first scoring call (ViT-B/16 release,
+  303 crops) took 750 s, so the job could not finish in its hour; cancelled at 34:40 (0.58 GPU-hours). Probable cause:
+  Python importing thousands of files from the shared file system (slow tonight; the same environment build took
+  20 min). Fix: short jobs build their environment in the RAM disk from the local wheels (`build_env_local`); the
+  score job prints per-call times and the scorer's own img/s line, and keeps its logs on SIGTERM. code_v4 updated in
+  place (no task reads it; CODE_SHA256SUMS b6fd552d...). Resubmitted as **3546004**.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -355,9 +362,10 @@ DGX: no AD5 process running. Athena jobs (logs in
 | 3545933_[401-404] | SelfMAD retrains (code_v3; account plgmultivision; t0010 excluded) -> results/AD5/selfmad_S_s<seed>.tar + _epochs/ | 1 x 46:00 each | submitted 20:14 | resubmit failed ids from code_v3 with -A plgmultivision-gpu-a100 --exclude=t0010 |
 | 3545936 (task 405) | SelfMAD retrain seed 405 (same) | 1 x 46:00 | submitted 20:19 | as above |
 | 3545948 | scoring smoke (code_v4, releases only, RS1 smoke crops, 8 per set) | 1 x 1:00 | FAILED 0:47 (no setuptools in the wheel house), 0.01 GPU-h | fixed, resubmitted |
-| 3545960 | scoring smoke, second try | 1 x 1:00 | submitted 20:50 | read log |
-Compute spent so far: 1.82 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2, 3544218 0.59, 3545815_401 0.19,
-3545882 0.57; plus running jobs). Allowance: 300 A100-hours for AD5 (lead, 20:17); planned about 272. Planned
+| 3545960 | scoring smoke, second try | 1 x 1:00 | CANCELLED 34:40 (first call 750 s), 0.58 GPU-h | fixed (env in RAM disk) |
+| 3546004 | scoring smoke, third try | 1 x 1:00 | submitted 21:08 | read log |
+Compute spent so far: 2.4 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2, 3544218 0.59, 3545815_401 0.19,
+3545882 0.57, 3545948 0.01, 3545960 0.58; plus running jobs). Allowance: 300 A100-hours for AD5 (lead, 20:17); planned about 272. Planned
 production: about 111 GPU-hours (L 62, B 16, X 33), then SelfMAD.
 Logs on Athena: `/net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-madation-ad5-madL-<job>_<seed>.out`,
 `AD5-madation-ad5-madB-...`, `AD5-mixfacenet-<job>_<seed>.out`.

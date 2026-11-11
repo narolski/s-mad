@@ -33,6 +33,16 @@ build_env() {  # build_env NAME REQUIREMENTS WHEEL_TAR: venv under $EN/NAME from
   echo "env $name built"; cat "$e/pip_freeze.txt"
 }
 
+build_env_local() {  # build_env_local NAME REQUIREMENTS WHEEL_TAR: venv in the RAM disk ($SCRATCH_LOCAL/env_NAME), for
+  # short jobs: avoids importing thousands of files from the shared project file system (slow on 11 Nov evening)
+  local name=$1 req=$2 wt=$3 e=$SCRATCH_LOCAL/env_$1 w=$SCRATCH_LOCAL/wheels_$1 t0=$(date +%s)
+  untar_checked "$wt" "$w"
+  python3 -m venv "$e"
+  "$e/bin/python" -m pip install -q --no-index --find-links "$w" -r "$req"
+  "$e/bin/python" -m pip freeze > "$e/pip_freeze.txt"; rm -rf "$w"
+  echo "env $name built in the RAM disk in $(( $(date +%s) - t0 )) s"
+}
+
 gpu_monitor() {  # gpu_monitor FILE: sample GPU memory every 5 s in the background; prints the PID
   ( while :; do nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader,nounits >> "$1"; sleep 5; done ) \
     > /dev/null 2>&1 &

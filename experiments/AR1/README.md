@@ -202,7 +202,10 @@ Warp check (amendment 4), 8 hosts (`experiments/AR1/warp_check_smoke.json`; all 
 R2w4 and R2w averaged with the partner-side warp reproduce the tool's R4 / R3 to at most 0.5 grey level over the whole
 frame (OpenCV; the 0.5 is the halving of an odd sum) and exactly (0) inside the face mask (FaceMorpher).
 
-Detector results: none opened yet.
+Detector results (opened after G-b and each network's G-c): all tables in `experiments/AR1/result_tables.md`
+(from `result_tables.json`, analysis v2, `/mnt/t7/smad_next/AR1/analyse_v2.log`); summary and verdicts in
+`experiments/AR1/result.md`. Platform check: `experiments/AR1/a46_platform_check.json`. Baselines (strict folds):
+`experiments/AR1/baselines.json`, out-of-fold scores `/mnt/t7/smad_next/AR1/scores/baselines_oof.npz`.
 
 Pool facts: cos(H, S) median 0.868; cos(H, B) median 0.234; 7 FERET hosts have a greyscale H or S.
 
@@ -256,7 +259,22 @@ SelfMAD's training identities; whether 73_delin_align on FRLL matches prep_eval 
 Finish scoring (MixFaceNet, ViT-L/14, blanked variants, R2wm extra rows, retrains), G-c for every tag, then baselines,
 `analyse.py`, `tables.py`, `check_a46.py compare`, result.md. AR4 for R2wm not planned (no blanked crops).
 
-## 10. Handover state (DGX, 11 Nov about 18:00 CET)
+## 10. Handover state (DGX)
+
+Current (11 Nov about 21:50 CET, at the owner's hand-back):
+
+| Process | PID | Log | Expected end | If it fails / next step |
+|---|---|---|---|---|
+| `run_master.sh` (two lanes, thread caps, nice 10) | 2365185 | `/mnt/t7/smad_next/AR1/run_master.log` | about 00:30 CET 12 Nov (M3L seeds 2-5 at about 7 images/s, then the R2wm rows of the retrains) | rerun `nohup bash src/AR1/run_master.sh > run_master.log &` (finished files are skipped) |
+| lane 2 `run_own_nets.sh` (M3L seeds 2-5) | 2438540 | `run_own_nets.log` | as above | same |
+| lane 1 `run_extra2.sh` (R2w4 rows of M3L), then `run_extra.sh` (R2wm rows of the retrains; waits for OWN_NETS_DONE) | 2546174 | `run_extra2.log`, `run_extra.log` | as above | same |
+
+After MASTER_DONE: `OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 nice -n 10 $P -I src/AR1/gate_c.py --tags
+nets_M3L_s1,nets_M3L_s2,nets_M3L_s3,nets_M3L_s4,nets_M3L_s5` (one process; it rewrites gate_c.json with all tags),
+then `analyse.py`, `tables.py > experiments/AR1/result_tables.md`, and update the retrain block of result.md.
+Compute so far: about 8 GPU-hours on the shared GB10 (crops, scoring, FR), CPU several hours; no USD.
+
+Earlier table (18:00 CET, superseded):
 
 | Process | PID | Log | Expected end | If it fails |
 |---|---|---|---|---|
@@ -296,6 +314,9 @@ $P -I $S/baselines.py --only R2w4; $P -I $S/analyse.py; $P -I $S/tables.py; $P -
 ```
 
 ## Log of README updates
+- 11 Nov about 21:50 CET: A46 platform check done (AUC agreement within 0.0004, Kendall tau 0.966-0.973 < 0.99: not
+  image-identical); AR4 complete for all four releases; analysis v2 (`analyse_v2.log`); result.md updated; owner
+  hands back with M3L scoring still running (section 10).
 - 11 Nov about 21:20 CET: strict baselines finished (`run_cpu.log`, CPU_DONE); full analysis v1 (`analyse_v1.log`,
   `experiments/AR1/result_tables.json`, `result_tables.md`); `result.md` written. M3 seed 8 was read in that pass about
   10 minutes before its G-c existed (G-c then 0.899 / 0.903, readable); `analyse.py` now refuses networks without G-c.

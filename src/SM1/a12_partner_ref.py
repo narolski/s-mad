@@ -6,8 +6,9 @@ gap(trained - KE) = mean_k(P - E), gap(KE - U) = mean_k(E - U), gap(trained - U)
 bootstrap draws (seed 20261111, the same draws for every score set); own-rule miss rate (logit < 0) per partner kind;
 heads: 5-seed means with the bootstrap of the seed mean, and DiD of gap(trained - KE) between head arms.
 
-  python3 -I a12_partner_ref.py -> RES/a12_partner_ref.json
+  python3 -I a12_partner_ref.py [--heads-dir D --name N --no-releases] -> RES/<N, default a12_partner_ref>.json
 """
+import argparse
 import csv
 import json
 import pathlib
@@ -65,12 +66,19 @@ def gaps(Ms, draws):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--heads-dir", default=None, help="head score folder (default OUT/heads); e.g. OUT/heads_fz1")
+    ap.add_argument("--name", default="a12_partner_ref")
+    ap.add_argument("--no-releases", action="store_true")
+    ap.add_argument("--arms", default=",".join(ARMS))
+    a = ap.parse_args()
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
+    hd = pathlib.Path(a.heads_dir) if a.heads_dir else K.OUT / "heads"
     meta, keys, idx, kinds, draws = setup()
     load = lambda f, key: {str(i): float(v) for i, v in zip(np.load(f)["id"], np.load(f)[key])}  # noqa: E731
     res = {"releases_crop": {}, "releases_whole": {}, "heads": {}}
-    for det in RELS:
+    for det in (() if a.no_releases else RELS):
         for tag, d in (("releases_crop", K.OUT / "p2scores"), ("releases_whole", K.OUT / "p2scores/whole")):
             f = d / f"scores_rel_{det}.npz"
             if f.exists():
@@ -80,9 +88,9 @@ def main():
                     v.pop("_d")
                 res[tag][det] = dict(gaps=g, own_rule_miss=miss(z, kinds))
     dvec = {}
-    for arm in ARMS + ("feref",):
+    for arm in tuple(a.arms.split(",")) + ("feref",):
         files = [K.OUT / "heads/feref.npz"] if arm == "feref" else \
-            [K.OUT / "heads" / f"{arm}_s{s}.npz" for s in K.SEEDS]
+            [hd / f"{arm}_s{s}.npz" for s in K.SEEDS]
         files = [f for f in files if f.exists()]
         if not files:
             continue
@@ -103,7 +111,8 @@ def main():
     res["heads_did_trained_minus_KE"] = did
     res["note"] = ("post hoc (A12 item 1); trained - U is the registered row, biased (U matched only on cosine to keys, "
                    "IOD and yaw); the reported size of the trace is trained - KE")
-    json.dump(res, open(K.RES / "a12_partner_ref.json", "w"), indent=1)
+    res["heads_dir"] = str(hd)
+    json.dump(res, open(K.RES / f"{a.name}.json", "w"), indent=1)
     for tag in ("releases_crop", "releases_whole"):
         for det, o in res[tag].items():
             g = o["gaps"]

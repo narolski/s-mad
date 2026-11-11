@@ -261,6 +261,15 @@ here. No answer yet.
   t0016 at 20:50 and 20:51 (their generator log goes to `out_addon_s<k>/addon_s<k>.log` inside the tar, so the Slurm
   log shows progress only at the end).
 
+- 11 Nov 21:05. **Set B finished**: shard 2 (task 3545877_3 = Slurm id 3545877, node t0016, plgmultivision, 1,634 s;
+  3.12 s per inversion; all finite; genuine 268 of 268 lossless) fetched (tar sha256 62637f1c…); validity started.
+  Set B totals: 908 + 904 + 896 + 908 = 3,616 files = genuine 1,072, REC / MIR / SAME / X 536 each, DOSE 4 × 100;
+  every image finite; per-file hashes checked against the generation rows by `dg1_validity.py`.
+- 11 Nov 21:06. Accounting (`sacct`, billing 1 GPU per job, elapsed time): smoke 3544197 4 s, 3544215 666 s, 3544800
+  297 s; production 3545841_0 1,749 s (set A), _1 616 s and _3 496 s (cancelled on t0010), _2 1,489 s, _4 1,605 s;
+  3545877_1 2,023 s, _3 1,789 s. **Total 10,734 s = 2.98 GPU-hours** (smoke 0.27, set A 0.49, set B 1.92, lost on
+  t0010 0.31). Add-on 3545907: tasks 0, 1 running on t0016 since 20:50, tasks 2–7 pending (ReqNodeNotAvail).
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):
@@ -372,8 +381,30 @@ morphs verify against both contributors at both step counts (gate G-b asks ≥ 7
 against its host; 100-step renders have 2.5–3.4 times the Laplacian variance of 20-step renders of the same rung; the
 mirror mix has about a third of the asymmetry of the photo.
 
-Set B: shards 1 and 3 fetched (setB_s1 tar sha256 8b917ce3…, setB_s3 1c3f3678…), shards 0 and 2 running
-(array 3545877); validity after all four are in.
+### Set B validity (FRGC and colorFERET, 536 hosts, 20 steps; `validity/setB_summary.csv`, `validity/setB_manifest.csv`)
+
+References: the AR1 source frames of the host photo H and of the second photo (S of the host for SAME; S of the
+partner for X and DOSE); "indep." = the independent AR1 reference photo R (another session, 534 hosts). Median [IQR].
+Every face found (3,616 of 3,616).
+
+| Rung (pool) | n | cos host | cos partner | verify host / partner / both | both, indep. refs | asymmetry | Laplacian var. | PNG bytes |
+|---|---|---|---|---|---|---|---|---|
+| genuine H and S, same storage (B_G) | 1,072 | 0.989 [0.986, 0.992] | — | 1.00 | — | 13.4 [10.1, 19.1] | 171 [133, 211] | 84,400 |
+| reconstruction (B_REC20) | 536 | 0.959 [0.952, 0.965] | — | 1.00 | — | 12.4 [9.1, 17.9] | 87 [65, 114] | 59,805 |
+| mirror mix (B_MIR20) | 536 | 0.891 [0.859, 0.915] | — | 1.00 | — | 3.3 [2.9, 3.8] | 109 [78, 146] | 64,649 |
+| same-person mix (B_SAME20) | 536 | 0.885 [0.846, 0.908] | 0.885 [0.843, 0.909] | 1.00 / 1.00 / 1.00 | — | 12.8 [10.4, 17.1] | 128 [95, 168] | 66,792 |
+| two-person morph (B_X20) | 536 | 0.566 [0.492, 0.634] | 0.569 [0.486, 0.634] | 0.996 / 0.987 / 0.983 | 0.959 | 10.9 [8.3, 14.9] | 96 [77, 121] | 64,417 |
+| dose α 0.1 (B_DOSE10_20) | 100 | 0.936 [0.921, 0.946] | 0.281 [0.227, 0.346] | 1.00 / 0.73 / 0.73 | 0.66 | 13.5 | 87 | 60,274 |
+| dose α 0.2 | 100 | 0.866 [0.838, 0.891] | 0.336 [0.289, 0.400] | 1.00 / 0.90 / 0.90 | 0.83 | 13.0 | 92 | 62,121 |
+| dose α 0.3 | 100 | 0.774 [0.730, 0.812] | 0.416 [0.332, 0.470] | 1.00 / 0.96 / 0.96 | 0.90 | 12.3 | 94 | 63,372 |
+| dose α 0.4 | 100 | 0.676 [0.618, 0.724] | 0.486 [0.405, 0.561] | 1.00 / 0.99 / 0.99 | 0.95 | 12.0 | 98 | 64,000 |
+
+Two-person morphs verifying both contributors: 527 of 536 (0.983); unflagged subset 456 of 464 (0.983); FRGC 0.981,
+colorFERET 0.991. Flags (review finding 6, `dg1_manifest_extra.py`): input photos with a black wedge (share of exact-black
+pixels > 0.01): 55 of 1,072 photos (26 H, 29 S); greyscale photos (channel spread ≤ 2): 7 (2 H, 5 S), entering 7 SAME
+and 7 X images; probable twin pairs: 4 X images; shared capture date: 16 X images; flagged X images 72 of 536, flagged
+SAME images 54. Per-image columns for PN1 role, test-read, validation-reserved host / partner, partner cycle, PD1
+training person and pair disagreement are in `setB_manifest.csv`. Descriptive only (amendment 1).
 
 ## 6. Checks
 

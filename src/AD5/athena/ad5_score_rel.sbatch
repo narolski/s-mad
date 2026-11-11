@@ -29,11 +29,13 @@ ITEMS=${ITEMS-}; TAG=${TAG:?tag}; LIMIT=${LIMIT:-0}; RS1_TAR=${RS1_TAR:?RS1 resu
 [ -f $RS/scores_$TAG.tar.sha256 ] && { echo "scores_$TAG done already"; exit 0; }
 hostname; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; date
 C=$PK/code_v4
-build_env score $C/src/AD5/env/score_requirements.txt $PK/wheels_score.tar
-PY=$EN/score/bin/python
 W=$SCRATCH_LOCAL/ad5score; mkdir -p $W/out/logs $W/scores $W/conv $W/ret $W/rs1; SITE=$W/nosite; mkdir -p $SITE
+trap 'echo "TERM received $(date +%T)"; keep_log $W/out/logs/*; exit 1' TERM
+build_env_local score $C/src/AD5/env/score_requirements.txt $PK/wheels_score.tar
+PY=$SCRATCH_LOCAL/env_score/bin/python
+cp $SCRATCH_LOCAL/env_score/pip_freeze.txt $W/out/logs/
 R=$W/pack; mkdir -p $R
-untar_checked $G/packs/RS1/rs1a_pack.tar $R --wildcards 'code/*' 'weights/*' 'manifests/*'
+echo "unpack RS1 $(date +%T)"; untar_checked $G/packs/RS1/rs1a_pack.tar $R --wildcards 'code/*' 'weights/*' 'manifests/*'
 untar_checked $G/results/RS1/$RS1_TAR $W/rs1
 sha256sum $G/packs/RS1/rs1a_pack.tar $G/results/RS1/$RS1_TAR > $W/out/logs/rs1_inputs_sha.txt
 ( cd $W/rs1/crops && sha256sum -c --quiet ../crops_sha256.txt ) || { echo "RS1 crop files do not match crops_sha256.txt"; exit 3; }
@@ -73,7 +75,8 @@ score_one() {  # score_one RELEASE_SPEC NAME WEIGHTS: both crop variants
     "$PY" -I $C/src/AD5/score/ad5_score_athena.py "$R" "$SITE" --as $1 --name $2 --weights $3 -- --mode rel \
       --manifest $W/score_$v.csv --out-dir $W/scores --tag rel_$2__ad5$v --workers 6 --bs 32 > $W/out/logs/score_$2_$v.log 2>&1 \
       || { tail -20 $W/out/logs/score_$2_$v.log; keep_log $W/out/logs/score_$2_$v.log; return 1; }
-    echo "$2 as $1 $v $(( $(date +%s) - t0 )) s" | tee -a $W/out/logs/score_times.txt
+    echo "$2 as $1 $v $(( $(date +%s) - t0 )) s $(date +%T)" | tee -a $W/out/logs/score_times.txt
+    tail -1 $W/out/logs/score_$2_$v.log
   done
 }
 RELS=""
@@ -91,7 +94,7 @@ for it in $ITEMS; do
   rm -rf $W/ret/$it $W/conv/$it/model.safetensors
 done
 for rel in $(echo ${RELEASES:-$RELS} | tr ' ' '\n' | sort -u); do score_one $rel $rel $R/weights/${RELW[$rel]}; done
-cp $W/scores/scores_*.npz $W/out/; cp $W/score_v1.csv $W/score_v2.csv $W/out/; "$PY" -m pip freeze > $W/out/logs/pip_freeze.txt
+cp $W/scores/scores_*.npz $W/out/; cp $W/score_v1.csv $W/score_v2.csv $W/out/
 printf '{"tag":"%s","items":"%s","releases":"%s","rs1_tar":"%s","job":"%s","host":"%s","limit":%s}\n' "$TAG" "$ITEMS" \
   "${RELEASES:-$RELS}" "$RS1_TAR" $SLURM_JOB_ID $(hostname) $LIMIT > $W/out/job.json
 tar -cf $SCRATCH_LOCAL/scores_$TAG.tar -C $W/out .

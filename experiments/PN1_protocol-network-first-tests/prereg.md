@@ -373,3 +373,16 @@ on the gating attack cells at the same threshold? Reported per network and as th
 ViT-B/16 weights of the AD4 pack, `pn1_score.py`, manifests train_A (`af070a60529db3e8…`),
 train_B (`bd53dc3252a76767…`), train_Bn (`21b5a2ca91fb672e…`),
 train_C (`a9f8fae62382648f…`), pn1_eval (`44f049d11a6c9dee…`)). The job files refuse any other pack.
+
+## Amendment 6 (11 Nov 21:06 CET, before any fit result exists): one platform for all tier-1 networks
+
+The author approved a rented A100 (Docker image `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime`, the base of the
+Athena container image, with the same pinned packages: timm 1.0.27, huggingface_hub 0.36.2, safetensors 0.8.0, numpy
+1.26.4, pyyaml 6.0.3, pillow 10.2.0) as a fallback while Athena's queue forecasts a start on 12 Nov 16:56. Rule: all
+eight fits and the reference row come from ONE platform. If the rented machine is used, its set is the registered one:
+the owner cancels Athena array 3545976 and job 3545977 as soon as the rented 200-step smoke fit has passed, before
+any rented fit result exists (no duplicates). If the rental does not happen, Athena stays the platform. A fit from one
+platform is never compared with a fit from the other. On the rented machine the same pinned pack (`5c642790…`) and the
+unchanged `run.sh` (`42b335b6…`) run with the host Python (`PN1_LOCAL=1`), 7 loader workers, one task after another;
+the reference row runs the same scorer (`pn1_score.py`) with a copy of `score_ref.sh` whose only change is the host
+Python instead of `apptainer` and local paths (`src/PN1/rented/score_ref_local.sh`).
