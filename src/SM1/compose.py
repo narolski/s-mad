@@ -26,7 +26,8 @@ import sm1_common as K  # noqa: E402
 
 FL = K.OUT / "flists"
 SRC = {"a": "arma", "a256": "arma", "b": "armb", "bp": "armbp", "c": "armc", "cr": "armcr", "d": "armc",
-       "dplus": "armc", "d50": "armd50", "d500": "armd500", "e": "armc", "f": "armc"}
+       "dplus": "armc", "d50": "armd50", "d500": "armd500", "e": "armc", "f": "armc",
+       "d5": "armd5"}                              # A12 item 11: five random pool partners
 ARMS = tuple(SRC)
 
 

@@ -122,14 +122,18 @@ Add-on (primary): pending.
 2. When the add-on tars exist: `sbatch packs/FZ2/fz2_job.sbatch addon addon_s0 … addon_s7`, fetch, check, `fz2_read.py
    --run addon` (the primary read), then `result.md`.
 
-## 10. Handover state (21:35)
+## 10. Handover state (21:55)
 
-- DGX: `fz2_dgx_feats.sh` (production set B, both backbones) running; then `fz2_dgx_addon_watch.sh` extracts add-on
-  shards as they arrive (DG1 add-on: shards 0 and 1 on the DGX, shards 2–7 queued on Athena, start estimate 12 Nov
-  02:27). Find them with `ps -ef | grep src/FZ2/`. If a run fails: rerun the same script (finished files are skipped;
-  npz files are written only at the end).
-- Athena: nothing of FZ2 queued (3545969 cancelled). Pack `packs/FZ2/fz2_pack.tar` stays for a possible add-on job.
-- Compute: Athena 0; DGX GB10 a few minutes so far.
+- DGX, running (mine): `src/FZ2/fz2_dgx_addon_watch.sh` (log `/mnt/t7/smad_next/FZ2/dgx_addon_watch.log`; extracts each
+  add-on shard once the DG1 owner's copy in `/mnt/t7/smad_next/DG1/gen/addon_s<k>/` is complete; shards 0, 1 done) and
+  `src/FZ2/fz2_addon_read_when_ready.sh` (log `/mnt/t7/smad_next/FZ2/addon_read_when_ready.log`; runs the primary read
+  `fz2_read.py --run addon` when all 16 add-on feature files exist; output `read_addon.json`, log
+  `/mnt/t7/smad_next/FZ2/logs/read_addon.log`). Find them with `ps -ef | grep src/FZ2/`.
+- DG1 add-on shards 2–7 (Athena array 3545907, DG1 owner's job): pending at 21:50, 13 Athena nodes in a reservation,
+  start time unknown.
+- If a watcher dies: rerun it (finished files are skipped). If the read fails, rerun the command in its log line.
+- Then: write the add-on part of `result.md` (registered readings H-new-1 to H-new-4) and report.
+- Athena: nothing of FZ2 queued. Compute so far: Athena 0; DGX GB10 about 20 min (shared).
 
 ## 11. Reproduce from scratch
 

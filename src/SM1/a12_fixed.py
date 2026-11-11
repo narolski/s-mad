@@ -72,12 +72,12 @@ def one(R, z):
 
 
 STEPS = (("a", "b"), ("b", "bp"), ("bp", "cr"), ("cr", "c"), ("c", "d"), ("c", "dplus"), ("d", "e"), ("e", "f"),
-         ("a", "e"), ("a", "f"), ("b", "d50"), ("b", "d500"), ("a", "a256"))
+         ("a", "e"), ("a", "f"), ("b", "d50"), ("b", "d500"), ("a", "a256"), ("b", "d5"), ("d5", "d50"))
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--arms", default="a,a256,b,d50,d500,bp,cr,c,d,dplus,e,f")
+    ap.add_argument("--arms", default="a,a256,b,d5,d50,d500,bp,cr,c,d,dplus,e,f")
     ap.add_argument("--seeds", default="401,402,403,404,405")
     ap.add_argument("--dir", default=None)
     ap.add_argument("--name", default="a12_fixed")

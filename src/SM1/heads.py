@@ -25,8 +25,9 @@ import sm1_common as K  # noqa: E402
 
 TESTS = ("test_eval", "test_mad22", "test_ar1", "test_ar1h", "audit", "test_eval_jpeg")
 TRAIN = ("train_bf", "train_m15k", "train_armb", "train_armbp", "train_armc", "train_armc_halves", "train_armcr",
-         "train_armd50", "train_armd500", "train_arme_bfS", "train_arme_cS", "train_arme_hS", "train_armf_jpeg")
-ARMS = ("a", "b", "bp", "c", "cr", "d", "e", "f", "d50", "d500", "a256", "dplus")
+         "train_armd50", "train_armd500", "train_arme_bfS", "train_arme_cS", "train_arme_hS", "train_armf_jpeg",
+         "train_armd5")                                                            # A12 item 11
+ARMS = ("a", "b", "bp", "c", "cr", "d", "e", "f", "d50", "d500", "a256", "dplus", "d5")
 FEAT = K.OUT / "feat_athena"
 
 

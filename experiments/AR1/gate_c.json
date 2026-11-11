@@ -2910,5 +2910,185 @@
    "G_c_readable_mirror_twin": true,
    "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
   }
+ },
+ "nets_M3L_s5": {
+  "frgcferet/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.9039422755624861,
+    "ci95": [
+     0.8801080887748548,
+     0.9256830135679064
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frgcferet/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.905407663176654,
+    "ci95": [
+     0.8811479878059847,
+     0.9262708649861274
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.999996519269325,
+    "ci95": [
+     0.9999723460517199,
+     1.0
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frll/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.9810649750096117,
+    "ci95": [
+     0.9585278520499109,
+     0.9966031583871985
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9998077662437524,
+    "ci95": [
+     0.9985532209090112,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "note": "no features for one class (not scored)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  },
+  "frll/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.9851018838908112,
+    "ci95": [
+     0.960170726944624,
+     0.9982914836681307
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9993271818531334,
+    "ci95": [
+     0.9955279422982007,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "n_untested": 0,
+    "dim": 768,
+    "folds": "strict person folds (folds.py)"
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "note": "no features for one class (not scored)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  }
  }
 }

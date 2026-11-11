@@ -235,6 +235,11 @@ to 0.96 inside every storage size), so Part 3 is descriptive.
 - 21:52 Athena: ViT-L/14 tasks 2 to 24 still pending (ReqNodeNotAvail with a 7 h limit; 13 nodes reserved, 23
   failed); 3546033, 3546034 pending (Priority).
 
+- 22:00 Arm d5 wired into `compose.py`, `heads.py`, `read_p3.py` (steps b → d5, d5 → K = 50), `a12_fixed.py`,
+  `a12_partner_ref.py`; chain `run_a12f.sh JOB` (fetch, merge, compose, heads both recipes, readers,
+  `a12_af0soft.py` for item 13) waits for 3546033. `sm1_lora_audit.py` smoke on the 3-step smoke fit submitted as
+  3546052 (pipeline check only; its scores mean nothing).
+
 ## 3. Data
 
 Inputs (read only):

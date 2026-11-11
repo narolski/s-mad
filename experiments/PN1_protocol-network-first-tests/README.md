@@ -108,6 +108,13 @@ lead's GO (pre-run review restarted by the lead). No conclusion is drawn here.
   tier-1 networks) registered; runbook and scripts in `src/PN1/rented/` (RUNBOOK.md, drive.sh, pull_loop.sh,
   remote_setup.sh, remote_smoke.sh, remote_queue.sh, score_ref_local.sh = score_ref.sh with host Python and local
   paths only). `refnets.tar` rebuilt (byte-identical, sha256 `101da1e5…`). "Runbook ready" sent.
+- 21:20 to 21:52 rented machines (lead): pn1a 173.183.191.220 (A100-SXM4 40 GB, 16 cores) seed-401 fits + reference row;
+  pn1b 82.66.51.122 (A100-SXM4 80 GB, 128 cores) seed-402 fits; amendment 7 registered 21:21. Setup on both: pack and
+  reference tar hashes OK, pinned packages (python 3.10.13, torch 2.2.1+cu121, timm 1.0.27, numpy 1.26.4, pillow
+  10.2.0, safetensors 0.8.0, huggingface_hub 0.36.2, pyyaml 6.0.3). pn1a smoke (arm Bn, 200 steps): 1.53 it/s, peak
+  30,835 MiB, rc 0. 21:46 Athena array 3545976 cancelled; Athena reference job 3545977 had completed (7 min 46 s) and is
+  discarded (amendment 6). Queues: pn1a started 21:46, pn1b 21:49 (the first `drive.sh queue` call hung on the open
+  ssh; pn1b started separately). Pull loops (`pull_loop.sh`) every 10 min into `/mnt/t7/smad_next/PN1/results_rented/`.
 - 20:39 DINOv3 means from Athena installed (`postfeatx.py install`, files `ath_*.mean.npy`); tier 0 on DINOv3 started.
 - Note: `lists.py cert_a` was rerun at about 19:58 after the ladder copies joined the catalogue, so `cert_a.csv` now
   lists more rows than the cue file `cert_cert_a.npz` (computed from the 11,573-row version); the ladder copies get

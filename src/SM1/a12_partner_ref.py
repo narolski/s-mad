@@ -23,7 +23,7 @@ import sm1_stats as S  # noqa: E402
 B = 10000
 RELS = ("madation_vitb16", "madation_vitl14", "madation_fe_vitb16", "madation_fe_vitl14", "mixfacenet_mad_smdd",
         "madation_fs_vitb16", "madation_fs_vitl14")
-ARMS = ("a", "a256", "b", "d50", "d500", "bp", "cr", "c", "d", "dplus", "e", "f")
+ARMS = ("a", "a256", "b", "d5", "d50", "d500", "bp", "cr", "c", "d", "dplus", "e", "f")
 
 
 def setup():
@@ -104,7 +104,7 @@ def main():
                                  n_seeds=len(files))
     did = {}
     for x in ("a", "b", "a256", "feref"):
-        for y in ("bp", "cr", "c", "d50", "d500"):
+        for y in ("bp", "cr", "c", "d50", "d500", "d5"):
             if x in dvec and y in dvec:
                 d = dvec[x] - dvec[y]
                 did[f"{x}-{y}"] = dict(did=round(float(d.mean()), 4), ci=[round(v, 4) for v in S.ci(d[draws].mean(1))])

@@ -30,7 +30,8 @@ GAN3 = ("frllm:stylegan", "mad22:MIPGAN_I", "mad22:MIPGAN_II")
 STEPS = (("a", "b", "tool"), ("b", "bp", "partner balance"), ("bp", "cr", "source pool + shared identities"),
          ("cr", "c", "pair similarity (look-alike)"), ("c", "d", "halves as genuine"), ("a", "a256", "size cue"),
          ("c", "dplus", "halves added (unequal count)"), ("d", "e", "history crossing"),
-         ("e", "f", "JPEG copies added"), ("b", "d50", "dose K 5 -> 50"), ("b", "d500", "dose K 5 -> 500"), ("b", "bp", "dose K 5 -> all (b')"))
+         ("e", "f", "JPEG copies added"), ("b", "d50", "dose K 5 -> 50"), ("b", "d500", "dose K 5 -> 500"), ("b", "bp", "dose K 5 -> all (b')"),
+         ("b", "d5", "SMDD's five -> five random partners (A12)"), ("d5", "d50", "five random -> 50 (A12)"))
 
 
 def meta():
@@ -226,7 +227,7 @@ def diff(A, B, k):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--smoke", action="store_true")
-    ap.add_argument("--arms", default="a,b,bp,c,cr,d,e,f,d50,d500,a256,dplus")
+    ap.add_argument("--arms", default="a,b,bp,c,cr,d,e,f,d50,d500,a256,dplus,d5")
     ap.add_argument("--seeds", default="401,402,403,404,405")
     ap.add_argument("--boot", action="store_true")
     ap.add_argument("--B", type=int, default=2000)

@@ -5,7 +5,7 @@ AD4 pack's HF cache), then the fit's saved trainable parameters (ad4eval/last_tr
 from the fit's last.pt) are loaded; every other parameter must be frozen and untouched by training (checked: the
 loaded keys = the trainable parameters, nothing unexpected). Scoring core = ad4_score.py (common.ImageItems at meta
 res, sigmoid of forward_logit, TTA = mean with the h-flip; no-TTA kept). Reproduction check before the audit: the
-first 256 rows of the fit's own AD4 evaluation scores are rescored and must match the stored scores_eval.npz within
+first 256 stored rows of the fit's own AD4 evaluation scores are rescored and must match the stored scores_eval.npz within
 2e-3 (TF32 on both sides), else the task stops.
 
   python sm1_lora_audit.py --fit FIT_DIR --code CODE_DIR --manifest sm1_audit_eval.csv --out OUT_DIR
@@ -72,9 +72,9 @@ def main():
         return np.array(s_tta, np.float32), np.array(s_one, np.float32)
 
     t0 = time.time()
-    ev = C.read_manifest("ad4_eval.csv")[:a.ncheck]
     st = np.load(fit / "ad4eval/scores_eval.npz", allow_pickle=False)
-    assert [str(i) for i in st["id"][:a.ncheck]] == [r["id"] for r in ev]
+    byid = {r["id"]: r for r in C.read_manifest("ad4_eval.csv")}
+    ev = [byid[str(i)] for i in st["id"][:a.ncheck]]          # the first stored rows (a smoke fit stores 8 spread rows)
     c_tta, c_one = score(ev)
     dmax = float(max(np.abs(c_one - st["score_noTTA"][:a.ncheck]).max(), np.abs(c_tta - st["score"][:a.ncheck]).max()))
     chk = dict(fit=fit.name, n_check=len(ev), max_abs_score_diff=dmax, passed=bool(dmax <= 2e-3),

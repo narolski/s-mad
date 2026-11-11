@@ -314,6 +314,21 @@ $P -I $S/baselines.py --only R2w4; $P -I $S/analyse.py; $P -I $S/tables.py; $P -
 ```
 
 ## Log of README updates
+- 11 Nov about 22:50 CET: review applied (`experiments/reviews/REVIEW_AR1_20261111.md`).
+  - Post hoc addendum P1-P4, amendment 8 (softened AF0 copies) and amendment 7 / 7b (spliced inner-face morph, one R4
+    hull per host, arms S4 / S3 / S0) were registered in prereg.md before running.
+  - New code: `src/AR1/posthoc.py`, `splice.py`, `soft_splice.py`; chains `run_add.sh`, `run_add3.sh` (`run_add2.sh`
+    superseded and killed).
+  - Outputs: `experiments/AR1/posthoc.json`, `soft_splice.json`, `splice_seam_pixels.csv`;
+    `/mnt/t7/smad_next/AR1/manifest_splice2.csv` (13,936 rows), `img/frgcferet/<tool>/{S4,S3,S0}`, `blank_splice2/`,
+    `manifest_soft.csv`.
+  - Superseded and unread: the first splice (`manifest_splice.csv`, `blank_splice/`, scores `*__splice*.npz`). The
+    SelfMAD runs on those files were stopped.
+  - M3L seeds 1-5 finished with G-c 0.90-0.92 (MASTER_DONE 22:00). Analysis v3 (`analyse_v3.log`) renames the side
+    verdict for warp-only vs same-person morph to "blend reading".
+  - result.md rewritten in the review's wording; the previous version is at
+    `/mnt/t7/smad_next/AR1/result_v1_before_review.md`.
+  - No AR1 process is running. Disk: /mnt/t7 at 98%, about 48 GB free.
 - 11 Nov about 21:50 CET: A46 platform check done (AUC agreement within 0.0004, Kendall tau 0.966-0.973 < 0.99: not
   image-identical); AR4 complete for all four releases; analysis v2 (`analyse_v2.log`); result.md updated; owner
   hands back with M3L scoring still running (section 10).
