@@ -5,10 +5,10 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 8
-#SBATCH --mem=64G
+#SBATCH --mem=32G
 #SBATCH --gres=gpu:1
 #SBATCH --time=08:00:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH --array=401-405
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-mixfacenet-%A_%a.out
 # Retrains of released methods (AD5), production: one MixFaceNet-MAD retrain per array task (task id = seed) with the

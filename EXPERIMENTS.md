@@ -55,6 +55,7 @@ Rule (author, 11 Nov 2026): an experiment is always named by a plain description
 | DG1 | Diffusion-autoencoder generation on Athena | data builds |
 | AD5 | Retrains of released methods with the authors' code | audit, released detectors |
 | AS0 | Mirror-asymmetry test (does mixing two persons shrink the asymmetric part of a face relative to the symmetric part) | method |
+| PN1 | Protocol network, first tests (training-data protocol on the standard recipe: warped halves, warp-only images and stored-small copies as genuine) | method |
 | C1c | What the smiling half carries: expression or capture detail | cue checks |
 | AD1b | Identical and mirrored inputs for diffusion | audit, diffusion |
 | CN0 | Clean-negative test (inside the alpha-field probe) | method |

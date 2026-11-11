@@ -84,6 +84,28 @@ missing); a pack is ready there for later.
   Both are recorded in `rs1_platform_check.json`; result tables print both platforms where both exist.
 - 17:50. SelfMAD own scoring (AR1 `score.py --mode own`) smoke on 8 FEI frames: ran (one CUDA out-of-memory start
   failure first, then 224 s), dlib found a face in 8 of 8.
+- 18:22. MADation ViT-L/14 scored on the reused A46 crops (3,251 s). Platform check: 399 of 11,264 crops differ from
+  the registered A46 scores by more than 0.001 (max 0.92); native EER DGX vs WCSS e.g. MorDIFF 27.48 vs 28.81 (PNG
+  crops: near-tied saturated scores), DiM-A 29.95 vs 31.39, AMSL 8.83 vs 8.87.
+- 18:25. Lead: Athena accepts jobs (account `plgrestorearc-gpu-a100`); if the full scoring would take more than about
+  an hour on the DGX, move it there; all rows compared with each other must come from one platform.
+  **Decision (18:30, sent to the lead): Athena for every MADation / MixFaceNet-MAD row** (all cells, amendment
+  pools, corrected MAD22, FS releases), because the remaining DGX work (7,001 amendment crops, three releases on
+  11,264 crops, five releases on 11,885 new crops) was several hours at the DGX's throughput. **SelfMAD stays on the
+  DGX**, scored there on one platform (raw FRLL photos, raw MorDIFF morphs, raw E7 MorDIFF files, A43 stored images,
+  FEI, FFHQ; 9,209 images, `lists/selfmad_own_dgx.csv`, `run_selfmad_dgx.sh`, started 18:30); the existing SelfMAD
+  files (WCSS) form a second, separate SelfMAD run. Stopped on the DGX at 18:29: the MADation scoring of the A46 crops
+  (FE ViT-L/14 had just failed its first start with CUDA out of memory) and the amendment crops (`run_after.sh`). The
+  finished DGX ViT-B/16 and ViT-L/14 scores and the 4,884 DGX crops serve as the equivalence check.
+- 18:31. Athena folders `packs/RS1`, `tasks/RS1`, `results/RS1`, `envs/RS1` created; resumable upload of both packs
+  started (`athena_upload.sh`: rsync --partial --append-verify, each connection at most 240 s under the transfer
+  lock). A `pkill -f athena_upload.sh` killed my own shell (its command line matched); the orphaned rsync was then
+  killed by PID and the upload restarted.
+- 18:40. Lead: on Athena `-C localfs` gives only 4.0 GB of `$SCRATCH_LOCAL` (a smoke job of the lead died there with
+  "No space left on device"); use `-C memfs` and work in `$MEMFS` (a RAM disk counted in `--mem`, at most 120 GB per
+  GPU). Two locks: short commands `flock -w 300 /tmp/smadnext-athena-cmd.lock ssh ...`, transfers
+  `flock -w 1800 /tmp/smadnext-athena.lock rsync ...`; a flock timeout returns 1 silently (a local wait, not a refused
+  login). `athena_rs1.sbatch` changed to `-C memfs`, `--mem=110G`, work in `$MEMFS/rs1` (about 30 GB).
 
 ## 3. Data
 

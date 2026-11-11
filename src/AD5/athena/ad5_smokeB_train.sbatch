@@ -5,10 +5,10 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=2
 #SBATCH -c 16
-#SBATCH --mem=128G
+#SBATCH --mem=96G
 #SBATCH --gres=gpu:2
 #SBATCH --time=00:15:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-smokeB-%j.out
 # Retrains of released methods (AD5), smoke job B (2 GPUs x 15 min = at most 0.5 GPU-hours): the patched MADation code
 # with the authors' flags under torch.distributed.launch on 2 GPUs (batch 32 per GPU, as the authors), on every 12th

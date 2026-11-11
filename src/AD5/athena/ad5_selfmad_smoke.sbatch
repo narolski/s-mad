@@ -5,10 +5,10 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 8
-#SBATCH --mem=64G
+#SBATCH --mem=72G
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:55:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-selfmad-smoke-%j.out
 # Retrains of released methods (AD5), SelfMAD smoke + preparation job (1 GPU, at most 0.92 GPU-hours):
 #  1. builds envs/AD5/selfmad from the shipped wheels;
@@ -26,7 +26,7 @@ PY=$EN/selfmad/bin/python
 export HF_HUB_CACHE=$C/hf_cache
 $PY -I -c "import torch, timm, albumentations, transformers, cv2; print('torch', torch.__version__, torch.version.cuda, 'timm', timm.__version__, 'alb', albumentations.__version__, 'transformers', transformers.__version__, 'cv2', cv2.__version__, torch.cuda.get_device_name(0))"
 S=$SCRATCH_LOCAL/ad5S; mkdir -p $S/SMDD
-untar_checked $PK/smdd_train_raw.tar $S/raw
+untar_checked $PK/smdd_train_raw.tar $S/raw SMDD_release_train/os25k_bf_t
 mv $S/raw/SMDD_release_train/os25k_bf_t $S/SMDD/os25k_bf_t
 untar_checked $PK/selfmad_landmarks.tar $S                     # -> $S/SMDD_landmarks/os25k_bf_t/*.npy
 echo "renders $(ls $S/SMDD/os25k_bf_t | wc -l) landmarks $(ls $S/SMDD_landmarks/os25k_bf_t | wc -l)"

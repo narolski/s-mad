@@ -307,6 +307,23 @@ renders, and all 5 partner renders (7,810 images); primary five releases first, 
 readings of A3 are unchanged (rank percentiles among 400 renders per split). The full 50,010-image set stays in
 `flists/tab.csv` for a GPU machine if one becomes available (released-detector scoring may run there, A7).
 
+## Amendment A9 (18:50 CET, lead's instruction; before any score of these networks exists)
+
+**Full fits on Athena with the unchanged MADation ViT-L/14 recipe of the record's retrains** (the M3L row as run by
+the morph-free networks experiment AD4: `train.py --arch a12_clip_vitl14_madation --regime d0 --split train90
+--lofo none --lr 3.33e-06 --res 224 --recipe=v1 --label-smoothing=0 --drop-path=0 --sampler=prior --final=last
+--steps=6250 --ft=lora --lora-targets=qv --lora-r=2 --lora-alpha=4 --lora-rs --lora-dropout=0.4
+--lora-train-norms=0 --opt=adamw --wd=0.05 --head-lr=3.33e-05 --bs=32 --accum=8 --aug=flip --sched=const
+--clip-grad=5 --pos-weight=1`), last checkpoint, seeds 401 to 405, for arms (a) release as is, (c) balanced
+partners, (d) balanced partners plus warped halves, (e) history crossing: 20 networks, the arm compositions of
+`compose.py` (identical lists to the frozen heads), every row `source = smdd` so regime d0 keeps them. Scored with
+AD4's scorer (`ad4_score.py`, the score.py core, no TTA key) on AD4's evaluation manifest (FRLL-Morphs, MorDIFF, DiM,
+corrected MAD22, native and E7) and on the AR1 ladder images (snapshot of `AR1/manifest.csv`, sha256 9c69d44f…) plus
+the AR1 FRGC/colorFERET halves. Readings and falsifier mapping as for the frozen heads (Part 3, A1, A3), computed by
+`read_p3.py` on these networks' scores; reported as a separate block "LoRA fits". Budget: at most 150 A100-hours;
+smoke first (8 images, a few steps). If a fit fails it is rerun once with the same seed; a second failure is
+reported, never replaced by another seed.
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 

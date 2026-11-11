@@ -90,6 +90,22 @@ detector score of this experiment has been read yet; landmark, build and feature
 - 18:28 pack b (arms b, b′, K = 50, K = 500: 58,936 pairs) built and being sent to leaseB.
 - 18:30 Lead: Athena accepts jobs (account plgrestorearc-gpu-a100); the feature pass and the LoRA fits run there.
   Code tar uploaded to Athena `packs/SM1/` in 153 s (11 MB/s); image tars follow one per connection.
+- 18:33 The AR1 crop script changed under me (AR1 owner added MTCNN batching; `--boxes-out` removed): a frozen
+  copy is now used, `src/SM1/ar1copy/{crop_rgb.py (sha256 07b179bd…), ar1_common.py (42806acb…)}`. Its header
+  documents the deviation: same-size images batched by 16, boxes within 0.04 px of one-by-one detection.
+- 18:35 `compose.py` writes the arm compositions (`/mnt/t7/smad_next/SM1/compose/<arm>_s<seed>.json`, full and
+  smoke) used by both the frozen heads and the LoRA fits; `heads.py` rewritten to read them and the Athena
+  features (first version kept as `heads_v1_unused.py`, never run).
+- 18:38 leaseB task b 8-pair check passed (78 CLI vs wrapper 0; leaseB vs DGX references 0 over 32 files); full
+  task b started (96 workers).
+- 18:40 Audit MTCNN crops restarted as 3 shards (`run_crops.sh`; one process ran at 1.3 images/s).
+- 18:42 Athena facts from the lead (ATHENA.md updated): `-C localfs` gives only 4 GB of `$SCRATCH_LOCAL`; jobs use
+  `-C memfs` and `$MEMFS` (RAM disk, counts toward `--mem`, at most 120G per GPU for one-GPU billing). Two locks:
+  short commands `/tmp/smadnext-athena-cmd.lock`, transfers `/tmp/smadnext-athena.lock` with `-w 1800` (a flock
+  timeout returns 1 silently; it is a local wait, not a refused login). `athena_feats.sbatch` and `athena_up.sh`
+  changed accordingly.
+- 18:44 GPU image tars done: test 8.90 GB (sha256 59cb6455…), base 5.52 GB (5c79a7b8…), armsc 6.63 GB (3df23935…),
+  audit 1.52 GB (344a6c32…), arme 0.62 GB (aeb57d6b…); armsb follows the leaseB task b.
 
 ## 3. Data
 

@@ -198,3 +198,53 @@ Not run (owner brief does not require it for a CPU/feature triage; flagged to th
 ## Result
 
 `experiments/ID0_identity-shrinkage-triage/result.md`.
+
+## Amendment 1, 11 Nov 2026, 18:45 CET — reason: independent review (`experiments/reviews/REVIEW_ID0_20261111.md`)
+
+Written after the review and after every number of the original registration was read; before any of the four
+reruns below was computed by me. The reviewer's unregistered point estimates (scripts
+`experiments/reviews/rev_scripts_id0_20261111/rv1`–`rv4`) were read; they motivate the reruns, and the reruns
+use the registered machinery (ISS fit unchanged, `src/AR1/stats.py` two-way person bootstrap, B = 2,000, seed
+[20261111, 1]). Zero GPU; at most 2 CPU processes at nice 10; existing feature files only
+(`/mnt/t7/smad_next/ID0/feat/{glint_gl,clip_cd,dino_dn,diffae}.npz` + the AR1/a46 embeddings). Code
+`src/ID0/amend1.py`; outputs `amend1_*.json|csv` in this folder. All four are descriptive diagnostics; none
+changes a registered verdict.
+
+(a) Ideal against realised, with a power flag per arm. Arms glint, CLIP, DINOv3, DiffAE (the landmark arm is
+its own ideal: exact means of the source shapes). For every two-person or same-person built set with source
+features, the "ideal" item is the feature-space midpoint of its two source images, (1−w)·x_src1 + w·x_src2
+(unit-normalised in glint), carrying the same persons. Contrasts, same negatives for real and ideal: AR1 OpenCV
+R4 vs host photo H, vs R2w, vs R3; AR1 FaceMorpher R4 vs H, R2w, R3 (where features exist); AR1 OpenCV R3 vs H,
+R2w; A43 stored B20 vs E, D20; A43 stored C20 vs E, D20; DiffAE-native B20 vs a256, D20 and C20 vs a256, D20
+(DiffAE arm); glint also H3 morph vs h3_bona and vs a37spread (ideal from the CASIA source crops) and published
+MorDIFF vs rec (ideal from the a46 FRLL gallery). Read-outs: ISS (all arms); in glint also the registered
+virtual head and the mean-direction projection ⟨e, u⟩. Printed: AUC real and AUC ideal with intervals, and the
+realised share (AUC_real − 0.5)/(AUC_ideal − 0.5) with the interval from the same paired draws. **Power flag
+(fixed here): a read-out is "powered" for a contrast if its ideal AUC is ≥ 0.65 with lower bound > 0.60.** A
+real AUC from an unpowered read-out is reported as "not informative", never as evidence about morphs.
+
+(b) Learning curve and regulariser table for the glint virtual head. Folds = the registered geo0 person folds
+(seed 20261111, 5 folds). For each held-out fold, training persons = the first N of the other folds' persons
+in a seeded order (seed 20261111 + fold), N = 75, 150, 300 and all (about 620); training items built from
+those persons exactly as geo0 (all singles, all virtual twins, 4,000 virtual morphs per training fold-share,
+i.e. 16,000 at full size, scaled with N); test items = the held-out fold's geo0 items. Pooled out-of-fold AUC,
+morph vs single and morph vs single + twin, with the person bootstrap. Regulariser table at full size:
+C = 0.001, 0.01, 0.1, 1, 10, 100 (logistic, standardised, balanced); the mean-direction projection alone; a
+one-hidden-layer network (256 units, alpha 1e-2, early stopping, random_state 0) as a descriptive non-linear
+head. Each variant, refitted on all fit persons, is also applied to the real AR1 OpenCV R3 vs R4, H vs R4,
+R2w vs R4, a43_D vs a43_B and to the MorDIFF E7 control. No "ceiling" sentence is printed from this.
+
+(c) Review hypothesis H-new-1, verbatim: "the per-host CLIP shift (two-person morph minus warp-only)
+correlates with the blend's loss of fine detail (existing Laplacian-variance table) at |rho| ≥ 0.3; the
+diffusion autoencoder's does not (below 0.15). Falsified if CLIP |rho| < 0.1." Definitions fixed here: per AR1
+host (OpenCV, primary pool, `is_val` dropped), shift = ISS(R4) − ISS(R2w) in the arm; loss of fine detail =
+log lapvar_face(R2w) − log lapvar_face(R4), from the existing table `/mnt/t7/smad_next/AF0/cues/ar1.npz`
+(cue_floor.stats, Laplacian variance inside the face box; ids mapped to paths by `/mnt/t7/smad_next/AF0/lists/
+ar1.csv`); whole-frame `lapvar` printed beside. Spearman ρ with the two-way bootstrap (host, partner). Read on
+the point estimate of |ρ| against 0.3 / 0.15 / 0.1. DINOv3 and TYP printed descriptively.
+
+(d) Storage-history rows for the glint read-outs. FRLL native frames against each E7 family (opencv,
+facemorpher, stylegan, mordiff, dim_c, greedy_dim, greedy_dim_s, amsl, webmorph), paired by photo: median
+cos(native, copy); for ISS, the virtual head and the mean-direction projection: AUC copy vs native with
+interval, share of photos scored lower in the copy, and the median paired shift in SD of the native scores,
+with person-bootstrap intervals.

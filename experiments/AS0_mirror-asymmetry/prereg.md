@@ -263,6 +263,29 @@ Amendments (each fixed before any contrast):
   `/mnt/t7/smad_next/AS0/inputs/` (sha256 f167eaf8...). Added (improvement 2): K1 on two person-disjoint halves of the
   hosts (split by sha1 of the host id) and per engine, for the passing band.
 
+### Lead's additions (message of 11 Nov about 18:40, from the independent review of the identity-shrinkage triage (ID0), `experiments/reviews/REVIEW_ID0_20261111.md` sections 2 F3, 3, 4), registered 18:45 before any contrast
+
+- A9. Statistics computed from the mean of two source landmark files (the exact-shape asymmetry of L and R8, and of the
+  graded set) are arithmetic, not evidence about morph images. They are kept and labelled "calculated from source
+  landmark files"; only pixel-band statistics on the built images, and statistics on landmarks **detected** on the built
+  images, test the idea.
+- A10 (review hypothesis H-new-2, shared arm). The 106-point landmarks are detected (the same insightface buffalo_l
+  detector, unchanged, CPU) on the built ladder images: R0, S0, R3, R4 (both engines) first, then R2w, R3m, R2wm,
+  then the graded set. On the detected shapes: (a) the identity-shrinkage triage's typicality score (ID0 `iss.py` and
+  its landmark-arm fit, imported unchanged; fit photos and generalised Procrustes reference exactly as in ID0
+  `analyse.landmark_features`), contrast same-person morph (R3) against two-person morph (R4), AUC = P(score R4 > score
+  R3) (two-person more typical); exact-file value 0.687; **prediction (review) >= 0.65; falsified below 0.60**; (b) the
+  shape-asymmetry statistic L_shape of this registration (K1 and the other L contrasts on detected shapes).
+- A11 (external prediction, review H-new-4). Best band of K1 (two-person against same-person) lands at 0.58 to 0.70,
+  with dose slope below 0.7; falsified by any band at 0.75 or more with slope at least 0.7. Recorded here as an external
+  prediction; the registered verdict rule is unchanged.
+- A12. The 8 validation-reserved persons (rule `prep_train.is_val`, through ID0 `id0_common.is_val`) are dropped from
+  everything fitted on the ladder (the partial-out regressions); every L contrast is reported with and without items
+  that contain one of them (as host or partner).
+- A13. All 536 primary-pool same-person pairs are cross-session, so the same-person rung R3 already contains session,
+  pose and lighting change; this is stated wherever the pose and lighting confound is discussed, and the yaw
+  stratification is still reported.
+
 ## Result
 
 (to be written in `result.md`; README.md holds the full record)

@@ -81,7 +81,11 @@ def merge():
                 acc[k].append(z[k])
     out = {k: np.concatenate(v) for k, v in acc.items()}
     assert len(set(out["ids"].tolist())) == len(out["ids"])
-    np.savez(K.OUT / "lm/landmarks.npz", **out)
+    import os
+    tmp = K.OUT / "lm/landmarks.tmp.npz"
+    with open(tmp, "wb") as f:
+        np.savez(f, **out)
+    os.replace(tmp, K.OUT / "lm/landmarks.npz")      # atomic for concurrent readers
     print("merged", len(out["ids"]), "no face", int((out["n_faces"] == 0).sum()), "unreadable",
           int((out["n_faces"] < 0).sum()), "multi", int((out["n_faces"] > 1).sum()))
 

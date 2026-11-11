@@ -5,10 +5,10 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 64
-#SBATCH --mem=480G
+#SBATCH --mem=240G
 #SBATCH --gres=gpu:8
 #SBATCH --time=02:00:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH --array=401-405
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-madation-%x-%A_%a.out
 # Retrains of released methods (AD5), production: one MADation retrain per array task (task id = seed), with the

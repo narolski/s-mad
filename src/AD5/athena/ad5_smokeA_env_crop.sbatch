@@ -5,10 +5,10 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 8
-#SBATCH --mem=64G
+#SBATCH --mem=40G
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:30:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-smokeA-%j.out
 # Retrains of released methods (AD5), smoke job A (1 GPU, at most 0.5 GPU-hours):
 #  1. builds the MADation / MixFaceNet-MAD environment envs/AD5/madation from the shipped wheels (no index);

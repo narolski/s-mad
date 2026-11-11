@@ -8,7 +8,7 @@
 #SBATCH --mem=64G
 #SBATCH --gres=gpu:1
 #SBATCH --time=16:00:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH --array=401-405
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-selfmad-%A_%a.out
 # Retrains of released methods (AD5), production: one SelfMAD retrain per array task (task id = seed) with the
@@ -26,7 +26,7 @@ C=$PK/code; SRC=$C/build/selfmad_src; RUN=$C/src/AD5/checks/run_with_site.py; PY
 [ -f $EN/selfmad/AD5_ENV_OK ] || { echo "env missing"; exit 1; }
 export HF_HUB_CACHE=$C/hf_cache
 S=$SCRATCH_LOCAL/$T; mkdir -p $S/SMDD $S/out
-untar_checked $PK/smdd_train_raw.tar $S/raw; mv $S/raw/SMDD_release_train/os25k_bf_t $S/SMDD/os25k_bf_t; rm -rf $S/raw
+untar_checked $PK/smdd_train_raw.tar $S/raw SMDD_release_train/os25k_bf_t; mv $S/raw/SMDD_release_train/os25k_bf_t $S/SMDD/os25k_bf_t; rm -rf $S/raw
 untar_checked $PK/selfmad_landmarks.tar $S
 ( cd $PK && sha256sum -c selfmad_labels.tar.gz.sha256 ) && tar -xzf $PK/selfmad_labels.tar.gz -C $S
 M=$S/out/gpumem.csv; MP=$(gpu_monitor $M); t0=$(date +%s); rc=0

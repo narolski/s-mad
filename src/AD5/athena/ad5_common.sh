@@ -6,14 +6,17 @@ PK=$G/packs/AD5
 RS=$G/results/AD5
 EN=$G/envs/AD5
 LG=$G/logs
-: "${SCRATCH_LOCAL:?node-local scratch required (-C localfs)}"
-export TMPDIR=$SCRATCH_LOCAL/tmp; mkdir -p "$TMPDIR"
+# Work area: the RAM disk $MEMFS (-C memfs). ATHENA.md, 11 Nov: -C localfs gives only 4.0 GB (our first smoke job,
+# 3544190, died there with "No space left on device"); memfs counts toward --mem (at most 120G per GPU).
+: "${MEMFS:?RAM disk required (-C memfs)}"
+SCRATCH_LOCAL=$MEMFS
+export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"
 export PIP_NO_CACHE_DIR=1 PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 
-untar_checked() {  # untar_checked TAR DEST: verify TAR against TAR.sha256, then extract into DEST
-  local t=$1 d=$2
+untar_checked() {  # untar_checked TAR DEST [MEMBER...]: verify TAR against TAR.sha256, then extract (members) into DEST
+  local t=$1 d=$2; shift 2
   ( cd "$(dirname "$t")" && sha256sum -c "$(basename "$t").sha256" ) || { echo "HASH MISMATCH $t"; return 1; }
-  mkdir -p "$d"; tar -xf "$t" -C "$d"
+  mkdir -p "$d"; tar -xf "$t" -C "$d" "$@"
 }
 
 build_env() {  # build_env NAME REQUIREMENTS WHEEL_TAR: venv under $EN/NAME from local wheels only (no index)

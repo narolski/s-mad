@@ -5,10 +5,10 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 8
-#SBATCH --mem=96G
+#SBATCH --mem=100G
 #SBATCH --gres=gpu:1
 #SBATCH --time=06:00:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-score-%j.out
 # Retrains of released methods (AD5): score retrains of MADation (L, B, F) and MixFaceNet-MAD (X) through the own-crop
 # re-score (RS1) release path, on RS1's images (packs/RS1/rs1a_pack.tar [+ rs1a_pack_amend.tar], read only).
