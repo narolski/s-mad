@@ -36,6 +36,10 @@ useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 No
 - Athena is **GPU-only**: no CPU-only workloads (data builds, statistics). Those stay on the DGX or
   go to the WCSS CPU partition.
 
+- Slow node (11 Nov 19:56): the diffusion-generation owner measured node `t0010` about six times slower than the
+  others (18.8 s against 3.1 s per inversion). Jobs may be submitted with `--exclude=t0010`. Check the step rate
+  in the first minutes of every job and tell the lead about any other slow node.
+
 ## Cyfronet rules that bind us
 
 1. Nothing is computed, compiled or installed on the login node. Environments are built inside a job.

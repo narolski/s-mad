@@ -70,8 +70,12 @@ contrast. A head on the seven statistics trained the same way as H1 reaches 0.74
   patch 0.369, DINOv3 0.376). A head trained on two-person morphs does not separate them from same-person mixes either
   (0.456, 0.582, 0.545). The signal caught is the DiffAE mixing step, not a second identity.
 - Reconstructions score **below** genuine photos (x1 vs x0 0.28 / 0.40 / 0.47).
-- For morph against genuine photo on these hosts, PNG size alone (0.906) is at or above every H1 (0.876 / 0.825 /
-  0.918; excess −0.030, −0.081, +0.012). This contrast is not part of the registered reading.
+- For morph against genuine photo on these hosts, PNG size alone (0.906) beats H1 on both CLIP sets (0.876, 0.825)
+  and is within 0.012 of DINOv3 (0.918); excess −0.030, −0.081, +0.012. This contrast is not part of the registered
+  reading.
+- Post hoc, descriptive (`posthoc_session_split.json`, out-of-fold scores, no refit, no bootstrap): the inversion holds
+  for FERET pairs from one session (x3 vs x2 0.225, CLIP pooled; 92 persons), FERET pairs from two sessions (0.313;
+  38) and FRGC (0.292; 128); the other two feature sets 0.33 to 0.40.
 - Paired shares (CLIP pooled H1): s(x3) > s(x1) in 98.3% [96.0, 99.8] of held-out hosts; s(x2) > s(x1) in 99.6%;
   s(x1) > s(x0) in 9.9%. Per-fold x3-vs-x1 AUC 0.943 to 0.961.
 - Cohort transfer (fit on the 102 expanded123 blocks, scored on the 27 confirmation blocks, CLIP pooled):

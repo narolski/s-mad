@@ -185,6 +185,25 @@ here. No answer yet.
   logs `DG1-prod-3545877_1.out`, `_3.out`). t0010 had 124 of 128 CPUs allocated; cause of the slowness not
   identified (cgroup gives our job its 8 cores). Future DG1 jobs exclude t0010.
 
+- 11 Nov 19:34–19:54. **DGX 8-image check of the add-on passed** (attempt 1 of `src/DG1/dg1_addon_dgx_test.sh`; log
+  `/mnt/t7/smad_next/DG1/dgx_test/addon_test8_attempt1.log`; outputs `/mnt/t7/smad_next/DG1/dgx_test/addon_test8/`):
+  4 encodes (H, flip H, S, partner S) in 986 s on the shared GB10, 9 renders (rec, mix, mirror mix, two fresh draws,
+  noise-only, semantic-only, 100-step mix, same-person dose 0.1), all finite, θ finite (1.536–1.555), `codes.npz`
+  (4 × z 512 and x_T 3 × 256 × 256, float32) and `fresh.npz` (2 draws, seeds 462287824053858823 and
+  195321709206190538, std 1.0) written. Contact sheet `/mnt/t7/smad_next/DG1/dgx_test/addon_contact_sheet.png`.
+- 11 Nov 19:55. Mock plumbing test of `dg1_addon_task.sh` with a fake interpreter that exits 3: both packs
+  sha-checked and unpacked, result tar written and verified, task exit code 3 propagated. Add-on pack
+  `/mnt/t7/smad_next/DG1/packs/dg1_addon_pack.tar` (sha256 ee3c589068b9a449e36203b95fec6a3fed7f8348d37b037566d28ae6345db8df;
+  `code/dg1_addon.py` sha 6a0c9711…, 8 shard lists + test list), `dg1_addon_task.sh` cfbda68d…, `dg1_addon.sbatch`
+  85a7b941… (account `plgmultivision-gpu-a100` as the lead asked at 19:48, `--exclude=t0010`, 2:00 limit, `-C memfs`).
+- 11 Nov 19:55. **Add-on array submitted: Athena job 3545907** (tasks 0–7 = `addon_s0..7`, account
+  `plgmultivision-gpu-a100`; logs `.../smad-next/logs/DG1-addon-3545907_<k>.out`; results
+  `.../results/DG1/DG1_addon_s<k>.tar`). Estimate per shard: about 202 encodes × 3.1 s + about 925 renders at 20 steps
+  × 0.3 s + 268 at 100 steps × 1.5 s ≈ 25 min; 8 shards ≈ 3.3 GPU-hours.
+- 11 Nov 19:48. Lead moved our pending jobs (the production tasks 3545877_1 and _3) in place to account
+  `plgmultivision-gpu-a100` (higher priority tonight); smoke jobs and production tasks 3545841_0, _2, _4 ran on
+  `plgrestorearc-gpu-a100`.
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):
