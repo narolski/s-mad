@@ -96,3 +96,7 @@ morph literature note to `narolski/research`.
 
 - "plgmultivision - yes please": part of the queue may be charged to `plgmultivision-gpu-a100` for its higher scheduling priority. Applied to the 20 LoRA fits of the SMDD rebuild (SM1), about 100 of its 10,000 A100-hours.
 - 19:48: "All": the remaining waiting jobs were moved to `plgmultivision-gpu-a100` as well, and new jobs are submitted there until its fair-share falls below that of `plgrestorearc`.
+
+## Author's decision of 11 Nov, 20:20: rented fallback
+
+- "Absolutely": if the two scoring jobs of the own-crop re-score (RS1) have not started on Athena by 21:30, they may run on a rented A100 (under 3 USD); the same fallback applies to the eight fits of the protocol-network tests (PN1, about 4 USD) if Athena is still jammed when they are ready. Each comparison stays on one machine type. Rental commands are run from the main session.

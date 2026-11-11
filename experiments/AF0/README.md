@@ -103,6 +103,13 @@ softened-ladder copies are in progress (section 10). No conclusions drawn here.
   the final list (19:43:20). The CLIP-224 extraction started 19:42:39, after the rebuild; its id order equals the list.
 - 19:52 wave-3 control 1 on AF0 validation images (`wave3_floor_valcmp.json`): morph vs own halves, Laplacian floor
   0.760.
+- 19:55-20:20 DINOv3 F4 read (`f4_dinov3_512.json`); CN0 final with DINOv3 dense reads; wave-3 five-arm ablation on
+  CLIP-224 (`arms_clip224.json`); border blanking (`border.py`, `border_read.py`, list `border.csv`, 1,672 images,
+  CLIP-224 tokens, `wave3_border_clip224.json`); shuffled-map control (`metrics_dinov3_512_shuffle.json`); pooling
+  audit (`pooling_audit.py`, `wave3_pooling_*.json`, heat maps); CLIP-336 full heads and metrics
+  (`metrics_clip336_full.json`); graded set (`graded.py`, `graded_ar1g.json`); CLIP-224 metrics rerun with the
+  Poisson set and median pooling; benchmark floors found at 0.97-1.00 for single statistics. PN1 DINOv3 tokens
+  complete and order-checked (20:15).
 
 Amendments / deviations so far (all reported in `result.md` when final): bench subsample (`bench_s`); wave 2 / 3 / 4
 at reduced scale (ghost targets and halves only for wave-1 pairs plus all uniform-0.5 pairs; softened copies only of
@@ -238,25 +245,20 @@ Full DINOv3 heads -> F1-F5 + F4 + shuffled maps; CLIP-224 heads; CN0 (CLIP-224, 
 wave 3 controls 1-7; wave 4 arms; contact sheets; CLIP-336 if the GPU allows; MADation ViT-L/14 comparison numbers
 (A12REL eval scores for FRLL; AR1's scores when written; corrected MAD22 has no score).
 
-## 10. Handover state (19:30 CET)
+## 10. Handover state (20:20 CET)
 
-DGX processes (logs in `/mnt/t7/smad_next/AF0/`); every step skips finished outputs, so rerunning a chain is safe:
-- GPU queues: `run_feats.sh queue_dino_c.txt` (waiting for `lists/ladsoft.csv`, then DINOv3 ladsoft);
-  `run_feats.sh queue_clip_b.txt` (CLIP-224 soft running, then ar1g, then waits for ladsoft); `run_feats.sh
-  queue_clip336.txt` (CLIP-336 ar1 running, then bench_s, h1). Restart: `WORKERS=2 src/AF0/run_feats.sh <queue>`.
-- `chain_dino_post.sh`: DINOv3 F4 conf / unconf (ridge, MLP x5, logistic), then the shuffled-map control; log
-  `chain_dino_post.log`. Then `chain_dino_rest.sh`: DINOv3 wave 2 (alpha, g, D, G at wave-1 scale) and scoring on h1,
-  ar1g; log `chain_dino_rest.log`.
-- `chain_clip224_rest.sh`: CLIP-224 wave 2 (running: w2_alpha, w2_g done), then the five-arm ablation (wave 3), then
-  wave 4 arms after the soft features, then `arms.py read`; log `chain_clip224_rest.log`.
-- `chain_ladsoft.sh` + the reverse softening process: PN1 softened ladder copies (2,544), then lists, prep and cue
-  statistics; log `chain_ladsoft.log`, `ladsoft_rev.log`. After both processes end, rerun
-  `python -I lists_extra.py ladsoft` once to recompute the sha256 column (a file could be rewritten by the other
-  process while being linked).
-To do by hand after the chains: `metrics.py` for the wave-2 tags and CLIP-336; `cn0.py read --backbones
-clip224,dinov3_512 --dense-tag full` (DINOv3 dense reads); `mirror.py --backbone clip224` (final); `f4.py read
---backbone dinov3_512`; result.md and this README.
-Compute so far: about 4.5 h of shared-GB10 wall time for features and heads; no USD; no WCSS / Athena / Vast use.
+Running (logs in `/mnt/t7/smad_next/AF0/`; every step skips finished outputs, rerun the chain script if it dies):
+- `chain_clip224_rest.sh` (log `chain_clip224_rest.log`): wave-4 arms a4-e4 with F4 variants (e4 left), then
+  `arms.py read --backbone clip224` -> `arms_clip224.json` (includes wave 3 and wave 4).
+- `chain_dino_rest.sh` (log `chain_dino_rest.log`): DINOv3 wave 2 (w2_alpha, w2_g done; D, G left; eval af0_w1,
+  af0_h, ar1, bench_s), then scoring of the full heads and w2 heads on h1, af0_h and ar1g.
+- `chain_clip336.sh` (log `chain_clip336.log`): CLIP-336 F4 conf / unconf, then `f4.py read` -> `f4_clip336.json`.
+- GPU queues idle or finishing (`queue_clip336.txt` done after h1).
+After these: `run_w2_metrics.sh dinov3_512` + `w2report.py dinov3_512`; `metrics.py --backbone dinov3_512 --tag full
+... --keys score,score_top10,score_median` (adds the Poisson set and the graded set); `graded.py dinov3_512:full
+dinov3_512:w2_alpha ...`; `wave3_floor.py read --specs dinov3_512:full`; `arms.py` and `border.py` exist only for
+CLIP-224 (DINOv3 arms not run: compute).
+Compute so far: about 6 h of shared-GB10 wall time; no USD; WCSS / Athena untouched.
 
 ## 11. Reproduce from scratch
 
