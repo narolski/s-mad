@@ -12,8 +12,9 @@ if [ "${1:-}" = setup ]; then
   # the image's conda Pillow 10.2.0 links a different libjpeg than the PyPI wheel used on Athena: replace it
   python3 -m pip install --no-cache-dir -q --force-reinstall --no-deps "pillow==10.2.0"
   python3 -c "import PIL.features as F; print('libjpeg_turbo', F.version('libjpeg_turbo'), 'jpg', F.version('jpg'))" | tee $G/setup_libjpeg.txt
-  mkdir -p $G/whl && tar -xf $G/packs/rs1a_pack.tar -C $G/whl wheels/facenet_pytorch-2.6.0-py3-none-any.whl
-  python3 -m pip install --no-cache-dir -q --no-deps $G/whl/wheels/facenet_pytorch-2.6.0-py3-none-any.whl
+  WH=$G/pack/wheels/facenet_pytorch-2.6.0-py3-none-any.whl
+  [ -f $WH ] || { mkdir -p $G/whl && tar -xf $G/packs/rs1a_pack.tar -C $G/whl wheels/facenet_pytorch-2.6.0-py3-none-any.whl; WH=$G/whl/wheels/facenet_pytorch-2.6.0-py3-none-any.whl; }
+  python3 -m pip install --no-cache-dir -q --no-deps $WH
   python3 -m pip freeze > $G/setup_pip_freeze.txt
   python3 -c "import torch, torchvision, timm, cv2, numpy, PIL, tqdm, facenet_pytorch; print('torch', torch.__version__, 'cuda', torch.version.cuda, 'tv', torchvision.__version__, 'timm', timm.__version__, 'cv2', cv2.__version__, 'numpy', numpy.__version__, 'pillow', PIL.__version__, 'tqdm', tqdm.__version__, 'gpu', torch.cuda.get_device_name(0))" | tee $G/setup_versions.txt
   exit 0

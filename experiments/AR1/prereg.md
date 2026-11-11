@@ -201,3 +201,19 @@ R2w4 vs S0, beside the unspliced contrasts, each as excess over simple baselines
 thumbnail, band power, Laplacian variance, and the inside/outside sharpness ratio (Laplacian variance inside the hull
 divided by outside, one scalar, folded). (d) Transfer read on the existing Poisson-blended set (H1, A27/A36): the record's
 released-detector AUCs are quoted (no rescoring in this round). Blanking with the same R4 hull for all arms.
+
+Amendment 9 (lead, after REVIEW_SPLICE_20261111; registered 12 Nov before the computations below ran and before any
+swap-splice score existed). OpenCV-style tool only; FaceMorpher spliced reads are labelled "seam not matched" (its S0
+has almost no seam: step 1.06 vs 15.83 grey levels, reviewer) and are not used.
+(a) Zero GPU, post hoc: released-detector S0 vs S4 as excess over the 3-statistic floor (seam tone luma and R-G,
+    inside/outside sharpness ratio, band5 at 224 px) fitted on the 100 development hosts of the protocol-network split
+    (PN1 `split/ladder_split.csv`, role dev; the PN1 function posthoc2.floor3, imported unchanged), evaluated on all
+    other non-validation hosts; paired person bootstrap. And S0 vs S4 inside tone-matched fifths (quintiles of the
+    seam-tone luma step over S0 and S4 pooled; cell-weighted AUC). Review H-new-1: falsified if the drop is at most
+    0.02 and the floor is below 0.75.
+(b) Swap-splice SW (diagnostic only, never used for training): inside the R4 hull the partner's warped half (B warped
+    to the R4 mean shape with the OpenCV-style warp routine, B texture only, as the B-side of verify_warp.py), outside
+    R2w4; pixel copy only; all 536 hosts. Seam statistics (signed luma / R-G step and mean absolute step across a 3-px
+    ring, same hull) printed beside S4 and S0. Contrast S4 (positive) vs SW, released detectors. Registered
+    prediction (review H-new-2): SelfMAD AUC(S4 vs SW) <= 0.5 (it reads a patch boundary); a detector that reads the
+    blend gives >= 0.75. SelfMAD falsifies H-new-2 if >= 0.75.

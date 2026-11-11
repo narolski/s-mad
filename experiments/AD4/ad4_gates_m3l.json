@@ -1,14 +1,29 @@
 {
- "reader_sha256": "b9213a5d1b087da31b5ca6cf765f4b5cd2012113088bf02d51edbe0165283af2",
+ "reader_sha256": "8fd182b49aa75268d44b5c220dd6d7a8c745cf99cdab1d58d5c3574357e3056b",
  "results": "/mnt/t7/smad_next/AD4/results_athena",
  "present_tars": {
   "mf": [
+   401,
    402
   ],
-  "perm": []
+  "perm": [
+   401,
+   402,
+   403,
+   404,
+   405
+  ]
  },
  "refused": {},
  "checks": {
+  "AD4_m3lmf_s401": {
+   "tar_sha256": "8e67f8aa945bb5dfdd6616daedcaf303e85584782b74224d92961ce44c4fac3b",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1+cu121",
+   "train_hours": 4.074969368245867
+  },
   "AD4_m3lmf_s402": {
    "tar_sha256": "30cc84146c1fe5fe3bf1b65346ba044ea966ca22822c3cb422202eef24c19396",
    "meta_seed_ok": true,
@@ -16,9 +31,88 @@
    "device": "NVIDIA A100-SXM4-40GB",
    "torch": "2.2.1+cu121",
    "train_hours": 3.58144524315993
+  },
+  "AD4_m3lperm_s401": {
+   "tar_sha256": "a4a7a1db149b7c1d3e622508c694e4f44951d645202e9c0831a9bf59d5384d58",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1+cu121",
+   "train_hours": 3.5329683905177647
+  },
+  "AD4_m3lperm_s402": {
+   "tar_sha256": "b58ffa45d35ac3e92e77e0f36c4ed3b9cddbaf97d0dda2142471e169cf284990",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1+cu121",
+   "train_hours": 3.8718582776519987
+  },
+  "AD4_m3lperm_s403": {
+   "tar_sha256": "53e51432bcebf2a8bef8233d7c8905c04e7476c2c391f119e6649289be4ed696",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1+cu121",
+   "train_hours": 3.8754484607776005
+  },
+  "AD4_m3lperm_s404": {
+   "tar_sha256": "23fc948525c1928dd54cac2335d227797c14c1b1802cc5d8e491a0f16c802356",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1+cu121",
+   "train_hours": 3.5599983872969947
+  },
+  "AD4_m3lperm_s405": {
+   "tar_sha256": "9f9ddabf67b12388941f17f406f85cb2540cc674fa0f999d8fd78837a13a62fd",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1+cu121",
+   "train_hours": 3.531470794412825
   }
  },
  "order": {
+  "AD4_m3lmf_s401": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     15,
+     17,
+     0
+    ],
+    [
+     13,
+     19,
+     0
+    ],
+    [
+     19,
+     13,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     15,
+     17,
+     0
+    ],
+    [
+     13,
+     19,
+     0
+    ],
+    [
+     19,
+     13,
+     0
+    ]
+   ]
+  },
   "AD4_m3lmf_s402": {
    "pass": true,
    "equal_rows": 200,
@@ -54,6 +148,201 @@
     [
      14,
      18,
+     0
+    ]
+   ]
+  },
+  "AD4_m3lperm_s401": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     20,
+     12,
+     0
+    ],
+    [
+     14,
+     18,
+     0
+    ],
+    [
+     14,
+     18,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     20,
+     12,
+     0
+    ],
+    [
+     14,
+     18,
+     0
+    ],
+    [
+     14,
+     18,
+     0
+    ]
+   ]
+  },
+  "AD4_m3lperm_s402": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     16,
+     16,
+     0
+    ],
+    [
+     22,
+     10,
+     0
+    ],
+    [
+     17,
+     15,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     16,
+     16,
+     0
+    ],
+    [
+     22,
+     10,
+     0
+    ],
+    [
+     17,
+     15,
+     0
+    ]
+   ]
+  },
+  "AD4_m3lperm_s403": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     13,
+     19,
+     0
+    ],
+    [
+     14,
+     18,
+     0
+    ],
+    [
+     17,
+     15,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     13,
+     19,
+     0
+    ],
+    [
+     14,
+     18,
+     0
+    ],
+    [
+     17,
+     15,
+     0
+    ]
+   ]
+  },
+  "AD4_m3lperm_s404": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     18,
+     14,
+     0
+    ],
+    [
+     21,
+     11,
+     0
+    ],
+    [
+     13,
+     19,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     18,
+     14,
+     0
+    ],
+    [
+     21,
+     11,
+     0
+    ],
+    [
+     13,
+     19,
+     0
+    ]
+   ]
+  },
+  "AD4_m3lperm_s405": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     14,
+     18,
+     0
+    ],
+    [
+     17,
+     15,
+     0
+    ],
+    [
+     13,
+     19,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     14,
+     18,
+     0
+    ],
+    [
+     17,
+     15,
+     0
+    ],
+    [
+     13,
+     19,
      0
     ]
    ]

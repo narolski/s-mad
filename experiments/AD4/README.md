@@ -954,3 +954,30 @@ Headline rows (EER %, morph-free seed mean [95% person-bootstrap interval of the
   split cells: Greedy-DiM E7, Greedy-DiM-S E7, FRLL OpenCV E7; wide: FRLL OpenCV native.
 - result.md rewritten (copy of the earlier version: `/mnt/t7/smad_next/AD4/read/result_md_before_rewrite_20261111T2350.md`): new top sections
   with the corrected wording, a "Withdrawn" list with reasons, the earlier record kept below, the superseded 23:36 reading text quoted.
+
+### Follow-ups of the review (Amendment 4, registered 23:50; post hoc follow-ups)
+
+- Face region fixed in the canonical frame of `prep_eval.py` (eyes at (190, 210) and (322, 210)): ellipse centre (256, 264), semi-axes
+  125 x 172 px; face box x 166 to 345, y 160 to 379. No detector.
+- **(a) H-new-1 and H-new-2, DGX CPU, done 23:55.** `src/AD4/fu_sharpness.py` (8-image test first, then
+  `CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 nice -n 10 $P fu_sharpness.py`; log `/mnt/t7/smad_next/AD4/read/fu_sharpness_m3.log`;
+  per-image measures `/mnt/t7/smad_next/AD4/read/fu_sharpness.npz`). Tables `experiments/AD4/fu_sharpness_m3.md`, `fu_sharpness_m3.json`.
+  Our frames:
+  - S = minus the high-frequency power share in the face box. Native cells: S alone separates morphs from genuine photos at AUC 0.998 to
+    1.000 in the 8 qualifying cells (network AUC at least 0.99 in all seeds: MorDIFF, DiM-A, DiM-C, Fast-DiM, Greedy-DiM-S, FRLL AMSL,
+    FRLL Webmorph, corrected MAD22 FaceMorpher); median Spearman (network score, S) at least 0.7 in 4 of the 8 (DiM-A, DiM-C, Fast-DiM,
+    Greedy-DiM-S), 0.39 to 0.67 in the other 4. **H-new-1: mixed** by the registered rule.
+  - **H-new-2: Spearman 0.86 over the 7 diffusion history-matched cells, "consistent with overshoot"**: x (AUC of S, morphs against the
+    history-matched photos) MorDIFF 0.910, DiM-A 0.087, DiM-C 0.493, Fast-DiM 0.213, Fast-DiM-ODE 0.023, Greedy-DiM 0.448, Greedy-DiM-S
+    0.665; y (median network AUC) 0.996, 0.342, 0.846, 0.404, 0.104, 0.294, 0.594.
+- **(b) H-new-3 and (c) H-new-4, H-new-5, Athena.** `src/AD4/fu_rescore.py` (blank and score), `src/AD4/fu_pack.py` (staging folder of
+  symlinks plus the eleven networks' `meta.json` and `last_trainable.pt` from the verified tars), job file `src/athena/ad4_fu.sbatch`
+  (shared venv, the environment AD4 used on Athena, per the `ATHENA.md` rule that an experiment keeps its environment; account
+  `plgmultivision-gpu-a100`, `--exclude=t0010,t0014,t0020`, 2 h limit).
+  - Extra pool rows (`fu_extra.csv`, sha256 `e00835e6…`): landmark ladder frgcferet R0 536, R2w 1,072, R3 1,072, R4 1,072 (both tools);
+    SMDD evaluation genuine renders 1,000 (sample seed 2026111104); StyleGAN3 single-identity renders (H3) 423; StyleGAN v1 renders (H4b) 338.
+  - DGX 8-image test 23:53 (`/mnt/t7/smad_next/AD4/fu/dgxtest/`): blanking changes exactly the 194,585 pixels outside the ellipse of a test
+    image; the rebuilt network `AD4_m3mf_s403` reproduces its registered scores within 0.0004 (DGX CPU against A100) on 8 rows.
+  - Pack streamed to Athena without a local tar (`tar -chf - | tee >(sha256sum) | ssh … cat >`): `.../smad-next/packs/AD4/fu_pack.tar`,
+    1,680,128,000 bytes, sha256 `ee117981…`, checked on Athena.
+  - 23:55: smoke job **3546199** submitted (`FU_LIMIT=8`, 30 min limit).

@@ -192,6 +192,17 @@ missing); a pack is ready there for later.
   logits (ViT-L/14), 19 to 53 images per release, almost all JPEG crop files (decoding differs between the machines
   although both run Pillow 10.2.0); v2 (PNG): ViT-B/16 13 images (max 0.19), FE ViT-B/16 1, others none. Per the
   lead's rule no resume command was given.
+- 23:45. Cause found: the rented image's Pillow 10.2.0 is the conda build (`pillow @ file:///croot/pillow_...`), linked
+  to a different libjpeg; pip had skipped it because the version matched. `rented/rs1_run.sh` setup now
+  force-reinstalls the PyPI `pillow==10.2.0` wheel (libjpeg-turbo 3.0.1) and logs it; `drive.sh` skips the upload when
+  the packs are already unpacked, setup finds the facenet wheel in the unpacked pack, and `RS1_GATE=descriptive`
+  makes the gate non-blocking (amendment 6). The lead restarted the driver at 23:49 (`rented_drive_c.log`).
+- 23:59. Gate after the fix (recorded, descriptive): byte-identical crops v1 416/463 (67 JPEG, 349 PNG), v2 379/464;
+  on them no release differs by more than 0.5 logit; above 0.05 only ViT-B/16 (v1 7, max 0.085; v2 13, max 0.19),
+  ViT-L/14 v1 1 (0.052), FE ViT-B/16 v2 1 (0.08). Before the fix identical JPEG crops differed by up to 5.9 logits
+  (finding: a released detector's score depends on the JPEG decoder build). Crops with a different detector box (A100
+  vs 3090: 47 v1, 85 v2) differ by up to 9.5 logits. Athena 3545972 / 3545973 cancelled by the driver at 23:58 (never
+  started). Production variant 1 then variant 2 running on rs1b.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.

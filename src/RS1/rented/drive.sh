@@ -15,11 +15,16 @@ r() { $SSH root@$H "$@"; }
 log() { echo "$(date +%H:%M:%S) $*"; }
 log "disk / gpu"; r 'df -h /root | tail -1; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader' || exit 1
 r 'mkdir -p /root/rs1/packs /root/rs1/results'
+if r 'test -f /root/rs1/pack/.unpacked'; then
+  log "packs already unpacked and hash-checked on the machine; upload skipped"
+  rsync -a -e "$SSH" /mnt/t7/thirdparty/smdd_9683229_20261107/image_preprocess.py $S/rented/rs1_run.sh root@$H:/root/rs1/ || exit 1
+else
 for f in rs1a_pack.tar rs1a_pack.tar.sha256 rs1a_pack_amend.tar rs1a_pack_amend.tar.sha256 rs1a_pack_raw.tar rs1a_pack_raw.tar.sha256; do
-  for k in 1 2 3 4 5; do rsync -a --partial -e "$SSH" $A/$f root@$H:/root/rs1/packs/ && break; log "retry $f $k"; sleep 10; done
-done
-rsync -a -e "$SSH" /mnt/t7/thirdparty/smdd_9683229_20261107/image_preprocess.py $S/rented/rs1_run.sh root@$H:/root/rs1/ || exit 1
-log "packs uploaded"; r 'cd /root/rs1/packs && sha256sum -c rs1a_pack.tar.sha256 rs1a_pack_amend.tar.sha256 rs1a_pack_raw.tar.sha256; df -h /root | tail -1' || exit 3
+    for k in 1 2 3 4 5; do rsync -a --partial -e "$SSH" $A/$f root@$H:/root/rs1/packs/ && break; log "retry $f $k"; sleep 10; done
+  done
+  rsync -a -e "$SSH" /mnt/t7/thirdparty/smdd_9683229_20261107/image_preprocess.py $S/rented/rs1_run.sh root@$H:/root/rs1/ || exit 1
+  log "packs uploaded"; r 'cd /root/rs1/packs && sha256sum -c rs1a_pack.tar.sha256 rs1a_pack_amend.tar.sha256 rs1a_pack_raw.tar.sha256; df -h /root | tail -1' || exit 3
+fi
 log "setup"; r 'bash /root/rs1/rs1_run.sh setup > /root/rs1/setup.log 2>&1; tail -3 /root/rs1/setup.log' || exit 4
 rsync -a -e "$SSH" root@$H:/root/rs1/setup_versions.txt root@$H:/root/rs1/setup_pip_freeze.txt $OUT/
 run_variant() {  # $1 = v1|v2, $2 = limit
@@ -30,12 +35,13 @@ run_variant() {  # $1 = v1|v2, $2 = limit
   r "tail -5 /root/rs1/run_$tag.log"
   r "grep -q '^EXIT_CODE 0' /root/rs1/run_$tag.log" || return 1
   rsync -a -e "$SSH" root@$H:/root/rs1/results/rs1a_$tag.tar root@$H:/root/rs1/results/rs1a_$tag.tar.sha256 root@$H:/root/rs1/run_$tag.log $OUT/ || return 1
-  ( cd $OUT && sha256sum -c rs1a_$tag.tar.sha256 ) || return 1
+grep -q "^PASS" $OUT/smoke_compare.txt || { if [ "${RS1_GATE_DESCRIPTIVE:-0}" = 1 ]; then log "smoke comparison not passed; continuing because the lead made the comparison descriptive (all rows come from this one machine)"; else log "smoke comparison failed; stopping before production"; exit 6; fi; }
   mkdir -p $OUT/$tag && tar -xf $OUT/rs1a_$tag.tar -C $OUT/$tag && log "fetched $tag"
 }
 run_variant v1 8 && run_variant v2 8 || { log "smoke failed"; exit 5; }
 $P -I $S/rented/compare_smoke.py $OUT/smoke_v1_rented $OUT/smoke_v2_rented $A/smoke_3545869 | tee $OUT/smoke_compare.txt
-grep -q "^PASS" $OUT/smoke_compare.txt || { log "smoke comparison failed; stopping before production"; exit 6; }
+if [ "${RS1_GATE:-strict}" = descriptive ]; then log "gate descriptive (lead's amendment): comparison recorded, production proceeds"
+else grep -q "^PASS" $OUT/smoke_compare.txt || { log "smoke comparison failed; stopping before production"; exit 6; }; fi
 log "SMOKE_PASSED"
 flock -w 300 /tmp/smadnext-athena-cmd.lock ssh -o BatchMode=yes plgpnarolski@athena.cyfronet.pl 'scancel 3545972 3545973; squeue -u plgpnarolski -h -o "%i %T" | grep "354597[23]" || echo cancelled' && log "Athena 3545972/3545973 cancelled"
 run_variant v1 0 || exit 7

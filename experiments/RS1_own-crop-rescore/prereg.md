@@ -288,3 +288,20 @@ variants on the machine compared with Athena smoke job 3545869 on the same input
 the unchanged script and every release's largest |logit difference| below 0.5 (the largest value is reported). After
 the gate passes, Athena jobs 3545972 and 3545973 are cancelled. Crops stay on the machine; the small result tars come
 back to `/mnt/t7/smad_next/RS1/results_rented/`.
+
+## Amendment 6 (11 Nov 2026, 23:55 CET; lead's decision; before any production row)
+
+The 8-image gate of amendment 5 failed on the replacement machine rs1b (RTX 3090): largest |logit difference| 10.84
+against Athena smoke 3545869. Breakdown: same image dropped by the unchanged script on both machines; 47 (v1) and 85
+(v2) of about 464 crops differ in their detector box; on byte-identical crops the JPEG files scored differently
+because the image's conda Pillow links another libjpeg (fixed: PyPI Pillow 10.2.0 wheel force-installed); on
+identical PNG crops ViT-B/16 differs by up to 0.19 logit on 13 images (GPU arithmetic). Decision: the comparison with
+Athena is **descriptive** (reported as a finding on cross-machine differences of the crop and scoring steps); every
+MADation / MixFaceNet-MAD row comes from the one rented machine and no row is compared across machines. The gate is
+rerun after the Pillow fix and recorded; production proceeds (`RS1_GATE=descriptive`).
+Added (lead, 23:55): the post-fix comparison (identical JPEG crops still differing, libjpeg versions on both sides,
+residual on identical PNG crops) is reported as a finding (a released detector's score depends on the JPEG decoder
+build, by up to several logits per image). If after the fix identical crops still differ by more than 0.5 logit on
+more than 1% of images for any release, the lead is told before any production row is read. Driver run:
+`/mnt/t7/smad_next/RS1/rented_drive_b2.log` (lead's flag `RS1_GATE_DESCRIPTIVE=1`).
+Correction (23:58): the production driver run is `/mnt/t7/smad_next/RS1/rented_drive_c.log` (`RS1_GATE=descriptive`); the b2 run was stopped by the lead.

@@ -300,3 +300,62 @@ Wording rules adopted from the review for every later text of this experiment (r
 "trained only to flag shrink-and-enlarge copies of synthetic faces (no morph, no blending)"; "resolution history", not storage history;
 the history-matched control "removes or overshoots the cue", never "chance"; every statement "in our preprocessing"; flag and miss rates
 always together.
+
+## Amendment 4: follow-ups of the review, H-new-1 to H-new-5 (11 Nov 2026, 23:50 CET; registered before any of these measurements or scores exists)
+
+Approved by the lead after `experiments/reviews/REVIEW_AD4_VITB_20261111.md`. Post hoc in origin (the ViT-B/16 numbers are
+known), so every verdict below is labelled "post hoc follow-up". Our frames unless stated. Bootstrap: the registered person
+bootstrap (Amendment 2 (a)); for the ladder sets a pigeonhole bootstrap over their FRGC / colorFERET persons (columns `p1`,
+`p2`), B = 10,000, seed [20261111, 4, 5]. Networks: the five ViT-B/16 morph-free networks (seeds 401 to 405; the arm carries the
+flag "not reproduced on this stack"); beside them the five label-permuted networks and the untrained network as references.
+Each number is one network; no fusion.
+
+**Face region (fixed, no detection).** Our frames are eye-aligned to the canonical 512 x 512 frame of `prep_eval.py` (eyes at
+(190, 210) and (322, 210), inter-eye distance 132 px). Face ellipse: centre (256, 264), semi-axes 125 px (horizontal) and 172 px
+(vertical). Face box (inside the ellipse): x 166 to 345, y 160 to 379 (180 x 220 px). Images that fell back to a plain resize in
+`prep_eval` (non-frontal) are not aligned; they are kept and counted.
+
+**(a) H-new-1, face-only softness null; H-new-2, rank test** (DGX CPU, one process, `src/AD4/fu_sharpness.py`; reads the
+evaluation PNGs, writes no image).
+- Measures per evaluation image, on the grey image (ITU-R 601 luma, float): M1 = variance of the 3 x 3 Laplacian (cv2.Laplacian,
+  a measurement) inside the face ellipse; M2 = share of spectral power above 0.25 cycles per pixel (radial) in the face box after a
+  2-D Hann window, DC excluded. Primary statistic: S = −M2 (softer = more morph); M1 printed beside it.
+- H-new-1 (native cells): per cell AUC of S (morph positive) with interval; per morph-free network the Spearman correlation of
+  the network score with S inside the cell. Qualifying cells: native cells where the morph-free AUC is at least 0.99 in all five
+  seeds. **Supported** if S reaches AUC ≥ 0.7 in every qualifying cell and the median (over seeds) Spearman is ≥ 0.7 in every
+  qualifying cell; **falsified** if S has AUC < 0.7 in at least half of the qualifying cells; otherwise **mixed**.
+- H-new-2 (the seven diffusion history-matched cells, MorDIFF and six DiM): x = AUC of S, morphs against the history-matched
+  genuine photos (how much softer the history-matched photos are than the morphs, low = softer photos); y = median over the five
+  seeds of the morph-free network's AUC in the cell. Spearman(x, y) over the 7 cells: ≥ 0.7 "consistent with overshoot", ≤ 0
+  "inconsistent", otherwise "weak". The graded control of the review needs new resampling code and is not run (author item).
+
+**(b) H-new-3, border-blanked re-score** (Athena GPU job, container image, `-A plgmultivision-gpu-a100
+--exclude=t0010,t0014,t0020`, one A100).
+- Blanking: every pixel outside the face ellipse set to (128, 128, 128), in every evaluation image of both classes (constant-colour
+  region blanking; no other operation), written as lossless PNG inside the job (`$MEMFS`), then scored by the unchanged loader and
+  TTA (the `ad4_score.py` core). Networks are rebuilt from the pack weights plus `last_trainable.pt` (`common.build_run_model`).
+- Gate before reading: the same rebuilt networks score the unblanked evaluation images in the same job; each must agree with its
+  registered `scores_eval.npz` within |AUC difference| ≤ 0.005 and Kendall tau ≥ 0.99 in every cell (the scorer-equivalence
+  tolerance). A network that misses is reported and not read.
+- **H-new-3 supported** if the morph-free seed-mean EER on blanked MorDIFF history-matched is above 15%; **falsified** if it is at
+  most 5%; otherwise **mixed**. Every other cell, native and history-matched, is printed (MAD22 FaceMorpher especially), with the
+  references, flag and miss rates at both fixed thresholds (thresholds recomputed on the blanked FRLL genuine photos), and intervals.
+
+**(c) H-new-4 and H-new-5, new pools** (same Athena job; unchanged images; no blanking).
+- H-new-5, the landmark ladder's (AR1) primary pool (FRGC and colorFERET, its own 512 frames from `73_delin_align`, not
+  `prep_eval`): rungs R0 (camera photo, 536), R2w (warp-only), R3 (same-person morph), R4 (two-person morph), both tools (OpenCV,
+  FaceMorpher), from `/mnt/t7/smad_next/AR1/manifest.csv` (pool `frgcferet`). Per tool and network: AUC(R3 vs R0), AUC(R4 vs R0),
+  gap = AUC(R4 vs R0) − AUC(R3 vs R0), AUC(R4 vs R3), AUC(R3 vs R2w), AUC(R4 vs R2w). **Supported** (same-person blends flagged as
+  often as two-person morphs) if the morph-free seed-mean gap is at most 0.1 for both tools; **falsified** if it is above 0.1 for
+  both; otherwise **mixed**.
+- H-new-4, held-out generator renders: primary pool = 1,000 SMDD evaluation genuine renders
+  (`/mnt/t7/Datasety/downloads/SMDD/SMDD_release_evaluation/os25k_bf_e`, never in training; the same raw 256 x 256 form as the
+  training label 0), chosen by `random.Random(2026111104).sample` of the sorted file list. Descriptive pools: the 423 StyleGAN3
+  single-identity renders of the StyleGAN3 set (H3, `h3sg3/bona/orig`, our frames) and the 338 StyleGAN v1 renders of the H4b set
+  (native 112 px, so resolution-confounded). Statistic per network: median logit of the pool minus the median logit of the 204
+  unprocessed FRLL genuine photos. **Supported** (generator renders read as "unprocessed") if the pool median is below the FRLL
+  genuine median in at least 3 of 5 morph-free seeds; **falsified** otherwise.
+
+Order: (a) runs on the DGX now; (b) and (c) after an 8-image DGX test, an Athena smoke job (8 images per manifest) and then one
+production job (estimate under 2 A100-hours). Inputs travel to Athena as one tar streamed over ssh (no local copy: `/mnt/t7` has
+35 GB free, below the 50 GB rule).
