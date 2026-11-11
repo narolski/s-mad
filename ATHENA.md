@@ -23,6 +23,11 @@ useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 No
   synchronised after the access service was activated). First job: 3544186, the environment build and smoke test.
   To see what Slurm accepts for the user: `sacctmgr -nP show assoc user=plgpnarolski format=Account,Partition`;
   to test without creating a job: `sbatch --test-only -A <account> -p plgrid-gpu-a100 ... --wrap true`.
+- Priority (11 Nov 19:44): jobs on `plgrestorearc-gpu-a100` have a fair-share factor of 0.36 (the group's earlier use);
+  `plgmultivision-gpu-a100` is unused and has 1.0, which more than doubles a job's priority. With the author's
+  approval the 20 LoRA fits of the SMDD rebuild (SM1) are charged there. The account of a PENDING job can be
+  changed in place: `scontrol update JobId=<id> Account=plgmultivision-gpu-a100`. Other experiments stay on
+  `plgrestorearc` unless the lead says otherwise. See priorities with `sprio -u plgpnarolski`.
 - Partition `plgrid-gpu-a100`: A100 with 40 GB, 8 per node, x86, limit 48 hours.
 - Billing is one GPU-hour per GPU and hour while a job stays within 16 CPU cores and 128 GB per GPU.
   Ask for `-c 8 --mem=64G --gres=gpu:1` unless you need more.

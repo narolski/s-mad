@@ -203,10 +203,11 @@ release is being scored through the AD5 path on the DGX (file not opened).
      photos, the differences to native as readings; and the miss rate of every morph cell at the same rule, printed
      beside the flag rates (descriptive; no verdict).
 4. **Training-loss fidelity check (improvement 1), no test data.** For MADation L and B, the training loss of every
-   retrain (the authors' logger, every 50 steps, `training.log`) is printed against the three complete 40-epoch runs
-   in the authors' release logs (`/mnt/t7/smad_next/AD5/release_logs/vit{l14,b16}_madation/training.log`, runs 2 to
-   4), per epoch (mean of the logged values) and at the last epoch; a retrain whose last-epoch mean loss lies outside
-   [0.5 x min, 2 x max] of the three authors' runs is flagged "loss outside the authors' range" beside its rows. No
+   retrain (the authors' logger, every 50 steps, `training.log`) is printed against the complete 40-epoch runs in
+   the authors' release logs (`/mnt/t7/smad_next/AD5/release_logs/vit{l14,b16}_madation/training.log`; ViT-B/16: runs
+   2 to 4; ViT-L/14: runs 3 and 4, its run 2 stops at epoch 35; corrected 20:05 when the parser `src/AD5/ad5_loss.py`
+   was first run on the authors' logs), per epoch (mean of the logged values) and at the last epoch; a retrain whose last-epoch mean loss lies outside
+   [0.5 x min, 2 x max] of the authors' complete runs is flagged "loss outside the authors' range" beside its rows. No
    such logs exist for SelfMAD and MixFaceNet-MAD; their loss curves are printed without a reference.
 5. **Checkpoints kept (finding 2).** MixFaceNet-MAD saves its weights after every epoch, SelfMAD every 5 epochs.
    Epoch 100 stays the only registered reading; other epochs are descriptive and are not scored without a further
