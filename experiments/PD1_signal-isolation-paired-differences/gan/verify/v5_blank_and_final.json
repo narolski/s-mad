@@ -1,0 +1,638 @@
+{
+ "blanking": {
+  "clip_pool": {
+   "face_only refit O paired seed7": {
+    "x3 vs x1": {
+     "auc": 0.7769,
+     "ci": [
+      0.7354,
+      0.821
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.5776,
+     "ci": [
+      0.5253,
+      0.6267
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.7082,
+     "ci": [
+      0.6742,
+      0.7473
+     ]
+    }
+   },
+   "face_only refit O paired x3 vs x1 seeds 7-9": [
+    0.7769,
+    0.7956,
+    0.7888
+   ],
+   "face_only refit O unpaired seed7": {
+    "x3 vs x1": {
+     "auc": 0.7835,
+     "ci": [
+      0.7434,
+      0.8238
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.5656,
+     "ci": [
+      0.5137,
+      0.611
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.7143,
+     "ci": [
+      0.6768,
+      0.756
+     ]
+    }
+   },
+   "face_only refit O unpaired x3 vs x1 seeds 7-9": [
+    0.7835,
+    0.7985,
+    0.799
+   ],
+   "face_only refit T paired seed7": {
+    "x3 vs x1": {
+     "auc": 0.8051,
+     "ci": [
+      0.7625,
+      0.8476
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.6479,
+     "ci": [
+      0.6011,
+      0.6932
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.675,
+     "ci": [
+      0.6426,
+      0.7152
+     ]
+    }
+   },
+   "face_only refit T paired x3 vs x1 seeds 7-9": [
+    0.8051,
+    0.8124,
+    0.818
+   ],
+   "face_only full-frame-trained O paired applied": {
+    "x3 vs x1": {
+     "auc": 0.7188,
+     "ci": [
+      0.6768,
+      0.7637
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.6111,
+     "ci": [
+      0.5645,
+      0.6581
+     ]
+    }
+   },
+   "surround_only refit O paired seed7": {
+    "x3 vs x1": {
+     "auc": 0.7578,
+     "ci": [
+      0.7153,
+      0.801
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.5882,
+     "ci": [
+      0.5403,
+      0.6341
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.6736,
+     "ci": [
+      0.6395,
+      0.7096
+     ]
+    }
+   },
+   "surround_only refit O paired x3 vs x1 seeds 7-9": [
+    0.7578,
+    0.7454,
+    0.7645
+   ],
+   "surround_only refit O unpaired seed7": {
+    "x3 vs x1": {
+     "auc": 0.7967,
+     "ci": [
+      0.7529,
+      0.84
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.5669,
+     "ci": [
+      0.5151,
+      0.6169
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.7217,
+     "ci": [
+      0.6836,
+      0.7621
+     ]
+    }
+   },
+   "surround_only refit O unpaired x3 vs x1 seeds 7-9": [
+    0.7967,
+    0.7594,
+    0.8042
+   ],
+   "surround_only refit T paired seed7": {
+    "x3 vs x1": {
+     "auc": 0.7769,
+     "ci": [
+      0.7338,
+      0.8187
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.6008,
+     "ci": [
+      0.5572,
+      0.6462
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.6857,
+     "ci": [
+      0.6537,
+      0.7192
+     ]
+    }
+   },
+   "surround_only refit T paired x3 vs x1 seeds 7-9": [
+    0.7769,
+    0.7651,
+    0.7975
+   ],
+   "surround_only full-frame-trained O paired applied": {
+    "x3 vs x1": {
+     "auc": 0.6881,
+     "ci": [
+      0.6493,
+      0.7295
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.5479,
+     "ci": [
+      0.4966,
+      0.5942
+     ]
+    }
+   }
+  },
+  "clip_patch": {
+   "face_only refit O paired seed7": {
+    "x3 vs x1": {
+     "auc": 0.8091,
+     "ci": [
+      0.7738,
+      0.8459
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.6235,
+     "ci": [
+      0.5754,
+      0.6686
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.6935,
+     "ci": [
+      0.6618,
+      0.7335
+     ]
+    }
+   },
+   "face_only refit O paired x3 vs x1 seeds 7-9": [
+    0.8091,
+    0.8194,
+    0.7936
+   ],
+   "face_only refit O unpaired seed7": {
+    "x3 vs x1": {
+     "auc": 0.8022,
+     "ci": [
+      0.7616,
+      0.8413
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.5844,
+     "ci": [
+      0.5286,
+      0.6339
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.7168,
+     "ci": [
+      0.6754,
+      0.7629
+     ]
+    }
+   },
+   "face_only refit O unpaired x3 vs x1 seeds 7-9": [
+    0.8022,
+    0.8518,
+    0.8489
+   ],
+   "face_only refit T paired seed7": {
+    "x3 vs x1": {
+     "auc": 0.8214,
+     "ci": [
+      0.7866,
+      0.8597
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.6674,
+     "ci": [
+      0.6257,
+      0.7119
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.6784,
+     "ci": [
+      0.6503,
+      0.7147
+     ]
+    }
+   },
+   "face_only refit T paired x3 vs x1 seeds 7-9": [
+    0.8214,
+    0.8294,
+    0.8101
+   ],
+   "face_only full-frame-trained O paired applied": {
+    "x3 vs x1": {
+     "auc": 0.7446,
+     "ci": [
+      0.7084,
+      0.7837
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.6121,
+     "ci": [
+      0.5759,
+      0.6513
+     ]
+    }
+   },
+   "surround_only refit O paired seed7": {
+    "x3 vs x1": {
+     "auc": 0.7632,
+     "ci": [
+      0.7267,
+      0.8024
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.5737,
+     "ci": [
+      0.5352,
+      0.6136
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.6792,
+     "ci": [
+      0.6474,
+      0.7182
+     ]
+    }
+   },
+   "surround_only refit O paired x3 vs x1 seeds 7-9": [
+    0.7632,
+    0.7362,
+    0.7351
+   ],
+   "surround_only refit O unpaired seed7": {
+    "x3 vs x1": {
+     "auc": 0.7681,
+     "ci": [
+      0.7241,
+      0.8097
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.5421,
+     "ci": [
+      0.4846,
+      0.6037
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.7277,
+     "ci": [
+      0.686,
+      0.77
+     ]
+    }
+   },
+   "surround_only refit O unpaired x3 vs x1 seeds 7-9": [
+    0.7681,
+    0.7713,
+    0.7979
+   ],
+   "surround_only refit T paired seed7": {
+    "x3 vs x1": {
+     "auc": 0.7745,
+     "ci": [
+      0.7371,
+      0.8132
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.5815,
+     "ci": [
+      0.5453,
+      0.6218
+     ]
+    },
+    "x2 vs x1": {
+     "auc": 0.6965,
+     "ci": [
+      0.6631,
+      0.7352
+     ]
+    }
+   },
+   "surround_only refit T paired x3 vs x1 seeds 7-9": [
+    0.7745,
+    0.7538,
+    0.7738
+   ],
+   "surround_only full-frame-trained O paired applied": {
+    "x3 vs x1": {
+     "auc": 0.7088,
+     "ci": [
+      0.671,
+      0.7476
+     ]
+    },
+    "x3 vs x2": {
+     "auc": 0.553,
+     "ci": [
+      0.5085,
+      0.5961
+     ]
+    }
+   }
+  }
+ },
+ "final_heads": {
+  "clip_pool_O_paired": {
+   "C": 0.01,
+   "H x3 vs x1": {
+    "auc": 0.8179,
+    "ci": [
+     0.7948,
+     0.8399
+    ]
+   },
+   "H x3 vs x1s": {
+    "auc": 0.4654,
+    "ci": [
+     0.438,
+     0.4931
+    ]
+   },
+   "H x1s vs x1": {
+    "auc": 0.8376,
+    "ci": [
+     0.8172,
+     0.8569
+    ]
+   },
+   "primary flag MAD22 E7 FaceMorpher": {
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392,
+    "cp": [
+     0.0171,
+     0.0758
+    ]
+   },
+   "SMDD S_test E7 flag": {
+    "k": 59,
+    "n": 1000,
+    "rate": 0.059
+   }
+  },
+  "clip_pool_O_unpaired": {
+   "C": 0.01,
+   "H x3 vs x1": {
+    "auc": 0.8116,
+    "ci": [
+     0.7876,
+     0.8333
+    ]
+   },
+   "H x3 vs x1s": {
+    "auc": 0.4565,
+    "ci": [
+     0.4279,
+     0.4844
+    ]
+   },
+   "H x1s vs x1": {
+    "auc": 0.8284,
+    "ci": [
+     0.8101,
+     0.8474
+    ]
+   },
+   "primary flag MAD22 E7 FaceMorpher": {
+    "k": 10,
+    "n": 204,
+    "rate": 0.049,
+    "cp": [
+     0.0238,
+     0.0883
+    ]
+   },
+   "SMDD S_test E7 flag": {
+    "k": 78,
+    "n": 1000,
+    "rate": 0.078
+   }
+  },
+  "clip_patch_O_paired": {
+   "C": 0.001,
+   "H x3 vs x1": {
+    "auc": 0.8538,
+    "ci": [
+     0.8334,
+     0.8736
+    ]
+   },
+   "H x3 vs x1s": {
+    "auc": 0.4623,
+    "ci": [
+     0.436,
+     0.4873
+    ]
+   },
+   "H x1s vs x1": {
+    "auc": 0.8791,
+    "ci": [
+     0.8617,
+     0.8972
+    ]
+   },
+   "primary flag MAD22 E7 FaceMorpher": {
+    "k": 17,
+    "n": 204,
+    "rate": 0.0833,
+    "cp": [
+     0.0493,
+     0.1301
+    ]
+   },
+   "SMDD S_test E7 flag": {
+    "k": 114,
+    "n": 1000,
+    "rate": 0.114
+   }
+  },
+  "clip_patch_O_unpaired": {
+   "C": 0.01,
+   "H x3 vs x1": {
+    "auc": 0.8445,
+    "ci": [
+     0.8219,
+     0.8647
+    ]
+   },
+   "H x3 vs x1s": {
+    "auc": 0.462,
+    "ci": [
+     0.4348,
+     0.4874
+    ]
+   },
+   "H x1s vs x1": {
+    "auc": 0.8634,
+    "ci": [
+     0.8464,
+     0.88
+    ]
+   },
+   "primary flag MAD22 E7 FaceMorpher": {
+    "k": 13,
+    "n": 204,
+    "rate": 0.0637,
+    "cp": [
+     0.0344,
+     0.1065
+    ]
+   },
+   "SMDD S_test E7 flag": {
+    "k": 97,
+    "n": 1000,
+    "rate": 0.097
+   }
+  },
+  "dinov3_pool_O_paired": {
+   "C": 0.01,
+   "H x3 vs x1": {
+    "auc": 0.8601,
+    "ci": [
+     0.8393,
+     0.8788
+    ]
+   },
+   "H x3 vs x1s": {
+    "auc": 0.4797,
+    "ci": [
+     0.4531,
+     0.5058
+    ]
+   },
+   "H x1s vs x1": {
+    "auc": 0.8707,
+    "ci": [
+     0.8528,
+     0.8884
+    ]
+   },
+   "primary flag MAD22 E7 FaceMorpher": {
+    "k": 10,
+    "n": 204,
+    "rate": 0.049,
+    "cp": [
+     0.0238,
+     0.0883
+    ]
+   },
+   "SMDD S_test E7 flag": {
+    "k": 100,
+    "n": 1000,
+    "rate": 0.1
+   }
+  },
+  "dinov3_pool_O_unpaired": {
+   "C": 0.01,
+   "H x3 vs x1": {
+    "auc": 0.8759,
+    "ci": [
+     0.8557,
+     0.8946
+    ]
+   },
+   "H x3 vs x1s": {
+    "auc": 0.4718,
+    "ci": [
+     0.4409,
+     0.5027
+    ]
+   },
+   "H x1s vs x1": {
+    "auc": 0.8891,
+    "ci": [
+     0.8728,
+     0.9068
+    ]
+   },
+   "primary flag MAD22 E7 FaceMorpher": {
+    "k": 10,
+    "n": 204,
+    "rate": 0.049,
+    "cp": [
+     0.0238,
+     0.0883
+    ]
+   },
+   "SMDD S_test E7 flag": {
+    "k": 76,
+    "n": 1000,
+    "rate": 0.076
+   }
+  }
+ }
+}

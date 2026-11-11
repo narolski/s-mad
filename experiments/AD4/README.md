@@ -827,3 +827,54 @@ DGX, in this order. `P=/home/narolski/mambamorph-code/.venv-spark/bin/python`.
   the registered one.
 - To do when they end: copy the ten tars to `/mnt/t7/smad_next/AD4/results_athena/`, verify hashes, then the lead's
   reading (the reader still lacks the registered person bootstrap and the ViT-L/14 twin of Amendment 1(d)).
+
+## Addendum by the reading owner, 11 Nov 2026 (from 22:30 CET)
+
+New owner of the reading of the morph-free networks experiment (AD4), assigned by the lead on the author's request.
+
+### Timeline of the reading
+
+| Time (11 Nov) | What happened | Evidence |
+|---|---|---|
+| about 22:20 to 22:34 | Read the brief, documentation rules, prereg (amendments 1, 1b, 1c), this README, `result.md`, the pre-run review, `src/AD4/*.py`, `ideas/CONSOLIDATED_v3.md` section 3, the EV1 and FZ1 reviews. State: `results_vast/` holds nine tars (ViT-B/16 morph-free 401 to 405, label-permuted 401 to 404); permuted 405 started on machine B at 22:16; `results_athena/` does not exist yet. Disk `/mnt/t7`: 47 GB free. | `ls -la /mnt/t7/smad_next/AD4/results_vast/`; `leaseB/remote/queue.log` |
+| about 22:34 | Located the morph-trained ViT-L/14 twin of Amendment 1 (d): `/home/narolski/mambamorph-code/smadcvpr_runs/A12_scored/A12BR/a12_clip_vitl14_madation_r224_d0_train90_none_lr3.33e-06_s{1..5}_r/scores_eval_last.npz` (keys and manifest hash only were read: manifest = old `eval.csv`, sha256 `86d055d3…`). | |
+| about 22:36 to 22:38 | **Amendment 2** appended to `prereg.md` before any trained score was opened: bootstrap size, seed and person set (with the corrected-MAD22 file-name patterns, found because those names lack the `_orig` suffix), the twin files and matching, fixed-threshold flag and miss rates (0.5 rule and FRLL-5%), incomplete-arm rows, labels, ViT-L/14 order batch, printed checks. | `prereg.md` |
+| about 22:38 to 22:41 | `src/AD4/summarise.py` rewritten (old reader sha256 `332697603508e4ca6d0c1d1f5f5f69ddc8a4fde50cd6b22ae74484f7f62d1e50`, 16:24, lacked the bootstrap, twin and rates). Two stages: `--stage gates` (refusals, order gate, reproduction gate; prints only gate outcomes) and `--stage read`. Synthetic test `src/AD4/test_summarise.py`: seeded synthetic scores on the real row structure, 40 checks (verdicts, named case, A1 wording with twin, E7 labels, landmark wording, refusal of each Amendment 1 (b) condition, incomplete arm, reproduction gate, fixed-threshold rates recomputed independently, bootstrap interval sanity, order gate pass and miss with a real seed-401 prediction): **40 of 40 pass** (27 s). Outputs `/mnt/t7/smad_next/AD4/read/synth_test/` (128 MB, synthetic only). | `OMP_NUM_THREADS=2 nice -n 10 $P test_summarise.py --order` |
+
+**Reader frozen for the reading: `src/AD4/summarise.py` sha256 `b9213a5d1b087da31b5ca6cf765f4b5cd2012113088bf02d51edbe0165283af2`**
+(test `test_summarise.py` sha256 `c19aff284e72b960d881ec445d2a457733f6514eb5dd51a581abc9935c5ad014`). Recorded 22:41 (machine clock),
+before any score, metric or training accuracy of a trained AD4 network was opened.
+
+### Gates (11 Nov, 22:41 to 22:43, reader `b9213a5d…`)
+
+Commands: `cd /home/narolski/smad-next/src/AD4 && CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 nice -n 10 $P summarise.py --stage gates --results /mnt/t7/smad_next/AD4/results_vast --recipe m3`
+(log `/mnt/t7/smad_next/AD4/read/gates_m3_2241.log`, output `experiments/AD4/ad4_gates_m3.json`) and the same with `results_athena --recipe m3l`
+(log `gates_m3l_2242.log`, `ad4_gates_m3l.json`). Order-gate predictions: `/mnt/t7/smad_next/AD4/read/order/pred_<task>.json`.
+
+- ViT-B/16, nine tars (morph-free 401 to 405 on the A100, label-permuted 401 to 404 on the RTX 6000 Ada; torch 2.2.1): no refusal; meta seed and arch correct in all nine.
+- **Sample-order gate: 9 of 9 pass** (200 of 200 rows each).
+- **Reproduction gate: MISS on 1 of 11 cells, so "not reproduced on this stack".** Morph-free seed means (per seed 401 to 405), EER %, our frames:
+  MorDIFF 0.00 (all 0) pass; DiM-A 0.84 (1.44, 1.88, 0.45, 0.00, 0.45) pass; DiM-C 0.00 pass; Fast-DiM 1.72 (2.87, 1.88, 0.99, 0.45, 2.43) pass;
+  **Fast-DiM-ODE 4.01 (8.72, 1.88, 3.96, 0.10, 5.40), bound 3.0, MISS**; Greedy-DiM 2.43 (11.24, 0.00, 0.45, 0.00, 0.45) pass;
+  Greedy-DiM-S 1.01 (2.97, 0.10, 0.45, 0.10, 1.44) pass; FRLL FaceMorpher 4.11 (12.26, 3.92, 2.45, 0.49, 1.43) pass (bound 5.6);
+  FRLL Webmorph 0.99 pass; FRLL AMSL 1.10 pass; FRLL OpenCV 19.71 (40.20, 23.52, 11.74, 7.85, 15.21) pass (bound 8.8 to 26.0).
+  By the prereg, the WCSS cluster tasks would then decide (the ten ViT-B/16 tasks re-queued on WCSS); that is for the lead.
+- Scorer-equivalence gate: pass (11 Nov 16:46, unchanged).
+- ViT-L/14: `AD4_m3lmf_s402` (Athena task 1, COMPLETED 22:38, 3 h 43 min; `train_hours` 3.58, A100-SXM4-40GB, torch 2.2.1+cu121) copied to
+  `/mnt/t7/smad_next/AD4/results_athena/` with `flock -w 1800 /tmp/smadnext-athena.lock rsync`; `sha256sum -c` OK (tar sha256 `30cc8414…`).
+  Sample-order gate pass (200 of 200, micro-batch 32: first rows [[15,17,0],[13,19,0],[14,18,0]]). The other nine tasks were RUNNING at 22:41 (elapsed 2:34 to 3:47).
+
+### Lead's ruling on the reproduction gate (11 Nov, about 22:50) and the reader change it needs
+
+- State (lead): the registration is applied as written. Every number of the rented ViT-B/16 arm carries the flag "not reproduced on this stack
+  (1 of 11 cells: Fast-DiM-ODE native, seed mean 4.01% against a bound of 3.0, seeds 0.10 to 8.72)". The registered remedy, the WCSS cluster
+  tasks, cannot run tonight because WCSS refuses all connections. The ten ViT-B/16 tasks are still in the WCSS ready queue from this afternoon,
+  so they run when WCSS reopens, and by the registered rule they then decide. This is the state, not a deviation chosen after the numbers. Until
+  then the rented arm is read as registered for a flagged arm: descriptive, with the flag, the missed cell's per-seed values printed beside
+  its bound, no seed dropped or reweighted.
+- Reader change, presentation only (no number, rule or verdict changes): the flag with the missed cells' seed means, bounds and per-seed values
+  is printed at the top of `ad4_reading_<recipe>.md` and under every table, stored as `reproduction_flag` in the reading json, and given as a
+  column `reproduction_gate` in `ad4_cells_<recipe>.csv` for every trained network. Two synthetic checks added; **42 of 42 pass**.
+- **Reader used for the readings: `summarise.py` sha256 `8fd182b49aa75268d44b5c220dd6d7a8c745cf99cdab1d58d5c3574357e3056b`**
+  (test `8f8f0a67124471d5f9a435c1e01d13ba3cc6b0ef9f48be4bcce8794e97d66078`). This supersedes `b9213a5d…`, which ran the gates; the gate code
+  is unchanged. No score was opened by the reader between the two versions beyond the gate cells listed above.

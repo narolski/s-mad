@@ -394,3 +394,27 @@ then the reference row; pn1b (80 GB) runs the four seed-402 fits. Arms are there
 on one machine (P-g and every A-against-X comparison is within seed). Across seeds the card differs (40 GB against 80 GB
 memory, same family); seed spread is reported with that stated. The Athena array 3545976 is cancelled and the Athena
 reference result 3545977 is discarded once the pn1a smoke fit has passed (amendment 6).
+
+## Amendment 8 (11 Nov 22:35 CET, before any computation on these images): spliced-positive frozen heads
+
+Lead's request (author-approved remedy experiment against cue learning; not a dataset extension, not a benchmark).
+Images: the landmark-ladder owner's pixel-copy splices with one hull per host, `/mnt/t7/smad_next/AR1/img/frgcferet/
+{opencv,facemorpher}/{S4,S3,S0}/` (S4 = two-person morph inside the face on the geometry-matched warp-only image; S3 =
+same-person morph inside; S0 = seam-matched negative), manifest `/mnt/t7/smad_next/AR1/manifest_splice2.csv`, with
+their face-blanked (`face_R4hull`) and background-blanked (`bg_R4hull`, only the face visible) copies; R4 and R2w
+blanked copies from AR1's `blank/` (own hull) and `blank_splice2/` (R4 hull). Split and thresholds as registered (test
+191 hosts read; τ_0.5, τ_cam). Features: frozen CLIP ViT-L/14 224 and DINOv3 512 mean tokens (DGX extraction).
+Heads as section 3 (logistic, partner-safe inner folds, seeds 401 to 405, 401 named), stratified balance as amendment 4.
+- Arm S-a: S4 (attack) against S0 (negative) only, OpenCV-style engine, ladder training hosts (S4 of the 124 hosts
+  with a usable partner, S0 of the 156).
+- Arm S-b: the B0 protocol rows plus the same S4 (attack) and S0, S3 (negatives).
+- A0 and B0 are read beside them on the same images.
+Reads (test hosts, OpenCV-style engine; FaceMorpher printed): S0 vs S4; R2w vs R4 and R2w4 vs R4; each as excess over
+the simple baselines (39 statistics of amendment 4 plus the inside-against-outside sharpness ratio = Laplacian
+variance inside the R4 hull over that outside it, hull taken from the background-blanked copy); the same AUCs on the
+face-blanked copies and on the face-only copies (for R4 vs R2w: R4 blanked with its own hull, R2w with the R4 hull);
+the fixed-threshold storage reads of section 6 (c), (f); transfer to H1 and corrected MAD22 OpenCV and Webmorph.
+Question fixed in advance: does a head trained with spliced positives read the face blend, i.e. face-only AUC
+(S0 vs S4 and R2w vs R4 on face-only copies) at least 0.80 and above the best baseline on the same copies, where the
+protocol head B0 reads mostly the surround (face-blanked AUC above its face-only AUC)? Reported as numbers; no pass mark
+beyond the stated 0.80.

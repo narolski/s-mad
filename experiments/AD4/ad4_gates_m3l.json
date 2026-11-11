@@ -1,0 +1,69 @@
+{
+ "reader_sha256": "b9213a5d1b087da31b5ca6cf765f4b5cd2012113088bf02d51edbe0165283af2",
+ "results": "/mnt/t7/smad_next/AD4/results_athena",
+ "present_tars": {
+  "mf": [
+   402
+  ],
+  "perm": []
+ },
+ "refused": {},
+ "checks": {
+  "AD4_m3lmf_s402": {
+   "tar_sha256": "30cc84146c1fe5fe3bf1b65346ba044ea966ca22822c3cb422202eef24c19396",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1+cu121",
+   "train_hours": 3.58144524315993
+  }
+ },
+ "order": {
+  "AD4_m3lmf_s402": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     15,
+     17,
+     0
+    ],
+    [
+     13,
+     19,
+     0
+    ],
+    [
+     14,
+     18,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     15,
+     17,
+     0
+    ],
+    [
+     13,
+     19,
+     0
+    ],
+    [
+     14,
+     18,
+     0
+    ]
+   ]
+  }
+ },
+ "reproduction": {
+  "status": "not registered for this recipe"
+ },
+ "scorer_equivalence": {
+  "file": "/home/narolski/smad-next/experiments/AD4/gate_scorer_equivalence.json",
+  "gate_pass": true
+ }
+}

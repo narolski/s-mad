@@ -210,3 +210,67 @@ staged in two places and one of them cannot be reached.
 - The ViT-B/16 arm ran on two rented x86 machines (A100 40 GB for the morph-free fits, RTX 6000 Ada for the
   label-permuted fits) with the same package versions. Its results are the registered ones for that arm.
 - Unchanged: recipes, seeds 401 to 405, last checkpoint, no selection, the gates of amendments 1 and 1b.
+
+## Amendment 2 (11 Nov 2026, about 22:36 CET, new owner of the reading; written before any score of a trained network of the morph-free networks experiment (AD4) is opened)
+
+Seen before writing this: the names, sizes and sha256 files of the nine result tars in `results_vast/` (member
+list of one tar), the untrained networks' metrics already disclosed in Amendment 1 (f) and the README, and the keys
+and manifest hash (not the values) of the five morph-trained ViT-L/14 twin score files. No score, metric or
+training accuracy of a trained AD4 network has been opened. The registration leaves the points below undefined; each
+is fixed here, with the reason. Nothing in the decision rule, the gates or the refusal rules changes.
+
+**(a) Person bootstrap** (registered as "95% bootstrap over FRLL persons, the `a41_read.py` two-way method"; size,
+seed, person set and the statistics it covers were not given).
+- Scheme: the pigeonhole (dyadic) person bootstrap of `a41_read.py` (`Draw`, `persons`; file sha256
+  `0bc7381b0eddb29b6abb74fbf705f9befaae2700316bcb804b94e7cc3e743cb1`), copied unchanged. A genuine photo weighs its
+  person's count, a morph the product of its two contributors' counts (a self-pair: the count).
+- Persons: the FRLL persons of the 204 unprocessed FRLL genuine photos (`frllm/frll_bona/orig`), 102, asserted.
+  Every row of `ad4_eval.csv` (DiM, MorDIFF, FRLL-Morphs, corrected MAD22, native and E7) is mapped to FRLL persons
+  by its file name; a row whose person is not among the 102 stops the reader. DiM, MorDIFF and FRLL-Morphs rows use
+  `a41_read.py`'s patterns unchanged. Corrected MAD22 names carry no `_orig` suffix, so these rows use the same
+  patterns ending at `.png`: genuine `^(\d{3})_(\d{2})\.png$`, morph `^(\d{3})_\d{2}-vs-(\d{3})_\d{2}\.png$`
+  (checked on file names only: 1,224 of 1,224 genuine and 4,483 of 4,483 morph rows match; added about 22:38, before any
+  reading).
+- B = 10,000 (`a41_read.py`'s decision bootstraps), `numpy.random.default_rng([20261111, 4])`. One draw shared by
+  every network, cell and both recipes (paired).
+- 95% interval = 2.5 and 97.5 percentiles of the replicates, for: EER and signed AUC of every network in every cell;
+  the seed mean of each arm (mean of the networks' replicate values); the margin "morph-free seed mean minus the
+  lowest reference", replicate by replicate. Unit weights must reproduce the point EER and AUC exactly (checked).
+- The intervals are descriptive. The verdicts stay on point values, as registered.
+
+**(b) The morph-trained ViT-L/14 twin of Amendment 1 (d)** (files and matching were not given).
+- Files: `/home/narolski/mambamorph-code/smadcvpr_runs/A12_scored/A12BR/a12_clip_vitl14_madation_r224_d0_train90_none_lr3.33e-06_s{1..5}_r/scores_eval_last.npz`,
+  key `score` (the TTA score), the A12BR M3L R × d0 networks, seeds 1 to 5, last checkpoint. Their manifest is the
+  old `eval.csv` (sha256 `86d055d349c63a225893ace30cb3db8b1e9aea4e72350d78152126d7a49d56c9`, checked in each file).
+- Rows are matched by id after checking that each `ad4_eval.csv` row's id and path equal the `eval.csv` row of that
+  id. A cell has a twin only if every one of its rows has a twin score; otherwise it is marked "no twin" (all
+  corrected MAD22 cells). The sha256 of the five files is printed.
+- Printed beside each ViT-L/14 cell: twin seed mean EER, its range and its fixed-threshold rates. The twin is not a
+  reference and enters no verdict. A primary or secondary cell where A1 is falsified is worded "does not reach 15%;
+  the morph-trained recipe reaches x%", x = the twin seed mean.
+
+**(c) Fixed-threshold rates** (the lead's instruction of 11 Nov; not in the registration; descriptive only, no
+verdict uses them). Two thresholds per network, both fixed without looking at any morph:
+- the 0.5 rule: flagged if the TTA score is at least 0.5 (the rule of the registered training accuracy);
+- FRLL-5%: flagged if the score is above the 11th highest score of the network's 204 unprocessed FRLL genuine photos
+  (so at most 10 of 204, 4.9%, of that pool are flagged).
+- Per cell: flag rate = share of the cell's genuine photos flagged (native cell: the set's unprocessed genuine
+  photos; E7 cell: the history-matched genuine photos); miss rate = share of the cell's morphs not flagged. Always
+  printed together, with the threshold pool as a column. Point values, per network and as arm means.
+
+**(d) Incomplete arms.** An arm with fewer than five networks is printed only as descriptive rows labelled
+"incomplete (k of 5)": no verdict and no reproduction gate. Fewer than five permuted networks makes the verdict
+"provisional" as in Amendment 1 (b).
+
+**(e) Labels.** Every table is labelled "our frames" (our alignment of every benchmark, `REVIEW_EV1_20261111.md`).
+Beside every network its card and platform, from `metrics.json` (`info.device`) and the result folder (rented
+machine or Athena).
+
+**(f) Sample-order gate for ViT-L/14.** `train.py` records one composition row per loader batch, which for the
+ViT-L/14 recipe is the micro-batch of 32 (8 per optimiser step); the prediction uses batch 32 (`gates.py`).
+
+**(g) Printed checks that refuse nothing:** `meta.json` seed equals the task's seed and `meta.json` arch equals the
+recipe's.
+
+**(h) The reader.** `src/AD4/summarise.py` is rewritten to implement the registration with these points; its sha256
+is recorded in the README before it reads any trained network.

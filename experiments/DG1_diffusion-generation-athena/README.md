@@ -295,6 +295,18 @@ here. No answer yet.
   started (`/mnt/t7/smad_next/DG1/validity/addon_s<k>/`, gen run `athena_DG1_addon`). Add-on tasks 2–7 still
   pending ('ReqNodeNotAvail', start time N/A).
 
+- 11 Nov 21:40. Lead: add-on tasks 2–7 forecast after 02:30; prepare a rented-machine route (author approved), started
+  by the lead. Registered as `prereg.md` amendment 3 (one platform per shard; gate = the registered 8-image equivalence
+  reading; Athena task cancelled once the rented shard is verified; shards 0–1 stay Athena). Written:
+  `src/DG1/rented/remote_run.sh` (on the machine: setup with uv-managed Python 3.12.3 and the DG1 pins, `eq`, `shard K`;
+  sha256 5182c56c…) and `src/DG1/rented/drive.sh HOST PORT LEASE_FOLDER` (DGX side: upload 2.88 GB with retries, sha
+  check, setup, gate read with `dg1_validity.py equiv` → `equivalence_rented.json`, then per shard: skip if the Athena
+  task already runs or finished, else run, fetch to `/mnt/t7/smad_next/DG1/rented_results/`, verify, unpack to
+  `gen/addon_sK/` with `PLATFORM.txt`, `scancel 3545907_K`; codes tars copied only while T7 has > 56 GB free; RELEASE in
+  the lease folder at the end and on any failure exit; log `LEASE_FOLDER/dg1_drive.log`). The Athena-state parser was
+  tested live (task 1 COMPLETED, task 2 PENDING from the range line). Not started by me (uploads from owner sessions are
+  refused tonight); the command went to the lead.
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):

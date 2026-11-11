@@ -37,7 +37,9 @@ Logs: `/mnt/t7/smad_next/AD4/test/*.stdout.log`, results `/mnt/t7/smad_next/AD4/
   which trained these recipes there.
 - A full-length run (6,250 steps) and full-manifest scoring of a trained network; peak GPU memory of M3 bs 256 on
   H100 (A47 ran the same batch).
-- Rebuilding a network from `last_trainable.pt` + the pack weights (not checked bitwise).
+- ~~Rebuilding a network from `last_trainable.pt` + the pack weights (not checked bitwise).~~ Corrected 11 Nov 22:50:
+  this was tested by the pre-run reviewer on the DGX smoke network: `build_run_model(meta)` + pack weights +
+  `last_trainable.pt` reproduce `last.pt`, 203 tensors, 0 differ (README section 6.1).
 - That the zero-step network equals train.py's step-0 state: by construction (same seeding, build_model, apply_lora
   order), not checked bitwise.
 
@@ -122,3 +124,15 @@ exactly (200 of 200 batches, seed 1). For seed 401 it gives [[139,117,0],[125,13
 matches the reviewer's expectation and the DGX smoke test. Applied to each network when its result arrives.
 
 **Gate 2, reproduction:** computed when the five morph-free ViT-B/16 networks are in.
+
+## Gates of the trained networks (11 Nov 22:41 to 22:43; reader `src/AD4/summarise.py --stage gates`)
+
+Our frames throughout. Files: `ad4_gates_m3.json`, `ad4_gates_m3l.json`.
+- ViT-B/16 (rented: morph-free on A100-SXM4-40GB, label-permuted on RTX 6000 Ada; torch 2.2.1), 9 of 10 tars at gate time:
+  no refusal; sample-order gate 9 of 9 pass (200/200).
+- **Reproduction gate: MISS, "not reproduced on this stack"**, 1 of 11 cells: Fast-DiM-ODE native, morph-free seed mean 4.01%
+  against a bound of 3.0 (seeds 401 to 405: 8.72, 1.88, 3.96, 0.10, 5.40). The 10 other cells are inside their bounds
+  (README, "Gates"). Lead's ruling: the flag stands on every ViT-B/16 number; the registered remedy (the ten ViT-B/16
+  tasks on WCSS, still in its ready queue) decides when WCSS reopens; until then the rented arm is read descriptively.
+- Scorer-equivalence gate: pass (16:46).
+- ViT-L/14 (Athena array 3544219, A100 40 GB): 1 of 10 tars at gate time (`AD4_m3lmf_s402`, hash OK); sample-order gate pass.

@@ -240,6 +240,11 @@ to 0.96 inside every storage size), so Part 3 is descriptive.
   `a12_af0soft.py` for item 13) waits for 3546033. `sm1_lora_audit.py` smoke on the 3-step smoke fit submitted as
   3546052 (pipeline check only; its scores mean nothing).
 
+- 22:10 Lead: Athena cannot start the queue tonight; ViT-B/16 fits move to one rented A100 (amendment A13,
+  registered). Prepared `src/SM1/rented/` (RUNBOOK.md, drive.sh with one `all` command, remote_setup.sh,
+  unpack_one.sh, fit_local.sh, remote_smoke.sh, remote_queue.sh); uploads from owner sessions are refused tonight,
+  so the lead starts the driver. 12 packs, 45.8 GB; about 14 h for 12 fits.
+
 ## 3. Data
 
 Inputs (read only):

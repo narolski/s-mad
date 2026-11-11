@@ -180,3 +180,28 @@ Approved by the lead (review findings 2–4, about 4 A100-hours), registered bef
   above ("all work in `$SCRATCH_LOCAL`"): Athena's `-C localfs` gives only 4 GB (measured by the lead, 11 Nov).
 - `module load Python/3.12.3` needs `GCCcore/13.3.0` first on Athena; the environment pins numpy 1.26.4 and pillow
   12.2.0 as constraints (job 3544215 ended up with numpy 2.5.4, which DiffAE cannot import).
+
+## Amendment 3 (11 Nov 2026, about 21:40 CET): add-on shards 2–7 on a rented machine
+
+Registered before any image of this route exists or is read. The six add-on tasks still waiting on Athena (array
+3545907, tasks 2–7) are forecast for after 02:30, and the frozen read of the new images (FZ2) waits for them; the author
+approved rented machines within tonight's budget.
+
+- **Platform:** one rented Docker machine (image `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime`, root, one GPU with at
+  least 24 GB, about 80 GB disk). The DG1 environment is rebuilt there with the same pins as on Athena (Python 3.12.3,
+  torch 2.12.1 / torchvision 0.27.1 with cu130 if the driver is ≥ 580 else cu128 then cu126, numpy 1.26.4 and pillow
+  12.2.0 as constraints, the other pins unchanged); the build actually used is recorded. Same packs (sha-checked), same
+  code (`dg1_gen.py`, `dg1_addon.py`), batch 16.
+- **Gate (binding, the registered reading of the equivalence gate unchanged):** the 8 equivalence images (`eq.csv`)
+  are generated on the rented machine and compared with the stored DGX A43 files; the rented route is accepted only
+  if the mean |difference| of every one of the 8 images is ≤ 2 grey levels. If not, no rented shard is produced or used.
+- **One platform per shard:** shards 0 and 1 stay as produced on Athena. For shards 2–7, before starting a shard the
+  driver asks Athena: if the Athena task is already running or finished, the shard is left to Athena and not run on
+  the rented machine. Otherwise the shard is run on the rented machine; once its tar is copied back and verified
+  (sha256), the Athena task is cancelled, and if it finished meanwhile its output is not used. Every shard folder
+  carries a `PLATFORM.txt`. Each shard is self-contained (all its images, including the in-process reference renders
+  REC / SAME / X / MIR, come from one process), so no contrast mixes platforms; rented images form generation run
+  `rented_DG1_addon` and are never combined with Athena or DGX images inside one contrast.
+- **Codes and fresh draws** of rented shards are copied back only if T7 keeps more than 55 GB free (lead's disk rule);
+  otherwise they are not kept (they are reproducible: deterministic encoding up to GPU arithmetic, seeded fresh draws),
+  and this is recorded.

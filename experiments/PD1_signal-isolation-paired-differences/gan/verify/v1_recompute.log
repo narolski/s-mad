@@ -1,0 +1,48 @@
+{
+ "subjects_in_more_than_one_block": 0,
+ "n_subjects": 128,
+ "renders_with_source_outside_block": 0,
+ "blocks_with_not_2_subjects": 0,
+ "FR_cos_cross_block_max": 0.2977829873561859,
+ "FR_cos_cross_block_n_above_0.4": 0,
+ "FR_cos_same_person_median": 1.0,
+ "image_ids_shared_between_hosts_of_different_blocks": 0,
+ "H_pairs": 423
+}
+clip pool O_paired 7 x3vx1 0.811 [0.771 0.852]  x3vx2 0.617 x2vx1 0.704 C [0.01, 0.01, 0.01, 0.01, 0.1]
+clip pool O_paired 8 x3vx1 0.820 [0.785 0.857]  x3vx2 0.618 x2vx1 0.708 C [0.001, 0.001, 0.01, 0.01, 0.01]
+clip pool O_paired 9 x3vx1 0.792 [0.755 0.83 ]  x3vx2 0.605 x2vx1 0.691 C [0.01, 0.001, 0.01, 0.01, 0.001]
+clip pool T_paired 7 x3vx1 0.811 [0.775 0.85 ]  x3vx2 0.669 x2vx1 0.675 C [0.01, 0.01, 0.001, 0.1, 10.0]
+clip pool T_paired 8 x3vx1 0.800 [0.762 0.841]  x3vx2 0.653 x2vx1 0.668 C [0.01, 10.0, 0.01, 0.001, 0.01]
+clip pool T_paired 9 x3vx1 0.789 [0.745 0.837]  x3vx2 0.654 x2vx1 0.657 C [0.001, 0.01, 0.1, 0.001, 10.0]
+clip pool O_unpaired 7 x3vx1 0.770 [0.73  0.813]  x3vx2 0.564 x2vx1 0.721 C [0.01, 0.01, 0.01, 0.001, 0.1]
+clip pool O_unpaired 8 x3vx1 0.800 [0.764 0.836]  x3vx2 0.569 x2vx1 0.737 C [0.01, 0.01, 0.01, 0.1, 0.01]
+clip pool O_unpaired 9 x3vx1 0.806 [0.769 0.844]  x3vx2 0.576 x2vx1 0.744 C [0.01, 0.01, 0.01, 0.01, 0.01]
+clip pool T_unpaired 7 x3vx1 0.810 [0.774 0.848]  x3vx2 0.659 x2vx1 0.680 C [0.01, 0.001, 0.01, 0.01, 0.01]
+clip pool T_unpaired 8 x3vx1 0.816 [0.782 0.852]  x3vx2 0.664 x2vx1 0.684 C [0.01, 0.01, 0.001, 0.01, 0.01]
+clip pool T_unpaired 9 x3vx1 0.827 [0.787 0.867]  x3vx2 0.669 x2vx1 0.686 C [0.01, 0.01, 0.1, 0.01, 0.01]
+clip patch O_paired 7 x3vx1 0.797 [0.761 0.836]  x3vx2 0.630 x2vx1 0.697 C [0.001, 0.001, 0.001, 0.001, 0.001]
+clip patch O_paired 8 x3vx1 0.792 [0.756 0.83 ]  x3vx2 0.621 x2vx1 0.694 C [1.0, 0.01, 0.001, 0.001, 0.01]
+clip patch O_paired 9 x3vx1 0.785 [0.75  0.828]  x3vx2 0.633 x2vx1 0.684 C [0.001, 0.001, 0.001, 0.01, 0.001]
+clip patch T_paired 7 x3vx1 0.787 [0.75  0.827]  x3vx2 0.652 x2vx1 0.661 C [0.001, 10.0, 0.001, 0.01, 1.0]
+clip patch T_paired 8 x3vx1 0.788 [0.747 0.836]  x3vx2 0.650 x2vx1 0.664 C [0.001, 0.01, 0.001, 0.1, 0.001]
+clip patch T_paired 9 x3vx1 0.815 [0.774 0.857]  x3vx2 0.673 x2vx1 0.673 C [1.0, 0.001, 0.01, 0.1, 1.0]
+clip patch O_unpaired 7 x3vx1 0.806 [0.771 0.843]  x3vx2 0.589 x2vx1 0.748 C [0.01, 0.1, 0.1, 0.01, 0.01]
+clip patch O_unpaired 8 x3vx1 0.816 [0.777 0.856]  x3vx2 0.577 x2vx1 0.758 C [0.1, 0.1, 0.1, 0.1, 0.01]
+clip patch O_unpaired 9 x3vx1 0.820 [0.782 0.858]  x3vx2 0.601 x2vx1 0.741 C [0.01, 0.01, 0.01, 0.01, 0.01]
+clip patch T_unpaired 7 x3vx1 0.820 [0.784 0.86 ]  x3vx2 0.673 x2vx1 0.678 C [0.01, 0.01, 10.0, 0.1, 0.1]
+clip patch T_unpaired 8 x3vx1 0.853 [0.816 0.891]  x3vx2 0.676 x2vx1 0.713 C [0.01, 0.01, 0.01, 0.1, 0.01]
+clip patch T_unpaired 9 x3vx1 0.834 [0.796 0.876]  x3vx2 0.672 x2vx1 0.691 C [0.01, 1.0, 0.01, 0.1, 0.01]
+dinov3 pool O_paired 7 x3vx1 0.792 [0.757 0.831]  x3vx2 0.592 x2vx1 0.713 C [0.01, 0.01, 0.01, 0.01, 0.1]
+dinov3 pool O_paired 8 x3vx1 0.816 [0.784 0.85 ]  x3vx2 0.601 x2vx1 0.737 C [0.01, 0.01, 0.1, 0.01, 0.1]
+dinov3 pool O_paired 9 x3vx1 0.804 [0.767 0.84 ]  x3vx2 0.592 x2vx1 0.728 C [0.01, 0.01, 0.1, 0.01, 0.01]
+dinov3 pool T_paired 7 x3vx1 0.827 [0.79  0.866]  x3vx2 0.620 x2vx1 0.733 C [0.01, 1.0, 10.0, 0.01, 0.1]
+dinov3 pool T_paired 8 x3vx1 0.827 [0.794 0.865]  x3vx2 0.618 x2vx1 0.731 C [10.0, 0.01, 0.01, 10.0, 10.0]
+dinov3 pool T_paired 9 x3vx1 0.828 [0.791 0.868]  x3vx2 0.621 x2vx1 0.742 C [0.01, 10.0, 1.0, 0.1, 0.1]
+dinov3 pool O_unpaired 7 x3vx1 0.837 [0.802 0.869]  x3vx2 0.602 x2vx1 0.752 C [0.01, 0.01, 0.01, 0.01, 0.01]
+dinov3 pool O_unpaired 8 x3vx1 0.822 [0.788 0.856]  x3vx2 0.588 x2vx1 0.748 C [0.01, 0.01, 1.0, 0.01, 0.1]
+dinov3 pool O_unpaired 9 x3vx1 0.853 [0.821 0.883]  x3vx2 0.603 x2vx1 0.765 C [0.01, 0.01, 0.01, 0.01, 0.01]
+dinov3 pool T_unpaired 7 x3vx1 0.869 [0.837 0.903]  x3vx2 0.656 x2vx1 0.749 C [1.0, 1.0, 0.1, 1.0, 0.1]
+dinov3 pool T_unpaired 8 x3vx1 0.887 [0.853 0.92 ]  x3vx2 0.648 x2vx1 0.768 C [1.0, 0.1, 0.01, 0.01, 0.1]
+dinov3 pool T_unpaired 9 x3vx1 0.872 [0.84  0.904]  x3vx2 0.646 x2vx1 0.769 C [0.1, 0.1, 0.1, 10.0, 1.0]
+done

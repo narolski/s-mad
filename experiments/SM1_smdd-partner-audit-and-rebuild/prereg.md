@@ -440,6 +440,20 @@ A12 implementation notes (11 Nov 21:15, before any score of items 5 to 13):
   only the manifest-tar variable (default unchanged) and the armsb image set for b and b′.
 - Item 9 uses a 500-draw image bootstrap per class (stated in the script).
 
+## Amendment A13: ViT-B/16 fits on one rented A100 (lead, 11 Nov about 22:10; registered before any fit result)
+
+Athena cannot start the queue tonight (12 of 48 nodes work); the author approved rented machines within tonight's
+budget. **All ViT-B/16 LoRA fits of this experiment come from one machine type**: a rented A100 40 GB running the
+Docker image `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime` with the packages pinned as
+`src/athena/containers/smad_torch221_cu121_v1.def` (`src/SM1/rented/`, RUNBOOK.md). The ViT-L/14 fits stay on Athena.
+- Fits: arms a, c, e, f at seeds 401 and 402 first, then the partner-only arms b and b′ at seeds 401 and 402 (12
+  fits; arm d is not in this set). Recipe, compositions, command lines and reads as A11 (`lora_run.sh` RECIPE m3,
+  unchanged), with the data read from the once-unpacked packs (same pinned tars as Athena) instead of a per-job RAM
+  disk; each fit also scores the audit set (A12 item 10).
+- Smoke: 200 steps on arm a seed 401; the Athena ViT-B/16 jobs (3545957 array, 3546034 array) are cancelled only
+  after it passes. A failed fit is rerun once unchanged.
+- Results: one tar + sha256 per fit, verified, in `/mnt/t7/smad_next/SM1/results_rented/`.
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 

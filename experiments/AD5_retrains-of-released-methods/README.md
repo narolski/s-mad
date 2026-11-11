@@ -11,11 +11,11 @@ morphing development set), seeds 401 to 405, last checkpoint, do the retrains be
 the readings the own-crop re-score of the audit rows (RS1) takes (history-matched genuine photos, flag rates under
 benign processing, the smiling half of the FRLL genuine class, the MorDIFF control images)?
 
-Status 11 Nov 2026, 18:55 CET: `prereg.md` written (18:10). All 8-image checks passed on the DGX (SMDD crop,
-MADation ViT-B/16 and ViT-L/14 training, MixFaceNet-MAD training, SelfMAD landmarks, face labels and training,
-conversion and scoring wrappers). Packs uploaded to Athena. Smoke jobs running on Athena (A100): smoke A 3544216
-(environment + SMDD crop), then smoke B 3544217 (MADation L/B + MixFaceNet-MAD speed), SelfMAD smoke 3544218.
-No retrain and no score exist yet.
+Status 11 Nov 2026, 22:40 CET: registration with amendments 1-3 in `prereg.md`. All smoke jobs passed (SMDD crop,
+MADation ViT-L/14 and ViT-B/16 DDP, MixFaceNet-MAD, SelfMAD, scoring). Production arrays submitted and pending
+(Athena has 12 usable nodes tonight): MADation ViT-L/14 3545813, ViT-B/16 3545814 (8 GPUs per seed), MixFaceNet-MAD
+3545870, SelfMAD 3545933 + 3545936 (1 GPU per seed; about 30 h each). The SelfMAD release has been scored through
+the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
 
 ## 2. Timeline
 
@@ -232,6 +232,9 @@ No retrain and no score exist yet.
   (0d22533b...; smoke only, not used). The 750 s of 3545960 were therefore start-up from the shared file system.
   Note: the pending production tasks import from shared environments (envs/AD5/madation, envs/AD5/selfmad); their
   start-up may cost minutes on a slow evening; they are not changed (MADation arrays frozen by the lead's ruling).
+- 11 Nov 21:58. Persistent job poller `src/AD5/athena/poll_jobs.sh` (command lock, every 170 s) writes state changes to
+  `/mnt/t7/smad_next/AD5/state/jobs.log` (PID in `state/poller.pid`). 22:40: all AD5 production tasks still pending
+  ("ReqNodeNotAvail": 23 nodes failed, 13 reserved, 12 partly used; 8-GPU tasks need a whole node).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
