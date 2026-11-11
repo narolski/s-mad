@@ -30,7 +30,16 @@ See "Author rulings of 11 Nov (afternoon)" in `11_AUDIT_PLAN.md`. Also: commit e
 branches and pull requests in `narolski/s-mad`; never let data sit only in volatile storage; push the
 morph literature note to `narolski/research`.
 
+## Author's positions of 11 Nov, about 16:00 CET (literature check running)
+
+- **Mirror self-morph and same-person morphs:** if the morphing method is used, it is a morph.
+- **One-photo reconstructions (GAN inversion, diffusion encode and decode of a single photo):** this
+  is generated-image detection, a different task from morph detection. Lean: do not penalise morph
+  detectors on it. The treatment must be consistent for every detector, ours included.
+- Both points are to be checked against the literature; if research has no stand, the paper discusses it.
+- The stuck LibreOffice process on the DGX may be stopped (done).
+
 ## Still open
 
-1. **Codex transcript "Eksperymenty z S-MAD"** from the author's Mac, to be read before the start.
-2. **Start signal** after that.
+1. **Class definitions**, to be fixed after the literature check: proposal in `14_CLASS_DEFINITIONS.md` (pending).
+2. **Literature repository** note is pushed; nothing else open there.
