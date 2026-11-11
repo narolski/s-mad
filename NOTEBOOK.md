@@ -5,7 +5,7 @@ One line per idea. Newest state only; history is in git. Updated by the lead aft
 Status: `planned` → `ready` (pre-registered, command tested) → `running` → `done` → `reviewed`.
 Verdict: `yes`, `no`, `mixed`, or blank.
 
-Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
+Last update: 11 Nov 2026, 14:25 CET. Started. WCSS: 48 one-GPU slots queued (jobs 6301498, 6301499).
 
 ## Where we stand, in five lines
 
@@ -41,7 +41,7 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 
 | ID | Question in plain words | Status | Result | Verdict | Next |
 |---|---|---|---|---|---|
-| T0 | First signal: twin-trained head on frozen CLIP, existing StyleGAN3 and DiffAE sets | planned | | | 2 h on the DGX |
+| T0 | First signal: twin-trained head on frozen features, existing StyleGAN3 and DiffAE sets | partly done by Codex, 11 Nov | no transfer between generators (0.26 to 0.52); held-out sets 0.46 to 0.63; only 16 to 90 training pairs | no (underpowered) | rerun at 2,000 pairs |
 | T2 | Do released detectors' features hold the signal if only the last layer is refit on twins? | planned | | | after features |
 | T3 | Is a morph a more "average" face in face-recognition space? | planned | | | after features |
 | T4 | Twin-trained detector, 3 backbones × 5 seeds, held-out tool and generator | planned | | | after TwinSet |
@@ -58,7 +58,7 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 | X4 | Photo-history control on a photo pool no network was trained on (FFHQ) | planned | | | about 0.3 H100-h |
 | X5 | Landmark twins from an unseen source (CASIA), built with the unchanged approved script | planned | | | CPU |
 | X3 | Does the number of different pipelines per class matter once twins are present? | planned | | | cut first |
-| — | Generated-morph training arms (CG, CD, CGD) of the old plan | retire, or run CG only (11 H100-h) | | | author's call |
+| — | Generated-morph training arms (CG, CD, CGD) of the old plan | retired (author, 11 Nov) | | | |
 
 ## Zero-compute cue checks (from the cue table)
 
@@ -89,12 +89,12 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 
 ## Open decisions and blockers
 
-- Start signal from the author (plan is under review).
-- Hand-over of the DGX and WCSS slots from the other loop.
-- Design questions 1 to 5 at the end of `11_AUDIT_PLAN.md`.
+- Codex loop is paused; its DGX controllers still run (20 CLIP fits, up to 66 h). See `12_STATE_AT_HANDOVER.md`.
 - No x86 build of MIPGAN yet (GAN causal test depends on it).
 - For our own networks, FERET and FRGC have no unsealed held-out persons; unseen-source tests use CASIA or Multi-PIE.
 
 ## Log
 
 - 11 Nov: plan, evidence dossier, cue matrix, audit plan and workflow written. Repository created.
+- 11 Nov: author rulings recorded. Main contrast is now processed genuine image against morph; same-person morphs are a side study.
+- 11 Nov 14:22: transcript read; start. 48 WCSS slots submitted. Owners assigned to first-round experiments.

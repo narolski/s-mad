@@ -8,8 +8,10 @@ The audit experiments (IDs AR, AD, AG) are specified in `11_AUDIT_PLAN.md`; data
 
 Every benchmark so far compares morphs from one pipeline with photos from another, so a detector can
 score well by recognising the pipeline. We build training and test data in which both classes come
-from the same pipeline with the same post-processing, and the only difference is whether one or two
-people went in. On that data we measure what released detectors do, and train the first detector that
+from the same pipeline with the same post-processing. The genuine class is a photo that went through
+the tool without morphing; the attack class is a morph. Same-person morphs are a third, labelled
+group: by the author's ruling they are morphs, and we measure separately whether a detector needs a
+second person to react. On that data we measure what released detectors do, and train the first detector that
 is checked against it.
 
 Working name: **TwinMAD** (twin-controlled morphing attack detection). The paper has two halves that
@@ -32,7 +34,8 @@ or benchmark-track paper and a risky main-track one. Four days is enough to lear
 Frozen CLIP ViT-L/14 with a small head first, LoRA second. Reasons: the released MADation ViT-L/14 is
 the only row that does not move under E7 on Greedy-DiM (Δ 0.00); head-only DINOv3 beat adapted DINOv3
 in A49; frozen features make each experiment minutes, not hours. DINOv3 ViT-L is the second backbone.
-MADMamba joins only as one arm of T4 with the identical data; it stays in the paper only if it wins there.
+State-space arms are a side quest under identical data: MambaVision first, a freshly trained MADMamba
+second. They stay in the paper only if they win there.
 
 ## The dataset: TwinSet
 

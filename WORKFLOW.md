@@ -34,7 +34,8 @@
 ## Cluster and money rules
 
 - WCSS: one SSH connection at a time, so only the lead connects. Submissions and polls are batched.
-  Every script carries `--extra=FORCE_RM_TMPDIR`, uses `$TMPDIR` packs and excludes the listed nodes.
+  Every script carries `--extra=FORCE_RM_TMPDIR` and uses `$TMPDIR` packs. No node exclusion lists
+  (author, 10 Nov). Connections take the shared lock `/tmp/opencode/wcss-client.lock`.
   Long jobs are submitted first so they age in the queue while short work runs locally.
 - Polling follows job ETAs from step rates, not a fixed timer.
 - Vast: only for generating data that other experiments wait on, and only when the WCSS wait is
