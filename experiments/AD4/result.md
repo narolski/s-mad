@@ -72,3 +72,22 @@ applied). Their E7 cells therefore equal the native cells and carry no extra inf
   transactions"). Nothing was rented and nothing was spent.
 - The ten task directories were moved from WCSS `queue/ready` to `staging/AD4` before the attempt and then moved
   back to `queue/ready`. All 20 AD4 tasks are now in `ready/`.
+
+## Vast lease for the ViT-B/16 arm of the morph-free networks experiment (AD4): opened by the main session
+
+- **Exception to "no training on rented machines":** confirmed by the author for this one experiment (approved
+  run on Vast, 11 Nov), because the WCSS scheduler forecasts no slot before 13 Nov 23:20. The rental commands
+  (create and destroy) are run by the main session, not by the owner.
+- **Instance:** 60223497, 2x RTX 4090, Sweden, reliability 0.992. Price 0.962 USD/h in total. Image
+  `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime`, which matches the torch version of the WCSS container.
+  Created 11 Nov about 16:08 CET; credit before creation 111.85 USD. Lease config
+  `/mnt/t7/smad_next/AD4/vast/lease.json`: cap 9.6 USD, 8-hour deadline.
+- **Watchdog:** `src/AD4/vast/watchdog.py` (PID 1952064), run from the DGX.
+- **Tasks:** the ten ViT-B/16 task directories were moved out of the WCSS ready queue into `staging/AD4`
+  before the queue started, so no cluster slot runs them twice.
+- **Deviations from the WCSS path:**
+  - Host Python from the image, not the SIF container. torch 2.2.1 matches the container; timm 1.0.27,
+    huggingface_hub 0.36.2 and safetensors 0.8.0 are pinned to the WCSS library packs. numpy is pinned to
+    1.26.4, and Pillow is the image's own.
+  - No apptainer. `AD4_LOCAL=1` with the same `run.sh` and the same pack.
+  - Cards are RTX 4090 instead of H100; 7 loader workers, as on WCSS.

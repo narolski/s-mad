@@ -45,6 +45,7 @@ def main():
     for k in ("repo", "ckpt", "a256", "pool-a256", "pool-sel", "self-pairs", "out-root"):
         ap.add_argument("--" + k, required=True)
     ap.add_argument("--n-xt", type=int, default=30)
+    ap.add_argument("--n-img", type=int, default=0, help="persons with x_T and renders (0 = all); z_sem for all")
     ap.add_argument("--smoke", type=int, default=0)
     ap.add_argument("--bs", type=int, default=16)
     a = ap.parse_args()
@@ -124,8 +125,10 @@ def main():
         sync()
     log["encode_z_s"] = time.time() - t0
     # ---- stochastic codes (the A43 call: encode_stochastic(batch, encode(batch), T=250))
-    need_xt = [f"{p}_03" for p in persons] + [f"{p}_03_flip" for p in persons] + \
-              [f"{p}_08" for p in persons[:a.n_xt]] + [f"{nxt[p]}_03" for p in persons[:a.n_xt]]
+    pim = persons[:a.n_img] if a.n_img else persons
+    log["n_img_persons"] = len(pim)
+    need_xt = [f"{p}_03" for p in pim] + [f"{p}_03_flip" for p in pim] + \
+              [f"{p}_08" for p in pim[:a.n_xt]] + [f"{nxt[p]}_03" for p in pim[:a.n_xt]]
     need_xt = sorted(set(need_xt))
     t0 = time.time()
     with torch.no_grad():
@@ -157,7 +160,7 @@ def main():
         return intp[0], intp_x.view(-1, *x_shape)[0], float(theta)
 
     jobs = []
-    for p in persons:
+    for p in pim:
         A = f"{p}_03"
         jobs.append(("PAA", A, A, A))
         jobs.append(("PAF", A, A, A + "_flip"))

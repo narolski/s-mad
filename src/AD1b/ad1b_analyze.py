@@ -26,6 +26,8 @@ def load(p, name):
 def med_iqr(v):
     v = np.asarray(v, float)
     v = v[np.isfinite(v)]
+    if not len(v):
+        return None
     return {"median": float(np.median(v)), "q25": float(np.percentile(v, 25)), "q75": float(np.percentile(v, 75)), "n": int(len(v))}
 
 
@@ -56,6 +58,7 @@ def main():
     ap.add_argument("--gen", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--smoke", action="store_true")
+    ap.add_argument("--no-fr", action="store_true")
     a = ap.parse_args()
     G, O = pathlib.Path(a.gen), pathlib.Path(a.out)
     O.mkdir(parents=True, exist_ok=True)
@@ -99,6 +102,8 @@ def main():
     rows = {(r["pool"], r["name"]): r for r in csv.DictReader(open(G / "gen_rows.csv"))}
     b20 = [r for r in csv.DictReader(open(A43 / "gen_log.rows.csv")) if r["pool"] == "B20"]
     pa = []
+    persons = [p for p in persons if (G / "PAF/png256" / f"{p}_03.png").exists()]
+    res["part2"]["n_persons"] = len(persons)
     for p in persons:
         A = f"{p}_03"
         PAA, PAF, D20r = (G / k / "png256" / f"{A}.png" for k in ("PAA", "PAF", "D20r"))
@@ -134,6 +139,9 @@ def main():
     with open(O / "part2_per_person.csv", "w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(pa[0])); w.writeheader(); w.writerows(pa)
     # ---------------- Part 2 (d): glintr100 cosine to the raw photo A (A43 route)
+    if a.no_fr:
+        res["part2"]["fr_glint"] = "skipped (--no-fr)"
+        return finish(res, pa, a, O)
     PE = load(PE_P, "prep_eval")
     import hashlib
     assert hashlib.sha256(open(A2F_P, "rb").read()).hexdigest() == A2F_SHA
@@ -162,6 +170,10 @@ def main():
     v = [float(emb[("PAF", p)][0] @ emb[("raw", p)][0]) for p in persons if emb[("PAF", p)][1] and emb[("raw", p)][1]]
     fr["PAF_verifies_A_at_FMR1e-3"] = float(np.mean(np.array(v) >= thr))
     res["part2"]["fr_glint"] = fr
+    return finish(res, pa, a, O)
+
+
+def finish(res, pa, a, O):
     # ---------------- readings (fixed in the prereg)
     p1 = res["part1"]["z_sem FRLL"]
     code_ratio = p1["ratio_euc"]["median"]
