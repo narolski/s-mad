@@ -345,7 +345,7 @@ primary hosts and R3m of the 200 hosts of `ar1soft_src.csv`, from `/mnt/t7/smad_
 - CLIP ViT-L/14-224 patch tokens: `/mnt/t7/smad_next/AF0/feat/clip224/ladsoft.tokens.npy` (2,544 x 256 x 1,024 float16)
   + `ladsoft.ids.npy` (order = ladsoft.csv, checked).
 - DINOv3 ViT-L/16-512 patch tokens: `/mnt/t7/smad_next/AF0/feat/dinov3_512/ladsoft.tokens.npy` (2,544 x 1,024 x 1,024;
-  mean patch token = mean over axis 1) + `.ids.npy`; complete when `ladsoft.done` reads 2544.
+  mean patch token = mean over axis 1) + `.ids.npy`; complete (2,544, order equals ladsoft.csv, checked 20:15).
 - 27 simple statistics: `/mnt/t7/smad_next/AF0/cues/ladsoft.npz` (ids, cues, names).
 - Unsoftened counterparts: `feat/{clip224,dinov3_512}/ar1.tokens.npy` (list `lists/ar1.csv`), `cues/ar1.npz`.
 Build time: about 55 min with two processes (forward and reverse); both logs merged
@@ -381,3 +381,15 @@ Fixed reading (lead): the map earns its place only if (d) beats (b) by at least 
 value against (b) 0.005-0.013. Neither condition holds on CLIP-224. (Softened R2w here = AR1 warp-only images of 200
 hosts passed through the approved shrink-and-enlarge path; FRLL stays evaluation only; F4 crossed test: colorFERET
 validation u50 vs FRGC validation zero-field + halves.)
+
+## AF0 wave 3, control 5: border blanking, CLIP ViT-L/14 at 224 (`wave3_border_clip224.json`)
+
+Out-of-coverage region = pixels that are exactly black in either warped source (AF0: the two halves of each validation
+u50 pair; AR1 OpenCV: the engine's own warped host and partner of R4, or black in R2w); the same region set to constant
+grey 128 in both classes (`src/AF0/border.py`), features re-extracted, heads unchanged (no refit). Blanked fraction of
+the frame: AF0 morphs mean 3.4% (median 0, max 29%); AR1 R4 mean 1.8% (median 0, max 49%).
+AUC original -> blanked: AF0 validation u50 vs own halves (200 vs 400): full-design heads 0.9995-1.000 ->
+0.999-0.9999; arms (a) 1.000 -> 0.9996, (b) 0.9999 -> 0.9995, (c) 0.9997 -> 0.9983, (d) 0.984 -> 0.976, (e) 0.975 ->
+0.965. AR1 OpenCV R2w vs R4 (536 vs 536): full heads 0.994-0.999 -> 0.992-0.998; arms (a) 0.9985 -> 0.9978,
+(b) 0.999 -> 0.9986, (c) 0.997 -> 0.996, (d) 0.977 -> 0.973, (e) 0.959 -> 0.952. Changes are at most 0.010.
+The Laplacian-variance floor rises after blanking: AF0 0.760 -> 0.870; OpenCV R2w vs R4 0.774 -> 0.817.

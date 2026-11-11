@@ -221,6 +221,18 @@ here. No answer yet.
   PD1-training person, wedge / greyscale / twin-pair / shared-date flags, pair disagreement; per-pool summaries for
   all, unflagged and per database.
 
+- 11 Nov 20:03. Set B shard 3 finished (task 3545841_4, node t0013, 1,577 s, 0.44 GPU-h) and fetched (`DG1_setB_s3.tar`
+  sha256 1c3f3678…; shard 1 tar 8b917ce3…). Both: all finite, genuine writes 268 of 268 lossless, 3.01 / 3.19 s per
+  inversion, GPU peak 13,249 MiB.
+- 11 Nov 20:07. Set A validity done (`/mnt/t7/smad_next/DG1/validity/setA/`: `manifest.csv`, `validity.csv`,
+  `validity.json`; then `dg1_manifest_extra.py` → `manifest_full.csv`, `validity_full.json`; copies of the two summaries
+  in `experiments/DG1_diffusion-generation-athena/validity/`). Table in section 5.
+- 11 Nov 20:08. Athena start estimates: production shards 0 and 2 (3545877) 20:19; add-on (3545907) 12 Nov 06:37.
+- 11 Nov 20:09. Set B validity started per shard (shards 1 and 3 now, sequentially; logs
+  `/mnt/t7/smad_next/DG1/validity_setB_s<k>.log`, outputs `/mnt/t7/smad_next/DG1/validity/setB_s<k>/`);
+  `src/DG1/dg1_merge_manifests.py` merges the shard manifests (paths relative to `/mnt/t7/smad_next/DG1/gen`) before
+  `dg1_manifest_extra.py` adds the person-use and flag columns.
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):
