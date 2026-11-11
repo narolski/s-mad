@@ -258,7 +258,7 @@ def main():
     # ---- amendment A10 (lead, 11 Nov 18:45; review of ID0, H-new-2): landmarks DETECTED on the built ladder images
     for it in [x for x in items if x["set"] == "L"]:
         r = it["role"]
-        st = "LD1" if r in ("R0", "S0", "R3", "R4") else ("LD2" if r in ("R2w", "R3m", "R2wm", "R2") else "LD3")
+        st = "LD1" if r in ("R0", "R3", "R4") else ("LD2" if r in ("S0", "R2w", "R3m", "R2wm", "R2") else "LD3")  # 18:58 S0 -> LD2 (CPU load)
         if r == "R2":
             continue
         add(**{**it, "id": it["id"] + "|det", "set": st, "lm": "det", "src": it["id"]})

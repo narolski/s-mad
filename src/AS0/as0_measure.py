@@ -237,7 +237,7 @@ def iod_for(frame, nom):
     return nom[frame]["median"]          # amendment A8: canon512 uses its own genuine images
 
 
-def run(items, L, sets, limit, chunk, shard, blank=False, roles=None, db=""):
+def run(items, L, sets, limit, chunk, shard, blank=False, roles=None, db="", subsample=0):
     import cv2
     nom = json.load(open(K.OUT / "iod_nominal.json"))
     md = "meas_blank" if blank else "meas"
@@ -245,8 +245,10 @@ def run(items, L, sets, limit, chunk, shard, blank=False, roles=None, db=""):
     si, sn = map(int, shard.split("/"))
     for s in sets:
         rows = [it for it in items.values() if it["set"] == s and (not roles or it["role"] in roles)
-                and (not db or it["db"] == db)]
-        tag = (f"_{db}" if db else "") + ("_" + "-".join(sorted(roles)) if roles else "")
+                and (not db or it["db"] == db)
+                and (not subsample or int(hashlib.sha1(it["host"].encode()).hexdigest(), 16) % subsample == 0)]
+        tag = (f"_{db}" if db else "") + ("_" + "-".join(sorted(roles)) if roles else "") + \
+              (f"_sub{subsample}" if subsample else "")
         if limit:
             rows = rows[:limit]
         chunks = list(range(0, len(rows), chunk))
@@ -305,6 +307,7 @@ def main():
     ap.add_argument("--blank", action="store_true", help="amendment A4 sensitivity run -> OUT/meas_blank")
     ap.add_argument("--roles", default="", help="comma list of roles to measure (default all)")
     ap.add_argument("--db", default="", help="only items of this database (e.g. feret)")
+    ap.add_argument("--subsample", type=int, default=0, help="only hosts with sha1(host) %% k == 0")
     a = ap.parse_args()
     if a.merge:
         return merge(a.blank)
@@ -312,7 +315,7 @@ def main():
     L = LM(items)
     if a.iod:
         return nominal_iod(items, L)
-    run(items, L, a.sets.split(","), a.limit, a.chunk, a.shard, a.blank, set(a.roles.split(",")) - {""}, a.db)
+    run(items, L, a.sets.split(","), a.limit, a.chunk, a.shard, a.blank, set(a.roles.split(",")) - {""}, a.db, a.subsample)
 
 
 if __name__ == "__main__":

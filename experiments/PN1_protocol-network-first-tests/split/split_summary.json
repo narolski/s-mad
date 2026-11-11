@@ -1,0 +1,67 @@
+{
+ "rule": "prereg.md section Persons",
+ "seeds": {
+  "test": 401,
+  "dev": 402
+ },
+ "n_hosts": 536,
+ "n_V_hosts": 8,
+ "n_T": 200,
+ "n_T_read": 191,
+ "n_D": 100,
+ "n_partner_pool_for_D": 125,
+ "n_X": 380,
+ "n_L_genuine": 156,
+ "n_L_morph": 124,
+ "L_db": {
+  "feret": 26,
+  "frgc": 130
+ },
+ "Lm_db": {
+  "feret": 22,
+  "frgc": 102
+ },
+ "T_db": {
+  "frgc": 154,
+  "feret": 46
+ },
+ "D_db": {
+  "frgc": 81,
+  "feret": 19
+ },
+ "V_hosts": [
+  "feret:00468",
+  "feret:00705",
+  "feret:00706",
+  "feret:00712",
+  "feret:00720",
+  "feret:00771",
+  "feret:00797",
+  "feret:00894"
+ ],
+ "V_in_T": [
+  "feret:00468",
+  "feret:00705",
+  "feret:00720",
+  "feret:00771",
+  "feret:00797"
+ ],
+ "T_with_V_partner": [
+  "feret:00615",
+  "feret:00722",
+  "feret:00736",
+  "feret:00743"
+ ],
+ "af0_persons": 663,
+ "af0_V": 67,
+ "af0_train_persons_kept": 481,
+ "af0_dev_persons_kept": 115,
+ "sha256": {
+  "pool_csv": "861019781e79159fe7904eb60e8cda6a57e978023722615dd46023db2f299352",
+  "ar1_list": "2a1c48a0e3f2e2e981da8a3058e98dbc181dbc06dc54c26b055c7aabc8bbd810",
+  "ar1soft_src": "ee4fcee2756cb8c35ae1f4a5d906b0d2d8272ef25c7cb3a8db9a55c9cf358852",
+  "af0_manifest": "43becaca9a955028f1ce6b174aeeba82356cdc375cd6ab99da862b91319b765b",
+  "ladder_split": "2299ac2b1f3a8a4798fe1730ab8722780933ba956d4b38080fdeeb730b391ec3",
+  "af0_split": "091712ef4d68fe40943961cdfd5111b6a457cabfdf3b9058b490015c2f04a23a"
+ }
+}

@@ -113,6 +113,15 @@ detector score of this experiment has been read yet; landmark, build and feature
   run.sh; images from the GPU tars already on Athena, so no second image upload) and `athena_lora.sbatch` (array
   0..19, memfs, 120G, 12 h). Not run on the DGX first: the job needs the 11 GB AD4 pack plus 23 GB of SM1 tars in a
   RAM disk and the DGX CPU is saturated; the Athena smoke (3 steps, 8 images scored) is the 8-image test.
+- 18:45 leaseB task b done: 4 x 14,734 morphs (b, b′, K = 50, K = 500), 0 engine failures, wrapper = 78 CLI and
+  leaseB = DGX references (0); tar fetched (432 s, sha256 OK) and installed in `img/{armb,armbp,armd50,armd500}`.
+- 18:45 Athena feature smoke job 3544208 (1 A100, `athena_feats.sbatch` MODE=smoke): environment Python 3.10.4,
+  torch 2.2.1+cu121, timm 1.0.27, numpy 1.26.4, pillow 10.2.0, QuickGELU tower confirmed; 3 x 400 test images at
+  107 to 149 images/s; result tar sha256 OK. Equivalence with the DGX features on the 400 common FRLL rows: max
+  |Δ feature| 4.9e-4, max |Δ FE-header logit| 0.022 (`feat_equivalence.json`); the 400 rows are all morphs, so the
+  AUC difference is computed on the full test set after the production job.
+- 18:53 Uploads to Athena done: test (922 s), base (588 s), arme (539 s), armsc (189 s), audit (45 s);
+  armsb and the LoRA manifests queued.
 
 ## 3. Data
 

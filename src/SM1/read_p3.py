@@ -183,13 +183,15 @@ def main():
     ap.add_argument("--seeds", default="401,402,403,404,405")
     ap.add_argument("--boot", action="store_true")
     ap.add_argument("--B", type=int, default=2000)
+    ap.add_argument("--dir", default=None, help="score folder (default OUT/heads[/smoke]); LoRA: OUT/lora_scores")
+    ap.add_argument("--name", default=None, help="output tag (default smoke|full)")
     a = ap.parse_args()
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
     rows = meta()
     R = Reader(rows, a.B)
     pos = {r["id"]: i for i, r in enumerate(rows)}
-    hd = K.OUT / ("heads/smoke" if a.smoke else "heads")
+    hd = pathlib.Path(a.dir) if a.dir else K.OUT / ("heads/smoke" if a.smoke else "heads")
     res, seeds_csv, raw = {}, [], {}
     sets = [(arm, s) for arm in a.arms.split(",") for s in a.seeds.split(",")]
     for arm, s in sets + [("feref", None)]:
@@ -199,7 +201,9 @@ def main():
         zf = np.load(f, allow_pickle=False)
         zi = {str(i): v for i, v in zip(zf["id"], zf["logit"])}
         z = np.array([zi.get(r["id"], np.nan) for r in rows], np.float64)
-        assert np.isfinite(z).all(), (f, int((~np.isfinite(z)).sum()))
+        if not np.isfinite(z).all():
+            miss = [r["id"] for r, v in zip(rows, z) if not np.isfinite(v)]
+            sys.exit(f"{f}: {len(miss)} test rows without a score, e.g. {miss[:3]}")
         m = one(R, z)
         raw.setdefault(arm, []).append(m)
         for k, (p, _) in m.items():
@@ -229,7 +233,7 @@ def main():
         fals["smddT_halves"] = dict(eer_d_minus_c=dd, fails_eer=bool(dd["diff"] > 5), flag_c=float(fc),
                                     flag_d=float(fd), halved=bool(fd <= 0.5 * fc), uninformative=bool(fc < 0.05),
                                     fails=bool(dd["diff"] > 5 or (fc >= 0.05 and fd > 0.5 * fc)))
-    tag = ("smoke" if a.smoke else "full") + ("_boot" if a.boot else "")
+    tag = (a.name or ("smoke" if a.smoke else "full")) + ("_boot" if a.boot else "")
     json.dump(dict(arms=res, steps=steps, falsifiers=fals, B=a.B,
                    n_rows=len(rows)), open(K.RES / f"p3_{tag}.json", "w"), indent=1)
     with open(K.RES / f"p3_{tag}_seeds.csv", "w", newline="") as f:

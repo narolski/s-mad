@@ -92,6 +92,12 @@ No retrain and no score exist yet.
 - 11 Nov 18:41-18:47. Script sync waited about 6 min for the transfer lock (other owners' uploads). Submitted smoke A =
   job **3544216**, smoke B = job **3544217** (`--dependency=afterok:3544216`), SelfMAD smoke = job **3544218**.
   3544216 started 18:49.
+- 11 Nov 18:48-19:00. Smoke A (job 3544216, t0015, A100-SXM4-40GB; 12:13 elapsed = 0.20 GPU-hours) PASSED: env
+  reused (torch 2.0.1+cu117, cuDNN 8500, cv2 4.5.5); the unchanged SMDD crop script on cuda:0 took 623 s for 40,000
+  images (peak GPU memory 675 MiB); **39,723 of 40,000 images kept** (24,729 genuine, 14,994 morphs; 277 lost: 271
+  genuine and 6 morphs, "Images with no Face" in the authors' wording, which also counts empty slices); the MADation
+  release log reports 39,730 training images (difference 7, 0.02%). Crop pack `packs/AD5/smdd_train_cropped.tar`
+  (2.38 GB, sha256 3189e52a...), report `results/AD5/crop_report.json` (lost list).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -107,7 +113,7 @@ Training set of all three methods: SMDD training split, local copy `/mnt/t7/Data
   i.e. 270 of the 40,000 images were lost by the crop step. The crop script is not in the MADation repository; the
   SMDD repository's `image_preprocess.py` (MTCNN, first box, 5% margin, BGR pixels passed to MTCNN, unclipped
   indices; sha256 bcaecd29...) is the same group's crop and is assumed. Whether it yields exactly 39,730 survivors is
-  a check to run (section 6).
+  a check: our run of that script (A100, facenet-pytorch 2.5.2, torch 2.0.1) keeps 39,723 (section 2, 19:00).
 - SelfMAD trains on the 25,000 genuine renders only, plus dlib 81-point landmarks and face-parsing label maps that
   its own preprocessing scripts produce. Landmarks: `/mnt/t7/smad_next/AD5/data/selfmad/SMDD_landmarks/os25k_bf_t/`
   (24,982 files; 18 renders without a face listed in `no_face.txt`; per-file hashes `landmarks_SHA256SUMS`, sha256 of
@@ -221,7 +227,7 @@ DGX: no AD5 process running. Athena jobs (logs in
 |---|---|---|---|---|
 | 3544190 | smoke A, first try | 1 x 30 min | FAILED 3:53 (localfs full), 0.065 GPU-h | fixed (memfs), resubmitted |
 | 3544192 | smoke B, first try | 2 x 15 min | cancelled before start, 0 GPU-h | resubmitted |
-| 3544216 | smoke A: env (exists) + SMDD crop -> packs/AD5/smdd_train_cropped.tar | 1 x 30 min | running | read log; resubmit `ad5_smokeA_env_crop.sbatch` |
+| 3544216 | smoke A: env (exists) + SMDD crop -> packs/AD5/smdd_train_cropped.tar | 1 x 30 min | COMPLETED 12:13, 0.20 GPU-h | done |
 | 3544217 | smoke B: MADation L/B DDP 2 GPUs, MixFaceNet-MAD 1 epoch | 2 x 15 min | pending (after 3544216) | resubmit with `--dependency=afterok:<A>` |
 | 3544218 | SelfMAD: env, face labels -> packs/AD5/selfmad_labels.tar.gz, 1-epoch smoke | 1 x 55 min | pending | resubmit; it skips the labels if the tar exists |
 Compute spent so far: 0.065 GPU-hours (plus running jobs).

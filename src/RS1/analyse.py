@@ -126,8 +126,11 @@ def rel_pools(det, man, smoke):
             for s, L in by.items()}
 
 
+ATH_RUN = None                                          # set in main(): the unpacked production result folder
+
+
 def athena_pools(det):
-    f = ATH / "results" / f"scores_rel_{det}__athena.npz"
+    f = ATH / ATH_RUN / "scores" / f"scores_rel_{det}__athena.npz" if ATH_RUN else pathlib.Path("/nonexistent")
     if not f.exists():
         return None
     man = {r["id"]: r for r in csv.DictReader(open(ATH / "athena_manifest.csv"))}
@@ -435,7 +438,10 @@ def main():
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--skip-selfmad", action="store_true")
     ap.add_argument("--dgx", action="store_true", help="also tabulate the DGX MADation scores (platform check only)")
+    ap.add_argument("--athena", default=None, help="unpacked Athena result folder name under /mnt/t7/smad_next/RS1/athena")
     a = ap.parse_args()
+    global ATH_RUN
+    ATH_RUN = a.athena
     man = manifest()
     allp = {p for r in man.values() for p in r["persons"].split("|")}
     pers = sorted(p for p in allp if p.isdigit())

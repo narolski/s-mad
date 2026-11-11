@@ -172,3 +172,58 @@ bit for bit (maximum absolute difference 0 on 8 of 8). (b) The full E7 branch (n
 reproduces their registered `*_resmatch_{amsl,opencv}.png` eval frames bit for bit (maximum absolute difference 0,
 0 differing pixels, 8 of 8; native inter-eye distances equal the registered ones). Strengths to be used: the
 registered family medians of FRLL-Morphs AMSL (112.718 px) and corrected MAD22 FaceMorpher (61.211 px).
+
+## Full design, interim (19:00 CET): CLIP ViT-L/14 at 224, thumbnail baseline, clean-negative test, target sanity
+
+Training: 4,000 alpha-field morphs + 569 photos (training persons). Heads: ridge; MLP seeds 401-405 (each image
+contributes 384 random patches per seed: deviation, RAM; CLIP-224 has 256 patches, so all of them); logistic baseline
+(iii). Scores: mean prediction over patches inside the face hull (top-tenth pooling in `metrics_clip224_full.json`,
+key score_top10). Floors (wave 3, control 1): Laplacian variance alone and the best of 27 simple statistics, same
+images. Benchmark list: all genuine images, at most 600 morphs per cell (seed 401; deviation).
+
+| Head | F1 rho [95%] (pass 0.4 / drop 0.2) | F2 FaceMorpher R2 vs R4 [95%] | OpenCV R2w vs R4 | FaceMorpher R3 vs R4 | OpenCV R3m vs R4 |
+|---|---|---|---|---|---|
+| ridge | 0.125 [0.093, 0.157] | 0.997 [0.993, 0.999] | 0.994 [0.987, 0.998] | 0.871 | 0.763 |
+| MLP 401 / 402 / 403 / 404 / 405 | 0.266 / 0.276 / 0.260 / 0.275 / 0.283 (each CI about ±0.045) | 0.999 / 0.999 / 0.999 / 0.998 / 0.999 | 0.997-0.998 | 0.897-0.900 | 0.833-0.838 |
+| logistic (iii) | — | 1.000 [0.999, 1.000] | 0.999 | 0.865 | 0.745 |
+| thumbnail dense / image (32 px) | 0.129 [0.097, 0.157] | 0.495 / 0.503 | — | — | — |
+| floor: Laplacian variance | — | 0.753 (R2 vs R4); 0.723 (R2w vs R4) | 0.774 | — | — |
+| floor: best simple statistic | — | 0.905 (band power 0.125-0.25 cycles/px) | 0.886 | — | — |
+
+F1 on CLIP-224: below 0.4 for every head and seed; ridge below 0.2. Template baseline (correlation of each true map with
+the mean training map, MLP): 0.23; F1 after removing the template 0.24-0.26; pair swap (own minus same-host other
+target) 0.27-0.29 for MLP (lower bounds 0.22-0.24), 0.10 [0.063, 0.134] for ridge.
+F3 (shift of genuine scores in R0 standard deviations, MLP seeds; ridge in brackets): FRLL native -> E7 0.01-0.04
+(ridge -0.01 to -0.02) for opencv, facemorpher, amsl, webmorph; corrected MAD22 native -> E7 (FaceMorpher) 0.16-0.20
+(ridge 0.03); R0 -> R2 0.04 (FaceMorpher), 0.00 (OpenCV); R0 -> R2w 0.09-0.10 (FaceMorpher), -0.01 to 0.00 (OpenCV);
+logistic: 0.00-0.01, 0.13, 0.09. All at most 0.3. Top-tenth pooling gives the same values within 0.02.
+F4 (confounded training: mixed from FRGC, zero-field from colorFERET; crossed test: colorFERET u50 vs FRGC zero-field,
+100 vs 100 images, FRGC side 10 persons): logistic baseline AUC 1.000 (unconfounded) -> 0.271 [0.130, 0.437]
+(confounded), drop 0.73 (prediction: at least 0.20, met). Dense heads: ridge 0.999 -> 0.610 [0.432, 0.773], drop 0.39;
+MLP drops 0.40-0.44 (confounded AUC 0.56-0.60). Prediction for the dense head: drop at most 0.05; registered
+falsifier: a drop above 0.15 makes the central claim false. Measured drops 0.39-0.44 on CLIP-224.
+F5, EER % (genuine native / E7), MLP seed range: FRLL AMSL 6.9-8.8 / 7.3-8.3, FaceMorpher 1.5-1.9 / 1.5-1.6, OpenCV
+1.6-2.4 / 1.5-2.4, WebMorph 5.4-7.3 / 5.5-7.3; corrected MAD22 FaceMorpher 0.4-0.5 / 0.5, OpenCV 3.4-4.3 / 3.4-4.3,
+Webmorph 5.4-6.4 / 5.5-6.8. Ridge is worse (FRLL AMSL 22.5 / 21.5). Released MADation ViT-L/14 on the same FRLL rows
+(registered A12REL scores on our frames, no rescoring; `madation_vitl14_ref.json`): AMSL 18.2 / 15.6, FaceMorpher 1.0 /
+1.0, OpenCV 1.5 / 1.5, WebMorph 5.9 / 5.3; its FRLL native -> E7 shift -0.07 to -0.10. Corrected MAD22 has no
+MADation score. Full tables: `metrics_clip224_full.json`, `metrics_thumb_full.json`, `f4_clip224.json`.
+
+Clean-negative test (CN0; `cn0.json`): image-level logistic on mean-pooled tokens, R2 vs R4, trained on one tool, tested
+on the other, 5 folds by host: out-of-fold AUC 0.9998-1.0 (CLIP-224 and DINOv3). (a) At the threshold flagging 10% of
+test-person R2: untouched source photos flagged 8.6-10.6% (CLIP-224), 3.5-10.3% (DINOv3); FRLL E7 genuine frames
+(opencv + facemorpher) 3.2-5.4% (CLIP-224), 0.8-9.2% (DINOv3). Same reads with R2w as the negative: within those
+ranges. (b) Best single simple statistic for R2 vs R4: band power 0.125-0.25 cycles/px, folded AUC 0.905 (FaceMorpher),
+0.928 (OpenCV); R2w vs R4: 0.889 / 0.886. Fixed verdict: (b) exceeds 0.80, so "the image-level class definition fails"
+for both lines. Dense CLIP-224 heads' mean prediction at the same thresholds: source photos 7.8-11.0%, FRLL E7
+0.7-3.2%. The DINOv3 dense reads will be added when its scores are complete.
+
+Target sanity (wave 3, control 2; `wave3_target_sanity.json`; 1,000 uniform-0.5 morphs; 32 x 32 patches in the hull):
+| target | median flattest quartile | median busiest quartile | rank corr. with patch contrast | accepted (flat < busy and abs(corr) < 0.3) | same-person / two-person | mirror / two-person |
+|---|---|---|---|---|---|---|
+| g (registered, contrast-normalised) | 1.031 | 0.873 | -0.13 | no (higher on flat) | 0.72 | 0.76 |
+| D (a-weighted mean abs. difference) | 11.66 | 12.89 | 0.10 | yes | 0.86 | 0.50 |
+| G (gradient disagreement, flat-excluding) | 1.57 | 3.78 | 0.70 | no (contrast) | 0.89 | 0.90 |
+| Dm (D above median contrast) | 0.00 | 12.89 | 0.82 | no (contrast) | 0.83 | 0.50 |
+Ratios from 100 AR1 primary hosts on the OpenCV-style engine at a = 0.5 (medians). Arms (d)/(e) of wave 3 therefore use
+D. (Lead's note, CONSOLIDATED_v3 section 3 point 3: the mirror self-blend is not a matched twin; trace contrasts only.)

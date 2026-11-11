@@ -7,7 +7,7 @@
 #SBATCH -c 8
 #SBATCH --mem=64G
 #SBATCH --gres=gpu:1
-#SBATCH --time=06:00:00
+#SBATCH --time=10:00:00
 #SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AG1-%A_%a.out
 # AG1 production: one array task = one shard, the shard named by line (SLURM_ARRAY_TASK_ID + 1) of the list file.
