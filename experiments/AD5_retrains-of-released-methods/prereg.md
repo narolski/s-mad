@@ -219,3 +219,27 @@ release is being scored through the AD5 path on the DGX (file not opened).
    `score.py --mode own` on the DGX (one platform for all six networks), with both genuine-class definitions
    (neutral-only and all photos; RS1 amendment 2c) for the reproduction label.
 7. **Budget.** The lead set 250 GPU-hours for this experiment (11 Nov 19:20).
+
+## Amendment 2 (11 Nov 2026, 19:58 CET; the author's approval of 19:41, relayed by the lead; before any SelfMAD score of this experiment is read)
+
+State when written: no SelfMAD retrain exists (smoke job 3545882 running); the SelfMAD release is being scored through
+the AD5 path on the DGX; that file has not been opened.
+
+**Labelled oracle-epoch row for SelfMAD (diagnostic of the public code's default selection; not a result).**
+1. Inputs: for each SelfMAD retrain, the weights saved every 5 epochs (epochs 5, 10, ..., 100; amendment 1 item 5).
+2. Each saved epoch is scored through the same path as the registered rows (RS1's `score.py --mode own` on the DGX)
+   on the FRLL cells only: the 204 raw FRLL photos and the five FRLL-Morphs families (raw files).
+3. Oracle epoch of a retrain = the saved epoch with the lowest mean native EER over the five FRLL-Morphs cells, all
+   204 genuine photos (the shipped `testset_best` takes the mean over FRGC, FERET and FRLL morph cells; only FRLL is
+   held here); ties go to the earliest epoch.
+4. Printed, per retrain, in one clearly labelled row beside its last-epoch row: the oracle epoch, its native EER on
+   the five FRLL-Morphs cells and the mean, with the label "oracle epoch: selected on the FRLL test data, as the public
+   code's default does; diagnostic only". If time allows, the oracle-epoch network is also scored on every RS1 image and
+   its registered readings are printed in the same labelled block.
+5. It is never a headline, never enters a verdict, a reproduction label or a count, and is never computed for any of
+   our own networks. The registered reading stays the last epoch (epoch 100).
+
+**Crop storage (the lead's ruling of 19:41 for RS1, which AD5 scores through):** MADation / MixFaceNet-MAD rows use
+RS1's crop files by sha256 as the RS1 owner names them: primary = the authors' crop script run unchanged (with its
+quirks), secondary = the corrected crop stored as PNG. Crops re-saved as JPEG by code written in this sprint are not
+scored.

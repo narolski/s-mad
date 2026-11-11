@@ -68,7 +68,7 @@ def code():
             w.writerows(rows)
         man["lists"][name] = dict(n=len(rows), sha256=K.sha(src / "lists" / f"{name}.csv"))
     json.dump(man, open(src / "MANIFEST.json", "w"), indent=1)
-    t = GP / "sm1gpu_code.tar"
+    t = GP / (sys.argv[2] if len(sys.argv) > 2 else "sm1gpu_code.tar")     # A10: sm1gpu_code_v2.tar
     with tarfile.open(t, "w") as tf:
         tf.add(src, arcname=".")
     print(json.dumps(dict(tar=str(t), sha256=write_sha(t), lists={k: v["n"] for k, v in man["lists"].items()}), indent=1))

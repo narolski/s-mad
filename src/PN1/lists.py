@@ -59,6 +59,21 @@ def main(which):
             s0.update(id=f"{r['src_id']}_{r['strength']}", path=r["path"],
                       rung=f"{s0['rung']}_soft_{r['strength']}", set="devsoft")
             rows.append(s0)
+    elif which == "ladsoft":    # AF0 owner's stored copies of the ladder morphs (R4, R3, R3m; OpenCV-style), read only
+        A0 = pathlib.Path("/mnt/t7/smad_next/AF0")
+        src = {r["id"]: r for r in csv.DictReader(open(A0 / "lists" / "ladsoft_src.csv"))}
+        seen = set()
+        for f in ("soft_ladsoft_src.csv", "soft_ladsoft_src_rev.csv"):
+            for r in csv.DictReader(open(A0 / f)):
+                k = (r["src_id"], r["strength"])
+                if not r["path"] or k in seen or not pathlib.Path(r["path"]).exists():
+                    continue
+                seen.add(k)
+                s0 = dict(src[r["src_id"]])
+                s0.update(id=f"{r['src_id']}_{r['strength']}", path=r["path"],
+                          rung=f"{s0['rung']}_soft_{r['strength']}", set="ladsoft")
+                rows.append(s0)
+        rows.sort(key=lambda r: r["id"])
     elif which == "ar1h":       # SMDD-rebuild owner's warped halves of the ladder OpenCV morphs (R4), ladder training hosts
         lad = {r["pid"]: r for r in csv.DictReader(open(SPLIT / "ladder_split.csv"))}
         H = pathlib.Path("/mnt/t7/smad_next/SM1/img/ar1h")

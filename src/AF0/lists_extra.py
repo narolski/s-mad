@@ -76,7 +76,14 @@ def main():
         import os
         src = {r["id"]: r for r in csv.DictReader(open(LS.OUT / "lists" / "ladsoft_src.csv"))}
         lead = []
-        for r in csv.DictReader(open(LS.OUT / "soft_ladsoft_src.csv")):
+        info = {}
+        for fn in ("soft_ladsoft_src_rev.csv", "soft_ladsoft_src.csv"):      # merge both softening processes' logs
+            if (LS.OUT / fn).exists():
+                for r in csv.DictReader(open(LS.OUT / fn)):
+                    k = (r["src_id"], r["strength"])
+                    if k not in info or (r["aligned"] not in ("", "None") and info[k]["aligned"] in ("", "None")):
+                        info[k] = r
+        for r in info.values():
             if not r["path"]:
                 continue
             s0 = dict(src[r["src_id"]])
