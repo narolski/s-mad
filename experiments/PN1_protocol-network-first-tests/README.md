@@ -36,7 +36,26 @@ development photos being built; feature extraction starting. No score or statist
 - 19:01 `src/PN1/lists.py`: lists r2w4 (1,072), frll_e5 (1,020), r2w4_td (600, test and development hosts), frll_e5s
   (612, jpeg50 / blur1 / resample50).
 - 19:02 8-image test of `src/PN1/featmean.py` (CLIP) started; very slow on the loaded machine (load average about 90).
-- 19:06 `prereg.md` written (sha256 `efc5c32a…` before two header-time corrections; final hash in section 3).
+- 19:06 `prereg.md` written (sha256 `efc5c32a…` before two header-time corrections). Report 1 sent to the lead.
+- 19:07 to 19:19 DGX GPU queue 1 (`src/PN1/run_gpu1.sh`, nice 10, one process): CLIP means for eq8_ar1 (8-image
+  equivalence set), r2w4 (1,072) and frll_e5 (1,020): 676 s wall. Equivalence on 8 ar1 images against the mean of AF0's
+  cached tokens: max |difference| 0.049 (mean |value| 0.41), correlation 0.99998 (bf16 kernels; not bit-equal).
+  DINOv3 part started 19:18:50 (eq8_ar1, ar1soft, r2w4_td, frll_e5s).
+- 19:08 `featpool.py` (AF0 token caches -> means) first version read through a memory map: no progress in 2 minutes
+  (page faults); killed by PID, rewritten with `os.preadv` (AF0's reading scheme): 11 to 25 MB/s on the loaded drive.
+  DINOv3 means of af0_w1, af0_w2, ar1, bench_s, h1 are taken from PD1's existing pooled files
+  (`/mnt/t7/smad_next/PD1/landmark/feat/dinov3_512/af0_<list>_mean.npz`, same statistic: mean over the patch tokens of
+  AF0's float16 tokens, float32), saving about 35 GB of reads; af0_w1 is pooled by PN1 as well to compare.
+- 19:13 Coordinator: author's decision on the JPEG branch; amendment 1 (manifest C, JPEG reads) appended to the
+  registration at 19:20 before any computation. 19:26 amendment 2 (person frequency instead of a partner count that
+  equals the label). 19:28 coordinator: Athena jobs run from the container image
+  `/net/pr2/projects/plgrid/plggrestoration/smad-next/containers/smad_torch221_cu121_v1.sif` (sha256 `fedeff10…`);
+  `src/PN1/run.sh` and the job files changed to call `apptainer exec --nv` (DGX tests keep the host Python).
+- 19:23 Development softening finished: 452 copies, 0 failures (`/mnt/t7/smad_next/PN1/soft_devsoft_src.csv`); list
+  `devsoft` (452, sha256 `017c47fe…`).
+- 19:23 `jpeg_c.py verify` failed on its own pin: AF0's `soften.py` changed at 19:14:54 (sha256 `aa90f271…`; only a
+  `--reverse` option added to its build; `load_pe` and `e7_branch` unchanged). `soften_dev.py` had imported the
+  earlier file (`49fa4151…`) at 18:59. `jpeg_c.py` now pins `prep_eval.py` itself; verification to be rerun.
 
 ## 3. Data
 
