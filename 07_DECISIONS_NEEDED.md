@@ -39,7 +39,21 @@ morph literature note to `narolski/research`.
 - Both points are to be checked against the literature; if research has no stand, the paper discusses it.
 - The stuck LibreOffice process on the DGX may be stopped (done).
 
+## Author's decisions of 11 Nov, late evening
+
+- **SMDD licence:** accepted. Morphs derived from SMDD may be built and used; they will be published and shared with the SMDD authors as its terms require.
+- **Softness:** yes, teach detectors that softness is not blending. The existing shrink-and-enlarge path may be run unchanged on training photos, warped halves and our own morphs. No other blur, resize or compression code.
+- **Emails to other groups** (SelfMAD checkpoint selection, MADation scoring, SMDD pairing): yes, after the experiments stage. The lead reminds the author then.
+- **Rented GPUs:** approved for the morph-free networks experiment (AD4); rental commands are run from the main session; A100-class cards where 40 GB suffices.
+- **Codex CLIP fits:** stopped by the author. **CPU-heavy builds:** WCSS CPU nodes.
+- **Author's idea under test:** learn the signal from morphs of the same input image and of the same person (experiment "Signal isolation by paired differences", PD1).
+
 ## Still open
 
-1. **Class definitions.** Literature check done; proposal of three categories (genuine, morphing attack, single-subject manipulation) in `14_CLASS_DEFINITIONS.md`. Needs the author's yes; until then verdict wording in `11_AUDIT_PLAN.md` is unchanged.
-2. **Literature repository** note is pushed; nothing else open there.
+1. **Class definitions:** the three categories of `14_CLASS_DEFINITIONS.md` (genuine; morphing attack; single-subject manipulation) await a yes or no.
+2. **PLGrid:** the account `plgpnarolski` is not yet usable from this machine (no account on WCSS; key refused on the Cyfronet clusters).
+3. **Half-exchange images** for the smiling-half follow-up (a rectangular pixel copy): permitted image code or not.
+
+## To do when the experiments stage ends
+
+- Remind the author to email: the SelfMAD authors (which checkpoint-selection setting produced the release), the MADation authors (preprocessing used for the published numbers; release epoch), the SMDD authors (was five partners per split intended; sharing of derived morphs).
