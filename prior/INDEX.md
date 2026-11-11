@@ -1,132 +1,167 @@
 # Experiments before 11 Nov 2026
 
-Generated from `mambamorph-code/experiments/*/meta.json` (commit 1714b11). Nothing was copied; paths are relative to `mambamorph-code/experiments/`.
-Status values are the ledger's own and some are stale: A44, A45 and A47 were read on 8 Nov although their entries say otherwise (see `../02_REVIEW_AND_SHORTCOMINGS.md`).
+One row per experiment, grouped by theme. Written 11 Nov 2026 from `mambamorph-code/experiments/*/meta.json` and `README.md`
+(the "headline" fields), from `experiments/CONCLUSIONS.md` (snapshot in `CONCLUSIONS_snapshot.md`), and from the independent
+review files `experiments/INDEPENDENT_*.md`. Nothing is copied beyond short quotes of numbers. Source folders are relative to
+`mambamorph-code/experiments/` unless a full path is given. Registered results live in `mambamorph-code/smadcvpr/PROTOCOL.md`.
 
-| ID | Title | Status | Updated | GPU-h | First headline line | Folder |
-|---|---|---|---|---|---|---|
-| A10-D | SBI-cue probes (zero-training diagnostics) | analysed | 2026-10-31 | 0.5 | P-seam MADMamba E3 36k: 0.975 AUC | `A10-D_probes` |
-| A10-LR | LR parity: 36k twins of every A9-promoted LR | decided | 2026-10-31 | None | EfficientNet-B4 r384 LR 0.001 36k: 4.79 EER % | `A10-LR_lr_twins` |
-| A10-L | 72k length rung of every L0 family's D3 configuration | decided | 2026-10-31 | None | EfficientNet-B4 72k (efficientnet_b4_scratch): 3.07 EER % | `A10-L_72k_rung` |
-| A10-M | MADMamba token stride x width at 36k (M1-M5) and pruning twins | decided | 2026-10-31 | None | E10 = M3: T p8 36k (mm2_t_v2_conv_v2_p8), the MADMamba entry: 8.6 EER % | `A10-M_madmamba_stride_width` |
-| A10-W | Width parity: 36k twins of the baselines' registered siblings | decided | 2026-10-31 | None | DeiT-tiny sibling 36k (DeiT-S family): 35.91 EER % | `A10-W_width_siblings` |
-| A12-4 | A12.3e follow-ups: eval pool, format cue, CLIP adaptation, data vs recipe | analysed | 2026-11-01 | 10.14 | MADation, published recipe R x d0: 12.08 EER % | `A12-4_benchmark-followups` |
-| A12-5 | A12.4 follow-ups: what inverts MADation's DiM detection, OrthoMAD and frozen CLIP on our data, G-test | analysed | 2026-11-01 | 6.8 | Frozen-CLIP head on our data (H-new-J), UA8c: 10.71 EER % | `A12-5_a124-review-followups` |
-| A12-6 | Real photos vs our morphs (frozen CLIP and MADation photos-only arms), MADation R x d1 fresh seeds, W3 predict | analysed | 2026-11-01 | 6.9 | MADation R, our data - photos only, G-test (selection-seen generator): -22.71 EER points | `A12-6_photos-vs-morphs` |
-| A12-7 | Photos-only arms for PW-MAD and Inception-MAD, and the morph-class weight of MADation's recipe | analysed | 2026-11-02 | 9.1 | MADation: our morph images, not their weight in the loss, carry the StyleGAN gain (neutral family, both checkpoints; selection-seen generator). | `A12-7_photos-share` |
-| A12-BR | Published benchmark methods: own recipe vs our protocol | analysed | 2026-11-01 | None | H-full, UA8c (held-out): P x d1 - R x d0, four CNN methods (M1, M2, M5, M6): '-4.5 to -6.5' EER points | `A12-BR_benchmark_recipes` |
-| A12-SP | Specialists as single-network tool-diversity experiments | running | 2026-10-31 | None |  | `A12-SP_tool_diversity` |
-| A13-3 | Batch shift and scan removal (core c2) | analysed | 2026-11-01 | 17.8 | N (no scan state term) - K, unadjusted: -1.33 EER points | `A13-3_batch-and-scan` |
-| A13-5 | The memoryless scan (core c2, Abar = 0) | analysed | 2026-11-01 | 9.2 | M (memoryless scan, Abar = 0) - K: -0.85 EER points | `A13-5_memoryless-scan` |
-| A13-6 | E10's own scan and the lag-0 gain on FRGC (H-new-13, H-new-14) | analysed | 2026-11-01 | 33.4 | P (E10, scan -> skip) - E10 pooled: -0.35 EER points | `A13-6_mamba-scan` |
-| A13-7 | The benchmark test of the scan-free E10 (P-W3; H-new-16, H-new-18) | analysed | 2026-11-02 | 10.5 | UA8c, scan-free E10 - E10 (paired by seed): 0.19 EER points | `A13-7_scan-benchmarks` |
-| A13-BA | Core-v2 bundle attribution at token stride 8 | analysed | 2026-11-01 | 21.5 | : 9.29 EER % | `A13-BA_bundle-attribution` |
-| A14 | Post-freeze MADMamba follow-ups: the G-test inversion fixed in training, the frequency stream, the content gat | analysed | 2026-11-02 | 28 | H-new-21 falsified: E10 trained without the SMDD bona fide is still inverted on the G-test (oracle APCER 99.76%). At the operating point every from-scratch W3 row fails the G-test; in ranking (A15, uncapped AUC) E10 on d | `A14_inversion-gate` |
-| A15 | Two zero-GPU diagnosis reads of the G-test inversion: the morph side (H-new-29) and relative sharpness via E5  | analysed | 2026-11-02 | 0 | H-new-29 supported: the G-test inversion is on the morph side (the morphs score more genuine than real FERET / FRGC photos; the FEI pool is not the cause). | `A15_morph-side-sharpness` |
-| A16 | What N's gains are: E10 without any SMDD (d2) against a same-batch E10 control (H-new-30; amended: H-new-31 /  | registered | 2026-11-02 | None |  | `A16_d2-control` |
-| A17 | Is our data's effect on E10's G-test ranking specific to the G-test? The uncapped eval-GAN AUC read (H-new-34) | analysed | 2026-11-02 | 0 | Within E10 our data improve the eval GAN ranking (+9.7 AUC on MIPGAN-I / II and FRLL StyleGAN) and invert the G-test ranking (-30.1): the inversion is specific to the G-test set (near-determined, descriptive). | `A17_eval-gan-ranking` |
-| A18 | The frequency-stream map: where the stream raises or lowers the morph ranking, per eval and G-test family (H-n | analysed | 2026-11-02 | 0 | From scratch the frequency stream lifts the selection metric (-16.7 EER) and AMSL (+10.5 AUC); its diffusion gain sits on the bona fide side (it penalises downsampled bona fide less; native pool -1.6); it costs MIPGAN-I  | `A18_freq-map` |
-| A19 | When do the frequencies help? The stream knocked out at inference in E10 (zero state; bias-kept state as a sen | analysed | 2026-11-02 | 1.9 | Without its frequency input at inference, E10 is near chance on the selection set (VALX-A* 8.97 -> 43.14% EER, 16 networks), so whether its MIPGAN-I cost could be undone at inference is not determined (descriptive; the r | `A19_freq-knockout` |
-| A20 | The frozen-CLIP readout ladder FCR: C0, C0-hi, ML, RP, RC, RD on a frozen CLIP ViT-B/16 against a same-batch M | registered | 2026-11-02 | 12.0 |  | `A20_fcr-ladder` |
-| A22 | Frequency stream x class-symmetric acquisition augmentation a22n: does MADMamba's spectral stream carry morph  | analysed | 2026-11-03 | None | Under class-symmetric train-time acquisition augmentation (a22n), the frequency stream keeps its full selection-set advantage: +18.10 [+16.79, +19.46] vs +16.08 EER points without it (6 paired seeds; H-new-53 and H-new-5 | `A22_freq-stream-augmentation` |
-| A26 | MADMamba's v2 frequency stream on pretrained VMamba-T and MambaVision-B-21K: does Haar / DCT help on GAN morph | analysed | 2026-11-03 | None | On pretrained VMamba-T (n 6) and MambaVision-B-21K (n 10), the frequency stream had no detectable effect on GAN morphs or AMSL (Holm-adjusted 90% CIs; MambaVision AMSL uninformative), and no harm on the selection set, wh | `A26_freq-stream-pretrained-mambas` |
-| A30 | Training method a22n + GAN-protocol morphs on four pretrained backbones (H-new-64 ... H-new-69; held-out, arm  | analysed | 2026-11-06 | 60 | The method (a22n + our GAN morphs) is not a confirmed gain: design-seen diffusion / GAN 'helps' are geometry-flagged or G-test-driven and none is confirmed on held-out sets. | `A30_gan-protocol-training-method` |
-| A32-RSX | Resolution / compression shortcut in published S-MAD diffusion-morph results | analysed | 2026-11-07 | 0.1 | The official SelfMAD release (its own preprocessing) is near-perfect on MorDIFF and Greedy-DiM only against the native high-resolution bona fide pool (EER 2.5 / 8.4); against a resolution-matched pool it fails (61.3 / 90 | `A32-RSX_resolution-shortcut` |
-| A36 | Published detectors and shortcuts on the held-out sets (A12BR retrains, SelfMAD and MADation releases) | analysed | 2026-11-06 | 7.588 | No published S-MAD method we analyse tells a StyleGAN3 morph from a single-person StyleGAN3 render beyond simple image properties (H3 orig AUC 0.35-0.59 over 12 primary rows with the SelfMAD own row; H-new-72 neither); b | `A36_published-detector-shortcuts` |
-| A37 | StyleGAN3 render controls (spread-matched, truncated, re-stored renders) | analysed | 2026-11-07 | 2.628 | On renders matched to the morphs' latent spread, no network in any of the 14 arms ranks the StyleGAN3 morphs above the renders (AUC 42.8-49.2; descriptive, outside the rule); the two arms above chance on H3 fall to chanc | `A37_stylegan3-render-controls` |
-| A38 | A12 twins on H3 and FFHQM (which part of our protocol lowers H3 AUC) and a frozen-feature probe on H3 | analysed | 2026-11-06 | 0.625 | H-new-86 (does removing SBI restore H3 AUC?): neither by the registered rule in both pools; removing SBI raised H3 orig AUC by +0.071 [+0.046, +0.099] (Inception-MAD, meets the +0.05 bar) and +0.040 [+0.014, +0.068] (PW- | `A38_twins-and-feature-probe` |
-| A39 | The batch before the run window closes: release adapter check on SMDD, skill-vs-inversion line, SelfMAD own-ro | analysed | 2026-11-07 | 0.278 | Partial: R1-R4 read on CPU (2026-11-06); S2 and P read on 2026-11-07; S1, S3 and T withdrawn by the author (not run). | `A39_batch-before-window-close` |
-| A40 | SelfMAD downsampling response by native detail, a fresh SBI distinctiveness replication on A39 S1, and the A38 | analysed | 2026-11-07 | 0.0 | Part F read (zero GPU); Q (H-new-133) and H2 (H-new-134) not run, withdrawn by the author. | `A40_selfmad-detail-sbi-replication-h2-probe` |
-| A41 | Shortcut proof: person-clustered E7 contrasts, specificity, dose ladder, H3 absence, spectra, construction tab | analysed | 2026-11-07 | 1.037 | A41 amendment G2 read 2026-11-07 13:48:41-13:48:57 CET (xa3c, s12k and the full decide; REAL, local CPU, every part exit 0, nothing refused; 3 WCSS H100 job lines and 2 smokes, 0.043 GPU-h; A41 in total 1.037). Every gat | `A41_shortcut-proof-zero-gpu` |
-| A42 | Six descriptive follow-ups of the A41 amendment G / G2 post-result reviews: the ViT-B/16 frame border (border- | analysed | 2026-11-07 | 0.074 | A42 read in full on 2026-11-07: the zero-GPU parts 16:42:51-16:43:23 CET, the window part (through A42 amendment 1) 18:08:39-18:08:49 CET and the write-once summary 18:08:58 CET (REAL, local CPU, every part exit 0, nothi | `A42_shortcut-followups-descriptive` |
-| A43 | The MorDIFF two-by-two: published vs our same-pair DiffAE morphs at 100 and 20 decoding steps, two- vs one-ide | analysed | 2026-11-07 | 0.108 | A43 read in full on 2026-11-07 22:02:21-22:02:35 CET by the registered a43_read.py (REAL, local CPU, exit 0, nothing refused; every binding gate passed, the re-score gate exact in all 8 releases). Registered joint cell ` | `A43_mordiff-two-by-two` |
-| A44 | The MADation mechanism block: component ladder, in-memory LoRA removal and dose, head-direction decomposition, | analysed | 2026-11-07 | 0.096 | A44 partial (2026-11-07 23:22 CET): the 11 gate-first M2 platform gates all pass (/dAUC/ <= 0.00027, tau >= 0.995); F5 / H-new-274 supported: the released ViT-B/16's logit on 185 genuine photos (102 persons) rises monoto | `A44_madation-mechanism` |
-| A45 | SMDD-only reproduction retrains (Inception-MAD, MorphHRNet) and the FD-MAD re-implementation | running | 2026-11-07 | None | reproduction gate per arm (incep_ofc, hrnet_w18, hrnet_w48_m2, fdmad_g; fdmad_g512 descriptive): None PASS / FAIL | `A45_smdd-reproduction-retrains` |
-| A46 | The zero-GPU diffusion family, the reproduction register and the raw-file runs (A-1 official boxes, A-2 releas | running | 2026-11-08 | None |  | `A46_diffusion-register-raw-files` |
-| A47 | The training interventions: I-4 label-permuted negative control, I-3 morph-free positive control, I-1 class-sy | running | 2026-11-07 | None |  | `A47_training-interventions` |
-| A8-T | Determinism and snapshot trajectories of VMamba-T + frequency stream (T1, T2, T2-s) | final | 2026-10-30 | 2.7 | T2 SWA endpoints (VMamba-T+freq v1 @256): 38.01 EER % | `A8-T_trajectory-determinism` |
-| A8-W0 | Diagnosis, VAL-X-A, FST specification freeze and the shortcut floor | decided | 2026-10-30 | None | E0 VALX-A span (min): 6.73 EER % | `A8-W0_infrastructure-valx-fst` |
-| A8-W1A | MADMamba-v2 from scratch: core x stem x frequency factorial | final | 2026-10-30 | 13.4 | Reference v1_lin_v1 N@384: 39.26 EER % | `A8-W1A_madmamba-v2-factorial` |
-| A8-W1B | MADMamba-v2 width, input size and training length (from scratch) | final | 2026-10-30 | 29.9 | N@512 v1_lin_v1 (12k): 33.3 EER % | `A8-W1B_scale-length` |
-| A8-W1C | L0 scratch baselines (ResNet-50, ConvNeXt-T, DeiT-S, EfficientNet-B4, HRNet-W18), incl. W1-C2 | final | 2026-10-30 | 52.1 | ResNet-50 384, LR 5e-4 (adopted): 44.6 EER % | `A8-W1C_scratch-baselines` |
-| A8-W1D | Fine-tuning strategy for the ImageNet-1k league (L1), with WiSE-FT | final | 2026-10-30 | 24.0 | DeiT-S llrd (adopted): 42.84 EER % | `A8-W1D_finetuning-menu` |
-| A8-W1E | Pretraining source at a fixed architecture (IN-22k, CLIP, DINOv3, MambaVision) | final | 2026-10-30 | 12.9 | H6a: CLIP-Mamba-S − VMamba-S: -1.18 Δ EER points | `A8-W1E_pretraining-source` |
-| A8-W1F | Data-pipeline arms (−balance, R6, R8, SBI-int, d1-real, all) on three reference configurations | decided | 2026-10-30 | 14.8 | MADMamba-v2 N@384 + SBI-int: 19.84 EER % | `A8-W1F_data-arms` |
-| A9-L3 | W2-L3: knowledge-distilled scratch students (registered, consent pending) | registered | 2026-10-30 | None |  | `A9-L3_kd-students` |
-| A9-W2L0 | W2-L0: scratch parity grid (MADMamba factorial and pruning, baselines, D1-D4 standings) | decided | 2026-10-30 | 130.0 | MADMamba L0 entry E3 (N, v2_conv_v2, 384, 36k): 12.56 EER % | `A9-W2L0_l0-parity-grid` |
-| A9-W2L1 | W2-L1: ImageNet-1k league (strategy, VMamba-T frequency pruning, resolution) | decided | 2026-10-30 | 51.1 | VMamba-T L1 entry (plain, freq none, 384, full): 0.83 EER % | `A9-W2L1_imagenet-league` |
-| A9-W2L2 | W2-L2: large-scale pretraining league (inheritors, 384 adoptions, CLIP ViT-B/16) | decided | 2026-10-30 | 100.3 | MambaVision-B-21K (384, freq none): 0.35 EER % | `A9-W2L2_large-pretraining-league` |
-| A9-W2R | W2-R: SBI dose, strength and R6/R8 attribution (both leagues) | analysed | 2026-10-30 | 87.4 | L1 "all" (R6+R8+SBI), Δ_pool: -1.22 Δ EER points | `A9-W2R_sbi-dose-attribution` |
-| A9-W3 | W3: frozen configurations, 10 fresh seeds each, FST claims (registered) | analysed | 2026-11-02 | None | MADMamba E10 VALX-A* (W3, 10 fresh seeds): 9.19 EER % | `A9-W3_frozen-list` |
-| E00 | Learning-rate selection on val10 (E0) | final | 2026-10-30 | 23.4 | architectures with tied val10 EER: 11 of 19 | `E00_lr_selection` |
-| E01 | Controlled architecture comparison x data regime (E1) | final | 2026-10-30 | 26.6 | MADMamba-T D1 dev: 32.63 EER % | `E01_controlled_comparison` |
-| E02 | MADMamba component ladder (E2) | final | 2026-10-30 | 3.1 | plain Mamba D1 dev: 34.37 EER % | `E02_component_ladder` |
-| E03 | Per-image thresholds fixed in advance (E3) | final | 2026-10-30 | None | MADMamba-T D1 APCER dev @ BPCER-5% threshold: 61.97 APCER % | `E03_fixed_thresholds` |
-| E04 | Unseen attacks: leave-one-tool-out and absent families (E4) | final | 2026-10-30 | 9.6 | MADMamba-T D1 unseen: 44.18 EER % | `E04_unseen_attacks` |
-| E05 | Robustness to image degradation (E5) | final | 2026-10-30 | None | MADMamba-T D1 FRLL, clean (native): 13.09 EER % | `E05_robustness` |
-| E06 | Inference and training cost on one H100 (E6) | final | 2026-10-30 | None | MADMamba-T GFLOPs @512: 3.49 GFLOPs | `E06_cost` |
-| E07 | Shortcut controls: resolution matching and nuisance correlations (E7) | final | 2026-10-30 | None | MADMamba-T D1 dev, native pools: 10.53 EER % | `E07_shortcut_controls` |
-| E08 | MADMamba width x input size grid (E8, A3) | final | 2026-10-30 | 14.5 | MADMamba-N@384 dev (lowest cell): 26.25 EER % | `E08_width_input_size` |
-| E09 | GAN-morph and shortcut interventions; VMamba-T pretrained vs scratch; G-test (E9) | final | 2026-10-30 | 58.0 | MADMamba-T D1 G-test: 46.23 EER % | `E09_gan_interventions_vmamba` |
-| E10 | Wave 3: combining the E8/E9 levers (E10, A6) | final | 2026-10-30 | 21.7 | VMamba-T+freq@256 D1 dev: 24.39 EER % | `E10_wave3_combined_levers` |
-| E11 | Input-size control: every baseline at 256 (E11, A7) | final | 2026-10-30 | 6.1 | CLIP-LoRA@256 D1 dev: 23.53 EER % | `E11_input_size_control` |
-| STAGE | Node-local staging of the train and score arrays (KDM ticket #26133735) | planned | 2026-11-02 | None |  | `STAGE_tmpdir-staging` |
-| <ID> | <short title> | planned | YYYY-MM-DD | None | <what>: None EER % | `_template` |
+Related: `summaries/` (one page per experiment from A32 on), `LOOSE_DOCUMENTS.md`, `DATA_LOCATIONS.md`.
 
-## Studies and documents without a ledger entry
+## How to read the table
 
-- `A49_dinov3`
-- `A50_ABC_PROSPECTIVE_PLAN_20261108.md`
-- `A50_EXECUTION_20261108.md`
-- `A50_RESULTS_20261108.md`
-- `ABC_COVERAGE_AUDIT_20261108.md`
-- `AUTONOMOUS_CONTINUATION_20261108.md`
-- `CONCLUSIONS.md`
-- `DATA_EXPANSION_ASSET_INVENTORY_20261108T214911_CET.md`
-- `DATA_EXPANSION_FOUR_MODEL_PILOT_20261108T214911_CET.md`
-- `DINOv3_P1_PLAN_20261108.md`
-- `INDEPENDENT_ABC60_OPERATIONAL_DELTA_REVIEW_20261108T225844_CET.md`
-- `INDEPENDENT_FINAL_EXECUTABLE_REVIEW_PRIMARY120FIT_20261108T223402_CET.md`
-- `INDEPENDENT_OPERATIONS_V2_REVIEW_20261108T232656_CET.md`
-- `INDEPENDENT_OPERATIONS_V3_NARROW_REVIEW_20261108T234122_CET.md`
-- `INDEPENDENT_PHYSICAL_RELEASE_REVIEW_20261109T000655_CET.md`
-- `INDEPENDENT_POSTRESULT_REVIEW_A46_RGB_ONLY_20261108T161539_CET.md`
-- `INDEPENDENT_POSTRESULT_REVIEW_A49_20261108T203455Z.md`
-- `INDEPENDENT_POSTRESULT_REVIEW_A50_20261108T213134_CET.md`
-- `INDEPENDENT_PREREVIEW_A50_20261108.md`
-- `INDEPENDENT_PREREVIEW_PRIMARY120FIT_514c7d1_20261108T220512_CET.md`
-- `INDEPENDENT_PREREVIEW_SHORTCUT_MITIGATION_20261108T214152_CET.md`
-- `INDEPENDENT_REVIEW_A44R_A45_20261108.md`
-- `INDEPENDENT_REVIEW_A46_20261108.md`
-- `INDEPENDENT_REVIEW_A46_CORRECTIVE_20261108T152840_CET.md`
-- `INDEPENDENT_REVIEW_A47_20261108.md`
-- `INDEPENDENT_TMPDIR_AUDIT_20261108T224038_CET.md`
-- `LITERATURE_TO_DESIGN_ADDENDUM_20261108T214710_CET.md`
-- `MAD22_WORKING_DECISION_20261108.md`
-- `MAD22_missing_from_both_downloaded_ZIPs_20261108.txt`
-- `NARROW_DIVERSE_PILOT_20261108T215424_CET`
-- `OWN_DIFFUSION_GENERATION_READINESS_20261108T215848_CET.md`
-- `PRIMARY80FIT_EXECUTION_READINESS_20261108.md`
-- `README.md`
-- `SHORTCUT_MITIGATION_COVERAGE_AUDIT_20261108T213558_CET.md`
-- `SHORTCUT_MITIGATION_PROSPECTIVE_PLAN_20261108T213558_CET.md`
-- `TMPDIR_AUDIT_EVIDENCE_20261108T224038_CET.txt`
-- `WCSS_CONCURRENCY_AUTHORIZATION_20261108.md`
-- `build_site.py`
-- `dataaudit`
-- `dates.json`
-- `own_diffusion_readiness_20261108`
-- `own_generation_v1`
-- `plan_dla_Kamila_2026-11-08.html`
-- `primary120fit`
-- `primary80fit`
-- `research_loop_20261111`
-- `site`
+- **Status.** finished = a result was read and recorded. partial = some registered parts were read, others not run or withdrawn.
+  not run = registered or planned, no result exists. retired = no row uses this value; a part that was withdrawn is described in
+  the outcome instead. Where the ledger entry is stale, the status here follows `CONCLUSIONS.md` and the independent reviews, and
+  the row says so.
+- **Stale ledger entries.** A44, A45, A46 and A47 still say "running" or give a partial headline in `meta.json`, but all were read
+  on 7 and 8 Nov (`INDEPENDENT_REVIEW_A44R_A45_20261108.md`, `INDEPENDENT_REVIEW_A46_20261108.md`,
+  `INDEPENDENT_REVIEW_A47_20261108.md`). The ledger entry of A16 and A20 says "registered"; no result exists for either.
+- **Sealed data.** Experiments whose folder names carry a sealed-data marker (the final sequestered test and one special-tool set)
+  were not opened for this index. They are listed as "not opened".
+- **Early numbers are flawed.** `CONCLUSIONS.md` says the E-series numbers (E01 to E11) were affected by resolution shortcuts,
+  score ensembles and a contaminated development set. They are kept for the record, not as evidence.
+- **Numbers.** "Selection set" means the development set used to choose configurations (not a final test). n is the number of
+  training seeds unless said otherwise. 90% or 95% intervals are as printed in the sources.
 
-## Other locations
+## Glossary (each term explained once)
 
-- Registered results: `mambamorph-code/smadcvpr/PROTOCOL.md`
-- Conclusions: `mambamorph-code/experiments/CONCLUSIONS.md`
-- Held-out and matched image sets: `/mnt/t7/smad_heldout/`
-- Research loop of 11 Nov: `mambamorph-code/experiments/research_loop_20261111/`, outputs in `/mnt/t7/smad_research/`
-- A138 and A139 (not in the ledger): `/tmp/opencode/mambamorph-a138-algorithmic/`, `~/.local/state/smad-orchestrator-v1/` (volatile; copy before reboot)
+- **S-MAD**: single-image morphing attack detection, deciding from one face image whether it blends two people.
+- **EER**: equal error rate, the error at the threshold where false alarms equal misses. Lower is better; about 50% is chance.
+- **AUC**: area under the ROC curve, the chance that a random morph scores above a random genuine photo. 0.5 is chance, 1.0 is perfect.
+- **APCER / BPCER**: share of morphs missed / share of genuine photos wrongly flagged, at a fixed threshold.
+- **E7**: the resolution-matched control, where genuine photos are shrunk and enlarged like the morphs, so file history cannot separate classes.
+- **Native pool**: the benchmark's genuine photos as published, without that control.
+- **SBI**: self-blended images, fake training morphs made by blending a photo with a warped copy of itself.
+- **SMDD**: the synthetic face training set used as the base training data (25,000 genuine, 15,000 morphs per `INDEPENDENT_REVIEW_A47_20261108.md`).
+- **FRLL, FERET, FRGC, FEI, FFHQ**: public face photo sets (studio or in the wild). **MAD22**: the SYN-MAD 2022 benchmark, 204 genuine and 4,483 morphs published; our copy has 185 and 4,069.
+- **MorDIFF, DiM, Greedy-DiM**: diffusion morph sets or generators. **MIPGAN**: a GAN morph generator. **StyleGAN3, DiffAE**: generators used to render faces.
+- **H3**: our test of StyleGAN3 morphs against single-person StyleGAN3 renders. **G-test**: GAN morphs against FEI camera photos.
+- **MADMamba**: our selective-state-space detector. **E10**: its frozen configuration. **MADation, SelfMAD, MixFaceNet-MAD, Inception-MAD, PW-MAD, MorphHRNet, OrthoMAD, FD-MAD**: published detectors.
+- **LoRA**: low-rank adaptation, a light fine-tuning method. **SWA**: stochastic weight averaging. **CLIP**: a large image-text pretrained encoder. **ViT**: vision transformer.
+- **W3**: the final run of frozen configurations with 10 fresh seeds. **WCSS**: the Wroclaw supercomputer. **GB10**: the local DGX Spark GPU.
+- **Holm**: a correction for many tests. **Seed**: one training run with a fixed random start.
+
+## 1. Architecture and training studies
+
+| ID | Question in plain words | Outcome in plain words | Status | Source folder |
+|---|---|---|---|---|
+| E00 | Which learning rate (2e-4 or 5e-5) suits each architecture, judged on a simple validation split? | 11 of 19 architectures tied, so 2e-4 was used for ties; MADMamba-T validation EER 0.94% at 2e-4 against 1.88% at 5e-5 (1 seed). | finished | `E00_lr_selection` |
+| E01 | Under one pipeline, does MADMamba-T beat CNN, ViT and CLIP baselines? | No: MADMamba-T 32.63% EER (n 3) against 26.98% for the best baseline, CLIP-LoRA. Flawed early numbers. | finished | `E01_controlled_comparison` |
+| E02 | Which MADMamba components earn their place? | Full model 32.63% against plain Mamba 34.37% EER (n 3; spread 0.22 against 5.06). | finished | `E02_component_ladder` |
+| E03 | What happens when each threshold is fixed in advance on the development genuine photos? | MADMamba-T misses 61.97% of development morphs at the 5% false-alarm threshold; thresholds set on each benchmark's own genuine photos would miss 20.39%. | finished | `E03_fixed_thresholds` |
+| E04 | How do single networks do on unseen tools and families? | MADMamba-T unseen families 44.18% EER (n 3); leaving out WebMorph raises that family from 27.77% to 37.10%. | finished | `E04_unseen_attacks` |
+| E05 | How much does image degradation hurt? | MADMamba-T on FRLL: 13.09% clean, 25.31% after resampling to half size (n 3). | finished | `E05_robustness` |
+| E06 | What does each model cost on one H100? | MADMamba-T: 3.49 GFLOPs at 512 px, 16.21 ms latency (batch 1), 1,045 images/s (batch 32). | finished | `E06_cost` |
+| E08 | How do width and input size change MADMamba? | Lowest cell N at 384 px: 26.25% EER development (n 3); the fused 23.97% is a score ensemble, not one network. | finished | `E08_width_input_size` |
+| E09 | Do frequency dropout, no face scans, 256 px, no SMDD or a pretrained VMamba-T help GAN morphs? | G-test EER: MADMamba-T 46.23%, pretrained VMamba-T+frequency 23.58%, scratch twin 44.22% (n 3). | finished | `E09_gan_interventions_vmamba` |
+| E10 | Do the E08 and E09 levers combine? | VMamba-T+frequency at 256 px: 24.39% development EER (n 3); the fused 17.87% is an ensemble, not one network. | finished | `E10_wave3_combined_levers` |
+| E11 | Is the 256 px advantage an architecture effect or an input-size effect? | At 256 px: CLIP-LoRA 23.53%, VMamba-T+frequency 24.39%, ResNet-50 29.48% (39.37% at 512). Input size is shared. | finished | `E11_input_size_control` |
+| A8-T | Is the seed spread of VMamba-T+frequency from nondeterminism, schedule or basin choice? | Averaged-weight endpoints 38.01% EER (n 3) against 53.96% for the scratch twin; rerunning seed 3 gave 33.49 and 34.00. No cause stated in the headline. | finished | `A8-T_trajectory-determinism` |
+| A8-W0 | Diagnosis, selection-set build, test specification freeze, shortcut floor. | Not opened. The earlier index quoted "selection-set span (min) 6.73% EER". | not verified | `A8-W0_*` (name carries a sealed marker) |
+| A8-W1A | Do the new SSM core, a conv stem or a new frequency stream help a from-scratch MADMamba-N at 384 px? | None passed the rule; reference 39.26% EER (n 3). New frequency stream was 3.66 points worse than the old [+1.32, +6.01]. | finished | `A8-W1A_madmamba-v2-factorial` |
+| A8-W1B | Do width T, larger inputs, 36k steps or a higher learning rate help? | N at 512 px reached 33.3% (12k steps, 5.96 points better than 384 px, failed two guards); no 36k run beat its 12k twin (0 of 8 pairs). | finished | `A8-W1B_scale-length` |
+| A8-W1C | What do from-scratch baselines reach? | Near chance: ResNet-50 44.6% (adopted setting); best cell EfficientNet-B4 at 512 px 37.41%. | finished | `A8-W1C_scratch-baselines` |
+| A8-W1D | Which fine-tuning recipe helps a pretrained ImageNet network? | DeiT-S with layer-wise learning rates 42.84% against 48.19% full fine-tuning; lowest cell Inception-v3 21.52% was not adopted. | finished | `A8-W1D_finetuning-menu` |
+| A8-W1E | Does pretraining beyond ImageNet-1k help at fixed architecture? | No clear gain: CLIP-Mamba-S minus VMamba-S -1.18 points [-5.08, +3.24] (hypothesis falsified); CLIMP-B minus VMamba-B +1.63 [-6.93, +10.49]. | finished | `A8-W1E_pretraining-source` |
+| A9-W2L0 | Where does MADMamba stand among from-scratch networks? | MADMamba entry E3 12.56% EER (n 6), rank 4 of 6; EfficientNet-B4 7.85% is first, ResNet-50 9.55% second. | finished | `A9-W2L0_l0-parity-grid` |
+| A9-W2L1 | With ImageNet-1k weights, which settings win, and does the frequency stream earn its place? | VMamba-T 0.83%, Swin-T 0.58%, DeiT-S 10.17% EER; the frequency stream was dropped. | finished | `A9-W2L1_imagenet-league` |
+| A9-W2L2 | How do large-pretraining backbones score? | MambaVision-B-21K 0.35%, CLIMP VMamba-B 0.38%, CLIP ViT-B/16 LoRA 1.65% (n 6). Scores saturate on this set. | finished | `A9-W2L2_large-pretraining-league` |
+| A9-L3 | Does distillation from an ImageNet teacher help the scratch students? | Registered, consent pending. | not run | `A9-L3_kd-students` |
+| A9-W3 | After the freeze, how does MADMamba E10 do with 10 fresh seeds? | E10 9.19% EER (n 10), 4th of 6 scratch entries; held-out diffusion 40.17% (near chance); G-test 50.0% (cap, an inversion). | finished | `A9-W3_frozen-list` |
+| A10-L | Does 72k steps beat 36k for each scratch family? | Yes for three CNNs: EfficientNet-B4 3.07%, ResNet-50 6.06%, HRNet-W18 7.44% EER (n 6). | finished | `A10-L_72k_rung` |
+| A10-LR | Do the promoted learning rates survive at 36k steps? | EfficientNet-B4 at LR 0.001 4.79% (-3.06 points [-4.36, -1.73] against its reference; passes the rule, not selected over the 72k rung); ResNet-50 and MADMamba-N at LR 5e-4 (11.2%, 11.32%) kept their reference settings. | finished | `A10-LR_lr_twins` |
+| A10-M | Is MADMamba limited by token stride or width, and is the frequency stream still needed? | E10 (T, stride 8) 8.6% EER (n 6), 3.96 points better than the reference; removing the frequency stream costs at least 14.49 points. | finished | `A10-M_madmamba_stride_width` |
+| A10-W | Do baselines' narrower siblings beat the main setting at 36k? | Mostly no: DeiT-tiny sibling 35.91%; two other siblings kept the reference. | finished | `A10-W_width_siblings` |
+| A13-3 | Does E10's local-convolution core still work when the selective scan is removed? | Scan-free minus with-scan -1.33 points [-2.41, -0.25]; after correcting for training batch, -0.53 [-1.51, +0.49]. | finished | `A13-3_batch-and-scan` |
+| A13-5 | Is the scan's gain only its lag-0 gain (memory set to zero)? | Memoryless minus with-memory -0.85 points [-1.96, +0.31]; not falsified within 1 point. | finished | `A13-5_memoryless-scan` |
+| A13-6 | Does E10 itself need its scan? | Scan-free minus E10 -0.35 points [-1.32, +0.64], non-inferior; on an unmatched GAN check it was 7.96 points worse (post hoc, resolution-confounded). | finished | `A13-6_mamba-scan` |
+| A13-7 | Does the scan matter off the splice data? | Scan-free minus E10 on held-out diffusion +0.19 points [-0.46, +0.84], so no benefit from the scan; G-test untestable (both at the cap). | finished | `A13-7_scan-benchmarks` |
+| A13-BA | Does the core-v2 gain come from its Delta setting or its local convolution? | Convolution only: 9.29% EER, tied with E10 (+0.69 [-0.54, +1.90]); Delta only 12.13%, worse (+3.53). | finished | `A13-BA_bundle-attribution` |
+| A20 | Can a frozen CLIP readout ladder lower the selection-set error without losing diffusion detection? | Registered only; no result. | not run | `A20_fcr-ladder` |
+| STAGE | Can jobs read libraries and images from node-local storage (cluster ticket)? | Planned infrastructure item, no hypothesis, nothing recorded. | not run | `STAGE_tmpdir-staging` |
+
+## 2. Data arms (what training data and recipes change)
+
+| ID | Question in plain words | Outcome in plain words | Status | Source folder |
+|---|---|---|---|---|
+| A8-W1F | Which training-data change makes networks catch the held-out landmark tool? | SBI was the largest lever: MADMamba-N 43.26% to 19.84%, VMamba-T 40.95% to 2.76%, ConvNeXt-T 41.02% to 4.95% (n 3). On splice-type morphs only. | finished | `A8-W1F_data-arms` |
+| A9-W2R | Does changing SBI dose, strength or adding R6/R8 data lower the error for every architecture? | Small gains: ImageNet league "all" arm -1.22 points [-1.68, -0.75] (not applied, failed a guard); scratch +R6 -0.94 [-2.30, +0.37]; a "sub" setting was worse (+5.16). | finished | `A9-W2R_sbi-dose-attribution` |
+| A10-D | Do networks react to the self-blending seam they were trained on? | Yes: seam probe AUC 0.975 for MADMamba E3 at 36k steps (0.925 at 12k), 0.978 for EfficientNet-B4 (n 6). | finished | `A10-D_probes` |
+| A12-BR | Does our training protocol lower the error of published methods relative to their own recipes? | Four CNN methods: -4.5 to -6.5 points on held-out diffusion (chance 48 to 50 down to 42 to 45); MADation 30.68 points worse than its own low-learning-rate recipe (12.08 against 42.76). | finished | `A12-BR_benchmark_recipes` |
+| A12-4 | Where does the gap to published tables come from? | MADation published recipe 12.08% EER [9.69, 14.46] (n 8) on held-out diffusion; frozen CLIP with a linear head 15.2% [11.79, 18.61]. | finished | `A12-4_benchmark-followups` |
+| A12-5 | What inverts MADation's diffusion detection, and does our data help other methods? | Frozen CLIP head on our data 10.71% (n 5, no inverted family); the SBI+SWA hypothesis for MADation was falsified (-3.55 points [-7.45, +0.35]). | finished | `A12-5_a124-review-followups` |
+| A12-6 | Do the real photos or our morphs carry the gain? | Probe: photos carry it (photos only 9.81% against 10.71% with morphs). MADation on the G-test: our morphs carry it (-22.71 points [-32.38, -13.03]). | finished | `A12-6_photos-vs-morphs` |
+| A12-7 | Same question for PW-MAD and Inception-MAD, and for MADation's class weight. | MADation: our morph images, not their loss weight, carry the StyleGAN gain. PW-MAD breaks without our morphs; Inception-MAD loses 10 to 12 points on StyleGAN morphs. | finished | `A12-7_photos-share` |
+| A12-SP | Specialists as single-network tool-diversity experiments. | Not opened (name carries a sealed marker); the old ledger says "running", no result recorded here. | not verified | `A12-SP_*` |
+| A16 | What are the gains of training E10 without the SMDD genuine images? | Registered only; no result. | not run | `A16_d2-control` |
+| A30 | Does acquisition-style augmentation plus our GAN morphs help four pretrained backbones? | Not a confirmed gain: "helps" on design-seen sets were flagged or G-test driven; none confirmed on held-out sets (60 H100-hours). | finished | `A30_gan-protocol-training-method` |
+
+## 3. Frequency stream, sharpness and the G-test inversion
+
+| ID | Question in plain words | Outcome in plain words | Status | Source folder |
+|---|---|---|---|---|
+| A14 | Does training E10 without SMDD genuine images, or without the frequency stream or content gate, remove the G-test inversion? | No: still inverted (99.76% of morphs missed); the content gate has no measurable role (-0.59 points [-1.54, +0.18]). | finished | `A14_inversion-gate` |
+| A15 | Is the G-test inversion on the morph side or the genuine-photo side? | Morph side: the morphs score more genuine than real photos. Within E10, uncapped AUC 64.4 on SMDD alone against 34.2 with our data. | finished | `A15_morph-side-sharpness` |
+| A17 | Is our data's effect on the G-test ranking specific to the G-test? | Yes: within E10 our data raise GAN ranking by +9.7 AUC (MIPGAN-I/II, FRLL StyleGAN) and lower the G-test by 30.1. | finished | `A17_eval-gan-ranking` |
+| A18 | Where does the frequency stream raise or lower the morph ranking? | From scratch it lowers the selection-set EER by 16.7 points but costs MIPGAN-I (-11) and MIPGAN-II (-4.7); with an ImageNet backbone it does nothing above 2 points. | finished | `A18_freq-map` |
+| A19 | Do the frequencies act at inference (stream switched off)? | E10 falls to near chance on the selection set (8.97% to 43.14% EER, 16 networks); the MIPGAN cost cannot be undone at inference as far as shown. | finished | `A19_freq-knockout` |
+| A22 | Does the stream still help once both classes get the same resampling and JPEG augmentation? | Yes: +18.10 points [+16.79, +19.46] against +16.08 without the augmentation (n 6). | finished | `A22_freq-stream-augmentation` |
+| A26 | Does the frequency stream help pretrained VMamba-T and MambaVision on GAN morphs? | No detectable effect on GAN morphs or AMSL (Holm-adjusted 90% intervals); no harm on the selection set. | finished | `A26_freq-stream-pretrained-mambas` |
+
+## 4. Shortcut audits (E07 and A32 to A47)
+
+Summaries for every row in this section are in `summaries/`.
+
+| ID | Question in plain words | Outcome in plain words | Status | Source folder |
+|---|---|---|---|---|
+| E07 | Do networks separate morphs from genuine photos by resolution or file size? | MADMamba-T: 10.53% EER on native pools against 32.63% on resolution-matched pools (n 3); 58 of 63 networks broke the correlation limit. | finished | `E07_shortcut_controls` |
+| A32-RSX | Do near-perfect published diffusion scores collapse on resolution-matched pools? | The SelfMAD release: MorDIFF 2.5% to 61.3% EER, Greedy-DiM 8.4% to 90.7%. MADation retrain not reproduced (35.1%). | finished | `A32-RSX_resolution-shortcut` |
+| A36 | Do published detectors rely on shortcuts rather than morphing evidence? | None of 12 rows tells StyleGAN3 morphs from single-person renders (AUC 0.35 to 0.59). MADation ViT-B/16 MorDIFF 4.9% to 19.6% EER when photos are resolution-matched. | finished | `A36_published-detector-shortcuts` |
+| A37 | Which render property do 84 networks read: spread, typicality or stored detail? | On spread-matched renders no network ranks morphs above renders (AUC 42.8 to 49.2); truncated-render and re-store hypotheses not supported. | finished | `A37_stylegan3-render-controls` |
+| A38 | Does removing SBI restore H3 AUC, and is the signal linearly readable from frozen features? | Partly: SBI removal raised H3 AUC +0.071 [+0.046, +0.099] (Inception-MAD), +0.040 (PW-MAD); a linear probe reaches 0.91 AUC but follows closeness to the generator's average face. | finished | `A38_twins-and-feature-probe` |
+| A39 | Does the MixFaceNet release run correctly through our pipeline, and what lets a detector pass H3? | Release works (EER 0.45% on its own training images); inside H3, latent spread alone separates classes (AUC 1.000), so H3 cannot test identity mixing. S1, S3 and T withdrawn. | partial | `A39_batch-before-window-close` |
+| A40 | Is SelfMAD's downsampling response a loss of detail, and does SBI create it? | Not detail: response does not grow with file size (-2.4 points [-6.0, +1.0]). Parts Q and H2 not run (withdrawn). | partial | `A40_selfmad-detail-sbi-replication-h2-probe` |
+| A41 | Under one registered rule set, are released detectors' diffusion results shortcut-carried? | Grades final: SelfMAD release strong (Greedy-DiM 8.37% to 90.74% EER); MADation ViT-B/16 descriptive only; StyleGAN3 absence strong but narrow. | finished | `A41_shortcut-proof-zero-gpu` |
+| A42 | Do frame border, zero-fill, kernels or alignment explain the A41 effects? | Border area does not (AUC 0.844); central window drops it to 0.61 [0.56, 0.65]; kernel and gradient readings mixed. No grade changed. | finished | `A42_shortcut-followups-descriptive` |
+| A43 | Does MADation ViT-B/16 separate MorDIFF from reconstructions because of the decoding step count? | Yes as far as shown: AUC 0.833 at 100 steps, 0.487 at the matching 20 steps. Identity mixing not needed and not separately shown. | finished | `A43_mordiff-two-by-two` |
+| A44 | Why does the released MADation ViT-B/16 behave this way? | Score rises with shrink dose (Spearman 1.0); our retrain trained to the last step reaches the authors' regime (MorDIFF 4.44% against their 4.9%). Ledger is stale: R-last read 8 Nov. LoRA-removal tests not run. | partial | `A44_madation-mechanism` |
+| A45 | Do our SMDD-only retrains of Inception-MAD, MorphHRNet and FD-MAD reproduce published MAD22 numbers? | No: all arms FAIL (Inception 32.72% against 10.53%; HRNet-W18 40.91% against 9.42%). Ledger says "running"; read 8 Nov per the independent review. | finished | `A45_smdd-reproduction-retrains` |
+| A46 | Does any published regime reproduce on raw files with the authors' crop, and do diffusion cells hold? | Mixed and heavily qualified: MixFaceNet release 13.61% on held MAD22 against 13.69% published; crop defect suspended the MTCNN branch; RGB-only secondary accepted with qualifications. Ledger says "running"; stale. | partial | `A46_diffusion-register-raw-files` |
+| A47 | What do networks learn when trained with a label-permuted set, no morphs, or symmetric augmentation? | The morph-free arm of the ViT-B/16 (MADation-style) recipe reaches 0.00% EER on MorDIFF without ever seeing a morph; the label-permuted negative control was not at chance, so that result lacks its control. Ledger says "running"; read 8 Nov. | finished | `A47_training-interventions` |
+
+## 5. Mitigation attempts (A49, A50, ABC60, A138)
+
+| ID | Question in plain words | Outcome in plain words | Status | Source folder |
+|---|---|---|---|---|
+| A49 | Does adding a processing-consistency loss to DINOv3 adaptation reduce processing sensitivity? | No: registered joint criterion failed in all 5 seeds; sensitivity +0.0029 [-0.0049, +0.0106]; native EER +0.25 points [-0.23, +0.73]. | finished | `A49_dinov3` |
+| A50 | Does replacing some SMDD morphs with our classical morphs help under our recipe? | Small and family-specific: capped diffusion EER -2.11 (MorphHRNet-style) and -2.20 points (OrthoMAD); uncapped worse for three of four carriers. | finished | `A50_*.md` (no folder; three files) |
+| ABC60 | Do photos and our morphs (arms B, C) beat SMDD alone (A) on four backbones? | Every interval includes zero; no Mamba advantage; 412 inverted and 152 near-constant family fits among 2,400. | finished | `primary120fit/` |
+| A138 | Do algorithmic training fixes (head-only, LayerNorm, consistency, anchoring) reduce the shortcut? | No scientific run; only a timing pilot (D3-N, D3-P) completed. Not in the ledger. | not run (science) | `/tmp/opencode/mambamorph-a138-algorithmic/` (volatile) |
+
+## 6. MAD22 work
+
+| ID | Question in plain words | Outcome in plain words | Status | Source folder |
+|---|---|---|---|---|
+| MAD22-WD | How to treat our incomplete MAD22 copy? | Author decision 8 Nov: use the verified 185 genuine and 4,069 morph subset as best confirmed, keep the published 204 and 4,483 explicit. | finished | `MAD22_WORKING_DECISION_20261108.md` |
+| MAD22-MISS | Which MAD22 files are missing? | 433 files missing (19 genuine, 95 OpenCV, 107 FaceMorpher, 105 MIPGAN-I, 107 MIPGAN-II); a reply from the MAD22 authors is pending. | finished | `MAD22_missing_from_both_downloaded_ZIPs_20261108.txt` |
+| MV-AA | Does the MambaVision-B-21K training step repeat itself? | Tolerance-close, not bitwise repeatable (job 6297832, 66 H100 seconds). A trajectory-contract test remains open. | partial | `/home/narolski/mambamorph/research_notes/MAMBAVISION_AA6297832_QUALIFIED_PROTOCOL_ADDENDUM_20261110.md` |
+| A139 | Engineering build and admission for the next MAD22-related job. | No result recorded in the files read; purpose not verified. | not verified | `/tmp/opencode/a139-*` (volatile) |
+
+Other MAD22 results appear in A45, A46, A49, A50 and ABC60 above.
+
+## 7. Research loop of 11 Nov
+
+Source: `experiments/research_loop_20261111/README.md` (evidence snapshot written 11 Nov). Outputs are under `/mnt/t7/smad_research/`.
+None of these rows has a CONCLUSIONS entry yet.
+
+| ID | Question in plain words | Outcome in plain words | Status | Source folder |
+|---|---|---|---|---|
+| Astra E2 | Does a resolution signal remain after the proposed normalisation (CLIP views)? | Yes: all four primary kappas exceed 0.5, so the planned mechanism is not admitted. | finished | `research_loop_20261111/results/astra_e2` |
+| DiffAE102 ROI | Do inner-face heads help on 102 generated cases? | Apparent improvement on ordinary H3 negatives is exploratory only. | finished | `research_loop_20261111/results/diffae_roi102` |
+| A37 ROI | Does that improvement survive spread-matched negatives? | No: inner ROI AUC 0.461 and 0.467 against full image 0.487 and 0.489 (original and post-processed). | finished | `research_loop_20261111/results/a37_roi` |
+| DiffAE generation | Generate expanded DiffAE morphs. | 123 attempted, 102 complete, 816 images; quality and potency not established. | finished | `research_loop_20261111/results/diffae123` |
+| GAN32 generation | Generate 32 GAN dyads. | 128 inversions, 256 images; 698 copy-back members rehashed. | finished | `research_loop_20261111/results/gan32` |
+| Frozen 150-head scoring | Score GAN32 with 150 frozen heads. | Scoring complete; numbers pending independent check, not included. | partial | `research_loop_20261111/results/gan32` |
+| Astra core fit | Train the CLIP core arms (20 planned fits). | Started: one of 20 fits running; no result. | partial | `research_loop_20261111/state` |
+| GAN TRAINplus | Add 32 GAN training dyads in four shards. | Under way; some rented hosts failed; no result. | partial | `research_loop_20261111/protocols` |
+| Fresh confirmation64 | Build a fresh 64-case confirmation set. | Selection stopped: documented metadata cell too small; no generation. | not run | `research_loop_20261111/README.md` |
