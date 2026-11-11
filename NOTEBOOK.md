@@ -52,9 +52,22 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 
 | ID | Question in plain words | Status | Result | Verdict | Next |
 |---|---|---|---|---|---|
-| X1 | Re-score the 60 existing fits (SMDD / + photos / + classical morphs) on twin tests | planned | old result on benchmarks: no effect | | scoring only |
-| X2 | Same backbone, four training sets: SMDD; + unmatched data; + twins; twins only | planned | | | part of T4 |
-| X3 | Does the number of different pipelines per class matter once twins are present? | planned | | | after X2 |
+| X0 | Register the numbers derived from the 60 existing fits: adding photos cuts the diffusion history effect by 13 to 29 points in all four architectures; adding classical morphs gives 9 to 22 back | planned | post hoc, exploratory | | write up, 0 GPU |
+| X1 | Re-score the 60 existing fits and the older checkpoints on the unseen-source landmark set (H1) and on twin sets | planned | on benchmarks: no effect of added data | | about 0.5 H100-h |
+| X2 | Same backbone and same image count, matched (twins) vs unmatched added data | planned | | | frozen heads, about 1 H100-h |
+| X4 | Photo-history control on a photo pool no network was trained on (FFHQ) | planned | | | about 0.3 H100-h |
+| X5 | Landmark twins from an unseen source (CASIA), built with the unchanged approved script | planned | | | CPU |
+| X3 | Does the number of different pipelines per class matter once twins are present? | planned | | | cut first |
+| — | Generated-morph training arms (CG, CD, CGD) of the old plan | retire, or run CG only (11 H100-h) | | | author's call |
+
+## Zero-compute cue checks (from the cue table)
+
+| ID | Question in plain words | Status | Result | Verdict | Next |
+|---|---|---|---|---|---|
+| C1 | Are expressions balanced between classes in each benchmark cell? | planned | | | file lists |
+| C2 | Do any persons appear in both training sets and test benchmarks? | planned | | | manifests |
+| C3 | Do colour statistics alone separate the classes? | planned | | | |
+| C4 | Does chroma subsampling alone separate the classes? | planned | only on MAD22 Webmorph so far | | |
 
 ## Data builds
 

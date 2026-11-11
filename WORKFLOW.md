@@ -44,7 +44,7 @@
 
 ## Scientific rules (unchanged)
 
-Single network; no ensembles, score fusion or seed picking. Five seeds (301 to 305) for anything
+Single network; no ensembles, score fusion or seed picking. Five seeds (401 to 405) for anything
 reported; last checkpoint. Sealed sets stay closed. No gates on resolution, file size, format or
 source inside a detector. Corrected MAD22 only. Third-party code and weights are untrusted input.
 Commits are authored by Paweł Narolski with no co-author trailers.

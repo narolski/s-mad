@@ -84,8 +84,8 @@ MAD22 has no diffusion morphs. The diffusion cells are MorDIFF, DiM and Greedy-D
 | ID | Experiment | Data | New compute | Closes |
 |---|---|---|---|---|
 | AD1 | Ladder on MorDIFF for all releases. First step is a re-read: A43 already holds scores of reconstructions, same-pair morphs and same-person mixes for ViT-B/16, ViT-L/14 and SelfMAD; add MixFaceNet. Then expression-matched twins (the R2x set planned in A43, never run) | `a43` set; 100 matched mixes | re-read: none; R2x: 2 GPU-h | A43 extended from one release to four |
-| AD3 | History control on a second photo pool: FRGC and colorFERET photos, native vs existing E7 output | on disk if E7 outputs exist for them; otherwise needs the author's yes to run the approved path on new photos | scoring | "Everything rests on 204 FRLL photos" |
-| AD4 | Morph-free network: the registered A47 I-3 data, unchanged; 5 seeds (301 to 305), last checkpoint; recipes M3 (ViT-B/16) and M3L (ViT-L/14). Chance reference per recipe: 5 label-permuted seeds plus one untrained network | `/mnt/t7/smad_heldout/a47/data47` | 15 H100-h | A47 I-3 with a working control |
+| AD3 | History control on a second photo pool: FRGC and colorFERET photos, native vs existing E7 output | a pool no scored network was trained on: FFHQ pools with existing E7 outputs first; FRGC and colorFERET count only for the released detectors (our own networks trained on them) | scoring | "Everything rests on 204 FRLL photos" |
+| AD4 | Morph-free network: the registered A47 I-3 data, unchanged; 5 seeds (401 to 405), last checkpoint; recipes M3 (ViT-B/16) and M3L (ViT-L/14). Chance reference per recipe: 5 label-permuted seeds plus one untrained network | `/mnt/t7/smad_heldout/a47/data47` | 15 H100-h | A47 I-3 with a working control |
 | AD2 | Ladder on DiM and Greedy-DiM | needs DiM code on x86 | 10 GPU-h | A46's two open refuters. Cut if DiM code is not running by Thursday |
 | AD5 | Retrains of SelfMAD with the authors' code (MADation already has 8 retrains from A44) | SMDD | 30 H100-h | First item to cut |
 

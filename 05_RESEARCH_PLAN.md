@@ -43,6 +43,11 @@ MADMamba joins only as one arm of T4 with the identical data; it stays in the pa
 | Diffusion | DiffAE mix of A, B | DiffAE mix of A, A′ | DiffAE at 20 and 100 steps | same |
 | Graded | mixing 0, 0.1 … 0.5 for a subset | — | all | same |
 
+Source rules: FRLL persons are never used for training (they are the benchmarks' genuine class). One
+photo source (Multi-PIE or CASIA, fixed in D1) is kept out of all training and serves as the
+unseen-source test. FRGC and colorFERET were training data for our own earlier networks, so those
+networks are read on the unseen source only; released detectors never saw either.
+
 Rules: one sampled post-processing chain per pair, applied to both members; pairs matched on head
 pose; identity-disjoint train/validation/test; every person under both labels. Size in two steps: an audit set of
 about 2,000 pairs per family first (enough for every audit test and for gate 0), then 10,000 pairs per
@@ -128,6 +133,6 @@ Results reviewer on every finished study. Figures.
 - Standing author rules stay: single network, no ensembles or seed picking; sealed files closed;
   `prep_eval.py` and `prep_gtest.py` untouched; WCSS job rules (`--extra=FORCE_RM_TMPDIR`, `$TMPDIR`
   packs, one SSH connection, excluded nodes).
-- Seeds 301–305, so nothing collides with the other loop's 201–205.
+- Seeds 401–405, so nothing collides with the other loop's 201–205.
 - Outputs under `/mnt/t7/smad_next/`; nothing written into the other loop's folders.
 - Every command is tested with its real command line on 8 images before a paid GPU starts.
