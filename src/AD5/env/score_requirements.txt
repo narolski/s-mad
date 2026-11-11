@@ -42,3 +42,6 @@ idna==3.7
 certifi==2024.7.4
 charset-normalizer==3.3.2
 hf-xet==1.1.10
+# added 11 Nov 19:45 (pre-run review finding 4): the RS1 environment also has facenet-pytorch 2.6.0 (its wheel was in the
+# wheel house but not listed); AD5 scoring itself does not crop (it reuses RS1 crop files)
+facenet-pytorch==2.6.0

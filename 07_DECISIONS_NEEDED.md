@@ -71,6 +71,17 @@ morph literature note to `narolski/research`.
   two-label choice, it is the method under test, and its cost or gain on the benchmarks is measured by the SMDD
   rebuild (SM1) and the protocol-network tests (PN1). So the proposal of `14_CLASS_DEFINITIONS.md` is in force.
 
+## Author's decisions of 11 Nov, 19:42
+
+- **Oracle row for SelfMAD: ok.** One clearly labelled row may pick SelfMAD's best saved epoch on the FRLL test
+  data, beside the last-epoch row, to measure what the public code's default selection on test data is worth. A
+  diagnostic about their method only; never a headline and never used for our networks.
+- **Crop storage in the own-crop re-score (RS1): ok** (the lead's settlement stands: primary rows through the
+  authors' crop script run unchanged, secondary rows through the corrected crop stored losslessly; crops re-saved
+  as JPEG by sprint code are not result rows).
+- Still not covered by any answer, so not used: the `blur1`, `resample50` and `chip` branches of the registered
+  function on training images.
+
 ## Still open
 
 1. (Closed 11 Nov: class definitions accepted on a condition, see above.) Open instead: may the `blur1`, `resample50` and `chip` branches of the registered function also be run on training images?

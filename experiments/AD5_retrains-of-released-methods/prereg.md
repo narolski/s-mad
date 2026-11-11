@@ -168,3 +168,54 @@ GPU-hour), after the command has run on 8 images on the DGX.
 ## Pre-run review
 
 Not run (lead to decide).
+
+## Amendment 1 (11 Nov 2026, 19:50 CET; from the independent pre-run review `experiments/reviews/PRERUN_AD5_20261111.md`; before any retrain exists and before any retrain score)
+
+State when written: no retrain has finished; the MADation arrays are queued; no score of a retrain exists; the SelfMAD
+release is being scored through the AD5 path on the DGX (file not opened).
+
+1. **Headline and reproduction gate (review finding 1).** The verdict line computed over **all five seeds** is the
+   headline for every reading. The reproduction gate becomes a label per seed and per cell: "reproduced" if the native
+   EER is within W = max(1.5, 0.25 x published) of the published value (RS1's rule, unchanged), and, second window,
+   "matches the release" if it is within W' = max(1.5, 0.25 x release EER) of the release's own native EER through
+   the same AD5 path and crop variant. Two secondary verdict lines per reading: (a) on the seeds labelled
+   "reproduced" on that reading's cell, (b) on the seeds labelled "matches the release" on that cell; each line gives
+   its count k and uses the rule of the registration (at least 4 agreeing: method; at most 1: checkpoint; else
+   mixed; with k <= 3: "not determined (k seeds)"). Printed per method and cell: "k of 5 retrains with the authors'
+   code reproduce the published numbers" (k = seeds labelled "reproduced" on every published cell of the method, the
+   cells on which the release itself is "not reproduced" excluded and listed). If fewer than five seeds finish, every
+   verdict reads "incomplete (k seeds)" and only descriptive rows are printed. The registration's earlier gate-first
+   verdict is replaced by this rule.
+2. **Primary cells by a fixed rule (finding 5).** For each primary reading, the primary cell is the first cell of the
+   list below whose release row is not labelled "our pipeline, published number not reproduced" in RS1 (variant 1);
+   if every listed cell is so labelled, the first cell is used and the verdict carries that label.
+   - history and history flag rate (raw E7 cells): MorDIFF, Greedy-DiM, DiM-A;
+   - stored-small flag rate: uses the t5 of the native FRLL photos, which is the same for every FRLL-based cell; no
+     cell choice;
+   - smiling half (neutral-only minus all genuine EER): FRLL-Morphs AMSL, WebMorph, OpenCV, FaceMorpher, StyleGAN2,
+     Greedy-DiM;
+   - MorDIFF control-image contrasts: no cell (A43 images), always primary.
+3. **Added readings (finding 5), each with the registered agreement rule:**
+   - JPEG quality 50: flag rate at t5 of the existing JPEG-50 FRLL frames minus that of the aligned native frames
+     (`Gjpeg50_frll` minus `Galn_frll`); and the same for the existing 50% shrink-and-enlarge frames (`Gresample50_frll`).
+   - Each network's own 0.5 rule (probability of morph > 0.5; MADation / MixFaceNet `score_noTTA`, SelfMAD
+     softmax[:, 1]): flag rates of native, history-matched (MorDIFF raw E7), stored-small (A43 E) and JPEG-50 genuine
+     photos, the differences to native as readings; and the miss rate of every morph cell at the same rule, printed
+     beside the flag rates (descriptive; no verdict).
+4. **Training-loss fidelity check (improvement 1), no test data.** For MADation L and B, the training loss of every
+   retrain (the authors' logger, every 50 steps, `training.log`) is printed against the three complete 40-epoch runs
+   in the authors' release logs (`/mnt/t7/smad_next/AD5/release_logs/vit{l14,b16}_madation/training.log`, runs 2 to
+   4), per epoch (mean of the logged values) and at the last epoch; a retrain whose last-epoch mean loss lies outside
+   [0.5 x min, 2 x max] of the three authors' runs is flagged "loss outside the authors' range" beside its rows. No
+   such logs exist for SelfMAD and MixFaceNet-MAD; their loss curves are printed without a reference.
+5. **Checkpoints kept (finding 2).** MixFaceNet-MAD saves its weights after every epoch, SelfMAD every 5 epochs.
+   Epoch 100 stays the only registered reading; other epochs are descriptive and are not scored without a further
+   amendment. Neither an oracle-epoch row (best epoch on a benchmark) nor the authors' early-stopping rule on any test
+   list is computed; whether such a labelled row may be printed is the author's decision.
+6. **Scoring (finding 4).** MADation and MixFaceNet-MAD retrains and releases are scored on RS1's own crop files
+   (RS1 amendments 3 and 4: crop variant 1 = the authors' SMDD script unchanged, primary; variant 2 = the corrected
+   crop, secondary), reused by sha256 from RS1's Athena result tar, so that release and retrains, native and
+   history-matched photos, come from one crop run on one machine. SelfMAD: release and retrains through RS1's
+   `score.py --mode own` on the DGX (one platform for all six networks), with both genuine-class definitions
+   (neutral-only and all photos; RS1 amendment 2c) for the reproduction label.
+7. **Budget.** The lead set 250 GPU-hours for this experiment (11 Nov 19:20).
