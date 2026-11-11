@@ -76,3 +76,118 @@ part of the reference and are scored on the DGX together with this registration 
      `score.py`'s A12 locks refuse non-registered manifests.
 - **Pre-run review:** pending (lead).
 - **Result:** pending.
+
+## Amendment 1 (11 Nov 2026, 16:25 CET; written before any trained network of the morph-free networks experiment (AD4) exists)
+
+Source: the independent pre-run review of 11 Nov, the lease change, and the lead's instructions. Nothing below was
+chosen after seeing a trained network. The only scores read so far are the untrained ViT-B/16 network's
+(see (f)).
+
+**(a) Rented path for the ViT-B/16 recipe (M3).**
+- **Machine and stack:** all ten ViT-B/16 networks (five morph-free, five permuted) train on one Vast lease:
+  instance 60224295, 2x RTX PRO 5000 (72 GB each), California, 0.962 USD/h. Image
+  `pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime`, because these cards need a newer PyTorch. timm 1.0.27,
+  huggingface_hub 0.36.2 and safetensors 0.8.0 match the WCSS library packs. numpy is pinned to 1.26.4 and
+  Pillow is the image's own. The exact versions are recorded in `/mnt/t7/smad_next/AD4/vast/` (setup log).
+- **Torch differs from the cluster container** (2.7.1 against 2.2.1). The ten ViT-B/16 networks all come from
+  this one stack; stacks are never mixed within a recipe. The ViT-L/14 recipe (M3L) runs on WCSS in the
+  container.
+- **Training call:** `train.py` is called directly. `a47_train.py` (A47's entry) is a pass-through to `train.py`
+  when `--acq-aug` is absent, which is the case for every I-3 row.
+- **Earlier lease, closed unused:** instance 60223497 (2x RTX 4090, 24 GB) was destroyed before any task ran
+  (0.11 USD), because the review estimated the batch-256 memory at 32–36 GB.
+
+**(b) Gaps in the decision rule, closed.**
+- Named case "below every reference, not at the published level": the morph-free EER is at least 10 points
+  below every label-free reference, but above 15% in at least 3 of 5 seeds. It is reported as such for every
+  cell. On the primary and secondary cells it means "A1 falsified on this cell although the network beats the
+  references".
+- A "passable without morphs" verdict needs all six references (five permuted-label networks and the untrained
+  network). With fewer, the verdict is "provisional", and the number of references present is printed.
+- EER is recomputed at read time from `scores_eval.npz` with `analyze.eer` (code-tree `smadcvpr/analyze.py`).
+  The `metrics.json` value uses `common.eer`, which depends on row order when scores are tied. AUC is
+  recomputed with `analyze.auc`.
+- The reader refuses a network if any of these hold:
+  - a non-finite score;
+  - `steps` other than 6250 in `meta.json`;
+  - a scoring limit other than 0;
+  - an evaluation-manifest sha256 other than `5d3950ab5ccdeed4d376a15126cff660da2a35041579b3513eb7a1059baaa061`;
+  - a training-manifest sha256 other than the registered one for its arm.
+
+**(c) Wording on landmark cells.** The untrained network already reaches FRLL landmark AUC up to 0.72, so the
+claim there is "at least 10 points below every label-free reference (range a to b %)". It is never "above
+chance". The folded reference (|AUC − 0.5| + 0.5) is printed beside it. A miss on a landmark cell does not show
+that the cell needs morphs.
+
+**(d) ViT-L/14 recipe.** Each cell prints the morph-trained twin beside it: the A12BR M3L R × d0 networks, seeds
+1–5, last checkpoint, where their scores exist. Those scores are on the old `eval.csv`, so there is no twin for
+the corrected MAD22 cells; those are marked "no twin". A miss is worded "does not reach 15%; the morph-trained
+recipe reaches x%".
+
+**(e) E7 cells.** The genuine E7 copies are byte-identical to the native photos for:
+- FRLL StyleGAN, 204 of 204;
+- corrected MAD22 MIPGAN-I and MIPGAN-II, 204 of 204 each;
+- corrected MAD22 OpenCV, 108 of 204;
+- corrected MAD22 Webmorph, 104 of 204.
+
+These counts were checked with `cmp` on the pack. The first three cells are labelled "E7 not applicable", the
+last two "E7 partial (n identical)". Every other E7 cell has 0 identical copies.
+
+**(f) Disclosures and hashes.**
+- The untrained ViT-B/16 network was scored and its metrics read at about 15:15 CET. The pre-registration file
+  was first committed at 15:38 (commit 4068c3a). The decision rule itself is the one fixed earlier in
+  `11_AUDIT_PLAN.md` ("AD4 reading") and `04_HYPOTHESES.md` (A1). Nothing in the rule was changed after that
+  read.
+- File hashes (sha256):
+  - `run.sh`: 5aae2ef9dad93134548a75516955f14732de0e5f5729d488b2b85d2d6faf7dec (identical in all 20 task
+    directories);
+  - `ad4_score.py`: f0cadb7af320990d74ceffd9b92d1dab1d0085f30202bb7328ca4947f9cdd2cf (same inside the pack);
+  - `build_pack.py`: 5c296a3e8663f4998dae445bb61b2e83a49b1c223718b366ac9c7d0359753957;
+  - plan file `make_tasks.sh`: 4b714effa1d154f206733dcfa7b21e5d1cb72152b65052c42b020b552f2a61a3;
+  - pack: 1ad170be30af949c55536f5dd6fff8c8c62b60f39b3faaa8bc134cb68967bfde.
+
+**Gates. They are computed when results arrive; a miss is reported and stops nothing.**
+1. **Sample-order gate.** Each task's recorded batch composition (`meta.json` `composition.per_batch`, the
+   first 200 batches) must equal the CPU prediction for its seed and manifest. The prediction comes from the
+   reviewer's `order_check2.py` (sha256 16e8d238…) run with that seed. For seed 401 the first three batches
+   are expected to be [[139,117,0],[125,131,0],[124,132,0]]. Tolerance: exact equality of all 200 rows. A
+   miss means "sample order differs from the cluster stack" and is printed beside every number of that
+   network.
+2. **Reproduction gate.** The comparison is the three ViT-B/16 morph-free networks of the original A47 I-3
+   run (seeds 1–3, last checkpoint, H100). The ViT-B/16 morph-free seed means on this stack must meet:
+   - each of the seven diffusion native cells (MorDIFF and six DiM) at most 3.0% EER;
+   - FRLL FaceMorpher, Webmorph and AMSL at most 5.6%;
+   - FRLL OpenCV within 8.8–26.0%.
+
+   A miss means "not reproduced on this stack". The cluster tasks then decide; they would need the ten
+   ViT-B/16 tasks re-queued on WCSS.
+3. **Scorer equivalence.** One last-checkpoint ViT-B/16 network of the original A47 I-3 run, re-scored with
+   `ad4_score.py` on the DGX, must agree with its registered `scores_eval_last.npz` on every shared cell:
+   |AUC difference| ≤ 0.005 and Kendall tau ≥ 0.99 per cell.
+
+## Amendment 1b (11 Nov 2026, 16:40 CET; written before any trained network of the morph-free networks experiment (AD4) exists)
+
+The rented path changes again (author's suggestion). It replaces point (a) of Amendment 1. Points (b) to (f)
+and the gates stand.
+
+- **Aborted lease, nothing ran:** instance 60224295 (2x RTX PRO 5000) reported "running" but refused SSH for
+  7 minutes. It was destroyed under the ten-minute rule (records in `vast/lease2_2xPRO5000_unreachable/`).
+  Together with lease 1, the two aborted leases cost 0.27 USD in total.
+- **Two single-GPU machines, identical image and package pins.** The image is
+  `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime`, the same PyTorch as the WCSS container. The packages are
+  timm 1.0.27, huggingface_hub 0.36.2, safetensors 0.8.0 and numpy 1.26.4, plus the image's Pillow. The
+  software deviation of Amendment 1 (a) therefore falls away; only the card differs from the cluster (A100
+  class instead of H100).
+  - **Machine A** (`vast/leaseA`): instance 60226054, NVIDIA A100-SXM4-40GB, 0.433 USD/h. It runs the five
+    ViT-B/16 morph-free networks (AD4_m3mf_s401..405).
+  - **Machine B** (`vast/leaseB`): instance 60226099, offer 56042632, 1.00 USD/h. It runs the five ViT-B/16
+    label-permuted networks (AD4_m3perm_s401..405). Its card is recorded here once the machine is reachable.
+- **Within a recipe all ten networks share image and pins.** If the two machines turn out to carry different
+  card models, that is printed beside every number. The morph-free arm and its permuted reference would then sit
+  on different card models (same software).
+- **Batch fixed.** If the registered batch of 256 does not fit in 40 GB, the machine is replaced by a 48 GB or
+  80 GB card. The batch, steps or any other recipe value is never changed.
+- **Cap and watchdogs.** The global cap of 10 USD is enforced through the account-level drop in credit from the
+  baseline of 111.58 USD. Each machine has its own watchdog.
+- **Results:** they arrive in `/mnt/t7/smad_next/AD4/results_vast/` and are read with the reader and gates of
+  Amendment 1.

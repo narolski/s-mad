@@ -16,7 +16,7 @@ import requests
 
 KEY_FILE = pathlib.Path("/home/narolski/.config/smad-next/vast_api_key")
 BASE = "https://console.vast.ai/api/v0"
-IMAGE = "pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime"
+IMAGE = "pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime"
 
 
 def key():

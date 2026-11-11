@@ -50,6 +50,9 @@ Rule (author, 11 Nov 2026): an experiment is always named by a plain description
 | SM1 | SMDD five-partner audit and rebuild | audit, training set |
 | ID0 | Identity-shrinkage triage | method, identity |
 | ID2 | Ideation round 2, vetting | ideation |
+| RS1 | Own-crop re-score of the audit rows | audit, released detectors |
+| C1c | What the smiling half carries: expression or capture detail | cue checks |
+| AD1b | Identical and mirrored inputs for diffusion | audit, diffusion |
 | CN0 | Clean-negative test (inside the alpha-field probe) | method |
 
 Rungs of the ladder, in words: camera photo (R0); the same photo with the morphs' shrink-and-enlarge history (R1, also called E7); the tool run on one photo (R2; for landmark tools this is the photo itself); warp-only image (R2w); mirror self-morph (R3m); same-person morph (R3); two-person morph (R4).

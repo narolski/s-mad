@@ -7,7 +7,7 @@
 # Everything is logged under /mnt/t7/smad_next/AD4/vast/.
 set -euo pipefail
 HOST=${1:?host}; PORT=${2:?port}; STEP=${3:?setup|smoke|queue}
-L=/mnt/t7/smad_next/AD4/vast
+L=${AD4_LEASE_DIR:-/mnt/t7/smad_next/AD4/vast}
 SRC=$(cd "$(dirname "$0")" && pwd)
 KEY=/home/narolski/.config/smad-next/vast_ssh_key
 mkdir -p "$L"
@@ -15,7 +15,7 @@ O=(-o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=accept-new -o 
 R() { ssh "${O[@]}" "root@$HOST" "$@"; }
 RS() { rsync -a --partial --timeout=120 -e "ssh ${O[*]}" "$@"; }
 B=/workspace/ad4
-TASKS="AD4_m3mf_s401 AD4_m3mf_s402 AD4_m3mf_s403 AD4_m3mf_s404 AD4_m3mf_s405 AD4_m3perm_s401 AD4_m3perm_s402 AD4_m3perm_s403 AD4_m3perm_s404 AD4_m3perm_s405"
+TASKS="${AD4_TASKS:-AD4_m3mf_s401 AD4_m3mf_s402 AD4_m3mf_s403 AD4_m3mf_s404 AD4_m3mf_s405 AD4_m3perm_s401 AD4_m3perm_s402 AD4_m3perm_s403 AD4_m3perm_s404 AD4_m3perm_s405}"
 case "$STEP" in
   setup)
     R "mkdir -p $B/root/smad-next/packs/AD4 $B/root/smad-next/results/AD4 $B/tasks $B/bin && nvidia-smi -L && df -h /workspace | tail -1"
