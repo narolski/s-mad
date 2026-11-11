@@ -36,7 +36,8 @@ closer to real set). LPIPS = a learned perceptual image distance. SD = standard 
    a one-person render. The midpoint of two codes is, to second order, a truncated code (ψ about 0.71 for
    unrelated persons). For a Gaussian code distribution the two are the same distribution, so no detector can
    separate them. Our 0.89 to 0.94 is a truncation reading. Our 0.58 to 0.63 against spread-matched renders is
-   what the theory predicts, plus a small remainder with four testable causes (section 4).
+   what the theory predicts, plus a small remainder with five testable causes (section 4). The first to check:
+   the control may shrink codes toward the generator's mean code, while inverted photos have their own centre.
 4. **The published GAN morph cells measure generated-image detection.** A ResNet-50 trained only on ProGAN
    images of 20 object and scene categories, which never saw a morph, reaches 0.00%, 0.56% and 0.00% EER on
    three GAN morph sets (Colbois and Marcel, BIOSIG 2022, Table 2). Its authors conclude that detecting GAN
@@ -205,15 +206,19 @@ A truncated one-person code is also, literally, a morph of that person with the 
 the mean face. So the spread-matched render is not a neutral control. It is a morph whose partner is nobody.
 
 **Reading of 0.58 to 0.63.** The Gaussian picture predicts 0.50. The result is close to it. This is the
-expected outcome of a correct control, not a lack of power. The remainder of 0.08 to 0.13 has four candidate
+expected outcome of a correct control, not a lack of power. The remainder of 0.08 to 0.13 has five candidate
 causes. Each can be tested on what is on disk.
 
 | Candidate cause | What the literature says | Test on existing material |
 |---|---|---|
-| 1. The spread match fixes one number; the morph's shrink is not uniform. Two contributor codes can be correlated in some layers (shared photo style of the source set) and not in others (identity). One scalar cannot copy that profile. | Layers carry different content: coarse = pose and face shape, middle = facial features, fine = colour and microstructure (Karras et al. 2019, Figure 3). | From the stored W+ codes of the 423 pairs: shrink factor per layer for the morph and for its spread-matched code. If the profiles differ, a per-layer matched render is the tighter control. Zero GPU. |
-| 2. W is not Gaussian. A mean of two skewed codes is less skewed and has thinner tails than one scaled code. | Skew from the last leaky ReLU; normality rejected even after undoing it (Zhu et al. 2020; Wulff and Torralba 2020). | Idea 1, step 0 below. Zero GPU. |
-| 3. Inverted codes are not prior samples. Each inversion carries its own off-manifold part; averaging two cancels part of it, scaling one does not change its shape. | Zhu et al. 2020 (low-density embeddings); Tov et al. 2021 (distance from W). | Same step 0, with the per-code spread across layers as one of the statistics. |
-| 4. Fold leakage. The probe's own record says a test morph's second contributor can be in the training part. | Not a literature point. | Refit with folds grouped by both contributors. Minutes. |
+| 1. The control may shrink toward the wrong centre. Inverted photos of one source set share an offset from the generator's mean code (their common "photo style"). A midpoint keeps that offset in full and halves only the personal part. A render truncated toward the generator's mean code loses part of the offset and keeps more of the personal part. The two then differ systematically although their radii are equal. | The mean code w̄ is the centre of the generator's own samples (Karras et al. 2019), not of inverted photos. Inverted codes lie away from the sampled distribution (Zhu et al. 2020; Tov et al. 2021). | From the stored W+ codes: distance between the mean of the inverted codes and w̄, against the spread of the codes around their own mean. If it is not small, rebuild the control around the set mean (decode only). Check first which centre the existing spread-matched pool used. Zero GPU for the check. |
+| 2. The spread match fixes one number; the morph's shrink is not uniform. Two contributor codes can be more alike in some layers than in others. One scalar cannot copy that profile. | Layers carry different content: coarse = pose and face shape, middle = facial features, fine = colour and microstructure (Karras et al. 2019, Figure 3). | Shrink factor per layer for each morph and for its spread-matched code. If the profiles differ, a per-layer matched render is the tighter control. Zero GPU. |
+| 3. W is not Gaussian. A mean of two skewed codes is less skewed and has thinner tails than one scaled code. | Skew from the last leaky ReLU; normality rejected even after undoing it (Zhu et al. 2020; Wulff and Torralba 2020). | Idea 1, step 0 below. Zero GPU. |
+| 4. Inverted codes are not prior samples. Each inversion carries its own off-manifold part; averaging two cancels part of it, scaling one does not change its shape. | Zhu et al. 2020 (low-density embeddings); Tov et al. 2021 (distance from W). | Same step 0, with the per-code spread across layers as one of the statistics. |
+| 5. Fold leakage. The probe's own record says a test morph's second contributor can be in the training part. | Not a literature point. | Refit with folds grouped by both contributors. Minutes. |
+
+Causes 1 and 2 are faults of the control. Causes 3 and 4 would be real traces of mixing. Cause 5 is a fault of
+the probe. Only causes 3 and 4 could ever support a detector, and neither says anything about a second person.
 
 ### 4.3 What this means for the paired-difference numbers
 
@@ -288,9 +293,12 @@ Kill: at or below 0.60 in both strata with the positive control passing.
 
 **Risk.** A high code-level AUC is not evidence that the image shows it; only the low outcome is decisive at
 step 0. Radius-restored midpoints of inverted codes may leave the generator's good region and show artefacts,
-which would be read as "mixing"; the prior-sample arm guards against this. A positive result reads "two codes
-were mixed", which is also true of a same-person mix. Most likely outcome: kill, which gives the paper a limit
-measured with demonstrated power, and gives x3r as the evasion example.
+which would be read as "mixing"; the prior-sample arm guards against this. All four arms must use the same
+centre, the mean of the codes of that set (section 4.2, cause 1). A positive result reads "two codes were
+mixed", which is also true of a same-person mix. My expectation, stated in advance: step 0 may come out high for
+inverted codes, because optimised codes are far from Gaussian, and the image-level test is more likely to end
+in the kill. That outcome is an absence result with demonstrated power on thousands of pairs, which our record
+does not yet have for generator morphs, and it gives x3r as the evasion example.
 
 **State of the art.** This idea does not raise a table number. It decides how generator cells are reported and
 whether a generator arm belongs in the training set. It adds only same-generator images, so it cannot hurt the
@@ -302,8 +310,9 @@ landmark cells.
 et al. 2019). Training on simulated traces instead of real fakes (Zhang, Karaman and Chang 2019). Real-only
 training (Liu et al. 2022).
 
-**Transfer.** A truncated render G(w̄ + ψ(w − w̄)) is one person morphed with the mean face. It has the one
-property a latent-average morph has, and nothing else: no second person, no partner pool, no morphing tool.
+**Transfer.** A truncated render G(w̄ + ψ(w − w̄)) is one person morphed with the mean face. For inverted
+photos the centre should be the mean of the set's own codes. The render has the one property a latent-average
+morph has, and nothing else: no second person, no partner pool, no morphing tool.
 Train a head to regress ψ on one-identity renders only. Test it on real latent morphs. If section 4 is right,
 transfer is complete. The head then has a physical unit, the "mixing-equivalent truncation": 0.71 for unrelated
 contributors, 0.87 for look-alikes, 1.0 for a single code. Two uses follow. As evidence: a network that never
@@ -332,12 +341,12 @@ ranked by a face-image-quality score (Damer et al. 2022); its paper states no ψ
 renders near the mean code, SMDD's genuine class is shifted toward the mean face, and a detector trained on it
 learns "average render = genuine". That would fit one line of our record: the SelfMAD release, which by its
 paper trains on SMDD's genuine renders, scores truncated renders as less morph-like than the morphs (AUC 0.883
-for morphs against the ψ = 0.5 pool; `docs/sources/methods_table/gather_gan.md`, section 4b). This is a hypothesis. Testing it needs unselected renders of the
-same StyleGAN2-ADA generator, which are not on disk.
+for morphs against the ψ = 0.5 pool; `docs/sources/methods_table/gather_gan.md`, section 4b). This is a
+hypothesis. Testing it needs unselected renders of the same StyleGAN2-ADA generator, which are not on disk.
 
 **Risk.** The head may read simple image properties rather than facial averageness; the floor decides. The
-existing truncated pools may have been built on other base codes or layers than assumed; check the generation
-record first. Behaviour on camera photos is untested; a head trained on renders only may be undefined there
+existing truncated pools may have been built on other base codes, other layers or another centre than assumed
+(section 4.2, cause 1); check the generation record first. Behaviour on camera photos is untested; a head trained on renders only may be undefined there
 (the first PD1 pass gives 0.51 for reconstruction against camera photo, which is encouraging). An attacker
 restores the radius. Average-looking or beautified genuine faces would be flagged.
 
@@ -369,8 +378,8 @@ class. Ladder contrasts: camera photo against its history-matched copy must not 
 middle output; morph against reconstruction must move only the morph output.
 
 **Used in MAD already?** Partly. Zhang et al. (CVPRW 2024) put GAN reconstructions in the genuine class.
-Colbois and Marcel (2022) show a generated-image detector wins the GAN cells. A three-way output with a
-same-photo aligned middle class was not found.
+Colbois and Marcel (2022) show that a generated-image detector wins three GAN morph sets. A three-way output
+with a same-photo aligned middle class was not found.
 
 **First test, at most one day.** Train the middle output on the 256 reconstruction pairs of the GAN blocks and
 the diffusion-autoencoder reconstructions on hand, folds by person. Pass: reconstruction against frame-matched
@@ -412,9 +421,11 @@ DNADet features and a trained probe: yes (Colbois and Marcel 2024). An up-sampli
 any such reader on a matched ladder: none found (search listed in section 3).
 
 **First test, half a day.** Download the released weights of the ProGAN-trained classifier and of NPR. Score the
-FRLL landmark cells, the MIPGAN cells, MorDIFF, and the ladder rungs. Useful if one reader reaches AUC at or
-above 0.90 on at least one benchmark cell, separates a photo from its history-matched copy at or above 0.80, and
-stays at or below 0.60 between same-person and two-person morphs. Kill: no reader reaches 0.75 on any cell.
+FRLL landmark cells, the MIPGAN cells, MorDIFF, and the ladder rungs. The GAN cells are expected to fall to the
+generator reader, since that is published. The new part is the landmark side. Useful if the up-sampling reader
+reaches AUC at or above 0.90 on at least one landmark cell, separates a photo from its history-matched copy at
+or above 0.80, and stays at or below 0.60 between same-person and two-person morphs. Kill for the new part: the
+up-sampling reader stays below 0.75 on every landmark cell and below 0.70 on the storage-history step.
 
 **Risk.** NPR was trained on four ProGAN object classes at fixed size; its behaviour on our frames is unknown.
 That NPR's weights are public is from memory; the repository of the ProGAN-trained classifier is confirmed by
@@ -456,7 +467,8 @@ Pass: two-person morph against own warped halves at or above 0.75, history shift
 positive with an interval excluding zero. Kill: AUC below 0.65, or history shift above 0.3 SD.
 
 **Risk.** The ceiling is averageness of shape, which gave 0.725 on exact landmarks; this is a component, not a
-headline. The encoder may push blur into the middle layers. Images must be brought to the encoder's frame with
+headline. The encoder may push blur into the middle layers. The radius must be measured from the mean code of
+inverted camera photos, not from the generator's mean code. Images must be brought to the encoder's frame with
 the existing alignment only. A radius-restoring attacker defeats it for generator morphs, not for landmark
 morphs.
 

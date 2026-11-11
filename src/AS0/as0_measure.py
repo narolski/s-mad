@@ -24,7 +24,7 @@ NB = 7                       # B0 (low residual), B1..B5 (octave bands), B6 (hig
 CH = ("Y", "R", "G", "B")
 COV = ("mask0", "mask1", "c_mid", "mid_off", "iod_img", "yaw", "nose_off", "roll", "light", "lap_mask", "lap_full",
        "l1_mask", "box_l1", "shape_L", "W", "H", "lm_ok")
-SMDD_LM = pathlib.Path("/dev/shm/smad_arms/smdd_bona_landmarks_if106.npz")
+SMDD_LM = pathlib.Path("/mnt/t7/smad_next/AS0/inputs/smdd_bona_landmarks_if106.npz")   # byte copy of the /dev/shm file
 _W = {}
 
 
@@ -138,8 +138,9 @@ def bbox(M):
     return (r[0], r[-1] + 1, c[0], c[-1] + 1) if len(r) else None
 
 
-def measure(img_bgr, lm, iod_nom, frame):
-    """returns EA, ES [4, 2, 7] and covariate dict."""
+def measure(img_bgr, lm, iod_nom, frame, blank=False):
+    """returns EA, ES [4, 2, 7] and covariate dict. blank (amendment A4): everything outside M_sym (F0) is set to the
+    mean colour of M_sym in memory before the FFT; only F0 is then reported."""
     import cv2
     import scipy.fft as sf
     h, w = img_bgr.shape[:2]
@@ -149,6 +150,11 @@ def measure(img_bgr, lm, iod_nom, frame):
     c2 = int(round(2 * c))
     cov["c_mid"], cov["mid_off"] = c2 / 2, (c2 / 2 - (w - 1) / 2) / iod_nom
     M0, M1, idx1 = masks(lm, img_bgr, iod_nom, c2)
+    if blank:
+        M1 = np.zeros_like(M0)
+        if M0.sum() > 0:
+            rgb = rgb.copy()
+            rgb[~M0] = rgb[M0].mean(0)
     cov["mask0"], cov["mask1"] = int(M0.sum()), int(M1.sum())
     iod_img = float(np.linalg.norm(lm[K.PUPIL_R] - lm[K.PUPIL_L]))
     cov["iod_img"] = iod_img
@@ -206,7 +212,7 @@ def nominal_iod(items, L):
     frames = {}
     genuine = {"R0", "S0", "x0", "photo", "native"}
     for it in items.values():
-        if it["set"] in ("L", "G", "D", "Ds", "Fm", "Fe", "S", "X") and it["role"] in genuine:
+        if it["set"] in ("L", "G", "D", "Ds", "Fm", "Fe", "S", "X") and it["role"] in genuine:   # not the O/N copies
             lm = L.of(it)
             if lm is not None:
                 frames.setdefault(it["frame"], []).append(float(np.linalg.norm(lm[K.PUPIL_R] - lm[K.PUPIL_L])))
@@ -228,25 +234,24 @@ def nominal_iod(items, L):
 
 
 def iod_for(frame, nom):
-    if frame == "canon512":
-        frame = "ar1_512"
-    return nom[frame]["median"]
+    return nom[frame]["median"]          # amendment A8: canon512 uses its own genuine images
 
 
-def run(items, L, sets, limit, chunk, shard):
+def run(items, L, sets, limit, chunk, shard, blank=False, roles=None):
     import cv2
     nom = json.load(open(K.OUT / "iod_nominal.json"))
-    (K.OUT / "meas").mkdir(exist_ok=True)
+    md = "meas_blank" if blank else "meas"
+    (K.OUT / md).mkdir(exist_ok=True)
     si, sn = map(int, shard.split("/"))
     for s in sets:
-        rows = [it for it in items.values() if it["set"] == s]
+        rows = [it for it in items.values() if it["set"] == s and (not roles or it["role"] in roles)]
         if limit:
             rows = rows[:limit]
         chunks = list(range(0, len(rows), chunk))
         for ci, k in enumerate(chunks):
             if ci % sn != si:
                 continue
-            part = K.OUT / "meas" / (f"smoke_{s}_{k:05d}.npz" if limit else f"{s}_{k:05d}.npz")
+            part = K.OUT / md / (f"smoke_{s}_{k:05d}.npz" if limit else f"{s}_{k:05d}.npz")
             if part.exists():
                 continue
             ch = rows[k: k + chunk]
@@ -263,7 +268,7 @@ def run(items, L, sets, limit, chunk, shard):
                 if img is None or lm is None or not np.isfinite(lm).all():
                     C[i, COV.index("lm_ok")] = 0
                     continue
-                ea, es, cov = measure(img, lm, iod_for(it["frame"], nom), it["frame"])
+                ea, es, cov = measure(img, lm, iod_for(it["frame"], nom), it["frame"], blank=blank)
                 EA[i], ES[i] = ea, es
                 for j, name in enumerate(COV):
                     C[i, j] = cov.get(name, np.nan)
@@ -272,9 +277,10 @@ def run(items, L, sets, limit, chunk, shard):
             print(f"{s} {k + n}/{len(rows)} {time.time() - t0:.1f}s", flush=True)
 
 
-def merge():
+def merge(blank=False):
+    md = "meas_blank" if blank else "meas"
     acc = {k: [] for k in ("ids", "EA", "ES", "C", "pixhash")}
-    for p in sorted((K.OUT / "meas").glob("*.npz")):
+    for p in sorted((K.OUT / md).glob("*.npz")):
         if p.name.startswith("smoke_"):
             continue
         with np.load(p, allow_pickle=False) as z:
@@ -282,7 +288,7 @@ def merge():
                 acc[k].append(z[k])
     out = {k: np.concatenate(v) for k, v in acc.items()}
     assert len(set(out["ids"].tolist())) == len(out["ids"])
-    np.savez(K.OUT / "meas_all.npz", cov_names=np.array(COV), **out)
+    np.savez(K.OUT / ("meas_blank_all.npz" if blank else "meas_all.npz"), cov_names=np.array(COV), **out)
     print("merged", len(out["ids"]))
 
 
@@ -294,14 +300,16 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--chunk", type=int, default=256)
     ap.add_argument("--shard", default="0/1")
+    ap.add_argument("--blank", action="store_true", help="amendment A4 sensitivity run -> OUT/meas_blank")
+    ap.add_argument("--roles", default="", help="comma list of roles to measure (default all)")
     a = ap.parse_args()
     if a.merge:
-        return merge()
+        return merge(a.blank)
     items = {it["id"]: it for it in K.read_csv(K.OUT / "items.csv")}
     L = LM(items)
     if a.iod:
         return nominal_iod(items, L)
-    run(items, L, a.sets.split(","), a.limit, a.chunk, a.shard)
+    run(items, L, a.sets.split(","), a.limit, a.chunk, a.shard, a.blank, set(a.roles.split(",")) - {""})
 
 
 if __name__ == "__main__":

@@ -209,20 +209,25 @@ def selfmad_pools(man):
             continue
         by.setdefault(s_, []).append((float(l), pp, ex, ph))
     P.update(_pools(by, "SelfMAD crop of our aligned frames (A43 own)", "logit"))
-    f = OUT / "scores/scores_own_selfmad__amend.npz"
-    if f.exists():
-        z = np.load(f)
-        assert str(z["mode"]) == "own"
-        by = {}
-        for i, l in zip(z["id"].tolist(), z["logit_noTTA"]):
-            r = man[i]
-            by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"], r["photo"]))
-        P.update(_pools(by, "SelfMAD own crop, stored / dataset files (RS1, amendment 2)", "logit"))
-    if "a43_E" not in P:                                   # fall back to the frames for the ladder
-        for k in list(P):
-            if k.startswith("a43f_"):
-                P["a43_" + k[5:]] = P[k]
+    for k in list(P):                                      # the A43 frames serve the ladder of this run
+        if k.startswith("a43f_"):
+            P["a43_" + k[5:]] = P.pop(k)
     return P
+
+
+def selfmad_dgx(man):
+    """SelfMAD own preprocessing scored by RS1 on the DGX (one platform): raw FRLL photos, raw MorDIFF morphs, raw E7
+    MorDIFF files, the A43 stored control images, FEI, FFHQ."""
+    f = OUT / "scores/scores_own_selfmad__dgx.npz"
+    if not f.exists():
+        return None
+    z = np.load(f)
+    assert str(z["mode"]) == "own" and str(z["det"]) == "selfmad_hrnet_w18"
+    by = {}
+    for i, l in zip(z["id"].tolist(), z["logit_noTTA"]):
+        r = man[i]
+        by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"], r["photo"]))
+    return _pools(by, "SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)", "logit")
 
 
 def persons_expr(name, lab):
@@ -429,6 +434,7 @@ def main():
     ap.add_argument("--B", type=int, default=2000)
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--skip-selfmad", action="store_true")
+    ap.add_argument("--dgx", action="store_true", help="also tabulate the DGX MADation scores (platform check only)")
     a = ap.parse_args()
     man = manifest()
     allp = {p for r in man.values() for p in r["persons"].split("|")}
@@ -437,18 +443,22 @@ def main():
     Ds = {"frll": M.Draw(pers, a.B, SEED), "fei": M.Draw(sorted(p for p in allp if p.startswith("fei")), a.B, SEED + 1),
           "ffhq": M.Draw(sorted(p for p in allp if p.startswith("ffhq")), a.B, SEED + 2)}
     S = Stats(Ds)
-    runs = []                                          # (detector, platform, pools)
-    for d in REL:
-        p = rel_pools(d, man, a.smoke)
-        if p:
-            runs.append((d, "DGX", p))
+    runs = []                                          # (detector, platform, pools); one platform per run
+    if a.smoke or a.dgx:
+        for d in REL:
+            p = rel_pools(d, man, a.smoke)
+            if p:
+                runs.append((d, "DGX", p))
     if not a.smoke:
         for d in REL_ATH:
             p = athena_pools(d)
             if p:
                 runs.append((d, "Athena", p))
     if not a.skip_selfmad:
-        runs.append(("selfmad", "DGX (existing files)", selfmad_pools(man)))
+        runs.append(("selfmad", "existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)", selfmad_pools(man)))
+        p = selfmad_dgx(man)
+        if p:
+            runs.append(("selfmad", "DGX (RS1 own scoring)", p))
     out = dict(B=a.B, seed=SEED, persons=len(pers), reproduction=[], history=[], flags=[], expression=[], ladder=[],
                ladder_flags=[], pool_rates=[], shifts=[], counts={})
     for det, plat, P in runs:

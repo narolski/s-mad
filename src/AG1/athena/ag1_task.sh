@@ -6,7 +6,7 @@
 # + .log.csv. Idempotent: a verified result tar present -> exit 0. Any failure -> non-zero.
 set -euo pipefail
 SHARD=${1:?shard name}
-G=/net/pr2/projects/plgrid/plggrestoration/smad-next
+G=${AG1_G:-/net/pr2/projects/plgrid/plggrestoration/smad-next}   # AG1_G: local tests only
 P=$G/packs/AG1
 RES=$G/results/AG1
 PY=$G/envs/AG1/bin/python
@@ -20,20 +20,25 @@ fi
 W=$SCRATCH_LOCAL/ag1_$SHARD; rm -rf "$W"; mkdir -p "$W"; cd "$W"
 export TMPDIR=$W/tmp; mkdir -p "$TMPDIR"
 echo "AG1 $SHARD on $(hostname) $(date +%FT%T)"; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
-cp "$P/ag1_pack.tar" .
-[ "$(sha256sum ag1_pack.tar | cut -c1-64)" = "$(cut -c1-64 "$P/ag1_pack.tar.sha256")" ] || { echo "pack sha256 mismatch"; exit 2; }
-tar -xf ag1_pack.tar && rm -f ag1_pack.tar
-sha256sum -c SHA256SUMS || { echo "inner pack sha256 mismatch"; exit 2; }
-for f in gan_weights.tar gan_sg1.tar ag1_code.tar ag1_inputs.tar; do tar -xf "$f" && rm -f "$f"; done
+df -h "$SCRATCH_LOCAL" | tail -1
+# smoke job 3544188 ran out of node-local space copying + unpacking the 2.9 GB pack: the outer tar is now checked in
+# place on the project store (its sha256 covers the inner tars) and the inner tars are streamed out of it, keeping
+# only the weights this generator needs.
+[ "$(sha256sum "$P/ag1_pack.tar" | cut -c1-64)" = "$(cut -c1-64 "$P/ag1_pack.tar.sha256")" ] || { echo "pack sha256 mismatch"; exit 2; }
+GEN=$(tar -xOf "$P/ag1_pack.tar" ag1_inputs.tar | tar -xO "ag1_inputs/shards/$SHARD.json" | "$PY" -I -c "import json,sys;print(json.load(sys.stdin)['gen'])")
+EXC=(--exclude=gan_weights/ffhq.pkl --exclude=gan_weights/w600k_r50.onnx)
+[ "$GEN" = mip1 ] && EXC+=(--exclude=gan_weights/e4e_ffhq_encode.pt)
+tar -xOf "$P/ag1_pack.tar" gan_weights.tar | tar -x "${EXC[@]}"
+for f in gan_sg1.tar ag1_code.tar ag1_inputs.tar; do tar -xOf "$P/ag1_pack.tar" "$f" | tar -x; done
+du -sh "$W" | tail -1
 LAT=()
 NEEDS=$("$PY" -I -c "import json,sys;print(' '.join(json.load(open(sys.argv[1]))['needs']))" "ag1_inputs/shards/$SHARD.json")
 if [ -n "$NEEDS" ]; then
   mkdir -p needs_lat
   for n in $NEEDS; do
     [ -s "$RES/$n.tar" ] && [ -s "$RES/$n.tar.sha256" ] || { echo "needed core shard $n has no result tar"; exit 3; }
-    cp "$RES/$n.tar" "need_$n.tar"
-    [ "$(sha256sum "need_$n.tar" | cut -c1-64)" = "$(cut -c1-64 "$RES/$n.tar.sha256")" ] || { echo "$n sha256 mismatch"; exit 3; }
-    tar -xf "need_$n.tar" --wildcards "$n/lat/inv_*" && mv "$n"/lat/inv_* needs_lat/ && rm -rf "$n" "need_$n.tar"
+    [ "$(sha256sum "$RES/$n.tar" | cut -c1-64)" = "$(cut -c1-64 "$RES/$n.tar.sha256")" ] || { echo "$n sha256 mismatch"; exit 3; }
+    tar -xf "$RES/$n.tar" --wildcards "$n/lat/inv_*" && mv "$n"/lat/inv_* needs_lat/ && rm -rf "$n"
   done
   LAT=(--latents "$W/needs_lat")
 fi
@@ -60,10 +65,11 @@ bad = [k for k, v in rep.items() if v['size'] != (1024, 1024) or v['mode'] != 'R
 json.dump({'n': len(rep), 'not_1024_rgb_plain': bad}, open(out / 'format_check.json', 'w'))
 print('FORMAT', len(rep), 'files; deviating', len(bad)); sys.exit(1 if bad else 0)
 " "$OUT"
-tar -C "$W" -cf "$W/$SHARD.tar" "$SHARD"
-H=$(sha256sum "$W/$SHARD.tar" | cut -c1-64)
-cp "$W/$SHARD.tar" "$RES/.$SHARD.tar.partial"
-[ "$(sha256sum "$RES/.$SHARD.tar.partial" | cut -c1-64)" = "$H" ] || { echo "project-store copy sha256 mismatch"; exit 4; }
+# the result tar is written straight to the project store (no local copy) and hashed there; its listing is checked
+tar -C "$W" -cf "$RES/.$SHARD.tar.partial" "$SHARD"
+H=$(sha256sum "$RES/.$SHARD.tar.partial" | cut -c1-64)
+NP=$(tar -tf "$RES/.$SHARD.tar.partial" | grep -c "/png/.*\.png$" || true)
+[ "$NP" = "$(ls "$OUT/png" | wc -l)" ] || { echo "result tar holds $NP PNGs, expected $(ls "$OUT/png" | wc -l)"; exit 4; }
 cp "$OUT/log.csv" "$RES/$SHARD.log.csv"
 echo "$H  $SHARD.tar" > "$RES/$SHARD.tar.sha256"
 mv -f "$RES/.$SHARD.tar.partial" "$RES/$SHARD.tar"

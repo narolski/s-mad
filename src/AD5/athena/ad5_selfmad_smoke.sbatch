@@ -31,7 +31,7 @@ mv $S/raw/SMDD_release_train/os25k_bf_t $S/SMDD/os25k_bf_t
 untar_checked $PK/selfmad_landmarks.tar $S                     # -> $S/SMDD_landmarks/os25k_bf_t/*.npy
 echo "renders $(ls $S/SMDD/os25k_bf_t | wc -l) landmarks $(ls $S/SMDD_landmarks/os25k_bf_t | wc -l)"
 if [ ! -f $PK/selfmad_labels.tar.gz.sha256 ]; then
-  t0=$(date +%s)
+  t0=$(date +%s); mkdir -p $S/SMDD_labels/os25k_bf_t     # face_labels.py does not create its output directory
   ( cd $SRC/preprocessing && $PY -I $RUN $SRC/preprocessing $SRC/preprocessing/face_labels.py -i $S/SMDD -o labels ) \
       > $S/face_labels.log 2>&1
   echo "LABEL_SECONDS $(( $(date +%s) - t0 )) labels $(ls $S/SMDD_labels/os25k_bf_t | wc -l)"

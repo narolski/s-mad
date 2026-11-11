@@ -231,3 +231,13 @@ rate). Two image sets appeared after the pre-registration, both built by the alp
 Features of both sets are extracted here (CLIP) or taken from AF0's caches where complete (DINOv3), with the same
 code as above; their simple statistics are taken from AF0's cache where present and otherwise computed with the same
 unchanged function.
+
+## Amendment 2 (11 Nov, 18:40 CET), before any number of it was computed
+
+Seen before writing it: the CLIP results above (`result.md`, second step). Added as a descriptive control, no
+reading attached: the **statistics head**, i.e. the same one-person and two-person paired heads, folds, inner CV and
+evaluation, fitted on the 27 simple statistics instead of backbone features (each statistic transformed as
+sign(x) log(1 + |x|), then z-scored as for the other features). It answers whether "learn from one person" already
+works with simple image statistics alone, which a single best statistic (the registered floor) does not show. Sets
+without statistics (SMDD, graded FaceMorpher, AF0 uniform 0.25) are skipped for it; benchmark statistics are taken
+from AF0's cache when complete.

@@ -244,6 +244,17 @@ def main():
                 path=str(d / f"{role}.png"), frame="diffae256", lm="det", persons=bid, host=bid, db=db,
                 **pairmeta(db, s[u]["capture"], s[v]["capture"], meta))
 
+    # ---- amendment A3 (11 Nov 18:40): history copies with their OWN detected landmarks (appended rows) ----
+    for it in [x for x in items if x["set"] in ("Fm", "Fe", "Lsoft") and x.get("src")]:
+        add(**{**it, "id": it["id"] + "|own", "set": it["set"] + "O", "lm": "det"})
+    seen = set()
+    for it in [x for x in items if x["set"] == "Lsoft"]:
+        s = it["src"]
+        if s in seen:
+            continue
+        seen.add(s)
+        n = next(x for x in items if x["id"] == s)
+        add(**{**n, "id": s + "|own", "set": "LsoftN", "lm": "det"})
     missing = [it["id"] for it in items if not pathlib.Path(it["path"]).exists()]
     fields = ["id", "set", "role", "tool", "level", "path", "frame", "lm", "persons", "host", "db", "src", "part",
               "aligned", "s_a", "s_b", "gap_days", "same_session", "expr_a", "expr_b", "env_a", "env_b"]

@@ -1,0 +1,28 @@
+{
+ "feature": "clip_cls",
+ "n_hosts": 536,
+ "n_soft": {},
+ "fold_sizes": [
+  107,
+  108,
+  107,
+  107,
+  107
+ ],
+ "n_groups": 101,
+ "variants": [
+  "none",
+  "soft",
+  "pipe",
+  "both"
+ ],
+ "ext_counts": {
+  "smdd": 3000,
+  "bench": 5936,
+  "h1": 1196,
+  "af0": 3715,
+  "ar1g": 1800
+ },
+ "cues_available": 19417,
+ "seconds": 138.6
+}

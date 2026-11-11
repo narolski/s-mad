@@ -10,7 +10,8 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import pd1_common as K  # noqa: E402
 
-FEATN = {"clip_cls": "CLIP class token", "clip_mean": "CLIP mean patch token", "dino_mean": "DINOv3 mean patch token"}
+FEATN = {"clip_cls": "CLIP class token", "clip_mean": "CLIP mean patch token", "dino_mean": "DINOv3 mean patch token",
+         "stats27": "27 simple statistics (control)"}
 
 
 def f3(x):
@@ -31,7 +32,7 @@ def wcsv(name, rows):
 
 
 def main():
-    feats = [f for f in K.FEATS if (K.RES / f"readings_{f}.json").exists()]
+    feats = [f for f in K.FEATS + K.CONTROLS if (K.RES / f"readings_{f}.json").exists()]
     q1r, q3r, flr, q2r, q5r, ber = [], [], [], [], [], []
     verdicts = {}
     for f in feats:
@@ -87,7 +88,7 @@ def main():
     wcsv("q5.csv", [{k: r.get(k, "") for k in allk} for r in q5r])
     fam = {}
     for v in ("none", "soft", "pipe", "both"):
-        vs = [verdicts[f][v]["verdict"] for f in feats if v in verdicts[f]]
+        vs = [verdicts[f][v]["verdict"] for f in feats if v in verdicts[f] and f in K.FEATS]
         if len(vs) == 3:
             fam[v] = ("idea works" if vs.count("works") >= 2 else "idea fails" if vs.count("fails") >= 2 else "mixed")
     json.dump(dict(per_feature=verdicts, family=fam), open(K.RES / "verdict.json", "w"), indent=1)

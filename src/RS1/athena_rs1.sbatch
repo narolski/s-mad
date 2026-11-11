@@ -5,24 +5,24 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 8
-#SBATCH --mem=64G
+#SBATCH --mem=110G
 #SBATCH --gres=gpu:1
-#SBATCH --time=03:00:00
-#SBATCH -C localfs
+#SBATCH --time=04:00:00
+#SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/RS1-%j.out
 # Own-crop re-score of the audit rows (RS1) on Athena: build envs/RS1 (facenet-pytorch 2.6.0 wheel from the pack,
 # opencv-python-headless 4.11.0.86, requests) on top of the shared venv, unpack the pack in node-local scratch, crop
-# with the byte-identical AR1 crop_rgb.py (3 shards), score seven releases with the byte-identical AR1 score.py,
+# with the byte-identical AR1 crop_rgb.py (3 shards); all work in the RAM disk $MEMFS (-C memfs: about 30 GB used), score seven releases with the byte-identical AR1 score.py,
 # re-detect the 32 crop-check files, and write one result tar (+ .sha256). RS1_LIMIT=8 -> smoke (8 images per stage).
 set -eo pipefail
 module load Python/3.10.4 2>&1 || echo "module Python/3.10.4 not loadable; using system python"
 set -u
 G=/net/pr2/projects/plgrid/plggrestoration/smad-next
-: "${SCRATCH_LOCAL:?node-local scratch required (-C localfs)}"
+: "${MEMFS:?RAM disk required (-C memfs; localfs is only 4 GB on Athena)}"
 LIMIT=${RS1_LIMIT:-0}
 TAG=$([ "$LIMIT" = 0 ] && echo prod || echo smoke)_$SLURM_JOB_ID
-export TMPDIR=$SCRATCH_LOCAL/tmp; mkdir -p "$TMPDIR"
-W=$SCRATCH_LOCAL/rs1; mkdir -p "$W/out/logs"; cd "$W"
+export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"
+W=$MEMFS/rs1; mkdir -p "$W/out/logs"; cd "$W"
 PY=$G/envs/RS1/venv/bin/python
 SITE=$W/nosite
 hostname | tee "$W/out/logs/host.txt"; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader | tee -a "$W/out/logs/host.txt"
@@ -54,11 +54,11 @@ rows = list(csv.DictReader(open(R / "manifests/athena_manifest.csv")))
 for name, origin in (("tocrop", "crop"), ("check", "check"), ("a46", "a46")):
     sel = [r for r in rows if r["origin"] == origin]
     if lim:
-        # smoke: 8 images of each kind of source (raw E7, aligned frame, A43 stored, MAD22 raw / aligned)
+        # smoke: 8 images of every set (new crops and reused A46 crops), for the DGX equivalence check
         seen, keep = {}, []
         for r in sel:
-            k = r["set"].split("_")[0]
-            if seen.get(k, 0) < 8:
+            k = r["set"]
+            if seen.get(k, 0) < lim:
                 seen[k] = seen.get(k, 0) + 1; keep.append(r)
         sel = keep
     with open(R / f"manifests/{name}_abs.csv", "w", newline="") as f:
@@ -92,7 +92,7 @@ echo "score $(date +%T)"
 mkdir -p "$W/scores"
 for d in madation_vitb16 madation_vitl14 madation_fe_vitl14 madation_fe_vitb16 madation_fs_vitb16 madation_fs_vitl14 mixfacenet_mad_smdd; do
   t0=$(date +%s)
-  "$PY" -I "$R/code/rs1/athena_run.py" "$R" "$SITE" score --det $d --mode rel --manifest "$W/score_all.csv" --out-dir "$W/scores" --tag rel_${d}__athena --workers 6 --bs 32 $([ "$LIMIT" = 0 ] || echo --limit 64) > "$W/out/logs/score_$d.log" 2>&1
+  "$PY" -I "$R/code/rs1/athena_run.py" "$R" "$SITE" score --det $d --mode rel --manifest "$W/score_all.csv" --out-dir "$W/scores" --tag rel_${d}__athena --workers 6 --bs 32 > "$W/out/logs/score_$d.log" 2>&1
   echo "$d $(( $(date +%s) - t0 )) s" | tee -a "$W/out/logs/score_times.txt"
 done
 echo "pack results $(date +%T)"

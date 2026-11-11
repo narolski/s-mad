@@ -1,23 +1,17 @@
-"""SM1 Part 3 heads on frozen CLIP ViT-L/14 features (feats.py) and their scores on every test / audit image.
+"""SM1 Part 3 heads on frozen CLIP ViT-L/14 features and their scores on every test / audit image.
 
-Arms (genuine class + morph class; N = release pairs with landmarks, equal for a, b, b', c, c', d):
-  a     os25k_bf_t (25,000) + release morph files (N)           a256  as a, morph files 256 x 256 only (A1.8)
-  b     os25k_bf_t + release pairs re-made by our engine        bp    (b'): release first contributors, random
-                                                                        unused partners, cap 2 (A1.3)
-  c     os25k_bf_t + balanced look-alike pairs on os25k_bf_t    cr    (c'): balanced random pairs (A1.3)
-  d     12,500 renders + 12,500 halves (both halves of 6,250 c pairs, drawn per seed) + c morphs
-  dplus 25,000 renders + 12,500 halves + c morphs (descriptive, unequal count, A1.10)
+Features: OUT/feat_athena/<list>.npz (id, feat), merged from the Athena shards (amendment A7: one platform).
+Compositions: OUT/compose[/smoke]/<arm>_s<seed>.json (compose.py; the LoRA fits use the same lists).
 Head: standardise (train mean / std), Linear(768, 1), class-balanced BCE, AdamW lr 1e-3, wd 1e-4, batch 256,
-20 epochs, last epoch; seed -> init, shuffle, d draws. --boot: training images resampled with replacement
-(genuine by image, morphs by pair; A1.7, descriptive). Reference: the FE ViT-L/14 release header on the same features.
---smoke: 500 morph pairs (lists/smoke_*.csv) + 834 genuine (seeded), seed 401 only.
+20 epochs, last epoch; seed -> init and shuffle (compose.py draws the d / e subsets with the same seed). --boot:
+training images resampled with replacement (A1.7, descriptive).
+Reference: the FE ViT-L/14 release header (Linear(768, 2) on the same normalised features; `--fe-ref`).
 
-  python3 -I heads.py --arms a,b,bp,c,cr,d,a256,dplus --seeds 401,402,403,404,405 [--boot] [--smoke]
-  python3 -I heads.py --fe-ref
--> OUT/heads[/smoke]/<arm>_s<seed>[_boot].npz (id, logit over all test + audit images), heads_log.json
+  python3 -I heads.py [--arms a,b,...] [--seeds 401,...] [--boot] [--smoke] [--feat-dir D]
+  python3 -I heads.py --fe-ref [--feat-dir D]
+-> OUT/heads[/smoke]/<arm>_s<seed>[_boot].npz (id, logit over all test + audit images, W, b), heads_log.json
 """
 import argparse
-import csv
 import json
 import pathlib
 import sys
@@ -28,8 +22,11 @@ import numpy as np
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import sm1_common as K  # noqa: E402
 
-FEAT = K.OUT / "feat"
 TESTS = ("test_eval", "test_mad22", "test_ar1", "test_ar1h", "audit")
+TRAIN = ("train_bf", "train_m15k", "train_armb", "train_armbp", "train_armc", "train_armc_halves", "train_armcr",
+         "train_armd50", "train_armd500", "train_arme_bfS", "train_arme_cS", "train_arme_hS")
+ARMS = ("a", "b", "bp", "c", "cr", "d", "e", "d50", "d500", "a256", "dplus")
+FEAT = K.OUT / "feat_athena"
 
 
 def load(name):
@@ -37,70 +34,23 @@ def load(name):
     return np.array([str(i) for i in z["id"]]), z["feat"]
 
 
-def subset(name, ids):
-    i, f = load(name)
-    pos = {x: j for j, x in enumerate(i)}
-    sel = [pos[x] for x in ids]
-    return f[sel]
+class Bank:
+    def __init__(self, names):
+        F, self.pos = [], {}
+        n0 = 0
+        for n in names:
+            if not (FEAT / f"{n}.npz").exists():
+                continue
+            i, f = load(n)
+            F.append(f)
+            for j, x in enumerate(i):
+                assert x not in self.pos, x
+                self.pos[x] = n0 + j
+            n0 += len(i)
+        self.F = np.concatenate(F) if F else np.zeros((0, 768), np.float32)
 
-
-def smoke_ids(arm):
-    rows = list(csv.DictReader(open(K.OUT / "lists" / f"smoke_{arm}.csv")))
-    return [r["id"] for r in rows]
-
-
-def arm_data(arm, seed, smoke):
-    rng = np.random.default_rng(seed)
-    bid, bf = load("train_bf")
-    n_gen = 834 if smoke else len(bid)
-    if smoke:
-        bf = bf[np.sort(np.random.default_rng(K.SEED + 17).choice(len(bid), size=n_gen, replace=False))]
-    src = {"a": "arma", "a256": "arma", "b": "armb", "bp": "armbp", "c": "armc", "cr": "armcr", "d": "armc",
-           "dplus": "armc", "d50": "armd50", "d500": "armd500", "e": "armc"}[arm]
-    pre = "smoke_" if smoke else ""         # smoke builds have their own feature files
-    if src == "arma":                      # features of all 15,000 release files; arm = the N pairs of train_arma.csv
-        want = [r["id"] for r in csv.DictReader(open(K.OUT / "flists/train_arma.csv"))]
-        mid, mf = np.array(want), subset("train_m15k", want)
-    else:
-        mid, mf = load(f"{pre}train_{src}")
-    if smoke:
-        keep = set(smoke_ids(src))
-        sel = [j for j, x in enumerate(mid) if x in keep]
-        mid, mf = mid[sel], mf[sel]
-    if arm == "a256":
-        sz = {r["id"]: r["size"] for r in csv.DictReader(open(K.OUT / "flists/train_arma.csv"))}
-        sel = [j for j, x in enumerate(mid) if sz[x] == "256x256"]
-        mid, mf = mid[sel], mf[sel]
-    gen = bf
-    if arm == "e":                         # A4: history crossing, quarters of the genuine class, halves of the morphs
-        assert not smoke
-        sid, sf = load("train_arme_bfS")
-        assert [x[4:] for x in sid] == [x[3:] for x in bid]
-        hid, hf = load("train_armc_halves")
-        hsid, hsf = load("train_arme_hS")
-        assert [x[:-2] for x in hsid] == list(hid)
-        csid, csf = load("train_arme_cS")
-        assert [x[:-2] for x in csid] == list(mid)
-        q = len(bid) // 4
-        pb = rng.permutation(len(bid))
-        ph = rng.permutation(len(hid))
-        gen = np.concatenate([bf[pb[:q]], sf[pb[q:2 * q]], hf[ph[:q]], hsf[ph[q:2 * q]]])
-        pm = rng.permutation(len(mid))
-        h2 = len(mid) // 2
-        return gen, np.concatenate([mf[pm[:h2]], csf[pm[h2:]]])
-    if arm in ("d", "dplus"):
-        hid, hf = load(f"{pre}train_armc_halves")
-        pair = np.array([x.rsplit("_h", 1)[0] for x in hid])
-        pairs = np.array(sorted(set(mid.tolist())))
-        n_h = (len(bf) // 2) if arm == "d" else len(bf) // 2
-        pick = set(rng.choice(pairs, size=n_h // 2, replace=False).tolist())
-        hsel = np.array([p in pick for p in pair])
-        if arm == "d":
-            g = bf[rng.choice(len(bf), size=len(bf) - hsel.sum(), replace=False)]
-            gen = np.concatenate([g, hf[hsel]])
-        else:
-            gen = np.concatenate([bf, hf[hsel]])
-    return gen, mf
+    def get(self, ids):
+        return self.F[[self.pos[x] for x in ids]]
 
 
 def train(gen, mor, seed, boot):
@@ -135,60 +85,51 @@ def train(gen, mor, seed, boot):
     return W.astype(np.float32), np.float32(b0), dict(n_gen=len(gen), n_morph=len(mor), train_acc=round(acc, 4))
 
 
-def test_feats():
-    ids, fs = [], []
-    for t in TESTS:
-        if (FEAT / f"{t}.npz").exists():
-            i, f = load(t)
-            ids.append(i)
-            fs.append(f)
-    return np.concatenate(ids), np.concatenate(fs)
-
-
-def fe_ref():
-    for p in (K.MC, K.W46 / "smadcvpr"):
-        sys.path.insert(0, str(p))
-    import torch
-    import common as C
-    import a12_released as R
-    R.np, R.torch, R.C = np, torch, C
-    spec = R.RELEASES["madation_fe_vitl14"]
-    fe = R.build_release(spec)
-    fe.load_state_dict(R.extract_state(R.load_release(
-        pathlib.Path("/mnt/t7/smad_heldout/mad22_production_cpu_stage_v1/payload/models/"
-                     "74dd7fbce8385ec4c080def2c63300243b04ca2abd8ddea6eb2a519296e054a9.safetensors")), spec), strict=True)
-    ids, F = test_feats()
-    with torch.no_grad():
-        z = R.head_logit(fe.head(torch.from_numpy(F)), 2, 0).numpy()
+def fe_ref(test):
+    from safetensors.torch import load_file
+    sd = load_file("/mnt/t7/smad_heldout/mad22_production_cpu_stage_v1/payload/models/"
+                   "74dd7fbce8385ec4c080def2c63300243b04ca2abd8ddea6eb2a519296e054a9.safetensors", device="cpu")
+    Wh, bh = sd["head.weight"].float().numpy(), sd["head.bias"].float().numpy()   # Linear(768, 2), class 0 = attack
+    z = test.F @ Wh.T + bh
+    ids = np.array(sorted(test.pos, key=test.pos.get))
     (K.OUT / "heads").mkdir(parents=True, exist_ok=True)
-    np.savez(K.OUT / "heads/feref.npz", id=ids, logit=z.astype(np.float32))
+    np.savez(K.OUT / "heads/feref.npz", id=ids, logit=(z[:, 0] - z[:, 1]).astype(np.float32))
     print("feref", len(ids))
 
 
 def main():
+    global FEAT
     ap = argparse.ArgumentParser()
-    ap.add_argument("--arms", default="a,b,bp,c,cr,d,e,d50,d500,a256,dplus")
+    ap.add_argument("--arms", default=",".join(ARMS))
     ap.add_argument("--seeds", default="401,402,403,404,405")
     ap.add_argument("--boot", action="store_true")
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--fe-ref", action="store_true")
+    ap.add_argument("--feat-dir", default=str(FEAT))
     a = ap.parse_args()
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
+    FEAT = pathlib.Path(a.feat_dir)
     import torch
     torch.set_num_threads(1)
+    test = Bank(TESTS)
     if a.fe_ref:
-        return fe_ref()
+        return fe_ref(test)
+    bank = Bank(TRAIN)
+    ids = np.array(sorted(test.pos, key=test.pos.get))
     od = K.OUT / ("heads/smoke" if a.smoke else "heads")
     od.mkdir(parents=True, exist_ok=True)
-    ids, F = test_feats()
+    cd = K.OUT / ("compose/smoke" if a.smoke else "compose")
     log = {}
     for arm in a.arms.split(","):
         for s in map(int, a.seeds.split(",")):
+            f = cd / f"{arm}_s{s}.json"
+            if not f.exists():
+                continue
             t0 = time.time()
-            gen, mor = arm_data(arm, s, a.smoke)
-            W, b0, info = train(gen, mor, s, a.boot)
-            z = F @ W + b0
+            c = json.load(open(f))
+            W, b0, info = train(bank.get(c["genuine"]), bank.get(c["morph"]), s, a.boot)
+            z = test.F @ W + b0
             tag = f"{arm}_s{s}" + ("_boot" if a.boot else "")
             np.savez(od / f"{tag}.npz", id=ids, logit=z.astype(np.float32), W=W, b=b0)
             info["seconds"] = round(time.time() - t0, 1)

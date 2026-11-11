@@ -22,5 +22,6 @@ mk() {  # mk NAME.tar DIR...: tar of the given -C DIR . pairs, with sha256
 }
 mk wheels_madation.tar -C $A/wheels/madation . -C $A/wheels/madation_sdist .
 mk wheels_selfmad.tar -C $A/wheels/selfmad . -C $A/wheels/selfmad_sdist .
+mk wheels_score.tar -C $A/wheels/score .
 mk smdd_train_raw.tar -C /mnt/t7/Datasety/downloads/SMDD SMDD_release_train/train.csv SMDD_release_train/os25k_bf_t SMDD_release_train/m15k_t
 du -sh $P/*; echo PACKS_DONE

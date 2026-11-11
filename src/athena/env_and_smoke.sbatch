@@ -5,10 +5,10 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 8
-#SBATCH --mem=64G
+#SBATCH --mem=120G
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:45:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/env-%j.out
 # Builds the Python environment on a compute node (Cyfronet rule: no builds on the login node) with the same
 # package versions as the WCSS container and the rented machines, then runs a 3-step smoke test of one task of the
@@ -18,8 +18,8 @@ module load Python/3.10.4 2>&1 || echo "module Python/3.10.4 not loadable; using
 set -u
 ROOT=/net/pr2/projects/plgrid/plggrestoration
 G=$ROOT/smad-next
-: "${SCRATCH_LOCAL:?node-local scratch required (-C localfs)}"
-export TMPDIR=$SCRATCH_LOCAL/tmp; mkdir -p "$TMPDIR"
+: "${MEMFS:?RAM disk required (-C memfs)}"
+export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"
 hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; python3 --version
 if [ ! -x "$G/venv/bin/python" ] || ! "$G/venv/bin/python" -c "import torch, timm" 2>/dev/null; then
   python3 -m venv --clear "$G/venv"
@@ -32,7 +32,7 @@ fi
 echo ENV_OK
 # smoke: one ViT-L/14 task, 3 steps, 8 scored images, results into a separate smoke root
 T=AD4_m3lmf_s401
-S=$SCRATCH_LOCAL/smoke; mkdir -p "$S/root/smad-next/packs/AD4" "$S/root/smad-next/results" "$S/work" "$S/task"
+S=$MEMFS/smoke; mkdir -p "$S/root/smad-next/packs/AD4" "$S/root/smad-next/results" "$S/work" "$S/task"
 ln -sf "$G/packs/AD4/ad4_pack.tar" "$S/root/smad-next/packs/AD4/ad4_pack.tar"
 cp "$G/tasks/$T/run.sh" "$S/task/"; sed "s/^TASK=.*/TASK=${T}_smoke/" "$G/tasks/$T/task.env" > "$S/task/task.env"
 ( while :; do nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader,nounits >> "$S/gpumem.csv"; sleep 5; done ) & SM=$!

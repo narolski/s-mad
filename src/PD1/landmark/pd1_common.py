@@ -26,6 +26,7 @@ RUNGS = ("R0", "R2w", "R2wm", "R3m", "R3", "R4")
 # rung names in the task's notation
 XN = {"R0": "x0", "R2w": "x1", "R2wm": "x1m", "R3m": "xm", "R3": "x2", "R4": "x3"}
 FEATS = ("clip_cls", "clip_mean", "dino_mean")
+CONTROLS = ("stats27",)            # amendment 2: descriptive control, never part of the family verdict
 
 
 def forbidden(p):

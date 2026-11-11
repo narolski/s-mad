@@ -1,0 +1,97 @@
+feature,head,set,train_engine,variant,auc_morph_vs_bona,auc_small_vs_render,auc_u25_vs_zero,auc_u50_vs_photo,auc_u50_vs_zero,auc_zero_vs_photo,e7_flag_at_native5,morph_flag_at_bona5,zero_flag_at_photo5
+clip_cls,one,SMDD test pairs (stored-small vs render),opencv,none,,0.8504,,,,,"0.220 [0.184, 0.259] (110/500)",,
+clip_cls,one,H1 Poisson (unseen tool and source),opencv,none,0.8897,,,,,,,"0.619 [0.578, 0.658] (370/598)",
+clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9882,0.9992,0.999,0.5625,,,"0.052 [0.039, 0.068] (52/1000)"
+clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,none,,0.8007,,,,,"0.066 [0.046, 0.091] (33/500)",,
+clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,none,0.9059,,,,,,,"0.724 [0.686, 0.760] (433/598)",
+clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9862,0.9989,0.9985,0.555,,,"0.055 [0.042, 0.071] (55/1000)"
+clip_cls,two,SMDD test pairs (stored-small vs render),opencv,none,,0.7179,,,,,"0.020 [0.010, 0.036] (10/500)",,
+clip_cls,two,H1 Poisson (unseen tool and source),opencv,none,0.9204,,,,,,,"0.736 [0.699, 0.771] (440/598)",
+clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9873,0.9991,0.9989,0.556,,,"0.051 [0.038, 0.067] (51/1000)"
+clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,none,,0.6661,,,,,"0.006 [0.001, 0.017] (3/500)",,
+clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,none,0.9205,,,,,,,"0.766 [0.730, 0.799] (458/598)",
+clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9847,0.9986,0.9983,0.5514,,,"0.063 [0.049, 0.080] (63/1000)"
+clip_cls,one,SMDD test pairs (stored-small vs render),opencv,soft,,0.531,,,,,"0.006 [0.001, 0.017] (3/500)",,
+clip_cls,one,H1 Poisson (unseen tool and source),opencv,soft,0.9115,,,,,,,"0.714 [0.676, 0.750] (427/598)",
+clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9885,0.9992,0.999,0.5746,,,"0.064 [0.050, 0.081] (64/1000)"
+clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5232,,,,,"0.008 [0.002, 0.020] (4/500)",,
+clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,soft,0.9007,,,,,,,"0.681 [0.642, 0.718] (407/598)",
+clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9865,0.999,0.9986,0.5574,,,"0.057 [0.043, 0.073] (57/1000)"
+clip_cls,two,SMDD test pairs (stored-small vs render),opencv,soft,,0.542,,,,,"0.004 [0.000, 0.014] (2/500)",,
+clip_cls,two,H1 Poisson (unseen tool and source),opencv,soft,0.9228,,,,,,,"0.744 [0.707, 0.779] (445/598)",
+clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9875,0.9991,0.9989,0.5639,,,"0.051 [0.038, 0.067] (51/1000)"
+clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5458,,,,,"0.004 [0.000, 0.014] (2/500)",,
+clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,soft,0.9218,,,,,,,"0.763 [0.726, 0.796] (456/598)",
+clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9847,0.9986,0.9983,0.5582,,,"0.067 [0.052, 0.084] (67/1000)"
+clip_cls,one,SMDD test pairs (stored-small vs render),opencv,pipe,,0.7525,,,,,"0.062 [0.043, 0.087] (31/500)",,
+clip_cls,one,H1 Poisson (unseen tool and source),opencv,pipe,0.9053,,,,,,,"0.694 [0.655, 0.731] (415/598)",
+clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9872,0.999,0.9988,0.5765,,,"0.057 [0.043, 0.073] (57/1000)"
+clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.7662,,,,,"0.062 [0.043, 0.087] (31/500)",,
+clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,pipe,0.8917,,,,,,,"0.676 [0.636, 0.713] (404/598)",
+clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9856,0.9987,0.9983,0.5549,,,"0.062 [0.048, 0.079] (62/1000)"
+clip_cls,two,SMDD test pairs (stored-small vs render),opencv,pipe,,0.6836,,,,,"0.018 [0.008, 0.034] (9/500)",,
+clip_cls,two,H1 Poisson (unseen tool and source),opencv,pipe,0.9211,,,,,,,"0.734 [0.697, 0.769] (439/598)",
+clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9872,0.999,0.9989,0.5624,,,"0.057 [0.043, 0.073] (57/1000)"
+clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.6075,,,,,"0.006 [0.001, 0.017] (3/500)",,
+clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,pipe,0.9156,,,,,,,"0.749 [0.712, 0.783] (448/598)",
+clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9844,0.9985,0.9981,0.5542,,,"0.066 [0.051, 0.083] (66/1000)"
+clip_cls,one,SMDD test pairs (stored-small vs render),opencv,both,,0.5313,,,,,"0.006 [0.001, 0.017] (3/500)",,
+clip_cls,one,H1 Poisson (unseen tool and source),opencv,both,0.9104,,,,,,,"0.707 [0.669, 0.744] (423/598)",
+clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9878,0.9991,0.9989,0.5811,,,"0.059 [0.045, 0.075] (59/1000)"
+clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5209,,,,,"0.010 [0.003, 0.023] (5/500)",,
+clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,both,0.8837,,,,,,,"0.644 [0.604, 0.682] (385/598)",
+clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9858,0.9988,0.9984,0.5537,,,"0.061 [0.047, 0.078] (61/1000)"
+clip_cls,two,SMDD test pairs (stored-small vs render),opencv,both,,0.5427,,,,,"0.004 [0.000, 0.014] (2/500)",,
+clip_cls,two,H1 Poisson (unseen tool and source),opencv,both,0.9229,,,,,,,"0.753 [0.716, 0.787] (450/598)",
+clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9874,0.9991,0.9989,0.5668,,,"0.051 [0.038, 0.067] (51/1000)"
+clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5451,,,,,"0.002 [0.000, 0.011] (1/500)",,
+clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,both,0.9162,,,,,,,"0.747 [0.711, 0.782] (447/598)",
+clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9844,0.9985,0.9981,0.5577,,,"0.065 [0.051, 0.082] (65/1000)"
+clip_mean,one,SMDD test pairs (stored-small vs render),opencv,none,,0.4924,,,,,"0.030 [0.017, 0.049] (15/500)",,
+clip_mean,one,H1 Poisson (unseen tool and source),opencv,none,0.8352,,,,,,,"0.428 [0.388, 0.469] (256/598)",
+clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9567,0.9912,0.9924,0.4834,,,"0.038 [0.027, 0.052] (38/1000)"
+clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,none,,0.4866,,,,,"0.014 [0.006, 0.029] (7/500)",,
+clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,none,0.8346,,,,,,,"0.440 [0.400, 0.481] (263/598)",
+clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9507,0.9882,0.9895,0.4705,,,"0.037 [0.026, 0.051] (37/1000)"
+clip_mean,two,SMDD test pairs (stored-small vs render),opencv,none,,0.4878,,,,,"0.026 [0.014, 0.044] (13/500)",,
+clip_mean,two,H1 Poisson (unseen tool and source),opencv,none,0.8812,,,,,,,"0.575 [0.535, 0.615] (344/598)",
+clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9813,0.9984,0.9983,0.4686,,,"0.051 [0.038, 0.067] (51/1000)"
+clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,none,,0.4751,,,,,"0.018 [0.008, 0.034] (9/500)",,
+clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,none,0.8738,,,,,,,"0.572 [0.531, 0.612] (342/598)",
+clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9778,0.9973,0.9971,0.4557,,,"0.053 [0.040, 0.069] (53/1000)"
+clip_mean,one,SMDD test pairs (stored-small vs render),opencv,soft,,0.5101,,,,,"0.030 [0.017, 0.049] (15/500)",,
+clip_mean,one,H1 Poisson (unseen tool and source),opencv,soft,0.8342,,,,,,,"0.420 [0.380, 0.460] (251/598)",
+clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9562,0.9911,0.9923,0.4834,,,"0.038 [0.027, 0.052] (38/1000)"
+clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5096,,,,,"0.024 [0.012, 0.042] (12/500)",,
+clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,soft,0.8335,,,,,,,"0.433 [0.393, 0.474] (259/598)",
+clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9499,0.9881,0.9894,0.4706,,,"0.037 [0.026, 0.051] (37/1000)"
+clip_mean,two,SMDD test pairs (stored-small vs render),opencv,soft,,0.5044,,,,,"0.028 [0.015, 0.047] (14/500)",,
+clip_mean,two,H1 Poisson (unseen tool and source),opencv,soft,0.8804,,,,,,,"0.575 [0.535, 0.615] (344/598)",
+clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9813,0.9984,0.9983,0.4685,,,"0.052 [0.039, 0.068] (52/1000)"
+clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5042,,,,,"0.028 [0.015, 0.047] (14/500)",,
+clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,soft,0.8731,,,,,,,"0.570 [0.529, 0.610] (341/598)",
+clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9779,0.9974,0.9972,0.4557,,,"0.055 [0.042, 0.071] (55/1000)"
+clip_mean,one,SMDD test pairs (stored-small vs render),opencv,pipe,,0.5013,,,,,"0.028 [0.015, 0.047] (14/500)",,
+clip_mean,one,H1 Poisson (unseen tool and source),opencv,pipe,0.8383,,,,,,,"0.430 [0.390, 0.471] (257/598)",
+clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9562,0.9912,0.9922,0.4793,,,"0.037 [0.026, 0.051] (37/1000)"
+clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.4745,,,,,"0.014 [0.006, 0.029] (7/500)",,
+clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,pipe,0.8243,,,,,,,"0.423 [0.383, 0.464] (253/598)",
+clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9478,0.9867,0.9881,0.4749,,,"0.038 [0.027, 0.052] (38/1000)"
+clip_mean,two,SMDD test pairs (stored-small vs render),opencv,pipe,,0.4985,,,,,"0.026 [0.014, 0.044] (13/500)",,
+clip_mean,two,H1 Poisson (unseen tool and source),opencv,pipe,0.883,,,,,,,"0.585 [0.545, 0.625] (350/598)",
+clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9811,0.9984,0.9983,0.4669,,,"0.053 [0.040, 0.069] (53/1000)"
+clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.4532,,,,,"0.014 [0.006, 0.029] (7/500)",,
+clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,pipe,0.867,,,,,,,"0.567 [0.526, 0.607] (339/598)",
+clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9776,0.9971,0.9971,0.457,,,"0.052 [0.039, 0.068] (52/1000)"
+clip_mean,one,SMDD test pairs (stored-small vs render),opencv,both,,0.5105,,,,,"0.030 [0.017, 0.049] (15/500)",,
+clip_mean,one,H1 Poisson (unseen tool and source),opencv,both,0.8377,,,,,,,"0.426 [0.386, 0.467] (255/598)",
+clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9559,0.9911,0.9922,0.4796,,,"0.037 [0.026, 0.051] (37/1000)"
+clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5079,,,,,"0.026 [0.014, 0.044] (13/500)",,
+clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,both,0.8226,,,,,,,"0.423 [0.383, 0.464] (253/598)",
+clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9467,0.9864,0.9878,0.475,,,"0.036 [0.025, 0.049] (36/1000)"
+clip_mean,two,SMDD test pairs (stored-small vs render),opencv,both,,0.5044,,,,,"0.026 [0.014, 0.044] (13/500)",,
+clip_mean,two,H1 Poisson (unseen tool and source),opencv,both,0.8826,,,,,,,"0.585 [0.545, 0.625] (350/598)",
+clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9811,0.9984,0.9983,0.467,,,"0.053 [0.040, 0.069] (53/1000)"
+clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5016,,,,,"0.024 [0.012, 0.042] (12/500)",,
+clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,both,0.8658,,,,,,,"0.557 [0.516, 0.597] (333/598)",
+clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9777,0.9972,0.9971,0.456,,,"0.052 [0.039, 0.068] (52/1000)"

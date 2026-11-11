@@ -24,9 +24,27 @@ def sources(feat, lst):
     return [("clip224", lst, key)]
 
 
+_STATS = {}
+
+
+def load_stats():
+    """amendment 2: the 27 simple statistics (AF0's cache, read only, plus PD1's own files), sign(x) log(1 + |x|)."""
+    if not _STATS:
+        files = [f for f in (K.AF0 / "cues").glob("*.npz") if "smoke" not in f.name]
+        files += [f for f in (K.OUT / "cues").glob("*.npz") if "limit" not in f.name]
+        for f in files:
+            z = np.load(f)
+            for i, c in zip(z["ids"], z["cues"]):
+                _STATS[str(i)] = (np.sign(c) * np.log1p(np.abs(c))).astype(np.float32)
+    return _STATS
+
+
 def load(feat, lst):
     """dict id -> float32 vector, restricted to the ids of PD1's list (missing sources are skipped)."""
     want = {r["id"] for r in K.rows(K.OUT / "lists" / f"{lst}.csv")}
+    if feat == "stats27":
+        S = load_stats()
+        return {i: S[i] for i in want if i in S}
     out = {}
     for bb, name, key in sources(feat, lst):
         p = K.OUT / "feat" / bb / f"{name}.npz"

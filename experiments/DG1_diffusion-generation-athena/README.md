@@ -92,6 +92,14 @@ here. No answer yet.
   `dg1_prod.sbatch` d9e40507…. The pack itself is unchanged (`code/dg1_gen.py` in the pack = `src/DG1/dg1_gen.py`,
   sha 21a6ecb7…).
 
+- 11 Nov 18:29. Lead: Athena accepts jobs since 18:25 (account `plgrestorearc-gpu-a100`). Smoke job may go; then
+  production as registered up to 150 GPU-hours; check jobs at most every 2 minutes through the lock.
+- 11 Nov 18:31. **Smoke job submitted: Athena job 3544197** (`sbatch --parsable packs/DG1/dg1_smoke.sbatch` from
+  `/net/pr2/projects/plgrid/plggrestoration/smad-next`, one connection under the lock). Log
+  `/net/pr2/projects/plgrid/plggrestoration/smad-next/logs/DG1-smoke-3544197.out`; result tar
+  `.../results/DG1/DG1_smoke_3544197.tar`. If it fails: read the log, fix, re-upload the changed script, resubmit
+  (the environment folder `envs/DG1/venv` may need removal by the owner if the build broke half-way).
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):
@@ -219,7 +227,7 @@ manifest check runs regardless).
 
 ## 10. Handover state
 
-18:16: no process of this experiment is running on the DGX; no Athena job submitted. Files staged on Athena:
+18:31: Athena smoke job 3544197 submitted (see timeline). Before that: no Athena job. Files staged on Athena:
 `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/DG1/{dg1_pack.tar,dg1_pack.tar.sha256,dg1_env.sh,dg1_run_task.sh,dg1_smoke.sbatch,dg1_prod.sbatch}`.
 Compute spent: 0 Athena GPU-hours; DGX GB10 about 0.45 GPU-hours (8-image check, shared) plus CPU alignment.
 

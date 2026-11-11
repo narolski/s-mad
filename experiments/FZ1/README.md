@@ -12,7 +12,7 @@ DiffAE morphs above one-photo DiffAE reconstructions without ranking reconstruct
 the fully adapted MADation release loses this. Trigger: the released MADation "FE" ViT-L/14 (frozen CLIP + trained
 linear head) gives B vs D 0.852 on the A43 MorDIFF material, unlike every adapted release.
 
-Status 11 Nov 17:31 CET: **running** (P3 waits for SMDD features). Done so far:
+Status 11 Nov 18:31 CET: **running** (P3 waits for SMDD features). Done so far:
 - P1 (re-read of existing release scores): the six reviewer-preview AUCs reproduce to three decimals.
 - P2 (probe = gate G-c): a cross-validated logistic probe on frozen features separates every A43 contrast
   (B20 vs D20, B vs D, C20 vs D20, B20 vs C20) at AUC 0.945–1.000 on all four feature sets (CLIP with MADation
@@ -63,6 +63,13 @@ All times CET, 11 Nov 2026.
 - 17:41 Stage 3 died in its 8-image smoke: CUDA out of memory while moving the model to the GPU (machine memory
   full from other jobs; 31 GB available a minute later). Relaunched as `run_feats3b.sh` (same commands, up to 6
   tries per step, 90 s apart; tries logged in `logs/progress.txt`).
+- 17:44 Stage 3b: smoke ok; the full pass failed once more with CUDA out of memory at model load (17:45), the
+  second try ran from 17:48 at 12–23 s per batch of 64 (two forward passes each).
+- 18:25 Diagnosis: the 4 loader workers were idle (0.3% CPU) while the main process waited on the shared GPU
+  (96% busy, 14 processes), so the pass was GPU-bound, about 3 h left. Killed stage 3b at batch ~140/625 and
+  restarted as two contiguous halves in parallel (`run_feats4.sh`, new `--part k/n` and `--workers` options in
+  `fz1_feats.py`, merge by `merge_parts.py` with an id-order check against `train.csv`). 6 CPU processes,
+  about 4.6 GB GPU memory in total. Smoke of the part path ok 18:27; both halves running from 18:28.
 
 ## 3. Data
 
@@ -130,7 +137,8 @@ Dropped items: none.
 - `fz1_stats.py [--smoke]`: P4.
 - `fz1_report.py p1|p2|p3|p4`: markdown tables.
 - Runners: `run_feats.sh` (stage 1), `switch_stage2.sh` (stage switch; ran once at 16:22), `run_feats2.sh`
-  (stage 2), `run_probes_dino.sh`, `run_feats3.sh` (stage 3, SMDD with TF32).
+  (stage 2), `run_probes_dino.sh`, `run_feats3.sh` (stage 3, SMDD with TF32), `run_feats3b.sh` (stage 3 with
+  retries), `run_feats4.sh` (stage 4, two parallel halves), `merge_parts.py` (joins the halves).
 - `reviewer_preview/`: the reviewer's read-only preview scripts (copied from the session scratchpad).
 Environment: Python 3.12.3, torch 2.12.1+cu130, timm 1.0.27, scikit-learn 1.9.0, numpy 1.26.4, scipy 1.17.1,
 OpenCV 4.11.0, Pillow 12.2.0, safetensors 0.8.0. Weights (HF cache blob = sha256): CLIP
@@ -184,7 +192,8 @@ Not verified:
    forward passes) would take hours. Stage 1 was killed after its StyleGAN3 file (planned), stage 2 will be killed
    after the eval file (planned) and SMDD done with TF32 in stage 3.
 8. 17:41 stage 3 (`run_feats3.sh`) died with CUDA out of memory at model load (machine memory full); retried by
-   `run_feats3b.sh`.
+   `run_feats3b.sh`, whose full pass failed once more the same way (17:45) and then ran; killed 18:25 at batch
+   ~140/625 (about 37 min of GPU work discarded) to restart as two parallel halves (`run_feats4.sh`).
 7. 17:13 a fp32-vs-TF32 speed test died with CUDA out of memory (machine memory 106/121 GB used, swap full). Not
    retried; running extraction unaffected.
 
@@ -209,15 +218,17 @@ Not verified:
 
 ## 10. Handover state (17:31 CET)
 
-Running on the DGX (all mine, all FZ1), as of 17:43:
-- `run_feats3b.sh` (started 17:42): `fz1_feats.py --backbone clip_mad --set smdd+flip` (TF32), smoke then full;
-  logs `/mnt/t7/smad_next/FZ1/logs/clip_mad_smdd_tf32{_smoke,}_try<k>.log`, progress lines in
-  `logs/progress.txt`. Find PIDs with `pgrep -af "src/FZ1/run_feats3b.sh|fz1_feats.py --backbone clip_mad"`.
-  Expected end: unknown, 1–4 h depending on load (40,000 images, two forward passes each).
-- Earlier runners `run_feats.sh`, `run_feats2.sh`, `run_feats3.sh` have ended (killed as planned or failed).
-If it fails: rerun `/home/narolski/smad-next/src/FZ1/run_feats3b.sh` (finished files are skipped; a crash leaves
-no partial file because the npz is written only at the end). Then run
-`OMP_NUM_THREADS=4 python -I src/FZ1/fz1_heads.py --smoke` and the full command (P3).
+Running on the DGX (all mine, all FZ1), as of 18:31:
+- `run_feats4.sh` (started 18:25; stdout `/mnt/t7/smad_next/FZ1/run_feats4.out`): two parallel
+  `fz1_feats.py --backbone clip_mad --set smdd+flip --part k/2 --workers 2` (TF32), logs
+  `/mnt/t7/smad_next/FZ1/logs/smdd_part{1,2}of2_try<k>.log`; then `merge_parts.py clip_mad smdd 2` →
+  `feats/clip_mad/smdd.npz`, `smdd_flip.npz`, log `logs/merge_parts.log`. Find PIDs with
+  `pgrep -af "src/FZ1/run_feats4.sh|fz1_feats.py --backbone clip_mad"`. Expected end about 20:00–21:00.
+- All earlier runners (`run_feats.sh`, `run_feats2.sh`, `run_feats3.sh`, `run_feats3b.sh`) have ended.
+If it fails: rerun the failed half by hand, e.g. `python -I src/FZ1/fz1_feats.py --backbone clip_mad --set
+smdd+flip --part 2/2 --workers 2` (a finished half is skipped; no partial files are written), then
+`python -I src/FZ1/merge_parts.py clip_mad smdd 2`. Then `OMP_NUM_THREADS=4 python -I src/FZ1/fz1_heads.py
+--smoke` and the full command (P3).
 Compute so far: about 1.5 GB10-hours of shared GPU time (all feature extraction), CPU minutes for P1, P2, P4.
 No WCSS, Athena or Vast use.
 

@@ -221,6 +221,48 @@ OMP_NUM_THREADS=1 nice -n 10 $P -I as0_analyse.py
 Independent read of this file by the experiment-reviewer agent requested 11 Nov about 18:18 (CPU measurement; result
 and any amendment recorded below with time, before any contrast is opened).
 
+### Review result and amendments (11 Nov, 18:38 to 18:45 CET, before any contrast was computed or opened)
+
+Reviewer verdict (experiment-reviewer agent, about 18:35): **GO WITH FIXES** (no rule violation). Record of timing
+(fix 2): this file was first saved 18:17:27; the save at 18:21:55 changed only three time stamps in the header and in
+the review line (from wrongly estimated times to the file times); its content was otherwise final at 18:17:27. After
+18:17:27 and before these amendments the owner saw: 8-image test runs of `as0_measure.py` (L, Lsoft, R8, S; outputs
+`meas/smoke_*` deleted unread at 18:21), and `check.json` (18:20:49), which holds the L vector of one AR1 camera photo
+(host feret:00002) and synthetic checks. No contrast, no group statistic and no `meas/<set>_*.npz` file has been read.
+Amendments (each fixed before any contrast):
+
+- A1 (finding 1, geometry). Face geometry alone can lower the ratio of a two-person morph (its target shape averages
+  two midlines). Added: partial-out (d) on shape asymmetry L_shape, the midline offsets at eye, nose and mouth level
+  (from the 106-point fixed and paired points, in IOD units) and the mask size; reported as the qualifier "beyond
+  geometry" (K1 residual AUC after (d)). Added per band the geometry share (L_R2wm - L_R0) / (L_R3m - L_R0) (paired,
+  median; R2wm symmetrises the shape only). K4 (R2w against R0) is no longer predicted to be 0.5: the warp to the
+  mean shape of two captures can lower the ratio. The decisive geometry-matched test (warp-only toward the H-B mean
+  shape) needs new images and is proposed for phase 2.
+- A2 (finding 3a). The cut-off scale of the E7 copies is relative to the 512 frame, not to the raw photo:
+  s = min(1, alignment-input eye distance / 132) (132 px = the kps eye distance of the canonical frame); for Fm
+  FaceMorpher this is about 0.47 (bands B1..B4 below the cut-off), for Fe s = min(1, family target eye distance / 132).
+  Lsoft already used the 512-frame scale.
+- A3 (finding 3b). History copies were re-aligned, so their geometry is not exactly the native one. **Primary**: each
+  copy (Fm, Fe, Lsoft) and each Lsoft native uses its own detected landmarks (same detector); secondary: the native's
+  landmarks for both (as first registered). Added the shift in units of the K1 effect, mean(L_copy - L_native) /
+  (mean L_R3 - mean L_R4), and the Lsoft fm61 shift (same 61.2 px target, same pool and frame as K1) as a
+  co-qualifier beside the binding Fm E7 FaceMorpher shift (whether Fm stays binding is left to the lead).
+- A4 (finding 4, low-band leakage). Sensitivity run: everything outside M_sym (F0) set in memory to the mean colour of
+  M_sym (constant-colour blanking), then the same FFT bands; Y and F0; sets L (R0, R2w, R3, R3m, R4) and Fm. K1 and
+  the history shift are reported on it beside the primary numbers.
+- A5 (finding 5). E_A is floored at 1e-12 x E_S before the logarithm (an almost exactly symmetric image can give
+  E_A <= 0 numerically); floored items are counted and kept.
+- A6 (finding 6). Dose curve: per-level median dL against the prediction reported beside the OLS slope (the slope on
+  mean log ratios is biased toward beta < 1). Person-specific share: computed from the E_A ratio alone (pi_A) and from
+  the L ratio (pi_L), reported as bounds; E_S ratios reported.
+- A7 (finding 7). Session-gap strata also within each database; the R8 reading that informs the competing
+  explanation is same-session against cross-session within colorFERET (the R4 against R8 same-session comparison
+  mixes databases and is descriptive). The FRGC "environment" field is a camera id; reported as such.
+- A8 (finding 8). canon512 uses the median IOD of its own genuine images (as registered per frame type; the code
+  first reused the ar1_512 value); the SMDD landmark file is read from the byte copy
+  `/mnt/t7/smad_next/AS0/inputs/` (sha256 f167eaf8...). Added (improvement 2): K1 on two person-disjoint halves of the
+  hosts (split by sha1 of the host id) and per engine, for the passing band.
+
 ## Result
 
 (to be written in `result.md`; README.md holds the full record)

@@ -1,0 +1,5 @@
+engine,feature,mirror_matched_vs_whole,mirror_mix_matched_vs_softening,mirror_mix_vs_softening,mirror_vs_pipeline,mirror_vs_whole,pipeline_vs_softening,reading_mirror_signal_is_morph_signal,reading_mixing_signal_is_softness,reading_same_person_signal_is_morph_signal,same_person_mix_vs_softening,same_person_vs_pipeline,same_person_vs_second_identity,same_person_vs_whole,second_identity_vs_softening,whole_morph_vs_softening,whole_vs_pipeline
+opencv,clip_cls,0.8812,-0.025,-0.0241,-0.0595,0.8805,0.3343,True,False,True,0.0381,-0.0097,0.7339,0.8887,-0.0875,-0.0405,-0.0727
+facemorpher,clip_cls,0.902,-0.0232,-0.0231,0.0923,0.9028,0.1149,True,False,True,0.016,0.1417,0.7769,0.9218,-0.0743,-0.0359,0.079
+opencv,clip_mean,0.6959,-0.0961,-0.0978,-0.0552,0.6945,0.1909,True,False,True,-0.0494,-0.0572,0.5097,0.8325,-0.1153,-0.0972,-0.0643
+facemorpher,clip_mean,0.732,-0.1029,-0.1041,0.167,0.7341,0.0711,True,False,True,-0.0539,0.1631,0.5146,0.842,-0.1233,-0.1036,0.2607

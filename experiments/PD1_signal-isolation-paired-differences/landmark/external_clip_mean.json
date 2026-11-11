@@ -1,0 +1,3890 @@
+{
+ "none|one|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 0.15949507627017528,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.8809,
+   "eer_native": 0.2054,
+   "auc_morph_vs_native_neutral": 0.8491,
+   "auc_morph_vs_e7": 0.8795,
+   "morph_flag_at_native5": {
+    "threshold": 0.15949507627017528,
+    "untouched_rate": 0.05392156862745098,
+    "k": 354,
+    "n": 600,
+    "rate": 0.59,
+    "ci": [
+     0.5494492796200302,
+     0.6296604719950143
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.15949507627017528,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9975,
+   "eer_native": 0.0256,
+   "auc_morph_vs_native_neutral": 0.9969,
+   "auc_morph_vs_e7": 0.9973,
+   "morph_flag_at_native5": {
+    "threshold": 0.15949507627017528,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 0.15949507627017528,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9972,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9966,
+   "auc_morph_vs_e7": 0.9968,
+   "morph_flag_at_native5": {
+    "threshold": 0.15949507627017528,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.15949507627017528,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.949,
+   "eer_native": 0.1262,
+   "auc_morph_vs_native_neutral": 0.9332,
+   "auc_morph_vs_e7": 0.9474,
+   "morph_flag_at_native5": {
+    "threshold": 0.15949507627017528,
+    "untouched_rate": 0.05392156862745098,
+    "k": 471,
+    "n": 600,
+    "rate": 0.785,
+    "ci": [
+     0.7499309030015663,
+     0.8172352326456198
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.17711391988958153,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9983,
+   "eer_native": 0.0289,
+   "auc_morph_vs_native_neutral": 0.9981,
+   "auc_morph_vs_e7": 0.9974,
+   "morph_flag_at_native5": {
+    "threshold": 0.17711391988958153,
+    "untouched_rate": 0.05392156862745098,
+    "k": 600,
+    "n": 600,
+    "rate": 1.0,
+    "ci": [
+     0.9938707286693308,
+     1.0
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 0.17711391988958153,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9359,
+   "eer_native": 0.137,
+   "auc_morph_vs_native_neutral": 0.9155,
+   "auc_morph_vs_e7": 0.9369,
+   "morph_flag_at_native5": {
+    "threshold": 0.17711391988958153,
+    "untouched_rate": 0.05392156862745098,
+    "k": 428,
+    "n": 600,
+    "rate": 0.7133333333333334,
+    "ci": [
+     0.6753274369423812,
+     0.7492240980456072
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.17711391988958153,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9317,
+   "eer_native": 0.1233,
+   "auc_morph_vs_native_neutral": 0.9115,
+   "auc_morph_vs_e7": 0.9323,
+   "morph_flag_at_native5": {
+    "threshold": 0.17711391988958153,
+    "untouched_rate": 0.05392156862745098,
+    "k": 337,
+    "n": 500,
+    "rate": 0.674,
+    "ci": [
+     0.6309747231418458,
+     0.7149527056599976
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 2.0479964203963656,
+    "untouched_rate": 0.05,
+    "k": 15,
+    "n": 500,
+    "rate": 0.03,
+    "ci": [
+     0.016885984203873244,
+     0.04899822570881894
+    ]
+   },
+   "auc_small_vs_render": 0.4924
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8352,
+   "morph_flag_at_bona5": {
+    "threshold": 2.0913303081699652,
+    "untouched_rate": 0.05016722408026756,
+    "k": 256,
+    "n": 598,
+    "rate": 0.4280936454849498,
+    "ci": [
+     0.3880397344720898,
+     0.4688611196103218
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9924,
+   "auc_u25_vs_zero": 0.9567,
+   "auc_zero_vs_photo": 0.4834,
+   "auc_u50_vs_photo": 0.9912,
+   "zero_flag_at_photo5": {
+    "threshold": 0.5114545035925806,
+    "untouched_rate": 0.05034965034965035,
+    "k": 38,
+    "n": 1000,
+    "rate": 0.038,
+    "ci": [
+     0.02702881598298394,
+     0.05178710362196412
+    ]
+   }
+  }
+ },
+ "none|one|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 0.29140379357772495,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.8645,
+   "eer_native": 0.2203,
+   "auc_morph_vs_native_neutral": 0.8334,
+   "auc_morph_vs_e7": 0.8629,
+   "morph_flag_at_native5": {
+    "threshold": 0.29140379357772495,
+    "untouched_rate": 0.05392156862745098,
+    "k": 289,
+    "n": 600,
+    "rate": 0.4816666666666667,
+    "ci": [
+     0.44102777342105004,
+     0.5224868311785618
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.29140379357772495,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9974,
+   "eer_native": 0.0256,
+   "auc_morph_vs_native_neutral": 0.997,
+   "auc_morph_vs_e7": 0.9971,
+   "morph_flag_at_native5": {
+    "threshold": 0.29140379357772495,
+    "untouched_rate": 0.05392156862745098,
+    "k": 594,
+    "n": 600,
+    "rate": 0.99,
+    "ci": [
+     0.9783620442905984,
+     0.9963215835543477
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 0.29140379357772495,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9972,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9967,
+   "auc_morph_vs_e7": 0.997,
+   "morph_flag_at_native5": {
+    "threshold": 0.29140379357772495,
+    "untouched_rate": 0.05392156862745098,
+    "k": 593,
+    "n": 600,
+    "rate": 0.9883333333333333,
+    "ci": [
+     0.976110677690205,
+     0.9952968827291082
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.29140379357772495,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9423,
+   "eer_native": 0.132,
+   "auc_morph_vs_native_neutral": 0.926,
+   "auc_morph_vs_e7": 0.9405,
+   "morph_flag_at_native5": {
+    "threshold": 0.29140379357772495,
+    "untouched_rate": 0.05392156862745098,
+    "k": 421,
+    "n": 600,
+    "rate": 0.7016666666666667,
+    "ci": [
+     0.6632949637648702,
+     0.7380395789085878
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2758940454601049,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9986,
+   "eer_native": 0.0289,
+   "auc_morph_vs_native_neutral": 0.9984,
+   "auc_morph_vs_e7": 0.9978,
+   "morph_flag_at_native5": {
+    "threshold": 0.2758940454601049,
+    "untouched_rate": 0.05392156862745098,
+    "k": 595,
+    "n": 600,
+    "rate": 0.9916666666666667,
+    "ci": [
+     0.9806606497912951,
+     0.9972888120961433
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2758940454601049,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9285,
+   "eer_native": 0.146,
+   "auc_morph_vs_native_neutral": 0.9077,
+   "auc_morph_vs_e7": 0.9295,
+   "morph_flag_at_native5": {
+    "threshold": 0.2758940454601049,
+    "untouched_rate": 0.05392156862745098,
+    "k": 360,
+    "n": 600,
+    "rate": 0.6,
+    "ci": [
+     0.5595539754290285,
+     0.6394567557425366
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2758940454601049,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9118,
+   "eer_native": 0.1574,
+   "auc_morph_vs_native_neutral": 0.8872,
+   "auc_morph_vs_e7": 0.913,
+   "morph_flag_at_native5": {
+    "threshold": 0.2758940454601049,
+    "untouched_rate": 0.05392156862745098,
+    "k": 255,
+    "n": 500,
+    "rate": 0.51,
+    "ci": [
+     0.4652348475757158,
+     0.5546462643969765
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 1.975236291365191,
+    "untouched_rate": 0.05,
+    "k": 7,
+    "n": 500,
+    "rate": 0.014,
+    "ci": [
+     0.0056467610703244304,
+     0.028631616183336053
+    ]
+   },
+   "auc_small_vs_render": 0.4866
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8346,
+   "morph_flag_at_bona5": {
+    "threshold": 1.9488458691396489,
+    "untouched_rate": 0.05016722408026756,
+    "k": 263,
+    "n": 598,
+    "rate": 0.4397993311036789,
+    "ci": [
+     0.39956279272746,
+     0.48063322140066134
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9895,
+   "auc_u25_vs_zero": 0.9507,
+   "auc_zero_vs_photo": 0.4705,
+   "auc_u50_vs_photo": 0.9882,
+   "zero_flag_at_photo5": {
+    "threshold": 0.3759634383105893,
+    "untouched_rate": 0.05034965034965035,
+    "k": 37,
+    "n": 1000,
+    "rate": 0.037,
+    "ci": [
+     0.02618270884373734,
+     0.05064112305992485
+    ]
+   }
+  }
+ },
+ "none|two|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -2.229658401983902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9649,
+   "eer_native": 0.0891,
+   "auc_morph_vs_native_neutral": 0.9608,
+   "auc_morph_vs_e7": 0.9644,
+   "morph_flag_at_native5": {
+    "threshold": -2.229658401983902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 483,
+    "n": 600,
+    "rate": 0.805,
+    "ci": [
+     0.7709941112118828,
+     0.835969634826832
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.229658401983902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9982,
+   "eer_native": 0.0149,
+   "auc_morph_vs_native_neutral": 0.9982,
+   "auc_morph_vs_e7": 0.9982,
+   "morph_flag_at_native5": {
+    "threshold": -2.229658401983902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -2.229658401983902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9985,
+   "eer_native": 0.0058,
+   "auc_morph_vs_native_neutral": 0.9984,
+   "auc_morph_vs_e7": 0.9985,
+   "morph_flag_at_native5": {
+    "threshold": -2.229658401983902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.229658401983902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9875,
+   "eer_native": 0.0536,
+   "auc_morph_vs_native_neutral": 0.9864,
+   "auc_morph_vs_e7": 0.9871,
+   "morph_flag_at_native5": {
+    "threshold": -2.229658401983902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 568,
+    "n": 600,
+    "rate": 0.9466666666666667,
+    "ci": [
+     0.9255404243339527,
+     0.9632376425320086
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.225910410164066,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.9998,
+   "eer_native": 0.0058,
+   "auc_morph_vs_native_neutral": 0.9998,
+   "auc_morph_vs_e7": 0.9997,
+   "morph_flag_at_native5": {
+    "threshold": -2.225910410164066,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -2.225910410164066,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9893,
+   "eer_native": 0.0487,
+   "auc_morph_vs_native_neutral": 0.9882,
+   "auc_morph_vs_e7": 0.9896,
+   "morph_flag_at_native5": {
+    "threshold": -2.225910410164066,
+    "untouched_rate": 0.05392156862745098,
+    "k": 578,
+    "n": 600,
+    "rate": 0.9633333333333334,
+    "ci": [
+     0.9450106335273807,
+     0.9768811685729477
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.225910410164066,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9792,
+   "eer_native": 0.0728,
+   "auc_morph_vs_native_neutral": 0.9771,
+   "auc_morph_vs_e7": 0.9792,
+   "morph_flag_at_native5": {
+    "threshold": -2.225910410164066,
+    "untouched_rate": 0.05392156862745098,
+    "k": 453,
+    "n": 500,
+    "rate": 0.906,
+    "ci": [
+     0.8769623921104394,
+     0.9301137660812189
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 4.373378261968403,
+    "untouched_rate": 0.05,
+    "k": 13,
+    "n": 500,
+    "rate": 0.026,
+    "ci": [
+     0.013914930062859742,
+     0.044050436856873765
+    ]
+   },
+   "auc_small_vs_render": 0.4878
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8812,
+   "morph_flag_at_bona5": {
+    "threshold": 4.301213031154902,
+    "untouched_rate": 0.05016722408026756,
+    "k": 344,
+    "n": 598,
+    "rate": 0.5752508361204013,
+    "ci": [
+     0.5345064706106107,
+     0.6152484296192395
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9983,
+   "auc_u25_vs_zero": 0.9813,
+   "auc_zero_vs_photo": 0.4686,
+   "auc_u50_vs_photo": 0.9984,
+   "zero_flag_at_photo5": {
+    "threshold": -0.3191265132266168,
+    "untouched_rate": 0.05034965034965035,
+    "k": 51,
+    "n": 1000,
+    "rate": 0.051,
+    "ci": [
+     0.03820523677468616,
+     0.06651346159493482
+    ]
+   }
+  }
+ },
+ "none|two|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5293203402392415,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9443,
+   "eer_native": 0.1279,
+   "auc_morph_vs_native_neutral": 0.9364,
+   "auc_morph_vs_e7": 0.9441,
+   "morph_flag_at_native5": {
+    "threshold": -2.5293203402392415,
+    "untouched_rate": 0.05392156862745098,
+    "k": 447,
+    "n": 600,
+    "rate": 0.745,
+    "ci": [
+     0.7081376911209455,
+     0.7794305916832371
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5293203402392415,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9982,
+   "eer_native": 0.0099,
+   "auc_morph_vs_native_neutral": 0.998,
+   "auc_morph_vs_e7": 0.9981,
+   "morph_flag_at_native5": {
+    "threshold": -2.5293203402392415,
+    "untouched_rate": 0.05392156862745098,
+    "k": 598,
+    "n": 600,
+    "rate": 0.9966666666666667,
+    "ci": [
+     0.9880111660413475,
+     0.9995960626395574
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5293203402392415,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9987,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.9986,
+   "auc_morph_vs_e7": 0.9986,
+   "morph_flag_at_native5": {
+    "threshold": -2.5293203402392415,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5293203402392415,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9826,
+   "eer_native": 0.0586,
+   "auc_morph_vs_native_neutral": 0.9802,
+   "auc_morph_vs_e7": 0.9826,
+   "morph_flag_at_native5": {
+    "threshold": -2.5293203402392415,
+    "untouched_rate": 0.05392156862745098,
+    "k": 555,
+    "n": 600,
+    "rate": 0.925,
+    "ci": [
+     0.9009290373702229,
+     0.9447713720512344
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.531069649089158,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9997,
+   "eer_native": 0.0058,
+   "auc_morph_vs_native_neutral": 0.9996,
+   "auc_morph_vs_e7": 0.9997,
+   "morph_flag_at_native5": {
+    "threshold": -2.531069649089158,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -2.531069649089158,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9851,
+   "eer_native": 0.0536,
+   "auc_morph_vs_native_neutral": 0.9833,
+   "auc_morph_vs_e7": 0.9854,
+   "morph_flag_at_native5": {
+    "threshold": -2.531069649089158,
+    "untouched_rate": 0.05392156862745098,
+    "k": 559,
+    "n": 600,
+    "rate": 0.9316666666666666,
+    "ci": [
+     0.9084372745970718,
+     0.9505199965376978
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.531069649089158,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9642,
+   "eer_native": 0.0926,
+   "auc_morph_vs_native_neutral": 0.9599,
+   "auc_morph_vs_e7": 0.9648,
+   "morph_flag_at_native5": {
+    "threshold": -2.531069649089158,
+    "untouched_rate": 0.05392156862745098,
+    "k": 427,
+    "n": 500,
+    "rate": 0.854,
+    "ci": [
+     0.8199607696958665,
+     0.8837810165597418
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 3.8291548515461207,
+    "untouched_rate": 0.05,
+    "k": 9,
+    "n": 500,
+    "rate": 0.018,
+    "ci": [
+     0.008262954434763135,
+     0.033893696108537937
+    ]
+   },
+   "auc_small_vs_render": 0.4751
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8738,
+   "morph_flag_at_bona5": {
+    "threshold": 3.7870900103102074,
+    "untouched_rate": 0.05016722408026756,
+    "k": 342,
+    "n": 598,
+    "rate": 0.5719063545150501,
+    "ci": [
+     0.5311388803896782,
+     0.6119602655279102
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9971,
+   "auc_u25_vs_zero": 0.9778,
+   "auc_zero_vs_photo": 0.4557,
+   "auc_u50_vs_photo": 0.9973,
+   "zero_flag_at_photo5": {
+    "threshold": -1.1111690878221872,
+    "untouched_rate": 0.05034965034965035,
+    "k": 53,
+    "n": 1000,
+    "rate": 0.053,
+    "ci": [
+     0.03994925236001938,
+     0.06875518328996323
+    ]
+   }
+  }
+ },
+ "soft|one|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 0.20354835565715862,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.8786,
+   "eer_native": 0.2063,
+   "auc_morph_vs_native_neutral": 0.8474,
+   "auc_morph_vs_e7": 0.8768,
+   "morph_flag_at_native5": {
+    "threshold": 0.20354835565715862,
+    "untouched_rate": 0.05392156862745098,
+    "k": 347,
+    "n": 600,
+    "rate": 0.5783333333333334,
+    "ci": [
+     0.5376815982623274,
+     0.6182103057663342
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.20354835565715862,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9973,
+   "eer_native": 0.0289,
+   "auc_morph_vs_native_neutral": 0.9967,
+   "auc_morph_vs_e7": 0.9972,
+   "morph_flag_at_native5": {
+    "threshold": 0.20354835565715862,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 0.20354835565715862,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9969,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9962,
+   "auc_morph_vs_e7": 0.9965,
+   "morph_flag_at_native5": {
+    "threshold": 0.20354835565715862,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.20354835565715862,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9468,
+   "eer_native": 0.1271,
+   "auc_morph_vs_native_neutral": 0.9305,
+   "auc_morph_vs_e7": 0.9452,
+   "morph_flag_at_native5": {
+    "threshold": 0.20354835565715862,
+    "untouched_rate": 0.05392156862745098,
+    "k": 460,
+    "n": 600,
+    "rate": 0.7666666666666667,
+    "ci": [
+     0.7307238155291627,
+     0.7999603448536785
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.22054284648017902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9983,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9981,
+   "auc_morph_vs_e7": 0.9973,
+   "morph_flag_at_native5": {
+    "threshold": 0.22054284648017902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 600,
+    "n": 600,
+    "rate": 1.0,
+    "ci": [
+     0.9938707286693308,
+     1.0
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 0.22054284648017902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9346,
+   "eer_native": 0.1419,
+   "auc_morph_vs_native_neutral": 0.914,
+   "auc_morph_vs_e7": 0.9353,
+   "morph_flag_at_native5": {
+    "threshold": 0.22054284648017902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 419,
+    "n": 600,
+    "rate": 0.6983333333333334,
+    "ci": [
+     0.6598623413186517,
+     0.7348387499882434
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.22054284648017902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9297,
+   "eer_native": 0.1277,
+   "auc_morph_vs_native_neutral": 0.9095,
+   "auc_morph_vs_e7": 0.9305,
+   "morph_flag_at_native5": {
+    "threshold": 0.22054284648017902,
+    "untouched_rate": 0.05392156862745098,
+    "k": 330,
+    "n": 500,
+    "rate": 0.66,
+    "ci": [
+     0.6166257630191456,
+     0.7014690295670025
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 2.021642126954824,
+    "untouched_rate": 0.05,
+    "k": 15,
+    "n": 500,
+    "rate": 0.03,
+    "ci": [
+     0.016885984203873244,
+     0.04899822570881894
+    ]
+   },
+   "auc_small_vs_render": 0.5101
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8342,
+   "morph_flag_at_bona5": {
+    "threshold": 2.126401725958943,
+    "untouched_rate": 0.05016722408026756,
+    "k": 251,
+    "n": 598,
+    "rate": 0.4197324414715719,
+    "ci": [
+     0.3798227933748423,
+     0.4604386801874296
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9923,
+   "auc_u25_vs_zero": 0.9562,
+   "auc_zero_vs_photo": 0.4834,
+   "auc_u50_vs_photo": 0.9911,
+   "zero_flag_at_photo5": {
+    "threshold": 0.4994740207160475,
+    "untouched_rate": 0.05034965034965035,
+    "k": 38,
+    "n": 1000,
+    "rate": 0.038,
+    "ci": [
+     0.02702881598298394,
+     0.05178710362196412
+    ]
+   }
+  }
+ },
+ "soft|one|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 0.28373042525936715,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.8616,
+   "eer_native": 0.2211,
+   "auc_morph_vs_native_neutral": 0.8312,
+   "auc_morph_vs_e7": 0.8595,
+   "morph_flag_at_native5": {
+    "threshold": 0.28373042525936715,
+    "untouched_rate": 0.05392156862745098,
+    "k": 297,
+    "n": 600,
+    "rate": 0.495,
+    "ci": [
+     0.4542703907618959,
+     0.5357790460495759
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.28373042525936715,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9972,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9967,
+   "auc_morph_vs_e7": 0.9969,
+   "morph_flag_at_native5": {
+    "threshold": 0.28373042525936715,
+    "untouched_rate": 0.05392156862745098,
+    "k": 594,
+    "n": 600,
+    "rate": 0.99,
+    "ci": [
+     0.9783620442905984,
+     0.9963215835543477
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 0.28373042525936715,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9969,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9964,
+   "auc_morph_vs_e7": 0.9966,
+   "morph_flag_at_native5": {
+    "threshold": 0.28373042525936715,
+    "untouched_rate": 0.05392156862745098,
+    "k": 593,
+    "n": 600,
+    "rate": 0.9883333333333333,
+    "ci": [
+     0.976110677690205,
+     0.9952968827291082
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.28373042525936715,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9397,
+   "eer_native": 0.1328,
+   "auc_morph_vs_native_neutral": 0.9234,
+   "auc_morph_vs_e7": 0.9375,
+   "morph_flag_at_native5": {
+    "threshold": 0.28373042525936715,
+    "untouched_rate": 0.05392156862745098,
+    "k": 424,
+    "n": 600,
+    "rate": 0.7066666666666667,
+    "ci": [
+     0.6684482248519119,
+     0.7428364744993707
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.3180515446663471,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9986,
+   "eer_native": 0.0256,
+   "auc_morph_vs_native_neutral": 0.9985,
+   "auc_morph_vs_e7": 0.9978,
+   "morph_flag_at_native5": {
+    "threshold": 0.3180515446663471,
+    "untouched_rate": 0.05392156862745098,
+    "k": 596,
+    "n": 600,
+    "rate": 0.9933333333333333,
+    "ci": [
+     0.9830192932606833,
+     0.9981806583658572
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 0.3180515446663471,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.927,
+   "eer_native": 0.146,
+   "auc_morph_vs_native_neutral": 0.9064,
+   "auc_morph_vs_e7": 0.928,
+   "morph_flag_at_native5": {
+    "threshold": 0.3180515446663471,
+    "untouched_rate": 0.05392156862745098,
+    "k": 350,
+    "n": 600,
+    "rate": 0.5833333333333334,
+    "ci": [
+     0.5427221204707837,
+     0.6231202943306768
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.3180515446663471,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9093,
+   "eer_native": 0.1564,
+   "auc_morph_vs_native_neutral": 0.8846,
+   "auc_morph_vs_e7": 0.9102,
+   "morph_flag_at_native5": {
+    "threshold": 0.3180515446663471,
+    "untouched_rate": 0.05392156862745098,
+    "k": 250,
+    "n": 500,
+    "rate": 0.5,
+    "ci": [
+     0.45528556932422753,
+     0.5447144306757725
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 1.913617721448715,
+    "untouched_rate": 0.05,
+    "k": 12,
+    "n": 500,
+    "rate": 0.024,
+    "ci": [
+     0.012461239059555672,
+     0.04154761879968625
+    ]
+   },
+   "auc_small_vs_render": 0.5096
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8335,
+   "morph_flag_at_bona5": {
+    "threshold": 1.9642676509763226,
+    "untouched_rate": 0.05016722408026756,
+    "k": 259,
+    "n": 598,
+    "rate": 0.4331103678929766,
+    "ci": [
+     0.3929754356756022,
+     0.47390905479350337
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9894,
+   "auc_u25_vs_zero": 0.9499,
+   "auc_zero_vs_photo": 0.4706,
+   "auc_u50_vs_photo": 0.9881,
+   "zero_flag_at_photo5": {
+    "threshold": 0.40737942745243005,
+    "untouched_rate": 0.05034965034965035,
+    "k": 37,
+    "n": 1000,
+    "rate": 0.037,
+    "ci": [
+     0.02618270884373734,
+     0.05064112305992485
+    ]
+   }
+  }
+ },
+ "soft|two|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -2.106430856635239,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9646,
+   "eer_native": 0.0883,
+   "auc_morph_vs_native_neutral": 0.9606,
+   "auc_morph_vs_e7": 0.9638,
+   "morph_flag_at_native5": {
+    "threshold": -2.106430856635239,
+    "untouched_rate": 0.05392156862745098,
+    "k": 476,
+    "n": 600,
+    "rate": 0.7933333333333333,
+    "ci": [
+     0.758692646625738,
+     0.8250559543803031
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.106430856635239,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9982,
+   "eer_native": 0.0149,
+   "auc_morph_vs_native_neutral": 0.9982,
+   "auc_morph_vs_e7": 0.9982,
+   "morph_flag_at_native5": {
+    "threshold": -2.106430856635239,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -2.106430856635239,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9985,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.9985,
+   "auc_morph_vs_e7": 0.9985,
+   "morph_flag_at_native5": {
+    "threshold": -2.106430856635239,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.106430856635239,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9873,
+   "eer_native": 0.0536,
+   "auc_morph_vs_native_neutral": 0.9862,
+   "auc_morph_vs_e7": 0.9868,
+   "morph_flag_at_native5": {
+    "threshold": -2.106430856635239,
+    "untouched_rate": 0.05392156862745098,
+    "k": 566,
+    "n": 600,
+    "rate": 0.9433333333333334,
+    "ci": [
+     0.9217111453958571,
+     0.9604411514358697
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.102407737139514,
+    "untouched_rate": 0.05392156862745098,
+    "k": 12,
+    "n": 204,
+    "rate": 0.058823529411764705,
+    "ci": [
+     0.030761079839869823,
+     0.10049784620004382
+    ]
+   },
+   "auc_morph_vs_native": 0.9998,
+   "eer_native": 0.0058,
+   "auc_morph_vs_native_neutral": 0.9998,
+   "auc_morph_vs_e7": 0.9998,
+   "morph_flag_at_native5": {
+    "threshold": -2.102407737139514,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -2.102407737139514,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9892,
+   "eer_native": 0.0487,
+   "auc_morph_vs_native_neutral": 0.9881,
+   "auc_morph_vs_e7": 0.9895,
+   "morph_flag_at_native5": {
+    "threshold": -2.102407737139514,
+    "untouched_rate": 0.05392156862745098,
+    "k": 574,
+    "n": 600,
+    "rate": 0.9566666666666667,
+    "ci": [
+     0.9371489717836768,
+     0.9715010958389272
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.102407737139514,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9788,
+   "eer_native": 0.0738,
+   "auc_morph_vs_native_neutral": 0.9768,
+   "auc_morph_vs_e7": 0.979,
+   "morph_flag_at_native5": {
+    "threshold": -2.102407737139514,
+    "untouched_rate": 0.05392156862745098,
+    "k": 449,
+    "n": 500,
+    "rate": 0.898,
+    "ci": [
+     0.8680735394352805,
+     0.9231077067733116
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 4.359836128570182,
+    "untouched_rate": 0.05,
+    "k": 14,
+    "n": 500,
+    "rate": 0.028,
+    "ci": [
+     0.01539060067383811,
+     0.04653332699148415
+    ]
+   },
+   "auc_small_vs_render": 0.5044
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8804,
+   "morph_flag_at_bona5": {
+    "threshold": 4.347770448803835,
+    "untouched_rate": 0.05016722408026756,
+    "k": 344,
+    "n": 598,
+    "rate": 0.5752508361204013,
+    "ci": [
+     0.5345064706106107,
+     0.6152484296192395
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9983,
+   "auc_u25_vs_zero": 0.9813,
+   "auc_zero_vs_photo": 0.4685,
+   "auc_u50_vs_photo": 0.9984,
+   "zero_flag_at_photo5": {
+    "threshold": -0.34185753225769666,
+    "untouched_rate": 0.05034965034965035,
+    "k": 52,
+    "n": 1000,
+    "rate": 0.052,
+    "ci": [
+     0.0390765349439805,
+     0.0676350140505073
+    ]
+   }
+  }
+ },
+ "soft|two|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -2.3677920835936277,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9434,
+   "eer_native": 0.1312,
+   "auc_morph_vs_native_neutral": 0.9356,
+   "auc_morph_vs_e7": 0.9429,
+   "morph_flag_at_native5": {
+    "threshold": -2.3677920835936277,
+    "untouched_rate": 0.05392156862745098,
+    "k": 434,
+    "n": 600,
+    "rate": 0.7233333333333334,
+    "ci": [
+     0.6856642140520799,
+     0.7587874824998923
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.3677920835936277,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9982,
+   "eer_native": 0.0091,
+   "auc_morph_vs_native_neutral": 0.998,
+   "auc_morph_vs_e7": 0.9981,
+   "morph_flag_at_native5": {
+    "threshold": -2.3677920835936277,
+    "untouched_rate": 0.05392156862745098,
+    "k": 598,
+    "n": 600,
+    "rate": 0.9966666666666667,
+    "ci": [
+     0.9880111660413475,
+     0.9995960626395574
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -2.3677920835936277,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9987,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.9986,
+   "auc_morph_vs_e7": 0.9986,
+   "morph_flag_at_native5": {
+    "threshold": -2.3677920835936277,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.3677920835936277,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9822,
+   "eer_native": 0.0586,
+   "auc_morph_vs_native_neutral": 0.9799,
+   "auc_morph_vs_e7": 0.9821,
+   "morph_flag_at_native5": {
+    "threshold": -2.3677920835936277,
+    "untouched_rate": 0.05392156862745098,
+    "k": 552,
+    "n": 600,
+    "rate": 0.92,
+    "ci": [
+     0.8953293053343898,
+     0.9404275309851386
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.367887157968755,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9998,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.9997,
+   "auc_morph_vs_e7": 0.9997,
+   "morph_flag_at_native5": {
+    "threshold": -2.367887157968755,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -2.367887157968755,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.985,
+   "eer_native": 0.0536,
+   "auc_morph_vs_native_neutral": 0.9832,
+   "auc_morph_vs_e7": 0.9854,
+   "morph_flag_at_native5": {
+    "threshold": -2.367887157968755,
+    "untouched_rate": 0.05392156862745098,
+    "k": 557,
+    "n": 600,
+    "rate": 0.9283333333333333,
+    "ci": [
+     0.9046768565560306,
+     0.9476521767632637
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.367887157968755,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9638,
+   "eer_native": 0.0891,
+   "auc_morph_vs_native_neutral": 0.9594,
+   "auc_morph_vs_e7": 0.9642,
+   "morph_flag_at_native5": {
+    "threshold": -2.367887157968755,
+    "untouched_rate": 0.05392156862745098,
+    "k": 421,
+    "n": 500,
+    "rate": 0.842,
+    "ci": [
+     0.8070220429685808,
+     0.8728692580637178
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 3.7145563637031045,
+    "untouched_rate": 0.05,
+    "k": 14,
+    "n": 500,
+    "rate": 0.028,
+    "ci": [
+     0.01539060067383811,
+     0.04653332699148415
+    ]
+   },
+   "auc_small_vs_render": 0.5042
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8731,
+   "morph_flag_at_bona5": {
+    "threshold": 3.8884386370022357,
+    "untouched_rate": 0.05016722408026756,
+    "k": 341,
+    "n": 598,
+    "rate": 0.5702341137123745,
+    "ci": [
+     0.5294557759688405,
+     0.6103154917920257
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9972,
+   "auc_u25_vs_zero": 0.9779,
+   "auc_zero_vs_photo": 0.4557,
+   "auc_u50_vs_photo": 0.9974,
+   "zero_flag_at_photo5": {
+    "threshold": -1.108582137063915,
+    "untouched_rate": 0.05034965034965035,
+    "k": 55,
+    "n": 1000,
+    "rate": 0.055,
+    "ci": [
+     0.04169879507953599,
+     0.07099151554205749
+    ]
+   }
+  }
+ },
+ "pipe|one|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 0.25268814087333,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.8816,
+   "eer_native": 0.2063,
+   "auc_morph_vs_native_neutral": 0.8498,
+   "auc_morph_vs_e7": 0.8793,
+   "morph_flag_at_native5": {
+    "threshold": 0.25268814087333,
+    "untouched_rate": 0.05392156862745098,
+    "k": 337,
+    "n": 600,
+    "rate": 0.5616666666666666,
+    "ci": [
+     0.5209095955370661,
+     0.6018138950614089
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.25268814087333,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9978,
+   "eer_native": 0.0256,
+   "auc_morph_vs_native_neutral": 0.9972,
+   "auc_morph_vs_e7": 0.9975,
+   "morph_flag_at_native5": {
+    "threshold": 0.25268814087333,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 0.25268814087333,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9974,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9969,
+   "auc_morph_vs_e7": 0.9971,
+   "morph_flag_at_native5": {
+    "threshold": 0.25268814087333,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.25268814087333,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9501,
+   "eer_native": 0.1221,
+   "auc_morph_vs_native_neutral": 0.9344,
+   "auc_morph_vs_e7": 0.9486,
+   "morph_flag_at_native5": {
+    "threshold": 0.25268814087333,
+    "untouched_rate": 0.05392156862745098,
+    "k": 460,
+    "n": 600,
+    "rate": 0.7666666666666667,
+    "ci": [
+     0.7307238155291627,
+     0.7999603448536785
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.26933485432724125,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9987,
+   "eer_native": 0.0248,
+   "auc_morph_vs_native_neutral": 0.9985,
+   "auc_morph_vs_e7": 0.9978,
+   "morph_flag_at_native5": {
+    "threshold": 0.26933485432724125,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 0.26933485432724125,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9366,
+   "eer_native": 0.1378,
+   "auc_morph_vs_native_neutral": 0.9163,
+   "auc_morph_vs_e7": 0.9371,
+   "morph_flag_at_native5": {
+    "threshold": 0.26933485432724125,
+    "untouched_rate": 0.05392156862745098,
+    "k": 411,
+    "n": 600,
+    "rate": 0.685,
+    "ci": [
+     0.6461544708573432,
+     0.7220127136352903
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.26933485432724125,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9324,
+   "eer_native": 0.1267,
+   "auc_morph_vs_native_neutral": 0.912,
+   "auc_morph_vs_e7": 0.9331,
+   "morph_flag_at_native5": {
+    "threshold": 0.26933485432724125,
+    "untouched_rate": 0.05392156862745098,
+    "k": 319,
+    "n": 500,
+    "rate": 0.638,
+    "ci": [
+     0.5941580108071097,
+     0.6801994530750499
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 2.077779619308509,
+    "untouched_rate": 0.05,
+    "k": 14,
+    "n": 500,
+    "rate": 0.028,
+    "ci": [
+     0.01539060067383811,
+     0.04653332699148415
+    ]
+   },
+   "auc_small_vs_render": 0.5013
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8383,
+   "morph_flag_at_bona5": {
+    "threshold": 2.177085956346162,
+    "untouched_rate": 0.05016722408026756,
+    "k": 257,
+    "n": 598,
+    "rate": 0.4297658862876254,
+    "ci": [
+     0.38968450820797434,
+     0.4705442240311595
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9922,
+   "auc_u25_vs_zero": 0.9562,
+   "auc_zero_vs_photo": 0.4793,
+   "auc_u50_vs_photo": 0.9912,
+   "zero_flag_at_photo5": {
+    "threshold": 0.5088017633849099,
+    "untouched_rate": 0.05034965034965035,
+    "k": 37,
+    "n": 1000,
+    "rate": 0.037,
+    "ci": [
+     0.02618270884373734,
+     0.05064112305992485
+    ]
+   }
+  }
+ },
+ "pipe|one|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 0.24394441175476586,
+    "untouched_rate": 0.05392156862745098,
+    "k": 12,
+    "n": 204,
+    "rate": 0.058823529411764705,
+    "ci": [
+     0.030761079839869823,
+     0.10049784620004382
+    ]
+   },
+   "auc_morph_vs_native": 0.8538,
+   "eer_native": 0.2294,
+   "auc_morph_vs_native_neutral": 0.8203,
+   "auc_morph_vs_e7": 0.8533,
+   "morph_flag_at_native5": {
+    "threshold": 0.24394441175476586,
+    "untouched_rate": 0.05392156862745098,
+    "k": 314,
+    "n": 600,
+    "rate": 0.5233333333333333,
+    "ci": [
+     0.4825050636859553,
+     0.5639308915717849
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.24394441175476586,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.997,
+   "eer_native": 0.0248,
+   "auc_morph_vs_native_neutral": 0.9965,
+   "auc_morph_vs_e7": 0.9967,
+   "morph_flag_at_native5": {
+    "threshold": 0.24394441175476586,
+    "untouched_rate": 0.05392156862745098,
+    "k": 595,
+    "n": 600,
+    "rate": 0.9916666666666667,
+    "ci": [
+     0.9806606497912951,
+     0.9972888120961433
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 0.24394441175476586,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9966,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9959,
+   "auc_morph_vs_e7": 0.9963,
+   "morph_flag_at_native5": {
+    "threshold": 0.24394441175476586,
+    "untouched_rate": 0.05392156862745098,
+    "k": 593,
+    "n": 600,
+    "rate": 0.9883333333333333,
+    "ci": [
+     0.976110677690205,
+     0.9952968827291082
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.24394441175476586,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9391,
+   "eer_native": 0.1361,
+   "auc_morph_vs_native_neutral": 0.9222,
+   "auc_morph_vs_e7": 0.9384,
+   "morph_flag_at_native5": {
+    "threshold": 0.24394441175476586,
+    "untouched_rate": 0.05392156862745098,
+    "k": 447,
+    "n": 600,
+    "rate": 0.745,
+    "ci": [
+     0.7081376911209455,
+     0.7794305916832371
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.22447330875314134,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9978,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9974,
+   "auc_morph_vs_e7": 0.9969,
+   "morph_flag_at_native5": {
+    "threshold": 0.22447330875314134,
+    "untouched_rate": 0.05392156862745098,
+    "k": 595,
+    "n": 600,
+    "rate": 0.9916666666666667,
+    "ci": [
+     0.9806606497912951,
+     0.9972888120961433
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 0.22447330875314134,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9195,
+   "eer_native": 0.1526,
+   "auc_morph_vs_native_neutral": 0.8961,
+   "auc_morph_vs_e7": 0.9206,
+   "morph_flag_at_native5": {
+    "threshold": 0.22447330875314134,
+    "untouched_rate": 0.05392156862745098,
+    "k": 383,
+    "n": 600,
+    "rate": 0.6383333333333333,
+    "ci": [
+     0.5984474908236626,
+     0.676849971452458
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.22447330875314134,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9015,
+   "eer_native": 0.1708,
+   "auc_morph_vs_native_neutral": 0.874,
+   "auc_morph_vs_e7": 0.9029,
+   "morph_flag_at_native5": {
+    "threshold": 0.22447330875314134,
+    "untouched_rate": 0.05392156862745098,
+    "k": 287,
+    "n": 500,
+    "rate": 0.574,
+    "ci": [
+     0.5293257673533567,
+     0.6177941867678569
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 1.8844457590132622,
+    "untouched_rate": 0.05,
+    "k": 7,
+    "n": 500,
+    "rate": 0.014,
+    "ci": [
+     0.0056467610703244304,
+     0.028631616183336053
+    ]
+   },
+   "auc_small_vs_render": 0.4745
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8243,
+   "morph_flag_at_bona5": {
+    "threshold": 1.8990024873520368,
+    "untouched_rate": 0.05016722408026756,
+    "k": 253,
+    "n": 598,
+    "rate": 0.4230769230769231,
+    "ci": [
+     0.3831081814316193,
+     0.46380904221720815
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9881,
+   "auc_u25_vs_zero": 0.9478,
+   "auc_zero_vs_photo": 0.4749,
+   "auc_u50_vs_photo": 0.9867,
+   "zero_flag_at_photo5": {
+    "threshold": 0.35960470630669117,
+    "untouched_rate": 0.05034965034965035,
+    "k": 38,
+    "n": 1000,
+    "rate": 0.038,
+    "ci": [
+     0.02702881598298394,
+     0.05178710362196412
+    ]
+   }
+  }
+ },
+ "pipe|two|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -2.229107777039388,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9667,
+   "eer_native": 0.0875,
+   "auc_morph_vs_native_neutral": 0.9623,
+   "auc_morph_vs_e7": 0.9658,
+   "morph_flag_at_native5": {
+    "threshold": -2.229107777039388,
+    "untouched_rate": 0.05392156862745098,
+    "k": 495,
+    "n": 600,
+    "rate": 0.825,
+    "ci": [
+     0.792184912188727,
+     0.854575237342696
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.229107777039388,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9982,
+   "eer_native": 0.0149,
+   "auc_morph_vs_native_neutral": 0.9982,
+   "auc_morph_vs_e7": 0.9982,
+   "morph_flag_at_native5": {
+    "threshold": -2.229107777039388,
+    "untouched_rate": 0.05392156862745098,
+    "k": 598,
+    "n": 600,
+    "rate": 0.9966666666666667,
+    "ci": [
+     0.9880111660413475,
+     0.9995960626395574
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -2.229107777039388,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9986,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.9985,
+   "auc_morph_vs_e7": 0.9985,
+   "morph_flag_at_native5": {
+    "threshold": -2.229107777039388,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.229107777039388,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9885,
+   "eer_native": 0.0495,
+   "auc_morph_vs_native_neutral": 0.9875,
+   "auc_morph_vs_e7": 0.9879,
+   "morph_flag_at_native5": {
+    "threshold": -2.229107777039388,
+    "untouched_rate": 0.05392156862745098,
+    "k": 570,
+    "n": 600,
+    "rate": 0.95,
+    "ci": [
+     0.9293885939673254,
+     0.9660144527846245
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.225302610549453,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.9998,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.9998,
+   "auc_morph_vs_e7": 0.9998,
+   "morph_flag_at_native5": {
+    "threshold": -2.225302610549453,
+    "untouched_rate": 0.05392156862745098,
+    "k": 600,
+    "n": 600,
+    "rate": 1.0,
+    "ci": [
+     0.9938707286693308,
+     1.0
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -2.225302610549453,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9897,
+   "eer_native": 0.0437,
+   "auc_morph_vs_native_neutral": 0.9888,
+   "auc_morph_vs_e7": 0.99,
+   "morph_flag_at_native5": {
+    "threshold": -2.225302610549453,
+    "untouched_rate": 0.05392156862745098,
+    "k": 579,
+    "n": 600,
+    "rate": 0.965,
+    "ci": [
+     0.946994756780849,
+     0.9782063780344927
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.225302610549453,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9804,
+   "eer_native": 0.0693,
+   "auc_morph_vs_native_neutral": 0.9784,
+   "auc_morph_vs_e7": 0.9803,
+   "morph_flag_at_native5": {
+    "threshold": -2.225302610549453,
+    "untouched_rate": 0.05392156862745098,
+    "k": 458,
+    "n": 500,
+    "rate": 0.916,
+    "ci": [
+     0.8881516987545879,
+     0.9387909413916523
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 4.385894931732668,
+    "untouched_rate": 0.05,
+    "k": 13,
+    "n": 500,
+    "rate": 0.026,
+    "ci": [
+     0.013914930062859742,
+     0.044050436856873765
+    ]
+   },
+   "auc_small_vs_render": 0.4985
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.883,
+   "morph_flag_at_bona5": {
+    "threshold": 4.396882361007615,
+    "untouched_rate": 0.05016722408026756,
+    "k": 350,
+    "n": 598,
+    "rate": 0.5852842809364549,
+    "ci": [
+     0.5446203432908301,
+     0.6251018026231845
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9983,
+   "auc_u25_vs_zero": 0.9811,
+   "auc_zero_vs_photo": 0.4669,
+   "auc_u50_vs_photo": 0.9984,
+   "zero_flag_at_photo5": {
+    "threshold": -0.33629380445043233,
+    "untouched_rate": 0.05034965034965035,
+    "k": 53,
+    "n": 1000,
+    "rate": 0.053,
+    "ci": [
+     0.03994925236001938,
+     0.06875518328996323
+    ]
+   }
+  }
+ },
+ "pipe|two|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -2.169738580177053,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9331,
+   "eer_native": 0.1518,
+   "auc_morph_vs_native_neutral": 0.9239,
+   "auc_morph_vs_e7": 0.9344,
+   "morph_flag_at_native5": {
+    "threshold": -2.169738580177053,
+    "untouched_rate": 0.05392156862745098,
+    "k": 420,
+    "n": 600,
+    "rate": 0.7,
+    "ci": [
+     0.661578365882258,
+     0.7364394524368656
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.169738580177053,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9981,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.998,
+   "auc_morph_vs_e7": 0.9981,
+   "morph_flag_at_native5": {
+    "threshold": -2.169738580177053,
+    "untouched_rate": 0.05392156862745098,
+    "k": 598,
+    "n": 600,
+    "rate": 0.9966666666666667,
+    "ci": [
+     0.9880111660413475,
+     0.9995960626395574
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -2.169738580177053,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9987,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.9987,
+   "auc_morph_vs_e7": 0.9987,
+   "morph_flag_at_native5": {
+    "threshold": -2.169738580177053,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.169738580177053,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9809,
+   "eer_native": 0.0693,
+   "auc_morph_vs_native_neutral": 0.9784,
+   "auc_morph_vs_e7": 0.9814,
+   "morph_flag_at_native5": {
+    "threshold": -2.169738580177053,
+    "untouched_rate": 0.05392156862745098,
+    "k": 551,
+    "n": 600,
+    "rate": 0.9183333333333333,
+    "ci": [
+     0.8934682601789284,
+     0.9389738988506496
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1349346614721214,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9995,
+   "eer_native": 0.0058,
+   "auc_morph_vs_native_neutral": 0.9994,
+   "auc_morph_vs_e7": 0.9994,
+   "morph_flag_at_native5": {
+    "threshold": -2.1349346614721214,
+    "untouched_rate": 0.05392156862745098,
+    "k": 598,
+    "n": 600,
+    "rate": 0.9966666666666667,
+    "ci": [
+     0.9880111660413475,
+     0.9995960626395574
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1349346614721214,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9851,
+   "eer_native": 0.0586,
+   "auc_morph_vs_native_neutral": 0.9833,
+   "auc_morph_vs_e7": 0.9857,
+   "morph_flag_at_native5": {
+    "threshold": -2.1349346614721214,
+    "untouched_rate": 0.05392156862745098,
+    "k": 554,
+    "n": 600,
+    "rate": 0.9233333333333333,
+    "ci": [
+     0.8990596138307226,
+     0.9433263517010204
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1349346614721214,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9628,
+   "eer_native": 0.1069,
+   "auc_morph_vs_native_neutral": 0.9583,
+   "auc_morph_vs_e7": 0.9637,
+   "morph_flag_at_native5": {
+    "threshold": -2.1349346614721214,
+    "untouched_rate": 0.05392156862745098,
+    "k": 419,
+    "n": 500,
+    "rate": 0.838,
+    "ci": [
+     0.8027236639142744,
+     0.8692172546862147
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 3.923691438098685,
+    "untouched_rate": 0.05,
+    "k": 7,
+    "n": 500,
+    "rate": 0.014,
+    "ci": [
+     0.0056467610703244304,
+     0.028631616183336053
+    ]
+   },
+   "auc_small_vs_render": 0.4532
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.867,
+   "morph_flag_at_bona5": {
+    "threshold": 3.661415373453469,
+    "untouched_rate": 0.05016722408026756,
+    "k": 339,
+    "n": 598,
+    "rate": 0.5668896321070234,
+    "ci": [
+     0.5260909452064966,
+     0.6070245643243978
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9971,
+   "auc_u25_vs_zero": 0.9776,
+   "auc_zero_vs_photo": 0.457,
+   "auc_u50_vs_photo": 0.9971,
+   "zero_flag_at_photo5": {
+    "threshold": -0.9024689145447198,
+    "untouched_rate": 0.05034965034965035,
+    "k": 52,
+    "n": 1000,
+    "rate": 0.052,
+    "ci": [
+     0.0390765349439805,
+     0.0676350140505073
+    ]
+   }
+  }
+ },
+ "both|one|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 0.27131879850247126,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.8804,
+   "eer_native": 0.2063,
+   "auc_morph_vs_native_neutral": 0.8489,
+   "auc_morph_vs_e7": 0.8778,
+   "morph_flag_at_native5": {
+    "threshold": 0.27131879850247126,
+    "untouched_rate": 0.05392156862745098,
+    "k": 333,
+    "n": 600,
+    "rate": 0.555,
+    "ci": [
+     0.514213503463905,
+     0.5952426053608132
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.27131879850247126,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9977,
+   "eer_native": 0.0289,
+   "auc_morph_vs_native_neutral": 0.9971,
+   "auc_morph_vs_e7": 0.9974,
+   "morph_flag_at_native5": {
+    "threshold": 0.27131879850247126,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 0.27131879850247126,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.9973,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9967,
+   "auc_morph_vs_e7": 0.9969,
+   "morph_flag_at_native5": {
+    "threshold": 0.27131879850247126,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.27131879850247126,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 204,
+    "rate": 0.0392156862745098,
+    "ci": [
+     0.017080104925669543,
+     0.07580563080823591
+    ]
+   },
+   "auc_morph_vs_native": 0.949,
+   "eer_native": 0.1229,
+   "auc_morph_vs_native_neutral": 0.9331,
+   "auc_morph_vs_e7": 0.9474,
+   "morph_flag_at_native5": {
+    "threshold": 0.27131879850247126,
+    "untouched_rate": 0.05392156862745098,
+    "k": 459,
+    "n": 600,
+    "rate": 0.765,
+    "ci": [
+     0.7289821967190161,
+     0.7983853867640842
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2876814574765743,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9986,
+   "eer_native": 0.0248,
+   "auc_morph_vs_native_neutral": 0.9985,
+   "auc_morph_vs_e7": 0.9977,
+   "morph_flag_at_native5": {
+    "threshold": 0.2876814574765743,
+    "untouched_rate": 0.05392156862745098,
+    "k": 598,
+    "n": 600,
+    "rate": 0.9966666666666667,
+    "ci": [
+     0.9880111660413475,
+     0.9995960626395574
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2876814574765743,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.936,
+   "eer_native": 0.1411,
+   "auc_morph_vs_native_neutral": 0.9157,
+   "auc_morph_vs_e7": 0.9365,
+   "morph_flag_at_native5": {
+    "threshold": 0.2876814574765743,
+    "untouched_rate": 0.05392156862745098,
+    "k": 408,
+    "n": 600,
+    "rate": 0.68,
+    "ci": [
+     0.6410231719324446,
+     0.7171937585135234
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2876814574765743,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9314,
+   "eer_native": 0.1267,
+   "auc_morph_vs_native_neutral": 0.9111,
+   "auc_morph_vs_e7": 0.9321,
+   "morph_flag_at_native5": {
+    "threshold": 0.2876814574765743,
+    "untouched_rate": 0.05392156862745098,
+    "k": 317,
+    "n": 500,
+    "rate": 0.634,
+    "ci": [
+     0.590083273864826,
+     0.6763219106274607
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 2.0548795850039814,
+    "untouched_rate": 0.05,
+    "k": 15,
+    "n": 500,
+    "rate": 0.03,
+    "ci": [
+     0.016885984203873244,
+     0.04899822570881894
+    ]
+   },
+   "auc_small_vs_render": 0.5105
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8377,
+   "morph_flag_at_bona5": {
+    "threshold": 2.1858346722042983,
+    "untouched_rate": 0.05016722408026756,
+    "k": 255,
+    "n": 598,
+    "rate": 0.42642140468227424,
+    "ci": [
+     0.3863954216315662,
+     0.46717755495550134
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9922,
+   "auc_u25_vs_zero": 0.9559,
+   "auc_zero_vs_photo": 0.4796,
+   "auc_u50_vs_photo": 0.9911,
+   "zero_flag_at_photo5": {
+    "threshold": 0.5083975654780433,
+    "untouched_rate": 0.05034965034965035,
+    "k": 37,
+    "n": 1000,
+    "rate": 0.037,
+    "ci": [
+     0.02618270884373734,
+     0.05064112305992485
+    ]
+   }
+  }
+ },
+ "both|one|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2559565450019365,
+    "untouched_rate": 0.05392156862745098,
+    "k": 12,
+    "n": 204,
+    "rate": 0.058823529411764705,
+    "ci": [
+     0.030761079839869823,
+     0.10049784620004382
+    ]
+   },
+   "auc_morph_vs_native": 0.8496,
+   "eer_native": 0.2302,
+   "auc_morph_vs_native_neutral": 0.8172,
+   "auc_morph_vs_e7": 0.8483,
+   "morph_flag_at_native5": {
+    "threshold": 0.2559565450019365,
+    "untouched_rate": 0.05392156862745098,
+    "k": 315,
+    "n": 600,
+    "rate": 0.525,
+    "ci": [
+     0.48416991643380103,
+     0.5655828917241269
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2559565450019365,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.9966,
+   "eer_native": 0.0248,
+   "auc_morph_vs_native_neutral": 0.996,
+   "auc_morph_vs_e7": 0.9962,
+   "morph_flag_at_native5": {
+    "threshold": 0.2559565450019365,
+    "untouched_rate": 0.05392156862745098,
+    "k": 593,
+    "n": 600,
+    "rate": 0.9883333333333333,
+    "ci": [
+     0.976110677690205,
+     0.9952968827291082
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2559565450019365,
+    "untouched_rate": 0.05392156862745098,
+    "k": 12,
+    "n": 204,
+    "rate": 0.058823529411764705,
+    "ci": [
+     0.030761079839869823,
+     0.10049784620004382
+    ]
+   },
+   "auc_morph_vs_native": 0.9957,
+   "eer_native": 0.0338,
+   "auc_morph_vs_native_neutral": 0.9948,
+   "auc_morph_vs_e7": 0.9955,
+   "morph_flag_at_native5": {
+    "threshold": 0.2559565450019365,
+    "untouched_rate": 0.05392156862745098,
+    "k": 593,
+    "n": 600,
+    "rate": 0.9883333333333333,
+    "ci": [
+     0.976110677690205,
+     0.9952968827291082
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.2559565450019365,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.9349,
+   "eer_native": 0.137,
+   "auc_morph_vs_native_neutral": 0.9178,
+   "auc_morph_vs_e7": 0.9337,
+   "morph_flag_at_native5": {
+    "threshold": 0.2559565450019365,
+    "untouched_rate": 0.05392156862745098,
+    "k": 445,
+    "n": 600,
+    "rate": 0.7416666666666667,
+    "ci": [
+     0.7046731338390589,
+     0.776261870153349
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.23614436233748348,
+    "untouched_rate": 0.05392156862745098,
+    "k": 12,
+    "n": 204,
+    "rate": 0.058823529411764705,
+    "ci": [
+     0.030761079839869823,
+     0.10049784620004382
+    ]
+   },
+   "auc_morph_vs_native": 0.9978,
+   "eer_native": 0.0248,
+   "auc_morph_vs_native_neutral": 0.9975,
+   "auc_morph_vs_e7": 0.9967,
+   "morph_flag_at_native5": {
+    "threshold": 0.23614436233748348,
+    "untouched_rate": 0.05392156862745098,
+    "k": 596,
+    "n": 600,
+    "rate": 0.9933333333333333,
+    "ci": [
+     0.9830192932606833,
+     0.9981806583658572
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 0.23614436233748348,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9161,
+   "eer_native": 0.1559,
+   "auc_morph_vs_native_neutral": 0.8929,
+   "auc_morph_vs_e7": 0.917,
+   "morph_flag_at_native5": {
+    "threshold": 0.23614436233748348,
+    "untouched_rate": 0.05392156862745098,
+    "k": 389,
+    "n": 600,
+    "rate": 0.6483333333333333,
+    "ci": [
+     0.608636294750385,
+     0.6865619386864008
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.23614436233748348,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.8973,
+   "eer_native": 0.1718,
+   "auc_morph_vs_native_neutral": 0.87,
+   "auc_morph_vs_e7": 0.8989,
+   "morph_flag_at_native5": {
+    "threshold": 0.23614436233748348,
+    "untouched_rate": 0.05392156862745098,
+    "k": 289,
+    "n": 500,
+    "rate": 0.578,
+    "ci": [
+     0.5333556139429795,
+     0.6217167368169023
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 1.8011514027655497,
+    "untouched_rate": 0.05,
+    "k": 13,
+    "n": 500,
+    "rate": 0.026,
+    "ci": [
+     0.013914930062859742,
+     0.044050436856873765
+    ]
+   },
+   "auc_small_vs_render": 0.5079
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8226,
+   "morph_flag_at_bona5": {
+    "threshold": 1.8940799127377232,
+    "untouched_rate": 0.05016722408026756,
+    "k": 253,
+    "n": 598,
+    "rate": 0.4230769230769231,
+    "ci": [
+     0.3831081814316193,
+     0.46380904221720815
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9878,
+   "auc_u25_vs_zero": 0.9467,
+   "auc_zero_vs_photo": 0.475,
+   "auc_u50_vs_photo": 0.9864,
+   "zero_flag_at_photo5": {
+    "threshold": 0.3912413512635339,
+    "untouched_rate": 0.05034965034965035,
+    "k": 36,
+    "n": 1000,
+    "rate": 0.036,
+    "ci": [
+     0.02533891492983774,
+     0.04949291171801237
+    ]
+   }
+  }
+ },
+ "both|two|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1809261284062447,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9665,
+   "eer_native": 0.0842,
+   "auc_morph_vs_native_neutral": 0.9623,
+   "auc_morph_vs_e7": 0.9654,
+   "morph_flag_at_native5": {
+    "threshold": -2.1809261284062447,
+    "untouched_rate": 0.05392156862745098,
+    "k": 489,
+    "n": 600,
+    "rate": 0.815,
+    "ci": [
+     0.7815726086612017,
+     0.8452895102947164
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1809261284062447,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9982,
+   "eer_native": 0.0149,
+   "auc_morph_vs_native_neutral": 0.9982,
+   "auc_morph_vs_e7": 0.9982,
+   "morph_flag_at_native5": {
+    "threshold": -2.1809261284062447,
+    "untouched_rate": 0.05392156862745098,
+    "k": 597,
+    "n": 600,
+    "rate": 0.995,
+    "ci": [
+     0.9854579578604367,
+     0.9989676904830049
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1809261284062447,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9985,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.9985,
+   "auc_morph_vs_e7": 0.9985,
+   "morph_flag_at_native5": {
+    "threshold": -2.1809261284062447,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1809261284062447,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9884,
+   "eer_native": 0.0495,
+   "auc_morph_vs_native_neutral": 0.9873,
+   "auc_morph_vs_e7": 0.9877,
+   "morph_flag_at_native5": {
+    "threshold": -2.1809261284062447,
+    "untouched_rate": 0.05392156862745098,
+    "k": 570,
+    "n": 600,
+    "rate": 0.95,
+    "ci": [
+     0.9293885939673254,
+     0.9660144527846245
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1770251411443775,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.9998,
+   "eer_native": 0.005,
+   "auc_morph_vs_native_neutral": 0.9998,
+   "auc_morph_vs_e7": 0.9998,
+   "morph_flag_at_native5": {
+    "threshold": -2.1770251411443775,
+    "untouched_rate": 0.05392156862745098,
+    "k": 600,
+    "n": 600,
+    "rate": 1.0,
+    "ci": [
+     0.9938707286693308,
+     1.0
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1770251411443775,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9896,
+   "eer_native": 0.0446,
+   "auc_morph_vs_native_neutral": 0.9887,
+   "auc_morph_vs_e7": 0.9899,
+   "morph_flag_at_native5": {
+    "threshold": -2.1770251411443775,
+    "untouched_rate": 0.05392156862745098,
+    "k": 579,
+    "n": 600,
+    "rate": 0.965,
+    "ci": [
+     0.946994756780849,
+     0.9782063780344927
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.1770251411443775,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9802,
+   "eer_native": 0.0693,
+   "auc_morph_vs_native_neutral": 0.9782,
+   "auc_morph_vs_e7": 0.9802,
+   "morph_flag_at_native5": {
+    "threshold": -2.1770251411443775,
+    "untouched_rate": 0.05392156862745098,
+    "k": 453,
+    "n": 500,
+    "rate": 0.906,
+    "ci": [
+     0.8769623921104394,
+     0.9301137660812189
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 4.367738685418709,
+    "untouched_rate": 0.05,
+    "k": 13,
+    "n": 500,
+    "rate": 0.026,
+    "ci": [
+     0.013914930062859742,
+     0.044050436856873765
+    ]
+   },
+   "auc_small_vs_render": 0.5044
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8826,
+   "morph_flag_at_bona5": {
+    "threshold": 4.409969957310382,
+    "untouched_rate": 0.05016722408026756,
+    "k": 350,
+    "n": 598,
+    "rate": 0.5852842809364549,
+    "ci": [
+     0.5446203432908301,
+     0.6251018026231845
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9983,
+   "auc_u25_vs_zero": 0.9811,
+   "auc_zero_vs_photo": 0.467,
+   "auc_u50_vs_photo": 0.9984,
+   "zero_flag_at_photo5": {
+    "threshold": -0.34640808642348486,
+    "untouched_rate": 0.05034965034965035,
+    "k": 53,
+    "n": 1000,
+    "rate": 0.053,
+    "ci": [
+     0.03994925236001938,
+     0.06875518328996323
+    ]
+   }
+  }
+ },
+ "both|two|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -2.0663600983410935,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9307,
+   "eer_native": 0.1518,
+   "auc_morph_vs_native_neutral": 0.9222,
+   "auc_morph_vs_e7": 0.9314,
+   "morph_flag_at_native5": {
+    "threshold": -2.0663600983410935,
+    "untouched_rate": 0.05392156862745098,
+    "k": 411,
+    "n": 600,
+    "rate": 0.685,
+    "ci": [
+     0.6461544708573432,
+     0.7220127136352903
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.0663600983410935,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9981,
+   "eer_native": 0.0058,
+   "auc_morph_vs_native_neutral": 0.9979,
+   "auc_morph_vs_e7": 0.9981,
+   "morph_flag_at_native5": {
+    "threshold": -2.0663600983410935,
+    "untouched_rate": 0.05392156862745098,
+    "k": 598,
+    "n": 600,
+    "rate": 0.9966666666666667,
+    "ci": [
+     0.9880111660413475,
+     0.9995960626395574
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -2.0663600983410935,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9987,
+   "eer_native": 0.0058,
+   "auc_morph_vs_native_neutral": 0.9986,
+   "auc_morph_vs_e7": 0.9987,
+   "morph_flag_at_native5": {
+    "threshold": -2.0663600983410935,
+    "untouched_rate": 0.05392156862745098,
+    "k": 599,
+    "n": 600,
+    "rate": 0.9983333333333333,
+    "ci": [
+     0.9907492277206255,
+     0.9999578045436128
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.0663600983410935,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9801,
+   "eer_native": 0.0685,
+   "auc_morph_vs_native_neutral": 0.9776,
+   "auc_morph_vs_e7": 0.9804,
+   "morph_flag_at_native5": {
+    "threshold": -2.0663600983410935,
+    "untouched_rate": 0.05392156862745098,
+    "k": 549,
+    "n": 600,
+    "rate": 0.915,
+    "ci": [
+     0.8897540169486022,
+     0.9360585801779702
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.0731218269145852,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9996,
+   "eer_native": 0.0058,
+   "auc_morph_vs_native_neutral": 0.9995,
+   "auc_morph_vs_e7": 0.9995,
+   "morph_flag_at_native5": {
+    "threshold": -2.0731218269145852,
+    "untouched_rate": 0.05392156862745098,
+    "k": 598,
+    "n": 600,
+    "rate": 0.9966666666666667,
+    "ci": [
+     0.9880111660413475,
+     0.9995960626395574
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -2.0731218269145852,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9846,
+   "eer_native": 0.0586,
+   "auc_morph_vs_native_neutral": 0.9827,
+   "auc_morph_vs_e7": 0.9851,
+   "morph_flag_at_native5": {
+    "threshold": -2.0731218269145852,
+    "untouched_rate": 0.05392156862745098,
+    "k": 559,
+    "n": 600,
+    "rate": 0.9316666666666666,
+    "ci": [
+     0.9084372745970718,
+     0.9505199965376978
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.0731218269145852,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.9619,
+   "eer_native": 0.1079,
+   "auc_morph_vs_native_neutral": 0.9575,
+   "auc_morph_vs_e7": 0.9626,
+   "morph_flag_at_native5": {
+    "threshold": -2.0731218269145852,
+    "untouched_rate": 0.05392156862745098,
+    "k": 419,
+    "n": 500,
+    "rate": 0.838,
+    "ci": [
+     0.8027236639142744,
+     0.8692172546862147
+    ]
+   }
+  },
+  "SMDD test pairs (stored-small vs render)": {
+   "e7_flag_at_native5": {
+    "threshold": 3.87720920511506,
+    "untouched_rate": 0.05,
+    "k": 12,
+    "n": 500,
+    "rate": 0.024,
+    "ci": [
+     0.012461239059555672,
+     0.04154761879968625
+    ]
+   },
+   "auc_small_vs_render": 0.5016
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.8658,
+   "morph_flag_at_bona5": {
+    "threshold": 3.807618450890716,
+    "untouched_rate": 0.05016722408026756,
+    "k": 333,
+    "n": 598,
+    "rate": 0.5568561872909699,
+    "ci": [
+     0.5160074334201269,
+     0.5971407872858243
+    ]
+   }
+  },
+  "AF0 unseen persons (OpenCV engine)": {
+   "auc_u50_vs_zero": 0.9971,
+   "auc_u25_vs_zero": 0.9777,
+   "auc_zero_vs_photo": 0.456,
+   "auc_u50_vs_photo": 0.9972,
+   "zero_flag_at_photo5": {
+    "threshold": -0.9446537578065413,
+    "untouched_rate": 0.05034965034965035,
+    "k": 52,
+    "n": 1000,
+    "rate": 0.052,
+    "ci": [
+     0.0390765349439805,
+     0.0676350140505073
+    ]
+   }
+  }
+ }
+}

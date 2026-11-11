@@ -1,0 +1,2065 @@
+{
+ "matrix": {
+  "opencv|pipeline || opencv|pipeline": {
+   "mean": 0.9538,
+   "p2_5": 0.9291,
+   "p97_5": 0.9649
+  },
+  "opencv|pipeline || opencv|mirror_mix": {
+   "mean": -0.0595,
+   "p2_5": -0.0836,
+   "p97_5": -0.0332
+  },
+  "opencv|pipeline || opencv|mirror_mix_matched": {
+   "mean": -0.0606,
+   "p2_5": -0.0847,
+   "p97_5": -0.0345
+  },
+  "opencv|pipeline || opencv|same_person_mix": {
+   "mean": -0.0097,
+   "p2_5": -0.0463,
+   "p97_5": 0.0343
+  },
+  "opencv|pipeline || opencv|second_identity": {
+   "mean": -0.1058,
+   "p2_5": -0.1315,
+   "p97_5": -0.0781
+  },
+  "opencv|pipeline || opencv|whole_morph": {
+   "mean": -0.0727,
+   "p2_5": -0.1058,
+   "p97_5": -0.0355
+  },
+  "opencv|pipeline || opencv|photo_to_morph": {
+   "mean": 0.0094,
+   "p2_5": -0.034,
+   "p97_5": 0.0543
+  },
+  "opencv|pipeline || facemorpher|pipeline": {
+   "mean": 0.3709,
+   "p2_5": 0.2885,
+   "p97_5": 0.4301
+  },
+  "opencv|pipeline || facemorpher|mirror_mix": {
+   "mean": -0.0385,
+   "p2_5": -0.0649,
+   "p97_5": -0.0106
+  },
+  "opencv|pipeline || facemorpher|mirror_mix_matched": {
+   "mean": -0.0375,
+   "p2_5": -0.0643,
+   "p97_5": -0.0094
+  },
+  "opencv|pipeline || facemorpher|same_person_mix": {
+   "mean": -0.0099,
+   "p2_5": -0.0484,
+   "p97_5": 0.0316
+  },
+  "opencv|pipeline || facemorpher|second_identity": {
+   "mean": -0.0852,
+   "p2_5": -0.1134,
+   "p97_5": -0.054
+  },
+  "opencv|pipeline || facemorpher|whole_morph": {
+   "mean": -0.0547,
+   "p2_5": -0.0897,
+   "p97_5": -0.0167
+  },
+  "opencv|pipeline || facemorpher|photo_to_morph": {
+   "mean": -0.0413,
+   "p2_5": -0.0789,
+   "p97_5": -0.0014
+  },
+  "opencv|pipeline || softening (SMDD stored-small minus render)": {
+   "mean": 0.3343,
+   "p2_5": 0.3128,
+   "p97_5": 0.3573
+  },
+  "opencv|pipeline || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.6317,
+   "p2_5": 0.6125,
+   "p97_5": 0.6527
+  },
+  "opencv|pipeline || head weights none|one|opencv": {
+   "mean": 0.1495,
+   "p2_5": 0.1236,
+   "p97_5": 0.1774
+  },
+  "opencv|pipeline || head weights none|one|facemorpher": {
+   "mean": 0.1505,
+   "p2_5": 0.1227,
+   "p97_5": 0.1832
+  },
+  "opencv|pipeline || head weights none|two|opencv": {
+   "mean": 0.0576,
+   "p2_5": 0.0224,
+   "p97_5": 0.0983
+  },
+  "opencv|pipeline || head weights none|two|facemorpher": {
+   "mean": 0.0659,
+   "p2_5": 0.03,
+   "p97_5": 0.1093
+  },
+  "opencv|mirror_mix || opencv|pipeline": {
+   "mean": -0.0595,
+   "p2_5": -0.0836,
+   "p97_5": -0.0332
+  },
+  "opencv|mirror_mix || opencv|mirror_mix": {
+   "mean": 0.9929,
+   "p2_5": 0.9806,
+   "p97_5": 0.9972
+  },
+  "opencv|mirror_mix || opencv|mirror_mix_matched": {
+   "mean": 0.9928,
+   "p2_5": 0.9802,
+   "p97_5": 0.997
+  },
+  "opencv|mirror_mix || opencv|same_person_mix": {
+   "mean": 0.7847,
+   "p2_5": 0.7553,
+   "p97_5": 0.8088
+  },
+  "opencv|mirror_mix || opencv|second_identity": {
+   "mean": 0.8468,
+   "p2_5": 0.8307,
+   "p97_5": 0.8562
+  },
+  "opencv|mirror_mix || opencv|whole_morph": {
+   "mean": 0.8805,
+   "p2_5": 0.8659,
+   "p97_5": 0.8882
+  },
+  "opencv|mirror_mix || opencv|photo_to_morph": {
+   "mean": 0.8777,
+   "p2_5": 0.8604,
+   "p97_5": 0.8856
+  },
+  "opencv|mirror_mix || facemorpher|pipeline": {
+   "mean": 0.1127,
+   "p2_5": 0.0747,
+   "p97_5": 0.1487
+  },
+  "opencv|mirror_mix || facemorpher|mirror_mix": {
+   "mean": 0.989,
+   "p2_5": 0.9724,
+   "p97_5": 0.994
+  },
+  "opencv|mirror_mix || facemorpher|mirror_mix_matched": {
+   "mean": 0.989,
+   "p2_5": 0.9723,
+   "p97_5": 0.994
+  },
+  "opencv|mirror_mix || facemorpher|same_person_mix": {
+   "mean": 0.8447,
+   "p2_5": 0.8198,
+   "p97_5": 0.8608
+  },
+  "opencv|mirror_mix || facemorpher|second_identity": {
+   "mean": 0.8365,
+   "p2_5": 0.8129,
+   "p97_5": 0.8502
+  },
+  "opencv|mirror_mix || facemorpher|whole_morph": {
+   "mean": 0.8909,
+   "p2_5": 0.8721,
+   "p97_5": 0.8977
+  },
+  "opencv|mirror_mix || facemorpher|photo_to_morph": {
+   "mean": 0.892,
+   "p2_5": 0.8736,
+   "p97_5": 0.8984
+  },
+  "opencv|mirror_mix || softening (SMDD stored-small minus render)": {
+   "mean": -0.0241,
+   "p2_5": -0.0282,
+   "p97_5": -0.02
+  },
+  "opencv|mirror_mix || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.0353,
+   "p2_5": -0.0425,
+   "p97_5": -0.0281
+  },
+  "opencv|mirror_mix || head weights none|one|opencv": {
+   "mean": 0.38,
+   "p2_5": 0.3707,
+   "p97_5": 0.3895
+  },
+  "opencv|mirror_mix || head weights none|one|facemorpher": {
+   "mean": 0.4676,
+   "p2_5": 0.4575,
+   "p97_5": 0.478
+  },
+  "opencv|mirror_mix || head weights none|two|opencv": {
+   "mean": 0.4591,
+   "p2_5": 0.4511,
+   "p97_5": 0.4671
+  },
+  "opencv|mirror_mix || head weights none|two|facemorpher": {
+   "mean": 0.4994,
+   "p2_5": 0.4924,
+   "p97_5": 0.5069
+  },
+  "opencv|mirror_mix_matched || opencv|pipeline": {
+   "mean": -0.0606,
+   "p2_5": -0.0847,
+   "p97_5": -0.0345
+  },
+  "opencv|mirror_mix_matched || opencv|mirror_mix": {
+   "mean": 0.9928,
+   "p2_5": 0.9802,
+   "p97_5": 0.997
+  },
+  "opencv|mirror_mix_matched || opencv|mirror_mix_matched": {
+   "mean": 0.993,
+   "p2_5": 0.9805,
+   "p97_5": 0.9972
+  },
+  "opencv|mirror_mix_matched || opencv|same_person_mix": {
+   "mean": 0.785,
+   "p2_5": 0.7562,
+   "p97_5": 0.8095
+  },
+  "opencv|mirror_mix_matched || opencv|second_identity": {
+   "mean": 0.8477,
+   "p2_5": 0.8321,
+   "p97_5": 0.8575
+  },
+  "opencv|mirror_mix_matched || opencv|whole_morph": {
+   "mean": 0.8812,
+   "p2_5": 0.8672,
+   "p97_5": 0.8886
+  },
+  "opencv|mirror_mix_matched || opencv|photo_to_morph": {
+   "mean": 0.8782,
+   "p2_5": 0.8617,
+   "p97_5": 0.8858
+  },
+  "opencv|mirror_mix_matched || facemorpher|pipeline": {
+   "mean": 0.1124,
+   "p2_5": 0.0732,
+   "p97_5": 0.1464
+  },
+  "opencv|mirror_mix_matched || facemorpher|mirror_mix": {
+   "mean": 0.9892,
+   "p2_5": 0.9731,
+   "p97_5": 0.9942
+  },
+  "opencv|mirror_mix_matched || facemorpher|mirror_mix_matched": {
+   "mean": 0.9892,
+   "p2_5": 0.973,
+   "p97_5": 0.9943
+  },
+  "opencv|mirror_mix_matched || facemorpher|same_person_mix": {
+   "mean": 0.8452,
+   "p2_5": 0.8209,
+   "p97_5": 0.8616
+  },
+  "opencv|mirror_mix_matched || facemorpher|second_identity": {
+   "mean": 0.8372,
+   "p2_5": 0.814,
+   "p97_5": 0.8501
+  },
+  "opencv|mirror_mix_matched || facemorpher|whole_morph": {
+   "mean": 0.8916,
+   "p2_5": 0.8733,
+   "p97_5": 0.8977
+  },
+  "opencv|mirror_mix_matched || facemorpher|photo_to_morph": {
+   "mean": 0.8926,
+   "p2_5": 0.8748,
+   "p97_5": 0.8987
+  },
+  "opencv|mirror_mix_matched || softening (SMDD stored-small minus render)": {
+   "mean": -0.025,
+   "p2_5": -0.0292,
+   "p97_5": -0.021
+  },
+  "opencv|mirror_mix_matched || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.0364,
+   "p2_5": -0.0435,
+   "p97_5": -0.0292
+  },
+  "opencv|mirror_mix_matched || head weights none|one|opencv": {
+   "mean": 0.3793,
+   "p2_5": 0.3707,
+   "p97_5": 0.3884
+  },
+  "opencv|mirror_mix_matched || head weights none|one|facemorpher": {
+   "mean": 0.4673,
+   "p2_5": 0.4581,
+   "p97_5": 0.4777
+  },
+  "opencv|mirror_mix_matched || head weights none|two|opencv": {
+   "mean": 0.4584,
+   "p2_5": 0.4499,
+   "p97_5": 0.4675
+  },
+  "opencv|mirror_mix_matched || head weights none|two|facemorpher": {
+   "mean": 0.4991,
+   "p2_5": 0.491,
+   "p97_5": 0.5077
+  },
+  "opencv|same_person_mix || opencv|pipeline": {
+   "mean": -0.0097,
+   "p2_5": -0.0463,
+   "p97_5": 0.0343
+  },
+  "opencv|same_person_mix || opencv|mirror_mix": {
+   "mean": 0.7847,
+   "p2_5": 0.7553,
+   "p97_5": 0.8088
+  },
+  "opencv|same_person_mix || opencv|mirror_mix_matched": {
+   "mean": 0.785,
+   "p2_5": 0.7562,
+   "p97_5": 0.8095
+  },
+  "opencv|same_person_mix || opencv|same_person_mix": {
+   "mean": 0.9765,
+   "p2_5": 0.9555,
+   "p97_5": 0.9848
+  },
+  "opencv|same_person_mix || opencv|second_identity": {
+   "mean": 0.7339,
+   "p2_5": 0.6978,
+   "p97_5": 0.7612
+  },
+  "opencv|same_person_mix || opencv|whole_morph": {
+   "mean": 0.8887,
+   "p2_5": 0.8662,
+   "p97_5": 0.9109
+  },
+  "opencv|same_person_mix || opencv|photo_to_morph": {
+   "mean": 0.8901,
+   "p2_5": 0.8674,
+   "p97_5": 0.9121
+  },
+  "opencv|same_person_mix || facemorpher|pipeline": {
+   "mean": 0.1816,
+   "p2_5": 0.1471,
+   "p97_5": 0.2175
+  },
+  "opencv|same_person_mix || facemorpher|mirror_mix": {
+   "mean": 0.77,
+   "p2_5": 0.7361,
+   "p97_5": 0.7973
+  },
+  "opencv|same_person_mix || facemorpher|mirror_mix_matched": {
+   "mean": 0.768,
+   "p2_5": 0.7351,
+   "p97_5": 0.7956
+  },
+  "opencv|same_person_mix || facemorpher|same_person_mix": {
+   "mean": 0.9637,
+   "p2_5": 0.9403,
+   "p97_5": 0.9769
+  },
+  "opencv|same_person_mix || facemorpher|second_identity": {
+   "mean": 0.6864,
+   "p2_5": 0.6524,
+   "p97_5": 0.7169
+  },
+  "opencv|same_person_mix || facemorpher|whole_morph": {
+   "mean": 0.8596,
+   "p2_5": 0.8332,
+   "p97_5": 0.8843
+  },
+  "opencv|same_person_mix || facemorpher|photo_to_morph": {
+   "mean": 0.8632,
+   "p2_5": 0.8373,
+   "p97_5": 0.8879
+  },
+  "opencv|same_person_mix || softening (SMDD stored-small minus render)": {
+   "mean": 0.0381,
+   "p2_5": 0.0185,
+   "p97_5": 0.0566
+  },
+  "opencv|same_person_mix || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.0061,
+   "p2_5": -0.018,
+   "p97_5": 0.0061
+  },
+  "opencv|same_person_mix || head weights none|one|opencv": {
+   "mean": 0.7079,
+   "p2_5": 0.6884,
+   "p97_5": 0.7286
+  },
+  "opencv|same_person_mix || head weights none|one|facemorpher": {
+   "mean": 0.7874,
+   "p2_5": 0.7694,
+   "p97_5": 0.8064
+  },
+  "opencv|same_person_mix || head weights none|two|opencv": {
+   "mean": 0.7621,
+   "p2_5": 0.7428,
+   "p97_5": 0.7805
+  },
+  "opencv|same_person_mix || head weights none|two|facemorpher": {
+   "mean": 0.7822,
+   "p2_5": 0.7662,
+   "p97_5": 0.7975
+  },
+  "opencv|second_identity || opencv|pipeline": {
+   "mean": -0.1058,
+   "p2_5": -0.1315,
+   "p97_5": -0.0781
+  },
+  "opencv|second_identity || opencv|mirror_mix": {
+   "mean": 0.8468,
+   "p2_5": 0.8307,
+   "p97_5": 0.8562
+  },
+  "opencv|second_identity || opencv|mirror_mix_matched": {
+   "mean": 0.8477,
+   "p2_5": 0.8321,
+   "p97_5": 0.8575
+  },
+  "opencv|second_identity || opencv|same_person_mix": {
+   "mean": 0.7339,
+   "p2_5": 0.6978,
+   "p97_5": 0.7612
+  },
+  "opencv|second_identity || opencv|second_identity": {
+   "mean": 0.9848,
+   "p2_5": 0.9723,
+   "p97_5": 0.9905
+  },
+  "opencv|second_identity || opencv|whole_morph": {
+   "mean": 0.9483,
+   "p2_5": 0.9348,
+   "p97_5": 0.9599
+  },
+  "opencv|second_identity || opencv|photo_to_morph": {
+   "mean": 0.9416,
+   "p2_5": 0.9258,
+   "p97_5": 0.9528
+  },
+  "opencv|second_identity || facemorpher|pipeline": {
+   "mean": 0.0235,
+   "p2_5": -0.0079,
+   "p97_5": 0.0552
+  },
+  "opencv|second_identity || facemorpher|mirror_mix": {
+   "mean": 0.8641,
+   "p2_5": 0.8488,
+   "p97_5": 0.8727
+  },
+  "opencv|second_identity || facemorpher|mirror_mix_matched": {
+   "mean": 0.8639,
+   "p2_5": 0.8486,
+   "p97_5": 0.8726
+  },
+  "opencv|second_identity || facemorpher|same_person_mix": {
+   "mean": 0.8162,
+   "p2_5": 0.7802,
+   "p97_5": 0.8393
+  },
+  "opencv|second_identity || facemorpher|second_identity": {
+   "mean": 0.9739,
+   "p2_5": 0.9595,
+   "p97_5": 0.9837
+  },
+  "opencv|second_identity || facemorpher|whole_morph": {
+   "mean": 0.9577,
+   "p2_5": 0.9455,
+   "p97_5": 0.9664
+  },
+  "opencv|second_identity || facemorpher|photo_to_morph": {
+   "mean": 0.9553,
+   "p2_5": 0.9432,
+   "p97_5": 0.9636
+  },
+  "opencv|second_identity || softening (SMDD stored-small minus render)": {
+   "mean": -0.0875,
+   "p2_5": -0.0954,
+   "p97_5": -0.0793
+  },
+  "opencv|second_identity || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.0558,
+   "p2_5": -0.0646,
+   "p97_5": -0.0472
+  },
+  "opencv|second_identity || head weights none|one|opencv": {
+   "mean": 0.2198,
+   "p2_5": 0.2082,
+   "p97_5": 0.2326
+  },
+  "opencv|second_identity || head weights none|one|facemorpher": {
+   "mean": 0.3037,
+   "p2_5": 0.2895,
+   "p97_5": 0.3175
+  },
+  "opencv|second_identity || head weights none|two|opencv": {
+   "mean": 0.3855,
+   "p2_5": 0.3691,
+   "p97_5": 0.4017
+  },
+  "opencv|second_identity || head weights none|two|facemorpher": {
+   "mean": 0.4225,
+   "p2_5": 0.4067,
+   "p97_5": 0.4375
+  },
+  "opencv|whole_morph || opencv|pipeline": {
+   "mean": -0.0727,
+   "p2_5": -0.1058,
+   "p97_5": -0.0355
+  },
+  "opencv|whole_morph || opencv|mirror_mix": {
+   "mean": 0.8805,
+   "p2_5": 0.8659,
+   "p97_5": 0.8882
+  },
+  "opencv|whole_morph || opencv|mirror_mix_matched": {
+   "mean": 0.8812,
+   "p2_5": 0.8672,
+   "p97_5": 0.8886
+  },
+  "opencv|whole_morph || opencv|same_person_mix": {
+   "mean": 0.8887,
+   "p2_5": 0.8662,
+   "p97_5": 0.9109
+  },
+  "opencv|whole_morph || opencv|second_identity": {
+   "mean": 0.9483,
+   "p2_5": 0.9348,
+   "p97_5": 0.9599
+  },
+  "opencv|whole_morph || opencv|whole_morph": {
+   "mean": 0.9901,
+   "p2_5": 0.9771,
+   "p97_5": 0.9953
+  },
+  "opencv|whole_morph || opencv|photo_to_morph": {
+   "mean": 0.9864,
+   "p2_5": 0.9712,
+   "p97_5": 0.9922
+  },
+  "opencv|whole_morph || facemorpher|pipeline": {
+   "mean": 0.092,
+   "p2_5": 0.0626,
+   "p97_5": 0.1215
+  },
+  "opencv|whole_morph || facemorpher|mirror_mix": {
+   "mean": 0.8855,
+   "p2_5": 0.8733,
+   "p97_5": 0.8939
+  },
+  "opencv|whole_morph || facemorpher|mirror_mix_matched": {
+   "mean": 0.8845,
+   "p2_5": 0.8723,
+   "p97_5": 0.8927
+  },
+  "opencv|whole_morph || facemorpher|same_person_mix": {
+   "mean": 0.9365,
+   "p2_5": 0.9217,
+   "p97_5": 0.9517
+  },
+  "opencv|whole_morph || facemorpher|second_identity": {
+   "mean": 0.9211,
+   "p2_5": 0.9032,
+   "p97_5": 0.9394
+  },
+  "opencv|whole_morph || facemorpher|whole_morph": {
+   "mean": 0.9839,
+   "p2_5": 0.9683,
+   "p97_5": 0.9913
+  },
+  "opencv|whole_morph || facemorpher|photo_to_morph": {
+   "mean": 0.9839,
+   "p2_5": 0.9688,
+   "p97_5": 0.9906
+  },
+  "opencv|whole_morph || softening (SMDD stored-small minus render)": {
+   "mean": -0.0405,
+   "p2_5": -0.0515,
+   "p97_5": -0.0299
+  },
+  "opencv|whole_morph || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.0387,
+   "p2_5": -0.0457,
+   "p97_5": -0.0316
+  },
+  "opencv|whole_morph || head weights none|one|opencv": {
+   "mean": 0.4419,
+   "p2_5": 0.4275,
+   "p97_5": 0.4574
+  },
+  "opencv|whole_morph || head weights none|one|facemorpher": {
+   "mean": 0.5298,
+   "p2_5": 0.5151,
+   "p97_5": 0.5458
+  },
+  "opencv|whole_morph || head weights none|two|opencv": {
+   "mean": 0.5721,
+   "p2_5": 0.5569,
+   "p97_5": 0.5878
+  },
+  "opencv|whole_morph || head weights none|two|facemorpher": {
+   "mean": 0.6046,
+   "p2_5": 0.5907,
+   "p97_5": 0.6195
+  },
+  "opencv|photo_to_morph || opencv|pipeline": {
+   "mean": 0.0094,
+   "p2_5": -0.034,
+   "p97_5": 0.0543
+  },
+  "opencv|photo_to_morph || opencv|mirror_mix": {
+   "mean": 0.8777,
+   "p2_5": 0.8604,
+   "p97_5": 0.8856
+  },
+  "opencv|photo_to_morph || opencv|mirror_mix_matched": {
+   "mean": 0.8782,
+   "p2_5": 0.8617,
+   "p97_5": 0.8858
+  },
+  "opencv|photo_to_morph || opencv|same_person_mix": {
+   "mean": 0.8901,
+   "p2_5": 0.8674,
+   "p97_5": 0.9121
+  },
+  "opencv|photo_to_morph || opencv|second_identity": {
+   "mean": 0.9416,
+   "p2_5": 0.9258,
+   "p97_5": 0.9528
+  },
+  "opencv|photo_to_morph || opencv|whole_morph": {
+   "mean": 0.9864,
+   "p2_5": 0.9712,
+   "p97_5": 0.9922
+  },
+  "opencv|photo_to_morph || opencv|photo_to_morph": {
+   "mean": 0.9897,
+   "p2_5": 0.9757,
+   "p97_5": 0.9952
+  },
+  "opencv|photo_to_morph || facemorpher|pipeline": {
+   "mean": 0.1242,
+   "p2_5": 0.0973,
+   "p97_5": 0.1553
+  },
+  "opencv|photo_to_morph || facemorpher|mirror_mix": {
+   "mean": 0.8844,
+   "p2_5": 0.8707,
+   "p97_5": 0.8931
+  },
+  "opencv|photo_to_morph || facemorpher|mirror_mix_matched": {
+   "mean": 0.8835,
+   "p2_5": 0.8699,
+   "p97_5": 0.8918
+  },
+  "opencv|photo_to_morph || facemorpher|same_person_mix": {
+   "mean": 0.9381,
+   "p2_5": 0.9205,
+   "p97_5": 0.9539
+  },
+  "opencv|photo_to_morph || facemorpher|second_identity": {
+   "mean": 0.9162,
+   "p2_5": 0.899,
+   "p97_5": 0.9346
+  },
+  "opencv|photo_to_morph || facemorpher|whole_morph": {
+   "mean": 0.9817,
+   "p2_5": 0.9697,
+   "p97_5": 0.9889
+  },
+  "opencv|photo_to_morph || facemorpher|photo_to_morph": {
+   "mean": 0.9829,
+   "p2_5": 0.971,
+   "p97_5": 0.9895
+  },
+  "opencv|photo_to_morph || softening (SMDD stored-small minus render)": {
+   "mean": -0.0118,
+   "p2_5": -0.0243,
+   "p97_5": 0.0007
+  },
+  "opencv|photo_to_morph || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.0157,
+   "p2_5": 0.0037,
+   "p97_5": 0.0276
+  },
+  "opencv|photo_to_morph || head weights none|one|opencv": {
+   "mean": 0.4559,
+   "p2_5": 0.4416,
+   "p97_5": 0.4714
+  },
+  "opencv|photo_to_morph || head weights none|one|facemorpher": {
+   "mean": 0.5442,
+   "p2_5": 0.5292,
+   "p97_5": 0.5604
+  },
+  "opencv|photo_to_morph || head weights none|two|opencv": {
+   "mean": 0.5785,
+   "p2_5": 0.5628,
+   "p97_5": 0.5951
+  },
+  "opencv|photo_to_morph || head weights none|two|facemorpher": {
+   "mean": 0.6118,
+   "p2_5": 0.5978,
+   "p97_5": 0.627
+  },
+  "facemorpher|pipeline || opencv|pipeline": {
+   "mean": 0.3709,
+   "p2_5": 0.2885,
+   "p97_5": 0.4301
+  },
+  "facemorpher|pipeline || opencv|mirror_mix": {
+   "mean": 0.1127,
+   "p2_5": 0.0747,
+   "p97_5": 0.1487
+  },
+  "facemorpher|pipeline || opencv|mirror_mix_matched": {
+   "mean": 0.1124,
+   "p2_5": 0.0732,
+   "p97_5": 0.1464
+  },
+  "facemorpher|pipeline || opencv|same_person_mix": {
+   "mean": 0.1816,
+   "p2_5": 0.1471,
+   "p97_5": 0.2175
+  },
+  "facemorpher|pipeline || opencv|second_identity": {
+   "mean": 0.0235,
+   "p2_5": -0.0079,
+   "p97_5": 0.0552
+  },
+  "facemorpher|pipeline || opencv|whole_morph": {
+   "mean": 0.092,
+   "p2_5": 0.0626,
+   "p97_5": 0.1215
+  },
+  "facemorpher|pipeline || opencv|photo_to_morph": {
+   "mean": 0.1242,
+   "p2_5": 0.0973,
+   "p97_5": 0.1553
+  },
+  "facemorpher|pipeline || facemorpher|pipeline": {
+   "mean": 0.8224,
+   "p2_5": 0.728,
+   "p97_5": 0.873
+  },
+  "facemorpher|pipeline || facemorpher|mirror_mix": {
+   "mean": 0.0923,
+   "p2_5": 0.0539,
+   "p97_5": 0.1284
+  },
+  "facemorpher|pipeline || facemorpher|mirror_mix_matched": {
+   "mean": 0.0955,
+   "p2_5": 0.0559,
+   "p97_5": 0.1305
+  },
+  "facemorpher|pipeline || facemorpher|same_person_mix": {
+   "mean": 0.1417,
+   "p2_5": 0.1069,
+   "p97_5": 0.1718
+  },
+  "facemorpher|pipeline || facemorpher|second_identity": {
+   "mean": 0.0202,
+   "p2_5": -0.0116,
+   "p97_5": 0.0511
+  },
+  "facemorpher|pipeline || facemorpher|whole_morph": {
+   "mean": 0.079,
+   "p2_5": 0.0479,
+   "p97_5": 0.1127
+  },
+  "facemorpher|pipeline || facemorpher|photo_to_morph": {
+   "mean": 0.1081,
+   "p2_5": 0.077,
+   "p97_5": 0.1398
+  },
+  "facemorpher|pipeline || softening (SMDD stored-small minus render)": {
+   "mean": 0.1149,
+   "p2_5": 0.0741,
+   "p97_5": 0.1528
+  },
+  "facemorpher|pipeline || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.3108,
+   "p2_5": 0.2746,
+   "p97_5": 0.3535
+  },
+  "facemorpher|pipeline || head weights none|one|opencv": {
+   "mean": 0.2285,
+   "p2_5": 0.1961,
+   "p97_5": 0.2616
+  },
+  "facemorpher|pipeline || head weights none|one|facemorpher": {
+   "mean": 0.2181,
+   "p2_5": 0.185,
+   "p97_5": 0.2572
+  },
+  "facemorpher|pipeline || head weights none|two|opencv": {
+   "mean": 0.2397,
+   "p2_5": 0.2005,
+   "p97_5": 0.2819
+  },
+  "facemorpher|pipeline || head weights none|two|facemorpher": {
+   "mean": 0.22,
+   "p2_5": 0.1803,
+   "p97_5": 0.2629
+  },
+  "facemorpher|mirror_mix || opencv|pipeline": {
+   "mean": -0.0385,
+   "p2_5": -0.0649,
+   "p97_5": -0.0106
+  },
+  "facemorpher|mirror_mix || opencv|mirror_mix": {
+   "mean": 0.989,
+   "p2_5": 0.9724,
+   "p97_5": 0.994
+  },
+  "facemorpher|mirror_mix || opencv|mirror_mix_matched": {
+   "mean": 0.9892,
+   "p2_5": 0.9731,
+   "p97_5": 0.9942
+  },
+  "facemorpher|mirror_mix || opencv|same_person_mix": {
+   "mean": 0.77,
+   "p2_5": 0.7361,
+   "p97_5": 0.7973
+  },
+  "facemorpher|mirror_mix || opencv|second_identity": {
+   "mean": 0.8641,
+   "p2_5": 0.8488,
+   "p97_5": 0.8727
+  },
+  "facemorpher|mirror_mix || opencv|whole_morph": {
+   "mean": 0.8855,
+   "p2_5": 0.8733,
+   "p97_5": 0.8939
+  },
+  "facemorpher|mirror_mix || opencv|photo_to_morph": {
+   "mean": 0.8844,
+   "p2_5": 0.8707,
+   "p97_5": 0.8931
+  },
+  "facemorpher|mirror_mix || facemorpher|pipeline": {
+   "mean": 0.0923,
+   "p2_5": 0.0539,
+   "p97_5": 0.1284
+  },
+  "facemorpher|mirror_mix || facemorpher|mirror_mix": {
+   "mean": 0.9932,
+   "p2_5": 0.9799,
+   "p97_5": 0.9973
+  },
+  "facemorpher|mirror_mix || facemorpher|mirror_mix_matched": {
+   "mean": 0.9933,
+   "p2_5": 0.9803,
+   "p97_5": 0.9973
+  },
+  "facemorpher|mirror_mix || facemorpher|same_person_mix": {
+   "mean": 0.8401,
+   "p2_5": 0.8109,
+   "p97_5": 0.8591
+  },
+  "facemorpher|mirror_mix || facemorpher|second_identity": {
+   "mean": 0.8604,
+   "p2_5": 0.841,
+   "p97_5": 0.8707
+  },
+  "facemorpher|mirror_mix || facemorpher|whole_morph": {
+   "mean": 0.9028,
+   "p2_5": 0.8894,
+   "p97_5": 0.9086
+  },
+  "facemorpher|mirror_mix || facemorpher|photo_to_morph": {
+   "mean": 0.9031,
+   "p2_5": 0.8901,
+   "p97_5": 0.9091
+  },
+  "facemorpher|mirror_mix || softening (SMDD stored-small minus render)": {
+   "mean": -0.0231,
+   "p2_5": -0.0282,
+   "p97_5": -0.0179
+  },
+  "facemorpher|mirror_mix || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.0284,
+   "p2_5": -0.0364,
+   "p97_5": -0.0205
+  },
+  "facemorpher|mirror_mix || head weights none|one|opencv": {
+   "mean": 0.3572,
+   "p2_5": 0.3515,
+   "p97_5": 0.3633
+  },
+  "facemorpher|mirror_mix || head weights none|one|facemorpher": {
+   "mean": 0.4488,
+   "p2_5": 0.4427,
+   "p97_5": 0.4557
+  },
+  "facemorpher|mirror_mix || head weights none|two|opencv": {
+   "mean": 0.4366,
+   "p2_5": 0.4294,
+   "p97_5": 0.444
+  },
+  "facemorpher|mirror_mix || head weights none|two|facemorpher": {
+   "mean": 0.4818,
+   "p2_5": 0.4742,
+   "p97_5": 0.4893
+  },
+  "facemorpher|mirror_mix_matched || opencv|pipeline": {
+   "mean": -0.0375,
+   "p2_5": -0.0643,
+   "p97_5": -0.0094
+  },
+  "facemorpher|mirror_mix_matched || opencv|mirror_mix": {
+   "mean": 0.989,
+   "p2_5": 0.9723,
+   "p97_5": 0.994
+  },
+  "facemorpher|mirror_mix_matched || opencv|mirror_mix_matched": {
+   "mean": 0.9892,
+   "p2_5": 0.973,
+   "p97_5": 0.9943
+  },
+  "facemorpher|mirror_mix_matched || opencv|same_person_mix": {
+   "mean": 0.768,
+   "p2_5": 0.7351,
+   "p97_5": 0.7956
+  },
+  "facemorpher|mirror_mix_matched || opencv|second_identity": {
+   "mean": 0.8639,
+   "p2_5": 0.8486,
+   "p97_5": 0.8726
+  },
+  "facemorpher|mirror_mix_matched || opencv|whole_morph": {
+   "mean": 0.8845,
+   "p2_5": 0.8723,
+   "p97_5": 0.8927
+  },
+  "facemorpher|mirror_mix_matched || opencv|photo_to_morph": {
+   "mean": 0.8835,
+   "p2_5": 0.8699,
+   "p97_5": 0.8918
+  },
+  "facemorpher|mirror_mix_matched || facemorpher|pipeline": {
+   "mean": 0.0955,
+   "p2_5": 0.0559,
+   "p97_5": 0.1305
+  },
+  "facemorpher|mirror_mix_matched || facemorpher|mirror_mix": {
+   "mean": 0.9933,
+   "p2_5": 0.9803,
+   "p97_5": 0.9973
+  },
+  "facemorpher|mirror_mix_matched || facemorpher|mirror_mix_matched": {
+   "mean": 0.9935,
+   "p2_5": 0.9809,
+   "p97_5": 0.9974
+  },
+  "facemorpher|mirror_mix_matched || facemorpher|same_person_mix": {
+   "mean": 0.8384,
+   "p2_5": 0.81,
+   "p97_5": 0.8566
+  },
+  "facemorpher|mirror_mix_matched || facemorpher|second_identity": {
+   "mean": 0.8604,
+   "p2_5": 0.8412,
+   "p97_5": 0.8703
+  },
+  "facemorpher|mirror_mix_matched || facemorpher|whole_morph": {
+   "mean": 0.902,
+   "p2_5": 0.8886,
+   "p97_5": 0.9079
+  },
+  "facemorpher|mirror_mix_matched || facemorpher|photo_to_morph": {
+   "mean": 0.9024,
+   "p2_5": 0.8894,
+   "p97_5": 0.9085
+  },
+  "facemorpher|mirror_mix_matched || softening (SMDD stored-small minus render)": {
+   "mean": -0.0232,
+   "p2_5": -0.0278,
+   "p97_5": -0.0186
+  },
+  "facemorpher|mirror_mix_matched || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.0282,
+   "p2_5": -0.0357,
+   "p97_5": -0.0207
+  },
+  "facemorpher|mirror_mix_matched || head weights none|one|opencv": {
+   "mean": 0.3553,
+   "p2_5": 0.3494,
+   "p97_5": 0.3621
+  },
+  "facemorpher|mirror_mix_matched || head weights none|one|facemorpher": {
+   "mean": 0.4462,
+   "p2_5": 0.4394,
+   "p97_5": 0.4542
+  },
+  "facemorpher|mirror_mix_matched || head weights none|two|opencv": {
+   "mean": 0.4346,
+   "p2_5": 0.4273,
+   "p97_5": 0.4421
+  },
+  "facemorpher|mirror_mix_matched || head weights none|two|facemorpher": {
+   "mean": 0.4792,
+   "p2_5": 0.472,
+   "p97_5": 0.487
+  },
+  "facemorpher|same_person_mix || opencv|pipeline": {
+   "mean": -0.0099,
+   "p2_5": -0.0484,
+   "p97_5": 0.0316
+  },
+  "facemorpher|same_person_mix || opencv|mirror_mix": {
+   "mean": 0.8447,
+   "p2_5": 0.8198,
+   "p97_5": 0.8608
+  },
+  "facemorpher|same_person_mix || opencv|mirror_mix_matched": {
+   "mean": 0.8452,
+   "p2_5": 0.8209,
+   "p97_5": 0.8616
+  },
+  "facemorpher|same_person_mix || opencv|same_person_mix": {
+   "mean": 0.9637,
+   "p2_5": 0.9403,
+   "p97_5": 0.9769
+  },
+  "facemorpher|same_person_mix || opencv|second_identity": {
+   "mean": 0.8162,
+   "p2_5": 0.7802,
+   "p97_5": 0.8393
+  },
+  "facemorpher|same_person_mix || opencv|whole_morph": {
+   "mean": 0.9365,
+   "p2_5": 0.9217,
+   "p97_5": 0.9517
+  },
+  "facemorpher|same_person_mix || opencv|photo_to_morph": {
+   "mean": 0.9381,
+   "p2_5": 0.9205,
+   "p97_5": 0.9539
+  },
+  "facemorpher|same_person_mix || facemorpher|pipeline": {
+   "mean": 0.1417,
+   "p2_5": 0.1069,
+   "p97_5": 0.1718
+  },
+  "facemorpher|same_person_mix || facemorpher|mirror_mix": {
+   "mean": 0.8401,
+   "p2_5": 0.8109,
+   "p97_5": 0.8591
+  },
+  "facemorpher|same_person_mix || facemorpher|mirror_mix_matched": {
+   "mean": 0.8384,
+   "p2_5": 0.81,
+   "p97_5": 0.8566
+  },
+  "facemorpher|same_person_mix || facemorpher|same_person_mix": {
+   "mean": 0.9829,
+   "p2_5": 0.9639,
+   "p97_5": 0.9895
+  },
+  "facemorpher|same_person_mix || facemorpher|second_identity": {
+   "mean": 0.7769,
+   "p2_5": 0.7428,
+   "p97_5": 0.8008
+  },
+  "facemorpher|same_person_mix || facemorpher|whole_morph": {
+   "mean": 0.9218,
+   "p2_5": 0.9004,
+   "p97_5": 0.9397
+  },
+  "facemorpher|same_person_mix || facemorpher|photo_to_morph": {
+   "mean": 0.9238,
+   "p2_5": 0.903,
+   "p97_5": 0.9413
+  },
+  "facemorpher|same_person_mix || softening (SMDD stored-small minus render)": {
+   "mean": 0.016,
+   "p2_5": 0.0032,
+   "p97_5": 0.0277
+  },
+  "facemorpher|same_person_mix || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.015,
+   "p2_5": -0.0266,
+   "p97_5": -0.0046
+  },
+  "facemorpher|same_person_mix || head weights none|one|opencv": {
+   "mean": 0.6189,
+   "p2_5": 0.5932,
+   "p97_5": 0.6444
+  },
+  "facemorpher|same_person_mix || head weights none|one|facemorpher": {
+   "mean": 0.7176,
+   "p2_5": 0.6934,
+   "p97_5": 0.7414
+  },
+  "facemorpher|same_person_mix || head weights none|two|opencv": {
+   "mean": 0.695,
+   "p2_5": 0.6715,
+   "p97_5": 0.7198
+  },
+  "facemorpher|same_person_mix || head weights none|two|facemorpher": {
+   "mean": 0.7342,
+   "p2_5": 0.7117,
+   "p97_5": 0.7563
+  },
+  "facemorpher|second_identity || opencv|pipeline": {
+   "mean": -0.0852,
+   "p2_5": -0.1134,
+   "p97_5": -0.054
+  },
+  "facemorpher|second_identity || opencv|mirror_mix": {
+   "mean": 0.8365,
+   "p2_5": 0.8129,
+   "p97_5": 0.8502
+  },
+  "facemorpher|second_identity || opencv|mirror_mix_matched": {
+   "mean": 0.8372,
+   "p2_5": 0.814,
+   "p97_5": 0.8501
+  },
+  "facemorpher|second_identity || opencv|same_person_mix": {
+   "mean": 0.6864,
+   "p2_5": 0.6524,
+   "p97_5": 0.7169
+  },
+  "facemorpher|second_identity || opencv|second_identity": {
+   "mean": 0.9739,
+   "p2_5": 0.9595,
+   "p97_5": 0.9837
+  },
+  "facemorpher|second_identity || opencv|whole_morph": {
+   "mean": 0.9211,
+   "p2_5": 0.9032,
+   "p97_5": 0.9394
+  },
+  "facemorpher|second_identity || opencv|photo_to_morph": {
+   "mean": 0.9162,
+   "p2_5": 0.899,
+   "p97_5": 0.9346
+  },
+  "facemorpher|second_identity || facemorpher|pipeline": {
+   "mean": 0.0202,
+   "p2_5": -0.0116,
+   "p97_5": 0.0511
+  },
+  "facemorpher|second_identity || facemorpher|mirror_mix": {
+   "mean": 0.8604,
+   "p2_5": 0.841,
+   "p97_5": 0.8707
+  },
+  "facemorpher|second_identity || facemorpher|mirror_mix_matched": {
+   "mean": 0.8604,
+   "p2_5": 0.8412,
+   "p97_5": 0.8703
+  },
+  "facemorpher|second_identity || facemorpher|same_person_mix": {
+   "mean": 0.7769,
+   "p2_5": 0.7428,
+   "p97_5": 0.8008
+  },
+  "facemorpher|second_identity || facemorpher|second_identity": {
+   "mean": 0.9839,
+   "p2_5": 0.9728,
+   "p97_5": 0.9903
+  },
+  "facemorpher|second_identity || facemorpher|whole_morph": {
+   "mean": 0.9449,
+   "p2_5": 0.9322,
+   "p97_5": 0.9576
+  },
+  "facemorpher|second_identity || facemorpher|photo_to_morph": {
+   "mean": 0.9425,
+   "p2_5": 0.9284,
+   "p97_5": 0.9566
+  },
+  "facemorpher|second_identity || softening (SMDD stored-small minus render)": {
+   "mean": -0.0743,
+   "p2_5": -0.0846,
+   "p97_5": -0.0653
+  },
+  "facemorpher|second_identity || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.0376,
+   "p2_5": -0.0462,
+   "p97_5": -0.0289
+  },
+  "facemorpher|second_identity || head weights none|one|opencv": {
+   "mean": 0.1861,
+   "p2_5": 0.1733,
+   "p97_5": 0.2015
+  },
+  "facemorpher|second_identity || head weights none|one|facemorpher": {
+   "mean": 0.2631,
+   "p2_5": 0.2493,
+   "p97_5": 0.279
+  },
+  "facemorpher|second_identity || head weights none|two|opencv": {
+   "mean": 0.3396,
+   "p2_5": 0.321,
+   "p97_5": 0.3618
+  },
+  "facemorpher|second_identity || head weights none|two|facemorpher": {
+   "mean": 0.381,
+   "p2_5": 0.3624,
+   "p97_5": 0.4026
+  },
+  "facemorpher|whole_morph || opencv|pipeline": {
+   "mean": -0.0547,
+   "p2_5": -0.0897,
+   "p97_5": -0.0167
+  },
+  "facemorpher|whole_morph || opencv|mirror_mix": {
+   "mean": 0.8909,
+   "p2_5": 0.8721,
+   "p97_5": 0.8977
+  },
+  "facemorpher|whole_morph || opencv|mirror_mix_matched": {
+   "mean": 0.8916,
+   "p2_5": 0.8733,
+   "p97_5": 0.8977
+  },
+  "facemorpher|whole_morph || opencv|same_person_mix": {
+   "mean": 0.8596,
+   "p2_5": 0.8332,
+   "p97_5": 0.8843
+  },
+  "facemorpher|whole_morph || opencv|second_identity": {
+   "mean": 0.9577,
+   "p2_5": 0.9455,
+   "p97_5": 0.9664
+  },
+  "facemorpher|whole_morph || opencv|whole_morph": {
+   "mean": 0.9839,
+   "p2_5": 0.9683,
+   "p97_5": 0.9913
+  },
+  "facemorpher|whole_morph || opencv|photo_to_morph": {
+   "mean": 0.9817,
+   "p2_5": 0.9697,
+   "p97_5": 0.9889
+  },
+  "facemorpher|whole_morph || facemorpher|pipeline": {
+   "mean": 0.079,
+   "p2_5": 0.0479,
+   "p97_5": 0.1127
+  },
+  "facemorpher|whole_morph || facemorpher|mirror_mix": {
+   "mean": 0.9028,
+   "p2_5": 0.8894,
+   "p97_5": 0.9086
+  },
+  "facemorpher|whole_morph || facemorpher|mirror_mix_matched": {
+   "mean": 0.902,
+   "p2_5": 0.8886,
+   "p97_5": 0.9079
+  },
+  "facemorpher|whole_morph || facemorpher|same_person_mix": {
+   "mean": 0.9218,
+   "p2_5": 0.9004,
+   "p97_5": 0.9397
+  },
+  "facemorpher|whole_morph || facemorpher|second_identity": {
+   "mean": 0.9449,
+   "p2_5": 0.9322,
+   "p97_5": 0.9576
+  },
+  "facemorpher|whole_morph || facemorpher|whole_morph": {
+   "mean": 0.9908,
+   "p2_5": 0.9785,
+   "p97_5": 0.9951
+  },
+  "facemorpher|whole_morph || facemorpher|photo_to_morph": {
+   "mean": 0.9903,
+   "p2_5": 0.9786,
+   "p97_5": 0.9948
+  },
+  "facemorpher|whole_morph || softening (SMDD stored-small minus render)": {
+   "mean": -0.0359,
+   "p2_5": -0.0468,
+   "p97_5": -0.0251
+  },
+  "facemorpher|whole_morph || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.0292,
+   "p2_5": -0.0394,
+   "p97_5": -0.019
+  },
+  "facemorpher|whole_morph || head weights none|one|opencv": {
+   "mean": 0.4029,
+   "p2_5": 0.3891,
+   "p97_5": 0.4179
+  },
+  "facemorpher|whole_morph || head weights none|one|facemorpher": {
+   "mean": 0.4949,
+   "p2_5": 0.4808,
+   "p97_5": 0.5101
+  },
+  "facemorpher|whole_morph || head weights none|two|opencv": {
+   "mean": 0.5288,
+   "p2_5": 0.5118,
+   "p97_5": 0.5441
+  },
+  "facemorpher|whole_morph || head weights none|two|facemorpher": {
+   "mean": 0.5717,
+   "p2_5": 0.5558,
+   "p97_5": 0.5867
+  },
+  "facemorpher|photo_to_morph || opencv|pipeline": {
+   "mean": -0.0413,
+   "p2_5": -0.0789,
+   "p97_5": -0.0014
+  },
+  "facemorpher|photo_to_morph || opencv|mirror_mix": {
+   "mean": 0.892,
+   "p2_5": 0.8736,
+   "p97_5": 0.8984
+  },
+  "facemorpher|photo_to_morph || opencv|mirror_mix_matched": {
+   "mean": 0.8926,
+   "p2_5": 0.8748,
+   "p97_5": 0.8987
+  },
+  "facemorpher|photo_to_morph || opencv|same_person_mix": {
+   "mean": 0.8632,
+   "p2_5": 0.8373,
+   "p97_5": 0.8879
+  },
+  "facemorpher|photo_to_morph || opencv|second_identity": {
+   "mean": 0.9553,
+   "p2_5": 0.9432,
+   "p97_5": 0.9636
+  },
+  "facemorpher|photo_to_morph || opencv|whole_morph": {
+   "mean": 0.9839,
+   "p2_5": 0.9688,
+   "p97_5": 0.9906
+  },
+  "facemorpher|photo_to_morph || opencv|photo_to_morph": {
+   "mean": 0.9829,
+   "p2_5": 0.971,
+   "p97_5": 0.9895
+  },
+  "facemorpher|photo_to_morph || facemorpher|pipeline": {
+   "mean": 0.1081,
+   "p2_5": 0.077,
+   "p97_5": 0.1398
+  },
+  "facemorpher|photo_to_morph || facemorpher|mirror_mix": {
+   "mean": 0.9031,
+   "p2_5": 0.8901,
+   "p97_5": 0.9091
+  },
+  "facemorpher|photo_to_morph || facemorpher|mirror_mix_matched": {
+   "mean": 0.9024,
+   "p2_5": 0.8894,
+   "p97_5": 0.9085
+  },
+  "facemorpher|photo_to_morph || facemorpher|same_person_mix": {
+   "mean": 0.9238,
+   "p2_5": 0.903,
+   "p97_5": 0.9413
+  },
+  "facemorpher|photo_to_morph || facemorpher|second_identity": {
+   "mean": 0.9425,
+   "p2_5": 0.9284,
+   "p97_5": 0.9566
+  },
+  "facemorpher|photo_to_morph || facemorpher|whole_morph": {
+   "mean": 0.9903,
+   "p2_5": 0.9786,
+   "p97_5": 0.9948
+  },
+  "facemorpher|photo_to_morph || facemorpher|photo_to_morph": {
+   "mean": 0.9909,
+   "p2_5": 0.9783,
+   "p97_5": 0.9952
+  },
+  "facemorpher|photo_to_morph || softening (SMDD stored-small minus render)": {
+   "mean": -0.0317,
+   "p2_5": -0.0426,
+   "p97_5": -0.0208
+  },
+  "facemorpher|photo_to_morph || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": -0.018,
+   "p2_5": -0.0278,
+   "p97_5": -0.0084
+  },
+  "facemorpher|photo_to_morph || head weights none|one|opencv": {
+   "mean": 0.4097,
+   "p2_5": 0.395,
+   "p97_5": 0.4255
+  },
+  "facemorpher|photo_to_morph || head weights none|one|facemorpher": {
+   "mean": 0.501,
+   "p2_5": 0.4861,
+   "p97_5": 0.5171
+  },
+  "facemorpher|photo_to_morph || head weights none|two|opencv": {
+   "mean": 0.5356,
+   "p2_5": 0.5178,
+   "p97_5": 0.5516
+  },
+  "facemorpher|photo_to_morph || head weights none|two|facemorpher": {
+   "mean": 0.5776,
+   "p2_5": 0.5609,
+   "p97_5": 0.5934
+  },
+  "softening (SMDD stored-small minus render) || opencv|pipeline": {
+   "mean": 0.3343,
+   "p2_5": 0.3128,
+   "p97_5": 0.3573
+  },
+  "softening (SMDD stored-small minus render) || opencv|mirror_mix": {
+   "mean": -0.0241,
+   "p2_5": -0.0282,
+   "p97_5": -0.02
+  },
+  "softening (SMDD stored-small minus render) || opencv|mirror_mix_matched": {
+   "mean": -0.025,
+   "p2_5": -0.0292,
+   "p97_5": -0.021
+  },
+  "softening (SMDD stored-small minus render) || opencv|same_person_mix": {
+   "mean": 0.0381,
+   "p2_5": 0.0185,
+   "p97_5": 0.0566
+  },
+  "softening (SMDD stored-small minus render) || opencv|second_identity": {
+   "mean": -0.0875,
+   "p2_5": -0.0954,
+   "p97_5": -0.0793
+  },
+  "softening (SMDD stored-small minus render) || opencv|whole_morph": {
+   "mean": -0.0405,
+   "p2_5": -0.0515,
+   "p97_5": -0.0299
+  },
+  "softening (SMDD stored-small minus render) || opencv|photo_to_morph": {
+   "mean": -0.0118,
+   "p2_5": -0.0243,
+   "p97_5": 0.0007
+  },
+  "softening (SMDD stored-small minus render) || facemorpher|pipeline": {
+   "mean": 0.1149,
+   "p2_5": 0.0741,
+   "p97_5": 0.1528
+  },
+  "softening (SMDD stored-small minus render) || facemorpher|mirror_mix": {
+   "mean": -0.0231,
+   "p2_5": -0.0282,
+   "p97_5": -0.0179
+  },
+  "softening (SMDD stored-small minus render) || facemorpher|mirror_mix_matched": {
+   "mean": -0.0232,
+   "p2_5": -0.0278,
+   "p97_5": -0.0186
+  },
+  "softening (SMDD stored-small minus render) || facemorpher|same_person_mix": {
+   "mean": 0.016,
+   "p2_5": 0.0032,
+   "p97_5": 0.0277
+  },
+  "softening (SMDD stored-small minus render) || facemorpher|second_identity": {
+   "mean": -0.0743,
+   "p2_5": -0.0846,
+   "p97_5": -0.0653
+  },
+  "softening (SMDD stored-small minus render) || facemorpher|whole_morph": {
+   "mean": -0.0359,
+   "p2_5": -0.0468,
+   "p97_5": -0.0251
+  },
+  "softening (SMDD stored-small minus render) || facemorpher|photo_to_morph": {
+   "mean": -0.0317,
+   "p2_5": -0.0426,
+   "p97_5": -0.0208
+  },
+  "softening (SMDD stored-small minus render) || softening (SMDD stored-small minus render)": {
+   "mean": 1.0,
+   "p2_5": 1.0,
+   "p97_5": 1.0
+  },
+  "softening (SMDD stored-small minus render) || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.4641,
+   "p2_5": 0.4641,
+   "p97_5": 0.4641
+  },
+  "softening (SMDD stored-small minus render) || head weights none|one|opencv": {
+   "mean": 0.1454,
+   "p2_5": 0.1454,
+   "p97_5": 0.1454
+  },
+  "softening (SMDD stored-small minus render) || head weights none|one|facemorpher": {
+   "mean": 0.1336,
+   "p2_5": 0.1336,
+   "p97_5": 0.1336
+  },
+  "softening (SMDD stored-small minus render) || head weights none|two|opencv": {
+   "mean": 0.0857,
+   "p2_5": 0.0857,
+   "p97_5": 0.0857
+  },
+  "softening (SMDD stored-small minus render) || head weights none|two|facemorpher": {
+   "mean": 0.0591,
+   "p2_5": 0.0591,
+   "p97_5": 0.0591
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || opencv|pipeline": {
+   "mean": 0.6317,
+   "p2_5": 0.6125,
+   "p97_5": 0.6527
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || opencv|mirror_mix": {
+   "mean": -0.0353,
+   "p2_5": -0.0425,
+   "p97_5": -0.0281
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || opencv|mirror_mix_matched": {
+   "mean": -0.0364,
+   "p2_5": -0.0435,
+   "p97_5": -0.0292
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || opencv|same_person_mix": {
+   "mean": -0.0061,
+   "p2_5": -0.018,
+   "p97_5": 0.0061
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || opencv|second_identity": {
+   "mean": -0.0558,
+   "p2_5": -0.0646,
+   "p97_5": -0.0472
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || opencv|whole_morph": {
+   "mean": -0.0387,
+   "p2_5": -0.0457,
+   "p97_5": -0.0316
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || opencv|photo_to_morph": {
+   "mean": 0.0157,
+   "p2_5": 0.0037,
+   "p97_5": 0.0276
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || facemorpher|pipeline": {
+   "mean": 0.3108,
+   "p2_5": 0.2746,
+   "p97_5": 0.3535
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || facemorpher|mirror_mix": {
+   "mean": -0.0284,
+   "p2_5": -0.0364,
+   "p97_5": -0.0205
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || facemorpher|mirror_mix_matched": {
+   "mean": -0.0282,
+   "p2_5": -0.0357,
+   "p97_5": -0.0207
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || facemorpher|same_person_mix": {
+   "mean": -0.015,
+   "p2_5": -0.0266,
+   "p97_5": -0.0046
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || facemorpher|second_identity": {
+   "mean": -0.0376,
+   "p2_5": -0.0462,
+   "p97_5": -0.0289
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || facemorpher|whole_morph": {
+   "mean": -0.0292,
+   "p2_5": -0.0394,
+   "p97_5": -0.019
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || facemorpher|photo_to_morph": {
+   "mean": -0.018,
+   "p2_5": -0.0278,
+   "p97_5": -0.0084
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || softening (SMDD stored-small minus render)": {
+   "mean": 0.4641,
+   "p2_5": 0.4641,
+   "p97_5": 0.4641
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 1.0,
+   "p2_5": 1.0,
+   "p97_5": 1.0
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || head weights none|one|opencv": {
+   "mean": 0.0839,
+   "p2_5": 0.0839,
+   "p97_5": 0.0839
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || head weights none|one|facemorpher": {
+   "mean": 0.061,
+   "p2_5": 0.061,
+   "p97_5": 0.061
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || head weights none|two|opencv": {
+   "mean": 0.0516,
+   "p2_5": 0.0516,
+   "p97_5": 0.0516
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || head weights none|two|facemorpher": {
+   "mean": 0.048,
+   "p2_5": 0.048,
+   "p97_5": 0.048
+  },
+  "head weights none|one|opencv || opencv|pipeline": {
+   "mean": 0.1495,
+   "p2_5": 0.1236,
+   "p97_5": 0.1774
+  },
+  "head weights none|one|opencv || opencv|mirror_mix": {
+   "mean": 0.38,
+   "p2_5": 0.3707,
+   "p97_5": 0.3895
+  },
+  "head weights none|one|opencv || opencv|mirror_mix_matched": {
+   "mean": 0.3793,
+   "p2_5": 0.3707,
+   "p97_5": 0.3884
+  },
+  "head weights none|one|opencv || opencv|same_person_mix": {
+   "mean": 0.7079,
+   "p2_5": 0.6884,
+   "p97_5": 0.7286
+  },
+  "head weights none|one|opencv || opencv|second_identity": {
+   "mean": 0.2198,
+   "p2_5": 0.2082,
+   "p97_5": 0.2326
+  },
+  "head weights none|one|opencv || opencv|whole_morph": {
+   "mean": 0.4419,
+   "p2_5": 0.4275,
+   "p97_5": 0.4574
+  },
+  "head weights none|one|opencv || opencv|photo_to_morph": {
+   "mean": 0.4559,
+   "p2_5": 0.4416,
+   "p97_5": 0.4714
+  },
+  "head weights none|one|opencv || facemorpher|pipeline": {
+   "mean": 0.2285,
+   "p2_5": 0.1961,
+   "p97_5": 0.2616
+  },
+  "head weights none|one|opencv || facemorpher|mirror_mix": {
+   "mean": 0.3572,
+   "p2_5": 0.3515,
+   "p97_5": 0.3633
+  },
+  "head weights none|one|opencv || facemorpher|mirror_mix_matched": {
+   "mean": 0.3553,
+   "p2_5": 0.3494,
+   "p97_5": 0.3621
+  },
+  "head weights none|one|opencv || facemorpher|same_person_mix": {
+   "mean": 0.6189,
+   "p2_5": 0.5932,
+   "p97_5": 0.6444
+  },
+  "head weights none|one|opencv || facemorpher|second_identity": {
+   "mean": 0.1861,
+   "p2_5": 0.1733,
+   "p97_5": 0.2015
+  },
+  "head weights none|one|opencv || facemorpher|whole_morph": {
+   "mean": 0.4029,
+   "p2_5": 0.3891,
+   "p97_5": 0.4179
+  },
+  "head weights none|one|opencv || facemorpher|photo_to_morph": {
+   "mean": 0.4097,
+   "p2_5": 0.395,
+   "p97_5": 0.4255
+  },
+  "head weights none|one|opencv || softening (SMDD stored-small minus render)": {
+   "mean": 0.1454,
+   "p2_5": 0.1454,
+   "p97_5": 0.1454
+  },
+  "head weights none|one|opencv || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.0839,
+   "p2_5": 0.0839,
+   "p97_5": 0.0839
+  },
+  "head weights none|one|opencv || head weights none|one|opencv": {
+   "mean": 1.0,
+   "p2_5": 1.0,
+   "p97_5": 1.0
+  },
+  "head weights none|one|opencv || head weights none|one|facemorpher": {
+   "mean": 0.965,
+   "p2_5": 0.965,
+   "p97_5": 0.965
+  },
+  "head weights none|one|opencv || head weights none|two|opencv": {
+   "mean": 0.7881,
+   "p2_5": 0.7881,
+   "p97_5": 0.7881
+  },
+  "head weights none|one|opencv || head weights none|two|facemorpher": {
+   "mean": 0.7568,
+   "p2_5": 0.7568,
+   "p97_5": 0.7568
+  },
+  "head weights none|one|facemorpher || opencv|pipeline": {
+   "mean": 0.1505,
+   "p2_5": 0.1227,
+   "p97_5": 0.1832
+  },
+  "head weights none|one|facemorpher || opencv|mirror_mix": {
+   "mean": 0.4676,
+   "p2_5": 0.4575,
+   "p97_5": 0.478
+  },
+  "head weights none|one|facemorpher || opencv|mirror_mix_matched": {
+   "mean": 0.4673,
+   "p2_5": 0.4581,
+   "p97_5": 0.4777
+  },
+  "head weights none|one|facemorpher || opencv|same_person_mix": {
+   "mean": 0.7874,
+   "p2_5": 0.7694,
+   "p97_5": 0.8064
+  },
+  "head weights none|one|facemorpher || opencv|second_identity": {
+   "mean": 0.3037,
+   "p2_5": 0.2895,
+   "p97_5": 0.3175
+  },
+  "head weights none|one|facemorpher || opencv|whole_morph": {
+   "mean": 0.5298,
+   "p2_5": 0.5151,
+   "p97_5": 0.5458
+  },
+  "head weights none|one|facemorpher || opencv|photo_to_morph": {
+   "mean": 0.5442,
+   "p2_5": 0.5292,
+   "p97_5": 0.5604
+  },
+  "head weights none|one|facemorpher || facemorpher|pipeline": {
+   "mean": 0.2181,
+   "p2_5": 0.185,
+   "p97_5": 0.2572
+  },
+  "head weights none|one|facemorpher || facemorpher|mirror_mix": {
+   "mean": 0.4488,
+   "p2_5": 0.4427,
+   "p97_5": 0.4557
+  },
+  "head weights none|one|facemorpher || facemorpher|mirror_mix_matched": {
+   "mean": 0.4462,
+   "p2_5": 0.4394,
+   "p97_5": 0.4542
+  },
+  "head weights none|one|facemorpher || facemorpher|same_person_mix": {
+   "mean": 0.7176,
+   "p2_5": 0.6934,
+   "p97_5": 0.7414
+  },
+  "head weights none|one|facemorpher || facemorpher|second_identity": {
+   "mean": 0.2631,
+   "p2_5": 0.2493,
+   "p97_5": 0.279
+  },
+  "head weights none|one|facemorpher || facemorpher|whole_morph": {
+   "mean": 0.4949,
+   "p2_5": 0.4808,
+   "p97_5": 0.5101
+  },
+  "head weights none|one|facemorpher || facemorpher|photo_to_morph": {
+   "mean": 0.501,
+   "p2_5": 0.4861,
+   "p97_5": 0.5171
+  },
+  "head weights none|one|facemorpher || softening (SMDD stored-small minus render)": {
+   "mean": 0.1336,
+   "p2_5": 0.1336,
+   "p97_5": 0.1336
+  },
+  "head weights none|one|facemorpher || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.061,
+   "p2_5": 0.061,
+   "p97_5": 0.061
+  },
+  "head weights none|one|facemorpher || head weights none|one|opencv": {
+   "mean": 0.965,
+   "p2_5": 0.965,
+   "p97_5": 0.965
+  },
+  "head weights none|one|facemorpher || head weights none|one|facemorpher": {
+   "mean": 1.0,
+   "p2_5": 1.0,
+   "p97_5": 1.0
+  },
+  "head weights none|one|facemorpher || head weights none|two|opencv": {
+   "mean": 0.8189,
+   "p2_5": 0.8189,
+   "p97_5": 0.8189
+  },
+  "head weights none|one|facemorpher || head weights none|two|facemorpher": {
+   "mean": 0.816,
+   "p2_5": 0.816,
+   "p97_5": 0.816
+  },
+  "head weights none|two|opencv || opencv|pipeline": {
+   "mean": 0.0576,
+   "p2_5": 0.0224,
+   "p97_5": 0.0983
+  },
+  "head weights none|two|opencv || opencv|mirror_mix": {
+   "mean": 0.4591,
+   "p2_5": 0.4511,
+   "p97_5": 0.4671
+  },
+  "head weights none|two|opencv || opencv|mirror_mix_matched": {
+   "mean": 0.4584,
+   "p2_5": 0.4499,
+   "p97_5": 0.4675
+  },
+  "head weights none|two|opencv || opencv|same_person_mix": {
+   "mean": 0.7621,
+   "p2_5": 0.7428,
+   "p97_5": 0.7805
+  },
+  "head weights none|two|opencv || opencv|second_identity": {
+   "mean": 0.3855,
+   "p2_5": 0.3691,
+   "p97_5": 0.4017
+  },
+  "head weights none|two|opencv || opencv|whole_morph": {
+   "mean": 0.5721,
+   "p2_5": 0.5569,
+   "p97_5": 0.5878
+  },
+  "head weights none|two|opencv || opencv|photo_to_morph": {
+   "mean": 0.5785,
+   "p2_5": 0.5628,
+   "p97_5": 0.5951
+  },
+  "head weights none|two|opencv || facemorpher|pipeline": {
+   "mean": 0.2397,
+   "p2_5": 0.2005,
+   "p97_5": 0.2819
+  },
+  "head weights none|two|opencv || facemorpher|mirror_mix": {
+   "mean": 0.4366,
+   "p2_5": 0.4294,
+   "p97_5": 0.444
+  },
+  "head weights none|two|opencv || facemorpher|mirror_mix_matched": {
+   "mean": 0.4346,
+   "p2_5": 0.4273,
+   "p97_5": 0.4421
+  },
+  "head weights none|two|opencv || facemorpher|same_person_mix": {
+   "mean": 0.695,
+   "p2_5": 0.6715,
+   "p97_5": 0.7198
+  },
+  "head weights none|two|opencv || facemorpher|second_identity": {
+   "mean": 0.3396,
+   "p2_5": 0.321,
+   "p97_5": 0.3618
+  },
+  "head weights none|two|opencv || facemorpher|whole_morph": {
+   "mean": 0.5288,
+   "p2_5": 0.5118,
+   "p97_5": 0.5441
+  },
+  "head weights none|two|opencv || facemorpher|photo_to_morph": {
+   "mean": 0.5356,
+   "p2_5": 0.5178,
+   "p97_5": 0.5516
+  },
+  "head weights none|two|opencv || softening (SMDD stored-small minus render)": {
+   "mean": 0.0857,
+   "p2_5": 0.0857,
+   "p97_5": 0.0857
+  },
+  "head weights none|two|opencv || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.0516,
+   "p2_5": 0.0516,
+   "p97_5": 0.0516
+  },
+  "head weights none|two|opencv || head weights none|one|opencv": {
+   "mean": 0.7881,
+   "p2_5": 0.7881,
+   "p97_5": 0.7881
+  },
+  "head weights none|two|opencv || head weights none|one|facemorpher": {
+   "mean": 0.8189,
+   "p2_5": 0.8189,
+   "p97_5": 0.8189
+  },
+  "head weights none|two|opencv || head weights none|two|opencv": {
+   "mean": 1.0,
+   "p2_5": 1.0,
+   "p97_5": 1.0
+  },
+  "head weights none|two|opencv || head weights none|two|facemorpher": {
+   "mean": 0.9545,
+   "p2_5": 0.9545,
+   "p97_5": 0.9545
+  },
+  "head weights none|two|facemorpher || opencv|pipeline": {
+   "mean": 0.0659,
+   "p2_5": 0.03,
+   "p97_5": 0.1093
+  },
+  "head weights none|two|facemorpher || opencv|mirror_mix": {
+   "mean": 0.4994,
+   "p2_5": 0.4924,
+   "p97_5": 0.5069
+  },
+  "head weights none|two|facemorpher || opencv|mirror_mix_matched": {
+   "mean": 0.4991,
+   "p2_5": 0.491,
+   "p97_5": 0.5077
+  },
+  "head weights none|two|facemorpher || opencv|same_person_mix": {
+   "mean": 0.7822,
+   "p2_5": 0.7662,
+   "p97_5": 0.7975
+  },
+  "head weights none|two|facemorpher || opencv|second_identity": {
+   "mean": 0.4225,
+   "p2_5": 0.4067,
+   "p97_5": 0.4375
+  },
+  "head weights none|two|facemorpher || opencv|whole_morph": {
+   "mean": 0.6046,
+   "p2_5": 0.5907,
+   "p97_5": 0.6195
+  },
+  "head weights none|two|facemorpher || opencv|photo_to_morph": {
+   "mean": 0.6118,
+   "p2_5": 0.5978,
+   "p97_5": 0.627
+  },
+  "head weights none|two|facemorpher || facemorpher|pipeline": {
+   "mean": 0.22,
+   "p2_5": 0.1803,
+   "p97_5": 0.2629
+  },
+  "head weights none|two|facemorpher || facemorpher|mirror_mix": {
+   "mean": 0.4818,
+   "p2_5": 0.4742,
+   "p97_5": 0.4893
+  },
+  "head weights none|two|facemorpher || facemorpher|mirror_mix_matched": {
+   "mean": 0.4792,
+   "p2_5": 0.472,
+   "p97_5": 0.487
+  },
+  "head weights none|two|facemorpher || facemorpher|same_person_mix": {
+   "mean": 0.7342,
+   "p2_5": 0.7117,
+   "p97_5": 0.7563
+  },
+  "head weights none|two|facemorpher || facemorpher|second_identity": {
+   "mean": 0.381,
+   "p2_5": 0.3624,
+   "p97_5": 0.4026
+  },
+  "head weights none|two|facemorpher || facemorpher|whole_morph": {
+   "mean": 0.5717,
+   "p2_5": 0.5558,
+   "p97_5": 0.5867
+  },
+  "head weights none|two|facemorpher || facemorpher|photo_to_morph": {
+   "mean": 0.5776,
+   "p2_5": 0.5609,
+   "p97_5": 0.5934
+  },
+  "head weights none|two|facemorpher || softening (SMDD stored-small minus render)": {
+   "mean": 0.0591,
+   "p2_5": 0.0591,
+   "p97_5": 0.0591
+  },
+  "head weights none|two|facemorpher || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.048,
+   "p2_5": 0.048,
+   "p97_5": 0.048
+  },
+  "head weights none|two|facemorpher || head weights none|one|opencv": {
+   "mean": 0.7568,
+   "p2_5": 0.7568,
+   "p97_5": 0.7568
+  },
+  "head weights none|two|facemorpher || head weights none|one|facemorpher": {
+   "mean": 0.816,
+   "p2_5": 0.816,
+   "p97_5": 0.816
+  },
+  "head weights none|two|facemorpher || head weights none|two|opencv": {
+   "mean": 0.9545,
+   "p2_5": 0.9545,
+   "p97_5": 0.9545
+  },
+  "head weights none|two|facemorpher || head weights none|two|facemorpher": {
+   "mean": 1.0,
+   "p2_5": 1.0,
+   "p97_5": 1.0
+  }
+ },
+ "names": [
+  "opencv|pipeline",
+  "opencv|mirror_mix",
+  "opencv|mirror_mix_matched",
+  "opencv|same_person_mix",
+  "opencv|second_identity",
+  "opencv|whole_morph",
+  "opencv|photo_to_morph",
+  "facemorpher|pipeline",
+  "facemorpher|mirror_mix",
+  "facemorpher|mirror_mix_matched",
+  "facemorpher|same_person_mix",
+  "facemorpher|second_identity",
+  "facemorpher|whole_morph",
+  "facemorpher|photo_to_morph",
+  "softening (SMDD stored-small minus render)",
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only)",
+  "head weights none|one|opencv",
+  "head weights none|one|facemorpher",
+  "head weights none|two|opencv",
+  "head weights none|two|facemorpher"
+ ],
+ "readings": {
+  "opencv": {
+   "same_person_vs_whole": 0.8887,
+   "mirror_vs_whole": 0.8805,
+   "mirror_matched_vs_whole": 0.8812,
+   "same_person_vs_second_identity": 0.7339,
+   "same_person_vs_pipeline": -0.0097,
+   "mirror_vs_pipeline": -0.0595,
+   "whole_vs_pipeline": -0.0727,
+   "same_person_mix_vs_softening": 0.0381,
+   "mirror_mix_vs_softening": -0.0241,
+   "mirror_mix_matched_vs_softening": -0.025,
+   "whole_morph_vs_softening": -0.0405,
+   "second_identity_vs_softening": -0.0875,
+   "pipeline_vs_softening": 0.3343,
+   "reading_same_person_signal_is_morph_signal": true,
+   "reading_mirror_signal_is_morph_signal": true,
+   "reading_mixing_signal_is_softness": false
+  },
+  "facemorpher": {
+   "same_person_vs_whole": 0.9218,
+   "mirror_vs_whole": 0.9028,
+   "mirror_matched_vs_whole": 0.902,
+   "same_person_vs_second_identity": 0.7769,
+   "same_person_vs_pipeline": 0.1417,
+   "mirror_vs_pipeline": 0.0923,
+   "whole_vs_pipeline": 0.079,
+   "same_person_mix_vs_softening": 0.016,
+   "mirror_mix_vs_softening": -0.0231,
+   "mirror_mix_matched_vs_softening": -0.0232,
+   "whole_morph_vs_softening": -0.0359,
+   "second_identity_vs_softening": -0.0743,
+   "pipeline_vs_softening": 0.1149,
+   "reading_same_person_signal_is_morph_signal": true,
+   "reading_mirror_signal_is_morph_signal": true,
+   "reading_mixing_signal_is_softness": false
+  }
+ },
+ "n_splits": 20
+}

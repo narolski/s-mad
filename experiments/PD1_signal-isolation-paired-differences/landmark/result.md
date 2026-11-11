@@ -48,3 +48,18 @@ On this one fold and feature, the one-person head ranks two-person morphs above 
 single band-power statistic reaches 0.91 on the same images; the excess (0.02) is below the registered 0.05 and above
 0. The flag rate on softened genuine photos was not yet computed (benchmark features not yet extracted). Not a
 verdict: four folds, two features, the flag rates and the projections are missing.
+
+## Second step (11 Nov, 18:35 CET): both CLIP features complete, all five folds, registered sets
+
+Out-of-fold over all 536 hosts, OpenCV-style engine, one-person head (pairs x2 vs x1 and xm vs x1; C by inner CV).
+Fixed reading of the pre-registration (point estimates decide). Sources: `readings_clip_*.json`,
+`q3q4_contrasts_clip_*.json`, `external_clip_*.json`. The DINOv3 run waits for its SMDD and x1m features; the
+amendment-1 sets (softened hosts, AF0 halves) are not in these numbers yet.
+
+| Feature | AUC x1 vs x3 [95%] | Floor (band power 0.125 to 0.25) | Excess [95%] | Flag rate FRLL E7 OpenCV | Flag rate MAD22 E7 OpenCV | Reading |
+|---|---|---|---|---|---|---|
+| CLIP class token | 0.998 [0.995, 1.000] | 0.886 | 0.112 [0.092, 0.136] | 5.4% (11/204) | 5.4% (11/204) | works |
+| CLIP mean patch token | 0.987 [0.979, 0.993] | 0.886 | 0.101 [0.080, 0.125] | 3.9% | 4.9% | works |
+
+The threshold flags 5.4% (11 of 204) of the untouched photos by construction (ties at the 11th highest score), so
+flag rates near 5% mean the E7 photos are not flagged more often than untouched ones.

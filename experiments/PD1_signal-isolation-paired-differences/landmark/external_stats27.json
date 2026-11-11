@@ -1,0 +1,2774 @@
+{
+ "none|one|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -4.463020049205534,
+    "untouched_rate": 0.05392156862745098,
+    "k": 168,
+    "n": 204,
+    "rate": 0.8235294117647058,
+    "ci": [
+     0.7641586951922124,
+     0.8732356114369263
+    ]
+   },
+   "auc_morph_vs_native": 0.9966,
+   "eer_native": 0.0305,
+   "auc_morph_vs_native_neutral": 0.9936,
+   "auc_morph_vs_e7": 0.7028,
+   "morph_flag_at_native5": {
+    "threshold": -4.463020049205534,
+    "untouched_rate": 0.05392156862745098,
+    "k": 585,
+    "n": 600,
+    "rate": 0.975,
+    "ci": [
+     0.959101138700639,
+     0.9859417001102171
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -4.463020049205534,
+    "untouched_rate": 0.05392156862745098,
+    "k": 131,
+    "n": 204,
+    "rate": 0.6421568627450981,
+    "ci": [
+     0.5722307603182315,
+     0.7078843188951351
+    ]
+   },
+   "auc_morph_vs_native": 0.975,
+   "eer_native": 0.0784,
+   "auc_morph_vs_native_neutral": 0.9569,
+   "auc_morph_vs_e7": 0.5968,
+   "morph_flag_at_native5": {
+    "threshold": -4.463020049205534,
+    "untouched_rate": 0.05392156862745098,
+    "k": 503,
+    "n": 600,
+    "rate": 0.8383333333333334,
+    "ci": [
+     0.8063911808733332,
+     0.8668990541453284
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -4.463020049205534,
+    "untouched_rate": 0.05392156862745098,
+    "k": 143,
+    "n": 204,
+    "rate": 0.7009803921568627,
+    "ci": [
+     0.6330974838948048,
+     0.7629148263528442
+    ]
+   },
+   "auc_morph_vs_native": 0.943,
+   "eer_native": 0.118,
+   "auc_morph_vs_native_neutral": 0.9046,
+   "auc_morph_vs_e7": 0.3735,
+   "morph_flag_at_native5": {
+    "threshold": -4.463020049205534,
+    "untouched_rate": 0.05392156862745098,
+    "k": 368,
+    "n": 600,
+    "rate": 0.6133333333333333,
+    "ci": [
+     0.5730532690519159,
+     0.6524920472824662
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -4.463020049205534,
+    "untouched_rate": 0.05392156862745098,
+    "k": 169,
+    "n": 204,
+    "rate": 0.8284313725490197,
+    "ci": [
+     0.7695544614767633,
+     0.8774913497351238
+    ]
+   },
+   "auc_morph_vs_native": 0.9893,
+   "eer_native": 0.0446,
+   "auc_morph_vs_native_neutral": 0.9824,
+   "auc_morph_vs_e7": 0.6034,
+   "morph_flag_at_native5": {
+    "threshold": -4.463020049205534,
+    "untouched_rate": 0.05392156862745098,
+    "k": 573,
+    "n": 600,
+    "rate": 0.955,
+    "ci": [
+     0.9352002102495458,
+     0.97013852357041
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -4.460741517661218,
+    "untouched_rate": 0.05392156862745098,
+    "k": 204,
+    "n": 204,
+    "rate": 1.0,
+    "ci": [
+     0.9820797693375605,
+     1.0
+    ]
+   },
+   "auc_morph_vs_native": 0.9994,
+   "eer_native": 0.0107,
+   "auc_morph_vs_native_neutral": 0.9989,
+   "auc_morph_vs_e7": 0.6477,
+   "morph_flag_at_native5": {
+    "threshold": -4.460741517661218,
+    "untouched_rate": 0.05392156862745098,
+    "k": 596,
+    "n": 600,
+    "rate": 0.9933333333333333,
+    "ci": [
+     0.9830192932606833,
+     0.9981806583658572
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -4.460741517661218,
+    "untouched_rate": 0.05392156862745098,
+    "k": 20,
+    "n": 204,
+    "rate": 0.09803921568627451,
+    "ci": [
+     0.0609190430267319,
+     0.14734926138480547
+    ]
+   },
+   "auc_morph_vs_native": 0.9801,
+   "eer_native": 0.0726,
+   "auc_morph_vs_native_neutral": 0.965,
+   "auc_morph_vs_e7": 0.9631,
+   "morph_flag_at_native5": {
+    "threshold": -4.460741517661218,
+    "untouched_rate": 0.05392156862745098,
+    "k": 514,
+    "n": 600,
+    "rate": 0.8566666666666667,
+    "ci": [
+     0.8260414103776983,
+     0.8837262608642183
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -4.460741517661218,
+    "untouched_rate": 0.05392156862745098,
+    "k": 21,
+    "n": 204,
+    "rate": 0.10294117647058823,
+    "ci": [
+     0.0648598468345592,
+     0.15304637220635867
+    ]
+   },
+   "auc_morph_vs_native": 0.9227,
+   "eer_native": 0.1619,
+   "auc_morph_vs_native_neutral": 0.8787,
+   "auc_morph_vs_e7": 0.8737,
+   "morph_flag_at_native5": {
+    "threshold": -4.460741517661218,
+    "untouched_rate": 0.05392156862745098,
+    "k": 302,
+    "n": 500,
+    "rate": 0.604,
+    "ci": [
+     0.5596206689732415,
+     0.6471421139671427
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.7147,
+   "morph_flag_at_bona5": {
+    "threshold": 23.242321182048077,
+    "untouched_rate": 0.05016722408026756,
+    "k": 37,
+    "n": 598,
+    "rate": 0.061872909698996656,
+    "ci": [
+     0.043934704119699505,
+     0.08427817456844845
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.803,
+   "share_morph_above_both_halves": 0.915,
+   "halves_flag_at_photo5": {
+    "threshold": 12.575241005349714,
+    "untouched_rate": 0.05034965034965035,
+    "k": 77,
+    "n": 2000,
+    "rate": 0.0385,
+    "ci": [
+     0.030500774860506355,
+     0.0478855448268192
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": -0.0283
+  }
+ },
+ "none|one|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 0.35065457084857,
+    "untouched_rate": 0.05392156862745098,
+    "k": 138,
+    "n": 204,
+    "rate": 0.6764705882352942,
+    "ci": [
+     0.6075989656708917,
+     0.7401243571401024
+    ]
+   },
+   "auc_morph_vs_native": 0.9703,
+   "eer_native": 0.0982,
+   "auc_morph_vs_native_neutral": 0.9552,
+   "auc_morph_vs_e7": 0.6165,
+   "morph_flag_at_native5": {
+    "threshold": 0.35065457084857,
+    "untouched_rate": 0.05392156862745098,
+    "k": 507,
+    "n": 600,
+    "rate": 0.845,
+    "ci": [
+     0.8135202973501132,
+     0.8730346719433457
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.35065457084857,
+    "untouched_rate": 0.05392156862745098,
+    "k": 97,
+    "n": 204,
+    "rate": 0.47549019607843135,
+    "ci": [
+     0.40530957244113885,
+     0.5463934251820084
+    ]
+   },
+   "auc_morph_vs_native": 0.8427,
+   "eer_native": 0.2261,
+   "auc_morph_vs_native_neutral": 0.78,
+   "auc_morph_vs_e7": 0.4393,
+   "morph_flag_at_native5": {
+    "threshold": 0.35065457084857,
+    "untouched_rate": 0.05392156862745098,
+    "k": 195,
+    "n": 600,
+    "rate": 0.325,
+    "ci": [
+     0.2876301106013045,
+     0.3641032327196134
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 0.35065457084857,
+    "untouched_rate": 0.05392156862745098,
+    "k": 106,
+    "n": 204,
+    "rate": 0.5196078431372549,
+    "ci": [
+     0.44874753658912475,
+     0.5898900761010781
+    ]
+   },
+   "auc_morph_vs_native": 0.8353,
+   "eer_native": 0.2351,
+   "auc_morph_vs_native_neutral": 0.7661,
+   "auc_morph_vs_e7": 0.3671,
+   "morph_flag_at_native5": {
+    "threshold": 0.35065457084857,
+    "untouched_rate": 0.05392156862745098,
+    "k": 153,
+    "n": 600,
+    "rate": 0.255,
+    "ci": [
+     0.22056940831676292,
+     0.2918623088790545
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.35065457084857,
+    "untouched_rate": 0.05392156862745098,
+    "k": 137,
+    "n": 204,
+    "rate": 0.6715686274509803,
+    "ci": [
+     0.6025233446853946,
+     0.735541894557701
+    ]
+   },
+   "auc_morph_vs_native": 0.9259,
+   "eer_native": 0.132,
+   "auc_morph_vs_native_neutral": 0.8958,
+   "auc_morph_vs_e7": 0.4478,
+   "morph_flag_at_native5": {
+    "threshold": 0.35065457084857,
+    "untouched_rate": 0.05392156862745098,
+    "k": 391,
+    "n": 600,
+    "rate": 0.6516666666666666,
+    "ci": [
+     0.6120366043003376,
+     0.6897952069340177
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 0.35070852533489816,
+    "untouched_rate": 0.05392156862745098,
+    "k": 200,
+    "n": 204,
+    "rate": 0.9803921568627451,
+    "ci": [
+     0.9505597115198683,
+     0.9946323066828633
+    ]
+   },
+   "auc_morph_vs_native": 0.9934,
+   "eer_native": 0.0297,
+   "auc_morph_vs_native_neutral": 0.9908,
+   "auc_morph_vs_e7": 0.7968,
+   "morph_flag_at_native5": {
+    "threshold": 0.35070852533489816,
+    "untouched_rate": 0.05392156862745098,
+    "k": 584,
+    "n": 600,
+    "rate": 0.9733333333333334,
+    "ci": [
+     0.9570555231544781,
+     0.9846825606659874
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 0.35070852533489816,
+    "untouched_rate": 0.05392156862745098,
+    "k": 20,
+    "n": 204,
+    "rate": 0.09803921568627451,
+    "ci": [
+     0.0609190430267319,
+     0.14734926138480547
+    ]
+   },
+   "auc_morph_vs_native": 0.9831,
+   "eer_native": 0.0726,
+   "auc_morph_vs_native_neutral": 0.9737,
+   "auc_morph_vs_e7": 0.9744,
+   "morph_flag_at_native5": {
+    "threshold": 0.35070852533489816,
+    "untouched_rate": 0.05392156862745098,
+    "k": 545,
+    "n": 600,
+    "rate": 0.9083333333333333,
+    "ci": [
+     0.8823550556775772,
+     0.9301976750721463
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 0.35070852533489816,
+    "untouched_rate": 0.05392156862745098,
+    "k": 21,
+    "n": 204,
+    "rate": 0.10294117647058823,
+    "ci": [
+     0.0648598468345592,
+     0.15304637220635867
+    ]
+   },
+   "auc_morph_vs_native": 0.9263,
+   "eer_native": 0.1564,
+   "auc_morph_vs_native_neutral": 0.8959,
+   "auc_morph_vs_e7": 0.8965,
+   "morph_flag_at_native5": {
+    "threshold": 0.35070852533489816,
+    "untouched_rate": 0.05392156862745098,
+    "k": 341,
+    "n": 500,
+    "rate": 0.682,
+    "ci": [
+     0.6391926229674858,
+     0.7226390851923075
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.7148,
+   "morph_flag_at_bona5": {
+    "threshold": 19.59957567726651,
+    "untouched_rate": 0.05016722408026756,
+    "k": 35,
+    "n": 598,
+    "rate": 0.05852842809364549,
+    "ci": [
+     0.04110210123769386,
+     0.08046196503993769
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8792,
+   "share_morph_above_both_halves": 0.916,
+   "halves_flag_at_photo5": {
+    "threshold": 11.294848887553231,
+    "untouched_rate": 0.05034965034965035,
+    "k": 80,
+    "n": 2000,
+    "rate": 0.04,
+    "ci": [
+     0.03184255731109807,
+     0.04953834224746622
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.0479
+  }
+ },
+ "none|two|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5979108916419933,
+    "untouched_rate": 0.05392156862745098,
+    "k": 171,
+    "n": 204,
+    "rate": 0.8382352941176471,
+    "ci": [
+     0.7803910605357616,
+     0.8859562948654456
+    ]
+   },
+   "auc_morph_vs_native": 0.9881,
+   "eer_native": 0.0487,
+   "auc_morph_vs_native_neutral": 0.9845,
+   "auc_morph_vs_e7": 0.6347,
+   "morph_flag_at_native5": {
+    "threshold": -2.5979108916419933,
+    "untouched_rate": 0.05392156862745098,
+    "k": 572,
+    "n": 600,
+    "rate": 0.9533333333333334,
+    "ci": [
+     0.9332574184865998,
+     0.9687696844299604
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5979108916419933,
+    "untouched_rate": 0.05392156862745098,
+    "k": 146,
+    "n": 204,
+    "rate": 0.7156862745098039,
+    "ci": [
+     0.648496730237633,
+     0.7764876527305846
+    ]
+   },
+   "auc_morph_vs_native": 0.7763,
+   "eer_native": 0.2847,
+   "auc_morph_vs_native_neutral": 0.7189,
+   "auc_morph_vs_e7": 0.2192,
+   "morph_flag_at_native5": {
+    "threshold": -2.5979108916419933,
+    "untouched_rate": 0.05392156862745098,
+    "k": 136,
+    "n": 600,
+    "rate": 0.22666666666666666,
+    "ci": [
+     0.19374720904735357,
+     0.2623023766450404
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5979108916419933,
+    "untouched_rate": 0.05392156862745098,
+    "k": 154,
+    "n": 204,
+    "rate": 0.7549019607843137,
+    "ci": [
+     0.6899591017663277,
+     0.8122778671816056
+    ]
+   },
+   "auc_morph_vs_native": 0.8864,
+   "eer_native": 0.1865,
+   "auc_morph_vs_native_neutral": 0.8495,
+   "auc_morph_vs_e7": 0.2728,
+   "morph_flag_at_native5": {
+    "threshold": -2.5979108916419933,
+    "untouched_rate": 0.05392156862745098,
+    "k": 297,
+    "n": 600,
+    "rate": 0.495,
+    "ci": [
+     0.4542703907618959,
+     0.5357790460495759
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5979108916419933,
+    "untouched_rate": 0.05392156862745098,
+    "k": 171,
+    "n": 204,
+    "rate": 0.8382352941176471,
+    "ci": [
+     0.7803910605357616,
+     0.8859562948654456
+    ]
+   },
+   "auc_morph_vs_native": 0.9688,
+   "eer_native": 0.0586,
+   "auc_morph_vs_native_neutral": 0.9649,
+   "auc_morph_vs_e7": 0.5735,
+   "morph_flag_at_native5": {
+    "threshold": -2.5979108916419933,
+    "untouched_rate": 0.05392156862745098,
+    "k": 564,
+    "n": 600,
+    "rate": 0.94,
+    "ci": [
+     0.9178992413275829,
+     0.9576266032051507
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5986000275352117,
+    "untouched_rate": 0.05392156862745098,
+    "k": 186,
+    "n": 204,
+    "rate": 0.9117647058823529,
+    "ci": [
+     0.8641355980508384,
+     0.9468661786518516
+    ]
+   },
+   "auc_morph_vs_native": 0.9915,
+   "eer_native": 0.0437,
+   "auc_morph_vs_native_neutral": 0.9888,
+   "auc_morph_vs_e7": 0.7493,
+   "morph_flag_at_native5": {
+    "threshold": -2.5986000275352117,
+    "untouched_rate": 0.05392156862745098,
+    "k": 578,
+    "n": 600,
+    "rate": 0.9633333333333334,
+    "ci": [
+     0.9450106335273807,
+     0.9768811685729477
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5986000275352117,
+    "untouched_rate": 0.05392156862745098,
+    "k": 25,
+    "n": 204,
+    "rate": 0.12254901960784313,
+    "ci": [
+     0.08090022141000816,
+     0.1755724003777854
+    ]
+   },
+   "auc_morph_vs_native": 0.9852,
+   "eer_native": 0.0644,
+   "auc_morph_vs_native_neutral": 0.9801,
+   "auc_morph_vs_e7": 0.9721,
+   "morph_flag_at_native5": {
+    "threshold": -2.5986000275352117,
+    "untouched_rate": 0.05392156862745098,
+    "k": 558,
+    "n": 600,
+    "rate": 0.93,
+    "ci": [
+     0.9065554402908377,
+     0.9490877629722695
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -2.5986000275352117,
+    "untouched_rate": 0.05392156862745098,
+    "k": 27,
+    "n": 204,
+    "rate": 0.1323529411764706,
+    "ci": [
+     0.08906612321035441,
+     0.1866966608941854
+    ]
+   },
+   "auc_morph_vs_native": 0.9054,
+   "eer_native": 0.1861,
+   "auc_morph_vs_native_neutral": 0.884,
+   "auc_morph_vs_e7": 0.8555,
+   "morph_flag_at_native5": {
+    "threshold": -2.5986000275352117,
+    "untouched_rate": 0.05392156862745098,
+    "k": 361,
+    "n": 500,
+    "rate": 0.722,
+    "ci": [
+     0.680494836024725,
+     0.7608571425598027
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.6743,
+   "morph_flag_at_bona5": {
+    "threshold": -3.3195079894648933,
+    "untouched_rate": 0.05016722408026756,
+    "k": 61,
+    "n": 598,
+    "rate": 0.1020066889632107,
+    "ci": [
+     0.07892835747359186,
+     0.12910027434528576
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8965,
+   "share_morph_above_both_halves": 0.957,
+   "halves_flag_at_photo5": {
+    "threshold": 7.1072010373674654,
+    "untouched_rate": 0.05034965034965035,
+    "k": 68,
+    "n": 2000,
+    "rate": 0.034,
+    "ci": [
+     0.026497089656563597,
+     0.042905884883076235
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.0652
+  }
+ },
+ "none|two|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 1.8661160122388412,
+    "untouched_rate": 0.05392156862745098,
+    "k": 39,
+    "n": 204,
+    "rate": 0.19117647058823528,
+    "ci": [
+     0.1396186890086767,
+     0.25194407377588107
+    ]
+   },
+   "auc_morph_vs_native": 0.6227,
+   "eer_native": 0.4208,
+   "auc_morph_vs_native_neutral": 0.6383,
+   "auc_morph_vs_e7": 0.4132,
+   "morph_flag_at_native5": {
+    "threshold": 1.8661160122388412,
+    "untouched_rate": 0.05392156862745098,
+    "k": 47,
+    "n": 600,
+    "rate": 0.07833333333333334,
+    "ci": [
+     0.05812162409921532,
+     0.10280693612376407
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 1.8661160122388412,
+    "untouched_rate": 0.05392156862745098,
+    "k": 23,
+    "n": 204,
+    "rate": 0.11274509803921569,
+    "ci": [
+     0.0728278594334612,
+     0.1643589208210378
+    ]
+   },
+   "auc_morph_vs_native": 0.1906,
+   "eer_native": 0.7599,
+   "auc_morph_vs_native_neutral": 0.195,
+   "auc_morph_vs_e7": 0.095,
+   "morph_flag_at_native5": {
+    "threshold": 1.8661160122388412,
+    "untouched_rate": 0.05392156862745098,
+    "k": 4,
+    "n": 600,
+    "rate": 0.006666666666666667,
+    "ci": [
+     0.0018193416341427957,
+     0.01698070673931677
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 1.8661160122388412,
+    "untouched_rate": 0.05392156862745098,
+    "k": 28,
+    "n": 204,
+    "rate": 0.13725490196078433,
+    "ci": [
+     0.09318132274542448,
+     0.1922279271674663
+    ]
+   },
+   "auc_morph_vs_native": 0.3889,
+   "eer_native": 0.6188,
+   "auc_morph_vs_native_neutral": 0.3947,
+   "auc_morph_vs_e7": 0.239,
+   "morph_flag_at_native5": {
+    "threshold": 1.8661160122388412,
+    "untouched_rate": 0.05392156862745098,
+    "k": 7,
+    "n": 600,
+    "rate": 0.011666666666666667,
+    "ci": [
+     0.0047031172708918035,
+     0.02388932230979506
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 1.8661160122388412,
+    "untouched_rate": 0.05392156862745098,
+    "k": 40,
+    "n": 204,
+    "rate": 0.19607843137254902,
+    "ci": [
+     0.14393101304195344,
+     0.25728486961269886
+    ]
+   },
+   "auc_morph_vs_native": 0.4976,
+   "eer_native": 0.5149,
+   "auc_morph_vs_native_neutral": 0.5095,
+   "auc_morph_vs_e7": 0.3013,
+   "morph_flag_at_native5": {
+    "threshold": 1.8661160122388412,
+    "untouched_rate": 0.05392156862745098,
+    "k": 22,
+    "n": 600,
+    "rate": 0.03666666666666667,
+    "ci": [
+     0.023118831427052275,
+     0.05498936647261927
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 1.8670231720853687,
+    "untouched_rate": 0.05392156862745098,
+    "k": 32,
+    "n": 204,
+    "rate": 0.1568627450980392,
+    "ci": [
+     0.10983562683912201,
+     0.21416705182640328
+    ]
+   },
+   "auc_morph_vs_native": 0.8354,
+   "eer_native": 0.2401,
+   "auc_morph_vs_native_neutral": 0.8477,
+   "auc_morph_vs_e7": 0.731,
+   "morph_flag_at_native5": {
+    "threshold": 1.8670231720853687,
+    "untouched_rate": 0.05392156862745098,
+    "k": 323,
+    "n": 600,
+    "rate": 0.5383333333333333,
+    "ci": [
+     0.49750475126920496,
+     0.5787828710341094
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 1.8670231720853687,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.9745,
+   "eer_native": 0.0734,
+   "auc_morph_vs_native_neutral": 0.9807,
+   "auc_morph_vs_e7": 0.9695,
+   "morph_flag_at_native5": {
+    "threshold": 1.8670231720853687,
+    "untouched_rate": 0.05392156862745098,
+    "k": 534,
+    "n": 600,
+    "rate": 0.89,
+    "ci": [
+     0.8621853750670077,
+     0.9138987187189169
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 1.8670231720853687,
+    "untouched_rate": 0.05392156862745098,
+    "k": 15,
+    "n": 204,
+    "rate": 0.07352941176470588,
+    "ci": [
+     0.0417358525040129,
+     0.11837596930065258
+    ]
+   },
+   "auc_morph_vs_native": 0.8962,
+   "eer_native": 0.1906,
+   "auc_morph_vs_native_neutral": 0.9089,
+   "auc_morph_vs_e7": 0.8769,
+   "morph_flag_at_native5": {
+    "threshold": 1.8670231720853687,
+    "untouched_rate": 0.05392156862745098,
+    "k": 322,
+    "n": 500,
+    "rate": 0.644,
+    "ci": [
+     0.6002760045173356,
+     0.6860098578063745
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.6821,
+   "morph_flag_at_bona5": {
+    "threshold": -6.589165124372018,
+    "untouched_rate": 0.05016722408026756,
+    "k": 57,
+    "n": 598,
+    "rate": 0.09531772575250837,
+    "ci": [
+     0.07299296873821873,
+     0.12173043919083602
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.9007,
+   "share_morph_above_both_halves": 0.932,
+   "halves_flag_at_photo5": {
+    "threshold": 4.300665685154804,
+    "untouched_rate": 0.05034965034965035,
+    "k": 79,
+    "n": 2000,
+    "rate": 0.0395,
+    "ci": [
+     0.03139492278939136,
+     0.048987777010683096
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.0694
+  }
+ },
+ "pipe|one|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -1.0961585356979482,
+    "untouched_rate": 0.05392156862745098,
+    "k": 76,
+    "n": 204,
+    "rate": 0.37254901960784315,
+    "ci": [
+     0.306045642471011,
+     0.4428152675359329
+    ]
+   },
+   "auc_morph_vs_native": 0.7698,
+   "eer_native": 0.2987,
+   "auc_morph_vs_native_neutral": 0.7582,
+   "auc_morph_vs_e7": 0.5178,
+   "morph_flag_at_native5": {
+    "threshold": -1.0961585356979482,
+    "untouched_rate": 0.05392156862745098,
+    "k": 204,
+    "n": 600,
+    "rate": 0.34,
+    "ci": [
+     0.30213061863202956,
+     0.3794536552255381
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -1.0961585356979482,
+    "untouched_rate": 0.05392156862745098,
+    "k": 38,
+    "n": 204,
+    "rate": 0.18627450980392157,
+    "ci": [
+     0.13531986404959567,
+     0.24659014403954208
+    ]
+   },
+   "auc_morph_vs_native": 0.4914,
+   "eer_native": 0.5198,
+   "auc_morph_vs_native_neutral": 0.4871,
+   "auc_morph_vs_e7": 0.3668,
+   "morph_flag_at_native5": {
+    "threshold": -1.0961585356979482,
+    "untouched_rate": 0.05392156862745098,
+    "k": 32,
+    "n": 600,
+    "rate": 0.05333333333333334,
+    "ci": [
+     0.03676235746799133,
+     0.07445957566604727
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -1.0961585356979482,
+    "untouched_rate": 0.05392156862745098,
+    "k": 53,
+    "n": 204,
+    "rate": 0.25980392156862747,
+    "ci": [
+     0.20107141682296467,
+     0.32566011856554516
+    ]
+   },
+   "auc_morph_vs_native": 0.4534,
+   "eer_native": 0.5487,
+   "auc_morph_vs_native_neutral": 0.4504,
+   "auc_morph_vs_e7": 0.3159,
+   "morph_flag_at_native5": {
+    "threshold": -1.0961585356979482,
+    "untouched_rate": 0.05392156862745098,
+    "k": 26,
+    "n": 600,
+    "rate": 0.043333333333333335,
+    "ci": [
+     0.02849890416107284,
+     0.06285102821632312
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -1.0961585356979482,
+    "untouched_rate": 0.05392156862745098,
+    "k": 77,
+    "n": 204,
+    "rate": 0.37745098039215685,
+    "ci": [
+     0.3107035004518947,
+     0.44781618642298526
+    ]
+   },
+   "auc_morph_vs_native": 0.58,
+   "eer_native": 0.4752,
+   "auc_morph_vs_native_neutral": 0.5744,
+   "auc_morph_vs_e7": 0.3586,
+   "morph_flag_at_native5": {
+    "threshold": -1.0961585356979482,
+    "untouched_rate": 0.05392156862745098,
+    "k": 93,
+    "n": 600,
+    "rate": 0.155,
+    "ci": [
+     0.1269653280566543,
+     0.18647970264988684
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -1.0973462723863519,
+    "untouched_rate": 0.05392156862745098,
+    "k": 185,
+    "n": 204,
+    "rate": 0.9068627450980392,
+    "ci": [
+     0.8583773912529197,
+     0.942990382492025
+    ]
+   },
+   "auc_morph_vs_native": 0.9809,
+   "eer_native": 0.0495,
+   "auc_morph_vs_native_neutral": 0.98,
+   "auc_morph_vs_e7": 0.7964,
+   "morph_flag_at_native5": {
+    "threshold": -1.0973462723863519,
+    "untouched_rate": 0.05392156862745098,
+    "k": 570,
+    "n": 600,
+    "rate": 0.95,
+    "ci": [
+     0.9293885939673254,
+     0.9660144527846245
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -1.0973462723863519,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.956,
+   "eer_native": 0.113,
+   "auc_morph_vs_native_neutral": 0.9511,
+   "auc_morph_vs_e7": 0.9535,
+   "morph_flag_at_native5": {
+    "threshold": -1.0973462723863519,
+    "untouched_rate": 0.05392156862745098,
+    "k": 493,
+    "n": 600,
+    "rate": 0.8216666666666667,
+    "ci": [
+     0.7886435888181969,
+     0.8514839248327135
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -1.0973462723863519,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.8812,
+   "eer_native": 0.2104,
+   "auc_morph_vs_native_neutral": 0.8722,
+   "auc_morph_vs_e7": 0.876,
+   "morph_flag_at_native5": {
+    "threshold": -1.0973462723863519,
+    "untouched_rate": 0.05392156862745098,
+    "k": 305,
+    "n": 500,
+    "rate": 0.61,
+    "ci": [
+     0.565699562262906,
+     0.6529917400312524
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.7055,
+   "morph_flag_at_bona5": {
+    "threshold": 26.887211863135274,
+    "untouched_rate": 0.05016722408026756,
+    "k": 31,
+    "n": 598,
+    "rate": 0.051839464882943144,
+    "ci": [
+     0.03549059071478805,
+     0.07277786300927279
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8638,
+   "share_morph_above_both_halves": 0.896,
+   "halves_flag_at_photo5": {
+    "threshold": 8.270757350599606,
+    "untouched_rate": 0.05034965034965035,
+    "k": 81,
+    "n": 2000,
+    "rate": 0.0405,
+    "ci": [
+     0.03229055657320063,
+     0.050088548950005814
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.0325
+  }
+ },
+ "pipe|one|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2004591754776217,
+    "untouched_rate": 0.05392156862745098,
+    "k": 91,
+    "n": 204,
+    "rate": 0.44607843137254904,
+    "ci": [
+     0.3766453166183898,
+     0.5171015969920545
+    ]
+   },
+   "auc_morph_vs_native": 0.9119,
+   "eer_native": 0.1625,
+   "auc_morph_vs_native_neutral": 0.8832,
+   "auc_morph_vs_e7": 0.6473,
+   "morph_flag_at_native5": {
+    "threshold": 2.2004591754776217,
+    "untouched_rate": 0.05392156862745098,
+    "k": 389,
+    "n": 600,
+    "rate": 0.6483333333333333,
+    "ci": [
+     0.608636294750385,
+     0.6865619386864008
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2004591754776217,
+    "untouched_rate": 0.05392156862745098,
+    "k": 47,
+    "n": 204,
+    "rate": 0.23039215686274508,
+    "ci": [
+     0.17446557762430945,
+     0.2943307048805358
+    ]
+   },
+   "auc_morph_vs_native": 0.7014,
+   "eer_native": 0.3581,
+   "auc_morph_vs_native_neutral": 0.6382,
+   "auc_morph_vs_e7": 0.4677,
+   "morph_flag_at_native5": {
+    "threshold": 2.2004591754776217,
+    "untouched_rate": 0.05392156862745098,
+    "k": 76,
+    "n": 600,
+    "rate": 0.12666666666666668,
+    "ci": [
+     0.10111166433092987,
+     0.15596123216331245
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2004591754776217,
+    "untouched_rate": 0.05392156862745098,
+    "k": 58,
+    "n": 204,
+    "rate": 0.28431372549019607,
+    "ci": [
+     0.22351234726941543,
+     0.351503269762367
+    ]
+   },
+   "auc_morph_vs_native": 0.6597,
+   "eer_native": 0.3919,
+   "auc_morph_vs_native_neutral": 0.5921,
+   "auc_morph_vs_e7": 0.3869,
+   "morph_flag_at_native5": {
+    "threshold": 2.2004591754776217,
+    "untouched_rate": 0.05392156862745098,
+    "k": 39,
+    "n": 600,
+    "rate": 0.065,
+    "ci": [
+     0.046626059383568265,
+     0.08778886504413458
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2004591754776217,
+    "untouched_rate": 0.05392156862745098,
+    "k": 89,
+    "n": 204,
+    "rate": 0.4362745098039216,
+    "ci": [
+     0.36714347916476436,
+     0.5072848818153286
+    ]
+   },
+   "auc_morph_vs_native": 0.7967,
+   "eer_native": 0.2847,
+   "auc_morph_vs_native_neutral": 0.7431,
+   "auc_morph_vs_e7": 0.4572,
+   "morph_flag_at_native5": {
+    "threshold": 2.2004591754776217,
+    "untouched_rate": 0.05392156862745098,
+    "k": 179,
+    "n": 600,
+    "rate": 0.29833333333333334,
+    "ci": [
+     0.2619604210914121,
+     0.33670503623512993
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 2.200261812202961,
+    "untouched_rate": 0.05392156862745098,
+    "k": 180,
+    "n": 204,
+    "rate": 0.8823529411764706,
+    "ci": [
+     0.8300226175803496,
+     0.9231482751679787
+    ]
+   },
+   "auc_morph_vs_native": 0.989,
+   "eer_native": 0.0446,
+   "auc_morph_vs_native_neutral": 0.9858,
+   "auc_morph_vs_e7": 0.8163,
+   "morph_flag_at_native5": {
+    "threshold": 2.200261812202961,
+    "untouched_rate": 0.05392156862745098,
+    "k": 576,
+    "n": 600,
+    "rate": 0.96,
+    "ci": [
+     0.9410657198122274,
+     0.9742060069863576
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 2.200261812202961,
+    "untouched_rate": 0.05392156862745098,
+    "k": 15,
+    "n": 204,
+    "rate": 0.07352941176470588,
+    "ci": [
+     0.0417358525040129,
+     0.11837596930065258
+    ]
+   },
+   "auc_morph_vs_native": 0.9563,
+   "eer_native": 0.1122,
+   "auc_morph_vs_native_neutral": 0.9388,
+   "auc_morph_vs_e7": 0.9472,
+   "morph_flag_at_native5": {
+    "threshold": 2.200261812202961,
+    "untouched_rate": 0.05392156862745098,
+    "k": 472,
+    "n": 600,
+    "rate": 0.7866666666666666,
+    "ci": [
+     0.7516816373277174,
+     0.8188010049218858
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 2.200261812202961,
+    "untouched_rate": 0.05392156862745098,
+    "k": 15,
+    "n": 204,
+    "rate": 0.07352941176470588,
+    "ci": [
+     0.0417358525040129,
+     0.11837596930065258
+    ]
+   },
+   "auc_morph_vs_native": 0.8931,
+   "eer_native": 0.1916,
+   "auc_morph_vs_native_neutral": 0.8593,
+   "auc_morph_vs_e7": 0.8744,
+   "morph_flag_at_native5": {
+    "threshold": 2.200261812202961,
+    "untouched_rate": 0.05392156862745098,
+    "k": 291,
+    "n": 500,
+    "rate": 0.582,
+    "ci": [
+     0.5373883535186192,
+     0.6256363884797165
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.7143,
+   "morph_flag_at_bona5": {
+    "threshold": 25.504600726926277,
+    "untouched_rate": 0.05016722408026756,
+    "k": 34,
+    "n": 598,
+    "rate": 0.056856187290969896,
+    "ci": [
+     0.039692233312755065,
+     0.07854766042381704
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8662,
+   "share_morph_above_both_halves": 0.891,
+   "halves_flag_at_photo5": {
+    "threshold": 10.652507679757367,
+    "untouched_rate": 0.05034965034965035,
+    "k": 80,
+    "n": 2000,
+    "rate": 0.04,
+    "ci": [
+     0.03184255731109807,
+     0.04953834224746622
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.0349
+  }
+ },
+ "pipe|two|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -0.7829820426157521,
+    "untouched_rate": 0.05392156862745098,
+    "k": 21,
+    "n": 204,
+    "rate": 0.10294117647058823,
+    "ci": [
+     0.0648598468345592,
+     0.15304637220635867
+    ]
+   },
+   "auc_morph_vs_native": 0.5111,
+   "eer_native": 0.5297,
+   "auc_morph_vs_native_neutral": 0.5606,
+   "auc_morph_vs_e7": 0.4521,
+   "morph_flag_at_native5": {
+    "threshold": -0.7829820426157521,
+    "untouched_rate": 0.05392156862745098,
+    "k": 33,
+    "n": 600,
+    "rate": 0.055,
+    "ci": [
+     0.038158250129553796,
+     0.07637647651754581
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -0.7829820426157521,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.3239,
+   "eer_native": 0.6518,
+   "auc_morph_vs_native_neutral": 0.3562,
+   "auc_morph_vs_e7": 0.3143,
+   "morph_flag_at_native5": {
+    "threshold": -0.7829820426157521,
+    "untouched_rate": 0.05392156862745098,
+    "k": 15,
+    "n": 600,
+    "rate": 0.025,
+    "ci": [
+     0.014058299889782959,
+     0.040898861299361045
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -0.7829820426157521,
+    "untouched_rate": 0.05392156862745098,
+    "k": 15,
+    "n": 204,
+    "rate": 0.07352941176470588,
+    "ci": [
+     0.0417358525040129,
+     0.11837596930065258
+    ]
+   },
+   "auc_morph_vs_native": 0.5002,
+   "eer_native": 0.5396,
+   "auc_morph_vs_native_neutral": 0.5474,
+   "auc_morph_vs_e7": 0.4731,
+   "morph_flag_at_native5": {
+    "threshold": -0.7829820426157521,
+    "untouched_rate": 0.05392156862745098,
+    "k": 43,
+    "n": 600,
+    "rate": 0.07166666666666667,
+    "ci": [
+     0.052347823236736216,
+     0.09532314344396939
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -0.7829820426157521,
+    "untouched_rate": 0.05392156862745098,
+    "k": 20,
+    "n": 204,
+    "rate": 0.09803921568627451,
+    "ci": [
+     0.0609190430267319,
+     0.14734926138480547
+    ]
+   },
+   "auc_morph_vs_native": 0.3357,
+   "eer_native": 0.6518,
+   "auc_morph_vs_native_neutral": 0.3678,
+   "auc_morph_vs_e7": 0.2941,
+   "morph_flag_at_native5": {
+    "threshold": -0.7829820426157521,
+    "untouched_rate": 0.05392156862745098,
+    "k": 21,
+    "n": 600,
+    "rate": 0.035,
+    "ci": [
+     0.021793621965507264,
+     0.05300524321915099
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -0.7844224552962176,
+    "untouched_rate": 0.05392156862745098,
+    "k": 125,
+    "n": 204,
+    "rate": 0.6127450980392157,
+    "ci": [
+     0.542203279920413,
+     0.6799593256467087
+    ]
+   },
+   "auc_morph_vs_native": 0.9545,
+   "eer_native": 0.0924,
+   "auc_morph_vs_native_neutral": 0.961,
+   "auc_morph_vs_e7": 0.864,
+   "morph_flag_at_native5": {
+    "threshold": -0.7844224552962176,
+    "untouched_rate": 0.05392156862745098,
+    "k": 543,
+    "n": 600,
+    "rate": 0.905,
+    "ci": [
+     0.8786693790706532,
+     0.9272530899854504
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -0.7844224552962176,
+    "untouched_rate": 0.05392156862745098,
+    "k": 9,
+    "n": 204,
+    "rate": 0.04411764705882353,
+    "ci": [
+     0.020368978080692202,
+     0.08209445290121617
+    ]
+   },
+   "auc_morph_vs_native": 0.9663,
+   "eer_native": 0.0883,
+   "auc_morph_vs_native_neutral": 0.9767,
+   "auc_morph_vs_e7": 0.9668,
+   "morph_flag_at_native5": {
+    "threshold": -0.7844224552962176,
+    "untouched_rate": 0.05392156862745098,
+    "k": 534,
+    "n": 600,
+    "rate": 0.89,
+    "ci": [
+     0.8621853750670077,
+     0.9138987187189169
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -0.7844224552962176,
+    "untouched_rate": 0.05392156862745098,
+    "k": 10,
+    "n": 204,
+    "rate": 0.049019607843137254,
+    "ci": [
+     0.02375394071210534,
+     0.08829920169689397
+    ]
+   },
+   "auc_morph_vs_native": 0.8896,
+   "eer_native": 0.1916,
+   "auc_morph_vs_native_neutral": 0.9171,
+   "auc_morph_vs_e7": 0.8914,
+   "morph_flag_at_native5": {
+    "threshold": -0.7844224552962176,
+    "untouched_rate": 0.05392156862745098,
+    "k": 330,
+    "n": 500,
+    "rate": 0.66,
+    "ci": [
+     0.6166257630191456,
+     0.7014690295670025
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.7193,
+   "morph_flag_at_bona5": {
+    "threshold": 4.403136499404332,
+    "untouched_rate": 0.05016722408026756,
+    "k": 45,
+    "n": 598,
+    "rate": 0.07525083612040134,
+    "ci": [
+     0.055415142108517786,
+     0.09939794725191486
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8863,
+   "share_morph_above_both_halves": 0.922,
+   "halves_flag_at_photo5": {
+    "threshold": 2.370516708487826,
+    "untouched_rate": 0.05034965034965035,
+    "k": 93,
+    "n": 2000,
+    "rate": 0.0465,
+    "ci": [
+     0.03769282441526968,
+     0.05666517604102989
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.055
+  }
+ },
+ "pipe|two|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": -0.17780558991846154,
+    "untouched_rate": 0.05392156862745098,
+    "k": 32,
+    "n": 204,
+    "rate": 0.1568627450980392,
+    "ci": [
+     0.10983562683912201,
+     0.21416705182640328
+    ]
+   },
+   "auc_morph_vs_native": 0.6989,
+   "eer_native": 0.363,
+   "auc_morph_vs_native_neutral": 0.7135,
+   "auc_morph_vs_e7": 0.5875,
+   "morph_flag_at_native5": {
+    "threshold": -0.17780558991846154,
+    "untouched_rate": 0.05392156862745098,
+    "k": 115,
+    "n": 600,
+    "rate": 0.19166666666666668,
+    "ci": [
+     0.16092007529226882,
+     0.22548335242427625
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -0.17780558991846154,
+    "untouched_rate": 0.05392156862745098,
+    "k": 16,
+    "n": 204,
+    "rate": 0.0784313725490196,
+    "ci": [
+     0.04549376061090428,
+     0.12424387999286433
+    ]
+   },
+   "auc_morph_vs_native": 0.5054,
+   "eer_native": 0.5099,
+   "auc_morph_vs_native_neutral": 0.5208,
+   "auc_morph_vs_e7": 0.4597,
+   "morph_flag_at_native5": {
+    "threshold": -0.17780558991846154,
+    "untouched_rate": 0.05392156862745098,
+    "k": 30,
+    "n": 600,
+    "rate": 0.05,
+    "ci": [
+     0.03398554721537548,
+     0.07061140603267455
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": -0.17780558991846154,
+    "untouched_rate": 0.05392156862745098,
+    "k": 21,
+    "n": 204,
+    "rate": 0.10294117647058823,
+    "ci": [
+     0.0648598468345592,
+     0.15304637220635867
+    ]
+   },
+   "auc_morph_vs_native": 0.6522,
+   "eer_native": 0.4109,
+   "auc_morph_vs_native_neutral": 0.6679,
+   "auc_morph_vs_e7": 0.5879,
+   "morph_flag_at_native5": {
+    "threshold": -0.17780558991846154,
+    "untouched_rate": 0.05392156862745098,
+    "k": 83,
+    "n": 600,
+    "rate": 0.13833333333333334,
+    "ci": [
+     0.11171063778012408,
+     0.16857364824501397
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -0.17780558991846154,
+    "untouched_rate": 0.05392156862745098,
+    "k": 33,
+    "n": 204,
+    "rate": 0.16176470588235295,
+    "ci": [
+     0.11404370513455442,
+     0.2196089394642384
+    ]
+   },
+   "auc_morph_vs_native": 0.4955,
+   "eer_native": 0.5149,
+   "auc_morph_vs_native_neutral": 0.5109,
+   "auc_morph_vs_e7": 0.3927,
+   "morph_flag_at_native5": {
+    "threshold": -0.17780558991846154,
+    "untouched_rate": 0.05392156862745098,
+    "k": 31,
+    "n": 600,
+    "rate": 0.051666666666666666,
+    "ci": [
+     0.03537138076815318,
+     0.07253795599311111
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": -0.17607144165164676,
+    "untouched_rate": 0.05392156862745098,
+    "k": 115,
+    "n": 204,
+    "rate": 0.5637254901960784,
+    "ci": [
+     0.4927151181846714,
+     0.6328565208352357
+    ]
+   },
+   "auc_morph_vs_native": 0.9734,
+   "eer_native": 0.0693,
+   "auc_morph_vs_native_neutral": 0.9754,
+   "auc_morph_vs_e7": 0.8897,
+   "morph_flag_at_native5": {
+    "threshold": -0.17607144165164676,
+    "untouched_rate": 0.05392156862745098,
+    "k": 554,
+    "n": 600,
+    "rate": 0.9233333333333333,
+    "ci": [
+     0.8990596138307226,
+     0.9433263517010204
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": -0.17607144165164676,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9674,
+   "eer_native": 0.0883,
+   "auc_morph_vs_native_neutral": 0.9721,
+   "auc_morph_vs_e7": 0.9661,
+   "morph_flag_at_native5": {
+    "threshold": -0.17607144165164676,
+    "untouched_rate": 0.05392156862745098,
+    "k": 528,
+    "n": 600,
+    "rate": 0.88,
+    "ci": [
+     0.8512780569304051,
+     0.9049121818115039
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": -0.17607144165164676,
+    "untouched_rate": 0.05392156862745098,
+    "k": 12,
+    "n": 204,
+    "rate": 0.058823529411764705,
+    "ci": [
+     0.030761079839869823,
+     0.10049784620004382
+    ]
+   },
+   "auc_morph_vs_native": 0.8981,
+   "eer_native": 0.196,
+   "auc_morph_vs_native_neutral": 0.9077,
+   "auc_morph_vs_e7": 0.8937,
+   "morph_flag_at_native5": {
+    "threshold": -0.17607144165164676,
+    "untouched_rate": 0.05392156862745098,
+    "k": 326,
+    "n": 500,
+    "rate": 0.652,
+    "ci": [
+     0.608444442634019,
+     0.6937459099958803
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.7223,
+   "morph_flag_at_bona5": {
+    "threshold": 5.03329442229547,
+    "untouched_rate": 0.05016722408026756,
+    "k": 47,
+    "n": 598,
+    "rate": 0.07859531772575251,
+    "ci": [
+     0.058317961194787944,
+     0.10314615848602052
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8832,
+   "share_morph_above_both_halves": 0.911,
+   "halves_flag_at_photo5": {
+    "threshold": 2.7672738885711414,
+    "untouched_rate": 0.05034965034965035,
+    "k": 96,
+    "n": 2000,
+    "rate": 0.048,
+    "ci": [
+     0.03905033705557688,
+     0.05830249234114568
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.0519
+  }
+ },
+ "softh|one|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 1.126219008204721,
+    "untouched_rate": 0.05392156862745098,
+    "k": 45,
+    "n": 204,
+    "rate": 0.22058823529411764,
+    "ci": [
+     0.1656823929341348,
+     0.2838038472656398
+    ]
+   },
+   "auc_morph_vs_native": 0.197,
+   "eer_native": 0.745,
+   "auc_morph_vs_native_neutral": 0.1993,
+   "auc_morph_vs_e7": 0.0958,
+   "morph_flag_at_native5": {
+    "threshold": 1.126219008204721,
+    "untouched_rate": 0.05392156862745098,
+    "k": 3,
+    "n": 600,
+    "rate": 0.005,
+    "ci": [
+     0.0010323095169951192,
+     0.014542042139563288
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 1.126219008204721,
+    "untouched_rate": 0.05392156862745098,
+    "k": 23,
+    "n": 204,
+    "rate": 0.11274509803921569,
+    "ci": [
+     0.0728278594334612,
+     0.1643589208210378
+    ]
+   },
+   "auc_morph_vs_native": 0.0144,
+   "eer_native": 0.9563,
+   "auc_morph_vs_native_neutral": 0.016,
+   "auc_morph_vs_e7": 0.0092,
+   "morph_flag_at_native5": {
+    "threshold": 1.126219008204721,
+    "untouched_rate": 0.05392156862745098,
+    "k": 0,
+    "n": 600,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.006129271330669258
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 1.126219008204721,
+    "untouched_rate": 0.05392156862745098,
+    "k": 32,
+    "n": 204,
+    "rate": 0.1568627450980392,
+    "ci": [
+     0.10983562683912201,
+     0.21416705182640328
+    ]
+   },
+   "auc_morph_vs_native": 0.0295,
+   "eer_native": 0.9167,
+   "auc_morph_vs_native_neutral": 0.0328,
+   "auc_morph_vs_e7": 0.0165,
+   "morph_flag_at_native5": {
+    "threshold": 1.126219008204721,
+    "untouched_rate": 0.05392156862745098,
+    "k": 0,
+    "n": 600,
+    "rate": 0.0,
+    "ci": [
+     0.0,
+     0.006129271330669258
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 1.126219008204721,
+    "untouched_rate": 0.05392156862745098,
+    "k": 49,
+    "n": 204,
+    "rate": 0.24019607843137256,
+    "ci": [
+     0.18329269377483004,
+     0.3048145455402977
+    ]
+   },
+   "auc_morph_vs_native": 0.1544,
+   "eer_native": 0.7937,
+   "auc_morph_vs_native_neutral": 0.1577,
+   "auc_morph_vs_e7": 0.083,
+   "morph_flag_at_native5": {
+    "threshold": 1.126219008204721,
+    "untouched_rate": 0.05392156862745098,
+    "k": 18,
+    "n": 600,
+    "rate": 0.03,
+    "ci": [
+     0.01787480235788056,
+     0.04699961041127929
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 1.1248953576458884,
+    "untouched_rate": 0.05392156862745098,
+    "k": 135,
+    "n": 204,
+    "rate": 0.6617647058823529,
+    "ci": [
+     0.592395444068989,
+     0.7263533761277464
+    ]
+   },
+   "auc_morph_vs_native": 0.8508,
+   "eer_native": 0.2162,
+   "auc_morph_vs_native_neutral": 0.8488,
+   "auc_morph_vs_e7": 0.4503,
+   "morph_flag_at_native5": {
+    "threshold": 1.1248953576458884,
+    "untouched_rate": 0.05392156862745098,
+    "k": 415,
+    "n": 600,
+    "rate": 0.6916666666666667,
+    "ci": [
+     0.653003923176547,
+     0.7284302343444632
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 1.1248953576458884,
+    "untouched_rate": 0.05392156862745098,
+    "k": 13,
+    "n": 204,
+    "rate": 0.06372549019607843,
+    "ci": [
+     0.034364349368224405,
+     0.10650738559349499
+    ]
+   },
+   "auc_morph_vs_native": 0.9645,
+   "eer_native": 0.1081,
+   "auc_morph_vs_native_neutral": 0.9621,
+   "auc_morph_vs_e7": 0.9608,
+   "morph_flag_at_native5": {
+    "threshold": 1.1248953576458884,
+    "untouched_rate": 0.05392156862745098,
+    "k": 505,
+    "n": 600,
+    "rate": 0.8416666666666667,
+    "ci": [
+     0.8099534843737163,
+     0.8699691457048411
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 1.1248953576458884,
+    "untouched_rate": 0.05392156862745098,
+    "k": 14,
+    "n": 204,
+    "rate": 0.06862745098039216,
+    "ci": [
+     0.0380244806290183,
+     0.11246515823301691
+    ]
+   },
+   "auc_morph_vs_native": 0.887,
+   "eer_native": 0.2114,
+   "auc_morph_vs_native_neutral": 0.8825,
+   "auc_morph_vs_e7": 0.8776,
+   "morph_flag_at_native5": {
+    "threshold": 1.1248953576458884,
+    "untouched_rate": 0.05392156862745098,
+    "k": 293,
+    "n": 500,
+    "rate": 0.586,
+    "ci": [
+     0.5414239973279713,
+     0.6295531301946785
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.6836,
+   "morph_flag_at_bona5": {
+    "threshold": 7.999507513226251,
+    "untouched_rate": 0.05016722408026756,
+    "k": 39,
+    "n": 598,
+    "rate": 0.06521739130434782,
+    "ci": [
+     0.046783389632122446,
+     0.0880788592369224
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8643,
+   "share_morph_above_both_halves": 0.917,
+   "halves_flag_at_photo5": {
+    "threshold": 3.1216771017536007,
+    "untouched_rate": 0.05034965034965035,
+    "k": 178,
+    "n": 2000,
+    "rate": 0.089,
+    "ci": [
+     0.07688024006073674,
+     0.10233969438458705
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.033
+  }
+ },
+ "softh|one|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 2.5043225916610323,
+    "untouched_rate": 0.05392156862745098,
+    "k": 34,
+    "n": 204,
+    "rate": 0.16666666666666666,
+    "ci": [
+     0.11826824130059738,
+     0.22503491955802798
+    ]
+   },
+   "auc_morph_vs_native": 0.2886,
+   "eer_native": 0.6568,
+   "auc_morph_vs_native_neutral": 0.2671,
+   "auc_morph_vs_e7": 0.128,
+   "morph_flag_at_native5": {
+    "threshold": 2.5043225916610323,
+    "untouched_rate": 0.05392156862745098,
+    "k": 14,
+    "n": 600,
+    "rate": 0.023333333333333334,
+    "ci": [
+     0.012813903037115342,
+     0.038839718601920356
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 2.5043225916610323,
+    "untouched_rate": 0.05392156862745098,
+    "k": 16,
+    "n": 204,
+    "rate": 0.0784313725490196,
+    "ci": [
+     0.04549376061090428,
+     0.12424387999286433
+    ]
+   },
+   "auc_morph_vs_native": 0.0441,
+   "eer_native": 0.8861,
+   "auc_morph_vs_native_neutral": 0.0408,
+   "auc_morph_vs_e7": 0.0233,
+   "morph_flag_at_native5": {
+    "threshold": 2.5043225916610323,
+    "untouched_rate": 0.05392156862745098,
+    "k": 2,
+    "n": 600,
+    "rate": 0.0033333333333333335,
+    "ci": [
+     0.0004039373604426603,
+     0.011988833958652457
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 2.5043225916610323,
+    "untouched_rate": 0.05392156862745098,
+    "k": 22,
+    "n": 204,
+    "rate": 0.10784313725490197,
+    "ci": [
+     0.06883004098139253,
+     0.1587157273343889
+    ]
+   },
+   "auc_morph_vs_native": 0.1064,
+   "eer_native": 0.8036,
+   "auc_morph_vs_native_neutral": 0.0945,
+   "auc_morph_vs_e7": 0.0445,
+   "morph_flag_at_native5": {
+    "threshold": 2.5043225916610323,
+    "untouched_rate": 0.05392156862745098,
+    "k": 3,
+    "n": 600,
+    "rate": 0.005,
+    "ci": [
+     0.0010323095169951192,
+     0.014542042139563288
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 2.5043225916610323,
+    "untouched_rate": 0.05392156862745098,
+    "k": 32,
+    "n": 204,
+    "rate": 0.1568627450980392,
+    "ci": [
+     0.10983562683912201,
+     0.21416705182640328
+    ]
+   },
+   "auc_morph_vs_native": 0.2017,
+   "eer_native": 0.7508,
+   "auc_morph_vs_native_neutral": 0.1828,
+   "auc_morph_vs_e7": 0.0817,
+   "morph_flag_at_native5": {
+    "threshold": 2.5043225916610323,
+    "untouched_rate": 0.05392156862745098,
+    "k": 7,
+    "n": 600,
+    "rate": 0.011666666666666667,
+    "ci": [
+     0.0047031172708918035,
+     0.02388932230979506
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 2.5035847979744634,
+    "untouched_rate": 0.05392156862745098,
+    "k": 93,
+    "n": 204,
+    "rate": 0.45588235294117646,
+    "ci": [
+     0.38617371318085697,
+     0.5268918342810169
+    ]
+   },
+   "auc_morph_vs_native": 0.8024,
+   "eer_native": 0.255,
+   "auc_morph_vs_native_neutral": 0.7831,
+   "auc_morph_vs_e7": 0.4862,
+   "morph_flag_at_native5": {
+    "threshold": 2.5035847979744634,
+    "untouched_rate": 0.05392156862745098,
+    "k": 273,
+    "n": 600,
+    "rate": 0.455,
+    "ci": [
+     0.4146278519444151,
+     0.49581712626293817
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 2.5035847979744634,
+    "untouched_rate": 0.05392156862745098,
+    "k": 12,
+    "n": 204,
+    "rate": 0.058823529411764705,
+    "ci": [
+     0.030761079839869823,
+     0.10049784620004382
+    ]
+   },
+   "auc_morph_vs_native": 0.9744,
+   "eer_native": 0.0883,
+   "auc_morph_vs_native_neutral": 0.9691,
+   "auc_morph_vs_e7": 0.971,
+   "morph_flag_at_native5": {
+    "threshold": 2.5035847979744634,
+    "untouched_rate": 0.05392156862745098,
+    "k": 518,
+    "n": 600,
+    "rate": 0.8633333333333333,
+    "ci": [
+     0.8332239665560026,
+     0.8898077235069592
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 2.5035847979744634,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.9115,
+   "eer_native": 0.1718,
+   "auc_morph_vs_native_neutral": 0.8961,
+   "auc_morph_vs_e7": 0.9007,
+   "morph_flag_at_native5": {
+    "threshold": 2.5035847979744634,
+    "untouched_rate": 0.05392156862745098,
+    "k": 309,
+    "n": 500,
+    "rate": 0.618,
+    "ci": [
+     0.5738152699606193,
+     0.6607806962320382
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.6855,
+   "morph_flag_at_bona5": {
+    "threshold": 5.354847220873777,
+    "untouched_rate": 0.05016722408026756,
+    "k": 47,
+    "n": 598,
+    "rate": 0.07859531772575251,
+    "ci": [
+     0.058317961194787944,
+     0.10314615848602052
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8598,
+   "share_morph_above_both_halves": 0.91,
+   "halves_flag_at_photo5": {
+    "threshold": 3.8967666209287692,
+    "untouched_rate": 0.05034965034965035,
+    "k": 155,
+    "n": 2000,
+    "rate": 0.0775,
+    "ci": [
+     0.06615766717099253,
+     0.09009845658893209
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.0285
+  }
+ },
+ "softh|two|opencv": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 2.1047846391544787,
+    "untouched_rate": 0.05392156862745098,
+    "k": 39,
+    "n": 204,
+    "rate": 0.19117647058823528,
+    "ci": [
+     0.1396186890086767,
+     0.25194407377588107
+    ]
+   },
+   "auc_morph_vs_native": 0.3025,
+   "eer_native": 0.6766,
+   "auc_morph_vs_native_neutral": 0.3041,
+   "auc_morph_vs_e7": 0.1673,
+   "morph_flag_at_native5": {
+    "threshold": 2.1047846391544787,
+    "untouched_rate": 0.05392156862745098,
+    "k": 32,
+    "n": 600,
+    "rate": 0.05333333333333334,
+    "ci": [
+     0.03676235746799133,
+     0.07445957566604727
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 2.1047846391544787,
+    "untouched_rate": 0.05392156862745098,
+    "k": 36,
+    "n": 204,
+    "rate": 0.17647058823529413,
+    "ci": [
+     0.12676438856307368,
+     0.23584130480778756
+    ]
+   },
+   "auc_morph_vs_native": 0.0659,
+   "eer_native": 0.8762,
+   "auc_morph_vs_native_neutral": 0.0689,
+   "auc_morph_vs_e7": 0.0328,
+   "morph_flag_at_native5": {
+    "threshold": 2.1047846391544787,
+    "untouched_rate": 0.05392156862745098,
+    "k": 8,
+    "n": 600,
+    "rate": 0.013333333333333334,
+    "ci": [
+     0.0057734909947359395,
+     0.026102233624288766
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 2.1047846391544787,
+    "untouched_rate": 0.05392156862745098,
+    "k": 35,
+    "n": 204,
+    "rate": 0.1715686274509804,
+    "ci": [
+     0.12250865026487624,
+     0.23044553852323668
+    ]
+   },
+   "auc_morph_vs_native": 0.1812,
+   "eer_native": 0.7797,
+   "auc_morph_vs_native_neutral": 0.186,
+   "auc_morph_vs_e7": 0.0915,
+   "morph_flag_at_native5": {
+    "threshold": 2.1047846391544787,
+    "untouched_rate": 0.05392156862745098,
+    "k": 22,
+    "n": 600,
+    "rate": 0.03666666666666667,
+    "ci": [
+     0.023118831427052275,
+     0.05498936647261927
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 2.1047846391544787,
+    "untouched_rate": 0.05392156862745098,
+    "k": 38,
+    "n": 204,
+    "rate": 0.18627450980392157,
+    "ci": [
+     0.13531986404959567,
+     0.24659014403954208
+    ]
+   },
+   "auc_morph_vs_native": 0.2739,
+   "eer_native": 0.7054,
+   "auc_morph_vs_native_neutral": 0.2769,
+   "auc_morph_vs_e7": 0.1456,
+   "morph_flag_at_native5": {
+    "threshold": 2.1047846391544787,
+    "untouched_rate": 0.05392156862745098,
+    "k": 27,
+    "n": 600,
+    "rate": 0.045,
+    "ci": [
+     0.029861476429590042,
+     0.0647997897504542
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 2.097413715639183,
+    "untouched_rate": 0.05392156862745098,
+    "k": 34,
+    "n": 204,
+    "rate": 0.16666666666666666,
+    "ci": [
+     0.11826824130059738,
+     0.22503491955802798
+    ]
+   },
+   "auc_morph_vs_native": 0.6518,
+   "eer_native": 0.3911,
+   "auc_morph_vs_native_neutral": 0.6579,
+   "auc_morph_vs_e7": 0.5013,
+   "morph_flag_at_native5": {
+    "threshold": 2.097413715639183,
+    "untouched_rate": 0.05392156862745098,
+    "k": 146,
+    "n": 600,
+    "rate": 0.24333333333333335,
+    "ci": [
+     0.20950021290239246,
+     0.27971516382717604
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 2.097413715639183,
+    "untouched_rate": 0.05392156862745098,
+    "k": 15,
+    "n": 204,
+    "rate": 0.07352941176470588,
+    "ci": [
+     0.0417358525040129,
+     0.11837596930065258
+    ]
+   },
+   "auc_morph_vs_native": 0.9753,
+   "eer_native": 0.0784,
+   "auc_morph_vs_native_neutral": 0.9796,
+   "auc_morph_vs_e7": 0.9689,
+   "morph_flag_at_native5": {
+    "threshold": 2.097413715639183,
+    "untouched_rate": 0.05392156862745098,
+    "k": 532,
+    "n": 600,
+    "rate": 0.8866666666666667,
+    "ci": [
+     0.8585428327872869,
+     0.9109100997676101
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 2.097413715639183,
+    "untouched_rate": 0.05392156862745098,
+    "k": 17,
+    "n": 204,
+    "rate": 0.08333333333333333,
+    "ci": [
+     0.04929422036705681,
+     0.13007236000369415
+    ]
+   },
+   "auc_morph_vs_native": 0.8941,
+   "eer_native": 0.1817,
+   "auc_morph_vs_native_neutral": 0.9014,
+   "auc_morph_vs_e7": 0.871,
+   "morph_flag_at_native5": {
+    "threshold": 2.097413715639183,
+    "untouched_rate": 0.05392156862745098,
+    "k": 322,
+    "n": 500,
+    "rate": 0.644,
+    "ci": [
+     0.6002760045173356,
+     0.6860098578063745
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.658,
+   "morph_flag_at_bona5": {
+    "threshold": -10.404164784869035,
+    "untouched_rate": 0.05016722408026756,
+    "k": 57,
+    "n": 598,
+    "rate": 0.09531772575250837,
+    "ci": [
+     0.07299296873821873,
+     0.12173043919083602
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8996,
+   "share_morph_above_both_halves": 0.958,
+   "halves_flag_at_photo5": {
+    "threshold": 1.707621335678847,
+    "untouched_rate": 0.05034965034965035,
+    "k": 166,
+    "n": 2000,
+    "rate": 0.083,
+    "ci": [
+     0.07127725216847296,
+     0.09596149536242966
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.0683
+  }
+ },
+ "softh|two|facemorpher": {
+  "FRLL-Morphs amsl": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2497853348206385,
+    "untouched_rate": 0.05392156862745098,
+    "k": 18,
+    "n": 204,
+    "rate": 0.08823529411764706,
+    "ci": [
+     0.053133821348148313,
+     0.13586440194916163
+    ]
+   },
+   "auc_morph_vs_native": 0.4611,
+   "eer_native": 0.5437,
+   "auc_morph_vs_native_neutral": 0.4782,
+   "auc_morph_vs_e7": 0.3329,
+   "morph_flag_at_native5": {
+    "threshold": 2.2497853348206385,
+    "untouched_rate": 0.05392156862745098,
+    "k": 25,
+    "n": 600,
+    "rate": 0.041666666666666664,
+    "ci": [
+     0.027142948166969633,
+     0.06089597580343653
+    ]
+   }
+  },
+  "FRLL-Morphs facemorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2497853348206385,
+    "untouched_rate": 0.05392156862745098,
+    "k": 16,
+    "n": 204,
+    "rate": 0.0784313725490196,
+    "ci": [
+     0.04549376061090428,
+     0.12424387999286433
+    ]
+   },
+   "auc_morph_vs_native": 0.1317,
+   "eer_native": 0.8086,
+   "auc_morph_vs_native_neutral": 0.1413,
+   "auc_morph_vs_e7": 0.0733,
+   "morph_flag_at_native5": {
+    "threshold": 2.2497853348206385,
+    "untouched_rate": 0.05392156862745098,
+    "k": 7,
+    "n": 600,
+    "rate": 0.011666666666666667,
+    "ci": [
+     0.0047031172708918035,
+     0.02388932230979506
+    ]
+   }
+  },
+  "FRLL-Morphs opencv": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2497853348206385,
+    "untouched_rate": 0.05392156862745098,
+    "k": 16,
+    "n": 204,
+    "rate": 0.0784313725490196,
+    "ci": [
+     0.04549376061090428,
+     0.12424387999286433
+    ]
+   },
+   "auc_morph_vs_native": 0.3106,
+   "eer_native": 0.6716,
+   "auc_morph_vs_native_neutral": 0.3208,
+   "auc_morph_vs_e7": 0.2168,
+   "morph_flag_at_native5": {
+    "threshold": 2.2497853348206385,
+    "untouched_rate": 0.05392156862745098,
+    "k": 18,
+    "n": 600,
+    "rate": 0.03,
+    "ci": [
+     0.01787480235788056,
+     0.04699961041127929
+    ]
+   }
+  },
+  "FRLL-Morphs webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2497853348206385,
+    "untouched_rate": 0.05392156862745098,
+    "k": 18,
+    "n": 204,
+    "rate": 0.08823529411764706,
+    "ci": [
+     0.053133821348148313,
+     0.13586440194916163
+    ]
+   },
+   "auc_morph_vs_native": 0.3592,
+   "eer_native": 0.637,
+   "auc_morph_vs_native_neutral": 0.3706,
+   "auc_morph_vs_e7": 0.2408,
+   "morph_flag_at_native5": {
+    "threshold": 2.2497853348206385,
+    "untouched_rate": 0.05392156862745098,
+    "k": 21,
+    "n": 600,
+    "rate": 0.035,
+    "ci": [
+     0.021793621965507264,
+     0.05300524321915099
+    ]
+   }
+  },
+  "MAD22 FaceMorpher": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2455491584998772,
+    "untouched_rate": 0.05392156862745098,
+    "k": 11,
+    "n": 204,
+    "rate": 0.05392156862745098,
+    "ci": [
+     0.027221482066912762,
+     0.09443078359314644
+    ]
+   },
+   "auc_morph_vs_native": 0.7292,
+   "eer_native": 0.3325,
+   "auc_morph_vs_native_neutral": 0.7503,
+   "auc_morph_vs_e7": 0.6828,
+   "morph_flag_at_native5": {
+    "threshold": 2.2455491584998772,
+    "untouched_rate": 0.05392156862745098,
+    "k": 181,
+    "n": 600,
+    "rate": 0.3016666666666667,
+    "ci": [
+     0.26516125001175667,
+     0.34013765868134826
+    ]
+   }
+  },
+  "MAD22 OpenCV": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2455491584998772,
+    "untouched_rate": 0.05392156862745098,
+    "k": 12,
+    "n": 204,
+    "rate": 0.058823529411764705,
+    "ci": [
+     0.030761079839869823,
+     0.10049784620004382
+    ]
+   },
+   "auc_morph_vs_native": 0.9723,
+   "eer_native": 0.0825,
+   "auc_morph_vs_native_neutral": 0.9803,
+   "auc_morph_vs_e7": 0.9684,
+   "morph_flag_at_native5": {
+    "threshold": 2.2455491584998772,
+    "untouched_rate": 0.05392156862745098,
+    "k": 522,
+    "n": 600,
+    "rate": 0.87,
+    "ci": [
+     0.8404281419841549,
+     0.8958672458325221
+    ]
+   }
+  },
+  "MAD22 Webmorph": {
+   "e7_flag_at_native5": {
+    "threshold": 2.2455491584998772,
+    "untouched_rate": 0.05392156862745098,
+    "k": 14,
+    "n": 204,
+    "rate": 0.06862745098039216,
+    "ci": [
+     0.0380244806290183,
+     0.11246515823301691
+    ]
+   },
+   "auc_morph_vs_native": 0.8938,
+   "eer_native": 0.1906,
+   "auc_morph_vs_native_neutral": 0.9109,
+   "auc_morph_vs_e7": 0.8784,
+   "morph_flag_at_native5": {
+    "threshold": 2.2455491584998772,
+    "untouched_rate": 0.05392156862745098,
+    "k": 306,
+    "n": 500,
+    "rate": 0.612,
+    "ci": [
+     0.5677273582438387,
+     0.6549401131790941
+    ]
+   }
+  },
+  "H1 Poisson (unseen tool and source)": {
+   "auc_morph_vs_bona": 0.6778,
+   "morph_flag_at_bona5": {
+    "threshold": -7.505554302607288,
+    "untouched_rate": 0.05016722408026756,
+    "k": 60,
+    "n": 598,
+    "rate": 0.10033444816053512,
+    "ci": [
+     0.07744136173947701,
+     0.12726089766451
+    ]
+   }
+  },
+  "AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)": {
+   "auc_u50_vs_its_halves": 0.8886,
+   "share_morph_above_both_halves": 0.929,
+   "halves_flag_at_photo5": {
+    "threshold": 3.5439149060235025,
+    "untouched_rate": 0.05034965034965035,
+    "k": 100,
+    "n": 2000,
+    "rate": 0.05,
+    "ci": [
+     0.04086426771825133,
+     0.06048172208315188
+    ]
+   },
+   "floor_stat": "b2_.063-.125",
+   "floor_auc": 0.8313,
+   "lapvar_auc": 0.2828,
+   "excess": 0.0573
+  }
+ }
+}

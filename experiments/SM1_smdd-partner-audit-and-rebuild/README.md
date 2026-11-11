@@ -64,7 +64,32 @@ detector score of this experiment has been read yet; landmark, build and feature
 - 17:58 T-A / T-B first start with all 7 releases in one process ran out of GPU memory (GB10 unified memory, about
   20 GB free system-wide); restarted as three detector groups (`run_tab_multi.sh`, batch 32, 6 loader workers at
   nice 19). The earlier unexplained CUDA error of the 8-image test was very likely the same out-of-memory condition.
-- 18:05 pack a (audit 9,520 pairs + AR1 halves 536 pairs, 0.49 GB, sha256 f48f125a…) built and sent to leaseB.
+- 18:05 pack a (audit 9,520 pairs + AR1 halves 536 pairs, 0.49 GB, sha256 f48f125a…) built and sent to leaseB
+  (upload 591 s; the upload direction to leaseB is slow, about 0.8 MB/s at that time).
+- 18:08 DGX smoke builds of (c) and (c′) (1,500 + 500 files) are pixel-identical to the leaseB files (max 0); the
+  leaseB set installed at `/mnt/t7/smad_next/SM1/img/{armc,armcr}`.
+- 18:10 to 18:30 arm (e) shrink step on the DGX (`shrink.py run`, 1 worker): 45,000 files (14,734+ (c) morphs and
+  their halves; the 15,000-row list) written to `img/arme` at 80 px.
+- 18:18 amendment A8: the T-A / T-B DGX pass scores a stratified subsample (`flists/tab_sub.csv`, 7,810 images)
+  because the shared GPU is saturated (1,600 images per 285 s for three small releases). Running as
+  `run_tab_multi.sh` (log `logs_tab_sub.log`), five primary releases in one process, then the FS pair.
+- 18:20 contributor landmarks finished (3,858 renders, 2,672 s, all faces). All lists written (`pairs_all.log`):
+  N = 14,734 release pairs with both contributors admissible (266 dropped by the A5 rule); (a) 256 x 256 subset
+  14,236; (b′) 2,433 replacement partners, cap 7; dose K = 50 (each partner at most 295 times), K = 500 (at most
+  30); (c) look-alike rank median 0, max 10.
+- 18:22 geometry expression check (`expr_geom.json`): FRLL 5-fold accuracy 0.79 to 0.95; smile rate of the SMDD
+  genuine renders 0.78, of the release morphs' mean shapes 0.97, of the contributor renders 0.85; trained
+  partners' smile probabilities 0.77 to 1.00. The probe is trained on FRLL photos (domain shift), so absolute
+  rates are uncertain; descriptive only.
+- 18:24 GPU feature pack: `sm1gpu_code.tar` (sha256 6dde0451…, 1.74 GB: feats_gpu.py, common.py, a12_released.py,
+  the cached OpenAI ViT-L/14 weights, 19 lists) and image tars `sm1gpu_img_{test,base,armsc,audit,arme,armsb}.tar`.
+  `feats_gpu.py` reproduces `feats.py` on the DGX to 1.2e-7 on 8 images. AR1 manifest grew to 19,515 rows (new
+  rung R2wm) after my first list; snapshot `ar1_manifest_snapshot_9c69d44f.csv`.
+- 18:26 leaseB task a done (9,520 audit morphs + 536 AR1 morphs + 1,072 halves, 0 failures); installed at
+  `img/{audit,ar1h}`. Our 536 AR1 morphs equal AR1's own OpenCV R4 files pixel for pixel (`ar1h_vs_ar1_r4.json`).
+- 18:28 pack b (arms b, b′, K = 50, K = 500: 58,936 pairs) built and being sent to leaseB.
+- 18:30 Lead: Athena accepts jobs (account plgrestorearc-gpu-a100); the feature pass and the LoRA fits run there.
+  Code tar uploaded to Athena `packs/SM1/` in 153 s (11 MB/s); image tars follow one per connection.
 
 ## 3. Data
 

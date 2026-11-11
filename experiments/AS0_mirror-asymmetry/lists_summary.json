@@ -1,5 +1,5 @@
 {
- "n": 25160,
+ "n": 28388,
  "missing": 0,
  "missing_first": [],
  "by_set_role": {
@@ -56,8 +56,24 @@
   "X|photo|none": 408,
   "X|rec|diffae": 408,
   "X|same|diffae": 204,
-  "X|two|diffae": 204
+  "X|two|diffae": 204,
+  "LsoftO|R0_amsl112|none": 200,
+  "LsoftO|R2w_amsl112|facemorpher": 200,
+  "LsoftO|R2w_amsl112|opencv": 200,
+  "LsoftO|R0_fm61|none": 200,
+  "LsoftO|R2w_fm61|facemorpher": 200,
+  "LsoftO|R2w_fm61|opencv": 200,
+  "FmO|e7_FaceMorpher|none": 204,
+  "FmO|e7_OpenCV|none": 204,
+  "FmO|e7_Webmorph|none": 204,
+  "FeO|e7_amsl|none": 204,
+  "FeO|e7_facemorpher|none": 204,
+  "FeO|e7_opencv|none": 204,
+  "FeO|e7_webmorph|none": 204,
+  "LsoftN|R0|none": 200,
+  "LsoftN|R2w|facemorpher": 200,
+  "LsoftN|R2w|opencv": 200
  },
- "n_detect": 4228,
- "items_sha256": "52c3f9b449bcc95d5f2bbff2e94160adb6d24bd48ae3dec68813221278890f87"
+ "n_detect": 7456,
+ "items_sha256": "749fd74437c9e7eb27024ef90c9a0be762b5e7470c04f6769b0f0807277bb74a"
 }

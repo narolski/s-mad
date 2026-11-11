@@ -749,7 +749,7 @@ def full(feat, variants):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("mode", choices=("first", "full", "q1"))
-    ap.add_argument("--feat", default="dino_mean", choices=K.FEATS)
+    ap.add_argument("--feat", default="dino_mean", choices=K.FEATS + K.CONTROLS)
     ap.add_argument("--variants", default=",".join(VARIANTS))
     ap.add_argument("--test", action="store_true", help="code-path test: B = 200, one C, outputs tagged _test")
     a = ap.parse_args()

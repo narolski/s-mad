@@ -8,9 +8,11 @@ useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 No
 - `ssh -o BatchMode=yes plgpnarolski@athena.cyfronet.pl '<command>'` from the DGX. Key login only.
 - **Never repeat a failed login.** One attempt; if refused, stop and tell the lead. Repeated failures
   got our address blocked on two other login nodes on 11 Nov.
-- Take the lock for every connection, one command per connection:
-  `flock -w 120 /tmp/smadnext-athena.lock ssh -o BatchMode=yes plgpnarolski@athena.cyfronet.pl '...'`
-  (rsync: `flock -w 600 /tmp/smadnext-athena.lock rsync ...`).
+- Two locks, so that large uploads do not block short commands (at most two connections at a time):
+  - short commands (sbatch, squeue, sacct, tail, ls), one command per connection:
+    `flock -w 300 /tmp/smadnext-athena-cmd.lock ssh -o BatchMode=yes plgpnarolski@athena.cyfronet.pl '...'`
+  - transfers of packs and results (rsync, scp): `flock -w 1800 /tmp/smadnext-athena.lock rsync ...`
+  - if `flock` times out it prints nothing and returns 1: that is a local wait, not a refused login; wait and try again.
 - Use `bash -lc "..."` on the remote side when you need `module`.
 
 ## Account, partition, billing
@@ -30,7 +32,15 @@ useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 No
 ## Cyfronet rules that bind us
 
 1. Nothing is computed, compiled or installed on the login node. Environments are built inside a job.
-2. Work in node-local scratch: add `#SBATCH -C localfs` and use `$SCRATCH_LOCAL`. Never `/tmp`.
+2. Work area inside a job (measured 11 Nov, jobs 3544200 and 3544201):
+   - `-C localfs` gives `$SCRATCH_LOCAL`, but it is only **4.0 GB**. The first smoke job died there
+     ("No space left on device" while copying an 11 GB pack). Use it only for small work.
+   - `-C memfs` gives `$MEMFS`, a RAM disk (nodes have 1 TB of RAM). It counts toward `--mem`. **Use this for
+     packs and extracted data**, with `--mem` large enough for the data plus the process, and at most
+     `--mem=120G` per GPU so that the job is still billed as one GPU.
+   - `$SCRATCH` (`/net/tscratch/people/plgpnarolski`, Lustre) exists on compute nodes; `$TMPDIR` points into
+     it by default. Use it only for a few large files, never for many small ones; files are purged after
+     30 days. Never `/tmp` (the root file system has 14 GB).
 3. Large inputs travel as one tar; results come back as one tar per task.
 
 ## Storage
@@ -51,7 +61,7 @@ useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 No
 ## Job template
 
 `src/athena/ad4_vitl_array.sbatch` is the model: `#!/bin/bash -l`, account, partition, one GPU,
-`-C localfs`, `set -eo pipefail`, module load, `set -u`, work in `$SCRATCH_LOCAL`, exit non-zero on
+`-C memfs`, `--mem=120G`, `set -eo pipefail`, module load, `set -u`, work in `$MEMFS`, exit non-zero on
 failure, one result tar with a `.sha256` beside it.
 
 ## Who may submit what

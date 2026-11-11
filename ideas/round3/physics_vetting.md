@@ -1,6 +1,6 @@
 # Round 3, physics lens: vetting of "signatures that any averaging of two faces must leave"
 
-11 Nov 2026, 18:25 to 19:00 CET. Reviewer: area-chair role (image forensics, morph detection). I read the brief,
+11 Nov 2026, about 18:15 to 18:35 CET. Reviewer: area-chair role (image forensics, morph detection). I read the brief,
 `CONSOLIDATED_v2.md`, the generator's write-up (`physics_ideas.md`) and the experiment records it cites. I listed
 folders and read small JSON and CSV files. I ran no experiment, no GPU job and no statistic on any image. No sealed
 file was opened.
@@ -116,8 +116,9 @@ score must rank a morph above negatives that are sharper and above negatives tha
   same head and the same bracket (energy-only head). The fourth-order numbers count only by what they add to that
   head.
 - **Noise and compression level of the photo pool.** Kurtosis reads noise (Zoran and Weiss) and quantisation. The
-  smiling FRLL files are 1.43 times larger with a 4.8 times noisier backdrop (established). colorFERET is scanned
-  film, FRGC is digital. Controls: genuine FRGC against genuine colorFERET (R0 by database) at most 0.60; neutral
+  smiling FRLL files are 1.43 times larger with a 4.8 times noisier backdrop (established). The two ladder
+  databases come from different capture chains (colorFERET, as far as I remember, scanned film; FRGC digital
+  stills; not checked). Controls: genuine FRGC against genuine colorFERET (R0 by database) at most 0.60; neutral
   against smiling photo of one FRLL person at most 0.60; R0 against softened R0 at both strengths.
 - **One softening family only.** The only allowed softening is the shrink-and-enlarge path at two strengths.
   "Does not react to softness" is then a statement about that family. Camera defocus, denoising and JPEG are not
@@ -126,8 +127,8 @@ score must rank a morph above negatives that are sharper and above negatives tha
 ### 1.5 Where the write-up disagrees with the record
 
 - "Softened copies exist, about 600 each" (first test): the 600 are the softened ladder copies (R0 and R2w of 200
-  hosts, both engines). Of the AF0 training copies, 139 existed per strength at 18:24 (photos and uniform-0.5 morphs;
-  no softened half yet). The source list (`/mnt/t7/smad_next/AF0/lists/soft_src.csv`) covers the training split only
+  hosts, both engines). Of the AF0 training copies, 231 existed per strength at 18:28 and the build was still
+  running (photos and uniform-0.5 morphs; no softened half yet). The source list (`/mnt/t7/smad_next/AF0/lists/soft_src.csv`) covers the training split only
   and alternates the strength per image. So "morph against its own softened half" on AF0 pairs cannot be read
   tonight, and a morph and its half may have different strengths. Softened R4 of the ladder does not exist.
 - The softer copy at target 112.7 px may not be softer than the morph. A morph keeps 0.52 of the Laplacian
@@ -150,7 +151,7 @@ score must rank a morph above negatives that are sharper and above negatives tha
 |---|---|
 | `/mnt/t7/smad_next/AF0/img/train/{zero,u25,u50,halfA,halfB}` | 800, 800, 800, 1,160, 1,280 files |
 | `/mnt/t7/smad_next/AF0/img/val/{zero,u25,u50,halfA,halfB}` | 200, 200, 200, 320, 360 |
-| `/mnt/t7/smad_next/AF0/img/soft/{amsl112,fm61}` | about 600 ladder copies each (complete); AF0 copies being written (139 per strength, no halves) |
+| `/mnt/t7/smad_next/AF0/img/soft/{amsl112,fm61}` | about 600 ladder copies each (complete); AF0 copies being written (231 per strength at 18:28, no halves) |
 | `/mnt/t7/smad_next/AR1/img/frgcferet/{opencv,facemorpher}/{R2w,R3,R3m,R4}` | 536 each; `fm_graded/m000..m050` present; photos under `AR1/src/{feret,frgc}` |
 | `/mnt/t7/smad_next/AF0/lists/ar1soft.csv` | 1,200 rows: R0 and R2w (both engines) of 200 hosts at two strengths |
 | `/mnt/t7/smad_next/AF0/ghost_targets.npz`, `feat/{clip224,dinov3_512}/ar1.tokens.npy` | present |
@@ -280,8 +281,9 @@ has 25,160 images, none missing (`lists_summary.json`). It is running on CPU; no
    to 0.51 AUC (`experiments/ID0_identity-shrinkage-triage/result.md`, unreviewed).
 5. **The invariance is algebra only for pixel band energies.** For encoder features there is no such algebra. An
    encoder is not flip-equivariant, and softness changes the size of the odd feature part. Measured: the CLIP
-   position-aligned distance is slightly lower for history-matched copies in 5 of 7 cells, with intervals that
-   exclude 0.5 (0.464 to 0.491; same file). The shift is small and inside 0.45 to 0.55, but it is not zero. So "a
+   position-aligned distance differs between native and history-matched copies in 5 of 7 cells, with intervals
+   that exclude 0.5 (AUC 0.464 to 0.491; same file; as I read the file's convention the copy is the less
+   asymmetric one, which is the morph's direction). The shift is small and inside 0.45 to 0.55, but it is not zero. So "a
    share of the network's evidence that provably cannot come from any symmetric benchmark cue" is false as written:
    a softer image has a smaller odd part, and morphs are softer.
 6. **The two-view trained form buys nothing the paper needs.** Table numbers come from the even branch, which
@@ -291,8 +293,9 @@ has 25,160 images, none missing (`lists_summary.json`). It is running on CPU; no
    folded on about 200 against 204 diffusion images (`experiments/FZ1/result.md`, P4, frame axis, lead). The
    4-person lead (18.3 against 12.0) rests on 15 morph images. On FRLL-based cells both contributors come from one
    studio rig, so the lighting part of the odd energy is shared and does not halve.
-8. **The kill number of the write-up cannot fire.** Kill is "below 0.65"; the untrained read is already 0.662 to
-   0.675.
+8. **The kill number of the write-up can hardly fire.** Kill is "below 0.65 for both the pixel ratio and the
+   whitened token score"; the untrained token read on that contrast is already 0.662 (0.675 against the photo). A
+   fitted read would have to be worse than the raw one.
 
 ### 2.5 Cheapest confound and the control that excludes it
 
@@ -372,7 +375,7 @@ compliant photos.
 3. The bracketing test is the most useful piece of this lens. It is an evaluation protocol, costs 400 softened
    files, and applies to the released detectors as well as ours. First check whether the 26-statistic head passes it.
 4. "Softness" in this programme means one kernel family at two strengths. Claims must be worded for that family.
-5. Softened copies of the AF0 halves did not exist at 18:24, and the softening list alternates strengths and covers
+5. Softened copies of the AF0 halves did not exist at 18:28, and the softening list alternates strengths and covers
    the training split only. Any within-pair softened test must use the ladder copies or wait.
 6. The mirror-asymmetry test (AS0) already covers idea 2's pixel and shape tests. Do not start a duplicate.
 7. The dose-shape reading is valid for a statistic, not for a network score.
