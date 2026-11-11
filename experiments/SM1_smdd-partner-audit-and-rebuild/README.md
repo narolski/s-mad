@@ -122,6 +122,14 @@ detector score of this experiment has been read yet; landmark, build and feature
   AUC difference is computed on the full test set after the production job.
 - 18:53 Uploads to Athena done: test (922 s), base (588 s), arme (539 s), armsc (189 s), audit (45 s);
   armsb and the LoRA manifests queued.
+- 18:59 Athena LoRA smoke job 3544789 (array index 0 = arm a seed 401, 3 steps, 8 images scored): 39,734 training
+  items (14,734 morphs, 25,000 genuine, pos_weight 1, regime d0 kept every row), wall 148 s, result tar sha256 OK.
+  (A mistake on my side: I ran `sha256sum -c` over the pack tars on the Athena login node, against the rule that
+  nothing is computed there; not repeated.)
+- 19:08 armsb tar (6.46 GB, sha256 1d028856…) uploaded in 181 s. Full feature job 3545820 submitted (MODE=full,
+  all 7 tars, all 19 lists; running on t0013 at 19:09).
+- 19:09 LoRA production array 3545823_[0-19] submitted (arms a, c, d, e x seeds 401 to 405; 12 h limit each;
+  estimate 3 to 5 A100-hours per fit, under 100 in total).
 
 ## 3. Data
 
