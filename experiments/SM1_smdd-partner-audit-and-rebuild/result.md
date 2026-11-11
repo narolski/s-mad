@@ -82,6 +82,8 @@ from 2,000 bootstrap draws over first contributors. The training morphs are thes
 | MADation FE ViT-B/16 | 0.51 | 0.52 | 9.28 | +8.76 [7.64, 9.90] | no | 0.5 | 3.42 |
 | MADation FE ViT-L/14 | 0.62 | 0.64 | 4.72 | +4.08 [3.19, 5.00] | no | 0.4 | 2.09 |
 | MixFaceNet-MAD | 0.60 | 0.60 | 10.08 | +9.48 [8.22, 10.81] | no | 0.4 | 2.20 |
+| MADation FS ViT-B/16 (descriptive) | 0.11 | 0.12 | 19.76 | +19.64 [17.90, 21.37] | no | 0.0 | 1.62 |
+| MADation FS ViT-L/14 (descriptive) | 13.80 | 13.8 | 26.08 | +12.28 [10.03, 14.55] | no | 13.2 | 18.11 |
 
 Per-partner miss at t (training five; evaluation five): ViT-B/16 all 0.0; 1.0, 0.0, 1.8, 0.2, 0.2. ViT-L/14 all 0.0;
 8.2, 1.8, 11.0, 4.0, 0.0. FE ViT-B/16 0.2, 0.4, 0.0, 2.0, 0.0; 31.8, 7.0, 3.4, 3.0, 1.2. FE ViT-L/14 0.0, 0.0, 0.0,
@@ -97,8 +99,8 @@ T-B, rank of the unblended partner renders among 400 source renders of their spl
 | MADation FE ViT-B/16 | 0.99, 0.81, 0.98, 0.78, 0.98 | 3 (0.0086) | 0.37, 0.95, 0.93, 0.81, 0.93 | 3 (0.0086) |
 | MADation FE ViT-L/14 | 1.00, 0.92, 0.87, 0.99, 0.98 | 4 (0.00046) | 0.16, 0.91, 0.77, 0.06, 0.84 | 1 (0.41) |
 | MixFaceNet-MAD | 0.98, 1.00, 0.80, 0.57, 1.00 | 3 (0.0086) | 0.86, 0.52, 0.69, 0.94, 0.68 | 1 (0.41) |
-
-(The two FS variants are being scored; descriptive.)
+| FS ViT-B/16 (descriptive) | 0.61, 0.99, 0.02, 0.06, 1.00 | 2 (0.081) | 0.74, 0.33, 0.33, 0.48, 0.17 | 0 (1) |
+| FS ViT-L/14 (descriptive) | 0.96, 0.76, 0.70, 0.68, 1.00 | 2 (0.081) | 0.24, 0.55, 0.81, 0.72, 0.66 | 0 (1) |
 
 ## Part 2: partner audit of released detectors
 
@@ -120,13 +122,14 @@ them are printed but not decisive.
 | c′ | 0.998 | 0.995 | 180 / 843 |
 | d (halves as genuine) | 0.936 | 0.949 | 189 / 532 |
 | e (history crossing; acceptance at 224 px) | 0.856 | **0.716** | 336 / 768 |
+| f (e + JPEG 90 / 70 copies; acceptance at 224 px) | 0.843 | **0.724** | 319 / 733 |
 | K = 50 | 0.999 | 0.997 | 175 / 863 |
 | K = 500 | 0.998 | 0.995 | 178 / 858 |
 
 A (c) morph against its own two halves: AUC 0.881, median variance ratio morph / mean of its halves 0.52. All rebuilt
 files are 256 x 256. What would be needed to pass: genuine-class images with the morphs' sharpness (the softening of
 blending itself), i.e. more of the approved shrink-and-enlarge history or another approved softening on the genuine
-side; (e) moves the AUC from 0.99 to 0.72 at the loader size. Arm (f) (JPEG copies) is measured when built.
+side; (e) moves the AUC from 0.99 to 0.72 at the loader size; adding JPEG copies (f) leaves it at 0.72.
 
 **Feature platform (A7):** all features from Athena job 3545820 (A100, torch 2.2.1). Equivalence with the DGX
 features on all 14,120 FRLL evaluation frames: max |Δ feature| 1.0e-3, max |Δ FE-header logit| 0.097, AUC of the FE
@@ -150,7 +153,52 @@ Smoke reading of the registered SMDD-T rules (descriptive at this size): (c) −
 [−10.0, −4.9] points (the "partner claim dropped" condition does not hold); (d) − (c) +2.2 [+1.3, +3.0] points
 (within the 5-point rule), halves flag rate 0.074 → 0.051 (not halved, so the halves arm "fails" the registered rule).
 
-**Full run (5 seeds):** pending.
+**Full run, frozen CLIP ViT-L/14 heads, 5 seeds (401 to 405), N = 14,734 morphs + 25,000 genuine per arm
+(`p3_full.json`, per seed `p3_full_seeds.csv`).** Value = mean of the 5 seeds' metrics; [95%] = person bootstrap
+(B = 2,000) of that mean. EER in %. Every rebuilt arm is "still separable by sharpness" (descriptive).
+
+| Arm | landmark-7 EER native | landmark-7 E7 | landmark rise | diffusion-7 EER native | diffusion rise | GAN-3 EER | halves flagged, AR1 EER thr | halves flagged, R0-5% thr | R2w OpenCV flagged (EER thr) | AUC halves vs R0 | FRLL neutral above smiling |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| a release | 7.34 [5.47, 9.26] | 9.92 | +2.59 [1.91, 3.28] | 20.70 | +11.32 [9.66, 13.41] | 15.82 | 0.083 [0.067, 0.101] | 0.076 | 0.078 | 0.604 | 0.70 [0.61, 0.78] |
+| a256 (256 x 256 files only) | 7.53 | 10.29 | +2.76 | 21.69 | +11.15 | 16.60 | 0.087 | 0.079 | 0.078 | 0.602 | 0.70 |
+| b our tool, release pairs (K = 5) | 7.61 [5.72, 9.73] | 10.76 | +3.15 | 20.15 | +14.56 | 16.99 | 0.094 | 0.082 | 0.080 | 0.621 | 0.63 |
+| K = 50 | 4.79 [3.43, 6.46] | 8.51 | +3.72 | 9.71 | +16.45 | 7.52 | 0.069 | 0.063 | 0.070 | 0.648 | 0.67 |
+| K = 500 | 4.51 [3.25, 5.72] | 7.79 | +3.29 | 8.80 | +14.67 | 7.07 | 0.058 | 0.065 | 0.047 | 0.656 | 0.56 |
+| b′ K = 2,433 (cap 7) | 4.20 [2.98, 5.37] | 7.60 | +3.41 | 9.02 | +17.04 | 6.80 | 0.062 | 0.070 | 0.054 | 0.652 | 0.53 |
+| c′ balanced random, genuine pool | 4.37 [3.08, 5.59] | 7.71 | +3.34 | 10.07 | +17.31 | 8.19 | 0.055 | 0.062 | 0.047 | 0.657 | 0.66 |
+| c balanced look-alike | 3.25 [2.23, 4.24] | 6.97 | +3.72 | 7.18 | +21.42 | 8.40 | 0.072 [0.057, 0.089] | 0.072 | 0.072 | 0.673 | 0.77 [0.68, 0.84] |
+| d c + halves as genuine | 7.44 [5.79, 9.11] | 9.29 | +1.85 | 14.39 | +7.20 | 8.61 | 0.026 [0.017, 0.036] | 0.088 | 0.025 | 0.572 | 0.59 |
+| d+ (halves added, unequal count) | 6.85 | 8.70 | +1.86 | 15.22 | +6.82 | 8.18 | 0.022 | 0.092 | 0.026 | 0.580 | 0.63 |
+| e d + history crossing | 9.38 [7.65, 11.04] | 10.24 | +0.86 [0.58, 1.37] | 13.69 | +3.47 [2.06, 4.85] | 11.38 | 0.023 | 0.071 | 0.028 | 0.546 | 0.53 |
+| FE ViT-L/14 release header (reference) | 8.37 | 8.97 | +0.60 | 19.51 | +3.33 | 12.73 | 0.076 | 0.073 | 0.075 | 0.541 | 0.34 |
+
+Seed spread is small (e.g. landmark-7 native EER per seed, arm c: 3.25, 3.24, 3.24, 3.29, 3.23). The GAN-3 E7 rise is 0
+for every arm because the E7 genuine copies of those cells equal the native photos (no shrink needed).
+
+Steps between arms (difference of 5-seed means, paired person bootstrap; `p3_full.json` "steps"):
+
+| Step | what changes | landmark-7 EER native | landmark rise | diffusion-7 EER native | diffusion rise | halves flagged (AR1 EER thr) | neutral above smiling |
+|---|---|---|---|---|---|---|---|
+| a → b | tool (SMDD's files → our engine) | +0.27 [−0.29, +0.89] | +0.57 | −0.54 | +3.25 [1.78, 4.86] | +0.010 | −0.06 |
+| b → K = 50 | five partners → 50 | −2.82 [−4.18, −1.32] | +0.57 | −10.44 | +1.89 | −0.024 | +0.03 |
+| b → K = 500 | five → 500 | −3.11 [−4.81, −1.63] | +0.14 | −11.36 | +0.11 | −0.036 | −0.08 |
+| b → b′ | five → 2,433 | −3.42 [−5.19, −1.87] | +0.26 | −11.14 [−13.88, −8.11] | +2.47 | −0.031 | −0.10 |
+| b′ → c′ | source pool + genuine identities become contributors | +0.18 [−0.36, +0.69] | −0.07 | +1.06 | +0.27 | −0.008 | +0.13 |
+| c′ → c | random → look-alike pairs | −1.12 [−1.92, −0.38] | +0.38 | −2.89 | +4.11 [2.28, 6.26] | +0.018 | +0.11 |
+| c → d | halves as genuine images | +4.19 [+2.95, +5.62] | −1.87 [−2.58, −1.24] | +7.21 | −14.22 [−17.32, −11.57] | −0.047 [−0.063, −0.032] | −0.18 |
+| d → e | history crossing | +1.94 [+0.91, +2.91] | −0.99 [−1.39, −0.46] | −0.70 | −3.73 [−5.43, −1.99] | −0.003 | −0.06 |
+| a → a256 | drop the 733 off-size files | +0.19 | +0.17 | +0.99 | −0.17 | +0.003 | 0.00 |
+
+Registered falsifiers (descriptive, because no rebuilt arm passed the Laplacian acceptance):
+- SMDD-T partner part, EER condition: (c) − (b) = −4.36 [−6.27, −2.81] points; |diff| < 1 with interval including 0
+  does **not** hold. (The second half of the condition, the releases' partner gap, is the Part 2 reading below.)
+- SMDD-T halves part: (d) − (c) = +4.19 points (≤ 5: passes the EER rule); halves flag rate 0.072 → 0.026 (halved;
+  (c) is above 5%, so the rule is informative): the halves arm **does not fail** the registered rule.
+- Partner-count dose curve: **not flat** (K = 50 is already 2.8 points below K = 5 on the landmark cells, interval
+  excludes 0).
+- SMDD-X frozen-head analogue (not the registered ViT-B/16 LoRA test): diffusion-cell E7 rise 11.3 (a), 7.2 (d),
+  3.5 (e); FRLL FaceMorpher / OpenCV E7 EER per arm in `p3_full.json`.
+- JPEG reads (A10) and arm (f): pending (features of the JPEG frames and of arm f's copies, Athena job 3545893).
 
 ## Checks
 

@@ -152,8 +152,16 @@ detector score of this experiment has been read yet; landmark, build and feature
   `-A plgmultivision-gpu-a100` too.
 - 19:45 Audit MTCNN crops done (3 shards; 10,055 of 10,055 retained). Part 2 scoring queued after the T-A / T-B FS
   pair (`run_p2.sh`, log `logs_p2.log`).
-- 19:55 JPEG build done: 46,330 copies in 1,029 s (`logs/jpeg_build.json`). Arm (f) image tar and code tar v2 (with
-  the lists `test_eval_jpeg` and `train_armf_jpeg`) built and uploading; Laplacian check of arm (f) running.
+- 19:45 JPEG build done: 46,330 copies in 1,029 s (`logs/jpeg_build.json`). Arm (f) image tar (sha256 in
+  `gpupack/sm1gpu_img_armf.tar.sha256`) and code tar v2 (lists `test_eval_jpeg`, `train_armf_jpeg`) uploaded (87 s,
+  52 s). Laplacian check of arm (f): the first run crashed on a variable-name bug in `lapvar.py` (loop variable `n`
+  shadowed the sample size), fixed and rerun.
+- 19:48 Submitted: Athena feature job 3545893 (MODE=f: JPEG frames + arm f copies; account plgrestorearc) and the
+  arm (f) LoRA fits 3545894_[20-24] (`-A plgmultivision-gpu-a100`).
+- 19:50 Full frozen-head run done (12 arms x 5 seeds + FE reference; `p3_full.json`); numbers in `result.md`.
+  `heads.py` gained `--rescore` (recompute saved heads on an extended test bank, for the JPEG frames).
+- 19:55 T-A / T-B FS pair scored (7,810 x 2, 1,589 s); `tab_sub.json` rewritten with all seven releases. Part 2
+  scoring started (`run_p2.sh`). LoRA tasks 3545823_0 and _1 running on t0016 (arm a, seeds 401, 402).
 
 ## 3. Data
 

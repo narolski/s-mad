@@ -281,3 +281,15 @@ Section 9 (i) said "partner reuse = number of attack images in the set sharing t
 is 0 for every negative and at least 1 for every attack, i.e. the label itself. Replaced by **person frequency**: for
 every image, the largest number of images in the same set that contain one of its persons (this is the cue that would
 expose SMDD's five recurring partners, and it applies to both classes). Nothing else changes.
+
+## Amendment 3 (11 Nov 19:52 CET, operational, before any Athena job of PN1)
+
+- Software on Athena (coordinator 19:28, `ATHENA.md` "Container image"): every PN1 job runs `python` inside
+  `/net/pr2/projects/plgrid/plggrestoration/smad-next/containers/smad_torch221_cu121_v1.sif` (sha256
+  `fedeff10a26d14edad624fffc048fc197509618ba5012519c47699dd6419649f`; python 3.10.13, torch 2.2.1 + CUDA 12.1,
+  timm 1.0.27, numpy 1.26.4, pillow 10.2.0, safetensors 0.8.0) through `apptainer exec --nv`. The training script and
+  recipe are unchanged; the 8-image DGX test ran the same `run.sh` with the host Python (the image is x86).
+- Account (author 19:48): `-A plgmultivision-gpu-a100` for the smoke job and the fits (section 11 named
+  plgrestorearc-gpu-a100); one A100, `-C memfs`, `--mem=120G`, 8 CPUs, as before.
+- JPEG call verified (amendment 1, item 1): 4 of 4 FRLL jpeg70 evaluation files reproduced pixel for pixel and byte for
+  byte (`jpeg_verify.json`).

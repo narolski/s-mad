@@ -40,11 +40,22 @@ def main():
     import sys
     lim = int(sys.argv[1]) if len(sys.argv) > 1 else 0
     cut = (lambda L: L[:lim]) if lim else (lambda L: L)
-    man = {r["id"]: r for r in csv.DictReader(open(OUT / "manifest.csv"))}
-    by = collections.defaultdict(list)
-    for r in cut(list(csv.DictReader(open(OUT / "lists/score.csv")))):
-        by[man[r["id"]]["set"]].append(zero_frac(r["path"]))
-    rows = summarise("MTCNN crop (MADation, MixFaceNet-MAD)", by)
+    ath = sys.argv[2] if len(sys.argv) > 2 else None        # an unpacked Athena result folder (amendment 4 crops)
+    rows = []
+    if ath:
+        A = OUT / "athena" / ath
+        man = {r["id"]: r for r in csv.DictReader(open(OUT / "athena/athena_manifest.csv"))}
+        for v, tag in (("v1", "SMDD crop script unchanged (variant 1)"), ("v2", "corrected crop, PNG (variant 2)")):
+            by = collections.defaultdict(list)
+            for r in cut(list(csv.DictReader(open(A / f"score_{v}.csv")))):
+                by[man[r["id"]]["set"]].append(zero_frac(A / "crops" / v / pathlib.Path(r["path"]).name))
+            rows += summarise(tag, by)
+    else:
+        man = {r["id"]: r for r in csv.DictReader(open(OUT / "manifest.csv"))}
+        by = collections.defaultdict(list)
+        for r in cut(list(csv.DictReader(open(OUT / "lists/score.csv")))):
+            by[man[r["id"]]["set"]].append(zero_frac(r["path"]))
+        rows += summarise("MTCNN crop (MADation, MixFaceNet-MAD)", by)
     by = collections.defaultdict(list)
     for r in cut(list(csv.DictReader(open(X7 / "manifests/a41g_x7.csv")))):
         by[r["family"]].append(zero_frac(X7 / r["path"]))

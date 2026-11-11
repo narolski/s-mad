@@ -1,0 +1,79 @@
+{
+ "fit": {
+  "k": 11,
+  "k95": 11,
+  "var_kept": 0.9604,
+  "persons": 776,
+  "dof_w": 619,
+  "d": 10,
+  "n_ratio": 0.1751,
+  "lam_top": [
+   15.176,
+   9.66,
+   9.15,
+   6.705,
+   4.525,
+   4.074,
+   2.82,
+   2.274,
+   1.49,
+   1.233
+  ],
+  "lam_sum_J": 57.106
+ },
+ "n_detected": {
+  "R0|none|": 536,
+  "S0|none|": 0,
+  "R2w|opencv|": 0,
+  "R2wm|opencv|": 0,
+  "R3|opencv|": 536,
+  "R3m|opencv|": 0,
+  "R4|opencv|": 536,
+  "R2w|facemorpher|": 0,
+  "R2wm|facemorpher|": 0,
+  "R3|facemorpher|": 536,
+  "R3m|facemorpher|": 0,
+  "R4|facemorpher|": 536,
+  "G|facemorpher|0.0": 0,
+  "G|facemorpher|0.1": 0,
+  "G|facemorpher|0.2": 0,
+  "G|facemorpher|0.3": 0,
+  "G|facemorpher|0.4": 0,
+  "G|facemorpher|0.5": 0
+ },
+ "detected_vs_calculated_mean_point_error_over_iod": {
+  "R0|none|": {
+   "n": 536,
+   "median": 0.0082,
+   "q90": 0.0119
+  },
+  "R3|opencv|": {
+   "n": 536,
+   "median": 0.0084,
+   "q90": 0.0122
+  },
+  "R4|opencv|": {
+   "n": 536,
+   "median": 0.0097,
+   "q90": 0.0139
+  },
+  "R3|facemorpher|": {
+   "n": 536,
+   "median": 0.0094,
+   "q90": 0.014
+  },
+  "R4|facemorpher|": {
+   "n": 536,
+   "median": 0.0121,
+   "q90": 0.0177
+  }
+ },
+ "H_new_2_reading": {
+  "auc": 0.6529,
+  "ci": [
+   0.6164,
+   0.6915
+  ],
+  "reading": "supported (>= 0.65)"
+ }
+}

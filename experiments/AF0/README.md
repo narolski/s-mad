@@ -94,6 +94,15 @@ softened-ladder copies are in progress (section 10). No conclusions drawn here.
   `contact_dinov3_512_mlp_s401_full.png`, `contact_clip224_mlp_s401_full.png` (20 validation images each).
 - Bug: my stdout waiters looked for "seconds_last" in heads.py's printed log, which is cut at 800 characters, so they
   never fired; the chains read `log.json` instead (unaffected). Stale waiters killed by PID.
+- 19:30-19:50 CLIP-336 heads chain started (`chain_clip336.sh`, also scores CLIP-224 full heads on h1, af0_h,
+  ar1soft). Mirror distance final (`mirror_clip224.json`). CLIP-224 wave 2 done (`wave2_clip224.json`).
+- 19:41 PN1 softened ladder copies complete (2,544, two processes); 850 rows were produced by the reverse process,
+  whose log is separate: `lists_extra.py ladsoft` now merges both logs; list rebuilt 19:42:26 (all 2,544 aligned,
+  sha256 re-checked). Race found: the DINOv3 queue had started `ladsoft` at 19:41:42 on the first version of the list
+  (row order changed by the merge); killed by PID, partial outputs and the ladsoft prep files deleted, restarted on
+  the final list (19:43:20). The CLIP-224 extraction started 19:42:39, after the rebuild; its id order equals the list.
+- 19:52 wave-3 control 1 on AF0 validation images (`wave3_floor_valcmp.json`): morph vs own halves, Laplacian floor
+  0.760.
 
 Amendments / deviations so far (all reported in `result.md` when final): bench subsample (`bench_s`); wave 2 / 3 / 4
 at reduced scale (ghost targets and halves only for wave-1 pairs plus all uniform-0.5 pairs; softened copies only of
@@ -209,6 +218,10 @@ Not verified: CLIP transforms beyond timm's own config; FRGC neutral = BlankStar
   OpenCV engine (100 AR1 hosts): g 0.72, D 0.86, G 0.89, Dm 0.83; mirror / two-person: g 0.76, D 0.50, G 0.90, Dm 0.50.
 - Softening failures: CUDA out of memory at detector load (18:18 and once more), handled by retries.
 - Each token chunk was re-read once per head during scoring (seven heads x 17 GB on the ladder): fixed 18:48.
+- A list rewritten while a queue was waiting for it (ladsoft, 19:42): a feature run started on the first version;
+  rule adopted: never rewrite a list after a queue line can see it; the run was redone on the final list.
+- Wave 2 on CLIP-224: the registered ghost-energy head neither fails nor brings a gain (result.md); its F1 is low
+  (0.11-0.14); the most learnable target is G (0.30), which failed the target-sanity rule.
 
 ## 8. Observations and ideas
 

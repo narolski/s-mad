@@ -38,7 +38,7 @@
 | own_rule placed T_R3m_opencv % | 72.8 (139/191) | 84.8 (162/191) |
 | own_rule miss T_R4_opencv % | 4.2 (8/191) | 5.8 (11/191) |
 | own_rule miss T_R4_facemorpher % | 3.1 (6/191) | 3.1 (6/191) |
-| own_rule  T_R4_opencv_61 % | n/a | n/a |
+| own_rule miss T_R4_opencv_61 % | 5.2 (10/191) | 4.7 (9/191) |
 | own_rule miss MAD22_OpenCV_morph % | 47.0 (282/600) | 43.5 (261/600) |
 | own_rule miss MAD22_Webmorph_morph % | 65.8 (329/500) | 55.4 (277/500) |
 | own_rule miss H1_morph % | 79.8 (477/598) | 48.7 (291/598) |
@@ -60,7 +60,7 @@
 | dev placed T_R3m_opencv % | 90.1 (172/191) | 93.7 (179/191) |
 | dev miss T_R4_opencv % | 0.5 (1/191) | 0.5 (1/191) |
 | dev miss T_R4_facemorpher % | 0.0 (0/191) | 0.0 (0/191) |
-| dev  T_R4_opencv_61 % | n/a | n/a |
+| dev miss T_R4_opencv_61 % | 0.0 (0/191) | 0.5 (1/191) |
 | dev miss MAD22_OpenCV_morph % | 15.8 (95/600) | 18.0 (108/600) |
 | dev miss MAD22_Webmorph_morph % | 28.0 (140/500) | 22.4 (112/500) |
 | dev miss H1_morph % | 52.2 (312/598) | 24.9 (149/598) |
@@ -68,7 +68,7 @@
 | tau_dev binding pool | D_R0_61 | D_R0_112 |
 | tau_dev pools missing | none | none |
 | K0 (R2w61 vs R4 < 0.60) | False | False |
-| 2x2 | not read: g3_R2w_vs_R4_61, g4_R2w112_vs_R4_112, g4b_R2w61_vs_R4_61 | not read: g3_R2w_vs_R4_61, g4_R2w112_vs_R4_112, g4b_R2w61_vs_R4_61 |
+| 2x2 | min(g1..g3) 0.999 pass True kill-set False | min(g1..g3) 0.998 pass True kill-set False |
 | NU-a violations >10% | none | dev:H1_bona=0.112 |
 | NU-b fails | dev:T_R0_112=0.0785/hi0.1262 | dev:H1_bona=0.112/hi0.1401 |
-| NU-d miss R4_61 (own, dev) | None | None |
+| NU-d miss R4_61 (own, dev) | [0.0524, 0.0] | [0.0471, 0.0052] |

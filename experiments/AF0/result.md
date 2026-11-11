@@ -320,3 +320,33 @@ Scale (deviation): wave-1 training pairs (600 morphs) + 569 photos + the 1,080 w
 | G | mlp_s401 | periph | 0.298 | 0.045 | 0.997 (0.723) | 0.995 | 0.859 | 0.852 | 0.722 | -0.033 | -0.008 | 0.069 / -0.023 | 22.940 / 8.420 | 0.880 |
 
 Registered wave-2 reading for the ghost-energy head g (both heads, mean and top-tenth pooling): fails? no (FaceMorpher warp-only vs two-person 0.992-0.996, at least 0.75; FRLL native -> E7 shift at most 0.05 in absolute value, at most 0.3). Gain? no (same-person vs two-person FaceMorpher 0.836-0.866 against alpha's 0.855-0.884, i.e. 0.02 lower, not 0.03 higher; E7 shift not lower than alpha's). Wave 2 on DINOv3: running.
+
+## AF0 wave 3, control 1 on AF0's own validation images (`wave3_floor_valcmp.json`)
+
+Uniform-0.5 validation morphs (200) against their own warped halves (400, all-zero maps): Laplacian variance alone
+0.760 (the reviewer's measured 0.76 at 512 px reproduced), best simple statistic 0.823 (band power 0.063-0.125
+cycles/px). CLIP-224 heads on the same images: full-design heads (never trained with halves) 0.9995-1.000; wave-2
+heads trained with halves 0.989-0.9999 (floor on their image subset 0.748 / 0.812). Excess over the Laplacian floor
+about 0.24, over the best simple statistic about 0.18. DINOv3: pending (halves scored by the running chain).
+Landmark-ladder floors (same statistics, 536 hosts; in every metrics_*.json beside each AUC): FaceMorpher R2 vs R4
+0.753 / best 0.905; R2w vs R4 0.723 / 0.889; OpenCV R2 vs R4 best 0.928; OpenCV R2w vs R4 0.774 / 0.886.
+
+## Softened landmark-ladder copies for the protocol-network tests (PN1), lead's round-3 task (19:55 CET)
+
+Built with `src/AF0/soften.py` (verified E7 branch, unchanged; prep_eval.py at pin 374408ab...; detector = prep_eval's
+torch-on-GPU insightface wrapper, as in the verification), strengths = registered family medians 112.718 px (FRLL AMSL,
+"amsl112") and 61.211 px (corrected MAD22 FaceMorpher, "fm61"). Sources (read only): AR1 OpenCV R4 and R3 of all 536
+primary hosts and R3m of the 200 hosts of `ar1soft_src.csv`, from `/mnt/t7/smad_next/AR1/img/frgcferet/opencv/`.
+- Images (2,544, all aligned by prep_eval.align): `/mnt/t7/smad_next/AF0/img/soft_ladder/{R4,R3,R3m}_{amsl112,fm61}/<host>.png`
+  (hard links to `/mnt/t7/smad_next/AF0/img/soft/<strength>/ar1_<id>_<strength>.png`).
+- Lead's list: `/mnt/t7/smad_next/AF0/lists/ar1soft_ladder.csv` (host, person, rung, strength, target_ied_px,
+  source_path, output_path, sha256, aligned, native_ied, scale; 2,544 rows; file sha256 8483ccc1...).
+- Extraction list (feat.py format): `/mnt/t7/smad_next/AF0/lists/ladsoft.csv` (sha256 c1f7e756...).
+- CLIP ViT-L/14-224 patch tokens: `/mnt/t7/smad_next/AF0/feat/clip224/ladsoft.tokens.npy` (2,544 x 256 x 1,024 float16)
+  + `ladsoft.ids.npy` (order = ladsoft.csv, checked).
+- DINOv3 ViT-L/16-512 patch tokens: `/mnt/t7/smad_next/AF0/feat/dinov3_512/ladsoft.tokens.npy` (2,544 x 1,024 x 1,024;
+  mean patch token = mean over axis 1) + `.ids.npy`; complete when `ladsoft.done` reads 2544.
+- 27 simple statistics: `/mnt/t7/smad_next/AF0/cues/ladsoft.npz` (ids, cues, names).
+- Unsoftened counterparts: `feat/{clip224,dinov3_512}/ar1.tokens.npy` (list `lists/ar1.csv`), `cues/ar1.npz`.
+Build time: about 55 min with two processes (forward and reverse); both logs merged
+(`soft_ladsoft_src.csv`, `soft_ladsoft_src_rev.csv`).

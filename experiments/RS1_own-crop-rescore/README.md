@@ -238,6 +238,16 @@ when written.
 
 ## 6. Checks
 
+- **JPEG re-save effect size (recorded measurement, not a result row; 11 Nov 19:50).** 300 JPEG raw files (100 FRLL
+  photos, 40 per FRLL-Morphs family). The A46 crop as stored (JPEG, OpenCV quality 95, as the SMDD script stores a
+  JPEG input) vs the identical crop region stored as PNG (same box, same `crop_box`); PSNR between the two: median
+  45.9 dB, min 43.6 dB. Scored on the DGX with the seven releases (`jpeg_check.py`, `run_jpegcheck.sh`, output
+  `rs1_jpeg_storage_check.json`). Median |logit difference| JPEG minus PNG: ViT-B/16 0.06, ViT-L/14 0.01, FE ViT-L/14
+  0.56, FE ViT-B/16 0.86, FS ViT-B/16 0.003, FS ViT-L/14 0.04, MixFaceNet-MAD 0.22; maximum 0.8 to 16.2. Mean shift
+  morphs / photos: ViT-B/16 +0.14 / +0.02, ViT-L/14 +0.40 / -0.00, FE ViT-L/14 -0.61 / -0.16, FE ViT-B/16 +2.35 /
+  +0.56, FS ViT-B/16 +0.08 / -0.00, FS ViT-L/14 +0.01 / -0.00, MixFaceNet -0.14 / -0.00. Images crossing the 0.5
+  rule: 1 to 7 of 300 per release.
+
 Done: A46 crop hashes (0 mismatches); raw E7, A43 stored, MAD22 raw and canonical v3 hashes; copied AR1 files
 byte-identical; SelfMAD reader reproduces the A41 x7 EERs exactly. Planned: platform check of rescored A46 crops
 against the registered A46 RGB-only scores; 32-file crop check against A46 boxes.

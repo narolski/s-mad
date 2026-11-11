@@ -1,0 +1,181 @@
+kind,stat,engine,contrast,is_val_dropped,auc,lo,hi,nX,nY
+detected,iss,pooled,R4 vs R3,0,0.6525,0.616,0.6919,1072,1072
+detected,iss,pooled,R4 vs R3,1,0.6529,0.6164,0.6915,1040,1056
+detected,iss,pooled,R4 vs R0,0,0.6688,0.6315,0.709,1072,536
+detected,iss,pooled,R4 vs R0,1,0.6708,0.6328,0.7105,1040,528
+detected,iss,pooled,R3 vs R0,0,0.522,0.5088,0.5353,1072,536
+detected,iss,pooled,R3 vs R0,1,0.5233,0.51,0.5365,1056,528
+detected,iss,opencv,R4 vs R3,0,0.6547,0.6184,0.6935,536,536
+detected,iss,opencv,R4 vs R3,1,0.6552,0.6183,0.6942,520,528
+detected,iss,opencv,R4 vs R0,0,0.6719,0.6344,0.7126,536,536
+detected,iss,opencv,R4 vs R0,1,0.6734,0.636,0.7133,520,528
+detected,iss,opencv,R3 vs R0,0,0.5219,0.5089,0.5351,536,536
+detected,iss,opencv,R3 vs R0,1,0.523,0.5097,0.5366,528,528
+detected,iss,facemorpher,R4 vs R3,0,0.6503,0.6122,0.69,536,536
+detected,iss,facemorpher,R4 vs R3,1,0.6506,0.6111,0.6911,520,528
+detected,iss,facemorpher,R4 vs R0,0,0.6658,0.6271,0.7061,536,536
+detected,iss,facemorpher,R4 vs R0,1,0.6681,0.6286,0.7084,520,528
+detected,iss,facemorpher,R3 vs R0,0,0.5221,0.5081,0.5358,536,536
+detected,iss,facemorpher,R3 vs R0,1,0.5236,0.5096,0.5374,528,528
+detected,typ,pooled,R4 vs R3,0,0.6615,0.6254,0.6999,1072,1072
+detected,typ,pooled,R4 vs R3,1,0.6609,0.6233,0.6998,1040,1056
+detected,typ,pooled,R4 vs R0,0,0.6873,0.6518,0.7267,1072,536
+detected,typ,pooled,R4 vs R0,1,0.6878,0.6507,0.7269,1040,528
+detected,typ,pooled,R3 vs R0,0,0.5335,0.5195,0.5477,1072,536
+detected,typ,pooled,R3 vs R0,1,0.5346,0.5204,0.5488,1056,528
+detected,typ,opencv,R4 vs R3,0,0.6652,0.63,0.703,536,536
+detected,typ,opencv,R4 vs R3,1,0.6648,0.6281,0.7031,520,528
+detected,typ,opencv,R4 vs R0,0,0.6922,0.6566,0.7319,536,536
+detected,typ,opencv,R4 vs R0,1,0.6926,0.6551,0.7325,520,528
+detected,typ,opencv,R3 vs R0,0,0.5335,0.5193,0.5477,536,536
+detected,typ,opencv,R3 vs R0,1,0.5342,0.5198,0.5487,528,528
+detected,typ,facemorpher,R4 vs R3,0,0.6577,0.6199,0.6965,536,536
+detected,typ,facemorpher,R4 vs R3,1,0.657,0.6177,0.6965,520,528
+detected,typ,facemorpher,R4 vs R0,0,0.6823,0.6445,0.7216,536,536
+detected,typ,facemorpher,R4 vs R0,1,0.6831,0.6435,0.7224,520,528
+detected,typ,facemorpher,R3 vs R0,0,0.5335,0.5188,0.5478,536,536
+detected,typ,facemorpher,R3 vs R0,1,0.5349,0.5205,0.5496,528,528
+detected,shape_L,pooled,R4 vs R3,0,0.5898,0.549,0.6311,1072,1072
+detected,shape_L,pooled,R4 vs R3,1,0.5907,0.5509,0.6317,1040,1056
+detected,shape_L,pooled,R4 vs R0,0,0.6263,0.5859,0.6667,1072,536
+detected,shape_L,pooled,R4 vs R0,1,0.6281,0.5871,0.6696,1040,528
+detected,shape_L,pooled,R3 vs R0,0,0.5372,0.5182,0.557,1072,536
+detected,shape_L,pooled,R3 vs R0,1,0.5378,0.5188,0.5571,1056,528
+detected,shape_L,opencv,R4 vs R3,0,0.5921,0.549,0.6368,536,536
+detected,shape_L,opencv,R4 vs R3,1,0.5922,0.5494,0.6355,520,528
+detected,shape_L,opencv,R4 vs R0,0,0.6274,0.5851,0.6698,536,536
+detected,shape_L,opencv,R4 vs R0,1,0.6283,0.5848,0.6713,520,528
+detected,shape_L,opencv,R3 vs R0,0,0.5363,0.5161,0.5566,536,536
+detected,shape_L,opencv,R3 vs R0,1,0.5371,0.5177,0.5569,528,528
+detected,shape_L,facemorpher,R4 vs R3,0,0.5877,0.5482,0.63,536,536
+detected,shape_L,facemorpher,R4 vs R3,1,0.5894,0.5499,0.6308,520,528
+detected,shape_L,facemorpher,R4 vs R0,0,0.6252,0.5851,0.6669,536,536
+detected,shape_L,facemorpher,R4 vs R0,1,0.6278,0.587,0.6697,520,528
+detected,shape_L,facemorpher,R3 vs R0,0,0.538,0.5186,0.5576,536,536
+detected,shape_L,facemorpher,R3 vs R0,1,0.5386,0.5195,0.5577,528,528
+calculated from source landmark files,iss,pooled,R4 vs R3,0,0.687,0.651,0.7257,1072,1072
+calculated from source landmark files,iss,pooled,R4 vs R3,1,0.6866,0.6505,0.7257,1040,1056
+calculated from source landmark files,iss,pooled,R4 vs R0,0,0.7241,0.6891,0.7617,1072,536
+calculated from source landmark files,iss,pooled,R4 vs R0,1,0.7254,0.6899,0.7625,1040,528
+calculated from source landmark files,iss,pooled,R3 vs R0,0,0.5463,0.5346,0.5583,1072,536
+calculated from source landmark files,iss,pooled,R3 vs R0,1,0.5476,0.536,0.5596,1056,528
+calculated from source landmark files,iss,pooled,R4 vs R2w,0,0.687,0.651,0.7257,1072,1072
+calculated from source landmark files,iss,pooled,R4 vs R2w,1,0.6866,0.6505,0.7257,1040,1056
+calculated from source landmark files,iss,pooled,R3m vs R2w,0,0.529,0.5159,0.5427,1072,1072
+calculated from source landmark files,iss,pooled,R3m vs R2w,1,0.527,0.5136,0.5407,1056,1056
+calculated from source landmark files,iss,pooled,R4 vs S0,0,0.7451,0.7104,0.7819,1072,536
+calculated from source landmark files,iss,pooled,R4 vs S0,1,0.7436,0.7077,0.7809,1040,528
+calculated from source landmark files,iss,pooled,S0 vs R0,0,0.4846,0.4642,0.5046,536,536
+calculated from source landmark files,iss,pooled,S0 vs R0,1,0.4869,0.4669,0.5076,528,528
+calculated from source landmark files,iss,opencv,R4 vs R3,0,0.687,0.651,0.7257,536,536
+calculated from source landmark files,iss,opencv,R4 vs R3,1,0.6866,0.6505,0.7257,520,528
+calculated from source landmark files,iss,opencv,R4 vs R0,0,0.7241,0.6891,0.7617,536,536
+calculated from source landmark files,iss,opencv,R4 vs R0,1,0.7254,0.6899,0.7625,520,528
+calculated from source landmark files,iss,opencv,R3 vs R0,0,0.5463,0.5346,0.5583,536,536
+calculated from source landmark files,iss,opencv,R3 vs R0,1,0.5476,0.536,0.5596,528,528
+calculated from source landmark files,iss,opencv,R4 vs R2w,0,0.687,0.651,0.7257,536,536
+calculated from source landmark files,iss,opencv,R4 vs R2w,1,0.6866,0.6505,0.7257,520,528
+calculated from source landmark files,iss,opencv,R3m vs R2w,0,0.529,0.5159,0.5427,536,536
+calculated from source landmark files,iss,opencv,R3m vs R2w,1,0.527,0.5136,0.5407,528,528
+calculated from source landmark files,iss,opencv,R4 vs S0,0,0.7451,0.7104,0.7819,536,536
+calculated from source landmark files,iss,opencv,R4 vs S0,1,0.7436,0.7077,0.7809,520,528
+calculated from source landmark files,iss,opencv,S0 vs R0,0,0.4846,0.4642,0.5046,536,536
+calculated from source landmark files,iss,opencv,S0 vs R0,1,0.4869,0.4669,0.5076,528,528
+calculated from source landmark files,iss,facemorpher,R4 vs R3,0,0.687,0.651,0.7257,536,536
+calculated from source landmark files,iss,facemorpher,R4 vs R3,1,0.6866,0.6505,0.7257,520,528
+calculated from source landmark files,iss,facemorpher,R4 vs R0,0,0.7241,0.6891,0.7617,536,536
+calculated from source landmark files,iss,facemorpher,R4 vs R0,1,0.7254,0.6899,0.7625,520,528
+calculated from source landmark files,iss,facemorpher,R3 vs R0,0,0.5463,0.5346,0.5583,536,536
+calculated from source landmark files,iss,facemorpher,R3 vs R0,1,0.5476,0.536,0.5596,528,528
+calculated from source landmark files,iss,facemorpher,R4 vs R2w,0,0.687,0.651,0.7257,536,536
+calculated from source landmark files,iss,facemorpher,R4 vs R2w,1,0.6866,0.6505,0.7257,520,528
+calculated from source landmark files,iss,facemorpher,R3m vs R2w,0,0.529,0.5159,0.5427,536,536
+calculated from source landmark files,iss,facemorpher,R3m vs R2w,1,0.527,0.5136,0.5407,528,528
+calculated from source landmark files,iss,facemorpher,R4 vs S0,0,0.7451,0.7104,0.7819,536,536
+calculated from source landmark files,iss,facemorpher,R4 vs S0,1,0.7436,0.7077,0.7809,520,528
+calculated from source landmark files,iss,facemorpher,S0 vs R0,0,0.4846,0.4642,0.5046,536,536
+calculated from source landmark files,iss,facemorpher,S0 vs R0,1,0.4869,0.4669,0.5076,528,528
+calculated from source landmark files,typ,pooled,R4 vs R3,0,0.6985,0.6628,0.7362,1072,1072
+calculated from source landmark files,typ,pooled,R4 vs R3,1,0.6969,0.6609,0.735,1040,1056
+calculated from source landmark files,typ,pooled,R4 vs R0,0,0.7461,0.7111,0.7829,1072,536
+calculated from source landmark files,typ,pooled,R4 vs R0,1,0.7461,0.7102,0.7833,1040,528
+calculated from source landmark files,typ,pooled,R3 vs R0,0,0.5578,0.5453,0.5702,1072,536
+calculated from source landmark files,typ,pooled,R3 vs R0,1,0.5588,0.546,0.5715,1056,528
+calculated from source landmark files,typ,pooled,R4 vs R2w,0,0.6985,0.6628,0.7362,1072,1072
+calculated from source landmark files,typ,pooled,R4 vs R2w,1,0.6969,0.6609,0.735,1040,1056
+calculated from source landmark files,typ,pooled,R3m vs R2w,0,0.5476,0.5333,0.5631,1072,1072
+calculated from source landmark files,typ,pooled,R3m vs R2w,1,0.546,0.5313,0.5617,1056,1056
+calculated from source landmark files,typ,pooled,R4 vs S0,0,0.7677,0.7337,0.8027,1072,536
+calculated from source landmark files,typ,pooled,R4 vs S0,1,0.7655,0.7303,0.8009,1040,528
+calculated from source landmark files,typ,pooled,S0 vs R0,0,0.4818,0.46,0.5026,536,536
+calculated from source landmark files,typ,pooled,S0 vs R0,1,0.4834,0.4616,0.5044,528,528
+calculated from source landmark files,typ,opencv,R4 vs R3,0,0.6985,0.6628,0.7362,536,536
+calculated from source landmark files,typ,opencv,R4 vs R3,1,0.6969,0.6609,0.735,520,528
+calculated from source landmark files,typ,opencv,R4 vs R0,0,0.7461,0.7111,0.7829,536,536
+calculated from source landmark files,typ,opencv,R4 vs R0,1,0.7461,0.7102,0.7833,520,528
+calculated from source landmark files,typ,opencv,R3 vs R0,0,0.5578,0.5453,0.5702,536,536
+calculated from source landmark files,typ,opencv,R3 vs R0,1,0.5588,0.546,0.5715,528,528
+calculated from source landmark files,typ,opencv,R4 vs R2w,0,0.6985,0.6628,0.7362,536,536
+calculated from source landmark files,typ,opencv,R4 vs R2w,1,0.6969,0.6609,0.735,520,528
+calculated from source landmark files,typ,opencv,R3m vs R2w,0,0.5476,0.5333,0.5631,536,536
+calculated from source landmark files,typ,opencv,R3m vs R2w,1,0.546,0.5313,0.5617,528,528
+calculated from source landmark files,typ,opencv,R4 vs S0,0,0.7677,0.7337,0.8027,536,536
+calculated from source landmark files,typ,opencv,R4 vs S0,1,0.7655,0.7303,0.8009,520,528
+calculated from source landmark files,typ,opencv,S0 vs R0,0,0.4818,0.46,0.5026,536,536
+calculated from source landmark files,typ,opencv,S0 vs R0,1,0.4834,0.4616,0.5044,528,528
+calculated from source landmark files,typ,facemorpher,R4 vs R3,0,0.6985,0.6628,0.7362,536,536
+calculated from source landmark files,typ,facemorpher,R4 vs R3,1,0.6969,0.6609,0.735,520,528
+calculated from source landmark files,typ,facemorpher,R4 vs R0,0,0.7461,0.7111,0.7829,536,536
+calculated from source landmark files,typ,facemorpher,R4 vs R0,1,0.7461,0.7102,0.7833,520,528
+calculated from source landmark files,typ,facemorpher,R3 vs R0,0,0.5578,0.5453,0.5702,536,536
+calculated from source landmark files,typ,facemorpher,R3 vs R0,1,0.5588,0.546,0.5715,528,528
+calculated from source landmark files,typ,facemorpher,R4 vs R2w,0,0.6985,0.6628,0.7362,536,536
+calculated from source landmark files,typ,facemorpher,R4 vs R2w,1,0.6969,0.6609,0.735,520,528
+calculated from source landmark files,typ,facemorpher,R3m vs R2w,0,0.5476,0.5333,0.5631,536,536
+calculated from source landmark files,typ,facemorpher,R3m vs R2w,1,0.546,0.5313,0.5617,528,528
+calculated from source landmark files,typ,facemorpher,R4 vs S0,0,0.7677,0.7337,0.8027,536,536
+calculated from source landmark files,typ,facemorpher,R4 vs S0,1,0.7655,0.7303,0.8009,520,528
+calculated from source landmark files,typ,facemorpher,S0 vs R0,0,0.4818,0.46,0.5026,536,536
+calculated from source landmark files,typ,facemorpher,S0 vs R0,1,0.4834,0.4616,0.5044,528,528
+calculated from source landmark files,shape_L,pooled,R4 vs R3,0,0.5949,0.5529,0.6387,1072,1072
+calculated from source landmark files,shape_L,pooled,R4 vs R3,1,0.5948,0.5526,0.6392,1040,1056
+calculated from source landmark files,shape_L,pooled,R4 vs R0,0,0.6332,0.5902,0.6744,1072,536
+calculated from source landmark files,shape_L,pooled,R4 vs R0,1,0.6342,0.5911,0.6764,1040,528
+calculated from source landmark files,shape_L,pooled,R3 vs R0,0,0.5402,0.52,0.5595,1072,536
+calculated from source landmark files,shape_L,pooled,R3 vs R0,1,0.5411,0.5214,0.5607,1056,528
+calculated from source landmark files,shape_L,pooled,R4 vs R2w,0,0.5949,0.5529,0.6387,1072,1072
+calculated from source landmark files,shape_L,pooled,R4 vs R2w,1,0.5948,0.5526,0.6392,1040,1056
+calculated from source landmark files,shape_L,pooled,R3m vs R2w,0,1.0,1.0,1.0,1072,1072
+calculated from source landmark files,shape_L,pooled,R3m vs R2w,1,1.0,1.0,1.0,1056,1056
+calculated from source landmark files,shape_L,pooled,R4 vs S0,0,0.6329,0.5887,0.6757,1072,536
+calculated from source landmark files,shape_L,pooled,R4 vs S0,1,0.6338,0.59,0.6766,1040,528
+calculated from source landmark files,shape_L,pooled,S0 vs R0,0,0.4979,0.4662,0.5299,536,536
+calculated from source landmark files,shape_L,pooled,S0 vs R0,1,0.4983,0.4676,0.5285,528,528
+calculated from source landmark files,shape_L,opencv,R4 vs R3,0,0.5949,0.5529,0.6387,536,536
+calculated from source landmark files,shape_L,opencv,R4 vs R3,1,0.5948,0.5526,0.6392,520,528
+calculated from source landmark files,shape_L,opencv,R4 vs R0,0,0.6332,0.5902,0.6744,536,536
+calculated from source landmark files,shape_L,opencv,R4 vs R0,1,0.6342,0.5911,0.6764,520,528
+calculated from source landmark files,shape_L,opencv,R3 vs R0,0,0.5402,0.52,0.5595,536,536
+calculated from source landmark files,shape_L,opencv,R3 vs R0,1,0.5411,0.5214,0.5607,528,528
+calculated from source landmark files,shape_L,opencv,R4 vs R2w,0,0.5949,0.5529,0.6387,536,536
+calculated from source landmark files,shape_L,opencv,R4 vs R2w,1,0.5948,0.5526,0.6392,520,528
+calculated from source landmark files,shape_L,opencv,R3m vs R2w,0,1.0,1.0,1.0,536,536
+calculated from source landmark files,shape_L,opencv,R3m vs R2w,1,1.0,1.0,1.0,528,528
+calculated from source landmark files,shape_L,opencv,R4 vs S0,0,0.6329,0.5887,0.6757,536,536
+calculated from source landmark files,shape_L,opencv,R4 vs S0,1,0.6338,0.59,0.6766,520,528
+calculated from source landmark files,shape_L,opencv,S0 vs R0,0,0.4979,0.4662,0.5299,536,536
+calculated from source landmark files,shape_L,opencv,S0 vs R0,1,0.4983,0.4676,0.5285,528,528
+calculated from source landmark files,shape_L,facemorpher,R4 vs R3,0,0.5949,0.5529,0.6387,536,536
+calculated from source landmark files,shape_L,facemorpher,R4 vs R3,1,0.5948,0.5526,0.6392,520,528
+calculated from source landmark files,shape_L,facemorpher,R4 vs R0,0,0.6332,0.5902,0.6744,536,536
+calculated from source landmark files,shape_L,facemorpher,R4 vs R0,1,0.6342,0.5911,0.6764,520,528
+calculated from source landmark files,shape_L,facemorpher,R3 vs R0,0,0.5402,0.52,0.5595,536,536
+calculated from source landmark files,shape_L,facemorpher,R3 vs R0,1,0.5411,0.5214,0.5607,528,528
+calculated from source landmark files,shape_L,facemorpher,R4 vs R2w,0,0.5949,0.5529,0.6387,536,536
+calculated from source landmark files,shape_L,facemorpher,R4 vs R2w,1,0.5948,0.5526,0.6392,520,528
+calculated from source landmark files,shape_L,facemorpher,R3m vs R2w,0,1.0,1.0,1.0,536,536
+calculated from source landmark files,shape_L,facemorpher,R3m vs R2w,1,1.0,1.0,1.0,528,528
+calculated from source landmark files,shape_L,facemorpher,R4 vs S0,0,0.6329,0.5887,0.6757,536,536
+calculated from source landmark files,shape_L,facemorpher,R4 vs S0,1,0.6338,0.59,0.6766,520,528
+calculated from source landmark files,shape_L,facemorpher,S0 vs R0,0,0.4979,0.4662,0.5299,536,536
+calculated from source landmark files,shape_L,facemorpher,S0 vs R0,1,0.4983,0.4676,0.5285,528,528

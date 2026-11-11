@@ -1,97 +1,265 @@
-feature,head,set,train_engine,variant,auc_morph_vs_bona,auc_small_vs_render,auc_u25_vs_zero,auc_u50_vs_photo,auc_u50_vs_zero,auc_zero_vs_photo,e7_flag_at_native5,morph_flag_at_bona5,zero_flag_at_photo5
-clip_cls,one,SMDD test pairs (stored-small vs render),opencv,none,,0.8504,,,,,"0.220 [0.184, 0.259] (110/500)",,
-clip_cls,one,H1 Poisson (unseen tool and source),opencv,none,0.8897,,,,,,,"0.619 [0.578, 0.658] (370/598)",
-clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9882,0.9992,0.999,0.5625,,,"0.052 [0.039, 0.068] (52/1000)"
-clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,none,,0.8007,,,,,"0.066 [0.046, 0.091] (33/500)",,
-clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,none,0.9059,,,,,,,"0.724 [0.686, 0.760] (433/598)",
-clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9862,0.9989,0.9985,0.555,,,"0.055 [0.042, 0.071] (55/1000)"
-clip_cls,two,SMDD test pairs (stored-small vs render),opencv,none,,0.7179,,,,,"0.020 [0.010, 0.036] (10/500)",,
-clip_cls,two,H1 Poisson (unseen tool and source),opencv,none,0.9204,,,,,,,"0.736 [0.699, 0.771] (440/598)",
-clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9873,0.9991,0.9989,0.556,,,"0.051 [0.038, 0.067] (51/1000)"
-clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,none,,0.6661,,,,,"0.006 [0.001, 0.017] (3/500)",,
-clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,none,0.9205,,,,,,,"0.766 [0.730, 0.799] (458/598)",
-clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9847,0.9986,0.9983,0.5514,,,"0.063 [0.049, 0.080] (63/1000)"
-clip_cls,one,SMDD test pairs (stored-small vs render),opencv,soft,,0.531,,,,,"0.006 [0.001, 0.017] (3/500)",,
-clip_cls,one,H1 Poisson (unseen tool and source),opencv,soft,0.9115,,,,,,,"0.714 [0.676, 0.750] (427/598)",
-clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9885,0.9992,0.999,0.5746,,,"0.064 [0.050, 0.081] (64/1000)"
-clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5232,,,,,"0.008 [0.002, 0.020] (4/500)",,
-clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,soft,0.9007,,,,,,,"0.681 [0.642, 0.718] (407/598)",
-clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9865,0.999,0.9986,0.5574,,,"0.057 [0.043, 0.073] (57/1000)"
-clip_cls,two,SMDD test pairs (stored-small vs render),opencv,soft,,0.542,,,,,"0.004 [0.000, 0.014] (2/500)",,
-clip_cls,two,H1 Poisson (unseen tool and source),opencv,soft,0.9228,,,,,,,"0.744 [0.707, 0.779] (445/598)",
-clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9875,0.9991,0.9989,0.5639,,,"0.051 [0.038, 0.067] (51/1000)"
-clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5458,,,,,"0.004 [0.000, 0.014] (2/500)",,
-clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,soft,0.9218,,,,,,,"0.763 [0.726, 0.796] (456/598)",
-clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9847,0.9986,0.9983,0.5582,,,"0.067 [0.052, 0.084] (67/1000)"
-clip_cls,one,SMDD test pairs (stored-small vs render),opencv,pipe,,0.7525,,,,,"0.062 [0.043, 0.087] (31/500)",,
-clip_cls,one,H1 Poisson (unseen tool and source),opencv,pipe,0.9053,,,,,,,"0.694 [0.655, 0.731] (415/598)",
-clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9872,0.999,0.9988,0.5765,,,"0.057 [0.043, 0.073] (57/1000)"
-clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.7662,,,,,"0.062 [0.043, 0.087] (31/500)",,
-clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,pipe,0.8917,,,,,,,"0.676 [0.636, 0.713] (404/598)",
-clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9856,0.9987,0.9983,0.5549,,,"0.062 [0.048, 0.079] (62/1000)"
-clip_cls,two,SMDD test pairs (stored-small vs render),opencv,pipe,,0.6836,,,,,"0.018 [0.008, 0.034] (9/500)",,
-clip_cls,two,H1 Poisson (unseen tool and source),opencv,pipe,0.9211,,,,,,,"0.734 [0.697, 0.769] (439/598)",
-clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9872,0.999,0.9989,0.5624,,,"0.057 [0.043, 0.073] (57/1000)"
-clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.6075,,,,,"0.006 [0.001, 0.017] (3/500)",,
-clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,pipe,0.9156,,,,,,,"0.749 [0.712, 0.783] (448/598)",
-clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9844,0.9985,0.9981,0.5542,,,"0.066 [0.051, 0.083] (66/1000)"
-clip_cls,one,SMDD test pairs (stored-small vs render),opencv,both,,0.5313,,,,,"0.006 [0.001, 0.017] (3/500)",,
-clip_cls,one,H1 Poisson (unseen tool and source),opencv,both,0.9104,,,,,,,"0.707 [0.669, 0.744] (423/598)",
-clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9878,0.9991,0.9989,0.5811,,,"0.059 [0.045, 0.075] (59/1000)"
-clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5209,,,,,"0.010 [0.003, 0.023] (5/500)",,
-clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,both,0.8837,,,,,,,"0.644 [0.604, 0.682] (385/598)",
-clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9858,0.9988,0.9984,0.5537,,,"0.061 [0.047, 0.078] (61/1000)"
-clip_cls,two,SMDD test pairs (stored-small vs render),opencv,both,,0.5427,,,,,"0.004 [0.000, 0.014] (2/500)",,
-clip_cls,two,H1 Poisson (unseen tool and source),opencv,both,0.9229,,,,,,,"0.753 [0.716, 0.787] (450/598)",
-clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9874,0.9991,0.9989,0.5668,,,"0.051 [0.038, 0.067] (51/1000)"
-clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5451,,,,,"0.002 [0.000, 0.011] (1/500)",,
-clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,both,0.9162,,,,,,,"0.747 [0.711, 0.782] (447/598)",
-clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9844,0.9985,0.9981,0.5577,,,"0.065 [0.051, 0.082] (65/1000)"
-clip_mean,one,SMDD test pairs (stored-small vs render),opencv,none,,0.4924,,,,,"0.030 [0.017, 0.049] (15/500)",,
-clip_mean,one,H1 Poisson (unseen tool and source),opencv,none,0.8352,,,,,,,"0.428 [0.388, 0.469] (256/598)",
-clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9567,0.9912,0.9924,0.4834,,,"0.038 [0.027, 0.052] (38/1000)"
-clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,none,,0.4866,,,,,"0.014 [0.006, 0.029] (7/500)",,
-clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,none,0.8346,,,,,,,"0.440 [0.400, 0.481] (263/598)",
-clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9507,0.9882,0.9895,0.4705,,,"0.037 [0.026, 0.051] (37/1000)"
-clip_mean,two,SMDD test pairs (stored-small vs render),opencv,none,,0.4878,,,,,"0.026 [0.014, 0.044] (13/500)",,
-clip_mean,two,H1 Poisson (unseen tool and source),opencv,none,0.8812,,,,,,,"0.575 [0.535, 0.615] (344/598)",
-clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9813,0.9984,0.9983,0.4686,,,"0.051 [0.038, 0.067] (51/1000)"
-clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,none,,0.4751,,,,,"0.018 [0.008, 0.034] (9/500)",,
-clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,none,0.8738,,,,,,,"0.572 [0.531, 0.612] (342/598)",
-clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9778,0.9973,0.9971,0.4557,,,"0.053 [0.040, 0.069] (53/1000)"
-clip_mean,one,SMDD test pairs (stored-small vs render),opencv,soft,,0.5101,,,,,"0.030 [0.017, 0.049] (15/500)",,
-clip_mean,one,H1 Poisson (unseen tool and source),opencv,soft,0.8342,,,,,,,"0.420 [0.380, 0.460] (251/598)",
-clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9562,0.9911,0.9923,0.4834,,,"0.038 [0.027, 0.052] (38/1000)"
-clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5096,,,,,"0.024 [0.012, 0.042] (12/500)",,
-clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,soft,0.8335,,,,,,,"0.433 [0.393, 0.474] (259/598)",
-clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9499,0.9881,0.9894,0.4706,,,"0.037 [0.026, 0.051] (37/1000)"
-clip_mean,two,SMDD test pairs (stored-small vs render),opencv,soft,,0.5044,,,,,"0.028 [0.015, 0.047] (14/500)",,
-clip_mean,two,H1 Poisson (unseen tool and source),opencv,soft,0.8804,,,,,,,"0.575 [0.535, 0.615] (344/598)",
-clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9813,0.9984,0.9983,0.4685,,,"0.052 [0.039, 0.068] (52/1000)"
-clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5042,,,,,"0.028 [0.015, 0.047] (14/500)",,
-clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,soft,0.8731,,,,,,,"0.570 [0.529, 0.610] (341/598)",
-clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9779,0.9974,0.9972,0.4557,,,"0.055 [0.042, 0.071] (55/1000)"
-clip_mean,one,SMDD test pairs (stored-small vs render),opencv,pipe,,0.5013,,,,,"0.028 [0.015, 0.047] (14/500)",,
-clip_mean,one,H1 Poisson (unseen tool and source),opencv,pipe,0.8383,,,,,,,"0.430 [0.390, 0.471] (257/598)",
-clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9562,0.9912,0.9922,0.4793,,,"0.037 [0.026, 0.051] (37/1000)"
-clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.4745,,,,,"0.014 [0.006, 0.029] (7/500)",,
-clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,pipe,0.8243,,,,,,,"0.423 [0.383, 0.464] (253/598)",
-clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9478,0.9867,0.9881,0.4749,,,"0.038 [0.027, 0.052] (38/1000)"
-clip_mean,two,SMDD test pairs (stored-small vs render),opencv,pipe,,0.4985,,,,,"0.026 [0.014, 0.044] (13/500)",,
-clip_mean,two,H1 Poisson (unseen tool and source),opencv,pipe,0.883,,,,,,,"0.585 [0.545, 0.625] (350/598)",
-clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9811,0.9984,0.9983,0.4669,,,"0.053 [0.040, 0.069] (53/1000)"
-clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.4532,,,,,"0.014 [0.006, 0.029] (7/500)",,
-clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,pipe,0.867,,,,,,,"0.567 [0.526, 0.607] (339/598)",
-clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9776,0.9971,0.9971,0.457,,,"0.052 [0.039, 0.068] (52/1000)"
-clip_mean,one,SMDD test pairs (stored-small vs render),opencv,both,,0.5105,,,,,"0.030 [0.017, 0.049] (15/500)",,
-clip_mean,one,H1 Poisson (unseen tool and source),opencv,both,0.8377,,,,,,,"0.426 [0.386, 0.467] (255/598)",
-clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9559,0.9911,0.9922,0.4796,,,"0.037 [0.026, 0.051] (37/1000)"
-clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5079,,,,,"0.026 [0.014, 0.044] (13/500)",,
-clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,both,0.8226,,,,,,,"0.423 [0.383, 0.464] (253/598)",
-clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9467,0.9864,0.9878,0.475,,,"0.036 [0.025, 0.049] (36/1000)"
-clip_mean,two,SMDD test pairs (stored-small vs render),opencv,both,,0.5044,,,,,"0.026 [0.014, 0.044] (13/500)",,
-clip_mean,two,H1 Poisson (unseen tool and source),opencv,both,0.8826,,,,,,,"0.585 [0.545, 0.625] (350/598)",
-clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9811,0.9984,0.9983,0.467,,,"0.053 [0.040, 0.069] (53/1000)"
-clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5016,,,,,"0.024 [0.012, 0.042] (12/500)",,
-clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,both,0.8658,,,,,,,"0.557 [0.516, 0.597] (333/598)",
-clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9777,0.9972,0.9971,0.456,,,"0.052 [0.039, 0.068] (52/1000)"
+feature,head,set,train_engine,variant,auc_morph_vs_bona,auc_small_vs_render,auc_u25_vs_zero,auc_u50_vs_its_halves,auc_u50_vs_photo,auc_u50_vs_zero,auc_zero_vs_photo,e7_flag_at_native5,excess,floor_auc,floor_stat,halves_flag_at_photo5,lapvar_auc,morph_flag_at_bona5,share_morph_above_both_halves,zero_flag_at_photo5
+clip_cls,one,SMDD test pairs (stored-small vs render),opencv,none,,0.8504,,,,,,"0.220 [0.184, 0.259] (110/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),opencv,none,0.8897,,,,,,,,,,,,,"0.619 [0.578, 0.658] (370/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9882,,0.9992,0.999,0.5625,,,,,,,,,"0.052 [0.039, 0.068] (52/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,none,,,,0.999,,,,,0.1677,0.8313,b2_.063-.125,"0.056 [0.046, 0.067] (112/2000)",0.2828,,1.0,
+clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,none,,0.8007,,,,,,"0.066 [0.046, 0.091] (33/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,none,0.9059,,,,,,,,,,,,,"0.724 [0.686, 0.760] (433/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9862,,0.9989,0.9985,0.555,,,,,,,,,"0.055 [0.042, 0.071] (55/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,none,,,,0.9985,,,,,0.1672,0.8313,b2_.063-.125,"0.061 [0.051, 0.073] (123/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),opencv,none,,0.7179,,,,,,"0.020 [0.010, 0.036] (10/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),opencv,none,0.9204,,,,,,,,,,,,,"0.736 [0.699, 0.771] (440/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9873,,0.9991,0.9989,0.556,,,,,,,,,"0.051 [0.038, 0.067] (51/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,none,,,,0.999,,,,,0.1677,0.8313,b2_.063-.125,"0.051 [0.041, 0.061] (101/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,none,,0.6661,,,,,,"0.006 [0.001, 0.017] (3/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,none,0.9205,,,,,,,,,,,,,"0.766 [0.730, 0.799] (458/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9847,,0.9986,0.9983,0.5514,,,,,,,,,"0.063 [0.049, 0.080] (63/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,none,,,,0.9983,,,,,0.167,0.8313,b2_.063-.125,"0.070 [0.059, 0.082] (140/2000)",0.2828,,1.0,
+clip_cls,one,SMDD test pairs (stored-small vs render),opencv,soft,,0.531,,,,,,"0.006 [0.001, 0.017] (3/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),opencv,soft,0.9115,,,,,,,,,,,,,"0.714 [0.676, 0.750] (427/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9885,,0.9992,0.999,0.5746,,,,,,,,,"0.064 [0.050, 0.081] (64/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,soft,,,,0.999,,,,,0.1677,0.8313,b2_.063-.125,"0.062 [0.052, 0.074] (125/2000)",0.2828,,1.0,
+clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5232,,,,,,"0.008 [0.002, 0.020] (4/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,soft,0.9007,,,,,,,,,,,,,"0.681 [0.642, 0.718] (407/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9865,,0.999,0.9986,0.5574,,,,,,,,,"0.057 [0.043, 0.073] (57/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,soft,,,,0.9986,,,,,0.1673,0.8313,b2_.063-.125,"0.066 [0.055, 0.077] (131/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),opencv,soft,,0.542,,,,,,"0.004 [0.000, 0.014] (2/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),opencv,soft,0.9228,,,,,,,,,,,,,"0.744 [0.707, 0.779] (445/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9875,,0.9991,0.9989,0.5639,,,,,,,,,"0.051 [0.038, 0.067] (51/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,soft,,,,0.999,,,,,0.1677,0.8313,b2_.063-.125,"0.050 [0.041, 0.060] (100/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5458,,,,,,"0.004 [0.000, 0.014] (2/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,soft,0.9218,,,,,,,,,,,,,"0.763 [0.726, 0.796] (456/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9847,,0.9986,0.9983,0.5582,,,,,,,,,"0.067 [0.052, 0.084] (67/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,soft,,,,0.9983,,,,,0.167,0.8313,b2_.063-.125,"0.070 [0.060, 0.083] (141/2000)",0.2828,,1.0,
+clip_cls,one,SMDD test pairs (stored-small vs render),opencv,pipe,,0.7525,,,,,,"0.062 [0.043, 0.087] (31/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),opencv,pipe,0.9053,,,,,,,,,,,,,"0.694 [0.655, 0.731] (415/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9872,,0.999,0.9988,0.5765,,,,,,,,,"0.057 [0.043, 0.073] (57/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,pipe,,,,0.9988,,,,,0.1675,0.8313,b2_.063-.125,"0.059 [0.049, 0.070] (118/2000)",0.2828,,1.0,
+clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.7662,,,,,,"0.062 [0.043, 0.087] (31/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,pipe,0.8917,,,,,,,,,,,,,"0.676 [0.636, 0.713] (404/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9856,,0.9987,0.9983,0.5549,,,,,,,,,"0.062 [0.048, 0.079] (62/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,pipe,,,,0.9983,,,,,0.167,0.8313,b2_.063-.125,"0.071 [0.061, 0.084] (143/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),opencv,pipe,,0.6836,,,,,,"0.018 [0.008, 0.034] (9/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),opencv,pipe,0.9211,,,,,,,,,,,,,"0.734 [0.697, 0.769] (439/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9872,,0.999,0.9989,0.5624,,,,,,,,,"0.057 [0.043, 0.073] (57/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,pipe,,,,0.9989,,,,,0.1676,0.8313,b2_.063-.125,"0.053 [0.044, 0.064] (106/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.6075,,,,,,"0.006 [0.001, 0.017] (3/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,pipe,0.9156,,,,,,,,,,,,,"0.749 [0.712, 0.783] (448/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9844,,0.9985,0.9981,0.5542,,,,,,,,,"0.066 [0.051, 0.083] (66/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,pipe,,,,0.9982,,,,,0.1669,0.8313,b2_.063-.125,"0.068 [0.057, 0.079] (135/2000)",0.2828,,1.0,
+clip_cls,one,SMDD test pairs (stored-small vs render),opencv,both,,0.5313,,,,,,"0.006 [0.001, 0.017] (3/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),opencv,both,0.9104,,,,,,,,,,,,,"0.707 [0.669, 0.744] (423/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9878,,0.9991,0.9989,0.5811,,,,,,,,,"0.059 [0.045, 0.075] (59/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,both,,,,0.9988,,,,,0.1675,0.8313,b2_.063-.125,"0.058 [0.048, 0.069] (115/2000)",0.2828,,1.0,
+clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5209,,,,,,"0.010 [0.003, 0.023] (5/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,both,0.8837,,,,,,,,,,,,,"0.644 [0.604, 0.682] (385/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9858,,0.9988,0.9984,0.5537,,,,,,,,,"0.061 [0.047, 0.078] (61/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,both,,,,0.9983,,,,,0.167,0.8313,b2_.063-.125,"0.073 [0.062, 0.085] (146/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),opencv,both,,0.5427,,,,,,"0.004 [0.000, 0.014] (2/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),opencv,both,0.9229,,,,,,,,,,,,,"0.753 [0.716, 0.787] (450/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9874,,0.9991,0.9989,0.5668,,,,,,,,,"0.051 [0.038, 0.067] (51/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,both,,,,0.999,,,,,0.1677,0.8313,b2_.063-.125,"0.054 [0.045, 0.065] (109/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5451,,,,,,"0.002 [0.000, 0.011] (1/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,both,0.9162,,,,,,,,,,,,,"0.747 [0.711, 0.782] (447/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9844,,0.9985,0.9981,0.5577,,,,,,,,,"0.065 [0.051, 0.082] (65/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,both,,,,0.9981,,,,,0.1668,0.8313,b2_.063-.125,"0.065 [0.055, 0.077] (130/2000)",0.2828,,1.0,
+clip_cls,one,SMDD test pairs (stored-small vs render),opencv,softh,,0.7091,,,,,,"0.032 [0.018, 0.051] (16/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),opencv,softh,0.9073,,,,,,,,,,,,,"0.697 [0.659, 0.734] (417/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),opencv,softh,,,0.9878,,0.9992,0.999,0.6019,,,,,,,,,"0.069 [0.054, 0.087] (69/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,softh,,,,0.999,,,,,0.1677,0.8313,b2_.063-.125,"0.066 [0.055, 0.077] (131/2000)",0.2828,,1.0,
+clip_cls,one,SMDD test pairs (stored-small vs render),facemorpher,softh,,0.7024,,,,,,"0.056 [0.038, 0.080] (28/500)",,,,,,,,
+clip_cls,one,H1 Poisson (unseen tool and source),facemorpher,softh,0.8946,,,,,,,,,,,,,"0.667 [0.628, 0.705] (399/598)",,
+clip_cls,one,AF0 unseen persons (OpenCV engine),facemorpher,softh,,,0.9863,,0.9991,0.9987,0.5882,,,,,,,,,"0.089 [0.072, 0.108] (89/1000)"
+clip_cls,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,softh,,,,0.9987,,,,,0.1674,0.8313,b2_.063-.125,"0.093 [0.081, 0.107] (186/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),opencv,softh,,0.6202,,,,,,"0.008 [0.002, 0.020] (4/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),opencv,softh,0.9216,,,,,,,,,,,,,"0.754 [0.718, 0.788] (451/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),opencv,softh,,,0.987,,0.9991,0.9988,0.585,,,,,,,,,"0.068 [0.053, 0.085] (68/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,softh,,,,0.9989,,,,,0.1676,0.8313,b2_.063-.125,"0.064 [0.053, 0.075] (127/2000)",0.2828,,1.0,
+clip_cls,two,SMDD test pairs (stored-small vs render),facemorpher,softh,,0.552,,,,,,"0.004 [0.000, 0.014] (2/500)",,,,,,,,
+clip_cls,two,H1 Poisson (unseen tool and source),facemorpher,softh,0.9211,,,,,,,,,,,,,"0.764 [0.728, 0.798] (457/598)",,
+clip_cls,two,AF0 unseen persons (OpenCV engine),facemorpher,softh,,,0.9838,,0.9986,0.9981,0.5832,,,,,,,,,"0.078 [0.062, 0.096] (78/1000)"
+clip_cls,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,softh,,,,0.9981,,,,,0.1668,0.8313,b2_.063-.125,"0.081 [0.069, 0.094] (162/2000)",0.2828,,1.0,
+clip_mean,one,SMDD test pairs (stored-small vs render),opencv,none,,0.4924,,,,,,"0.030 [0.017, 0.049] (15/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),opencv,none,0.8352,,,,,,,,,,,,,"0.428 [0.388, 0.469] (256/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9567,,0.9912,0.9924,0.4834,,,,,,,,,"0.038 [0.027, 0.052] (38/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,none,,,,0.9927,,,,,0.1614,0.8313,b2_.063-.125,"0.038 [0.030, 0.047] (76/2000)",0.2828,,0.999,
+clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,none,,0.4866,,,,,,"0.014 [0.006, 0.029] (7/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,none,0.8346,,,,,,,,,,,,,"0.440 [0.400, 0.481] (263/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9507,,0.9882,0.9895,0.4705,,,,,,,,,"0.037 [0.026, 0.051] (37/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,none,,,,0.9898,,,,,0.1585,0.8313,b2_.063-.125,"0.041 [0.033, 0.051] (82/2000)",0.2828,,1.0,
+clip_mean,two,SMDD test pairs (stored-small vs render),opencv,none,,0.4878,,,,,,"0.026 [0.014, 0.044] (13/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),opencv,none,0.8812,,,,,,,,,,,,,"0.575 [0.535, 0.615] (344/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9813,,0.9984,0.9983,0.4686,,,,,,,,,"0.051 [0.038, 0.067] (51/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,none,,,,0.9986,,,,,0.1673,0.8313,b2_.063-.125,"0.048 [0.039, 0.058] (96/2000)",0.2828,,1.0,
+clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,none,,0.4751,,,,,,"0.018 [0.008, 0.034] (9/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,none,0.8738,,,,,,,,,,,,,"0.572 [0.531, 0.612] (342/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9778,,0.9973,0.9971,0.4557,,,,,,,,,"0.053 [0.040, 0.069] (53/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,none,,,,0.9976,,,,,0.1663,0.8313,b2_.063-.125,"0.052 [0.043, 0.063] (105/2000)",0.2828,,1.0,
+clip_mean,one,SMDD test pairs (stored-small vs render),opencv,soft,,0.5101,,,,,,"0.030 [0.017, 0.049] (15/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),opencv,soft,0.8342,,,,,,,,,,,,,"0.420 [0.380, 0.460] (251/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9562,,0.9911,0.9923,0.4834,,,,,,,,,"0.038 [0.027, 0.052] (38/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,soft,,,,0.9926,,,,,0.1613,0.8313,b2_.063-.125,"0.038 [0.031, 0.048] (77/2000)",0.2828,,0.999,
+clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5096,,,,,,"0.024 [0.012, 0.042] (12/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,soft,0.8335,,,,,,,,,,,,,"0.433 [0.393, 0.474] (259/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9499,,0.9881,0.9894,0.4706,,,,,,,,,"0.037 [0.026, 0.051] (37/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,soft,,,,0.9897,,,,,0.1584,0.8313,b2_.063-.125,"0.040 [0.032, 0.050] (80/2000)",0.2828,,0.999,
+clip_mean,two,SMDD test pairs (stored-small vs render),opencv,soft,,0.5044,,,,,,"0.028 [0.015, 0.047] (14/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),opencv,soft,0.8804,,,,,,,,,,,,,"0.575 [0.535, 0.615] (344/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9813,,0.9984,0.9983,0.4685,,,,,,,,,"0.052 [0.039, 0.068] (52/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,soft,,,,0.9986,,,,,0.1673,0.8313,b2_.063-.125,"0.050 [0.040, 0.060] (99/2000)",0.2828,,1.0,
+clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5042,,,,,,"0.028 [0.015, 0.047] (14/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,soft,0.8731,,,,,,,,,,,,,"0.570 [0.529, 0.610] (341/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9779,,0.9974,0.9972,0.4557,,,,,,,,,"0.055 [0.042, 0.071] (55/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,soft,,,,0.9976,,,,,0.1663,0.8313,b2_.063-.125,"0.052 [0.043, 0.063] (105/2000)",0.2828,,1.0,
+clip_mean,one,SMDD test pairs (stored-small vs render),opencv,pipe,,0.5013,,,,,,"0.028 [0.015, 0.047] (14/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),opencv,pipe,0.8383,,,,,,,,,,,,,"0.430 [0.390, 0.471] (257/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9562,,0.9912,0.9922,0.4793,,,,,,,,,"0.037 [0.026, 0.051] (37/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,pipe,,,,0.9925,,,,,0.1612,0.8313,b2_.063-.125,"0.038 [0.030, 0.047] (76/2000)",0.2828,,0.999,
+clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.4745,,,,,,"0.014 [0.006, 0.029] (7/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,pipe,0.8243,,,,,,,,,,,,,"0.423 [0.383, 0.464] (253/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9478,,0.9867,0.9881,0.4749,,,,,,,,,"0.038 [0.027, 0.052] (38/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,pipe,,,,0.9881,,,,,0.1568,0.8313,b2_.063-.125,"0.040 [0.031, 0.049] (79/2000)",0.2828,,0.999,
+clip_mean,two,SMDD test pairs (stored-small vs render),opencv,pipe,,0.4985,,,,,,"0.026 [0.014, 0.044] (13/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),opencv,pipe,0.883,,,,,,,,,,,,,"0.585 [0.545, 0.625] (350/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9811,,0.9984,0.9983,0.4669,,,,,,,,,"0.053 [0.040, 0.069] (53/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,pipe,,,,0.9986,,,,,0.1673,0.8313,b2_.063-.125,"0.051 [0.041, 0.061] (101/2000)",0.2828,,1.0,
+clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.4532,,,,,,"0.014 [0.006, 0.029] (7/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,pipe,0.867,,,,,,,,,,,,,"0.567 [0.526, 0.607] (339/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9776,,0.9971,0.9971,0.457,,,,,,,,,"0.052 [0.039, 0.068] (52/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,pipe,,,,0.9975,,,,,0.1662,0.8313,b2_.063-.125,"0.045 [0.037, 0.056] (91/2000)",0.2828,,1.0,
+clip_mean,one,SMDD test pairs (stored-small vs render),opencv,both,,0.5105,,,,,,"0.030 [0.017, 0.049] (15/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),opencv,both,0.8377,,,,,,,,,,,,,"0.426 [0.386, 0.467] (255/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9559,,0.9911,0.9922,0.4796,,,,,,,,,"0.037 [0.026, 0.051] (37/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,both,,,,0.9925,,,,,0.1612,0.8313,b2_.063-.125,"0.039 [0.031, 0.048] (78/2000)",0.2828,,0.999,
+clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5079,,,,,,"0.026 [0.014, 0.044] (13/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,both,0.8226,,,,,,,,,,,,,"0.423 [0.383, 0.464] (253/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9467,,0.9864,0.9878,0.475,,,,,,,,,"0.036 [0.025, 0.049] (36/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,both,,,,0.9878,,,,,0.1565,0.8313,b2_.063-.125,"0.041 [0.032, 0.050] (81/2000)",0.2828,,0.997,
+clip_mean,two,SMDD test pairs (stored-small vs render),opencv,both,,0.5044,,,,,,"0.026 [0.014, 0.044] (13/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),opencv,both,0.8826,,,,,,,,,,,,,"0.585 [0.545, 0.625] (350/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9811,,0.9984,0.9983,0.467,,,,,,,,,"0.053 [0.040, 0.069] (53/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,both,,,,0.9986,,,,,0.1673,0.8313,b2_.063-.125,"0.051 [0.041, 0.061] (101/2000)",0.2828,,1.0,
+clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5016,,,,,,"0.024 [0.012, 0.042] (12/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,both,0.8658,,,,,,,,,,,,,"0.557 [0.516, 0.597] (333/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9777,,0.9972,0.9971,0.456,,,,,,,,,"0.052 [0.039, 0.068] (52/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,both,,,,0.9976,,,,,0.1663,0.8313,b2_.063-.125,"0.049 [0.040, 0.059] (97/2000)",0.2828,,1.0,
+clip_mean,one,SMDD test pairs (stored-small vs render),opencv,softh,,0.4569,,,,,,"0.018 [0.008, 0.034] (9/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),opencv,softh,0.8242,,,,,,,,,,,,,"0.421 [0.381, 0.462] (252/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),opencv,softh,,,0.9582,,0.9921,0.9927,0.5022,,,,,,,,,"0.036 [0.025, 0.049] (36/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,softh,,,,0.9933,,,,,0.162,0.8313,b2_.063-.125,"0.037 [0.030, 0.047] (75/2000)",0.2828,,0.999,
+clip_mean,one,SMDD test pairs (stored-small vs render),facemorpher,softh,,0.4504,,,,,,"0.010 [0.003, 0.023] (5/500)",,,,,,,,
+clip_mean,one,H1 Poisson (unseen tool and source),facemorpher,softh,0.8235,,,,,,,,,,,,,"0.431 [0.391, 0.472] (258/598)",,
+clip_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,softh,,,0.953,,0.9896,0.9902,0.4884,,,,,,,,,"0.043 [0.031, 0.057] (43/1000)"
+clip_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,softh,,,,0.9908,,,,,0.1595,0.8313,b2_.063-.125,"0.043 [0.035, 0.053] (86/2000)",0.2828,,0.999,
+clip_mean,two,SMDD test pairs (stored-small vs render),opencv,softh,,0.4443,,,,,,"0.020 [0.010, 0.036] (10/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),opencv,softh,0.8732,,,,,,,,,,,,,"0.580 [0.540, 0.620] (347/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),opencv,softh,,,0.9828,,0.9986,0.9985,0.4824,,,,,,,,,"0.054 [0.041, 0.070] (54/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,softh,,,,0.9988,,,,,0.1675,0.8313,b2_.063-.125,"0.048 [0.039, 0.058] (96/2000)",0.2828,,1.0,
+clip_mean,two,SMDD test pairs (stored-small vs render),facemorpher,softh,,0.4373,,,,,,"0.014 [0.006, 0.029] (7/500)",,,,,,,,
+clip_mean,two,H1 Poisson (unseen tool and source),facemorpher,softh,0.8669,,,,,,,,,,,,,"0.562 [0.521, 0.602] (336/598)",,
+clip_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,softh,,,0.9798,,0.9979,0.9976,0.4671,,,,,,,,,"0.054 [0.041, 0.070] (54/1000)"
+clip_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,softh,,,,0.998,,,,,0.1667,0.8313,b2_.063-.125,"0.051 [0.042, 0.062] (103/2000)",0.2828,,1.0,
+dino_mean,one,SMDD test pairs (stored-small vs render),opencv,none,,0.4556,,,,,,"0.014 [0.006, 0.029] (7/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),opencv,none,0.7718,,,,,,,,,,,,,"0.346 [0.308, 0.386] (207/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9317,,0.9756,0.9706,0.5495,,,,,,,,,"0.080 [0.064, 0.099] (80/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,none,,,,0.9696,,,,,0.1383,0.8313,b2_.063-.125,"0.083 [0.071, 0.096] (166/2000)",0.2828,,0.999,
+dino_mean,one,SMDD test pairs (stored-small vs render),facemorpher,none,,0.4663,,,,,,"0.018 [0.008, 0.034] (9/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),facemorpher,none,0.7838,,,,,,,,,,,,,"0.353 [0.315, 0.393] (211/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9385,,0.9748,0.9742,0.5202,,,,,,,,,"0.058 [0.044, 0.074] (58/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,none,,,,0.9727,,,,,0.1414,0.8313,b2_.063-.125,"0.062 [0.052, 0.074] (125/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),opencv,none,,0.4998,,,,,,"0.022 [0.011, 0.039] (11/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),opencv,none,0.7669,,,,,,,,,,,,,"0.318 [0.281, 0.357] (190/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),opencv,none,,,0.9798,,0.9955,0.9945,0.5236,,,,,,,,,"0.043 [0.031, 0.057] (43/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,none,,,,0.9944,,,,,0.1631,0.8313,b2_.063-.125,"0.048 [0.039, 0.058] (96/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),facemorpher,none,,0.4998,,,,,,"0.022 [0.011, 0.039] (11/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),facemorpher,none,0.7738,,,,,,,,,,,,,"0.353 [0.315, 0.393] (211/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,none,,,0.9861,,0.9975,0.9971,0.5084,,,,,,,,,"0.041 [0.030, 0.055] (41/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,none,,,,0.9969,,,,,0.1656,0.8313,b2_.063-.125,"0.049 [0.040, 0.059] (98/2000)",0.2828,,1.0,
+dino_mean,one,SMDD test pairs (stored-small vs render),opencv,soft,,0.5123,,,,,,"0.036 [0.021, 0.056] (18/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),opencv,soft,0.7696,,,,,,,,,,,,,"0.338 [0.300, 0.377] (202/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9307,,0.9744,0.9701,0.5409,,,,,,,,,"0.067 [0.052, 0.084] (67/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,soft,,,,0.9689,,,,,0.1376,0.8313,b2_.063-.125,"0.069 [0.058, 0.081] (138/2000)",0.2828,,0.998,
+dino_mean,one,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5133,,,,,,"0.030 [0.017, 0.049] (15/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),facemorpher,soft,0.7809,,,,,,,,,,,,,"0.343 [0.305, 0.382] (205/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.9368,,0.9732,0.9733,0.5133,,,,,,,,,"0.054 [0.041, 0.070] (54/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,soft,,,,0.9717,,,,,0.1404,0.8313,b2_.063-.125,"0.058 [0.048, 0.069] (116/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),opencv,soft,,0.5117,,,,,,"0.024 [0.012, 0.042] (12/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),opencv,soft,0.7661,,,,,,,,,,,,,"0.303 [0.266, 0.341] (181/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),opencv,soft,,,0.9797,,0.9955,0.9945,0.5217,,,,,,,,,"0.044 [0.032, 0.059] (44/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,soft,,,,0.9944,,,,,0.1631,0.8313,b2_.063-.125,"0.049 [0.040, 0.059] (97/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),facemorpher,soft,,0.5117,,,,,,"0.026 [0.014, 0.044] (13/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),facemorpher,soft,0.773,,,,,,,,,,,,,"0.349 [0.311, 0.389] (209/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,soft,,,0.986,,0.9975,0.9971,0.5065,,,,,,,,,"0.039 [0.028, 0.053] (39/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,soft,,,,0.9969,,,,,0.1656,0.8313,b2_.063-.125,"0.046 [0.037, 0.056] (92/2000)",0.2828,,1.0,
+dino_mean,one,SMDD test pairs (stored-small vs render),opencv,pipe,,0.4366,,,,,,"0.012 [0.004, 0.026] (6/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),opencv,pipe,0.7336,,,,,,,,,,,,,"0.269 [0.234, 0.307] (161/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9204,,0.9679,0.9626,0.5349,,,,,,,,,"0.070 [0.055, 0.088] (70/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,pipe,,,,0.9616,,,,,0.1303,0.8313,b2_.063-.125,"0.070 [0.059, 0.082] (140/2000)",0.2828,,0.998,
+dino_mean,one,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.4547,,,,,,"0.016 [0.007, 0.031] (8/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),facemorpher,pipe,0.7427,,,,,,,,,,,,,"0.288 [0.252, 0.326] (172/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9395,,0.9711,0.9742,0.4923,,,,,,,,,"0.054 [0.041, 0.070] (54/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,pipe,,,,0.9725,,,,,0.1412,0.8313,b2_.063-.125,"0.059 [0.049, 0.070] (117/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),opencv,pipe,,0.4781,,,,,,"0.018 [0.008, 0.034] (9/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),opencv,pipe,0.7379,,,,,,,,,,,,,"0.289 [0.253, 0.327] (173/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),opencv,pipe,,,0.9781,,0.9942,0.9937,0.5047,,,,,,,,,"0.042 [0.030, 0.056] (42/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,pipe,,,,0.9936,,,,,0.1623,0.8313,b2_.063-.125,"0.046 [0.038, 0.057] (93/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),facemorpher,pipe,,0.5031,,,,,,"0.016 [0.007, 0.031] (8/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),facemorpher,pipe,0.734,,,,,,,,,,,,,"0.294 [0.258, 0.333] (176/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,pipe,,,0.9848,,0.9954,0.9965,0.4697,,,,,,,,,"0.032 [0.022, 0.045] (32/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,pipe,,,,0.9962,,,,,0.1649,0.8313,b2_.063-.125,"0.037 [0.029, 0.046] (74/2000)",0.2828,,1.0,
+dino_mean,one,SMDD test pairs (stored-small vs render),opencv,both,,0.5117,,,,,,"0.030 [0.017, 0.049] (15/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),opencv,both,0.7307,,,,,,,,,,,,,"0.276 [0.240, 0.314] (165/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),opencv,both,,,0.9184,,0.9655,0.9615,0.5233,,,,,,,,,"0.064 [0.050, 0.081] (64/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,both,,,,0.9603,,,,,0.129,0.8313,b2_.063-.125,"0.064 [0.054, 0.076] (128/2000)",0.2828,,0.997,
+dino_mean,one,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5126,,,,,,"0.030 [0.017, 0.049] (15/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),facemorpher,both,0.7421,,,,,,,,,,,,,"0.308 [0.271, 0.346] (184/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9377,,0.9694,0.9733,0.4852,,,,,,,,,"0.047 [0.035, 0.062] (47/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,both,,,,0.9715,,,,,0.1402,0.8313,b2_.063-.125,"0.050 [0.041, 0.060] (100/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),opencv,both,,0.5117,,,,,,"0.022 [0.011, 0.039] (11/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),opencv,both,0.7358,,,,,,,,,,,,,"0.276 [0.240, 0.314] (165/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),opencv,both,,,0.978,,0.9941,0.9938,0.4987,,,,,,,,,"0.041 [0.030, 0.055] (41/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,both,,,,0.9937,,,,,0.1624,0.8313,b2_.063-.125,"0.043 [0.035, 0.053] (87/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),facemorpher,both,,0.5138,,,,,,"0.016 [0.007, 0.031] (8/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),facemorpher,both,0.7335,,,,,,,,,,,,,"0.294 [0.258, 0.333] (176/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,both,,,0.9847,,0.9954,0.9965,0.4682,,,,,,,,,"0.033 [0.023, 0.046] (33/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,both,,,,0.9962,,,,,0.1649,0.8313,b2_.063-.125,"0.038 [0.031, 0.048] (77/2000)",0.2828,,1.0,
+dino_mean,one,SMDD test pairs (stored-small vs render),opencv,softh,,0.4272,,,,,,"0.012 [0.004, 0.026] (6/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),opencv,softh,0.7648,,,,,,,,,,,,,"0.331 [0.293, 0.370] (198/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),opencv,softh,,,0.9287,,0.9762,0.969,0.5681,,,,,,,,,"0.080 [0.064, 0.099] (80/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,softh,,,,0.9682,,,,,0.1369,0.8313,b2_.063-.125,"0.083 [0.071, 0.095] (165/2000)",0.2828,,0.999,
+dino_mean,one,SMDD test pairs (stored-small vs render),facemorpher,softh,,0.4327,,,,,,"0.010 [0.003, 0.023] (5/500)",,,,,,,,
+dino_mean,one,H1 Poisson (unseen tool and source),facemorpher,softh,0.7781,,,,,,,,,,,,,"0.348 [0.310, 0.388] (208/598)",,
+dino_mean,one,AF0 unseen persons (OpenCV engine),facemorpher,softh,,,0.9378,,0.9769,0.9744,0.5418,,,,,,,,,"0.065 [0.051, 0.082] (65/1000)"
+dino_mean,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,softh,,,,0.9733,,,,,0.142,0.8313,b2_.063-.125,"0.069 [0.058, 0.081] (138/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),opencv,softh,,0.4796,,,,,,"0.022 [0.011, 0.039] (11/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),opencv,softh,0.7634,,,,,,,,,,,,,"0.333 [0.295, 0.372] (199/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),opencv,softh,,,0.9783,,0.9952,0.9939,0.5425,,,,,,,,,"0.056 [0.043, 0.072] (56/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,softh,,,,0.9939,,,,,0.1626,0.8313,b2_.063-.125,"0.060 [0.050, 0.072] (121/2000)",0.2828,,1.0,
+dino_mean,two,SMDD test pairs (stored-small vs render),facemorpher,softh,,0.4729,,,,,,"0.018 [0.008, 0.034] (9/500)",,,,,,,,
+dino_mean,two,H1 Poisson (unseen tool and source),facemorpher,softh,0.7704,,,,,,,,,,,,,"0.376 [0.337, 0.416] (225/598)",,
+dino_mean,two,AF0 unseen persons (OpenCV engine),facemorpher,softh,,,0.9852,,0.9974,0.9966,0.5328,,,,,,,,,"0.039 [0.028, 0.053] (39/1000)"
+dino_mean,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,softh,,,,0.9965,,,,,0.1652,0.8313,b2_.063-.125,"0.047 [0.038, 0.057] (94/2000)",0.2828,,1.0,
+stats27,one,H1 Poisson (unseen tool and source),opencv,none,0.7147,,,,,,,,,,,,,"0.062 [0.044, 0.084] (37/598)",,
+stats27,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,none,,,,0.803,,,,,-0.0283,0.8313,b2_.063-.125,"0.038 [0.031, 0.048] (77/2000)",0.2828,,0.915,
+stats27,one,H1 Poisson (unseen tool and source),facemorpher,none,0.7148,,,,,,,,,,,,,"0.059 [0.041, 0.080] (35/598)",,
+stats27,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,none,,,,0.8792,,,,,0.0479,0.8313,b2_.063-.125,"0.040 [0.032, 0.050] (80/2000)",0.2828,,0.916,
+stats27,two,H1 Poisson (unseen tool and source),opencv,none,0.6743,,,,,,,,,,,,,"0.102 [0.079, 0.129] (61/598)",,
+stats27,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,none,,,,0.8965,,,,,0.0652,0.8313,b2_.063-.125,"0.034 [0.026, 0.043] (68/2000)",0.2828,,0.957,
+stats27,two,H1 Poisson (unseen tool and source),facemorpher,none,0.6821,,,,,,,,,,,,,"0.095 [0.073, 0.122] (57/598)",,
+stats27,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,none,,,,0.9007,,,,,0.0694,0.8313,b2_.063-.125,"0.040 [0.031, 0.049] (79/2000)",0.2828,,0.932,
+stats27,one,H1 Poisson (unseen tool and source),opencv,pipe,0.7055,,,,,,,,,,,,,"0.052 [0.035, 0.073] (31/598)",,
+stats27,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,pipe,,,,0.8638,,,,,0.0325,0.8313,b2_.063-.125,"0.041 [0.032, 0.050] (81/2000)",0.2828,,0.896,
+stats27,one,H1 Poisson (unseen tool and source),facemorpher,pipe,0.7143,,,,,,,,,,,,,"0.057 [0.040, 0.079] (34/598)",,
+stats27,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,pipe,,,,0.8662,,,,,0.0349,0.8313,b2_.063-.125,"0.040 [0.032, 0.050] (80/2000)",0.2828,,0.891,
+stats27,two,H1 Poisson (unseen tool and source),opencv,pipe,0.7193,,,,,,,,,,,,,"0.075 [0.055, 0.099] (45/598)",,
+stats27,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,pipe,,,,0.8863,,,,,0.055,0.8313,b2_.063-.125,"0.046 [0.038, 0.057] (93/2000)",0.2828,,0.922,
+stats27,two,H1 Poisson (unseen tool and source),facemorpher,pipe,0.7223,,,,,,,,,,,,,"0.079 [0.058, 0.103] (47/598)",,
+stats27,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,pipe,,,,0.8832,,,,,0.0519,0.8313,b2_.063-.125,"0.048 [0.039, 0.058] (96/2000)",0.2828,,0.911,
+stats27,one,H1 Poisson (unseen tool and source),opencv,softh,0.6836,,,,,,,,,,,,,"0.065 [0.047, 0.088] (39/598)",,
+stats27,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,softh,,,,0.8643,,,,,0.033,0.8313,b2_.063-.125,"0.089 [0.077, 0.102] (178/2000)",0.2828,,0.917,
+stats27,one,H1 Poisson (unseen tool and source),facemorpher,softh,0.6855,,,,,,,,,,,,,"0.079 [0.058, 0.103] (47/598)",,
+stats27,one,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,softh,,,,0.8598,,,,,0.0285,0.8313,b2_.063-.125,"0.077 [0.066, 0.090] (155/2000)",0.2828,,0.91,
+stats27,two,H1 Poisson (unseen tool and source),opencv,softh,0.658,,,,,,,,,,,,,"0.095 [0.073, 0.122] (57/598)",,
+stats27,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",opencv,softh,,,,0.8996,,,,,0.0683,0.8313,b2_.063-.125,"0.083 [0.071, 0.096] (166/2000)",0.2828,,0.958,
+stats27,two,H1 Poisson (unseen tool and source),facemorpher,softh,0.6778,,,,,,,,,,,,,"0.100 [0.077, 0.127] (60/598)",,
+stats27,two,"AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)",facemorpher,softh,,,,0.8886,,,,,0.0573,0.8313,b2_.063-.125,"0.050 [0.041, 0.060] (100/2000)",0.2828,,0.929,
