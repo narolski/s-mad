@@ -935,3 +935,22 @@ Headline rows (EER %, morph-free seed mean [95% person-bootstrap interval of the
   corrected MAD22 FaceMorpher E7 cell; FRLL landmark E7 flag rates 26 to 45%.
 - Training accuracy: morph-free 1.000 on their labels; label-permuted 0.512 to 0.520 on their own labels and 0.399 to 0.686 on the true labels;
   untrained 0.295.
+
+### Independent review of the ViT-B/16 reading, post hoc addendum and result.md rewrite (11 Nov, 23:40 to 23:55)
+
+- Review: `/home/narolski/smad-next/experiments/reviews/REVIEW_AD4_VITB_20261111.md` (needs qualification; the history-matching conclusion is
+  partly wrong). The lead asked for (1) the reviewer's readings, registered and run with the registered bootstrap, (2) result.md rewritten
+  with the corrected wording, (3) follow-ups H-new-1 to H-new-5 registered before scoring, (4) the same corrections in the ViT-L/14 reading.
+- 23:44: **Amendment 3** (post hoc, descriptive) appended to `prereg.md` before running: floor logits, own-genuine flag rate at FRLL-5% with
+  miss rates, file-size null per cell, seed-spread rule (wide = EER range above 30 points; reversed = all AUC below 0.5; split = one AUC
+  below 0.4 and one above 0.6; no seed mean for reversed or split), label-permuted accuracies; wording rules.
+- `src/AD4/posthoc_m3.py` (sha256 `595af89b…`; uses `summarise.py` unchanged) run:
+  `cd /home/narolski/smad-next/src/AD4 && CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 nice -n 10 $P posthoc_m3.py --results /mnt/t7/smad_next/AD4/results_vast --recipe m3`
+  (log `/mnt/t7/smad_next/AD4/read/posthoc_m3.log`). Outputs `experiments/AD4/posthoc_m3.md` (`c8f62471…`) and `posthoc_m3.json` (`5df95a81…`).
+  Main numbers (our frames): training natives at logit -3.67 to -3.63 and copies at +3.60 to +3.65 (medians, morph-free); FRLL-5% threshold
+  p = 0.027 to 0.036; MorDIFF's own unprocessed genuine photos flagged at FRLL-5%: 50.7% [47.5, 53.7] (per seed 1.0, 70.1, 54.9, 87.7, 39.7)
+  with 0.0% of MorDIFF morphs missed; file-size null on native cells AUC 0.72 (Greedy-DiM) to 1.000 (MAD22 FaceMorpher), MorDIFF 0.999;
+  on history-matched cells 0.04 (Greedy-DiM) to 0.99 (FRLL FaceMorpher); reversed cells: DiM-A E7, Fast-DiM-ODE E7, MIPGAN-I, MIPGAN-II;
+  split cells: Greedy-DiM E7, Greedy-DiM-S E7, FRLL OpenCV E7; wide: FRLL OpenCV native.
+- result.md rewritten (copy of the earlier version: `/mnt/t7/smad_next/AD4/read/result_md_before_rewrite_20261111T2350.md`): new top sections
+  with the corrected wording, a "Withdrawn" list with reasons, the earlier record kept below, the superseded 23:36 reading text quoted.

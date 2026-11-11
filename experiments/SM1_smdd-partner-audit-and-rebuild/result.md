@@ -547,6 +547,17 @@ draws).** Our recipe, morph / genuine class: a −0.06 / −0.01; b −0.10 / �
 class (−0.10 → +0.05 → −0.02, Δρ +0.08). Partner diversity does not make the heads lean on softness inside a class;
 halves and history copies do (genuine-class ρ −0.29 to −0.37 in d, e, f).
 
+## First LoRA fits (A9; ViT-L/14 M3L recipe, arm a, seeds 401 and 402, Athena 3545823_0/1; `p3_lora_vitl.json`)
+
+Our frames, first-test data, arms fixed in advance; 2 of the 25 ViT-L/14 fits (the others wait on Athena). Means of
+2 seeds [person bootstrap]; frozen-head arm a in brackets: landmark-7 native EER 2.62 [1.91, 3.24] (7.34), landmark
+rise −0.29 (+2.59); diffusion-7 native EER 31.2 [28.8, 33.3] (20.7), diffusion rise −0.76 [−1.85, +0.44] (+11.32);
+GAN-3 EER 21.3 (15.8). History-matched pools flagged at the own rule: 0.00 for every pool (frozen 0.27 MorDIFF).
+**A11 validity condition (arm a flags more than 10% of some history-matched pool): not met at the own rule;** met at
+the camera-photo threshold (MorDIFF E7 0.85, seeds 1.00 / 0.71), where this head also flags 0.31 of untouched FRLL
+photos and 0.83 of JPEG-50 FRLL photos (seed spread large). So the ViT-L/14 LoRA arm a shows no storage rise in EER;
+the storage comparison for the ViT-L/14 fits does not count at the own rule (A11). Train hours 3.50 per fit.
+
 ## A12 items still open
 
 10 (audit scored by the LoRA fits, H-new-5): when the fits finish (two ViT-L/14 fits running, the rest pending on

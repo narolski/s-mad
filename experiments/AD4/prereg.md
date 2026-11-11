@@ -274,3 +274,29 @@ recipe's.
 
 **(h) The reader.** `src/AD4/summarise.py` is rewritten to implement the registration with these points; its sha256
 is recorded in the README before it reads any trained network.
+
+## Amendment 3: post hoc addendum to the ViT-B/16 reading (11 Nov 2026, 23:44 CET, after the independent review `experiments/reviews/REVIEW_AD4_VITB_20261111.md`; registered before these readings are run)
+
+Post hoc and descriptive: these readings were asked for by the reviewer after the ViT-B/16 numbers were seen. They change no
+verdict of the registration. Zero GPU, one CPU process, script `src/AD4/posthoc_m3.py`, outputs `experiments/AD4/posthoc_m3.{json,md}`.
+Bootstrap: the registered one (Amendment 2 (a): 10,000 replicates, seed [20261111, 4], 102 FRLL persons, the same draw). Our frames throughout.
+Inputs: the ten ViT-B/16 result tars and the untrained network, already verified by the reader; PNG file sizes of the evaluation images in
+`/mnt/t7/smad_next/AD4/test/work/task_AD4_m3mf_s401/data/` (the pack's byte copies, i.e. our frames).
+
+1. **Floor logits.** logit = log(p / (1 − p)), p clipped to [1e-7, 1 − 1e-7]. Training set (`scores_train.npz`, no TTA, true labels): per
+   network, median and 5th / 95th percentile logit of the SMDD natives and of their shrink-and-enlarge copies. Evaluation (TTA score): per
+   network and cell, median logit of the morphs, of the cell's genuine photos and of the set's unprocessed genuine photos. Per network the
+   FRLL-5% threshold as a probability and a logit.
+2. **Own-genuine flag rate at FRLL-5%.** For each set's unprocessed genuine pool (MorDIFF, DiM, FRLL, corrected MAD22): flag rate per seed,
+   arm mean with its 95% interval (weighted share under the bootstrap draw), always beside the miss rate of each family of that set.
+3. **File-size null per cell** (native and history-matched): signed AUC and EER of the score "smaller PNG file = more morph"
+   (−bytes), with 95% intervals; and per network the Spearman correlation of the network score with −bytes inside the cell (both classes).
+4. **Seed spread.** For each cell of the morph-free arm: the per-seed EER and AUC, the range; "wide" if the EER range exceeds 30 points;
+   "reversed" if all five AUCs are below 0.5; "split" if at least one AUC is below 0.4 and at least one above 0.6. For reversed and split
+   cells no seed mean is printed. For wide cells the range is printed beside the mean.
+5. **Label-permuted networks:** training accuracy and AUC on their own labels and on the true labels, per seed (from `metrics.json`).
+
+Wording rules adopted from the review for every later text of this experiment (result.md and the ViT-L/14 reading): the networks are
+"trained only to flag shrink-and-enlarge copies of synthetic faces (no morph, no blending)"; "resolution history", not storage history;
+the history-matched control "removes or overshoots the cue", never "chance"; every statement "in our preprocessing"; flag and miss rates
+always together.

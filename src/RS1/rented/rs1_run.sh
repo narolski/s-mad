@@ -9,6 +9,9 @@ G=/root/rs1
 if [ "${1:-}" = setup ]; then
   python3 -m pip install --no-cache-dir -q "timm==1.0.27" "huggingface_hub==0.36.2" "safetensors==0.8.0" "numpy==1.26.4" \
     "pyyaml==6.0.3" "pillow==10.2.0" "opencv-python-headless==4.11.0.86" "requests==2.32.3" "tqdm==4.67.1"
+  # the image's conda Pillow 10.2.0 links a different libjpeg than the PyPI wheel used on Athena: replace it
+  python3 -m pip install --no-cache-dir -q --force-reinstall --no-deps "pillow==10.2.0"
+  python3 -c "import PIL.features as F; print('libjpeg_turbo', F.version('libjpeg_turbo'), 'jpg', F.version('jpg'))" | tee $G/setup_libjpeg.txt
   mkdir -p $G/whl && tar -xf $G/packs/rs1a_pack.tar -C $G/whl wheels/facenet_pytorch-2.6.0-py3-none-any.whl
   python3 -m pip install --no-cache-dir -q --no-deps $G/whl/wheels/facenet_pytorch-2.6.0-py3-none-any.whl
   python3 -m pip freeze > $G/setup_pip_freeze.txt
