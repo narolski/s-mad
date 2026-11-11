@@ -159,6 +159,11 @@ No retrain and no score exist yet.
   result tar (crops/v1 + crops/v2 + crops_sha256.txt), score both crop variants, verify the crop hashes; it will live
   in `packs/AD5/code_v4/`; `facenet-pytorch==2.6.0` added to `score_requirements.txt` (offline resolution passes).
 - 11 Nov 19:41 (lead). Athena has 12 working nodes tonight; the 8-GPU tasks may wait; do not reshape them.
+- 11 Nov 19:48 (lead, author's approval). Waiting jobs moved in place to account `plgmultivision-gpu-a100` (more
+  scheduling priority tonight): MADation 3545813, 3545814 and MixFaceNet-MAD 3545870. Every new AD5 job is submitted
+  with `-A plgmultivision-gpu-a100` on the sbatch command line (the job files still say plgrestorearc). Accounts per job:
+  3544190, 3544192, 3544216, 3544217, 3544218, 3545815, 3545882: plgrestorearc-gpu-a100; 3545813, 3545814, 3545870:
+  submitted under plgrestorearc, moved to plgmultivision before starting.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.

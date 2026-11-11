@@ -148,7 +148,11 @@ missing); a pack is ready there for later.
   difference| 0.20 (ViT-B/16), 0.07 (ViT-L/14); corrected-crop boxes Athena vs DGX on the same 200 inputs: median
   0.03 px, 21 above 1 px, max 15.9 px.
 - 19:40. **Production job 3545884** submitted (`sbatch tasks/RS1/athena_rs1.sbatch`; 4 h limit, 1 A100, 110 GB with
-  memfs). Expected: about 41,000 inputs per variant, 14 scoring runs.
+  memfs). Expected: about 29,000 inputs per variant, 14 scoring runs.
+- Accounts per Athena job: smoke 3544220, cancelled smoke 3545836 and smoke 3545869 ran under
+  `plgrestorearc-gpu-a100`; production 3545884 was submitted under `plgrestorearc-gpu-a100` and moved in place by the
+  lead (19:48, author's approval) to `plgmultivision-gpu-a100`. New jobs use `-A plgmultivision-gpu-a100`
+  (`athena_rs1.sbatch` updated).
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.

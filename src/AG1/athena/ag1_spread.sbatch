@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH -J smadnext-AG1s
-#SBATCH -A plgrestorearc-gpu-a100
+#SBATCH -A plgmultivision-gpu-a100
 #SBATCH -p plgrid-gpu-a100
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1

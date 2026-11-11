@@ -112,6 +112,8 @@ def main():
     ap.add_argument("--fe-ref", action="store_true")
     ap.add_argument("--feat-dir", default=str(FEAT))
     ap.add_argument("--device", default="cuda", help="cuda (default; the DGX CPU is saturated) or cpu")
+    ap.add_argument("--rescore", action="store_true", help="recompute every saved head's logits on the current test "
+                    "bank (A10: after the JPEG frames' features arrive); no retraining")
     a = ap.parse_args()
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
@@ -123,8 +125,16 @@ def main():
     test = Bank(TESTS)
     if a.fe_ref:
         return fe_ref(test)
-    bank = Bank(TRAIN)
     ids = np.array(sorted(test.pos, key=test.pos.get))
+    if a.rescore:
+        for d in (K.OUT / "heads", K.OUT / "heads/smoke"):
+            for f in sorted(d.glob("*_s*.npz")):
+                z0 = np.load(f, allow_pickle=False)
+                W, b0 = z0["W"], z0["b"]
+                np.savez(f, id=ids, logit=(test.F @ W + b0).astype(np.float32), W=W, b=b0)
+                print("rescored", f.name, flush=True)
+        return
+    bank = Bank(TRAIN)
     od = K.OUT / ("heads/smoke" if a.smoke else "heads")
     od.mkdir(parents=True, exist_ok=True)
     cd = K.OUT / ("compose/smoke" if a.smoke else "compose")

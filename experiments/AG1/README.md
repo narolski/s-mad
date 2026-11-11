@@ -64,6 +64,10 @@ the owner. Nothing may be submitted or probed until then.
   R3 2.953 / 1.246, R3m 3.247 / 1.331, R4 5.474 / 5.550, RT 2.947, AG3(0.3) 4.785; MIPGAN-II R2 2.429 / 0.735, R3
   3.304 / 1.457, R3m 3.545 / 1.520, R4 5.676 / 5.706 (persons frll_001 / frll_010). Production estimate 19.9 A100
   GPU-h; array time limit raised to 10 h (longest shard, MIPGAN-II FRLL 00, about 4.5 h).
+- 19:48 (lead, author-approved) all waiting jobs moved in place to account plgmultivision-gpu-a100: core 3544797,
+  graded mixing 3544798 / 3544799, spread 3545819. Accounts per job: smoke 3544188 and 3544209 ran on
+  plgrestorearc-gpu-a100; the four production arrays on plgmultivision-gpu-a100. Local sbatch files now carry
+  `-A plgmultivision-gpu-a100` for any new job (uploaded at the next transfer).
 - 19:20-19:30 Manifest builder tested on the smoke outputs (renamed copies in `/mnt/t7/smad_next/AG1/tests/manifest/`):
   3,030 rows (604 camera R0, 408 E7 R1, 1,999 published MIPGAN, 19 generated), aligned-flag rate 0.995, RT check
   runs (1 pair, max 86 grey levels), pins written. The oracle step ran at about 500% CPU and the lead flagged the
