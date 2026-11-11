@@ -27,7 +27,7 @@ def main():
             for cell in ("frgcferet/opencv", "frgcferet/facemorpher", "frll/opencv", "frll/facemorpher",
                          "frll_clean/opencv", "frll_clean/facemorpher"):
                 L = r.get(f"{cell}/{base}-{twin}") or (r.get(f"{cell}/{base}-{twin}-R4nn") if variant == "D" else None)
-                if not L:
+                if not L or "skipped" in L:
                     continue
                 def st(k):
                     x = L[k]

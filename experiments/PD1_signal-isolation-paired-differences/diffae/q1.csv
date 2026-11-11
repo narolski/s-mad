@@ -8,3 +8,21 @@ clip_pool,"FRLL pipeline a256->D20 (256) (training step P; diagnostic, FRLL)",20
 clip_pool,"FRLL whole morph D20->B20 (256) (training step W; diagnostic, FRLL)",200,0.91,,,,,,"diagnostic (FRLL), no reading"
 clip_pool,"FRLL same-person mix D20->C20 (256) (training step M; confounded, no conclusion)",102,0.9901960784313726,,,,,,"diagnostic (FRLL), no reading"
 clip_pool,"FRLL mirror mix D20r->PAF (256) (training step M; diagnostic, FRLL, AD1b)",4,1.0,,,,,,"diagnostic (FRLL), no reading"
+clip_patch,pipeline trace (x0 to x1),516,1.0,1.0,1.0,0.8817566552490836,0.8630865595517097,0.9009339695631272,consistent direction
+clip_patch,same-person mixing (x1 to x2),516,0.9941860465116279,0.9864341085271318,1.0,0.9284448049996995,0.91091280572081,0.9454962517276606,consistent direction
+clip_patch,second identity (x2 to x3),516,0.8546511627906976,0.7867630194279547,0.914179104477612,0.7661198245297759,0.7071288718397639,0.8235377445551864,consistent direction
+clip_patch,whole morph (x1 to x3),516,0.9476744186046512,0.9070235921583703,0.9777406773211568,0.8534718466438315,0.8053469358769952,0.8977879850874236,consistent direction
+clip_patch,genuine to morph (x0 to x3),516,0.9883720930232558,0.96875,1.0,0.9287602908479058,0.8907935842244488,0.9593517011448947,consistent direction
+clip_patch,"FRLL pipeline a256->D20 (256) (training step P; diagnostic, FRLL)",204,1.0,,,,,,"diagnostic (FRLL), no reading"
+clip_patch,"FRLL whole morph D20->B20 (256) (training step W; diagnostic, FRLL)",200,0.855,,,,,,"diagnostic (FRLL), no reading"
+clip_patch,"FRLL same-person mix D20->C20 (256) (training step M; confounded, no conclusion)",102,1.0,,,,,,"diagnostic (FRLL), no reading"
+clip_patch,"FRLL mirror mix D20r->PAF (256) (training step M; diagnostic, FRLL, AD1b)",4,1.0,,,,,,"diagnostic (FRLL), no reading"
+dino_pool,pipeline trace (x0 to x1),516,1.0,1.0,1.0,0.9794746409470585,0.9705246078961601,0.9873920212126674,consistent direction
+dino_pool,same-person mixing (x1 to x2),516,0.9883720930232558,0.9786821705426356,0.9961240310077519,0.9096208160567274,0.88600388348056,0.9327941905534523,consistent direction
+dino_pool,second identity (x2 to x3),516,0.8585271317829457,0.7845380558076225,0.918920482982983,0.7911784147587284,0.7336509196319286,0.843750944545196,consistent direction
+dino_pool,whole morph (x1 to x3),516,0.9554263565891473,0.9182365586909333,0.9829545454545454,0.8500540832882639,0.7877269024022605,0.9029012865976161,consistent direction
+dino_pool,genuine to morph (x0 to x3),516,0.998062015503876,0.9887218045112782,1.0,0.9820473529235022,0.9619837330285261,0.9944522075987065,consistent direction
+dino_pool,"FRLL pipeline a256->D20 (256) (training step P; diagnostic, FRLL)",204,1.0,,,,,,"diagnostic (FRLL), no reading"
+dino_pool,"FRLL whole morph D20->B20 (256) (training step W; diagnostic, FRLL)",200,0.875,,,,,,"diagnostic (FRLL), no reading"
+dino_pool,"FRLL same-person mix D20->C20 (256) (training step M; confounded, no conclusion)",102,1.0,,,,,,"diagnostic (FRLL), no reading"
+dino_pool,"FRLL mirror mix D20r->PAF (256) (training step M; diagnostic, FRLL, AD1b)",4,1.0,,,,,,"diagnostic (FRLL), no reading"

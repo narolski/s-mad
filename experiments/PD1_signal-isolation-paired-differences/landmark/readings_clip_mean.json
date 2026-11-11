@@ -76,5 +76,25 @@
   "verdict": "works",
   "keeps_separation": true,
   "loses_reaction_to_softened": true
+ },
+ "softh": {
+  "feature": "clip_mean",
+  "auc_x1_vs_x3": 0.9862,
+  "auc_ci": [
+   0.9775825096517219,
+   0.9925900949916164
+  ],
+  "excess": 0.1004,
+  "excess_ci": [
+   0.07884828381798947,
+   0.12490311954945521
+  ],
+  "floor": 0.8858,
+  "floor_stat": "b3_.125-.25",
+  "flag_frll_opencv_e7": 0.04411764705882353,
+  "flag_mad22_opencv_e7": 0.05392156862745098,
+  "verdict": "works",
+  "keeps_separation": true,
+  "loses_reaction_to_softened": true
  }
 }

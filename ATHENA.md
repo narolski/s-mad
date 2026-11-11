@@ -17,17 +17,19 @@ useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 No
 
 ## Account, partition, billing
 
-- Account `plgrestorearc-gpu-a100` (30,000 GPU-hours to 16 Aug 2027; it appeared in `hpc-grants` on 11 Nov at
-  17:20). `plgmultivision-gpu-a100` is the author's fallback.
+- Two accounts are usable: `plgrestorearc-gpu-a100` and `plgmultivision-gpu-a100` (see the priority note below).
 - 11 Nov 18:25: Slurm accepts both accounts (it refused them from 17:20 to 18:05, until the user's association was
   synchronised after the access service was activated). First job: 3544186, the environment build and smoke test.
   To see what Slurm accepts for the user: `sacctmgr -nP show assoc user=plgpnarolski format=Account,Partition`;
   to test without creating a job: `sbatch --test-only -A <account> -p plgrid-gpu-a100 ... --wrap true`.
-- Priority (11 Nov 19:44): jobs on `plgrestorearc-gpu-a100` have a fair-share factor of 0.36 (the group's earlier use);
-  `plgmultivision-gpu-a100` is unused and has 1.0, which more than doubles a job's priority. With the author's
-  approval the 20 LoRA fits of the SMDD rebuild (SM1) are charged there. The account of a PENDING job can be
-  changed in place: `scontrol update JobId=<id> Account=plgmultivision-gpu-a100`. Other experiments stay on
-  `plgrestorearc` unless the lead says otherwise. See priorities with `sprio -u plgpnarolski`.
+- **Account for new jobs from 11 Nov 19:48: `plgmultivision-gpu-a100`** (author: "All"). Jobs on
+  `plgrestorearc-gpu-a100` have a fair-share factor of 0.36 (the group's earlier use); `plgmultivision` was unused
+  (1.0), which more than doubles a job's priority (about 11,600 against 5,200). All our waiting jobs were moved in
+  place with `scontrol update JobId=<id> Account=plgmultivision-gpu-a100` (works for pending jobs only; running
+  jobs stay where they are). The account is not part of any method, so results are unaffected. The fair-share of
+  `plgmultivision` will fall as we use it: compare with `sshare -U` and `sprio -u plgpnarolski`, and tell the lead
+  if `plgrestorearc` becomes the better one. Budget: 10,000 A100-hours to 30 Mar 2027 on `plgmultivision`,
+  30,000 to 16 Aug 2027 on `plgrestorearc`.
 - Partition `plgrid-gpu-a100`: A100 with 40 GB, 8 per node, x86, limit 48 hours.
 - Billing is one GPU-hour per GPU and hour while a job stays within 16 CPU cores and 128 GB per GPU.
   Ask for `-c 8 --mem=64G --gres=gpu:1` unless you need more.

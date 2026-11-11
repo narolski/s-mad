@@ -1,7 +1,14 @@
 {
  "feature": "clip_mean",
  "n_hosts": 536,
- "n_soft": {},
+ "n_soft": {
+  "none|R0_soft_amsl112": 200,
+  "facemorpher|R2w_soft_amsl112": 200,
+  "opencv|R2w_soft_amsl112": 200,
+  "none|R0_soft_fm61": 200,
+  "facemorpher|R2w_soft_fm61": 200,
+  "opencv|R2w_soft_fm61": 200
+ },
  "fold_sizes": [
   107,
   108,
@@ -14,7 +21,8 @@
   "none",
   "soft",
   "pipe",
-  "both"
+  "both",
+  "softh"
  ],
  "ext_counts": {
   "smdd": 3000,
@@ -24,5 +32,5 @@
   "ar1g": 1800
  },
  "cues_available": 19417,
- "seconds": 90.7
+ "seconds": 147.6
 }

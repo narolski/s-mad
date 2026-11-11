@@ -56,3 +56,117 @@ clip_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half r
 clip_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.576; n=4)",whole morph (x1 to x3),0.48236458329922216,,,
 clip_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.576; n=4)",genuine to morph (x0 to x3),0.26576583975569695,,,
 clip_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.576; n=4)",softening (SMDD original to shrunk copy),-0.15421843319399206,,,
+clip_patch,pipeline trace (x0 to x1),pipeline trace (x0 to x1),0.9722347040322572,0.9213478665839787,0.96309033779481,1.0
+clip_patch,pipeline trace (x0 to x1),same-person mixing (x1 to x2),-0.05900097118879701,-0.09845689228254242,-0.01746549257696956,-0.061752914231167313
+clip_patch,pipeline trace (x0 to x1),second identity (x2 to x3),0.20973858347534466,0.12320703245932534,0.24185101413483392,0.2444870212707625
+clip_patch,pipeline trace (x0 to x1),whole morph (x1 to x3),0.09105299309629507,0.03745322645783904,0.13218080466437923,0.09762873681924636
+clip_patch,pipeline trace (x0 to x1),genuine to morph (x0 to x3),0.6529636327790019,0.5853485388645616,0.6590371820097332,0.6848396468594795
+clip_patch,pipeline trace (x0 to x1),softening (SMDD original to shrunk copy),0.25319666969141147,0.22552611995653488,0.2690574617110951,0.25980534789076637
+clip_patch,same-person mixing (x1 to x2),same-person mixing (x1 to x2),0.9389279915473976,0.8413779287686093,0.9181226654130566,1.0
+clip_patch,same-person mixing (x1 to x2),second identity (x2 to x3),-0.34324954839077937,-0.39432639214304055,-0.20676599491311237,-0.4071522785639149
+clip_patch,same-person mixing (x1 to x2),whole morph (x1 to x3),0.7263041055887532,0.6183568592924049,0.7215589920431134,0.7924490682670828
+clip_patch,same-person mixing (x1 to x2),genuine to morph (x0 to x3),0.5082452382285028,0.4244111006274517,0.5348054321849265,0.5424286696224211
+clip_patch,same-person mixing (x1 to x2),softening (SMDD original to shrunk copy),-0.13399070196284232,-0.1563921596799122,-0.0992223247681729,-0.13990530288505004
+clip_patch,second identity (x2 to x3),second identity (x2 to x3),0.7569617300416257,0.4974548590708261,0.699888991076841,1.0
+clip_patch,second identity (x2 to x3),whole morph (x1 to x3),0.19453158591058703,0.05723683091593285,0.26912405932009054,0.23638622708041004
+clip_patch,second identity (x2 to x3),genuine to morph (x0 to x3),0.2716848287253586,0.14273547354558333,0.3255265279585951,0.32293408510460536
+clip_patch,second identity (x2 to x3),softening (SMDD original to shrunk copy),0.06919857198929127,0.005735708828382902,0.1157099909358636,0.08047033838591826
+clip_patch,whole morph (x1 to x3),whole morph (x1 to x3),0.8946681842399106,0.7506902826144407,0.8562785767934464,1.0
+clip_patch,whole morph (x1 to x3),genuine to morph (x0 to x3),0.7247641025645624,0.6099715435404262,0.7138613654303065,0.7924121730581757
+clip_patch,whole morph (x1 to x3),softening (SMDD original to shrunk copy),-0.08879475119965932,-0.12233457073324512,-0.04375602523041472,-0.09497995400421824
+clip_patch,genuine to morph (x0 to x3),genuine to morph (x0 to x3),0.935037607708227,0.8364046553233101,0.9084196978528266,1.0
+clip_patch,genuine to morph (x0 to x3),softening (SMDD original to shrunk copy),0.08576181424481566,0.0465096352636087,0.11930084093242162,0.08973359707219791
+clip_patch,softening (SMDD original to shrunk copy),softening (SMDD original to shrunk copy),0.9768967979340799,0.9444536165011863,0.9637455758444243,1.0
+clip_patch,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.980; n=204)",pipeline trace (x0 to x1),0.671602422932124,,,
+clip_patch,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.980; n=204)",same-person mixing (x1 to x2),-0.08109793407376696,,,
+clip_patch,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.980; n=204)",second identity (x2 to x3),0.09749581414280731,,,
+clip_patch,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.980; n=204)",whole morph (x1 to x3),-0.017012437309491528,,,
+clip_patch,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.980; n=204)",genuine to morph (x0 to x3),0.39500127149464614,,,
+clip_patch,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.980; n=204)",softening (SMDD original to shrunk copy),0.15577259264887394,,,
+clip_patch,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.840; n=200)",pipeline trace (x0 to x1),0.0959694807020421,,,
+clip_patch,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.840; n=200)",same-person mixing (x1 to x2),0.3787155098140702,,,
+clip_patch,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.840; n=200)",second identity (x2 to x3),0.04696382196586248,,,
+clip_patch,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.840; n=200)",whole morph (x1 to x3),0.4302917755799351,,,
+clip_patch,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.840; n=200)",genuine to morph (x0 to x3),0.37702842112105983,,,
+clip_patch,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.840; n=200)",softening (SMDD original to shrunk copy),-0.02551579847915554,,,
+clip_patch,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.945; n=102)",pipeline trace (x0 to x1),-0.11627707729747987,,,
+clip_patch,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.945; n=102)",same-person mixing (x1 to x2),0.6719587210984963,,,
+clip_patch,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.945; n=102)",second identity (x2 to x3),-0.47987318488905895,,,
+clip_patch,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.945; n=102)",whole morph (x1 to x3),0.3700511266148946,,,
+clip_patch,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.945; n=102)",genuine to morph (x0 to x3),0.2035834889485566,,,
+clip_patch,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.945; n=102)",softening (SMDD original to shrunk copy),-0.15417441464468684,,,
+clip_patch,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.948; n=204)",pipeline trace (x0 to x1),0.15087743596290615,,,
+clip_patch,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.948; n=204)",same-person mixing (x1 to x2),0.013064689742809332,,,
+clip_patch,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.948; n=204)",second identity (x2 to x3),0.08613427698410564,,,
+clip_patch,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.948; n=204)",whole morph (x1 to x3),0.07388060751979206,,,
+clip_patch,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.948; n=204)",genuine to morph (x0 to x3),0.14630435691316473,,,
+clip_patch,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.948; n=204)",softening (SMDD original to shrunk copy),0.18176601482582078,,,
+clip_patch,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.970; n=204)",pipeline trace (x0 to x1),0.06403121843541121,,,
+clip_patch,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.970; n=204)",same-person mixing (x1 to x2),-0.10905802577074092,,,
+clip_patch,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.970; n=204)",second identity (x2 to x3),0.08893308059457639,,,
+clip_patch,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.970; n=204)",whole morph (x1 to x3),-0.05233972769639715,,,
+clip_patch,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.970; n=204)",genuine to morph (x0 to x3),8.537795700289466e-05,,,
+clip_patch,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.970; n=204)",softening (SMDD original to shrunk copy),0.13770549628676498,,,
+clip_patch,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.442; n=4)",pipeline trace (x0 to x1),-0.05243650938060025,,,
+clip_patch,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.442; n=4)",same-person mixing (x1 to x2),0.2460513131098226,,,
+clip_patch,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.442; n=4)",second identity (x2 to x3),-0.31764796469858025,,,
+clip_patch,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.442; n=4)",whole morph (x1 to x3),0.03635581330725231,,,
+clip_patch,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.442; n=4)",genuine to morph (x0 to x3),-0.004890124928427254,,,
+clip_patch,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.442; n=4)",softening (SMDD original to shrunk copy),-0.08288131680600258,,,
+dino_pool,pipeline trace (x0 to x1),pipeline trace (x0 to x1),0.9913245872673215,0.9697121091877058,0.991072233578666,1.0
+dino_pool,pipeline trace (x0 to x1),same-person mixing (x1 to x2),0.18761091511044314,0.14760426367638219,0.2204086320296731,0.1916682575018307
+dino_pool,pipeline trace (x0 to x1),second identity (x2 to x3),0.125629530535353,0.052780357342130144,0.17743932228007972,0.13940200153980953
+dino_pool,pipeline trace (x0 to x1),whole morph (x1 to x3),0.27729115766438117,0.22473245604342967,0.3108604237556532,0.2865678663573498
+dino_pool,pipeline trace (x0 to x1),genuine to morph (x0 to x3),0.7890784994599109,0.750762989607197,0.8034358929310467,0.8025098111064006
+dino_pool,pipeline trace (x0 to x1),softening (SMDD original to shrunk copy),0.38775205724257744,0.3636347829122643,0.4021866759779204,0.3914986961305779
+dino_pool,same-person mixing (x1 to x2),same-person mixing (x1 to x2),0.9664957231156633,0.8912537908068926,0.961093946404751,1.0
+dino_pool,same-person mixing (x1 to x2),second identity (x2 to x3),-0.35517287499546507,-0.4387669320592957,-0.2081107336215761,-0.39913979871508976
+dino_pool,same-person mixing (x1 to x2),whole morph (x1 to x3),0.8125436788909481,0.7327389875068213,0.8216766905860342,0.8504448509172117
+dino_pool,same-person mixing (x1 to x2),genuine to morph (x0 to x3),0.6304884906095279,0.5615453284302827,0.662475320729644,0.6494044709301514
+dino_pool,same-person mixing (x1 to x2),softening (SMDD original to shrunk copy),-0.11020404117197767,-0.13987092734068424,-0.07721333449288224,-0.11268904549919118
+dino_pool,second identity (x2 to x3),second identity (x2 to x3),0.8192747629502526,0.5589962736149744,0.7919849733448837,1.0
+dino_pool,second identity (x2 to x3),whole morph (x1 to x3),0.1278682084168622,0.0004457174891800505,0.2237619562403324,0.14536076501494924
+dino_pool,second identity (x2 to x3),genuine to morph (x0 to x3),0.15861189508142115,0.04672690515662704,0.23081773634201433,0.177443070947645
+dino_pool,second identity (x2 to x3),softening (SMDD original to shrunk copy),0.28930486466052646,0.21776016840632598,0.3060259564378928,0.32131063183052366
+dino_pool,whole morph (x1 to x3),whole morph (x1 to x3),0.944498306600649,0.850204702240271,0.9275389036524242,1.0
+dino_pool,whole morph (x1 to x3),genuine to morph (x0 to x3),0.7696997497413378,0.6991824944749662,0.7745006018593517,0.8019713119921879
+dino_pool,whole morph (x1 to x3),softening (SMDD original to shrunk copy),0.06082766632353116,0.022897174751586813,0.09021493157340388,0.06291942011446054
+dino_pool,genuine to morph (x0 to x3),genuine to morph (x0 to x3),0.9752677000322598,0.9300829588878166,0.9684560259184198,1.0
+dino_pool,genuine to morph (x0 to x3),softening (SMDD original to shrunk copy),0.2783782198398182,0.24514182082061364,0.29969059866333053,0.28337235605387867
+dino_pool,softening (SMDD original to shrunk copy),softening (SMDD original to shrunk copy),0.989536238570278,0.9732962010888088,0.9837553414649606,1.0
+dino_pool,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.992; n=204)",pipeline trace (x0 to x1),0.7661128267161872,,,
+dino_pool,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.992; n=204)",same-person mixing (x1 to x2),-0.020265331955906903,,,
+dino_pool,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.992; n=204)",second identity (x2 to x3),0.1625051727672308,,,
+dino_pool,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.992; n=204)",whole morph (x1 to x3),0.07491941493861377,,,
+dino_pool,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.992; n=204)",genuine to morph (x0 to x3),0.522823527894628,,,
+dino_pool,"FRLL pipeline a256->D20 (256) (diagnostic, FRLL; split-half reliability 0.992; n=204)",softening (SMDD original to shrunk copy),0.3182954237724991,,,
+dino_pool,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.897; n=200)",pipeline trace (x0 to x1),0.03710559070205584,,,
+dino_pool,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.897; n=200)",same-person mixing (x1 to x2),0.5449637806452111,,,
+dino_pool,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.897; n=200)",second identity (x2 to x3),-0.23068057594477287,,,
+dino_pool,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.897; n=200)",whole morph (x1 to x3),0.4467527893931943,,,
+dino_pool,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.897; n=200)",genuine to morph (x0 to x3),0.3036331674020218,,,
+dino_pool,"FRLL whole morph D20->B20 (256) (diagnostic, FRLL; split-half reliability 0.897; n=200)",softening (SMDD original to shrunk copy),-0.14702109694527105,,,
+dino_pool,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.980; n=102)",pipeline trace (x0 to x1),0.06195443991023154,,,
+dino_pool,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.980; n=102)",same-person mixing (x1 to x2),0.6750738157544659,,,
+dino_pool,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.980; n=102)",second identity (x2 to x3),-0.5399065455093257,,,
+dino_pool,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.980; n=102)",whole morph (x1 to x3),0.402284139926977,,,
+dino_pool,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.980; n=102)",genuine to morph (x0 to x3),0.29113551105632474,,,
+dino_pool,"FRLL same-person mix D20->C20 (256) (confounded, no conclusion; split-half reliability 0.980; n=102)",softening (SMDD original to shrunk copy),-0.21631561295076523,,,
+dino_pool,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.975; n=204)",pipeline trace (x0 to x1),0.10907513071467992,,,
+dino_pool,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.975; n=204)",same-person mixing (x1 to x2),-0.12803709380481776,,,
+dino_pool,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.975; n=204)",second identity (x2 to x3),0.15925021318541938,,,
+dino_pool,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.975; n=204)",whole morph (x1 to x3),-0.042493239388903044,,,
+dino_pool,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.975; n=204)",genuine to morph (x0 to x3),0.0410489992833661,,,
+dino_pool,"FRLL softening R0->E7 (frames) (diagnostic, FRLL; split-half reliability 0.975; n=204)",softening (SMDD original to shrunk copy),0.3176397584908681,,,
+dino_pool,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.967; n=204)",pipeline trace (x0 to x1),0.029540984208830334,,,
+dino_pool,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.967; n=204)",same-person mixing (x1 to x2),-0.07842620614216377,,,
+dino_pool,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.967; n=204)",second identity (x2 to x3),0.02846715809375474,,,
+dino_pool,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.967; n=204)",whole morph (x1 to x3),-0.067105438679716,,,
+dino_pool,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.967; n=204)",genuine to morph (x0 to x3),-0.02380114331171481,,,
+dino_pool,"FRLL stored small R0->E (frames) (diagnostic, FRLL; split-half reliability 0.967; n=204)",softening (SMDD original to shrunk copy),0.19423733264288068,,,
+dino_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.638; n=4)",pipeline trace (x0 to x1),0.15736523386752999,,,
+dino_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.638; n=4)",same-person mixing (x1 to x2),0.37259317902303635,,,
+dino_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.638; n=4)",second identity (x2 to x3),-0.33243665847694326,,,
+dino_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.638; n=4)",whole morph (x1 to x3),0.20154902423444881,,,
+dino_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.638; n=4)",genuine to morph (x0 to x3),0.2243124791072794,,,
+dino_pool,"FRLL mirror mix D20r->PAF (256) (diagnostic, FRLL, AD1b; split-half reliability 0.638; n=4)",softening (SMDD original to shrunk copy),-0.07500662682932958,,,

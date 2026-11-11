@@ -146,6 +146,14 @@ detector score of this experiment has been read yet; landmark, build and feature
   to version 1, checked). The pending array picks up the new script when its tasks start.
 - 19:32 Laplacian acceptance (`lapvar.json`): no rebuilt arm accepted (best: arm e, 0.716 at the loader size);
   release arm 0.993; morph vs own halves 0.881 (variance ratio 0.52).
+- 19:44 The lead, with the author's approval, moved the pending LoRA array 3545823_[0-19] from account
+  plgrestorearc-gpu-a100 to plgmultivision-gpu-a100 (`scontrol update`; priority about 5,200 → 11,585; Athena has
+  only 12 working nodes tonight). Same job files and software. Arm (f) fits are submitted with
+  `-A plgmultivision-gpu-a100` too.
+- 19:45 Audit MTCNN crops done (3 shards; 10,055 of 10,055 retained). Part 2 scoring queued after the T-A / T-B FS
+  pair (`run_p2.sh`, log `logs_p2.log`).
+- 19:55 JPEG build done: 46,330 copies in 1,029 s (`logs/jpeg_build.json`). Arm (f) image tar and code tar v2 (with
+  the lists `test_eval_jpeg` and `train_armf_jpeg`) built and uploading; Laplacian check of arm (f) running.
 
 ## 3. Data
 

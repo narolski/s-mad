@@ -70,6 +70,21 @@
    "p2_5": -0.0789,
    "p97_5": -0.0014
   },
+  "opencv|pipeline || softening on hosts (amsl112)": {
+   "mean": 0.6406,
+   "p2_5": 0.6158,
+   "p97_5": 0.6626
+  },
+  "opencv|pipeline || softening on hosts (fm61)": {
+   "mean": 0.6787,
+   "p2_5": 0.6371,
+   "p97_5": 0.703
+  },
+  "opencv|pipeline || softening on hosts (pooled)": {
+   "mean": 0.6674,
+   "p2_5": 0.6349,
+   "p97_5": 0.6932
+  },
   "opencv|pipeline || softening (SMDD stored-small minus render)": {
    "mean": 0.3343,
    "p2_5": 0.3128,
@@ -169,6 +184,21 @@
    "mean": 0.892,
    "p2_5": 0.8736,
    "p97_5": 0.8984
+  },
+  "opencv|mirror_mix || softening on hosts (amsl112)": {
+   "mean": 0.1227,
+   "p2_5": 0.1007,
+   "p97_5": 0.1459
+  },
+  "opencv|mirror_mix || softening on hosts (fm61)": {
+   "mean": 0.0885,
+   "p2_5": 0.0697,
+   "p97_5": 0.1068
+  },
+  "opencv|mirror_mix || softening on hosts (pooled)": {
+   "mean": 0.1048,
+   "p2_5": 0.0857,
+   "p97_5": 0.1246
   },
   "opencv|mirror_mix || softening (SMDD stored-small minus render)": {
    "mean": -0.0241,
@@ -270,6 +300,21 @@
    "p2_5": 0.8748,
    "p97_5": 0.8987
   },
+  "opencv|mirror_mix_matched || softening on hosts (amsl112)": {
+   "mean": 0.1202,
+   "p2_5": 0.0979,
+   "p97_5": 0.1425
+  },
+  "opencv|mirror_mix_matched || softening on hosts (fm61)": {
+   "mean": 0.0861,
+   "p2_5": 0.0685,
+   "p97_5": 0.1037
+  },
+  "opencv|mirror_mix_matched || softening on hosts (pooled)": {
+   "mean": 0.1024,
+   "p2_5": 0.0841,
+   "p97_5": 0.1211
+  },
   "opencv|mirror_mix_matched || softening (SMDD stored-small minus render)": {
    "mean": -0.025,
    "p2_5": -0.0292,
@@ -369,6 +414,21 @@
    "mean": 0.8632,
    "p2_5": 0.8373,
    "p97_5": 0.8879
+  },
+  "opencv|same_person_mix || softening on hosts (amsl112)": {
+   "mean": 0.1359,
+   "p2_5": 0.1022,
+   "p97_5": 0.1636
+  },
+  "opencv|same_person_mix || softening on hosts (fm61)": {
+   "mean": 0.1407,
+   "p2_5": 0.0996,
+   "p97_5": 0.1761
+  },
+  "opencv|same_person_mix || softening on hosts (pooled)": {
+   "mean": 0.1398,
+   "p2_5": 0.1042,
+   "p97_5": 0.1707
   },
   "opencv|same_person_mix || softening (SMDD stored-small minus render)": {
    "mean": 0.0381,
@@ -470,6 +530,21 @@
    "p2_5": 0.9432,
    "p97_5": 0.9636
   },
+  "opencv|second_identity || softening on hosts (amsl112)": {
+   "mean": 0.0618,
+   "p2_5": 0.0377,
+   "p97_5": 0.088
+  },
+  "opencv|second_identity || softening on hosts (fm61)": {
+   "mean": 0.025,
+   "p2_5": 0.0053,
+   "p97_5": 0.0477
+  },
+  "opencv|second_identity || softening on hosts (pooled)": {
+   "mean": 0.042,
+   "p2_5": 0.0204,
+   "p97_5": 0.0649
+  },
   "opencv|second_identity || softening (SMDD stored-small minus render)": {
    "mean": -0.0875,
    "p2_5": -0.0954,
@@ -569,6 +644,21 @@
    "mean": 0.9839,
    "p2_5": 0.9688,
    "p97_5": 0.9906
+  },
+  "opencv|whole_morph || softening on hosts (amsl112)": {
+   "mean": 0.0975,
+   "p2_5": 0.0718,
+   "p97_5": 0.1234
+  },
+  "opencv|whole_morph || softening on hosts (fm61)": {
+   "mean": 0.0757,
+   "p2_5": 0.0524,
+   "p97_5": 0.0966
+  },
+  "opencv|whole_morph || softening on hosts (pooled)": {
+   "mean": 0.0863,
+   "p2_5": 0.0632,
+   "p97_5": 0.1089
   },
   "opencv|whole_morph || softening (SMDD stored-small minus render)": {
    "mean": -0.0405,
@@ -670,6 +760,21 @@
    "p2_5": 0.971,
    "p97_5": 0.9895
   },
+  "opencv|photo_to_morph || softening on hosts (amsl112)": {
+   "mean": 0.153,
+   "p2_5": 0.125,
+   "p97_5": 0.178
+  },
+  "opencv|photo_to_morph || softening on hosts (fm61)": {
+   "mean": 0.1344,
+   "p2_5": 0.1067,
+   "p97_5": 0.1571
+  },
+  "opencv|photo_to_morph || softening on hosts (pooled)": {
+   "mean": 0.1441,
+   "p2_5": 0.1189,
+   "p97_5": 0.1656
+  },
   "opencv|photo_to_morph || softening (SMDD stored-small minus render)": {
    "mean": -0.0118,
    "p2_5": -0.0243,
@@ -769,6 +874,21 @@
    "mean": 0.1081,
    "p2_5": 0.077,
    "p97_5": 0.1398
+  },
+  "facemorpher|pipeline || softening on hosts (amsl112)": {
+   "mean": 0.2019,
+   "p2_5": 0.1692,
+   "p97_5": 0.2389
+  },
+  "facemorpher|pipeline || softening on hosts (fm61)": {
+   "mean": 0.241,
+   "p2_5": 0.205,
+   "p97_5": 0.2793
+  },
+  "facemorpher|pipeline || softening on hosts (pooled)": {
+   "mean": 0.2254,
+   "p2_5": 0.1921,
+   "p97_5": 0.2599
   },
   "facemorpher|pipeline || softening (SMDD stored-small minus render)": {
    "mean": 0.1149,
@@ -870,6 +990,21 @@
    "p2_5": 0.8901,
    "p97_5": 0.9091
   },
+  "facemorpher|mirror_mix || softening on hosts (amsl112)": {
+   "mean": 0.1324,
+   "p2_5": 0.1104,
+   "p97_5": 0.1559
+  },
+  "facemorpher|mirror_mix || softening on hosts (fm61)": {
+   "mean": 0.0983,
+   "p2_5": 0.0807,
+   "p97_5": 0.1165
+  },
+  "facemorpher|mirror_mix || softening on hosts (pooled)": {
+   "mean": 0.1146,
+   "p2_5": 0.0962,
+   "p97_5": 0.1344
+  },
   "facemorpher|mirror_mix || softening (SMDD stored-small minus render)": {
    "mean": -0.0231,
    "p2_5": -0.0282,
@@ -969,6 +1104,21 @@
    "mean": 0.9024,
    "p2_5": 0.8894,
    "p97_5": 0.9085
+  },
+  "facemorpher|mirror_mix_matched || softening on hosts (amsl112)": {
+   "mean": 0.1318,
+   "p2_5": 0.1101,
+   "p97_5": 0.1557
+  },
+  "facemorpher|mirror_mix_matched || softening on hosts (fm61)": {
+   "mean": 0.098,
+   "p2_5": 0.0808,
+   "p97_5": 0.1159
+  },
+  "facemorpher|mirror_mix_matched || softening on hosts (pooled)": {
+   "mean": 0.1142,
+   "p2_5": 0.0954,
+   "p97_5": 0.1345
   },
   "facemorpher|mirror_mix_matched || softening (SMDD stored-small minus render)": {
    "mean": -0.0232,
@@ -1070,6 +1220,21 @@
    "p2_5": 0.903,
    "p97_5": 0.9413
   },
+  "facemorpher|same_person_mix || softening on hosts (amsl112)": {
+   "mean": 0.139,
+   "p2_5": 0.1083,
+   "p97_5": 0.1646
+  },
+  "facemorpher|same_person_mix || softening on hosts (fm61)": {
+   "mean": 0.133,
+   "p2_5": 0.1023,
+   "p97_5": 0.1567
+  },
+  "facemorpher|same_person_mix || softening on hosts (pooled)": {
+   "mean": 0.1369,
+   "p2_5": 0.1078,
+   "p97_5": 0.1603
+  },
   "facemorpher|same_person_mix || softening (SMDD stored-small minus render)": {
    "mean": 0.016,
    "p2_5": 0.0032,
@@ -1169,6 +1334,21 @@
    "mean": 0.9425,
    "p2_5": 0.9284,
    "p97_5": 0.9566
+  },
+  "facemorpher|second_identity || softening on hosts (amsl112)": {
+   "mean": 0.0732,
+   "p2_5": 0.0489,
+   "p97_5": 0.0992
+  },
+  "facemorpher|second_identity || softening on hosts (fm61)": {
+   "mean": 0.0366,
+   "p2_5": 0.017,
+   "p97_5": 0.0557
+  },
+  "facemorpher|second_identity || softening on hosts (pooled)": {
+   "mean": 0.0535,
+   "p2_5": 0.0337,
+   "p97_5": 0.0748
   },
   "facemorpher|second_identity || softening (SMDD stored-small minus render)": {
    "mean": -0.0743,
@@ -1270,6 +1450,21 @@
    "p2_5": 0.9786,
    "p97_5": 0.9948
   },
+  "facemorpher|whole_morph || softening on hosts (amsl112)": {
+   "mean": 0.1088,
+   "p2_5": 0.0841,
+   "p97_5": 0.1322
+  },
+  "facemorpher|whole_morph || softening on hosts (fm61)": {
+   "mean": 0.0845,
+   "p2_5": 0.0609,
+   "p97_5": 0.1061
+  },
+  "facemorpher|whole_morph || softening on hosts (pooled)": {
+   "mean": 0.0963,
+   "p2_5": 0.0744,
+   "p97_5": 0.1165
+  },
   "facemorpher|whole_morph || softening (SMDD stored-small minus render)": {
    "mean": -0.0359,
    "p2_5": -0.0468,
@@ -1370,6 +1565,21 @@
    "p2_5": 0.9783,
    "p97_5": 0.9952
   },
+  "facemorpher|photo_to_morph || softening on hosts (amsl112)": {
+   "mean": 0.1156,
+   "p2_5": 0.0903,
+   "p97_5": 0.1391
+  },
+  "facemorpher|photo_to_morph || softening on hosts (fm61)": {
+   "mean": 0.0928,
+   "p2_5": 0.0693,
+   "p97_5": 0.1154
+  },
+  "facemorpher|photo_to_morph || softening on hosts (pooled)": {
+   "mean": 0.104,
+   "p2_5": 0.0816,
+   "p97_5": 0.1252
+  },
   "facemorpher|photo_to_morph || softening (SMDD stored-small minus render)": {
    "mean": -0.0317,
    "p2_5": -0.0426,
@@ -1399,6 +1609,351 @@
    "mean": 0.5776,
    "p2_5": 0.5609,
    "p97_5": 0.5934
+  },
+  "softening on hosts (amsl112) || opencv|pipeline": {
+   "mean": 0.6406,
+   "p2_5": 0.6158,
+   "p97_5": 0.6626
+  },
+  "softening on hosts (amsl112) || opencv|mirror_mix": {
+   "mean": 0.1227,
+   "p2_5": 0.1007,
+   "p97_5": 0.1459
+  },
+  "softening on hosts (amsl112) || opencv|mirror_mix_matched": {
+   "mean": 0.1202,
+   "p2_5": 0.0979,
+   "p97_5": 0.1425
+  },
+  "softening on hosts (amsl112) || opencv|same_person_mix": {
+   "mean": 0.1359,
+   "p2_5": 0.1022,
+   "p97_5": 0.1636
+  },
+  "softening on hosts (amsl112) || opencv|second_identity": {
+   "mean": 0.0618,
+   "p2_5": 0.0377,
+   "p97_5": 0.088
+  },
+  "softening on hosts (amsl112) || opencv|whole_morph": {
+   "mean": 0.0975,
+   "p2_5": 0.0718,
+   "p97_5": 0.1234
+  },
+  "softening on hosts (amsl112) || opencv|photo_to_morph": {
+   "mean": 0.153,
+   "p2_5": 0.125,
+   "p97_5": 0.178
+  },
+  "softening on hosts (amsl112) || facemorpher|pipeline": {
+   "mean": 0.2019,
+   "p2_5": 0.1692,
+   "p97_5": 0.2389
+  },
+  "softening on hosts (amsl112) || facemorpher|mirror_mix": {
+   "mean": 0.1324,
+   "p2_5": 0.1104,
+   "p97_5": 0.1559
+  },
+  "softening on hosts (amsl112) || facemorpher|mirror_mix_matched": {
+   "mean": 0.1318,
+   "p2_5": 0.1101,
+   "p97_5": 0.1557
+  },
+  "softening on hosts (amsl112) || facemorpher|same_person_mix": {
+   "mean": 0.139,
+   "p2_5": 0.1083,
+   "p97_5": 0.1646
+  },
+  "softening on hosts (amsl112) || facemorpher|second_identity": {
+   "mean": 0.0732,
+   "p2_5": 0.0489,
+   "p97_5": 0.0992
+  },
+  "softening on hosts (amsl112) || facemorpher|whole_morph": {
+   "mean": 0.1088,
+   "p2_5": 0.0841,
+   "p97_5": 0.1322
+  },
+  "softening on hosts (amsl112) || facemorpher|photo_to_morph": {
+   "mean": 0.1156,
+   "p2_5": 0.0903,
+   "p97_5": 0.1391
+  },
+  "softening on hosts (amsl112) || softening on hosts (amsl112)": {
+   "mean": 0.976,
+   "p2_5": 0.958,
+   "p97_5": 0.983
+  },
+  "softening on hosts (amsl112) || softening on hosts (fm61)": {
+   "mean": 0.9449,
+   "p2_5": 0.9133,
+   "p97_5": 0.9595
+  },
+  "softening on hosts (amsl112) || softening on hosts (pooled)": {
+   "mean": 0.9674,
+   "p2_5": 0.9448,
+   "p97_5": 0.9766
+  },
+  "softening on hosts (amsl112) || softening (SMDD stored-small minus render)": {
+   "mean": 0.2964,
+   "p2_5": 0.2728,
+   "p97_5": 0.3281
+  },
+  "softening on hosts (amsl112) || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.4122,
+   "p2_5": 0.3929,
+   "p97_5": 0.4336
+  },
+  "softening on hosts (amsl112) || head weights none|one|opencv": {
+   "mean": 0.1477,
+   "p2_5": 0.1323,
+   "p97_5": 0.1679
+  },
+  "softening on hosts (amsl112) || head weights none|one|facemorpher": {
+   "mean": 0.1702,
+   "p2_5": 0.154,
+   "p97_5": 0.1891
+  },
+  "softening on hosts (amsl112) || head weights none|two|opencv": {
+   "mean": 0.1209,
+   "p2_5": 0.1038,
+   "p97_5": 0.142
+  },
+  "softening on hosts (amsl112) || head weights none|two|facemorpher": {
+   "mean": 0.1382,
+   "p2_5": 0.1177,
+   "p97_5": 0.1576
+  },
+  "softening on hosts (fm61) || opencv|pipeline": {
+   "mean": 0.6787,
+   "p2_5": 0.6371,
+   "p97_5": 0.703
+  },
+  "softening on hosts (fm61) || opencv|mirror_mix": {
+   "mean": 0.0885,
+   "p2_5": 0.0697,
+   "p97_5": 0.1068
+  },
+  "softening on hosts (fm61) || opencv|mirror_mix_matched": {
+   "mean": 0.0861,
+   "p2_5": 0.0685,
+   "p97_5": 0.1037
+  },
+  "softening on hosts (fm61) || opencv|same_person_mix": {
+   "mean": 0.1407,
+   "p2_5": 0.0996,
+   "p97_5": 0.1761
+  },
+  "softening on hosts (fm61) || opencv|second_identity": {
+   "mean": 0.025,
+   "p2_5": 0.0053,
+   "p97_5": 0.0477
+  },
+  "softening on hosts (fm61) || opencv|whole_morph": {
+   "mean": 0.0757,
+   "p2_5": 0.0524,
+   "p97_5": 0.0966
+  },
+  "softening on hosts (fm61) || opencv|photo_to_morph": {
+   "mean": 0.1344,
+   "p2_5": 0.1067,
+   "p97_5": 0.1571
+  },
+  "softening on hosts (fm61) || facemorpher|pipeline": {
+   "mean": 0.241,
+   "p2_5": 0.205,
+   "p97_5": 0.2793
+  },
+  "softening on hosts (fm61) || facemorpher|mirror_mix": {
+   "mean": 0.0983,
+   "p2_5": 0.0807,
+   "p97_5": 0.1165
+  },
+  "softening on hosts (fm61) || facemorpher|mirror_mix_matched": {
+   "mean": 0.098,
+   "p2_5": 0.0808,
+   "p97_5": 0.1159
+  },
+  "softening on hosts (fm61) || facemorpher|same_person_mix": {
+   "mean": 0.133,
+   "p2_5": 0.1023,
+   "p97_5": 0.1567
+  },
+  "softening on hosts (fm61) || facemorpher|second_identity": {
+   "mean": 0.0366,
+   "p2_5": 0.017,
+   "p97_5": 0.0557
+  },
+  "softening on hosts (fm61) || facemorpher|whole_morph": {
+   "mean": 0.0845,
+   "p2_5": 0.0609,
+   "p97_5": 0.1061
+  },
+  "softening on hosts (fm61) || facemorpher|photo_to_morph": {
+   "mean": 0.0928,
+   "p2_5": 0.0693,
+   "p97_5": 0.1154
+  },
+  "softening on hosts (fm61) || softening on hosts (amsl112)": {
+   "mean": 0.9449,
+   "p2_5": 0.9133,
+   "p97_5": 0.9595
+  },
+  "softening on hosts (fm61) || softening on hosts (fm61)": {
+   "mean": 0.9778,
+   "p2_5": 0.9514,
+   "p97_5": 0.9868
+  },
+  "softening on hosts (fm61) || softening on hosts (pooled)": {
+   "mean": 0.9715,
+   "p2_5": 0.9468,
+   "p97_5": 0.9823
+  },
+  "softening on hosts (fm61) || softening (SMDD stored-small minus render)": {
+   "mean": 0.4073,
+   "p2_5": 0.38,
+   "p97_5": 0.4426
+  },
+  "softening on hosts (fm61) || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.5001,
+   "p2_5": 0.4772,
+   "p97_5": 0.5241
+  },
+  "softening on hosts (fm61) || head weights none|one|opencv": {
+   "mean": 0.2142,
+   "p2_5": 0.1933,
+   "p97_5": 0.244
+  },
+  "softening on hosts (fm61) || head weights none|one|facemorpher": {
+   "mean": 0.2231,
+   "p2_5": 0.2013,
+   "p97_5": 0.252
+  },
+  "softening on hosts (fm61) || head weights none|two|opencv": {
+   "mean": 0.1667,
+   "p2_5": 0.1436,
+   "p97_5": 0.1967
+  },
+  "softening on hosts (fm61) || head weights none|two|facemorpher": {
+   "mean": 0.1755,
+   "p2_5": 0.1525,
+   "p97_5": 0.2021
+  },
+  "softening on hosts (pooled) || opencv|pipeline": {
+   "mean": 0.6674,
+   "p2_5": 0.6349,
+   "p97_5": 0.6932
+  },
+  "softening on hosts (pooled) || opencv|mirror_mix": {
+   "mean": 0.1048,
+   "p2_5": 0.0857,
+   "p97_5": 0.1246
+  },
+  "softening on hosts (pooled) || opencv|mirror_mix_matched": {
+   "mean": 0.1024,
+   "p2_5": 0.0841,
+   "p97_5": 0.1211
+  },
+  "softening on hosts (pooled) || opencv|same_person_mix": {
+   "mean": 0.1398,
+   "p2_5": 0.1042,
+   "p97_5": 0.1707
+  },
+  "softening on hosts (pooled) || opencv|second_identity": {
+   "mean": 0.042,
+   "p2_5": 0.0204,
+   "p97_5": 0.0649
+  },
+  "softening on hosts (pooled) || opencv|whole_morph": {
+   "mean": 0.0863,
+   "p2_5": 0.0632,
+   "p97_5": 0.1089
+  },
+  "softening on hosts (pooled) || opencv|photo_to_morph": {
+   "mean": 0.1441,
+   "p2_5": 0.1189,
+   "p97_5": 0.1656
+  },
+  "softening on hosts (pooled) || facemorpher|pipeline": {
+   "mean": 0.2254,
+   "p2_5": 0.1921,
+   "p97_5": 0.2599
+  },
+  "softening on hosts (pooled) || facemorpher|mirror_mix": {
+   "mean": 0.1146,
+   "p2_5": 0.0962,
+   "p97_5": 0.1344
+  },
+  "softening on hosts (pooled) || facemorpher|mirror_mix_matched": {
+   "mean": 0.1142,
+   "p2_5": 0.0954,
+   "p97_5": 0.1345
+  },
+  "softening on hosts (pooled) || facemorpher|same_person_mix": {
+   "mean": 0.1369,
+   "p2_5": 0.1078,
+   "p97_5": 0.1603
+  },
+  "softening on hosts (pooled) || facemorpher|second_identity": {
+   "mean": 0.0535,
+   "p2_5": 0.0337,
+   "p97_5": 0.0748
+  },
+  "softening on hosts (pooled) || facemorpher|whole_morph": {
+   "mean": 0.0963,
+   "p2_5": 0.0744,
+   "p97_5": 0.1165
+  },
+  "softening on hosts (pooled) || facemorpher|photo_to_morph": {
+   "mean": 0.104,
+   "p2_5": 0.0816,
+   "p97_5": 0.1252
+  },
+  "softening on hosts (pooled) || softening on hosts (amsl112)": {
+   "mean": 0.9674,
+   "p2_5": 0.9448,
+   "p97_5": 0.9766
+  },
+  "softening on hosts (pooled) || softening on hosts (fm61)": {
+   "mean": 0.9715,
+   "p2_5": 0.9468,
+   "p97_5": 0.9823
+  },
+  "softening on hosts (pooled) || softening on hosts (pooled)": {
+   "mean": 0.9782,
+   "p2_5": 0.9559,
+   "p97_5": 0.9861
+  },
+  "softening on hosts (pooled) || softening (SMDD stored-small minus render)": {
+   "mean": 0.3606,
+   "p2_5": 0.3347,
+   "p97_5": 0.3965
+  },
+  "softening on hosts (pooled) || softening diagnostic (FRLL E7 opencv minus native; FRLL-only)": {
+   "mean": 0.4647,
+   "p2_5": 0.4423,
+   "p97_5": 0.4894
+  },
+  "softening on hosts (pooled) || head weights none|one|opencv": {
+   "mean": 0.1859,
+   "p2_5": 0.167,
+   "p97_5": 0.2131
+  },
+  "softening on hosts (pooled) || head weights none|one|facemorpher": {
+   "mean": 0.2011,
+   "p2_5": 0.1812,
+   "p97_5": 0.227
+  },
+  "softening on hosts (pooled) || head weights none|two|opencv": {
+   "mean": 0.1474,
+   "p2_5": 0.1256,
+   "p97_5": 0.1742
+  },
+  "softening on hosts (pooled) || head weights none|two|facemorpher": {
+   "mean": 0.1601,
+   "p2_5": 0.138,
+   "p97_5": 0.1839
   },
   "softening (SMDD stored-small minus render) || opencv|pipeline": {
    "mean": 0.3343,
@@ -1469,6 +2024,21 @@
    "mean": -0.0317,
    "p2_5": -0.0426,
    "p97_5": -0.0208
+  },
+  "softening (SMDD stored-small minus render) || softening on hosts (amsl112)": {
+   "mean": 0.2964,
+   "p2_5": 0.2728,
+   "p97_5": 0.3281
+  },
+  "softening (SMDD stored-small minus render) || softening on hosts (fm61)": {
+   "mean": 0.4073,
+   "p2_5": 0.38,
+   "p97_5": 0.4426
+  },
+  "softening (SMDD stored-small minus render) || softening on hosts (pooled)": {
+   "mean": 0.3606,
+   "p2_5": 0.3347,
+   "p97_5": 0.3965
   },
   "softening (SMDD stored-small minus render) || softening (SMDD stored-small minus render)": {
    "mean": 1.0,
@@ -1570,6 +2140,21 @@
    "p2_5": -0.0278,
    "p97_5": -0.0084
   },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || softening on hosts (amsl112)": {
+   "mean": 0.4122,
+   "p2_5": 0.3929,
+   "p97_5": 0.4336
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || softening on hosts (fm61)": {
+   "mean": 0.5001,
+   "p2_5": 0.4772,
+   "p97_5": 0.5241
+  },
+  "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || softening on hosts (pooled)": {
+   "mean": 0.4647,
+   "p2_5": 0.4423,
+   "p97_5": 0.4894
+  },
   "softening diagnostic (FRLL E7 opencv minus native; FRLL-only) || softening (SMDD stored-small minus render)": {
    "mean": 0.4641,
    "p2_5": 0.4641,
@@ -1669,6 +2254,21 @@
    "mean": 0.4097,
    "p2_5": 0.395,
    "p97_5": 0.4255
+  },
+  "head weights none|one|opencv || softening on hosts (amsl112)": {
+   "mean": 0.1477,
+   "p2_5": 0.1323,
+   "p97_5": 0.1679
+  },
+  "head weights none|one|opencv || softening on hosts (fm61)": {
+   "mean": 0.2142,
+   "p2_5": 0.1933,
+   "p97_5": 0.244
+  },
+  "head weights none|one|opencv || softening on hosts (pooled)": {
+   "mean": 0.1859,
+   "p2_5": 0.167,
+   "p97_5": 0.2131
   },
   "head weights none|one|opencv || softening (SMDD stored-small minus render)": {
    "mean": 0.1454,
@@ -1770,6 +2370,21 @@
    "p2_5": 0.4861,
    "p97_5": 0.5171
   },
+  "head weights none|one|facemorpher || softening on hosts (amsl112)": {
+   "mean": 0.1702,
+   "p2_5": 0.154,
+   "p97_5": 0.1891
+  },
+  "head weights none|one|facemorpher || softening on hosts (fm61)": {
+   "mean": 0.2231,
+   "p2_5": 0.2013,
+   "p97_5": 0.252
+  },
+  "head weights none|one|facemorpher || softening on hosts (pooled)": {
+   "mean": 0.2011,
+   "p2_5": 0.1812,
+   "p97_5": 0.227
+  },
   "head weights none|one|facemorpher || softening (SMDD stored-small minus render)": {
    "mean": 0.1336,
    "p2_5": 0.1336,
@@ -1869,6 +2484,21 @@
    "mean": 0.5356,
    "p2_5": 0.5178,
    "p97_5": 0.5516
+  },
+  "head weights none|two|opencv || softening on hosts (amsl112)": {
+   "mean": 0.1209,
+   "p2_5": 0.1038,
+   "p97_5": 0.142
+  },
+  "head weights none|two|opencv || softening on hosts (fm61)": {
+   "mean": 0.1667,
+   "p2_5": 0.1436,
+   "p97_5": 0.1967
+  },
+  "head weights none|two|opencv || softening on hosts (pooled)": {
+   "mean": 0.1474,
+   "p2_5": 0.1256,
+   "p97_5": 0.1742
   },
   "head weights none|two|opencv || softening (SMDD stored-small minus render)": {
    "mean": 0.0857,
@@ -1970,6 +2600,21 @@
    "p2_5": 0.5609,
    "p97_5": 0.5934
   },
+  "head weights none|two|facemorpher || softening on hosts (amsl112)": {
+   "mean": 0.1382,
+   "p2_5": 0.1177,
+   "p97_5": 0.1576
+  },
+  "head weights none|two|facemorpher || softening on hosts (fm61)": {
+   "mean": 0.1755,
+   "p2_5": 0.1525,
+   "p97_5": 0.2021
+  },
+  "head weights none|two|facemorpher || softening on hosts (pooled)": {
+   "mean": 0.1601,
+   "p2_5": 0.138,
+   "p97_5": 0.1839
+  },
   "head weights none|two|facemorpher || softening (SMDD stored-small minus render)": {
    "mean": 0.0591,
    "p2_5": 0.0591,
@@ -2016,6 +2661,9 @@
   "facemorpher|second_identity",
   "facemorpher|whole_morph",
   "facemorpher|photo_to_morph",
+  "softening on hosts (amsl112)",
+  "softening on hosts (fm61)",
+  "softening on hosts (pooled)",
   "softening (SMDD stored-small minus render)",
   "softening diagnostic (FRLL E7 opencv minus native; FRLL-only)",
   "head weights none|one|opencv",
@@ -2038,9 +2686,17 @@
    "whole_morph_vs_softening": -0.0405,
    "second_identity_vs_softening": -0.0875,
    "pipeline_vs_softening": 0.3343,
+   "same_person_mix_vs_host_softening": 0.1398,
+   "mirror_mix_vs_host_softening": 0.1048,
+   "mirror_mix_matched_vs_host_softening": 0.1024,
+   "whole_morph_vs_host_softening": 0.0863,
+   "second_identity_vs_host_softening": 0.042,
+   "pipeline_vs_host_softening": 0.6674,
+   "host_softening_vs_smdd_softening": 0.3606,
    "reading_same_person_signal_is_morph_signal": true,
    "reading_mirror_signal_is_morph_signal": true,
-   "reading_mixing_signal_is_softness": false
+   "reading_mixing_signal_is_softness": false,
+   "reading_mixing_signal_is_host_softness (amendment 1)": false
   },
   "facemorpher": {
    "same_person_vs_whole": 0.9218,
@@ -2056,9 +2712,17 @@
    "whole_morph_vs_softening": -0.0359,
    "second_identity_vs_softening": -0.0743,
    "pipeline_vs_softening": 0.1149,
+   "same_person_mix_vs_host_softening": 0.1369,
+   "mirror_mix_vs_host_softening": 0.1146,
+   "mirror_mix_matched_vs_host_softening": 0.1142,
+   "whole_morph_vs_host_softening": 0.0963,
+   "second_identity_vs_host_softening": 0.0535,
+   "pipeline_vs_host_softening": 0.2254,
+   "host_softening_vs_smdd_softening": 0.3606,
    "reading_same_person_signal_is_morph_signal": true,
    "reading_mirror_signal_is_morph_signal": true,
-   "reading_mixing_signal_is_softness": false
+   "reading_mixing_signal_is_softness": false,
+   "reading_mixing_signal_is_host_softness (amendment 1)": false
   }
  },
  "n_splits": 20

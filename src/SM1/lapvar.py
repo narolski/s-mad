@@ -86,9 +86,9 @@ def main():
         elif arm == "f":                                    # A10: the seed-401 composition of compose.py
             import json as _j
             idp = {}
-            for n in ("train_bf", "train_arme_bfS", "train_armc_halves", "train_arme_hS", "train_armc",
-                      "train_arme_cS", "train_armf_jpeg"):
-                for r in csv.DictReader(open(FL / f"{n}.csv")):
+            for nm in ("train_bf", "train_arme_bfS", "train_armc_halves", "train_arme_hS", "train_armc",
+                       "train_arme_cS", "train_armf_jpeg"):
+                for r in csv.DictReader(open(FL / f"{nm}.csv")):
                     idp[r["id"]] = r["path"]
             c = _j.load(open(K.OUT / "compose/f_s401.json"))
             m = pick([idp[i] for i in c["morph"]], n)

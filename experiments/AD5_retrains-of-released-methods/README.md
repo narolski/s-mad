@@ -149,6 +149,16 @@ No retrain and no score exist yet.
   `No module named 'efficientnet_pytorch'`: the rewritten `selfmad_requirements.txt` (17:55) had dropped the sdist
   line (the DGX check passed because the DGX environment has the package). Fixed in code_v3; the smoke rebuilds the
   environment once and skips the labels (tar exists). Resubmitted: **3545882**.
+- 11 Nov 19:45-20:05. Before any retrain score: prereg amendment 1 (gate as per-seed per-cell labels with the
+  all-five-seeds headline and two secondary lines, a second window around the release's own number; primary cells by
+  a fixed rule; JPEG-50, 50%-resample and 0.5-rule readings with miss rates; loss fidelity check; checkpoints kept;
+  scoring on RS1 crop files by hash) and amendment 2 (the author-approved, labelled SelfMAD oracle-epoch row; crop
+  storage ruling). `ad5_analyse.py` rewritten to amendment 1; `ad5_loss.py` written and run on the authors' logs only
+  (complete runs: ViT-B/16 3, last-epoch mean losses 0.0037 / 0.0041 / 0.0039; ViT-L/14 2, 0.0067 / 0.0028; the
+  amendment text was corrected: the ViT-L/14 log's run 2 stops at epoch 35). Scoring job rewritten (v2) to reuse RS1's
+  result tar (crops/v1 + crops/v2 + crops_sha256.txt), score both crop variants, verify the crop hashes; it will live
+  in `packs/AD5/code_v4/`; `facenet-pytorch==2.6.0` added to `score_requirements.txt` (offline resolution passes).
+- 11 Nov 19:41 (lead). Athena has 12 working nodes tonight; the 8-GPU tasks may wait; do not reshape them.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -223,7 +233,10 @@ Our scripts (`/home/narolski/smad-next/src/AD5/`), in run order:
 - `score/convert_selfmad.py EPOCH_TAR OUT.safetensors RELEASE`: SelfMAD retrain -> release storage format.
 - `score/ad5_score_dgx.py --name N --weights F -- <score.py args>`: DGX scoring through RS1's score.py (SelfMAD own).
 - `checks/dgx_selfmad8.sh`, `checks/dgx_wrapper_check.sh`: the 8-image SelfMAD check and the wrapper equality check.
-- `ad5_analyse.py --scores DIR`: reproduction gate, readings, verdicts -> `ad5_{gate,readings,verdicts}.csv`.
+- `ad5_analyse.py --scores DIR`: amendment-1 gate labels, readings, verdicts (all seeds; reproduced subset; matches-
+  release subset), k-of-5 sentences, levels (EER, 0.5-rule flag and miss rates) -> `ad5_*.csv`, `ad5_results.json`.
+- `ad5_loss.py --arm L|B --release-log ... --retrain NAME=training.log ... --out CSV`: loss fidelity check.
+- `score/run_selfmad_dgx.sh [NAMES]`: SelfMAD release and retrains scored on the DGX (RS1 score.py own mode).
 Patches: `madation_ad5.patch`, `mixfacenet_ad5.patch` (the SMDD main.py has CRLF line ends; the patch keeps them),
 `selfmad_ad5.patch`. Model files: OpenAI-format CLIP from HF `timm/vit_base_patch16_clip_224.openai` (sha256
 53b40183...) and `timm/vit_large_patch14_clip_224.openai` (eb70c15b...); HRNet-W18 ImageNet weights HF

@@ -1,0 +1,20 @@
+{
+ "f": {
+  "stored": {
+   "auc": 0.8429735,
+   "median_morph": 319.2573008001057,
+   "median_genuine": 733.1806040893555
+  },
+  "loader224": {
+   "auc": 0.72378125,
+   "median_morph": 22.109153704661125,
+   "median_genuine": 104.20339384063092
+  },
+  "accepted": false,
+  "acceptance_on": "loader224"
+ },
+ "c_morph_vs_own_halves": {
+  "auc": 0.880591625,
+  "median_ratio_morph_over_mean_halves": 0.5205773039915172
+ }
+}

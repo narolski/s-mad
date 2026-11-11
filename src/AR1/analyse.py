@@ -133,6 +133,10 @@ def ladder(P, S, tool, man, retrain, base="R2", twin="R3"):
             continue
         reps[name] = rep
         out[name] = dict(auc=a, ci95=stats.ci(rep), n_pos=n1, n_neg=n0)
+    need = [n for n, _, _ in steps] + [base + "vsR4", "R0vsR4"]
+    if any(n not in out for n in need):
+        return {"base": base, "twin": twin, "skipped": "a rung of this ladder is not scored (yet) for this detector",
+                "missing": [n for n in need if n not in out]}, reps
     dben = stats.dprime(out["R0vsR4"]["auc"])
     drep = np.array([stats.dprime(x) for x in reps["R0vsR4"]])
     for name, _, _ in steps + [(base + "vsR4", "", "")]:
@@ -292,6 +296,9 @@ def main():
                         if base == "R2w4" and pool != "frgcferet":
                             continue
                         lad, _ = ladder(P, S, tool, man, retrain, base, twin)
+                        if "skipped" in lad:
+                            r[f"{pool}/{tool}/{base}-{twin}"] = lad
+                            continue
                         if pool == "frll":
                             lad["label"] = ("confounded by capture detail and expression (R4 partner, and R2w / R3 "
                                             "where used, involve a smiling FRLL file); verdict rules not applied")

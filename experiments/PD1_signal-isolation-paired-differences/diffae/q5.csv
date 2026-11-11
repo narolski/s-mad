@@ -3,3 +3,11 @@ clip_pool,fr_dissimilarity,score,258,0.24236280439338986,0.10197177072690983,0.3
 clip_pool,fr_dissimilarity,paired_step,258,0.07800094262857814,-0.07084572117526519,0.22439840609050876,no rise detected
 clip_pool,zsem_distance,score,258,0.4468887492143306,0.3259528728830553,0.5535116371419182,the score rises with dissimilarity
 clip_pool,zsem_distance,paired_step,258,0.3966513276982918,0.2790589444936331,0.5038426620676143,the score rises with dissimilarity
+clip_patch,fr_dissimilarity,score,258,0.3691075669177198,0.22905713578880277,0.4954429987952337,the score rises with dissimilarity
+clip_patch,fr_dissimilarity,paired_step,258,0.15581007536486677,0.008364817793560153,0.30000337349491357,the score rises with dissimilarity
+clip_patch,zsem_distance,score,258,0.5348865159742003,0.4184877194024532,0.6380756845480906,the score rises with dissimilarity
+clip_patch,zsem_distance,paired_step,258,0.5165705928532822,0.4015810590177927,0.6174122029252574,the score rises with dissimilarity
+dino_pool,fr_dissimilarity,score,258,0.3089016210905633,0.1819985075416615,0.4293391609694169,the score rises with dissimilarity
+dino_pool,fr_dissimilarity,paired_step,258,0.13616930140321687,-0.011528629311011403,0.277611552773382,no rise detected
+dino_pool,zsem_distance,score,258,0.5823386761763379,0.4763302181370733,0.67409869027949,the score rises with dissimilarity
+dino_pool,zsem_distance,paired_step,258,0.5564167396580753,0.45430393552229886,0.6495571737386322,the score rises with dissimilarity
