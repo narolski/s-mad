@@ -295,7 +295,218 @@
    }
   }
  },
- "releases_whole": {},
+ "releases_whole": {
+  "madation_vitb16": {
+   "gaps": {
+    "trained_minus_KE": {
+     "gap": 0.4403,
+     "ci": [
+      0.3654,
+      0.5221
+     ],
+     "seeds": [
+      0.4403
+     ]
+    },
+    "KE_minus_U": {
+     "gap": 1.4323,
+     "ci": [
+      1.2565,
+      1.6227
+     ],
+     "seeds": [
+      1.4323
+     ]
+    },
+    "trained_minus_U_registered": {
+     "gap": 1.8726,
+     "ci": [
+      1.6589,
+      2.1062
+     ],
+     "seeds": [
+      1.8726
+     ]
+    }
+   },
+   "own_rule_miss": {
+    "KP": 0.0016,
+    "KU": 0.0668,
+    "KE": 0.0076,
+    "KX": 0.016,
+    "PP": 0.0,
+    "UU": 0.2
+   }
+  },
+  "madation_vitl14": {
+   "gaps": {
+    "trained_minus_KE": {
+     "gap": 0.454,
+     "ci": [
+      0.3695,
+      0.5498
+     ],
+     "seeds": [
+      0.454
+     ]
+    },
+    "KE_minus_U": {
+     "gap": 1.1749,
+     "ci": [
+      0.9879,
+      1.3725
+     ],
+     "seeds": [
+      1.1749
+     ]
+    },
+    "trained_minus_U_registered": {
+     "gap": 1.6289,
+     "ci": [
+      1.4033,
+      1.8648
+     ],
+     "seeds": [
+      1.6289
+     ]
+    }
+   },
+   "own_rule_miss": {
+    "KP": 0.0008,
+    "KU": 0.0468,
+    "KE": 0.0072,
+    "KX": 0.0105,
+    "PP": 0.0,
+    "UU": 0.2
+   }
+  },
+  "madation_fe_vitb16": {
+   "gaps": {
+    "trained_minus_KE": {
+     "gap": 4.1449,
+     "ci": [
+      3.9744,
+      4.3165
+     ],
+     "seeds": [
+      4.1449
+     ]
+    },
+    "KE_minus_U": {
+     "gap": 0.9027,
+     "ci": [
+      0.7417,
+      1.0623
+     ],
+     "seeds": [
+      0.9027
+     ]
+    },
+    "trained_minus_U_registered": {
+     "gap": 5.0476,
+     "ci": [
+      4.8197,
+      5.2759
+     ],
+     "seeds": [
+      5.0476
+     ]
+    }
+   },
+   "own_rule_miss": {
+    "KP": 0.0064,
+    "KU": 0.1176,
+    "KE": 0.1052,
+    "KX": 0.151,
+    "PP": 0.0,
+    "UU": 0.1
+   }
+  },
+  "madation_fe_vitl14": {
+   "gaps": {
+    "trained_minus_KE": {
+     "gap": 3.4622,
+     "ci": [
+      3.2655,
+      3.6655
+     ],
+     "seeds": [
+      3.4622
+     ]
+    },
+    "KE_minus_U": {
+     "gap": 1.4543,
+     "ci": [
+      1.2526,
+      1.6617
+     ],
+     "seeds": [
+      1.4543
+     ]
+    },
+    "trained_minus_U_registered": {
+     "gap": 4.9165,
+     "ci": [
+      4.6467,
+      5.1891
+     ],
+     "seeds": [
+      4.9165
+     ]
+    }
+   },
+   "own_rule_miss": {
+    "KP": 0.002,
+    "KU": 0.0236,
+    "KE": 0.0192,
+    "KX": 0.022,
+    "PP": 0.0,
+    "UU": 0.0
+   }
+  },
+  "mixfacenet_mad_smdd": {
+   "gaps": {
+    "trained_minus_KE": {
+     "gap": 4.5717,
+     "ci": [
+      4.3972,
+      4.7372
+     ],
+     "seeds": [
+      4.5717
+     ]
+    },
+    "KE_minus_U": {
+     "gap": 1.7515,
+     "ci": [
+      1.5713,
+      1.9313
+     ],
+     "seeds": [
+      1.7515
+     ]
+    },
+    "trained_minus_U_registered": {
+     "gap": 6.3233,
+     "ci": [
+      6.0285,
+      6.6142
+     ],
+     "seeds": [
+      6.3233
+     ]
+    }
+   },
+   "own_rule_miss": {
+    "KP": 0.2512,
+    "KU": 0.7176,
+    "KE": 0.658,
+    "KX": 0.772,
+    "PP": 0.0,
+    "UU": 0.9
+   }
+  }
+ },
  "heads": {
   "a": {
    "gaps": {
@@ -1143,5 +1354,6 @@
    ]
   }
  },
- "note": "post hoc (A12 item 1); trained - U is the registered row, biased (U matched only on cosine to keys, IOD and yaw); the reported size of the trace is trained - KE"
+ "note": "post hoc (A12 item 1); trained - U is the registered row, biased (U matched only on cosine to keys, IOD and yaw); the reported size of the trace is trained - KE",
+ "heads_dir": "/mnt/t7/smad_next/SM1/heads"
 }

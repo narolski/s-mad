@@ -148,3 +148,43 @@ and the A46 published anchors (`smadcvpr/plans/A46/A46_published.json`). Nothing
    the excess AUC over that baseline with a paired person-bootstrap interval. Band power = the a41_read
    power_profile / band_shares luminance band shares (logistic, out-of-fold by host); Laplacian variance = variance of
    the 3x3 Laplacian of the luminance (one scalar, orientation folded). Both are measurements; no image is written.
+
+## Post hoc addendum after the independent review (REVIEW_AR1_20261111), registered 11 Nov about 21:25 CET,
+## before any of the computations below was run or any of the new score files existed
+
+All items below are post hoc (the main scores were read before this addendum) and are reported as descriptive unless a
+rule is stated; falsifiers are the reviewer's, copied.
+
+P1. Per-database tables (FRGC, colorFERET) with the same two-way person bootstrap (B = 2,000, persons of that database)
+    for every ladder contrast of the released detectors, including the background- and face-blanked ones.
+P2. Pair dissimilarity (H-new-2): Spearman of the R4 logit with cos(H, B) (glintr100) and with the 32-pixel thumbnail
+    distance between H and B, per detector and tool; R3 vs R4 restricted to the most similar decile of pairs by
+    cos(H, B), per database decile, pooled. Falsified if the decile AUC is within 0.03 of the full AUC.
+P3. Detail loss (H-new-1): R2w vs R4 within strata matched on Laplacian variance and band shares: R2w and R4 images are
+    put into joint quintile cells of Laplacian variance x the F2+F3 band share (25 cells); AUC = cell-weighted average of
+    within-cell AUCs (cells with >= 10 of each class). Reviewer's falsifier of H-new-1: "falsified if all four stay at or
+    above 0.85 within matched strata".
+P4. Bonferroni-at-8 intervals (99.375%) for the detector excess over the best simple baseline on the R3 -> R4 contrast
+    (4 releases x 2 tools). H-new-5: R0 vs R2wm per detector (SelfMAD about 0.7 or more; CLIP at or below 0.6).
+    H-new-4: within colorFERET, Spearman of the R4 score (and of the face-blanked R4 score) with the padding area that
+    differs between H and B (exact-zero pixels in one frame and not in the other); prediction > 0.2 for MixFaceNet.
+
+Amendment 8 (author-approved shrink-and-enlarge path; images built by the alpha-field owner, AF0 lists
+`/mnt/t7/smad_next/AF0/lists/ar1soft.csv` and `ar1soft_ladder.csv`, inter-eye distance 61.2 and 112.7 px, back in the
+512 frame): score the four releases on these copies, unchanged pipelines. Crossed contrasts, OpenCV, the 200 hosts with
+softened R2w: softened R2w vs native R4 of the same host, native R2w vs softened R4, softened R2w vs softened R4,
+softened R0 vs native R0 (FaceMorpher: softened R2w vs native R4 only; no softened FaceMorpher R4 exists). Reading:
+"detail loss explains the warp-vs-morph separation" for a detector if softened R2w vs native R4 is < 0.75 with upper
+bound < 0.85 at either strength; "more than detail loss" if >= 0.85 with lower bound > 0.75 at both strengths; else
+mixed.
+
+Amendment 7 (lead-approved): spliced inner-face morph. S4 = pixel copy of R4 inside the face hull onto R2w4 outside
+it (same geometry: the R4 mean shape of H and B); twin S3 = R3 inside the hull onto R2w outside (mean shape of H and S).
+Hull = convex hull (cv2.fillConvexPoly, a drawn mask) of the 106-point geometry used by blank.py. No blur, no resampling.
+Both tools, all 536 primary hosts. Contrasts: R2w4 vs S4, R2w vs S3, S3 vs S4, S4 vs R4. Marks (reviewer): R2w4 vs S4
+>= 0.85 for the CLIP models and a fall of >= 0.05 against unspliced (R2w4 vs R4) for MixFaceNet; falsified if all stay
+within 0.02 of unspliced or all fall below 0.75. Blanking: S4 and R2w4 are blanked with the SAME hull (the R4 geometry),
+background-blanked and face-blanked; S3 and R2w with the R3 hull. Expected and checked: face-blanked S4 is pixel-equal to
+face-blanked R2w4 outside the hull (so its AUC must be 0.5); scored as a control.
+Presentation change (disclosed): the side verdict "identity reading" on warp-only vs same-person morph (R2w vs R3,
+R2wm vs R3m, R2 vs R3) is renamed "blend reading" (no second identity is involved).

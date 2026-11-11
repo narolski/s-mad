@@ -219,7 +219,7 @@ used. Exception, descriptive only: the diffusion verifier's face-box-only and fa
 (`blank_clip.npz`, TF32 off) are scored as they are; the difference (cosine at least 0.9999996) is far below any
 reading. Check outputs: `/mnt/t7/smad_next/PD1/transfer/feats/check_common_space_{clip,dinov3}.json`.
 
-## Amendment 2 (11 Nov 2026, 21:24 CET by the machine clock; post hoc, after the full results of the two CLIP features had been seen, before any of the numbers below)
+## Amendment 2 (11 Nov 2026, 21:16 CET by the machine clock; post hoc, after the full results of the two CLIP features had been seen, before any of the numbers below)
 
 Seen: the registered heads fail for every held-out family on both CLIP features; the descriptive mean-direction head
 (unfitted) separates landmark morphs at a high AUC when trained on diffusion and GAN, and the registered C choice

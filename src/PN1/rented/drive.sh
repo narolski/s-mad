@@ -18,6 +18,7 @@ O=(-o BatchMode=yes -o ConnectTimeout=15 -o ServerAliveInterval=30 -o StrictHost
 R() { ssh "${O[@]}" "root@$HOST" "$@"; }
 RS() { rsync -a --partial --timeout=120 -e "ssh ${O[*]}" "$@"; }
 B=/workspace/pn1
+QT=${PN1_TASKS:?PN1_TASKS}; DO_REF=${PN1_DO_REF:-0}   # amendment 7
 TASKS="PN1_A_s401 PN1_B_s401 PN1_Bn_s401 PN1_C_s401 PN1_A_s402 PN1_B_s402 PN1_Bn_s402 PN1_C_s402"
 log() { echo "$(date +%T) $*" | tee -a "$L/pn1_drive.log"; }
 case "$STEP" in
@@ -40,7 +41,7 @@ case "$STEP" in
     grep -q "SMOKE_RC=0" "$L/pn1_smoke.txt" && log "SMOKE passed" || { log "SMOKE failed"; exit 1; }
     ;;
   queue)
-    R "cd $B && nohup setsid bash $B/bin/remote_queue.sh > $B/logs/queue_driver.log 2>&1 < /dev/null & sleep 3; cat $B/QUEUE_STARTED"
+    R "cd $B && nohup setsid bash $B/bin/remote_queue.sh \"$QT\" $DO_REF > $B/logs/queue_driver.log 2>&1 < /dev/null & sleep 3; cat $B/QUEUE_STARTED"
     log "queue started"
     ;;
   pull)
@@ -52,13 +53,14 @@ case "$STEP" in
     RS "root@$HOST:$B/logs/" "$OUTD/logs/" || true
     RS "root@$HOST:$B/queue.log" "root@$HOST:$B/rc" "$OUTD/logs/" 2>/dev/null || true
     n=0
-    for t in $TASKS PN1_REF_smdd_m3; do
+    WANT="$QT"; [ "$DO_REF" = 1 ] && WANT="$WANT PN1_REF_smdd_m3"; NW=$(echo $WANT | wc -w)
+    for t in $WANT; do
       if [ -f "$OUTD/$t.tar" ] && [ -f "$OUTD/$t.tar.sha256" ]; then
         (cd "$OUTD" && sha256sum -c --quiet "$t.tar.sha256") && { n=$((n + 1)); echo "verified $t"; } || log "HASH MISMATCH $t"
       fi
     done
-    log "verified $n of 9"
-    if [ "$n" -eq 9 ]; then touch "$L/RELEASE"; log "RELEASE written"; fi
+    log "verified $n of $NW"
+    if [ "$n" -eq "$NW" ]; then touch "$L/RELEASE"; log "RELEASE written"; fi
     ;;
   status)
     R "cat $B/queue.log 2>/dev/null; ls $B/root/results/PN1/; tail -2 $B/logs/*.log 2>/dev/null | tail -12; nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader; df -h /workspace | tail -1"

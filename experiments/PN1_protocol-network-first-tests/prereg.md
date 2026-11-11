@@ -386,3 +386,11 @@ platform is never compared with a fit from the other. On the rented machine the 
 unchanged `run.sh` (`42b335b6…`) run with the host Python (`PN1_LOCAL=1`), 7 loader workers, one task after another;
 the reference row runs the same scorer (`pn1_score.py`) with a copy of `score_ref.sh` whose only change is the host
 Python instead of `apptainer` and local paths (`src/PN1/rented/score_ref_local.sh`).
+
+## Amendment 7 (11 Nov 21:21 CET, before any fit result): two rented machines, split by seed
+
+The rental goes ahead with two A100-SXM4 machines (lead): pn1a (40 GB) runs the four seed-401 fits (A, B, Bn, C) and
+then the reference row; pn1b (80 GB) runs the four seed-402 fits. Arms are therefore always compared within one seed
+on one machine (P-g and every A-against-X comparison is within seed). Across seeds the card differs (40 GB against 80 GB
+memory, same family); seed spread is reported with that stated. The Athena array 3545976 is cancelled and the Athena
+reference result 3545977 is discarded once the pn1a smoke fit has passed (amendment 6).

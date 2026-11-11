@@ -6,7 +6,8 @@ set -u
 B=/workspace/pn1
 cd "$B"; date > "$B/QUEUE_STARTED"
 mkdir -p "$B/logs" "$B/rc" "$B/tmp"
-for T in PN1_A_s401 PN1_B_s401 PN1_Bn_s401 PN1_C_s401 PN1_A_s402 PN1_B_s402 PN1_Bn_s402 PN1_C_s402; do
+TASKS=${1:?tasks}; DO_REF=${2:-0}   # amendment 7: per-machine task list
+for T in $TASKS; do
   for try in 1 2; do
     W=$B/work/$T; rm -rf "$W"; mkdir -p "$W"
     ( while :; do nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader,nounits >> "$B/logs/${T}_gpumem.csv"; sleep 30; done ) & SM=$!
@@ -19,7 +20,7 @@ for T in PN1_A_s401 PN1_B_s401 PN1_Bn_s401 PN1_C_s401 PN1_A_s402 PN1_B_s402 PN1_
     grep -qiE "loss +nan|loss +inf|non-finite" "$B/logs/$T.log" && { echo "$T non-finite: not rerun" >> "$B/queue.log"; break; }
   done
 done
-for try in 1 2; do
+[ "$DO_REF" = 1 ] && for try in 1 2; do
   W=$B/work/ref; rm -rf "$W"; mkdir -p "$W"
   ( cd "$W" && TMPDIR=$B/tmp TASK_WORK="$W" bash "$B/bin/score_ref_local.sh" ) >> "$B/logs/PN1_REF_smdd_m3.log" 2>&1
   rc=$?; echo "$rc" > "$B/rc/PN1_REF_smdd_m3"; rm -rf "$W"

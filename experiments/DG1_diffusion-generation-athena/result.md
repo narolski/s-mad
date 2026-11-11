@@ -1,7 +1,7 @@
 # Diffusion-autoencoder generation on Athena (DG1): result
 
 Status 11 Nov 2026 21:15 CET: **equivalence gate passed; production done (set A 914 files, set B 3,616 files, all
-finite, copied back with hash checks); validity numbers computed; add-on (amendment 2) running, 2 of 8 tasks started.**
+finite, copied back with hash checks); validity numbers computed; add-on (amendment 2): 2 of 8 tasks done and fetched (images only), 6 pending.**
 Full record: `README.md` in this folder. Reading rules for anyone who scores these images: `prereg.md` amendment 1.
 
 ## Equivalence gate (registered reading: equivalent if every image's mean |difference| ≤ 2 grey levels)
@@ -46,8 +46,9 @@ Inversion (250 steps) 3.01–3.20 s; render 0.24–0.27 s at 20 steps and 1.24�
 | 3545841_1, _3 | plgrestorearc | set B shards 0, 2 | cancelled on slow node t0010 | 0.309 |
 | 3545841_2 (3545865), _4 (3545841) | plgrestorearc | set B shards 1, 3 | done | 0.859 |
 | 3545877_1 (3545939), _3 (3545877) | plgmultivision (moved by the lead) | set B shards 0, 2 | done | 1.059 |
-| **Total so far** | | | | **2.98** |
-| 3545907_0–7 | plgmultivision | add-on (amendment 2) | 0, 1 running on t0016; 2–7 pending (ReqNodeNotAvail) | estimate 3.3 |
+| 3545907_0 (3545986), _1 (3545988) | plgmultivision | add-on shards 0, 1 | done; re-renders match production (max 3 grey levels) | 0.789 |
+| **Total so far** | | | | **3.77** |
+| 3545907_2–7 | plgmultivision | add-on shards 2–7 | pending (ReqNodeNotAvail) | estimate 2.4 |
 
 ## Validity numbers per rung (glint cosine and verification at FMR 1e-3, the A43 route; medians)
 

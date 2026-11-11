@@ -1,0 +1,106 @@
+{
+ "cosines (z-space, registered)": {
+  "M": {
+   "per_feature": {
+    "clip_pool": "no shared direction",
+    "clip_patch": "no shared direction",
+    "dino_pool": "no shared direction"
+   },
+   "pairs": {
+    "clip_pool": {
+     "L-D": "not shared",
+     "L-G": "not shared",
+     "D-G": "not shared"
+    },
+    "clip_patch": {
+     "L-D": "not shared",
+     "L-G": "not shared",
+     "D-G": "not shared"
+    },
+    "dino_pool": {
+     "L-D": "not shared",
+     "L-G": "not shared",
+     "D-G": "not shared"
+    }
+   },
+   "across_features": "no shared direction"
+  },
+  "P": {
+   "per_feature": {
+    "clip_pool": "no shared direction",
+    "clip_patch": "no shared direction",
+    "dino_pool": "no shared direction"
+   },
+   "pairs": {
+    "clip_pool": {
+     "L-D": "not shared",
+     "L-G": "not shared",
+     "D-G": "shared"
+    },
+    "clip_patch": {
+     "L-D": "not shared",
+     "L-G": "not shared",
+     "D-G": "not shared"
+    },
+    "dino_pool": {
+     "L-D": "not shared",
+     "L-G": "not shared",
+     "D-G": "not shared"
+    }
+   },
+   "across_features": "no shared direction"
+  },
+  "W": {
+   "per_feature": {
+    "clip_pool": "no shared direction",
+    "clip_patch": "no shared direction",
+    "dino_pool": "no shared direction"
+   },
+   "pairs": {
+    "clip_pool": {
+     "L-D": "not shared",
+     "L-G": "not shared",
+     "D-G": "not shared"
+    },
+    "clip_patch": {
+     "L-D": "not shared",
+     "L-G": "not shared",
+     "D-G": "not shared"
+    },
+    "dino_pool": {
+     "L-D": "not shared",
+     "L-G": "not shared",
+     "D-G": "not shared"
+    }
+   },
+   "across_features": "no shared direction"
+  }
+ },
+ "lofo (registered)": {
+  "landmark": {
+   "per_feature": {
+    "clip_pool": "fails",
+    "clip_patch": "fails",
+    "dino_pool": "fails"
+   },
+   "family_reading": "fails"
+  },
+  "diffusion": {
+   "per_feature": {
+    "clip_pool": "fails",
+    "clip_patch": "fails",
+    "dino_pool": "fails"
+   },
+   "family_reading": "fails"
+  },
+  "GAN": {
+   "per_feature": {
+    "clip_pool": "fails",
+    "clip_patch": "fails",
+    "dino_pool": "fails"
+   },
+   "family_reading": "fails"
+  }
+ },
+ "answer (3), registered rule": "no"
+}

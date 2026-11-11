@@ -7,10 +7,10 @@ folder: `/net/pr2/projects/plgrid/plggrestoration/smad-next` (sub-folders `packs
 
 ## 1. Question and current answer
 
-11 Nov 2026, 18:15 CET. Status: **ready to submit the smoke job; blocked on Athena accepting jobs** (Slurm rejects
-both grant accounts for `plgpnarolski`; the lead's watcher reports when an account is accepted; no submission and no
-probing until then). Pack, environment script, job files and job lists are on Athena; the 8-image check passed on the DGX.
-DiffAE (diffusion autoencoder) generation on the shared DGX runs at about 157 s per inversion while other jobs share the
+11 Nov 2026, 21:20 CET. Status: **production finished; add-on running (2 of 8 tasks done, 6 pending on Athena).**
+The equivalence gate passed (Athena reproduces stored DGX A43 images within mean 0.02–0.06 grey levels). Set A (FRLL, 914
+files) and set B (FRGC/colorFERET, 3,616 files) exist on T7 with manifests and validity numbers; 3.77 Athena GPU-hours
+used so far. DiffAE (diffusion autoencoder) generation on the shared DGX runs at about 157 s per inversion while other jobs share the
 GPU, so the diffusion controls are incomplete: the identical-and-mirrored-inputs check (AD1b) covered 32 of 102
 persons, FRLL has no expression-matched one-person controls, and no diffusion twin set outside FRLL exists. This
 experiment ports the exact generator of the earlier MorDIFF-controls study (A43) to Athena (A100, x86), checks that
@@ -280,6 +280,21 @@ here. No answer yet.
   95f3f8b3…. Copies (under 2 MB): `experiments/DG1_diffusion-generation-athena/validity/{setA,setB}_manifest.csv`,
   `{setA,setB}_summary.csv`, `*_validity_full.json`.
 
+- 11 Nov 21:13–21:15. **Add-on tasks 0 and 1 finished** (3545907_0 = Slurm id 3545986, 1,403 s; _1 = 3545988, 1,438 s;
+  node t0016, account plgmultivision; exit 0). Shard 0: 202 encodes at 3.10 s, 1,218 renders (0.245–0.251 s at 20
+  steps, 1.22–1.31 s at 100), all finite, nothing skipped, 134 fresh draws; shard 1: 203 encodes, 1,130 renders, all
+  finite. Image tars fetched (`bash src/DG1/dg1_fetch.sh addon_s0`, `addon_s1`; sha256 d693f23e… and 93b08c1c…) into
+  `/mnt/t7/smad_next/DG1/gen/addon_s<k>/out_addon_s<k>/addon_s<k>/`. Codes tars stay on Athena:
+  `.../results/DG1/DG1_addon_s0_codes.tar` (264,693,760 bytes, sha256 b118e25b…; inside: codes.npz 1561b37b…,
+  fresh.npz 85b661d6…), `DG1_addon_s1_codes.tar` (265,482,240 bytes, sha256 2a52b4af…).
+- 11 Nov 21:16. **Run-to-run check** (add-on re-renders vs production images of the same 67 hosts of shard 0,
+  `addon_s0_rerun_check.json`): REC20 / SAME20 / X20 / MIR20 median per-image mean |difference| 0.0 (most files
+  pixel-identical), largest per-image mean 0.018 / 0.033 / 0.037 / 0.026, max 1 / 2 / 3 / 1 grey levels.
+- 11 Nov 21:18. `dg1_validity.py` extended for the add-on rungs (partner references for NOISEX / SEMX / DOSEX = partner's
+  S, for NOISES / SEMS / DOSES = host's S; `mode` and `fresh_seed` columns); manifest runs for add-on shards 0 and 1
+  started (`/mnt/t7/smad_next/DG1/validity/addon_s<k>/`, gen run `athena_DG1_addon`). Add-on tasks 2–7 still
+  pending ('ReqNodeNotAvail', start time N/A).
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):
@@ -306,6 +321,13 @@ Produced so far (DGX):
 | Job lists | `/mnt/t7/smad_next/DG1/jobs/` (`eq`, `smoke8`, `setA`, `setB_s0..3`, `lists_summary.json`) | 8 / 10 / 914 / 908+904+896+908 jobs | see timeline 17:43 |
 | Athena pack | `/mnt/t7/smad_next/DG1/packs/dg1_pack.tar` (+ `.sha256`); copy on Athena `.../smad-next/packs/DG1/dg1_pack.tar` | 2,880,163,840 bytes | 670b55f19770811505ca00c2be1ea3681440f8190c4e79b4e1c2a68f211336c5 |
 | DGX 8-image check | `/mnt/t7/smad_next/DG1/dgx_test/` | 10 files + validity | `gen/smoke8/gen_rows.csv` |
+| Smoke / equivalence images (Athena) | `/mnt/t7/smad_next/DG1/gen/smoke_3544800/` | 8 + 10 | tar 1,402,880 bytes, sha in `athena_results/` |
+| **Set A** (Athena) | `/mnt/t7/smad_next/DG1/gen/setA/out_setA/setA/` (pools `A_*`) | 914 | tar sha256 053ca8f2… |
+| **Set B** shards 0–3 (Athena) | `/mnt/t7/smad_next/DG1/gen/setB_s{0,1,2,3}/out_setB_s*/setB_s*/` (pools `B_*`) | 908 + 904 + 896 + 908 | tars 3a176569…, 8b917ce3…, 62637f1c…, 1c3f3678… |
+| Add-on shards 0–1 (Athena; images only) | `/mnt/t7/smad_next/DG1/gen/addon_s{0,1}/out_addon_s*/addon_s*/` (pools `AO_*`) | 1,218 + 1,130 | tars d693f23e…, 93b08c1c… |
+| Add-on codes and fresh draws | Athena only: `.../smad-next/results/DG1/DG1_addon_s<k>_codes.tar` | per shard about 265 MB | s0 b118e25b…, s1 2a52b4af… |
+| Result tars as fetched | `/mnt/t7/smad_next/DG1/athena_results/` | one per task, with `.sha256` | — |
+| Manifests and validity | `/mnt/t7/smad_next/DG1/validity/{setA,setB,setB_s0..3,addon_s*}/`; copies in `experiments/DG1_diffusion-generation-athena/validity/` | set A 914 rows, set B 3,616 rows | setA `manifest_full.csv` 95f3f8b3…, setB 263478b8… |
 
 Planned sets: set A 914 files (102 genuine writes + 812 renders); set B 3,616 files (1,072 genuine writes + 2,544
 renders: REC / MIR / SAME / X 536 each at 20 steps, DOSE 4 × 100). An earlier line of this README said 4,688 for set B;
@@ -346,6 +368,18 @@ that was an arithmetic slip, corrected at 18:16.
   DGX file, image statistics against the between-image spread of the 204 / 200 stored A43 files).
   `dg1_validity.py manifest` — manifest (image, set, rung, host, partner, steps, alpha, seed, generation run, hashes,
   cosines, statistics) and per-rung validity numbers (`manifest.csv`, `validity.json`, `validity.csv`).
+- `src/DG1/dg1_fetch.sh TAG...` — copy result tars back under the transfer lock, `sha256sum -c`, unpack into
+  `/mnt/t7/smad_next/DG1/gen/<TAG>/` (refuses an existing folder). For the add-on it fetches only the image tar.
+- `src/DG1/dg1_merge_manifests.py` — merge per-shard manifests into one (paths relative to `/mnt/t7/smad_next/DG1/gen`).
+- `src/DG1/dg1_manifest_extra.py` — person-use and cue columns (PNG bytes, verification against the independent
+  reference, database, partner cycle, PN1 role / test-read / validation-reserved host and partner, PD1-training person,
+  wedge / greyscale / twin-pair / shared-date flags, pair disagreement) and per-pool summaries (all, unflagged, per
+  database) → `manifest_full.csv`, `validity_full.json`.
+- Add-on (amendment 2): `src/DG1/dg1_addon.py` (generator: modes rec / mix / noise / sem / fresh, codes and fresh draws
+  saved, θ checked before rendering, outputs always written), `dg1_addon_lists.py` (8 shard lists + test list),
+  `dg1_addon_task.sh` (both packs checked, image tar and separate codes tar always written, generator exit code kept),
+  `dg1_addon.sbatch` (array 0–7, plgmultivision, `--exclude=t0010`), `dg1_addon_pack.sh`, `dg1_addon_dgx_test.sh`
+  (DGX 8-image check with retries on CUDA out-of-memory).
 - `src/DG1/dg1_dgx_test.sh` — the 8-image check on the DGX (inputs as a symlink folder, the A43 DiffAE venv, then
   `dg1_validity.py manifest`), outputs `/mnt/t7/smad_next/DG1/dgx_test/`.
 - DGX environment used by A43 (and to be reproduced on Athena): `/mnt/t7/thirdparty/diffae_venv` (Python 3.12.3; its own
@@ -416,6 +450,18 @@ and 7 X images; probable twin pairs: 4 X images; shared capture date: 16 X image
 SAME images 54. Per-image columns for PN1 role, test-read, validation-reserved host / partner, partner cycle, PD1
 training person and pair disagreement are in `setB_manifest.csv`. Descriptive only (amendment 1).
 
+### Add-on shard 0 validity (67 hosts, partial; `validity/addon_s0_validity.csv`)
+
+Descriptive, one shard of eight (shard 0 holds mostly colorFERET hosts, so its cosines are lower than set B overall).
+Glint cosine to host / partner (median) and verify-both share: REC20 0.965, REC100 0.990; MIR20 0.866; SAME20 0.850 /
+0.850, 1.00; SAME100 0.849 / 0.852, 1.00; X20 0.461 / 0.486, 0.985; X100 0.480 / 0.490, 0.985; **fresh-noise render
+FRESH1_20 0.330 (verifies the host in 0.81), FRESH2_20 0.329 (0.85), FRESH1_100 0.325 (0.82)**; noise-only mix with the
+partner NOISEX 0.744 / 0.253 (both 0.58); semantic-only mix with the partner SEMX 0.578 / 0.231 (both 0.45); noise-only
+and semantic-only mixes with the host's own second photo NOISES 0.855 / 0.786, SEMS 0.818 / 0.746 (both 1.00);
+two-person dose α 0.1–0.4: host 0.934 → 0.587, partner 0.195 → 0.380, both 0.23 → 0.94; same-person dose: host 0.960 →
+0.879. Plain fact worth noting for the readings: with fresh noise and the host's own semantic code, DiffAE keeps much
+less of the host's identity (cosine about 0.33) than the reconstruction from the photo's own noise map (0.96).
+
 ## 6. Checks
 
 Done:
@@ -439,6 +485,19 @@ manifest check runs regardless).
 - 17:31: `pkill -f "run_align_unchanged.py.*DG1/pool_in"` also matched the shell running it (its own command line
   contains the pattern) and killed that shell (exit 144). It still stopped the one slow aligner process. Lesson: write
   multi-step process control into a script file or use patterns that cannot match themselves.
+- 18:31 smoke 3544197: `module load Python/3.12.3` refused without `GCCcore/13.3.0` (4 s).
+- 18:47 smoke 3544215: numpy 2.5.4 ended up in the venv although numpy 1.26.4 installed first; DiffAE cannot import
+  `numpy.lib.function_base` under numpy 2. Cause of the upgrade not identified (no pinned package declares numpy ≥ 2).
+  Fix: numpy and pillow in the constraints file, version assertions in the environment check (11 min lost, 0.185 GPU-h).
+- 18:35 and later: a `flock -w 120` on the single shared lock timed out silently while other owners uploaded; since
+  18:38 there are two locks (commands / transfers).
+- First design copied the 2.9 GB pack into `$SCRATCH_LOCAL` before extracting it; Athena's local scratch is 4 GB, so it
+  would have failed; switched to `$MEMFS` and extraction straight from the project store before any production job.
+- 19:33: node t0010 ran 6 times slower (18.8 s per inversion); two production tasks cancelled after about 10 min and
+  rerun with t0010 excluded (0.31 GPU-hours lost).
+- 19:31: first DGX check of the add-on died with CUDA out-of-memory at model load (shared GB10); retried, passed.
+- 21:10: greyscale flag first counted 0 photos (exact R = G = B test); aligned grey photos keep 1–2 grey levels of
+  channel noise; rule changed to channel spread ≤ 2 (7 photos, as the review found).
 - 18:12: two shell-logic faults found by reading before any Athena job ran (manifest check that `set -e` would not stop
   on; environment rebuild possible from parallel tasks). Fixed (timeline 18:12).
 
@@ -457,21 +516,30 @@ manifest check runs regardless).
 
 ## 9. Open items and next steps
 
-1. Wait for the lead's message that an Athena account is accepted (no submission, no probing before).
-2. Submit the smoke job: `flock -w 120 /tmp/smadnext-athena.lock ssh -o BatchMode=yes plgpnarolski@athena.cyfronet.pl
-   'cd /net/pr2/projects/plgrid/plggrestoration/smad-next && sbatch --parsable packs/DG1/dg1_smoke.sbatch'`.
-3. Fetch its tar (`bash src/DG1/dg1_fetch.sh smoke_<jobid>`), run the equivalence gate
-   (`.venv-spark/bin/python -I src/DG1/dg1_validity.py equiv --gen /mnt/t7/smad_next/DG1/gen/smoke_<jobid>/out_smoke_<jobid>/eq
-   --ref /mnt/t7/smad_heldout/a43/gen --out experiments/DG1_diffusion-generation-athena/equivalence.json`), read the A100
-   speeds from `gen_log.json`, write the estimate into `result.md`.
-4. Submit production (`dg1_prod.sbatch`, array 0–4, `--time` from the estimate, at most 4 h), tell the lead when set A
-   exists, fetch, run `dg1_validity.py manifest` on set A, then on set B.
+1. Add-on tasks 3545907_2 … _7: when each ends (`sacct -j 3545907 -X`), fetch only the image tars:
+   `bash src/DG1/dg1_fetch.sh addon_s2 … addon_s7` (check `df -h /mnt/t7` first; about 85 MB each). Leave the
+   `DG1_addon_s<k>_codes.tar` files on Athena (lead's rule; about 265 MB each).
+2. Validity for each add-on shard: `.venv-spark/bin/python -I src/DG1/dg1_validity.py manifest --gen-root
+   /mnt/t7/smad_next/DG1/gen/addon_s<k> --pool experiments/AR1/pool.csv --out-dir /mnt/t7/smad_next/DG1/validity/addon_s<k>
+   --gen-run athena_DG1_addon`; then `dg1_merge_manifests.py --out /mnt/t7/smad_next/DG1/validity/addon/manifest.csv
+   <validity/addon_s0..7>:<addon_s0..7>` and `dg1_manifest_extra.py ... --gen-root /mnt/t7/smad_next/DG1/gen --out-dir
+   /mnt/t7/smad_next/DG1/validity/addon`; run-to-run check per shard as `addon_s0_rerun_check.json`.
+3. The reading rules (amendment 1) bind every scoring experiment; the scoring itself is not part of DG1.
+4. Question for the lead: delete the local copy of the base pack `/mnt/t7/smad_next/DG1/packs/dg1_pack.tar` (2.7 GB, also
+   on Athena with sha256 670b55f1…)? Not deleted without a yes.
+5. Review question 3 (are `frgc:04637`/`04638` and `frgc:04692`/`04856` twins) is open; the flag column covers both.
 
 ## 10. Handover state
 
-19:15: Athena production array 3545841 (5 tasks) submitted; smoke 3544800 passed (3544197 and 3544215 failed; see timeline). Before that: no Athena job. Files staged on Athena:
-`/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/DG1/{dg1_pack.tar,dg1_pack.tar.sha256,dg1_env.sh,dg1_run_task.sh,dg1_smoke.sbatch,dg1_prod.sbatch}`.
-Compute spent: Athena 0.27 GPU-hours so far (3544197 0.001, 3544215 0.185, 3544800 0.083); DGX GB10 about 0.45 GPU-hours (8-image check, shared) plus CPU alignment.
+21:20, 11 Nov. Running: Athena add-on array 3545907, tasks 2–7 pending (account plgmultivision-gpu-a100, node t0010
+excluded, 2:00 limit; logs `/net/pr2/projects/plgrid/plggrestoration/smad-next/logs/DG1-addon-3545907_<k>.out`; results
+`.../results/DG1/DG1_addon_s<k>.tar` and `_codes.tar`). If a task fails: its tar is still written (task script); read
+`out_addon_s<k>/addon_s<k>.log` inside it; a rerun of one shard: `sbatch --array=<k> packs/DG1/dg1_addon.sbatch` after
+moving its result tars aside (the task refuses existing tars). DGX: validity manifests of add-on shards 0 and 1 running
+in the background (`/mnt/t7/smad_next/DG1/validity_addon_01.log`). Nothing else running.
+Compute spent on Athena (sacct, 1 GPU billed per job): smoke 0.27, set A 0.49, set B 1.92, lost on node t0010 0.31,
+add-on tasks 0–1 0.79: **3.77 GPU-hours**; add-on remainder estimated 2.4. DGX GB10 about 1 GPU-hour (shared 8-image
+checks, embeddings) plus CPU alignment. On T7: about 4 GB under `/mnt/t7/smad_next/DG1/`.
 
 ## 11. Reproduce from scratch
 

@@ -24,6 +24,7 @@ second copy: the place of the verified copy is given. Owners add their lists thr
 | SMDD rebuild (SM1) | /mnt/t7/smad_next/SM1/lease/sm1_c_out.tar (6.3 GB), sm1_b_out.tar (6.1), sm1_a_out.tar (1.6) | 14 GB | contents unpacked locally in /mnt/t7/smad_next/SM1/img/ (the copies on the rented machine are volatile) |
 | SMDD rebuild (SM1) | /mnt/t7/smad_next/SM1/wcss/packs/SM1/sm1_c_pack.tar (2.9 GB), sm1_b_pack.tar (0.8), sm1_a_pack.tar (0.5) | 4.2 GB | CPU-build packs; their sources (SMDD renders, landmark files) still exist locally |
 | SMDD rebuild (SM1) | /mnt/t7/smad_next/SM1/athena/sm1gpu_feats_full_3545820.tar (0.85 GB), sm1gpu_feats_f_3545893.tar (0.14) | 1.0 GB | extracted locally beside the tar; originals in Athena results/SM1 |
+| Diffusion generation (DG1) | /mnt/t7/smad_next/DG1/packs/dg1_pack.tar | 2.7 GB | Athena packs/DG1 (hash checked in the smoke and production jobs) |
 
 Still to be listed by their owners: the protocol-network tests (PN1, pack of 10 GB), the diffusion generation (DG1, pack of 3 GB).
 

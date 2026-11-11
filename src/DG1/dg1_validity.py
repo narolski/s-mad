@@ -181,9 +181,9 @@ def cmd_manifest(a):
         if r["rung"] == "G" and r["name"].endswith("_S.png"):
             return pathlib.Path(hr["S"]), None, pathlib.Path(hr["R"]) if hr["R"] else None, None
         pb = pi = None
-        if r["rung"] == "SAME":
+        if r["rung"] in ("SAME", "NOISES", "SEMS", "DOSES"):          # second photo of the host (add-on rungs too)
             pb = pathlib.Path(hr["S"])
-        elif r["rung"] in ("X", "DOSE"):
+        elif r["rung"] in ("X", "DOSE", "NOISEX", "SEMX", "DOSEX"):
             pr = pool[r["partner"]]
             pb, pi = pathlib.Path(pr["S"]), (pathlib.Path(pr["R"]) if pr["R"] else None)
         return pathlib.Path(hr["H"]), pb, (pathlib.Path(hr["R"]) if hr["R"] else None), pi
@@ -200,7 +200,8 @@ def cmd_manifest(a):
         c_hi, c_pi = (E.cos(f, hi) if hi else float("nan")), (E.cos(f, pi) if pi else float("nan"))
         man.append({"image": str(f.relative_to(pathlib.Path(a.gen_root))), "set": r["set"], "pool": r["pool"],
                     "rung": r["rung"], "host": r["host"], "partner": r["partner"], "src_a": r["src_a"],
-                    "src_b": r["src_b"], "steps": r["steps"], "alpha": r["alpha"], "seed": r["seed"],
+                    "src_b": r["src_b"], "steps": r["steps"], "alpha": r["alpha"],
+                    "seed": r.get("seed", "0"), "mode": r.get("mode", ""), "fresh_seed": r.get("fresh_seed", ""),
                     "gen_run": a.gen_run, "gen_node": log.get("node", ""), "device": log.get("device", ""),
                     "torch": log.get("torch", ""), "sha256": r["sha256"], "theta_xT": r["theta_xT"],
                     "face_found": int(E.cache.get(str(f)) is not None),
@@ -218,7 +219,7 @@ def cmd_manifest(a):
     summ = {}
     for key in sorted({(m["set"], m["pool"]) for m in man}):
         g = [m for m in man if (m["set"], m["pool"]) == key]
-        two = g[0]["rung"] in ("X", "DOSE", "SAME", "CONF")
+        two = g[0]["rung"] in ("X", "DOSE", "SAME", "CONF", "NOISEX", "SEMX", "NOISES", "SEMS", "DOSEX", "DOSES")
         s = {"n": len(g), "rung": g[0]["rung"], "steps": g[0]["steps"], "faces_found": sum(m["face_found"] for m in g),
              "cos_host": q([m["cos_host"] for m in g]), "verify_host": float(np.mean([m["ver_host"] for m in g])),
              "cos_host_indep": q([m["cos_host_indep"] for m in g]),
