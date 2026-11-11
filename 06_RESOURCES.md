@@ -1,52 +1,52 @@
 # Resources
 
-All hours are estimates. H100-hour = one hour of one NVIDIA H100.
+All hours are estimates until the first timed run. H100-hour = one hour of one NVIDIA H100.
+Budget rules from the author (11 Nov): WCSS as much as the scheduler gives; Vast 20 USD now, 100 USD
+at most, each lease justified; ablations on WCSS.
 
-## What the plan needs
+## Where each kind of work runs
 
-| Work | GPU-hours | Kind of GPU | Why there |
+| Work | Estimate | Runs on | Why |
 |---|---|---|---|
-| GAN inversion and mixes (D3) | 80 | any 24 GB card | embarrassingly parallel, one pair per task |
-| DiffAE mixes (D4) | 120 | any 24 GB card | same |
-| LoRA training, 3 backbones × 5 seeds (T4) | 60 | H100 or 5090 | batch fits in 24–32 GB |
-| Heads, features, audits, guards | 25 | DGX GB10 | small, no queue |
-| Morph-free repeat, benchmark scoring | 20 | WCSS H100 | scorers already live there |
-| Total | about 300 | | |
+| Landmark morphs, self-morphs, graded mixing | CPU, half a day | DGX CPU (WCSS CPU array if slow) | no GPU needed |
+| Features, heads, audits on twins, cue baselines | 25 GPU-h | DGX | small jobs, no queue |
+| MIPGAN, StyleGAN and DiffAE twins for the audit (about 2,000 pairs per family) | 35 GPU-h | WCSS first | needs x86; free |
+| Twin training data at scale (10,000 pairs per generator family) | 150 GPU-h | WCSS; Vast only as overflow | only after gate 0 shows a signal |
+| Morph-free networks, retrains of released methods, LoRA runs, benchmark scoring | 150 H100-h | WCSS | ablations and long jobs |
 
-## Recommendation
+## Queue strategy on WCSS
 
-1. **Vast: 8 × RTX 5090 (or 4090) for about 30 hours, in two 4-GPU machines.** About 200 GPU-hours of
-   generation finish in one day of wall time. At typical prices this is 100–150 USD. The current
-   ceiling is 100 USD with about 15 USD on the account, so the ceiling and balance need raising to
-   250 USD.
-2. **WCSS: 8 concurrent H100 jobs** for T4 and scoring from Friday. If the queue forecast stays at
-   more than 6 hours, T4 moves to the Vast machines after generation ends.
-3. **DGX GB10:** all frozen-feature work. It must be free of the other loop's jobs, or share by
-   agreement (decision 5).
-4. **B200: not needed.** The workload is many small independent tasks. A B200 would run one of them
-   faster and leave most of its memory unused. Eight consumer cards give about four times the
-   throughput per dollar here. It would only pay off for full fine-tuning of ViT-L at large batch,
-   which the plan avoids on purpose.
+- At approval, everything long is submitted in one batch so it ages in the queue: AD4/AR6, AD5, AG4
+  and the generation arrays. Scripts are tested on 8 images locally first.
+- Generation is an array of small tasks (one H100, 2 hours each). Small jobs backfill into gaps that
+  14-hour jobs cannot use.
+- Generation arrays are submitted in two priority steps so that the audit set (small) is never behind
+  the training set (large).
+- Polls follow job ETAs. One SSH connection at a time.
 
-## Using rented machines fully
+## When Vast is used, and what it returns
 
-- One work queue per machine: a file of tasks, one worker per GPU, each task writes its output and a
-  done-marker; workers pull the next task until the file is empty. No GPU waits for another.
-- The machine is rented only after the pair lists (D1) exist and the generation command has passed an
-  8-image test on the DGX.
-- Inputs go up as one tar pack; outputs come back as tar packs every 30 minutes, so a lost machine
-  loses at most 30 minutes.
-- When generation ends, the same machines take the LoRA runs. The lease is closed the minute its queue
-  is empty; a watchdog on the DGX enforces a hard cost stop.
-- Target: above 90% GPU utilisation, checked from `nvidia-smi` logs kept with the results.
+Vast is a way to skip the WCSS queue for data that many experiments wait on. A lease is opened only
+if the forecast WCSS start is later than the Vast finish.
 
-## Other things to arrange
+| Lease | Produces | Unblocks | Cap |
+|---|---|---|---|
+| V1 | MIPGAN one-person twins and reconstructions for the 102 benchmark persons; DiM twins | AG1, AG2, AG3, AD2: the GAN causal test and the diffusion extension | 20 USD |
+| V2 | GAN and DiffAE twin pairs for training | T4 on generator morphs | 40 USD, only after gate 0 is positive |
+| V3 | Reserve for one rerun | — | 40 USD, needs the author's yes |
+
+No training and no ablation runs on Vast. Each lease uses one task queue per machine, one worker per
+GPU, results copied back every 30 minutes, and a watchdog that closes it at the cap.
+
+A B200 is not needed: the work is many small independent tasks, and several ordinary cards finish
+them sooner per dollar.
+
+## Other needs
 
 | Need | Why | Who |
 |---|---|---|
-| Written scope for FRGC and colorFERET (may we publish derived morphs? features only?) | decides whether TwinSet can be released, and unblocks generation | author |
-| StyleGAN2 inverter and DiffAE on x86 | the DGX is ARM; the x86 DiffAE build failed in A139 | us, on Vast (prebuilt container) |
-| 150 GB free on `/mnt/t7` | TwinSet about 100 GB; 357 GB free now | fine |
-| Released weights for each compared detector | twin audit "as released" | have SelfMAD, MADation; check the rest |
-| Agreement on which loop owns the DGX and WCSS slots until 16 Nov | two loops, one repository, shared budgets | author |
-| Kamil: 2 hours on Saturday for a read of the tables and the claim wording | independent human check before text is frozen | author |
+| Hand-over of the DGX from the other loop | all quick work runs there | author |
+| x86 builds of MIPGAN, the StyleGAN inverter and DiffAE in one container | the DGX is ARM; the earlier x86 DiffAE build failed | us; first task on WCSS CPU |
+| 150 GB on `/mnt/t7` | TwinSet; 357 GB free | fine |
+| Released weights of further detectors | wider audit table | see `10_ASSET_INVENTORY.md` |
+| Two hours of Kamil's time on Saturday | human read of tables and claim wording | author |

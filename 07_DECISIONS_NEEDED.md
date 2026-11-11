@@ -1,22 +1,34 @@
-# Decisions needed from the author
+# Decisions
 
-Each has a default that the plan assumes if nothing else is said.
+## Made by the author on 11 Nov 2026
 
-1. **Data scope.** May FRGC, colorFERET and Multi-PIE photos be used to make morphs and self-morphs for
-   training and testing? Default: yes for internal use; the paper releases pair lists and code, not
-   images.
-2. **Start.** Approve launching the plan (this lifts "plan only, no compute"). Default: nothing runs.
-3. **Shared post-processing.** Keep pairs as lossless PNG at generator resolution, or apply one shared
-   chain through the already approved `a37_restore` path? Default: lossless PNG; no new resampling or
-   compression code.
-4. **Budget.** Raise the Vast ceiling to 250 USD and allow 8 concurrent WCSS jobs. Default: stay at
-   100 USD and 4 jobs, which stretches generation to two days.
-5. **The other loop.** Pause it, or keep it on the WCSS jobs it already queued (MAD22, A138) and leave
-   the DGX and Vast to this plan? Default: it keeps its queued WCSS jobs and starts nothing new.
-6. **Claim wording.** Accept the narrowed thesis from `01_EVIDENCE_DOSSIER.md` (diffusion shown, GAN
-   absence, landmark open until the twin test)? Default: yes.
-7. **MADMamba.** One arm in T4 under identical data; kept in the paper only if it wins. Default: yes.
-8. **Sealed sets.** FST, A12SP and `valx.csv` stay closed; TwinSet's held-out pipelines are the new
-   test. Default: yes.
-9. **Research repository.** Add the morph-specific literature note to `narolski/research` and push?
-   Default: prepared locally, not pushed.
+| # | Decision |
+|---|---|
+| 1 | All available data may be used; we hold the licences. Sources include `mambamorph/Datasety`. Only the corrected MAD22 is used. |
+| 2 | The plan is hardened first. Nothing is launched until the author approves. |
+| 3 | We take over from the other loop when the author approves. |
+| 4 | WCSS: use as much as the scheduler allows and submit needed jobs as early as possible. Vast: 20 USD available now, up to 100 USD in total, each lease must show a concrete return. Ablations that do not produce new data go to WCSS. |
+| 5 | Prior and future work is organised in `narolski/s-mad`. |
+| 6 | A cue table is kept and cues are crossed out one by one (`08_CUE_MATRIX.md`). |
+| 7 | A short notebook tracks all ideas (`NOTEBOOK.md`). |
+| 8 | Work runs as lead (Fable) → hypothesis owners (Opus) → helpers (Sonnet, Haiku); the lead reviews every result. No waiting for approval except for large spending (`WORKFLOW.md`). |
+
+## Assumed unless the author says otherwise
+
+| # | Assumption |
+|---|---|
+| A | Pairs are stored as lossless PNG at the tool's or generator's output size. No new blur, resampling or compression code. The history control uses the already approved path only. |
+| B | The claim wording follows the evidence per family; the three-number test in `11_AUDIT_PLAN.md` decides each cell. |
+| C | MADMamba is one arm under identical data and stays in the paper only if it wins. |
+| D | FST, A12SP and `valx.csv` stay closed; held-out tools and generators of TwinSet are the new test. |
+| E | The paper releases pair lists and code, not images of licensed datasets. |
+| F | The other loop's queued WCSS jobs (corrected MAD22 scoring, A138) stay in the queue; their results are used. |
+
+## Still open
+
+1. **Start signal.** One word starts the WCSS submissions and the DGX work.
+2. **Five design questions** from the pre-run review, listed at the end of `11_AUDIT_PLAN.md`: how to
+   name a "tool trace"; which landmark generation paths may run; licensed images on Vast; a new
+   MADMamba arm under the seal; how to register.
+3. **Literature repository.** Add the morph literature note to `narolski/research` and push? Prepared
+   locally, not pushed.
