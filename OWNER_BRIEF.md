@@ -57,3 +57,13 @@ You prepare task directories under `.../smad-next/staging/<ID>/` (not `ready/`),
 `.../smad-next/packs/<ID>/`. The lead reviews and moves them to `ready/`. Name tasks
 `<ID>_<arm>_s<seed>`. A task must be idempotent and must not depend on another task's output unless
 it checks for it and exits non-zero when missing.
+
+## WCSS CPU jobs
+
+Work that needs no GPU may run on `lem-cpu-short` (measured 11 Nov: jobs there started within a
+minute, while GPU jobs wait for many hours). Suitable: building landmark morphs and self-morphs, cue
+baselines, file and colour statistics, bootstrap analysis, heads on cached features, and x86 import
+or one-iteration smoke tests of generator code. Same rules as GPU tasks: `--extra=FORCE_RM_TMPDIR`,
+all IO in `$TMPDIR`, one tar in and one tar out. Stage CPU tasks under
+`.../smad-next/staging/<ID>/cpu/` with `run.sh`, `est_minutes` and a `cpus` file (cores needed); the
+lead submits them directly, since no queue position needs holding.
