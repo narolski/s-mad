@@ -286,6 +286,9 @@ Not verified:
 
 ## 10. Handover state (11 Nov ~17:45 CET)
 
+- **Update ~23:00:** T7 fell to 47 GB free (other writes); fetch paused, then lead set the floor to 40 GB free (one tar
+  at a time, tar removed after processing). Threshold in `fetch_and_process.sh` now 42 GB before a fetch. First core
+  result: 3544797_3 (FERET 01) done in 1 h 43 min, 509 MB tar.
 - **Update ~21:25:** DGX loop running (this owner's shell, background): every 15 min it calls
   `src/AG1/fetch_and_process.sh` until 16 shards (8 core, 4 graded mixing, 4 spread) are processed; logs
   `/mnt/t7/smad_next/AG1/fetch_<HHMM>.log`; ledger `experiments/AG1/fetched_tars.csv`. If it dies, rerun the script

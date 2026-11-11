@@ -1,7 +1,7 @@
 #!/bin/bash
 # AG1 copy-back, one result tar at a time (lead's option (c), 11 Nov): for each shard named in the arguments (or in
 # core.txt, ag3.txt and the four spread names) whose result exists on Athena and is not yet processed locally:
-#   1. check free space on /mnt/t7 (>= 50 GB after the fetch, else stop);
+#   1. check free space on /mnt/t7 (>= 40 GB after the fetch, lead 11 Nov, else stop);
 #   2. rsync <shard>.tar, .tar.sha256 and .log.csv from Athena (transfer lock);
 #   3. check the local tar's sha256 against the .sha256 written on Athena (the hash of the Athena copy);
 #   4. ag1_manifest.py shard <tar> (thread caps, nice 10): frames, oracle crops / embeddings, RT check;
@@ -28,7 +28,7 @@ for n in "${NAMES[@]}"; do
   [ -s "$B/data/shards/$n.json" ] && { echo "$n: already processed"; continue; }
   grep -qx "$n.tar.sha256" <<< "$AVAIL" || { echo "$n: no result on Athena yet"; continue; }
   free_gb=$(df --output=avail -BG /mnt/t7 | tail -1 | tr -dc 0-9)
-  [ "$free_gb" -ge 52 ] || { echo "only ${free_gb} GB free on /mnt/t7; stopping (rule: keep 50 GB)"; exit 7; }
+  [ "$free_gb" -ge 42 ] || { echo "only ${free_gb} GB free on /mnt/t7; stopping (lead 11 Nov: keep 40 GB)"; exit 7; }
   flock -w 1800 /tmp/smadnext-athena.lock rsync -a "$A:$AR/$n.tar" "$A:$AR/$n.tar.sha256" "$A:$AR/$n.log.csv" "$R/"
   [ "$(sha256sum "$R/$n.tar" | cut -c1-64)" = "$(cut -c1-64 "$R/$n.tar.sha256")" ] || { echo "$n: sha256 mismatch after fetch"; exit 8; }
   nice -n 10 "$PY" "$HERE/ag1_manifest.py" shard "$R/$n.tar"

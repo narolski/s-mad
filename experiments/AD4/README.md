@@ -878,3 +878,33 @@ Commands: `cd /home/narolski/smad-next/src/AD4 && CUDA_VISIBLE_DEVICES= OMP_NUM_
 - **Reader used for the readings: `summarise.py` sha256 `8fd182b49aa75268d44b5c220dd6d7a8c745cf99cdab1d58d5c3574357e3056b`**
   (test `8f8f0a67124471d5f9a435c1e01d13ba3cc6b0ef9f48be4bcce8794e97d66078`). This supersedes `b9213a5d…`, which ran the gates; the gate code
   is unchanged. No score was opened by the reader between the two versions beyond the gate cells listed above.
+
+### ViT-L/14 progress, 22:56 (Athena job logs `.../smad-next/logs/AD4L-3544219_<n>.out`)
+
+| Task | Network | Node | Elapsed | Step | Rate (it/s) | Projection |
+|---|---|---|---|---|---|---|
+| 0 | `AD4_m3lmf_s401` | t0017 | 4:01 | 6100 | 0.43 | ends about 23:08 |
+| 1 | `AD4_m3lmf_s402` | | 3:43 | done | | COMPLETED 22:38, copied, gate pass |
+| 2 | `AD4_m3lmf_s403` | t0020 | 3:57 | 1200 | 0.11 | about 13 h of training left: exceeds the 10 h limit |
+| 3 | `AD4_m3lmf_s404` | t0014 | 3:42 | 800 | 0.09 (0.23 at step 700) | about 17 h left: exceeds the limit |
+| 4 | `AD4_m3lmf_s405` | t0020 | 3:33 | 500 | 0.05 | about 32 h left: exceeds the limit |
+| 5 to 9 | `AD4_m3lperm_s401..405` | t0019, t0021, t0013 | 2:49 to 3:04 | 4800 to 5300 | 0.46 to 0.49 | end about 23:35 to 23:50 |
+
+Reported to the lead at 22:57: at these rates the ViT-L/14 morph-free arm ends with 2 of 5 networks unless tasks 2 to 4 are rerun (the prereg
+allows one unchanged rerun of a failed task); cancelling or resubmitting is the lead's decision. Nodes t0020 and t0014 are slow for this job.
+
+### Rerun of three ViT-L/14 morph-free tasks (lead, 11 Nov 22:56)
+
+- **What:** the lead cancelled Athena tasks 3544219_2, _3 and _4 (`AD4_m3lmf_s403`, `_s404`, `_s405`) and resubmitted them unchanged as
+  job array **3546123_[2-4]**: same job file `src/athena/ad4_vitl_array.sbatch` and `run.sh`, account `plgmultivision-gpu-a100`, 6-hour limit,
+  `--exclude` of nodes t0010, t0014 and t0020. Pending on priority at 22:56; about 3 h 45 min each after start at the healthy rate.
+- **Why (infrastructure, not values):** at 22:56 the three tasks ran at 0.11 it/s (t0020, step 1200 after 3:57), 0.09 it/s (t0014, step 800
+  after 3:42, 0.23 it/s at step 700) and 0.05 it/s (t0020, step 500 after 3:33), against 0.43 to 0.49 it/s on the other nodes. None could finish
+  inside its 10-hour limit (projections 13, 17 and 32 hours). The three tasks had written no result (`run.sh` writes the tar only at the end),
+  so no value of these networks existed or was seen.
+- **Rule applied:** the prereg's "a failed task is rerun once unchanged; never rerun because of its values". This is that one rerun for each
+  of the three seeds. A further failure of any of them leaves the arm incomplete.
+- **Slow nodes for this job (add to the `ATHENA.md` note on t0010):** t0020 (two tasks, 0.05 and 0.11 it/s) and t0014 (0.09 it/s), against
+  0.43 to 0.49 it/s elsewhere for the same ViT-L/14 batch.
+- **Reading state:** until all five morph-free networks are back, the ViT-L/14 morph-free arm is read only as "incomplete (k of 5)"
+  (Amendment 2 (d)). Watched: arrays 3544219 (tasks 0 and 5 to 9) and 3546123 (tasks 2 to 4).

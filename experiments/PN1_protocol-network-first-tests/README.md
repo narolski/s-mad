@@ -277,6 +277,23 @@ line, not a property of the method).
 Registered kill rules: k1 (cannot reach 0.60 with 30% kept) not met; k2 (matched not below random by half the full-pool
 change: 8.9 − 4.7 = 4.2 ≥ 2.35) not met; k3 (EER worse by > 2 points: +0.52) not met.
 
+### 5.1d Spliced-positive heads (amendment 8; `splice/`, `src/PN1/splice.py`, `splice_lists.py`, `splice_ratio.py`)
+
+Seed 401, test hosts, OpenCV-style engine; A0 / B0 / S-a / S-b. Note: the face-only S0 copy is byte-identical to the
+face-only R2w copy (AR1 prereg line 197), so "S0 vs S4 face-only" and "R2w vs R4 face-only" are the same contrast.
+
+| Read | CLIP | DINOv3 |
+|---|---|---|
+| face-only S0 vs S4 (best baseline 0.906) | 0.746 / 0.734 / 0.830 / 0.798 | 0.759 / 0.778 / 0.851 / 0.848 |
+| face-blanked R2w vs R4 (baseline 0.778) | 0.994 / 0.995 / 0.759 / 0.939 | 0.996 / 0.995 / 0.884 / 0.999 |
+| native S0 vs S4 (baseline incl. sharpness ratio 0.843) | 0.862 / 0.868 / 0.946 / 0.930 | 0.837 / 0.828 / 0.975 / 0.964 |
+| MAD22 E7 EER OpenCV / Webmorph, S-a; S-b | 23.7 / 24.0; 9.8 / 11.3 | 13.8 / 13.2; 2.0 / 3.0 |
+| H1 AUC S-a; S-b | 0.821; 0.843 | 0.775; 0.854 |
+| shift to 61 px (SD) S-a; S-b | 0.20; 0.10 | 0.36; 0.28 |
+| τ_cam gating miss S-a; S-b | 56%; 39% | 25%; 7.8% |
+
+Face-blanked S0 vs S4 is 0.500 (identical images). GPU: CLIP 48 s, DINOv3 182 s (DGX idle at 22:35).
+
 ### 5.2 Tier 1
 
 Not run.
