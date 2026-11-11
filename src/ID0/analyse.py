@@ -231,8 +231,15 @@ class Reader:
         A = np.array([self.vec(self.meta[k]["src1"]) for k in ks])
         Bm = np.array([self.vec(self.meta[k]["src2"]) for k in ks])
         c = self.M.c_pair(A, Bm)
+        # descriptive (amendment 4): pool-centred c, the common offset of the pool's source images removed
+        srcs = sorted({self.meta[k][f] for k in ks for f in ("src1", "src2")})
+        zm = self.M.z(np.array([self.vec(s) for s in srcs])).mean(0)
+        za, zb = self.M.z(A) - zm, self.M.z(Bm) - zm
+        J = self.M.J
+        cp = (za[:, J] * zb[:, J]).sum(1) / self.M.lam[J].sum()
         return dict(n=len(ks), median=round(float(np.median(c)), 4), q10=round(float(np.quantile(c, .1)), 4),
-                    q90=round(float(np.quantile(c, .9)), 4))
+                    q90=round(float(np.quantile(c, .9)), 4), pool_centred_median=round(float(np.median(cp)), 4),
+                    pool_centred_q10_q90=[round(float(np.quantile(cp, .1)), 4), round(float(np.quantile(cp, .9)), 4)])
 
     def fidelity(self, group, unit=False):
         ks = [k for k in self.groups.get(group, []) if self.meta[k]["src1"] in self.idx and self.meta[k]["src2"] in self.idx]
@@ -475,6 +482,10 @@ def run(arm, B, kmax, out_dir):
                     row["c_arm_q10_q90"] = [cp["q10"], cp["q90"]]
                     row["pred_closed"] = round(model.pred_closed(max(cp["median"], 0.0)), 4)
                     row["pred_spectrum"] = round(model.pred_spectrum(max(cp["median"], 0.0), 100000), 4)
+                    cc = min(max(cp["pool_centred_median"], 0.0), 0.99)
+                    row["c_pool_centred_median"] = cp["pool_centred_median"]
+                    row["pred_closed_pool_c"] = round(model.pred_closed(cc), 4)
+                    row["pred_spectrum_pool_c"] = round(model.pred_spectrum(cc, 100000), 4)
                 row["pred_closed_c0"] = round(model.pred_closed(0.0), 4)
             rows.append(row)
     res["contrasts"] = rows
@@ -538,7 +549,7 @@ def run(arm, B, kmax, out_dir):
     json.dump(res, open(out_dir / f"arm_{arm}.json", "w"), indent=1)
     with open(out_dir / f"contrasts_{arm}.csv", "w", newline="") as f:
         cols = ["label", "kind", "score", "auc", "ci95", "n_neg", "n_pos", "c_arm_median", "pred_closed", "pred_spectrum",
-                "pred_closed_c0"]
+                "pred_closed_c0", "c_pool_centred_median", "pred_closed_pool_c", "pred_spectrum_pool_c"]
         w = csv.DictWriter(f, fieldnames=cols, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)

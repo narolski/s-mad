@@ -186,3 +186,46 @@ exactly. I had also read the A46 RGB-only MAD22 numbers on the **old** 185 / 4,0
    inherited OpenCV bona-copy defect) is not verified.
 5. **Not added:** SelfMAD on corrected MAD22 (no published MAD22 value, so no row could be reproduced; the brief
    says reuse, not rescore, SelfMAD scores).
+
+## Amendment 2 (11 Nov 2026, 17:45 CET; from the independent review of the fixed-threshold re-read (EV1), `experiments/reviews/REVIEW_EV1_20261111.md`; before any full RS1 result is read)
+
+State when written: one RS1 score file exists (MADation ViT-B/16 on the reused A46 crops); it has not been opened.
+Athena: the lead reports that Slurm rejects our user's grant accounts; nothing is submitted until the lead says so
+(the account to use is `plgrestorearc-gpu-a100`). The work runs on the DGX meanwhile.
+
+The review withdrew the released ViT-L/14 false-alarm figures (saturated scores on our 512-pixel frames); RS1 now
+carries them.
+
+(a) **Extra genuine pools**, each through every MADation / MixFaceNet release's own crop and through SelfMAD's own
+crop, existing files only (the files behind the EV1 rows; no new blur, resize, resampling or JPEG code):
+- unprocessed FRLL photos (raw files; already in RS1);
+- the existing JPEG quality 50 and 70 files and the existing 50% shrink-and-enlarge files of the FRLL photos
+  (`eval/frllm/frll_bona/*_{jpeg50,jpeg70,resample50}.png`, our aligned frames, 204 each);
+- the DiM and MorDIFF storage-history files (raw E7 files where they exist, aligned E7 frames otherwise; already in
+  RS1);
+- the stored-small pool (A43 arm E; already in RS1);
+- the 2,000 FFHQ photos (`/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/*_orig.png`) paired with their
+  history-matched versions at the 65-pixel inter-eye distance (`*_resmatch_diffae.png`, `*_resmatch_landmark_complete.png`;
+  the StyleGAN-matched copies, inter-eye distance about 266, are left out);
+- FEI neutral (198) and smiling (187) photos (`gtest/{neutral,smiling}/bona/*.png`, the gtest.csv frames).
+SelfMAD scores that already exist are reused (A41 x7 raw files, A32-RSX frames incl. JPEG 50 / 70 and 50%
+shrink-and-enlarge, A43 own frames); SelfMAD is newly scored (AR1's `score.py --mode own`, the release file
+0ad8db6f fetched by the landmark ladder (AR1)) only where no score exists: the FFHQ pools, FEI, and the A43 stored
+files themselves.
+(b) **Rates at two kinds of threshold.** Every flag rate is printed (i) at the release's own decision rule
+(probability of morph > 0.5; MADation / MixFaceNet `score_noTTA` > 0.5, SelfMAD softmax[:, 1] > 0.5), which needs no
+threshold pool, and (ii) at named threshold pools, with the pool printed as a column: t5 and t_eer on the native
+raw FRLL photos of the cell (as registered), and t5 on each of the other unprocessed pools (FFHQ orig, FEI all).
+**Paired shifts in logits** (history-matched or processed copy minus its own unprocessed photo, per photo) with a
+person bootstrap interval (FRLL, FEI: person; FFHQ: image, no identity labels), the median shift and the share of
+photos whose logit rises.
+(c) **SelfMAD genuine class, both definitions**: neutral-only genuine photos (which match its published FRLL
+numbers per the EV1 review) and all photos; the reproduction label is printed for both, and audit claims for a
+SelfMAD row need the label "reproduced" under the definition used.
+(d) **Border check.** For each release's own crop, the fraction of black pixels (all three channels exactly 0) in
+the crops of genuine images and of morph images, per cell (MTCNN crops: from the saved crop files; SelfMAD: from its
+saved raw-file crops in `a41g_x7/`; SelfMAD crops of our frames are not saved and are not checked). Printed beside
+each cell, with a sentence on whether the release's crop removes the border our aligner leaves.
+(e) Acceptance rule unchanged: a row counts only where the published number is reproduced within 1.5 points or 25%.
+For the new pools (no morph class of their own) the flag rates carry the label of the cell whose threshold they use;
+at the 0.5 rule they carry the label of the detector's FRLL / MorDIFF cells, printed beside.

@@ -44,7 +44,7 @@ a(x) = 0 everywhere, i.e. the host warped, no texture from the partner: it is th
 
 ## First small pass (DINOv3 ViT-L/16 at 512, ridge head, wave-1 images)
 
-Written at 16:45 CET as soon as the numbers existed. Training: 600 alpha-field morphs (train persons, 120 per field
+Written at about 16:40 CET as soon as the numbers existed. Training: 600 alpha-field morphs (train persons, 120 per field
 type) + 569 unprocessed photos, all 1,024 patches per image; ridge on standardised tokens, lambda by 3-fold CV over
 training host persons. Validation: 200 morphs + 146 photos of the validation persons.
 

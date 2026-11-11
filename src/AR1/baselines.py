@@ -47,11 +47,16 @@ def feats(args):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--only", default="", help="compute only contrasts containing this rung and merge into the outputs")
+    a = ap.parse_args()
     from gate_c import oof
     man = {r["id"]: r for r in csv.DictReader(open(K.OUT / "manifest.csv"))}
     bl = {r["id"]: r for r in csv.DictReader(open(K.OUT / "blank/blank_manifest.csv"))}
     todo = [(i, r["path"], bl[i]["bg_path"] if i in bl else "", bl[i]["face_path"] if i in bl else "")
-            for i, r in man.items() if r["pool"] in ("frgcferet", "frll") and r["rung"] in ("R0", "R2", "R3", "R4", "NC", "R2w", "R3m", "R2wm")]
+            for i, r in man.items() if r["pool"] in ("frgcferet", "frll") and (not a.only or r["rung"] in
+                                                                                  ("R0", "R3m", "R4", a.only)) and r["rung"] in ("R0", "R2", "R3", "R4", "NC", "R2w", "R3m", "R2wm")]
     with Pool(12) as p:
         F = dict(p.map(feats, todo, chunksize=16))
     oofs, summ = {}, {}
@@ -65,6 +70,8 @@ def main():
                     for g in ("R2", "R3", "R4", "NC", "R2w", "R3m", "R2wm")}
             rows["R0"] = r0
             for neg, pos in CONTRASTS:
+                if a.only and a.only not in (neg, pos):
+                    continue
                 rr = rows[neg] + rows[pos]
                 y = np.array([0] * len(rows[neg]) + [1] * len(rows[pos]))
                 g = np.array([r["p1"] for r in rr])
@@ -82,6 +89,14 @@ def main():
                     summ[key] = dict(auc=au, ci95=c, folded=stats.fold(au),
                                      kind="non-content" if b in ("bytes", "border", "background") else "content")
                     print(key, round(au, 3), [round(x, 3) for x in c], flush=True)
+    if a.only:
+        old = dict(np.load(K.OUT / "scores/baselines_oof.npz"))
+        old.update(oofs)
+        np.savez(K.OUT / "scores/baselines_oof.npz", **old)
+        js = json.load(open(K.RES / "baselines.json"))
+        js.update(summ)
+        json.dump(js, open(K.RES / "baselines.json", "w"), indent=1)
+        return
     # FRLL benchmark side: raw file attributes
     from PIL import Image
     pers = sorted({r["p1"] for r in man.values() if r["pool"] == "frll_bench"} |

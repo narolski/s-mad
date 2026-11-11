@@ -125,3 +125,9 @@ only).
   MADation release epoch, are not documented in what I read.
 - The person-grouped CV places morph test items in every fold that holds one of their contributors, so
   folds overlap; the per-fold AUCs are in `c_checks.json`.
+
+## Correction, 11 Nov 2026 ~17:40 (after the independent review)
+
+The expression count above is wrong by one: **12 of 17 cells** are imbalanced (DiM ×6 + FRLL-Morphs ×5 +
+MAD22 Webmorph) and **5** are balanced (MAD22 FaceMorpher, MIPGAN-I, MIPGAN-II, OpenCV, MorDIFF). The
+proposed row-15 edit should read "12 of 17". Full record: `README.md`.

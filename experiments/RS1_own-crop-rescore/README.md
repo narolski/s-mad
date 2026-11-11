@@ -1,0 +1,194 @@
+# Own-crop re-score of the audit rows (RS1): full record
+
+Owner: RS1 hypothesis owner (Claude agent). Started 11 Nov 2026, 16:30 CET. Short verdict page: `result.md` (not
+yet written). Registration: `prereg.md` (base text 16:50, amendment 1 17:30, amendment 2 17:45).
+
+Abbreviations: EER = equal error rate (%). AUC = area under the ROC curve. E7 ("resmatch") = the existing control
+that gives a genuine photo the morphs' shrink-and-store history. MTCNN = the face detector used by the MADation and
+MixFaceNet-MAD crop. LoRA / FE / FS = the three MADation release types (low-rank adapted encoder; frozen encoder
+with trained head; encoder trained from scratch). A46, A41, A43, A32 = earlier experiments of the CVPR program in
+`/home/narolski/mambamorph-code` (their records: `experiments/A46_diffusion-register-raw-files/`,
+`experiments/A41_shortcut-proof-zero-gpu/`, `experiments/A43_mordiff-two-by-two/`,
+`experiments/A32-RSX_resolution-shortcut/`).
+
+## 1. Question and current answer
+
+Our audit rows about released detectors were scored on our own 512-pixel eye-aligned frames, where the published
+EERs are not reproduced. RS1 re-scores each release through its own crop and preprocessing on the raw benchmark
+files, labels every row "reproduced" or "our pipeline, published number not reproduced" (window max(1.5, 25%) of the
+published EER), and for reproduced rows measures the effect of history-matched genuine photos, storage at the
+published size, the neutral / smiling split, extra processed genuine pools (amendment 2), and the MorDIFF ladder.
+
+Status 11 Nov 17:50: **running on the DGX** (crops and scoring in progress, see section 10). No RS1 score of a
+MADation or MixFaceNet release has been read yet. The SelfMAD rows come from existing files and were read once to
+test the analysis code (they reproduce the A41 x7 table exactly). Athena is blocked (Slurm account association
+missing); a pack is ready there for later.
+
+## 2. Timeline
+
+- 16:30. Read OWNER_BRIEF, NOTEBOOK, audit plan, asset inventory, handover state, ideas round 2, the AD1 / AG5 / cue
+  review, the MorDIFF ladder re-read (AD1) result, the landmark ladder (AR1) prereg and code.
+- 16:35. Found the A46 RGB-only result (own-crop re-score of all seven MADation / MixFaceNet releases on raw files,
+  descriptive). Its per-image score files are at `/mnt/t7/smad_heldout/a46_rgb_only_20261108/scores/<release>/`.
+- 16:38. Opened the published tables: MADation arXiv 2501.03800v3 HTML and SelfMAD arXiv 2504.05504 HTML, parsed
+  with Python's html.parser (raw HTML in the session scratchpad, parser `src/RS1/` not needed afterwards; the values
+  are copied into `prereg.md`). MADation Table 2 permutes the ViT-L/14 OpenCV / WebMorph / MorDIFF labels against
+  Table 1 (Table 1 used).
+- 16:45. **Finding (no score read):** the A46 E7 pools (`e7area_*`) were made from the SelfMAD-cropped copies of the
+  raw E7 files (`/mnt/t7/smad_heldout/a41g/x7/a41g_x7/e7area_*`, 197 x 245) instead of the raw E7 files (428 x 428 in
+  `/mnt/t7/smad_heldout/a41g/x7work/in/s*/e7area_*`). A46's E7 numbers for MADation are therefore a crop of a crop.
+  RS1 crops the raw E7 files.
+- 16:50. `prereg.md` written (before any RS1 score).
+- 16:52. `src/RS1/manifest.py build`: 22,091 entries later (see section 3); all A46 crops hash-checked against their
+  SHA256SUMS; raw E7 and A43 stored files hash-checked.
+- 16:55. Crop smoke (8 raw E7 files): 8 of 8 retained, crop looked right (face, RGB). Score smoke (FE ViT-L/14, 8
+  A46 crops): ran, 226 s mostly start-up.
+- 16:57. Full crop started, 2 shards. **Shard 0 failed at start with CUDA out of memory** (shared GB10, unified
+  memory, swap full). Restarted 17:02.
+- 17:00. Analysis code tested on the existing SelfMAD files (`--smoke --B 50`). Reader check: SelfMAD raw-file EERs
+  AMSL 2.44, FaceMorpher 0.98, OpenCV 0.37, WebMorph 7.36, StyleGAN 16.60, MorDIFF 1.49, DiM-A 4.41, Greedy-DiM 6.39
+  equal the A41 x7 table (`mambamorph-code/experiments/A41_shortcut-proof-zero-gpu/raw/results/a41g_x7.md`).
+- 17:03. Scoring of the reused A46 crops started; **failed at start with CUDA out of memory**. Rewrote
+  `run_score.sh` with retries (6 tries, 3 min apart); restarted 17:05.
+- 17:13. Crop list reordered by priority (A43 control images and raw E7 first; DiM aligned E7 last); journals of
+  both shards merged so no box is recomputed (664 boxes kept). Shards restarted.
+- 17:16. Shard 0 failed again at start (CUDA out of memory). 17:20 restarted inside a retry loop.
+- 17:20. Lead: Athena available. Read `ATHENA.md`. Wrote amendment 1 (corrected MAD22 cells, FS releases, Athena
+  platform). Built `src/RS1/athena_pack.py`, `athena_run.py`, `athena_rs1.sbatch`; pack build started (9.6 GB).
+  First Athena login worked; the shared venv there does not exist yet, so the job builds its own environment.
+- 17:28. MADation ViT-B/16 scored on the 11,264 reused A46 crops (1,366 s). File not opened.
+- 17:35. Lead: Athena accounts not associated, do not submit; account to use `plgrestorearc-gpu-a100`. Amendment 2
+  from the EV1 review (extra pools, 0.5 rule, threshold pools as a column, paired logit shifts, SelfMAD both genuine
+  definitions, border check). Added 7,001 amendment images (`manifest.py amend`), orchestration `run_after.sh`
+  started (17:47).
+
+## 3. Data
+
+All under the DGX. Master manifest `/mnt/t7/smad_next/RS1/manifest.csv` (columns id, set, label, persons, photo,
+expr, src_path, src_sha256, crop_origin, crop_path); a copy before amendment 2: `manifest_before_amend2.csv`.
+
+| Set | Images | Source | Crop |
+|---|---|---|---|
+| G_raw | 204 | raw FRLL front photos `/mnt/t7/Datasety/downloads/frll_base/extracted/{neutral,smiling}_front/` | A46 RGB crop (reused) |
+| M_amsl / facemorpher / opencv / webmorph / stylegan | 2,175 / 1,222 / 1,221 / 1,221 / 1,222 | raw FRLL-Morphs `/mnt/t7/Datasety/downloads/FRLL-Morphs/facelab_london/morph_*` | A46 |
+| M_mordiff | 1,000 | raw MorDIFF `/mnt/t7/Datasety/downloads/MorDIFF/MorDIFF_crop/*/morphed/` | A46 |
+| M_dim_a ... greedy_dim_s | 500 each (fast_dim_ode 499) | raw DiM `/mnt/t7/Datasety/downloads/DiM-FRLL-Morphs/morphs/` | A46 |
+| E7raw_mordiff / dim_a / greedy_dim | 204 each | raw E7 files `/mnt/t7/smad_heldout/a41g/x7work/in/s*/e7area_*` (prep_eval.degrade 'R', registered resmatch scale; sha in `x7_inputs.csv`) | new |
+| Galn_frll / Galn_mordiff | 204 each | our aligned native frames `smadcvpr_data/eval/frllm/frll_bona/*_orig.png`, `eval/mordiff/mordiff_bona/*_orig.png` (the MorDIFF-cell frames differ from the FRLL ones; DiM-cell frames equal FRLL ones) | new |
+| E7aln_<family> (12 families) | 204 each | our aligned E7 frames `eval/*/*_resmatch_<family>.png` | new |
+| a43_A, B, B20, C, C20, D, D20, E | 200, 200, 200, 102, 102, 204, 204, 204 | A43 stored files `/mnt/t7/smad_heldout/a43/data/a43/stored/<arm>/` (manifest `a43.csv` sha ce3a264a) | new |
+| amendment 2: Gjpeg50_frll, Gjpeg70_frll, Gresample50_frll | 204 each | `eval/frllm/frll_bona/*_{jpeg50,jpeg70,resample50}.png` | new |
+| amendment 2: FEI_neutral, FEI_smiling | 198, 187 | gtest frames `smadcvpr_data/gtest/{neutral,smiling}/bona/` (gtest.csv sha 5ededd6f) | new |
+| amendment 2: FF_orig, FF_E7diffae, FF_E7lmc | 2,000 each | `/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/*_{orig,resmatch_diffae,resmatch_landmark_complete}.png` (ffhqm.csv sha 732b53c8) | new |
+
+Reused A46 crops: `/mnt/t7/smad_heldout/a46_corrective_20261108/rgb_clip/<pool>/` (manifest
+`manifests/a46c_rgb_clip.csv`, SHA256SUMS checked: 0 mismatches). New crops: `/mnt/t7/smad_next/RS1/crops/main/`
+(list `lists/tocrop.csv`, 4,884) and `crops/amend/` (list `lists/tocrop_amend.csv`, 7,001). Crop check (32 raw files
+already cropped by A46): `lists/cropcheck.csv` -> `crops/check/`.
+
+Corrected MAD22 (Athena pack only so far): raw `/mnt/t7/smad_heldout/mad22_incoming/marco_owncloud_20261109T103840Z/author_files/original_sorted/`
+(4,687 files, hash-checked against `mambamorph-code/experiments/dataaudit/marco_owncloud_20261109T103840Z/verified_inventory.json`),
+aligned `mad22_canonical_E7_inputs_v3_20261109T113746Z/{native/BonaFide,e7/<family>}` (1,224, hash-checked against
+`PROCESSED_SHA256SUMS`). Athena pack `/mnt/t7/smad_next/RS1/athena/rs1a_pack.tar` (+ `.sha256`; manifest
+`athena_manifest.csv`, 22,091 rows) - not yet uploaded.
+
+Existing SelfMAD scores reused (release sha 0ad8db6f): A41 x7 raw files
+`/mnt/t7/smad_heldout/a41g/a41g_out/x7/selfmad_hrnet_w18/x7/scores_a41g_x7.npz` (manifest `a41g/x7/manifests/a41g_x7.csv`,
+sha 5d6d8412); A32-RSX frames `mambamorph-code/experiments/A32-RSX_resolution-shortcut/raw/selfmad_own_eval.npz`
+(eval.csv sha 86d055d3); A43 own frames `/mnt/t7/smad_heldout/a43/a43_out/a43/selfmad_hrnet_w18/own/scores_a43.npz`.
+
+## 4. Code
+
+`/home/narolski/smad-next/src/RS1/`:
+
+| File | Job |
+|---|---|
+| `ar1_common.py`, `crop_rgb.py`, `score.py`, `stats.py` | byte-identical copies of the landmark ladder (AR1) files (sha 42806acb, 07b179bd, 56bb1244, 7da0afd8) |
+| `manifest.py build / merge / amend` | image manifest, crop lists, merge of crop results into `lists/score.csv` |
+| `rs1_score.py` | runs AR1 `score.py` with the two FE weight files added to its weight table; checks the copies' hashes |
+| `run_crop.sh` | 2 crop shards, crop check, merge |
+| `run_score.sh a46 / new / amend` | scores one crop list with the five releases (retries on CUDA out of memory) |
+| `run_after.sh` | waits for the main crops, crops amendment 2, merges, scores new and amendment crops, then SelfMAD own on FEI / FFHQ / A43 stored |
+| `analyse.py` | all tables (person bootstrap B = 2,000, seed 20261111) -> `experiments/RS1_own-crop-rescore/rs1_*.csv`, `rs1_results.json` |
+| `tables.py` | markdown tables from `rs1_results.json` |
+| `platform_check.py` | rescored A46 crops vs the registered A46 RGB-only scores; crop-check boxes vs A46 boxes |
+| `athena_pack.py`, `athena_run.py`, `athena_rs1.sbatch` | Athena pack, path wrapper, job (not submitted) |
+
+Release preprocessing as reconstructed (the A46 RGB-only path):
+- Crop (MADation, MixFaceNet-MAD): the SMDD script `/mnt/t7/thirdparty/smdd_9683229_20261107/image_preprocess.py`
+  lines 9 (MTCNN(select_largest=True, post_process=False, min_face_size=64)), 21 (cv2.imread, BGR), 24 (detect),
+  32-40 (5% margin, slice). The original passed BGR pixels to MTCNN and left negative slice indices unbounded (the A46
+  crop defect); the corrected path `mambamorph-code-a46/smadcvpr/a46_corrective_crop.py` lines 34-36 (RGB pixels to
+  MTCNN) and 39-60 (same 5% arithmetic, all four edges clamped) is used. AR1 `crop_rgb.py` batches up to 16 images
+  of equal size per detect call (AR1 measured at most 0.04 px box difference).
+- MADation input: `mambamorph-code/baselines/MADation/src/data/loaders.py` lines 208-247 (FaceDataset: cv2.imread,
+  so BGR; Resize([224, 224]); Normalize(0.5, 0.5); label bonafide = 1, so morph = class 0). Implemented in
+  `mambamorph-code-a46/smadcvpr/a12_released.py` lines 88-95 (spec) and 129-138 (`adapt_input`: RGB loader output ->
+  BGR, (x - 0.5) / 0.5). Decision key `score_noTTA` = sigmoid of the morph logit; RS1 ranks on `logit_noTTA`.
+- MixFaceNet-MAD: `a12_released.py` lines 100-104 (BGR, (x - 0.5) / 0.5, 224, class 0 = attack).
+- SelfMAD (existing scores): `mambamorph-code/smadcvpr/rsx_selfmad_own.py` (dlib frontal detector, 81 landmarks,
+  landmark box + margin, 384 x 384, /255, softmax[:, 1]); A41 x7 used the release's own `crop.py` on raw files.
+
+Environment (DGX): crops in `/mnt/t7/thirdparty/facenet_pytorch_2.6.0_20261107/venv` (facenet-pytorch 2.6.0, torch
+2.12.1+cu130 from `.venv-spark`, OpenCV 4.11.0, numpy 1.26.4); scoring `/home/narolski/mambamorph-code/.venv-spark/bin/python`.
+Weights: MADation LoRA ViT-B/16 ddb1455b, LoRA ViT-L/14 bb452ded, FE ViT-B/16 6a4d93ba, FE ViT-L/14 74dd7fbc,
+FS ViT-B/16 a7cacd47, FS ViT-L/14 6071ec7b (all in `/mnt/t7/smad_heldout/mad22_production_cpu_stage_v1/payload/models/<sha>.safetensors`);
+MixFaceNet-MAD `/mnt/t7/mixfacenet_mad_official/mixfacenet_SMDD.pth` (3d507c8b); SelfMAD
+`/mnt/t7/smad_next/AR1/weights/selfmad_release/hrnet_w18_checkpoint.model.safetensors` (0ad8db6f, fetched by AR1).
+
+## 5. Results
+
+None read yet for MADation / MixFaceNet. SelfMAD (existing files, analysis-code test only, B = 50): see `result.md`
+when written.
+
+## 6. Checks
+
+Done: A46 crop hashes (0 mismatches); raw E7, A43 stored, MAD22 raw and canonical v3 hashes; copied AR1 files
+byte-identical; SelfMAD reader reproduces the A41 x7 EERs exactly. Planned: platform check of rescored A46 crops
+against the registered A46 RGB-only scores; 32-file crop check against A46 boxes.
+
+## 7. Dead ends and failures
+
+- Crop shard 0 failed twice at start with CUDA out of memory (16:57, 17:16) and the first scoring run once (17:03):
+  the shared GB10 has unified memory and full swap. Fix: retry loops (`run_score.sh`, the shard-0 loop, `run_after.sh`).
+- Throughput under `nice -n 10` at load average about 90: MTCNN crops about 0.4 images/s per process; ViT-B/16
+  scoring 11,264 crops in 23 min.
+- `run_score.sh` was edited (17:45) while its a46 run was executing; bash may read the changed tail after its loop.
+  Check `run_score_a46.log` for a stray error after the last detector; the score files themselves are unaffected.
+- A46's E7 pools are crops of SelfMAD crops (section 2, 16:45).
+- The Athena shared environment `.../smad-next/venv` does not exist; the RS1 job builds `envs/RS1/venv` itself.
+
+## 8. Observations and ideas
+
+- For FRLL StyleGAN2 the E7 control is the identity (StyleGAN2 morphs have a larger inter-eye distance than the
+  photos, so the registered rule leaves the photo unchanged).
+- MorDIFF-cell aligned frames (`mordiff_bona`) differ from the FRLL-cell frames of the same photos.
+
+## 9. Open items and next steps
+
+Finish crops and scoring on the DGX; platform and crop checks; border check (amendment 2 d); analysis extensions for
+amendment 2 (0.5 rule, threshold-pool column, paired logit shifts, SelfMAD both definitions); `result.md`; Athena run
+when the account works (corrected MAD22 cells and FS releases need it unless run on the DGX).
+
+## 10. Handover state (11 Nov 17:50)
+
+DGX processes (all `nice -n 10`):
+- `run_crop.sh` (PID 2073469) with crop shard 1 (PID 2073478); log `/mnt/t7/smad_next/RS1/crops/main_shard1.log`.
+- shard-0 retry loop (PID 2077408, crop PID 2077409); log `crops/main_shard0.log`.
+- `run_score.sh a46` (PID 2066860; scorer PIDs change per release); log `/mnt/t7/smad_next/RS1/run_score_a46.log`,
+  per-try logs `scores/log_<release>__a46_try<k>.log`.
+- `run_after.sh` (started 17:47); log `/mnt/t7/smad_next/RS1/run_after.log`.
+If a step fails: every script is idempotent (skips finished outputs); rerun the same command. Crops resume from
+their box journals. Compute so far: DGX GPU only (shared); Athena 0 GPU-hours.
+
+## 11. Reproduce from scratch
+
+```
+P=/home/narolski/mambamorph-code/.venv-spark/bin/python; S=/home/narolski/smad-next/src/RS1
+$P -I $S/manifest.py build && $P -I $S/manifest.py amend
+$S/run_crop.sh            # main crops (2 shards), crop check, merge
+$S/run_score.sh a46       # five releases on the reused A46 crops
+$S/run_after.sh           # amendment crops, merge, new + amendment scoring, SelfMAD own on new pools
+$P -I $S/platform_check.py
+$P -I $S/analyse.py --B 2000 && $P -I $S/tables.py > /mnt/t7/smad_next/RS1/tables.md
+```

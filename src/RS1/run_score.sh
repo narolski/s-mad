@@ -9,12 +9,12 @@ S=/home/narolski/smad-next/src/RS1; O=/mnt/t7/smad_next/RS1
 P=/home/narolski/mambamorph-code/.venv-spark/bin/python
 cd /tmp
 part=$1
-if [ "$part" = new ]; then
+if [ "$part" = new ] || [ "$part" = amend ]; then
+  sub=$([ "$part" = new ] && echo main || echo amend)
   $P -I -c "import csv
-ids={r['id'] for r in csv.DictReader(open('$O/manifest.csv')) if r['crop_origin']=='rs1'}
-rows=[r for r in csv.DictReader(open('$O/lists/score.csv')) if r['id'] in ids]
-w=csv.writer(open('$O/lists/score_new.csv','w',newline='')); w.writerow(['id','path']); [w.writerow([r['id'],r['path']]) for r in rows]
-print('new', len(rows))" || exit 1
+rows=[r for r in csv.DictReader(open('$O/lists/score.csv')) if '/crops/$sub/' in r['path']]
+w=csv.writer(open('$O/lists/score_$part.csv','w',newline='')); w.writerow(['id','path']); [w.writerow([r['id'],r['path']]) for r in rows]
+print('$part', len(rows))" || exit 1
 fi
 mkdir -p $O/scores
 for d in madation_vitb16 madation_vitl14 madation_fe_vitl14 mixfacenet_mad_smdd madation_fe_vitb16; do

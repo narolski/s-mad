@@ -107,3 +107,12 @@ arms exist.
 - R1 frames come from a different scoring run than R0/R2 (same frames; consistency checked above).
 - G-c and the twin negative control were not run. Scores are near-binary for SelfMAD, so AUCs near
   1.0 saturate the d′ (clipped at AUC 0.995).
+
+## Correction, 11 Nov 2026 ~17:40 (independent review)
+
+(1) The released MADation FE ViT-L/14 reads the mixing step: R2 vs R4 0.655 [0.580, 0.730] (20 steps),
+0.852 (100 steps), with R0 → R2 only 0.561; "no released detector reads the morph step" is false.
+(2) Rename the ViT-B/16 R2 vs R3 label to "non-monotone rung; same-person mix confounded by expression".
+(3) Drop d′ shares from prose; quote AUCs and flag rates: E7 raises the share flagged at the EER threshold
+from 5% to 54% (ViT-B/16), 26% to 51% (ViT-L/14), 2% to 98% (SelfMAD); at a 1%-photo threshold 13%, 12%,
+88% (`ad1_flagrates.json`). Full record: `README.md`.

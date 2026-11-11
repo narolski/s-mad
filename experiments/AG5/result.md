@@ -80,3 +80,11 @@ label is the same for every separating network.
 - Recipe networks use the es.pt checkpoint (registered A36/A41 choice), not the last checkpoint the
   new protocol prescribes; last-checkpoint X4 scores do not exist.
 - The MixFaceNet release row uses our 512-frame path, not its MTCNN crop (suspended branch).
+
+## Correction, 11 Nov 2026 ~17:40 (independent review)
+
+The summary "41 of 42 … read the benchmark" / "10 of 12 rows" is withdrawn. Use: no network of 55 separates
+morphs from one-identity renders (max 0.61; 0.42–0.53 vs spread-matched); in 33 of the 42 separating recipe
+networks (95% lower bound of the d′ share ≥ 0.5; 36 by point estimate) and in the three releases,
+one-identity renders are separated from FRLL photos at least half as strongly; that step mixes generator,
+source pool and resolution; absence result, power not demonstrated (G-b 48%). Full record: `README.md`.

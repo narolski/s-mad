@@ -21,7 +21,7 @@ average face than a real person (identity variance falls to (1+c)/2 for contribu
 measurable from one image for landmark, GAN and diffusion morphs, with a statistic fitted on genuine photos only,
 and what are the predicted and observed ceilings?
 
-Status 11 Nov 17:35 CET: **running**. Landmark arm finished; CLIP and DiffAE arms finished on the tier-1 sets;
+Status 11 Nov 17:31 CET: **running**. Landmark arm finished; CLIP and DiffAE arms finished on the tier-1 sets;
 DINOv3 being recomputed (first run produced non-finite features, section 7); glintr100 (FR) features for the
 remaining sets being computed (CPU-bound face detection); FR arm with the GEO-0 reads not yet analysed.
 
@@ -295,13 +295,14 @@ self-pairs (061_061 …) are intended.
 - DINOv3 arm in bf16: finish tier 1, run `analyse.py --arm dino`.
 - Pool-centred c and predictions at the benchmark glintr100 cosine (descriptive).
 - `verdicts.py` (falsifier table), then `result.md` final.
-- The fit frames in `/dev/shm/smad_arms/r6_frgc` are volatile: 66 FRGC fit persons' frames live there (FERET and
-  train/ frames are on disk). Copying them to `/mnt/t7/smad_next/ID0/src` would protect reproducibility (not
-  done yet; AF0 and AR1 copied their own subsets).
+- Done 17:31: the 136 fit frames (+ `.tem`) that existed only in `/dev/shm/smad_arms/r6_frgc` were copied
+  byte-identically (sha256 checked) to `/mnt/t7/smad_next/ID0/src_shm_copy/<pid>/`, manifest
+  `COPY_MANIFEST.csv` (sha256 c89adf30…). `fit.csv` still names the original paths; map through the manifest
+  if /dev/shm is gone. The other 1,259 fit frames are on disk under `mambamorph-code/baselines/webmorph/aligned`.
 - Not done by design: released-detector shrink-law audit (identity idea 1's own target), BPCER per demographic
   group (no labels at hand).
 
-## 10. Handover state (17:35 CET)
+## 10. Handover state (17:31 CET)
 
 Running on the DGX (all started by this owner; logs in `/mnt/t7/smad_next/ID0/logs/`):
 - glintr100 shards: PIDs 2060459 (shard 1/3), 2060461 (0/3), 2060462 (2/3); wrappers `run_feat.sh spark

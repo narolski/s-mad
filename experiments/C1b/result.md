@@ -1,5 +1,13 @@
 # C1b Is the expression imbalance used by detectors? Result
 
+> **Correction, 11 Nov 2026 17:40 CET (owner, after the independent review `../reviews/REVIEW_C1b_20261111.md`
+> and the follow-up study C1c).** The numbers below stand. Withdrawn: "only the expression differs" and
+> "the expression cue is used" (row 15 USED): the smiling FRLL photos are also 1.43 times larger as files and
+> have a 4.8 times noisier backdrop (102 of 102 persons), and the ViT-L/14 release's ordering fades with
+> resolution and is weak in other photo pools. Also corrected: "CNN recipes do not show it" (the SelfMAD-style
+> recipe M4 ranks the smiling photo higher in every untied pair) and "no CNN recipe network reaches 0.65"
+> (M5 s2 es: 0.667). Corrected wording, reasons and the full list: `README.md`, section 7.
+
 Owner run, 11 Nov 2026, DGX CPU only, zero GPU, no image re-encoded or written. Pre-registration
 `prereg.md` (15:25 CET, before any score file was opened by this owner). Code `src/C1b/c1b_read.py`
 (statistics a–c), `src/C1b/c1b_probe.py` (probe validation), `src/C1b/c1b_summarize.py` (tables, fixed

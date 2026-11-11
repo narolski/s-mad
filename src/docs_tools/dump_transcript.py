@@ -16,7 +16,8 @@ Prints, in order:
 
 --grep REGEX   print only tool results / assistant texts that match REGEX (case-insensitive),
                with 300 characters of context around each match, instead of the digest.
---section S    one of: task, middle, final, all (default all).
+--section S    one of: task, middle, final, all (default all), or rawfinal (the final
+               report alone, verbatim, with no header; used for saved copies of reports).
 
 Thinking blocks are skipped. The script only reads the file it is given.
 """
@@ -171,6 +172,10 @@ def main():
                     print(tool_summary(payload, tool_n))
             elif kind == "RESULT" and res_n > 0:
                 print("    [RESULT] " + short(payload, res_n))
+    if section == "rawfinal":
+        # final report only, byte for byte, no header (for verbatim copies)
+        sys.stdout.write(final_report if final_report else (last_text or ""))
+        return
     if section in ("final", "all"):
         print("\n" + "=" * 30, "FINAL REPORT", "=" * 30)
         print(final_report if final_report else (last_text or "(none found)"))

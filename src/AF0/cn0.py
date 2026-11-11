@@ -74,12 +74,14 @@ def read(a):
     B = [r for r in L.rows("bench_s") if r["cell"].startswith("frllm_") and r["rung"] == "e7"]
     res = {}
     # ---- (b) single cues
-    z = np.load(L.OUT / "cues" / "ar1.npz")          # cues_all.py: 26 cue_floor statistics + PNG bytes
-    cidx = {i: k for k, i in enumerate(z["ids"])}
-    feats = z["cues"]
-    names = list(z["names"])
     cue = {}
-    for tool in TOOLS:
+    cp = L.OUT / "cues" / "ar1.npz"          # cues_all.py: 26 cue_floor statistics + PNG bytes
+    if cp.exists():
+        z = np.load(cp)
+        cidx = {i: k for k, i in enumerate(z["ids"])}
+        feats = z["cues"]
+        names = list(z["names"])
+    for tool in (TOOLS if cp.exists() else ()):
         for neg in ("R2", "R2w"):
             pos_i = [cidx[i] for i in by[(tool, "R4")].values()]
             neg_i = [cidx[i] for i in by[(tool, neg)].values()]
@@ -172,7 +174,7 @@ def read(a):
         if not key.startswith("logreg_"):
             continue
         worst_rate = max(max(x["R0_flag_rate"], x["E7_lm_flag_rate"] or 0) for x in v.values())
-        worst_cue = max(c["best_folded_auc"] for c in res["cues"].values())
+        worst_cue = max([c["best_folded_auc"] for c in res["cues"].values()] or [float("nan")])
         verdict = "fails" if (worst_rate > 0.20 or worst_cue > 0.80) else (
             "stands" if (worst_rate <= 0.15 and worst_cue <= 0.65) else "mixed")
         res[key + "_verdict"] = dict(worst_flag_rate=worst_rate, worst_cue_auc=worst_cue, verdict=verdict)

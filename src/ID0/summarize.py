@@ -42,7 +42,8 @@ def main():
                 continue
             x = cs[(k, "iss")]
             t, s = cs.get((k, "typ")), cs.get((k, "ses"))
-            pr = f"{x['pred_closed']} / {x['pred_spectrum']}" if "pred_closed" in x else ""
+            pr = (f"{x['pred_closed']} / {x['pred_spectrum']} | pool-c {x.get('c_pool_centred_median')}: "
+                  f"{x.get('pred_closed_pool_c')} / {x.get('pred_spectrum_pool_c')}") if "pred_closed" in x else ""
             print(f"| {k} | {f(x)} | {f(t) if t else ''} | {f(s) if s else ''} | {x['n_neg']}/{x['n_pos']} | "
                   f"{x.get('c_arm_median', '')} | {pr} |")
         print("controls (ISS):")

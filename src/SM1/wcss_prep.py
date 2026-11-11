@@ -89,7 +89,7 @@ def main():
         w = csv.DictWriter(f, fieldnames=list(refrows[0]))
         w.writeheader()
         w.writerows(refrows)
-    p = subprocess.run([K.PY, "-I", str(HERE / "build.py"), "--list", str(W / f"ref_{a.task}.csv"), "--workers", "2",
+    p = subprocess.run([K.PY, "-I", str(HERE / "build.py"), "--list", str(W / f"ref_{a.task}.csv"), "--workers", "1",
                         "--log-dir", str(src / "ref")], capture_output=True, text=True)
     assert p.returncode == 0, p.stdout + p.stderr
     with open(src / "lists/compare_ref.csv", "w", newline="") as f:

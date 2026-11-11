@@ -90,11 +90,14 @@ def label(det, cell, eer):
 class Pool:
     """one image set for one detector: scores (ranking key), persons, expression, source label."""
 
-    def __init__(self, s, pp, ex, src, key):
+    def __init__(self, s, pp, ex, src, key, ph=None):
         self.s, self.pp, self.ex, self.src, self.key = np.asarray(s, float), pp, np.asarray(ex), src, key
+        self.ph = np.asarray(ph if ph is not None else [""] * len(self.s))
 
     def sub(self, mask):
-        return Pool(self.s[mask], [p for p, k in zip(self.pp, mask) if k], self.ex[mask], self.src, self.key)
+        mask = np.asarray(mask)
+        return Pool(self.s[mask], [p for p, k in zip(self.pp, mask) if k], self.ex[mask], self.src, self.key,
+                    self.ph[mask])
 
 
 def manifest():
@@ -106,7 +109,7 @@ def rel_pools(det, man, smoke):
     if smoke:
         fs = [OUT / "scores/smoke" / f"scores_rel_{det}_limit8.npz"]
     else:
-        fs = [OUT / "scores" / f"scores_rel_{det}__{part}.npz" for part in ("a46", "new")]
+        fs = [OUT / "scores" / f"scores_rel_{det}__{part}.npz" for part in ("a46", "new", "amend")]
     fs = [f for f in fs if f.exists()]
     if not fs:
         return None
@@ -118,8 +121,8 @@ def rel_pools(det, man, smoke):
             assert i not in seen
             seen.add(i)
             r = man[i]
-            by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"]))
-    return {s: Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], "own crop", "logit")
+            by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"], r["photo"]))
+    return {s: Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], "own crop", "logit", [v[3] for v in L])
             for s, L in by.items()}
 
 
@@ -133,16 +136,21 @@ def athena_pools(det):
     by = {}
     for i, l in zip(z["id"].tolist(), z["logit_noTTA"]):
         r = man[i]
-        by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"]))
-    return {s_: Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], "own crop (Athena)", "logit")
+        by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"], r["photo"]))
+    return {s_: Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], "own crop (Athena)", "logit",
+                     [v[3] for v in L]) for s_, L in by.items()}
+
+
+def _pools(by, src, key):
+    return {s_: Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], src, key, [v[3] for v in L])
             for s_, L in by.items()}
 
 
-def selfmad_pools():
-    """existing SelfMAD own-preprocessing scores, mapped to RS1 set names. Raw files: A41 x7 (logit). Our frames:
-    A32-RSX (probability only) and A43 own (logit)."""
+def selfmad_pools(man):
+    """SelfMAD own-preprocessing scores, mapped to RS1 set names. Existing files: A41 x7 raw files (logit), A32-RSX our
+    frames (probability only; incl. the JPEG 50 / 70 and 50% shrink-and-enlarge frames), A43 own our frames (logit).
+    New (amendment 2): AR1 score.py --mode own on FEI, FFHQ and the A43 stored files (logit)."""
     P = {}
-    # A41 x7, raw files
     xm = {r["id"]: r for r in csv.DictReader(open("/mnt/t7/smad_heldout/a41g/x7/manifests/a41g_x7.csv"))}
     z = np.load("/mnt/t7/smad_heldout/a41g/a41g_out/x7/selfmad_hrnet_w18/x7/scores_a41g_x7.npz")
     assert str(z["ckpt_sha256"]) == K.WEIGHT_SHA["selfmad_hrnet_w18"]
@@ -152,35 +160,31 @@ def selfmad_pools():
     by = {}
     for i, l in zip(z["id"].tolist(), z["logit_noTTA"]):
         r = xm[i]
-        s = fmap.get(r["family"])
-        if s is None:
+        s_ = fmap.get(r["family"])
+        if s_ is None:
             continue
         nm = pathlib.Path(r["raw_path"] or r["path"]).name
         lab = int(r["label"])
         pp, ex = persons_expr(nm, lab)
-        by.setdefault(s, []).append((float(l), pp, ex))
-    for s, L in by.items():
-        P[s] = Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], "SelfMAD crop, raw files (A41 x7)", "logit")
-    # A32-RSX, our frames (probability only)
+        by.setdefault(s_, []).append((float(l), pp, ex, f"{pp[0]}_{ex}" if lab == 0 else ""))
+    P.update(_pools(by, "SelfMAD crop, raw files (A41 x7)", "logit"))
     ev = {r["id"]: r for r in csv.DictReader(open(DATA / "manifests/eval.csv"))}
     z = np.load("/home/narolski/mambamorph-code/experiments/A32-RSX_resolution-shortcut/raw/selfmad_own_eval.npz")
     assert str(z["ckpt_sha256"]) == K.WEIGHT_SHA["selfmad_hrnet_w18"]
     by = {}
     for i, p in zip(z["id"].tolist(), z["score"]):
         r = ev[i]
-        if r["label"] != "0" or r["variant"] not in ("orig", "resmatch"):
+        if r["label"] != "0":
             continue
         st, fam, var = r["set"], r["family"], r["variant"]
-        s = ("Galn_frll" if (st, var) == ("frllm", "orig") else "Galn_mordiff" if (st, var) == ("mordiff", "orig")
-             else f"E7aln_{fam}" if var == "resmatch" and st in ("frllm", "mordiff", "dim") else None)
-        if s is None:
+        s_ = ("Galn_frll" if (st, var) == ("frllm", "orig") else "Galn_mordiff" if (st, var) == ("mordiff", "orig")
+              else f"E7aln_{fam}" if var == "resmatch" and st in ("frllm", "mordiff", "dim")
+              else f"G{var}_frll" if st == "frllm" and var in ("jpeg50", "jpeg70", "resample50") else None)
+        if s_ is None:
             continue
         pp, ex = persons_expr(pathlib.Path(r["path"]).name, 0)
-        by.setdefault(s, []).append((float(p), pp, ex))
-    for s, L in by.items():
-        P[s] = Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L],
-                    "SelfMAD crop of our aligned frames (A32-RSX)", "prob32")
-    # A43 own, our frames of the control images
+        by.setdefault(s_, []).append((float(p), pp, ex, f"{pp[0]}_{ex}"))
+    P.update(_pools(by, "SelfMAD crop of our aligned frames (A32-RSX)", "prob32"))
     am = {r["id"]: r for r in csv.DictReader(open("/mnt/t7/smad_heldout/a43/data/manifests/a43.csv"))}
     z = np.load("/mnt/t7/smad_heldout/a43/a43_out/a43/selfmad_hrnet_w18/own/scores_a43.npz")
     assert str(z["ckpt_sha256"]) == K.WEIGHT_SHA["selfmad_hrnet_w18"]
@@ -188,22 +192,36 @@ def selfmad_pools():
     for i, l in zip(z["id"].tolist(), z["logit_noTTA"]):
         r = am[i]
         if r["arm"]:
-            s = f"a43_{r['arm']}"
+            s_ = f"a43f_{r['arm']}"
             if r["arm"] in ("A", "B", "B20"):
                 pp = (r["src_a"][:3], r["src_b"][:3])
                 ex = r["src_a"][4:6] if r["src_a"][4:6] == r["src_b"][4:6] else "mix"
+                ph = ""
             else:
                 pp = (r["src_a"][:3],)
                 ex = "mix" if r["arm"] in ("C", "C20") else r["src_a"][4:6]
+                ph = "" if r["arm"] in ("C", "C20") else r["src_a"]
         elif r["family"] == "mordiff_bona":
-            s = "a43_photo"
+            s_ = "a43f_photo"
             pp, ex = persons_expr(pathlib.Path(r["path"]).name, 0)
+            ph = f"{pp[0]}_{ex}"
         else:
             continue
-        by.setdefault(s, []).append((float(l), pp, ex))
-    for s, L in by.items():
-        P[s] = Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L],
-                    "SelfMAD crop of our aligned frames (A43 own)", "logit")
+        by.setdefault(s_, []).append((float(l), pp, ex, ph))
+    P.update(_pools(by, "SelfMAD crop of our aligned frames (A43 own)", "logit"))
+    f = OUT / "scores/scores_own_selfmad__amend.npz"
+    if f.exists():
+        z = np.load(f)
+        assert str(z["mode"]) == "own"
+        by = {}
+        for i, l in zip(z["id"].tolist(), z["logit_noTTA"]):
+            r = man[i]
+            by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"], r["photo"]))
+        P.update(_pools(by, "SelfMAD own crop, stored / dataset files (RS1, amendment 2)", "logit"))
+    if "a43_E" not in P:                                   # fall back to the frames for the ladder
+        for k in list(P):
+            if k.startswith("a43f_"):
+                P["a43_" + k[5:]] = P[k]
     return P
 
 
@@ -238,11 +256,19 @@ def pair(a, b):
 
 # ------------------------------------------------------------------------------------------------ statistics
 class Stats:
-    def __init__(self, D):
-        self.D = D
+    """separate pigeonhole draws per photo population: the 102 FRLL persons (the registered draw), FEI subjects, FFHQ
+    images (no identity labels: one image = one unit)."""
+
+    def __init__(self, Ds):
+        self.Ds = Ds
+
+    def D(self, P):
+        p0 = P.pp[0][0]
+        return self.Ds["fei" if p0.startswith("fei") else "ffhq" if p0.startswith("ffhq") else "frll"]
 
     def w(self, P):
-        return self.D.wm(P.pp) if len(P.pp[0]) == 2 else self.D.wb([(p[0],) for p in P.pp])
+        D = self.D(P)
+        return D.wm(P.pp) if len(P.pp[0]) == 2 else D.wb([(p[0],) for p in P.pp])
 
     def eer(self, b, m):
         sb, sm = pair(b, m)
@@ -321,9 +347,12 @@ def main():
     ap.add_argument("--skip-selfmad", action="store_true")
     a = ap.parse_args()
     man = manifest()
-    pers = sorted({p for r in man.values() for p in r["persons"].split("|")})
-    D = M.Draw(pers, a.B, SEED)
-    S = Stats(D)
+    allp = {p for r in man.values() for p in r["persons"].split("|")}
+    pers = sorted(p for p in allp if p.isdigit())
+    assert len(pers) == 102
+    Ds = {"frll": M.Draw(pers, a.B, SEED), "fei": M.Draw(sorted(p for p in allp if p.startswith("fei")), a.B, SEED + 1),
+          "ffhq": M.Draw(sorted(p for p in allp if p.startswith("ffhq")), a.B, SEED + 2)}
+    S = Stats(Ds)
     runs = []                                          # (detector, platform, pools)
     for d in REL:
         p = rel_pools(d, man, a.smoke)
@@ -335,7 +364,7 @@ def main():
             if p:
                 runs.append((d, "Athena", p))
     if not a.skip_selfmad:
-        runs.append(("selfmad", "DGX (existing files)", selfmad_pools()))
+        runs.append(("selfmad", "DGX (existing files)", selfmad_pools(man)))
     out = dict(B=a.B, seed=SEED, persons=len(pers), reproduction=[], history=[], flags=[], expression=[], ladder=[],
                ladder_flags=[], counts={})
     for det, plat, P in runs:
@@ -405,7 +434,7 @@ def main():
                 out["expression"].append(row)
         # MorDIFF ladder on the A43 control images
         if "a43_E" in P and "M_mordiff" in P:
-            photo = P["a43_photo"] if det == "selfmad" else P["G_raw"]
+            photo = P["a43_photo"] if "a43_photo" in P and P["a43_E"].src == P["a43_photo"].src else P["G_raw"]
             lab = label(det, "mordiff", 100 * A.eer(*pair(P["G_raw"], P["M_mordiff"])))[0]
             C = [("stored-small photo E vs photo", "a43_E", None), ("reconstruction D20 vs stored-small photo E", "a43_D20", "a43_E"),
                  ("reconstruction D (100 steps) vs stored-small photo E", "a43_D", "a43_E"),

@@ -7,7 +7,7 @@ folder: `/net/pr2/projects/plgrid/plggrestoration/smad-next` (sub-folders `packs
 
 ## 1. Question and current answer
 
-11 Nov 2026, 17:40 CET. Status: **preparing; blocked on Athena accepting jobs** (Slurm rejects both grant accounts for
+11 Nov 2026, 17:35 CET. Status: **preparing; blocked on Athena accepting jobs** (Slurm rejects both grant accounts for
 `plgpnarolski`; the lead's watcher will report when an account is accepted; no submission and no probing until then).
 DiffAE (diffusion autoencoder) generation on the shared DGX runs at about 157 s per inversion while other jobs share the
 GPU, so the diffusion controls are incomplete: the identical-and-mirrored-inputs check (AD1b) covered 32 of 102
@@ -19,7 +19,7 @@ here. No answer yet.
 
 ## 2. Timeline
 
-- 11 Nov 17:15–17:35. Read `OWNER_BRIEF.md`, `ATHENA.md`, `11_AUDIT_PLAN.md`, `14_CLASS_DEFINITIONS.md`, the MorDIFF
+- 11 Nov 17:10–17:20. Read `OWNER_BRIEF.md`, `ATHENA.md`, `11_AUDIT_PLAN.md`, `14_CLASS_DEFINITIONS.md`, the MorDIFF
   ladder re-read (AD1) result, the identical-and-mirrored-inputs check (AD1b) prereg and result, the review of the
   expression cue use study (C1b), the A43 ledger README
   (`/home/narolski/mambamorph-code/experiments/A43_mordiff-two-by-two/README.md`), the A43 generator
@@ -29,10 +29,23 @@ here. No answer yet.
 - 11 Nov 17:20. One Athena login (lock `/tmp/smadnext-athena.lock`, read-only listing): project folder exists (13 GB
   used, `envs/` empty, no `logs/versions.txt`, so the shared environment has not been built yet); Lmod has
   `Python/3.12.3` (the DGX Python version) besides 3.10.4; `git` at `/usr/bin/git`; no apptainer; no jobs of ours queued.
-- 11 Nov 17:30. `prereg.md` written (before any code ran or any image was made).
-- 11 Nov 17:35. `src/DG1/dg1_gen.py` written (job-list driven A43 generator; see section 4).
-- 11 Nov 17:40. Lead: Athena does not accept jobs yet; account for job files is `plgrestorearc-gpu-a100`; prepare
+- 11 Nov 17:24. `prereg.md` written (before any code ran or any image was made).
+- 11 Nov 17:26. `src/DG1/dg1_gen.py` written (job-list driven A43 generator; see section 4).
+- 11 Nov 17:27. Lead: Athena does not accept jobs yet; account for job files is `plgrestorearc-gpu-a100`; prepare
   everything else. This README started.
+- 11 Nov 17:29. Pool inputs: `python3 -I src/DG1/dg1_lists.py poolin --pool /home/narolski/smad-next/experiments/AR1/pool.csv
+  --out /mnt/t7/smad_next/DG1/pool_in` → 1,072 byte-identical copies (sha checked per file; pool.csv sha256
+  861019781e79159fe7904eb60e8cda6a57e978023722615dd46023db2f299352). dlib model copied to
+  `/mnt/t7/smad_next/DG1/align_run/temp/` (sha fbdc2cb8…, bz2 7d6637b8…).
+- 11 Nov 17:29. Aligner started as one process (`run_align_unchanged.py`, cwd `align_run`). It ran at about 3 s per
+  photo (DGX load average 114 on 20 cores). Killed at 26 photos to restart in parallel; my `pkill -f` pattern also
+  matched and killed its own shell (exit 144), harmless. The 26 written PNGs were checked to open fully at 256 × 256.
+- 11 Nov 17:31. `bash src/DG1/dg1_align_parts.sh 4`: the 1,046 remaining photos as 4 symlink parts
+  (`/mnt/t7/smad_next/DG1/pool_in_parts/p0..p3`), 4 aligner processes into `/mnt/t7/smad_next/DG1/pool_a256`, logs
+  `/mnt/t7/smad_next/DG1/pool_align_p<k>.log` (about 1 photo per second together). Each aligner process also starts 8
+  idle multiprocessing workers (align.py creates `Pool(8)` but its parallel code is commented out).
+- 11 Nov 17:33. Written: `src/DG1/dg1_env.sh`, `dg1_run_task.sh`, `dg1_smoke.sbatch`, `dg1_prod.sbatch`,
+  `dg1_pack.sh`, `dg1_validity.py`, `dg1_dgx_test.sh` (section 4).
 
 ## 3. Data
 
@@ -62,8 +75,33 @@ Sets to be produced: see `prereg.md` (set A: 1,016 files; set B: 4,688 files pla
   photo written back through the same `save_image` call, checked pixel-identical to its input. Checks: `python -I`,
   checkpoint sha256, repo commit via git (and a per-file manifest if given), unique output names, finite codes and
   images; refuses an existing output folder.
-- Planned: `dg1_lists.py` (job lists and pool alignment inputs), `dg1_validity.py` (manifest and validity numbers on
-  the DGX), `dg1_smoke.sbatch`, `dg1_prod.sbatch` (Athena).
+- `src/DG1/dg1_lists.py poolin` — byte-identical copies of the pool photos (H and S of each host) as
+  `<db>_<subject>_H.png` / `_S.png` (the aligner's input folder). `dg1_lists.py lists` — job lists `eq.csv`
+  (equivalence gate), `smoke8.csv` (8 generated images of both sets at 20 and 100 steps + 2 genuine writes),
+  `setA.csv`, `setB_s0..3.csv` (hosts cut into 4 shards along the partner cycles, so a partner's photo is mostly encoded in
+  the same shard), `lists_summary.json`. Drops hosts whose H photo has no face after alignment; drops a SAME job when
+  the host's S photo is missing and an X / DOSE job when the partner's S photo is missing.
+- `src/DG1/dg1_align_parts.sh N` — the unchanged DiffAE aligner (`run_align_unchanged.py` + `align.py` sha 7d7cf0d0…,
+  cwd `/mnt/t7/smad_next/DG1/align_run` with the dlib model in `temp/`) on N symlink parts of the photos not yet aligned.
+- `src/DG1/dg1_pack.sh` — builds `/mnt/t7/smad_next/DG1/packs/dg1_pack.tar` (+ `.sha256`): `dg1pack/repo` (DiffAE with
+  `.git`), `repo_manifest.sha256`, `ckpt/last.ckpt`, `inputs/a256` (FRLL X3 a256 + aligned pool), `jobs/*.csv`,
+  `code/dg1_gen.py`, `MANIFEST.sha256`.
+- `src/DG1/dg1_env.sh` — sourced inside an Athena job after `module load Python/3.12.3`: builds once (or verifies)
+  `$G/envs/DG1/venv`, torch 2.12.1 / torchvision 0.27.1 from download.pytorch.org (cu130 if driver ≥ 580, else cu128,
+  then cu126), then the other DGX pins one by one under a constraints file holding torch; a pin that fails is replaced
+  by the newest that installs and recorded in `$G/envs/DG1/versions.txt` (with `pip freeze`).
+- `src/DG1/dg1_run_task.sh TAG LIST...` — one task in `$SCRATCH_LOCAL`: copies and sha-checks the pack, checks its
+  manifest, runs `dg1_gen.py` per job list, logs GPU memory every 10 s, writes `$G/results/DG1/DG1_<TAG>.tar` + `.sha256`;
+  refuses an existing result tar.
+- `src/DG1/dg1_smoke.sbatch` — smoke job (50 min limit, 1 A100, `-c 8 --mem=64G -C localfs`, account
+  `plgrestorearc-gpu-a100`): env, then `eq` and `smoke8`. `src/DG1/dg1_prod.sbatch` — array 0–4: `setA`,
+  `setB_s0..3`; `--time` set at submission from the measured speed (at most 4 h).
+- `src/DG1/dg1_validity.py equiv` — equivalence gate numbers (pixel differences, glint cosine between the Athena and
+  DGX file, image statistics against the between-image spread of the 204 / 200 stored A43 files).
+  `dg1_validity.py manifest` — manifest (image, set, rung, host, partner, steps, alpha, seed, generation run, hashes,
+  cosines, statistics) and per-rung validity numbers (`manifest.csv`, `validity.json`, `validity.csv`).
+- `src/DG1/dg1_dgx_test.sh` — the 8-image check on the DGX (inputs as a symlink folder, the A43 DiffAE venv, then
+  `dg1_validity.py manifest`), outputs `/mnt/t7/smad_next/DG1/dgx_test/`.
 - DGX environment used by A43 (and to be reproduced on Athena): `/mnt/t7/thirdparty/diffae_venv` (Python 3.12.3; its own
   site-packages hold pytorch_lightning 2.5.5, torchmetrics 1.8.2, lightning_utilities 0.15.2, lmdb 1.7.3, pandas 2.2.3,
   pytorch_fid 0.3.0, pytz 2025.2, tzdata 2025.2; a `.pth` adds `/home/narolski/mambamorph-code/.venv-spark` with

@@ -158,16 +158,18 @@ def build():
 def merge():
     rows = list(csv.DictReader(open(OUT / "manifest.csv")))
     st = {}
-    for f in sorted((OUT / "crops/main").glob("crops*.csv")):
+    for f in sorted((OUT / "crops/main").glob("crops*.csv")) + sorted((OUT / "crops/amend").glob("crops*.csv")):
         for r in csv.DictReader(open(f)):
             st[r["id"]] = r
-    miss = collections.Counter()
+    miss, pending = collections.Counter(), collections.Counter()
     out = []
     for r in rows:
         if r["crop_origin"] == "rs1":
             s = st.get(r["id"])
             if s is None:
-                sys.exit(f"{r['id']}: not cropped")
+                pending[r["set"]] += 1
+                r["crop_path"] = ""
+                continue
             if s["status"] in ("retained",) or s["status"].startswith("flag:"):
                 r["crop_path"] = s["path"]
             else:
@@ -185,10 +187,72 @@ def merge():
         w.writerows(out)
     tot = collections.Counter(r["set"] for r in rows)
     flags = collections.Counter(s["status"].split(":")[0] for s in st.values())
-    json.dump(dict(missing=dict(miss), totals=dict(tot), crop_status=dict(flags)), open(OUT / "crop_status.json", "w"),
-              indent=1)
-    print("score list", len(out), "missing", dict(miss), dict(flags))
+    json.dump(dict(missing=dict(miss), pending=dict(pending), totals=dict(tot), crop_status=dict(flags)),
+              open(OUT / "crop_status.json", "w"), indent=1)
+    print("score list", len(out), "missing", dict(miss), "pending", dict(pending), dict(flags))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and sys.argv[1] in ("build", "merge"):
     {"build": build, "merge": merge}[sys.argv[1]]()
+
+
+# ------------------------------------------------------------------------------------------------ amendment 2 pools
+FFHQ = pathlib.Path("/mnt/t7/smad_heldout/ffhq_morphs")
+GT = DATA / "manifests/gtest.csv"
+GT_SHA = "5ededd6fbeded7f2d480fe10838cfb7de82319ef5772771ac73eebcefb556a9b"
+FQ_SHA = "732b53c8a8c4b875645c99f11f81b401550a4050361090dea90998d45035234c"
+
+
+def amend():
+    """amendment 2: FRLL JPEG 50 / 70 and 50% shrink-and-enlarge frames, FEI neutral / smiling, FFHQ orig and its
+    65-pixel history copies (DiffAE, landmark complete). Appends to OUT/manifest.csv; writes lists/tocrop_amend.csv
+    (in priority order) and lists/selfmad_own_amend.csv (source files SelfMAD has no score for)."""
+    assert sha(GT) == GT_SHA and sha(FFHQ / "manifests/ffhqm.csv") == FQ_SHA
+    rows = list(csv.DictReader(open(OUT / "manifest.csv")))
+    have = {r["id"] for r in rows}
+    new = []
+    for r in csv.DictReader(open(DATA / "manifests/eval.csv")):
+        if r["set"] == "frllm" and r["family"] == "frll_bona" and r["variant"] in ("jpeg50", "jpeg70", "resample50"):
+            p = DATA / r["path"]
+            pp, ph, ex = pers_of(p.name, 0)
+            new.append(dict(id=f"rs1{r['id']}", set=f"G{r['variant']}_frll", label=0, persons=pp[0], photo=ph, expr=ex,
+                            src_path=str(p), src_sha256="", crop_origin="rs1", crop_path=""))
+    for r in csv.DictReader(open(GT)):
+        if r["family"] in ("fei_bona_neutral", "fei_bona_smiling"):
+            p = DATA / r["path"]
+            subj = pathlib.PurePath(r["path"]).stem
+            new.append(dict(id=f"rs1{r['id']}", set="FEI_" + r["family"].split("_")[-1], label=0, persons=f"fei{subj}",
+                            photo=f"fei{subj}_{r['family'].split('_')[-1][:3]}", expr=r["family"].split("_")[-1][:3],
+                            src_path=str(p), src_sha256="", crop_origin="rs1", crop_path=""))
+    fq = list(csv.DictReader(open(FFHQ / "manifests/ffhqm.csv")))
+    want = {("ffhq_bona", "orig"): "FF_orig", ("diffae", "resmatch"): "FF_E7diffae",
+            ("landmark_complete", "resmatch"): "FF_E7lmc"}
+    for r in fq:
+        k = (r["family"], r["variant"])
+        if r["label"] != "0" or k not in want:
+            continue
+        p = FFHQ / r["path"]
+        img = pathlib.PurePath(r["path"]).name.split("_")[0]
+        new.append(dict(id=f"rs1{r['id']}", set=want[k], label=0, persons=f"ffhq{img}", photo=f"ffhq{img}", expr="",
+                        src_path=str(p), src_sha256="", crop_origin="rs1", crop_path=""))
+    for r in new:
+        assert r["id"] not in have and not forbidden(r["src_path"]) and pathlib.Path(r["src_path"]).exists(), r
+    with open(OUT / "manifest.csv", "a", newline="") as f:
+        csv.DictWriter(f, fieldnames=COLS).writerows(new)
+    order = ["Gjpeg50_frll", "Gjpeg70_frll", "Gresample50_frll", "FEI_neutral", "FEI_smiling", "FF_orig",
+             "FF_E7diffae", "FF_E7lmc"]
+    new.sort(key=lambda r: order.index(r["set"]))
+    with open(OUT / "lists/tocrop_amend.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["id", "path"])
+        w.writeheader()
+        w.writerows([dict(id=r["id"], path=r["src_path"]) for r in new])
+    own = [r for r in new if r["set"].startswith(("FEI_", "FF_"))] + [r for r in rows if r["set"].startswith("a43_")]
+    with open(OUT / "lists/selfmad_own_amend.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["id", "path"])
+        w.writeheader()
+        w.writerows([dict(id=r["id"], path=r["src_path"]) for r in own])
+    print("amend", collections.Counter(r["set"] for r in new), "selfmad own", len(own))
+
+
+if __name__ == "__main__" and sys.argv[1] == "amend":
+    amend()
