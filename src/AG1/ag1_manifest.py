@@ -46,13 +46,26 @@ def sha(p):
     return h.hexdigest()
 
 
+def cap_threads(app, n=2):
+    """DGX courtesy (lead, 11 Nov): onnxruntime ignores OMP_NUM_THREADS, so every insightface session is rebuilt with
+    n intra-op threads; OpenCV is capped too. Numerics are unchanged (same model, same provider)."""
+    import cv2
+    import onnxruntime as ort
+    cv2.setNumThreads(n)
+    for m in app.models.values():
+        so = ort.SessionOptions()
+        so.intra_op_num_threads, so.inter_op_num_threads = n, 1
+        m.session = ort.InferenceSession(m.model_file, so, providers=["CPUExecutionProvider"])
+    return app
+
+
 def detector():
     sys.path.insert(0, str(CODE / "smadcvpr"))
     import prep_eval                                            # unchanged
     from insightface.app import FaceAnalysis
     det = FaceAnalysis(name="buffalo_l", allowed_modules=["detection"], providers=["CPUExecutionProvider"])
     det.prepare(ctx_id=-1, det_size=(512, 512))
-    prep_eval._APP = det
+    prep_eval._APP = cap_threads(det)
     return prep_eval
 
 

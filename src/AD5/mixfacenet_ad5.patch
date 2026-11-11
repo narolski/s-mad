@@ -1,7 +1,12 @@
+Binary files smdd_orig/backbones/__pycache__/activation.cpython-312.pyc and smdd_src/backbones/__pycache__/activation.cpython-312.pyc differ
+Binary files smdd_orig/backbones/__pycache__/common.cpython-312.pyc and smdd_src/backbones/__pycache__/common.cpython-312.pyc differ
+Binary files smdd_orig/backbones/__pycache__/__init__.cpython-312.pyc and smdd_src/backbones/__pycache__/__init__.cpython-312.pyc differ
+Binary files smdd_orig/backbones/__pycache__/mixnetm_mad.cpython-312.pyc and smdd_src/backbones/__pycache__/mixnetm_mad.cpython-312.pyc differ
+Binary files smdd_orig/backbones/__pycache__/utils.cpython-312.pyc and smdd_src/backbones/__pycache__/utils.cpython-312.pyc differ
 diff -ruN smdd_orig/main.py smdd_src/main.py
 --- smdd_orig/main.py	2023-03-06 09:57:23.000000000 +0100
-+++ smdd_src/main.py	2026-11-11 17:58:44.356063799 +0100
-@@ -141,6 +141,15 @@
++++ smdd_src/main.py	2026-11-11 19:24:55.101000652 +0100
+@@ -141,6 +141,19 @@
      epochs_no_improve = 0
      early_stop = False
  
@@ -11,13 +16,17 @@ diff -ruN smdd_orig/main.py smdd_src/main.py
 +            logging.info('Epoch {}/{}'.format(epoch, num_epochs - 1))
 +            train_loss, train_acc = train_fn(model, dataloaders['train'], dataset_sizes['train'], optimizer, criterion)
 +            logging.info('train loss: {}, train acc: {}'.format(train_loss, train_acc))
++            _ed = os.environ.get("AD5_EPOCH_DIR")  # AD5 patch v2: weights after every epoch (descriptive; epoch 100 is the reading)
++            if _ed:
++                os.makedirs(_ed, exist_ok=True)
++                torch.save(model.state_dict(), os.path.join(_ed, 'epoch_{:03d}.pth'.format(epoch + 1)))
 +        torch.save(model.state_dict(), model_path)
 +        logging.info(f'saved model path (last epoch): {model_path}')
 +        return
      for epoch in range(num_epochs):
          print('Epoch {}/{}'.format(epoch, num_epochs - 1))
          logging.info('Epoch {}/{}'.format(epoch, num_epochs - 1))
-@@ -225,9 +234,12 @@
+@@ -225,9 +238,12 @@
  
      if args.is_train:
          train_dataset = FaceDataset(args.train_csv_path, is_train=True)
@@ -32,7 +41,7 @@ diff -ruN smdd_orig/main.py smdd_src/main.py
          dataloaders = {'train': train_loader, 'val': test_loader}
          dataset_sizes = {'train': len(train_dataset), 'val': len(test_loader)}
          print('train and test length:', len(train_dataset), len(test_loader))
-@@ -268,7 +280,10 @@
+@@ -268,7 +284,10 @@
  
      if torch.cuda.is_available():
          print('GPU is available')
@@ -44,3 +53,4 @@ diff -ruN smdd_orig/main.py smdd_src/main.py
      else:
          print('GPU is not available')
          torch.manual_seed(0)
+Binary files smdd_orig/__pycache__/utils.cpython-312.pyc and smdd_src/__pycache__/utils.cpython-312.pyc differ

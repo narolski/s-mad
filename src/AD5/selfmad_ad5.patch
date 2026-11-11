@@ -1,6 +1,8 @@
+Binary files selfmad_orig/preprocessing/__pycache__/faceparser.cpython-312.pyc and selfmad_src/preprocessing/__pycache__/faceparser.cpython-312.pyc differ
+Binary files selfmad_orig/__pycache__/eval__.cpython-312.pyc and selfmad_src/__pycache__/eval__.cpython-312.pyc differ
 diff -ruN selfmad_orig/train__.py selfmad_src/train__.py
 --- selfmad_orig/train__.py	2026-07-17 10:17:39.000000000 +0200
-+++ selfmad_src/train__.py	2026-11-11 18:00:31.381390079 +0100
++++ selfmad_src/train__.py	2026-11-11 19:24:55.107083183 +0100
 @@ -19,10 +19,10 @@
  
      assert args["model"] in ["efficientnet-b4", "efficientnet-b7", "swin", "resnet", "hrnet_w18", "hrnet_w32", "hrnet_w44", "hrnet_w64"]
@@ -14,7 +16,17 @@ diff -ruN selfmad_orig/train__.py selfmad_src/train__.py
      random.seed(seed)
      torch.manual_seed(seed)
      np.random.seed(seed)
-@@ -69,13 +69,14 @@
+@@ -47,6 +47,9 @@
+     batch_size=cfg['batch_size']
+     train_datapath = args["SMDD_path"] if args["train_dataset"] == "SMDD" else args["FF_path"]
+     train_dataset=selfMAD_Dataset(phase='train',image_size=image_size, datapath=train_datapath)
++    if os.environ.get("AD5_EXPECT_N"):  # AD5 patch v2: the loader skips images without landmarks / labels silently
++        assert len(train_dataset) == int(os.environ["AD5_EXPECT_N"]), (len(train_dataset), os.environ["AD5_EXPECT_N"])
++    print("AD5 training images:", len(train_dataset), flush=True)
+     if args["saving_strategy"] == "original": # valset is always FF++
+         val_dataset=selfMAD_Dataset(phase='val',image_size=image_size, datapath=args["FF_path"])
+ 
+@@ -69,13 +72,14 @@
                              worker_init_fn=val_dataset.worker_init_fn
                              )
      
@@ -35,7 +47,7 @@ diff -ruN selfmad_orig/train__.py selfmad_src/train__.py
      # test_datasets_mordiff = default_datasets(image_size, datasets="MorDIFF", config={
      #     "MorDIFF_f_path": args["MorDIFF_f_path"],
      #     "MorDIFF_bf_path": args["MorDIFF_bf_path"]
-@@ -143,9 +144,10 @@
+@@ -143,9 +147,10 @@
              )
          # TEST LOOP ###################################################
          model.train(mode=False)
@@ -49,11 +61,16 @@ diff -ruN selfmad_orig/train__.py selfmad_src/train__.py
          # for dataset in results_mordiff_dataset:
          #     log_text += f" {dataset}: auc: {results_mordiff_dataset[dataset]['auc']:.4f}, eer: {results_mordiff_dataset[dataset]['eer']:.4f}"
          # results_mordiff_dataset = evaluate(model, test_loaders_mordiff, device, calculate_means=False)
-@@ -188,6 +190,13 @@
+@@ -188,6 +193,18 @@
                          "optimizer":model.optimizer.state_dict(),
                          "epoch":epoch
                      },save_model_path)
-+        elif args["saving_strategy"] == "last" and epoch == n_epoch - 1:  # AD5 patch: the last epoch, authors' format
++        if args["saving_strategy"] == "last" and os.environ.get("AD5_EPOCH_DIR") and (epoch + 1) % 5 == 0:
++            # AD5 patch v2: the model state dict every 5 epochs (descriptive; epoch 100 is the registered reading)
++            os.makedirs(os.environ["AD5_EPOCH_DIR"], exist_ok=True)
++            torch.save({"model": model.state_dict(), "epoch": epoch},
++                       os.path.join(os.environ["AD5_EPOCH_DIR"], "epoch_{:03d}_model.tar".format(epoch + 1)))
++        if args["saving_strategy"] == "last" and epoch == n_epoch - 1:  # AD5 patch: the last epoch, authors' format
 +            save_model_path=os.path.join(save_path+'weights/',"epoch_{}.tar".format(epoch+1))
 +            torch.save({
 +                    "model":model.state_dict(),
@@ -63,3 +80,11 @@ diff -ruN selfmad_orig/train__.py selfmad_src/train__.py
          logger.info(log_text)
          
  if __name__=='__main__':
+Binary files selfmad_orig/utils/__pycache__/albu.cpython-312.pyc and selfmad_src/utils/__pycache__/albu.cpython-312.pyc differ
+Binary files selfmad_orig/utils/__pycache__/dataset.cpython-312.pyc and selfmad_src/utils/__pycache__/dataset.cpython-312.pyc differ
+Binary files selfmad_orig/utils/__pycache__/logs.cpython-312.pyc and selfmad_src/utils/__pycache__/logs.cpython-312.pyc differ
+Binary files selfmad_orig/utils/__pycache__/metrics.cpython-312.pyc and selfmad_src/utils/__pycache__/metrics.cpython-312.pyc differ
+Binary files selfmad_orig/utils/__pycache__/model.cpython-312.pyc and selfmad_src/utils/__pycache__/model.cpython-312.pyc differ
+Binary files selfmad_orig/utils/__pycache__/sam.cpython-312.pyc and selfmad_src/utils/__pycache__/sam.cpython-312.pyc differ
+Binary files selfmad_orig/utils/__pycache__/scheduler.cpython-312.pyc and selfmad_src/utils/__pycache__/scheduler.cpython-312.pyc differ
+Binary files selfmad_orig/utils/__pycache__/selfMAD.cpython-312.pyc and selfmad_src/utils/__pycache__/selfMAD.cpython-312.pyc differ
