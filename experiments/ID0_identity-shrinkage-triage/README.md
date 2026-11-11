@@ -21,11 +21,19 @@ average face than a real person (identity variance falls to (1+c)/2 for contribu
 measurable from one image for landmark, GAN and diffusion morphs, with a statistic fitted on genuine photos only,
 and what are the predicted and observed ceilings?
 
-Status 11 Nov 17:31 CET: **running**. Landmark arm finished; CLIP and DiffAE arms finished on the tier-1 sets;
-DINOv3 being recomputed (first run produced non-finite features, section 7); glintr100 (FR) features for the
-remaining sets being computed (CPU-bound face detection); FR arm with the GEO-0 reads not yet analysed.
+Status 11 Nov 18:25 CET: **finished** (all five arms analysed; falsifiers applied in `verdicts.json`;
+`result.md` final). Earlier status (17:31): running.
 
-Current answer (facts so far, no verdict yet):
+Answer in facts (the lead draws conclusions; full table in `result.md`):
+- No arm reaches the pre-registered "global head" bar (R2 vs R4 ≥ 0.75 with a clean native-vs-E7 control).
+  The only arm with a clean control (glintr100) is at chance on one-photo output vs morph (0.50–0.55) with a
+  flat dose. The arms that separate (DiffAE R2w vs R4 0.692, MorDIFF D20 vs B20 0.688; CLIP MorDIFF 0.698)
+  fail the stricter control band on the MorDIFF E7 family (DiffAE 0.000, CLIP 0.582, DINOv3 0.356).
+- The exact-shape arm (no image) shows the predicted shrinkage and matches the closed form within about 0.03.
+- GEO-0: virtual head 0.744 in domain, 0.52–0.60 on real morphs; FR ceiling 0.74–0.77 at benchmark pair
+  similarity (Λ = 2.68).
+
+Facts recorded at 17:31 (kept as history):
 - Exact landmark shapes (no image): two-person mean shape vs host shape AUC 0.725 [0.689, 0.758] on 520 AR1
   hosts; warp-only/same-person mean shape vs two-person 0.687 [0.650, 0.720]; dose rises monotonically
   (Page p ≈ 4e-234). The arm's kill line (R0 vs R4 < 0.60) is not reached.
@@ -84,6 +92,10 @@ Current answer (facts so far, no verdict yet):
   StyleGAN3 contributor cosine 0.162 [0.069, 0.246] (423 pairs, CASIA source crops). No ID0 process uses the
   GPU any more. 18:00 analyses for the glint and DINOv3 arms started (PIDs 2172290, 2176171; logs
   `logs/analyse_glint.log`, `logs/analyse_dino2.log`).
+- 18:11 Both analyses finished (`arm_glint.json` sha256 ee5c8450…, `arm_dino.json` b124fa01…). 18:15
+  `verdicts.py` → `verdicts.json` (87c2f249…). 18:20 `result.md` final; README completed. Final hashes of the
+  other result files: `arm_landmark.json` 15cc3eb8…, `arm_clip.json` b161749b…, `arm_diffae.json` 72d79e4d…,
+  `bench_similarity.json` 1b6249ff…, `feat/glint_gl.npz` 603fb2fb…, `feat/dino_dn.npz` 616dde3b….
 
 Amendments to the registration (all after the prereg, none after reading a decisive number unless stated):
 1. Feature sets reduced to "tier 1" for CLIP, DINOv3 and DiffAE (throughput on the shared machine); tier 1 holds
@@ -256,8 +268,57 @@ the midpoint model (features of the morph image = midpoint of the contributors' 
 unchanged) does not hold there (fidelity medians 0.56–0.95, section above), and in CLIP the sign is reversed
 for landmark morphs. The unadjusted c_pair values are in the JSON (`c_arm_median`) and are not usable (> 1).
 
-### FR (glintr100) arm and GEO-0, DINOv3 arm
-Pending (section 10).
+### glintr100 (FR) arm and GEO-0 — `arm_glint.json` (added 18:20)
+Fit k = 64 (of 231 for 95%; 52% variance), all 64 directions have λ > 1 (so SES is constant, 0.500 everywhere),
+n = 0.055; closed-form ceiling 0.991 at c = 0; genuine-only virtual check 0.521 (0.667 / 0.543 / 0.353 by
+similarity tercile): after unit normalisation the ISS does not see virtual midpoints. Features: 13,809 new
+embeddings (all faces found) + existing AR1/a46 embeddings.
+| Contrast | ISS | virtual head |
+|---|---|---|
+| AR1 OpenCV R0 vs R4 (528/520) | 0.494 [0.451, 0.540] | 0.593 [0.549, 0.633] |
+| AR1 OpenCV R2w vs R4 | 0.503 [0.460, 0.548] | 0.590 [0.546, 0.631] |
+| AR1 OpenCV R3 vs R4 | 0.498 [0.455, 0.542] | 0.557 [0.514, 0.598] |
+| AR1 FaceMorpher R3 vs R4 | 0.501 [0.458, 0.544] | 0.552 [0.510, 0.592] |
+| AR1 OpenCV NC vs R3 (negative control) | 0.500 | |
+| A43 stored D20 vs B20 (204/200) | 0.554 [0.471, 0.640] | 0.524 [0.454, 0.594] |
+| A43 stored D vs B (= a46 a43_D vs a43_B) | 0.558 [0.474, 0.648] | 0.522 [0.453, 0.593] |
+| A43 stored C20 vs B20 | 0.540 [0.452, 0.631] | 0.652 [0.583, 0.719] |
+| A43 stored E vs A (published) | 0.573 [0.488, 0.657] | |
+| a46 rec vs published MorDIFF / DiM-C / Greedy-DiM | 0.542 / 0.542 / 0.416 | 0.489 / 0.523 / 0.528 |
+| StyleGAN3 h3_bona vs h3_sg3 | 0.545 [0.513, 0.578] | 0.600 [0.571, 0.628] |
+| StyleGAN3 a37spread vs h3_sg3 | 0.553 [0.523, 0.585] | 0.458 [0.429, 0.486] |
+| FRLL native vs published OpenCV / FaceMorpher frames | 0.590 [0.524, 0.651] / 0.560 [0.500, 0.619] | |
+| FRLL AR1 pool OpenCV R0 vs R4 (102) | 0.486 [0.361, 0.614] | |
+Controls native vs E7 (ISS): opencv 0.506, facemorpher 0.509, stylegan 0.500, mordiff 0.506 [0.489, 0.524],
+dim_c 0.512, greedy_dim 0.513, greedy_dim_s 0.511, amsl 0.508, webmorph 0.506; a256 vs rec 0.514. Head controls:
+0.496 / 0.497 / 0.500 / **0.415 [0.396, 0.427]** (mordiff) / rec vs a256 0.536. Dose: Page p 0.42, AUC vs m0
+0.481–0.496. Fidelity medians: R4 0.876 (host alone 0.691), FaceMorpher R4 0.856, R3 0.978, R3m 0.962, R2w
+0.951, NC 0.978; FRLL-Morphs frames 0.824 / 0.812; A43 B20 0.711, B 0.719, C20 0.915, D20 0.973; published
+MorDIFF 0.700, DiM-C 0.691, Greedy-DiM 0.848, Greedy-DiM-S 0.727. Gain (ratio of mean projections on the fit
+mean direction): AR1 OpenCV R4 1.108 [1.057, 1.157], FaceMorpher R4 1.008 [0.955, 1.061], R3 1.030 [1.017,
+1.042] / 0.994, R3m 0.955 / 0.885, published MorDIFF 0.981 [0.834, 1.133], Greedy-DiM 1.151 [1.019, 1.296],
+FRLL-Morphs FaceMorpher frames 0.758 [0.602, 0.870]; predictions 1.27 (R4) and 1.03 (R3). Λ 2.684 (ridge
+1e-4/1e-3/1e-2: 4.81/4.21/3.70), twin cosine in the fit set 0.893; ceiling vs photo 0.784/0.746/0.710/0.676/
+0.645/0.616/0.589 for c = 0…0.6, vs twin 0.768/0.729/0.691/0.657/0.625/0.595/0.568. Virtual head in domain:
+0.744 (morph vs single 0.751, vs twin 0.733; 20,000 virtual morphs, 1,395 singles, 870 virtual twins).
+Shrink law ρ (ISS): AR1 OpenCV R4 0.150 [−0.029, 0.308], FaceMorpher R4 0.182 [0.007, 0.338], graded 0.063,
+A43 B20 0.100 [−0.130, 0.342] (neutral pairs 0.209 [−0.137, 0.547]), published MorDIFF 0.045 [−0.072, 0.162],
+DiM-C 0.084, Greedy-DiM 0.063, FRLL-Morphs frames 0.138 [0.029, 0.236] / 0.123 [0.014, 0.227]; head: −0.17 to
++0.08. Oracle power ρ: 0.38–0.45 per family, graded 0.80.
+
+### DINOv3 ViT-L/16 (bf16, tier 1) — `arm_dino.json` (added 18:20)
+Fit k = 64 (of 108; 91%), d = 59, n = 0.028; ceiling 0.991 at c = 0; virtual 0.962. AR1 OpenCV R0 vs R4 0.535
+[0.489, 0.580], R2w vs R4 0.533 [0.486, 0.578], R3 vs R4 0.527, R3m vs R4 0.550 (SES 0.786); MorDIFF stored
+E vs B20 0.546, D20 vs B20 0.611 [0.522, 0.698], C20 vs B20 0.478, D20 vs C20 0.627, E vs A 0.578, D20 vs A
+0.637; StyleGAN3 bona vs morph 0.624 [0.598, 0.652], a37spread vs morph 0.469. Controls: opencv 0.502,
+facemorpher 0.505, stylegan 0.500, mordiff 0.356 [0.300, 0.406]. Dose Page p 4e-5, AUC vs m0 0.525/0.548/0.551/
+0.537/0.529 (rise then fall). Shrink law: AR1 R4 −0.150 [−0.313, 0.013]; A43 B20 0.100 [−0.162, 0.344].
+Fidelity medians: R4 0.898 (host 0.806), B20 0.906 (host 0.830), D20 0.948.
+
+### Falsifier table — `verdicts.json`
+See `result.md` "Falsifiers". Physics part 1 does not fire (DiffAE 0.688 / 0.692); part 2 fires for CLIP,
+DINOv3, DiffAE with the stricter band (glint clean); part 3 fires for glint and CLIP; landmark kill does not
+fire; GEO-0 neither Go nor Kill; identity idea 0's control clause fires (mordiff E7 0.415).
 
 ## 6. Checks
 
@@ -297,6 +358,14 @@ self-pairs (061_061 …) are intended.
   ordering (E vs B20 0.324); on DiffAE-native 256 frames the same comparison is 0.687. The stored crops are out
   of the encoder's alignment; the native frames are the registered DiffAE-arm input (prereg).
 - Old glint part `part_gl_000000.npz` (chunk 512) from the killed run reused; order verified identical.
+- glintr100 ISS: every one of the 64 kept directions has λ > 1, so the session read-out SES is identically 0
+  (AUC 0.500 with zero-width intervals in every glint row). Not a bug; the read-out is empty in that arm.
+- The physics closed form is meaningless for unit-normalised FR embeddings: predicted 0.96–0.99, genuine-only
+  virtual midpoints 0.52 (normalising the midpoint undoes the shrinkage, as the identity lens anticipated).
+- DINOv3 dose: Page p 4e-5 although the level means rise only to m = 0.3 and then fall; "monotone" by the AR2
+  rule (Page p < 0.05) but not by the means.
+- `verdicts.py` piped into a reader the first time: the reader ran before the file existed (race, no effect on
+  the file).
 
 ## 8. Observations and ideas
 
@@ -315,11 +384,13 @@ self-pairs (061_061 …) are intended.
 
 ## 9. Open items and next steps
 
-- Glint arm: finish features (shards running), run `analyse.py --arm glint` (GEO-0 reads: fidelity, gain, virtual
-  head, Λ and ceiling table, oracle power check), then `bench_sim.py` again (adds H3 pair similarity).
-- DINOv3 arm in bf16: finish tier 1, run `analyse.py --arm dino`.
-- Pool-centred c and predictions at the benchmark glintr100 cosine (descriptive).
-- `verdicts.py` (falsifier table), then `result.md` final.
+- Done 18:20: glint arm with GEO-0, DINOv3 arm, pool-centred c, `verdicts.json`, `result.md`.
+- Open (not run): tier 2–3 sets for CLIP, DINOv3, DiffAE (FaceMorpher rungs, R2/NC, A43 100-step sets, FRLL AR1
+  pool, published FRLL-Morphs frames): rerun `run_feat.sh` without `--max-tier` (resumes from parts) if wanted.
+- Open: why DiffAE z_sem separates MorDIFF E7 frames completely (0.000) — the E7 MorDIFF frames shrink the face
+  to the MorDIFF inter-eye distance (about 64 px) and enlarge it; DiffAE then sees a blurred face. A history-
+  matched fit set (E7 copies of fit photos) would be needed to use this arm; no such frames exist.
+- Open: a landmark arm on landmarks detected from the images (not exact files).
 - Done 17:31: the 136 fit frames (+ `.tem`) that existed only in `/dev/shm/smad_arms/r6_frgc` were copied
   byte-identically (sha256 checked) to `/mnt/t7/smad_next/ID0/src_shm_copy/<pid>/`, manifest
   `COPY_MANIFEST.csv` (sha256 c89adf30…). `fit.csv` still names the original paths; map through the manifest
@@ -327,7 +398,13 @@ self-pairs (061_061 …) are intended.
 - Not done by design: released-detector shrink-law audit (identity idea 1's own target), BPCER per demographic
   group (no labels at hand).
 
-## 10. Handover state (17:31 CET)
+## 10. Handover state
+
+18:25 CET: no ID0 process is running; nothing queued; no file in progress. Compute: GPU processes about 3 h of
+wall time on a GB10 shared with about 12 other processes (actual GPU work estimated under 30 GPU-minutes);
+CPU analyses about 1 h; no WCSS, no Vast, no USD.
+
+State at 17:31 CET (history):
 
 Running on the DGX (all started by this owner; logs in `/mnt/t7/smad_next/ID0/logs/`):
 - glintr100 shards: PIDs 2060459 (shard 1/3), 2060461 (0/3), 2060462 (2/3); wrappers `run_feat.sh spark

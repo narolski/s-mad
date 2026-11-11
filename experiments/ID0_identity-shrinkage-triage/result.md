@@ -38,7 +38,7 @@ R3 0.498–0.537; DiffAE-native D20 vs C20 0.445. Landmark FRLL-Morphs / MAD22 p
 ## GEO-0 reads (glintr100)
 
 1. Fidelity F = cos(e_built, normalise(e_A + e_B)), median: AR1 R4 0.876 (OpenCV) / 0.856 (FaceMorpher);
-   twins R3 0.978, R3m 0.962; published FRLL-Morphs frames 0.82–0.82; A43 B20 0.711, B 0.719, published MorDIFF
+   twins R3 0.978, R3m 0.962; published FRLL-Morphs frames 0.81–0.82; A43 B20 0.711, B 0.719, published MorDIFF
    0.700, DiM-C 0.691, Greedy-DiM 0.848; same-person mix C20 0.915. Landmark morphs lie between the 0.75 and 0.90
    lines; diffusion morphs at or below 0.75 (off-span part dominates), and it is larger for morphs than twins.
 2. Mean-direction gain: AR1 R4 1.108 [1.057, 1.157] (prediction 1.27), FaceMorpher R4 1.008 [0.955, 1.061];
@@ -64,7 +64,7 @@ landmark AR1 0.693 predicted vs 0.725 observed; FRLL-Morphs pairs 0.739 vs 0.737
 0.736–0.758. Image-feature arms: CLIP 0.874 vs 0.364 (AR1), 0.952 vs 0.698 (MorDIFF); DiffAE 0.953 vs 0.692,
 0.978 vs 0.688; DINOv3 0.886 vs 0.533, 0.846 vs 0.611; glintr100 0.964 vs 0.503 (its genuine-only virtual check
 is 0.521: unit normalisation removes the shrinkage). The closed form holds for exact shapes and overshoots every
-image arm by 0.26–0.51.
+image arm by 0.24–0.51.
 
 ## Falsifiers (as pre-registered)
 

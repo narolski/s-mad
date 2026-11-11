@@ -297,6 +297,16 @@ of the same images made on the DGX (the 14,120 FRLL evaluation frames already ex
 check on a few hundred images: maximum absolute feature difference, and the AUC difference of one head scored on
 both. The released-detector tests (Part 2, T-A, T-B) score released networks and stay on the DGX.
 
+## Amendment A8 (18:18 CET, throughput; before any T-A / T-B score was read or written)
+
+The shared GB10 GPU runs at 96% utilisation from other jobs; the first group of three small releases scored 1,600
+of the 50,010 T-A / T-B images in 285 s (loader workers idle, so GPU-bound), which puts the full set at several
+hours per ViT-L/14 release. The DGX pass therefore scores a seeded stratified subsample (`flists/tab_sub.csv`,
+seed 20261111 + 40): per split 500 morphs per partner (2,500), 1,000 genuine renders, 400 non-contributor source
+renders, and all 5 partner renders (7,810 images); primary five releases first, the two FS variants after. The
+readings of A3 are unchanged (rank percentiles among 400 renders per split). The full 50,010-image set stays in
+`flists/tab.csv` for a GPU machine if one becomes available (released-detector scoring may run there, A7).
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 

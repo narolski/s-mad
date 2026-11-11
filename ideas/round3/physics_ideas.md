@@ -287,9 +287,8 @@ coordinate each, and a dissociation that can fail.
   sessions per person (the 536 ladder hosts have a host photo and a second-session photo; fit and test by
   person folds). Whiten; score = minus the squared length along person-bound odd directions. No morph, no
   tool output and no softened image is ever seen in fitting.
-- Trained form. One network applied to the image and to its lossless flip with shared weights (the scoring
-  code already averages over the flip). The head sees the even feature part and the odd part separately.
-  (`IDEAS_v1.md`, M1, says the scoring code already averages over the flip; I did not open that code.) The
+- Trained form. One network applied to the image and to its lossless flip with shared weights
+  (`IDEAS_v1.md`, M1, says the scoring code already averages over the flip; I did not open that code). The
   head sees the even feature part and the odd part separately.
   Even part: everything the standard recipe has, so table numbers are kept. Odd part alone: a declared
   read-out that no symmetric cue can feed. One image in, one score out; question 2 asks whether two views
@@ -411,7 +410,7 @@ dissociation table.
 1. Does an analysis that writes no image (fourth moments of the registered Laplacian, Haar and FFT-band
    responses; a per-band normalisation layer inside the network) count as new blur or resampling code?
 2. Is one network applied to an image and to its lossless flip, with one head and one score, within
-   "one network at test time on ONE image"? (The scoring code already averages over the flip.)
+   "one network at test time on ONE image"? (Flip averaging at scoring is reported in `IDEAS_v1.md`, M1.)
 3. Under the class proposal a double exposure or a shifted self-blend of one photo is a single-subject
    manipulation. Idea 1 will flag it. Is that accepted?
 

@@ -78,10 +78,12 @@ def lists():
 
 def read():
     from scipy.stats import binom
-    meta = list(csv.DictReader(open(K.OUT / "flists/tab.csv")))
+    import os
+    tl = os.environ.get("TABLIST", "tab")                    # A8: tab_sub (DGX subsample) or tab (full set)
+    meta = list(csv.DictReader(open(K.OUT / f"flists/{tl}.csv")))
     res = {}
     for det in DETS:
-        f = K.OUT / "p2scores/tab" / f"scores_rel_{det}.npz"
+        f = K.OUT / f"p2scores/{tl}" / f"scores_rel_{det}.npz"
         if not f.exists():
             continue
         zf = np.load(f, allow_pickle=False)
@@ -130,7 +132,7 @@ def read():
         res[det] = o
         print(det, json.dumps({k: (v if not isinstance(v, dict) or "per_partner" not in v else
                                    {kk: vv for kk, vv in v.items() if kk != "per_partner"}) for k, v in o.items()})[:900])
-    json.dump(res, open(K.RES / "tab.json", "w"), indent=1)
+    json.dump(res, open(K.RES / f"{tl}.json", "w"), indent=1)
 
 
 if __name__ == "__main__":
