@@ -10,6 +10,11 @@ In `experiments/<ID>/`: `prereg.md` (from `prereg/TEMPLATE.md`, written before a
 result files (CSV/JSON). Code in `src/<ID>/`. Large outputs in `/mnt/t7/smad_next/<ID>/`.
 Write only inside those three places. Do not run `git add`, `commit` or `push`; the lead commits.
 
+**DGX load (11 Nov, measured load average 189 on 20 cores).** Start every DGX process with
+`OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 nice -n 10 ...`; at most 2 such
+processes per owner besides one GPU job. Numerical libraries otherwise start 20 threads each and slow everyone.
+GPU work of more than about half an hour belongs on Athena (`ATHENA.md`), from the container image.
+
 **Documentation (author's instruction, 11 Nov).** Every experiment folder also holds a `README.md` that follows
 `DOCUMENTATION.md`: the full record of what was done, including dead ends, exact commands, paths, hashes and the
 handover state. Write it for the work done so far, then update it at every milestone, before every long wait and

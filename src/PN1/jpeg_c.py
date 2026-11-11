@@ -1,6 +1,6 @@
 """PN1 amendment 1: JPEG copies for manifest C through the registered function prep_eval.degrade (jpeg90 / jpeg70 only),
-imported unchanged via the alpha-field probe's pinned loader (src/AF0/soften.py load_pe: sha256 pin of prep_eval.py
-374408ab...). Never blur1, resample50 or chip.
+imported unchanged from /home/narolski/mambamorph-code/smadcvpr/prep_eval.py (sha256 pin 374408ab..., checked; the
+loader is the same five lines as AF0's soften.load_pe). Never blur1, resample50 or chip.
   python3 -I jpeg_c.py verify            # raw FRLL photo -> degrade(jpeg70) -> align -> PNG == existing eval file?
   python3 -I jpeg_c.py build --sel /mnt/t7/smad_next/PN1/lists/jpeg_sel.csv [--limit 8]
        copies: degrade(frame, op) on the training frame itself, lossless PNG, no re-alignment ->
@@ -16,8 +16,7 @@ import sys
 
 import numpy as np
 
-AF0SOFT = pathlib.Path("/home/narolski/smad-next/src/AF0/soften.py")
-AF0SOFT_SHA = "49fa41513fe7d94959361ed4b06579917d341d29d692562cdc21bdde2b0d6e17"
+PE_SHA = "374408ab3a886e6df25b563bc2344d190efe2ab7b3163efbb17c9b6ca9100628"
 OUT = pathlib.Path("/mnt/t7/smad_next/PN1")
 RES = pathlib.Path("/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests")
 MC = pathlib.Path("/home/narolski/mambamorph-code")
@@ -29,11 +28,13 @@ def sha(p):
 
 
 def load_pe():
-    assert sha(AF0SOFT) == AF0SOFT_SHA, "AF0 soften.py changed"
-    spec = importlib.util.spec_from_file_location("af0_soften", AF0SOFT)
+    pe = MC / "smadcvpr" / "prep_eval.py"
+    assert sha(pe) == PE_SHA, "prep_eval.py is not at its registered pin"
+    sys.path.insert(0, str(MC / "smadcvpr"))
+    spec = importlib.util.spec_from_file_location("prep_eval", pe)
     m = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(m)
-    return m.load_pe()
+    return m
 
 
 def verify(a):
