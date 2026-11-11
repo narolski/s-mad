@@ -54,8 +54,8 @@ Code: `src/AG1/`. Large outputs: `/mnt/t7/smad_next/AG1/`. Rules: `11_AUDIT_PLAN
   `cv2.resize` INTER_AREA 512. These are not on OWNER_BRIEF's allowed list; they are the generator input step of
   the approved A33 set, used on purpose and identically for every rung. Reflect padding hit 158 of 604 photos
   (FERET 145 / 200, FRGC 13, FRLL 0), balanced between twins and morphs within a pool, not across pools.
-  *One platform:* every data image is generated on WCSS H100 in the container of H4 / H4b
-  (`pytorch_latest.sif`); `run.sh` refuses to run without it (exit 5). The same code gave a different image on the
+  *One platform:* every data image is generated on one platform and stack (amendment 2: Athena A100, `envs/AG1`;
+  originally WCSS H100 in the H4 / H4b container, where `run.sh` refuses to run without it, exit 5). The same code gave a different image on the
   GB10 (mean 15.5 grey levels), so rungs are never mixed across platforms or torch stacks.
 
 - **Detectors (scoring).** Released MADation ViT-B/16, ViT-L/14, SelfMAD HRNet-W18 (our pipeline and own crop); FE /
@@ -138,4 +138,21 @@ Code: `src/AG1/`. Large outputs: `/mnt/t7/smad_next/AG1/`. Rules: `11_AUDIT_PLAN
   failure labels, honest negative control; cuDNN deterministic and finiteness checks; dmenv fallback removed (one
   torch stack); RT extended to 152 persons; AG3 alpha 0 via `mipgan_alpha`; AG3T twin-dose arm; primary pool
   pooled; distinct bootstrap seeds per pool; FERET decode fix in the manifest builder; input alignment flagged.
+- **Amendment 2 (11 Nov evening, before any data image; lead's instruction of the same afternoon):**
+  - *Mirror rung R3m* for every host (302 persons; FRLL also with mip2): MIPGAN on the host photo s1(p) and its
+    lossless left-right mirror (np.fliplr of the stored 512 crop, read back and checked pixel-exact; 5 points
+    re-detected on the mirror). One photograph, one person, no expression or session confound. Whether R3m counts as
+    a morph or as a genuine image is the author's call (as for R3); it is reported as its own rung (R2 vs R3m,
+    R3m vs R4) and enters no verdict until then.
+  - *Platform:* generation moves from the WCSS slot queue to Athena (Cyfronet, A100 40 GB, x86), account
+    plgrestorearc-gpu-a100, own environment `envs/AG1` (Python 3.10.4 module, torch 2.2.1 + cu121, torchvision
+    0.17.1, numpy 1.26.4, pillow 10.2.0; pytorch_msssim 1.0.0 from the weights pack), built inside the smoke job.
+    Every data image comes from this one stack; nothing from WCSS or the DGX enters the data.
+  - *Shards:* 14 (2 smoke, 8 core, 4 AG3 / AG3T); 3,833 images, 912 inversions, 12.7 H100-h at the WCSS rates
+    (A100 rate to be measured by the smoke job; production cap 150 GPU-h). AG3 runs as a second array with
+    `--dependency=afterok` on the core array. `shards.csv` sha256 a870e61c...
+  - *Selfcheck reading:* on the GB10, `mipgan_alpha(0.5)` and `generate.mipgan` from the same start differed by max
+    |w| 0.65 after 150 steps; the run-to-run spread of `generate.mipgan` itself is measured next to it (README); the
+    two objectives are compared exactly in one forward pass. The equality claim stands only if the forward values are
+    equal and the 0.65 lies within the run-to-run spread.
 - **Result:** pending.

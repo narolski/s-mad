@@ -1,17 +1,17 @@
-detector,cell,label,genuine,n,native_eer,native_eer_pt,e7_kind,e7_eer,e7_eer_pt,e7_flag_t5,e7_flag_t5_pt
-SelfMAD release (HRNet-W18),amsl,reproduced,neutral only,102,"0.97 [0.04, 3.91]",0.973,aligned-frame E7,"47.25 [42.38, 52.94]",47.254,"98.0 [89.9, 100.0]",98.04
-SelfMAD release (HRNet-W18),amsl,reproduced,smiling only,102,"2.94 [0.96, 7.53]",2.942,aligned-frame E7,"50.01 [44.34, 56.66]",50.011,"98.0 [90.4, 100.0]",98.04
-SelfMAD release (HRNet-W18),facemorpher,reproduced,neutral only,102,"0.20 [0.04, 0.91]",0.205,aligned-frame E7,"7.85 [4.32, 9.80]",7.85,"78.4 [58.9, 90.0]",78.43
-SelfMAD release (HRNet-W18),facemorpher,reproduced,smiling only,102,"0.98 [0.06, 2.75]",0.981,aligned-frame E7,"10.79 [6.96, 13.08]",10.793,"81.4 [57.1, 91.9]",81.37
-SelfMAD release (HRNet-W18),opencv,reproduced,neutral only,102,"0.08 [0.00, 0.64]",0.082,aligned-frame E7,"4.91 [2.21, 7.45]",4.908,"84.3 [66.1, 95.1]",84.31
-SelfMAD release (HRNet-W18),opencv,reproduced,smiling only,102,"0.12 [0.00, 0.70]",0.123,aligned-frame E7,"6.91 [4.91, 11.00]",6.912,"88.2 [71.0, 97.1]",88.24
-SelfMAD release (HRNet-W18),webmorph,"our pipeline, published number not reproduced",neutral only,102,"4.91 [1.96, 7.74]",4.908,aligned-frame E7,"70.43 [64.84, 76.46]",70.429,"96.1 [84.8, 100.0]",96.08
-SelfMAD release (HRNet-W18),webmorph,"our pipeline, published number not reproduced",smiling only,102,"9.98 [6.24, 13.64]",9.98,aligned-frame E7,"72.52 [66.73, 77.45]",72.515,"98.0 [87.3, 100.0]",98.04
-SelfMAD release (HRNet-W18),stylegan,"our pipeline, published number not reproduced",neutral only,102,"12.59 [7.51, 16.64]",12.592,aligned-frame E7,"25.47 [20.51, 31.23]",25.47,"14.7 [4.1, 26.2]",14.71
-SelfMAD release (HRNet-W18),stylegan,"our pipeline, published number not reproduced",smiling only,102,"21.59 [16.72, 28.14]",21.586,aligned-frame E7,"29.60 [23.53, 38.16]",29.599,"20.6 [13.0, 30.0]",20.59
-SelfMAD release (HRNet-W18),mordiff,no published number,neutral only,102,"0.99 [0.00, 2.99]",0.99,raw E7 files,"42.18 [37.41, 47.83]",42.178,"100.0 [100.0, 100.0]",100.0
-SelfMAD release (HRNet-W18),mordiff,no published number,smiling only,102,"1.98 [0.09, 5.65]",1.98,raw E7 files,"48.02 [42.16, 52.12]",48.02,"100.0 [100.0, 100.0]",100.0
-SelfMAD release (HRNet-W18),dim_a,no published number,neutral only,102,"2.77 [0.80, 4.84]",2.771,raw E7 files,"69.60 [61.80, 73.69]",69.604,"100.0 [100.0, 100.0]",100.0
-SelfMAD release (HRNet-W18),dim_a,no published number,smiling only,102,"5.05 [1.90, 10.59]",5.051,raw E7 files,"68.61 [60.86, 73.19]",68.614,"100.0 [100.0, 100.0]",100.0
-SelfMAD release (HRNet-W18),greedy_dim,reproduced,neutral only,102,"3.07 [1.03, 6.70]",3.071,raw E7 files,"87.23 [82.69, 90.25]",87.227,"100.0 [100.0, 100.0]",100.0
-SelfMAD release (HRNet-W18),greedy_dim,reproduced,smiling only,102,"7.92 [2.97, 13.49]",7.922,raw E7 files,"87.23 [82.66, 91.25]",87.227,"100.0 [100.0, 100.0]",100.0
+detector,platform,cell,label,genuine,n,native_eer,native_eer_pt,e7_kind,e7_eer,e7_eer_pt,e7_flag_t5,e7_flag_t5_pt
+SelfMAD release (HRNet-W18),DGX (existing files),amsl,reproduced,neutral only,102,"0.97 [0.04, 3.91]",0.973,aligned-frame E7,"47.25 [42.38, 52.94]",47.254,"98.0 [89.9, 100.0]",98.04
+SelfMAD release (HRNet-W18),DGX (existing files),amsl,reproduced,smiling only,102,"2.94 [0.96, 7.53]",2.942,aligned-frame E7,"50.01 [44.34, 56.66]",50.011,"98.0 [90.4, 100.0]",98.04
+SelfMAD release (HRNet-W18),DGX (existing files),facemorpher,reproduced,neutral only,102,"0.20 [0.04, 0.91]",0.205,aligned-frame E7,"7.85 [4.32, 9.80]",7.85,"78.4 [58.9, 90.0]",78.43
+SelfMAD release (HRNet-W18),DGX (existing files),facemorpher,reproduced,smiling only,102,"0.98 [0.06, 2.75]",0.981,aligned-frame E7,"10.79 [6.96, 13.08]",10.793,"81.4 [57.1, 91.9]",81.37
+SelfMAD release (HRNet-W18),DGX (existing files),opencv,reproduced,neutral only,102,"0.08 [0.00, 0.64]",0.082,aligned-frame E7,"4.91 [2.21, 7.45]",4.908,"84.3 [66.1, 95.1]",84.31
+SelfMAD release (HRNet-W18),DGX (existing files),opencv,reproduced,smiling only,102,"0.12 [0.00, 0.70]",0.123,aligned-frame E7,"6.91 [4.91, 11.00]",6.912,"88.2 [71.0, 97.1]",88.24
+SelfMAD release (HRNet-W18),DGX (existing files),webmorph,"our pipeline, published number not reproduced",neutral only,102,"4.91 [1.96, 7.74]",4.908,aligned-frame E7,"70.43 [64.84, 76.46]",70.429,"96.1 [84.8, 100.0]",96.08
+SelfMAD release (HRNet-W18),DGX (existing files),webmorph,"our pipeline, published number not reproduced",smiling only,102,"9.98 [6.24, 13.64]",9.98,aligned-frame E7,"72.52 [66.73, 77.45]",72.515,"98.0 [87.3, 100.0]",98.04
+SelfMAD release (HRNet-W18),DGX (existing files),stylegan,"our pipeline, published number not reproduced",neutral only,102,"12.59 [7.51, 16.64]",12.592,aligned-frame E7,"25.47 [20.51, 31.23]",25.47,"14.7 [4.1, 26.2]",14.71
+SelfMAD release (HRNet-W18),DGX (existing files),stylegan,"our pipeline, published number not reproduced",smiling only,102,"21.59 [16.72, 28.14]",21.586,aligned-frame E7,"29.60 [23.53, 38.16]",29.599,"20.6 [13.0, 30.0]",20.59
+SelfMAD release (HRNet-W18),DGX (existing files),mordiff,no published number,neutral only,102,"0.99 [0.00, 2.99]",0.99,raw E7 files,"42.18 [37.41, 47.83]",42.178,"100.0 [100.0, 100.0]",100.0
+SelfMAD release (HRNet-W18),DGX (existing files),mordiff,no published number,smiling only,102,"1.98 [0.09, 5.65]",1.98,raw E7 files,"48.02 [42.16, 52.12]",48.02,"100.0 [100.0, 100.0]",100.0
+SelfMAD release (HRNet-W18),DGX (existing files),dim_a,no published number,neutral only,102,"2.77 [0.80, 4.84]",2.771,raw E7 files,"69.60 [61.80, 73.69]",69.604,"100.0 [100.0, 100.0]",100.0
+SelfMAD release (HRNet-W18),DGX (existing files),dim_a,no published number,smiling only,102,"5.05 [1.90, 10.59]",5.051,raw E7 files,"68.61 [60.86, 73.19]",68.614,"100.0 [100.0, 100.0]",100.0
+SelfMAD release (HRNet-W18),DGX (existing files),greedy_dim,reproduced,neutral only,102,"3.07 [1.03, 6.70]",3.071,raw E7 files,"87.23 [82.69, 90.25]",87.227,"100.0 [100.0, 100.0]",100.0
+SelfMAD release (HRNet-W18),DGX (existing files),greedy_dim,reproduced,smiling only,102,"7.92 [2.97, 13.49]",7.922,raw E7 files,"87.23 [82.66, 91.25]",87.227,"100.0 [100.0, 100.0]",100.0
