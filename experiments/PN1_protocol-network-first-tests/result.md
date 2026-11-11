@@ -38,6 +38,20 @@ only, no score opened) showed that this balance made "stored at 61.2 px" a cue f
 cue in A0. Those tables are kept under `tier0_v1_provisional/`, `tier0_v1_provisional_tables.md` and
 `tier0_v1_provisional_key.csv` and are superseded. They are not results of PN1.
 
+## Spliced reads (amendments 8 to 11), wording as corrected by the splice review
+
+- "Spliced morphs (blend only inside the face): with OpenCV the seam is equal in size but not in kind. A spliced morph
+  carries a colour step that one simple number separates from the negative at about 0.71. With FaceMorpher the
+  negative has almost no seam, and those reads are not seam-matched."
+- "Spliced positives move frozen heads partly toward the face (face-blanked 0.99 to 0.76 / 0.88 for spliced-only). No
+  full-frame head reads more inside the face than one band-power statistic (0.906, chosen on test, optimistic). Spliced
+  heads do not improve on real face-spliced morphs (H1)." Post hoc: heads trained on face-only copies do exceed band5
+  on face-only test copies (CLIP 0.950, DINOv3 0.992) but transfer to nothing else (MAD22 E7 EER 33-36%, H1 0.53-0.56).
+- "The bracketing share is saturated (1.000) and does not discriminate between heads."
+- "Protocol plus spliced on DINOv3, corrected MAD22 2.0 / 3.0%: best of 8 heads on first-test data. The head still reads
+  the surround. A lead to re-test, not a method result. Seeds vary only the inner folds." Post hoc training-person
+  resampling: OpenCV E7 EER 1.0 to 8.8% (median 2.75%).
+
 ## Tier 1
 
 Not yet run (pending on Athena).

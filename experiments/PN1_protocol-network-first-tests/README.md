@@ -304,6 +304,25 @@ DINOv3 A0 0.789/0.939/0.602/0.379, B0 0.790/0.947/0.617/0.374, Bn0 0.791/0.960/0
 S-b 0.671/0.863/0.787/0.416; floors 0.650 / 0.868 / 0.693 / 0.624. Splice arms over seeds 401-405: S-a S0 vs S4 CLIP
 0.944-0.948, DINOv3 0.975; face-only 0.825-0.832 / 0.844-0.851; S-b face-only 0.798-0.810 / 0.848-0.859.
 
+### 5.1f Post hoc items, face-only heads, face-blanked benchmark reads (amendment 11; `posthoc2/posthoc2.json`)
+
+POST HOC (no pass marks). Seed 401; A0 / B0 / Bn0 / S-a / S-b / F (face-only-trained). FaceMorpher spliced reads are not
+used ("seam not matched"); every splice read here is OpenCV-style.
+- 3-statistic floor (seam tone luma and R-G, sharpness ratio, band5@224; fitted on 100 development hosts): dev 0.901,
+  test 0.856. Excess of native S0 vs S4 over it, CLIP: +0.004 / +0.010 / -0.034 / +0.088 [0.051, 0.127] / +0.072
+  [0.033, 0.111] / -0.127; DINOv3: -0.021 / -0.030 / -0.044 / +0.117 [0.082, 0.153] / +0.106 [0.070, 0.144] / -0.216.
+- Face-only S0 vs S4: CLIP 0.746 / 0.734 / 0.743 / 0.830 / 0.798 / 0.950 (F: excess over band5@224 +0.044, lower bound
+  +0.017); DINOv3 0.759 / 0.778 / 0.791 / 0.851 / 0.848 / 0.992 (F: +0.086, lower bound +0.059). F face-blanked R2w vs
+  R4: 0.513 / 0.685; F transfer: MAD22 E7 EER 36.3 / 33.3% (OpenCV), H1 0.562 / 0.533.
+- Brackets: (c) margin over the host's own R0 -> R0_61 shift, CLIP 0.995 / 1.000 / 1.000 / 0.932 / 1.000 / 0.691;
+  (d) fixed τ_cam, CLIP 0.764 / 0.901 / 0.948 / 0.581 / 0.864 / 0.052, DINOv3 0.728 / 0.869 / 0.848 / 0.686 / 0.869 /
+  0.157; (a) face-only S4 above S0, CLIP 0.843 / 0.806 / 0.806 / 0.958 / 0.874 / 0.984.
+- Face-blanked benchmark copies (canonical hull): MAD22 E7 EER OpenCV native -> blanked, DINOv3 S-b 1.96 -> 1.96%,
+  Webmorph 3.0 -> 7.4%; CLIP B0 4.4 -> 4.4%, 4.9 -> 7.4%; H1 AUC falls to 0.55-0.66 for every head.
+- Training-person resampling (10 draws; min / median / max): DINOv3 S-b MAD22 OpenCV E7 EER 1.0 / 2.75 / 8.8%,
+  Webmorph 2.8 / 5.0 / 10.8%, τ_cam gating miss 11.6 / 17.9 / 31.0%; DINOv3 B0 5.2 / 5.9 / 7.5%, 11.4 / 13.0 / 13.8%,
+  39 / 43 / 48%; CLIP B0 4.4 / 5.9 / 6.8%, 4.4 / 6.4 / 8.2%, 8.3 / 18.1 / 20.2%.
+
 ### 5.2 Tier 1
 
 Not run.
