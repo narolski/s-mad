@@ -307,6 +307,15 @@ here. No answer yet.
   tested live (task 1 COMPLETED, task 2 PENDING from the range line). Not started by me (uploads from owner sessions are
   refused tonight); the command went to the lead.
 
+- 11 Nov 22:51–22:57. First rented run (lead; RTX 3090 24 GB, driver 615.71, about 0.15 USD; logs
+  `/mnt/t7/smad_next/vast/dg1/dg1_drive.log`, `drive_main.log`): upload and setup passed (torch 2.12.1+cu130, all pins,
+  SETUP_OK in about 1.5 min); the equivalence run stopped after 2 s before any image: `DiffAE repo is not the clean
+  pinned commit (HEAD '')`. Script fault, not the card: tar run as root keeps the owner uid 1000, and git refuses a repo
+  owned by another user ('dubious ownership'), so `rev-parse` returned nothing. Fix in `remote_run.sh` (sha256
+  0eabf19e…): `tar --no-same-owner`, `git config --global --add safe.directory <repo>`, and a repo check right after
+  unpacking in setup (fails setup instead of the gate). The unpack + check tested on the DGX. The gate itself was not
+  reached; no rented image exists.
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):

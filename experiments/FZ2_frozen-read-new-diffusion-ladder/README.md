@@ -58,6 +58,8 @@ No answer yet.
   `/mnt/t7/smad_next/FZ2/read_prod_items.csv`. Results in `result.md` and section 5.
 - 21:41–21:46 Add-on shards 0 and 1 extracted by the watcher.
 - 21:50 `result.md` (production, secondary) written; interim status sent to the lead.
+- 21:55–23:00 Waiting for DG1 add-on shards 2–7: Athena array 3545907 pending (`ReqNodeNotAvail`; `sinfo`: 13 nodes
+  reserved, 11–12 mixed; start estimate N/A). Both FZ2 watchers alive.
 
 ## 3. Data
 

@@ -23,7 +23,11 @@ setup)
   info
   ( cd "$R/packs" && sha256sum -c dg1_pack.tar.sha256 dg1_addon_pack.tar.sha256 )
   rm -rf "$R/work"; mkdir -p "$R/work"
-  tar -C "$R/work" -xf "$R/packs/dg1_pack.tar"; tar -C "$R/work" -xf "$R/packs/dg1_addon_pack.tar"
+  # root keeps the tar's owner (uid 1000) by default, and git then refuses the repo as "dubious ownership" (HEAD '';
+  # the first rented run, 11 Nov 22:57): extract as root-owned and also mark exactly this repo as safe
+  tar --no-same-owner -C "$R/work" -xf "$R/packs/dg1_pack.tar"; tar --no-same-owner -C "$R/work" -xf "$R/packs/dg1_addon_pack.tar"
+  git config --global --add safe.directory "$K/repo" 2>/dev/null || true
+  if command -v git >/dev/null; then [ "$(git -C "$K/repo" rev-parse HEAD)" = 00c57d3f626f28bf9ed8aff58d90baab25de3af4 ] && [ -z "$(git -C "$K/repo" status --porcelain)" ] || { echo "repo check failed after unpack"; exit 6; }; fi
   ( cd "$K" && sha256sum -c --quiet MANIFEST.sha256 ); ( cd "$A" && sha256sum -c --quiet MANIFEST.sha256 )
   echo "packs ok"
   python3 -m pip install -q uv

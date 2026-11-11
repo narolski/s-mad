@@ -418,3 +418,20 @@ Question fixed in advance: does a head trained with spliced positives read the f
 (S0 vs S4 and R2w vs R4 on face-only copies) at least 0.80 and above the best baseline on the same copies, where the
 protocol head B0 reads mostly the surround (face-blanked AUC above its face-only AUC)? Reported as numbers; no pass mark
 beyond the stated 0.80.
+
+## Amendment 9 (11 Nov 23:15 CET, before computing): seed stability of the spliced arms, bracketing test, DiffAE transfer
+
+Lead's request. (1) The spliced arms S-a, S-b at seeds 402 to 405 (already fitted by `splice.py` in the same run as seed
+401; their reads were not opened before this amendment) are reported with partner-cycle intervals beside seed 401.
+(2) Bracketing test (ideation round 3) as an evaluation row for every frozen head (A0, B0, Bn0, S-a, S-b; CLIP and
+DINOv3; seeds 401 to 405): share of the 191 test hosts whose two-person morph (R4, OpenCV-style) scores above BOTH its
+native warp-only image (R2w) and the 61.2 px copy of that warp-only image (R2w_61); beside it the same share for the
+best simple statistic, taken as the maximum over the 39 statistics (27 at 512 px, 12 at 224 px) and the sharpness
+ratio, each oriented by its sign on R4 vs R2w, maximum taken on the test hosts themselves (an optimistic floor, stated);
+host bootstrap over partner cycles. Also printed with the geometry-matched warp-only image R2w4 in place of R2w.
+(3) Transfer, no fitting: the same heads scored on the diffusion-autoencoder set B (`/mnt/t7/smad_next/DG1/gen/setB_s*`,
+manifest `/mnt/t7/smad_next/DG1/validity/setB/manifest_full.csv`, rows with test_read = 1: photos G, reconstruction
+REC, same-person mix SAME, mirror mix MIR, two-person morph X, all 20 steps, 256 px). These images are 256 px, so the
+features use each backbone's own timm transform (CLIP: resize to 224; DINOv3: resize to 512) without AF0's 512-px
+assertion (`src/PN1/featmean_any.py`). Reads: AUC X vs REC, X vs G, X vs SAME, X vs MIR, each beside the best of 24
+simple statistics (the 12 certificate cues at 224 px and at 256 px, folded) on the same images.

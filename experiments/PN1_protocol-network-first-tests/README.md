@@ -294,6 +294,16 @@ face-only R2w copy (AR1 prereg line 197), so "S0 vs S4 face-only" and "R2w vs R4
 
 Face-blanked S0 vs S4 is 0.500 (identical images). GPU: CLIP 48 s, DINOv3 182 s (DGX idle at 22:35).
 
+### 5.1e Bracketing test, DiffAE transfer, splice seed spread (amendment 9; `bracket/bracket.json`, `src/PN1/bracket.py`)
+
+Bracketing (share of 191 test hosts with R4 above both R2w and R2w_61; A0 / B0 / Bn0 / S-a / S-b): CLIP 1.000 / 1.000 /
+1.000 / 0.958 / 1.000; DINOv3 1.000 / 1.000 / 1.000 / 0.979 / 1.000; best statistic lap_k5@224 0.911 (chosen on the
+test hosts). DiffAE set B (256 px; `featmean_any.py`), AUC X vs REC / G / SAME / MIR: CLIP A0 0.657/0.907/0.609/0.339,
+B0 0.675/0.924/0.618/0.315, Bn0 0.645/0.897/0.587/0.385, S-a 0.468/0.730/0.695/0.466, S-b 0.561/0.730/0.738/0.552;
+DINOv3 A0 0.789/0.939/0.602/0.379, B0 0.790/0.947/0.617/0.374, Bn0 0.791/0.960/0.653/0.409, S-a 0.302/0.627/0.730/0.313,
+S-b 0.671/0.863/0.787/0.416; floors 0.650 / 0.868 / 0.693 / 0.624. Splice arms over seeds 401-405: S-a S0 vs S4 CLIP
+0.944-0.948, DINOv3 0.975; face-only 0.825-0.832 / 0.844-0.851; S-b face-only 0.798-0.810 / 0.848-0.859.
+
 ### 5.2 Tier 1
 
 Not run.
