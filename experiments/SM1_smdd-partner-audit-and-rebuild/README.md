@@ -224,6 +224,17 @@ to 0.96 inside every storage size), so Part 3 is descriptive.
   armsb image set differ).
 - 21:45 `result.md` rewritten (review wording, WITHDRAWN statements with reasons, A12 tables, Part 3 labels).
 
+- 21:30 to 21:55 A12 CPU items 5 to 9 (at most 2 processes): item 5 `heads_fz1.py` (60 heads, about 4 s each) and
+  reads (`p3_fz1.json`, `a12_fixed_fz1.json`, `a12_partner_ref_fz1.json`): arm a diffusion rise +6.68 [5.09, 8.16]
+  (ours +11.32), e +0.03; neither supported nor falsified. Item 6 `a12_border.py`: b → b′ on the two border-free
+  cells −2.77 (falsified: within 1 point of −3.42); c → d −0.25 there against +5.97 on the bordered cells. Item 7
+  `a12_partner_var.py`: per-partner spread 0.25, 0.15, 6.2, 3.2, 3.45; width ratio 1.44, 1.45, 3.81, 2.79, 2.13.
+  Item 8 `a12_names.py`: named partner the most similar of five for 97 / 98 of 100; first contributor above 20
+  random renders 100 / 100. Item 9 `a12_sharp_slope.py`: falsified (genuine Δρ 0.0004; morph Δρ +0.08 in the
+  opposite direction). `result.md` updated.
+- 21:52 Athena: ViT-L/14 tasks 2 to 24 still pending (ReqNodeNotAvail with a 7 h limit; 13 nodes reserved, 23
+  failed); 3546033, 3546034 pending (Priority).
+
 ## 3. Data
 
 Inputs (read only):
@@ -371,18 +382,14 @@ the T-A / T-B full 50,010-image set (only the registered 7,810-image subsample);
 
 ## 9. Open items and next steps
 
-A12 (`prereg.md`): items 5 (release-recipe refit: `heads_fz1.py`, then `read_p3.py --dir OUT/heads_fz1 --name fz1`,
-`a12_fixed.py --dir OUT/heads_fz1 --name a12_fixed_fz1`, `a12_partner_ref.py --heads-dir OUT/heads_fz1 --name
-a12_partner_ref_fz1 --no-releases`), 6 (border-matched re-read with EV1's border fractions; script not written yet),
-7 (`a12_partner_var.py`), 8 (`a12_names.py`, before the SMDD authors' email), 9 (`a12_sharp_slope.py`, after item 5
-for the FZ1 variant): CPU, at most 2 processes. 10: when fits finish, fetch result tars, then submit
+A12 (`prereg.md`): items 1 to 9 done (`result.md`). Remaining: 10: when fits finish, fetch result tars, then submit
 `athena_lora_audit.sbatch` with FITS="SM1L_... SM1B_..." (`-A plgmultivision-gpu-a100 --exclude=t0010`), read with
 `a12_partner_ref.py` style reader per family. 11 and 13: after job 3546033, merge features (`merge_feats.py`), add
 arm `d5` to `compose.py` / `heads.py` / `read_p3.py` (steps b → d5, d5 → K = 50), fit 5 seeds, read; score the
 softened AR1 copies with the e and f heads (and the others) at both thresholds. 12: after 3546034, `lora_read.py`
 into a separate folder, `read_p3.py --seeds 401,402`.
 
-## 10. Handover state (21:45)
+## 10. Handover state (22:00)
 
 - DGX: nothing of mine running. Limit: 2 processes, OMP 2, nice 10. T7 54 GB free (floor 50 GB): no new local
   copies over 1 GB; large data goes to Athena (stream with `athena_stream.sh`).

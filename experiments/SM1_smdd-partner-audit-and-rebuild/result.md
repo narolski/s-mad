@@ -4,10 +4,9 @@ Owner run, 11 Nov 2026. Pre-registration: `prereg.md` (amendments A1 to A11; A12
 independent review `experiments/reviews/REVIEW_SM1_20261111.md`, registered before each A12 item ran). Code:
 `src/SM1/`. Large outputs: `/mnt/t7/smad_next/SM1/`. Full record: `README.md`.
 
-Status 11 Nov 21:45: Part 1, T-A, T-B, T-C, Part 2 (primary and whole-file secondary), Part 3 frozen heads (13 arms x
-5 seeds) and the A12 tonight items 1 to 4 are done. Running: ViT-L/14 and ViT-B/16 LoRA fits, the A12 feature job
-for the five-random-partner arm and the softened AR1 copies, the ViT-B/16 fits of arms b and b′ (Athena). A12 items
-5 to 9 (CPU) follow on 12 Nov.
+Status 11 Nov 22:00: Part 1, T-A, T-B, T-C, Part 2 (primary and whole-file secondary), Part 3 frozen heads (13 arms x
+5 seeds), the A12 tonight items 1 to 4 and the A12 CPU items 5 to 9 are done. Running: ViT-L/14 and ViT-B/16 LoRA fits, the A12 feature job
+for the five-random-partner arm and the softened AR1 copies, the ViT-B/16 fits of arms b and b′ (Athena). 
 
 **Labels.** Every Part 3 number in this file is **"our frames, first-test data, arms fixed in advance"**: frozen CLIP
 ViT-L/14 features in the FE release's input convention, our linear head recipe, our aligned evaluation frames (morph
@@ -18,8 +17,9 @@ descriptive. A12 rows are post hoc.
 ## Conclusions (wording of the review, section 3; sizes from A12)
 
 1. **Follows.** In the SMDD release as distributed, all 15,000 training morphs share five second contributors
-   (evaluation split: five others); the paper reads naturally as five partners per key image. To be printed only
-   after the content check (A12 item 8, pending) and the question to the SMDD authors. Never called a bug.
+   (evaluation split: five others); the paper reads naturally as five partners per key image. The content check
+   (A12 item 8) agrees with the names (named partner the most similar of the five for 97 and 98 of 100 morphs). To
+   be printed only after the question to the SMDD authors. Never called a bug.
 2. **Partly follows.** Released SMDD-trained detectors carry a trace of the five training partner images: with unseen
    first contributors, a morph with a training partner scores above one with an SMDD evaluation partner. The margin
    (trained − KE, release crop path) is 0.43 [0.34, 0.54] and 0.95 [0.78, 1.12] logit for the adapted MADation
@@ -42,8 +42,11 @@ descriptive. A12 rows are post hoc.
    +3.5, the released FE header's level (+3.3), at +6.1 landmark points against arm (c) and +2.0 against the release,
    and with 12–14% of untouched FRLL photos flagged at the camera threshold (arm c 2.6%). JPEG 90 / 70 copies did not
    lower a JPEG-50 reaction that history crossing had already cut to +3 points (JPEG 50 − untouched at the camera
-   threshold: a +0.196, c +0.121, d +0.072, e +0.032, f +0.068). The size of the storage failure may depend on our
-   head recipe (F4; refit with the release recipe, A12 item 5, 12 Nov).
+   threshold: a +0.196, c +0.121, d +0.072, e +0.032, f +0.068). The landmark cost of halves (c → d +4.2) sits in the
+   cells whose morph frames carry our aligner's border (+6.0); on the two border-free cells it is −0.3 [−2.0, +1.3]
+   (A12 item 6; two corrected-MAD22 cells only). The size of the storage failure depends on the head
+   recipe (F4; A12 item 5): with the release recipe arm (a) rises +6.7 (ours +11.3) and arm (e) +0.0; the cost in
+   flagged untouched photos is larger with the release recipe.
 6. **Rewritten.** One number, the variance of the Laplacian of the grey image, separates SMDD's training morphs from
    its renders at 0.993 (2,000 v 2,000, 256 px; 0.988 at the loader's 224 px). Part of this is blending itself (a
    morph against its own warped halves: 0.88). Inside each storage size, the rebuilt arms stay at 0.89–0.96 (two-
@@ -86,7 +89,7 @@ Source: `p1_structure.json` (`src/SM1/p1_document.py`, PNG headers and file name
 No contributor, genuine render or source render is shared between the two splits. Every contributor is a file of the
 split's morph-source folder (`os25k_m_t`, `os25k_m_e`). That the genuine renders never contribute to a morph is
 SMDD's documented design (see the paper quote below), not a finding. Part 1 is a fact about the file names; the
-check of names against image content (A12 item 8) is pending.
+names agree with the image content (A12 item 8, below).
 
 T-C, file names (`tc_files.json`): the release's `train.csv` and `evaluation.csv` list 40,000 files each, no duplicates,
 none missing, none unlisted; labels agree with the folders (attack 15,000 in `m15k_*`, bonafide 25,000 in
@@ -166,7 +169,7 @@ Per-partner miss at t (training five; evaluation five): ViT-B/16 all 0.0; 1.0, 0
 8.2, 1.8, 11.0, 4.0, 0.0. FE ViT-B/16 0.2, 0.4, 0.0, 2.0, 0.0; 31.8, 7.0, 3.4, 3.0, 1.2. FE ViT-L/14 0.0, 0.0, 0.0,
 0.8, 2.4; 14.8, 1.6, 0.6, 5.8, 0.8. MixFaceNet 1.0, 0.0, 1.2, 0.8, 0.0; 21.8, 19.8, 5.2, 0.6, 3.0 (evaluation partner
 order img005071, img042475, img141280, img226436, img279570; img005071 is the hardest for four of five releases).
-Partner-level variance of the evaluation-split error rates (H-new-6) is A12 item 7 (12 Nov).
+Partner-level variance of the evaluation-split error rates (H-new-6): A12 item 7 below.
 
 T-B, rank of the unblended partner renders among 400 source renders of their split (share of renders scoring lower):
 
@@ -461,13 +464,95 @@ Registered falsifiers (descriptive, because no rebuilt arm passed the Laplacian 
 - Arm (f) vs (e) (JPEG copies added): JPEG 50 − untouched at the camera threshold +0.068 vs +0.032 (e → f +0.035
   [+0.006, +0.066]); no reduction.
 
+## A12 CPU items 5 to 9 (post hoc; run 11 Nov 21:30 to 21:55; our frames, first-test data, arms fixed in advance)
+
+**Item 5, heads refitted with the release (FZ1) recipe (H-new-4; `heads_fz1.py` → `heads/../heads_fz1/`, reads
+`p3_fz1.json`, `a12_fixed_fz1.json`, `a12_partner_ref_fz1.json`).** Same features, compositions and seeds; recipe of
+the MADation FE header without the flip (no flipped features exist; registered deviation). 5-seed means.
+
+| Arm | landmark-7 EER native (ours) | diffusion-7 EER native (ours) | diffusion rise (ours) | landmark rise (ours) | untouched FRLL flagged, camera thr (ours) | JPEG 50 − untouched, camera thr (ours) | trained − KE (ours) |
+|---|---|---|---|---|---|---|---|
+| a | 8.29 [6.06, 10.67] (7.34) | 17.36 (20.70) | +6.68 [5.09, 8.16] (+11.32) | +1.72 (+2.59) | 0.192 (0.091) | 0.185 (0.196) | 4.93 (4.10) |
+| b | 9.04 (7.61) | 17.42 (20.15) | +10.05 (+14.56) | +2.40 (+3.15) | 0.201 (0.117) | 0.232 (0.206) | 5.60 (4.42) |
+| b′ | 4.35 (4.20) | 9.44 (9.02) | +8.56 (+17.04) | +2.20 (+3.41) | 0.158 (0.046) | 0.368 (0.224) | −0.63 (−1.15) |
+| c | 3.32 (3.25) | 8.09 (7.18) | +12.87 (+21.42) | +2.67 (+3.72) | 0.098 (0.026) | 0.296 (0.121) | −0.55 (−0.58) |
+| d | 5.49 (7.44) | 13.15 (14.39) | +3.40 (+7.20) | +1.08 (+1.85) | 0.250 (0.116) | 0.298 (0.072) | −0.30 (−0.33) |
+| e | 7.65 (9.38) | 11.48 (13.69) | +0.03 [−1.15, 1.12] (+3.47) | +0.14 (+0.86) | 0.183 (0.136) | 0.134 (0.032) | 0.27 (−0.10) |
+| f | 7.68 (8.45) | 12.01 (15.06) | −0.16 (+3.61) | −0.03 (+1.16) | 0.158 (0.132) | 0.158 (0.068) | 0.35 (−0.03) |
+| FE header (release) | 8.37 | 19.51 | +3.33 | +0.60 | 0.265 | 0.025 | 3.46 |
+
+Prediction (review): arm (a) diffusion rise ≤ +5 and the a → e reduction < 3 points; falsified if the rise stays
+≥ +8. Reading: the rise is +6.68 [5.09, 8.16], so neither supported nor falsified; the a → e reduction is 6.65
+points (not < 3). The recipe changes the size (arm a +11.3 → +6.7, still twice the release header's +3.3) but not the
+pattern: history crossing still removes the rise (e +0.03). With the release recipe the fixed-threshold costs are
+larger: untouched FRLL photos flagged at the camera threshold 0.10 to 0.25 for every arm, and the JPEG-50 increment
+of e and f is +0.13 / +0.16 (ours +0.03 / +0.07). Partner trace under the release recipe: trained − KE 4.9 to 5.6
+with the five, −0.75 to +0.35 without; DiD a − b′ 5.56 [5.46, 5.66]. Steps (landmark-7 native): b → b′ −4.69
+[−6.73, −2.58], c′ → c −0.99, c → d +2.17 [+1.42, +3.11], d → e +2.16 [+1.33, +2.88], e → f +0.03.
+
+**Item 6, Part 3 steps with the alignment border held equal (H-new-3; `a12_border.py` → `a12_border.json`).**
+Border = EV1's zero fraction of each aligned frame. Landmark genuine frames have none (median 0.000). Two landmark
+cells have border-free morph frames (corrected MAD22 OpenCV 984 and Webmorph 500 morphs, 100% < 0.005); the five
+others carry a border (medians 0.05 to 0.26; FRLL FaceMorpher 0.26, OpenCV 0.19). Matched pairs cannot be formed in
+the bordered cells (no genuine frame with a border); there each cell's morphs are split at the cell's median border.
+
+| Step (native landmark EER, points) | registered (7 cells) | border-free cells (2) | bordered cells (5) | bordered, low-border half | bordered, high-border half |
+|---|---|---|---|---|---|
+| b → b′ | −3.42 [−5.19, −1.87] | −2.77 [−4.94, −0.69] | −3.67 [−5.38, −2.17] | −3.16 | −4.02 |
+| b → K = 50 | −2.82 | −2.18 [−4.02, −0.02] | −3.08 | −2.94 | −3.00 |
+| b′ → c′ | +0.18 | −0.30 [−1.36, +0.62] | +0.37 | +0.28 | +0.56 |
+| c′ → c | −1.12 | −0.14 [−1.36, +1.12] | −1.51 [−2.38, −0.79] | −2.00 | −1.38 |
+| c → d | +4.19 [+2.95, +5.62] | −0.25 [−2.01, +1.33] | +5.97 [+4.63, +7.54] | +5.98 | +6.15 |
+| d → e | +1.94 | +1.20 [−0.05, +2.38] | +2.23 [+1.06, +3.31] | +3.33 | +0.93 |
+
+Prediction (review): with the border held equal, b → b′ shrinks by more than half; falsified if it stays within 1
+point. Reading: **falsified** for b → b′ (−2.77 on the border-free cells against −3.42). Not predicted: the landmark
+cost of halves (c → d +4.19) is absent on the border-free cells (−0.25 [−2.01, +1.33]) and +6.0 on the bordered
+cells, and the look-alike gain c′ → c is −0.14 there against −1.51. Only two border-free cells, both corrected
+MAD22, so cell family and border are confounded; descriptive.
+
+**Item 7, partner-level variance of SMDD evaluation-split error rates (H-new-6; `a12_partner_var.py` →
+`a12_partner_var.json`; T-A subsample, whole files, 500 morphs per partner vs 1,000 genuine).**
+
+| Release | EER per evaluation partner (img005071, img042475, img141280, img226436, img279570) | spread | pooled EER | one-way interval (keys) | two-way interval (keys x partners) | width ratio |
+|---|---|---|---|---|---|---|
+| MADation ViT-B/16 | 0.40, 0.15, 0.40, 0.15, 0.15 | 0.25 | 0.20 | [0.06, 0.40] | [0.00, 0.49] | 1.44 |
+| MADation ViT-L/14 | 0.15, 0.00, 0.00, 0.00, 0.00 | 0.15 | 0.02 | [0.00, 0.11] | [0.00, 0.16] | 1.45 |
+| MADation FE ViT-B/16 | 6.80, 2.20, 1.60, 1.55, 0.60 | 6.20 | 3.42 | [2.78, 4.00] | [0.98, 5.60] | 3.81 |
+| MADation FE ViT-L/14 | 3.60, 1.00, 0.55, 2.00, 0.40 | 3.20 | 2.09 | [1.54, 2.51] | [0.49, 3.19] | 2.79 |
+| MixFaceNet-MAD | 4.00, 2.40, 1.80, 0.55, 1.00 | 3.45 | 2.20 | [1.69, 2.90] | [0.92, 3.49] | 2.13 |
+| FS ViT-B/16 (descriptive) | 4.60, 0.95, 1.15, 0.95, 0.80 | 3.80 | 1.62 | [1.19, 2.08] | [0.63, 3.29] | 2.99 |
+| FS ViT-L/14 (descriptive) | 25.2, 16.75, 16.8, 15.2, 16.0 | 10.0 | 18.11 | [16.61, 19.61] | [14.93, 22.11] | 2.39 |
+
+Prediction (review): spread > 5 points and two-way ≥ 3 x one-way; falsified if the spread < 2 points. Reading by
+release: supported for FE ViT-B/16 (6.2, 3.8x); falsified for the two adapted MADation releases (spread 0.25 and 0.15;
+their evaluation EER is near 0, a floor); in between for FE ViT-L/14 and MixFaceNet-MAD (spread 3.2 and 3.5, ratio
+2.8 and 2.1). For the three releases with EER above 2%, an interval over first contributors alone is 2 to 4 times
+too narrow when the partners are the units that repeat.
+
+**Item 8, file names against image content (F11; `a12_names.py` → `a12_names.json`; 100 seeded morphs per split,
+buffalo_l ArcFace).** The named second contributor is the most similar of the split's five partners for 97 of 100
+training and 98 of 100 evaluation morphs (chance 20); mean cosine to the named partner 0.33 / 0.30 against 0.05 /
+0.02 for the other four. The named first contributor is more similar than all 20 random renders for 100 of 100 in
+both splits (cosine 0.56 / 0.51 against 0.03 / 0.02). In the 5 mismatches the morph is dominated by its first
+contributor (cosine 0.56 to 0.69) and the named partner is weak but present (0.02 to 0.31); consistent with SMDD's
+random warp factor. The file names describe the image content; Part 1 (conclusion 1) holds at the content level.
+
+**Item 9, head logit against sharpness (H-new-2; `a12_sharp_slope.py` → `a12_sharp_slope.json`; seed-401 heads,
+2,000 training images per class, Spearman ρ of logit with log Laplacian variance at 224 px, 500 image-bootstrap
+draws).** Our recipe, morph / genuine class: a −0.06 / −0.01; b −0.10 / −0.02; K = 50 +0.05 / −0.04; K = 500
+−0.03 / −0.03; b′ −0.02 / −0.02; c′ −0.08 / −0.01; c −0.07 / −0.05; d −0.02 / −0.29; e +0.25 / −0.37; f +0.29 /
+−0.37 (release recipe within 0.09 of these). Prediction: ρ more negative from b → K = 50 → b′; falsified if |Δρ| <
+0.05 from b to b′. Reading: **falsified** in the genuine class (Δρ +0.0004) and the opposite direction in the morph
+class (−0.10 → +0.05 → −0.02, Δρ +0.08). Partner diversity does not make the heads lean on softness inside a class;
+halves and history copies do (genuine-class ρ −0.29 to −0.37 in d, e, f).
+
 ## A12 items still open
 
-5 (release-recipe refit, H-new-4), 6 (border-matched re-read, H-new-3), 7 (partner-level variance, H-new-6), 8
-(file names against content), 9 (logit against sharpness, H-new-2): CPU, 12 Nov. 10 (audit scored by the LoRA fits,
-H-new-5): when the fits finish. 11 (five random partners, H-new-1): built (14,734 morphs, 0 failures), features in
-Athena job 3546033. 12 (ViT-B/16 fits of b and b′): Athena array 3546034. 13 (softened AR1 copies at 112.7 / 61.2 px):
-features in job 3546033; 80-px copies of the same AR1 photos do not exist and are not made (no new resampling by
+10 (audit scored by the LoRA fits, H-new-5): when the fits finish (two ViT-L/14 fits running, the rest pending on
+Athena). 11 (five random partners, H-new-1): built (14,734 morphs, 0 failures), features in Athena job 3546033
+(pending). 12 (ViT-B/16 fits of b and b′): Athena array 3546034 (pending). 13 (softened AR1 copies at 112.7 / 61.2
+px): features in job 3546033; 80-px copies of the same AR1 photos do not exist and are not made (no new resampling by
 agents), so the comparison is against the untouched frames; the softened copies are aligned frames (prep_eval.align)
 while AR1 R0 enters as the raw photo.
 
@@ -509,7 +594,7 @@ while AR1 R0 enters as the raw photo.
   morphs are ours. The bridge says our engine's morphs score like SMDD's own for the adapted releases (±0.2 logit).
 - KE is a better reference than U but not neutral (on heads without the five, trained − KE is −1.15 to −0.03).
 - The FE header reproduction of the A12REL scores missed 1e-3 (0.0062); platform numerics, not verified further.
-- Origin of the `os25k_m_t` / `os25k_m_e` folders on disk is not recorded; file names not yet checked against
-  content (A12 item 8).
+- Origin of the `os25k_m_t` / `os25k_m_e` folders on disk is not recorded; the names agree with the content on
+  100 morphs per split (A12 item 8), not on all 30,000.
 - The expression check is a geometry substitute trained on FRLL photos (domain shift); the pixel probe did not run.
 - LoRA fits (A9, A10, A11, A12) are not finished; their readings are not in this file yet.

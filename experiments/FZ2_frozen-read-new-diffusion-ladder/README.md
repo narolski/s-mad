@@ -51,6 +51,13 @@ No answer yet.
   the same mistake as FZ1 dead end 4); the scancel had already run (sacct: CANCELLED, 0 s).
 - 21:33 `src/FZ2/fz2_dgx_addon_watch.sh` started (log `/mnt/t7/smad_next/FZ2/dgx_addon_watch.log`): after the production
   extraction, every 5 minutes it extracts each add-on shard whose DGX copy is complete (PNG count = job count).
+- 21:31–21:41 Production features done (8 files in `/mnt/t7/smad_next/FZ2/results/dgx/out/`, about 1 min per file).
+- 21:41 Registered production read: `OMP_NUM_THREADS=1 python -I src/FZ2/fz2_read.py --run prod --feats-dir
+  /mnt/t7/smad_next/FZ2/results/dgx/out --workers 1` (log `/mnt/t7/smad_next/FZ2/logs/read_prod.log`; serial baselines
+  so that at most 6 CPU processes of mine run beside the extraction) → `read_prod.json`, items
+  `/mnt/t7/smad_next/FZ2/read_prod_items.csv`. Results in `result.md` and section 5.
+- 21:41–21:46 Add-on shards 0 and 1 extracted by the watcher.
+- 21:50 `result.md` (production, secondary) written; interim status sent to the lead.
 
 ## 3. Data
 
@@ -82,7 +89,15 @@ No answer yet.
 
 ## 5. Results
 
-None yet (no DG1 feature read).
+Production set B (secondary replication; full table in `result.md`, all numbers in `read_prod.json`):
+- Heads s401 / release, X20 vs SAME20: 0.662 [0.622, 0.699] / 0.665 [0.625, 0.703]; best baseline thumb32 0.700
+  [0.656, 0.741]; excess −0.038 [−0.094, +0.019] / −0.035 [−0.089, +0.023]. Heads s402–s405 0.660–0.661.
+  SAME20 vs REC20 0.378 / 0.396; X20 vs REC20 0.537 / 0.561; MIR20 vs REC20 0.702 / 0.722.
+- Baselines X20 vs SAME20: PNG 0.603, Laplacian 0.695, asymmetry 0.631 (X lower each), thumb32 0.700, surround 0.669.
+- clip_mad probes: D_SR (SAME vs REC) 0.999; along it X vs REC 0.987, MIR vs REC 0.994, X vs SAME 0.162. P_XS (X vs
+  SAME) 0.941 [0.923, 0.957]; stratified by d 0.933, Δ +0.008 [+0.001, +0.017]; A_hi 0.912. P_XS mean scores: SAME
+  −2.81, MIR −0.64, REC +2.21, X +2.17, dose α 0.1–0.4 +2.37 to +2.52. dinov2: P_XS 0.953, Δ +0.007.
+Add-on (primary): pending.
 
 ## 6. Checks
 
