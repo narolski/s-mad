@@ -1,5 +1,5 @@
 {
- "reader_sha256": "b9213a5d1b087da31b5ca6cf765f4b5cd2012113088bf02d51edbe0165283af2",
+ "reader_sha256": "8fd182b49aa75268d44b5c220dd6d7a8c745cf99cdab1d58d5c3574357e3056b",
  "results": "/mnt/t7/smad_next/AD4/results_vast",
  "present_tars": {
   "mf": [
@@ -13,7 +13,8 @@
    401,
    402,
    403,
-   404
+   404,
+   405
   ]
  },
  "refused": {},
@@ -89,6 +90,14 @@
    "device": "NVIDIA RTX 6000 Ada Generation",
    "torch": "2.2.1",
    "train_hours": 1.249528352684445
+  },
+  "AD4_m3perm_s405": {
+   "tar_sha256": "6a0b4ade8464d23064b041a17a2befbd3d8e51db720eec0328726951481a0661",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA RTX 6000 Ada Generation",
+   "torch": "2.2.1",
+   "train_hours": 1.2391860406266317
   }
  },
  "order": {
@@ -439,6 +448,45 @@
     [
      126,
      130,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s405": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     137,
+     119,
+     0
+    ],
+    [
+     142,
+     114,
+     0
+    ],
+    [
+     132,
+     124,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     137,
+     119,
+     0
+    ],
+    [
+     142,
+     114,
+     0
+    ],
+    [
+     132,
+     124,
      0
     ]
    ]

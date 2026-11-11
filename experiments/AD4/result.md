@@ -136,3 +136,15 @@ Our frames throughout. Files: `ad4_gates_m3.json`, `ad4_gates_m3l.json`.
   tasks on WCSS, still in its ready queue) decides when WCSS reopens; until then the rented arm is read descriptively.
 - Scorer-equivalence gate: pass (16:46).
 - ViT-L/14 (Athena array 3544219, A100 40 GB): 1 of 10 tars at gate time (`AD4_m3lmf_s402`, hash OK); sample-order gate pass.
+
+## Reading, ViT-B/16 recipe (11 Nov 23:36; flagged "not reproduced on this stack", read descriptively)
+
+Our frames. Tables: `ad4_reading_m3.md`; rows `ad4_cells_m3.csv`. Ten networks plus the untrained one; no refusal; order gate 10/10.
+EER %, morph-free seed mean [95% person-bootstrap interval]:
+- MorDIFF native (primary) 0.0 [0.0, 0.0]; references 37.3 to 60.8; "passable without morphs" yes (5/5 seeds); A1 not falsified.
+- DiM natives (secondary) 0.0 to 4.0; all passable (5/5 seeds); A1 not falsified on any.
+- E7 cells: MorDIFF 2.9; DiM 21.7 to 75.9 (AUC 0.18 to 0.85).
+- FRLL AMSL 1.1, FaceMorpher 4.1, Webmorph 1.0, OpenCV 19.7, StyleGAN 32.9. Corrected MAD22 FaceMorpher 0.0, OpenCV 34.3, Webmorph 27.2,
+  MIPGAN-I 76.4, MIPGAN-II 75.1.
+- Fixed thresholds: at the 0.5 rule, 0% genuine flagged, MorDIFF miss 64.5%, DiM miss 86 to 100%; at FRLL-5%, diffusion misses 0 to 4.1%
+  with 100% of history-matched genuine photos flagged in the MorDIFF and DiM E7 cells.

@@ -435,3 +435,51 @@ REC, same-person mix SAME, mirror mix MIR, two-person morph X, all 20 steps, 256
 features use each backbone's own timm transform (CLIP: resize to 224; DINOv3: resize to 512) without AF0's 512-px
 assertion (`src/PN1/featmean_any.py`). Reads: AUC X vs REC, X vs G, X vs SAME, X vs MIR, each beside the best of 24
 simple statistics (the 12 certificate cues at 224 px and at 256 px, folded) on the same images.
+
+## Amendment 10 (11 Nov 23:50 CET, before any tier-1 fit result is opened): spliced-positive LoRA arm
+
+Wording of the splice review (`experiments/reviews/REVIEW_SPLICE_20261111.md`, section Q6), registered as written.
+Disclosure: the frozen spliced reads (amendments 8, 9) were computed and seen on the test hosts and MAD22 before this
+registration; two tier-1 tars (PN1_A_s401, PN1_A_s402) have been copied back and hash-checked but not opened.
+- Arms (ViT-B/16, the AD4 recipe, unchanged train.py): **S-b LoRA** = manifest B + S4 (OpenCV-style) of the 124
+  training hosts with a usable partner as attacks, with S0 and S3 (OpenCV-style) of the 156 ladder training hosts as
+  negatives; **volume control Bv** = manifest B + the same number of extra unique rows, drawn seeded from B's kinds
+  (repeated B images, since no new image exists; stated). Seeds 401 (named) and 402, each on the same machine as that
+  seed's B fit; stratified balance as amendment 4.
+- Deciding reads (OpenCV only), development ladder first, test ladder read once:
+  (i) face-blanked R2w vs R4 lower than B's by at least 0.05;
+  (ii) native S0 vs S4 with a bootstrap lower bound of the excess above 0 over a floor fitted on development hosts
+  (seam tone + sharpness ratio + band5);
+  (iii) P-c, P-c2 and kernel marks;
+  (iv) P-g non-inferiority against B;
+  (v) H1 AUC not below B by more than 0.02.
+- Pass: all of (i) to (v) on both seeds. Kill: (i) fails on both seeds, or H1 falls below B by more than 0.03, or the
+  P-g upper bound is above +3 points. Otherwise: "inconclusive, no claim".
+- Rule: any choice of arm or backbone for later fits is made on the development ladder and the AF0 validation set
+  only; PN1's test-ladder, MAD22 and Poisson numbers stay "first-test data, read once".
+- Cost: about 3.5 A100-hours (four fits).
+
+## Amendment 11 (11 Nov 23:58 CET, before computing; approved by the lead): face-only heads, face-blanked benchmark reads, post hoc items
+
+- H-new-3: frozen heads (CLIP, DINOv3; section 3 rules) trained on face-only copies (background blanked with the R4
+  hull, AR1 `blank_splice2/bg`; R4 with its own hull, AR1 `blank/bg`) of the ladder training hosts: attacks S4_bg and
+  R4_bg (hosts with a usable partner), negatives S0_bg, S3_bg, R2w_bg, R2w4_bg; read on test face-only S0 vs S4 (= R2w
+  vs R4 face-only) and R2w4_bg vs R4_bg, with the excess over band5@224 and over the 3-statistic floor below.
+- H-new-5: corrected-MAD22 (bench_s subsample) and H1 images with the face blanked: constant grey 128 inside the convex
+  hull of AF0's fixed canonical landmarks (`/mnt/t7/smad_next/AF0/canonical_lm.npy`, the fixed hull AF0 uses for
+  benchmark frames); EER of the S-b DINOv3 head (and every frozen head) blanked against native.
+- Post hoc, labelled as such (no pass marks): the 3-statistic floor for S0 vs S4 (seam tone = mean luma and mean R-G
+  difference between 3-px rings inside and outside the R4 hull, sharpness ratio, band5@224; logistic, fitted on
+  development hosts, applied to test hosts); FaceMorpher spliced reads are not used ("seam not matched"); training-person
+  resampling of the frozen heads (10 resamples of the training persons with replacement, seed 20261124; MAD22 E7 EER
+  and τ_cam gating miss); harder brackets (c) margin over the host's own R0 -> R0_61 shift and (d) fixed threshold τ_cam
+  (bracket (a) on face-only copies without the softened face copy, which does not exist).
+
+## Pack 2 pin (12 Nov 00:05 CET, amendment 10 fits)
+
+`/mnt/t7/smad_next/PN1/pn1_pack2.tar`: sha256 `266ce5c352f1a04220d2025092ef92f973f0c8ecdc5872671a228819b189fce6` (11,289,876,480 bytes, 36,201 files): the content of pack 1 plus
+manifests train_Sb (`2cf3fda3affc8dd3…`, 8,648 rows) and train_Bv
+(`4057e9935a4e813e…`, 8,400 rows), the spliced training images, and
+pn1_eval.csv extended by 4,365 spliced and blanked ladder rows of development and test hosts
+(`22d1c23e9eccca75…`). Manifests A, B, Bn, C byte-equal to pack 1.
+run.sh changed only in its arm list (A|B|Bn|C|Sb|Bv; sha256 `a208fcf8d17e0b8a…`).

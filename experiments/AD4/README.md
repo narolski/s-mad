@@ -908,3 +908,30 @@ allows one unchanged rerun of a failed task); cancelling or resubmitting is the 
   0.43 to 0.49 it/s elsewhere for the same ViT-L/14 batch.
 - **Reading state:** until all five morph-free networks are back, the ViT-L/14 morph-free arm is read only as "incomplete (k of 5)"
   (Amendment 2 (d)). Watched: arrays 3544219 (tasks 0 and 5 to 9) and 3546123 (tasks 2 to 4).
+
+### Reading of the ViT-B/16 recipe (11 Nov, 23:36 to about 23:45; reader `8fd182b4…`)
+
+Command: `cd /home/narolski/smad-next/src/AD4 && CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 nice -n 10 $P summarise.py --stage read --results /mnt/t7/smad_next/AD4/results_vast --recipe m3`
+(log `/mnt/t7/smad_next/AD4/read/read_m3.log`). `AD4_m3perm_s405` arrived and was verified at 23:36. All ten tars plus the untrained network; no refusal;
+sample-order gate 10 of 10 pass; bootstrap 10,000 replicates over 102 persons, seed [20261111, 4].
+**Full tables: `experiments/AD4/ad4_reading_m3.md`** (EER, AUC, both fixed thresholds, training accuracy); per network and cell:
+`ad4_cells_m3.csv`; reading `ad4_reading_m3.json`; training `ad4_train_m3.csv`. Our frames throughout.
+Status printed by the reader: "final" (all six references present), with the reproduction flag on top and under every table, so the arm is
+read descriptively until the WCSS tasks decide (lead's ruling above).
+
+Headline rows (EER %, morph-free seed mean [95% person-bootstrap interval of the mean]; references = five label-permuted plus the untrained):
+- MorDIFF native (primary): 0.0 [0.0, 0.0], all five seeds 0.0; references 37.3 to 60.8 (untrained 53.9); passable yes (5/5 seeds); A1 not falsified.
+- Six DiM natives (secondary): DiM-A 0.8, DiM-C 0.0, Fast-DiM 1.7, Fast-DiM-ODE 4.0, Greedy-DiM 2.4, Greedy-DiM-S 1.0; lowest reference 37.2 to 43.1;
+  all passable yes (5/5 seeds), A1 not falsified on any.
+- E7 (history-matched) cells: MorDIFF 2.9; DiM-C 21.7; DiM-A 63.4, Fast-DiM 60.5, Fast-DiM-ODE 75.9 (AUC 0.33, 0.37, 0.18: morphs ranked below the
+  history-matched photos); Greedy-DiM 49.9, Greedy-DiM-S 46.5 (per seed 4.4 to 94.6 and 19.5 to 73.0).
+- FRLL natives: AMSL 1.1, FaceMorpher 4.1, Webmorph 1.0 (each at least 10 points below every label-free reference; lowest 24.0 to 27.4);
+  OpenCV 19.7 (not passable, lowest reference 26.5); StyleGAN 32.9.
+- Corrected MAD22 natives: FaceMorpher 0.0 (E7 0.1); OpenCV 34.3; Webmorph 27.2 (passable by the margin rule, above 15% in 5 seeds);
+  MIPGAN-I 76.4 and MIPGAN-II 75.1 (AUC 0.18 and 0.19).
+- 0.5 rule: morph-free networks flag 0.0% of unprocessed genuine photos and miss 64.5% of MorDIFF (per seed 4.1 to 98.4), 86 to 100% of DiM
+  morphs, 100% of every FRLL family, 4.3% of corrected MAD22 FaceMorpher.
+- FRLL-5%: misses 0.0 to 4.1% on MorDIFF and DiM natives, but the history-matched genuine photos are flagged 100% in every MorDIFF, DiM and
+  corrected MAD22 FaceMorpher E7 cell; FRLL landmark E7 flag rates 26 to 45%.
+- Training accuracy: morph-free 1.000 on their labels; label-permuted 0.512 to 0.520 on their own labels and 0.399 to 0.686 on the true labels;
+  untrained 0.295.
