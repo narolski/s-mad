@@ -348,3 +348,50 @@ audit rows (RS1) is redoing the key rows through each release's own preprocessin
 CPU only, as above. Scripts: `src/EV1/ev1_amend.py [--smoke]` (A1, A2, A3 shares, FEI check),
 `src/EV1/ev1_partB.py` gains an amendment pass (A3 neutral-only headline, A5), `src/EV1/ev1_partC.py`
 gains the A4 controls and MorDIFF gender strata. Smoke on 8 items first.
+
+---
+
+## Amendment 2, 11 Nov 2026, 17:29 CET (independent review, `experiments/reviews/REVIEW_EV1_20261111.md`)
+
+Reason: the independent review found every recomputed number correct but required corrections of wording and
+framing, and five additional readings from existing scores. Written before any item below was computed. Already
+seen by this owner: all outputs of the registered run and of Amendment 1, the review text and the reviewer's
+scripts (`experiments/reviews/rev_scripts_ev1_20261111/`, read for definitions; their printed outputs were not
+seen except as quoted in the review). Zero GPU; no image is made or written; CPU at most two processes at nice 10.
+Detectors: the 10 release variants and the SelfMAD release with its own preprocessing; M3 and M3L (last
+checkpoint) as a descriptive block in B1 and B3.
+
+- **B1. The releases' own decision rule ("0.5 rule").** Flag = probability of morph above 0.5: `logit_noTTA > 0`
+  for the A12REL releases (and their A43, H3, spread-render and FFHQ / FEI files); `score > 0.5` for SelfMAD own
+  preprocessing; `score > 0.5` for M3 / M3L. Share flagged with CP interval for every pool (devbona; FRLL orig and
+  the five E5 variants, neutral-only and all; MorDIFF alignment; the DiM copy; the 12 E7 pools; the A43 arms E,
+  D20, D, C20, C, A, B20, B; FEI neutral and smiling; FFHQ orig and its five E7 pools; H3 renders, H3 morphs,
+  spread-matched renders) and for every morph family (orig and, for FRLL-Morphs, the five E5 morph variants).
+  Each E7 pool is printed beside the flag rate of its own morph family.
+- **B2. Paired logit shifts.** Per release and per processed pool of the same 204 FRLL photos (E5 variants,
+  MorDIFF alignment, 12 E7 pools, stored-small arm E): shift = logit(pool) − logit(FRLL orig) per photo; median
+  and mean shift with person-bootstrap 95% interval (B = 2,000, seed 20261111), share of photos whose logit rises
+  (CP), photos crossing the devbona 5% threshold and the 0.5 rule in each direction. Saturation descriptor: 1st,
+  50th and 99th percentile of logits for FRLL orig, devbona and each morph family. SelfMAD own preprocessing has
+  probabilities only (float32): logit = ln(p / (1 − p)) with p clipped to [1e-7, 1 − 1e-7]; saturation is printed.
+- **B3. Miss rate with the threshold pool as a column.** Threshold at 5% (and 10%) false alarms on: devbona
+  (Part A); the unprocessed FRLL photos (all 204; and neutral-only 102); each single pool; "every history-matched
+  pool" = the Part A gated set (devbona, FRLL orig, JPEG 90, JPEG 70, resample50, DiM copy, MorDIFF alignment, 12 E7
+  pools); "full-frame pools at ≥ 100 px" = FRLL orig, JPEG 90, JPEG 70, resample50 and the five FRLL-Morphs E7
+  pools (median inter-eye distance ≥ 100 px, no tight crop), printed without and with devbona. Family-mean and
+  per-family miss; person bootstrap with the threshold refit in every replicate for the unprocessed, every-pool
+  and full-frame rules. The median inter-eye distance of every pool (`eval.csv` column `ied`) is printed.
+- **B4. Border-matched pairing for the MorDIFF frame.** Zero-border fraction measured on the decoded frames of the
+  E5 and E7 pools (read only, as in `ev1_feat.py`; nothing written) and from the A43 manifest for arm E. Paired
+  per photo (logit shift, devbona-threshold and 0.5-rule side changes): E7 MorDIFF against MorDIFF alignment (same
+  tight frame, history differs); MorDIFF alignment against FRLL orig (frame differs, resolution the same); E7
+  MorDIFF against FRLL orig; stored-small against MorDIFF alignment and against FRLL orig. AUC of the MorDIFF morphs
+  against MorDIFF alignment and against E7 MorDIFF (both in the tight frame), person bootstrap.
+- **B5. Paired FFHQ block.** FFHQ orig against each of its five E7 pools, paired by file stem: as B2, plus devbona
+  5% threshold and 0.5-rule flag rates with side changes and exact McNemar p; image bootstrap (no identity labels).
+- **B6. Rewrite of `result.md`** with the review's corrected statements. Withdrawn sentences stay, marked
+  "WITHDRAWN" with the reason. Histories with inter-eye distance below 90 px are called "the benchmark's own
+  storage history", not benign processing.
+
+Scripts: `src/EV1/ev1_amend2.py [--smoke]` (B1 to B5); `src/EV1/ev1_border.py [--smoke]` (zero-border fraction of
+the E5 and E7 frames, writes `/mnt/t7/smad_next/EV1/border_e5e7.npz`). Smoke on 8 items first.

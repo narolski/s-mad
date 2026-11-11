@@ -1,0 +1,17 @@
+# Retrains of released methods (AD5): environment for SelfMAD. Pins from SelfMAD conda/env.yml (commit 09ed0819) for
+# torch, torchvision, opencv, albumentations, albucore, tqdm, efficientnet-pytorch, timm. Not pinned by the authors
+# but imported by their code: scikit-learn, scipy (utils/metrics.py), dlib + imutils (preprocessing/dlib_lm.py, run
+# on the DGX, not here), transformers (preprocessing/faceparser.py). Our choices below are versions current at the
+# authors' torch 2.3.1 (mid 2024). Deviations: opencv-python-headless instead of opencv-python (same version).
+torch==2.3.1
+torchvision==0.18.1
+opencv-python-headless==4.10.0.84
+albumentations==1.4.10
+albucore==0.0.16
+tqdm==4.66.4
+efficientnet-pytorch==0.7.1
+timm==1.0.8
+numpy==1.26.4
+scikit-learn==1.5.0
+scipy==1.13.1
+transformers==4.42.4

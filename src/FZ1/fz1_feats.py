@@ -23,7 +23,7 @@ HUB = pathlib.Path.home() / ".cache/huggingface/hub"
 CLIP_BIN = next((HUB / "models--timm--vit_large_patch14_clip_224.openai/snapshots").glob("*/pytorch_model.bin"))
 DINO2 = next((HUB / "models--timm--vit_large_patch14_dinov2.lvd142m/snapshots").glob("*/model.safetensors"))
 DINO3 = next((HUB / "models--timm--vit_large_patch16_dinov3.lvd1689m/snapshots").glob("*/model.safetensors"))
-FE_REL = pathlib.Path("/tmp/claude-1000/-home-narolski-mambamorph/c2840dc9-dd37-4619-9347-d8a76080b93f/scratchpad/fz1/A12REL/madation_fe_vitl14/model.safetensors")
+FE_REL = pathlib.Path("/mnt/t7/smad_next/FZ1/release/madation_fe_vitl14_model.safetensors")  # copy of A12REL/madation_fe_vitl14/model.safetensors (sha 74dd7fbc...) from madation_official.tar
 CLIP_MEAN, CLIP_STD = (0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711)
 
 
