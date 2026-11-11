@@ -197,6 +197,9 @@ No retrain and no score exist yet.
   before use: cached path equals `score.py --mode own` on the same images for one network.
 - 11 Nov 20:40. `src/AD5/fetch_results.sh [PATTERN]`: copy-back of result tars under the transfer lock with sha256
   checks into `/mnt/t7/smad_next/AD5/results/`.
+- 11 Nov 20:27. Scoring smoke 3545948 FAILED after 47 s (0.01 GPU-h): `build_env` insisted on setuptools / wheel,
+  which the scoring wheel house does not hold (it needs no sdist). `ad5_common.sh` now only tries that step; code_v4
+  updated in place (no task reads it; CODE_SHA256SUMS sha256 dc11b680...); resubmitted as **3545960**.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -339,7 +342,8 @@ DGX: no AD5 process running. Athena jobs (logs in
 | 3545882 | SelfMAD smoke v3 (env rebuild, labels reused, 1-epoch smoke) | 1 x 55 min | COMPLETED 34:03, 0.57 GPU-h | done |
 | 3545933_[401-404] | SelfMAD retrains (code_v3; account plgmultivision; t0010 excluded) -> results/AD5/selfmad_S_s<seed>.tar + _epochs/ | 1 x 46:00 each | submitted 20:14 | resubmit failed ids from code_v3 with -A plgmultivision-gpu-a100 --exclude=t0010 |
 | 3545936 (task 405) | SelfMAD retrain seed 405 (same) | 1 x 46:00 | submitted 20:19 | as above |
-| 3545948 | scoring smoke (code_v4, releases only, RS1 smoke crops, 8 per set) | 1 x 1:00 | submitted 20:36 | read log |
+| 3545948 | scoring smoke (code_v4, releases only, RS1 smoke crops, 8 per set) | 1 x 1:00 | FAILED 0:47 (no setuptools in the wheel house), 0.01 GPU-h | fixed, resubmitted |
+| 3545960 | scoring smoke, second try | 1 x 1:00 | submitted 20:50 | read log |
 Compute spent so far: 1.82 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2, 3544218 0.59, 3545815_401 0.19,
 3545882 0.57; plus running jobs). Allowance: 300 A100-hours for AD5 (lead, 20:17); planned about 272. Planned
 production: about 111 GPU-hours (L 62, B 16, X 33), then SelfMAD.

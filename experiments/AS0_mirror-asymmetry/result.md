@@ -59,7 +59,7 @@ larger in B2-B3 (+0.11, +0.20). AR1 photos through the same 61.2 px path (Lsoft 
 - Diffusion autoencoder (A43, FRLL): two-person morph against same-person mix (B20 against C20) 0.65 / 0.71 / **0.74
   [0.65, 0.82]** / 0.69 / 0.61; but the same-person mix (neutral + smiling, one session) is MORE asymmetric than the
   one-photo reconstruction (C20 against D20 0.37-0.46), and B20 against D20 is only 0.61 / 0.63 / 0.60 / 0.57 / 0.50.
-  The same on the stored crops (0.72 in B3). Mirror mix (AD1b smoke, 4 persons): 1.000. The lead's face-box number
+  The same on the stored crops (0.72 in B3). Mirror mix against its reconstruction (AD1b full run, 32 persons): 1.000. The lead's face-box number
   reproduces on persons 001-004 (photo 19.4, D20 17.7, C20 18.7, B20 12.0, mirror mix 2.1) but on all persons the gap
   is small (12.9 / 11.8 / 13.4 / 10.9).
 - Detected landmarks on the built ladder images (A10, review H-new-2): ID0 typicality, R4 against R3, **0.653 [0.616,
@@ -71,5 +71,5 @@ larger in B2-B3 (+0.11, +0.20). AR1 photos through the same 61.2 px path (Lsoft 
   on colorFERET pairs only; blank run on a host subsample and on R3 / R4 only (no R3m there); Fe on two families.
 - Not verified: whether the FRGC "environment" field (a camera id) matters; same-session same-person morphs on the
   AR1 hosts (do not exist); the R4 reference at its own H-B mean shape (needs warp-only images toward that shape,
-  phase 2); the AD1b full run (32 persons) was still rendering at the analysis; the geometry share as registered
+  phase 2); the geometry share as registered
   (log ratio to the mirror self-morph) is degenerate because R3m is near zero; the energy version is in `shares.csv`.

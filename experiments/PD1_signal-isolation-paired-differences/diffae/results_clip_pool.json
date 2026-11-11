@@ -1318,21 +1318,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.9990234375,
        "ci": [
-        1.0,
+        0.9945130315500685,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {
@@ -1977,21 +1977,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.9892578125,
        "ci": [
-        1.0,
+        0.9697264780222751,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {
@@ -3231,21 +3231,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.9990234375,
        "ci": [
-        1.0,
+        0.9945130315500685,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {
@@ -3890,21 +3890,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.9912109375,
        "ci": [
-        1.0,
+        0.9740468676299558,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {
@@ -5144,21 +5144,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.9951171875,
        "ci": [
-        1.0,
+        0.9809750297265161,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {
@@ -5803,21 +5803,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.986328125,
        "ci": [
-        1.0,
+        0.9625,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {
@@ -7057,21 +7057,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.998046875,
        "ci": [
-        1.0,
+        0.9911242603550295,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {
@@ -7716,21 +7716,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.98046875,
        "ci": [
-        1.0,
+        0.9511834319526628,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {
@@ -8970,21 +8970,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.998046875,
        "ci": [
-        1.0,
+        0.9911242603550295,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {
@@ -9629,21 +9629,21 @@
      },
      "mirror": {
       "PAF_vs_D20r": {
-       "auc": 1.0,
+       "auc": 0.984375,
        "ci": [
-        1.0,
+        0.9575510204081633,
         1.0
        ],
        "n": [
-        4,
-        4
+        32,
+        32
        ],
        "note": "AD1b mirror mixes (n small if smoke only)"
       },
       "PAF_gt_D20r_share": {
        "share": 1.0,
-       "n": 4,
-       "source": "smoke_gen"
+       "n": 32,
+       "source": "gen"
       }
      },
      "flag": {

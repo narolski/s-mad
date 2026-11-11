@@ -138,6 +138,18 @@
    "box_l1_median": 18.293,
    "mask_l1_median": 11.482,
    "box_l1_median_persons_001_004": 18.293
+  },
+  "Mf|mirror20": {
+   "n": 32,
+   "box_l1_median": 1.308,
+   "mask_l1_median": 1.102,
+   "box_l1_median_persons_001_004": 2.137
+  },
+  "Mf|rec20r": {
+   "n": 32,
+   "box_l1_median": 12.788,
+   "mask_l1_median": 9.538,
+   "box_l1_median_persons_001_004": 18.293
   }
  },
  "verdict": {

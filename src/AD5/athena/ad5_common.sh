@@ -25,7 +25,8 @@ build_env() {  # build_env NAME REQUIREMENTS WHEEL_TAR: venv under $EN/NAME from
   untar_checked "$wt" "$w"
   rm -rf "$e"; python3 -m venv "$e"
   "$e/bin/python" -m pip install -q --no-index --find-links "$w" setuptools==69.5.1 wheel==0.43.0 2>/dev/null \
-    || "$e/bin/python" -m pip install -q --no-index --find-links "$w" setuptools wheel
+    || "$e/bin/python" -m pip install -q --no-index --find-links "$w" setuptools wheel 2>/dev/null \
+    || echo "no setuptools / wheel in the wheel house (only needed for sdists)"
   "$e/bin/python" -m pip install -q --no-index --find-links "$w" --no-build-isolation -r "$req"
   "$e/bin/python" -m pip freeze > "$e/pip_freeze.txt"
   touch "$e/AD5_ENV_OK"

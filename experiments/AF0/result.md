@@ -1,7 +1,7 @@
 # Alpha-field probe on frozen features (AF0): result
 
-Owner's page. Facts only; the lead draws conclusions. Status: first pass running (numbers below are filled in as
-they arrive). Pre-registration: `experiments/AF0/prereg.md` (unchanged).
+Owner's page. Facts only; the lead draws conclusions. Status 11 Nov 20:40 CET: full design measured on three
+backbones; DINOv3 wave-2 readouts being finished. Full record: `README.md`. Pre-registration: `experiments/AF0/prereg.md` (unchanged).
 
 Terms used here. The landmark ladder (AR1) rungs, in words: R0 = the untouched aligned camera photo; R1 = the camera
 photo with the benchmark's shrink-and-enlarge history (existing E7 frames, FRLL only); R2 = the landmark tool run on one
@@ -41,6 +41,24 @@ a(x) = 0 everywhere, i.e. the host warped, no texture from the partner: it is th
   all-zero map. Same-database pairs only, partners from the same split.
 - Build speed: 1,165 images per minute at 6 processes (wave 1, 792 images in 40.8 s); the remaining 4,200 were built
   at 57 per minute with 2 processes while the machine's load average was 80 to 146.
+
+## Outcomes against the pre-registered thresholds (full design; details in the sections below)
+
+| Falsifier (fixed in prereg.md) | DINOv3 ViT-L/16 at 512 | CLIP ViT-L/14 at 336 | CLIP ViT-L/14 at 224 |
+|---|---|---|---|
+| F1 learnable: within-image Spearman at least 0.4; drop if below 0.2 on every backbone | MLP 0.513-0.520 (5/5 seeds at least 0.4; lower bounds 0.455-0.466); ridge 0.285 | MLP 0.259-0.275; ridge 0.102 | MLP 0.260-0.283; ridge 0.125 |
+| F2 transfer: AR1 FaceMorpher R2 vs R4 at least 0.85, lower bound above 0.75 | met by every head: 0.999-1.000 | met: 0.997-1.000 | met: 0.997-1.000 |
+| F3 history: shift of genuine scores R0 -> R1 (FRLL E7) and R0 -> R2 at most 0.3 (dense head) | met: at most 0.09 (R1), 0.11 (R2) | met: at most 0.01, 0.06 | met: at most 0.04, 0.04 |
+| (lead's addition) R0 -> R2w, warp-only | FaceMorpher 0.65-0.73, OpenCV 0.21-0.23 | 0.16-0.24 / 0.01-0.03 | 0.09-0.12 / -0.01-0.00 |
+| F4 baseline drop at least 0.20 | met: 0.998 | met: 0.74 | met: 0.73 |
+| F4 dense drop at most 0.05; above 0.15 = central claim false | ridge 0.60, MLP 0.41-0.46: above 0.15 | ridge 0.38, MLP 0.35-0.39: above 0.15 | ridge 0.39, MLP 0.40-0.44: above 0.15 |
+| F5 benchmark EER (descriptive) | FRLL AMSL 8.4-10.3, WebMorph 9.4-10.8, FaceMorpher 0.5-1.5, OpenCV 0.5-0.6; MAD22 FM 1.5-3.0, OpenCV 1.5-2.6, Webmorph 6.3-7.9 (MLP, native) | AMSL 5.9-7.9, WebMorph 5.9-7.8, FM 0.5-0.9, OpenCV 0.5-0.9; MAD22 0.1-0.5 / 2.5-3.4 / 5.8-7.9 | AMSL 6.9-8.8, WebMorph 5.4-7.3, FM 1.5-1.9, OpenCV 1.6-2.4; MAD22 0.4-0.5 / 3.4-4.3 / 5.4-6.4 |
+Released MADation ViT-L/14 (FRLL rows, registered scores): AMSL 18.2, WebMorph 5.9, FaceMorpher 1.0, OpenCV 1.5.
+Floors on the same contrasts (wave 3): Laplacian variance alone 0.72-0.77 on the ladder contrasts, best simple statistic
+0.89-0.93; on every benchmark cell a single simple statistic reaches 0.97-1.00. CN0 verdict: fails (single statistic
+0.93 > 0.80). Wave 2 (CLIP-224): the ghost-energy head neither fails nor brings a gain. Wave 3 ablation (CLIP-224): the
+measured map does not beat the image label with halves (by 0.03 AUC or a halved shift). Wave 4 (CLIP-224): both
+conditions of the fixed reading hold, the flag-rate condition already before softened training.
 
 ## First small pass (DINOv3 ViT-L/16 at 512, ridge head, wave-1 images)
 
@@ -469,3 +487,38 @@ above the sharpness floor by at least 0.05. Measured: the flag rate was already 
 
 F4 on CLIP-336 (`f4_clip336.json`): logistic 1.000 -> 0.263 [0.130, 0.417] (drop 0.74); ridge 0.999 -> 0.624 (drop
 0.38); MLP 401-405 0.9998-1.000 -> 0.615-0.645 (drops 0.35-0.39). Dense-head drops above 0.15 on all three backbones.
+
+## Released MADation ViT-L/14 beside the AF0 heads (scores the record already has; no rescoring)
+
+From the landmark ladder's (AR1) `experiments/AR1/result_tables.md` (release on its own RGB crops, AR1's bootstrap),
+primary pool: FaceMorpher R2 vs R4 0.993 [0.98, 1.00], OpenCV 0.991 [0.98, 1.00]; R2w vs R4 0.994 / 0.992; R0 -> R2w
+AUC 0.463 / 0.427 (shift reported there as AUC, not in standard deviations); R3 vs R4 0.737 / 0.749. AF0 heads on the
+same images (this page): F2 0.997-1.000; R3 vs R4 0.84-0.90. FRLL-Morphs cells (registered A12REL eval scores on our
+frames, same rows as bench_s; `madation_vitl14_ref.json`): EER native / E7 AMSL 18.2 / 15.6, FaceMorpher 1.0 / 1.0,
+OpenCV 1.5 / 1.5, WebMorph 5.9 / 5.3; FRLL native -> E7 shift -0.07 to -0.10 standard deviations. Corrected MAD22: no
+MADation score exists (not rescored).
+
+## Deviations from the registration and the task
+
+1. Benchmark morphs subsampled to at most 600 per cell (seed 401; all genuine images kept): GPU time on the shared GB10.
+2. MLP heads see 384 random patches per image per seed (DINOv3 has 1,024, CLIP-336 576; CLIP-224 all 256): RAM.
+3. FRGC contributes only 50 persons (AR1 holds the others; val10 persons not used); the F4 crossed test therefore has
+   10 FRGC persons on the negative side (wide intervals). Database shares of the images were set 50/50.
+4. Face hull for benchmark and Poisson frames = fixed canonical hull (mean landmarks of the wave-1 training images;
+   all frames share the canonical eye positions); per-image hull for AF0 and AR1 images.
+5. Wave 2 at wave-1 scale (600 training morphs + 1,080 halves), ridge + MLP seed 401 only; wave-3 ablation and wave 4
+   on CLIP-224 only; wave 4 with one strength per image (alternating) on the training split; AR1 softened evaluation
+   on 200 seeded hosts; mirror distance on CLIP-224 only. Halves exist for 1,640 of 5,000 pairs.
+6. Wave-3 arms (d)/(e) use target D (the only target accepted by control 2), not G.
+7. GPU wall time about 7 h on the shared GPU against the registered "under 1 GPU-hour"; wave-2 morphs built with 2
+   processes (CPU cap shared with feature loaders).
+8. The engine's 8 frame vertices carry the field's mean (outside the face hull), as documented above.
+9. Model preprocessing is each model's timm transform (CLIP resizes 512 -> 336 / 224; DINOv3 identity at 512).
+
+## Not verified
+
+- CLIP ViT-L/14-224 weights were loaded from the cached `pytorch_model.bin` (timm, weights_only); the blob was not
+  compared with an independent hash. DINOv3 and CLIP-336 weights likewise taken as cached.
+- FRGC neutral / environment labels come from AR1's `candidates()` (bbaselite dump); not re-checked.
+- MADation ViT-L/14 has no score on the corrected MAD22 and was not rescored; its ladder numbers are AR1's.
+- DINOv3 versions of the wave-3 arms, border blanking and wave 4 were not run.

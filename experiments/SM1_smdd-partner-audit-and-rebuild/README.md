@@ -181,6 +181,13 @@ descriptive.
 - 20:15 `run_p3f.sh` done: all saved heads rescored with the JPEG frames (`heads.py --rescore`), arm (f) heads
   (5 seeds + bootstrap), readers rerun (`p3_full.json` now 13 arms with JPEG and history-pool reads); Laplacian
   acceptance of (f) 0.724 at the loader size (`lapvar_f.json`; not accepted). Tables in `result.md`.
+- 20:30 ViT-B/16 smoke 3545916 hung after the optimiser setup for 23 min (AveCPU 3 min; 14 loader workers at batch
+  256; shared-memory pressure suspected, not verified); cancelled with its dependent array 3545917 and resubmitted
+  with 6 loader workers: smoke 3545956 → fits 3545957_[0-9] (afterok). ViT-L/14 fits run at 0.49 it/s (about 3.9 h
+  of training per fit; 25 fits about 100 A100-hours).
+- 20:30 Frozen-head partner audit (`p2_full.json` heads / did): heads trained with the five partners show a gap of
+  5.8 to 6.1 logits (placebo p < 1e-5); heads trained without them 0.1 to 1.3; the FE ViT-L/14 release header 4.92
+  (p 0.0006). Written to `result.md`.
 
 ## 3. Data
 
@@ -293,6 +300,8 @@ the T-A / T-B full 50,010-image set (only the registered 7,810-image subsample);
 - `lapvar.py` arm-f branch: loop variable shadowed the sample size (TypeError); fixed and rerun.
 - The ViT-B/16 smoke job was first submitted without a `_smoke` task suffix (it would have written the production
   task's result name); cancelled with its dependent array and resubmitted (3545916 smoke, 3545917 production).
+  The resubmitted smoke then hung with 14 loader workers at batch 256; cancelled and resubmitted with 6 workers
+  (3545956 smoke, 3545957 production).
 - On Athena I ran `sha256sum -c` over the pack tars on the login node once (against the rule); not repeated.
 - Arm (e) was first skipped (80-px copies) and then approved (A4); the pixel expression probe could not run (A3 note).
 

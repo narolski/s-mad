@@ -1276,6 +1276,39 @@ D,P_AF vs D20 (all),all,RGB,F1,B5,1.0,1.0,1.0,4,204,-3.5793,-0.3386
 D,P_AF vs D20 (all),all,RGB,F1,B6,1.0,1.0,1.0,4,204,-2.7973,-0.0769
 D,P_AF vs D20 (all),all,RGB,F1,BB,1.0,1.0,1.0,4,204,-5.8022,-2.3733
 D,P_AF vs D20 (all),all,detected,-,shape,0.9314,0.799,1.0,4,204,-10.5293,-8.5456
+D,P_AF vs D20r (AD1b full run),all,Y,F0,B0,1.0,1.0,1.0,32,32,-12.4795,-6.5776
+D,P_AF vs D20r (AD1b full run),all,Y,F0,B1,1.0,1.0,1.0,32,32,-7.8287,-2.8673
+D,P_AF vs D20r (AD1b full run),all,Y,F0,B2,1.0,1.0,1.0,32,32,-6.8165,-2.4453
+D,P_AF vs D20r (AD1b full run),all,Y,F0,B3,1.0,1.0,1.0,32,32,-5.9999,-2.022
+D,P_AF vs D20r (AD1b full run),all,Y,F0,B4,1.0,1.0,1.0,32,32,-5.0814,-1.3846
+D,P_AF vs D20r (AD1b full run),all,Y,F0,B5,1.0,1.0,1.0,32,32,-4.299,-0.7646
+D,P_AF vs D20r (AD1b full run),all,Y,F0,B6,0.999,0.9945,1.0,32,32,-3.1707,-0.1244
+D,P_AF vs D20r (AD1b full run),all,Y,F0,BB,1.0,1.0,1.0,32,32,-6.4215,-2.299
+D,P_AF vs D20r (AD1b full run),all,Y,F1,B0,1.0,1.0,1.0,32,32,-12.0705,-6.5545
+D,P_AF vs D20r (AD1b full run),all,Y,F1,B1,0.999,0.9945,1.0,32,32,-7.5229,-2.9148
+D,P_AF vs D20r (AD1b full run),all,Y,F1,B2,1.0,1.0,1.0,32,32,-6.555,-2.4453
+D,P_AF vs D20r (AD1b full run),all,Y,F1,B3,1.0,1.0,1.0,32,32,-5.862,-1.9028
+D,P_AF vs D20r (AD1b full run),all,Y,F1,B4,0.9961,0.9854,1.0,32,32,-4.8852,-1.1465
+D,P_AF vs D20r (AD1b full run),all,Y,F1,B5,0.9541,0.8991,0.9911,32,32,-4.0836,-0.3959
+D,P_AF vs D20r (AD1b full run),all,Y,F1,B6,0.8369,0.7052,0.9429,32,32,-3.0923,0.0371
+D,P_AF vs D20r (AD1b full run),all,Y,F1,BB,0.999,0.9945,1.0,32,32,-6.3381,-2.3836
+D,P_AF vs D20r (AD1b full run),all,RGB,F0,B0,1.0,1.0,1.0,32,32,-12.4645,-6.5797
+D,P_AF vs D20r (AD1b full run),all,RGB,F0,B1,1.0,1.0,1.0,32,32,-7.7662,-2.8602
+D,P_AF vs D20r (AD1b full run),all,RGB,F0,B2,1.0,1.0,1.0,32,32,-6.791,-2.4411
+D,P_AF vs D20r (AD1b full run),all,RGB,F0,B3,1.0,1.0,1.0,32,32,-5.8429,-2.0288
+D,P_AF vs D20r (AD1b full run),all,RGB,F0,B4,1.0,1.0,1.0,32,32,-4.8079,-1.3918
+D,P_AF vs D20r (AD1b full run),all,RGB,F0,B5,1.0,1.0,1.0,32,32,-4.186,-0.7608
+D,P_AF vs D20r (AD1b full run),all,RGB,F0,B6,1.0,1.0,1.0,32,32,-3.0292,-0.1357
+D,P_AF vs D20r (AD1b full run),all,RGB,F0,BB,1.0,1.0,1.0,32,32,-6.2746,-2.2832
+D,P_AF vs D20r (AD1b full run),all,RGB,F1,B0,1.0,1.0,1.0,32,32,-11.9848,-6.5466
+D,P_AF vs D20r (AD1b full run),all,RGB,F1,B1,1.0,1.0,1.0,32,32,-7.473,-2.9079
+D,P_AF vs D20r (AD1b full run),all,RGB,F1,B2,1.0,1.0,1.0,32,32,-6.5143,-2.4411
+D,P_AF vs D20r (AD1b full run),all,RGB,F1,B3,1.0,1.0,1.0,32,32,-5.7871,-1.9031
+D,P_AF vs D20r (AD1b full run),all,RGB,F1,B4,0.9971,0.9882,1.0,32,32,-4.6794,-1.1527
+D,P_AF vs D20r (AD1b full run),all,RGB,F1,B5,0.9531,0.8981,0.99,32,32,-3.9885,-0.3952
+D,P_AF vs D20r (AD1b full run),all,RGB,F1,B6,0.8359,0.7049,0.9429,32,32,-2.9231,0.0308
+D,P_AF vs D20r (AD1b full run),all,RGB,F1,BB,0.999,0.9945,1.0,32,32,-6.2124,-2.3788
+D,P_AF vs D20r (AD1b full run),all,detected,-,shape,0.9395,0.8669,0.9898,32,32,-10.4543,-8.5181
 Ds,B20 vs C20 (stored),all,Y,F1,B0,0.5627,0.4975,0.6333,200,102,-6.746,-6.6248
 Ds,B20 vs C20 (stored),all,Y,F1,B1,0.6358,0.5577,0.7206,200,102,-3.1876,-2.8835
 Ds,B20 vs C20 (stored),all,Y,F1,B2,0.7012,0.6244,0.7819,200,102,-2.7356,-2.3275

@@ -1,12 +1,13 @@
 # Signal isolation by paired differences (PD1), diffusion-autoencoder family: result
 
-Owner run, 11 Nov 2026, 16:56 to 20:00 CET. Pre-registration `prereg.md` (16:56 CET, before any computation).
+Owner run, 11 Nov 2026, 16:56 to 20:40 CET. Pre-registration `prereg.md` (16:56 CET, before any computation).
 Code `src/PD1/diffae/` (`pd1_items.py`, `pd1_feats.py`, `pd1_stats.py`, `pd1_fr.py`, `pd1_analysis.py`,
 `pd1_rescore.py`, `pd1_mirror.py`, `pd1_report.py`, `run_*.sh`). Large outputs `/mnt/t7/smad_next/PD1/diffae/`
-(item list `lists/items.csv` sha 20c463d4…, features `feat/{clip,dino}/`, statistics `stats/`, glintr100 embeddings
+(item list `lists/items.csv`: sha 20c463d4… for the analysis runs, 7e4a2e21… after the 32-person mirror mixes
+replaced the 4 smoke ones (only those rows differ), features `feat/{clip,dino}/`, statistics `stats/`, glintr100 embeddings
 `fr/`, final heads `heads/`, out-of-fold scores `oof_<feature>.npz`). Small results in this folder:
 `results_<feature>.json` (everything), `readings.csv`, `q1.csv`, `q2_cos.csv`, `q3q4.csv`, `flags.csv`,
-`external.csv`, `bench.csv`, `q5.csv`, `mirror.json/.csv`, `first_pass.json`. Report facts only.
+`external.csv`, `bench.csv`, `q5.csv`, `mirror.json/.csv`, `posthoc_session_split.json`, `first_pass.json`. Report facts only.
 
 Abbreviations: DiffAE = diffusion autoencoder (FFHQ256 checkpoint); AUC = area under the ROC curve (0.5 = chance);
 EER = equal error rate; E7 = the existing, approved shrink-and-enlarge history control ("history-matched" genuine
@@ -29,8 +30,9 @@ statistics (Laplacian variance, high-frequency energy, mirror asymmetry, three c
   100-step reconstructions (204), same-person mixes at 20 and 100 steps (102 each, neutral + smiling: confounded),
   same-pair two-person morphs at 20 and 100 steps (200 each); the stored-size frames of the MorDIFF control set (A43) (published MorDIFF 200, our
   morphs, mixes, reconstructions, the photo stored small); native photos R0 (204) and their E7 copies R1 (204).
-  Mirror mixes: from the identical-and-mirrored-inputs check for diffusion (AD1b), smoke run only, **4 FRLL persons**
-  (its full run had not written its renders when this page was written; see "Not verified").
+  Mirror mixes: from the identical-and-mirrored-inputs check for diffusion (AD1b), full run, **32 FRLL persons**
+  (neutral photo mixed with its own mirror image, 20 steps, 256 px; with the 20-step reconstruction re-rendered in the
+  same job). Scored after the main runs with the saved final heads (`pd1_mirror.py`, `mirror.json`).
 - **Softening material:** 1,200 SMDD genuine renders with their existing shrunk copies (80 px) from the morph-free
   network data (A47 arm I-3, used by the morph-free networks experiment, AD4): 600 to fit the softening direction, 600 held out for flag rates.
 - **Benchmark cells:** registered `eval.csv` (sha 86d055d3…): MorDIFF (1,000 morphs) and DiM A, DiM C, Fast-DiM,
@@ -69,6 +71,9 @@ contrast. A head on the seven statistics trained the same way as H1 reaches 0.74
 - Same-person mixes score **above** two-person morphs for every feature set (H1 x3 vs x2: CLIP pooled 0.288, CLIP
   patch 0.369, DINOv3 0.376). A head trained on two-person morphs does not separate them from same-person mixes either
   (0.456, 0.582, 0.545). The signal caught is the DiffAE mixing step, not a second identity.
+  The same holds for a photo mixed with its own mirror image (32 FRLL persons): H1 scores these mirror mixes above
+  our two-person morphs (two-person morph vs mirror mix 0.197, 0.209, 0.411) and separates them from their
+  reconstructions at 0.999, 0.935, 0.973.
 - Reconstructions score **below** genuine photos (x1 vs x0 0.28 / 0.40 / 0.47).
 - For morph against genuine photo on these hosts, PNG size alone (0.906) beats H1 on both CLIP sets (0.876, 0.825)
   and is within 0.012 of DINOv3 (0.918); excess −0.030, −0.081, +0.012. This contrast is not part of the registered
@@ -92,7 +97,7 @@ contrast. A head on the seven statistics trained the same way as H1 reaches 0.74
 | genuine to morph (x0 to x3) | 0.981 [0.951, 0.998] / 0.918 | 0.988 / 0.929 | 0.998 / 0.982 | consistent |
 
 Diagnostic (FRLL, training direction applied unchanged, no reading): pipeline 204 of 204 hosts, whole morph at 256 px
-91.0% (CLIP pooled), mirror mix 4 of 4.
+91.0% (CLIP pooled); mirror mix 32 of 32 for every feature set (`mirror.json`).
 
 ## Q2 Geometry (cross-validated split-half cosines, 200 splits; 95% from 1,000 block bootstraps)
 
@@ -109,7 +114,8 @@ the replicates resample with duplicates). Upper bounds of several off-diagonal i
 same reason; the intervals are printed as computed. Diagnostics on FRLL (CLIP pooled; directions from FRLL images
 only, no fit): the SMDD softening direction agrees with the FRLL E7 direction (cos 0.53) and the FRLL stored-small
 direction (0.54) (CLIP patch 0.18 / 0.14, DINOv3 0.32 / 0.19); the FRLL whole-morph direction at 256 px is aligned with
-the training mixing direction (0.67); the 4-person mirror-mix direction has cos 0.62 with it (reliability 0.58).
+the training mixing direction (0.67); the 32-person mirror-mix direction has cos 0.65 with it (CLIP patch 0.36, DINOv3
+0.39; `mirror.json`; the Q2 block of `results_<feature>.json` still holds the earlier 4-person value).
 
 ## Q3 Softened genuine photos (final heads fit on all 516 hosts; FRLL and SMDD scoring only)
 
@@ -166,7 +172,9 @@ the score, +0.40 to +0.56 with the paired step). Same-person mixes (dissimilarit
 | stored size, 100 steps: morph vs reconstruction | 0.670 [0.59, 0.75] | 0.853 | 0.842 | 0.795 |
 | stored size: photo stored small vs native photo | 0.410 | 0.387 | 0.471 | 0.379 |
 | stored size: published MorDIFF vs native photo (step count of the release not verified) | 0.680 [0.59, 0.77] | 0.581 | 0.603 | 0.702 |
-| mirror mix vs its reconstruction (4 persons, identical-and-mirrored-inputs smoke run) | 1.000 (4 of 4 paired) | 0.938 | 1.000 | 1.000 |
+| mirror mix vs its reconstruction (32 persons) | 0.999 [0.995, 1.000], 32 of 32 paired | 0.935 | 0.973 | 0.989 |
+| mirror mix vs genuine photo (32 against 204) | 0.999 [0.995, 1.000] | 0.897 | 0.868 | 0.967 |
+| **two-person morph vs mirror mix (200 against 32; post hoc)** | **0.197 [0.11, 0.29]** | 0.209 | 0.411 | 0.459 |
 | same-person mix (neutral + smiling) vs reconstruction | 0.989 (confounded, no conclusion) | 0.983 | 0.997 | 0.994 |
 
 ## Benchmark cells (descriptive, no refit; FRLL genuine photos in 512 frames, training images are DiffAE 256 crops)
@@ -191,7 +199,8 @@ Full table `bench.csv` (all heads, variants, EERs and intervals).
 
 ## What failed or deviated
 
-- The full run of the identical-and-mirrored-inputs check (AD1b) had not written renders when the analysis ran; mirror mixes rest on 4 FRLL persons.
+- The mirror mixes arrived after the main runs (32 persons instead of the registered "all 102" of that check); they
+  were scored with the saved final heads, without refit, and the external blocks were refreshed.
 - DINOv3 mean patch duplicates DINOv3 pooled (timm averages patch tokens); the registered fourth set is void.
 - The FRLL person bootstrap of the external and benchmark tables first drew over 140 IDs (38 without images). All
   external blocks were re-scored with the saved final heads over the 102 real persons and the seed of the MorDIFF ladder re-read (AD1)

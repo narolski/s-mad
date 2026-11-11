@@ -98,6 +98,8 @@ images carry the identity-shrinkage typicality at 0.653 (calculated 0.687).
   mirror self-morph (0.01-0.05); an energy version (1 - r_R2wm/r_R0) / (1 - r_R3m/r_R0) was added as descriptive
   (after seeing the log version).
 - 19:53 `as0_typ.py` on LD1 (A10): typicality R4 against R3 on detected shapes 0.653; 20:21 rerun with LD2.
+- 20:28-20:31 the AD1b generator ended ("attempt 1 ok"); its 32 mirror mixes and reconstructions added as set Mf
+  (64 detections, measurement, `analyse_3.log`, tables); no other number changed.
 - 20:14-20:17 final analysis (`analyse_2.log`; first attempt crashed on the 80 px SMDD copies in bands beyond their
   Nyquist, an empty array in the bootstrap; fixed by returning "not measurable" below 10 pairs) and tables; 20:18
   blank run compared with the primary statistic on the same 187 hosts (`blank_vs_primary_same_hosts.json`).
@@ -243,7 +245,8 @@ Final analysis (20:14-20:17, `analyse_2.log`; L numbers unchanged):
   against D20r (4 persons) 1.000. Stored crops (F1): B20 against C20 0.636 / 0.701 / 0.718 / 0.680 / 0.588; published
   MorDIFF against photo 0.62-0.70. Lead's face-box statistic (mean |x - flip x|, rows 70-220, columns 64-192): persons
   001-004: photo 19.4, D20 17.7, C20 18.7, B20 12.0, P_AF 2.1; all persons (medians): photo 12.9, D20 11.8, C20 13.4,
-  B20 10.9, B 12.5.
+  B20 10.9, B 12.5. AD1b full run (32 persons, added 20:31 after the generator ended, set Mf): mirror mix against its
+  re-run reconstruction 1.000 in every band (32 / 32), face-box statistic 1.3 against 12.8.
 - More storage history (Y, F0, d [shift / K1 effect]): Lsoft fm61 own landmarks R0 +0.015 / -0.014 / +0.034 / +0.044
   / +0.038; R2w OpenCV +0.038 / +0.039 / +0.129 / +0.130 / +0.051; R2w FaceMorpher +0.034 / +0.046 / +0.118 / +0.134 /
   +0.032; Lsoft amsl112 within -0.02 to +0.09; Fm OpenCV (96) and Webmorph (100) |d| <= 0.03; Fe amsl -0.003 / +0.038
@@ -271,7 +274,7 @@ the `.tem` landmarks of the same photos by a median 0.8% of the IOD (R0) and fro
 person-disjoint halves agrees within 0.03; blanking outside the mask changes K1 by at most 0.03 on the same hosts.
 
 Not verified: the AF0 softened copies' re-alignment jitter (as0_lmcheck.py not run); the FRGC environment field is a
-camera id, not tested; the AD1b full run (32 persons) was not complete at the analysis (smoke, 4 persons, used).
+camera id, not tested.
 
 ## 7. Dead ends and failures
 

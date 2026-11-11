@@ -1,5 +1,5 @@
 {
- "n": 36620,
+ "n": 36684,
  "missing": 0,
  "missing_first": [],
  "by_set_role": {
@@ -37,6 +37,8 @@
   "D|two100|diffae": 200,
   "M|mirror20|diffae": 4,
   "M|rec20r|diffae": 4,
+  "Mf|mirror20|diffae": 32,
+  "Mf|rec20r|diffae": 32,
   "Ds|photo|diffae": 204,
   "Ds|rec20|diffae": 204,
   "Ds|same20|diffae": 102,
@@ -87,6 +89,6 @@
   "LD1|R4|facemorpher": 536,
   "LD3|G|facemorpher": 1800
  },
- "n_detect": 15688,
- "items_sha256": "f132895c3036e3a9283348d48a8375164b50787150fe7c8ed27675bda3b9249f"
+ "n_detect": 15752,
+ "items_sha256": "e53c125601d49193c78615bc99c5cf7704df6db3c53dba6bb45e4eb0a24b9cf5"
 }

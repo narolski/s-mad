@@ -233,6 +233,15 @@ here. No answer yet.
   `src/DG1/dg1_merge_manifests.py` merges the shard manifests (paths relative to `/mnt/t7/smad_next/DG1/gen`) before
   `dg1_manifest_extra.py` adds the person-use and flag columns.
 
+- 11 Nov 20:17–20:28. Task 3545877_1 (set B shard 0, account plgmultivision) started on node t0016: about 9 min from
+  start to the first encode (environment check and import from the project store), then 6.1 s per inversion (16 in
+  97 s), about twice t0013/t0019 but within the 1:30 limit; left running. Task 3545877_3 and the add-on wait with
+  'ReqNodeNotAvail' (Slurm lists t0001–t0031, t0034–t0036, t0038–t0047 as unavailable).
+- 11 Nov 20:31. Validity of set B shards 1 and 3 done (`/mnt/t7/smad_next/DG1/validity/setB_s1/`, `setB_s3/`).
+- Note: `versions.txt` says 'torch index ' (blank) because the repair run of job 3544800 read
+  `envs/DG1/torch_index.txt`, which the first build (3544215) had not written; the torch build is cu130
+  (`torch 2.12.1+cu130` in the same file and in every `gen_log.json`).
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):

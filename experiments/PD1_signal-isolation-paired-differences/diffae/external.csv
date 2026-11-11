@@ -20,8 +20,8 @@ clip_pool,none,H1,frll_stored,A_vs_D,0.6042892156862745,0.5166028342076868,0.692
 clip_pool,none,H1,frll_stored,A_vs_R0,0.6796323529411765,0.5929263131266198,0.7666248205702924,"[200, 204]",published MorDIFF step count not verified
 clip_pool,none,H1,frll_stored,B20_vs_R0,0.6783333333333333,0.5914342556833031,0.7649332057743111,"[200, 204]",
 clip_pool,none,H1,frll_stored,A_vs_B,0.424275,0.3763833559638125,0.45681221402039784,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,none,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,none,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,none,H1,mirror,PAF_vs_D20r,0.9990234375,0.9945130315500685,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,none,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_pool,none,H2,frll256,B20_vs_D20,0.9781127450980392,0.9567975863802078,0.9929767429838089,"[200, 204]",
 clip_pool,none,H2,frll256,B20_vs_a256,0.9274019607843137,0.8866829063764321,0.9619064388854224,"[200, 204]",
 clip_pool,none,H2,frll256,D20_vs_a256,0.2860678585159554,0.2539636197616301,0.3126441753171857,"[204, 204]",
@@ -43,8 +43,8 @@ clip_pool,none,H2,frll_stored,A_vs_D,0.6376960784313725,0.5674724344513036,0.704
 clip_pool,none,H2,frll_stored,A_vs_R0,0.7019117647058823,0.6374457982416052,0.7627028299745824,"[200, 204]",published MorDIFF step count not verified
 clip_pool,none,H2,frll_stored,B20_vs_R0,0.6922549019607843,0.6263270593563512,0.7543062319640473,"[200, 204]",
 clip_pool,none,H2,frll_stored,A_vs_B,0.3015,0.2263021865437602,0.36415836078190816,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,none,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,none,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,none,H2,mirror,PAF_vs_D20r,0.9892578125,0.9697264780222751,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,none,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_pool,soft1,H1,frll256,B20_vs_D20,0.8849509803921569,0.817888337117446,0.9408666074789049,"[200, 204]",
 clip_pool,soft1,H1,frll256,B20_vs_a256,0.8490441176470588,0.7737262229001722,0.9149258203432111,"[200, 204]",
 clip_pool,soft1,H1,frll256,D20_vs_a256,0.42029507881584005,0.3937902489427143,0.4441080353710111,"[204, 204]",
@@ -66,8 +66,8 @@ clip_pool,soft1,H1,frll_stored,A_vs_D,0.5930882352941177,0.5031802501042738,0.68
 clip_pool,soft1,H1,frll_stored,A_vs_R0,0.7043137254901961,0.6185301975788378,0.7916796141468432,"[200, 204]",published MorDIFF step count not verified
 clip_pool,soft1,H1,frll_stored,B20_vs_R0,0.7049019607843138,0.619758376784772,0.791350845019361,"[200, 204]",
 clip_pool,soft1,H1,frll_stored,A_vs_B,0.448825,0.4025477098393981,0.4844469940556928,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,soft1,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,soft1,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft1,H1,mirror,PAF_vs_D20r,0.9990234375,0.9945130315500685,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft1,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_pool,soft1,H2,frll256,B20_vs_D20,0.9786029411764706,0.9576860636114911,0.9932938746619338,"[200, 204]",
 clip_pool,soft1,H2,frll256,B20_vs_a256,0.9267401960784314,0.8851584865029299,0.9619787652104874,"[200, 204]",
 clip_pool,soft1,H2,frll256,D20_vs_a256,0.27907535563244906,0.2469482891195694,0.3057003316032295,"[204, 204]",
@@ -89,8 +89,8 @@ clip_pool,soft1,H2,frll_stored,A_vs_D,0.6248774509803922,0.5522494740496622,0.69
 clip_pool,soft1,H2,frll_stored,A_vs_R0,0.757671568627451,0.6967710197286462,0.8143743213130814,"[200, 204]",published MorDIFF step count not verified
 clip_pool,soft1,H2,frll_stored,B20_vs_R0,0.7521568627450981,0.6917543820558527,0.8092637394345625,"[200, 204]",
 clip_pool,soft1,H2,frll_stored,A_vs_B,0.35345,0.27666859683909384,0.4172012223718909,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,soft1,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,soft1,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft1,H2,mirror,PAF_vs_D20r,0.9912109375,0.9740468676299558,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft1,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_pool,soft5,H1,frll256,B20_vs_D20,0.8754411764705883,0.8057782243332116,0.936944312917078,"[200, 204]",
 clip_pool,soft5,H1,frll256,B20_vs_a256,0.8212254901960784,0.739502966041489,0.8955839526878688,"[200, 204]",
 clip_pool,soft5,H1,frll256,D20_vs_a256,0.40083141099577085,0.37531177912341407,0.4222895040369089,"[204, 204]",
@@ -112,8 +112,8 @@ clip_pool,soft5,H1,frll_stored,A_vs_D,0.5361029411764706,0.4413099102119626,0.62
 clip_pool,soft5,H1,frll_stored,A_vs_R0,0.6934313725490197,0.6026770693560721,0.7821456427671173,"[200, 204]",published MorDIFF step count not verified
 clip_pool,soft5,H1,frll_stored,B20_vs_R0,0.6952205882352941,0.6056159308640469,0.7818139005602242,"[200, 204]",
 clip_pool,soft5,H1,frll_stored,A_vs_B,0.492125,0.4430109209585208,0.5371898420987479,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,soft5,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,soft5,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft5,H1,mirror,PAF_vs_D20r,0.9951171875,0.9809750297265161,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft5,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_pool,soft5,H2,frll256,B20_vs_D20,0.9630147058823529,0.934017484196982,0.9859072189922481,"[200, 204]",
 clip_pool,soft5,H2,frll256,B20_vs_a256,0.8969607843137255,0.8481376761230808,0.9414403768657447,"[200, 204]",
 clip_pool,soft5,H2,frll256,D20_vs_a256,0.31002499038831216,0.2796508554402153,0.33338139177239523,"[204, 204]",
@@ -135,8 +135,8 @@ clip_pool,soft5,H2,frll_stored,A_vs_D,0.6257352941176471,0.5465865951643816,0.70
 clip_pool,soft5,H2,frll_stored,A_vs_R0,0.7818382352941177,0.7163959161574517,0.840967226442816,"[200, 204]",published MorDIFF step count not verified
 clip_pool,soft5,H2,frll_stored,B20_vs_R0,0.7814950980392157,0.7172184963517854,0.8399059563062082,"[200, 204]",
 clip_pool,soft5,H2,frll_stored,A_vs_B,0.4402,0.37510114386019056,0.4951086749130695,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,soft5,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,soft5,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft5,H2,mirror,PAF_vs_D20r,0.986328125,0.9625,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft5,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_pool,pipe,H1,frll256,B20_vs_D20,0.8807107843137255,0.8120728096518416,0.9377569752169255,"[200, 204]",
 clip_pool,pipe,H1,frll256,B20_vs_a256,0.9039705882352941,0.8423506190619044,0.9539365659753505,"[200, 204]",
 clip_pool,pipe,H1,frll256,D20_vs_a256,0.5609621299500193,0.536451124567474,0.5885482747020376,"[204, 204]",
@@ -158,8 +158,8 @@ clip_pool,pipe,H1,frll_stored,A_vs_D,0.6454901960784314,0.5590757180798741,0.733
 clip_pool,pipe,H1,frll_stored,A_vs_R0,0.7395343137254902,0.660359943977591,0.8204006937171183,"[200, 204]",published MorDIFF step count not verified
 clip_pool,pipe,H1,frll_stored,B20_vs_R0,0.7388970588235294,0.661453706811961,0.8178126178355958,"[200, 204]",
 clip_pool,pipe,H1,frll_stored,A_vs_B,0.444775,0.39795473617259286,0.4797738490068912,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,pipe,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,pipe,H1,mirror,PAF_vs_D20r,0.998046875,0.9911242603550295,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_pool,pipe,H2,frll256,B20_vs_D20,0.9727450980392157,0.9484570174570772,0.9902961529439362,"[200, 204]",
 clip_pool,pipe,H2,frll256,B20_vs_a256,0.9668137254901961,0.9401318252995642,0.9865709645236299,"[200, 204]",
 clip_pool,pipe,H2,frll256,D20_vs_a256,0.48111303344867357,0.45367106401384083,0.508148308342945,"[204, 204]",
@@ -181,8 +181,8 @@ clip_pool,pipe,H2,frll_stored,A_vs_D,0.7390441176470588,0.6733143800998661,0.799
 clip_pool,pipe,H2,frll_stored,A_vs_R0,0.8115441176470588,0.7550544381429702,0.8630851540399676,"[200, 204]",published MorDIFF step count not verified
 clip_pool,pipe,H2,frll_stored,B20_vs_R0,0.8044117647058824,0.7477113667249078,0.8581129217452746,"[200, 204]",
 clip_pool,pipe,H2,frll_stored,A_vs_B,0.330775,0.25829212288693576,0.39287787518969175,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,pipe,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,pipe,H2,mirror,PAF_vs_D20r,0.98046875,0.9511834319526628,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_pool,soft1+pipe,H1,frll256,B20_vs_D20,0.8799509803921569,0.8115128632781099,0.9374892357061202,"[200, 204]",
 clip_pool,soft1+pipe,H1,frll256,B20_vs_a256,0.9017401960784314,0.8399300608551405,0.9525613595059713,"[200, 204]",
 clip_pool,soft1+pipe,H1,frll256,D20_vs_a256,0.5568050749711649,0.5326316801230296,0.5836697424067666,"[204, 204]",
@@ -204,8 +204,8 @@ clip_pool,soft1+pipe,H1,frll_stored,A_vs_D,0.6356372549019608,0.5481239361605809
 clip_pool,soft1+pipe,H1,frll_stored,A_vs_R0,0.7533088235294118,0.6741584774146743,0.8342733207227883,"[200, 204]",published MorDIFF step count not verified
 clip_pool,soft1+pipe,H1,frll_stored,B20_vs_R0,0.7552941176470588,0.6777163400996363,0.8340835610692348,"[200, 204]",
 clip_pool,soft1+pipe,H1,frll_stored,A_vs_B,0.46105,0.4144777390163986,0.49819754241413405,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,soft1+pipe,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,soft1+pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft1+pipe,H1,mirror,PAF_vs_D20r,0.998046875,0.9911242603550295,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft1+pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_pool,soft1+pipe,H2,frll256,B20_vs_D20,0.9741421568627451,0.9501025349460172,0.9912228906714201,"[200, 204]",
 clip_pool,soft1+pipe,H2,frll256,B20_vs_a256,0.96625,0.9389856270854925,0.9865134168952555,"[200, 204]",
 clip_pool,soft1+pipe,H2,frll256,D20_vs_a256,0.46981930026912727,0.4424962754709727,0.4964442762399077,"[204, 204]",
@@ -227,8 +227,8 @@ clip_pool,soft1+pipe,H2,frll_stored,A_vs_D,0.727671568627451,0.6600966829866569,
 clip_pool,soft1+pipe,H2,frll_stored,A_vs_R0,0.8461764705882353,0.7949929758765747,0.8928792277080572,"[200, 204]",published MorDIFF step count not verified
 clip_pool,soft1+pipe,H2,frll_stored,B20_vs_R0,0.8414705882352941,0.7898725382898626,0.8897989110825469,"[200, 204]",
 clip_pool,soft1+pipe,H2,frll_stored,A_vs_B,0.370775,0.29709379258903484,0.4343056245032718,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_pool,soft1+pipe,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_pool,soft1+pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft1+pipe,H2,mirror,PAF_vs_D20r,0.984375,0.9575510204081633,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft1+pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,none,H1,frll256,B20_vs_D20,0.8156372549019608,0.7467510524726229,0.8788201016792855,"[200, 204]",
 clip_patch,none,H1,frll256,B20_vs_a256,0.6963480392156862,0.6215480322215514,0.7669638202929433,"[200, 204]",
 clip_patch,none,H1,frll256,D20_vs_a256,0.3543829296424452,0.32501802191464824,0.3753129805843906,"[204, 204]",
@@ -250,8 +250,8 @@ clip_patch,none,H1,frll_stored,A_vs_D,0.6275,0.5464080913581304,0.70550906217750
 clip_patch,none,H1,frll_stored,A_vs_R0,0.5810049019607844,0.4945464227614869,0.6647587771220906,"[200, 204]",published MorDIFF step count not verified
 clip_patch,none,H1,frll_stored,B20_vs_R0,0.5951470588235294,0.5128061580024166,0.6746074566538188,"[200, 204]",
 clip_patch,none,H1,frll_stored,A_vs_B,0.221025,0.16472271612277625,0.2647338220405436,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,none,H1,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,none,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,none,H1,mirror,PAF_vs_D20r,0.9345703125,0.882414151925078,0.9844290657439446,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,none,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,none,H2,frll256,B20_vs_D20,0.8790686274509804,0.8353552600559295,0.9197314976248231,"[200, 204]",
 clip_patch,none,H2,frll256,B20_vs_a256,0.7793137254901961,0.7226274157988554,0.8335661830426253,"[200, 204]",
 clip_patch,none,H2,frll256,D20_vs_a256,0.36308150711264897,0.3375384467512495,0.3815365484429065,"[204, 204]",
@@ -273,8 +273,8 @@ clip_patch,none,H2,frll_stored,A_vs_D,0.6776715686274509,0.6029694877595821,0.74
 clip_patch,none,H2,frll_stored,A_vs_R0,0.6835539215686275,0.6108853663876097,0.7539227715626128,"[200, 204]",published MorDIFF step count not verified
 clip_patch,none,H2,frll_stored,B20_vs_R0,0.6847058823529412,0.6127696799046867,0.7548598429023025,"[200, 204]",
 clip_patch,none,H2,frll_stored,A_vs_B,0.27435,0.2123338238684001,0.3245403522405258,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,none,H2,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,none,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,none,H2,mirror,PAF_vs_D20r,0.8212890625,0.7511111111111111,0.9056003061224489,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,none,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,soft1,H1,frll256,B20_vs_D20,0.8170343137254902,0.7482912232214064,0.8804613989558672,"[200, 204]",
 clip_patch,soft1,H1,frll256,B20_vs_a256,0.7079656862745098,0.632520991917697,0.7793251806738006,"[200, 204]",
 clip_patch,soft1,H1,frll256,D20_vs_a256,0.3680795847750865,0.3404213523644752,0.3880238369857747,"[204, 204]",
@@ -296,8 +296,8 @@ clip_patch,soft1,H1,frll_stored,A_vs_D,0.6414705882352941,0.5627611124565549,0.7
 clip_patch,soft1,H1,frll_stored,A_vs_R0,0.6187745098039216,0.5361185192040203,0.6979202017345398,"[200, 204]",published MorDIFF step count not verified
 clip_patch,soft1,H1,frll_stored,B20_vs_R0,0.6345588235294117,0.5559921592323607,0.7093540630907312,"[200, 204]",
 clip_patch,soft1,H1,frll_stored,A_vs_B,0.244,0.18476156327024762,0.2869584878449104,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,soft1,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,soft1,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,soft1,H1,mirror,PAF_vs_D20r,0.9345703125,0.8798828125,0.9863965044914947,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,soft1,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,soft1,H2,frll256,B20_vs_D20,0.8738235294117647,0.8258893664010505,0.9174459295992299,"[200, 204]",
 clip_patch,soft1,H2,frll256,B20_vs_a256,0.7830637254901961,0.7207912445016852,0.8418902353590807,"[200, 204]",
 clip_patch,soft1,H2,frll256,D20_vs_a256,0.37254901960784315,0.3464034265667051,0.3925665609381007,"[204, 204]",
@@ -319,8 +319,8 @@ clip_patch,soft1,H2,frll_stored,A_vs_D,0.6136764705882353,0.5334840828223181,0.6
 clip_patch,soft1,H2,frll_stored,A_vs_R0,0.6625,0.5875430711598945,0.7350704862175697,"[200, 204]",published MorDIFF step count not verified
 clip_patch,soft1,H2,frll_stored,B20_vs_R0,0.6665441176470588,0.5925456755564354,0.73948803329498,"[200, 204]",
 clip_patch,soft1,H2,frll_stored,A_vs_B,0.30665,0.24470130431658005,0.3507442595067526,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,soft1,H2,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,soft1,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,soft1,H2,mirror,PAF_vs_D20r,0.8046875,0.7430795847750865,0.8850079437545653,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,soft1,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,soft5,H1,frll256,B20_vs_D20,0.8280392156862745,0.7679838133169934,0.8819446528611444,"[200, 204]",
 clip_patch,soft5,H1,frll256,B20_vs_a256,0.6161764705882353,0.5421030511563599,0.6885714598473913,"[200, 204]",
 clip_patch,soft5,H1,frll256,D20_vs_a256,0.2587706651287966,0.22226667627835447,0.28842452422145326,"[204, 204]",
@@ -342,8 +342,8 @@ clip_patch,soft5,H1,frll_stored,A_vs_D,0.5286519607843138,0.44578500123225256,0.
 clip_patch,soft5,H1,frll_stored,A_vs_R0,0.4970833333333333,0.4115805151352446,0.5808980491240182,"[200, 204]",published MorDIFF step count not verified
 clip_patch,soft5,H1,frll_stored,B20_vs_R0,0.5182598039215687,0.43677280658025924,0.5986020848556813,"[200, 204]",
 clip_patch,soft5,H1,frll_stored,A_vs_B,0.18495,0.13093426275772826,0.2297968162246281,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,soft5,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,soft5,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,soft5,H1,mirror,PAF_vs_D20r,0.935546875,0.8884083044982699,0.9808682327097505,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,soft5,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,soft5,H2,frll256,B20_vs_D20,0.8893627450980393,0.8472064883207675,0.9278218227475039,"[200, 204]",
 clip_patch,soft5,H2,frll256,B20_vs_a256,0.7912254901960785,0.7322608331334863,0.8462250115258746,"[200, 204]",
 clip_patch,soft5,H2,frll256,D20_vs_a256,0.35238850442137637,0.3253310024990388,0.3730302047289504,"[204, 204]",
@@ -365,8 +365,8 @@ clip_patch,soft5,H2,frll_stored,A_vs_D,0.6228431372549019,0.5420881117699069,0.6
 clip_patch,soft5,H2,frll_stored,A_vs_R0,0.6815196078431373,0.6070993673183189,0.751537162567281,"[200, 204]",published MorDIFF step count not verified
 clip_patch,soft5,H2,frll_stored,B20_vs_R0,0.6905882352941176,0.6189018417123943,0.760334947951047,"[200, 204]",
 clip_patch,soft5,H2,frll_stored,A_vs_B,0.30955,0.24726265967115293,0.35464360410614454,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,soft5,H2,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,soft5,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,soft5,H2,mirror,PAF_vs_D20r,0.80859375,0.7488866666666667,0.8867227853822314,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,soft5,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,pipe,H1,frll256,B20_vs_D20,0.8292892156862746,0.7671861918779348,0.8874266016567054,"[200, 204]",
 clip_patch,pipe,H1,frll256,B20_vs_a256,0.7853921568627451,0.7187924541583077,0.848095604285628,"[200, 204]",
 clip_patch,pipe,H1,frll256,D20_vs_a256,0.4445165321030373,0.42538867262591307,0.4592230151864667,"[204, 204]",
@@ -388,8 +388,8 @@ clip_patch,pipe,H1,frll_stored,A_vs_D,0.6695833333333333,0.5938777121646118,0.74
 clip_patch,pipe,H1,frll_stored,A_vs_R0,0.6839950980392157,0.6057062355804819,0.7573105038104626,"[200, 204]",published MorDIFF step count not verified
 clip_patch,pipe,H1,frll_stored,B20_vs_R0,0.7010539215686274,0.6292047415663575,0.7717565292688368,"[200, 204]",
 clip_patch,pipe,H1,frll_stored,A_vs_B,0.277225,0.21789632444341386,0.3189643574716801,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,pipe,H1,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,pipe,H1,mirror,PAF_vs_D20r,0.9306640625,0.8767313019390581,0.9822485207100592,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,pipe,H2,frll256,B20_vs_D20,0.876078431372549,0.8287533491657533,0.9182630236913994,"[200, 204]",
 clip_patch,pipe,H2,frll256,B20_vs_a256,0.84125,0.786764371048966,0.8906996276286694,"[200, 204]",
 clip_patch,pipe,H2,frll256,D20_vs_a256,0.4517012687427912,0.429737961361015,0.47128508266051516,"[204, 204]",
@@ -411,8 +411,8 @@ clip_patch,pipe,H2,frll_stored,A_vs_D,0.6577941176470589,0.5829560308972074,0.73
 clip_patch,pipe,H2,frll_stored,A_vs_R0,0.7346078431372549,0.6676406349162368,0.7977805910099889,"[200, 204]",published MorDIFF step count not verified
 clip_patch,pipe,H2,frll_stored,B20_vs_R0,0.736985294117647,0.6692738276138619,0.8016315273634961,"[200, 204]",
 clip_patch,pipe,H2,frll_stored,A_vs_B,0.3393,0.2798487676951042,0.38631319454213275,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,pipe,H2,mirror,PAF_vs_D20r,0.8125,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,pipe,H2,mirror,PAF_vs_D20r,0.771484375,0.717454758889944,0.8496122154172437,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,soft1+pipe,H1,frll256,B20_vs_D20,0.8278921568627451,0.7665213981014894,0.8854689907731048,"[200, 204]",
 clip_patch,soft1+pipe,H1,frll256,B20_vs_a256,0.7851225490196079,0.7191680347130471,0.8476017801857585,"[200, 204]",
 clip_patch,soft1+pipe,H1,frll256,D20_vs_a256,0.44367550941945405,0.4247873414071511,0.45799752499038826,"[204, 204]",
@@ -434,8 +434,8 @@ clip_patch,soft1+pipe,H1,frll_stored,A_vs_D,0.6707107843137254,0.595524189575327
 clip_patch,soft1+pipe,H1,frll_stored,A_vs_R0,0.6925,0.6166956458367988,0.7641870958582436,"[200, 204]",published MorDIFF step count not verified
 clip_patch,soft1+pipe,H1,frll_stored,B20_vs_R0,0.7079166666666666,0.6373738877384427,0.7770592116937273,"[200, 204]",
 clip_patch,soft1+pipe,H1,frll_stored,A_vs_B,0.28925,0.22937710409263784,0.32996756252681636,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,soft1+pipe,H1,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,soft1+pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,soft1+pipe,H1,mirror,PAF_vs_D20r,0.9267578125,0.8699271592091571,0.981994459833795,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,soft1+pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 clip_patch,soft1+pipe,H2,frll256,B20_vs_D20,0.8743872549019608,0.8270374558505067,0.9172767565359476,"[200, 204]",
 clip_patch,soft1+pipe,H2,frll256,B20_vs_a256,0.8411029411764706,0.7868582283111096,0.8904983329215275,"[200, 204]",
 clip_patch,soft1+pipe,H2,frll256,D20_vs_a256,0.4525422914263745,0.4303867502883506,0.4721987937331795,"[204, 204]",
@@ -457,8 +457,8 @@ clip_patch,soft1+pipe,H2,frll_stored,A_vs_D,0.6585539215686275,0.583630242175071
 clip_patch,soft1+pipe,H2,frll_stored,A_vs_R0,0.7388970588235294,0.6727096053554271,0.8015018206903691,"[200, 204]",published MorDIFF step count not verified
 clip_patch,soft1+pipe,H2,frll_stored,B20_vs_R0,0.7424754901960784,0.67584514838909,0.805794037824673,"[200, 204]",
 clip_patch,soft1+pipe,H2,frll_stored,A_vs_B,0.3432,0.28306582582582585,0.3903849625606401,"[200, 200]","bridge, published MorDIFF step count not verified"
-clip_patch,soft1+pipe,H2,mirror,PAF_vs_D20r,0.8125,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-clip_patch,soft1+pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_patch,soft1+pipe,H2,mirror,PAF_vs_D20r,0.7705078125,0.7171706249344657,0.8478071049157325,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+clip_patch,soft1+pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,none,H1,frll256,B20_vs_D20,0.9426960784313726,0.9059311665842807,0.971453494345676,"[200, 204]",
 dino_pool,none,H1,frll256,B20_vs_a256,0.8025490196078431,0.7286083873087891,0.8674678570582482,"[200, 204]",
 dino_pool,none,H1,frll256,D20_vs_a256,0.24605920799692427,0.2036236063052672,0.28554342079969236,"[204, 204]",
@@ -480,8 +480,8 @@ dino_pool,none,H1,frll_stored,A_vs_D,0.546813725490196,0.47535276610644256,0.620
 dino_pool,none,H1,frll_stored,A_vs_R0,0.6026470588235294,0.5276376657474136,0.6795650298268371,"[200, 204]",published MorDIFF step count not verified
 dino_pool,none,H1,frll_stored,B20_vs_R0,0.5958823529411764,0.5202619498688429,0.6735801946921596,"[200, 204]",
 dino_pool,none,H1,frll_stored,A_vs_B,0.1788,0.12864889093102133,0.2185226605720701,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,none,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,none,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,none,H1,mirror,PAF_vs_D20r,0.97265625,0.9338724489795919,0.9989594172736732,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,none,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,none,H2,frll256,B20_vs_D20,0.9370098039215686,0.8923345854127974,0.9714491671390573,"[200, 204]",
 dino_pool,none,H2,frll256,B20_vs_a256,0.7734068627450981,0.6909735014673876,0.8445156711333182,"[200, 204]",
 dino_pool,none,H2,frll256,D20_vs_a256,0.23618319876970395,0.19355536332179932,0.273742671088043,"[204, 204]",
@@ -503,8 +503,8 @@ dino_pool,none,H2,frll_stored,A_vs_D,0.5012990196078432,0.41328217149305135,0.58
 dino_pool,none,H2,frll_stored,A_vs_R0,0.5937254901960785,0.5044764705882353,0.6796731077632924,"[200, 204]",published MorDIFF step count not verified
 dino_pool,none,H2,frll_stored,B20_vs_R0,0.5638725490196078,0.4798584656974918,0.6478944364887028,"[200, 204]",
 dino_pool,none,H2,frll_stored,A_vs_B,0.185675,0.12442354182304372,0.2327841014659946,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,none,H2,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,none,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,none,H2,mirror,PAF_vs_D20r,0.96875,0.934156378600823,0.9947916666666666,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,none,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,soft1,H1,frll256,B20_vs_D20,0.9332107843137255,0.8916891320509246,0.9662926443655718,"[200, 204]",
 dino_pool,soft1,H1,frll256,B20_vs_a256,0.8396323529411764,0.7678722761154956,0.9009930664779281,"[200, 204]",
 dino_pool,soft1,H1,frll256,D20_vs_a256,0.3017108804306036,0.2600670415224914,0.34150446943483276,"[204, 204]",
@@ -526,8 +526,8 @@ dino_pool,soft1,H1,frll_stored,A_vs_D,0.5738480392156863,0.4976629399276364,0.64
 dino_pool,soft1,H1,frll_stored,A_vs_R0,0.651985294117647,0.5727527506220891,0.7288996519883253,"[200, 204]",published MorDIFF step count not verified
 dino_pool,soft1,H1,frll_stored,B20_vs_R0,0.6525980392156863,0.5744165338549212,0.7289017983945514,"[200, 204]",
 dino_pool,soft1,H1,frll_stored,A_vs_B,0.198375,0.14698498800890353,0.23695113716833008,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,soft1,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,soft1,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,soft1,H1,mirror,PAF_vs_D20r,0.9833984375,0.9565217391304348,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,soft1,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,soft1,H2,frll256,B20_vs_D20,0.9367401960784314,0.8908042811719282,0.9714766483516484,"[200, 204]",
 dino_pool,soft1,H2,frll256,B20_vs_a256,0.7638970588235294,0.6797060030884541,0.8375369866256361,"[200, 204]",
 dino_pool,soft1,H2,frll256,D20_vs_a256,0.22541810841983853,0.18288638985005767,0.26307309688581315,"[204, 204]",
@@ -549,8 +549,8 @@ dino_pool,soft1,H2,frll_stored,A_vs_D,0.4987990196078431,0.4107213776207187,0.58
 dino_pool,soft1,H2,frll_stored,A_vs_R0,0.5796568627450981,0.49080285523300227,0.6658982028858055,"[200, 204]",published MorDIFF step count not verified
 dino_pool,soft1,H2,frll_stored,B20_vs_R0,0.5503676470588236,0.4663014814678432,0.6334788987279499,"[200, 204]",
 dino_pool,soft1,H2,frll_stored,A_vs_B,0.182225,0.12202199405912158,0.22915131046408949,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,soft1,H2,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,soft1,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,soft1,H2,mirror,PAF_vs_D20r,0.970703125,0.936848140672391,0.9955555555555555,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,soft1,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,soft5,H1,frll256,B20_vs_D20,0.928186274509804,0.8869036883621373,0.9616789532013839,"[200, 204]",
 dino_pool,soft5,H1,frll256,B20_vs_a256,0.80375,0.7306602586935111,0.8692075081780964,"[200, 204]",
 dino_pool,soft5,H1,frll256,D20_vs_a256,0.27732122260668973,0.23957071799307958,0.31149197424067665,"[204, 204]",
@@ -572,8 +572,8 @@ dino_pool,soft5,H1,frll_stored,A_vs_D,0.5680637254901961,0.4906766739811525,0.64
 dino_pool,soft5,H1,frll_stored,A_vs_R0,0.6221078431372549,0.5402769417642285,0.7028682170542635,"[200, 204]",published MorDIFF step count not verified
 dino_pool,soft5,H1,frll_stored,B20_vs_R0,0.6304411764705883,0.5500813750596268,0.7092091292952825,"[200, 204]",
 dino_pool,soft5,H1,frll_stored,A_vs_B,0.219275,0.16631338120033867,0.2574758587395887,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,soft5,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,soft5,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,soft5,H1,mirror,PAF_vs_D20r,0.9736328125,0.9411048992271904,0.9977777777777778,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,soft5,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,soft5,H2,frll256,B20_vs_D20,0.931593137254902,0.8785436106202138,0.9714027859821883,"[200, 204]",
 dino_pool,soft5,H2,frll256,B20_vs_a256,0.7034558823529412,0.6103614878340646,0.7844758064516129,"[200, 204]",
 dino_pool,soft5,H2,frll256,D20_vs_a256,0.1738033448673587,0.13766339869281047,0.20593041138023838,"[204, 204]",
@@ -595,8 +595,8 @@ dino_pool,soft5,H2,frll_stored,A_vs_D,0.5015441176470589,0.4053353351447495,0.59
 dino_pool,soft5,H2,frll_stored,A_vs_R0,0.5877696078431373,0.4873444055007459,0.683331209886455,"[200, 204]",published MorDIFF step count not verified
 dino_pool,soft5,H2,frll_stored,B20_vs_R0,0.5689950980392157,0.4719624318889025,0.6603886946009725,"[200, 204]",
 dino_pool,soft5,H2,frll_stored,A_vs_B,0.2013,0.1420717657213762,0.24501607310532272,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,soft5,H2,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,soft5,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,soft5,H2,mirror,PAF_vs_D20r,0.9580078125,0.9189729147429979,0.990487514863258,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,soft5,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,pipe,H1,frll256,B20_vs_D20,0.9457598039215687,0.9115389177938068,0.972895176383539,"[200, 204]",
 dino_pool,pipe,H1,frll256,B20_vs_a256,0.8458333333333333,0.7787488156605804,0.9036855482933914,"[200, 204]",
 dino_pool,pipe,H1,frll256,D20_vs_a256,0.2845780469050365,0.24243079584775087,0.32528414552095347,"[204, 204]",
@@ -618,8 +618,8 @@ dino_pool,pipe,H1,frll_stored,A_vs_D,0.5675245098039216,0.4963146259419938,0.640
 dino_pool,pipe,H1,frll_stored,A_vs_R0,0.6515686274509804,0.5777886502231131,0.7255548073447372,"[200, 204]",published MorDIFF step count not verified
 dino_pool,pipe,H1,frll_stored,B20_vs_R0,0.6433578431372549,0.5687979505848297,0.7185811986806405,"[200, 204]",
 dino_pool,pipe,H1,frll_stored,A_vs_B,0.18325,0.1329061809284464,0.2226131916130777,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,pipe,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,pipe,H1,mirror,PAF_vs_D20r,0.978515625,0.9466625514403292,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,pipe,H2,frll256,B20_vs_D20,0.9391911764705883,0.8956370230524642,0.9723278224897671,"[200, 204]",
 dino_pool,pipe,H2,frll256,B20_vs_a256,0.8036274509803921,0.7271619493710717,0.8688096198318387,"[200, 204]",
 dino_pool,pipe,H2,frll256,D20_vs_a256,0.26754133025759325,0.22426410515186468,0.30553212706651284,"[204, 204]",
@@ -641,8 +641,8 @@ dino_pool,pipe,H2,frll_stored,A_vs_D,0.5075,0.4196439075630252,0.593850313799762
 dino_pool,pipe,H2,frll_stored,A_vs_R0,0.6160049019607843,0.5281843189403421,0.699836837627613,"[200, 204]",published MorDIFF step count not verified
 dino_pool,pipe,H2,frll_stored,B20_vs_R0,0.5858578431372549,0.5027586460720651,0.6682698739862998,"[200, 204]",
 dino_pool,pipe,H2,frll_stored,A_vs_B,0.1822,0.12134608956577271,0.2301279173204532,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,pipe,H2,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,pipe,H2,mirror,PAF_vs_D20r,0.970703125,0.9377777777777778,0.9948096885813149,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,soft1+pipe,H1,frll256,B20_vs_D20,0.9318872549019608,0.8893748310745588,0.965729308215308,"[200, 204]",
 dino_pool,soft1+pipe,H1,frll256,B20_vs_a256,0.8289460784313726,0.7547241229182989,0.8922218997248023,"[200, 204]",
 dino_pool,soft1+pipe,H1,frll256,D20_vs_a256,0.28976835832372166,0.2480049740484429,0.3300179017685505,"[204, 204]",
@@ -664,8 +664,8 @@ dino_pool,soft1+pipe,H1,frll_stored,A_vs_D,0.5642156862745098,0.4879499346157561
 dino_pool,soft1+pipe,H1,frll_stored,A_vs_R0,0.6413480392156863,0.5616028746646874,0.7189233136620343,"[200, 204]",published MorDIFF step count not verified
 dino_pool,soft1+pipe,H1,frll_stored,B20_vs_R0,0.6400245098039216,0.5611057635022285,0.7175523682419173,"[200, 204]",
 dino_pool,soft1+pipe,H1,frll_stored,A_vs_B,0.19165,0.14019749617831756,0.23034570671707733,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,soft1+pipe,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,soft1+pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,soft1+pipe,H1,mirror,PAF_vs_D20r,0.982421875,0.9550766044009515,1.0,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,soft1+pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,32,gen
 dino_pool,soft1+pipe,H2,frll256,B20_vs_D20,0.9393137254901961,0.8964571173503402,0.9720197318057658,"[200, 204]",
 dino_pool,soft1+pipe,H2,frll256,B20_vs_a256,0.8058088235294117,0.7289837525520901,0.8716067170111288,"[200, 204]",
 dino_pool,soft1+pipe,H2,frll256,D20_vs_a256,0.26619569396386006,0.2225586312956555,0.304549331987697,"[204, 204]",
@@ -687,5 +687,5 @@ dino_pool,soft1+pipe,H2,frll_stored,A_vs_D,0.5151960784313725,0.4273392425183466
 dino_pool,soft1+pipe,H2,frll_stored,A_vs_R0,0.6114460784313726,0.5238562091503268,0.6945361837749029,"[200, 204]",published MorDIFF step count not verified
 dino_pool,soft1+pipe,H2,frll_stored,B20_vs_R0,0.5822303921568628,0.4996321917909135,0.6637721448228413,"[200, 204]",
 dino_pool,soft1+pipe,H2,frll_stored,A_vs_B,0.18305,0.12264370676111758,0.23016854425735386,"[200, 200]","bridge, published MorDIFF step count not verified"
-dino_pool,soft1+pipe,H2,mirror,PAF_vs_D20r,0.9375,0.75,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
-dino_pool,soft1+pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+dino_pool,soft1+pipe,H2,mirror,PAF_vs_D20r,0.97265625,0.9410150891632373,0.9954086317722681,"[32, 32]",AD1b mirror mixes (n small if smoke only)
+dino_pool,soft1+pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,32,gen
