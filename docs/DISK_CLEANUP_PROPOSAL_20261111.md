@@ -16,9 +16,12 @@ second copy: the place of the verified copy is given. Owners add their lists thr
 | MIPGAN controls (AG1) | /mnt/t7/smad_next/AG1/athena/ag1_pack.tar | 2.8 GB | Athena packs/AG1/ag1_pack.tar (sha256 c6b9d2c9...); rebuilt deterministically by make_athena_pack.sh |
 | MIPGAN controls (AG1) | /mnt/t7/smad_next/AG1/athena/pack/ag1_inputs.tar, ag1_code.tar | 0.33 GB | inside the Athena pack |
 | MIPGAN controls (AG1) | /mnt/t7/smad_next/AG1/staging/packs | 0.21 GB | superseded WCSS packs; copy on WCSS Lustre smad-next/packs/AG1 |
+| Retrains (AD5) | /mnt/t7/smad_next/AD5/packs/smdd_train_raw.tar | 4.6 GB | Athena packs/AD5 (hash checked by jobs 3544216, 3545882); source data also in Datasety/downloads/SMDD |
+| Retrains (AD5) | /mnt/t7/smad_next/AD5/packs/wheels_madation.tar, wheels_selfmad.tar, wheels_score.tar | 8.2 GB | Athena copies hash-checked by jobs 3544216, 3545882, 3545948 |
+| Retrains (AD5) | /mnt/t7/smad_next/AD5/wheels/ | 7.8 GB | the unpacked sources of those three tars |
+| Retrains (AD5) | /mnt/t7/smad_next/AD5/packs/code | 2.6 GB | Athena copies checksum-compared; 2.3 GB of it are CLIP files also in ~/.cache/huggingface |
 
-Still to be listed by their owners: pack tars of the SMDD rebuild (SM1, about 45 GB), the retrains (AD5, about
-13 GB), the protocol-network tests (PN1, 10 GB), the diffusion generation
+Still to be listed by their owners: pack tars of the SMDD rebuild (SM1, about 45 GB), the protocol-network tests (PN1, 10 GB), the diffusion generation
 (DG1, 3 GB).
 
 Note, 11 Nov: owners removed their own rebuildable temporary files (test work folders, build intermediates): the MIPGAN controls owner 20 GB, the protocol-network owner 12 GB, the frozen-features owner 2.4 GB. Working copies of result tars fetched from Athena only for processing may be removed after processing when the hash of the Athena copy is recorded.
