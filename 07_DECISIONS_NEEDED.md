@@ -109,3 +109,9 @@ morph literature note to `narolski/research`.
 ## Author's decision of 11 Nov, 21:43: uploads to rented machines
 
 - "I approve the upload... Data is safe for processing across devices." Uploads of experiment data to machines rented or approved for the sprint are authorised; allow rules for the upload scripts of the own-crop re-score (RS1) and the protocol-network tests (PN1) were added to the project settings.
+
+## Author's decisions of 11 Nov, 22:31
+
+- A new owner for the reading of the morph-free networks experiment (AD4) is started on the author's request.
+- "I approve you to rent machines autonomously in the budget given" (50 USD this night); the lead rents without asking each time and reports what it rented.
+- The lead monitors the DGX, Athena and the rented machines and plans more work when they are idle.
