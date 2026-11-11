@@ -170,6 +170,19 @@ No retrain and no score exist yet.
   restarted 20:02 (4 dlib workers, nice 10), log `/mnt/t7/smad_next/AD5/scores_selfmad_release.log`. No score opened.
 - 11 Nov 20:03. SelfMAD smoke 3545882: the environment rebuild on the project file system is slow (torch and CUDA
   wheels installed between 19:39 and 20:01).
+- 11 Nov 19:38-20:12. SelfMAD smoke 3545882 (t0013, account plgrestorearc; 34:03 = 0.57 GPU-hours) PASSED:
+  environment rebuilt with efficientnet-pytorch (about 23 min on the project file system), labels reused, 1 epoch of
+  the 1,600-render subset (99 steps of 16 + 16): about 1.45 it/s (0.69 s per step), GPU utilisation 92-100% in 12 of
+  16 samples (GPU-bound, so more loader workers would not help), peak 14,957 MiB; `epoch_1.tar` has the authors'
+  keys and the release's 1,956 tensors. Estimate: 24,982 / 16 = 1,561 steps per epoch, 100 epochs = about 30 h =
+  30 GPU-hours per seed.
+- 11 Nov 20:14. Submitted SelfMAD array **3545933** (code_v3 `ad5_selfmad_train.sbatch`, `-A plgmultivision-gpu-a100`,
+  `--time=46:00:00`, `--array=401-404`): four seeds keep the total within the 250 GPU-hour budget (L 64 + B 17 + X 34
+  + S 120 + spent about 2 + scoring about 5 = about 242). Seed 405 (about 30 GPU-hours more) asked of the lead.
+- 11 Nov 20:17 (lead). Seed 405 approved, allowance 300 A100-hours, exclude node t0010, end of stage 14 Nov (a seed
+  not at epoch 100 by 14 Nov 18:00 is "incomplete"). 20:19: submitted **3545936** (SelfMAD seed 405, code_v3,
+  `-A plgmultivision-gpu-a100 --time=46:00:00 --exclude=t0010`); `scontrol update JobId=3545933 ExcNodeList=t0010`
+  for the pending seeds 401-404 (checked: ExcNodeList=t0010). Prereg amendment 3 registered (20:20).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -309,9 +322,11 @@ DGX: no AD5 process running. Athena jobs (logs in
 | 3545815_[401-405] | MixFaceNet-MAD retrains, first submission | 1 x 9:00 | CANCELLED 19:24 (review finding 2); 401 ran 11:38 = 0.19 GPU-h | replaced by 3545870 |
 | 3545870_[401-405] | MixFaceNet-MAD retrains v2 (code_v2, per-epoch weights) -> results/AD5/mixfacenet_X_s<seed>.tar + _epochs/ | 1 x 12:00 each | submitted 19:33 | resubmit failed ids from code_v2; log kept in logs/AD5_keep |
 | 3544218 | SelfMAD: env, face labels -> packs/AD5/selfmad_labels.tar.gz, 1-epoch smoke | 1 x 55 min | FAILED 35:28 (missing package after the labels), 0.59 GPU-h | fixed, resubmitted as 3545882 |
-| 3545882 | SelfMAD smoke v3 (env rebuild, labels reused, 1-epoch smoke) | 1 x 55 min | submitted 19:36 | read log |
-Compute spent so far: 1.25 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2, 3544218 0.59, 3545815_401 0.19;
-plus running jobs). Budget: 250 GPU-hours for AD5 (lead, 19:20). Planned
+| 3545882 | SelfMAD smoke v3 (env rebuild, labels reused, 1-epoch smoke) | 1 x 55 min | COMPLETED 34:03, 0.57 GPU-h | done |
+| 3545933_[401-404] | SelfMAD retrains (code_v3; account plgmultivision; t0010 excluded) -> results/AD5/selfmad_S_s<seed>.tar + _epochs/ | 1 x 46:00 each | submitted 20:14 | resubmit failed ids from code_v3 with -A plgmultivision-gpu-a100 --exclude=t0010 |
+| 3545936 (task 405) | SelfMAD retrain seed 405 (same) | 1 x 46:00 | submitted 20:19 | as above |
+Compute spent so far: 1.82 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2, 3544218 0.59, 3545815_401 0.19,
+3545882 0.57; plus running jobs). Allowance: 300 A100-hours for AD5 (lead, 20:17); planned about 272. Planned
 production: about 111 GPU-hours (L 62, B 16, X 33), then SelfMAD.
 Logs on Athena: `/net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-madation-ad5-madL-<job>_<seed>.out`,
 `AD5-madation-ad5-madB-...`, `AD5-mixfacenet-<job>_<seed>.out`.

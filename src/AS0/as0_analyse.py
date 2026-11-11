@@ -160,6 +160,8 @@ def history_shift(D, nat, cop, Dr, ch="Y", flip=0, band="B1"):
     a, b = D.val(nat, ch, flip, band), D.val(cop, ch, flip, band)
     m = np.isfinite(a) & np.isfinite(b)
     a, b = a[m], b[m]
+    if m.sum() < 10:                  # band beyond the copy's Nyquist (e.g. 80 px SMDD copies): not measurable
+        return dict(d=np.nan, lo=np.nan, hi=np.nan, n=int(m.sum()), mean_diff=np.nan, sd_native=np.nan)
     pp = [p for p, k in zip(persons(D, nat), m) if k]
     d0 = float((b - a).mean() / a.std(ddof=1))
     W = ST.weights(Dr, pp)
@@ -510,20 +512,21 @@ def main():
         res["G_x2_session_counts"] = dict(same=len(g("x2", "1")), cross=len(g("x2", "0")))
     # ------------------------------------------------------------------ diffusion ladder
     d = lambda set_, role: D.sel(lambda it: it["set"] == set_ and it["role"] == role)
-    allD = D.sel(lambda it: it["set"] in ("D", "M"))
+    allD = D.sel(lambda it: it["set"] in ("D", "M", "Mf"))
     if allD:
         DrD = draw_for(D, allD, B)
         for name, X, Y in (("B20 vs C20", d("D", "two20"), d("D", "same20")), ("B20 vs D20", d("D", "two20"), d("D", "rec20")),
                            ("C20 vs D20", d("D", "same20"), d("D", "rec20")), ("D20 vs photo", d("D", "rec20"), d("D", "photo")),
                            ("B100 vs D20", d("D", "two100"), d("D", "rec20")),
                            ("P_AF vs D20r (AD1b)", d("M", "mirror20"), d("M", "rec20r")),
-                           ("P_AF vs D20 (all)", d("M", "mirror20"), d("D", "rec20"))):
+                           ("P_AF vs D20 (all)", d("M", "mirror20"), d("D", "rec20")),
+                           ("P_AF vs D20r (AD1b full run)", d("Mf", "mirror20"), d("Mf", "rec20r"))):
             if X and Y:
                 run_contrasts(D, out, "D", X, Y, name, "all", B, chans=("Y", "RGB"), flips=(0, 1), Dr=DrD)
         # replication of the lead's face-box statistic (medians)
         rep = {}
         for set_, role in (("D", "photo"), ("D", "rec20"), ("D", "same20"), ("D", "two20"), ("D", "two100"),
-                           ("M", "mirror20"), ("M", "rec20r")):
+                           ("M", "mirror20"), ("M", "rec20r"), ("Mf", "mirror20"), ("Mf", "rec20r")):
             ids = d(set_, role)
             rep[f"{set_}|{role}"] = dict(n=len(ids), box_l1_median=round(float(np.nanmedian(D.cov(ids, "box_l1"))), 3),
                                          mask_l1_median=round(float(np.nanmedian(D.cov(ids, "l1_mask"))), 3))

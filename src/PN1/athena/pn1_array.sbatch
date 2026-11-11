@@ -18,6 +18,8 @@ module load Python/3.10.4 2>&1 || echo "module Python/3.10.4 not loadable"
 set -u
 G=/net/pr2/projects/plgrid/plggrestoration/smad-next
 : "${MEMFS:?RAM disk required (-C memfs)}"
+PIN=5c6427907d92514ed284881fcf859f92a4294da74e03ada46226fdd7b0dd2676   # prereg.md "Pack pin"
+[ "$(cut -c1-64 "$G/packs/PN1/pn1_pack.tar.sha256")" = "$PIN" ] || { echo "pack sha256 file differs from the registered pin"; exit 1; }
 TASKS=(PN1_A_s401 PN1_B_s401 PN1_Bn_s401 PN1_C_s401 PN1_A_s402 PN1_B_s402 PN1_Bn_s402 PN1_C_s402)
 T=${TASKS[$SLURM_ARRAY_TASK_ID]}
 W=$MEMFS/work_$T; mkdir -p "$W"; export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"

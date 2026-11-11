@@ -393,3 +393,53 @@ AUC original -> blanked: AF0 validation u50 vs own halves (200 vs 400): full-des
 0.965. AR1 OpenCV R2w vs R4 (536 vs 536): full heads 0.994-0.999 -> 0.992-0.998; arms (a) 0.9985 -> 0.9978,
 (b) 0.999 -> 0.9986, (c) 0.997 -> 0.996, (d) 0.977 -> 0.973, (e) 0.959 -> 0.952. Changes are at most 0.010.
 The Laplacian-variance floor rises after blanking: AF0 0.760 -> 0.870; OpenCV R2w vs R4 0.774 -> 0.817.
+
+## AF0 wave 3, control 3: template, pair swap, shuffled maps (DINOv3 ViT-L/16 at 512)
+
+Template baseline and pair swap: in the F1 lines above (template correlation about 0.23 for every head; after removing
+it, DINOv3 MLP 0.49-0.50, ridge 0.25; CLIP-224 MLP 0.24-0.26, ridge 0.10; pair swap lower bounds: DINOv3 MLP
+0.415-0.426, ridge 0.206; CLIP-224 MLP 0.217-0.238, ridge 0.063, so the CLIP-224 ridge misses the 0.10 requirement).
+Shuffled-map control (ridge refit on the full training set with the target maps permuted among the positive images,
+seed 401; `metrics_dinov3_512_shuffle.json`), real-map ridge -> shuffled-map ridge:
+F1 0.285 -> 0.183 [0.157, 0.207]; pair swap 0.243 -> 0.116; FaceMorpher R2 vs R4 0.999 -> 1.000; OpenCV R2w vs R4
+0.995 -> 0.996; FaceMorpher R3 vs R4 0.862 -> 0.849; OpenCV R3m vs R4 0.725 -> 0.844; FRLL native -> E7 shift (opencv)
+0.08 -> 0.16, (others) 0.01-0.03 -> 0.06; corrected MAD22 FaceMorpher E7 0.22 -> 0.24; R0 -> R2w FaceMorpher 0.65 ->
+0.72, OpenCV 0.22 -> 0.38. Image-level AUCs unchanged; history shifts larger with shuffled maps.
+
+## AF0 wave 3, control 6: pooling audit (`wave3_pooling_*.json`, `pooling_top10_heat_*.png`)
+
+History shifts under mean and top-tenth pooling are in the F3 tables above (within 0.02 of each other on CLIP-224;
+DINOv3 in `metrics_dinov3_512_full.json`, key score_top10). Median pooling: `metrics_clip224_full.json` rerun (key
+score_median). Where the top tenth of in-hull patches lies on genuine images (MLP seed 401; the inner-face hull holds
+about 50% of the hull's patches): DINOv3: FRLL native frames 68% inside the inner face (E7 frames 69-70%), AR1 R0 52%,
+R2w 55%, R4 48%; CLIP-224: FRLL native 52% (E7 52-53%), AR1 R0 44%, R2w 46%, R4 49%. Heat map (DINOv3, FRLL): the
+top-tenth patches concentrate along the eyebrow line at the top of the hull, the nose bridge and the nose tip.
+
+## Full design, interim (20:20 CET): CLIP ViT-L/14 at 336 (`metrics_clip336_full.json`)
+
+Same design (MLP: 384 of 576 patches per image per seed). F1: ridge 0.102 [0.072, 0.127]; MLP 401-405 0.266, 0.275,
+0.259, 0.261, 0.268 (intervals about ±0.035; below the 0.4 pass mark, above the 0.2 drop mark). F2 FaceMorpher R2 vs R4:
+0.997 (ridge), 0.999-1.000 (MLP), 1.000 (logistic); OpenCV R2w vs R4 0.994-0.999; FaceMorpher R3 vs R4 0.86-0.90;
+OpenCV R3m vs R4 0.73-0.82 (floors as above). F3 (MLP seeds): FRLL native -> E7 -0.02 to 0.01; R0 -> R2 0.05-0.06
+(FaceMorpher), 0.00 (OpenCV); R0 -> R2w 0.22-0.24 (FaceMorpher), 0.01-0.03 (OpenCV); corrected MAD22 FaceMorpher E7
+0.13-0.18. F5 EER % native / E7 (MLP seeds): FRLL AMSL 5.9-7.9 / 6.3-7.8, FaceMorpher 0.5-0.9 / 0.5-0.6, OpenCV
+0.5-0.9 / 0.4-0.9, WebMorph 5.9-7.8 / 5.9-7.3; corrected MAD22 FaceMorpher 0.1-0.5, OpenCV 2.5-3.4, Webmorph 5.8-7.9.
+Poisson set (A27; unseen tool and persons), morph vs genuine AUC: MLP 0.926-0.930 [about 0.90, 0.95], ridge 0.908,
+logistic 0.889 (Laplacian floor 0.566). F4 on CLIP-336: running.
+
+Benchmark floors (wave 3, control 1, on the F5 cells; `metrics_clip224_full.json`, key score, field
+best_simple): a single simple statistic separates morphs from genuine frames at folded AUC 0.97-1.00 in every
+benchmark landmark cell, with native and with E7 genuine images: FRLL opencv: black-border fraction ("zero_frac") 1.00
+/ 1.00; facemorpher: band power 0.25-0.375 cycles/px 1.00 / zero_frac 1.00; AMSL: band 0.25-0.375 1.00 / Laplacian
+face-over-border ratio 1.00; WebMorph: band 0.25-0.375 1.00 / face noise 0.997; corrected MAD22 FaceMorpher: band
+0.125-0.25 1.00 / zero_frac 1.00; OpenCV 1.00 / 0.9998; Webmorph 0.984 / 0.974. Laplacian variance alone (lower =
+morph) on FRLL cells: 0.33-0.60 against native frames and 0.00-0.03 against E7 frames (E7 genuine frames are smoother
+than the morphs). Poisson set (A27): every head 0.879-0.912 on CLIP-224 (Laplacian floor 0.566).
+
+## Graded mixing set (AR1's FaceMorpher library set, m = 0 ... 0.5, 300 hosts; `graded_ar1g.json`), CLIP-224
+
+Mean image score by level (m = 0 / 0.1 / 0.2 / 0.3 / 0.4 / 0.5) and AUC against m = 0 for m = 0.1 / 0.2:
+full-design MLP (5 seeds): 0.051-0.055 / 0.123-0.127 / 0.208-0.212 / 0.283-0.287 / 0.337-0.341 / 0.359-0.362, AUC
+0.795-0.800 / 0.952-0.955; ridge 0.086 / 0.137 / 0.201 / 0.259 / 0.301 / 0.318, AUC 0.755 / 0.928; logistic AUC
+0.845 / 0.976. Wave-2 heads (wave-1 scale): alpha MLP AUC 0.810 / 0.959; g 0.796 / 0.947; D 0.768 / 0.933; G 0.743 /
+0.905. Page trend test monotone for every head (p < 1e-300). DINOv3 graded readout pending (scores being written).

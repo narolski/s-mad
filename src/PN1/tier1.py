@@ -200,6 +200,33 @@ def main():
                                                      stA["A_violation_parts"]["R0_61_or_left_out_gt10_cam"]),
                               jpeg50_violation=stA["jpeg50_gt10"], shift_sd=cA)
     comp["A_violation_by_seed"] = viol
+    # amendment 5: reference row "standard recipe on released SMDD"
+    rt = pathlib.Path(a.results) / "PN1_REF_smdd_m3.tar"
+    if rt.exists():
+        assert hashlib.sha256(rt.read_bytes()).hexdigest() == (rt.parent / (rt.name + ".sha256")).read_text().split()[0]
+        d = K.PN1 / "results" / "unpacked"
+        if not (d / "PN1_REF_smdd_m3").exists():
+            with tarfile.open(rt) as t:
+                t.extractall(d)
+        HIST = ["T_R0_61", "T_R0_112", "FRLL_amsl_e7", "FRLL_facemorpher_e7", "FRLL_opencv_e7", "FRLL_webmorph_e7",
+                "MAD22_FaceMorpher_e7", "MAD22_OpenCV_e7", "MAD22_Webmorph_e7", "FRLL_bona_blur1", "FRLL_bona_resample50"]
+        JPG = ["FRLL_bona_jpeg90", "FRLL_bona_jpeg70", "FRLL_bona_jpeg50"]
+        ref = {}
+        for nd in sorted((d / "PN1_REF_smdd_m3").glob("a12_*")):
+            z = np.load(nd / "scores_eval.npz")
+            s_ = dict(zip([str(i) for i in z["id"]], z["logit"].astype(float)))
+            r = RD.all_reads(s_, P, 0.0, (cues, names))
+            K.dump(r, out / f"ref_{nd.name}.json")
+            q = {}
+            for th in ("own", "cam"):
+                fx = r["fixed"][th]
+                q[th] = dict(flags_history={p: round(fx[p]["rate"], 4) for p in HIST if p in fx},
+                             flags_jpeg={p: round(fx[p]["rate"], 4) for p in JPG if p in fx},
+                             any_gt10=bool(any(fx[p]["rate"] > 0.10 for p in HIST + JPG if p in fx)),
+                             miss_gating={c: round(fx[c]["rate"], 4) for c in RD.GATING_ATTACK if c in fx},
+                             family_mean_miss=fx["_family_mean_miss_gating"]["mean"])
+            ref[nd.name] = q
+        comp["reference_standard_recipe_smdd"] = ref
     comp["networks_read"] = sorted(f"{a}_s{s}" for a, s in R)
     comp["networks_refused"] = {f"{a}_s{s}": v for (a, s), v in info.items() if "refused" in v}
     K.dump(comp, out / "compare.json")

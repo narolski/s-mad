@@ -160,3 +160,17 @@ before it is cited).
 
 **For the class question:** MorDeephy's choice (same-person morphs are bona fide) is published precedent for
 keeping same-person blends out of the attack class.
+
+## 7. Corrections after the review of the frozen-features experiment (FZ1), 11 Nov 20:20
+
+- In `ROUND3_BRIEF.md` the 100-step diffusion contrast was described as published MorDIFF files against our
+  reconstructions. Both arms are our own renders (same steps, same writer).
+- "A frozen encoder is not protection" holds for the frozen-encoder ViT-B/16 release only. SMDD-only heads on
+  frozen CLIP ViT-L/14 do not move with storage history (0 to +1.5 points); their weakness is detection (MorDIFF
+  EER about 41%).
+- Frozen SMDD heads show a weak second-person ordering at 20 steps (two-person over same-person mix 0.62
+  [0.52, 0.71]; same-person mix against reconstruction 0.51). Not shown to be identity: in that pool a second
+  person and the disagreement between the two inputs cannot be separated.
+- Probes: a direction separating two-person from same-person diffusion mixes exists (0.945, not expression).
+  "Mixing" cannot yet be told from "not rendered from its own noise map"; the new diffusion ladder decides.
+- Our frames may favour the landmark cells: every landmark error rate from our frames needs the own-crop path.

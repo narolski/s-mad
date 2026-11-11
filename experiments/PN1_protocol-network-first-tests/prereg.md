@@ -366,3 +366,10 @@ All eight are reported, none is selected. Question fixed in advance: does the st
 any history-matched genuine pool (test-ladder R0_61 and R0_112, FRLL-Morphs and corrected-MAD22 E7 pools, FRLL
 blur1 / resample50) or JPEG genuine pool (FRLL jpeg90 / 70 / 50) at its own 0.5 rule or at τ_cam, and what does it miss
 on the gating attack cells at the same threshold? Reported per network and as the range over the eight; no pass mark.
+
+## Pack pin (11 Nov 20:15 CET, before any Athena job)
+
+`/mnt/t7/smad_next/PN1/pn1_pack.tar`: sha256 `5c6427907d92514ed284881fcf859f92a4294da74e03ada46226fdd7b0dd2676` (10,159,360,000 bytes, 31,398 files in its SHA256SUMS: code and
+ViT-B/16 weights of the AD4 pack, `pn1_score.py`, manifests train_A (`af070a60529db3e8…`),
+train_B (`bd53dc3252a76767…`), train_Bn (`21b5a2ca91fb672e…`),
+train_C (`a9f8fae62382648f…`), pn1_eval (`44f049d11a6c9dee…`)). The job files refuse any other pack.

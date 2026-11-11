@@ -244,3 +244,13 @@ the AD5 path on the DGX; that file has not been opened.
 RS1's crop files by sha256 as the RS1 owner names them: primary = the authors' crop script run unchanged (with its
 quirks), secondary = the corrected crop stored as PNG. Crops re-saved as JPEG by code written in this sprint are not
 scored.
+
+## Amendment 3 (11 Nov 2026, 20:20 CET; lead's message of 20:17; before any score of a retrain)
+
+1. **End of the experiment stage.** The stage ends on 14 Nov 2026. A SelfMAD seed that has not reached epoch 100 by
+   14 Nov 18:00 CET is reported as "incomplete (epoch e reached)"; its latest saved weights (every 5 epochs) may be
+   scored only as a descriptive row labelled with that epoch, never in a verdict or a count. The same applies to any
+   other arm whose seed has not finished by then. With fewer than five finished seeds the verdicts read
+   "incomplete (k seeds)" (amendment 1, item 1).
+2. **Allowance.** 300 A100-hours for this experiment (lead, 20:17). SelfMAD seed 405 is submitted (job 3545936).
+3. The SelfMAD tasks exclude the slow node t0010 (lead's instruction); this changes no setting of the training.

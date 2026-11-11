@@ -180,6 +180,13 @@ def main():
             p = f.stem.split("_")[0]
             add(id=f"M|{f.stem}|{role}", set="M", role=role, tool="diffae", path=str(f), frame="diffae256", lm="det",
                 persons=p, host=p, db="frll")
+    # full AD1b run (32 persons), added only after the AD1b generator has finished (gen_log.json written)
+    if (AD1B / "gen" / "gen_log.json").exists():
+        for g, role in (("PAF", "mirror20"), ("D20r", "rec20r")):
+            for f in sorted((AD1B / "gen" / g / "png256").glob("*.png")):
+                p = f.stem.split("_")[0]
+                add(id=f"Mf|{f.stem}|{role}", set="Mf", role=role, tool="diffae", path=str(f), frame="diffae256",
+                    lm="det", persons=p, host=p, db="frll")
     # ---- Ds: the same A43 arms after the A43 storage step (stored crops), and the published MorDIFF morphs ----
     for g, role in (("E", "photo"), ("D20", "rec20"), ("C20", "same20"), ("B20", "two20"), ("A", "pub_mordiff")):
         for f in sorted((A43 / "data/a43/stored" / g).glob("*.png")):

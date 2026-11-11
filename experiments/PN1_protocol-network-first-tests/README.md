@@ -152,38 +152,39 @@ trainable parameters 74,241, as AD4). Seeds 401 (named) and 402. Athena image `s
 
 ## 5. Results
 
-### 5.1 Tier 0, CLIP ViT-L/14 224 (frozen mean tokens, logistic heads)
+### 5.1 Tier 0, CLIP ViT-L/14 224, recomputed under amendment 4 (current)
 
-Full tables: `tier0_tables.md` (seed 401), `tier0_key.csv` (all seeds), JSON per head in `tier0/`. Training rows:
-A0 1,246 (518 photos, 728 u50), B0 4,415 (photos 518, zero 730, halves 1,456, photo_61 254, halfA_61 363, u50 728,
-u50_61 366). Test ladder 191 hosts.
+Full tables: `tier0_tables.md` (seed 401), `tier0_key.csv` (all seeds), JSON per head in `tier0/`. Heads trained on
+the stratified-balanced rows (A0 1,736 rows of 1,246 images; B0 6,642 of 4,415; Bn0 1,482 of 1,246). Inner folds are
+partner-safe and drop 40 to 72% of rows as straddling (AF0 pairs link persons densely); C chosen there. Test ladder 191
+hosts; intervals over partner cycles. Floor for the excess: best of 39 statistics (27 at 512 px, 12 at 224 px).
 
-| Read (seed 401) | A0 | B0 |
-|---|---|---|
-| R2w vs R4, OpenCV | 0.999 [0.998, 1.000] | 0.999 [0.997, 1.000] |
-| excess over best of 27 statistics (band b3, 0.876) | +0.123 [+0.090, +0.154] | +0.123 [+0.090, +0.154] |
-| R2w4 vs R4, OpenCV (excess) | 0.999 (+0.125 [0.091, 0.156]) | 0.999 (+0.124 [0.091, 0.156]) |
-| R0_61 vs R4 / R2w_61 vs R4 | 0.998 / 0.999 | 0.998 / 0.998 |
-| 2 x 2: R2w vs R4_61; R2w_112 vs R4_112; R2w_61 vs R4_61 | 1.000; 1.000; 0.999 | 0.999; 0.999; 0.999 |
-| shift R0 -> R0_61 (SD of R0 logits) | +0.222 [0.175, 0.267] | +0.182 [0.127, 0.243] |
-| shift R0 -> R0_112 | +0.071 [0.031, 0.110] | +0.097 [0.048, 0.148] |
-| H1 AUC | 0.862 [0.841, 0.882] | 0.893 [0.873, 0.911] |
-| MAD22 OpenCV EER native / E7 (%) | 4.41 / 4.90 | 5.39 / 5.39 |
-| MAD22 Webmorph EER native / E7 (%) | 6.00 / 6.00 | 5.39 / 5.39 |
-| R4 vs R3, OpenCV | 0.853 | 0.865 |
-| τ_0.5: flag on every genuine pool | 0% | 0% |
-| τ_0.5: miss ladder R4 / R4_61 / MAD22 OpenCV / Webmorph / H1 (%) | 4.2 / 5.2 / 47.0 / 65.8 / 79.8 | 5.8 / 4.7 / 43.5 / 55.4 / 48.7 |
-| τ_dev binding pool | development R0_61 | development R0_112 |
-| τ_dev: flag T_R0 / T_R0_61 / T_R0_112 / FRLL jpeg50 (%) | 6.3 / 9.9 / 7.9 / 3.4 | 3.7 / 5.8 / 4.7 / 2.0 |
-| τ_dev: miss ladder R4 / R4_61 / MAD22 OpenCV / Webmorph / H1 (%) | 0.5 / 0.0 / 15.8 / 28.0 / 52.2 | 0.5 / 0.5 / 18.0 / 22.4 / 24.9 |
-| τ_dev: family-mean miss over gating cells (%) | 24.1 | 16.5 |
-| τ_dev: placed R3 / R3m (%) | 78.0 / 90.1 | 74.9 / 93.7 |
-| marks: K0; 2 x 2; NU-a; NU-d | not triggered; pass; none > 10%; 5.2/0.0% | not triggered; pass; H1 genuine 11.2% at τ_dev; 4.7/0.5% |
+| Read (seed 401) | A0 | B0 | Bn0 |
+|---|---|---|---|
+| R2w vs R4 (excess, best statistic band5@224 0.888) | 1.000 (+0.111 [0.076, 0.152]) | 0.998 (+0.110 [0.075, 0.151]) | 0.999 (+0.111 [0.076, 0.151]) |
+| R2w4 vs R4 (excess) | 1.000 (+0.116) | 0.998 (+0.115) | 0.999 (+0.116) |
+| R0_61 vs R4 / R2w_61 vs R4 | 0.999 / 0.999 | 0.998 / 0.998 | 0.999 / 0.999 |
+| shift R0 -> R0_61 (SD) | +0.295 [0.254, 0.392] | +0.173 [0.127, 0.272] | +0.144 [0.099, 0.234] |
+| shift R0 -> R0_112 (SD) | +0.147 [0.114, 0.211] | +0.084 [0.050, 0.141] | +0.037 [0.006, 0.091] |
+| H1 AUC | 0.877 | 0.888 | 0.879 |
+| MAD22 E7 EER OpenCV / Webmorph (%) | 4.90 / 6.20 | 4.41 / 4.90 | 3.92 / 6.80 |
+| τ_0.5: genuine flags (max over pools) | 0.8% (H1) | 1.2% (H1) | 1.3% (H1) |
+| τ_0.5: miss MAD22 OpenCV / Webmorph / H1 (%) | 53.3 / 68.2 / 67.4 | 54.2 / 66.0 / 58.5 | 57.7 / 73.4 / 63.9 |
+| τ_cam: flag T_R0 / T_R0_61 / T_R0_112 (%) | 12.6 / 20.4 / 15.7 | 6.8 / 8.4 / 7.3 | 2.6 / 5.2 / 4.7 |
+| τ_cam: flag FRLL jpeg50 / H1 genuine (%) | 3.9 / 11.0 | 2.0 / 11.5 | 0.0 / 6.7 |
+| τ_cam: miss ladder R4 / MAD22 OpenCV / Webmorph / H1 (%) | 0.0 / 12.8 / 21.4 / 29.8 | 0.5 / 14.5 / 24.8 / 25.8 | 0.5 / 19.8 / 34.4 / 36.6 |
+| τ_cam: family-mean miss (gating, %) | 16.0 | 16.4 | 22.8 |
+| τ_cam: placed R3 / R3m (%) | 87.4 / 95.8 | 81.7 / 94.8 | 74.3 / 88.5 |
+| P-c (61.2 px) / P-c2 (112.7 px) / unseen kernels | fail / fail / pass | pass / pass / pass | pass / pass / pass |
+| K0; 2 x 2 | no; pass | no; pass | no; pass |
 
-Seeds 402 to 405: AUCs within 0.001 of seed 401; A0 shift 0.22 to 0.26; B0 seed 402 chose C = 10 (others C = 1) and
-gives shift +0.036, H1 0.904, family-mean miss 10.4%.
+Seed spread: A0 seeds 402 to 404 chose C = 0.1 (401 and 405: C = 10): shift +0.311, τ_cam flag of T_R0_61 7.3%,
+family-mean miss 20.4%; B0 identical over the five seeds (C = 0.1); Bn0 seed 405 chose C = 0.001 (shift +0.19).
 
-DINOv3, the certificate and the matched-subsample test: pending.
+Provisional first version (whole-manifest balance, host bootstrap, 512-px floor): `tier0_v1_provisional*`,
+superseded (amendment 4).
+
+DINOv3 tier 0, the certificate and the matched-subsample test: pending.
 
 ### 5.2 Tier 1
 

@@ -7,9 +7,9 @@
     "history_d_native_landmarks": -0.0127,
     "history_shift_over_K1": -0.0828,
     "Lsoft_fm61_d": {
-     "R0_fm61|none": null,
-     "R2w_fm61|opencv": null,
-     "R2w_fm61|facemorpher": null
+     "R0_fm61|none": 0.0152,
+     "R2w_fm61|opencv": 0.0382,
+     "R2w_fm61|facemorpher": 0.0344
     },
     "K1_is_val_dropped": 0.5674,
     "K1_beyond_geometry": 0.5295,
@@ -22,8 +22,8 @@
    },
    "K1_auc": 0.5634,
    "K1_ci": [
-    0.5246,
-    0.6027
+    0.5257,
+    0.6029
    ],
    "history_d": -0.018,
    "history_ci": [
@@ -41,9 +41,9 @@
     "history_d_native_landmarks": 0.1065,
     "history_shift_over_K1": 0.1466,
     "Lsoft_fm61_d": {
-     "R0_fm61|none": null,
-     "R2w_fm61|opencv": null,
-     "R2w_fm61|facemorpher": null
+     "R0_fm61|none": -0.0137,
+     "R2w_fm61|opencv": 0.0388,
+     "R2w_fm61|facemorpher": 0.046
     },
     "K1_is_val_dropped": 0.6029,
     "K1_beyond_geometry": 0.5647,
@@ -56,8 +56,8 @@
    },
    "K1_auc": 0.5991,
    "K1_ci": [
-    0.5565,
-    0.6355
+    0.5607,
+    0.6397
    ],
    "history_d": 0.0484,
    "history_ci": [
@@ -75,9 +75,9 @@
     "history_d_native_landmarks": 0.2041,
     "history_shift_over_K1": 0.2059,
     "Lsoft_fm61_d": {
-     "R0_fm61|none": null,
-     "R2w_fm61|opencv": null,
-     "R2w_fm61|facemorpher": null
+     "R0_fm61|none": 0.0336,
+     "R2w_fm61|opencv": 0.1293,
+     "R2w_fm61|facemorpher": 0.1177
     },
     "K1_is_val_dropped": 0.6217,
     "K1_beyond_geometry": 0.5962,
@@ -90,8 +90,8 @@
    },
    "K1_auc": 0.6179,
    "K1_ci": [
-    0.5783,
-    0.6547
+    0.5796,
+    0.6588
    ],
    "history_d": 0.102,
    "history_ci": [
@@ -109,9 +109,9 @@
     "history_d_native_landmarks": 0.1238,
     "history_shift_over_K1": 0.4226,
     "Lsoft_fm61_d": {
-     "R0_fm61|none": null,
-     "R2w_fm61|opencv": null,
-     "R2w_fm61|facemorpher": null
+     "R0_fm61|none": 0.0437,
+     "R2w_fm61|opencv": 0.1304,
+     "R2w_fm61|facemorpher": 0.134
     },
     "K1_is_val_dropped": 0.5672,
     "K1_beyond_geometry": 0.5424,
@@ -124,8 +124,8 @@
    },
    "K1_auc": 0.5622,
    "K1_ci": [
-    0.5225,
-    0.5994
+    0.5215,
+    0.6052
    ],
    "history_d": 0.0947,
    "history_ci": [
@@ -143,9 +143,9 @@
     "history_d_native_landmarks": 0.0141,
     "history_shift_over_K1": 0.2921,
     "Lsoft_fm61_d": {
-     "R0_fm61|none": null,
-     "R2w_fm61|opencv": null,
-     "R2w_fm61|facemorpher": null
+     "R0_fm61|none": 0.0378,
+     "R2w_fm61|opencv": 0.0514,
+     "R2w_fm61|facemorpher": 0.0319
     },
     "K1_is_val_dropped": 0.5264,
     "K1_beyond_geometry": 0.5116,
@@ -158,8 +158,8 @@
    },
    "K1_auc": 0.5241,
    "K1_ci": [
-    0.4836,
-    0.5635
+    0.4831,
+    0.5653
    ],
    "history_d": 0.0164,
    "history_ci": [
@@ -180,7 +180,232 @@
   "in_predicted_zone": true,
   "falsified_by": []
  },
- "blank_sensitivity_A4": {},
+ "blank_sensitivity_A4": {
+  "B0": {
+   "K1": {
+    "auc": 0.5506,
+    "lo": 0.4767,
+    "hi": 0.6252,
+    "nX": 374,
+    "nY": 374,
+    "medLX": -7.5243,
+    "medLY": -7.3463
+   },
+   "K5": {
+    "auc": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "nX": 0,
+    "nY": 0,
+    "medLX": NaN,
+    "medLY": NaN
+   },
+   "Fm_FaceMorpher_own": {
+    "d": 0.0578,
+    "lo": 0.0431,
+    "hi": 0.0752,
+    "n": 204,
+    "mean_diff": 0.0663,
+    "sd_native": 1.1468
+   }
+  },
+  "B1": {
+   "K1": {
+    "auc": 0.5759,
+    "lo": 0.4996,
+    "hi": 0.6512,
+    "nX": 374,
+    "nY": 374,
+    "medLX": -3.5296,
+    "medLY": -3.3364
+   },
+   "K5": {
+    "auc": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "nX": 0,
+    "nY": 0,
+    "medLX": NaN,
+    "medLY": NaN
+   },
+   "Fm_FaceMorpher_own": {
+    "d": 0.1552,
+    "lo": 0.1135,
+    "hi": 0.2021,
+    "n": 204,
+    "mean_diff": 0.088,
+    "sd_native": 0.5671
+   }
+  },
+  "B2": {
+   "K1": {
+    "auc": 0.6069,
+    "lo": 0.5396,
+    "hi": 0.6777,
+    "nX": 374,
+    "nY": 374,
+    "medLX": -2.9715,
+    "medLY": -2.7278
+   },
+   "K5": {
+    "auc": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "nX": 0,
+    "nY": 0,
+    "medLX": NaN,
+    "medLY": NaN
+   },
+   "Fm_FaceMorpher_own": {
+    "d": 0.195,
+    "lo": 0.1463,
+    "hi": 0.2626,
+    "n": 204,
+    "mean_diff": 0.1006,
+    "sd_native": 0.5158
+   }
+  },
+  "B3": {
+   "K1": {
+    "auc": 0.6505,
+    "lo": 0.5849,
+    "hi": 0.7192,
+    "nX": 374,
+    "nY": 374,
+    "medLX": -2.3384,
+    "medLY": -2.0643
+   },
+   "K5": {
+    "auc": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "nX": 0,
+    "nY": 0,
+    "medLX": NaN,
+    "medLY": NaN
+   },
+   "Fm_FaceMorpher_own": {
+    "d": 0.1596,
+    "lo": 0.111,
+    "hi": 0.2182,
+    "n": 204,
+    "mean_diff": 0.0727,
+    "sd_native": 0.4554
+   }
+  },
+  "B4": {
+   "K1": {
+    "auc": 0.5998,
+    "lo": 0.5332,
+    "hi": 0.6708,
+    "nX": 374,
+    "nY": 374,
+    "medLX": -1.2519,
+    "medLY": -1.0757
+   },
+   "K5": {
+    "auc": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "nX": 0,
+    "nY": 0,
+    "medLX": NaN,
+    "medLY": NaN
+   },
+   "Fm_FaceMorpher_own": {
+    "d": 0.0214,
+    "lo": -0.0346,
+    "hi": 0.0784,
+    "n": 204,
+    "mean_diff": 0.0098,
+    "sd_native": 0.4572
+   }
+  },
+  "B5": {
+   "K1": {
+    "auc": 0.5663,
+    "lo": 0.4983,
+    "hi": 0.6356,
+    "nX": 374,
+    "nY": 374,
+    "medLX": -0.6621,
+    "medLY": -0.572
+   },
+   "K5": {
+    "auc": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "nX": 0,
+    "nY": 0,
+    "medLX": NaN,
+    "medLY": NaN
+   },
+   "Fm_FaceMorpher_own": {
+    "d": -0.6882,
+    "lo": -0.8596,
+    "hi": -0.5456,
+    "n": 204,
+    "mean_diff": -0.2239,
+    "sd_native": 0.3253
+   }
+  },
+  "B6": {
+   "K1": {
+    "auc": 0.4963,
+    "lo": 0.4305,
+    "hi": 0.5639,
+    "nX": 374,
+    "nY": 374,
+    "medLX": -0.6572,
+    "medLY": -0.6582
+   },
+   "K5": {
+    "auc": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "nX": 0,
+    "nY": 0,
+    "medLX": NaN,
+    "medLY": NaN
+   },
+   "Fm_FaceMorpher_own": {
+    "d": -6.2446,
+    "lo": -7.2379,
+    "hi": -5.5395,
+    "n": 204,
+    "mean_diff": -0.9843,
+    "sd_native": 0.1576
+   }
+  },
+  "BB": {
+   "K1": {
+    "auc": 0.6413,
+    "lo": 0.5714,
+    "hi": 0.7103,
+    "nX": 374,
+    "nY": 374,
+    "medLX": -2.6589,
+    "medLY": -2.3944
+   },
+   "K5": {
+    "auc": 0.0,
+    "lo": 0.0,
+    "hi": 0.0,
+    "nX": 0,
+    "nY": 0,
+    "medLX": NaN,
+    "medLY": NaN
+   },
+   "Fm_FaceMorpher_own": {
+    "d": -0.2942,
+    "lo": -0.3702,
+    "hi": -0.2365,
+    "n": 204,
+    "mean_diff": -0.1121,
+    "sd_native": 0.3811
+   }
+  }
+ },
  "n_items_floored_A5": 42,
  "rule": "kill: K1 < 0.60 in every band B1..B5; pass: K1 >= 0.70 and |d| < 0.1 (Fm E7 FaceMorpher) and R3m collapse (median ratio <= 0.25 and AUC >= 0.95) in one band; else weak"
 }

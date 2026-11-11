@@ -111,6 +111,9 @@ def main():
                 (K.PN1 / "tier0" / bb).mkdir(parents=True, exist_ok=True)
                 np.savez(K.PN1 / "tier0" / bb / f"{arm}_s{seed}{'_smoke' if a.smoke else ''}.npz", id=np.array(ids),
                          logit=s.astype(np.float32))
+                np.savez(K.PN1 / "tier0" / bb / f"{arm}_s{seed}{'_smoke' if a.smoke else ''}_head.npz",
+                         coef=h["model"].coef_.ravel(), intercept=h["model"].intercept_, mean=h["scaler"].mean_,
+                         scale=h["scaler"].scale_, C=h["C"])
                 R = RD.all_reads(S, P, 0.0, (cues, names))
                 R["strata"] = strata
                 R["marks"] = RD.marks_tier0(R)
