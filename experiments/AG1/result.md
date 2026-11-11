@@ -24,33 +24,33 @@ Status 11 Nov 2026: tasks staged on Lustre, not in `ready/`, nothing submitted. 
 FRLL 50 cycles (48 two-cycles), FERET 25, FRGC 19. Mean w600k cosine of contributors: morphs 0.140 / 0.161 / 0.170,
 twins 0.905 / 0.836 / 0.862 (FRLL / FERET / FRGC). Files: `pairs.csv`, `shards.csv`, `/mnt/t7/smad_next/AG1/inputs/`.
 
-## 3. Staged tasks (`/lustre/.../smad-next/staging/AG1/`, packs in `.../packs/AG1/`, all four sha256 verified on Lustre)
+## 3. Staged tasks
 
-13 tasks, 3,421 images, 9.8 H100-h at measured rates, 15.6 slot-h of `est_minutes`: o00 / o01 smoke (21 / 18 min);
-o02-o03 FRLL mip1 (149 / 72); o04-o07 FERET / FRGC mip1 (148 / 42 / 140 / 50); o08 FRLL mip2 (137); o09-o12 AG3 +
-AG3T (40 each, need o04-o07). Results go to `.../results/AG1/<shard>.tar` + `.sha256` + `.log.csv`.
+Athena (target since 11 Nov evening): single pack `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AG1/ag1_pack.tar`
+(sha256 c6b9d2c9...), scripts in `.../tasks/AG1/`; 14 shards (2 smoke, 8 core, 4 AG3 / AG3T), 3,833 images, 912
+inversions, 12.7 H100-h at the WCSS rates (A100 rate to be measured). Mirror rung (R3m) included for all 302 hosts.
+No job submitted: Slurm has no account association for the user yet (11 Nov 17:22; lead's watcher tests every 20
+minutes). Jobs: none. GPU-hours on clusters: 0.
+WCSS (superseded): 13 task dirs in `/lustre/.../smad-next/staging/AG1/`, never in ready/.
 
 ## 4. What was tested for real
 
-- `run.sh` (unchanged logic, local root via `AG1_SN`, DGX python via `AG1_PY`) on smoke shard o00: 2 FRLL persons,
-  4 inversions, 7 images (R2, R2i, R3 x 2, R4, RT, AG3 alpha 0.3), full iteration counts, exit 0, result tar with
-  verified sha256. GB10 values: R2 loss 1.67, R3 2.96, R4 5.42 (glint not run; w600k generator-side cosines R4
-  0.728 / 0.721, R3 0.966 / 0.965). Ran with the code before the review fixes (ag1_gen 375f5998...).
-- Final code (`ag1_code.tar` 735816eb...) through `run.sh` on a dependency test shard (needs the o00 tar): extracted
-  the needed latents, ran `mipgan_alpha` at alpha 0 and 0.2 and the twin dose: exit 0. Achieved dose (w600k cosine
-  to B): alpha 0 0.128, 0.2 0.366, 0.3 0.502, 0.5 (R4) 0.721.
-- RT vs R3 (same pair, order swapped, GB10): mean 3.9, max 133 grey levels; the symmetric loss is not bitwise
-  symmetric in floating point. RT is therefore a noise floor, not a determinism check (prereg changed).
-- Reader `ag1_read.py` end to end on the real design with synthetic scores and embeddings (6,421 rows, 20 cells).
-- Scoring adapter `ag1_score.py` selftest in a c669666 job root: 22 checks passed (stubbed networks).
-- WCSS login node: `~/dmenv/bin/python -I` imports torch 2.11 / torchvision 0.26 and the five vendored modules.
+- WCSS `run.sh` logic on the DGX GB10 with local roots: smoke mip1 7 / 7 images and smoke mip2 4 / 4 images, exit 0
+  (code before amendment 1). Final loss mip1 R2 1.67, R3 2.96, R4 5.42; mip2 R2 2.43, R3 3.29, R4 5.66.
+- Final code through `run.sh` on an AG3-type shard that reads the smoke result tar: exit 0; achieved dose (w600k
+  cosine to B) alpha 0 0.128, 0.2 0.366, 0.3 0.502, 0.5 0.721.
+- `mipgan_alpha(0.5)` objective equals `generate.mipgan`'s exactly (forward); trajectories differ by max |w| 0.65,
+  of the order of `generate.mipgan`'s own run-to-run spread (0.379).
+- RT vs R3: mean 3.9, max 133 grey levels (not a determinism check; noise floor).
+- Output format: 1024 x 1024 RGB PNG, no ancillary chunks, FFHQ framing as the published MIPGAN files.
+- Reader on the real design with synthetic scores (6,825 rows, 20 cells, exit 0); scoring adapter selftest (22
+  checks); WCSS dmenv import of the vendored modules.
 
 ## 5. Untested
 
-- Any run in a WCSS slot: the container (`apptainer exec --nv` of `pytorch_latest.sif`) inside the slot job, its
-  torch version, the H100 timing of our wrapper. `run.sh` exits 5 if apptainer is missing.
-- mip2 smoke and the `--selfcheck` (alpha 0.5 vs `generate.mipgan`): see section 6.
-- `ag1_manifest.py` (frames, glint oracle, RT check, pins) and real scoring: they need the generated images.
-- MixFaceNet-MAD scoring (no AG1 scorer).
+- Anything on Athena: environment build, A100 timing and peak memory, the task script. The smoke job tests these.
+- The mirror rung on a GPU (crops built and checked lossless on the DGX; no R3m image generated yet).
+- `ag1_manifest.py` and real scoring (need images); MixFaceNet-MAD scoring (no AG1 scorer); SelfMAD release is held
+  on T7 (AR1 copy, sha256 0ad8db6f...).
 
-## 6. Smoke completions (filled when the runs finish)
+Full record: `README.md`.

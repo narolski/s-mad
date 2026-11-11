@@ -55,3 +55,8 @@ charset-normalizer==2.0.12
 idna==3.3
 urllib3==1.26.9
 packaging==24.1
+typing_extensions==4.12.2
+# setuptools 69.5.1: openai-clip 1.0.1 does `from pkg_resources import packaging`, which setuptools >= 70 no longer provides
+setuptools==69.5.1
+wheel==0.43.0
+# sdists (no wheel on PyPI), built inside the job: easydict==1.10 openai-clip==1.0.1

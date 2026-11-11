@@ -46,6 +46,28 @@ here. No answer yet.
   idle multiprocessing workers (align.py creates `Pool(8)` but its parallel code is commented out).
 - 11 Nov 17:33. Written: `src/DG1/dg1_env.sh`, `dg1_run_task.sh`, `dg1_smoke.sbatch`, `dg1_prod.sbatch`,
   `dg1_pack.sh`, `dg1_validity.py`, `dg1_dgx_test.sh` (section 4).
+- 11 Nov 17:42. Alignment finished: 1,072 of 1,072 photos aligned (every photo had a face; none dropped), all open as
+  256 × 256 RGB. The 400 files that AD1b also aligned (`/mnt/t7/smad_next/AD1b/pool_a256`) are byte-identical to
+  ours. Hash list `/mnt/t7/smad_next/DG1/pool_a256.sha256` (sha256 77fc3fe8e241a06b00e8f96cce14e1125f56e9f16c7ae47653ced0a4d73b75f0).
+  Symlink parts removed.
+- 11 Nov 17:43. Job lists: `.venv-spark/bin/python -I src/DG1/dg1_lists.py lists --pool .../AR1/pool.csv --pool-a256
+  /mnt/t7/smad_next/DG1/pool_a256 --frll-a256 /mnt/t7/smad_heldout/a41_diffae/data/a41diffae/a256/png256 --a43-pairs
+  /home/narolski/mambamorph-code-a43/smadcvpr/plans/A43/A43_pairs.csv --self-pairs
+  /mnt/t7/smad_heldout/a41_diffae/data/provenance/self_pairs.csv --out /mnt/t7/smad_next/DG1/jobs` → `eq.csv` (8 jobs,
+  sha 3dfe6828…), `smoke8.csv` (10 jobs, c8ba541a…), `setA.csv` (914 jobs, 8491b41a…), `setB_s0..3.csv` (908 / 904 /
+  896 / 908 jobs; 403 / 404 / 404 / 403 encodes; 640 / 636 / 628 / 640 renders), summary
+  `/mnt/t7/smad_next/DG1/jobs/lists_summary.json`. Set B counts: G 1,072, REC / MIR / SAME / X 536 each, DOSE 100 per
+  fraction.
+- 11 Nov 17:43. DGX 8-image check started: `nohup bash src/DG1/dg1_dgx_test.sh > /mnt/t7/smad_next/DG1/dgx_test.log`
+  (GPU had about 33 GB in use by other processes, 38 GB host memory available).
+- 11 Nov 17:44. Pack built: `bash src/DG1/dg1_pack.sh` → `/mnt/t7/smad_next/DG1/packs/dg1_pack.tar`, 2,880,163,840 bytes,
+  sha256 670b55f19770811505ca00c2be1ea3681440f8190c4e79b4e1c2a68f211336c5, 1,276 input photos. Upload to
+  `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/DG1/` started with the Athena lock (rsync), together with
+  `dg1_env.sh`, `dg1_run_task.sh`, `dg1_smoke.sbatch`, `dg1_prod.sbatch` (copies in `/mnt/t7/smad_next/DG1/packs/`).
+- 11 Nov 17:44–17:46. Upload done: `flock -w 600 /tmp/smadnext-athena.lock rsync -a --partial -e "ssh -o BatchMode=yes"
+  <the six files> plgpnarolski@athena.cyfronet.pl:/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/DG1/`, exit
+  0, 2,880,875,330 bytes in 82 s (35 MB/s). The pack's sha256 is checked again inside every job (`dg1_run_task.sh`),
+  not on the login node.
 
 ## 3. Data
 

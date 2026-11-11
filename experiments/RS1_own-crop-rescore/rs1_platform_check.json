@@ -1,0 +1,146 @@
+{
+ "score_check": {
+  "madation_vitb16": {
+   "n": 11264,
+   "n_ours": 11264,
+   "max_abs_diff": 0.778510645031929,
+   "mean_abs_diff": 0.005735824943344307,
+   "n_diff_over_1e3": 1070,
+   "per_pool": {
+    "dim_dim_a": {
+     "n": 500,
+     "ext": ".png",
+     "max_abs_diff": 4.076957702636719e-05,
+     "n_diff_over_1e3": 0
+    },
+    "dim_dim_c": {
+     "n": 500,
+     "ext": ".png",
+     "max_abs_diff": 5.930662155151367e-05,
+     "n_diff_over_1e3": 0
+    },
+    "dim_fast_dim": {
+     "n": 500,
+     "ext": ".png",
+     "max_abs_diff": 3.129243850708008e-05,
+     "n_diff_over_1e3": 0
+    },
+    "dim_fast_dim_ode": {
+     "n": 499,
+     "ext": ".png",
+     "max_abs_diff": 3.975629806518555e-05,
+     "n_diff_over_1e3": 0
+    },
+    "dim_greedy_dim": {
+     "n": 500,
+     "ext": ".png",
+     "max_abs_diff": 4.233697836752981e-09,
+     "n_diff_over_1e3": 0
+    },
+    "dim_greedy_dim_s": {
+     "n": 500,
+     "ext": ".png",
+     "max_abs_diff": 5.322694778442383e-05,
+     "n_diff_over_1e3": 0
+    },
+    "frllm_amsl": {
+     "n": 2175,
+     "ext": ".jpg",
+     "max_abs_diff": 0.4032084345817566,
+     "n_diff_over_1e3": 263
+    },
+    "frllm_facemorpher": {
+     "n": 1222,
+     "ext": ".jpg",
+     "max_abs_diff": 0.778510645031929,
+     "n_diff_over_1e3": 195
+    },
+    "frllm_frll_bona": {
+     "n": 204,
+     "ext": ".jpg",
+     "max_abs_diff": 2.3384200176224113e-06,
+     "n_diff_over_1e3": 0
+    },
+    "frllm_opencv": {
+     "n": 1221,
+     "ext": ".jpg",
+     "max_abs_diff": 0.4920463263988495,
+     "n_diff_over_1e3": 265
+    },
+    "frllm_stylegan": {
+     "n": 1222,
+     "ext": ".jpg",
+     "max_abs_diff": 0.19659137725830078,
+     "n_diff_over_1e3": 22
+    },
+    "frllm_webmorph": {
+     "n": 1221,
+     "ext": ".jpg",
+     "max_abs_diff": 0.49141496419906616,
+     "n_diff_over_1e3": 325
+    },
+    "mordiff_mordiff": {
+     "n": 1000,
+     "ext": ".png",
+     "max_abs_diff": 9.444355964660645e-05,
+     "n_diff_over_1e3": 0
+    }
+   },
+   "native_eer_by_platform": {
+    "dim_dim_a": {
+     "eer_dgx": 20.049,
+     "eer_a46_registered": 19.604
+    },
+    "dim_dim_c": {
+     "eer_dgx": 2.425,
+     "eer_a46_registered": 2.425
+    },
+    "dim_fast_dim": {
+     "eer_dgx": 19.159,
+     "eer_a46_registered": 17.624
+    },
+    "dim_fast_dim_ode": {
+     "eer_dgx": 30.326,
+     "eer_a46_registered": 29.435
+    },
+    "dim_greedy_dim": {
+     "eer_dgx": 37.773,
+     "eer_a46_registered": 36.237
+    },
+    "dim_greedy_dim_s": {
+     "eer_dgx": 13.218,
+     "eer_a46_registered": 12.773
+    },
+    "frllm_amsl": {
+     "eer_dgx": 3.44,
+     "eer_a46_registered": 3.486
+    },
+    "frllm_facemorpher": {
+     "eer_dgx": 0.491,
+     "eer_a46_registered": 0.858
+    },
+    "frllm_opencv": {
+     "eer_dgx": 1.472,
+     "eer_a46_registered": 1.472
+    },
+    "frllm_stylegan": {
+     "eer_dgx": 17.171,
+     "eer_a46_registered": 17.171
+    },
+    "frllm_webmorph": {
+     "eer_dgx": 1.513,
+     "eer_a46_registered": 1.881
+    },
+    "mordiff_mordiff": {
+     "eer_dgx": 0.99,
+     "eer_a46_registered": 0.99
+    }
+   }
+  },
+  "madation_vitl14": "not scored",
+  "madation_fe_vitl14": "not scored",
+  "mixfacenet_mad_smdd": "not scored",
+  "madation_fe_vitb16": "not scored"
+ },
+ "crop_check": {}
+}

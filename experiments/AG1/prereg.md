@@ -151,8 +151,9 @@ Code: `src/AG1/`. Large outputs: `/mnt/t7/smad_next/AG1/`. Rules: `11_AUDIT_PLAN
   - *Shards:* 14 (2 smoke, 8 core, 4 AG3 / AG3T); 3,833 images, 912 inversions, 12.7 H100-h at the WCSS rates
     (A100 rate to be measured by the smoke job; production cap 150 GPU-h). AG3 runs as a second array with
     `--dependency=afterok` on the core array. `shards.csv` sha256 a870e61c...
-  - *Selfcheck reading:* on the GB10, `mipgan_alpha(0.5)` and `generate.mipgan` from the same start differed by max
-    |w| 0.65 after 150 steps; the run-to-run spread of `generate.mipgan` itself is measured next to it (README); the
-    two objectives are compared exactly in one forward pass. The equality claim stands only if the forward values are
-    equal and the 0.65 lies within the run-to-run spread.
+  - *Selfcheck reading (measured 17:50, GB10, before any data image):* the alpha-0.5 objective equals
+    `generate.mipgan`'s exactly in a forward pass (5.132192611694336 both). From the same start, `mipgan_alpha(0.5)`
+    and `generate.mipgan` ended max |w| 0.65 apart; `generate.mipgan` run twice ended 0.379 apart (mean 0.054). So
+    "equal term by term" holds for the objective; trajectories carry run-to-run non-determinism of this order, and
+    every rung is a sample of that slightly noisy procedure (RT measures it). Bitwise equality is not claimed.
 - **Result:** pending.

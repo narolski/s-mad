@@ -44,7 +44,7 @@ def r3(x):
 
 # ------------------------------------------------------------------------------------------------ cues / floor
 def load_cues(lst="ar1"):
-    out = {}
+    out, names = {}, None
     for f in (K.OUT / "cues").glob(f"{lst}*.npz"):
         if "limit" in f.name:
             continue
@@ -534,10 +534,32 @@ def first():
                fold_sizes=[int(sum(fold[h] == k for h in T.hosts)) for k in range(5)])
     heads = {h: fit_head(T, gid, "opencv", h, tr, tr2, "none", ext) for h in HEADS}
     cues, names = load_cues("ar1")
+    need = [T.ids[k][i] for k in (("none", "R0"), ("opencv", "R2w"), ("opencv", "R4")) for i in te]
+    import cues as CU
+    have = CU.af0_cache()
+    cues.update({i: have[i] for i in need if i in have and i not in cues})
+    miss = [i for i in need if i not in cues]
+    if miss:                                   # first pass only: compute the fold-0 test images' statistics now
+        from multiprocessing import Pool
+        path = {r["id"]: r["path"] for r in K.rows(K.OUT / "lists/ar1.csv")}
+        with Pool(2) as p:
+            vals = p.map(CU.one, [path[i] for i in miss], chunksize=8)
+        cues.update(dict(zip(miss, vals)))
+        sys.path.insert(0, str(K.MC / "smadcvpr"))
+        import cue_floor as CF
+        names = list(CF.NAMES) + ["png_bytes"]
+        np.savez(K.OUT / "cues/first_pass_fold0.npz", ids=np.array(miss), cues=np.stack(vals), names=np.array(names),
+                 source=np.array(["pd1"] * len(miss)))
+    if names is None:
+        sys.path.insert(0, str(K.MC / "smadcvpr"))
+        import cue_floor as CF
+        names = list(CF.NAMES) + ["png_bytes"]
     res["cues_available"] = len(cues)
     for h, hd in heads.items():
         res[f"C_{h}"] = hd.C
         for cn, a, b in CONTRASTS:
+            if not (T.has("opencv", a) and T.has("opencv", b)):
+                continue
             sa, sb = hd.score(T.get("opencv", a)[te]), hd.score(T.get("opencv", b)[te])
             A, Aci, rep = L.auc_ci(D, sb, T.persons(b, te), sa, T.persons(a, te))
             rec = dict(auc=r3(A), ci=Aci)

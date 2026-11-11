@@ -58,6 +58,11 @@ All times CET, 11 Nov 2026.
   retried. Decided to extract SMDD with TF32 for throughput (allowed by the prereg): `run_feats3.sh` waits for the
   eval file, stops the fp32 SMDD pass and runs SMDD orig + flip with TF32.
 - 17:20 Author's documentation instruction received; this README written 17:31.
+- 17:38 CLIP eval-set features written (8,267 × 768, 1,933 s, fp32). `run_feats3.sh` stopped the fp32 SMDD pass
+  as planned.
+- 17:41 Stage 3 died in its 8-image smoke: CUDA out of memory while moving the model to the GPU (machine memory
+  full from other jobs; 31 GB available a minute later). Relaunched as `run_feats3b.sh` (same commands, up to 6
+  tries per step, 90 s apart; tries logged in `logs/progress.txt`).
 
 ## 3. Data
 
@@ -94,7 +99,7 @@ Produced (all under `/mnt/t7/smad_next/FZ1/`):
 - `feats/<backbone>/<set>.npz` (id, feat float32, meta json with weights, normalisation, tf32 flag, seconds).
   Done: clip_mad a43 (sha 7d056001…), sg3 (7bb18f7f…); clip_native a43 (db5641a0…), sg3 (bd22b178…); dinov3 a43
   (be616df1…), sg3 (27fe8fac…); dinov2 a43 (36b383c1…), sg3 (d8b00b8a…). In progress: clip_mad eval (fp32),
-  then clip_mad smdd + smdd_flip (TF32). `*_smoke.npz` = 8-image tests.
+  clip_mad eval done 17:38 (fp32); clip_mad smdd + smdd_flip (TF32) in progress. `*_smoke.npz` = 8-image tests.
 - `probe_raw_<backbone>.json` (out-of-fold probabilities for 6 contrasts × 5 fold seeds), `probe_oof.npz`,
   `probe_reps_a43.npz` (bootstrap replicates used by P4), `p4_stats_values.npz` (per-image statistics).
 - `logs/` (every run), `p1.log`, `check_*.log`, `p1_tables.md`, `p2_tables.md`, `p4_tables.md`.
@@ -178,6 +183,8 @@ Not verified:
 6. Throughput: the shared GB10 under load 90–140 gives 3–5 images/s for ViT-L at 224 in fp32; SMDD (80,000
    forward passes) would take hours. Stage 1 was killed after its StyleGAN3 file (planned), stage 2 will be killed
    after the eval file (planned) and SMDD done with TF32 in stage 3.
+8. 17:41 stage 3 (`run_feats3.sh`) died with CUDA out of memory at model load (machine memory full); retried by
+   `run_feats3b.sh`.
 7. 17:13 a fp32-vs-TF32 speed test died with CUDA out of memory (machine memory 106/121 GB used, swap full). Not
    retried; running extraction unaffected.
 
@@ -202,16 +209,15 @@ Not verified:
 
 ## 10. Handover state (17:31 CET)
 
-Running on the DGX (all mine, all FZ1):
-- `run_feats2.sh` bash PID 1967682 → python PID 2067184 (+ 4 loader workers 2067907/11/16/23):
-  `fz1_feats.py --backbone clip_mad --set eval,smdd+flip --no-tf32`, log
-  `/mnt/t7/smad_next/FZ1/logs/clip_mad_eval_smdd.log`. Eval file expected about 17:40.
-- `run_feats3.sh` bash PID 2073120: waits for `feats/clip_mad/eval.npz`, kills the two above, then runs SMDD
-  orig + flip with TF32 (smoke first). Logs `logs/clip_mad_smdd_tf32{_smoke,}.log`, stdout
-  `/mnt/t7/smad_next/FZ1/run_feats3.out`. Expected end: unknown, 1–4 h depending on load.
-If they fail: rerun `run_feats3.sh` by hand (it skips finished files; delete a partial file first if one exists);
-if the eval file is missing, run `fz1_feats.py --backbone clip_mad --set eval --no-tf32` first. Then run
-`OMP_NUM_THREADS=4 python -I src/FZ1/fz1_heads.py --smoke` and the full command.
+Running on the DGX (all mine, all FZ1), as of 17:43:
+- `run_feats3b.sh` (started 17:42): `fz1_feats.py --backbone clip_mad --set smdd+flip` (TF32), smoke then full;
+  logs `/mnt/t7/smad_next/FZ1/logs/clip_mad_smdd_tf32{_smoke,}_try<k>.log`, progress lines in
+  `logs/progress.txt`. Find PIDs with `pgrep -af "src/FZ1/run_feats3b.sh|fz1_feats.py --backbone clip_mad"`.
+  Expected end: unknown, 1–4 h depending on load (40,000 images, two forward passes each).
+- Earlier runners `run_feats.sh`, `run_feats2.sh`, `run_feats3.sh` have ended (killed as planned or failed).
+If it fails: rerun `/home/narolski/smad-next/src/FZ1/run_feats3b.sh` (finished files are skipped; a crash leaves
+no partial file because the npz is written only at the end). Then run
+`OMP_NUM_THREADS=4 python -I src/FZ1/fz1_heads.py --smoke` and the full command (P3).
 Compute so far: about 1.5 GB10-hours of shared GPU time (all feature extraction), CPU minutes for P1, P2, P4.
 No WCSS, Athena or Vast use.
 

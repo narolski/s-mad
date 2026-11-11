@@ -126,7 +126,7 @@ of a chance gate: A47 showed that a network trained on random labels need not si
 What the record says: SMDD's genuine class is itself GAN output, so SMDD labels cannot teach "GAN
 output = attack". Yet SMDD-trained networks rank GAN renders above camera photos (AUC 0.95 for our
 MADation-recipe networks; 0.92 for frozen CLIP). Pretraining or the attack-side processing supplies
-it. SelfMAD is not SMDD-trained and is read on its own.
+it. SelfMAD is read on its own. Correction, 11 Nov 18:15: the earlier wording "SelfMAD is not SMDD-trained" was wrong. By its paper, both training classes are SMDD StyleGAN renders and self-blends of them; what the released weights were trained on is not stated (`docs/PLANNING_RECORD.md` sections 3 and 4).
 
 | ID | Experiment | Data | New compute | Reading |
 |---|---|---|---|---|

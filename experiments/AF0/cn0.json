@@ -1,0 +1,50 @@
+{
+ "cues": {},
+ "logreg_clip224": {
+  "train_facemorpher_test_opencv_R2": {
+   "oof_auc_R4_vs_neg": 0.9998,
+   "R0_flag_rate": 0.1026,
+   "E7_lm_flag_rate": 0.0417,
+   "E7_all_flag_rate": 0.0436,
+   "n_E7": [
+    408,
+    816
+   ]
+  },
+  "train_facemorpher_test_opencv_R2w": {
+   "oof_auc_R4_vs_neg": 0.9998,
+   "R0_flag_rate": 0.1063,
+   "E7_lm_flag_rate": 0.0436,
+   "E7_all_flag_rate": 0.0449,
+   "n_E7": [
+    408,
+    816
+   ]
+  },
+  "train_opencv_test_facemorpher_R2": {
+   "oof_auc_R4_vs_neg": 1.0,
+   "R0_flag_rate": 0.097,
+   "E7_lm_flag_rate": 0.0539,
+   "E7_all_flag_rate": 0.0561,
+   "n_E7": [
+    408,
+    816
+   ]
+  },
+  "train_opencv_test_facemorpher_R2w": {
+   "oof_auc_R4_vs_neg": 0.9999,
+   "R0_flag_rate": 0.0858,
+   "E7_lm_flag_rate": 0.0324,
+   "E7_all_flag_rate": 0.0333,
+   "n_E7": [
+    408,
+    816
+   ]
+  }
+ },
+ "logreg_clip224_verdict": {
+  "worst_flag_rate": 0.1063,
+  "worst_cue_auc": NaN,
+  "verdict": "mixed"
+ }
+}

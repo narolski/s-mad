@@ -1,0 +1,4 @@
+crop,set,n,mean_black_frac,share_any_black,share_over_1pct,max_black_frac
+"MTCNN crop (MADation, MixFaceNet-MAD)",M_dim_a,8,0.0,0.0,0.0,0.0
+SelfMAD crop of raw files (A41 x7),frll_bona_raw,8,0.0,0.0,0.0,0.0
+"our aligned 512 frame (input, uncropped)",frllm/amsl/orig,8,0.09511,1.0,1.0,0.1094

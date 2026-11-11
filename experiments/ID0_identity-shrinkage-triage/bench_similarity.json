@@ -126,5 +126,13 @@
   "q90": 0.918,
   "min": 0.679,
   "max": 0.967
+ },
+ "H3 StyleGAN3 pairs (CASIA source crops)": {
+  "n": 423,
+  "q10": 0.069,
+  "median": 0.162,
+  "q90": 0.246,
+  "min": -0.05,
+  "max": 0.374
  }
 }

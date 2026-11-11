@@ -29,6 +29,10 @@ hostname | tee "$W/out/logs/host.txt"; nvidia-smi --query-gpu=name,memory.total,
 echo "unpack $(date +%T)"
 H=$(sha256sum "$G/packs/RS1/rs1a_pack.tar" | cut -d' ' -f1); [ "$H" = "$(cut -d' ' -f1 "$G/packs/RS1/rs1a_pack.tar.sha256")" ] || { echo "pack sha mismatch"; exit 3; }
 mkdir -p "$W/pack"; tar -xf "$G/packs/RS1/rs1a_pack.tar" -C "$W/pack"
+if [ -f "$G/packs/RS1/rs1a_pack_amend.tar" ]; then       # amendment 2 images and the full manifest
+  H=$(sha256sum "$G/packs/RS1/rs1a_pack_amend.tar" | cut -d' ' -f1); [ "$H" = "$(cut -d' ' -f1 "$G/packs/RS1/rs1a_pack_amend.tar.sha256")" ] || { echo "pack2 sha mismatch"; exit 3; }
+  tar -xf "$G/packs/RS1/rs1a_pack_amend.tar" -C "$W/pack"
+fi
 R=$W/pack
 # own environment (the shared venv does not exist yet): the WCSS-container versions plus the crop packages
 if ! "$PY" -I -c "import torch, timm, cv2, facenet_pytorch, requests, safetensors" 2>/dev/null; then

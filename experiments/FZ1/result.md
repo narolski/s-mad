@@ -39,7 +39,9 @@ draw (seed [20261111, 5, 1], B = 10,000). AUC: positive class = first named.
    0.98, mean 0.37, Pearson 0.42. The stored scores were computed on an H100 with TF32; I read the residual as
    cross-device arithmetic and continued. End-to-end check on all rows: see P3 ("release head on our features").
    The lead may treat the CLIP rows as conditional on this reading.
-2. fp32 (TF32 off) for every feature, chosen after the check (the prereg allowed either).
+2. fp32 (TF32 off) for every evaluation feature (A43, StyleGAN3, eval set), chosen after the check; the SMDD
+   training features (P3 only) were extracted with TF32 for throughput on the overloaded GPU (the prereg allowed
+   TF32 for throughput). TF32 vs fp32 changes the released head's scores by ≤ 4.7e-3 (check above).
 3. Feature extraction for SMDD was done in one decode pass producing original and flipped features (no
    change to the numbers, only to run time).
 4. DINOv3's timm pooled pre-logits are the mean of the patch tokens (`global_pool = avg`); DINOv2's are the CLS

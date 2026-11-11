@@ -287,6 +287,16 @@ kind under one path (training vs evaluation split; partner render vs other rende
 the releases' training crops is common to both sides. The Part 2 paired audit keeps the registered crop path as
 primary and is also scored on whole files (secondary, the bridge to T-A / T-B).
 
+## Amendment A7 (17:58 CET, lead's decision; before any score of the rebuilt-arm heads)
+
+**Platform rule.** All features that enter one comparison come from one platform. Every feature set used to train
+or evaluate the rebuilt-arm heads (training images of all arms; the evaluation, ladder and audit images those heads
+are judged on) is extracted on one x86 CUDA machine (Athena or a rented GPU, the lead decides), with the AD4
+environment (torch 2.2.1 cu121, timm 1.0.27, pillow 10.2.0, numpy 1.26.4), from a self-contained pack. Features
+of the same images made on the DGX (the 14,120 FRLL evaluation frames already extracted) serve only as an equivalence
+check on a few hundred images: maximum absolute feature difference, and the AUC difference of one head scored on
+both. The released-detector tests (Part 2, T-A, T-B) score released networks and stay on the DGX.
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 

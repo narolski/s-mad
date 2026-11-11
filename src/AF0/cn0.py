@@ -55,10 +55,11 @@ def cues(a):
 
 
 def pooled(bb, name, n=None):
+    """mean-pooled patch tokens (GPU mean; the DGX CPU is oversubscribed)."""
+    import heads as HD
     tok, ids, done = L.load_tokens(bb, name)
     n = done if n is None else n
-    out = np.concatenate([np.asarray(tok[s:min(s + 64, n)]).astype(np.float32).mean(1) for s in range(0, n, 64)])
-    return dict(zip(ids[:n], out))
+    return dict(zip(ids[:n], HD.pooled_gpu(tok, n, "cuda")))
 
 
 def read(a):

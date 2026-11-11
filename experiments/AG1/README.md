@@ -47,6 +47,19 @@ the owner. Nothing may be submitted or probed until then.
   `--test-only` for each of plgmultivision-gpu-a100 and plgrestorearc-gpu-a100: same. `sshare -U`: no association.
   Reported to the lead; no further probing (lead's rule).
 - ~17:35 Lead: account will be plgrestorearc-gpu-a100; sbatch files changed and re-uploaded. Amendment 2 written.
+- 17:50 Alpha-equivalence test done (section 6): objectives equal; run-to-run spread of `generate.mipgan` max |w| 0.379.
+- 18:00-18:20 Scoring made runnable without WCSS: SelfMAD release found on T7 (copy by the AR1 owner,
+  `/mnt/t7/smad_next/AR1/weights/selfmad_release/hrnet_w18_checkpoint.model.safetensors`, sha256 0ad8db6f..., equal
+  to the A36 release list line); MADation releases from `/mnt/t7/wcss_backups/madation_official_upload/madation_official.tar`;
+  dlib 81-landmark model `/mnt/t7/thirdparty/dlib81_wcss_20261107/`. New `score_dgx.sh`; `ag1_manifest.py` now copies
+  the admitted MAD22 frames into the AG1 data root (hash re-checked) and writes paths relative to it. Pipeline test on
+  the 7 smoke images (`test_score_pipeline.py`, `/mnt/t7/smad_next/AG1/tests/score_pipeline/`): pins, check_scope and
+  the strict weight load of MADation ViT-B/16 passed; the move to the GPU failed with CUDA out of memory (the GB10 had
+  12 GB free; about 17 other GPU processes of other owners). To retry when the GPU is quieter.
+- 17:41 Local mip2 smoke (WCSS `run.sh` logic, GB10, code before amendment 1) finished: 4 / 4 images, exit 0, tar
+  sha256 a0827cbe... Per image on the shared GB10 832 to 1,114 s (incl. e4e). Final loss R2 2.43, R3 3.29 / 1.46, R4
+  5.66; generator-side w600k cosine R4 0.720 / 0.710, R3 0.959 / 0.968. Log
+  `/mnt/t7/smad_next/AG1/localtest/AG1_o01-smoke-mip2_s0.stdout.log`.
 
 ## 3. Data
 
@@ -109,6 +122,8 @@ list with afterok) -> copy back -> `ag1_manifest.py frames | oracle | rt | pins`
 | ag1_read.py | b1c80b8f | gates, ladder, readings A / B, shares, matched bins, session gap, AG2, AG3 / AG3T, Holm |
 | test_reader_synthetic.py | c6daf46f | synthetic manifest for the reader test |
 | test_alpha_equiv.py | ee5f247d | alpha-0.5 objective equality and run-to-run spread test |
+| score_dgx.sh | (new) | scoring on the DGX: job root, A12REL from local copies, one npz per release and mode |
+| test_score_pipeline.py | (new) | tiny manifest from smoke images; checks score count and finiteness only |
 
 Environment. DGX: `/home/narolski/mambamorph-code/.venv-spark/bin/python` (torch 2.12.1+cu130, GB10). Athena (to be
 built by the smoke job): `/net/pr2/projects/plgrid/plggrestoration/smad-next/envs/AG1`, module Python/3.10.4, torch
@@ -146,11 +161,15 @@ Verified:
 Not verified:
 - Anything on Athena: the environment build, the A100 timing and memory, the container-free path. The smoke job is
   exactly this test.
-- mip2 path with the final code: the local mip2 smoke (old code) was still running at 17:45 (2 of 4 images done:
-  R2 loss 2.43, R3 3.29; e4e loads under forced weights_only).
-- `mipgan_alpha(0.5)` equal to `generate.mipgan`: the self-check gave max |w| difference 0.65 after 150 steps. Test
-  `test_alpha_equiv.py` (exact forward equality + run-to-run spread of `generate.mipgan`) running, log
-  `/mnt/t7/smad_next/AG1/localtest/alphatest/log.txt`.
+- mip2 path with the final code (the local mip2 smoke used the code before amendment 1; it passed 4 / 4 at 17:41;
+  e4e loads under forced weights_only). The Athena smoke runs mip2 with the final code.
+- `mipgan_alpha(0.5)` vs `generate.mipgan` (17:50, `test_alpha_equiv.py`, GB10, result
+  `/mnt/t7/smad_next/AG1/localtest/alphatest/alpha_equiv.json`): the two objectives are exactly equal in a forward
+  pass at the same latent (5.132192611694336 both). Run twice from the same start, `generate.mipgan` itself ends
+  max |w| 0.379 apart (mean 0.054) even with cuDNN deterministic; the alpha-path self-check difference was max 0.65
+  (`/mnt/t7/smad_next/AG1/localtest/selfcheck/out/selfcheck.json`). Reading: same objective; the trajectory
+  difference is of the order of the run-to-run non-determinism (one pair, not a distribution). Bitwise equality is not
+  claimed. Generation is not bitwise repeatable run to run on one GPU.
 - `ag1_manifest.py` and real scoring (need images). MixFaceNet-MAD has no AG1 scorer.
 
 ## 7. Dead ends and failures
@@ -167,6 +186,9 @@ Not verified:
   same bootstrap seed (now per pool); aligned flag wrong on re-runs (now stored); no finiteness check (added); dmenv
   fallback could mix torch stacks (removed); docstring claimed the input alignment was "imported unchanged" (the
   call sequence is re-typed from h4_prep.py; corrected and flagged).
+- Generation is not bitwise repeatable: the same `generate.mipgan` call twice from the same latent on the GB10 ends
+  max |w| 0.379 apart (cuDNN deterministic set; probably atomic adds in the backward of the differentiable ArcFace
+  crop). Images of one rung are therefore samples of a slightly noisy procedure; RT measures that noise.
 - `python -I` ignores PYTHONPATH: the first GB10 run failed on `pytorch_msssim`; `ag1_gen.py` inserts the pack's
   `py/` directory itself.
 - WCSS slot-queue plan (13 tasks staged 15:05 / 16:40) superseded by Athena; tasks remain in
@@ -180,8 +202,8 @@ Not verified:
 - With 48 two-cycles, FRLL R4 is about 50 dyads; FRLL cells will be wide.
 - The twin-dose arm (AG3T) costs about 37 GPU-min and separates "second photo" from "second identity" in the dose
   reading; the reviewer's further idea, a GAN mirror twin on the primary pool, is now the R3m rung.
-- SelfMAD's release file is held only on WCSS (`A12REL/selfmad_hrnet_w18`): scoring SelfMAD needs WCSS or a copy.
-  MADation releases are local (`/mnt/t7/wcss_backups/madation_official_upload/madation_official.tar`).
+- SelfMAD's release: 10_ASSET_INVENTORY says "WCSS only", but the AR1 owner copied it to T7 (sha256 matches the A36
+  list); scoring needs no WCSS access.
 
 ## 9. Open items and next steps
 
@@ -192,7 +214,7 @@ Not verified:
    `ag1_read.py --gate-only`; scoring on GPU; `ag1_read.py`.
 4. Open author questions: R2 class (A or B); approval of the H4 input alignment (blur / resampling); which SelfMAD row
    is primary; is ViT-B/16 alone deciding; is R3m a morph.
-5. Finish the alpha-0.5 equivalence reading (test running).
+5. (done 17:50) alpha-0.5 equivalence reading.
 
 ## 10. Handover state (11 Nov ~17:45 CET)
 
@@ -207,9 +229,7 @@ Not verified:
 - If a task fails: its log is `.../logs/AG1-<job>_<index>.out`; tasks are idempotent (a verified result tar makes them
   exit 0), so resubmitting the same index is safe. Exit codes: 2 pack hash, 3 missing core tar, 4 copy hash, 5 (WCSS
   only), 6 no environment.
-- DGX processes of this owner: local mip2 smoke (`/mnt/t7/smad_next/AG1/localtest/run_local.sh`, log
-  `.../localtest/AG1_o01-smoke-mip2_s0.stdout.log`, about 30 more minutes) and `test_alpha_equiv.py` (log above).
-  Both are tests only; if they die nothing is lost.
+- DGX processes of this owner: none running (local smokes and tests finished 17:41 / 17:50).
 - WCSS: 13 superseded task dirs in `smad-next/staging/AG1/` (not in ready/); packs in `smad-next/packs/AG1/`.
 - Compute spent: 0 cluster GPU-hours; DGX GB10 about 3 GPU-hours of shared tests; 0 USD.
 

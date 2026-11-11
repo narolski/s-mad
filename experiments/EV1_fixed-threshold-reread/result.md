@@ -1,9 +1,11 @@
 # Fixed-threshold re-read of existing scores (EV1): result
 
 Owner run, 11 Nov 2026, DGX CPU only, zero GPU. No image was made, re-encoded or written. Pre-registration:
-`prereg.md` (written 15:40 before any score value was read) and its Amendment 1 (saved 16:38, before any
-amendment item was computed). Code: `src/EV1/` (`ev1_common.py`, `ev1_partA.py`, `ev1_feat.py`, `ev1_partB.py`,
-`ev1_partC.py`, `ev1_amend.py`, `ev1_partB2.py`, `ev1_partC2.py`, `ev1_posthoc_gender.py`, `ev1_report.py`).
+`prereg.md` (written 15:40 before any score value was read) its Amendment 1 (saved 16:38, before any
+amendment item was computed) and Amendment 2 (saved 17:29 after the independent review, before its items were
+computed). Full record: `README.md` (same folder). Code: `src/EV1/` (`ev1_common.py`, `ev1_partA.py`, `ev1_feat.py`, `ev1_partB.py`,
+`ev1_partC.py`, `ev1_amend.py`, `ev1_partB2.py`, `ev1_partC2.py`, `ev1_posthoc_gender.py`, `ev1_border.py`,
+`ev1_amend2.py`, `ev1_report.py`, `ev1_hashes.py`).
 Large outputs (per-image features of 32,310 images, logs): `/mnt/t7/smad_next/EV1/`. Every command was run on
 8 items per pool first (`--smoke`).
 
@@ -29,6 +31,92 @@ the SelfMAD release with its own preprocessing; the MADation-recipe retrains M3 
 (ViT-L/14, 5 seeds) at the last checkpoint; the other 38 recipe networks as a descriptive block (point
 estimates only, see deviations). Thresholds: one per detector, the smallest devbona score with at most 5% (or
 10%) of devbona above it; flag = score above it; never refit.
+
+## Reading after the independent review (Amendment 2, registered 11 Nov 2026 17:29)
+
+*Scores on our 512-pixel aligned frames (SelfMAD own preprocessing excepted), where published release numbers are not reproduced (released MADation ViT-L/14, FRLL-Morphs AMSL: 17.7% EER here, 7.26% published); the own-crop re-score of the audit rows (RS1) redoes the key rows.*
+
+The independent review (`experiments/reviews/REVIEW_EV1_20261111.md`) found every recomputed number correct and
+required corrections of wording and framing. The statements below replace the earlier readings; they come from the
+Amendment 2 files (`AM2_*.csv`, `AM2.json`) and reproduce the review's recomputation. "0.5 rule" = the release's
+own decision, probability of morph above 0.5; it needs no threshold pool. Histories with a median inter-eye
+distance below 90 px (the DiM E7 pools at 63 px, the MorDIFF E7 pool and the stored-small photos at 65 px, the FFHQ
+E7 pools matched to 256-pixel morphs at 65 px) are called **the benchmark's own storage history**, not benign
+processing (the passport minimum of 90 px is quoted by the review; the clause was not verified here).
+
+1. **SelfMAD release** (its own crop applied to our aligned frames). Published FRLL-Morphs numbers are matched when
+   the genuine class is neutral-only: EER AMSL 1.0, FaceMorpher 0.1, OpenCV 0.1, StyleGAN 12.9, WebMorph 3.7% here
+   against 0.99 / 0.00 / 0.00 / 10.34 / 3.45% published. At its own 0.5 rule it flags 0 of 204 unprocessed FRLL photos
+   [CP 0–1.7%], 44.6% [37.6–51.7] after the 50% shrink-and-enlarge (resample50), 55.4 to 78.9% of the photos with the
+   DiM and MorDIFF storage histories, and 97.1% [93.7–98.9] of the photos only stored at the MorDIFF size. Genuine
+   photos with a family's storage history are flagged more often than that family's morphs in six families:
+   WebMorph 24.0 vs 12.4%, MorDIFF 78.9 vs 57.9%, DiM-A 56.4 vs 24.8%, Fast-DiM 56.4 vs 11.2%, Fast-DiM-ODE 55.4 vs
+   1.8%, Greedy-DiM 58.8 vs 1.0%. Paired logit shifts against the same photos: resample50 +4.42 [4.17, 4.68], E7
+   MorDIFF +5.32 [5.13, 5.50], E7 DiM-A +5.06, stored-small +7.10 [6.65, 7.36]; every photo rises (`AM2_B1_rule05.csv`,
+   `AM2_B2_logit_shift.csv`). This needs no threshold pool and no class ruling.
+2. **MADation ViT-B/16 release** (our frames). The 63 to 65 px storage histories raise the logit of 97.5 to 100% of the
+   204 FRLL photos by a median 1.26 to 1.63 logits (E7 DiM 1.26–1.33, E7 MorDIFF 1.63 [1.33, 2.00], stored-small 1.34
+   [1.16, 1.53]); at the 0.5 rule they flag 3.9 to 11.2% of the photos (unprocessed 0.0%). On 2,000 FFHQ photos the
+   65 px histories raise 99% of logits by a median 0.36 [0.34, 0.38]; at the 0.5 rule 0.1% → 2.5–2.6% (+48 to +50
+   photos, none the other way; `AM2_B5_ffhq_paired.csv`). Shown on two photo pools.
+3. **MADation ViT-L/14 release** (our frames). Its scores are saturated here: the 1st to 99th percentile of the 204
+   genuine logits spans 0.34 logits (−12.75 to −12.41), and five morph families lie in the same band at their 99th
+   percentile (AMSL −12.34, StyleGAN −12.38, DiM-A −11.78, Fast-DiM −11.33, Greedy-DiM −12.24); none of the 2,175
+   AMSL morphs exceeds 0.5. JPEG quality 50 shifts every photo by a median 0.130 [0.126, 0.140] logits, which moves 43
+   photos up across the development threshold (1 down) and none across the release's own 0.5 rule; resolution history
+   alone (resample50, the FRLL-Morphs E7 pools) shifts by −0.004 to −0.007. **The figures "24 to 34% at JPEG 50,
+   24.5% stored small, 22% FFHQ" are WITHDRAWN as evidence about this release** (saturated scores on our frames);
+   they await the own-crop re-score (RS1).
+4. **Miss rates depend on the threshold pool**, so the pool is a column (`AM2_B3_*.csv`). Family-mean miss % at 5%
+   false alarms on the named pool [95% person bootstrap, threshold refit]:
+
+   | detector | devbona | unprocessed FRLL (204) | unprocessed FRLL, neutral-only | full-frame pools ≥ 100 px | every history-matched pool | range over single pools |
+   |---|---|---|---|---|---|---|
+   | released ViT-L/14 | 48.6 | 39.3 [28–52] | 51.0 | 49.2 [43–57] | 66.1 [62–70] | 34.5 (E7 FaceMorpher) – 66.1 (E7 MorDIFF) |
+   | released ViT-B/16 | 49.8 | 27.4 [21–45] | 36.4 | 54.8 [44–65] | 78.8 [73–87] | 24.4 (JPEG 50) – 78.8 (E7 Fast-DiM-ODE) |
+   | SelfMAD own (no devbona) | – | 8.2 [4–28] | 4.7 | 86.8 [84–90] | 86.8 [84–90] | 2.8 (JPEG 50) – 86.8 (resample50) |
+   | released FE ViT-L/14 | 41.4 | 30.6 [22–39] | 27.9 | 35.5 [26–43] | 82.5 [76–89] | 30.2 (JPEG 90) – 82.5 (MorDIFF alignment) |
+   | M3 (8 seeds, mean) | 25.1 | 15.3 | 15.0 | 32.0 | 66.3 | 3.9 – 81.8 |
+   | M3L (5 seeds, mean) | 40.9 | 33.6 | 39.7 | 52.3 | 63.0 | 17.8 – 69.3 |
+
+   Full-frame pools ≥ 100 px = FRLL orig, JPEG 90, JPEG 70, resample50 (101 px) and the five FRLL-Morphs E7 pools
+   (112–254 px); "every history-matched pool" = the Part A gated set. Adding devbona to the full-frame set leaves
+   the ViT-L/14 and ViT-B/16 rows unchanged and raises others (FE ViT-L/14 35.5 → 41.4, SelfMAD in our pipeline
+   83.7 → 92.8; `AM2_B3_miss_by_threshold_pool.csv`).
+5. **Null rows.** In all 17 cells a file attribute separates the classes perfectly, and in 11 of the 12 scored cells
+   so does the zero border that our own alignment leaves around the smaller morph files (O ≥ 0.993; MorDIFF 0.689,
+   where the genuine frames share the tight frame). A high score on these cells cannot by itself show morph
+   detection. Whether any detector uses these cues is not tested here. The border is created by our aligner: genuine
+   frames have none (median 0.000 in every FRLL, E5 and non-MorDIFF E7 pool), morph frames have medians 0.031 to 0.26
+   (MorDIFF frame 0.53; `AM2.json`). **The sentence "no detector beats the best null" is WITHDRAWN**: it is true of any
+   detector when the null is perfect.
+6. **Border-matched pairing for the MorDIFF frame** (`AM2_B4_*.csv`). The MorDIFF alignment and the E7 MorDIFF pool
+   share the tight frame (median border 0.544 and 0.545). With the border held equal, the 65 px history alone raises
+   the logit by a median 1.35 [1.14, 1.55] for ViT-B/16 (100% of photos; +65/−0 across the development threshold) and
+   4.64 [4.37, 4.82] for SelfMAD own; the tight frame alone at full resolution (MorDIFF alignment against FRLL orig)
+   raises it by 0.42 (ViT-B/16), 0.72 (SelfMAD own), 5.49 (FE ViT-L/14) and 5.80 (FE ViT-B/16). MorDIFF morphs
+   against genuine photos with the same frame and the same storage history (E7 MorDIFF): AUC 0.885 [0.844, 0.923]
+   (ViT-B/16), 0.682 [0.623, 0.751] (ViT-L/14), 0.736 (FE ViT-L/14), 0.321 [0.272, 0.370] (SelfMAD own: genuine
+   photos ranked above morphs).
+7. **Identity dose.** Within gender the slopes are not distinguishable from zero (all 26 within-gender intervals of
+   the ViT-L/14 release include 0; `PH_gender_slopes.csv`); the pooled slope is a gender-composition effect. **The
+   identity-dose slope read as an effect is WITHDRAWN.**
+8. **FEI** shows that the neutral-above-smiling ordering of the ViT-L/14 release is specific to FRLL (0.41 [0.34,
+   0.48] on FEI against 0.99 on FRLL); it does not settle expression against capture detail.
+
+What survives if only own-preprocessing scores are accepted (review): the SelfMAD block; the file-level facts; the
+smiling-half file facts; and, as evidence about the MADation recipe (not the release), our recipe retrains scored in
+their training frames.
+
+### Withdrawn statements (kept below in place, marked WITHDRAWN)
+
+| statement | where | reason |
+|---|---|---|
+| Released MADation ViT-L/14 flags "24 to 34% at JPEG 50, 24.5% stored small, 22% FFHQ" (and the 10% figures 54.9 / 48.0 / 34.9%) | Part A.1, report to the lead | its scores are saturated on our frames; as evidence about the release they await RS1 |
+| "No detector beats the best null" (excess ≤ 0 everywhere) | Part B.2, report to the lead | true of any detector when the null is perfect |
+| The identity-dose slope as an effect | Part C.2, report to the lead | within gender the slopes vanish; gender composition |
+| "Benign processing" / "processed genuine photos" for histories below 90 px between the eyes | Part A.1 rows E7 DiM, E7 MorDIFF, stored-small; FFHQ E7 at 65 px | they are the benchmark's own storage history |
+
 
 ## 0. Checks, deviations, things to know before reading
 
@@ -63,27 +151,32 @@ estimates only, see deviations). Thresholds: one per detector, the smallest devb
 
 *Scores on our 512-pixel aligned frames (SelfMAD own preprocessing excepted), where published release numbers are not reproduced (released MADation ViT-L/14, FRLL-Morphs AMSL: 17.7% EER here, 7.26% published); the own-crop re-score of the audit rows (RS1) redoes the key rows.*
 
-FA %, **neutral-only (102 photos) headline** / all 204 photos. Paired side changes against the same photos'
+FA %, **neutral-only (102 photos) headline** / all 204 photos. Pools with a median inter-eye distance below 90 px
+(stored-small, E7 MorDIFF, E7 DiM, three FFHQ E7 pools) carry the benchmark's own storage history and are not benign processing.
+Released ViT-L/14 column: its genuine logits lie in a 0.34-logit band of saturated scores (top section, item 3); the three
+figures named by the review are withdrawn as evidence about the release, and its other false-alarm rates in this table rest
+on the same band (at its own 0.5 rule it flags none of the FRLL photos in any FRLL pool, 0.3% of devbona and at most
+1 of 2,000 FFHQ photos). Paired side changes against the same photos'
 FRLL orig in `AM_A2_pool_block.csv` (count flagged only in the pool, count flagged only in orig, persons with a
 change, exact McNemar p). Scope statement above applies.
 
 | genuine pool | released MADation ViT-L/14 | released MADation ViT-B/16 | SelfMAD release, own preprocessing (test-fitted) | SelfMAD release, our pipeline |
 |---|---|---|---|---|
-| **stored-small: photo only stored at the published MorDIFF size (arm E of the earlier MorDIFF ladder study)** | **25.5** / 24.5 [CP 19–31]; +45/−2 photos, 35 persons, p 1.6e-11 | **20.6** / 27.5 [21–34]; +53/−1, 41 persons | **100** / 100 [98–100]; +194/−0, 100 persons | **0.0** / 1.0 |
+| **stored-small: photo only stored at the published MorDIFF size (arm E of the earlier MorDIFF ladder study); the benchmark's own storage history, 65 px** | **25.5** / 24.5 [CP 19–31]; +45/−2 photos, 35 persons, p 1.6e-11 **[WITHDRAWN as evidence about this release: saturated scores on our frames; see 'Reading after the independent review', item 3]** | **20.6** / 27.5 [21–34]; +53/−1, 41 persons | **100** / 100 [98–100]; +194/−0, 100 persons | **0.0** / 1.0 |
 | FRLL orig | 5.9 / 3.4 | 2.9 / 2.0 | 2.0 / 4.9 (fit pool) | 0.0 / 0.0 |
 | JPEG 90 | 6.9 / 3.9 | 2.9 / 2.0 | not scored | 0.0 / 0.0 |
 | JPEG 70 | 10.8 / 6.4 | 1.0 / 1.5 | not scored | 0.0 / 0.0 |
-| JPEG 50 | 34.3 / 24.0; +43/−1, p 5e-12 | 1.0 / 1.0 | 0.0 / 1.5 | 0.0 / 0.0 |
+| JPEG 50 | 34.3 / 24.0; +43/−1, p 5e-12 **[WITHDRAWN as evidence about this release: saturated scores on our frames; see 'Reading after the independent review', item 3]** | 1.0 / 1.0 | 0.0 / 1.5 | 0.0 / 0.0 |
 | blur1 | 5.9 / 3.4 | 4.9 / 4.4 | not scored | 0.0 / 0.0 |
 | resample50 | 4.9 / 2.9 | 7.8 / 7.4; +11/−0 | 96.1 / 95.1; +184/−0 | 0.0 / 0.5 |
 | same photos, MorDIFF alignment | 13.7 / 9.8 | 3.9 / 3.9 | 11.8 / 14.2 | 0.0 / 0.0 |
 | E7, the five FRLL-Morphs pools (range) | 3.9–6.9 / 2.5–3.9 | 2.9–7.8 / 2.0–6.4 | 2.0–83.3 / 4.9–85.3 (StyleGAN pool lowest) | 0.0 / 0.0 |
-| E7, MorDIFF pool | 31.4 / 32.8; +62/−2 | 30.4 / 35.8; +69/−0 | 100 / 100 | 0.0 / 0.0 |
-| E7, the six DiM pools (range) | 2.9 / 3.4–3.9 | 22.5–25.5 / 30.9–32.8; +59 to +63/−0 | 100 / 100 | 0.0 / 0.0–0.5 |
+| E7, MorDIFF pool (the benchmark's own storage history, 65 px) | 31.4 / 32.8; +62/−2 | 30.4 / 35.8; +69/−0 | 100 / 100 | 0.0 / 0.0 |
+| E7, the six DiM pools (range; the benchmark's own storage history, 63 px) | 2.9 / 3.4–3.9 | 22.5–25.5 / 30.9–32.8; +59 to +63/−0 | 100 / 100 | 0.0 / 0.0–0.5 |
 | FEI neutral / FEI smiling (all) | 0.0 / 0.5 | 0.0 / 2.1 | not scored | 0.0 / 3.2 |
-| FFHQ orig; its five E7 pools | 22.1 [20–24]; 18.6–22.1 | 0.3; 0.3–8.8 | not scored | 1.6; 1.6–2.7 |
+| FFHQ orig; its five E7 pools (three at 65 px: the benchmark's own storage history) | 22.1 [20–24]; 18.6–22.1 **[WITHDRAWN as evidence about this release: saturated scores on our frames; see 'Reading after the independent review', item 3]** | 0.3; 0.3–8.8 | not scored | 1.6; 1.6–2.7 |
 
-At the 10% threshold (all photos): released ViT-L/14 JPEG 50 54.9%, E7 MorDIFF 48.0%, FFHQ 34.9%; released
+At the 10% threshold (all photos): released ViT-L/14 JPEG 50 54.9%, E7 MorDIFF 48.0%, FFHQ 34.9% **[WITHDRAWN as evidence about this release: saturated scores]**; released
 ViT-B/16 resample50 18.1%, E7 MorDIFF 73.5%; SelfMAD own resample50 98.0% (`A1_false_alarms.csv`).
 
 Other rows (all photos, 5%; `A1_false_alarms.csv`): FE ViT-L/14 at most 2.5% on the FRLL variants but 35.8% on the
@@ -223,7 +316,7 @@ AUC / EER %, **neutral-only** (all photos in brackets); MorDIFF balanced (all ph
 | M3, seed mean of AUC | **0.976** | **0.999** | **0.999** | **0.650** | **0.997** | 0.990 | **0.995** | **0.999** | **0.996** | **0.959** | **0.580** | **0.997** |
 | M3L, seed mean of AUC | **0.999** | **1.000** | **1.000** | **0.376** | **1.000** | 0.550 | **0.925** | **0.768** | **0.616** | **0.875** | **0.761** | **0.708** |
 
-Excess over the best non-content null: the best null is 1.000 in all 12 scored cells, so the excess equals
+**[WITHDRAWN as a statement about detectors ("no detector beats the best null"): true of any detector when the null is perfect; see the corrected null-row statement at the top, item 5.]** Excess over the best non-content null: the best null is 1.000 in all 12 scored cells, so the excess equals
 AUC − 1.000 for every detector and cell; its upper 95% bound is at most 0.000 everywhere (for example released
 ViT-L/14 AMSL neutral-only −0.186 [−0.244, −0.130]; released ViT-B/16 Greedy-DiM −0.563; SelfMAD own FaceMorpher
 −0.000 [−0.002, 0.000]).
@@ -288,6 +381,8 @@ Contributor distances agree with the embeddings of the landmark ladder study (AR
 ### Part C.2. Detector slopes ρ(score, δ) [95%] (`C_dose.csv`)
 
 *Scores on our 512-pixel aligned frames (SelfMAD own preprocessing excepted), where published release numbers are not reproduced (released MADation ViT-L/14, FRLL-Morphs AMSL: 17.7% EER here, 7.26% published); the own-crop re-score of the audit rows (RS1) redoes the key rows.*
+
+**[WITHDRAWN: reading these pooled slopes as an identity-dose effect. Within gender the slopes are not distinguishable from zero (Part C.4); the pooled slope is a gender-composition effect.]**
 
 | detector | AMSL | FaceMorpher | OpenCV | StyleGAN | WebMorph | MorDIFF neutral | MorDIFF smiling | DiM-C | Greedy-DiM | Greedy-DiM-S | DiM-A, Fast-DiM, Fast-DiM-ODE |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -363,3 +458,7 @@ of its 26 within-gender intervals includes 0. Across the three named releases on
   reported in B3.
 - In the logistic nulls a morph's second contributor can appear in the training folds (the fold rule of the colour cue check (C3)).
 - Intervals of the worst-pool misses in A5 (CP) ignore the uncertainty of the threshold.
+- The passport minimum inter-eye distance of 90 px quoted by the review (clause not checked).
+- The ViT-L/14 release's threshold-based rates: saturated on our frames; only RS1 (own crop) can test them.
+- The effective inter-eye distance of the E7 pools is derived (family median native IED, the `prep_eval.py`
+  target), because `eval.csv` stores the photo's native value for every FRLL-derived pool.

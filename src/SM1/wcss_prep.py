@@ -26,15 +26,16 @@ import sm1_common as K  # noqa: E402
 HERE = pathlib.Path(__file__).resolve().parent
 W = K.OUT / "wcss"
 LUS = "/lustre/pd03/hpc-narolski-1790461090/smad-next"
-TASKS = {"c": ("armc_15k", "armcr_15k"), "b": ("armb", "armbp", "armd50", "armd500")}
+TASKS = {"c": ("armc_15k", "armcr_15k"), "b": ("armb", "armbp", "armd50", "armd500"), "a": ("audit", "ar1h")}
 NAMES = {"armc_15k": "armc", "armcr_15k": "armcr", "armb": "armb", "armbp": "armbp", "armd50": "armd50",
-         "armd500": "armd500"}
+         "armd500": "armd500", "audit": "audit", "ar1h": "ar1h"}
 
 
 def rel(p):
     p = str(p)
-    for src, dst in ((str(K.BF_T) + "/", "bf/"), (str(K.SRC_T) + "/", "srcm/"), (str(K.OUT / "tem") + "/", "tem/"),
-                     (str(K.OUT / "img") + "/", "out/")):
+    for src, dst in ((str(K.BF_T) + "/", "bf/"), (str(K.SRC_T) + "/", "srcm/"), (str(K.SRC_E) + "/", "srce/"),
+                     (str(K.OUT / "tem") + "/", "tem/"), (str(K.OUT / "img") + "/", "out/"),
+                     ("/mnt/t7/smad_next/AR1/src/", "ar1src/")):
         if p.startswith(src):
             return dst + p[len(src):]
     raise ValueError(p)

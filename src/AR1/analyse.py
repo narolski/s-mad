@@ -13,7 +13,9 @@ import numpy as np  # noqa: E402
 import ar1_common as K  # noqa: E402
 import stats  # noqa: E402
 
-SC = K.OUT / "scores"
+import os  # noqa: E402
+SC = pathlib.Path(os.environ.get("AR1_SCORES_DIR", str(K.OUT / "scores")))   # override = synthetic test only
+OUTJ = pathlib.Path(os.environ.get("AR1_RESULT_JSON", str(K.RES / "result_tables.json")))
 REL = [("SelfMAD", "own_selfmad"), ("MADation ViT-B/16", "rel_madation_vitb16"),
        ("MADation ViT-L/14", "rel_madation_vitl14"), ("MixFaceNet-MAD", "rel_mixfacenet_mad_smdd")]
 OURS = [(f"M3 s{s}", f"nets_M3_s{s}") for s in range(1, 9)] + [(f"M3L s{s}", f"nets_M3L_s{s}") for s in range(1, 6)]
@@ -179,7 +181,9 @@ def bench_block(man, S, tool, retrain):
             og["bench_eer"] = 100 * e
             og["bench_threshold"] = t
     rows = lambda g, t=tool: [r for r in man if r["pool"] == "frll_bench" and r["rung"] == g and r["tool"] == t]  # noqa
-    # bridge: published vs our same-pair morphs (published positive)
+    # bridge: published vs our same-pair morphs (published positive); releases only
+    if retrain:
+        return o
     PB = Pool(man, "frll_bridge")
     pub = "R4f" if retrain else "R4pub"
     ours = [r for r in man if r["pool"] == "frll_bridge" and r["tool"] == tool]
@@ -235,6 +239,8 @@ def baseline_compare(man, S, P, tool, contrast_name, pos, neg, oofz):
         if best is None or a > best:
             best, best_rep, best_key = a, rep, b
     da, drep, _, _ = contrast(P.D, S, P.rows(tool, pos), P.rows(tool, neg))
+    if best is None:
+        return dict(best_noncontent=None, detector_auc=da, note="no baseline for this contrast")
     diff = drep - best_rep
     return dict(best_noncontent=best_key, best_auc=best, detector_auc=da, diff=da - best, diff_ci95=stats.ci(diff),
                 beats=bool(stats.ci(diff)[0] > 0))
@@ -266,7 +272,7 @@ def main():
                             lad["vs_best_noncontent_main"] = baseline_compare(man, S, P, tool, base + "vsR4", "R4",
                                                                               base, oofz)
                         r[f"{pool}/{tool}/{base}-{twin}"] = lad
-                    if pool == "frll":
+                    if pool == "frll" and not retrain:      # retrains: bridge not scored (cross-pipeline)
                         PC = Pool(man, "frll")
                         PC.top_nn = True
                         lad, _ = ladder(PC, S, tool, man, retrain, "R2wm", "R3m")
@@ -292,7 +298,7 @@ def main():
                         o["works"] = bool(o["R2wvsR4"]["auc"] >= 0.75 and o["R2wvsR4"]["ci95"][0] > 0.65)
                         r[f"AR4_{v}_blanked/frgcferet/{tool}"] = o
             print("done", name, flush=True)
-    json.dump(res, open(K.RES / "result_tables.json", "w"), indent=1)
+    json.dump(res, open(OUTJ, "w"), indent=1)
 
 
 if __name__ == "__main__":

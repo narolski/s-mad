@@ -10,6 +10,7 @@ import hashlib
 import io
 import json
 import pathlib
+import sys
 import tarfile
 
 OUT = pathlib.Path("/mnt/t7/smad_next/RS1")
@@ -58,7 +59,12 @@ def pers22(name, lab):
     return f"{a[:3]}|{b[:3]}", "", a[4:6] if a[4:6] == b[4:6] else "mix"
 
 
+AMEND_SETS = ("Gjpeg50_frll", "Gjpeg70_frll", "Gresample50_frll", "FEI_neutral", "FEI_smiling", "FF_orig", "FF_E7diffae",
+              "FF_E7lmc")
+
+
 def main():
+    part2 = len(sys.argv) > 1 and sys.argv[1] == "amend"
     rows = []
     man = list(csv.DictReader(open(OUT / "manifest.csv")))
     for r in man:
@@ -109,6 +115,19 @@ def main():
         w = csv.DictWriter(f, fieldnames=COLS)
         w.writeheader()
         w.writerows(rows)
+    if part2:                                              # amendment 2 images + the full manifest only
+        tp = OUT / "athena/rs1a_pack_amend.tar"
+        with tarfile.open(tp, "w", format=tarfile.PAX_FORMAT) as t:
+            t.add(OUT / "athena/athena_manifest.csv", arcname="manifests/athena_manifest.csv")
+            for f in CODERS1:
+                t.add(SRC / f, arcname=f"code/rs1/{f}")
+            for r in rows:
+                if r["set"] in AMEND_SETS:
+                    t.add(r["src_path"], arcname=r["relpath"])
+        h = sha(tp)
+        (OUT / "athena/rs1a_pack_amend.tar.sha256").write_text(f"{h}  rs1a_pack_amend.tar\n")
+        print("pack", tp, tp.stat().st_size / 1e9, "GB", h)
+        return
     tp = OUT / "athena/rs1a_pack.tar"
     with tarfile.open(tp, "w", format=tarfile.PAX_FORMAT) as t:
         for f in CODE46:

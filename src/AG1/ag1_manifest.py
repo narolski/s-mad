@@ -17,6 +17,7 @@ Usage: ag1_manifest.py frames | oracle | rt | pins
 import csv
 import glob
 import hashlib
+import shutil
 import json
 import pathlib
 import sys
@@ -96,7 +97,17 @@ def stage_frames():
         key = next((k for k in (rel, "./" + rel) if k in proc), None)
         if key is None or sha(p) != proc[key]:
             sys.exit(f"{p}: not the admitted processed frame")
-        return p
+        return admitted_copy(rel)
+
+    def admitted_copy(rel):
+        """byte copy of an admitted MAD22 frame into the AG1 data root (portable manifests), hash re-checked."""
+        dst = DATA / "frames/mad22" / rel
+        if not dst.exists():
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(MADPROC / rel, dst)
+        if sha(dst) != proc[rel]:
+            sys.exit(f"{dst}: copy differs from the admitted frame")
+        return dst
     # R0: camera photos
     for ph, m in sorted(photos.items()):
         if m["slot"] == "s1m":                                 # mirrored crops are generator inputs, not R0
@@ -124,7 +135,8 @@ def stage_frames():
             rel = f"e7/{fam}/{stem}.png"
             if rel not in proc or sha(MADPROC / rel) != proc[rel]:
                 sys.exit(f"{rel}: not the admitted E7 frame")
-            rows.append({"id": f"R1__{gen}__{ph}", "path": str(MADPROC / rel), "raw": str(MADPROC / rel), "rung": "R1",
+            e7 = admitted_copy(rel)
+            rows.append({"id": f"R1__{gen}__{ph}", "path": str(e7), "raw": str(e7), "rung": "R1",
                          "gen": gen, "db": "frll", "pa": m["person"], "pb": m["person"], "photo_a": ph,
                          "photo_b": ph, "alpha": "", "source": "e7", "aligned": True})
     # published MIPGAN morphs of the FRLL persons (benchmark side and bridge partners)
@@ -157,8 +169,11 @@ def stage_frames():
         with open(DATA / "manifests" / name, "w", newline="") as fh:
             w = csv.DictWriter(fh, fieldnames=cols)
             w.writeheader()
-            for r in rows:
-                w.writerow({**{c: r[c] for c in cols}, "path": r[key]})
+            for r in rows:                                     # ag1.csv: paths relative to the data root
+                pth = r[key]
+                if name == "ag1.csv":
+                    pth = str(pathlib.Path(pth).relative_to(DATA))
+                w.writerow({**{c: r[c] for c in cols}, "path": pth})
     print(f"MANIFEST {len(rows)} rows; aligned-flag rate {np.mean([bool(r['aligned']) for r in rows]):.3f}")
 
 

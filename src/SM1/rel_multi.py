@@ -23,6 +23,12 @@ DEFAULT = ("madation_vitb16", "madation_vitl14", "madation_fe_vitb16", "madation
            "madation_fs_vitb16", "madation_fs_vitl14")
 
 
+def nice19(_):
+    """Lead's rule (11 Nov 17:55): extra DataLoader workers run at nice 19."""
+    import os
+    os.nice(max(0, 19 - os.nice(0)))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--manifest", required=True)
@@ -63,7 +69,7 @@ def main():
         m.load_state_dict(R.extract_state(R.load_release(ck), spec), strict=True)
         models[d] = (m.to("cuda").eval(), spec)
     dl = torch.utils.data.DataLoader(C.ImageItems([(r["path"], 0) for r in rows], 224, root=a.root),
-                                     batch_size=a.bs, num_workers=a.workers)
+                                     batch_size=a.bs, num_workers=a.workers, worker_init_fn=nice19)
     z = {d: [] for d in dets}
     t0, n = time.time(), 0
     with torch.no_grad():

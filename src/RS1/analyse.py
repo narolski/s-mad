@@ -339,6 +339,90 @@ def fmt(pt, rep, d=2, pct=False):
     return f"{k * pt:.{d}f} [{k * lo:.{d}f}, {k * hi:.{d}f}]"
 
 
+
+# ------------------------------------------------------------------------------------------------ amendment 2 blocks
+GEN_POOLS = (["G_raw", "Galn_frll", "Gjpeg50_frll", "Gjpeg70_frll", "Gresample50_frll", "Galn_mordiff"]
+             + [f"E7raw_{c}" for c in E7RAW] + [f"E7aln_{c}" for c in FRLL + ("mordiff",) + DIM]
+             + ["a43_E", "FEI_neutral", "FEI_smiling", "FF_orig", "FF_E7diffae", "FF_E7lmc", "G22_raw", "G22_aln"]
+             + [f"E7aln22_{f}" for f in FAM22])
+MORPH_POOLS = ([f"M_{c}" for c in FRLL + ("mordiff",) + DIM] + [f"M22_{f}" for f in FAM22]
+               + ["a43_A", "a43_B", "a43_B20", "a43_C", "a43_C20", "a43_D", "a43_D20"])
+PAIRS = ([("Gjpeg50_frll", "Galn_frll"), ("Gjpeg70_frll", "Galn_frll"), ("Gresample50_frll", "Galn_frll")]
+         + [(f"E7aln_{c}", "Galn_frll") for c in FRLL + DIM] + [("E7aln_mordiff", "Galn_mordiff")]
+         + [(f"E7raw_{c}", "G_raw") for c in E7RAW] + [("a43_E", "G_raw"), ("Galn_frll", "G_raw"),
+                                                       ("FF_E7diffae", "FF_orig"), ("FF_E7lmc", "FF_orig"),
+                                                       ("G22_aln", "G22_raw")]
+         + [(f"E7aln22_{f}", "G22_aln") for f in FAM22])
+
+
+def concat(*pools):
+    pools = [p for p in pools if p is not None]
+    if not pools:
+        return None
+    assert len({p.key for p in pools}) == 1
+    return Pool(np.concatenate([p.s for p in pools]), sum([list(p.pp) for p in pools], []),
+                np.concatenate([p.ex for p in pools]), pools[0].src, pools[0].key, np.concatenate([p.ph for p in pools]))
+
+
+def logits(P):
+    if P.key == "logit":
+        return P.s
+    p = np.clip(P.s, 1e-7, 1 - 1e-7)
+    return np.log(p / (1 - p))
+
+
+def amend_blocks(S, det, plat, P, out):
+    """amendment 2 (b): flag rates of every genuine pool (and of every morph set at the release's rule) at the release's
+    own 0.5 rule and at named threshold pools (t5 on raw FRLL photos, on FFHQ orig, on FEI all); paired logit shifts."""
+    thr = {"release rule (p > 0.5)": None, "t5 on raw FRLL photos": P.get("G_raw"), "t5 on FFHQ orig": P.get("FF_orig"),
+           "t5 on FEI (all)": concat(P.get("FEI_neutral"), P.get("FEI_smiling"))}
+    for kind, names in (("genuine", GEN_POOLS), ("morph", MORPH_POOLS)):
+        for nm in names:
+            X = P.get(nm)
+            if X is None:
+                continue
+            wX = S.w(X)
+            for tn, T in thr.items():
+                if T is None and tn != "release rule (p > 0.5)":
+                    continue
+                if kind == "morph" and T is not None:
+                    continue
+                if T is None:
+                    t0 = 0.0 if X.key == "logit" else 0.5
+                    fp = float(np.mean(X.s > t0))
+                    fr = flag_rate(X.s, wX, np.full(len(wX), t0), True)
+                else:
+                    sT, sx = common(T, X)
+                    oT = np.ones((1, len(sT)))
+                    fp = float(np.mean(sx > thr_5(sT, oT)[0]))
+                    fr = flag_rate(sx, wX, thr_5(sT, S.w(T)), True)
+                out["pool_rates"].append(dict(detector=NAME[det], platform=plat, kind=kind, pool=nm, n=len(X.s),
+                                              threshold_pool=tn, flagged=fmt(fp, fr, 1, pct=True),
+                                              flagged_pt=round(100 * fp, 2), src=X.src))
+    for proc, base in PAIRS:
+        X, Bp = P.get(proc), P.get(base)
+        if X is None or Bp is None:
+            continue
+        ib = {k: i for i, k in enumerate(Bp.ph) if k}
+        mi = [(i, ib[k]) for i, k in enumerate(X.ph) if k in ib]
+        if not mi:
+            continue
+        xi, bi = np.array([m[0] for m in mi]), np.array([m[1] for m in mi])
+        d = logits(X)[xi] - logits(Bp)[bi]
+        sub = Bp.sub(np.isin(np.arange(len(Bp.s)), bi))
+        order = np.argsort(np.argsort(bi))                  # sub keeps Bp order; map pairs onto it
+        w = S.w(Bp)[:, bi]
+        mrep = (w * d).sum(1) / np.maximum(w.sum(1), 1e-12)
+        rrep = (w * (d > 0)).sum(1) / np.maximum(w.sum(1), 1e-12)
+        del sub, order
+        sat = int(np.sum((X.key == "prob32") * ((X.s >= 1 - 1e-7) | (X.s <= 1e-7)))
+                  + np.sum((Bp.key == "prob32") * ((Bp.s >= 1 - 1e-7) | (Bp.s <= 1e-7))))
+        out["shifts"].append(dict(detector=NAME[det], platform=plat, processed=proc, base=base, n_pairs=len(d),
+                                  mean_logit_shift=fmt(float(d.mean()), mrep, 2), mean_pt=round(float(d.mean()), 3),
+                                  median_logit_shift=round(float(np.median(d)), 3),
+                                  share_rising=fmt(float(np.mean(d > 0)), rrep, 1, pct=True),
+                                  saturated_prob_values=sat, src=X.src + " / " + Bp.src))
+
 # ------------------------------------------------------------------------------------------------ main
 def main():
     ap = argparse.ArgumentParser()
@@ -366,7 +450,7 @@ def main():
     if not a.skip_selfmad:
         runs.append(("selfmad", "DGX (existing files)", selfmad_pools(man)))
     out = dict(B=a.B, seed=SEED, persons=len(pers), reproduction=[], history=[], flags=[], expression=[], ladder=[],
-               ladder_flags=[], counts={})
+               ladder_flags=[], pool_rates=[], shifts=[], counts={})
     for det, plat, P in runs:
         out["counts"][f"{det}@{plat}"] = {s_: len(p.s) for s_, p in sorted(P.items())}
         cells = [c for c in CELLS if cell_sets(c)[0] in P and cell_sets(c)[1] in P]
@@ -383,6 +467,10 @@ def main():
                                             abs_diff=None if pub is None else round(abs(pt - pub), 3),
                                             window=win, label=lab, alt_published=alt, alt_label=altlab,
                                             genuine_src=G.src, morph_src=Mo.src))
+            Gn = G.sub(G.ex == "03")
+            npt, nrep = S.eer(Gn, Mo)
+            out["reproduction"][-1].update(neutral_only_eer=round(npt, 3), neutral_lo=round(ci(nrep)[0], 3),
+                                           neutral_hi=round(ci(nrep)[1], 3), neutral_label=label(det, c, npt)[0])
             # history-matched genuine photos
             if hraw and hraw in P:
                 H, kind = P[hraw], "raw E7 files"
@@ -432,6 +520,7 @@ def main():
                     row.update(e7_kind=kind, e7_eer=fmt(hp_, hr_), e7_eer_pt=round(hp_, 3),
                                e7_flag_t5=fmt(fp, fr, 1, pct=True), e7_flag_t5_pt=round(100 * fp, 2))
                 out["expression"].append(row)
+        amend_blocks(S, det, plat, P, out)
         # MorDIFF ladder on the A43 control images
         if "a43_E" in P and "M_mordiff" in P:
             photo = P["a43_photo"] if "a43_photo" in P and P["a43_E"].src == P["a43_photo"].src else P["G_raw"]
@@ -463,7 +552,7 @@ def main():
                                                     ties_at_threshold=ties, mordiff_label=lab, src=X.src))
     sfx = "_smoke" if a.smoke else ""
     json.dump(out, open(RES / f"rs1_results{sfx}.json", "w"), indent=1, default=float)
-    for k in ("reproduction", "history", "flags", "expression", "ladder", "ladder_flags"):
+    for k in ("reproduction", "history", "flags", "expression", "ladder", "ladder_flags", "pool_rates", "shifts"):
         rows = out[k]
         if not rows:
             continue

@@ -21,3 +21,30 @@ Owner's page. Facts only; the lead draws conclusions. Pre-registration: `prereg.
 
 Images of the warp-only toward the mirror shape (x1m) and the SMDD pairs are in no DINOv3 cache and are extracted
 here.
+
+## First small pass (11 Nov, 17:47 CET): DINOv3 mean patch token, OpenCV-style engine, fold 0 only
+
+Written as soon as the numbers existed. Fold 0: 107 held-out hosts; one-person head trained on 426 hosts
+(pairs same-person morph vs warp-only and mirror self-morph vs warp-only; C = 0.01 by inner CV), two-person head on
+423 hosts (two-person morph vs warp-only; C = 1). AUC on the 107 held-out hosts, later rung positive, 95% pigeonhole
+person bootstrap. Floor = best folded AUC among the 27 simple statistics on the same 107 hosts' images (AF0's cached
+statistics). Source: `first_pass_dino_opencv_fold0.json`.
+
+| Contrast (held-out hosts) | One-person head | Two-person head |
+|---|---|---|
+| warp-only x1 vs two-person morph x3 (main) | 0.933 [0.885, 0.973] | 0.980 [0.963, 0.994] |
+| simple-statistic floor, same images (band power 0.125 to 0.25 cycles/px) | 0.912 [0.870, 0.952] | same |
+| excess over the floor | 0.021 [-0.037, 0.081] | 0.068 [0.026, 0.114] |
+| Laplacian variance alone (folded) | 0.80 (whole frame), 0.87 (face box) | same |
+| photo x0 vs x3 | 0.944 [0.898, 0.980] | 0.986 [0.972, 0.997] |
+| floor for x0 vs x3 (Haar LH/HL energy) / excess | 0.955 / -0.010 [-0.066, 0.048] | 0.955 / 0.031 [-0.003, 0.077] |
+| same-person morph x2 vs x3 | 0.652 [0.562, 0.740] | 0.759 [0.683, 0.838] |
+| mirror self-morph xm vs x3 | 0.486 [0.391, 0.584] | 0.694 [0.605, 0.780] |
+| photo x0 vs warp-only x1 | 0.543 [0.538, 0.557] | 0.564 [0.554, 0.584] |
+| x1 vs x2 (training contrast, held out) | 0.873 [0.841, 0.907] | 0.915 [0.885, 0.946] |
+| x1 vs xm (training contrast, held out) | 0.945 [0.920, 0.968] | 0.936 [0.908, 0.963] |
+
+On this one fold and feature, the one-person head ranks two-person morphs above warp-only images at 0.93, but a
+single band-power statistic reaches 0.91 on the same images; the excess (0.02) is below the registered 0.05 and above
+0. The flag rate on softened genuine photos was not yet computed (benchmark features not yet extracted). Not a
+verdict: four folds, two features, the flag rates and the projections are missing.

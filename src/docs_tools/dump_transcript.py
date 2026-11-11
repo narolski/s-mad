@@ -16,6 +16,8 @@ Prints, in order:
 
 --grep REGEX   print only tool results / assistant texts that match REGEX (case-insensitive),
                with 300 characters of context around each match, instead of the digest.
+--results-for REGEX  print every tool call whose input matches REGEX (case-insensitive) and
+               its result (first --results N characters, default 3000), instead of the digest.
 --section S    one of: task, middle, final, all (default all), or rawfinal (the final
                report alone, verbatim, with no header; used for saved copies of reports).
 
@@ -96,6 +98,7 @@ def main():
         sys.exit(1)
     path = args[0]
     text_n, tool_n, res_n, grep, section = 1500, 200, 0, None, "all"
+    results_for = None
     i = 1
     while i < len(args):
         a = args[i]
@@ -109,11 +112,32 @@ def main():
             grep = re.compile(args[i + 1], re.I); i += 2
         elif a == "--section":
             section = args[i + 1]; i += 2
+        elif a == "--results-for":
+            results_for = re.compile(args[i + 1], re.I); i += 2
         else:
             i += 1
 
     rows = load(path)
     msgs = [r for r in rows if r.get("type") in ("user", "assistant") and isinstance(r.get("message"), dict)]
+
+    if results_for is not None:
+        # print each tool call whose input matches the pattern, followed by its result
+        calls, outs = [], {}
+        for r in msgs:
+            for x in content_items(r["message"]):
+                if x.get("type") == "tool_use":
+                    calls.append(x)
+                elif x.get("type") == "tool_result":
+                    outs[x.get("tool_use_id")] = result_text(x)
+        lim = res_n if res_n > 0 else 3000
+        for x in calls:
+            s = json.dumps(x.get("input", {}), ensure_ascii=False)
+            if results_for.search(s):
+                print("=" * 10, tool_summary(x, 300))
+                out = outs.get(x.get("id"), "(no result)")
+                print(out if len(out) <= lim else out[:lim] + " [...]")
+                print()
+        return
 
     first_user = None
     final_report = None

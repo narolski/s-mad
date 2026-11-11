@@ -61,6 +61,29 @@ missing); a pack is ready there for later.
   from the EV1 review (extra pools, 0.5 rule, threshold pools as a column, paired logit shifts, SelfMAD both genuine
   definitions, border check). Added 7,001 amendment images (`manifest.py amend`), orchestration `run_after.sh`
   started (17:47).
+- 17:39. Athena pack finished: `/mnt/t7/smad_next/RS1/athena/rs1a_pack.tar`, 9.58 GB, sha256
+  c1cf34ddc9b454252b571c8f8a23b6c38ef291abdb8a15d162b4a7a97acc0661 (code, wheel, 7 weight files, 11,264 A46 crops,
+  10,795 images to crop incl. corrected MAD22, 32 crop-check files). Not uploaded (Athena blocked). Second pack with
+  the amendment-2 images and the full manifest: `athena/rs1a_pack_amend.tar` (building). `athena_rs1.sbatch` now uses
+  account `plgrestorearc-gpu-a100` and extracts the second pack if present.
+- 17:45. `analyse.py` extended for amendment 2 (0.5-rule rates, threshold pools as a column, paired logit shifts,
+  neutral-only reproduction columns, separate bootstrap draws for FEI subjects and FFHQ images; the FRLL draw is
+  unchanged: 102 persons, seed 20261111). Tested on the existing SelfMAD files: SelfMAD at its 0.5 rule flags 0% of
+  unprocessed photos, 44.6% after 50% shrink-and-enlarge, 78.9% with the MorDIFF history on our frames, 97.1% of
+  stored-small photos: the same values as the EV1 review (consistency check of the new code). `border.py` written and
+  tested on 8 files per source (our aligned AMSL frames: 9.5% black pixels; MTCNN and SelfMAD raw-file crops: 0%).
+- 17:48. Platform check (MADation ViT-B/16, 11,264 reused A46 crops, DGX rescoring vs the registered A46 RGB-only
+  scores from WCSS): PNG crops agree to at most 9.4e-5 in probability; **the FRLL-Morphs crops, which the release
+  crop step stores as JPEG (the SMDD script re-saves a .jpg input as .jpg), differ: 1,070 of 7,061 by more than 0.001,
+  at most 0.78** (FRLL photo crops, also JPEG, agree to 2e-6). Likely cause: JPEG decoding differs between Pillow
+  12.2.0 on the DGX and the WCSS container's Pillow (the Athena environment pins Pillow 10.2.0 like the container).
+  Native EERs from the two score sets: AMSL 3.44 vs 3.49, FaceMorpher 0.49 vs 0.86, OpenCV 1.47 vs 1.47, StyleGAN
+  17.17 vs 17.17, WebMorph 1.51 vs 1.88, MorDIFF 0.99 vs 0.99. Separately, **on the DiM cells the EER moves by up to
+  1.5 points between platforms although the scores differ by at most 4e-5 in probability (5.5e-4 in logit)**: the
+  ViT-B/16 logits of photos and DiM morphs are packed between about -12.2 and -10.3, so near-ties decide the EER.
+  Both are recorded in `rs1_platform_check.json`; result tables print both platforms where both exist.
+- 17:50. SelfMAD own scoring (AR1 `score.py --mode own`) smoke on 8 FEI frames: ran (one CUDA out-of-memory start
+  failure first, then 224 s), dlib found a face in 8 of 8.
 
 ## 3. Data
 
@@ -159,6 +182,14 @@ against the registered A46 RGB-only scores; 32-file crop check against A46 boxes
 - The Athena shared environment `.../smad-next/venv` does not exist; the RS1 job builds `envs/RS1/venv` itself.
 
 ## 8. Observations and ideas
+
+- The release crop step re-saves JPEG inputs as JPEG (quality 95, OpenCV default), so the crops of JPEG benchmark files
+  carry one more JPEG generation and their scores depend on the JPEG decoder of the scoring machine (section 2,
+  17:48). AR1's `crop_rgb.py` stores every crop as PNG: on the corrected MAD22 (JPEG bona fide, FaceMorpher, OpenCV,
+  Webmorph files) the Athena crops therefore differ from the original script by that JPEG generation (recorded as a
+  deviation in amendment 1's run).
+- MADation ViT-B/16 logits on DiM crops and FRLL photos are packed in a narrow band (about -12.2 to -10.3): EERs on
+  those cells are numerically fragile (up to 1.5 points between two GPUs).
 
 - For FRLL StyleGAN2 the E7 control is the identity (StyleGAN2 morphs have a larger inter-eye distance than the
   photos, so the registered rule leaves the photo unchanged).

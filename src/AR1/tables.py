@@ -14,17 +14,19 @@ def ci(c, d=2):
 
 
 def main():
-    T = json.load(open(R + "result_tables.json"))
+    T = json.load(open(sys.argv[1] if len(sys.argv) > 1 else R + "result_tables.json"))
     out = []
-    for variant, (base, twin) in (("A", ("R2", "R3")), ("B", ("R2w", "R3")), ("C", ("R2w", "R3m"))):
+    for variant, (base, twin) in (("A", ("R2", "R3")), ("B", ("R2w", "R3")), ("C", ("R2w", "R3m")),
+                                  ("D", ("R2wm", "R3m"))):
         out.append(f"\n#### Ladder {variant}: R0 -> {base} -> {twin} -> R4 (main contrast {base} vs R4)\n")
         out.append(f"| Detector | Pool / tool | R0->{base} AUC [CI] (share) | {base}->{twin} AUC [CI] (share) | "
                    f"{twin}->R4 AUC [CI] (share) | {base} vs R4 AUC [CI] (share) | R0 vs R4 | main verdict | "
                    f"side {twin} vs R4 | side {base} vs {twin} |")
         out.append("|---|---|---|---|---|---|---|---|---|---|")
         for name, r in T.items():
-            for cell in ("frgcferet/opencv", "frgcferet/facemorpher", "frll/opencv", "frll/facemorpher"):
-                L = r.get(f"{cell}/{base}-{twin}")
+            for cell in ("frgcferet/opencv", "frgcferet/facemorpher", "frll/opencv", "frll/facemorpher",
+                         "frll_clean/opencv", "frll_clean/facemorpher"):
+                L = r.get(f"{cell}/{base}-{twin}") or (r.get(f"{cell}/{base}-{twin}-R4nn") if variant == "D" else None)
                 if not L:
                     continue
                 def st(k):

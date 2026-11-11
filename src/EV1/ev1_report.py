@@ -384,6 +384,107 @@ def amC():
             (lambda v: f"{min(v):+.2f} to {max(v):+.2f}")([float(r["spearman"]) for r in DG if r["block"] == meth and r["stratum"] == s]) for s in st) + " |")
 
 
+# ============================================================================ amendment 2 tables
+REL = [n for n in MAIN] + []
+
+
+def am2():
+    B1 = rd("AM2_B1_rule05.csv")
+    print("\n### AM2-B1 Flag rate at each release's own 0.5 rule (probability of morph > 0.5), % [CP]\n")
+    print(SC + "\n")
+    pools = ["devbona", "FRLL orig", "FRLL jpeg50", "FRLL resample50", "FRLL orig, MorDIFF alignment", "stored-small (arm E)",
+             "E7 amsl", "E7 webmorph", "E7 mordiff", "E7 dim_a", "E7 greedy_dim", "FEI neutral", "FEI smiling", "FFHQ orig", "FFHQ E7 landmark_complete",
+             "H3 one-identity renders"]
+    print("| detector | " + " | ".join(pools) + " |\n|" + "---|" * (len(pools) + 1))
+    for d in MAIN:
+        R = {r["pool"]: r for r in B1 if r["detector"] == d and r["subset"] == "all"}
+        c = lambda r: "–" if r is None else ("n.s." if r["flag_rate"] == "not scored" else f"{pct(r['flag_rate'])}")  # noqa: E731
+        print(f"| {SHORT[d]} | " + " | ".join(c(R.get(p)) for p in pools) + " |")
+    print("\nMorph detection at the 0.5 rule (%), and the E7 genuine pool of the same family beside it (genuine flagged %):\n")
+    print("| detector | " + " | ".join(K.FAM_LABEL[f] for f in K.FAMS) + " | family-mean miss |\n|" + "---|" * (len(K.FAMS) + 2))
+    for d in MAIN:
+        R = {r["pool"]: r for r in B1 if r["detector"] == d and r["subset"] == "all"}
+        cells, det = [], []
+        for f in K.FAMS:
+            m, g = R.get(f"morph {f}"), R.get(f"E7 {f}")
+            if m is None or m["flag_rate"] == "not scored":
+                cells.append("n.s."); continue
+            det.append(float(m["flag_rate"]))
+            gg = "n.s." if g is None or g["flag_rate"] == "not scored" else pct(g["flag_rate"])
+            mark = " **G≥M**" if gg != "n.s." and float(g["flag_rate"]) >= float(m["flag_rate"]) else ""
+            cells.append(f"{pct(m['flag_rate'])} / {gg}{mark}")
+        print(f"| {SHORT[d]} | " + " | ".join(cells) + f" | {100 - 100 * np.mean(det):.1f} |" if det else "")
+    B2 = rd("AM2_B2_logit_shift.csv")
+    print("\n### AM2-B2 Paired logit shift against the same photos' FRLL orig: median [95%], share of photos rising, crossings (dev threshold up/down; 0.5 rule up/down)\n")
+    print(SC + "\n")
+    for d in MAIN:
+        R = [r for r in B2 if r["detector"] == d and r["n"] not in ("", "not scored") and r["median_shift"] != "not scored"]
+        if not R:
+            continue
+        print(f"\n**{d}**\n\n| pool | effective IED px | median shift [95%] | mean shift [95%] | share rising | dev thr +/− | 0.5 rule +/− |\n|---|---|---|---|---|---|---|")
+        for r in R:
+            print(f"| {r['pool']} | {float(r['median_ied_px']):.0f} | {float(r['median_shift']):+.3f} [{float(r['median_lo95']):+.3f}, {float(r['median_hi95']):+.3f}] | "
+                  f"{float(r['mean_shift']):+.3f} [{float(r['mean_lo95']):+.3f}, {float(r['mean_hi95']):+.3f}] | {100 * float(r['share_up']):.0f}% | "
+                  f"+{r['devthr_up']}/−{r['devthr_down']} | +{r['rule05_up']}/−{r['rule05_down']} |")
+    SA = rd("AM2_B2_saturation.csv")
+    print("\n### AM2-B2 Saturation: logit 1st / 50th / 99th percentile\n")
+    cols = ["devbona", "FRLL orig"] + [f"morph {f}" for f in K.FAMS]
+    print("| detector | " + " | ".join(cols) + " |\n|" + "---|" * (len(cols) + 1))
+    for d in MAIN:
+        R = {r["pool"]: r for r in SA if r["detector"] == d}
+        print(f"| {SHORT[d]} | " + " | ".join((f"{float(R[c]['logit_p1']):.2f} / {float(R[c]['logit_p50']):.2f} / {float(R[c]['logit_p99']):.2f}" if c in R else "–") for c in cols) + " |")
+    B3 = rd("AM2_B3_miss_by_threshold_pool.csv")
+    CI = rd("AM2_B3_summary_ci.csv")
+    print("\n### AM2-B3 Family-mean miss % by threshold pool, 5% false alarms on that pool [95% person bootstrap, threshold refit]\n")
+    print(SC + "\n")
+    rules = ["devbona (Part A native)", "unprocessed FRLL photos (all 204)", "unprocessed FRLL photos (neutral-only 102)",
+             "full-frame pools, inter-eye distance >= 100 px", "full-frame pools >= 100 px, with devbona",
+             "every history-matched pool (Part A gated set, with devbona)"]
+    print("| detector | " + " | ".join(rules) + " | range over single pools |\n|" + "---|" * (len(rules) + 2))
+    for d in MAIN + ["M3", "M3L"]:
+        if d in ("M3", "M3L"):
+            R = [r for r in B3 if r["block"] == d and r["alpha"] == "0.05"]
+            cell = lambda rn: f"{100 * np.mean([float(r['family_mean_miss']) for r in R if r['threshold_pool'] == rn]):.1f} (seed mean)"  # noqa: E731
+            sp = [float(r["family_mean_miss"]) for r in R if r["threshold_pool"].startswith("single pool")]
+            print(f"| {d} | " + " | ".join(cell(rn) for rn in rules) + f" | {100 * min(sp):.1f}–{100 * max(sp):.1f} |")
+            continue
+        R = {r["threshold_pool"]: r for r in B3 if r["detector"] == d and r["alpha"] == "0.05"}
+        C = {r["threshold_pool"]: r for r in CI if r["detector"] == d and r["alpha"] == "0.05"}
+        def cell(rn):
+            if rn not in R:
+                return "–"
+            v = f"{100 * float(R[rn]['family_mean_miss']):.1f}"
+            if rn in C:
+                v += f" [{100 * float(C[rn]['lo95']):.0f}–{100 * float(C[rn]['hi95']):.0f}]"
+            return v
+        sp = [(float(r["family_mean_miss"]), k) for k, r in R.items() if k.startswith("single pool")]
+        lo, hi = min(sp), max(sp)
+        print(f"| {SHORT[d]} | " + " | ".join(cell(rn) for rn in rules) + f" | {100 * lo[0]:.1f} ({lo[1][13:]}) – {100 * hi[0]:.1f} ({hi[1][13:]}) |")
+    B4 = rd("AM2_B4_border_pairing.csv")
+    print("\n### AM2-B4 Border-matched pairing for the MorDIFF frame (paired logit shift, median [95%])\n")
+    print(SC + "\n")
+    print("| detector | pool | against | border pool / ref | IED pool / ref | median shift [95%] | share rising | dev thr +/− | 0.5 rule +/− |\n|---|---|---|---|---|---|---|---|---|")
+    for d in MAIN:
+        for r in [r for r in B4 if r["detector"] == d]:
+            print(f"| {SHORT[d]} | {r['pool']} | {r['reference_pool']} | {float(r['median_border_pool']):.2f} / {float(r['median_border_ref']):.2f} | "
+                  f"{float(r['median_ied_pool']):.0f} / {float(r['median_ied_ref']):.0f} | {float(r['median_logit_shift']):+.3f} [{float(r['lo95']):+.3f}, {float(r['hi95']):+.3f}] | "
+                  f"{100 * float(r['share_up']):.0f}% | +{r['devthr_up']}/−{r['devthr_down']} | +{r['rule05_up']}/−{r['rule05_down']} |")
+    A4 = rd("AM2_B4_mordiff_auc.csv")
+    print("\nMorDIFF morphs against tight-frame genuine pools (AUC [95%]):\n\n| detector | genuine pool | border morph / genuine | AUC |\n|---|---|---|---|")
+    for d in MAIN:
+        for r in [r for r in A4 if r["detector"] == d]:
+            print(f"| {SHORT[d]} | {r['genuine_pool']} | {float(r['median_border_morph']):.2f} / {float(r['median_border_genuine']):.2f} | {float(r['auc']):.3f} [{float(r['lo95']):.3f}, {float(r['hi95']):.3f}] |")
+    B5 = rd("AM2_B5_ffhq_paired.csv")
+    print("\n### AM2-B5 Paired FFHQ block: FFHQ orig against each E7 pool (2,000 pairs)\n")
+    print(SC + "\n")
+    print("| detector | E7 pool (history IED px) | FA dev thr orig → E7 (+/−, p) | 0.5 rule orig → E7 (+/−, p) | median logit shift [95%] | share rising |\n|---|---|---|---|---|---|")
+    for d in MAIN:
+        for r in [r for r in B5 if r["detector"] == d]:
+            print(f"| {SHORT[d]} | {r['ffhq_e7_pool']} ({float(r['history_ied_px']):.0f}) | {pct(r['fa_devthr_orig'])} → {pct(r['fa_devthr_e7'])} (+{r['devthr_up']}/−{r['devthr_down']}, {float(r['devthr_mcnemar_p']):.1e}) | "
+                  f"{pct(r['rule05_orig'], 2)} → {pct(r['rule05_e7'], 2)} (+{r['rule05_up']}/−{r['rule05_down']}, {float(r['rule05_mcnemar_p']):.1e}) | "
+                  f"{float(r['median_logit_shift']):+.3f} [{float(r['median_lo95']):+.3f}, {float(r['median_hi95']):+.3f}] | {100 * float(r['share_up']):.0f}% |")
+
+
 if __name__ == "__main__":
-    for part in sys.argv[1:] or ["A", "B", "C", "amA", "amB", "amC"]:
-        {"A": partA, "B": partB, "C": partC, "amA": amA, "amB": amB, "amC": amC}[part]()
+    for part in sys.argv[1:] or ["A", "B", "C", "amA", "amB", "amC", "am2"]:
+        {"A": partA, "B": partB, "C": partC, "amA": amA, "amB": amB, "amC": amC, "am2": am2}[part]()

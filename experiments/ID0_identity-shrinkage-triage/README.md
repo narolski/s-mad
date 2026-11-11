@@ -73,7 +73,11 @@ Current answer (facts so far, no verdict yet):
   overflow). CLIP and DiffAE finished (`arm_clip.json`, `arm_diffae.json`).
 - 17:20 Added `--dtype` (fp16/bf16/fp32) and a non-finite check that refuses to save a part; DINOv3 bf16
   8-image test finite (17:22); full DINOv3 tier-1 run launched 17:28 (tag `dn`).
-- 17:30 Author's documentation instruction received; this README written.
+- 17:30 Author's documentation instruction received; this README written. 17:31 copied the 136 volatile
+  /dev/shm fit frames (section 9).
+- 17:33–17:44 Added the pool-centred contributor similarity (amendment 4, descriptive) to `analyse.py` and
+  re-ran the landmark, CLIP and DiffAE analyses (logs `logs/analyse2_*.log`; JSON/CSV overwritten, all other
+  numbers unchanged because the bootstrap seed is fixed). Result in section 5, "closed form vs observed".
 
 Amendments to the registration (all after the prereg, none after reading a decisive number unless stated):
 1. Feature sets reduced to "tier 1" for CLIP, DINOv3 and DiffAE (throughput on the shared machine); tier 1 holds
@@ -230,6 +234,21 @@ mordiff 0.000 [0.000, 0.000] (complete separation). Dose (294 hosts): Page p 9e-
 A43 B20 +0.083 [−0.173, 0.315]; DiffAE-native B20 +0.028 [−0.240, 0.282]. Cycle read (centred cosine of
 Enc(image) to the midpoint of Enc(a256 sources), median): B20 0.821 (to host alone 0.767), C20 0.822, D20 (to
 its own source) 0.846; on the 512 AR1 frames R4 0.940 (host 0.863).
+
+### Closed form vs observed (photo or one-photo output vs two-person morph), at the pool-centred c
+| Arm | Set | pool-centred c | predicted closed / spectrum | observed ISS |
+|---|---|---|---|---|
+| landmark | AR1 R0 vs R4 (exact) | 0.345 | 0.693 / 0.676 | 0.725 [0.689, 0.758] |
+| landmark | FRLL-Morphs pairs (exact) | 0.19 | 0.739 / 0.721 | 0.737 [0.682, 0.789] |
+| landmark | MAD22 pairs (exact) | 0.20–0.23 | 0.728–0.736 / 0.710–0.718 | 0.736–0.758 |
+| CLIP | AR1 OpenCV R2w vs R4 | 0.450 | 0.874 / 0.853 | 0.364 [0.323, 0.404] |
+| CLIP | MorDIFF D20 vs B20 | 0.239 | 0.952 / 0.939 | 0.698 [0.616, 0.775] |
+| DiffAE | AR1 OpenCV R2w vs R4 | 0.221 | 0.953 / 0.939 | 0.692 [0.657, 0.729] |
+| DiffAE | MorDIFF native D20 vs B20 | 0.089 | 0.978 / 0.971 | 0.688 [0.626, 0.749] |
+The closed form matches the exact-shape arm within about 0.03 and overshoots the image-feature arms by 0.25–0.51:
+the midpoint model (features of the morph image = midpoint of the contributors' features, session part
+unchanged) does not hold there (fidelity medians 0.56–0.95, section above), and in CLIP the sign is reversed
+for landmark morphs. The unadjusted c_pair values are in the JSON (`c_arm_median`) and are not usable (> 1).
 
 ### FR (glintr100) arm and GEO-0, DINOv3 arm
 Pending (section 10).

@@ -62,8 +62,11 @@ def main():
                     else:
                         rows = [r for r in man.values() if r["pool"] == pool and r["tool"] == tool
                                 and r["rung"] in (pos, neg) and r["id"] in F]
-                    X = np.stack([F[r["id"]] for r in rows])
                     y = np.array([r["rung"] == pos for r in rows], int)
+                    if y.sum() == 0 or (1 - y).sum() == 0:
+                        res[name] = dict(auc=None, ci95=[None, None], note="no features for one class (not scored)")
+                        continue
+                    X = np.stack([F[r["id"]] for r in rows])
                     g = np.array([r["p1"] for r in rows])
                     s = oof(X, y, g)
                     P = [(r["p1"], r["p2"]) for r in rows if r["rung"] == pos]

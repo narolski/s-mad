@@ -64,9 +64,62 @@ def canonical_hull():
     return m
 
 
+class Tok:
+    """row reader for a (N, T, D) .npy written by feat.py: large os.pread calls per contiguous run of rows instead of
+    memory-map page faults (page-fault reads crawled at < 1 MB/s on the oversubscribed DGX)."""
+
+    def __init__(self, path):
+        import os
+        self.path = str(path)
+        with open(self.path, "rb") as f:
+            ver = np.lib.format.read_magic(f)
+            shape, fortran, dtype = (np.lib.format.read_array_header_1_0(f) if ver == (1, 0)
+                                     else np.lib.format.read_array_header_2_0(f))
+            self.offset = f.tell()
+        self.shape, self.dtype = shape, np.dtype(dtype)
+        self.row = int(np.prod(shape[1:])) * self.dtype.itemsize
+        self.fd = os.open(self.path, os.O_RDONLY)
+
+    def __len__(self):
+        return self.shape[0]
+
+    def _run(self, a, b):
+        import os
+        n = (b - a) * self.row
+        buf = bytearray(n)
+        mv, got = memoryview(buf), 0
+        while got < n:
+            k = os.preadv(self.fd, [mv[got:]], self.offset + a * self.row + got)
+            if k <= 0:
+                raise IOError(f"short read {self.path}")
+            got += k
+        return np.frombuffer(buf, self.dtype).reshape((b - a,) + tuple(self.shape[1:]))
+
+    def __getitem__(self, idx):
+        if isinstance(idx, slice):
+            a, b, st = idx.indices(self.shape[0])
+            assert st == 1
+            return self._run(a, b)
+        idx = np.asarray(idx)
+        if idx.ndim == 0:
+            return self._run(int(idx), int(idx) + 1)[0]
+        out = np.empty((len(idx),) + tuple(self.shape[1:]), self.dtype)
+        order = np.argsort(idx, kind="stable")
+        s = idx[order]
+        i = 0
+        while i < len(s):
+            j = i
+            while j + 1 < len(s) and s[j + 1] == s[j] + 1:
+                j += 1
+            blk = self._run(int(s[i]), int(s[j]) + 1)
+            out[order[i:j + 1]] = blk
+            i = j + 1
+        return out
+
+
 def load_tokens(backbone, name):
     d = OUT / "feat" / backbone
-    tok = np.load(d / f"{name}.tokens.npy", mmap_mode="r")
+    tok = Tok(d / f"{name}.tokens.npy")
     ids = np.load(d / f"{name}.ids.npy")
     done = int((d / f"{name}.done").read_text())
     return tok, ids, done
