@@ -87,7 +87,7 @@ def main():
             for n in names:
                 comp.append(dict(out=f"out/{NAMES[ln]}/{n}", ref=f"ref/{NAMES[ln]}/{n}"))
     with open(W / f"ref_{a.task}.csv", "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(refrows[0]))
+        w = csv.DictWriter(f, fieldnames=list(refrows[0]), extrasaction="ignore")
         w.writeheader()
         w.writerows(refrows)
     p = subprocess.run([K.PY, "-I", str(HERE / "build.py"), "--list", str(W / f"ref_{a.task}.csv"), "--workers", "1",

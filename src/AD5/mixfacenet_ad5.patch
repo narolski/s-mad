@@ -1,0 +1,46 @@
+diff -ruN smdd_orig/main.py smdd_src/main.py
+--- smdd_orig/main.py	2023-03-06 09:57:23.000000000 +0100
++++ smdd_src/main.py	2026-11-11 17:58:44.356063799 +0100
+@@ -141,6 +141,15 @@
+     epochs_no_improve = 0
+     early_stop = False
+ 
++    if os.environ.get("AD5_LAST") == "1":  # AD5 patch: train all epochs, no evaluation, keep the LAST epoch
++        for epoch in range(num_epochs):
++            print('Epoch {}/{}'.format(epoch, num_epochs - 1))
++            logging.info('Epoch {}/{}'.format(epoch, num_epochs - 1))
++            train_loss, train_acc = train_fn(model, dataloaders['train'], dataset_sizes['train'], optimizer, criterion)
++            logging.info('train loss: {}, train acc: {}'.format(train_loss, train_acc))
++        torch.save(model.state_dict(), model_path)
++        logging.info(f'saved model path (last epoch): {model_path}')
++        return
+     for epoch in range(num_epochs):
+         print('Epoch {}/{}'.format(epoch, num_epochs - 1))
+         logging.info('Epoch {}/{}'.format(epoch, num_epochs - 1))
+@@ -225,9 +234,12 @@
+ 
+     if args.is_train:
+         train_dataset = FaceDataset(args.train_csv_path, is_train=True)
+-        test_dataset = FaceDataset(args.test_csv_path, is_train=False)
+         train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
+-        test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False)
++        if os.environ.get("AD5_LAST") == "1":  # AD5 patch: no test csv is read
++            test_loader = []
++        else:
++            test_dataset = FaceDataset(args.test_csv_path, is_train=False)
++            test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False)
+         dataloaders = {'train': train_loader, 'val': test_loader}
+         dataset_sizes = {'train': len(train_dataset), 'val': len(test_loader)}
+         print('train and test length:', len(train_dataset), len(test_loader))
+@@ -268,7 +280,10 @@
+ 
+     if torch.cuda.is_available():
+         print('GPU is available')
+-        torch.cuda.manual_seed(0)
++        _s = int(os.environ.get("AD5_SEED", "0"))  # AD5 patch: seeds 401-405; the official code seeds CUDA only (0)
++        torch.cuda.manual_seed(_s)
++        if "AD5_SEED" in os.environ:
++            torch.manual_seed(_s)
+     else:
+         print('GPU is not available')
+         torch.manual_seed(0)

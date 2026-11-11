@@ -78,6 +78,12 @@ Current answer (facts so far, no verdict yet):
 - 17:33–17:44 Added the pool-centred contributor similarity (amendment 4, descriptive) to `analyse.py` and
   re-ran the landmark, CLIP and DiffAE analyses (logs `logs/analyse2_*.log`; JSON/CSV overwritten, all other
   numbers unchanged because the bootstrap seed is fixed). Result in section 5, "closed form vs observed".
+- 17:55 DINOv3 bf16 tier 1 finished: `feat/dino_dn.npz` (9,610 rows, finite, median norm 7.2; sha256
+  616dde3b…). 17:57 glintr100 shards finished; merged `feat/glint_gl.npz` (13,809 new rows, faces found in all;
+  sha256 603fb2fb…); merged with existing AR1/a46 embeddings inside `analyse.py`. `bench_sim.py` re-run: H3
+  StyleGAN3 contributor cosine 0.162 [0.069, 0.246] (423 pairs, CASIA source crops). No ID0 process uses the
+  GPU any more. 18:00 analyses for the glint and DINOv3 arms started (PIDs 2172290, 2176171; logs
+  `logs/analyse_glint.log`, `logs/analyse_dino2.log`).
 
 Amendments to the registration (all after the prereg, none after reading a decisive number unless stated):
 1. Feature sets reduced to "tier 1" for CLIP, DINOv3 and DiffAE (throughput on the shared machine); tier 1 holds
@@ -172,7 +178,7 @@ pairs 20261111, spectrum 20261111.
 | DiM-C / Greedy-DiM / Greedy-DiM-S | 500 | 0.116 [0.053, 0.190] |
 | AR1 pool, two-person (look-alike assignment) | 536 | 0.234 [0.163, 0.310] |
 | AR1 pool, same-person | 536 | 0.868 [0.804, 0.918] |
-H3 StyleGAN3 pairs: to be added when the glint arm runs (crops embedded).
+| H3 StyleGAN3 pairs (CASIA source crops) | 423 | 0.162 [0.069, 0.246] |
 
 ### Landmark arm (exact shapes) — `arm_landmark.json`
 See `result.md` (final table). Fit k = 11, d = 10, n = 0.175; ceiling (closed / spectrum): c=0 0.795/0.781,
