@@ -5,7 +5,7 @@ One line per idea. Newest state only; history is in git. Updated by the lead aft
 Status: `planned` → `ready` (pre-registered, command tested) → `running` → `done` → `reviewed`.
 Verdict: `yes`, `no`, `mixed`, or blank.
 
-Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
+Last update: 11 Nov 2026, 14:25 CET. Started. WCSS: 48 one-GPU slots queued (jobs 6301498, 6301499).
 
 ## Where we stand, in five lines
 
@@ -89,7 +89,6 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 
 ## Open decisions and blockers
 
-- Codex transcript "Eksperymenty z S-MAD" to be read first; then the start signal.
 - Codex loop is paused; its DGX controllers still run (20 CLIP fits, up to 66 h). See `12_STATE_AT_HANDOVER.md`.
 - No x86 build of MIPGAN yet (GAN causal test depends on it).
 - For our own networks, FERET and FRGC have no unsealed held-out persons; unseen-source tests use CASIA or Multi-PIE.
@@ -98,3 +97,4 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 
 - 11 Nov: plan, evidence dossier, cue matrix, audit plan and workflow written. Repository created.
 - 11 Nov: author rulings recorded. Main contrast is now processed genuine image against morph; same-person morphs are a side study.
+- 11 Nov 14:22: transcript read; start. 48 WCSS slots submitted. Owners assigned to first-round experiments.
