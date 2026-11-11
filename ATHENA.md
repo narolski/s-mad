@@ -58,6 +58,25 @@ useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 No
 - An experiment that needs other packages builds its own environment under
   `.../smad-next/envs/<ID>/` inside a job, with pinned versions written to its log.
 
+## Container image (verified 11 Nov 2026, job 3545843)
+
+- Docker is not installed on Athena. Apptainer 1.4.5 exists **on compute nodes only** (not on the login node) and
+  runs Docker images. Building an image from a definition file works without root rights inside a job (211 s).
+- Image: `/net/pr2/projects/plgrid/plggrestoration/smad-next/containers/smad_torch221_cu121_v1.sif` (3.7 GB,
+  sha256 `fedeff10a26d14edad624fffc048fc197509618ba5012519c47699dd6419649f`). Contents: the public image
+  `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime` (python 3.10.13, torch 2.2.1, CUDA 12.1; the image the rented
+  machines use) plus timm 1.0.27, huggingface_hub 0.36.2, safetensors 0.8.0, numpy 1.26.4, pyyaml 6.0.3,
+  pillow 10.2.0. Definition file: `src/athena/containers/smad_torch221_cu121_v1.def`; test job:
+  `src/athena/apptainer_test.sbatch`.
+- Use inside a job: `apptainer exec --nv -B $G:$G -B $MEMFS:$MEMFS $G/containers/smad_torch221_cu121_v1.sif python ...`
+  (`G` = the project folder). When building, set `APPTAINER_CACHEDIR` and `APPTAINER_TMPDIR` into `$MEMFS`.
+- Rules: a **new** experiment runs from the image. An experiment that needs other packages builds its own image
+  the same way under a new name (`smad_<what>_v1.sif`, definition file in `src/`, hash in its README); an image
+  file is never overwritten. An experiment that has started with a Python environment finishes with it: software
+  does not change inside one experiment.
+- The DGX is an ARM machine and cannot run this image; it keeps its own environment. The same image file can be
+  copied to WCSS, which also has Apptainer.
+
 ## Job template
 
 `src/athena/ad4_vitl_array.sbatch` is the model: `#!/bin/bash -l`, account, partition, one GPU,

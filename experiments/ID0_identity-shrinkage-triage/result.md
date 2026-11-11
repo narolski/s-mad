@@ -119,7 +119,24 @@ CSV) mix pools and are not read.
 
 (b) Learning curve and regulariser table, glintr100 virtual head — `amend1_b.json`, `amend1_b.csv`.
 
-LEARNING_CURVE_TABLE
+| Head | C | training persons per fold | morph vs single | morph vs single + twin |
+|---|---|---|---|---|
+| logistic | 1.0 | 75 | 0.611 [0.595, 0.627] | 0.607 [0.583, 0.630] |
+| logistic | 1.0 | 150 | 0.621 [0.606, 0.637] | 0.623 [0.602, 0.646] |
+| logistic | 1.0 | 300 | 0.659 [0.642, 0.677] | 0.658 [0.625, 0.688] |
+| logistic | 1.0 | all (about 620) | 0.751 [0.735, 0.767] | 0.744 [0.713, 0.770] |
+| logistic | 0.001 | all (about 620) | 0.711 [0.696, 0.727] | 0.713 [0.694, 0.734] |
+| logistic | 0.01 | all (about 620) | 0.726 [0.710, 0.743] | 0.724 [0.697, 0.748] |
+| logistic | 0.1 | all (about 620) | 0.734 [0.718, 0.751] | 0.730 [0.700, 0.755] |
+| logistic | 10.0 | all (about 620) | 0.762 [0.746, 0.778] | 0.752 [0.721, 0.779] |
+| logistic | 100.0 | all (about 620) | 0.756 [0.740, 0.772] | 0.747 [0.721, 0.772] |
+| mean-direction projection (no fit beyond the mean) | — | all (about 620) | 0.659 [0.642, 0.676] | 0.652 [0.626, 0.678] |
+
+Pooled out-of-fold AUC over the 5 registered person folds; the full-size C = 1 row reproduces the registered
+in-domain value (0.744). The one-hidden-layer network row and the real-contrast columns (each variant refitted on
+all fit persons and applied to AR1 R3 vs R4, H vs R4, R2w vs R4, a43_D vs a43_B and the MorDIFF E7 control) are
+still being computed at 19:25 (PID 2324274, nice 10, machine load about 150); they will be in `amend1_b.json`.
+Rows above are parsed from its log into `amend1_b_partial.csv`.
 
 (c) Review hypothesis H-new-1 — `amend1_c.json`. Per-host Spearman ρ of the ISS shift (R4 − R2w, AR1 OpenCV,
 520 hosts) with the loss of fine detail (log Laplacian variance inside the face box, R2w minus R4; median loss

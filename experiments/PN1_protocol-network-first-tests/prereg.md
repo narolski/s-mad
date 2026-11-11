@@ -274,3 +274,10 @@ blur1, resample50 and chip stay forbidden on training images.
    thresholds with the misses beside them. The JPEG rows stop being "uncontrolled" for C only (C trains on jpeg90 and
    jpeg70; jpeg50 is its left-out quality); for A and B they stay uncontrolled.
 6. Certificate (section 9 (i)) for manifest C as well; history flag extended with jpeg90 / jpeg70.
+
+## Amendment 2 (11 Nov 19:26 CET, before any score or statistic): encoding of "partner identity" in the certificate
+
+Section 9 (i) said "partner reuse = number of attack images in the set sharing that partner". Written that way the cue
+is 0 for every negative and at least 1 for every attack, i.e. the label itself. Replaced by **person frequency**: for
+every image, the largest number of images in the same set that contain one of its persons (this is the cue that would
+expose SMDD's five recurring partners, and it applies to both classes). Nothing else changes.
