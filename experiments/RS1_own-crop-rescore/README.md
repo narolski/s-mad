@@ -162,6 +162,12 @@ missing); a pack is ready there for later.
   RS1 jobs are ahead, and excluded the slow node t0010. I lowered both RS1 jobs to a 2 h limit (`scontrol update
   JobId=... TimeLimit=02:00:00`; estimate from the smoke: about 70 to 85 min per variant). If they have not started by
   21:30 the lead looks for another machine.
+- 20:45. Disk alert (lead): /mnt/t7 reached 100%; new rule in OWNER_BRIEF ("Disk space"): check `df -h /mnt/t7`
+  before writes over 1 GB, keep 50 GB free, keep packs and crops on Athena, copy back only scores and small tables, no
+  second local copies, delete nothing without the author. Sent the lead the list of my large local files with their
+  verified Athena copies (the three packs, 12 GB; the two fetched smoke tars). The job now writes a small result tar
+  (copied back) and `rs1a_<tag>_crops.tar` (stays on Athena). Jobs 3545918 / 3545919 (never started) cancelled and
+  resubmitted as **3545970 (variant 1)** and **3545971 (variant 2)**, 2 h limit, `-A plgmultivision-gpu-a100`.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.
@@ -242,7 +248,7 @@ MixFaceNet-MAD `/mnt/t7/mixfacenet_mad_official/mixfacenet_SMDD.pth` (3d507c8b);
 
 ## 5. Results
 
-MADation / MixFaceNet-MAD: pending (Athena jobs 3545918, 3545919).
+MADation / MixFaceNet-MAD: pending (Athena jobs 3545970, 3545971).
 
 SelfMAD (11 Nov 20:10; `analyse.py --B 2000 --suffix _selfmad_only`; files `rs1_*_selfmad_only.csv`,
 `rs1_results_selfmad_only.json`; rendered `/mnt/t7/smad_next/RS1/tables_selfmad_only.md`). Two runs, never compared

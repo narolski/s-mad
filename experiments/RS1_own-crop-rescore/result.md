@@ -1,7 +1,7 @@
 # Own-crop re-score of the audit rows (RS1): result
 
 Status: **partly finished** (11 Nov 2026, 20:25 CET). SelfMAD rows: done. MADation / MixFaceNet-MAD rows: Athena jobs
-3545918 (variant 1) and 3545919 (variant 2) queued. Full record: `README.md`; registration: `prereg.md` (amendments
+3545970 (variant 1) and 3545971 (variant 2) queued. Full record: `README.md`; registration: `prereg.md` (amendments
 1 to 4). All numbers: EER in %, AUC 0 to 1, rates in %, 95% intervals from the two-way person bootstrap (102 FRLL
 persons, B = 2,000; FEI subjects and FFHQ images have their own draws).
 
@@ -46,7 +46,7 @@ morph B20 0.463 [0.424, 0.493]. The MorDIFF row has no published number for Self
 
 ## MADation and MixFaceNet-MAD releases
 
-(pending: Athena jobs 3545918 and 3545919)
+(pending: Athena jobs 3545970 and 3545971)
 
 ## Deviations and what could not be verified
 
@@ -63,4 +63,4 @@ morph B20 0.463 [0.424, 0.493]. The MorDIFF row has no published number for Self
 - Published numbers come from the arXiv HTML versions; the CVF PDFs were not opened; the published genuine
   populations are not verified.
 - Athena job IDs and GPU-hours (sacct elapsed, 1 GPU each): smoke 3544220 0:06:52 (0.11 h), cancelled smoke 3545836 0:02:37 (0.04 h), smoke 3545869 0:03:34 (0.06 h); cancelled production 3545884 never started (0 h);
-  production 3545918, 3545919 pending.
+  production 3545918 / 3545919 cancelled before start (0 h), resubmitted as 3545970 / 3545971 (pending).

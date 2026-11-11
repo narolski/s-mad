@@ -124,6 +124,8 @@ cp "$W"/scores/scores_*.npz "$W/out/scores/"; cp "$W"/score_v1.csv "$W"/score_v2
 cp "$W"/crops/v2/crops_*.csv "$W"/crops/v2/boxes_*.jsonl "$W/out/v2meta/" 2>/dev/null || true
 ( cd "$W/crops" && find v1 v2 -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \) -print0 | sort -z | xargs -0 sha256sum > "$W/out/crops_sha256.txt" )
 mkdir -p "$G/results/RS1"
-tar -cf "$G/results/RS1/rs1a_$TAG.tar" -C "$W/out" . -C "$W" $(for v in $VARS; do echo crops/$v; done)
-( cd "$G/results/RS1" && sha256sum "rs1a_$TAG.tar" > "rs1a_$TAG.tar.sha256" )
+# small result tar (scores, lists, logs, crop sha256 list; copied back) and the crop tar (stays on Athena: disk rule)
+tar -cf "$G/results/RS1/rs1a_$TAG.tar" -C "$W/out" .
+tar -cf "$G/results/RS1/rs1a_${TAG}_crops.tar" -C "$W" $(for v in $VARS; do echo crops/$v; done)
+( cd "$G/results/RS1" && sha256sum "rs1a_$TAG.tar" > "rs1a_$TAG.tar.sha256" && sha256sum "rs1a_${TAG}_crops.tar" > "rs1a_${TAG}_crops.tar.sha256" )
 echo "RS1_DONE $TAG $(date +%T)"

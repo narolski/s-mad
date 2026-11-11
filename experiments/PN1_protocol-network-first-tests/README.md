@@ -202,7 +202,25 @@ family-mean miss 20.4%; B0 identical over the five seeds (C = 0.1); Bn0 seed 405
 Provisional first version (whole-manifest balance, host bootstrap, 512-px floor): `tier0_v1_provisional*`,
 superseded (amendment 4).
 
-DINOv3 tier 0: pending (Athena smoke job 3545947 extracts the missing DINOv3 sets).
+DINOv3 ViT-L/16 512 (seed 401; A0 / B0 / Bn0). DINOv3 means of r2w4_td, frll_e5s, devsoft, AF0 soft and ladsoft were
+extracted on Athena (smoke job 3545947, A100, container image); platform check on 64 images also present in the DGX
+caches: feature max |difference| 0.0058 (mean |value| 0.113), correlation 0.999998, named B0 head probability max
+|difference| 0.0038 (registered tolerance 0.01: within; `featx_platform_check.json`). FRLL jpeg90 / jpeg70 have no
+DINOv3 means (not extracted).
+
+| Read | A0 | B0 | Bn0 |
+|---|---|---|---|
+| R2w vs R4 / R2w4 vs R4 (excess +0.11 over band5@224 0.888) | 0.999 / 0.999 | 0.999 / 0.999 | 0.999 / 0.999 |
+| R0_61 vs R4 / R2w_61 vs R4 | 0.999 / 0.999 | 0.999 / 0.999 | 0.998 / 0.998 |
+| shift R0 -> R0_61 / R0_112 (SD) | +0.748 / +0.448 | +0.433 / +0.240 | +0.401 / +0.181 |
+| H1 AUC | 0.850 | 0.842 | 0.839 |
+| MAD22 E7 EER OpenCV / Webmorph (%) | 5.39 / 12.75 | 5.17 / 11.40 | 4.90 / 10.78 |
+| τ_cam flag T_R0 / T_R0_61 / T_R0_112 (%) | 6.8 / 23.6 / 13.1 | 6.3 / 10.5 / 9.4 | 5.8 / 10.5 / 6.8 |
+| τ_cam flag FRLL jpeg50 / H1 genuine (%) | 0.0 / 5.7 | 0.0 / 3.3 | 0.0 / 1.2 |
+| τ_cam miss ladder R4 / MAD22 OpenCV / Webmorph / H1 (%) | 0.0 / 32.0 / 66.4 / 52.2 | 0.5 / 24.8 / 56.4 / 66.6 | 0.5 / 24.5 / 58.6 / 76.6 |
+| τ_cam family-mean miss (%) | 37.6 | 37.1 | 40.1 |
+| P-c / P-c2 / kernels | fail / fail / pass | fail (10.5%, 0.43 SD) / pass / pass | fail (10.5%, 0.40 SD) / pass / pass |
+| K0; 2 x 2 | no; pass | no; pass | no; pass |
 
 ### 5.1b Certificate (amendment 4: random person folds, straddling images dropped; THE certificate = nuisance-only)
 
