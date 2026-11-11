@@ -1,0 +1,3962 @@
+{
+ "frgcferet|opencv|R2vsR0|bytes": {
+  "auc": 0.6389229226999331,
+  "ci95": [
+   0.6243779064101136,
+   0.6548746327829138
+  ],
+  "folded": 0.6389229226999331,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2vsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2vsR0|background": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2vsR0|thumb32": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2vsR0|face": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2vsR0|band": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R2vsR0|lapvar": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R3vsR2|bytes": {
+  "auc": 0.1863757239919804,
+  "ci95": [
+   0.1618638964691468,
+   0.21146256822232123
+  ],
+  "folded": 0.8136242760080196,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3vsR2|border": {
+  "auc": 0.5236933337046112,
+  "ci95": [
+   0.5090160496491423,
+   0.5380805423674537
+  ],
+  "folded": 0.5236933337046112,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3vsR2|background": {
+  "auc": 0.4955794720427712,
+  "ci95": [
+   0.47513574849632434,
+   0.5162250779683671
+  ],
+  "folded": 0.5044205279572288,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3vsR2|thumb32": {
+  "auc": 0.49832228781465804,
+  "ci95": [
+   0.4786976672143016,
+   0.5172842643127645
+  ],
+  "folded": 0.501677712185342,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R3vsR2|face": {
+  "auc": 0.5083189463132101,
+  "ci95": [
+   0.4894212763143239,
+   0.5271045367843619
+  ],
+  "folded": 0.5083189463132101,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R3vsR2|band": {
+  "auc": 0.8247730563599911,
+  "ci95": [
+   0.7984554257629761,
+   0.849895230006683
+  ],
+  "folded": 0.8247730563599911,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R3vsR2|lapvar": {
+  "auc": 0.10530950657161951,
+  "ci95": [
+   0.08659013700155936,
+   0.1238028026843395
+  ],
+  "folded": 0.8946904934283805,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR3|bytes": {
+  "auc": 0.5078351247493874,
+  "ci95": [
+   0.4707854139821205,
+   0.543625365722645
+  ],
+  "folded": 0.5078351247493874,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR3|border": {
+  "auc": 0.5084633966362219,
+  "ci95": [
+   0.47235426935725067,
+   0.5463485701202675
+  ],
+  "folded": 0.5084633966362219,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR3|background": {
+  "auc": 0.5971158665627089,
+  "ci95": [
+   0.5611338189076936,
+   0.6333337693305302
+  ],
+  "folded": 0.5971158665627089,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR3|thumb32": {
+  "auc": 0.5809165460013366,
+  "ci95": [
+   0.5447621545165315,
+   0.6174410766772492
+  ],
+  "folded": 0.5809165460013366,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR3|face": {
+  "auc": 0.5876622020494542,
+  "ci95": [
+   0.5502612304515323,
+   0.6275559095119914
+  ],
+  "folded": 0.5876622020494542,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR3|band": {
+  "auc": 0.6306666295388728,
+  "ci95": [
+   0.5844339647207313,
+   0.674148827367879
+  ],
+  "folded": 0.6306666295388728,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR3|lapvar": {
+  "auc": 0.49707618623301403,
+  "ci95": [
+   0.4590527839080943,
+   0.5327909189173181
+  ],
+  "folded": 0.502923813766986,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR2|bytes": {
+  "auc": 0.1842089691468033,
+  "ci95": [
+   0.15940640544211757,
+   0.20871199671922758
+  ],
+  "folded": 0.8157910308531967,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2|border": {
+  "auc": 0.5299273223435064,
+  "ci95": [
+   0.4961377314235214,
+   0.56417056274752
+  ],
+  "folded": 0.5299273223435064,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2|background": {
+  "auc": 0.5985882156382267,
+  "ci95": [
+   0.5613337899056231,
+   0.6347277401587679
+  ],
+  "folded": 0.5985882156382267,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2|thumb32": {
+  "auc": 0.5978363778124304,
+  "ci95": [
+   0.5609093706941272,
+   0.63361028265262
+  ],
+  "folded": 0.5978363778124304,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR2|face": {
+  "auc": 0.6198624415237246,
+  "ci95": [
+   0.5815476783738153,
+   0.6578352716706657
+  ],
+  "folded": 0.6198624415237246,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR2|band": {
+  "auc": 0.8551946424593451,
+  "ci95": [
+   0.8314609191891266,
+   0.8781261113581496
+  ],
+  "folded": 0.8551946424593451,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR2|lapvar": {
+  "auc": 0.10004664179104478,
+  "ci95": [
+   0.08058930742437628,
+   0.12076529399341833
+  ],
+  "folded": 0.8999533582089552,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR0|bytes": {
+  "auc": 0.21705140343060816,
+  "ci95": [
+   0.18971791381494932,
+   0.24589062308704554
+  ],
+  "folded": 0.7829485965693919,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR0|border": {
+  "auc": 0.5299273223435064,
+  "ci95": [
+   0.4961377314235214,
+   0.56417056274752
+  ],
+  "folded": 0.5299273223435064,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR0|background": {
+  "auc": 0.5985882156382267,
+  "ci95": [
+   0.5613337899056231,
+   0.6347277401587679
+  ],
+  "folded": 0.5985882156382267,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR0|thumb32": {
+  "auc": 0.5978363778124304,
+  "ci95": [
+   0.5609093706941272,
+   0.63361028265262
+  ],
+  "folded": 0.5978363778124304,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR0|face": {
+  "auc": 0.6198624415237246,
+  "ci95": [
+   0.5815476783738153,
+   0.6578352716706657
+  ],
+  "folded": 0.6198624415237246,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR0|band": {
+  "auc": 0.8551946424593451,
+  "ci95": [
+   0.8314609191891266,
+   0.8781261113581496
+  ],
+  "folded": 0.8551946424593451,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR0|lapvar": {
+  "auc": 0.10004664179104478,
+  "ci95": [
+   0.08058930742437628,
+   0.12076529399341833
+  ],
+  "folded": 0.8999533582089552,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|NCvsR3|bytes": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|NCvsR3|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|NCvsR3|background": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|NCvsR3|thumb32": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frgcferet|opencv|NCvsR3|face": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frgcferet|opencv|NCvsR3|band": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|NCvsR3|lapvar": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R2wvsR0|bytes": {
+  "auc": 0.3626016373357095,
+  "ci95": [
+   0.34585566802183115,
+   0.3782335987970595
+  ],
+  "folded": 0.6373983626642905,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2wvsR0|border": {
+  "auc": 0.4980420889953219,
+  "ci95": [
+   0.49272157461294275,
+   0.5033710876587213
+  ],
+  "folded": 0.5019579110046781,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2wvsR0|background": {
+  "auc": 0.5099862163065271,
+  "ci95": [
+   0.49776354352305635,
+   0.5224092921586099
+  ],
+  "folded": 0.5099862163065271,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2wvsR0|thumb32": {
+  "auc": 0.5297428436177323,
+  "ci95": [
+   0.5219004963521943,
+   0.5378534682000445
+  ],
+  "folded": 0.5297428436177323,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2wvsR0|face": {
+  "auc": 0.5227256905769659,
+  "ci95": [
+   0.5059837241033638,
+   0.5397082625584764
+  ],
+  "folded": 0.5227256905769659,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2wvsR0|band": {
+  "auc": 0.858135859879706,
+  "ci95": [
+   0.8338987490253954,
+   0.881446313210069
+  ],
+  "folded": 0.858135859879706,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R2wvsR0|lapvar": {
+  "auc": 0.21865602027177544,
+  "ci95": [
+   0.19809708453998665,
+   0.2376752547894854
+  ],
+  "folded": 0.7813439797282246,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR2w|bytes": {
+  "auc": 0.3148268684562263,
+  "ci95": [
+   0.2838434850987734,
+   0.3463799623373863
+  ],
+  "folded": 0.6851731315437737,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2w|border": {
+  "auc": 0.5211819865226108,
+  "ci95": [
+   0.4846338997889501,
+   0.5551666827036079
+  ],
+  "folded": 0.5211819865226108,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2w|background": {
+  "auc": 0.5648425317442638,
+  "ci95": [
+   0.526374427236632,
+   0.6019231426310495
+  ],
+  "folded": 0.5648425317442638,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2w|thumb32": {
+  "auc": 0.5661095177099577,
+  "ci95": [
+   0.5308508900577308,
+   0.6035988682612927
+  ],
+  "folded": 0.5661095177099577,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR2w|face": {
+  "auc": 0.5872758409445311,
+  "ci95": [
+   0.5495462899920022,
+   0.6269167650032966
+  ],
+  "folded": 0.5872758409445311,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR2w|band": {
+  "auc": 0.7534111160614836,
+  "ci95": [
+   0.7165837604571201,
+   0.7862828524943797
+  ],
+  "folded": 0.7534111160614836,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR2w|lapvar": {
+  "auc": 0.22607693807083984,
+  "ci95": [
+   0.19684672184507493,
+   0.2590096784849701
+  ],
+  "folded": 0.7739230619291602,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R3mvsR2w|bytes": {
+  "auc": 0.29984406326576074,
+  "ci95": [
+   0.2817927329304968,
+   0.3172363607568501
+  ],
+  "folded": 0.7001559367342393,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3mvsR2w|border": {
+  "auc": 0.5098696118289151,
+  "ci95": [
+   0.4941498054271553,
+   0.5261500769241478
+  ],
+  "folded": 0.5098696118289151,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3mvsR2w|background": {
+  "auc": 0.8196494208064157,
+  "ci95": [
+   0.7917404871630652,
+   0.8462981559088883
+  ],
+  "folded": 0.8196494208064157,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3mvsR2w|thumb32": {
+  "auc": 0.8566565493428381,
+  "ci95": [
+   0.8316234824014258,
+   0.8816603781465806
+  ],
+  "folded": 0.8566565493428381,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R3mvsR2w|face": {
+  "auc": 0.863753759189129,
+  "ci95": [
+   0.8408360192971709,
+   0.8856666991534863
+  ],
+  "folded": 0.863753759189129,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R3mvsR2w|band": {
+  "auc": 0.7446605591445756,
+  "ci95": [
+   0.7268062381655157,
+   0.764739676152818
+  ],
+  "folded": 0.7446605591445756,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R3mvsR2w|lapvar": {
+  "auc": 0.23909487079527733,
+  "ci95": [
+   0.22107173437848074,
+   0.2553187305079082
+  ],
+  "folded": 0.7609051292047226,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR3m|bytes": {
+  "auc": 0.5411613805970149,
+  "ci95": [
+   0.5032516791179958,
+   0.5775158822680053
+  ],
+  "folded": 0.5411613805970149,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR3m|border": {
+  "auc": 0.5146556165070172,
+  "ci95": [
+   0.47634866265656867,
+   0.5557702188111422
+  ],
+  "folded": 0.5146556165070172,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR3m|background": {
+  "auc": 0.8834198875027846,
+  "ci95": [
+   0.8392348897514363,
+   0.9189426825969483
+  ],
+  "folded": 0.8834198875027846,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR3m|thumb32": {
+  "auc": 0.9299259300512364,
+  "ci95": [
+   0.8920893541671521,
+   0.958942176714056
+  ],
+  "folded": 0.9299259300512364,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR3m|face": {
+  "auc": 0.9334240643795946,
+  "ci95": [
+   0.9038073611519339,
+   0.9575801891478821
+  ],
+  "folded": 0.9334240643795946,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR3m|band": {
+  "auc": 0.5653054689240365,
+  "ci95": [
+   0.521753970876009,
+   0.6058119614835481
+  ],
+  "folded": 0.5653054689240365,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR3m|lapvar": {
+  "auc": 0.5164307891512586,
+  "ci95": [
+   0.48074185993982005,
+   0.55169721275903
+  ],
+  "folded": 0.5164307891512586,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R3vsR2w|bytes": {
+  "auc": 0.31744785865448877,
+  "ci95": [
+   0.2975215892320116,
+   0.3357932672226554
+  ],
+  "folded": 0.6825521413455112,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3vsR2w|border": {
+  "auc": 0.5281939184673646,
+  "ci95": [
+   0.5125824062987303,
+   0.5431577536756516
+  ],
+  "folded": 0.5281939184673646,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3vsR2w|background": {
+  "auc": 0.4873301403430608,
+  "ci95": [
+   0.4703649720149254,
+   0.5043892883994209
+  ],
+  "folded": 0.5126698596569392,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3vsR2w|thumb32": {
+  "auc": 0.4845420750723992,
+  "ci95": [
+   0.46651119402985075,
+   0.5026135066273112
+  ],
+  "folded": 0.5154579249276008,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R3vsR2w|face": {
+  "auc": 0.5044135664958788,
+  "ci95": [
+   0.4930106057863667,
+   0.5156536290098017
+  ],
+  "folded": 0.5044135664958788,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R3vsR2w|band": {
+  "auc": 0.7427565994653598,
+  "ci95": [
+   0.7216837338494096,
+   0.7632693284974381
+  ],
+  "folded": 0.7427565994653598,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R3vsR2w|lapvar": {
+  "auc": 0.24070296836711963,
+  "ci95": [
+   0.22086967796279797,
+   0.258908059979951
+  ],
+  "folded": 0.7592970316328804,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR2wm|bytes": {
+  "auc": 0.31513317275562486,
+  "ci95": [
+   0.28424768450052257,
+   0.34691173966477135
+  ],
+  "folded": 0.6848668272443752,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2wm|border": {
+  "auc": 0.5208443556471375,
+  "ci95": [
+   0.48366734042356313,
+   0.5542628527473848
+  ],
+  "folded": 0.5208443556471375,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2wm|background": {
+  "auc": 0.7308142125194921,
+  "ci95": [
+   0.691565025491402,
+   0.768312063907708
+  ],
+  "folded": 0.7308142125194921,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2wm|thumb32": {
+  "auc": 0.7523808197816886,
+  "ci95": [
+   0.7153486917970454,
+   0.7877909940099032
+  ],
+  "folded": 0.7523808197816886,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR2wm|face": {
+  "auc": 0.8125835375361996,
+  "ci95": [
+   0.7743437893149197,
+   0.8493891605079793
+  ],
+  "folded": 0.8125835375361996,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR2wm|band": {
+  "auc": 0.751030296279795,
+  "ci95": [
+   0.7150407748725478,
+   0.7841372743470097
+  ],
+  "folded": 0.751030296279795,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR2wm|lapvar": {
+  "auc": 0.22455237803519715,
+  "ci95": [
+   0.19519821202684923,
+   0.25780836193270906
+  ],
+  "folded": 0.7754476219648029,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R2wmvsR0|bytes": {
+  "auc": 0.3619838076409,
+  "ci95": [
+   0.3453722380402094,
+   0.3773562806304299
+  ],
+  "folded": 0.6380161923591,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2wmvsR0|border": {
+  "auc": 0.4967159306081533,
+  "ci95": [
+   0.4871483591835598,
+   0.506569792130764
+  ],
+  "folded": 0.5032840693918468,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2wmvsR0|background": {
+  "auc": 0.7053526676319893,
+  "ci95": [
+   0.6848499457006014,
+   0.7258955049844064
+  ],
+  "folded": 0.7053526676319893,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2wmvsR0|thumb32": {
+  "auc": 0.6937305079082201,
+  "ci95": [
+   0.6746615859601248,
+   0.7140330008075294
+  ],
+  "folded": 0.6937305079082201,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2wmvsR0|face": {
+  "auc": 0.7638672310091335,
+  "ci95": [
+   0.7404352131599465,
+   0.7864510818110937
+  ],
+  "folded": 0.7638672310091335,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2wmvsR0|band": {
+  "auc": 0.8527337658721319,
+  "ci95": [
+   0.8280272784862998,
+   0.8759753007351303
+  ],
+  "folded": 0.8527337658721319,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R2wmvsR0|lapvar": {
+  "auc": 0.21868038538650034,
+  "ci95": [
+   0.19821673465693918,
+   0.2376642904878592
+  ],
+  "folded": 0.7813196146134996,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R3mvsR2wm|bytes": {
+  "auc": 0.300414903096458,
+  "ci95": [
+   0.28271469146803296,
+   0.31769716598908443
+  ],
+  "folded": 0.699585096903542,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3mvsR2wm|border": {
+  "auc": 0.5137297421474716,
+  "ci95": [
+   0.4987391488221207,
+   0.5291629973964134
+  ],
+  "folded": 0.5137297421474716,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3mvsR2wm|background": {
+  "auc": 0.77916156159501,
+  "ci95": [
+   0.7476912313432835,
+   0.811132420917799
+  ],
+  "folded": 0.77916156159501,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R3mvsR2wm|thumb32": {
+  "auc": 0.8511778792604143,
+  "ci95": [
+   0.824711360408777,
+   0.8783871860380931
+  ],
+  "folded": 0.8511778792604143,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R3mvsR2wm|face": {
+  "auc": 0.8884495433281354,
+  "ci95": [
+   0.8655094397415906,
+   0.9105361717531745
+  ],
+  "folded": 0.8884495433281354,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R3mvsR2wm|band": {
+  "auc": 0.7364147081755402,
+  "ci95": [
+   0.7183869597905993,
+   0.7563295346959233
+  ],
+  "folded": 0.7364147081755402,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R3mvsR2wm|lapvar": {
+  "auc": 0.23760859879705948,
+  "ci95": [
+   0.21962897151370017,
+   0.25372490393183333
+  ],
+  "folded": 0.7623914012029405,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR2w4|bytes": {
+  "auc": 0.3183911366674092,
+  "ci95": [
+   0.28695906489662887,
+   0.35025720750351585
+  ],
+  "folded": 0.6816088633325907,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2w4|border": {
+  "auc": 0.5175219982178659,
+  "ci95": [
+   0.48096025651370233,
+   0.5515162000835628
+  ],
+  "folded": 0.5175219982178659,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2w4|background": {
+  "auc": 0.4821299287146358,
+  "ci95": [
+   0.443932176054384,
+   0.5182965437301363
+  ],
+  "folded": 0.5178700712853642,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R4vsR2w4|thumb32": {
+  "auc": 0.4788475996881265,
+  "ci95": [
+   0.44435139365152637,
+   0.5136138959718995
+  ],
+  "folded": 0.5211524003118735,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR2w4|face": {
+  "auc": 0.4955829527734462,
+  "ci95": [
+   0.4618273521746887,
+   0.5333055330260643
+  ],
+  "folded": 0.5044170472265538,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R4vsR2w4|band": {
+  "auc": 0.7566099075517932,
+  "ci95": [
+   0.7200463041071681,
+   0.7894221360792697
+  ],
+  "folded": 0.7566099075517932,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R4vsR2w4|lapvar": {
+  "auc": 0.23176097126308753,
+  "ci95": [
+   0.20236314139589012,
+   0.2650616277485304
+  ],
+  "folded": 0.7682390287369125,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R2w4vsR2w|bytes": {
+  "auc": 0.4938130012252172,
+  "ci95": [
+   0.4915727159445311,
+   0.49558991423479615
+  ],
+  "folded": 0.5061869987747828,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2w4vsR2w|border": {
+  "auc": 0.5040115421029182,
+  "ci95": [
+   0.49503626051180666,
+   0.5134584191913566
+  ],
+  "folded": 0.5040115421029182,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2w4vsR2w|background": {
+  "auc": 0.5704743539763867,
+  "ci95": [
+   0.5519914130374248,
+   0.5896704966306527
+  ],
+  "folded": 0.5704743539763867,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2w4vsR2w|thumb32": {
+  "auc": 0.569809534417465,
+  "ci95": [
+   0.556624004511027,
+   0.5845369409946536
+  ],
+  "folded": 0.569809534417465,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2w4vsR2w|face": {
+  "auc": 0.5817484406326576,
+  "ci95": [
+   0.5587826666573847,
+   0.6068003035197148
+  ],
+  "folded": 0.5817484406326576,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2w4vsR2w|band": {
+  "auc": 0.4865295722878147,
+  "ci95": [
+   0.476508374638004,
+   0.49630163663956334
+  ],
+  "folded": 0.5134704277121853,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R2w4vsR2w|lapvar": {
+  "auc": 0.49077258298061927,
+  "ci95": [
+   0.4873124756348853,
+   0.4939618894798396
+  ],
+  "folded": 0.5092274170193807,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R2w4vsR0|bytes": {
+  "auc": 0.35676967308977503,
+  "ci95": [
+   0.3396213313098686,
+   0.3726122622660949
+  ],
+  "folded": 0.643230326910225,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2w4vsR0|border": {
+  "auc": 0.5051688850523501,
+  "ci95": [
+   0.4952397962380263,
+   0.5153518496602807
+  ],
+  "folded": 0.5051688850523501,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2w4vsR0|background": {
+  "auc": 0.6054591779906437,
+  "ci95": [
+   0.5868509307473825,
+   0.6259586802461572
+  ],
+  "folded": 0.6054591779906437,
+  "kind": "non-content"
+ },
+ "frgcferet|opencv|R2w4vsR0|thumb32": {
+  "auc": 0.5953615783025172,
+  "ci95": [
+   0.5822668084484295,
+   0.6097575323011806
+  ],
+  "folded": 0.5953615783025172,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2w4vsR0|face": {
+  "auc": 0.624780713967476,
+  "ci95": [
+   0.6031089016206281,
+   0.6481338062486076
+  ],
+  "folded": 0.624780713967476,
+  "kind": "content"
+ },
+ "frgcferet|opencv|R2w4vsR0|band": {
+  "auc": 0.8610910002227667,
+  "ci95": [
+   0.8366110213856093,
+   0.8842142772610827
+  ],
+  "folded": 0.8610910002227667,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|opencv|R2w4vsR0|lapvar": {
+  "auc": 0.2118964413009579,
+  "ci95": [
+   0.19134342281131655,
+   0.23109676083203384
+  ],
+  "folded": 0.7881035586990421,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2vsR0|bytes": {
+  "auc": 0.6165696703051905,
+  "ci95": [
+   0.6034672428436177,
+   0.6307470344174649
+  ],
+  "folded": 0.6165696703051905,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2vsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2vsR0|background": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2vsR0|thumb32": {
+  "auc": 0.5185105257295611,
+  "ci95": [
+   0.517807070060147,
+   0.5212224500167075
+  ],
+  "folded": 0.5185105257295611,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2vsR0|face": {
+  "auc": 0.5126315716195143,
+  "ci95": [
+   0.512290372995099,
+   0.5149709707061706
+  ],
+  "folded": 0.5126315716195143,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2vsR0|band": {
+  "auc": 0.5477486633994209,
+  "ci95": [
+   0.5425830850412119,
+   0.5539986633994208
+  ],
+  "folded": 0.5477486633994209,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2vsR0|lapvar": {
+  "auc": 0.4875215805301849,
+  "ci95": [
+   0.48507802057807975,
+   0.4879949599019826
+  ],
+  "folded": 0.5124784194698151,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R3vsR2|bytes": {
+  "auc": 0.28784250389841837,
+  "ci95": [
+   0.2649071863165516,
+   0.3093079089162397
+  ],
+  "folded": 0.7121574961015816,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3vsR2|border": {
+  "auc": 0.5208182501670751,
+  "ci95": [
+   0.5075859044330586,
+   0.5338011145299622
+  ],
+  "folded": 0.5208182501670751,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3vsR2|background": {
+  "auc": 0.5159278235687236,
+  "ci95": [
+   0.49569407510024505,
+   0.5367344132880374
+  ],
+  "folded": 0.5159278235687236,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3vsR2|thumb32": {
+  "auc": 0.4944725996881265,
+  "ci95": [
+   0.4761175756014703,
+   0.5134292680719537
+  ],
+  "folded": 0.5055274003118735,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R3vsR2|face": {
+  "auc": 0.5265649365114725,
+  "ci95": [
+   0.5069807794052127,
+   0.5478292423145467
+  ],
+  "folded": 0.5265649365114725,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R3vsR2|band": {
+  "auc": 0.7723184450879929,
+  "ci95": [
+   0.748704559061038,
+   0.7963931798563154
+  ],
+  "folded": 0.7723184450879929,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R3vsR2|lapvar": {
+  "auc": 0.24809952105145913,
+  "ci95": [
+   0.2281848685676097,
+   0.2665407802405881
+  ],
+  "folded": 0.7519004789485408,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR3|bytes": {
+  "auc": 0.5156545862107373,
+  "ci95": [
+   0.4777839312826165,
+   0.552990738645162
+  ],
+  "folded": 0.5156545862107373,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR3|border": {
+  "auc": 0.5186253898418356,
+  "ci95": [
+   0.481636620376997,
+   0.5563837234574849
+  ],
+  "folded": 0.5186253898418356,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR3|background": {
+  "auc": 0.6210250055691691,
+  "ci95": [
+   0.5849162044319302,
+   0.6570018106804404
+  ],
+  "folded": 0.6210250055691691,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR3|thumb32": {
+  "auc": 0.5826603920695033,
+  "ci95": [
+   0.5474306564249259,
+   0.617342510719637
+  ],
+  "folded": 0.5826603920695033,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR3|face": {
+  "auc": 0.6168307251058142,
+  "ci95": [
+   0.5779377527099617,
+   0.6588155899817638
+  ],
+  "folded": 0.6168307251058142,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR3|band": {
+  "auc": 0.6223859712630876,
+  "ci95": [
+   0.5762996107142474,
+   0.6650398215542939
+  ],
+  "folded": 0.6223859712630876,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR3|lapvar": {
+  "auc": 0.5137976163956338,
+  "ci95": [
+   0.4757553311165728,
+   0.5499585406301825
+  ],
+  "folded": 0.5137976163956338,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR2|bytes": {
+  "auc": 0.28589329472042774,
+  "ci95": [
+   0.25584782054787525,
+   0.31597059453012094
+  ],
+  "folded": 0.7141067052795722,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2|border": {
+  "auc": 0.5238673702383604,
+  "ci95": [
+   0.4888428492910983,
+   0.5583870524878243
+  ],
+  "folded": 0.5238673702383604,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2|background": {
+  "auc": 0.66251531521497,
+  "ci95": [
+   0.6258249477324991,
+   0.6993683665834833
+  ],
+  "folded": 0.66251531521497,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2|thumb32": {
+  "auc": 0.5726672143016261,
+  "ci95": [
+   0.535631764888112,
+   0.6073705605394065
+  ],
+  "folded": 0.5726672143016261,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR2|face": {
+  "auc": 0.6764173535308532,
+  "ci95": [
+   0.6380154272699582,
+   0.7156209669633465
+  ],
+  "folded": 0.6764173535308532,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR2|band": {
+  "auc": 0.7856461628425039,
+  "ci95": [
+   0.7560355147739503,
+   0.8141913725429393
+  ],
+  "folded": 0.7856461628425039,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR2|lapvar": {
+  "auc": 0.24678728558699042,
+  "ci95": [
+   0.21824838693796902,
+   0.27679240772186964
+  ],
+  "folded": 0.7532127144130096,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR0|bytes": {
+  "auc": 0.3604070366451326,
+  "ci95": [
+   0.32398857926502944,
+   0.39724538646865404
+  ],
+  "folded": 0.6395929633548674,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR0|border": {
+  "auc": 0.5238673702383604,
+  "ci95": [
+   0.4888428492910983,
+   0.5583870524878243
+  ],
+  "folded": 0.5238673702383604,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR0|background": {
+  "auc": 0.66251531521497,
+  "ci95": [
+   0.6258249477324991,
+   0.6993683665834833
+  ],
+  "folded": 0.66251531521497,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR0|thumb32": {
+  "auc": 0.5748739975495656,
+  "ci95": [
+   0.5385671210553075,
+   0.6094684736219828
+  ],
+  "folded": 0.5748739975495656,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR0|face": {
+  "auc": 0.6761702216529294,
+  "ci95": [
+   0.6375608183088657,
+   0.7155770339346333
+  ],
+  "folded": 0.6761702216529294,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR0|band": {
+  "auc": 0.7963494096680775,
+  "ci95": [
+   0.7681577517324494,
+   0.8235277106761428
+  ],
+  "folded": 0.7963494096680775,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR0|lapvar": {
+  "auc": 0.2377478280240588,
+  "ci95": [
+   0.20973844400824032,
+   0.26682150192680115
+  ],
+  "folded": 0.7622521719759412,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|NCvsR3|bytes": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|NCvsR3|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|NCvsR3|background": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|NCvsR3|thumb32": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|NCvsR3|face": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|NCvsR3|band": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|NCvsR3|lapvar": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2wvsR0|bytes": {
+  "auc": 0.574793940744041,
+  "ci95": [
+   0.5651172484127868,
+   0.5860047216111607
+  ],
+  "folded": 0.574793940744041,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2wvsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2wvsR0|background": {
+  "auc": 0.5407175874359545,
+  "ci95": [
+   0.5285547832200935,
+   0.5539519345901092
+  ],
+  "folded": 0.5407175874359545,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2wvsR0|thumb32": {
+  "auc": 0.5330321341055915,
+  "ci95": [
+   0.5275138707117398,
+   0.5393949967977278
+  ],
+  "folded": 0.5330321341055915,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2wvsR0|face": {
+  "auc": 0.5423674537758967,
+  "ci95": [
+   0.5258525179605702,
+   0.5596991430441078
+  ],
+  "folded": 0.5423674537758967,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2wvsR0|band": {
+  "auc": 0.7191885720650479,
+  "ci95": [
+   0.6978036589440856,
+   0.7418286366674093
+  ],
+  "folded": 0.7191885720650479,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2wvsR0|lapvar": {
+  "auc": 0.4497800178213411,
+  "ci95": [
+   0.4429051396469147,
+   0.4551020550233905
+  ],
+  "folded": 0.5502199821786589,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR2w|bytes": {
+  "auc": 0.31335103865003344,
+  "ci95": [
+   0.2818022007040647,
+   0.3452204832408104
+  ],
+  "folded": 0.6866489613499666,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2w|border": {
+  "auc": 0.5243250863221207,
+  "ci95": [
+   0.4889989407377523,
+   0.5593368714538771
+  ],
+  "folded": 0.5243250863221207,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2w|background": {
+  "auc": 0.5869590944531076,
+  "ci95": [
+   0.5484037210530084,
+   0.6242830516043023
+  ],
+  "folded": 0.5869590944531076,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2w|thumb32": {
+  "auc": 0.5471360548006238,
+  "ci95": [
+   0.5095879396009512,
+   0.5820670908301756
+  ],
+  "folded": 0.5471360548006238,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR2w|face": {
+  "auc": 0.6130924203608822,
+  "ci95": [
+   0.5735928450727152,
+   0.656167829458396
+  ],
+  "folded": 0.6130924203608822,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR2w|band": {
+  "auc": 0.7555691690799733,
+  "ci95": [
+   0.7195322463030666,
+   0.7886556888688739
+  ],
+  "folded": 0.7555691690799733,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR2w|lapvar": {
+  "auc": 0.2767563766985966,
+  "ci95": [
+   0.24679622765389014,
+   0.3097427388756655
+  ],
+  "folded": 0.7232436233014035,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R3mvsR2w|bytes": {
+  "auc": 0.29872326798841614,
+  "ci95": [
+   0.27911413663956336,
+   0.3176209379873023
+  ],
+  "folded": 0.7012767320115838,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3mvsR2w|border": {
+  "auc": 0.5106214496547116,
+  "ci95": [
+   0.4925773418355981,
+   0.5286756515927823
+  ],
+  "folded": 0.5106214496547116,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3mvsR2w|background": {
+  "auc": 0.8192212909333927,
+  "ci95": [
+   0.7923040174593451,
+   0.846799381126086
+  ],
+  "folded": 0.8192212909333927,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3mvsR2w|thumb32": {
+  "auc": 0.8630054020940076,
+  "ci95": [
+   0.8363899949877478,
+   0.8884684262920473
+  ],
+  "folded": 0.8630054020940076,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R3mvsR2w|face": {
+  "auc": 0.8682613054132323,
+  "ci95": [
+   0.8447525374526621,
+   0.8897496832535086
+  ],
+  "folded": 0.8682613054132323,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R3mvsR2w|band": {
+  "auc": 0.7521580530184896,
+  "ci95": [
+   0.7340457228781466,
+   0.7720172748663399
+  ],
+  "folded": 0.7521580530184896,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R3mvsR2w|lapvar": {
+  "auc": 0.2720539095566941,
+  "ci95": [
+   0.2552785280686121,
+   0.28708735937848073
+  ],
+  "folded": 0.7279460904433059,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR3m|bytes": {
+  "auc": 0.5442400868790377,
+  "ci95": [
+   0.5054647963467955,
+   0.5817643036011477
+  ],
+  "folded": 0.5442400868790377,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR3m|border": {
+  "auc": 0.5163959818445087,
+  "ci95": [
+   0.4782400938284238,
+   0.5553061500831082
+  ],
+  "folded": 0.5163959818445087,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR3m|background": {
+  "auc": 0.8724033749164625,
+  "ci95": [
+   0.8288244212873015,
+   0.9099986711635464
+  ],
+  "folded": 0.8724033749164625,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR3m|thumb32": {
+  "auc": 0.9191913566495878,
+  "ci95": [
+   0.879927790118303,
+   0.9523070948896498
+  ],
+  "folded": 0.9191913566495878,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR3m|face": {
+  "auc": 0.9281159501002451,
+  "ci95": [
+   0.8965164402327279,
+   0.9534619048389814
+  ],
+  "folded": 0.9281159501002451,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR3m|band": {
+  "auc": 0.5677036923591,
+  "ci95": [
+   0.5240647060766334,
+   0.6068447146101037
+  ],
+  "folded": 0.5677036923591,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR3m|lapvar": {
+  "auc": 0.5302440688349298,
+  "ci95": [
+   0.49223754588639906,
+   0.5664832435758953
+  ],
+  "folded": 0.5302440688349298,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R3vsR2w|bytes": {
+  "auc": 0.3131073875027846,
+  "ci95": [
+   0.29191743880875476,
+   0.33254887816050344
+  ],
+  "folded": 0.6868926124972154,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3vsR2w|border": {
+  "auc": 0.5206929438627756,
+  "ci95": [
+   0.5073863715471152,
+   0.5337668293328136
+  ],
+  "folded": 0.5206929438627756,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3vsR2w|background": {
+  "auc": 0.48236313766985967,
+  "ci95": [
+   0.46444364000891064,
+   0.5004039387948318
+  ],
+  "folded": 0.5176368623301404,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3vsR2w|thumb32": {
+  "auc": 0.48749025395411005,
+  "ci95": [
+   0.46871841236912454,
+   0.5050000696146134
+  ],
+  "folded": 0.51250974604589,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R3vsR2w|face": {
+  "auc": 0.49955446647360213,
+  "ci95": [
+   0.4858955571953664,
+   0.5123287480507909
+  ],
+  "folded": 0.5004455335263979,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R3vsR2w|band": {
+  "auc": 0.7534215582535085,
+  "ci95": [
+   0.7321119159333928,
+   0.774073081421252
+  ],
+  "folded": 0.7534215582535085,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R3vsR2w|lapvar": {
+  "auc": 0.2755798897304522,
+  "ci95": [
+   0.2574712143573179,
+   0.2922123872243261
+  ],
+  "folded": 0.7244201102695478,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR2wm|bytes": {
+  "auc": 0.3143117203163288,
+  "ci95": [
+   0.28256853937419135,
+   0.3459211181174125
+  ],
+  "folded": 0.6856882796836712,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2wm|border": {
+  "auc": 0.5238673702383604,
+  "ci95": [
+   0.4888428492910983,
+   0.5583870524878243
+  ],
+  "folded": 0.5238673702383604,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2wm|background": {
+  "auc": 0.7155929772777901,
+  "ci95": [
+   0.6768691886703635,
+   0.7544861233239895
+  ],
+  "folded": 0.7155929772777901,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2wm|thumb32": {
+  "auc": 0.7104797839162397,
+  "ci95": [
+   0.6724885452925561,
+   0.7495618907305117
+  ],
+  "folded": 0.7104797839162397,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR2wm|face": {
+  "auc": 0.8142925762976164,
+  "ci95": [
+   0.7755847807255418,
+   0.8513252109904932
+  ],
+  "folded": 0.8142925762976164,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR2wm|band": {
+  "auc": 0.7563488527511695,
+  "ci95": [
+   0.7206753343404837,
+   0.7895636795915656
+  ],
+  "folded": 0.7563488527511695,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR2wm|lapvar": {
+  "auc": 0.27269088327021607,
+  "ci95": [
+   0.24226920040125088,
+   0.3060859314087213
+  ],
+  "folded": 0.7273091167297839,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2wmvsR0|bytes": {
+  "auc": 0.5734886667409222,
+  "ci95": [
+   0.5641011361104923,
+   0.5843986254594564
+  ],
+  "folded": 0.5734886667409222,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2wmvsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2wmvsR0|background": {
+  "auc": 0.7135184617955002,
+  "ci95": [
+   0.6925038984183559,
+   0.7346659020661617
+  ],
+  "folded": 0.7135184617955002,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2wmvsR0|thumb32": {
+  "auc": 0.6622403374916462,
+  "ci95": [
+   0.6457409779460905,
+   0.6800224333092002
+  ],
+  "folded": 0.6622403374916462,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2wmvsR0|face": {
+  "auc": 0.7703901202940521,
+  "ci95": [
+   0.7475024887224326,
+   0.7926804584818445
+  ],
+  "folded": 0.7703901202940521,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2wmvsR0|band": {
+  "auc": 0.705850412118512,
+  "ci95": [
+   0.684982126447984,
+   0.7273543662285586
+  ],
+  "folded": 0.705850412118512,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2wmvsR0|lapvar": {
+  "auc": 0.45277692693250166,
+  "ci95": [
+   0.4457910134495433,
+   0.45826969397415906
+  ],
+  "folded": 0.5472230730674983,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R3mvsR2wm|bytes": {
+  "auc": 0.29963173869458676,
+  "ci95": [
+   0.28001660308531967,
+   0.31851248364056584
+  ],
+  "folded": 0.7003682613054132,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3mvsR2wm|border": {
+  "auc": 0.5104334901982625,
+  "ci95": [
+   0.4925886542102918,
+   0.5284564090693918
+  ],
+  "folded": 0.5104334901982625,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3mvsR2wm|background": {
+  "auc": 0.7843930997995099,
+  "ci95": [
+   0.7521352542325686,
+   0.8155992425930052
+  ],
+  "folded": 0.7843930997995099,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R3mvsR2wm|thumb32": {
+  "auc": 0.8553060258409445,
+  "ci95": [
+   0.82877511347182,
+   0.8822304348128759
+  ],
+  "folded": 0.8553060258409445,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R3mvsR2wm|face": {
+  "auc": 0.8936671586099354,
+  "ci95": [
+   0.8693986341612832,
+   0.9154094557529516
+  ],
+  "folded": 0.8936671586099354,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R3mvsR2wm|band": {
+  "auc": 0.7456003564268211,
+  "ci95": [
+   0.7278748224827356,
+   0.7657878111773224
+  ],
+  "folded": 0.7456003564268211,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R3mvsR2wm|lapvar": {
+  "auc": 0.2678770327467142,
+  "ci95": [
+   0.251373757379149,
+   0.2825313439797282
+  ],
+  "folded": 0.7321229672532859,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR2w4|bytes": {
+  "auc": 0.31501482791267543,
+  "ci95": [
+   0.2832493837756829,
+   0.3467747556892225
+  ],
+  "folded": 0.6849851720873246,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2w4|border": {
+  "auc": 0.5243250863221207,
+  "ci95": [
+   0.4889989407377523,
+   0.5593368714538771
+  ],
+  "folded": 0.5243250863221207,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2w4|background": {
+  "auc": 0.48333774225885495,
+  "ci95": [
+   0.4447947206657418,
+   0.5194654487072597
+  ],
+  "folded": 0.516662257741145,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R4vsR2w4|thumb32": {
+  "auc": 0.4827773446201827,
+  "ci95": [
+   0.44653726722989,
+   0.5185183314302065
+  ],
+  "folded": 0.5172226553798174,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR2w4|face": {
+  "auc": 0.5143023223435064,
+  "ci95": [
+   0.48137220227859606,
+   0.5498595138385496
+  ],
+  "folded": 0.5143023223435064,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R4vsR2w4|band": {
+  "auc": 0.762485380931165,
+  "ci95": [
+   0.7261174381125486,
+   0.7958599654373297
+  ],
+  "folded": 0.762485380931165,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R4vsR2w4|lapvar": {
+  "auc": 0.27136820561372244,
+  "ci95": [
+   0.24051838222660715,
+   0.3045229052940235
+  ],
+  "folded": 0.7286317943862776,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2w4vsR2w|bytes": {
+  "auc": 0.49655407663176654,
+  "ci95": [
+   0.4948831518712408,
+   0.49778133875863223
+  ],
+  "folded": 0.5034459233682335,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2w4vsR2w|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2w4vsR2w|background": {
+  "auc": 0.5979442804633549,
+  "ci95": [
+   0.5810757894297172,
+   0.6160999457006014
+  ],
+  "folded": 0.5979442804633549,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2w4vsR2w|thumb32": {
+  "auc": 0.5688105647137447,
+  "ci95": [
+   0.5577029440020049,
+   0.5817464392125195
+  ],
+  "folded": 0.5688105647137447,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2w4vsR2w|face": {
+  "auc": 0.6075510971263087,
+  "ci95": [
+   0.5839335563321453,
+   0.6318851463299177
+  ],
+  "folded": 0.6075510971263087,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2w4vsR2w|band": {
+  "auc": 0.5227570171530408,
+  "ci95": [
+   0.5139468527233236,
+   0.5326791880151481
+  ],
+  "folded": 0.5227570171530408,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2w4vsR2w|lapvar": {
+  "auc": 0.5026732011583872,
+  "ci95": [
+   0.500838856092671,
+   0.504768688042994
+  ],
+  "folded": 0.5026732011583872,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2w4vsR0|bytes": {
+  "auc": 0.5721781716417911,
+  "ci95": [
+   0.5630594404377367,
+   0.5827684687569614
+  ],
+  "folded": 0.5721781716417911,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2w4vsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2w4vsR0|background": {
+  "auc": 0.6587839719313878,
+  "ci95": [
+   0.6391038336767654,
+   0.6793345539095567
+  ],
+  "folded": 0.6587839719313878,
+  "kind": "non-content"
+ },
+ "frgcferet|facemorpher|R2w4vsR0|thumb32": {
+  "auc": 0.5961934729338383,
+  "ci95": [
+   0.5858552677378035,
+   0.6084650499832924
+  ],
+  "folded": 0.5961934729338383,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2w4vsR0|face": {
+  "auc": 0.664812597460459,
+  "ci95": [
+   0.6429239355925597,
+   0.6882314755513477
+  ],
+  "folded": 0.664812597460459,
+  "kind": "content"
+ },
+ "frgcferet|facemorpher|R2w4vsR0|band": {
+  "auc": 0.7351094341724215,
+  "ci95": [
+   0.7131913601303186,
+   0.7577347926876811
+  ],
+  "folded": 0.7351094341724215,
+  "kind": "low-level statistic"
+ },
+ "frgcferet|facemorpher|R2w4vsR0|lapvar": {
+  "auc": 0.45207730006683,
+  "ci95": [
+   0.4450282113221207,
+   0.4577380123635554
+  ],
+  "folded": 0.54792269993317,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R2vsR0|bytes": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R2vsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R2vsR0|background": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R2vsR0|thumb32": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frll|opencv|R2vsR0|face": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frll|opencv|R2vsR0|band": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R2vsR0|lapvar": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R3vsR2|bytes": {
+  "auc": 0.4104190695886198,
+  "ci95": [
+   0.3861976163014225,
+   0.4273380430603614
+  ],
+  "folded": 0.5895809304113802,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3vsR2|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3vsR2|background": {
+  "auc": 0.5297962322183776,
+  "ci95": [
+   0.507590830449827,
+   0.5575740099961554
+  ],
+  "folded": 0.5297962322183776,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3vsR2|thumb32": {
+  "auc": 0.760476739715494,
+  "ci95": [
+   0.7191464821222606,
+   0.8072015570934256
+  ],
+  "folded": 0.760476739715494,
+  "kind": "content"
+ },
+ "frll|opencv|R3vsR2|face": {
+  "auc": 0.8147827758554402,
+  "ci95": [
+   0.7721044790465206,
+   0.8595756439830834
+  ],
+  "folded": 0.8147827758554402,
+  "kind": "content"
+ },
+ "frll|opencv|R3vsR2|band": {
+  "auc": 0.9996155324875048,
+  "ci95": [
+   0.9986543637062668,
+   1.0
+  ],
+  "folded": 0.9996155324875048,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R3vsR2|lapvar": {
+  "auc": 0.023933102652825836,
+  "ci95": [
+   0.011341791618608228,
+   0.038833621683967694
+  ],
+  "folded": 0.9760668973471741,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR3|bytes": {
+  "auc": 0.6106305267204921,
+  "ci95": [
+   0.5323270999806485,
+   0.6930759803921568
+  ],
+  "folded": 0.6106305267204921,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR3|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR3|background": {
+  "auc": 0.5656478277585544,
+  "ci95": [
+   0.47679575062783736,
+   0.6548355800653592
+  ],
+  "folded": 0.5656478277585544,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR3|thumb32": {
+  "auc": 0.5769896193771626,
+  "ci95": [
+   0.48863151856487275,
+   0.6606826670061965
+  ],
+  "folded": 0.5769896193771626,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR3|face": {
+  "auc": 0.592560553633218,
+  "ci95": [
+   0.5071680035650624,
+   0.6779676338968097
+  ],
+  "folded": 0.592560553633218,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR3|band": {
+  "auc": 0.8373702422145328,
+  "ci95": [
+   0.7720039939052544,
+   0.8943693074602915
+  ],
+  "folded": 0.8373702422145328,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR3|lapvar": {
+  "auc": 0.4762591311034218,
+  "ci95": [
+   0.38919032308507917,
+   0.5606239556692242
+  ],
+  "folded": 0.5237408688965782,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR2|bytes": {
+  "auc": 0.5112456747404844,
+  "ci95": [
+   0.43594624366600576,
+   0.5909948707305502
+  ],
+  "folded": 0.5112456747404844,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR2|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.4275978541362608,
+   0.5802703756201275
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR2|background": {
+  "auc": 0.5774702037677816,
+  "ci95": [
+   0.4827070720761423,
+   0.6664466973658151
+  ],
+  "folded": 0.5774702037677816,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR2|thumb32": {
+  "auc": 0.7907535563244906,
+  "ci95": [
+   0.6908206713384093,
+   0.866430444841488
+  ],
+  "folded": 0.7907535563244906,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR2|face": {
+  "auc": 0.8601499423298731,
+  "ci95": [
+   0.794335421775792,
+   0.9189409473087999
+  ],
+  "folded": 0.8601499423298731,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR2|band": {
+  "auc": 0.9965397923875432,
+  "ci95": [
+   0.9897271268057786,
+   1.0
+  ],
+  "folded": 0.9965397923875432,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR2|lapvar": {
+  "auc": 0.005959246443675509,
+  "ci95": [
+   0.0004402664827533358,
+   0.017430272439008604
+  ],
+  "folded": 0.9940407535563245,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR0|bytes": {
+  "auc": 0.5112456747404844,
+  "ci95": [
+   0.43594624366600576,
+   0.5909948707305502
+  ],
+  "folded": 0.5112456747404844,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.4275978541362608,
+   0.5802703756201275
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR0|background": {
+  "auc": 0.5774702037677816,
+  "ci95": [
+   0.4827070720761423,
+   0.6664466973658151
+  ],
+  "folded": 0.5774702037677816,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR0|thumb32": {
+  "auc": 0.7907535563244906,
+  "ci95": [
+   0.6908206713384093,
+   0.866430444841488
+  ],
+  "folded": 0.7907535563244906,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR0|face": {
+  "auc": 0.8601499423298731,
+  "ci95": [
+   0.794335421775792,
+   0.9189409473087999
+  ],
+  "folded": 0.8601499423298731,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR0|band": {
+  "auc": 0.9965397923875432,
+  "ci95": [
+   0.9897271268057786,
+   1.0
+  ],
+  "folded": 0.9965397923875432,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR0|lapvar": {
+  "auc": 0.005959246443675509,
+  "ci95": [
+   0.0004402664827533358,
+   0.017430272439008604
+  ],
+  "folded": 0.9940407535563245,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|NCvsR3|bytes": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|NCvsR3|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|NCvsR3|background": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|NCvsR3|thumb32": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frll|opencv|NCvsR3|face": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frll|opencv|NCvsR3|band": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|NCvsR3|lapvar": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R2wvsR0|bytes": {
+  "auc": 0.31949250288350634,
+  "ci95": [
+   0.2853662053056517,
+   0.3417916186082276
+  ],
+  "folded": 0.6805074971164937,
+  "kind": "non-content"
+ },
+ "frll|opencv|R2wvsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R2wvsR0|background": {
+  "auc": 0.5479623221837755,
+  "ci95": [
+   0.528162245290273,
+   0.5738225682429834
+  ],
+  "folded": 0.5479623221837755,
+  "kind": "non-content"
+ },
+ "frll|opencv|R2wvsR0|thumb32": {
+  "auc": 0.6684928873510189,
+  "ci95": [
+   0.6377330834294502,
+   0.7069396386005382
+  ],
+  "folded": 0.6684928873510189,
+  "kind": "content"
+ },
+ "frll|opencv|R2wvsR0|face": {
+  "auc": 0.6894463667820069,
+  "ci95": [
+   0.6518502499038831,
+   0.7353926374471357
+  ],
+  "folded": 0.6894463667820069,
+  "kind": "content"
+ },
+ "frll|opencv|R2wvsR0|band": {
+  "auc": 0.9862552864282969,
+  "ci95": [
+   0.9750096116878124,
+   0.9949082083813917
+  ],
+  "folded": 0.9862552864282969,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R2wvsR0|lapvar": {
+  "auc": 0.15369088811995385,
+  "ci95": [
+   0.11514321414840446,
+   0.18790849673202614
+  ],
+  "folded": 0.8463091118800461,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR2w|bytes": {
+  "auc": 0.7007400999615533,
+  "ci95": [
+   0.6360481533310011,
+   0.7651213962628725
+  ],
+  "folded": 0.7007400999615533,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR2w|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR2w|background": {
+  "auc": 0.589677047289504,
+  "ci95": [
+   0.5104147170231729,
+   0.671996809543626
+  ],
+  "folded": 0.589677047289504,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR2w|thumb32": {
+  "auc": 0.7169357939254133,
+  "ci95": [
+   0.6252450980392157,
+   0.8014256336951908
+  ],
+  "folded": 0.7169357939254133,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR2w|face": {
+  "auc": 0.7949826989619377,
+  "ci95": [
+   0.7072778555866791,
+   0.868840718105424
+  ],
+  "folded": 0.7949826989619377,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR2w|band": {
+  "auc": 0.9362745098039216,
+  "ci95": [
+   0.9009797851028957,
+   0.9693863459502213
+  ],
+  "folded": 0.9362745098039216,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR2w|lapvar": {
+  "auc": 0.11312956555171089,
+  "ci95": [
+   0.06077412152980004,
+   0.17195559827704657
+  ],
+  "folded": 0.8868704344482892,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R3mvsR2w|bytes": {
+  "auc": 0.42589388696655134,
+  "ci95": [
+   0.4017685505574779,
+   0.4401215878508266
+  ],
+  "folded": 0.5741061130334486,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3mvsR2w|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3mvsR2w|background": {
+  "auc": 0.8992695117262591,
+  "ci95": [
+   0.8502450980392157,
+   0.9456026528258362
+  ],
+  "folded": 0.8992695117262591,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3mvsR2w|thumb32": {
+  "auc": 0.9525182622068435,
+  "ci95": [
+   0.9148380430603614,
+   0.9827974817377931
+  ],
+  "folded": 0.9525182622068435,
+  "kind": "content"
+ },
+ "frll|opencv|R3mvsR2w|face": {
+  "auc": 0.9600153787004998,
+  "ci95": [
+   0.9295439254133026,
+   0.9822207804690504
+  ],
+  "folded": 0.9600153787004998,
+  "kind": "content"
+ },
+ "frll|opencv|R3mvsR2w|band": {
+  "auc": 0.9324298346789697,
+  "ci95": [
+   0.9034962514417532,
+   0.9604022491349481
+  ],
+  "folded": 0.9324298346789697,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R3mvsR2w|lapvar": {
+  "auc": 0.1249519415609381,
+  "ci95": [
+   0.08756007304882737,
+   0.15898212226066893
+  ],
+  "folded": 0.8750480584390619,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR3m|bytes": {
+  "auc": 0.7553825451749328,
+  "ci95": [
+   0.695267006742054,
+   0.8152677056049219
+  ],
+  "folded": 0.7553825451749328,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR3m|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR3m|background": {
+  "auc": 0.8880238369857747,
+  "ci95": [
+   0.7640311458766293,
+   0.9739230300338239
+  ],
+  "folded": 0.8880238369857747,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR3m|thumb32": {
+  "auc": 0.9692425990003845,
+  "ci95": [
+   0.9018323811738135,
+   0.999796051999231
+  ],
+  "folded": 0.9692425990003845,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR3m|face": {
+  "auc": 0.9889465590157631,
+  "ci95": [
+   0.967044112277989,
+   1.0
+  ],
+  "folded": 0.9889465590157631,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR3m|band": {
+  "auc": 0.8513071895424836,
+  "ci95": [
+   0.7929577088972514,
+   0.9020646179667519
+  ],
+  "folded": 0.8513071895424836,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR3m|lapvar": {
+  "auc": 0.5657439446366782,
+  "ci95": [
+   0.48817118759268413,
+   0.6438587935174069
+  ],
+  "folded": 0.5657439446366782,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R3vsR2w|bytes": {
+  "auc": 0.6099577085736255,
+  "ci95": [
+   0.5840998654363706,
+   0.6449466551326413
+  ],
+  "folded": 0.6099577085736255,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3vsR2w|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3vsR2w|background": {
+  "auc": 0.5164359861591695,
+  "ci95": [
+   0.49711409073433294,
+   0.538158400615148
+  ],
+  "folded": 0.5164359861591695,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3vsR2w|thumb32": {
+  "auc": 0.7091503267973857,
+  "ci95": [
+   0.6728181468665898,
+   0.7506800269127258
+  ],
+  "folded": 0.7091503267973857,
+  "kind": "content"
+ },
+ "frll|opencv|R3vsR2w|face": {
+  "auc": 0.7725874663590927,
+  "ci95": [
+   0.7333645713187236,
+   0.8170895809304114
+  ],
+  "folded": 0.7725874663590927,
+  "kind": "content"
+ },
+ "frll|opencv|R3vsR2w|band": {
+  "auc": 0.9579008073817762,
+  "ci95": [
+   0.9331026528258363,
+   0.9786620530565168
+  ],
+  "folded": 0.9579008073817762,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R3vsR2w|lapvar": {
+  "auc": 0.1575355632449058,
+  "ci95": [
+   0.11908881199538639,
+   0.1922337562475971
+  ],
+  "folded": 0.8424644367550942,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR2wm|bytes": {
+  "auc": 0.6980968858131488,
+  "ci95": [
+   0.6342963213804647,
+   0.7639391837107586
+  ],
+  "folded": 0.6980968858131488,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR2wm|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.4275978541362608,
+   0.5802703756201275
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR2wm|background": {
+  "auc": 0.5706459054209919,
+  "ci95": [
+   0.4688719559988944,
+   0.6700544318022195
+  ],
+  "folded": 0.5706459054209919,
+  "kind": "non-content"
+ },
+ "frll|opencv|R4vsR2wm|thumb32": {
+  "auc": 0.8077662437524029,
+  "ci95": [
+   0.711414651416122,
+   0.8842616213151928
+  ],
+  "folded": 0.8077662437524029,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR2wm|face": {
+  "auc": 0.8980199923106498,
+  "ci95": [
+   0.8411932076071169,
+   0.9447631668946648
+  ],
+  "folded": 0.8980199923106498,
+  "kind": "content"
+ },
+ "frll|opencv|R4vsR2wm|band": {
+  "auc": 0.9315647827758554,
+  "ci95": [
+   0.8942821948676555,
+   0.967043214876312
+  ],
+  "folded": 0.9315647827758554,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R4vsR2wm|lapvar": {
+  "auc": 0.10226835832372165,
+  "ci95": [
+   0.05332754259369501,
+   0.16184261204481792
+  ],
+  "folded": 0.8977316416762784,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R2wmvsR0|bytes": {
+  "auc": 0.3233371780084583,
+  "ci95": [
+   0.2900687235678585,
+   0.34515570934256057
+  ],
+  "folded": 0.6766628219915417,
+  "kind": "non-content"
+ },
+ "frll|opencv|R2wmvsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R2wmvsR0|background": {
+  "auc": 0.6057285659361784,
+  "ci95": [
+   0.5765042291426374,
+   0.6452326028450596
+  ],
+  "folded": 0.6057285659361784,
+  "kind": "non-content"
+ },
+ "frll|opencv|R2wmvsR0|thumb32": {
+  "auc": 0.593521722414456,
+  "ci95": [
+   0.5716046712802768,
+   0.626393694732795
+  ],
+  "folded": 0.593521722414456,
+  "kind": "content"
+ },
+ "frll|opencv|R2wmvsR0|face": {
+  "auc": 0.6417723952326029,
+  "ci95": [
+   0.6021722414455979,
+   0.6870482506728182
+  ],
+  "folded": 0.6417723952326029,
+  "kind": "content"
+ },
+ "frll|opencv|R2wmvsR0|band": {
+  "auc": 0.9796232218377547,
+  "ci95": [
+   0.9649149365628604,
+   0.9917363514033064
+  ],
+  "folded": 0.9796232218377547,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R2wmvsR0|lapvar": {
+  "auc": 0.15513264129181084,
+  "ci95": [
+   0.11667868127643213,
+   0.18973952326028448
+  ],
+  "folded": 0.8448673587081892,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R3mvsR2wm|bytes": {
+  "auc": 0.42541330257593235,
+  "ci95": [
+   0.4017685505574779,
+   0.43896818531334103
+  ],
+  "folded": 0.5745866974240676,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3mvsR2wm|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3mvsR2wm|background": {
+  "auc": 0.9043637062668205,
+  "ci95": [
+   0.8504373317954633,
+   0.9509803921568627
+  ],
+  "folded": 0.9043637062668205,
+  "kind": "non-content"
+ },
+ "frll|opencv|R3mvsR2wm|thumb32": {
+  "auc": 0.9728950403690888,
+  "ci95": [
+   0.9444420415224913,
+   0.9946174548250672
+  ],
+  "folded": 0.9728950403690888,
+  "kind": "content"
+ },
+ "frll|opencv|R3mvsR2wm|face": {
+  "auc": 0.9962514417531718,
+  "ci95": [
+   0.9893310265282583,
+   1.0
+  ],
+  "folded": 0.9962514417531718,
+  "kind": "content"
+ },
+ "frll|opencv|R3mvsR2wm|band": {
+  "auc": 0.9399269511726259,
+  "ci95": [
+   0.9124351211072664,
+   0.9665513264129181
+  ],
+  "folded": 0.9399269511726259,
+  "kind": "low-level statistic"
+ },
+ "frll|opencv|R3mvsR2wm|lapvar": {
+  "auc": 0.12178008458285275,
+  "ci95": [
+   0.08429209919261822,
+   0.15590878508266048
+  ],
+  "folded": 0.8782199154171473,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R2vsR0|bytes": {
+  "auc": 0.47616301422529794,
+  "ci95": [
+   0.46501345636293734,
+   0.4764513648596694
+  ],
+  "folded": 0.5238369857747021,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R2vsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R2vsR0|background": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R2vsR0|thumb32": {
+  "auc": 0.5284505959246444,
+  "ci95": [
+   0.5278738946559016,
+   0.5393142060745867
+  ],
+  "folded": 0.5284505959246444,
+  "kind": "content"
+ },
+ "frll|facemorpher|R2vsR0|face": {
+  "auc": 0.5164359861591695,
+  "ci95": [
+   0.5174908688965782,
+   0.5260476739715494
+  ],
+  "folded": 0.5164359861591695,
+  "kind": "content"
+ },
+ "frll|facemorpher|R2vsR0|band": {
+  "auc": 0.6031334102268359,
+  "ci95": [
+   0.5932285659361785,
+   0.6223591887735487
+  ],
+  "folded": 0.6031334102268359,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R2vsR0|lapvar": {
+  "auc": 0.4828911956939639,
+  "ci95": [
+   0.4736639753940792,
+   0.4815479623221838
+  ],
+  "folded": 0.5171088043060361,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R3vsR2|bytes": {
+  "auc": 0.7573048827374087,
+  "ci95": [
+   0.7169357939254133,
+   0.8042171280276816
+  ],
+  "folded": 0.7573048827374087,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3vsR2|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3vsR2|background": {
+  "auc": 0.5347943098808151,
+  "ci95": [
+   0.5111471549404075,
+   0.561615724721261
+  ],
+  "folded": 0.5347943098808151,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3vsR2|thumb32": {
+  "auc": 0.7654748173779315,
+  "ci95": [
+   0.7250096116878124,
+   0.8098808150711265
+  ],
+  "folded": 0.7654748173779315,
+  "kind": "content"
+ },
+ "frll|facemorpher|R3vsR2|face": {
+  "auc": 0.8099769319492502,
+  "ci95": [
+   0.7659529988465975,
+   0.8547746059207997
+  ],
+  "folded": 0.8099769319492502,
+  "kind": "content"
+ },
+ "frll|facemorpher|R3vsR2|band": {
+  "auc": 0.9883698577470204,
+  "ci95": [
+   0.9777008842752788,
+   0.9966383121876201
+  ],
+  "folded": 0.9883698577470204,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R3vsR2|lapvar": {
+  "auc": 0.17003075740099963,
+  "ci95": [
+   0.1321583044982699,
+   0.202809015763168
+  ],
+  "folded": 0.8299692425990004,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR3|bytes": {
+  "auc": 0.595876585928489,
+  "ci95": [
+   0.5116852451778324,
+   0.6806236383442266
+  ],
+  "folded": 0.595876585928489,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR3|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR3|background": {
+  "auc": 0.5856401384083045,
+  "ci95": [
+   0.4905896942110177,
+   0.6750679347826086
+  ],
+  "folded": 0.5856401384083045,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR3|thumb32": {
+  "auc": 0.5767012687427913,
+  "ci95": [
+   0.5039539286459265,
+   0.6500596302271835
+  ],
+  "folded": 0.5767012687427913,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR3|face": {
+  "auc": 0.6334102268358324,
+  "ci95": [
+   0.5342565799904867,
+   0.722671568627451
+  ],
+  "folded": 0.6334102268358324,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR3|band": {
+  "auc": 0.8304498269896193,
+  "ci95": [
+   0.7605959557736137,
+   0.890650871459695
+  ],
+  "folded": 0.8304498269896193,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR3|lapvar": {
+  "auc": 0.5583429450211457,
+  "ci95": [
+   0.47877362320858025,
+   0.6355349605119825
+  ],
+  "folded": 0.5583429450211457,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR2|bytes": {
+  "auc": 0.8014225297962322,
+  "ci95": [
+   0.7403420762244292,
+   0.8575697142064372
+  ],
+  "folded": 0.8014225297962322,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR2|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.4275978541362608,
+   0.5802703756201275
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR2|background": {
+  "auc": 0.6249519415609381,
+  "ci95": [
+   0.5284349017303072,
+   0.7177161628540303
+  ],
+  "folded": 0.6249519415609381,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR2|thumb32": {
+  "auc": 0.7798923490965013,
+  "ci95": [
+   0.6839753416518122,
+   0.8585127987609333
+  ],
+  "folded": 0.7798923490965013,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR2|face": {
+  "auc": 0.8814878892733564,
+  "ci95": [
+   0.820354384715598,
+   0.9318905244000585
+  ],
+  "folded": 0.8814878892733564,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR2|band": {
+  "auc": 0.9668396770472895,
+  "ci95": [
+   0.9398617502388058,
+   0.9899855845348173
+  ],
+  "folded": 0.9668396770472895,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR2|lapvar": {
+  "auc": 0.16733948481353325,
+  "ci95": [
+   0.1046082262692311,
+   0.24428341073271412
+  ],
+  "folded": 0.8326605151864668,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR0|bytes": {
+  "auc": 0.789600153787005,
+  "ci95": [
+   0.7260228276093046,
+   0.8479992673739104
+  ],
+  "folded": 0.789600153787005,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.4275978541362608,
+   0.5802703756201275
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR0|background": {
+  "auc": 0.6249519415609381,
+  "ci95": [
+   0.5284349017303072,
+   0.7177161628540303
+  ],
+  "folded": 0.6249519415609381,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR0|thumb32": {
+  "auc": 0.7792195309496348,
+  "ci95": [
+   0.6825870973389356,
+   0.8573777427637721
+  ],
+  "folded": 0.7792195309496348,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR0|face": {
+  "auc": 0.8804306036139946,
+  "ci95": [
+   0.8197388098184819,
+   0.9310257301985243
+  ],
+  "folded": 0.8804306036139946,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR0|band": {
+  "auc": 0.9765474817377932,
+  "ci95": [
+   0.9536839756592292,
+   0.9946216459230515
+  ],
+  "folded": 0.9765474817377932,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR0|lapvar": {
+  "auc": 0.15705497885428682,
+  "ci95": [
+   0.09524712178449361,
+   0.2337318769878118
+  ],
+  "folded": 0.8429450211457132,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|NCvsR3|bytes": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|NCvsR3|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|NCvsR3|background": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|NCvsR3|thumb32": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frll|facemorpher|NCvsR3|face": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "content"
+ },
+ "frll|facemorpher|NCvsR3|band": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|NCvsR3|lapvar": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R2wvsR0|bytes": {
+  "auc": 0.44415609381007304,
+  "ci95": [
+   0.42656670511341793,
+   0.4502114571318724
+  ],
+  "folded": 0.555843906189927,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R2wvsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R2wvsR0|background": {
+  "auc": 0.558246828143022,
+  "ci95": [
+   0.5401768550557478,
+   0.583044982698962
+  ],
+  "folded": 0.558246828143022,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R2wvsR0|thumb32": {
+  "auc": 0.6795463283352556,
+  "ci95": [
+   0.6484020569011919,
+   0.7180002883506343
+  ],
+  "folded": 0.6795463283352556,
+  "kind": "content"
+ },
+ "frll|facemorpher|R2wvsR0|face": {
+  "auc": 0.6877162629757786,
+  "ci95": [
+   0.6483011341791619,
+   0.7353950403690888
+  ],
+  "folded": 0.6877162629757786,
+  "kind": "content"
+ },
+ "frll|facemorpher|R2wvsR0|band": {
+  "auc": 0.8706266820453672,
+  "ci95": [
+   0.83965061514802,
+   0.9051350442137639
+  ],
+  "folded": 0.8706266820453672,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R2wvsR0|lapvar": {
+  "auc": 0.448000768935025,
+  "ci95": [
+   0.4291618608227605,
+   0.4553080545943868
+  ],
+  "folded": 0.5519992310649751,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR2w|bytes": {
+  "auc": 0.8169934640522876,
+  "ci95": [
+   0.7598378329759873,
+   0.8706417648041016
+  ],
+  "folded": 0.8169934640522876,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR2w|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.4275978541362608,
+   0.5802703756201275
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR2w|background": {
+  "auc": 0.5918877354863514,
+  "ci95": [
+   0.49877584470862846,
+   0.6782784631662341
+  ],
+  "folded": 0.5918877354863514,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR2w|thumb32": {
+  "auc": 0.6947327950788158,
+  "ci95": [
+   0.6028297022512709,
+   0.7779059891283246
+  ],
+  "folded": 0.6947327950788158,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR2w|face": {
+  "auc": 0.7878700499807766,
+  "ci95": [
+   0.6914340736294518,
+   0.8636843337668818
+  ],
+  "folded": 0.7878700499807766,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR2w|band": {
+  "auc": 0.9352172241445598,
+  "ci95": [
+   0.901015312038794,
+   0.9684754593909752
+  ],
+  "folded": 0.9352172241445598,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR2w|lapvar": {
+  "auc": 0.19454056132256825,
+  "ci95": [
+   0.12881646522564147,
+   0.2709458783513403
+  ],
+  "folded": 0.8054594386774317,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R3mvsR2w|bytes": {
+  "auc": 0.5303729334871203,
+  "ci95": [
+   0.5190311418685121,
+   0.5458477508650519
+  ],
+  "folded": 0.5303729334871203,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3mvsR2w|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3mvsR2w|background": {
+  "auc": 0.9152249134948097,
+  "ci95": [
+   0.8678296808919647,
+   0.9582876778162245
+  ],
+  "folded": 0.9152249134948097,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3mvsR2w|thumb32": {
+  "auc": 0.9617454825067282,
+  "ci95": [
+   0.9248293925413303,
+   0.9898116109188774
+  ],
+  "folded": 0.9617454825067282,
+  "kind": "content"
+ },
+ "frll|facemorpher|R3mvsR2w|face": {
+  "auc": 0.9544405997693195,
+  "ci95": [
+   0.9189710688196847,
+   0.9818363129565552
+  ],
+  "folded": 0.9544405997693195,
+  "kind": "content"
+ },
+ "frll|facemorpher|R3mvsR2w|band": {
+  "auc": 0.929834678969627,
+  "ci95": [
+   0.9017589388696655,
+   0.9581915609381008
+  ],
+  "folded": 0.929834678969627,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R3mvsR2w|lapvar": {
+  "auc": 0.16041906958861976,
+  "ci95": [
+   0.12215974625144176,
+   0.1941608996539792
+  ],
+  "folded": 0.8395809304113803,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR3m|bytes": {
+  "auc": 0.8046905036524413,
+  "ci95": [
+   0.7456901787263578,
+   0.8602572409045314
+  ],
+  "folded": 0.8046905036524413,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR3m|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR3m|background": {
+  "auc": 0.8748558246828143,
+  "ci95": [
+   0.7435312771126149,
+   0.9680986090088208
+  ],
+  "folded": 0.8748558246828143,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR3m|thumb32": {
+  "auc": 0.959919261822376,
+  "ci95": [
+   0.8766532999288426,
+   0.9998267536181139
+  ],
+  "folded": 0.959919261822376,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR3m|face": {
+  "auc": 0.9979815455594002,
+  "ci95": [
+   0.9928678263363863,
+   1.0
+  ],
+  "folded": 0.9979815455594002,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR3m|band": {
+  "auc": 0.8441945405613226,
+  "ci95": [
+   0.7869978673287497,
+   0.8976179585546593
+  ],
+  "folded": 0.8441945405613226,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR3m|lapvar": {
+  "auc": 0.6311034217608612,
+  "ci95": [
+   0.558093129318646,
+   0.7001147267417605
+  ],
+  "folded": 0.6311034217608612,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R3vsR2w|bytes": {
+  "auc": 0.7799884659746251,
+  "ci95": [
+   0.7391315840061515,
+   0.8279579969242599
+  ],
+  "folded": 0.7799884659746251,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3vsR2w|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3vsR2w|background": {
+  "auc": 0.5314302191464821,
+  "ci95": [
+   0.509993752402922,
+   0.5570958285274894
+  ],
+  "folded": 0.5314302191464821,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3vsR2w|thumb32": {
+  "auc": 0.6919454056132257,
+  "ci95": [
+   0.6579176278354479,
+   0.7322255863129565
+  ],
+  "folded": 0.6919454056132257,
+  "kind": "content"
+ },
+ "frll|facemorpher|R3vsR2w|face": {
+  "auc": 0.7541330257593233,
+  "ci95": [
+   0.7144343521722415,
+   0.7987336601307189
+  ],
+  "folded": 0.7541330257593233,
+  "kind": "content"
+ },
+ "frll|facemorpher|R3vsR2w|band": {
+  "auc": 0.9655901576316801,
+  "ci95": [
+   0.9446318723567859,
+   0.9842392349096502
+  ],
+  "folded": 0.9655901576316801,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R3vsR2w|lapvar": {
+  "auc": 0.19540561322568242,
+  "ci95": [
+   0.15657199154171475,
+   0.2282799884659746
+  ],
+  "folded": 0.8045943867743176,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR2wm|bytes": {
+  "auc": 0.8189158016147635,
+  "ci95": [
+   0.7615228942207078,
+   0.8729204990766976
+  ],
+  "folded": 0.8189158016147635,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR2wm|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.4275978541362608,
+   0.5802703756201275
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR2wm|background": {
+  "auc": 0.5848712033833141,
+  "ci95": [
+   0.49148068742851914,
+   0.678039323540197
+  ],
+  "folded": 0.5848712033833141,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R4vsR2wm|thumb32": {
+  "auc": 0.7832564398308343,
+  "ci95": [
+   0.6852622262355235,
+   0.8612630623558848
+  ],
+  "folded": 0.7832564398308343,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR2wm|face": {
+  "auc": 0.8765859284890427,
+  "ci95": [
+   0.8098640798088625,
+   0.9325208586916182
+  ],
+  "folded": 0.8765859284890427,
+  "kind": "content"
+ },
+ "frll|facemorpher|R4vsR2wm|band": {
+  "auc": 0.9361783929257977,
+  "ci95": [
+   0.9017507924222321,
+   0.9688997091973716
+  ],
+  "folded": 0.9361783929257977,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R4vsR2wm|lapvar": {
+  "auc": 0.18656286043829295,
+  "ci95": [
+   0.12264460784313726,
+   0.2648461832285361
+  ],
+  "folded": 0.813437139561707,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R2wmvsR0|bytes": {
+  "auc": 0.4409842368319877,
+  "ci95": [
+   0.4232987312572088,
+   0.447039600153787
+  ],
+  "folded": 0.5590157631680124,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R2wmvsR0|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R2wmvsR0|background": {
+  "auc": 0.6292772010765091,
+  "ci95": [
+   0.595444059976932,
+   0.6721525374855825
+  ],
+  "folded": 0.6292772010765091,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R2wmvsR0|thumb32": {
+  "auc": 0.5573817762399077,
+  "ci95": [
+   0.5442137639369473,
+   0.5810265282583622
+  ],
+  "folded": 0.5573817762399077,
+  "kind": "content"
+ },
+ "frll|facemorpher|R2wmvsR0|face": {
+  "auc": 0.6599384851980008,
+  "ci95": [
+   0.6171640715109573,
+   0.7088715878508266
+  ],
+  "folded": 0.6599384851980008,
+  "kind": "content"
+ },
+ "frll|facemorpher|R2wmvsR0|band": {
+  "auc": 0.8408304498269896,
+  "ci95": [
+   0.8098760092272204,
+   0.875531045751634
+  ],
+  "folded": 0.8408304498269896,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R2wmvsR0|lapvar": {
+  "auc": 0.459919261822376,
+  "ci95": [
+   0.4438629373317955,
+   0.4664576124567474
+  ],
+  "folded": 0.540080738177624,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R3mvsR2wm|bytes": {
+  "auc": 0.5326797385620915,
+  "ci95": [
+   0.5207612456747405,
+   0.5486375432525952
+  ],
+  "folded": 0.5326797385620915,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3mvsR2wm|border": {
+  "auc": 0.5,
+  "ci95": [
+   0.5,
+   0.5
+  ],
+  "folded": 0.5,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3mvsR2wm|background": {
+  "auc": 0.8998462129950019,
+  "ci95": [
+   0.8475586312956556,
+   0.9471357170319108
+  ],
+  "folded": 0.8998462129950019,
+  "kind": "non-content"
+ },
+ "frll|facemorpher|R3mvsR2wm|thumb32": {
+  "auc": 0.9554017685505575,
+  "ci95": [
+   0.9136726259131103,
+   0.9880863129565551
+  ],
+  "folded": 0.9554017685505575,
+  "kind": "content"
+ },
+ "frll|facemorpher|R3mvsR2wm|face": {
+  "auc": 0.9867358708189158,
+  "ci95": [
+   0.9663590926566705,
+   0.9994232987312572
+  ],
+  "folded": 0.9867358708189158,
+  "kind": "content"
+ },
+ "frll|facemorpher|R3mvsR2wm|band": {
+  "auc": 0.9405997693194925,
+  "ci95": [
+   0.9137831603229527,
+   0.965688677431757
+  ],
+  "folded": 0.9405997693194925,
+  "kind": "low-level statistic"
+ },
+ "frll|facemorpher|R3mvsR2wm|lapvar": {
+  "auc": 0.15272971933871587,
+  "ci95": [
+   0.11475874663590926,
+   0.18627931564782774
+  ],
+  "folded": 0.8472702806612842,
+  "kind": "low-level statistic"
+ },
+ "frll_bench|opencv|R4pubvsR0raw|bytes": {
+  "auc": 0.0,
+  "ci95": [
+   0.0,
+   0.0
+  ],
+  "folded": 1.0,
+  "kind": "non-content"
+ },
+ "frll_bench|opencv|R4pubvsR0raw|width": {
+  "auc": 0.0,
+  "ci95": [
+   0.0,
+   0.0
+  ],
+  "folded": 1.0,
+  "kind": "non-content"
+ },
+ "frll_bench|opencv|R4pubvsR0raw|height": {
+  "auc": 0.0,
+  "ci95": [
+   0.0,
+   0.0
+  ],
+  "folded": 1.0,
+  "kind": "non-content"
+ },
+ "frll_bench|facemorpher|R4pubvsR0raw|bytes": {
+  "auc": 0.0,
+  "ci95": [
+   0.0,
+   0.0
+  ],
+  "folded": 1.0,
+  "kind": "non-content"
+ },
+ "frll_bench|facemorpher|R4pubvsR0raw|width": {
+  "auc": 0.0,
+  "ci95": [
+   0.0,
+   0.0
+  ],
+  "folded": 1.0,
+  "kind": "non-content"
+ },
+ "frll_bench|facemorpher|R4pubvsR0raw|height": {
+  "auc": 0.0,
+  "ci95": [
+   0.0,
+   0.0
+  ],
+  "folded": 1.0,
+  "kind": "non-content"
+ }
+}

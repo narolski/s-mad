@@ -8,6 +8,10 @@ Code `src/PD1/diffae/` (`pd1_items.py`, `pd1_feats.py`, `pd1_stats.py`, `pd1_fr.
 `results_<feature>.json` (everything), `readings.csv`, `q1.csv`, `q2_cos.csv`, `q3q4.csv`, `flags.csv`,
 `external.csv`, `bench.csv`, `q5.csv`, `mirror.json/.csv`, `first_pass.json`. Report facts only.
 
+Abbreviations: DiffAE = diffusion autoencoder (FFHQ256 checkpoint); AUC = area under the ROC curve (0.5 = chance);
+EER = equal error rate; E7 = the existing, approved shrink-and-enlarge history control ("history-matched" genuine
+photos); FR = face recognition (glintr100 = ArcFace R100 trained on Glint360K); sd = standard deviation.
+
 Rungs, in words: genuine photo (x0); pass-through image = DiffAE reconstruction of the photo alone (x1); same-person
 mix = DiffAE mix of two photos of the same person (x2); two-person morph (x3); mirror mix = the photo mixed with its
 own mirror image (xm, FRLL only). One-person head (H1) = linear head trained only on x2 against x1 of the same host;
@@ -23,21 +27,21 @@ statistics (Laplacian variance, high-frequency energy, mirror asymmetry, three c
   person). No mirror mix and no graded mix exist for these hosts.
 - **FRLL (evaluation and diagnostics only, never in a fit):** 256 lossless photos (204), 20-step reconstructions (204),
   100-step reconstructions (204), same-person mixes at 20 and 100 steps (102 each, neutral + smiling: confounded),
-  same-pair two-person morphs at 20 and 100 steps (200 each); the A43 stored-size frames (published MorDIFF 200, our
+  same-pair two-person morphs at 20 and 100 steps (200 each); the stored-size frames of the MorDIFF control set (A43) (published MorDIFF 200, our
   morphs, mixes, reconstructions, the photo stored small); native photos R0 (204) and their E7 copies R1 (204).
-  Mirror mixes: AD1b smoke only, **4 FRLL persons** (AD1b's full run had not written its renders when this page was
-  written; see "Not verified").
+  Mirror mixes: from the identical-and-mirrored-inputs check for diffusion (AD1b), smoke run only, **4 FRLL persons**
+  (its full run had not written its renders when this page was written; see "Not verified").
 - **Softening material:** 1,200 SMDD genuine renders with their existing shrunk copies (80 px) from the morph-free
-  networks data (A47 I-3): 600 to fit the softening direction, 600 held out for flag rates.
+  network data (A47 arm I-3, used by the morph-free networks experiment, AD4): 600 to fit the softening direction, 600 held out for flag rates.
 - **Benchmark cells:** registered `eval.csv` (sha 86d055d3…): MorDIFF (1,000 morphs) and DiM A, DiM C, Fast-DiM,
   Fast-DiM-ODE, Greedy-DiM, Greedy-DiM-S (499 or 500 each), FRLL genuine photos native (204) and history-matched (204 per
   family).
 - **Features:** CLIP ViT-L/14 pooled (768), CLIP ViT-L/14 mean patch token (1,024), DINOv3 ViT-L/16 pooled (1,024),
   frozen, 224 input via the existing loader, fp32. 12,627 images per model. **DINOv3 "pooled" is the timm default
   average of the patch tokens, so the registered DINOv3 mean-patch set is identical to it (max |Δ| = 0) and was not
-  analysed separately**; three distinct feature sets. Reuse check against FZ1's caches on 72 A43 frames: CLIP max
+  analysed separately**; three distinct feature sets. Reuse check against the caches of frozen features read mixing (FZ1) on 72 frames of the MorDIFF control set: CLIP max
   |Δ| 1.9e-6, DINOv3 0 (pass).
-- **Face recognition for Q5:** glintr100 through AR1's route, 516 of 516 training photos embedded.
+- **Face recognition for Q5:** glintr100 through the registered route of the landmark ladder (AR1, `src/AR1/fr.py`, unchanged), 516 of 516 training photos embedded.
 
 ## Fixed readings (registered), all three feature sets
 
@@ -108,11 +112,11 @@ the training mixing direction (0.67); the 4-person mirror-mix direction has cos 
 | Pool (threshold flags 5% of the untouched photos) | CLIP pooled H1 | CLIP patch H1 | DINOv3 H1 | CLIP pooled H2 |
 |---|---|---|---|---|
 | FRLL E7 copies (primary) | 2.0% [0.5, 4.9], shift −0.18 sd | 4.4% [2.0, 8.2] | 3.9% [1.7, 7.6] | 1.5% |
-| FRLL photo stored small (A43 arm E) | 0.0% [0.0, 1.8] | 2.9% | 3.4% | 0.5% |
+| FRLL photo stored small (MorDIFF control set, arm E) | 0.0% [0.0, 1.8] | 2.9% | 3.4% | 0.5% |
 | SMDD held-out shrunk copies (600) | 0.0% [0.0, 0.6] | 2.3% | 1.8% | 0.0% |
 
-Softened genuine photos are not flagged more than untouched ones; their mean score moves down or stays (−0.53 to
-+0.17 sd).
+Softened genuine photos are not flagged more than untouched ones; their mean score moves by −0.78 to +0.19 standard
+deviations of the untouched scores across heads, variants and pools (mostly down).
 
 ## Q4 Trace subtraction (refit inside each fold after removing directions fitted on training material only)
 
@@ -127,7 +131,7 @@ reaction to softened genuine photos": **not met** by the registered wording in e
 heads had no reaction to lose (2.0 to 4.4%) and the projected rates are equal or 0.5 to 2 points higher. Removing the
 pipeline direction moves reconstructions to the level of genuine photos (H1 x1 vs x0 0.276 → 0.512, CLIP pooled) and
 raises morph vs genuine photo to 0.950; same-person mixes still score above morphs (x3 vs x2 0.30 to 0.38). All
-projections leave the x3-vs-x1 excess over the floor at +0.106 or more.
+projections leave the x3-vs-x1 excess over the floor at +0.107 or more (point).
 
 ## Q5 Dose and second identity
 
@@ -158,7 +162,7 @@ the score, +0.40 to +0.56 with the paired step). Same-person mixes (dissimilarit
 | stored size, 100 steps: morph vs reconstruction | 0.670 [0.59, 0.75] | 0.853 | 0.842 | 0.795 |
 | stored size: photo stored small vs native photo | 0.410 | 0.387 | 0.471 | 0.379 |
 | stored size: published MorDIFF vs native photo (step count of the release not verified) | 0.680 [0.59, 0.77] | 0.581 | 0.603 | 0.702 |
-| mirror mix vs its reconstruction (4 persons, AD1b smoke) | 1.000 (4 of 4 paired) | 0.938 | 1.000 | 1.000 |
+| mirror mix vs its reconstruction (4 persons, identical-and-mirrored-inputs smoke run) | 1.000 (4 of 4 paired) | 0.938 | 1.000 | 1.000 |
 | same-person mix (neutral + smiling) vs reconstruction | 0.989 (confounded, no conclusion) | 0.983 | 0.997 | 0.994 |
 
 ## Benchmark cells (descriptive, no refit; FRLL genuine photos in 512 frames, training images are DiffAE 256 crops)
@@ -177,16 +181,16 @@ history-matched photos flagged at the 5% native threshold:
 | Greedy-DiM-S | 0.978, EER 8.8%, E7 0.978 | 0.908, 16.3% | 0.936, 15.1% |
 
 History-matched genuine photos are flagged at 2.0 to 4.9% (CLIP pooled), so these cells do not move with photo history;
-the neutral-only genuine column moves AUCs by at most 0.05. H2 (two-person head, CLIP pooled): MorDIFF 0.711, DiM
+the neutral-only genuine column moves the CLIP pooled AUCs by at most 0.05. H2 (two-person head, CLIP pooled): MorDIFF 0.711, DiM
 families 0.882 to 0.995. With softening and pipeline removed (CLIP pooled H1): MorDIFF 0.759, DiM 0.864 to 0.990.
 Full table `bench.csv` (all heads, variants, EERs and intervals).
 
 ## What failed or deviated
 
-- AD1b's full mirror-mix run had not written renders when the analysis ran; mirror mixes rest on 4 FRLL persons.
+- The full run of the identical-and-mirrored-inputs check (AD1b) had not written renders when the analysis ran; mirror mixes rest on 4 FRLL persons.
 - DINOv3 mean patch duplicates DINOv3 pooled (timm averages patch tokens); the registered fourth set is void.
 - The FRLL person bootstrap of the external and benchmark tables first drew over 140 IDs (38 without images). All
-  external blocks were re-scored with the saved final heads over the 102 real persons and AD1's seed
+  external blocks were re-scored with the saved final heads over the 102 real persons and the seed of the MorDIFF ladder re-read (AD1)
   (`pd1_rescore.py`; point estimates identical, asserted; intervals changed in the third decimal). The first-draw files
   are kept in `/mnt/t7/smad_next/PD1/diffae/results_*_firstdraw.json`.
 - Statistics for the SMDD and benchmark images were not computed (job stopped; no registered reading uses them).
@@ -201,8 +205,9 @@ Full table `bench.csv` (all heads, variants, EERs and intervals).
   20-step reconstructions score below genuine photos (0.42), which argues against a pure render detector for our renders.
 - The softening direction comes from SMDD renders, not from the training hosts; its agreement with the FRLL softening
   directions is 0.53 / 0.54 for CLIP pooled but only 0.14 to 0.32 for the other two feature sets.
-- Same-person pairs: 94 of 132 FERET person pairs are two photos of one session (expression change); FRGC session
-  structure not checked. FRLL same-person mixes mix neutral and smiling photos and give no conclusion.
-- The published MorDIFF decoding step count is not verified; MorDIFF and our stored-size images are about 150 px, and
-  every head separates less at that storage (0.67 to 0.86) than at 256 px (0.82 to 0.94).
+- Same-person pairs: for 92 of the 130 FERET persons the two photos come from one session (fa/fb, expression change);
+  the FRGC session structure (128 persons) was not checked. FRLL same-person mixes mix neutral and smiling photos and give no conclusion.
+- The published MorDIFF decoding step count is not verified; MorDIFF and our stored-size images are about 150 px; the H1
+  separation of morph from reconstruction is 0.67 to 0.86 at that storage against 0.82 to 0.94 at 256 px (CLIP mean
+  patch at 100 steps is the exception: 0.853 stored against 0.842).
 - One feature extraction per image (no augmentation), convex heads with no seed; no network was trained.

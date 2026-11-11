@@ -1,0 +1,63 @@
+{
+ "note": "post hoc, descriptive: H1 out-of-fold scores (no refit) split by the session structure of the same-person pair; x3 = morphs of the same blocks; no bootstrap",
+ "clip_pool": {
+  "feret_same": {
+   "n_x2": 92,
+   "x3_vs_x2": 0.225,
+   "x2_vs_x1": 0.99,
+   "x3_vs_x1": 0.955
+  },
+  "feret_diff": {
+   "n_x2": 38,
+   "x3_vs_x2": 0.313,
+   "x2_vs_x1": 0.99,
+   "x3_vs_x1": 0.977
+  },
+  "frgc": {
+   "n_x2": 128,
+   "x3_vs_x2": 0.292,
+   "x2_vs_x1": 0.982,
+   "x3_vs_x1": 0.951
+  }
+ },
+ "clip_patch": {
+  "feret_same": {
+   "n_x2": 92,
+   "x3_vs_x2": 0.327,
+   "x2_vs_x1": 0.967,
+   "x3_vs_x1": 0.898
+  },
+  "feret_diff": {
+   "n_x2": 38,
+   "x3_vs_x2": 0.402,
+   "x2_vs_x1": 0.96,
+   "x3_vs_x1": 0.921
+  },
+  "frgc": {
+   "n_x2": 128,
+   "x3_vs_x2": 0.351,
+   "x2_vs_x1": 0.972,
+   "x3_vs_x1": 0.909
+  }
+ },
+ "dino_pool": {
+  "feret_same": {
+   "n_x2": 92,
+   "x3_vs_x2": 0.355,
+   "x2_vs_x1": 0.982,
+   "x3_vs_x1": 0.95
+  },
+  "feret_diff": {
+   "n_x2": 38,
+   "x3_vs_x2": 0.368,
+   "x2_vs_x1": 0.994,
+   "x3_vs_x1": 0.97
+  },
+  "frgc": {
+   "n_x2": 128,
+   "x3_vs_x2": 0.372,
+   "x2_vs_x1": 0.98,
+   "x3_vs_x1": 0.92
+  }
+ }
+}

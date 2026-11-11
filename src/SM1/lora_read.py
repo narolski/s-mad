@@ -20,7 +20,7 @@ def conv(i):
     i = str(i)
     if i.startswith("mad22c/"):
         return "m22:" + i[len("mad22c/"):-4] if i.endswith(".png") else "m22:" + i[len("mad22c/"):]
-    if i.startswith("ar1:") or i.startswith("ar1h:"):
+    if i.startswith("ar1:") or i.startswith("ar1h:") or i.startswith("ev:"):
         return i
     return "ev:" + i
 
@@ -35,7 +35,9 @@ def main():
             continue
         arm, seed = t.name.split("_")[1], t.name.split("_")[2][1:]
         ids, z = [], []
-        for sub in ("ad4eval", "ar1eval"):
+        for sub in ("ad4eval", "ar1eval", "jpegeval"):
+            if not (t / sub / "scores_eval.npz").exists():
+                continue
             f = np.load(t / sub / "scores_eval.npz", allow_pickle=False)
             p = np.clip(f["score_noTTA"].astype(np.float64), 1e-7, 1 - 1e-7)
             ids += [conv(i) for i in f["id"]]

@@ -180,6 +180,17 @@ B1-B4 below the cut-off), own landmarks: B1 -0.018 [-0.08], B2 +0.048 [+0.15], B
 B5 +0.016, broadband -0.175; with the native landmarks the shifts are larger in B2-B3 (+0.106, +0.204). OpenCV and
 Webmorph E7 copies that differ from the native frame: 28 each, |d| <= 0.04.
 
+Shape statistics on landmarks DETECTED on the built ladder images (A10, review hypothesis H-new-2; `as0_typ.py`,
+19:53; `typ_detected.csv`, `typ_detected.json`; LD1 = R0, R3, R4, both engines; 2,680 detections, no image without a
+face). Identity-shrinkage typicality score (ID0 `iss.py`, its landmark fit: 776 persons, k = 11, d = 10), AUC = P(score
+R4 > score R3), the 8 reserved persons dropped: **detected 0.653 [0.616, 0.692]** (OpenCV 0.655, FaceMorpher 0.651;
+with them 0.653) against **calculated from source landmark files 0.687 [0.651, 0.726]** (reproduces the ID0 number);
+registered reading: supported (>= 0.65), by a margin of 0.003. Total typicality: detected 0.661, calculated 0.697. R4
+against R0: detected 0.671, calculated 0.725; R3 against R0: 0.523 / 0.548. Shape asymmetry L_shape on detected shapes,
+R4 against R3: 0.590 [0.551, 0.632] (calculated 0.595); R4 against R0 0.628 (0.634); R3 against R0 0.538 (0.541).
+Detection error against the calculated target shape (mean point distance / IOD, median): photos 0.0082, R3 0.0084 /
+0.0094, R4 0.0097 / 0.0121 (OpenCV / FaceMorpher).
+
 ## 6. Checks
 
 `as0_check.py` -> `check.json` (11 Nov 18:20): a symmetric image has E_A / E_S below 1e-7 in every band; a symmetric

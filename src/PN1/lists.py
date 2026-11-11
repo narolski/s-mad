@@ -74,6 +74,9 @@ def main(which):
                           rung=f"{s0['rung']}_soft_{r['strength']}", set="ladsoft")
                 rows.append(s0)
         rows.sort(key=lambda r: r["id"])
+    elif which == "jpegc":      # manifest C's JPEG copies (jpeg_c.py build log)
+        for r in csv.DictReader(open(OUT.parent / "jpeg_build.csv")):
+            rows.append(dict(id=f"{r['src_id']}_{r['op']}", path=r["path"], set="jpegc", rung=r["op"]))
     elif which == "ar1h":       # SMDD-rebuild owner's warped halves of the ladder OpenCV morphs (R4), ladder training hosts
         lad = {r["pid"]: r for r in csv.DictReader(open(SPLIT / "ladder_split.csv"))}
         H = pathlib.Path("/mnt/t7/smad_next/SM1/img/ar1h")

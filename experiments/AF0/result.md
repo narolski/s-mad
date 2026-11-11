@@ -350,3 +350,13 @@ primary hosts and R3m of the 200 hosts of `ar1soft_src.csv`, from `/mnt/t7/smad_
 - Unsoftened counterparts: `feat/{clip224,dinov3_512}/ar1.tokens.npy` (list `lists/ar1.csv`), `cues/ar1.npz`.
 Build time: about 55 min with two processes (forward and reverse); both logs merged
 (`soft_ladsoft_src.csv`, `soft_ladsoft_src_rev.csv`).
+
+## F4 on DINOv3 ViT-L/16 at 512 (`f4_dinov3_512.json`)
+
+Same sets as for CLIP-224 (confounded training 2,000 images: 1,600 mixed from FRGC pairs + 400 zero-field from
+colorFERET; unconfounded: same counts, half from each database; crossed test: 100 colorFERET u50 vs 100 FRGC
+zero-field validation images, FRGC side 10 persons). AUC unconfounded -> confounded (drop):
+logistic baseline 1.000 -> 0.002 [0.000, 0.013] (drop 0.998; prediction at least 0.20: met); ridge 0.993 -> 0.393
+[0.224, 0.589] (drop 0.60); MLP seeds 401-405: 0.976-0.990 -> 0.515-0.574 (drops 0.41-0.46; confounded intervals about
+[0.29, 0.80]). Prediction for the dense head: at most 0.05; registered falsifier: above 0.15 makes the central claim
+false. Measured drops 0.41-0.60 on DINOv3 and 0.39-0.44 on CLIP-224.
