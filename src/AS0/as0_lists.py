@@ -269,6 +269,16 @@ def main():
         if r == "R2":
             continue
         add(**{**it, "id": it["id"] + "|det", "set": st, "lm": "det", "src": it["id"]})
+    # ---- amendment A14 (11 Nov 20:46): geometry-matched warp-only reference R2w4 (AR1 variants.py warp2) ----
+    for r in K.read_csv(K.AR1 / "manifest_extra2.csv"):
+        pid, tool = r["p1"], r["tool"]
+        assert r["rung"] == "R2w4" and r["w1"] == "0.5"
+        b = pool[pid]["B_pid"]
+        assert r["tem2"] == pool[pid]["B"][:-4] + ".tem" and r["tem1"] == pool[pid]["H"][:-4] + ".tem"
+        base = dict(role="R2w4", tool=tool, path=r["path"], frame="ar1_512", persons=f"{pid}|{b}", host=pid,
+                    db=pool[pid]["db"])
+        add(id=f"L|{pid}|{tool}|R2w4", set="L4", lm=f"mix:{r['tem1']};{r['tem2']};0.5", **base)
+        add(id=f"L|{pid}|{tool}|R2w4|det", set="LD4", lm="det", src=f"L|{pid}|{tool}|R2w4", **base)
     missing = [it["id"] for it in items if not pathlib.Path(it["path"]).exists()]
     fields = ["id", "set", "role", "tool", "level", "path", "frame", "lm", "persons", "host", "db", "src", "part",
               "aligned", "s_a", "s_b", "gap_days", "same_session", "expr_a", "expr_b", "env_a", "env_b"]

@@ -242,6 +242,19 @@ here. No answer yet.
   `envs/DG1/torch_index.txt`, which the first build (3544215) had not written; the torch build is cu130
   (`torch 2.12.1+cu130` in the same file and in every `gen_log.json`).
 
+- 11 Nov 20:43. Lead: /mnt/t7 hit 100% at about 20:40 (writes failed); new rule: check `df -h /mnt/t7` before any write
+  over 1 GB, keep 50 GB free, leave the add-on's saved codes and noise maps on Athena, no second local copies of
+  packs. Checked at 20:44: 57 GB free; the three fetched tars re-verified (`sha256sum -c`: setA, setB_s1, setB_s3 OK)
+  and every extracted image re-hashed against its generation row (setA 914, setB_s1 904, setB_s3 908, smoke 18:
+  0 mismatches); the validity manifests of setA / setB_s1 / setB_s3 were written before 20:40 and are complete (914 /
+  904 / 908 rows). Our files on T7: 3.7 GB, of which 2.7 GB is the base pack `/mnt/t7/smad_next/DG1/packs/dg1_pack.tar`
+  (on Athena too; whether to delete the local copy is asked of the lead, not done).
+- 11 Nov 20:44. `dg1_addon_task.sh` (sha256 c9325c50…, uploaded while the add-on was still pending, so all 8 tasks use
+  it): codes and fresh draws now go into a separate `DG1_addon_s<k>_codes.tar` (+ .sha256) that stays on Athena; the
+  image tar records their sha256 in `codes_sha256.txt`. Mock-tested (fake interpreter exiting 3: both tars written and
+  verified, exit code kept). The mock unpacked the 2.9 GB pack on T7 for about a minute (free space dipped to about
+  54 GB); removed after.
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):

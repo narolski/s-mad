@@ -200,6 +200,18 @@ No retrain and no score exist yet.
 - 11 Nov 20:27. Scoring smoke 3545948 FAILED after 47 s (0.01 GPU-h): `build_env` insisted on setuptools / wheel,
   which the scoring wheel house does not hold (it needs no sdist). `ad5_common.sh` now only tries that step; code_v4
   updated in place (no task reads it; CODE_SHA256SUMS sha256 dc11b680...); resubmitted as **3545960**.
+- 11 Nov 20:40-21:05. Disk: /mnt/t7 reached 100% at about 20:40 (lead; new rule in OWNER_BRIEF.md: keep 50 GB
+  free, check `df` before writes over 1 GB, per-epoch weights and packs stay on Athena, only scores and small tables
+  come back). My oracle cache (3.2 GB, written 20:44) completed. I removed my own 8-image check checkpoints (2.9 GB;
+  hashes in `checks/large_check_files_deleted_20261111T2100.sha256`); T7 57 GB free at 21:00. Sent the lead a list
+  of deletion candidates (pack tars and wheel folders with verified Athena copies; packs/code); kept release_raw/
+  (the only non-volatile copy of the authors' raw MADation files) and oracle_cache/.
+- 11 Nov 20:55. SelfMAD release scored through the AD5 path on the DGX: 23,145 images in 10 parts, merged
+  (`/mnt/t7/smad_next/AD5/scores_selfmad/scores_own_selfmad_hrnet_w18__ad5.npz`; no number read). Oracle-cache check:
+  the release scored on the cache vs score.py --mode own on the same 7,265 FRLL images: max |logit difference|
+  8.9e-4, mean 5e-7, 11 images above 1e-4, crop flags equal (`oracle_scores/check_cached_vs_scorepy.json`); the cache
+  has 0 images without a face. Because per-epoch weights stay on Athena, the oracle `score` step will run there (the
+  cache, 3.2 GB, to be uploaded).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.

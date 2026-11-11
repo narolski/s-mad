@@ -357,6 +357,8 @@ def main():
                     d[f"{pos} vs {neg}"] = {"auc": pt, "ci": ci(rep)}
                     if pos in ("NOISES20", "SEMS20"):
                         d[f"_rep_{pos}"] = rep
+            if have("FRESH1_20", "REC20"):
+                d["FRESH1_20 vs REC20"]["sensitivity"] = sens(s_sr, "FRESH1_20", "REC20")
             if have("NOISES20", "SEMS20", "REC20"):
                 diff = d.pop("_rep_NOISES20") - d.pop("_rep_SEMS20")
                 d["NOISES minus SEMS along D_SR"] = {"point": d["NOISES20 vs REC20"]["auc"] - d["SEMS20 vs REC20"]["auc"], "ci": ci(diff)}
@@ -371,6 +373,8 @@ def main():
                 pt, rep = R.auc(s, R.idx(pos), R.idx(neg))
                 ex = excess(R, s, pos, neg) if b == "clip_mad" else None
                 trained[f"{pos} vs {neg}"] = {"auc": pt, "ci": ci(rep), "Cs": cs, **({"excess": ex["excess"], "excess_ci": ex["excess_ci"], "best_baseline": ex["best_baseline"], "best_auc": ex["best_auc"]} if ex else {})}
+                if f"{pos} vs {neg}" in ("SAME20 vs FRESH1_20", "NOISES20 vs REC20", "SEMS20 vs REC20", "X20 vs SAME20"):
+                    trained[f"{pos} vs {neg}"]["sensitivity"] = sens(s, pos, neg)
         if have("SAME100", "REC100", "FRESH1_100"):
             s100, _ = R.probe(X, "SAME100", "REC100", ["FRESH1_100", "X100"])
             pt, rep = R.auc(s100, R.idx("FRESH1_100"), R.idx("REC100"))

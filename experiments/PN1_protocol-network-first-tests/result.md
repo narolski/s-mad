@@ -17,4 +17,11 @@ threshold for the storage marks). They are not results of PN1.
 
 - DGX GB10 (shared), one process: about 37 minutes of GPU wall time for feature extraction, the JPEG-call check and the
   8-image test of the task script (allowance 30 minutes).
-- Athena: none yet.
+- Athena (account plgmultivision-gpu-a100, one A100-SXM4-40GB each, container image `fedeff10…`):
+
+| Job | Purpose | State | Elapsed | GPU-hours |
+|---|---|---|---|---|
+| 3545947 | smoke 1 (arm Bn, 200 steps) + DINOv3 extraction (featx) | FAILED (path bug in the smoke job file; featx part done) | 0:04:14 | 0.07 |
+| 3545968 | smoke 2 (arm Bn, 200 steps, 64 scored rows) | COMPLETED, SMOKE_RC 0, 1.24 it/s, peak 30,833 MiB | 0:05:21 | 0.09 |
+| 3545976_[0-7] | eight fits A, B, Bn, C x seeds 401, 402 | submitted 20:45 | | |
+| 3545977 | reference row: eight SMDD ViT-B/16 recipe retrains scored (amendment 5) | submitted 20:45 | | |

@@ -1,26 +1,29 @@
-"""AG1 scoring manifest and FR-oracle embeddings (CPU, DGX; run after the generation tars are back; no score is read).
+"""AG1 scoring manifest, FR-oracle embeddings and RT check (DGX, CPU + small GPU; after the generation tars are back;
+no detector score is read here).
 
-Inputs: the result tars of every AG1 shard (copied to /mnt/t7/smad_next/AG1/results/, sha256 checked), the inputs pack
-(photos.json), the corrected MAD22 (raw files and the admitted canonical512 native frames, PROCESSED_SHA256SUMS).
-Frames: every generated 1024 PNG and every FERET / FRGC camera photo -> prep_eval.align (unchanged; CPU detector as
-h4_prep) -> 512 PNG (cv2.imwrite); MAD22 BonaFide and published MIPGAN-I / -II rows use the admitted native frames
-(hash-checked), never re-aligned. Raw paths (for SelfMAD's own crop) are the generator PNG / camera file / MAD22 file.
-Manifests (data root /mnt/t7/smad_next/AG1/data, as smadcvpr_data): manifests/ag1.csv (frames) and
-manifests/ag1_raw.csv (raw files); same ids. Columns: id, path, label, rung, gen, db, pa, pb, photo_a, photo_b, alpha,
-source, aligned. label is the benchmark label (1 = morph-type construction R3 / R4 / BR / AG3 / published, 0 = R0 / R2 /
-R2i / RT is 1); the analysis never uses label, only rung.
-Oracle (gate G-b): glintr100 (antelopev2, not the generator's w600k loss model) embeddings of every generated image and
-every camera photo: prep_eval.kps -> insightface norm_crop 112 -> a2f_common.embed_crops('glint'); -> oracle.npz.
-RT check: RT vs R3 pixel differences -> rt_check.json (zero GPU).
-Usage: ag1_manifest.py frames | oracle | rt | pins
+Per result tar (stage `shard`, one tar at a time, so a local tar can be deleted after it is processed; the verified copy
+stays on Athena; lead's disk rule of 11 Nov):
+  check the tar against its .sha256; for every PNG of its log.csv: bytes against the log line's sha256, then
+  - frame: prep_eval.align (unchanged; CPU detector as h4_prep) -> 512 PNG under data/frames/<rung>/ (cv2.imwrite);
+  - oracle: prep_eval.kps on the 1024 image -> insightface norm_crop 112 -> glintr100 (a2f_common.embed_crops, the
+    A43 g2 route; not the generator's w600k loss model);
+  - RT check: every RT image against the R3 image of the same person and generator in the same tar (|pixel diff|);
+  written to data/shards/<shard>.json (log rows, aligned flags, RT numbers, tar sha256) and <shard>_oracle.npz.
+Stage `frames`: camera photos (FERET .ppm.bz2 / FRGC .jpg decoded once to lossless PNG, then prep_eval.align), MAD22
+  BonaFide, E7 (R1) and published MIPGAN-I / -II rows from the admitted canonical frames (byte copies into the data root,
+  hash-checked, never re-aligned), plus every processed shard -> manifests/ag1.csv (paths relative to the data root)
+  and manifests/ag1_raw.csv (raw sources; generated images as 'tar://<tar>::<member>').
+Stage `oracle`: glintr100 embeddings of the camera photos, merged with every shard's -> oracle_glint.npz.
+Stage `rt`: merged RT numbers -> rt_check.json. Stage `pins`: AG1_data_pins.sha256.
+Every DGX run: OMP_NUM_THREADS=2 (and OPENBLAS / MKL / NUMEXPR) nice -n 10; onnxruntime sessions capped at 2 threads.
+Usage: ag1_manifest.py shard <tar> | frames | oracle | rt | pins
 """
 import csv
-import glob
 import hashlib
-import shutil
 import json
 import os
 import pathlib
+import shutil
 import sys
 import tarfile
 
@@ -29,11 +32,14 @@ import numpy as np
 B = pathlib.Path(os.environ.get("AG1_BASE", "/mnt/t7/smad_next/AG1"))   # AG1_BASE: tests only
 RES = B / "results"
 DATA = B / "data"
+SH = DATA / "shards"
 INP = pathlib.Path("/mnt/t7/smad_next/AG1/inputs/pack")
 CODE = pathlib.Path("/home/narolski/mambamorph-code")
 MADRAW = pathlib.Path("/mnt/t7/smad_heldout/mad22_incoming/marco_owncloud_20261109T103840Z/author_files/original_sorted")
 MADPROC = pathlib.Path("/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z")
-LABEL = {"R0": 0, "R1": 0, "R2": 0, "R2i": 0, "R2s": 0, "R3": 1, "R3m": 1, "R4": 1, "BR": 1, "RT": 1, "AG3": 1, "AG3T": 1, "PUB": 1}
+LABEL = {"R0": 0, "R1": 0, "R2": 0, "R2i": 0, "R2s": 0, "R3": 1, "R3m": 1, "R4": 1, "BR": 1, "RT": 1, "AG3": 1,
+         "AG3T": 1, "PUB": 1}
+COLS = ["id", "path", "label", "rung", "gen", "db", "pa", "pb", "photo_a", "photo_b", "alpha", "source", "aligned"]
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import build_inputs as BI                                       # noqa: E402  (read_bgr: FERET .ppm.bz2 decode)
 
@@ -69,179 +75,177 @@ def detector():
     return prep_eval
 
 
-_TARS = {}
+def oracle_crop(PE, img):
+    from insightface.utils import face_align
+    k = PE.kps(img)
+    return None if k is None else face_align.norm_crop(img, np.asarray(k, np.float32), 112)
 
 
-def read_img(path):
-    """BGR image from a file path or from 'tar://<tar>::<member>' (generated images are read straight out of their
-    verified result tar; no extracted second copy on the T7 drive, lead's disk rule of 11 Nov)."""
+def embed(crops):
+    sys.path.insert(0, "/mnt/t7/smad_heldout/arc2face/scripts")
+    import a2f_common as A2F                                    # embed_crops('glint') as A43 g2 / h3_finalise
+    return A2F.l2n(A2F.embed_crops("glint", np.stack(crops))).astype(np.float32)
+
+
+def write_frame(PE, img, dst):
     import cv2
-    if path.startswith("tar://"):
-        t, mem = path[6:].split("::", 1)
-        if t not in _TARS:
-            _TARS[t] = tarfile.open(t)
-        buf = _TARS[t].extractfile(mem).read()
-        return cv2.imdecode(np.frombuffer(buf, np.uint8), cv2.IMREAD_COLOR)
-    return cv2.imread(path, cv2.IMREAD_COLOR)
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    fr, ok, _ = PE.align(img)
+    cv2.imwrite(str(dst), fr)
+    return bool(ok)
 
 
-def unpack():
-    """every result tar (not smoke) checked against its .sha256 -> [(tar path, shard dir name, log rows)]; nothing is
-    extracted. Each PNG's bytes are checked against its log line when it is read (stage_frames)."""
-    out = []
-    for t in sorted(RES.glob("AG1_*.tar")):
-        if "smoke" in t.name:                                   # smoke shards never enter the data
-            continue
-        want = open(str(t) + ".sha256").read().split()[0]
-        if sha(t) != want:
-            sys.exit(f"{t}: sha256 mismatch")
-        with tarfile.open(t) as tf:
-            log = list(csv.DictReader(tf.extractfile(f"{t.stem}/log.csv").read().decode().splitlines()))
-        out.append((t, t.stem, log))
-    return out
+# ------------------------------------------------------------------------------------------------ one tar
+def stage_shard(tar):
+    import cv2
+    t = pathlib.Path(tar).resolve()
+    root = t.stem
+    if "smoke" in root:
+        sys.exit("smoke shards never enter the data")
+    want = open(str(t) + ".sha256").read().split()[0]
+    th = sha(t)
+    if th != want:
+        sys.exit(f"{t}: sha256 mismatch")
+    PE = detector()
+    SH.mkdir(parents=True, exist_ok=True)
+    rows, crops, cids, fail, imgs_r3, rts = [], [], [], [], {}, []
+    with tarfile.open(t) as tf:
+        log = list(csv.DictReader(tf.extractfile(f"{root}/log.csv").read().decode().splitlines()))
+        for r in log:
+            mem = f"{root}/png/{r['stem']}.png"
+            buf = tf.extractfile(mem).read()
+            if hashlib.sha256(buf).hexdigest() != r["png_sha256"]:
+                sys.exit(f"{t}::{mem}: sha256 differs from its log line")
+            img = cv2.imdecode(np.frombuffer(buf, np.uint8), cv2.IMREAD_COLOR)
+            fp = DATA / "frames" / r["rung"] / f"{r['stem']}.png"
+            ok = write_frame(PE, img, fp)
+            c = oracle_crop(PE, img)
+            if c is None:
+                fail.append(r["stem"])
+            else:
+                crops.append(c)
+                cids.append(r["stem"])
+            if r["rung"] == "R3":
+                imgs_r3[r["stem"]] = img
+            pa, pb = r["a"].split("__")[0], r["b"].split("__")[0]
+            rows.append({"id": r["stem"], "path": str(fp.relative_to(DATA)), "raw": f"tar://{t}::{mem}",
+                         "rung": r["rung"], "gen": r["gen"], "db": pa.split("_")[0], "pa": pa, "pb": pb,
+                         "photo_a": r["a"], "photo_b": r["b"], "alpha": r["alpha"], "source": "ours", "aligned": ok})
+        for r in log:                                           # RT check within the tar
+            if r["rung"] == "RT":
+                twin = r["stem"].replace("_RT_", "_R3_")
+                a = cv2.imdecode(np.frombuffer(tf.extractfile(f"{root}/png/{r['stem']}.png").read(), np.uint8),
+                                 cv2.IMREAD_COLOR).astype(int)
+                if twin in imgs_r3:
+                    d = np.abs(a - imgs_r3[twin].astype(int))
+                    rts.append({"id": r["stem"], "twin": twin, "gen": r["gen"], "db": r["a"].split("_")[0],
+                                "max": int(d.max()), "mean": float(d.mean())})
+    E = embed(crops) if crops else np.zeros((0, 512), np.float32)
+    np.savez(SH / f"{root}_oracle.npz", id=np.array(cids), emb=E, fail=np.array(fail))
+    json.dump({"tar": str(t), "tar_sha256": th, "rows": rows, "rt": rts, "oracle_fail": fail},
+              open(SH / f"{root}.json", "w"))
+    print(f"SHARD {root}: {len(rows)} images, aligned {np.mean([r['aligned'] for r in rows]):.3f}, oracle "
+          f"{len(cids)} / fail {len(fail)}, RT {len(rts)}; the local tar may now be removed (copy on Athena)")
 
 
+# ------------------------------------------------------------------------------------------------ whole manifest
 def stage_frames():
     import cv2
     PE = detector()
     photos = json.load(open(INP / "photos.json"))
     proc = dict(l.split()[::-1] for l in open(MADPROC / "PROCESSED_SHA256SUMS"))
     (DATA / "manifests").mkdir(parents=True, exist_ok=True)
-    rows = []
-
-    flags_p = DATA / "frames/aligned_flags.json"
+    flags_p = DATA / "frames/aligned_flags_camera.json"
     flags = json.load(open(flags_p)) if flags_p.exists() else {}
-
-    def frame(src, dst):
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        if not dst.exists() or str(dst) not in flags:
-            img, ok, _ = PE.align(read_img(str(src)))
-            cv2.imwrite(str(dst), img)
-            flags[str(dst)] = bool(ok)
-        return flags[str(dst)]
-
-    def mad_frame(fam, name):
-        rel = f"native/{fam}/{pathlib.Path(name).stem}.png"
-        p = MADPROC / rel
-        key = next((k for k in (rel, "./" + rel) if k in proc), None)
-        if key is None or sha(p) != proc[key]:
-            sys.exit(f"{p}: not the admitted processed frame")
-        return admitted_copy(rel)
+    rows = []
 
     def admitted_copy(rel):
         """byte copy of an admitted MAD22 frame into the AG1 data root (portable manifests), hash re-checked."""
+        if rel not in proc or sha(MADPROC / rel) != proc[rel]:
+            sys.exit(f"{rel}: not the admitted processed frame")
         dst = DATA / "frames/mad22" / rel
         if not dst.exists():
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(MADPROC / rel, dst)
         if sha(dst) != proc[rel]:
             sys.exit(f"{dst}: copy differs from the admitted frame")
-        return dst
-    # R0: camera photos
-    for ph, m in sorted(photos.items()):
-        if m["slot"] == "s1m":                                 # mirrored crops are generator inputs, not R0
+        return str(dst.relative_to(DATA))
+    for ph, m in sorted(photos.items()):                         # R0: camera photos
+        if m["slot"] == "s1m":                                   # mirrored crops are generator inputs, not R0
             continue
         if m["db"] == "frll":
-            fp, ok = mad_frame("BonaFide", pathlib.Path(m["src"]).name), True
-            raw = m["src"]
-        else:                                                  # FERET .ppm.bz2 / FRGC .jpg: decoded once (lossless
-            raw = DATA / "camera_png" / f"{ph}.png"            # PNG of the decoded pixels; no resampling)
+            fp, ok, raw = admitted_copy(f"native/BonaFide/{pathlib.Path(m['src']).stem}.png"), True, m["src"]
+        else:
+            raw = DATA / "camera_png" / f"{ph}.png"                # decoded pixels, lossless; no resampling
             if not raw.exists():
                 raw.parent.mkdir(parents=True, exist_ok=True)
                 cv2.imwrite(str(raw), BI.read_bgr(m["src"]))
-            fp = DATA / "frames/R0" / f"{ph}.png"
-            ok = frame(raw, fp)
-            raw = str(raw)
-        rows.append({"id": f"R0__{ph}", "path": str(fp), "raw": raw, "rung": "R0", "gen": "camera",
-                     "db": m["db"], "pa": m["person"], "pb": m["person"], "photo_a": ph, "photo_b": ph, "alpha": "",
+            fpp = DATA / "frames/R0" / f"{ph}.png"
+            if not fpp.exists() or str(fpp) not in flags:
+                flags[str(fpp)] = write_frame(PE, cv2.imread(str(raw), cv2.IMREAD_COLOR), fpp)
+            fp, ok, raw = str(fpp.relative_to(DATA)), flags[str(fpp)], str(raw)
+        rows.append({"id": f"R0__{ph}", "path": fp, "raw": raw, "rung": "R0", "gen": "camera", "db": m["db"],
+                     "pa": m["person"], "pb": m["person"], "photo_a": ph, "photo_b": ph, "alpha": "",
                      "source": "camera", "aligned": ok})
-    # R1: the existing, approved E7 outputs of the FRLL photos for the MIPGAN-I / -II cells (no new code)
+    json.dump(flags, open(flags_p, "w"))
     for fam, gen in (("MIPGAN_I", "mip1"), ("MIPGAN_II", "mip2")):
-        for ph, m in sorted(photos.items()):
+        for ph, m in sorted(photos.items()):                     # R1: existing approved E7 frames
             if m["db"] != "frll" or m["slot"] == "s1m":
                 continue
-            stem = pathlib.Path(m["src"]).stem
-            rel = f"e7/{fam}/{stem}.png"
-            if rel not in proc or sha(MADPROC / rel) != proc[rel]:
-                sys.exit(f"{rel}: not the admitted E7 frame")
-            e7 = admitted_copy(rel)
-            rows.append({"id": f"R1__{gen}__{ph}", "path": str(e7), "raw": str(e7), "rung": "R1",
-                         "gen": gen, "db": "frll", "pa": m["person"], "pb": m["person"], "photo_a": ph,
-                         "photo_b": ph, "alpha": "", "source": "e7", "aligned": True})
-    # published MIPGAN morphs of the FRLL persons (benchmark side and bridge partners)
-    for fam, gen in (("MIPGAN_I", "mip1"), ("MIPGAN_II", "mip2")):
-        for f in sorted((MADRAW / fam).glob("*.png")):
+            e7 = admitted_copy(f"e7/{fam}/{pathlib.Path(m['src']).stem}.png")
+            rows.append({"id": f"R1__{gen}__{ph}", "path": e7, "raw": str(DATA / e7), "rung": "R1", "gen": gen,
+                         "db": "frll", "pa": m["person"], "pb": m["person"], "photo_a": ph, "photo_b": ph,
+                         "alpha": "", "source": "e7", "aligned": True})
+        for f in sorted((MADRAW / fam).glob("*.png")):            # published MIPGAN morphs
             a, b = f.stem.split("-vs-")
-            rows.append({"id": f"PUB__{gen}__{f.stem}", "path": str(mad_frame(fam, f.name)), "raw": str(f),
-                         "rung": "PUB", "gen": gen, "db": "frll", "pa": f"frll_{a[:3]}", "pb": f"frll_{b[:3]}",
-                         "photo_a": a, "photo_b": b, "alpha": 0.5, "source": "published", "aligned": True})
-    # ours
-    for t, root, log in unpack():
-        with tarfile.open(t) as tf:
-            for r in log:
-                mem = f"{root}/png/{r['stem']}.png"
-                if hashlib.sha256(tf.extractfile(mem).read()).hexdigest() != r["png_sha256"]:
-                    sys.exit(f"{t}::{mem}: sha256 differs from its log line")
-                src = f"tar://{t}::{mem}"
-                fp = DATA / "frames" / r["rung"] / f"{r['stem']}.png"
-                ok = frame(src, fp)
-                pa, pb = r["a"].split("__")[0], r["b"].split("__")[0]
-                rows.append({"id": r["stem"], "path": str(fp), "raw": src, "rung": r["rung"], "gen": r["gen"],
-                             "db": pa.split("_")[0], "pa": pa, "pb": pb, "photo_a": r["a"], "photo_b": r["b"],
-                             "alpha": r["alpha"], "source": "ours", "aligned": ok})
-    json.dump(flags, open(flags_p, "w"))
+            rows.append({"id": f"PUB__{gen}__{f.stem}", "path": admitted_copy(f"native/{fam}/{f.stem}.png"),
+                         "raw": str(f), "rung": "PUB", "gen": gen, "db": "frll", "pa": f"frll_{a[:3]}",
+                         "pb": f"frll_{b[:3]}", "photo_a": a, "photo_b": b, "alpha": 0.5, "source": "published",
+                         "aligned": True})
+    shards = sorted(SH.glob("AG1_*.json"))
+    for j in shards:
+        rows += json.load(open(j))["rows"]
     for r in rows:
         r["label"] = LABEL[r["rung"]]
     ids = [r["id"] for r in rows]
     if len(set(ids)) != len(ids):
         sys.exit("duplicate ids")
-    cols = ["id", "path", "label", "rung", "gen", "db", "pa", "pb", "photo_a", "photo_b", "alpha", "source", "aligned"]
     for name, key in (("ag1.csv", "path"), ("ag1_raw.csv", "raw")):
         with open(DATA / "manifests" / name, "w", newline="") as fh:
-            w = csv.DictWriter(fh, fieldnames=cols)
+            w = csv.DictWriter(fh, fieldnames=COLS)
             w.writeheader()
-            for r in rows:                                     # ag1.csv: paths relative to the data root
-                pth = r[key]
-                if name == "ag1.csv":
-                    pth = str(pathlib.Path(pth).relative_to(DATA))
-                w.writerow({**{c: r[c] for c in cols}, "path": pth})
-    print(f"MANIFEST {len(rows)} rows; aligned-flag rate {np.mean([bool(r['aligned']) for r in rows]):.3f}")
+            for r in rows:
+                w.writerow({**{c: r[c] for c in COLS}, "path": r[key]})
+    print(f"MANIFEST {len(rows)} rows from {len(shards)} processed shards; aligned-flag rate "
+          f"{np.mean([bool(r['aligned']) for r in rows]):.3f}")
 
 
 def stage_oracle():
     import cv2
-    from insightface.utils import face_align
     PE = detector()
-    sys.path.insert(0, "/mnt/t7/smad_heldout/arc2face/scripts")
-    import a2f_common as A2F                                      # embed_crops('glint') as A43 g2 / h3_finalise
-    rows = list(csv.DictReader(open(DATA / "manifests/ag1_raw.csv")))
+    rows = [r for r in csv.DictReader(open(DATA / "manifests/ag1_raw.csv")) if r["rung"] == "R0"]
     ids, crops, fail = [], [], []
     for r in rows:
-        img = read_img(r["path"])
-        k = PE.kps(img)
-        if k is None:
+        c = oracle_crop(PE, cv2.imread(r["path"], cv2.IMREAD_COLOR))
+        if c is None:
             fail.append(r["id"])
-            continue
-        crops.append(face_align.norm_crop(img, np.asarray(k, np.float32), 112))
-        ids.append(r["id"])
-    E = A2F.l2n(A2F.embed_crops("glint", np.stack(crops)))
-    np.savez(DATA / "oracle_glint.npz", id=np.array(ids), emb=E.astype(np.float32), fail=np.array(fail))
+        else:
+            crops.append(c)
+            ids.append(r["id"])
+    E = [embed(crops)]
+    for z in sorted(SH.glob("AG1_*_oracle.npz")):
+        d = np.load(z)
+        ids += d["id"].tolist()
+        fail += d["fail"].tolist()
+        E.append(d["emb"])
+    np.savez(DATA / "oracle_glint.npz", id=np.array(ids), emb=np.concatenate(E), fail=np.array(fail))
     print(f"ORACLE {len(ids)} embedded, {len(fail)} without a face")
 
 
 def stage_rt():
-    """RT (order-reversed twin) vs R3 of the same person and generator: max and mean |pixel difference| (1024 PNG)."""
-    import cv2
-    rows = {r["id"]: r for r in csv.DictReader(open(DATA / "manifests/ag1_raw.csv"))}
     out = []
-    for i, r in rows.items():
-        if r["rung"] != "RT":
-            continue
-        twin = i.replace("_RT_", "_R3_")
-        a = read_img(r["path"]).astype(int)
-        b = read_img(rows[twin]["path"]).astype(int)
-        d = np.abs(a - b)
-        out.append({"id": i, "twin": twin, "gen": r["gen"], "db": r["db"], "max": int(d.max()), "mean": float(d.mean())})
+    for j in sorted(SH.glob("AG1_*.json")):
+        out += json.load(open(j))["rt"]
     json.dump(out, open(DATA / "rt_check.json", "w"), indent=0)
     print("RT", len(out), "max of max", max((o["max"] for o in out), default=None))
 
@@ -253,4 +257,8 @@ def stage_pins():
 
 
 if __name__ == "__main__":
-    {"frames": stage_frames, "oracle": stage_oracle, "rt": stage_rt, "pins": stage_pins}[sys.argv[1]]()
+    st = sys.argv[1]
+    if st == "shard":
+        stage_shard(sys.argv[2])
+    else:
+        {"frames": stage_frames, "oracle": stage_oracle, "rt": stage_rt, "pins": stage_pins}[st]()

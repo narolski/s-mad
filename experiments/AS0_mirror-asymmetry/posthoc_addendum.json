@@ -1,0 +1,375 @@
+{
+ "label": "POST HOC (lead's request after the independent review); not registered; descriptive",
+ "pool_offset_R0_FRGC_vs_FERET": {
+  "B1": {
+   "raw": {
+    "auc": 0.7428,
+    "lo": 0.6909,
+    "hi": 0.795,
+    "nX": 427,
+    "nY": 109,
+    "medLX": -2.8817,
+    "medLY": -2.0483
+   },
+   "resid_pose_light": {
+    "auc": 0.7796,
+    "lo": 0.7295,
+    "hi": 0.8271,
+    "nX": 427,
+    "nY": 109
+   },
+   "resid_pose_light_lapvar": {
+    "auc": 0.5389,
+    "lo": 0.4764,
+    "hi": 0.5994,
+    "nX": 427,
+    "nY": 109
+   },
+   "mean_L_gap_FRGC_minus_FERET": -0.7945
+  },
+  "B2": {
+   "raw": {
+    "auc": 0.7611,
+    "lo": 0.7057,
+    "hi": 0.813,
+    "nX": 427,
+    "nY": 109,
+    "medLX": -2.3974,
+    "medLY": -1.7076
+   },
+   "resid_pose_light": {
+    "auc": 0.7903,
+    "lo": 0.7398,
+    "hi": 0.8397,
+    "nX": 427,
+    "nY": 109
+   },
+   "resid_pose_light_lapvar": {
+    "auc": 0.5319,
+    "lo": 0.4647,
+    "hi": 0.6014,
+    "nX": 427,
+    "nY": 109
+   },
+   "mean_L_gap_FRGC_minus_FERET": -0.6827
+  },
+  "B3": {
+   "raw": {
+    "auc": 0.72,
+    "lo": 0.6662,
+    "hi": 0.7693,
+    "nX": 427,
+    "nY": 109,
+    "medLX": -1.7586,
+    "medLY": -1.3363
+   },
+   "resid_pose_light": {
+    "auc": 0.7387,
+    "lo": 0.6876,
+    "hi": 0.7883,
+    "nX": 427,
+    "nY": 109
+   },
+   "resid_pose_light_lapvar": {
+    "auc": 0.5201,
+    "lo": 0.4606,
+    "hi": 0.58,
+    "nX": 427,
+    "nY": 109
+   },
+   "mean_L_gap_FRGC_minus_FERET": -0.4181
+  },
+  "B4": {
+   "raw": {
+    "auc": 0.6668,
+    "lo": 0.6134,
+    "hi": 0.7174,
+    "nX": 427,
+    "nY": 109,
+    "medLX": -0.8143,
+    "medLY": -0.5461
+   },
+   "resid_pose_light": {
+    "auc": 0.6819,
+    "lo": 0.6284,
+    "hi": 0.7301,
+    "nX": 427,
+    "nY": 109
+   },
+   "resid_pose_light_lapvar": {
+    "auc": 0.5365,
+    "lo": 0.4785,
+    "hi": 0.591,
+    "nX": 427,
+    "nY": 109
+   },
+   "mean_L_gap_FRGC_minus_FERET": -0.2628
+  },
+  "B5": {
+   "raw": {
+    "auc": 0.567,
+    "lo": 0.5131,
+    "hi": 0.617,
+    "nX": 427,
+    "nY": 109,
+    "medLX": -0.1802,
+    "medLY": -0.1053
+   },
+   "resid_pose_light": {
+    "auc": 0.5685,
+    "lo": 0.5128,
+    "hi": 0.6192,
+    "nX": 427,
+    "nY": 109
+   },
+   "resid_pose_light_lapvar": {
+    "auc": 0.5064,
+    "lo": 0.4514,
+    "hi": 0.5574,
+    "nX": 427,
+    "nY": 109
+   },
+   "mean_L_gap_FRGC_minus_FERET": -0.0865
+  },
+  "BB": {
+   "raw": {
+    "auc": 0.7121,
+    "lo": 0.6545,
+    "hi": 0.7688,
+    "nX": 427,
+    "nY": 109,
+    "medLX": -2.1874,
+    "medLY": -1.7686
+   },
+   "resid_pose_light": {
+    "auc": 0.7555,
+    "lo": 0.7,
+    "hi": 0.8089,
+    "nX": 427,
+    "nY": 109
+   },
+   "resid_pose_light_lapvar": {
+    "auc": 0.5418,
+    "lo": 0.4744,
+    "hi": 0.608,
+    "nX": 427,
+    "nY": 109
+   },
+   "mean_L_gap_FRGC_minus_FERET": -0.4539
+  }
+ },
+ "pool_offset_counts": {
+  "frgc": 427,
+  "feret": 109
+ },
+ "logistic_ceiling_person_disjoint_5fold": {
+  "R3 vs R4 (same- against two-person)": {
+   "bands": {
+    "auc": 0.6319,
+    "lo": 0.5884,
+    "hi": 0.6742,
+    "nX": 1040,
+    "nY": 1056
+   },
+   "bands + shape (calculated from source files)": {
+    "auc": 0.6354,
+    "lo": 0.5939,
+    "hi": 0.6782,
+    "nX": 1040,
+    "nY": 1056
+   },
+   "bands + shape (detected)": {
+    "auc": 0.6336,
+    "lo": 0.5928,
+    "hi": 0.6751,
+    "nX": 1040,
+    "nY": 1056
+   },
+   "shape (detected) alone": {
+    "auc": 0.5892,
+    "lo": 0.5511,
+    "hi": 0.6298,
+    "nX": 1040,
+    "nY": 1056
+   }
+  },
+  "R2w vs R4 (warp-only against two-person)": {
+   "bands": {
+    "auc": 0.7009,
+    "lo": 0.6598,
+    "hi": 0.7407,
+    "nX": 1040,
+    "nY": 1056
+   },
+   "bands + shape (calculated from source files)": {
+    "auc": 0.6996,
+    "lo": 0.6581,
+    "hi": 0.7397,
+    "nX": 1040,
+    "nY": 1056
+   },
+   "bands + shape (detected)": {
+    "auc": 0.7002,
+    "lo": 0.6593,
+    "hi": 0.7403,
+    "nX": 1040,
+    "nY": 1056
+   },
+   "shape (detected) alone": {
+    "auc": 0.5984,
+    "lo": 0.5606,
+    "hi": 0.6374,
+    "nX": 1040,
+    "nY": 1056
+   }
+  }
+ },
+ "F9_spearman_cosHB_vs_L_R4_minus_L_R2w": {
+  "opencv|B1": {
+   "rho": -0.0751,
+   "p": 0.08235205291537807,
+   "ci": [
+    -0.1618,
+    0.0081
+   ],
+   "n": 536
+  },
+  "opencv|B2": {
+   "rho": -0.1037,
+   "p": 0.016321098175249352,
+   "ci": [
+    -0.1862,
+    -0.0242
+   ],
+   "n": 536
+  },
+  "opencv|B3": {
+   "rho": -0.0972,
+   "p": 0.02445745735819677,
+   "ci": [
+    -0.177,
+    -0.0131
+   ],
+   "n": 536
+  },
+  "opencv|B4": {
+   "rho": -0.1452,
+   "p": 0.0007449911133719518,
+   "ci": [
+    -0.2251,
+    -0.0649
+   ],
+   "n": 536
+  },
+  "opencv|B5": {
+   "rho": -0.1223,
+   "p": 0.004564627864057541,
+   "ci": [
+    -0.2007,
+    -0.0395
+   ],
+   "n": 536
+  },
+  "facemorpher|B1": {
+   "rho": -0.0623,
+   "p": 0.1500758425860187,
+   "ci": [
+    -0.1489,
+    0.0228
+   ],
+   "n": 536
+  },
+  "facemorpher|B2": {
+   "rho": -0.0971,
+   "p": 0.024553852664255693,
+   "ci": [
+    -0.1774,
+    -0.0148
+   ],
+   "n": 536
+  },
+  "facemorpher|B3": {
+   "rho": -0.103,
+   "p": 0.01705043433386228,
+   "ci": [
+    -0.1824,
+    -0.0178
+   ],
+   "n": 536
+  },
+  "facemorpher|B4": {
+   "rho": -0.1324,
+   "p": 0.0021358293168767957,
+   "ci": [
+    -0.2137,
+    -0.0549
+   ],
+   "n": 536
+  },
+  "facemorpher|B5": {
+   "rho": -0.1246,
+   "p": 0.003847873050417859,
+   "ci": [
+    -0.2103,
+    -0.0403
+   ],
+   "n": 536
+  }
+ },
+ "F8_FRLL_neutral_vs_smiling": {
+  "B1": {
+   "auc": 0.5047,
+   "lo": 0.4547,
+   "hi": 0.555,
+   "nX": 102,
+   "nY": 102,
+   "medLX": -2.6752,
+   "medLY": -2.8209
+  },
+  "B2": {
+   "auc": 0.5071,
+   "lo": 0.4531,
+   "hi": 0.5593,
+   "nX": 102,
+   "nY": 102,
+   "medLX": -2.2538,
+   "medLY": -2.2616
+  },
+  "B3": {
+   "auc": 0.4876,
+   "lo": 0.4333,
+   "hi": 0.5438,
+   "nX": 102,
+   "nY": 102,
+   "medLX": -1.7015,
+   "medLY": -1.7862
+  },
+  "B4": {
+   "auc": 0.5427,
+   "lo": 0.4837,
+   "hi": 0.6028,
+   "nX": 102,
+   "nY": 102,
+   "medLX": -0.8709,
+   "medLY": -0.8475
+  },
+  "B5": {
+   "auc": 0.4644,
+   "lo": 0.3939,
+   "hi": 0.5319,
+   "nX": 102,
+   "nY": 102,
+   "medLX": -0.1663,
+   "medLY": -0.1451
+  },
+  "BB": {
+   "auc": 0.5122,
+   "lo": 0.4636,
+   "hi": 0.5607,
+   "nX": 102,
+   "nY": 102,
+   "medLX": -2.1092,
+   "medLY": -2.1106
+  }
+ }
+}

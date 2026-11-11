@@ -286,6 +286,31 @@ Amendments (each fixed before any contrast):
   pose and lighting change; this is stated wherever the pose and lighting confound is discussed, and the yaw
   stratification is still reported.
 
+### Amendment A14 (lead's message after the independent review `experiments/reviews/REVIEW_AS0_20261111.md`), registered 11 Nov about 20:46 CET, before any statistic of R2w4 was computed
+
+Known before registering: the review (its H-new-1 and H-new-2 marks, copied here); the AR1 record's definition of
+R2w4 and, seen in a grep of the AR1 README while locating the rung, one AR1 line about R2w4 in other statistics
+("R2w vs R2w4 0.49-0.52 ... R2w4 vs R4 0.89-0.99"; not a statistic of this experiment). No AS0 quantity of R2w4 has
+been computed.
+
+- Rung: geometry-matched warp-only reference **R2w4** = host photo H warped by the tool's own warp to the mean shape of
+  H and B (the target shape of R4), H texture only (AR1 `variants.py warp2`); `/mnt/t7/smad_next/AR1/img/frgcferet/
+  {opencv,facemorpher}/R2w4/` (536 each; rows in `/mnt/t7/smad_next/AR1/manifest_extra2.csv`). Shape and mask are those
+  of R4 (H and B landmarks, w = 0.5); persons (host, partner) as R4 for the bootstrap. Same statistic, bands, flip,
+  bootstrap and seed as the registration. 106-point landmarks are also detected on R2w4 (same detector).
+- **H-new-1 (geometry carries most of the key contrast)**; Y, F0, both engines pooled; B3 primary, all bands
+  reported. Predictions: AUC(R2w4 lower than R2w) 0.55-0.60; paired median exp(L_R2w4 - L_R2w) 0.82-0.90; AUC(R4 lower
+  than R2w4) 0.58-0.64 (compare R3 against R2w, 0.576). Difference in differences per host and engine:
+  D = (L_R4 - L_R2w4) - (L_R3 - L_R2w); geometry share = mean(L_R2w4 - L_R2w) / mean(L_R4 - L_R3), predicted 0.40-0.70.
+  **Falsified if the paired median exp(L_R2w4 - L_R2w) >= 0.95 (geometry share below about 20%), or if AUC(R4 against
+  R2w4) >= 0.65.** Texture excess = AUC(R4 against R2w4) - AUC(R3 against R2w); the review's rule: revisit a learned
+  version after the deadline only if the excess is at least 0.03.
+- **H-new-2 (detected typicality reads the target shape, not blend artefacts)**: ID0 typicality on detected landmarks
+  (as A10), both engines pooled, the 8 reserved persons dropped. Prediction: AUC(score R4 > score R2w4) 0.44-0.56 and
+  AUC(score R2w4 > score R3) >= 0.62. **Falsified if AUC(R4 against R2w4) >= 0.60; the conclusion about detected
+  typicality (A10) is then withdrawn.**
+- Compute: one process, OMP_NUM_THREADS=2, nice 10, no GPU.
+
 ## Result
 
 (to be written in `result.md`; README.md holds the full record)

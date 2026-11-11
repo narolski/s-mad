@@ -93,6 +93,12 @@ lead's GO (pre-run review restarted by the lead). No conclusion is drawn here.
 - 20:38 T7 drive full (8 KB free; a copy-back failed with "No space left on device"). PN1 deleted only its own
   intermediates (symlink trees, the 8-image test pack, the DINOv3 and reference tars already verified on Athena; hashes
   in `deleted_local_tars_sha256.txt`): 12 GB free. Lead told.
+- 20:38 to 20:44 smoke job 3545968 (t0012): pack 30 s, 200 steps at 1.24 it/s (loss 0.689 -> 0.684), scoring 64 + 64
+  rows, result tar written; SMOKE_RC 0, peak 30,833 MiB. Projection: 6,250 steps about 1.4 h, plus about 5 min of copy
+  and scoring per fit (3 h limit kept).
+- 20:45 GO conditions met (amendment 4 registered, smoke passed from the image): eight fits submitted as array
+  3545976_[0-7] (`pn1_array.sbatch` sha256 `73168ec1…`), reference-row job 3545977 (`pn1_ref.sbatch` `8e4aa4dc…`,
+  `score_ref.sh` `8968013d…`), both on plgmultivision-gpu-a100.
 - 20:39 DINOv3 means from Athena installed (`postfeatx.py install`, files `ath_*.mean.npy`); tier 0 on DINOv3 started.
 - Note: `lists.py cert_a` was rerun at about 19:58 after the ladder copies joined the catalogue, so `cert_a.csv` now
   lists more rows than the cue file `cert_cert_a.npz` (computed from the 11,573-row version); the ladder copies get
@@ -304,15 +310,19 @@ Not run.
 DINOv3 tier 0 (Athena smoke job); certificate and matched-subsample test (cues); pack upload; smoke job; lead's GO;
 six fits; tier-1 reads; result.md; results review by the lead.
 
-## 10. Handover state (20:25)
+## 10. Handover state (20:47)
 
-- Athena smoke job 3545947 (`tasks/PN1/pn1_smoke.sbatch`, account plgmultivision-gpu-a100, arm Bn, 200 steps, 64 scored
-  rows, then DINOv3 extraction of featx.tar), pending, forecast start 21:06 (23 nodes failed, 13 reserved). Log
-  `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/PN1/logs/smoke-3545947.out`.
-- On Athena: `packs/PN1/{pn1_pack.tar, featx.tar}` (sha256 checked there 20:23), `tasks/PN1/` (run.sh `42b335b6…`,
-  eight task folders, job files with the pack pin). `upload2.sh` uploads `refnets.tar` (2.76 GB, reference row).
-- Next: after the smoke job passes, `sbatch tasks/PN1/pn1_array.sbatch` (eight fits) and `sbatch tasks/PN1/pn1_ref.sbatch`
-  (reference row); `fetch.sh`, `postfeatx.py install/check`, `tier0.py --backbones dinov3_512`, `tier1.py`.
+- Athena: array 3545976_[0-7] (PN1_A_s401, PN1_B_s401, PN1_Bn_s401, PN1_C_s401, then the s402 four), each about 1.5 h
+  (1.24 it/s), logs `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/PN1/logs/fit-3545976_<i>.out`, result
+  tars `.../results/PN1/PN1_<arm>_s<seed>.tar` (+ .sha256). Reference job 3545977 (log `ref-3545977.out`, tar
+  `PN1_REF_smdd_m3.tar`). Both pending at 20:46 (priority).
+- DGX: `watch_fits.sh` (log `/mnt/t7/smad_next/PN1/watch_fits.log`) polls sacct (one ssh per check) and runs
+  `fetch.sh` (copy-back with sha256 checks to `/mnt/t7/smad_next/PN1/results/`) whenever a task has ended.
+- After all tasks end: `tier1.py` (reads, marks, P-g bootstrap, gaps, reference row) and `report.py tier1`; then
+  `result.md`.
+- If a fit fails on infrastructure: rerun that array index once unchanged (`sbatch --array=<i> tasks/PN1/pn1_array.sbatch`);
+  never rerun a run with non-finite loss or weights (amendment 4 item 7).
+- Compute: Athena 0.16 GPU-hours (two smoke jobs); projected 8 x 1.6 + 0.5 = about 13 GPU-hours.
 
 ## 10a. Handover state (19:55, superseded)
 

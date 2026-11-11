@@ -64,6 +64,16 @@ the owner. Nothing may be submitted or probed until then.
   R3 2.953 / 1.246, R3m 3.247 / 1.331, R4 5.474 / 5.550, RT 2.947, AG3(0.3) 4.785; MIPGAN-II R2 2.429 / 0.735, R3
   3.304 / 1.457, R3m 3.545 / 1.520, R4 5.676 / 5.706 (persons frll_001 / frll_010). Production estimate 19.9 A100
   GPU-h; array time limit raised to 10 h (longest shard, MIPGAN-II FRLL 00, about 4.5 h).
+- ~21:00 Disk alert (T7 reached 100% at about 20:40): removed my own temporary test directories (26 GB -> 6.1 GB;
+  extracted weights, MADation test extraction, build intermediates; all rebuildable). The GAN weights were not stored
+  twice (hard links). Proposed for the author's approval list, not deleted: `athena/ag1_pack.tar` (2.8 GB, copy on
+  Athena), `athena/pack/{ag1_inputs.tar, ag1_code.tar}`, `staging/packs` (WCSS copy). Lead chose option (c):
+  copy back and process one result tar at a time; a fetched tar is removed after processing once its sha256 matches
+  the Athena copy and is recorded in `experiments/AG1/fetched_tars.csv`. `ag1_manifest.py` rewritten for this
+  (stage `shard <tar>` reads PNGs straight from the tar: frame, oracle embedding, RT check, into
+  `data/shards/<shard>.json` and `_oracle.npz`; stages `frames / oracle / rt / pins` merge); driver
+  `src/AG1/fetch_and_process.sh` (free-space check >= 52 GB before each fetch, transfer lock, hash check, process,
+  ledger line, remove local tar). Estimated copy-back 6.8 GB in total, never more than one tar (<= 1.1 GB) at a time.
 - 19:55 Capped oracle test on the smoke-based test manifest: 3,030 images embedded with glintr100, 0 without a face;
   `ag1_read.py --gate-only` on it runs end to end (G-b computed for mip1 / mip2 FRLL on the two smoke hosts, RT 1
   pair mean 2.6 grey levels on the A100; code test only, two hosts are no gate). Outputs

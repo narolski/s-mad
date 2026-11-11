@@ -178,7 +178,7 @@ def load_rows(data, logs, photos, synthetic):
     rows = list(csv.DictReader(open(pathlib.Path(data) / "manifests/ag1.csv")))
     lg = {}
     if logs:
-        for f in pathlib.Path(logs).glob("*/log.csv"):
+        for f in list(pathlib.Path(logs).glob("*/log.csv")) + list(pathlib.Path(logs).glob("AG1_*.log.csv")):
             for r in csv.DictReader(open(f)):
                 lg[r["stem"]] = r
     rng = np.random.default_rng(3)
@@ -591,7 +591,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", required=True)
     ap.add_argument("--scores", default=None)
-    ap.add_argument("--logs", default=None, help="results/x dir with every shard's log.csv")
+    ap.add_argument("--logs", default=None, help="dir with every shard's <shard>.log.csv (copied from results/AG1)")
     ap.add_argument("--photos", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--gate-only", action="store_true")

@@ -322,16 +322,22 @@ Finish crops and scoring on the DGX; platform and crop checks; border check (ame
 amendment 2 (0.5 rule, threshold-pool column, paired logit shifts, SelfMAD both definitions); `result.md`; Athena run
 when the account works (corrected MAD22 cells and FS releases need it unless run on the DGX).
 
-## 10. Handover state (11 Nov 17:50)
+## 10. Handover state (11 Nov 20:50)
 
-DGX processes (all `nice -n 10`):
-- `run_crop.sh` (PID 2073469) with crop shard 1 (PID 2073478); log `/mnt/t7/smad_next/RS1/crops/main_shard1.log`.
-- shard-0 retry loop (PID 2077408, crop PID 2077409); log `crops/main_shard0.log`.
-- `run_score.sh a46` (PID 2066860; scorer PIDs change per release); log `/mnt/t7/smad_next/RS1/run_score_a46.log`,
-  per-try logs `scores/log_<release>__a46_try<k>.log`.
-- `run_after.sh` (started 17:47); log `/mnt/t7/smad_next/RS1/run_after.log`.
-If a step fails: every script is idempotent (skips finished outputs); rerun the same command. Crops resume from
-their box journals. Compute so far: DGX GPU only (shared); Athena 0 GPU-hours.
+- DGX: no RS1 process running. Finished: SelfMAD DGX run (`scores/scores_own_selfmad__dgx.npz`), JPEG-storage check
+  (`jpegcheck/`), DGX MADation ViT-B/16 and ViT-L/14 scores of the A46 crops (platform check only), DGX crops of the
+  4,884 new inputs (`crops/main`, equivalence material only). Stopped on purpose at 18:29: DGX MADation scoring and the
+  amendment crops.
+- Athena (user plgpnarolski, account `plgmultivision-gpu-a100`): **3545972** (variant 1, SMDD script unchanged) and
+  **3545973** (variant 2, corrected PNG crop), pending, 2 h limit each; job file `.../smad-next/tasks/RS1/athena_rs1.sbatch`
+  (copy `src/RS1/athena_rs1.sbatch`), logs `.../smad-next/logs/RS1-<job>.out`, results
+  `.../smad-next/results/RS1/rs1a_prod_v{1,2}_<job>.tar` (small; copy back) and `..._crops.tar` (stays on Athena).
+- When both finish: `src/RS1/athena_fetch.sh prod_v1_3545972` and `... prod_v2_3545973`, then
+  `analyse.py --B 2000 --athena-v1 prod_v1_3545972 --athena-v2 prod_v2_3545973` (writes `rs1_*.csv`,
+  `rs1_results.json`), `border.py 0 prod_v1_3545972 prod_v2_3545973`, `tables.py`, then fill `result.md`.
+  If a job fails: read its log; every step is idempotent; resubmit with the same command
+  (`sbatch --time=02:00:00 --export=ALL,RS1_VARIANT=v1 athena_rs1.sbatch`).
+- Compute so far: Athena 0.21 GPU-hours (three smoke jobs); DGX shared GPU (about 2 h of scoring and cropping).
 
 ## 11. Reproduce from scratch
 

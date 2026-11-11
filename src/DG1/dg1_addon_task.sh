@@ -9,7 +9,7 @@ TAG=$1; L=$2
 : "${MEMFS:?RAM disk required (-C memfs)}"
 W=$MEMFS/dg1_$TAG
 R=$G/results/DG1
-[ ! -e "$R/DG1_$TAG.tar" ] || { echo "refused: $R/DG1_$TAG.tar exists"; exit 4; }
+[ ! -e "$R/DG1_$TAG.tar" ] && [ ! -e "$R/DG1_${TAG}_codes.tar" ] || { echo "refused: a result tar of $TAG exists"; exit 4; }
 mkdir -p "$W" "$R"
 export TMPDIR=$MEMFS/tmp TORCH_HOME=$MEMFS/torch XDG_CACHE_HOME=$MEMFS/cache OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-8}
 mkdir -p "$TMPDIR"
@@ -37,9 +37,15 @@ kill $SM 2>/dev/null || true
 awk -F", " '{if ($1+0>m) m=$1+0} END {print "PEAK_MIB " m}' "$O/gpumem.csv" | tee "$O/peak.txt"
 cp "$G/envs/DG1/versions.txt" "$O/versions.txt"
 hostname > "$O/host.txt"; echo "${SLURM_JOB_ID:-} ${SLURM_ARRAY_JOB_ID:-} ${SLURM_ARRAY_TASK_ID:-} rc=$RC" > "$O/slurm.txt"
+# codes and fresh-noise draws go into their own tar, which stays on Athena (lead, 11 Nov 20:45: T7 disk is full);
+# their sha256 is recorded inside the image tar
+C=$W/codes_$TAG; mkdir -p "$C/$L"
+for f in codes.npz fresh.npz; do [ -f "$O/$L/$f" ] && mv "$O/$L/$f" "$C/$L/"; done
+( cd "$C/$L" && sha256sum ./*.npz > "$O/$L/codes_sha256.txt" 2>/dev/null || true )
 tar -C "$W" -cf "$W/DG1_$TAG.tar" "out_$TAG"
-( cd "$W" && sha256sum "DG1_$TAG.tar" > "DG1_$TAG.tar.sha256" )
-cp "$W/DG1_$TAG.tar" "$W/DG1_$TAG.tar.sha256" "$R/"
-( cd "$R" && sha256sum -c "DG1_$TAG.tar.sha256" )
+tar -C "$W" -cf "$W/DG1_${TAG}_codes.tar" "codes_$TAG"
+( cd "$W" && sha256sum "DG1_$TAG.tar" > "DG1_$TAG.tar.sha256" && sha256sum "DG1_${TAG}_codes.tar" > "DG1_${TAG}_codes.tar.sha256" )
+cp "$W/DG1_$TAG.tar" "$W/DG1_$TAG.tar.sha256" "$W/DG1_${TAG}_codes.tar" "$W/DG1_${TAG}_codes.tar.sha256" "$R/"
+( cd "$R" && sha256sum -c "DG1_$TAG.tar.sha256" "DG1_${TAG}_codes.tar.sha256" )
 echo "TASK_END $TAG rc=$RC $(( $(date +%s) - t0 )) s"
 exit $RC
