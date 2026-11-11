@@ -1,0 +1,352 @@
+{
+ "probe": "C1 probe: StandardScaler + LogisticRegression(C=0.1) on 204 frll_bona lower-face 22x36 thumbnails (label 08)",
+ "validation": {
+  "MAD22c/FaceMorpher": {
+   "n": 1000,
+   "n_smiling_true": 500,
+   "accuracy": 0.931,
+   "accuracy_ci": [
+    0.9134848906542885,
+    0.9459206642067437
+   ],
+   "flagged_share": 0.447,
+   "sensitivity": 0.878,
+   "sensitivity_ci": [
+    0.846057903153546,
+    0.9053811035435845
+   ],
+   "specificity": 0.984,
+   "specificity_ci": [
+    0.9687179983101469,
+    0.9930676787975165
+   ],
+   "auc": 0.977028,
+   "auc_ci": [
+    0.9686435,
+    0.9849048
+   ]
+  },
+  "MAD22c/MIPGAN_I": {
+   "n": 1000,
+   "n_smiling_true": 500,
+   "accuracy": 0.811,
+   "accuracy_ci": [
+    0.7853322572510838,
+    0.8348215135328766
+   ],
+   "flagged_share": 0.331,
+   "sensitivity": 0.642,
+   "sensitivity_ci": [
+    0.5982358844094111,
+    0.684073847928081
+   ],
+   "specificity": 0.98,
+   "specificity_ci": [
+    0.9635275917077902,
+    0.9903685704135666
+   ],
+   "auc": 0.968952,
+   "auc_ci": [
+    0.9594393999999999,
+    0.9772967
+   ]
+  },
+  "MAD22c/MIPGAN_II": {
+   "n": 999,
+   "n_smiling_true": 499,
+   "accuracy": 0.8858858858858859,
+   "accuracy_ci": [
+    0.8645222514746519,
+    0.9049426985652718
+   ],
+   "flagged_share": 0.43343343343343343,
+   "sensitivity": 0.8196392785571143,
+   "sensitivity_ci": [
+    0.7830394935854833,
+    0.852398747622179
+   ],
+   "specificity": 0.952,
+   "specificity_ci": [
+    0.9294192037426702,
+    0.9690068312064947
+   ],
+   "auc": 0.9608537074148297,
+   "auc_ci": [
+    0.9503240480961923,
+    0.9703291583166332
+   ]
+  },
+  "MAD22c/OpenCV": {
+   "n": 984,
+   "n_smiling_true": 495,
+   "accuracy": 0.9776422764227642,
+   "accuracy_ci": [
+    0.9663449255254751,
+    0.9859367518692648
+   ],
+   "flagged_share": 0.49898373983739835,
+   "sensitivity": 0.9737373737373738,
+   "sensitivity_ci": [
+    0.95550879589178,
+    0.9859437828387365
+   ],
+   "specificity": 0.9815950920245399,
+   "specificity_ci": [
+    0.9653502072346218,
+    0.991550424938389
+   ],
+   "auc": 0.9972650843816488,
+   "auc_ci": [
+    0.9956537770341451,
+    0.9986615645204603
+   ]
+  },
+  "MAD22c/Webmorph": {
+   "n": 500,
+   "n_smiling_true": 0,
+   "accuracy": 0.978,
+   "accuracy_ci": [
+    0.9609774491551912,
+    0.9889677236387425
+   ],
+   "flagged_share": 0.022,
+   "specificity": 0.978,
+   "specificity_ci": [
+    0.9609774491551912,
+    0.9889677236387425
+   ]
+  },
+  "MorDIFF": {
+   "n": 1000,
+   "n_smiling_true": 500,
+   "accuracy": 0.942,
+   "accuracy_ci": [
+    0.9256635046176483,
+    0.9556671397471793
+   ],
+   "flagged_share": 0.458,
+   "sensitivity": 0.9,
+   "sensitivity_ci": [
+    0.8702909143377969,
+    0.9248641849335746
+   ],
+   "specificity": 0.984,
+   "specificity_ci": [
+    0.9687179983101469,
+    0.9930676787975165
+   ],
+   "auc": 0.984776,
+   "auc_ci": [
+    0.9770916,
+    0.9914120999999999
+   ]
+  }
+ },
+ "targets": {
+  "FRLL-Morphs/amsl": {
+   "n": 2175,
+   "ref": "landmark",
+   "flagged_share": 0.009655172413793104,
+   "flagged_ci": [
+    0.0059863572164851955,
+    0.01472127180391455
+   ],
+   "mean_p_smiling": 0.10406615447804751,
+   "corrected_smiling_share": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "neutral_only_status": "supported"
+  },
+  "FRLL-Morphs/facemorpher": {
+   "n": 1222,
+   "ref": "landmark",
+   "flagged_share": 0.010638297872340425,
+   "flagged_ci": [
+    0.0056762642015014035,
+    0.018123110330844763
+   ],
+   "mean_p_smiling": 0.11537806602274785,
+   "corrected_smiling_share": 0.0,
+   "ci": [
+    0.0,
+    0.00093634672301079
+   ],
+   "neutral_only_status": "supported"
+  },
+  "FRLL-Morphs/opencv": {
+   "n": 1221,
+   "ref": "landmark",
+   "flagged_share": 0.011466011466011465,
+   "flagged_ci": [
+    0.006282359922541579,
+    0.019163253828410602
+   ],
+   "mean_p_smiling": 0.12681658580271987,
+   "corrected_smiling_share": 0.0,
+   "ci": [
+    0.0,
+    0.0018175850210915745
+   ],
+   "neutral_only_status": "supported"
+  },
+  "FRLL-Morphs/stylegan": {
+   "n": 1222,
+   "ref": "mipgan",
+   "flagged_share": 0.06873977086743044,
+   "flagged_ci": [
+    0.05519664933578594,
+    0.08440008537165132
+   ],
+   "mean_p_smiling": 0.19484372035909978,
+   "corrected_smiling_share": 0.04986111468198825,
+   "ci": [
+    0.025063515502910028,
+    0.07517720117918633
+   ],
+   "neutral_only_status": "supported"
+  },
+  "FRLL-Morphs/webmorph": {
+   "n": 1221,
+   "ref": "landmark",
+   "flagged_share": 0.014742014742014743,
+   "flagged_ci": [
+    0.008759834548970112,
+    0.02319899763833915
+   ],
+   "mean_p_smiling": 0.09542309749532824,
+   "corrected_smiling_share": 0.0,
+   "ci": [
+    0.0,
+    0.006091713879393194
+   ],
+   "neutral_only_status": "supported"
+  },
+  "DiM/dim_a": {
+   "n": 500,
+   "ref": "mordiff",
+   "flagged_share": 0.05,
+   "flagged_ci": [
+    0.03261518014933005,
+    0.07292762165047895
+   ],
+   "mean_p_smiling": 0.13486261407809214,
+   "corrected_smiling_share": 0.038461538461538464,
+   "ci": [
+    0.013667425968109343,
+    0.06349299719887955
+   ]
+  },
+  "DiM/dim_c": {
+   "n": 500,
+   "ref": "mordiff",
+   "flagged_share": 0.026,
+   "flagged_ci": [
+    0.013914930062859742,
+    0.044050436856873765
+   ],
+   "mean_p_smiling": 0.113120106914409,
+   "corrected_smiling_share": 0.011312217194570134,
+   "ci": [
+    0.0,
+    0.031531531531531536
+   ]
+  },
+  "DiM/fast_dim": {
+   "n": 500,
+   "ref": "mordiff",
+   "flagged_share": 0.058,
+   "flagged_ci": [
+    0.039183868797187785,
+    0.08223822089383528
+   ],
+   "mean_p_smiling": 0.1319035689306577,
+   "corrected_smiling_share": 0.047511312217194575,
+   "ci": [
+    0.020979020979020983,
+    0.07399103139013453
+   ]
+  },
+  "DiM/fast_dim_ode": {
+   "n": 499,
+   "ref": "mordiff",
+   "flagged_share": 0.05811623246492986,
+   "flagged_ci": [
+    0.03926309187000152,
+    0.08240088727940416
+   ],
+   "mean_p_smiling": 0.13856219323061905,
+   "corrected_smiling_share": 0.04764279690602925,
+   "ci": [
+    0.02114462569999813,
+    0.07450046489375146
+   ]
+  },
+  "DiM/greedy_dim": {
+   "n": 500,
+   "ref": "mordiff",
+   "flagged_share": 0.068,
+   "flagged_ci": [
+    0.047548246632654875,
+    0.09372964680737077
+   ],
+   "mean_p_smiling": 0.1540441559323358,
+   "corrected_smiling_share": 0.05882352941176471,
+   "ci": [
+    0.0319634703196347,
+    0.08705357142857141
+   ]
+  },
+  "DiM/greedy_dim_s": {
+   "n": 500,
+   "ref": "mordiff",
+   "flagged_share": 0.04,
+   "flagged_ci": [
+    0.024601312085545394,
+    0.06110260938824469
+   ],
+   "mean_p_smiling": 0.14363065645153628,
+   "corrected_smiling_share": 0.027149321266968326,
+   "ci": [
+    0.004524886877828055,
+    0.05057471264367816
+   ]
+  }
+ },
+ "pooled_refs": {
+  "landmark": {
+   "families": [
+    "MAD22c/FaceMorpher",
+    "MAD22c/OpenCV",
+    "MAD22c/Webmorph"
+   ],
+   "n_smiling": 995,
+   "sensitivity": 0.9256281407035176,
+   "n_neutral": 1489,
+   "specificity": 0.9811954331766286,
+   "accuracy": 0.9589371980676329
+  },
+  "mipgan": {
+   "families": [
+    "MAD22c/MIPGAN_I",
+    "MAD22c/MIPGAN_II"
+   ],
+   "n_smiling": 999,
+   "sensitivity": 0.7307307307307307,
+   "n_neutral": 1000,
+   "specificity": 0.966,
+   "accuracy": 0.848424212106053
+  },
+  "mordiff": {
+   "families": [
+    "MorDIFF"
+   ],
+   "n_smiling": 500,
+   "sensitivity": 0.9,
+   "n_neutral": 500,
+   "specificity": 0.984,
+   "accuracy": 0.942
+  }
+ }
+}

@@ -1,5 +1,19 @@
 # Cue matrix: which benchmark cues exist, and which ones detectors are shown to use
 
+## Updates since the first version (newest first; the table below is the first version)
+
+| Date | Cue | Change | Source |
+|---|---|---|---|
+| 11 Nov | Expression (row 15) | 12 of 17 cells are imbalanced (genuine class half smiling, morphs neutral): DiM x6, FRLL-Morphs x5, corrected MAD22 Webmorph; 11 of them are scored. Status: **used, in a matched comparison**, by the released MADation ViT-L/14 (neutral photo scored above the smiling photo of the same person in 101 of 102 persons; error +4.5 points on average with a neutral-only genuine class, AMSL 17.7 to 24.5) and by its recipe retrains at the last checkpoint (5 of 5 seeds). Read but with small error effects by the ViT-B/16 recipe retrains. Not shown by the released ViT-B/16, SelfMAD, CNN recipes. Opposite direction for the frozen-encoder ViT-B/16 release. Independent review running | Expression cue use (C1b) |
+| 11 Nov | Colour statistics (row 13c) | Present on aligned crops: AUC 0.71 to 1.00 per cell (0.61 to 0.98 without the border). Use untested | Cue checks (C1 to C4) |
+| 11 Nov | Chroma subsampling (row 13b) | Confirmed on the corrected MAD22: separates only the Webmorph cell; elsewhere it coincides with PNG versus JPEG | Cue checks (C1 to C4) |
+| 11 Nov | Identity overlap (row 14) | No FRLL image found in any audited training set by path or label. The SelfMAD public code's default selects the checkpoint on test data that includes the FRLL genuine photos; whether the release was made this way is unknown | Cue checks (C1 to C4) |
+| 11 Nov | Resampling history of genuine photos | At each detector's own EER threshold on our re-scoring of MorDIFF, giving the same photos the morphs' history raises the share flagged from 5 to 54% (MADation ViT-B/16), 26 to 51% (ViT-L/14), 2 to 98% (SelfMAD). A photo only stored at the published size is flagged by SelfMAD in 203 of 204 cases | MorDIFF ladder re-read (AD1) and its review |
+| 11 Nov | New: training-set partner structure | The 15,000 SMDD training morphs share 5 second contributors; no genuine render is a contributor. Use by detectors is being tested | SMDD five-partner audit and rebuild (SM1) |
+| 11 Nov | New: degenerate control | For landmark tools "tool on one photo" is the photo itself (pixel-identical), so it cannot serve as a processed-genuine control | measured by the lead; ladder amended |
+| 11 Nov | New: untrained network | An untrained CLIP ViT-B/16 with a random head reaches AUC up to 0.72 on FRLL landmark cells | Morph-free networks (AD4), zero-step read |
+
+
 Prepared 2026-11-11 for Paweł Narolski. A read-only compilation of the experiment record. Nothing was computed, scored or run for this page. No file whose name contains "fst", "valx" or "A12SP" was opened.
 
 ## How to read this page

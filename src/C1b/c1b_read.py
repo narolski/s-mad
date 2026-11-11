@@ -202,7 +202,7 @@ def main():
     print(len(C), "cells;", len(dets), "detectors;", len(allp), "persons; B", BA, BB, flush=True)
     for d in dets:
         assert d[2].exists(), d
-    with Pool(1 if SMOKE else 12, initializer=init, initargs=({"D": D, "C": C, "wm": wm, "wb": wb},)) as pool:
+    with Pool(1 if SMOKE else 8, initializer=init, initargs=({"D": D, "C": C, "wm": wm, "wb": wb},)) as pool:
         R = pool.map(run_detector, dets, chunksize=1)
     res = [r for r, _ in R]
     reps = {r["label"]: e for r, e in R}
