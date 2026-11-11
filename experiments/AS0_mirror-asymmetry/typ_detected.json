@@ -23,16 +23,16 @@
  },
  "n_detected": {
   "R0|none|": 536,
-  "S0|none|": 0,
-  "R2w|opencv|": 0,
-  "R2wm|opencv|": 0,
+  "S0|none|": 536,
+  "R2w|opencv|": 536,
+  "R2wm|opencv|": 536,
   "R3|opencv|": 536,
-  "R3m|opencv|": 0,
+  "R3m|opencv|": 536,
   "R4|opencv|": 536,
-  "R2w|facemorpher|": 0,
-  "R2wm|facemorpher|": 0,
+  "R2w|facemorpher|": 536,
+  "R2wm|facemorpher|": 536,
   "R3|facemorpher|": 536,
-  "R3m|facemorpher|": 0,
+  "R3m|facemorpher|": 536,
   "R4|facemorpher|": 536,
   "G|facemorpher|0.0": 0,
   "G|facemorpher|0.1": 0,
@@ -47,20 +47,55 @@
    "median": 0.0082,
    "q90": 0.0119
   },
+  "S0|none|": {
+   "n": 536,
+   "median": 0.0082,
+   "q90": 0.0122
+  },
+  "R2w|opencv|": {
+   "n": 536,
+   "median": 0.0091,
+   "q90": 0.0135
+  },
+  "R2wm|opencv|": {
+   "n": 536,
+   "median": 0.0094,
+   "q90": 0.0137
+  },
   "R3|opencv|": {
    "n": 536,
    "median": 0.0084,
    "q90": 0.0122
+  },
+  "R3m|opencv|": {
+   "n": 536,
+   "median": 0.0099,
+   "q90": 0.0135
   },
   "R4|opencv|": {
    "n": 536,
    "median": 0.0097,
    "q90": 0.0139
   },
+  "R2w|facemorpher|": {
+   "n": 536,
+   "median": 0.0126,
+   "q90": 0.0181
+  },
+  "R2wm|facemorpher|": {
+   "n": 536,
+   "median": 0.0134,
+   "q90": 0.021
+  },
   "R3|facemorpher|": {
    "n": 536,
    "median": 0.0094,
    "q90": 0.014
+  },
+  "R3m|facemorpher|": {
+   "n": 536,
+   "median": 0.0108,
+   "q90": 0.0157
   },
   "R4|facemorpher|": {
    "n": 536,

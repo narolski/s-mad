@@ -281,9 +281,13 @@ def main():
     assert (K.RES / "gate_b.json").exists() and (K.RES / "gate_c.json").exists(), "gates first"
     oofz = dict(np.load(SC / "baselines_oof.npz"))
     pools = {p: Pool(man, p) for p in ("frgcferet", "frll")}
+    gated = set(json.load(open(K.RES / "gate_c.json")))      # read a detector only after its G-c exists
     res = {}
     for block, dets in (("released", REL), ("our_retrain", OURS)):
         for name, tag in dets:
+            if tag not in gated:
+                print("no G-c yet, not read:", tag)
+                continue
             S = load(tag)
             if S is None:
                 print("missing", tag)

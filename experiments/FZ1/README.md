@@ -12,7 +12,7 @@ DiffAE morphs above one-photo DiffAE reconstructions without ranking reconstruct
 the fully adapted MADation release loses this. Trigger: the released MADation "FE" ViT-L/14 (frozen CLIP + trained
 linear head) gives B vs D 0.852 on the A43 MorDIFF material, unlike every adapted release.
 
-Status 11 Nov 20:10 CET: **finished** (all four parts run). Results:
+Status 11 Nov 20:28 CET: **finished; post hoc addendum A1 done after the independent review** (see `result.md` for the corrected wording and the WITHDRAWN list). Results (first version; read with the review's qualifications):
 - P1 (re-read of existing release scores): the six reviewer-preview AUCs reproduce to three decimals.
 - P2 (probe = gate G-c): a cross-validated logistic probe on frozen features separates every A43 contrast
   (B20 vs D20, B vs D, C20 vs D20, B20 vs C20) at AUC 0.945–1.000 on all four feature sets (CLIP with MADation
@@ -83,6 +83,20 @@ All times CET, 11 Nov 2026.
   `experiments/FZ1/p3_heads.json`, head weights `/mnt/t7/smad_next/FZ1/heads/head_s40{1..5}.pt`, A43 scores
   `heads/scores_a43.npz`. Prediction met in 5 of 5 seeds ("supported" under the registered rule).
 - 20:10 `result.md` completed; README updated.
+- 20:20 Independent review saved by the lead (`experiments/reviews/REVIEW_FZ1_20261111.md`, verdict "needs
+  qualification"; reviewer scripts `experiments/reviews/rev_scripts_fz1_20261111/rv1–rv3`). Lead's orders: post hoc
+  addendum A1 (zero GPU, at most 2 processes, OMP_NUM_THREADS=2, nice 10), rewrite of `result.md`, then a new
+  experiment on the new diffusion ladder (FZ2).
+- 20:22 Addendum A1 registered at the end of `prereg.md` before any addendum number.
+- 20:22–20:25 Smoke runs (`--smoke`, bootstrap B = 200 / 100, all images) of `src/FZ1/fz1_addendum.py` and
+  `src/FZ1/fz1_heads_boot.py`; full runs 20:23–20:25 (logs `/mnt/t7/smad_next/FZ1/logs/addendum_a1.log`,
+  `addendum_heads_boot.log`) → `experiments/FZ1/addendum_a1.json` (sha256 e4f7f4e3…), `addendum_heads_boot.json` (1aab71dd…), `addendum_heads_boot.json`,
+  `/mnt/t7/smad_next/FZ1/addendum_a1_stats_CC20.npz`, `/mnt/t7/smad_next/FZ1/heads/scores_a43_boot.npz`.
+- 20:28 `result.md` rewritten with the review's corrected wording, a WITHDRAWN section and the addendum tables;
+  the previous version saved at `/mnt/t7/smad_next/FZ1/result_before_review_rewrite.md` (and in git, commit c7186f5).
+  Read off the release's training log: its per-family genuine counts (from the rate steps) are 204 for FaceMorpher,
+  OpenCV and all-attacks but 206–207 for MorDIFF, AMSL and StyleGAN (smallest consistent denominators; not proof).
+
 
 ## 3. Data
 
@@ -149,6 +163,8 @@ Dropped items: none.
   check of the released head on our features.
 - `fz1_stats.py [--smoke]`: P4.
 - `fz1_report.py p1|p2|p3|p4`: markdown tables.
+- `fz1_addendum.py [--smoke]`: addendum A1 (a) reviewer checks with intervals and (b) floors for the side
+  contrasts. `fz1_heads_boot.py [--smoke]`: addendum A1 (c) SMDD-bootstrap heads.
 - Runners: `run_feats.sh` (stage 1), `switch_stage2.sh` (stage switch; ran once at 16:22), `run_feats2.sh`
   (stage 2), `run_probes_dino.sh`, `run_feats3.sh` (stage 3, SMDD with TF32), `run_feats3b.sh` (stage 3 with
   retries), `run_feats4.sh` (stage 4, two parallel halves), `merge_parts.py` (joins the halves).
@@ -176,6 +192,18 @@ Full tables are in `result.md` (P1, P2, P4) and in the json files. Headlines wit
   smiling 0.588–0.608; EER native / E7: AMSL 22.5–23.5 / 28.0–28.4, FaceMorpher 4.4 / 4.9–5.4, OpenCV 4.8–4.9 /
   5.9–6.4, WebMorph 7.9–8.3 / 11.3–12.3, MorDIFF 40.2–40.7 / 40.7–41.2. Released FE head on our features
   reproduces every stored AUC within 2.7e-4.
+Addendum A1 (20:25; full tables in `result.md`):
+- Heads vs PNG bytes / centre-256 Laplacian variance inside B, D, B20, D20: ρ −0.11 to +0.02 / −0.27 to −0.38;
+  B vs D inside PNG fifths 0.779 [0.702, 0.858]; B20 vs D20 0.632 [0.551, 0.714].
+- Partner split (clip_mad probe): 0.989 vs 0.987 (B20 vs D20), 0.993 vs 0.995 (B vs D), 0.934 vs 0.948 (B20 vs C20).
+- Transfer: C20-vs-D20 probe gives B20 vs D20 0.946 and B20 vs C20 0.108; B20-vs-C20 probe gives C20 vs D20 0.087.
+- Expression: head B20 neutral / smiling pairs vs C20 0.648 / 0.594; probe 0.939 / 0.950; probe on D20 smiling vs
+  neutral 0.456, E 0.543.
+- Floors: head on B20 vs C20 0.621 vs best statistic (asymmetry, B20 lower) 0.681, head − best −0.060 [−0.194,
+  +0.074]; on C20 vs D20 0.511 vs PNG bytes 0.736; the head exceeds no floor; the probes exceed theirs (+0.26).
+- SMDD-resample heads: B vs D 0.782–0.798 (seeds 0.789–0.792), B20 vs D20 0.616–0.634, B20 vs C20 0.619–0.627,
+  C20 vs D20 0.494–0.520, D vs R0 0.499–0.519, flag change −0.5 to +2.0 points, MorDIFF EER 40.2–43.6%.
+
 
 ## 6. Checks
 
@@ -216,6 +244,10 @@ Not verified:
 8. 17:13 a fp32-vs-TF32 speed test died with CUDA out of memory (machine memory 106/121 GB used, swap full). Not
    retried; running extraction unaffected.
 9. 20:05 bug 5 in `fz1_heads.py` (prediction summary read the check entry as a seed); fixed before the full run.
+10. Statements withdrawn after the review (20:28; reasons in `result.md` WITHDRAWN): explanations of the 100-step
+   separation by published files, steps, sharpness or storage; "5 of 5 seeds" as strength of evidence; "readable from
+   frozen features" for "linearly separable". The registered 2e-3 check failure is now a deviation ratified by the
+   lead after the fact (review F7).
 
 ## 8. Observations and ideas
 
@@ -224,8 +256,12 @@ Not verified:
   show that this is identity mixing. The central-crop Laplacian variance (0.966 for B vs D, morphs higher)
   points to a texture / noise difference between decoding from mixed latents and from an inverted latent at 100
   steps; at 20 steps it is much weaker (0.661) while the probe stays at 0.987.
+  **[The 'points to' clause WITHDRAWN 20:28, review F1: the heads do not use sharpness; only the separability
+  facts stand.]**
 - The released FE head's ordering (B vs D 0.852 > B20 vs D20 0.655) follows the statistics' ordering
   (100 steps stronger than 20), not the probe's (both near 1). Post hoc only.
+  **[WITHDRAWN 20:28, review F1: B and D are both our 100-step renders stored the same way; the heads use neither
+  PNG size nor sharpness (within-arm ρ about 0 and negative; PNG-stratified AUC unchanged).]**
 - On StyleGAN3 the probe separates morphs from one-identity renders of a third person (0.89–0.94) but much less
   from renders matched in latent spread (0.58–0.63), as AG5 / A37 found for the detectors.
 - FE ViT-B/16 flags E7 photos more often (39.7% → 69.6%) while FE ViT-L/14 does not (34.8% → 29.9%).

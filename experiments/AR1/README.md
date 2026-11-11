@@ -10,7 +10,9 @@ Question: when released morphing-attack detectors score landmark morphs (OpenCV,
 benchmark construction, to tool processing of a genuine photo, to morphing two photos of one person, or to a second
 identity? Author ruling: a processed genuine image called a morph is an error; a same-person morph counts as a morph.
 
-Status 11 Nov 2026, about 18:00 CET: **running**. Images built, gates G-b (face-recognition twin validity) computed
+Status 11 Nov 2026, about 21:20 CET: **released detectors read; result.md written**; AR4 for ViT-L/14, the A46
+platform check, M3L seeds 1-5 and some retrain extra rows still scoring (run_master.sh). Earlier status (18:00):
+**running**. Images built, gates G-b (face-recognition twin validity) computed
 and passed, gate G-c (probe readability) computed for 4 of 16 networks, detector scoring in progress on the shared GPU.
 No detector score file has been opened yet. Answer: none yet.
 
@@ -294,6 +296,13 @@ $P -I $S/baselines.py --only R2w4; $P -I $S/analyse.py; $P -I $S/tables.py; $P -
 ```
 
 ## Log of README updates
+- 11 Nov about 21:20 CET: strict baselines finished (`run_cpu.log`, CPU_DONE); full analysis v1 (`analyse_v1.log`,
+  `experiments/AR1/result_tables.json`, `result_tables.md`); `result.md` written. M3 seed 8 was read in that pass about
+  10 minutes before its G-c existed (G-c then 0.899 / 0.903, readable); `analyse.py` now refuses networks without G-c.
+  R2wm rows for the releases scored ahead of lane order (`run_extra_rel.sh`). Remaining: lane 1 (ViT-L/14 bg / face,
+  a46check, extra2 nets, extra nets), lane 2 (M3L seeds 1-5). When they finish: run `gate_c.py --tags
+  nets_M3L_s1,...,nets_M3L_s5` (with thread caps), then `analyse.py`, `tables.py > result_tables.md`,
+  `check_a46.py compare`, and update result.md (AR4 ViT-L/14 row, retrain block, platform check).
 - 11 Nov about 20:15 CET: gates complete for the four releases and M3 seeds 1-7 (strict folds; G-c all >= 0.65,
   MixFaceNet lowest 0.68 / 0.69 on the primary pool). Release scores opened (after G-b and G-c) for a preliminary read
   with the leaky baselines still in place (`/mnt/t7/smad_next/AR1/result_tables_prelim.json`; its baseline columns are

@@ -1,0 +1,377 @@
+{
+ "manifest_A": {
+  "certificate_nuisance_only": {
+   "n": 1992,
+   "n_dropped_straddling": 793,
+   "share_dropped": 0.39809236947791166,
+   "logistic": {
+    "auc": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "n_tested": 1199
+   },
+   "hgb": {
+    "auc": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "n_tested": 1199
+   },
+   "auc_max": 1.0,
+   "n_attack": 996,
+   "n_negative": 996
+  },
+  "nuisance_cues": [
+   "history",
+   "engine",
+   "pool",
+   "border",
+   "person_freq"
+  ],
+  "with_softness_and_pixel_cues": {
+   "n": 1992,
+   "n_dropped_straddling": 793,
+   "share_dropped": 0.39809236947791166,
+   "logistic": {
+    "auc": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "n_tested": 1199
+   },
+   "hgb": {
+    "auc": 1.0,
+    "lo": 1.0,
+    "hi": 1.0,
+    "n_tested": 1199
+   },
+   "auc_max": 1.0,
+   "n_attack": 996,
+   "n_negative": 996
+  },
+  "all_cues": [
+   "lap_k1",
+   "lap_k3",
+   "lap_k5",
+   "band0",
+   "band1",
+   "band2",
+   "band3",
+   "band4",
+   "band5",
+   "band6",
+   "band7",
+   "zero_frac",
+   "history=native",
+   "engine=none",
+   "engine=opencv_style",
+   "pool=af0_feret",
+   "pool=af0_frgc",
+   "pool=ladder_feret",
+   "pool=ladder_frgc",
+   "person_freq"
+  ],
+  "pixel_cues_only": {
+   "n": 1992,
+   "n_dropped_straddling": 793,
+   "share_dropped": 0.39809236947791166,
+   "logistic": {
+    "auc": 0.9244811759352681,
+    "lo": 0.8993189503732982,
+    "hi": 0.9446275222995264,
+    "n_tested": 1199
+   },
+   "hgb": {
+    "auc": 0.9721843037173323,
+    "lo": 0.9594729389228166,
+    "hi": 0.9833896200595439,
+    "n_tested": 1199
+   },
+   "auc_max": 0.9721843037173323,
+   "n_attack": 996,
+   "n_negative": 996
+  },
+  "missing_cues": 0
+ },
+ "manifest_B": {
+  "certificate_nuisance_only": {
+   "n": 7762,
+   "n_dropped_straddling": 5300,
+   "share_dropped": 0.6828137078072661,
+   "logistic": {
+    "auc": 0.8410449460750823,
+    "lo": 0.8180118196157892,
+    "hi": 0.8624805001523634,
+    "n_tested": 2462
+   },
+   "hgb": {
+    "auc": 0.8376062883466708,
+    "lo": 0.8148174818201178,
+    "hi": 0.859540362489353,
+    "n_tested": 2462
+   },
+   "auc_max": 0.8410449460750823,
+   "n_attack": 3881,
+   "n_negative": 3881
+  },
+  "nuisance_cues": [
+   "history",
+   "engine",
+   "pool",
+   "border",
+   "person_freq"
+  ],
+  "with_softness_and_pixel_cues": {
+   "n": 7762,
+   "n_dropped_straddling": 5300,
+   "share_dropped": 0.6828137078072661,
+   "logistic": {
+    "auc": 0.9510966499581724,
+    "lo": 0.9395344536450406,
+    "hi": 0.9615595735919554,
+    "n_tested": 2462
+   },
+   "hgb": {
+    "auc": 0.9694489353690187,
+    "lo": 0.9572615036910953,
+    "hi": 0.9793600751067755,
+    "n_tested": 2462
+   },
+   "auc_max": 0.9694489353690187,
+   "n_attack": 3881,
+   "n_negative": 3881
+  },
+  "all_cues": [
+   "lap_k1",
+   "lap_k3",
+   "lap_k5",
+   "band0",
+   "band1",
+   "band2",
+   "band3",
+   "band4",
+   "band5",
+   "band6",
+   "band7",
+   "zero_frac",
+   "history=native",
+   "history=s61",
+   "engine=none",
+   "engine=opencv_style",
+   "pool=af0_feret",
+   "pool=af0_frgc",
+   "pool=ladder_feret",
+   "pool=ladder_frgc",
+   "person_freq"
+  ],
+  "pixel_cues_only": {
+   "n": 7762,
+   "n_dropped_straddling": 5300,
+   "share_dropped": 0.6828137078072661,
+   "logistic": {
+    "auc": 0.8816011893621835,
+    "lo": 0.8558593155082358,
+    "hi": 0.9062570148422536,
+    "n_tested": 2462
+   },
+   "hgb": {
+    "auc": 0.9323076738062972,
+    "lo": 0.9082621262395226,
+    "hi": 0.9530728998744549,
+    "n_tested": 2462
+   },
+   "auc_max": 0.9323076738062972,
+   "n_attack": 3881,
+   "n_negative": 3881
+  },
+  "missing_cues": 0
+ },
+ "manifest_Bn": {
+  "certificate_nuisance_only": {
+   "n": 1758,
+   "n_dropped_straddling": 1232,
+   "share_dropped": 0.7007963594994312,
+   "logistic": {
+    "auc": 0.8341101403412218,
+    "lo": 0.7893643898393855,
+    "hi": 0.8790257523148148,
+    "n_tested": 526
+   },
+   "hgb": {
+    "auc": 0.8324246697853604,
+    "lo": 0.7841968062288397,
+    "hi": 0.8801363411155555,
+    "n_tested": 526
+   },
+   "auc_max": 0.8341101403412218,
+   "n_attack": 879,
+   "n_negative": 879
+  },
+  "nuisance_cues": [
+   "history",
+   "engine",
+   "pool",
+   "border",
+   "person_freq"
+  ],
+  "with_softness_and_pixel_cues": {
+   "n": 1758,
+   "n_dropped_straddling": 1232,
+   "share_dropped": 0.7007963594994312,
+   "logistic": {
+    "auc": 0.9443794716565768,
+    "lo": 0.9220647050239592,
+    "hi": 0.9661465156058093,
+    "n_tested": 526
+   },
+   "hgb": {
+    "auc": 0.9646739130434783,
+    "lo": 0.9461344742425823,
+    "hi": 0.981999917003891,
+    "n_tested": 526
+   },
+   "auc_max": 0.9646739130434783,
+   "n_attack": 879,
+   "n_negative": 879
+  },
+  "all_cues": [
+   "lap_k1",
+   "lap_k3",
+   "lap_k5",
+   "band0",
+   "band1",
+   "band2",
+   "band3",
+   "band4",
+   "band5",
+   "band6",
+   "band7",
+   "zero_frac",
+   "history=native",
+   "history=s61",
+   "engine=none",
+   "engine=opencv_style",
+   "pool=af0_feret",
+   "pool=af0_frgc",
+   "pool=ladder_feret",
+   "pool=ladder_frgc",
+   "person_freq"
+  ],
+  "pixel_cues_only": {
+   "n": 1758,
+   "n_dropped_straddling": 1232,
+   "share_dropped": 0.7007963594994312,
+   "logistic": {
+    "auc": 0.8732801320858558,
+    "lo": 0.8314284903825284,
+    "hi": 0.908572811295265,
+    "n_tested": 526
+   },
+   "hgb": {
+    "auc": 0.9223307649972482,
+    "lo": 0.8906881315076518,
+    "hi": 0.9492839688872534,
+    "n_tested": 526
+   },
+   "auc_max": 0.9223307649972482,
+   "n_attack": 879,
+   "n_negative": 879
+  },
+  "missing_cues": 0
+ },
+ "manifest_C": {
+  "certificate_nuisance_only": {
+   "n": 11642,
+   "n_dropped_straddling": 7948,
+   "share_dropped": 0.6827005669129016,
+   "logistic": {
+    "auc": 0.8395710843325248,
+    "lo": 0.8159172689812569,
+    "hi": 0.8623052573910865,
+    "n_tested": 3694
+   },
+   "hgb": {
+    "auc": 0.8410792568958976,
+    "lo": 0.8172032890110188,
+    "hi": 0.8642019284427263,
+    "n_tested": 3694
+   },
+   "auc_max": 0.8410792568958976,
+   "n_attack": 5821,
+   "n_negative": 5821
+  },
+  "nuisance_cues": [
+   "history",
+   "engine",
+   "pool",
+   "border",
+   "person_freq"
+  ],
+  "with_softness_and_pixel_cues": {
+   "n": 11642,
+   "n_dropped_straddling": 7948,
+   "share_dropped": 0.6827005669129016,
+   "logistic": {
+    "auc": 0.9524342495827873,
+    "lo": 0.940159114526394,
+    "hi": 0.9633455009628525,
+    "n_tested": 3694
+   },
+   "hgb": {
+    "auc": 0.9620609255664532,
+    "lo": 0.9463452184686644,
+    "hi": 0.9746035850560386,
+    "n_tested": 3694
+   },
+   "auc_max": 0.9620609255664532,
+   "n_attack": 5821,
+   "n_negative": 5821
+  },
+  "all_cues": [
+   "lap_k1",
+   "lap_k3",
+   "lap_k5",
+   "band0",
+   "band1",
+   "band2",
+   "band3",
+   "band4",
+   "band5",
+   "band6",
+   "band7",
+   "zero_frac",
+   "history=native",
+   "history=native_jpeg70",
+   "history=native_jpeg90",
+   "history=s61",
+   "history=s61_jpeg70",
+   "history=s61_jpeg90",
+   "engine=none",
+   "engine=opencv_style",
+   "pool=af0_feret",
+   "pool=af0_frgc",
+   "pool=ladder_feret",
+   "pool=ladder_frgc",
+   "person_freq"
+  ],
+  "pixel_cues_only": {
+   "n": 11642,
+   "n_dropped_straddling": 7948,
+   "share_dropped": 0.6827005669129016,
+   "logistic": {
+    "auc": 0.880617938627271,
+    "lo": 0.8520880530981111,
+    "hi": 0.9052743943746621,
+    "n_tested": 3694
+   },
+   "hgb": {
+    "auc": 0.9275182844441152,
+    "lo": 0.8999235086181225,
+    "hi": 0.948371087636125,
+    "n_tested": 3694
+   },
+   "auc_max": 0.9275182844441152,
+   "n_attack": 5821,
+   "n_negative": 5821
+  },
+  "missing_cues": 0
+ }
+}

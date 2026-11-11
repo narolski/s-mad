@@ -183,6 +183,20 @@ No retrain and no score exist yet.
   not at epoch 100 by 14 Nov 18:00 is "incomplete"). 20:19: submitted **3545936** (SelfMAD seed 405, code_v3,
   `-A plgmultivision-gpu-a100 --time=46:00:00 --exclude=t0010`); `scontrol update JobId=3545933 ExcNodeList=t0010`
   for the pending seeds 401-404 (checked: ExcNodeList=t0010). Prereg amendment 3 registered (20:20).
+- 11 Nov 20:25-20:35. `packs/AD5/code_v4/` (CODE_SHA256SUMS sha256 db6077a5...; = code_v3 + scoring job v2,
+  `score_requirements.txt` with facenet-pytorch, analysis scripts); uploaded with `--link-dest=code_v3`, checksum
+  comparison clean. Scoring smoke **3545948** (`ad5_score_rel.sbatch`, `-A plgmultivision-gpu-a100 --time=01:00:00`,
+  RS1's smoke result tar `rs1a_smoke_3545869.tar`, releases ViT-B/16, ViT-L/14, MixFaceNet-MAD only, 8 images per
+  set): tests the scoring environment, the crop-hash check and the wrapper on Athena while training waits.
+  DGX SelfMAD release scoring in parts: 4 of 10 parts done by 20:25 (about 5 min per part).
+- 11 Nov 20:45. SelfMAD oracle-epoch tool `src/AD5/score/selfmad_oracle.py` (amendment 2): `cache` computes the
+  SelfMAD own preprocessing (rsx_selfmad_own._prep, unchanged) once for the 7,265 FRLL-cell images and stores the exact
+  uint8 arrays (`/mnt/t7/smad_next/AD5/oracle_cache/x_u8.npy`, started 20:44, 3 dlib workers, log `cache.log`);
+  `score` scores one saved epoch on the cache with score.py's network builder (the per-epoch `{"model", "epoch"}` files
+  load directly through a12_released's state_keys); `pick` takes the lowest mean FRLL-Morphs EER. Registered check
+  before use: cached path equals `score.py --mode own` on the same images for one network.
+- 11 Nov 20:40. `src/AD5/fetch_results.sh [PATTERN]`: copy-back of result tars under the transfer lock with sha256
+  checks into `/mnt/t7/smad_next/AD5/results/`.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -325,6 +339,7 @@ DGX: no AD5 process running. Athena jobs (logs in
 | 3545882 | SelfMAD smoke v3 (env rebuild, labels reused, 1-epoch smoke) | 1 x 55 min | COMPLETED 34:03, 0.57 GPU-h | done |
 | 3545933_[401-404] | SelfMAD retrains (code_v3; account plgmultivision; t0010 excluded) -> results/AD5/selfmad_S_s<seed>.tar + _epochs/ | 1 x 46:00 each | submitted 20:14 | resubmit failed ids from code_v3 with -A plgmultivision-gpu-a100 --exclude=t0010 |
 | 3545936 (task 405) | SelfMAD retrain seed 405 (same) | 1 x 46:00 | submitted 20:19 | as above |
+| 3545948 | scoring smoke (code_v4, releases only, RS1 smoke crops, 8 per set) | 1 x 1:00 | submitted 20:36 | read log |
 Compute spent so far: 1.82 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2, 3544218 0.59, 3545815_401 0.19,
 3545882 0.57; plus running jobs). Allowance: 300 A100-hours for AD5 (lead, 20:17); planned about 272. Planned
 production: about 111 GPU-hours (L 62, B 16, X 33), then SelfMAD.

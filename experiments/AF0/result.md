@@ -443,3 +443,29 @@ full-design MLP (5 seeds): 0.051-0.055 / 0.123-0.127 / 0.208-0.212 / 0.283-0.287
 0.795-0.800 / 0.952-0.955; ridge 0.086 / 0.137 / 0.201 / 0.259 / 0.301 / 0.318, AUC 0.755 / 0.928; logistic AUC
 0.845 / 0.976. Wave-2 heads (wave-1 scale): alpha MLP AUC 0.810 / 0.959; g 0.796 / 0.947; D 0.768 / 0.933; G 0.743 /
 0.905. Page trend test monotone for every head (p < 1e-300). DINOv3 graded readout pending (scores being written).
+
+## AF0 wave 4: softened examples, CLIP ViT-L/14 at 224 (`arms_clip224.json`, arms a4-e4)
+
+Added to training (one strength per image, alternating 112.7 px / 61.2 px; training split only; deviation from "two
+strengths per image", CPU-bound detector): softened copies of the 569 photos, of the 800 uniform-0.5 morphs (target map
+unchanged) and of one half per uniform-0.5 pair (800; all-zero maps): 2,169 softened images. Each arm refit with the
+softened copies on both sides (a4-e4); readings as in wave 3.
+
+| arm | OpenCV R2w vs R4 (wave 3 -> wave 4) | OpenCV R4 vs softened R2w 61.2 / 112.7 px | FaceMorpher R4 vs softened R2w 61.2 / 112.7 | Poisson | FRLL native -> E7 shift | FRLL E7 flagged at 5% native threshold | softened R0 flagged at 5% (112.7 / 61.2) | F4 drop |
+|---|---|---|---|---|---|---|---|---|
+| a4 image label, photos | 0.9985 -> 0.9986 | 0.998 / 0.998 | 0.999 / 0.999 | 0.884 | 0.017-0.026 | 4.9-5.4% | 5.5 / 6.5% | 0.66 |
+| b4 image label, halves | 0.999 -> 0.9988 | 0.998 / 0.999 | 0.999 / 0.999 | 0.901 | -0.004-0.003 | 4.9-5.9% | 7.0 / 8.0% | 0.67 |
+| c4 constant map, halves | 0.997 -> 0.997 | 0.992 / 0.994 | 0.995 / 0.996 | 0.873 | 0.010-0.020 | 4.4-4.9% | 10.0 / 12.5% | 0.98 |
+| d4 measured D, halves | 0.977 -> 0.973 | 0.965 / 0.968 | 0.983 / 0.983 | 0.864 | -0.065 to -0.040 | 4.9-5.4% | 6.0 / 6.5% | 0.64 |
+| e4 measured D, photos | 0.959 -> 0.959 | 0.951 / 0.955 | 0.972 / 0.973 | 0.850 | -0.066 to -0.041 | 3.9-4.9% | 4.5 / 5.0% | 0.61 |
+Floors for R4 against softened R2w (200 hosts): Laplacian variance OpenCV 0.403 (61.2 px) / 0.668 (112.7 px),
+FaceMorpher 0.165 / 0.469; best simple statistic OpenCV 0.998 (61.2 px, diagonal band power above 0.5) / 0.864 (spectral
+slope), FaceMorpher 1.000 / 0.934 (face noise). Against unsoftened R2w the Laplacian floor is 0.774 (OpenCV).
+Fixed reading (lead): softened training earns its place if the flag rate on history-matched FRLL genuine photos at the
+5% threshold falls to at most 10% while held-out-tool AUC against warped halves drops by no more than 0.05 and stays
+above the sharpness floor by at least 0.05. Measured: the flag rate was already 3.4-5.9% without softened training
+(wave-3 arms) and is 3.9-5.9% with it; held-out-tool AUC against warped halves changes by -0.004 to +0.0001 and stays
+0.18-0.23 above the 0.774 floor. Both conditions hold, with the flag-rate condition already met before softening.
+
+F4 on CLIP-336 (`f4_clip336.json`): logistic 1.000 -> 0.263 [0.130, 0.417] (drop 0.74); ridge 0.999 -> 0.624 (drop
+0.38); MLP 401-405 0.9998-1.000 -> 0.615-0.645 (drops 0.35-0.39). Dense-head drops above 0.15 on all three backbones.

@@ -138,3 +138,41 @@ Networks: released MADation FE ViT-L/14 (subject); FE ViT-B/16, FS ViT-L/14, FS 
   Feature caches in `/mnt/t7/smad_next/FZ1/`.
 - **Pre-run review:** not run by the owner (zero-cost re-reads plus CPU heads on cached features; lead to decide).
 - **Result:** `experiments/FZ1/result.md`.
+
+## Post hoc addendum A1 (registered 11 Nov 2026, 20:22 CET, before any addendum number is computed)
+
+Ordered by the lead after the independent review (`experiments/reviews/REVIEW_FZ1_20261111.md`). Everything here is
+**post hoc**: the reviewer already printed point estimates for (a) and the PNG floors in (b). Zero GPU; cached
+features, heads, out-of-fold probabilities and P4 statistics only; at most 2 processes, `OMP_NUM_THREADS=2`,
+`nice 10`. Intervals: AD1's person draw (seed [20261107, 43, 1]); B = 10,000 for AUCs and paired differences,
+B = 2,000 (first rows of the same draw) for Spearman correlations (computed on the bootstrap-expanded sample:
+each image repeated by its person weight). Code `src/FZ1/fz1_addendum.py` and `src/FZ1/fz1_heads_boot.py`;
+output `experiments/FZ1/addendum_a1.json`, `addendum_heads_boot.json`.
+
+- **(a) Reviewer checks rerun with intervals.** Head = the five P3 heads (seed 401 printed as primary; the
+  others shown as a range).
+  1. Spearman of the head score with PNG bytes and with centre-256 Laplacian variance inside each of B, D, B20,
+     D20.
+  2. B vs D and B20 vs D20 inside PNG-size fifths (edges from pooled quantiles of the two arms), pair-weighted
+     within-stratum AUC.
+  3. Partner split of the clip_mad P2 probe (fold seed 401): test morphs whose partner is in the same fold
+     against those whose partner was in training, each against all negatives; paired difference.
+  4. Transfer matrix: probe (the registered P2 routine, inner-CV C) trained on one contrast in
+     {B20 vs D20, C20 vs D20, B20 vs C20, B vs D, C vs D}, applied to the arms of every contrast in
+     {B20 vs D20, C20 vs D20, B20 vs C20, B vs D, C vs D, B vs C, E vs D20, E vs D}; FZ1 folds (seed 401; train
+     rows have no person in the test fold; each test image is scored by the model of its host's fold); clip_mad
+     and dinov2.
+  5. Expression split: heads on B20 / B neutral-pair and smiling-pair morphs against C20 / C, C20 / C against
+     neutral and smiling D20 / D, D20 neutral against smiling; the clip_mad B20-vs-C20 probe direction (P2
+     routine, folds 401) on B20 neutral and smiling pairs against C20 and on D20 and E smiling against neutral.
+- **(b) Floors for the two side contrasts.** B20 vs C20 and C20 vs D20 (B vs C and C vs D descriptive): the
+  seven P4 statistics (same definitions, both views; C and C20 computed now), folded single-statistic AUCs,
+  the 7-statistic logistic (P2 routine, folds 401), and the paired bootstrap interval of (head AUC − best single
+  statistic's folded AUC), head = seed 401, best statistic = highest folded point AUC in the primary view
+  (chosen from the data; marked). Reading: the head "exceeds the floor" if that interval lies above 0.
+- **(c) Five SMDD-bootstrap heads.** Same recipe as P3 (seed 401 for initialisation and batching), each trained
+  on a bootstrap resample (with replacement, 40,000 draws) of the SMDD images, resample seeds 401–405. Same
+  evaluation as P3; the registered rule is printed for them as a descriptive row (it was registered for seeds).
+- **(d) Wording.** `result.md` is rewritten with the review's corrected wording (its section 3); statements the
+  review contradicts are marked WITHDRAWN with reasons; the failed 2e-3 check is recorded as a deviation ratified
+  after the fact by the lead on the review's evidence (F7).

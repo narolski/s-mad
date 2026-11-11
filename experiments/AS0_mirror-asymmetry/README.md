@@ -19,16 +19,18 @@ Question (lead, 11 Nov): averaging two different persons averages two independen
 two-person morph should have a lower ratio of asymmetric to symmetric energy than a same-person morph, and the ratio
 should not move with softness or storage history. Is this a single-image signal for a second identity?
 
-Status 11 Nov 2026, 19:40 CET: **running** (secondary sets still being measured on the overloaded DGX CPU).
-Primary cell computed 19:22-19:29 (first time any contrast was opened): **registered verdict "weak"**. On the
-landmark ladder (536 hosts, both engines) the two-person morph (R4) has a lower asymmetry ratio than the same-person
-morph (R3) in every band, but only at AUC 0.52 to 0.62 (best band B3 0.618 [0.578, 0.655]; broadband B1-B5 0.611);
-no band reaches 0.70, so the pass rule fails; not every band is below 0.60, so the kill rule does not fire. The
-mirror self-morph control collapses (by construction), the FaceMorpher storage history moves the ratio by -0.02 to
-+0.10 SD in the bands below its cut-off, softness does not explain the contrast, about a quarter of it disappears when
-geometry (shape asymmetry, midline offsets) is partialled out (B3 0.596). Same-person cross-session morphs already
-lose part of their asymmetry (R3 against warp-only R2w 0.58), and the graded dose curve shrinks less than the
-square-root law (slope 0.54 to 0.63 in B1-B3). Numbers in section 5 and `tables.md`.
+Status 11 Nov 2026, 20:30 CET: **phase 1 finished** (CPU only; no detector score opened; no image built). Short
+verdict in `result.md`. Registered verdict on the primary cell: **weak**. On the landmark ladder (536 hosts, both
+engines) the two-person morph (R4) has a lower asymmetry ratio than the same-person morph (R3) in every band, but only
+at AUC 0.52 to 0.62 (best band B3 0.618 [0.578, 0.655]; broadband 0.611); no band reaches 0.70, so the pass rule fails;
+the kill rule does not fire. The mirror self-morph control collapses (by construction); the FaceMorpher storage history
+moves the ratio by -0.02 to +0.10 SD in the bands below its cut-off; softness and low-band leakage do not explain the
+contrast; geometry explains part of it (B3 0.596 after partialling out). Capture-specific asymmetry is real: within
+colorFERET, cross-session same-person morphs are below same-session ones (0.62 in B3), and two-person morphs against
+same-session same-person morphs reach 0.69 (B3). GAN latent morphs: no separation of two-person from same-person mixes
+(0.48-0.52). Diffusion autoencoder: 0.74 (B3) against the same-person mix, but that mix is more asymmetric than the
+one-photo reconstruction, and two-person morph against reconstruction is 0.60. Detected landmarks on the built
+images carry the identity-shrinkage typicality at 0.653 (calculated 0.687).
 
 ## 2. Timeline (11 Nov 2026, CET)
 
@@ -85,6 +87,20 @@ square-root law (slope 0.54 to 0.63 in B1-B3). Numbers in section 5 and `tables.
   nominal IOD therefore from the A43 photos only (63.91 px, 204); R8 is measured on the colorFERET pairs only
   (1,792 images; the A7 reading is within colorFERET); the blank sensitivity run uses a host subsample
   (sha1(host) mod 3 = 0) for R3 / R4; Fe uses the facemorpher and amsl copies; S0 moved from LD1 to LD2.
+- 19:11 L measured (9,304 images). 19:12-19:18 permuted-label test run of `as0_analyse.py` (`--test-permute`, B = 50,
+  outputs `/mnt/t7/smad_next/AS0/test_analysis/`; AUCs 0.47-0.52 as expected; code path checked). 19:22-19:29 first
+  real analysis (L, Fm, FmO; log `analyse_1.log`): the first time any contrast was computed or opened.
+- 19:35 slot-B plan five (`chain_b5.sh`): G, a second detection worker on LD1 from the end (`--reverse`), blank run,
+  Ds, Lsoft own landmarks, Fe, secondary Fm copies; finished 20:14. Slot A (`chain_a3.sh`): LD1 19:52, Lsoft and S
+  19:56, LD2 20:20. The detection and analysis processes were paused with SIGSTOP while an extra short process ran
+  (19:12-19:18, 19:22-19:29, 19:53), so that at most two of my processes used CPU at a time.
+- 19:35 geometry share: the registered log version (L_R2wm - L_R0) / (L_R3m - L_R0) is dominated by the near-zero
+  mirror self-morph (0.01-0.05); an energy version (1 - r_R2wm/r_R0) / (1 - r_R3m/r_R0) was added as descriptive
+  (after seeing the log version).
+- 19:53 `as0_typ.py` on LD1 (A10): typicality R4 against R3 on detected shapes 0.653; 20:21 rerun with LD2.
+- 20:14-20:17 final analysis (`analyse_2.log`; first attempt crashed on the 80 px SMDD copies in bands beyond their
+  Nyquist, an empty array in the bootstrap; fixed by returning "not measurable" below 10 pairs) and tables; 20:18
+  blank run compared with the primary statistic on the same 187 hosts (`blank_vs_primary_same_hosts.json`).
 - 18:52 nominal IOD (`iod_nominal.json`): ar1_512 130.51, canon512 131.25, shared512_photo 130.49, diffae256 63.91,
   a43_stored 63.68, smdd256 63.73 (smdd80 19.92), stylegan_raw1024 256.09 (all renders). (The "note" on ar1_512 in
   that file, "also used for canon512", is stale: since A8 canon512 uses its own value.)
@@ -110,9 +126,19 @@ set and rung in `lists_summary.json` (this folder). Inputs are read in place, no
 | S | SMDD genuine renders and E7 (80 px) | PD1 items set S; landmarks `/dev/shm/smad_arms/smdd_bona_landmarks_if106.npz` (volatile) | 2,000 + 2,000 |
 | X | expanded123 DiffAE blocks (secondary) | `/mnt/t7/smad_research/diffae-expanded123-v1/run/<block>/` | 1,224 |
 
-Produced (all under `/mnt/t7/smad_next/AS0/`): `items.csv`, `lists_summary.json`, `lm/part_*.npz` (detected
-landmarks, merged to `lm/landmarks.npz`), `iod_nominal.json`, `meas/<set>_<k>.npz` (per-image energies and
-covariates), `check.json`, logs in `logs/`.
+Produced (all under `/mnt/t7/smad_next/AS0/`): `items.csv` (36,620 rows at the end; sha256 in `lists_summary.json`),
+`lm/part_*.npz` (detected landmarks; merged `lm/landmarks.npz`, 11,860 images detected, 0 without a face),
+`iod_nominal.json`, `meas/<set>[_filter]_<k>.npz` (per-image energies and covariates; merged `meas_all.npz`, 22,324
+images), `meas_blank/` and `meas_blank_all.npz` (1,360 images), `geom.npz` (midline geometry), `check.json`,
+`test_analysis/` (permuted-label code test), `inputs/` (byte copies of volatile inputs), logs in `logs/`
+(`landmarks*.log`, `measure_*.log`, `chain_*.log`, `analyse_1.log`, `analyse_2.log`, `typ.log`,
+`as0_analyse_pre_amend.py.txt` = the analysis script before the amendments).
+
+Measured in phase 1: L 9,304; Lsoft 1,200 (+ LsoftN 600, LsoftO 1,200 with own landmarks); R8 colorFERET 1,792;
+G 768; D 910; M 8; Ds 910; Fm 816 and FmO (FaceMorpher) 204; Fe native, amsl, facemorpher (612); S 4,000. Detected
+landmarks on the built ladder images LD1 2,680 and LD2 3,752 (A10). Not measured: X (expanded123), R8 FRGC pairs, LD3
+(graded), FeO, FmO OpenCV / Webmorph. Items without a face or with a mask under 1,000 pixels: none in the analysed
+sets (`analysis.json`); 42 items had E_A floored (A5; mirror self-morphs).
 
 ## 4. Code (`/home/narolski/smad-next/src/AS0/`)
 
@@ -123,7 +149,12 @@ covariates), `check.json`, logs in `logs/`.
 | `as0_landmarks.py` | insightface buffalo_l landmarks on the CPU (2 intra-op threads), padded retry, parts, `--merge` |
 | `as0_measure.py` | `--iod` nominal IOD per frame; per-image band energies (7 bands, 4 channels, 2 flips), shape asymmetry, covariates; `--merge` |
 | `as0_check.py` | implementation checks on synthetic arrays and mirror equivariance |
-| `as0_analyse.py` | contrasts, bootstrap, verdict (to be written) |
+| `as0_geom.py` | midline offsets at eye, nose and mouth level per item (A1) |
+| `as0_analyse.py` | contrasts, bootstrap, history shifts, dose curve, shares, confound reads, blank run, verdict; `--test-permute` |
+| `as0_typ.py` | shape statistics on detected landmarks of the built ladder images: ID0 typicality (imported unchanged) and shape asymmetry (A10) |
+| `as0_tables.py` | `tables.md` from the CSV / JSON outputs |
+| `as0_lmcheck.py` | landmark-source check (written, not run; the detected-versus-calculated error is reported by `as0_typ.py`) |
+| `chain_*.sh` | the compute chains (one process each, nice 10); `chain_a3.sh` and `chain_b5.sh` are the ones that finished the work |
 
 Run order: `as0_lists.py` -> `as0_landmarks.py` (+ `--merge`) -> `as0_measure.py --iod` -> `as0_measure.py --sets ...`
 -> `as0_measure.py --merge` -> `as0_analyse.py`. Environment: `/home/narolski/mambamorph-code/.venv-spark/bin/python`
@@ -189,7 +220,38 @@ registered reading: supported (>= 0.65), by a margin of 0.003. Total typicality:
 against R0: detected 0.671, calculated 0.725; R3 against R0: 0.523 / 0.548. Shape asymmetry L_shape on detected shapes,
 R4 against R3: 0.590 [0.551, 0.632] (calculated 0.595); R4 against R0 0.628 (0.634); R3 against R0 0.538 (0.541).
 Detection error against the calculated target shape (mean point distance / IOD, median): photos 0.0082, R3 0.0084 /
-0.0094, R4 0.0097 / 0.0121 (OpenCV / FaceMorpher).
+0.0094, R4 0.0097 / 0.0121 (OpenCV / FaceMorpher). With LD2 (20:21): R4 against R2w 0.650, R4 against S0 0.679, S0
+against R0 0.495; detected shape asymmetry of the mirror self-morph against R2w 0.964.
+
+Final analysis (20:14-20:17, `analyse_2.log`; L numbers unchanged):
+
+- Same-person landmark morphs with session information (record's r8 arms, colorFERET only, both engines pooled; Y, F0;
+  B1 / B2 / B3 / B4 / B5): cross-session against same-session 0.587 / 0.574 / 0.616 / 0.573 / 0.541 (620 / 1,172);
+  two-person morph (L R4, colorFERET hosts) against same-session same-person 0.608 / 0.619 / 0.692 [0.613, 0.767] /
+  0.628 / 0.560; against cross-session 0.517 / 0.543 / 0.575 / 0.548 / 0.518; R8 cross-session against L R3 (both
+  colorFERET) 0.538 / 0.514 / 0.506 / 0.481 / 0.500 (the two sets agree). Same-session pairs with the same expression
+  code (fa + fa or fb + fb, 134 images): two-person against them 0.64 / 0.66 / 0.75 / 0.76 / 0.68 (small n). The rows
+  that mix databases (pooled R4 against colorFERET R8) are descriptive only.
+- GAN latent blocks (64 blocks; Y; F0 / F1 within 0.04): x3 against x2 0.504 / 0.505 / 0.515 / 0.511 / 0.479; x3
+  against x1 0.616 / 0.616 / 0.659 / 0.682 / 0.654; x2 against x1 0.613 / 0.611 / 0.652 / 0.668 / 0.680; x1 against x0
+  0.516 / 0.552 / 0.619 / 0.622 / 0.647; x3 against same-session x2 (62) 0.52-0.56, against cross-session x2 (66)
+  0.44-0.49. Shape asymmetry (detected) x3 against x2 0.515.
+- Diffusion autoencoder (A43, DiffAE-native 256): B20 against C20 0.646 / 0.709 / 0.741 [0.654, 0.821] / 0.685 /
+  0.607 (broadband 0.722); B20 against D20 0.607 / 0.626 / 0.598 / 0.571 / 0.503; C20 against D20 0.461 / 0.431 /
+  0.365 / 0.399 / 0.413 (the same-person mix is more asymmetric than the reconstruction); D20 against photo 0.512 /
+  0.537 / 0.595 / 0.632 / 0.638; B (100 steps) against D20 0.597 / 0.595 / 0.505 / 0.449 / 0.356; mirror mix P_AF
+  against D20r (4 persons) 1.000. Stored crops (F1): B20 against C20 0.636 / 0.701 / 0.718 / 0.680 / 0.588; published
+  MorDIFF against photo 0.62-0.70. Lead's face-box statistic (mean |x - flip x|, rows 70-220, columns 64-192): persons
+  001-004: photo 19.4, D20 17.7, C20 18.7, B20 12.0, P_AF 2.1; all persons (medians): photo 12.9, D20 11.8, C20 13.4,
+  B20 10.9, B 12.5.
+- More storage history (Y, F0, d [shift / K1 effect]): Lsoft fm61 own landmarks R0 +0.015 / -0.014 / +0.034 / +0.044
+  / +0.038; R2w OpenCV +0.038 / +0.039 / +0.129 / +0.130 / +0.051; R2w FaceMorpher +0.034 / +0.046 / +0.118 / +0.134 /
+  +0.032; Lsoft amsl112 within -0.02 to +0.09; Fm OpenCV (96) and Webmorph (100) |d| <= 0.03; Fe amsl -0.003 / +0.038
+  / +0.067 / +0.030 / +0.013, Fe facemorpher |d| <= 0.04; SMDD 80 px (1,859 pairs) +0.035 / +0.060 / +0.048 / -0.085
+  / +1.66 (B3-B5 beyond the copy's Nyquist). Full table in `tables.md` and `history.csv`.
+- Blank sensitivity run (outside the mask = mean face colour, 187 hosts, R3 / R4): K1 0.576 / 0.607 / 0.650 / 0.600 /
+  0.566 against the primary statistic on the same hosts 0.586 / 0.606 / 0.642 / 0.583 / 0.537
+  (`blank_vs_primary_same_hosts.json`).
 
 ## 6. Checks
 
@@ -201,34 +263,62 @@ E_A / E_S = 0.52, 0.80, 0.89, 0.97, 1.00 in B1..B5 (0 in B0): in low bands the m
 pixels near the axis correlate with their own mirror, so the no-structure baseline is below 1 there. This baseline is
 the same for every image of a frame type.
 
-Not verified yet: detected landmarks against `.tem` landmarks on the same images (planned: AR1 R0 subset).
+Further checks: the permuted-label run gives AUCs 0.47-0.52 (no structure from the code); R2 (tool on one photo)
+against R0 is 0.500-0.503 (OpenCV bit-identical); two genuine photos (S0 against R0) 0.47-0.51; the ID0 typicality
+on shapes calculated from the source files reproduces ID0's 0.687 exactly; detected 106-point landmarks deviate from
+the `.tem` landmarks of the same photos by a median 0.8% of the IOD (R0) and from the calculated morph shapes by 0.8 to
+1.2%; the three colour channels and the landmark-midline flip give K1 within 0.01 of luminance; K1 on two
+person-disjoint halves agrees within 0.03; blanking outside the mask changes K1 by at most 0.03 on the same hosts.
+
+Not verified: the AF0 softened copies' re-alignment jitter (as0_lmcheck.py not run); the FRGC environment field is a
+camera id, not tested; the AD1b full run (32 persons) was not complete at the analysis (smoke, 4 persons, used).
 
 ## 7. Dead ends and failures
 
 - `as0_lists.py` first run read `fm_graded/graded_log.json` as a mixing level (crash); fixed with a folder filter.
 - A43 stored crops: no face found without padding (8 of 8); padded retry added.
 - SMDD landmark file in normalised coordinates; first nominal IOD 0.249; fixed (x 256).
+- Machine load about 140 from 18:50 to about 19:50: four re-plans of the compute chains (section 2); one Fm chunk
+  measured twice (kept once at merge); X dropped; R8 FRGC dropped; blank run reduced.
+- Final analysis first crashed (SMDD 80 px copies have no data in B4-B6: empty bootstrap); fixed.
+- Blank run: the R3m / R2w rows were not blanked (reduced plan), so the K5 row of the blank table is empty (0 / 0).
+- The registered geometry share in log units is degenerate (mirror self-morph near zero); energy version added.
 
 ## 8. Observations and ideas
 
 - Every AR1 same-person morph (R3) is cross-session; the record's r8 same-person morphs provide same-session
   (colorFERET fa + fb, expression change) and cross-session pairs in the same frame.
 - The expanded123 DiffAE blocks contain non-frontal colorFERET captures (rc, qr), useful as a pose stress test.
+- In the diffusion autoencoder, mixing a neutral and a smiling photo of one person gives a MORE asymmetric face than
+  either reconstruction (C20 against D20 0.37-0.46): the expression mix is not a clean same-person control for an
+  asymmetry statistic; the 0.74 of B20 against C20 is mostly C20 being high.
+- In the GAN family the ratio falls for any mix of two codes (same-person or two-person alike), as the paired
+  differences experiment (PD1) found for CLIP features ("two codes were mixed").
+- Symmetrising only the geometry (R2wm) removes a large part of the asymmetric energy in B3-B5 (AUC 0.71-0.74
+  against R0): much of the per-band asymmetry of an aligned face photo is shape, which the landmark statistics already
+  measure.
+- The two-person landmark morph keeps 61-68% of the warp-only asymmetric-energy ratio in B1-B3 instead of 50%; possible
+  reasons (not tested): look-alike partner assignment (AR1 Hungarian on FR similarity), ghosting adding asymmetric
+  energy, R2w having the H-S mean shape rather than the H-B one.
 
 ## 9. Open items and next steps
 
-Finish detection and measurement, write `as0_analyse.py`, compute the registered contrasts, `result.md`, report.
+Phase 2 is not started (lead's decision). Proposed, in order of information per hour:
+1. Geometry-matched texture test (reviewer improvement 1; needs lead approval to build images with the approved AR1
+   warp path): warp-only images of H toward the H-B mean shape (R2wB); compare L(R4) - L(R2wB) with L(R3) - L(R2w).
+   Decides whether any image signal remains beyond the averaged geometry. CPU minutes.
+2. Same-session same-person morphs on the AR1 colorFERET hosts (fa + fb of the host session, unchanged tools), so that
+   R4 against a same-session R3 is measured on the same hosts.
+3. A learned version: a head on the difference between frozen features of an image and of its mirror, f(x) - f(flip x),
+   which is exactly zero for any mirror-symmetric image whatever was done to it; trained on R4 against R3 (and R3m as
+   negatives), read against the registered controls here (history shift, R3m at the bottom, R2wm, GAN x3 against x2).
+4. Finish the cut sets (X, R8 FRGC, LD3, AD1b 32 persons) if the lead wants them.
 
-## 10. Handover state (18:25 CET)
+## 10. Handover state (20:30 CET)
 
-| Process | PID | Log | Expected end | If it fails |
-|---|---|---|---|---|
-| measurement L, Lsoft, R8, S | 2250330 | `/mnt/t7/smad_next/AS0/logs/measure_a.log` | about 19:10 | rerun `as0_measure.py --sets L,Lsoft,R8,S` (finished parts are skipped) |
-| chain B (fourth plan) | 2340361 | `/mnt/t7/smad_next/AS0/logs/chain_b4.log` (+ measure_b, measure_blank, landmarks_b logs) | about 21:00 | rerun `src/AS0/chain_b4.sh` (every step resumes from parts) |
-| chain A (third plan) | 2336841 | `/mnt/t7/smad_next/AS0/logs/chain_a3.log` (+ landmarks_a, measure_a2 logs) | about 21:00 | rerun `src/AS0/chain_a3.sh 0` |
-| superseded chains | chain_b.sh, chain_a.sh, chain_b2.sh, chain_a2.sh, chain_b3.sh (stopped) | logs chain_b*.log | - | do not rerun |
-
-Compute: CPU only; 0 GPU-hours; 0 USD.
+No AS0 process is running (all chains ended: `chain_b5.log` "done 20:14", `chain_a3.log` "done 20:20"; superseded
+chains stopped). Nothing queued. All outputs are on the T7 drive and in this folder. Compute: CPU only (DGX, nice 10,
+at most two processes); 0 GPU-hours; 0 USD.
 
 ## 11. Reproduce from scratch
 
@@ -237,10 +327,17 @@ P=/home/narolski/mambamorph-code/.venv-spark/bin/python; cd /home/narolski/smad-
 $P -I as0_lists.py
 OMP_NUM_THREADS=2 nice -n 10 $P -I as0_landmarks.py --threads 2; $P -I as0_landmarks.py --merge
 $P -I as0_measure.py --iod
-OMP_NUM_THREADS=1 nice -n 10 $P -I as0_measure.py --sets L,Lsoft,R8,S
-OMP_NUM_THREADS=1 nice -n 10 $P -I as0_measure.py --sets Fm,G,D,M,Ds,Fe,X
-$P -I as0_measure.py --merge; $P -I as0_check.py
-OMP_NUM_THREADS=1 nice -n 10 $P -I as0_analyse.py
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+nice -n 10 $P -I as0_measure.py --sets L,Lsoft,S
+nice -n 10 $P -I as0_measure.py --sets R8 --db feret
+nice -n 10 $P -I as0_landmarks.py --threads 2 --sets FmO,LsoftN,LsoftO,LD1,LD2; $P -I as0_landmarks.py --merge
+nice -n 10 $P -I as0_measure.py --sets Fm --roles native,e7_FaceMorpher; $P -I as0_measure.py --sets FmO --roles e7_FaceMorpher
+nice -n 10 $P -I as0_measure.py --sets D,M,G,Ds,LsoftN,LsoftO; $P -I as0_measure.py --sets Fe --roles native,e7_facemorpher,e7_amsl
+nice -n 10 $P -I as0_measure.py --sets Fm --roles e7_OpenCV,e7_Webmorph
+nice -n 10 $P -I as0_measure.py --blank --sets L --roles R3,R4 --subsample 3
+nice -n 10 $P -I as0_measure.py --blank --sets Fm,FmO --roles native,e7_FaceMorpher
+$P -I as0_measure.py --merge; $P -I as0_measure.py --merge --blank; $P -I as0_check.py; $P -I as0_geom.py
+nice -n 10 $P -I as0_analyse.py --B 2000; $P -I as0_typ.py; $P -I as0_tables.py
 ```
 
 ## Log of README updates
@@ -248,3 +345,4 @@ OMP_NUM_THREADS=1 nice -n 10 $P -I as0_analyse.py
 - 11 Nov 18:25 CET: first version.
 - 11 Nov 18:47 CET: review, amendments A1-A13, chains.
 - 11 Nov 19:40 CET: primary results (section 5), restructured chains.
+- 11 Nov 20:30 CET: final phase-1 state: all families, R8, detected landmarks, blank run, next steps, handover.

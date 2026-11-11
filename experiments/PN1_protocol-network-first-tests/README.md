@@ -142,6 +142,10 @@ Cues: `/mnt/t7/smad_next/PN1/cues/<list>.npz` (27-statistic floor), `cert_<list>
 | `athena/pn1_smoke.sbatch`, `athena/pn1_array.sbatch` | Athena jobs (account plgmultivision-gpu-a100) |
 | `run_gpu1.sh`, `run_gpu2.sh`, `run_gpu3.sh`, `chain_cpu1.sh`, `chain_cpu2.sh` | DGX queues |
 | `report.py` | key-read tables |
+| `tier1.py` | tier-1 reader: reads, marks (P-a to P-g), paired bootstrap of the headline miss, memorisation gaps, reference row; tested on synthetic scores (`/mnt/t7/smad_next/PN1/tier1_synthetic_test/`) |
+| `build_refnets.py`, `score_ref.sh`, `athena/pn1_ref.sbatch` | amendment 5 reference row (eight SMDD ViT-B/16 recipe retrains) |
+| `postfeatx.py` | install the Athena DINOv3 means; 64-image platform check |
+| `upload1.sh`, `upload2.sh`, `fetch.sh`, `watch_job.sh` | Athena transfers (locks), submission after upload, result copy-back with hash checks, job watcher |
 
 Training call (tier 1): `train.py --arch a12_clip_vitb16_madation --regime d0 --split train90 --lofo none --lr 3.33e-06
 --seed S --res 224 --workers 7 --recipe=v1 --label-smoothing=0 --drop-path=0 --sampler=prior --final=last --steps=6250
@@ -184,7 +188,40 @@ family-mean miss 20.4%; B0 identical over the five seeds (C = 0.1); Bn0 seed 405
 Provisional first version (whole-manifest balance, host bootstrap, 512-px floor): `tier0_v1_provisional*`,
 superseded (amendment 4).
 
-DINOv3 tier 0, the certificate and the matched-subsample test: pending.
+DINOv3 tier 0: pending (Athena smoke job 3545947 extracts the missing DINOv3 sets).
+
+### 5.1b Certificate (amendment 4: random person folds, straddling images dropped; THE certificate = nuisance-only)
+
+Files: `cert/cert_tier0.json`, `cert/cert_tier1.json`. AUC out of fold, larger of logistic and gradient-boosted trees
+(interval over the first person of each image). Nuisance cues: history, engine, photo pool, border bin, person frequency.
+
+| Set (rows as trained) | Nuisance-only certificate | With softness and pixel cues | Pixel cues only (224 px) | Share dropped |
+|---|---|---|---|---|
+| manifest A (1,992) | 1.000 | 1.000 | 0.972 | 0.40 |
+| manifest B (7,762) | 0.841 [0.818, 0.862] | 0.969 | 0.932 | 0.68 |
+| manifest Bn (1,758) | 0.834 [0.789, 0.879] | 0.965 | 0.922 | 0.70 |
+| manifest C (11,642) | 0.841 [0.817, 0.864] | 0.962 | 0.928 | 0.68 |
+| tier-0 A0 / B0 / Bn0 | 1.000 / 0.851 / 0.858 | 1.000 / 0.976 / 0.951 | 0.975 / 0.946 / 0.878 | 0.41 / 0.72 / 0.71 |
+
+In A the engine cue (every attack went through the morphing tool, no negative did) separates the classes completely; in
+B, Bn and C the remaining nuisance signal is mainly that camera photos (no tool) are always negatives. Evaluation cells
+(within-cell folds): test ladder R4 vs R2w / R2w4 nuisance 0.66, pixel 0.93; R4 vs R3 0.63 / 0.67; R4 vs R0 or vs any
+61.2 px negative 1.00 (engine or history); H1 1.00 / 0.84; every MAD22 and FRLL-Morphs cell 1.00 / 0.98 to 1.00 (the audit
+line, not a property of the method).
+
+### 5.1c Matched-subsample test (CLIP, pool = B0's 4,415 unique images; `cert/cert_tier0.json`)
+
+| | Full pool | Matched (exact strata of history, engine, pool, border) | Random, same class counts |
+|---|---|---|---|
+| images | 4,415 | 2,140 (48.5% kept; every camera photo dropped: no attack has engine "none") | 2,140 |
+| nuisance-cue AUC | 0.868 | 0.466 | 0.886 |
+| full-cue AUC | 0.982 | 0.925 | 0.963 |
+| flag at 5% camera-photo threshold: T_R0 / T_R0_61 / T_R0_112 | 5.2 / 9.9 / 7.9% | 4.7 / 9.4 / 8.4% | 7.3 / 16.2 / 11.0% |
+| change R0 -> R0_61 / R0_112 (points) | +4.7 / +2.6 | +4.7 / +3.7 | +8.9 / +3.7 |
+| R4 vs R3 AUC; R4 vs R0 EER | 0.864; 1.57% | 0.860; 2.09% | 0.862; 1.57% |
+
+Registered kill rules: k1 (cannot reach 0.60 with 30% kept) not met; k2 (matched not below random by half the full-pool
+change: 8.9 − 4.7 = 4.2 ≥ 2.35) not met; k3 (EER worse by > 2 points: +0.52) not met.
 
 ### 5.2 Tier 1
 
@@ -219,6 +256,11 @@ Not run.
 
 ## 8. Observations and ideas
 
+- Review F11 count: 149 ordered AF0 pairs (84 in the training split, before the V exclusion) have both a zero image
+  and a u50 morph; in all 149 the zero file is byte-identical to that morph's halfA (`zero_halfA_duplicates.json`).
+  So up to 84 training negatives of B, Bn and C appear twice (as "zero" and as "half"). Manifests not changed (pack
+  pinned); stated here.
+
 - AF0 includes 67 validation-reserved persons (49 in its training split).
 - AF0's alternating softened list put every halfA copy at 61.2 px and every halfB copy at 112.7 px (pair index and row
   parity coincide), so the 61.2 px halves in B and C are host-side halves only.
@@ -230,7 +272,17 @@ Not run.
 DINOv3 tier 0 (Athena smoke job); certificate and matched-subsample test (cues); pack upload; smoke job; lead's GO;
 six fits; tier-1 reads; result.md; results review by the lead.
 
-## 10. Handover state (19:55)
+## 10. Handover state (20:25)
+
+- Athena smoke job 3545947 (`tasks/PN1/pn1_smoke.sbatch`, account plgmultivision-gpu-a100, arm Bn, 200 steps, 64 scored
+  rows, then DINOv3 extraction of featx.tar), pending, forecast start 21:06 (23 nodes failed, 13 reserved). Log
+  `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/PN1/logs/smoke-3545947.out`.
+- On Athena: `packs/PN1/{pn1_pack.tar, featx.tar}` (sha256 checked there 20:23), `tasks/PN1/` (run.sh `42b335b6…`,
+  eight task folders, job files with the pack pin). `upload2.sh` uploads `refnets.tar` (2.76 GB, reference row).
+- Next: after the smoke job passes, `sbatch tasks/PN1/pn1_array.sbatch` (eight fits) and `sbatch tasks/PN1/pn1_ref.sbatch`
+  (reference row); `fetch.sh`, `postfeatx.py install/check`, `tier0.py --backbones dinov3_512`, `tier1.py`.
+
+## 10a. Handover state (19:55, superseded)
 
 - DGX `chain_cpu1.sh` (certificate cues cert_a, cert_b, devsoft; log `/mnt/t7/smad_next/PN1/chain_cpu1.log`).
 - DGX `chain_cpu2.sh` (pack, then DINOv3 tar; log `/mnt/t7/smad_next/PN1/chain_cpu2.log`).
@@ -252,5 +304,9 @@ $P featpool.py clip224:af0_w1 clip224:af0_w2 clip224:af0_h clip224:ar1 clip224:a
 $P cues27.py r2w4=... ar1soft=... devsoft=... frll_e5=...; $P cert_cues.py cert_a=... cert_b=... devsoft=...
 $P tier0.py --backbones clip224; $P report.py tier0
 $P mkmanifests.py sources; $P jpeg_c.py verify; $P jpeg_c.py build; $P mkmanifests.py final
-$P build_pack.py; $P build_featx.py r2w4_td=... frll_e5s=... devsoft=... soft=... ladsoft=...
+$P build_pack.py; $P build_featx.py r2w4_td=... frll_e5s=... devsoft=... soft=... ladsoft=...; $P build_refnets.py
+bash upload1.sh; bash upload2.sh        # pack, DINOv3 tar, tasks; smoke submission; reference tar
+# Athena (command lock): sbatch tasks/PN1/pn1_array.sbatch; sbatch tasks/PN1/pn1_ref.sbatch
+bash fetch.sh; $P postfeatx.py install; $P tier0.py --backbones dinov3_512; $P postfeatx.py check; $P cert.py tier0
+$P tier1.py; $P report.py tier1
 ```

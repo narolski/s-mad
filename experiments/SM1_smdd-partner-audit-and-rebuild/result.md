@@ -104,7 +104,33 @@ T-B, rank of the unblended partner renders among 400 source renders of their spl
 
 ## Part 2: partner audit of released detectors
 
-pending (audit crops finishing; then the five releases on own crops and on whole files)
+Audit set: 500 keys (unused `os25k_m_t` renders) x 5 trained partners (KP), x 5 matched unused partners (KU),
+x 5 evaluation-split partners (KE); first 100 keys x 20 placebo partners (KX); our engine at 256 px; 10,055 images,
+all MTCNN crops retained. Gap = mean over keys of (mean logit with trained partners − mean logit with matched
+unused partners). Placebo p = exact permutation p that the 5 trained partners rank above the 25 unused (5 matched +
+20 placebo) on the first 100 keys.
+
+**Frozen heads on whole-image features (difference-in-differences and positive control, A1.1; `p2_full.json`
+"heads", "did"):**
+
+| Score set | trained the five partners? | gap (5-seed mean) | per seed | placebo p |
+|---|---|---|---|---|
+| arm a heads (release files) | yes | 5.79 | 5.90, 5.93, 5.57, 5.89, 5.67 | < 1e-5 (all seeds) |
+| arm b heads (our tool, release pairs) | yes | 6.09 | 6.22, 6.26, 5.84, 6.22, 5.93 | < 1e-5 |
+| arm a256 heads | yes | 5.84 | | < 1e-5 |
+| arm b′ heads (2,433 other partners) | no | 0.10 | 0.03, 0.12, −0.02, 0.21, 0.16 | 0.54 to 0.65 |
+| arm c′ heads | no | 0.40 | | 0.48 to 0.54 |
+| arm c heads | no | 0.35 | | 0.37 to 0.50 |
+| arm d / e heads | no | 0.65 / 1.26 | | 0.24 to 0.31 / 0.21 to 0.28 |
+| K = 50 / K = 500 heads | no | 1.34 / 0.61 | | 0.24 to 0.29 / 0.22 to 0.31 |
+| **FE ViT-L/14 release header on the same features** | (trained on SMDD) | **4.92** | | **0.0006** |
+
+Difference-in-differences (key bootstrap, 10,000 draws): gap(a) − gap(c′) = 5.39 [5.27, 5.50]; gap(b) − gap(c′) =
+5.69 [5.57, 5.81]; gap(FE header) − gap(c′) = 4.51 [4.33, 4.69]. Partner memorisation is learnable from the
+release's structure on these features (positive control), and the released FE ViT-L/14 header shows it on
+whole-image features.
+
+**Released detectors through their own crop path (primary) and whole files (secondary):** scoring running.
 
 ## Part 3: rebuild arms on frozen features
 

@@ -43,7 +43,7 @@ def eval_rows():
 
 
 def load_result(tar):
-    d = K.PN1 / "results" / "unpacked"
+    d = tar.parent / "unpacked"
     d.mkdir(parents=True, exist_ok=True)
     name = tar.name[:-4]
     if not (d / name).exists():
@@ -155,6 +155,8 @@ def marks(R, RA):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--results", default=str(K.PN1 / "results"))
+    ap.add_argument("--out", default=str(K.RES / "tier1"))
+    ap.add_argument("--boot", type=int, default=2000)
     a = ap.parse_args()
     rows = eval_rows()
     P = RD.pools(rows)
@@ -166,7 +168,7 @@ def main():
     c224 = CE.load_cues("c224")
     cues = {i: np.r_[v, c224[i]] for i, v in cues.items() if i in c224}
     names = [str(n) for n in z["names"]] + [n + "@224" for n in CE.PIX]
-    out = K.RES / "tier1"
+    out = pathlib.Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     S, R, info = {}, {}, {}
     for arm in ARMS:
@@ -190,7 +192,7 @@ def main():
         r["marks"] = marks(r, R.get(("A", seed)) if arm != "A" else None)
         K.dump(r, out / f"{arm}_s{seed}.json")
         if arm != "A" and ("A", seed) in S:
-            comp[f"{arm}_vs_A_s{seed}"] = pg_bootstrap(S[("A", seed)], S[(arm, seed)], P)
+            comp[f"{arm}_vs_A_s{seed}"] = pg_bootstrap(S[("A", seed)], S[(arm, seed)], P, B=a.boot)
     viol = {}
     for seed in SEEDS:
         if ("A", seed) in R:
@@ -204,7 +206,7 @@ def main():
     rt = pathlib.Path(a.results) / "PN1_REF_smdd_m3.tar"
     if rt.exists():
         assert hashlib.sha256(rt.read_bytes()).hexdigest() == (rt.parent / (rt.name + ".sha256")).read_text().split()[0]
-        d = K.PN1 / "results" / "unpacked"
+        d = rt.parent / "unpacked"
         if not (d / "PN1_REF_smdd_m3").exists():
             with tarfile.open(rt) as t:
                 t.extractall(d)
