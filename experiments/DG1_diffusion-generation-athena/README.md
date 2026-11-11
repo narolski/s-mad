@@ -255,6 +255,12 @@ here. No answer yet.
   verified, exit code kept). The mock unpacked the 2.9 GB pack on T7 for about a minute (free space dipped to about
   54 GB); removed after.
 
+- 11 Nov 20:52. Set B shard 0 finished (task 3545877_1 = Slurm id 3545939, node t0016, account plgmultivision,
+  1,704 s, 0.47 GPU-h; 3.20 s per inversion on average; all finite; genuine 268 of 268 lossless); fetched (tar sha256
+  3a176569…), validity started (`/mnt/t7/smad_next/DG1/validity/setB_s0/`). Add-on tasks 3545907_0 and _1 started on
+  t0016 at 20:50 and 20:51 (their generator log goes to `out_addon_s<k>/addon_s<k>.log` inside the tar, so the Slurm
+  log shows progress only at the end).
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):

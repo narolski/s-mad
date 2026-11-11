@@ -365,6 +365,68 @@ reported, never replaced by another seed.
   JPEG, 80 px, 80 px + JPEG. Morph share per stratum (seed 401): e 0.371 / 0.371; f 0.367 / 0.379 / 0.370 / 0.372
   (overall 0.371), so class balance holds inside each storage stratum and no seeded repetition is needed.
 
+## Amendment A12, post hoc addendum (11 Nov 21:10 CET; after the independent review `experiments/reviews/REVIEW_SM1_20261111.md`; registered before each item is run; the registered rows and verdicts above stay unchanged)
+
+Everything here is **post hoc** (designed after Part 2 and the frozen Part 3 were read) unless an item says it is
+scored for the first time; every Part 3 number carries "our frames, first-test data, arms fixed in advance".
+
+Tonight, zero GPU:
+1. **Evaluation-partner reference (review F1).** For every score set of Part 2 (releases on crops; releases on whole
+   files; every frozen head, all 5 seeds; the FE header): gap(trained − KE) and gap(KE − matched unused U), both as
+   the mean over keys of the per-key difference of means over the 5 partners, 10,000 key-bootstrap draws (seed
+   20261111); own-rule miss rate (logit < 0) by partner kind (KP, KE, KU, KX, PP, UU); head-arm DiD of gap(trained −
+   KE) between arms trained with and without the five. Reported size of the trace = trained − KE. Trained − U stays
+   the registered row; it is biased because U was matched only on cosine to keys, IOD and yaw, and U scores about 1
+   logit below other untrained partners on heads that saw none of them.
+2. **Sharpness inside storage strata (F2).** Arms d, e, f (seed-401 compositions; 2,000 + 2,000 images): Laplacian-
+   variance AUC inside each storage stratum (256 px; 80 px; 256 px + JPEG; 80 px + JPEG), at stored size and at the
+   loader's 224 px; and a two-variable rule: 5-fold out-of-fold AUC of a logistic regression on (stratum indicators,
+   log variance at 224 px). The pooled 0.72 is never cited as a reduction.
+3. **Fixed-threshold paired table (F5)** from the existing head scores, every arm, 5 seeds: at the camera-photo
+   threshold (5% of AR1 FRGC/colorFERET R0) and at each head's own rule (logit ≥ 0): flag rates of AR1 halves, R2w
+   (both tools), each history-matched pool, untouched FRLL photos, JPEG 90 / 70 / 50, the JPEG increments (JPEG q
+   minus untouched, paired on the same 204 photos), and the miss rates at the same threshold (FRLL landmark-4
+   pooled; each history-matched cell's morphs; AR1 OpenCV R4). Person-bootstrap intervals of the 5-seed mean.
+4. **Rewrite of `result.md`** with the review's section 3 wording; withdrawn statements marked WITHDRAWN with reasons.
+   **Class balance of arm f inside storage strata** printed for all five seeds.
+
+12 Nov, CPU (post hoc):
+5. **Heads with the release recipe (H-new-4).** The FZ1 recipe (Linear(768, 2) on normalised features, BCE on
+   one-hot targets, AdamW lr 1e-2, wd 0.05, the release's warm-up + cosine-restart scheduler per epoch, 40 epochs,
+   batch 256, drop_last, clip 5) on the existing arm features, seeds 401 to 405. The release recipe also flips
+   images (p 0.5, cached flipped features); flipped features of our arms do not exist, so the refit is **without
+   flip** (deviation stated); flipped features would be a short Athena job if wanted. Prediction (review): arm (a)
+   diffusion rise ≤ +5 and the a → e reduction < 3 points; falsified if the rise stays ≥ +8.
+6. **Border-matched re-read of the Part 3 steps (H-new-3)** with EV1's per-frame border fractions: steps b → b′,
+   b′ → c′, c′ → c, c → d, d → e recomputed within border strata (matched pairs where no border-free stratum exists).
+   Prediction: b → b′ shrinks by more than half; falsified if it stays within 1 point.
+7. **Partner-level variance of SMDD evaluation-split error (H-new-6)** from the T-A scores: EER per evaluation
+   partner (its 500 morphs against the 1,000 genuine renders) per release, and a two-way (first contributor x
+   partner) bootstrap interval of the pooled EER against the one-way interval. Prediction: per-partner spread > 5
+   points and two-way interval ≥ 3x one-way; falsified if spread < 2 points.
+8. **File names against image content (F11)**: 100 seeded morphs per split; buffalo_l ArcFace cosine of the morph to
+   its named second contributor against the other four partners of the split, and to its named first contributor
+   against 20 random renders; share of morphs whose named partner is the most similar of the five.
+9. **Logit against sharpness (H-new-2)**: per arm and class of training images (2,000 each, seed 401 heads),
+   Spearman correlation of the head logit with the log Laplacian variance at 224 px; prediction: more negative from
+   b → K = 50 → b′; falsified if |Δρ| < 0.05 from b to b′.
+
+GPU and build work (each scored for the first time after this registration; Athena `-A plgmultivision-gpu-a100
+--exclude=t0010`):
+10. **Audit set scored by every LoRA fit (H-new-5)**: a scoring-only job per finished fit rebuilds the network from
+    `meta.json` + `last_trainable.pt` (frozen weights from the AD4 pack), scores the 10,055 audit images (whole
+    image, the fits' own loader), and the reader of item 1 is applied. Prediction: LoRA arm (a) gives trained − KE
+    ≥ 1 logit and the DiD against LoRA arm (c) has an interval above 0; falsified if the interval includes 0 for
+    ViT-L/14.
+11. **Frozen arm with five random pool partners (H-new-1)**: the N release first-contributor slots, second
+    contributors = 5 seeded random valid pool renders that are not audit renders (each used about N / 5 times),
+    built with the unchanged engine (leaseB while it exists, else the DGX within the cap), features on Athena, heads
+    as Part 3 (5 seeds). Prediction: landmark-7 native EER ≥ 6.5%; falsified if ≤ 5.5%.
+12. **ViT-B/16 LoRA fits of arms b and b′**, seeds 401 and 402 (A11 recipe and reads).
+13. **History copies at a size not used in training**: the existing 61.2- and 112.7-px copies of the protocol-network
+    experiment (`/mnt/t7/smad_next/AF0/img/`) scored by the arm (e) and (f) frozen heads (features on Athena) and,
+    if cheap, by their LoRA fits: flag rate at both thresholds against the 80-px copies of the same photos.
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 

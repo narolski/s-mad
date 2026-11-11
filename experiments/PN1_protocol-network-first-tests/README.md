@@ -99,6 +99,11 @@ lead's GO (pre-run review restarted by the lead). No conclusion is drawn here.
 - 20:45 GO conditions met (amendment 4 registered, smoke passed from the image): eight fits submitted as array
   3545976_[0-7] (`pn1_array.sbatch` sha256 `73168ec1…`), reference-row job 3545977 (`pn1_ref.sbatch` `8e4aa4dc…`,
   `score_ref.sh` `8968013d…`), both on plgmultivision-gpu-a100.
+- 20:59 Slurm forecast (squeue --start): fits 12 Nov 16:56, reference job 13 Nov 12:01 (23 A100 nodes down, 13
+  reserved; our user's other owners' jobs pending at similar priority). Time limits of my own pending jobs reduced
+  with `scontrol update` (fits 3 h -> 2 h 15 min, reference 2 h -> 1 h) to match the smoke rate; forecast unchanged at
+  21:00. `sbatch --test-only` forecasts for a new job: 16 Nov (plgmultivision) and 20 Dec (plgrestorearc). Lead told;
+  decision on priority is the lead's.
 - 20:39 DINOv3 means from Athena installed (`postfeatx.py install`, files `ath_*.mean.npy`); tier 0 on DINOv3 started.
 - Note: `lists.py cert_a` was rerun at about 19:58 after the ladder copies joined the catalogue, so `cert_a.csv` now
   lists more rows than the cue file `cert_cert_a.npz` (computed from the 11,573-row version); the ladder copies get
@@ -313,7 +318,7 @@ six fits; tier-1 reads; result.md; results review by the lead.
 ## 10. Handover state (20:47)
 
 - Athena: array 3545976_[0-7] (PN1_A_s401, PN1_B_s401, PN1_Bn_s401, PN1_C_s401, then the s402 four), each about 1.5 h
-  (1.24 it/s), logs `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/PN1/logs/fit-3545976_<i>.out`, result
+  (1.24 it/s; time limit 2 h 15 min since 20:59), logs `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/PN1/logs/fit-3545976_<i>.out`, result
   tars `.../results/PN1/PN1_<arm>_s<seed>.tar` (+ .sha256). Reference job 3545977 (log `ref-3545977.out`, tar
   `PN1_REF_smdd_m3.tar`). Both pending at 20:46 (priority).
 - DGX: `watch_fits.sh` (log `/mnt/t7/smad_next/PN1/watch_fits.log`) polls sacct (one ssh per check) and runs
