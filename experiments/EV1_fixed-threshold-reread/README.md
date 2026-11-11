@@ -60,6 +60,7 @@ within gender: they are a gender-composition effect, not evidence of identity re
 | 17:31–17:43 | Border measurement of the E5 and E7 frames (`ev1_border.py`); first version via `stats_job` too slow (1.4 s per frame), replaced by the same definition computed directly and checked equal on 20 frames; 4,080 frames, 695 s. | `/mnt/t7/smad_next/EV1/border_e5e7.npz` |
 | 17:36 | Amendment 2 smoke passed (`ev1_amend2.py --smoke`). | — |
 | 17:44–17:51 | Amendment 2 full run (nice 10). | `AM2_*` files |
+| 17:58 | All tables rendered (`/mnt/t7/smad_next/EV1/report_all.md`); sha256 of 174 inputs and 47 outputs written (`ev1_hashes.py`). | `input_sha256.txt`, `output_sha256.txt` |
 | 17:52–17:58 | `result.md` rewritten: new top section with the review's corrected statements, a withdrawn-statements table, in-place WITHDRAWN markers; numbers checked against the `AM2_*` files (two wordings fixed: share rising 97.5–100%, effect of adding devbona to the full-frame set). | `result.md` |
 
 ## 3. Data
@@ -287,7 +288,7 @@ Runs and bugs:
 - Part C first full run killed: 257 s per bootstrapped detector (two weighted-rank passes on 2,000 × 2,175 arrays).
   Fix: `RankCache` (δ ranks once per stratum, float32), 8 times faster.
 - `pkill -f "ev1_partA.py"` (and later pattern kills) killed my own shell because the shell's command line contained the
-  pattern; three times. No data were affected (the target processes also stopped). Rule adopted: kill by PID in a
+  pattern; four times (twice for Part A / Part C, once for Part C again, once for the border run). No data were affected (the target processes also stopped). Rule adopted: kill by PID in a
   separate command, bracket pattern, nothing else on that command line.
 - A completion monitor fired "partC done" early because the oracle log line also contains "written". No harm.
 - Amendment 1 header time 16:45 (true 16:38:52) and Amendment 2 header time 17:40 (true 17:29); both corrected with a

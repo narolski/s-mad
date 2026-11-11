@@ -17,7 +17,7 @@ one-identity image made by the same pipeline as a morph.
 | Diffusion-morph scores of SelfMAD, MADation ViT-B/16 and the Inception recipe follow processing history | Shown (strongest part) | A32/A41, A43, A44 R-last, A46, A47 I-3. |
 | Any detector separates GAN morphs from same-generator one-identity renders | Not found | 12 method rows, 51 networks, none at AUC ≥ 0.65 (A36/A37/A41). |
 | Landmark-morph scores are a shortcut | Not shown | Four CLIP-based rows hold under E7 and beat the file-size floor. |
-| A training change removes the shortcut | Not found | A49 (consistency loss) failed; ABC60 (more data) null; A47 I-1 costs accuracy; Astra E2 and ROI ideas negative. |
+| A training change removes the shortcut | Partly, at a cost (corrected 11 Nov 18:15; was "Not found") | The same random resample, JPEG and blur chain on both classes removed the different treatment of shrunk genuine photos in A22 (+14.5 to -0.2 points, 5.1-point cost) and cut flagged shrunk FFHQ photos from 19 to 40% down to 4 to 8% in A30 amendment 6 (0.4 to 1.5 points). Not tested on the ladder. A49 (consistency loss) failed; ABC60 (more data) null; A47 I-1 costs accuracy; Astra E2 and ROI ideas negative. Source: `docs/PLANNING_RECORD.md` section 15 item 3. |
 | MADMamba is competitive | No | W3/E10 scored 9.19%, 4th of six from scratch; absent from all work after 8 Nov. |
 
 ## 2. Shortcomings, ranked by how much they block a CVPR paper
