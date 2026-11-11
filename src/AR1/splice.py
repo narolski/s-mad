@@ -115,6 +115,10 @@ def soft():
 
 def boxes():
     main = json.load(open(K.OUT / "crops/boxes_main.json"))
+    for f in sorted((K.OUT / "crops").glob("extra*/boxes*.jsonl")):      # R2wm / R2w4 rows were cropped later
+        for ln in open(f):
+            d = json.loads(ln)
+            main[d["id"]] = d["box"]
     sp = {}
     for f in sorted((K.OUT / "crops/splice").glob("boxes*.jsonl")):
         for ln in open(f):
@@ -128,9 +132,106 @@ def boxes():
     print(len(out), sum(v is None for v in out.values()), "without box")
 
 
+# ---------------------------------------------------------------- amendment 7b: one hull (R4 geometry) for every arm
+ARMS7B = (("S4", "R2w4", "R4"), ("S3", "R2w", "R3"), ("S0", "R2w4", "R2w"))   # (arm, outside image, inside image)
+
+
+def job7b(a):
+    import cv2
+    import numpy as np
+    tool, stem, H, Bp = a
+    d = K.OUT / "img/frgcferet" / tool
+    m = None
+    res = []
+    for arm, base_r, src_r in ARMS7B:
+        base = cv2.imread(str(d / base_r / f"{stem}.png"))
+        src = cv2.imread(str(d / src_r / f"{stem}.png"))
+        if m is None:
+            m = hull(H[:-4] + ".tem", Bp[:-4] + ".tem", base.shape)
+            band = cv2.dilate(m.astype(np.uint8), np.ones((3, 3), np.uint8)) & ~cv2.erode(m.astype(np.uint8), np.ones((3, 3), np.uint8)) & 1
+            band = band.astype(bool)
+        sp = base.copy()
+        sp[m] = src[m]
+        o = d / arm / f"{stem}.png"
+        o.parent.mkdir(parents=True, exist_ok=True)
+        cv2.imwrite(str(o), sp)
+        diff = (sp != base).any(2)
+        res.append(dict(arm=arm, path=str(o), base=base_r, band_px=int(band.sum()), band_diff_px=int((diff & band).sum()),
+                        inside_diff_px=int((diff & m).sum())))
+        for rung, img in ((arm, sp), (base_r, base)):
+            for v in ("bg", "face"):
+                p_ = K.OUT / "blank_splice2" / v / f"{rung}_{tool}_{stem}.png"
+                if p_.exists():
+                    continue
+                b = img.copy()
+                if v == "bg":
+                    b[~m] = GREY
+                else:
+                    b[m] = GREY
+                p_.parent.mkdir(parents=True, exist_ok=True)
+                cv2.imwrite(str(p_), b)
+    self_paste = base.copy()                     # S0' check: R2w4 face into R2w4 is the identity
+    return tool, stem, res
+
+
+def splice7b(limit, tools):
+    pool = list(csv.DictReader(open(K.OUT / "pool.csv")))[: limit or None]
+    man = {(r["tool"], r["rung"], r["p1"]): r["id"] for r in csv.DictReader(open(K.OUT / "manifest.csv"))
+           if r["pool"] == "frgcferet"}
+    jobs = [(t, r["pid"].replace(":", "_"), r["H"], r["B"]) for t in tools for r in pool]
+    with Pool(6) as p:
+        out = p.map(job7b, jobs, chunksize=8)
+    byp = {r["pid"].replace(":", "_"): r for r in pool}
+    rows, seam = [], []
+    for tool, stem, res in out:
+        r = byp[stem]
+        for x in res:
+            sid = f"sp2_{x['arm']}_{tool}_{stem}"
+            rows.append(dict(id=sid, path=x["path"], pool="frgcferet", tool=tool, rung=x["arm"], p1=r["pid"],
+                             p2=r["B_pid"] if x["arm"] == "S4" else r["pid"], variant="native", box_src="", lm_src=x["path"]))
+            seam.append(dict(tool=tool, host=r["pid"], **{k: x[k] for k in ("arm", "band_px", "band_diff_px", "inside_diff_px")}))
+            for rg in (x["arm"], x["base"]):
+                for v in ("bg", "face"):
+                    if rg == x["base"] and any(q["id"] == f"sp2_{rg}_{tool}_{stem}__{v}" for q in rows[-6:]):
+                        continue
+                    src_id = sid if rg == x["arm"] else man[(tool, rg, r["pid"])]
+                    src_path = x["path"] if rg == x["arm"] else str(K.OUT / "img/frgcferet" / tool / rg / f"{stem}.png")
+                    rows.append(dict(id=f"sp2_{rg}_{tool}_{stem}__{v}", path=str(K.OUT / "blank_splice2" / v / f"{rg}_{tool}_{stem}.png"),
+                                     pool="frgcferet", tool=tool, rung=rg, p1=r["pid"], p2=r["B_pid"] if rg == "S4" else r["pid"],
+                                     variant=v + "_R4hull", box_src=src_id, lm_src=src_path))
+    seen, uniq = set(), []
+    for q in rows:
+        if q["id"] not in seen:
+            seen.add(q["id"])
+            uniq.append(q)
+    with open(K.OUT / "manifest_splice2.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(uniq[0]))
+        w.writeheader()
+        w.writerows(uniq)
+    with open(K.RES / "splice_seam_pixels.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(seam[0]))
+        w.writeheader()
+        w.writerows(seam)
+    print(len(uniq), "rows")
+
+
+def boxes7b():
+    main = json.load(open(K.OUT / "crops/boxes_main.json"))
+    for f in sorted((K.OUT / "crops").glob("extra*/boxes*.jsonl")) + sorted((K.OUT / "crops").glob("splice2/boxes*.jsonl")):
+        for ln in open(f):
+            d = json.loads(ln)
+            main[d["id"]] = d["box"]
+    out = {r["id"]: main.get(r["box_src"]) for r in csv.DictReader(open(K.OUT / "manifest_splice2.csv")) if r["box_src"]}
+    json.dump(out, open(K.OUT / "crops/boxes_splice2.json", "w"))
+    print(len(out), sum(v is None for v in out.values()), "without box")
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("stage", choices=("splice", "soft", "boxes"))
+    ap.add_argument("stage", choices=("splice", "soft", "boxes", "splice7b", "boxes7b"))
     ap.add_argument("--limit", type=int, default=0)
     a = ap.parse_args()
-    {"splice": lambda: splice(a.limit), "soft": soft, "boxes": boxes}[a.stage]()
+    {"splice": lambda: splice(a.limit), "soft": soft, "boxes": boxes, "boxes7b": boxes7b,
+     "splice7b": lambda: splice7b(a.limit, ("opencv", "facemorpher"))}[a.stage]()
+
+

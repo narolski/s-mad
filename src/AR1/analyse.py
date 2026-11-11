@@ -151,7 +151,8 @@ def ladder(P, S, tool, man, retrain, base="R2", twin="R3"):
     out["p_auc_main_le_0.65"] = float(np.mean(reps[m] <= 0.65))
     out["main_ci_bonferroni12"] = stats.ci(reps[m], *BONF)
     out["side_twin_vs_R4"] = side_verdict(out[twin + "->R4"]["auc"], out[twin + "->R4"]["ci95"])
-    out["side_base_vs_twin"] = side_verdict(out[base + "->" + twin]["auc"], out[base + "->" + twin]["ci95"])
+    out["side_base_vs_twin"] = side_verdict(out[base + "->" + twin]["auc"], out[base + "->" + twin]["ci95"]).replace(
+        "identity reading", "blend reading")          # presentation change (post hoc addendum): no second identity here
     t, e = bench_threshold(man, S, tool, retrain)
     if t is not None:
         out["bench_threshold"] = dict(t=t, bench_eer=100 * e)

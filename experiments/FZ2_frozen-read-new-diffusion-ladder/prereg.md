@@ -117,3 +117,11 @@ head, separately): X vs SAME, SAME vs FRESH1, and the excess of X vs SAME over t
 - Stop: cross-environment check fails → DGX features; a shard tar fails its sha256 → that shard excluded and reported.
 - Pre-run review: not run by the owner; the lead decides.
 - Result: `result.md` in this folder; full record `README.md`.
+
+## Deviations (dated)
+
+- 11 Nov 21:31: Athena's start estimate for job 3545969 was 12 Nov 04:27 (most nodes unavailable). Features of the
+  production set B are computed on the DGX instead, with `fz2_feats.py` in FZ1's environment (it reproduced FZ1's
+  DGX features exactly on the 64 A43 frames, `envcheck_dgx_vs_fz1.json`), so no cross-environment check is needed for
+  them. The Athena job stays queued; its check decides whether Athena features may be used for the add-on. Within one
+  run (production or add-on) all features come from one source.

@@ -274,3 +274,17 @@ that were re-encoded as JPEG by code written in this sprint (AR1 / RS1 `crop_rgb
 4. Both variants are cropped and scored on Athena with all seven releases (one platform). The reproduction label and
    every audit number are given for variant 1; variant 2 is printed beside it. Crop files of both variants are kept
    (tar in the result) with a sha256 list, for the retrains experiment (AD5).
+
+## Amendment 5 (11 Nov 2026, 21:45 CET; before any full RS1 result of a MADation or MixFaceNet release is read)
+
+Athena forecasts the two production jobs for 13 Nov; with the author's approval the lead rents one GPU machine
+(plain Docker, image pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime, one 48 GB card). **Every MADation and MixFaceNet-MAD
+row of the experiment comes from this one machine** (both crop variants of amendment 4 and all scoring). Same code and
+packs (hash-checked on the machine); packages pinned as on Athena (timm 1.0.27, numpy 1.26.4, pillow 10.2.0,
+opencv-python-headless 4.11.0.86, tqdm 4.67.1, facenet-pytorch 2.6.0 from the pack's wheel; torch 2.2.1 from the
+image), versions logged. Scripts: `src/RS1/rented/rs1_run.sh` (the Athena job body), `drive.sh` (upload, setup, smoke,
+production, copy-back with sha256), `compare_smoke.py`. Gate before production: an 8-images-per-set run of both
+variants on the machine compared with Athena smoke job 3545869 on the same inputs; pass = the same images dropped by
+the unchanged script and every release's largest |logit difference| below 0.5 (the largest value is reported). After
+the gate passes, Athena jobs 3545972 and 3545973 are cancelled. Crops stay on the machine; the small result tars come
+back to `/mnt/t7/smad_next/RS1/results_rented/`.

@@ -30,7 +30,7 @@ def main():
     D = P.D
     out = {"soft": {}, "splice": {}}
     for name, tag in A.REL:
-        S = load_many(tag, ["", "soft", "splice", "splice_bl"])
+        S = load_many(tag, ["", "soft", "splice", "splice_bl", "splice_bl2"])
         so = out["soft"].setdefault(name, {})
         for st in ("fm61", "amsl112"):
             hosts = {r["p1"] for r in soft if r["rung"] == "R2wsoft" and r["strength"] == st}

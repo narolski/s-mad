@@ -1,6 +1,7 @@
 # SMDD five-partner audit and rebuild of the standard training set (SM1): full record
 
-Owner: hypothesis-owner agent, 11 Nov 2026. Registration: `prereg.md` (amendments A1 to A6). Short verdict:
+Owner: hypothesis-owner agent, 11 Nov 2026. Registration: `prereg.md` (amendments A1 to A11; A12 = post hoc
+addendum after the independent review `experiments/reviews/REVIEW_SM1_20261111.md`). Short verdict:
 `result.md`. Code: `/home/narolski/smad-next/src/SM1/`. Large outputs: `/mnt/t7/smad_next/SM1/`.
 
 ## 1. Question and current answer
@@ -12,16 +13,19 @@ the evaluation split has five other partners. The paper's sentence reads natural
 image; the release differs from that natural reading (not called a bug). Questions: (1) do released SMDD-trained
 detectors memorise the five partners (Part 2 and the no-new-image tests T-A, T-B); (2) does rebuilding SMDD with
 balanced partners, warped halves as genuine images and history crossing change what a head on frozen CLIP
-features learns (Part 3), and the same with LoRA fits on Athena. **Status 11 Nov 20:10:** Part 1, T-A, T-B, T-C,
-the Laplacian acceptance and the frozen-head Part 3 (12 arms x 5 seeds) are done (`result.md`). Running: Part 2
-scoring on the DGX, arm (f) frozen heads and JPEG reads, 25 ViT-L/14 and 10 ViT-B/16 LoRA fits on Athena. Plain
-summary so far: the release differs from the natural reading of the paper (five partners per split); on the
-release's own training split the ViT-B/16 release misses no more evaluation-split morphs than training morphs (within
-1 point), the other four primary releases miss 4 to 9.5 points more; three of five releases rank the five training
-partner renders higher than other renders more often than chance; on frozen CLIP heads, replacing the five partners
-by 50 or more partners lowers the landmark-cell EER by about 3 points, and adding halves and history copies lowers
-the rise under history matching; no rebuilt arm passes the sharpness acceptance, so all Part 3 numbers are
-descriptive.
+features learns (Part 3), and the same with LoRA fits on Athena. **Status 11 Nov 21:45:** Part 1, T-A, T-B, T-C,
+Part 2 (crop path and whole files), the frozen-head Part 3 (13 arms x 5 seeds) and the A12 tonight items (evaluation-
+partner reference, sharpness inside storage strata, fixed-threshold paired table, rewrite of `result.md` with the
+review's wording and withdrawn statements) are done. Running on Athena: 35 LoRA fits (A9 to A11), the A12 feature job
+(five-random-partner arm, softened AR1 copies) and 4 ViT-B/16 fits of arms b and b′. Plain summary (wording of the
+review, section 3): the release has five partner images per split, unlike the natural reading of the paper (content
+check pending); released detectors score morphs with the five training partners above morphs with SMDD's own
+evaluation partners by 0.4 to 1.0 logit for the adapted MADation releases (near their ceiling) and 3.8 to 13.4 for
+the frozen-encoder releases and MixFaceNet-MAD; on frozen CLIP heads, training on the five causes this trace. On
+frozen heads (our frames, first-test data, arms fixed in advance), more partners lower native EER but raise flags on
+history-matched genuine photos; halves and history copies lower the storage reaction at a cost in landmark error and
+in untouched photos flagged at a fixed camera-photo threshold; no rebuilt arm passes the sharpness acceptance (0.89
+to 0.96 inside every storage size), so Part 3 is descriptive.
 
 ## 2. Timeline
 
@@ -193,6 +197,33 @@ descriptive.
   falsifier does not hold. Report sent to the lead. Still running: `run_p2.sh` (FS crops, whole-file pass, then
   `read_p2.py` for the bridge and the secondary readings) and the Athena fits.
 
+- 20:50 Lead: independent review `REVIEW_SM1_20261111.md` (verdict: needs qualification); follow-ups 1 to 13; DGX
+  limit 2 processes, OMP 2, nice 10; T7 floor 50 GB free; list of local pack tars with verified Athena copies sent.
+  `run_p2.sh` (6 workers) stopped; whole-file pass restarted as `run_p2_whole.sh` (1 process + 2 loader workers).
+- 21:10 Amendment A12 (post hoc addendum, items 1 to 13) registered in `prereg.md` before any A12 score.
+- 21:12 A12 item 1 (`a12_partner_ref.py`): trained − KE for releases (crop) 0.43, 0.95, 3.87, 3.76, 13.36; heads
+  with the five 4.0 to 4.4, without −1.15 to −0.03; DiD a − b′ 5.25 [5.14, 5.36]. Its first run (about 1 min)
+  overlapped with the whole-file pass, so the DGX briefly had 4 of my processes (limit 2); rerun at 21:20 alone,
+  with the whole-file scores (trained − KE 0.44, 0.45, 4.14, 3.46, 4.57).
+- 21:13 Whole-file Part 2 pass done (1,050 s, 10,055 x 5 releases); `read_p2.py` rewrote `p2_full.json` (bridge,
+  whole-file secondary; every release's registered rule outcome "partner memorisation").
+- 21:15 Implementation notes for A12 items 9 to 12 added to `prereg.md` (before any of their scores).
+- 21:16 A12 item 3 (`a12_fixed.py`): fixed-threshold paired table (camera threshold and own rule) for 12 arms + FE
+  header; reproduces the review's JPEG increments (a +0.196, c +0.121, d +0.072, e +0.032, f +0.068).
+- 21:17 A12 item 11: `armd5.csv` (`pairs_d5.py`; pool reconstruction reproduces `armd50.csv` and `armd500.csv`
+  exactly; 3 backward swaps); built on leaseB as overlay task `d5` on pack b (8-pair check: wrapper = 78 CLI 0,
+  leaseB = DGX references 0; full 14,734 in 95 s, 0 failures); fetched (sha256 OK) and installed in `img/armd5`.
+- 21:20 A12 item 2 (`a12_sharp.py`): Laplacian AUC inside storage strata 0.89 to 0.96 (d 0.948, e 0.952 / 0.898,
+  f 0.886 to 0.956 at 224 px); two-variable rule d 0.948, e 0.928, f 0.927. Class balance of f inside strata for all
+  five seeds 0.363 to 0.379 (`a12_armf_strata.json`).
+- 21:24 `sm1gpu_img_a12.tar` (armd5 + 3,744 softened AR1 copies of the protocol-network experiment, 2.74 GB) streamed
+  to Athena without a local copy (`athena_stream.sh`; T7 at 54 GB free); lists overlay, LoRA manifests for b / b′ and
+  the audit manifest uploaded; Athena `lora_run.sh` was byte-identical to the local pre-A12 copy before the update.
+  Submitted (account plgmultivision-gpu-a100, `--exclude=t0010`): 3546033 feature pass MODE a12, 3546034_[0-3]
+  ViT-B/16 fits of b, b′ (no separate smoke: the A11 smoke of the same script passed; only the manifest tar and the
+  armsb image set differ).
+- 21:45 `result.md` rewritten (review wording, WITHDRAWN statements with reasons, A12 tables, Part 3 labels).
+
 ## 3. Data
 
 Inputs (read only):
@@ -211,10 +242,11 @@ Inputs (read only):
 
 Produced (all under `/mnt/t7/smad_next/SM1/` unless said):
 - Landmarks `lm/srcm_if106_{pool (3,025), contrib (3,858), evalp (5)}.npz`; `.tem` files `tem/{bf,src,srce}/`.
-- Lists `lists/`: `arm{b,bp,c,cr,d50,d500}.csv` (14,734 each), `arma.csv` / `arma256.csv` (14,734 / 14,236 release
+- Lists `lists/`: `arm{b,bp,c,cr,d50,d500,d5}.csv` (14,734 each; d5 = A12 item 11), `arma.csv` / `arma256.csv` (14,734 / 14,236 release
   files), `armc_15k.csv`, `armcr_15k.csv`, `audit.csv` (9,520), `audit_renders.csv` (535), `ar1h.csv` (536),
   `jpeg_assign.csv` (46,330), `shrink_armc.csv`, smoke lists. Summary `pairs_all.log`, `experiments/.../pairs_summary.json`.
-- Images `img/`: `armb, armbp, armd50, armd500` (14,734 each), `armc` (15,000 morphs + 30,000 halves; the first
+- Images `img/`: `armb, armbp, armd50, armd500, armd5` (14,734 each; armd5 built 21:17 on leaseB, tar
+  `lease/sm1_d5_out.tar`), `armc` (15,000 morphs + 30,000 halves; the first
   14,734 pairs are the arm), `armcr` (15,000), `arme` (45,000 80-px copies), `armf/{jpeg90,jpeg70}` (46,330),
   `audit` (9,520), `ar1h` (536 morphs + 1,072 halves). Builds of b, b′, c, c′, K = 50, K = 500, audit, ar1h on leaseB
   (tars and logs in `lease/`); e and f on the DGX.
@@ -228,6 +260,11 @@ Produced (all under `/mnt/t7/smad_next/SM1/` unless said):
 - Arm compositions `compose/<arm>_s<seed>.json`; LoRA manifests `lora/manifests/` (tar `gpupack/sm1lora_manifests_v2.tar`).
 - GPU packs `gpupack/`: `sm1gpu_code.tar`, `sm1gpu_code_v2.tar`, `sm1gpu_img_{test,base,armsc,audit,arme,armsb,
   jpegeval,armf}.tar` (+ `.sha256`); same files on Athena `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/SM1/`.
+  A12: `sm1gpu_lists_a12.tar`, `sm1lora_manifests_b.tar`, `sm1lora_manifests_audit.tar` (local and Athena);
+  `sm1gpu_img_a12.tar` on Athena only (streamed; sha256 bc7c784b…, `gpupack/stream_sm1gpu_img_a12.tar.json`,
+  file list `gpupack/filelist_a12.txt`).
+- A12 lists: `flists/train_armd5.csv` (14,734), `flists/test_af0soft.csv` (3,744: AF0 `ar1soft.csv` + `ladsoft.csv`,
+  base = the SM1 id of the unsoftened AR1 image).
 - Scores: `heads/` (frozen heads, 5 seeds and boot variant; `feref.npz`), `heads/smoke/`, `p2scores/` (releases on
   audit crops), `p2scores/whole/`, `p2scores/tab_sub/`; Athena results `athena/`.
 - `madation_convert/A12REL/*/convert.json` (maps release names to sha256); `sources/` (SMDD README and paper HTML
@@ -254,6 +291,17 @@ Produced (all under `/mnt/t7/smad_next/SM1/` unless said):
 | `expr_geom.py` | geometry-only smile probe (A3 substitute) |
 | `run_p3.sh`, `run_p3f.sh`, `run_feats.sh`, `run_contrib.sh`, `run_gpupack.sh`, `athena_up.sh` | chains |
 | `heads_v1_unused.py`, `run_p2_v1_unused.sh` | superseded first versions, never run to a result |
+| `run_p2_whole.sh` | Part 2 whole-file pass + `read_p2.py` under the 20:50 DGX limit |
+| `a12_partner_ref.py` | A12 item 1: trained − KE, KE − U, own-rule miss by partner kind, head DiD (`--heads-dir` for FZ1 / LoRA) |
+| `a12_sharp.py` | A12 item 2: Laplacian AUC inside storage strata, two-variable rule |
+| `a12_fixed.py` | A12 item 3: fixed-threshold paired table (camera threshold, own rule; `--dir` for other score sets) |
+| `heads_fz1.py` | A12 item 5: heads with the release (FZ1) recipe, no flip → `heads_fz1/` |
+| `a12_partner_var.py` | A12 item 7: per-partner EER of the SMDD splits, one-way vs two-way intervals |
+| `a12_names.py` | A12 item 8: file names against ArcFace similarity, 100 morphs per split |
+| `a12_sharp_slope.py` | A12 item 9: Spearman of head logit against log Laplacian variance per class |
+| `sm1_lora_audit.py`, `athena_lora_audit.sbatch`, `a12_lora_prep.py` | A12 item 10: audit set scored by finished LoRA fits |
+| `pairs_d5.py`, `prep_d5.py`, `a12_flists.py`, `athena_stream.sh` | A12 items 11, 13: five-random-partner list, leaseB overlay task, feature lists, streamed upload |
+| `a12_lora_lists_b.py`, `athena_lora_b2.sbatch` | A12 item 12: ViT-B/16 fits of arms b, b′ |
 
 Environment: DGX `/home/narolski/mambamorph-code/.venv-spark/bin/python` (Python 3.12.3, torch 2.12.1+cu130,
 timm 1.0.27, cv2 4.11.0, numpy 1.26.4, insightface 1.0.1, onnxruntime 1.27.0); facenet venv
@@ -270,7 +318,8 @@ ddb1455b…, ViT-L/14 bb452ded…, FE ViT-B/16 6a4d93ba…, FE ViT-L/14 74dd7fbc
 
 See `result.md` for every table: Part 1 and T-C; expression; T-A / T-B (`tab_sub.json`); Laplacian acceptance
 (`lapvar.json`, `lapvar_f.json`); Part 3 smoke (`p3_smoke.json`) and full (`p3_full.json`, `p3_full_seeds.csv`,
-bootstrap variant `p3_full_boot.json`); Part 2 (`p2_full.json`, pending). Partner matching for the audit
+bootstrap variant `p3_full_boot.json`); Part 2 (`p2_full.json`). A12: `a12_partner_ref.json` (item 1),
+`a12_sharp.json` (item 2), `a12_fixed.json` + `a12_fixed_seeds.csv` (item 3), `a12_armf_strata.json`, `pairs_d5.json`. Partner matching for the audit
 (`pairs_summary_audit.json`): trained → matched unused partner: img054553 → img167417, img282038 → img029400,
 img496816 → img200961, img337488 → img380037, img099545 → img197375; mean ArcFace cosine key to partner: trained
 0.037, matched unused 0.035, placebo 0.028.
@@ -322,29 +371,33 @@ the T-A / T-B full 50,010-image set (only the registered 7,810-image subsample);
 
 ## 9. Open items and next steps
 
-Part 2 reading (after the DGX scoring, about 21:00 to 22:30); arm (f) frozen heads and the JPEG / history-pool reads
-(`run_p3f.sh`); LoRA fits: fetch each `SM1L_*` / `SM1B_*` tar from Athena results with its sha256, `lora_read.py`,
-then `read_p3.py --dir /mnt/t7/smad_next/SM1/lora_scores --name lora_vitl` (and a ViT-B/16 folder); DiD of the audit
-for the frozen heads is in `read_p2.py`. Arm (a)'s history-matched flag rate decides whether the storage comparison
-counts (A11).
+A12 (`prereg.md`): items 5 (release-recipe refit: `heads_fz1.py`, then `read_p3.py --dir OUT/heads_fz1 --name fz1`,
+`a12_fixed.py --dir OUT/heads_fz1 --name a12_fixed_fz1`, `a12_partner_ref.py --heads-dir OUT/heads_fz1 --name
+a12_partner_ref_fz1 --no-releases`), 6 (border-matched re-read with EV1's border fractions; script not written yet),
+7 (`a12_partner_var.py`), 8 (`a12_names.py`, before the SMDD authors' email), 9 (`a12_sharp_slope.py`, after item 5
+for the FZ1 variant): CPU, at most 2 processes. 10: when fits finish, fetch result tars, then submit
+`athena_lora_audit.sbatch` with FITS="SM1L_... SM1B_..." (`-A plgmultivision-gpu-a100 --exclude=t0010`), read with
+`a12_partner_ref.py` style reader per family. 11 and 13: after job 3546033, merge features (`merge_feats.py`), add
+arm `d5` to `compose.py` / `heads.py` / `read_p3.py` (steps b → d5, d5 → K = 50), fit 5 seeds, read; score the
+softened AR1 copies with the e and f heads (and the others) at both thresholds. 12: after 3546034, `lora_read.py`
+into a separate folder, `read_p3.py --seeds 401,402`.
 
-## 10. Handover state (20:45)
+## 10. Handover state (21:45)
 
-- DGX: `run_p2.sh` still running (FS pair on the audit crops, then the whole-file pass of the five primary releases,
-  then `read_p2.py`, which rewrites `p2_full.json` with `whole_file_secondary` and `bridge`); log
-  `/mnt/t7/smad_next/SM1/logs_p2.log`; if it dies, rerun `run_p2.sh` (finished detectors are skipped).
-- Athena (account plgmultivision-gpu-a100): ViT-L/14 fits 3545823_[0-19] (arms a, c, d, e; tasks 0 and 1 at step
-  ~1,000 of 6,250 at 20:30, 0.49 it/s), 3545894_[20-24] (arm f); ViT-B/16 smoke 3545956 → 3545957_[0-9] (afterok).
-  Results: `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/SM1/SM1L_<arm>_s<seed>.tar` and
-  `SM1B_<arm>_s<seed>.tar` with `.sha256`. To read: copy back with one flock rsync, check sha256, extract into
-  `/mnt/t7/smad_next/SM1/athena/lora/`, `python3 -I src/SM1/lora_read.py /mnt/t7/smad_next/SM1/athena/lora`
-  (writes `lora_scores/`; put ViT-B/16 tars in a separate folder and pass that folder, then move its output to
-  `lora_scores_vitb/`), then `read_p3.py --dir /mnt/t7/smad_next/SM1/lora_scores --name lora_vitl --arms a,c,d,e,f`
-  and the same for ViT-B/16 with `--seeds 401,402`. A failed fit is rerun once with the same seed (A9).
-- leaseB: nothing running; `/workspace/sm1` holds the venv, packs and logs (volatile, ends about 23:00).
+- DGX: nothing of mine running. Limit: 2 processes, OMP 2, nice 10. T7 54 GB free (floor 50 GB): no new local
+  copies over 1 GB; large data goes to Athena (stream with `athena_stream.sh`).
+- leaseB: task d5 done and fetched (sha256 OK); `/workspace/sm1` holds the venv, packs, logs and the d5 result tar
+  (volatile, ends about 23:00). Nothing else to run there.
+- Athena (account plgmultivision-gpu-a100): ViT-L/14 fits 3545823_[0-19] (tasks 0 and 1 running on t0016; the rest
+  pending, ReqNodeNotAvail), 3545894_[20-24] (arm f, pending); ViT-B/16 3545957_[0-9] (pending, Priority);
+  A12: 3546033 (features MODE a12), 3546034_[0-3] (ViT-B/16 b, b′). Results in
+  `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/SM1/` with `.sha256`. Each fit's result tar holds
+  `ad4eval/last_trainable.pt` and `meta.json` (needed by A12 item 10). To read the fits: as before (copy back with
+  one flock rsync, check sha256, extract into `/mnt/t7/smad_next/SM1/athena/lora/`, `lora_read.py`, `read_p3.py
+  --dir ... --name lora_vitl`); check the T7 floor first.
 - WCSS: job 6301971 stale (will fail).
-- Compute: Athena about 1.5 GPU-h so far (features, smokes, the hung ViT-B smoke 23 min); planned fits about
-  100 (ViT-L/14) + 9 (ViT-B/16) A100-hours, within 150.
+- Compute: Athena about 1.5 GPU-h used before A12; planned fits about 100 (ViT-L/14) + 9 (ViT-B/16) A100-hours;
+  A12 adds about 0.1 (features), about 4 (b, b′ fits) and about 2 (audit scoring).
 
 ## 11. Reproduce from scratch
 

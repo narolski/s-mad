@@ -6,8 +6,8 @@ Athena folders `/net/pr2/projects/plgrid/plggrestoration/smad-next/{packs,result
 
 ## 1. Question and current answer
 
-11 Nov 2026, 20:45 CET. Status: **registered; Athena job 1 submitted (waits for the last two DG1 production shards);
-the primary images (DG1 add-on) are not generated yet** (array 3545907 pending, start estimate 12 Nov morning).
+11 Nov 2026, 21:35 CET. Status: **registered; features being computed on the DGX** (production set B now; add-on shards
+as they arrive: 2 of 8 generated, the rest queued on Athena). No DG1 feature read yet.
 Question: on the new diffusion-autoencoder ladder (DG1) with fresh persons (FRGC, colorFERET), do frozen CLIP ViT-L/14
 and DINOv2 features, and the frozen SMDD heads of FZ1, read mixing, or only "not rendered from its own noise map"
 (H-new-1, H-new-2); does the frozen heads' weak ordering of two-person over same-person mixes replicate with an excess
@@ -41,6 +41,16 @@ No answer yet.
 - 20:40 `src/FZ2/fz2_read.py` (registered analysis) written; smoke on **random features** for the production shards 1
   and 3 (120 hosts, B = 300): code paths run end to end. Its printout showed one real number: the best simple baseline
   for X20 vs SAME20 on those 120 hosts is about 0.70 (baselines use the real images). Smoke outputs deleted.
+- 20:44–21:29 Job 1 pending (DG1 shards 0 and 2 finished about 21:10; then "Priority"); `squeue --start` gave 12 Nov
+  04:27 (most Athena nodes unavailable). DG1 add-on shards 0 and 1 were generated and fetched to the DGX meanwhile.
+- 21:31 Deviation (recorded in `prereg.md`): features computed on the DGX with `fz2_feats.py` in FZ1's environment
+  (exact match to FZ1, so no cross-environment check needed). `src/FZ2/fz2_dgx_feats.sh setB_s0 setB_s1 setB_s2
+  setB_s3` started (log `/mnt/t7/smad_next/FZ2/dgx_feats_prod.log`, per-try logs `/mnt/t7/smad_next/FZ2/logs/`); about
+  16 img/s; one CUDA out-of-memory at model load (retried after 90 s). Athena job 3545969 cancelled before it started
+  (0 GPU-hours). My `pkill -f "fz2_wait_fetch.sh prod"` also killed its own shell (the pattern was in its command line;
+  the same mistake as FZ1 dead end 4); the scancel had already run (sacct: CANCELLED, 0 s).
+- 21:33 `src/FZ2/fz2_dgx_addon_watch.sh` started (log `/mnt/t7/smad_next/FZ2/dgx_addon_watch.log`): after the production
+  extraction, every 5 minutes it extracts each add-on shard whose DGX copy is complete (PNG count = job count).
 
 ## 3. Data
 
@@ -97,11 +107,14 @@ None yet (no DG1 feature read).
 2. When the add-on tars exist: `sbatch packs/FZ2/fz2_job.sbatch addon addon_s0 … addon_s7`, fetch, check, `fz2_read.py
    --run addon` (the primary read), then `result.md`.
 
-## 10. Handover state (20:45)
+## 10. Handover state (21:35)
 
-- Athena 3545969 (FZ2 job 1), pending on dependency `afterok:3545877`. If 3545877 fails, 3545969 never starts
-  (DependencyNeverSatisfied): cancel it (`scancel 3545969`, my own job) and resubmit without the failed shard.
-- Compute: Athena 0 so far; DGX: 8 + 64 + 64 image features (seconds).
+- DGX: `fz2_dgx_feats.sh` (production set B, both backbones) running; then `fz2_dgx_addon_watch.sh` extracts add-on
+  shards as they arrive (DG1 add-on: shards 0 and 1 on the DGX, shards 2–7 queued on Athena, start estimate 12 Nov
+  02:27). Find them with `ps -ef | grep src/FZ2/`. If a run fails: rerun the same script (finished files are skipped;
+  npz files are written only at the end).
+- Athena: nothing of FZ2 queued (3545969 cancelled). Pack `packs/FZ2/fz2_pack.tar` stays for a possible add-on job.
+- Compute: Athena 0; DGX GB10 a few minutes so far.
 
 ## 11. Reproduce from scratch
 

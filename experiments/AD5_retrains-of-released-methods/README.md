@@ -226,6 +226,12 @@ No retrain and no score exist yet.
   `athena/ad5_selfmad_oracle.sbatch` (to be placed in a code_v5 tree when the SelfMAD epochs exist).
 - 11 Nov 21:20. Queue: MADation tasks have the highest priority of the pending sprint jobs (6396) but wait for free
   nodes (23 nodes failed, 13 reserved, 11 mixed, 1 allocated); MixFaceNet-MAD and SelfMAD wait for nodes too.
+- 11 Nov 21:24-21:26. Scoring smoke 3546004 (t0010; 2:15 = 0.04 GPU-hours) PASSED: environment built in the RAM
+  disk in 52 s; RS1 smoke crops verified (927 files); releases ViT-B/16, ViT-L/14, MixFaceNet-MAD scored on both crop
+  variants (303 / 304 crops) in 4-15 s per call (24-109 img/s); result `results/AD5/scores_smoke_rel8b.tar`
+  (0d22533b...; smoke only, not used). The 750 s of 3545960 were therefore start-up from the shared file system.
+  Note: the pending production tasks import from shared environments (envs/AD5/madation, envs/AD5/selfmad); their
+  start-up may cost minutes on a slow evening; they are not changed (MADation arrays frozen by the lead's ruling).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -370,7 +376,7 @@ DGX: no AD5 process running. Athena jobs (logs in
 | 3545936 (task 405) | SelfMAD retrain seed 405 (same) | 1 x 46:00 | submitted 20:19 | as above |
 | 3545948 | scoring smoke (code_v4, releases only, RS1 smoke crops, 8 per set) | 1 x 1:00 | FAILED 0:47 (no setuptools in the wheel house), 0.01 GPU-h | fixed, resubmitted |
 | 3545960 | scoring smoke, second try | 1 x 1:00 | CANCELLED 34:40 (first call 750 s), 0.58 GPU-h | fixed (env in RAM disk) |
-| 3546004 | scoring smoke, third try | 1 x 1:00 | submitted 21:08 | read log |
+| 3546004 | scoring smoke, third try | 1 x 1:00 | COMPLETED 2:15, 0.04 GPU-h | done |
 Compute spent so far: 2.4 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2, 3544218 0.59, 3545815_401 0.19,
 3545882 0.57, 3545948 0.01, 3545960 0.58; plus running jobs). Allowance: 300 A100-hours for AD5 (lead, 20:17); planned about 272. Planned
 production: about 111 GPU-hours (L 62, B 16, X 33), then SelfMAD.

@@ -188,3 +188,16 @@ background-blanked and face-blanked; S3 and R2w with the R3 hull. Expected and c
 face-blanked R2w4 outside the hull (so its AUC must be 0.5); scored as a control.
 Presentation change (disclosed): the side verdict "identity reading" on warp-only vs same-person morph (R2w vs R3,
 R2wm vs R3m, R2 vs R3) is renamed "blend reading" (no second identity is involved).
+
+Amendment 7b (lead / author, 11 Nov 21:30; registered about 22:00 CET, before any splice score is opened): the author
+approved the spliced images as a remedy experiment against cue learning (not dataset extension, not a benchmark).
+Changes to amendment 7: (a) the SAME hull for every arm of a host: the R4 geometry hull (mean of H and B landmarks);
+S3 is rebuilt with that hull (the earlier S3 files, R3 hull, are superseded; their scores are not read). (b) New arm S0,
+seam-matched negative: the host's own geometry-matched warp-only face pasted into itself would be pixel-identical
+(checked), so S0 = the warp-only face of the other geometry (R2w, mean of H and S) pasted through the R4 hull onto R2w4
+(no second person; a seam only where the two warp geometries disagree). Number of pixels that differ from the outside
+image along a 3-pixel band on the hull boundary is printed for S0, S3, S4. (c) Reads: S0 vs S4, S3 vs S4, R2w4 vs S4,
+R2w4 vs S0, beside the unspliced contrasts, each as excess over simple baselines on the same images: 32-pixel
+thumbnail, band power, Laplacian variance, and the inside/outside sharpness ratio (Laplacian variance inside the hull
+divided by outside, one scalar, folded). (d) Transfer read on the existing Poisson-blended set (H1, A27/A36): the record's
+released-detector AUCs are quoted (no rescoring in this round). Blanking with the same R4 hull for all arms.
