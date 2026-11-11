@@ -25,13 +25,16 @@ intermediate image. Scoring all five tells us which step the detector reacts to.
 | Step | Name in the paper | Counts as |
 |---|---|---|
 | R0 → R1 | benchmark construction cue | shortcut |
-| R1 → R2 | tool or generator trace | not identity; reported separately (see open question 1) |
-| R2 → R3 | two-photo blending trace | not identity |
-| R3 → R4 | identity | the morph signal |
+| R1 → R2 | processing trace on a genuine image | shortcut: a genuine photo that was only processed is not a morph (author, 11 Nov) |
+| R2 → R3 | morphing of two photos of one person | morphing: the method was applied (author, 11 Nov); studied as a side problem |
+| R3 → R4 | second identity | morphing |
 
 For each detector and family the table gives the AUC of each step and its share of the benchmark
-separation (step d′ divided by d′ of R0 vs R4). The sentence "uses a benchmark cue" is allowed only
-for the R0 → R1 share.
+separation (step d′ divided by d′ of R0 vs R4). The sentence "uses a benchmark cue" covers the
+R0 → R2 share, with its two parts printed. The morph signal is the R2 → R4 share, with its two parts
+printed. For generators, R2 is the reconstruction of one photo (inversion and render, or the
+optimiser with A = B); it is treated as a processed genuine image, and this reading is printed beside
+every generator cell so it can be judged.
 
 ### Composition rule for twins
 
@@ -58,14 +61,22 @@ Both controls are computed before any detector score is opened.
 
 ### Verdict rules, fixed here
 
-Stated on R3 vs R4, with a 95% two-way bootstrap over persons (the `a41_read.py` method).
+Main verdict, on R2 vs R4 (processed genuine image against morph), with a 95% two-way bootstrap over
+persons (the `a41_read.py` method):
+
+- **Reads morphing:** AUC ≥ 0.75, lower bound above 0.65, and R0 → R2 share ≤ 0.2.
+- **Reads the benchmark:** R0 → R2 share at least 0.5 (lower bound), or R2 vs R4 AUC folded around 0.5
+  below 0.60 with upper bound below 0.65.
+- **Mixed:** anything else, with the four shares.
+
+Side study, on R3 vs R4 (does the detector need a second person, or does it react to morphing as
+such) and on R2 vs R3 (are same-person morphs detected):
 
 - **No identity reading:** AUC folded around 0.5 below 0.60, upper bound below 0.65.
 - **Twin artefact, cell invalid:** AUC below 0.40 with upper bound below 0.5 (twins score higher than
   morphs; seen once already, SelfMAD 0.29 in A43).
 - **Identity reading:** AUC ≥ 0.75, lower bound above 0.65.
 - **Mixed:** anything else, reported with shares.
-- **Benchmark cue used:** share of R0 → R1 at least 0.5 (lower bound). **Not used:** share ≤ 0.2.
 - Twins' rejection rate at the benchmark threshold is printed with an exact interval; no rule on it.
 
 With about 100 persons an AUC interval is about ±0.08, so many FRLL cells will read "mixed"; the
@@ -129,15 +140,15 @@ clean Poisson set.
 Wording aimed for: "no tested benchmark cue explains the result; an identity share of X survives".
 It is **supported** when all hold:
 
-1. identity reading (rule above) on both pools with composition-matched twins;
+1. "reads morphing" (main verdict above) on both pools with composition-matched images;
 2. the detector beats the best non-content baseline, paired lower bound above 0;
 3. monotone dose curve;
 4. accuracy kept with the background blanked;
 5. benchmark link: bridge AUC between published and our same-tool morphs within 0.40 to 0.60, and at
    the benchmark threshold our morphs are detected within 10 points of the benchmark rate;
-6. R0 → R1 share ≤ 0.2 under the border-matched control.
+6. R0 → R2 share ≤ 0.2 under the border-matched control.
 
-It is **refuted** when the R0 → R1 share is ≥ 0.5, or "no identity reading" holds on both pools.
+It is **refuted** when "reads the benchmark" holds on both pools.
 Otherwise "mixed", with the four shares. A universal "free of all cues" is not claimed; the cue
 matrix (`08_CUE_MATRIX.md`) lists what was tested.
 
@@ -150,16 +161,16 @@ x86 container build, AG1 generation.
 Cut order if time runs out: AD5, AG4, method extras (T5, T6, X3), the MADMamba arm, AD2, AR7, the
 large generator training sets. Kept to the end: AR1 to AR5, AD1, AD3, AD4, AG1 to AG3, AG5.
 
-## Open questions for the author
+## Author rulings of 11 Nov (afternoon)
 
-1. Is a detector that reacts to any tool-processed image (steps R1 → R3) using a "benchmark cue", or
-   doing legitimate detection? The plan reports it as its own category; the headline for (c) depends
-   on the answer.
-2. Which landmark generation paths may agents run: (i) the `h1_build.py` warp path approved for A27,
-   (ii) the third-party OpenCV and FaceMorpher morphers unchanged, (iii) constant-colour region
-   blanking? Storage stays PNG at tool size; no new blur, resize or compression code in any case.
-3. May images from FRGC, colorFERET or Multi-PIE be uploaded to rented Vast machines? Until answered,
-   Vast sees FRLL-derived data only and the rest runs on WCSS.
-4. May a freshly trained MADMamba arm be scored on twin sets while the seal on the old MADMamba holds?
-5. Registration: one pointer block in `PROTOCOL.md` citing this repository's commit and the hash of
-   each pre-registration page, plus pages here; or full ledger folders in `mambamorph-code` as before?
+1. A genuine image that was only processed (crop, alignment, compression and the like) and is called
+   a morph is an error. Morphing two photos of one person is still morphing; it is studied as a side
+   problem.
+2. Agents may run the approved warp script, the unchanged OpenCV and FaceMorpher morphers and
+   constant-colour blanking. If other warp paths are needed, they are verified too.
+3. All datasets may be processed on rented machines; they are published research data.
+4. A freshly trained MADMamba arm may be scored; it is a side quest. MambaVision is the expected
+   stronger state-space backbone and is added as an arm.
+5. Registration: brevity. One page per experiment in this repository (`experiments/<ID>/`), plain
+   conclusions in `NOTEBOOK.md` and `CONCLUSIONS.md`, everything in git. No full ledger folders.
+6. The old generated-morph training arms (CG, CD, CGD) are retired.

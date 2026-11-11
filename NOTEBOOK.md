@@ -58,7 +58,7 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 | X4 | Photo-history control on a photo pool no network was trained on (FFHQ) | planned | | | about 0.3 H100-h |
 | X5 | Landmark twins from an unseen source (CASIA), built with the unchanged approved script | planned | | | CPU |
 | X3 | Does the number of different pipelines per class matter once twins are present? | planned | | | cut first |
-| — | Generated-morph training arms (CG, CD, CGD) of the old plan | retire, or run CG only (11 H100-h) | | | author's call |
+| — | Generated-morph training arms (CG, CD, CGD) of the old plan | retired (author, 11 Nov) | | | |
 
 ## Zero-compute cue checks (from the cue table)
 
@@ -89,12 +89,12 @@ Last update: 11 Nov 2026, 14:30 CET. Nothing has been launched yet.
 
 ## Open decisions and blockers
 
-- Start signal from the author (plan is under review).
+- Codex transcript "Eksperymenty z S-MAD" to be read first; then the start signal.
 - Hand-over of the DGX and WCSS slots from the other loop.
-- Design questions 1 to 5 at the end of `11_AUDIT_PLAN.md`.
 - No x86 build of MIPGAN yet (GAN causal test depends on it).
 - For our own networks, FERET and FRGC have no unsealed held-out persons; unseen-source tests use CASIA or Multi-PIE.
 
 ## Log
 
 - 11 Nov: plan, evidence dossier, cue matrix, audit plan and workflow written. Repository created.
+- 11 Nov: author rulings recorded. Main contrast is now processed genuine image against morph; same-person morphs are a side study.

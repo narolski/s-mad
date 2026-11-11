@@ -24,11 +24,13 @@
 | E | The paper releases pair lists and code, not images of licensed datasets. |
 | F | The other loop's queued WCSS jobs (corrected MAD22 scoring, A138) stay in the queue; their results are used. |
 
+## Made by the author on 11 Nov 2026, afternoon
+
+See "Author rulings of 11 Nov (afternoon)" in `11_AUDIT_PLAN.md`. Also: commit everything to git;
+branches and pull requests in `narolski/s-mad`; never let data sit only in volatile storage; push the
+morph literature note to `narolski/research`.
+
 ## Still open
 
-1. **Start signal.** One word starts the WCSS submissions and the DGX work.
-2. **Five design questions** from the pre-run review, listed at the end of `11_AUDIT_PLAN.md`: how to
-   name a "tool trace"; which landmark generation paths may run; licensed images on Vast; a new
-   MADMamba arm under the seal; how to register.
-3. **Literature repository.** Add the morph literature note to `narolski/research` and push? Prepared
-   locally, not pushed.
+1. **Codex transcript "Eksperymenty z S-MAD"** from the author's Mac, to be read before the start.
+2. **Start signal** after that.

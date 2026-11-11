@@ -1,5 +1,10 @@
 # Hypotheses in plain terms
 
+Author ruling, 11 Nov: a genuine image that was only processed is not a morph; a morph of two photos
+of one person is a morph. So the main contrast everywhere is "processed genuine image against morph".
+"Twin" tests (same-person morph against two-person morph) are the side study of whether a detector
+reads the second identity.
+
 Each has a test that can fail. Thresholds are fixed here, before any run. AUC = area under the ROC
 curve (0.5 is chance). "Twin" = a one-identity image from the same pipeline as the morph, with the
 same post-processing. "Held-out pipeline" = a generator never used in training.
