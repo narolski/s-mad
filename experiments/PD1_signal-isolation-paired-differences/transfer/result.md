@@ -45,7 +45,8 @@ written below as **CLIP pooled / CLIP patch / DINOv3** in that order.
    - diffusion: 256 px DiffAE crops;
    - GAN: 1,024 px renders, with camera photos in a third frame.
 
-   Each family's one-person signal was also verified to be largely a pipeline artefact. So the negative shows that
+   Each family's one-person signal was also found to be largely a pipeline artefact (by the verifiers for landmark and
+   diffusion, by the owner's registered qualifier for GAN). So the negative shows that
    these artefacts do not transfer. It does not show that a blending signal confined to the face could not transfer
    once the pipelines are run on the same photos in one frame. A post hoc cell shows that some shared component
    exists: the unfitted mean mixing direction of diffusion transfers to landmark morphs at 0.976. But it reads the
@@ -74,8 +75,8 @@ interval. CLIP pooled / CLIP patch / DINOv3:
 - Reliabilities (split-half): landmark and diffusion mixing 0.94 to 0.99; GAN mixing 0.67 / 0.70 / 0.83. Whole morph:
   landmark 0.95 to 0.99, diffusion 0.79 to 0.89, GAN 0.65 to 0.69. The "not shared" readings are therefore not a
   noise ceiling.
-- L2-normalised space (secondary) gives the same pattern. Only landmark vs diffusion mixing in CLIP pooled reaches
-  0.50 ("shared" for that pair), and the overall reading is still "no shared direction".
+- L2-normalised space (secondary) gives the same pattern. For the mixing step only landmark vs diffusion in CLIP
+  pooled reaches 0.50 ("shared" for that pair), and the overall reading is still "no shared direction".
 - Within each family, mixing and whole morph are aligned, as the families reported: 0.85 to 0.94 for landmark,
   0.68 to 0.79 for diffusion, 0.61 to 0.74 for GAN.
 - References (one-person mixing against them):
@@ -192,8 +193,8 @@ in-family heads, and it does not separate one-photograph blends from two-person 
   (1.000 / 0.994 / 0.947) is the comparison on equal features.
 - The GAN family has no delivered independent verification.
 - The analysis code-path test (`--quick`: 50 draws, 10 splits) produced the first cross-family numbers at 21:14,
-  after the registration. Its values equal the full run's within 0.004 for the heads. The full run used the same code
-  unchanged. Amendment 2 was written after the full CLIP results had been seen.
+  after the registration. Its head point estimates are identical to the full run's (only the number of draws and
+  splits differs). The full run used the same code unchanged. Amendment 2 was written after the full CLIP results had been seen.
 - Bootstrap intervals cover person sampling of the held-out family only. They do not cover the sampling of the
   training families or the head fit. The C range is reported instead.
 - Training sizes after the person purge are small for GAN as a training family (40 and 56 hosts). The no-purge
@@ -206,5 +207,5 @@ in-family heads, and it does not separate one-photograph blends from two-person 
 
 ## Compute
 
-One GPU process, about 7 minutes in total (9,140 images × 2 backbones, peak 1.72 GB). Analyses on the CPU: about
+One GPU process, about 9 minutes in total (21:07:56 to 21:16:54; 9,140 images × 2 backbones, peak 1.72 GB). Analyses on the CPU: about
 2 minutes in total, at most 2 processes, `nice -n 10`, 2 threads each. No cluster, no spending, no git operation.

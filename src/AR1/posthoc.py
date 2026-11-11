@@ -46,7 +46,7 @@ def img_feats(p):
     band = stats.M.band_shares(stats.M.power_profile(Y)[0])
     z = (img == 0).all(2)
     th = img.reshape(32, 16, 32, 16, 3).mean((1, 3)).ravel()
-    return p, dict(lap=float(cv2.Laplacian(Y, cv2.CV_64F).var()), b23=float(band[1] + band[2]), zero=z, thumb=th)
+    return p, dict(lap=float(cv2.Laplacian(Y, cv2.CV_64F).var()), b23=float(band[1] + band[2]), zero=np.packbits(z), thumb=th)
 
 
 def main():
@@ -124,11 +124,11 @@ def main():
             o4["R0vsR2wm"], _ = cr(P.D, S, P.rows(tool, "R2wm"), P.rows(tool, "R0"))
             # H-new-4 padding (colorFERET)
             fr = [r for r in rows_of(man, tool, "R4", "feret") if r["id"] in S]
-            pad = np.array([float((FE[pool[r["p1"]]["H"]]["zero"] ^ FE[pool[r["p1"]]["B"]]["zero"]).mean()) for r in fr])
+            pad = np.array([float(np.unpackbits(FE[pool[r["p1"]]["H"]]["zero"] ^ FE[pool[r["p1"]]["B"]]["zero"]).mean()) for r in fr])
             o4["feret_pad_diff_area_median"] = float(np.median(pad))
             o4["feret_spearman_R4_vs_paddiff"] = float(spearmanr([S[r["id"]] for r in fr], pad)[0])
             frf = [r for r in fr if r["id"] in Sb["face"]]
-            padf = np.array([float((FE[pool[r["p1"]]["H"]]["zero"] ^ FE[pool[r["p1"]]["B"]]["zero"]).mean()) for r in frf])
+            padf = np.array([float(np.unpackbits(FE[pool[r["p1"]]["H"]]["zero"] ^ FE[pool[r["p1"]]["B"]]["zero"]).mean()) for r in frf])
             o4["feret_spearman_faceblankedR4_vs_paddiff"] = float(spearmanr([Sb["face"][r["id"]] for r in frf], padf)[0])
         print("done", name, flush=True)
     json.dump(out, open(K.RES / "posthoc.json", "w"), indent=1)

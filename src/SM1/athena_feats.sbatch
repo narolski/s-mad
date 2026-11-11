@@ -27,6 +27,9 @@ hostname; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; date -
 if [ "$MODE" = f ]; then                     # A10: only the new lists (FRLL JPEG frames, arm f JPEG copies)
   for n in sm1gpu_code_v2.tar sm1gpu_img_jpegeval.tar sm1gpu_img_armf.tar; do ln -sf "$G/packs/SM1/$n" "$W/in/$n"; ln -sf "$G/packs/SM1/$n.sha256" "$W/in/$n.sha256"; done
   EXTRA="--lists test_eval_jpeg,train_armf_jpeg"
+elif [ "$MODE" = a12 ]; then                 # A12 items 11, 13: armd5 morphs and the AF0 softened AR1 copies
+  for n in sm1gpu_code_v2.tar sm1gpu_lists_a12.tar sm1gpu_img_a12.tar; do ln -sf "$G/packs/SM1/$n" "$W/in/$n"; ln -sf "$G/packs/SM1/$n.sha256" "$W/in/$n.sha256"; done
+  EXTRA="--lists train_armd5,test_af0soft"
 elif [ "$MODE" = smoke ]; then
   for n in sm1gpu_code.tar sm1gpu_img_test.tar; do ln -sf "$G/packs/SM1/$n" "$W/in/$n"; ln -sf "$G/packs/SM1/$n.sha256" "$W/in/$n.sha256"; done
   EXTRA="--limit 400 --lists test_eval,test_mad22,test_ar1"
@@ -40,10 +43,12 @@ for t in "$W"/in/*.tar; do
   (cd "$W/in" && sha256sum -c "$n.sha256") || { echo "sha256 mismatch $n" >&2; exit 2; }
   case "$n" in
     sm1gpu_code.tar|sm1gpu_code_v2.tar) tar -C "$W/pack" -xf "$t" ;;
+    sm1gpu_lists_*.tar) ;;                # extracted after the code pack (below)
     *) tar -C "$W/pack/images" -xf "$t" ;;
   esac
   echo "extracted $n $(date -Is)"
 done
+for t in "$W"/in/sm1gpu_lists_*.tar; do [ -e "$t" ] && tar -C "$W/pack" -xf "$t" && echo "lists overlay $(basename "$t")"; done
 "$PY" -c "import torch, timm, numpy, PIL, sys; print(sys.version.split()[0], torch.__version__, timm.__version__, numpy.__version__, PIL.__version__, torch.cuda.is_available())"
 "$PY" "$W/pack/code/feats_gpu.py" --pack "$W/pack" --out "$W/feats" --workers 14 --bs 128 $EXTRA 2>&1 | tee "$W/feats/run.log"
 cp "$G/logs/SM1F-$SLURM_JOB_ID.out" "$W/feats/" 2>/dev/null || true
