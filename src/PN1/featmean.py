@@ -6,7 +6,8 @@ mean over the T patch tokens of the float16-cast tokens, computed in float32, i.
 AF0 token files (featpool.py), so new and cached features are the same statistic.
 Output: /mnt/t7/smad_next/PN1/feat/<backbone>/<name>.mean.npy (N, 1024) float32, <name>.ids.npy, <name>.meta.json.
 
-  python3 -I featmean.py --backbone clip224 --list /mnt/t7/smad_next/PN1/lists/<name>.csv --name <name> [--limit 8]
+  python3 -I featmean.py --backbone clip224 --job <name>=<list.csv> [--job ...] [--limit 8]
+(one process, one model load, the jobs in order; a finished job is skipped)
 """
 import argparse
 import csv
@@ -26,8 +27,7 @@ OUT = pathlib.Path("/mnt/t7/smad_next/PN1/feat")
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--backbone", required=True, choices=["clip224", "dinov3_512"])
-    ap.add_argument("--list", required=True)
-    ap.add_argument("--name", required=True)
+    ap.add_argument("--job", action="append", required=True, help="name=list.csv")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--bs", type=int, default=16)
     ap.add_argument("--workers", type=int, default=2)
@@ -38,39 +38,43 @@ def main():
     F = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(F)
     import torch
-    rows = list(csv.DictReader(open(a.list)))[: a.limit or None]
-    tag = a.name + (f"_limit{a.limit}" if a.limit else "")
-    od = OUT / a.backbone
-    od.mkdir(parents=True, exist_ok=True)
-    if (od / f"{tag}.mean.npy").exists():
-        print("exists", od / f"{tag}.mean.npy")
-        return
-    model, tf, cfg = F.build(a.backbone)
-    npt = model.num_prefix_tokens
-    g = F.BACKBONES[a.backbone]["size"] // model.patch_embed.patch_size[0]
-    T, D = g * g, model.embed_dim
-    model.to("cuda")
-    dl = torch.utils.data.DataLoader(F.Items([r["path"] for r in rows], tf, False), batch_size=a.bs,
-                                     num_workers=a.workers)
-    out = np.zeros((len(rows), D), np.float32)
-    i, t0 = 0, time.time()
-    with torch.no_grad(), torch.autocast("cuda", dtype=torch.bfloat16):
-        for x, _ in dl:
-            t = model.forward_features(x.to("cuda", non_blocking=True))[:, npt:].float()
-            assert t.shape[1] == T
-            out[i:i + len(x)] = t.half().float().mean(1).cpu().numpy()
-            i += len(x)
-            if (i // a.bs) % 25 == 0:
-                print(f"{i}/{len(rows)} {i / (time.time() - t0):.1f} img/s", flush=True)
-    assert i == len(rows)
-    np.save(od / f"{tag}.ids.npy", np.array([r["id"] for r in rows]))
-    np.save(od / f"{tag}.mean.npy", out)
-    json.dump(dict(backbone=a.backbone, timm=F.BACKBONES[a.backbone]["timm"], transform=str(tf), grid=g,
-                   prefix_tokens=npt, list=a.list, list_sha256=hashlib.sha256(open(a.list, "rb").read()).hexdigest(),
-                   n=len(rows), af0_feat_sha256=AF0FEAT_SHA, seconds=round(time.time() - t0, 1),
-                   gpu=torch.cuda.get_device_name(0), torch=torch.__version__),
-              open(od / f"{tag}.meta.json", "w"), indent=1)
-    print(f"DONE {tag} {len(rows)} images {time.time() - t0:.0f} s", flush=True)
+    model, tf, cfg = None, None, None
+    for job in a.job:
+        name, lst = job.split("=", 1)
+        rows = list(csv.DictReader(open(lst)))[: a.limit or None]
+        tag = name + (f"_limit{a.limit}" if a.limit else "")
+        od = OUT / a.backbone
+        od.mkdir(parents=True, exist_ok=True)
+        if (od / f"{tag}.mean.npy").exists():
+            print("exists", od / f"{tag}.mean.npy", flush=True)
+            continue
+        if model is None:
+            model, tf, cfg = F.build(a.backbone)
+            model.to("cuda")
+        npt = model.num_prefix_tokens
+        g = F.BACKBONES[a.backbone]["size"] // model.patch_embed.patch_size[0]
+        T, D = g * g, model.embed_dim
+        dl = torch.utils.data.DataLoader(F.Items([r["path"] for r in rows], tf, False), batch_size=a.bs,
+                                         num_workers=a.workers)
+        out = np.zeros((len(rows), D), np.float32)
+        i, t0 = 0, time.time()
+        with torch.no_grad(), torch.autocast("cuda", dtype=torch.bfloat16):
+            for x, _ in dl:
+                t = model.forward_features(x.to("cuda", non_blocking=True))[:, npt:].float()
+                assert t.shape[1] == T
+                out[i:i + len(x)] = t.half().float().mean(1).cpu().numpy()
+                i += len(x)
+                if (i // a.bs) % 25 == 0:
+                    print(f"{tag} {i}/{len(rows)} {i / (time.time() - t0):.1f} img/s", flush=True)
+        assert i == len(rows)
+        np.save(od / f"{tag}.ids.npy", np.array([r["id"] for r in rows]))
+        np.save(od / f"{tag}.mean.npy", out)
+        json.dump(dict(backbone=a.backbone, timm=F.BACKBONES[a.backbone]["timm"], transform=str(tf), grid=g,
+                       prefix_tokens=npt, list=lst, list_sha256=hashlib.sha256(open(lst, "rb").read()).hexdigest(),
+                       n=len(rows), af0_feat_sha256=AF0FEAT_SHA, seconds=round(time.time() - t0, 1),
+                       gpu=torch.cuda.get_device_name(0), torch=torch.__version__),
+                  open(od / f"{tag}.meta.json", "w"), indent=1)
+        print(f"DONE {tag} {len(rows)} images {time.time() - t0:.0f} s", flush=True)
 
 
 if __name__ == "__main__":

@@ -56,6 +56,17 @@ the owner. Nothing may be submitted or probed until then.
   the 7 smoke images (`test_score_pipeline.py`, `/mnt/t7/smad_next/AG1/tests/score_pipeline/`): pins, check_scope and
   the strict weight load of MADation ViT-B/16 passed; the move to the GPU failed with CUDA out of memory (the GB10 had
   12 GB free; about 17 other GPU processes of other owners). To retry when the GPU is quieter.
+- 19:00 Smoke job 3544209 COMPLETED in 9 min 56 s (0.17 GPU-h), node t0020, A100-SXM4-40GB: MIPGAN-I 11 / 11
+  images in 302 s, MIPGAN-II 8 / 8 in 200 s, format check 0 deviating, tars `results/AG1/AG1_smoke_mip1.tar`
+  (8239b384...) and `AG1_smoke_mip2.tar` (9110d99c...), copied to `/mnt/t7/smad_next/AG1/results/` with matching
+  sha256. A100 rates: inversion 500 steps 30.7 s, MIPGAN-I 150 steps 10.7 s, MIPGAN-II 23.8 s per image (incl. e4e);
+  peak GPU memory (nvidia-smi) 2.8 GB / 6.7 GB; RAM disk use 1.1 GB / 2.3 GB. Final loss MIPGAN-I R2 1.665 / 0.412,
+  R3 2.953 / 1.246, R3m 3.247 / 1.331, R4 5.474 / 5.550, RT 2.947, AG3(0.3) 4.785; MIPGAN-II R2 2.429 / 0.735, R3
+  3.304 / 1.457, R3m 3.545 / 1.520, R4 5.676 / 5.706 (persons frll_001 / frll_010). Production estimate 19.9 A100
+  GPU-h; array time limit raised to 10 h (longest shard, MIPGAN-II FRLL 00, about 4.5 h).
+- 19:05 Production submitted: core array 3544797 (indices 0-7 = `core.txt`: mip1 frll 00/01, feret 00/01, frgc 00/01,
+  mip2 frll 00/01); graded mixing 3544798 (indices 0-1, FERET, afterok on 3544797_2 and _3) and 3544799 (indices 2-3,
+  FRGC, afterok on 3544797_4 and _5). Logs `.../smad-next/logs/AG1-<job>_<index>.out`.
 - 18:45 Smoke job resubmitted with the fixes (`ag1_task.sh` 216ad6d3, `ag1_smoke.sbatch` 719406d8, `ag1_array.sbatch`
   c8ef41f9): Athena job 3544209.
 - 18:31 Smoke job 3544188 FAILED after 3 min 49 s (0.06 GPU-h): the environment build succeeded (python 3.10.4, torch
@@ -232,6 +243,10 @@ Not verified:
 
 ## 10. Handover state (11 Nov ~17:45 CET)
 
+- **Update 19:05:** Athena jobs: smoke 3544188 (failed, 0.06 GPU-h), smoke 3544209 (passed, 0.17 GPU-h); production
+  3544797 (8 tasks), 3544798 and 3544799 (2 tasks each, dependent), about 19.9 GPU-h expected. Next: copy every
+  `results/AG1/<shard>.tar` + `.sha256` back to `/mnt/t7/smad_next/AG1/results/` with the transfer lock, check hashes,
+  then the manifest, oracle, RT and pins steps; scores are read only after the lead confirms the reading rules.
 - Athena: `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AG1/ag1_pack.tar` (+ .sha256) and
   `.../tasks/AG1/{ag1_task.sh, ag1_smoke.sbatch, ag1_array.sbatch, core.txt, ag3.txt}` uploaded; `results/AG1/`,
   `envs/` created; no job submitted (0 GPU-hours spent).

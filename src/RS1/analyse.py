@@ -129,7 +129,10 @@ def rel_pools(det, man, smoke):
 ATH_RUN = None                                          # set in main(): the unpacked production result folder
 
 
-def athena_pools(det):
+def athena_pools(det, a46_crops=False):
+    """Athena scores. Primary (amendment 3): every image cropped on Athena (the raw files behind the A46 crops under ids
+    xr_<A46 id>); the reused A46 crops (GB10) are skipped. a46_crops=True: the crop-platform check, the A46 crops in
+    place of their Athena re-crops."""
     f = ATH / ATH_RUN / "scores" / f"scores_rel_{det}__athena.npz" if ATH_RUN else pathlib.Path("/nonexistent")
     if not f.exists():
         return None
@@ -139,6 +142,8 @@ def athena_pools(det):
     by = {}
     for i, l in zip(z["id"].tolist(), z["logit_noTTA"]):
         r = man[i]
+        if r["origin"] == "check" or (r["origin"] == "a46") != a46_crops and (r["origin"] == "a46" or i.startswith("xr_")):
+            continue
         by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"], r["photo"]))
     return {s_: Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], "own crop (Athena)", "logit",
                      [v[3] for v in L]) for s_, L in by.items()}
@@ -279,12 +284,16 @@ class Stats:
         return D.wm(P.pp) if len(P.pp[0]) == 2 else D.wb([(p[0],) for p in P.pp])
 
     def eer(self, b, m):
+        if len(b.s) == 0 or len(m.s) == 0:
+            return float("nan"), np.full(self.Ds["frll"].B, np.nan)
         sb, sm = pair(b, m)
         pt = 100 * A.eer(sb, sm)
         rep = 100 * A.eer_weighted(sb, sm, self.w(b), self.w(m))
         return pt, rep
 
     def auc(self, pos, neg):
+        if len(pos.s) == 0 or len(neg.s) == 0:
+            return float("nan"), np.full(self.Ds["frll"].B, np.nan)
         sp, sn = pair(pos, neg)
         pt = float(R36.wauc(sp, sn, np.ones((1, len(sp))), np.ones((1, len(sn))))[0])
         rep = R36.wauc(sp, sn, self.w(pos), self.w(neg))
@@ -324,6 +333,13 @@ def flag_rate(sx, wx, t, strict):
 
 
 def flag_block(S, G, Mo, X):
+    if len(X.s) == 0:
+        nan = (float("nan"), np.full(S.Ds["frll"].B, np.nan), 0)
+        return {"t5": nan, "t_eer": nan}
+    return _flag_block(S, G, Mo, X)
+
+
+def _flag_block(S, G, Mo, X):
     """flag rates of pool X at t5 (score > t5) and t_eer (score >= t_eer), thresholds set on the native genuine photos
     G (and the cell's morphs Mo for t_eer), on one common scale, recomputed in every replicate. -> {name: (point,
     replicates, ties at the point threshold)}"""
@@ -343,6 +359,8 @@ def ci(rep):
 
 def fmt(pt, rep, d=2, pct=False):
     lo, hi = ci(rep)
+    if lo is None or not np.isfinite(pt):
+        return "n/a"
     k = 100 if pct else 1
     return f"{k * pt:.{d}f} [{k * lo:.{d}f}, {k * hi:.{d}f}]"
 
@@ -438,6 +456,8 @@ def main():
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--skip-selfmad", action="store_true")
     ap.add_argument("--dgx", action="store_true", help="also tabulate the DGX MADation scores (platform check only)")
+    ap.add_argument("--crop-check", action="store_true")
+    ap.add_argument("--suffix", default="")
     ap.add_argument("--athena", default=None, help="unpacked Athena result folder name under /mnt/t7/smad_next/RS1/athena")
     a = ap.parse_args()
     global ATH_RUN
@@ -460,6 +480,11 @@ def main():
             p = athena_pools(d)
             if p:
                 runs.append((d, "Athena", p))
+        if a.crop_check:
+            for d in REL_ATH:
+                p = athena_pools(d, a46_crops=True)
+                if p:
+                    runs.append((d, "Athena scoring, A46 crops (GB10) for the raw files", p))
     if not a.skip_selfmad:
         runs.append(("selfmad", "existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)", selfmad_pools(man)))
         p = selfmad_dgx(man)
@@ -566,7 +591,7 @@ def main():
                     out["ladder_flags"].append(dict(detector=NAME[det], platform=plat, threshold=tn, arm=arm, n=len(X.s),
                                                     flagged=fmt(fp, fr, 1, pct=True), flagged_pt=round(100 * fp, 2),
                                                     ties_at_threshold=ties, mordiff_label=lab, src=X.src))
-    sfx = "_smoke" if a.smoke else ""
+    sfx = "_smoke" if a.smoke else (a.suffix or "")
     json.dump(out, open(RES / f"rs1_results{sfx}.json", "w"), indent=1, default=float)
     for k in ("reproduction", "history", "flags", "expression", "ladder", "ladder_flags", "pool_rates", "shifts"):
         rows = out[k]

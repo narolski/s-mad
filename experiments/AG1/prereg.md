@@ -156,4 +156,36 @@ Code: `src/AG1/`. Large outputs: `/mnt/t7/smad_next/AG1/`. Rules: `11_AUDIT_PLAN
     and `generate.mipgan` ended max |w| 0.65 apart; `generate.mipgan` run twice ended 0.379 apart (mean 0.054). So
     "equal term by term" holds for the objective; trajectories carry run-to-run non-determinism of this order, and
     every rung is a sample of that slightly noisy procedure (RT measures it). Bitwise equality is not claimed.
+- **Amendment 3 (11 Nov ~19:15, before any data image is back and before any detector score exists; the lead's
+  working reading rules until the author rules, from `ideas/CONSOLIDATED_v3.md` section 5 and
+  `14_CLASS_DEFINITIONS.md`):**
+  1. *Classes.* Three categories: genuine (R0, R1), morphing attack (two or more persons: R4, BR, PUB, AG3 levels
+     > 0), single-subject manipulation (R2, R2i, R2s, R3, R3m, RT, AG3T levels and AG3 alpha 0). The primary reads
+     are the rung contrasts (AUC, registered bootstrap); they need no class decision. Readings A and B stay printed
+     as registered. Every flag rate at a threshold is printed under both class policies side by side, with no
+     verdict word: policy N (one-photo reconstruction counted as a non-attack: R0 plus R2 in the genuine error
+     rate) and policy X (reconstruction left out as inadmissible: R0 only). Single-subject rungs are reported in
+     their own table ("where the detector places it"), never inside the genuine or the attack error rate.
+  2. *Input alignment* (H4 / A33 path with blur and resampling): accepted as the generator pipeline's own existing
+     step, run unchanged and identically for every rung; it cannot create a difference between rungs. It is a
+     property of all generated rungs; rung images are not compared with camera photos as if it were neutral.
+  3. *SelfMAD:* the row through the release's own crop is primary; the row through our pipeline is secondary and
+     printed beside it. No single release decides: the rule is applied per row to every release row (MADation
+     ViT-B/16, ViT-L/14, SelfMAD own crop; MixFaceNet-MAD when an AG1 scorer exists). Holm within AG1 runs over
+     these primary rows.
+  4. *Mirror rung (R3m):* single-subject manipulation, read for trace contrasts only; it never supports a statement
+     about a second person. A symmetry baseline (mean absolute difference between the aligned frame and its
+     left-right mirror, gray, the frame being symmetric about the eye midpoint) is printed beside every mirror
+     contrast.
+  5. *Baselines.* Every detector contrast is printed as excess over the best simple baseline on the same images:
+     frame PNG file size, Laplacian variance, high-frequency band power (share of spectral power beyond half the
+     Nyquist radius), and a 32 x 32 block-mean thumbnail (as EV1) with a logistic probe, 5-fold by host person,
+     out-of-fold scores. Scalar baselines enter with their orientation fixed by the point estimate. Excess =
+     detector AUC minus the best baseline AUC, interval from the same bootstrap draw.
+  6. *Spread-matched one-person render (R2s), the decisive control for "two codes mixed" against "closer to the mean
+     code":* for every host, G(m + (w_R2 - m) / sqrt(2)), w_R2 = the final latent of the host's R2 (s1), m = the
+     mean of all inversion latents of that generator and pool (the A37 rule), rendered by the same generator on
+     Athena after the core array (render only). R4 vs R2s is printed beside R2 vs R4 with the latent-distance
+     medians of R2s and R4; "the detector reads two codes mixed" needs R4 vs R2s to keep the R2 vs R4 reading.
+  7. The facts table goes to the lead before any interpretation.
 - **Result:** pending.

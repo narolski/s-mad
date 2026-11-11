@@ -291,7 +291,10 @@ def merge(blank=False):
             for k in acc:
                 acc[k].append(z[k])
     out = {k: np.concatenate(v) for k, v in acc.items()}
-    assert len(set(out["ids"].tolist())) == len(out["ids"])
+    _, first = np.unique(out["ids"], return_index=True)      # role-filtered reruns can repeat an id: keep the first
+    keep = np.sort(first)
+    print("duplicate ids dropped", len(out["ids"]) - len(keep))
+    out = {k: v[keep] for k, v in out.items()}
     np.savez(K.OUT / ("meas_blank_all.npz" if blank else "meas_all.npz"), cov_names=np.array(COV), **out)
     print("merged", len(out["ids"]))
 

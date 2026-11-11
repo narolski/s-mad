@@ -1,94 +1,157 @@
 # Identity-shrinkage triage: how average is a morph, and what is the ceiling [ID0] — result
 
-Owner run, 11 Nov 2026, finished 18:20 CET. Pre-registration `prereg.md` (written before any statistic). Full
-record, commands, hashes, dead ends: `README.md`. Code `src/ID0/`; features and logs `/mnt/t7/smad_next/ID0/`;
-per-arm results `arm_<arm>.json`, `contrasts_<arm>.csv`; falsifier table `verdicts.json`; benchmark pair
-similarity `bench_similarity.json`. AUC = area under the ROC curve, second-named group positive; [a, b] = 95%
-two-way person bootstrap (a41_read.Draw, B = 2,000). ISS = the pre-registered identity-subspace shrinkage score
-(higher = closer to the average face). Facts only.
+First version 11 Nov 2026, 18:20 CET (kept as `result_v1_20261111_1820.md`). **Revised 11 Nov, about 19:15 CET,
+after the independent review** (`experiments/reviews/REVIEW_ID0_20261111.md`, verdict "needs qualification")
+and the four zero-GPU reruns of pre-registration amendment 1 (`prereg.md`, 18:45). Withdrawn statements are kept
+below, marked **WITHDRAWN**, with the reason. Full record: `README.md`. AUC = area under the ROC curve,
+second-named group positive; [a, b] = 95% two-way person bootstrap (a41_read.Draw, B = 2,000). ISS = the
+pre-registered identity-subspace shrinkage score (higher = closer to the average face). Facts only.
 
-## Fit (genuine photos only)
+## What the data say (corrected statements)
 
-776 FRGC + colorFERET persons (FERET 710, FRGC 66), 1,395 photos; 471 persons with ≥ 2 photos (619 within-person
-degrees of freedom), only 47 with ≥ 2 capture sessions, so "within-person" is mostly within-session variation.
-87 `is_val` persons excluded; no AR1 host/partner, no FRLL person, no morph or render. 16 AR1 hosts drop out
-because host or partner is `is_val` (8 AR1 hosts are themselves `is_val`; AR1 does not filter them).
+1. How close a face is to the average face does not work as a single-image morph detector in the form tested
+   (five feature spaces, statistic fitted on 776 genuine persons): no space reaches 0.75 with every
+   storage-history control in band (unchanged; follows from the registered rule).
+2. **No arm is both powered and clean** (amendment 1a; power flag fixed before the rerun: ideal-midpoint AUC
+   ≥ 0.65 with lower bound > 0.60). The face-recognition (glintr100) arm is clean on storage history but has no
+   power on the landmark ladder: its registered ISS scores an ideal midpoint of the same ladder pairs *lower*
+   than a photo (0.44–0.45), and its virtual head and mean-direction projection reach only 0.60–0.64 on ideal
+   midpoints. CLIP, DINOv3 and the diffusion-autoencoder code are powered (ideal 0.82–0.92) but fail the
+   MorDIFF-history control (0.582, 0.356, 0.000).
+3. In face-recognition features an ideal two-person midpoint is only slightly more typical than a photo
+   (virtual head 0.64, mean direction 0.61 on the ladder pairs); real landmark morphs reach 0.58–0.59 (head) and
+   0.50–0.55 (mean direction); diffusion morphs are not distinguishable from reconstructions within wide
+   intervals (head 0.524 [0.454, 0.594]). Typicality cannot explain near-zero benchmark errors. What a second
+   identity leaves in an image is not measured here.
+4. Computed from exact landmark files, the mean shape of two persons is more average than a real shape
+   (0.725 [0.689, 0.758]); the mean of two sessions of one person hardly is (0.548 [0.536, 0.559]). This is a
+   calculation on landmark files; whether it can be read from a morph image is untested (the detected-landmark
+   arm belongs to the mirror-asymmetry test, AS0).
+5. Shape ladder, correct reading: photo vs two-session same-person mean 0.548; photo vs own-mirror mean 0.572;
+   same-person mean vs two-person mean 0.687 [0.650, 0.720]. All 536 AR1 host pairs are cross-session, so
+   averaging of pose and session is bounded by the 0.548: most of the shape effect is specific to the second
+   person.
+6. In CLIP, DINOv3 and the diffusion autoencoder an ideal feature midpoint would stand out (0.82–0.92), but the
+   features of a real morph are not that midpoint: realised share (AUC_real − 0.5)/(AUC_ideal − 0.5) on the AR1
+   ladder −0.30 to −0.39 (CLIP), 0.07–0.09 (DINOv3), 0.44–0.49 (diffusion autoencoder); on MorDIFF D20 vs B20
+   0.47 (CLIP), 0.35 (DINOv3), 0.58 (diffusion autoencoder, native frames).
+7. The informative control for within-pipeline contrasts is the same-person rung, not only the storage-history
+   copy. CLIP and DINOv3 fail it (same-person mix vs two-person morph 0.419 and 0.478; reconstruction vs
+   same-person mix 0.756 and 0.627: they read "two codes mixed", not "two persons"). The diffusion-autoencoder
+   code passes it: same-person mix vs two-person morph 0.747 [0.685, 0.807] on the diffusion ladder and 0.676
+   [0.637, 0.715] on the landmark ladder, and it is clean on the landmark-family history copies (0.515, 0.514).
+   What disqualifies it is that its absolute level follows frame and pool: MorDIFF history 0.000, stored crops
+   0.462 against 0.688 on native frames, FRLL photo vs StyleGAN3 render 0.004.
+8. How sure: one deterministic analysis with person bootstrap on our own diagnostic sets (520 hosts, 200
+   diffusion morphs, 423 StyleGAN3 morphs); not a held-out benchmark. Not shown: that a second identity leaves
+   little in an image, or that benchmark error rates come from process traces.
 
-## Main table (ISS score)
+## Withdrawn
 
-| Arm | native vs E7 control (4 primary families) | AR1 OpenCV R2w vs R4 | MorDIFF D20 vs B20 | StyleGAN3 render vs morph | dose m0→m0.5 (Page p; means) |
+- **WITHDRAWN: the "ceiling" of 0.70 to 0.78** (the Λ-based table, and "the measured identity-only ceiling").
+  Reason: it is not a bound. It used Λ = 2.68 (Ledoit-Wolf); the ridge variants in the same file give Λ
+  3.70–4.81 (0.86–0.92 at c = 0); the in-domain head still rises with fit persons and with weaker
+  regularisation (amendment 1b, table below); and it is a linear, first-moment number in one feature space.
+  Replacement wording: "what a linear head reaches with 776 persons: 0.751 [0.735, 0.767] morph vs single
+  photo, in domain".
+- **WITHDRAWN: "the closed form matches the exact-shape arm within about 0.03".** Reason: it holds only with
+  the pool-centred similarity added after the numbers were seen. With the registered estimator the closed form
+  misses by 0.04 on the ladder (0.687 vs 0.725) and by 0.10–0.11 on benchmark pairs (0.634 vs 0.737; 0.650 vs
+  0.757). The ten benchmark-pair rows are two results repeated (the families share pair lists).
+- **WITHDRAWN: every sentence that reads the face-recognition ISS "at chance" numbers (0.494, 0.503, 0.554,
+  0.545, flat dose) as evidence about morphs.** Reason: the statistic has no power there (ideal midpoints
+  0.44–0.45; genuine-only virtual check 0.521).
+- **WITHDRAWN: any sentence that calls the exact-shape result a signal read from images.** Reason: no morph
+  image is read; the positive class is the mean of two source landmark files.
+- **WITHDRAWN: "dose monotone" for the exact-shape arm as evidence** (Page p 4e-234). Reason: algebra; a
+  quadratic score on a linear interpolation of shapes is monotone by construction. (The diffusion-autoencoder
+  dose, p 9e-99, is measured on built FaceMorpher images; it stays as a measurement with the frame/pool caveat
+  of point 7.)
+- **WITHDRAWN: "physics part 1 does not fire" read as support.** It does not fire on the best of five arms, but
+  the lower bound on MorDIFF (0.626) is below the 0.65 line and the arm that clears it fails its control.
+
+## Registered results (numbers unchanged)
+
+| Arm | native vs E7, MorDIFF family | AR1 OpenCV R2w vs R4 | MorDIFF D20 vs B20 | StyleGAN3 render vs morph |
+|---|---|---|---|---|
+| Landmark, exact shapes (calculation) | not applicable (no image) | 0.687 [0.650, 0.720] | — | — |
+| glintr100 ISS (no power, see 2) | 0.506 [0.489, 0.524] | 0.503 [0.460, 0.548] | 0.554 [0.471, 0.640] | 0.545 [0.513, 0.578] |
+| CLIP ViT-L/14 | 0.582 [0.543, 0.621] | 0.364 [0.323, 0.404] | 0.698 [0.616, 0.775] | 0.542 [0.511, 0.572] |
+| DINOv3 ViT-L/16 (bf16) | 0.356 [0.300, 0.406] | 0.533 [0.486, 0.578] | 0.611 [0.522, 0.698] | 0.624 [0.598, 0.652] |
+| DiffAE z_sem | 0.000 [0.000, 0.000] | 0.692 [0.657, 0.729] | 0.688 [0.626, 0.749] (native frames) | 0.597 [0.568, 0.627] |
+
+The other primary-family history copies (opencv, facemorpher) are 0.502–0.531 in every arm; the stylegan copies
+are identical to the native photos (cosine 1.000), so three families are informative. Two registered controls are
+vacuous: NC vs R3 (practically identical embeddings) and OpenCV R2 (equals the host photo).
+GEO-0 reads (glintr100): fidelity of the embedding to the normalised sum of its sources, median: landmark R4
+0.856–0.876, twins 0.96–0.98, diffusion morphs 0.69–0.72, same-person mix 0.915. Mean-direction gain: AR1 OpenCV
+R4 1.108 [1.057, 1.157] (prediction 1.27), R3 1.030 [1.017, 1.042] (prediction 1.03). Virtual head on real sets:
+AR1 R3 vs R4 0.557 [0.514, 0.598], R2w vs R4 0.590 [0.546, 0.631], a43_D vs a43_B 0.522 [0.453, 0.593];
+StyleGAN3 0.600 against contributor renders but 0.458 against spread-matched renders (reads latent typicality,
+which a single render shares). GEO-0: neither Go nor Kill; identity idea 0's control clause fires (head under
+MorDIFF history 0.415 [0.396, 0.427]). Contributor similarity in benchmark pairs (glintr100 cosine, median):
+FRLL-Morphs 0.037, corrected MAD22 / MorDIFF / DiM 0.114–0.116, H3 0.162, AR1 0.234.
+
+## Amendment 1 reruns (descriptive; files in this folder)
+
+(a) Ideal against realised — `amend1_a.json`, `amend1_a.csv` (P = powered by the pre-fixed rule).
+
+| Arm, read-out | Contrast | real | ideal | P | realised share |
 |---|---|---|---|---|---|
-| Landmark, exact shapes | not applicable (no image) | 0.687 [0.650, 0.720] (shape of R2w = R3) | — | — | 4e-234; rising |
-| glintr100 (FR) | 0.500–0.509, clean | 0.503 [0.460, 0.548] | 0.554 [0.471, 0.640] | 0.545 [0.513, 0.578] | 0.42; flat |
-| CLIP ViT-L/14 | mordiff 0.582 [0.543, 0.621] | 0.364 [0.323, 0.404] | 0.698 [0.616, 0.775] | 0.542 [0.511, 0.572] | 1.0; falling |
-| DINOv3 ViT-L/16 (bf16) | mordiff 0.356 [0.300, 0.406] | 0.533 [0.486, 0.578] | 0.611 [0.522, 0.698] | 0.624 [0.598, 0.652] | 4e-5; rise then fall |
-| DiffAE z_sem | mordiff 0.000 [0.000, 0.000] | 0.692 [0.657, 0.729] | 0.688 [0.626, 0.749] (DiffAE-native frames) | 0.597 [0.568, 0.627] | 9e-99; rising |
+| glintr100 ISS | AR1 OpenCV R4 vs H | 0.494 [0.451, 0.540] | 0.439 [0.398, 0.483] | no | — |
+| glintr100 head | AR1 OpenCV R4 vs H | 0.593 [0.549, 0.633] | 0.642 [0.605, 0.678] | no | 0.65 |
+| glintr100 mean dir. | AR1 OpenCV R4 vs H | 0.547 [0.506, 0.588] | 0.614 [0.576, 0.653] | no | 0.41 |
+| glintr100 head | AR1 FaceMorpher R4 vs H | 0.578 [0.535, 0.619] | 0.642 [0.605, 0.678] | no | 0.55 |
+| glintr100 head | A43 B20 vs E | 0.622 [0.548, 0.694] | 0.691 [0.619, 0.761] | yes | 0.64 [0.31, 0.97] |
+| glintr100 head | A43 B20 vs D20 | 0.524 [0.454, 0.594] | 0.594 [0.523, 0.663] | no | 0.26 |
+| glintr100 head | published MorDIFF vs rec | 0.489 [0.440, 0.537] | 0.679 [0.639, 0.719] | yes | −0.06 [−0.39, 0.19] |
+| CLIP ISS | AR1 OpenCV R4 vs R2w | 0.364 [0.323, 0.404] | 0.845 [0.813, 0.876] | yes | −0.39 [−0.53, −0.27] |
+| CLIP ISS | A43 B20 vs D20 | 0.698 [0.616, 0.775] | 0.918 [0.882, 0.951] | yes | 0.47 [0.28, 0.65] |
+| DINOv3 ISS | AR1 OpenCV R4 vs R2w | 0.533 [0.486, 0.578] | 0.900 [0.874, 0.924] | yes | 0.08 [−0.03, 0.19] |
+| DINOv3 ISS | A43 B20 vs D20 | 0.611 [0.522, 0.698] | 0.816 [0.758, 0.871] | yes | 0.35 [0.08, 0.57] |
+| DiffAE ISS | AR1 OpenCV R4 vs R2w | 0.692 [0.657, 0.729] | 0.895 [0.870, 0.918] | yes | 0.49 [0.41, 0.56] |
+| DiffAE ISS | AR1 OpenCV R3 vs R2w (same person) | 0.537 [0.518, 0.555] | 0.719 [0.701, 0.738] | yes | 0.17 [0.09, 0.24] |
+| DiffAE ISS | native B20 vs D20 | 0.688 [0.626, 0.749] | 0.825 [0.774, 0.878] | yes | 0.58 [0.41, 0.73] |
+| DiffAE ISS | stored B20 vs E | 0.324 [0.251, 0.399] | 0.685 [0.633, 0.738] | yes | −0.95 [−1.67, −0.48] |
 
-Other primary-family controls (opencv, facemorpher) are 0.502–0.531 in every arm; the stylegan E7 frames are
-identical to the native frames (0.500, zero-width interval), so that family carries no information.
+H3 ideal midpoints come from the CASIA source crops while the negatives are renders, so the H3 ideal rows (in the
+CSV) mix pools and are not read.
 
-Same-person vs two-person morph: landmark R3m vs R4 0.651 [0.614, 0.687]; glint R3 vs R4 0.498, C20 vs B20
-0.540; CLIP C20 vs B20 0.419 [0.343, 0.498]; DINOv3 0.478; DiffAE (native) C20 vs B20 0.747 [0.685, 0.807],
-R3 vs R4 0.676 [0.637, 0.715], R3m vs R4 0.807 [0.772, 0.840]. Photo vs morph: landmark R0 vs R4 0.725 [0.689,
-0.758]; DiffAE AR1 R0 vs R4 0.695 [0.659, 0.732], a256 vs B20 0.687 [0.612, 0.757]; CLIP AR1 R0 vs R4 0.391
-(landmark morphs score less average than photos), E vs B20 0.635. One-photo output vs same-person: AR1 R2w vs
-R3 0.498–0.537; DiffAE-native D20 vs C20 0.445. Landmark FRLL-Morphs / MAD22 pair shapes vs FRLL shapes:
-0.731–0.758. Full tables: `README.md` section 5, CSV files.
+(b) Learning curve and regulariser table, glintr100 virtual head — `amend1_b.json`, `amend1_b.csv`.
 
-## GEO-0 reads (glintr100)
+LEARNING_CURVE_TABLE
 
-1. Fidelity F = cos(e_built, normalise(e_A + e_B)), median: AR1 R4 0.876 (OpenCV) / 0.856 (FaceMorpher);
-   twins R3 0.978, R3m 0.962; published FRLL-Morphs frames 0.81–0.82; A43 B20 0.711, B 0.719, published MorDIFF
-   0.700, DiM-C 0.691, Greedy-DiM 0.848; same-person mix C20 0.915. Landmark morphs lie between the 0.75 and 0.90
-   lines; diffusion morphs at or below 0.75 (off-span part dominates), and it is larger for morphs than twins.
-2. Mean-direction gain: AR1 R4 1.108 [1.057, 1.157] (prediction 1.27), FaceMorpher R4 1.008 [0.955, 1.061];
-   R3 1.030 [1.017, 1.042] (prediction 1.03); A43 B20 1.009 [0.808, 1.206], published MorDIFF 0.981 (predicted
-   κ 1.34 at the pairs' cosine 0.11).
-3. Virtual head (fit persons only; in-domain 5-fold AUC 0.744, 0.71–0.76 per cosine bin): AR1 R3 vs R4 0.557
-   [0.514, 0.598], host photo vs R4 0.593 [0.549, 0.633], R2w vs R4 0.590; a43_B vs a43_D 0.522 [0.453, 0.593];
-   D20 vs B20 0.524; rec vs published MorDIFF 0.489; StyleGAN3 bona vs morph 0.600 [0.571, 0.628]. Controls:
-   native vs E7 opencv / facemorpher / stylegan 0.496 / 0.497 / 0.500, **mordiff 0.415 [0.396, 0.427]**,
-   rec vs aligner copy 0.536 [0.530, 0.547].
-4. Λ (Mahalanobis length of the mean embedding, Ledoit-Wolf) = 2.68 (ridge variants 3.70–4.81). Ceiling morph
-   vs photo: 0.784 (c = 0), 0.746 (0.1), 0.710 (0.2), 0.676 (0.3), 0.616 (0.5); vs twin 0.768 / 0.691 at c = 0
-   / 0.2. AD1's R2 vs R4 values for the releases: 0.48 / 0.49 / 0.40 (adapted), 0.66 / 0.85 (MADation FE
-   ViT-L/14 at 20 / 100 steps).
+(c) Review hypothesis H-new-1 — `amend1_c.json`. Per-host Spearman ρ of the ISS shift (R4 − R2w, AR1 OpenCV,
+520 hosts) with the loss of fine detail (log Laplacian variance inside the face box, R2w minus R4; median loss
+0.645): CLIP +0.161 [0.006, 0.313]; diffusion autoencoder +0.078 [−0.072, 0.220]; DINOv3 +0.020 [−0.132, 0.170].
+Whole-frame Laplacian variance: CLIP +0.079 [−0.068, 0.234], diffusion autoencoder +0.211 [0.056, 0.351], DINOv3
+−0.002. Read on the pre-fixed lines: CLIP |ρ| 0.161 is below 0.3 (prediction not met) and not below 0.1 (not
+falsified); diffusion autoencoder 0.078 < 0.15 (as predicted).
 
-## Predicted vs observed, and the ceiling against benchmark similarity
+(d) Storage-history rows, glintr100 read-outs — `amend1_d.json`, `amend1_d.csv`. Copy vs native AUC, share of
+photos scored lower in the copy, median paired shift in SD of the native scores:
 
-Contributor similarity present (glintr100 cosine, median [10%, 90%]): FRLL-Morphs 0.037 [−0.066, 0.144];
-corrected MAD22, MorDIFF, DiM 0.114–0.116 [0.05, 0.19]; H3 StyleGAN3 0.162 [0.069, 0.246]; AR1 look-alike pool
-0.234 [0.163, 0.310]. FR ceiling at these values: about 0.74–0.77 (benchmarks), 0.70 (AR1).
-Physics closed form at the pool-centred c (the pre-registered c_pair gave values above 1, see README 7):
-landmark AR1 0.693 predicted vs 0.725 observed; FRLL-Morphs pairs 0.739 vs 0.737; MAD22 pairs 0.728–0.736 vs
-0.736–0.758. Image-feature arms: CLIP 0.874 vs 0.364 (AR1), 0.952 vs 0.698 (MorDIFF); DiffAE 0.953 vs 0.692,
-0.978 vs 0.688; DINOv3 0.886 vs 0.533, 0.846 vs 0.611; glintr100 0.964 vs 0.503 (its genuine-only virtual check
-is 0.521: unit normalisation removes the shrinkage). The closed form holds for exact shapes and overshoots every
-image arm by 0.24–0.51.
+| Family | cos(native, copy) | ISS | virtual head | mean direction |
+|---|---|---|---|---|
+| opencv | 0.996 | 0.506 [0.500, 0.512] | 0.496 [0.489, 0.502]; lower 0.55; −0.01 SD | 0.504 |
+| facemorpher | 0.996 | 0.509 [0.503, 0.516] | 0.497 [0.491, 0.502]; lower 0.58; −0.02 SD | 0.504 |
+| stylegan | 1.000 | 0.500 | 0.500 (identical copies) | 0.500 |
+| mordiff | 0.979 | 0.506 [0.489, 0.524] | **0.415 [0.396, 0.427]; lower 0.88 [0.83, 0.93]; −0.30 SD [−0.35, −0.26]** | 0.493 [0.480, 0.507] |
+| dim_c | 0.991 | 0.512 | 0.480 [0.471, 0.487]; lower 0.66; −0.06 SD | 0.503 |
+| greedy_dim | 0.991 | 0.513 | 0.482 [0.473, 0.488]; lower 0.67; −0.06 SD | 0.505 |
+| greedy_dim_s | 0.991 | 0.511 | 0.482 [0.473, 0.488]; lower 0.66; −0.07 SD | 0.505 |
+| amsl | 0.995 | 0.508 | 0.493 [0.486, 0.498]; lower 0.58; −0.02 SD | 0.505 |
+| webmorph | 0.995 | 0.506 | 0.493 [0.486, 0.499]; lower 0.60; −0.03 SD | 0.505 |
 
-## Falsifiers (as pre-registered)
+The plain mean-direction projection stays at 0.493–0.505 under all nine histories; the fitted head moves under
+every diffusion-size history.
 
-- Physics, part 1 (best arm R2 vs R4 < 0.65 on both a43 D20 vs B20 and AR1 R2w vs R4): **does not fire**
-  (DiffAE 0.688 and 0.692; CLIP 0.698 on MorDIFF only; exact shapes 0.687 on AR1).
-- Physics, part 2 (native vs E7 outside the stricter 0.45–0.55): **fires for CLIP (0.582), DINOv3 (0.356) and
-  DiffAE (0.000)**; with the entry's original 0.40–0.60 band CLIP would pass. glintr100 is clean.
-- Physics, part 3 (no monotone dose, Page p > 0.05): fires for glintr100 (0.42) and CLIP (1.0); not for
-  landmark, DiffAE; DINOv3 p 4e-5 but means fall after m = 0.3.
-- Landmark kill (exact R0 vs R4 < 0.60): **does not fire** (0.725).
-- Decision text: no arm ≥ 0.75 on R2 vs R4 with a clean control; not all arms below 0.65.
-- GEO-0: Go no; Kill (≤ 0.55 on both) no — landmark head 0.557, DiffAE 0.522; identity idea 0 falsifier
-  strictly not fired (0.557 > 0.55), but its control clause **fires** (mordiff E7 0.415).
-- Identity idea 1 (shrink law, ISS): no generator family has an upper bound ≤ +0.10 in glintr100 (A43 B20 ρ
-  0.100 [−0.130, 0.342], published MorDIFF 0.045 [−0.072, 0.162], DiM-C 0.084, Greedy-DiM 0.063), none has a
-  lower bound above 0; landmark families positive (AR1 FaceMorpher 0.182 [0.007, 0.338], FRLL-Morphs frames
-  0.12–0.14, lower bounds 0.014–0.029); the virtual head's ρ is ≤ 0 everywhere. Oracle power 0.38–0.80 in
-  every family (audit not void). Exact shapes ρ ≈ 0 (AR1 0.083 [−0.085, 0.236]).
+## Not verified, gaps, process
 
-## Not verified, gaps
-
-Not verified: that Enc(Dec(lerp)) returns the generator's lerp code in its own precision path (z_sem midpoint
-fidelity 0.82 for B20 vs 0.85 for reconstructions is measured); fp16 CLIP equals a46's fp32 CLIP on identical
-files; that the stylegan E7 identity is intended. Gaps: CLIP, DINOv3, DiffAE ran on tier-1 sets only
-(FaceMorpher rungs, R2/NC, FRLL AR1 pool, published FRLL-Morphs frames missing there); exact shapes are given,
-not landmarks detected on morph images; the fit pool (92% FERET) differs from AR1 (80% FRGC), FRLL, A43 and
-H3; no BPCER per demographic group; released-detector shrink-law audit not run.
+Not verified: that Enc(Dec(lerp)) returns the generator's lerp code in its own precision path; that fp16 CLIP
+equals a46's fp32 CLIP on identical files. Gaps: CLIP, DINOv3 and DiffAE ran on tier-1 sets only; no BPCER per
+demographic group; released-detector shrink-law audit not run; detected landmarks on built images go to AS0.
+Process: `prereg.md` (first part, sha 3ee8588b…) has file time 15:38:57 but was first committed in 5a19286 at
+17:25:21 together with three arms' results, so there is no independent timestamp; no pre-run review was run.
+8 AR1 hosts are validation-reserved persons; any experiment that fits on the AR1 ladder must drop them (ID0
+does).

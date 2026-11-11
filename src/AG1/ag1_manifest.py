@@ -19,16 +19,17 @@ import glob
 import hashlib
 import shutil
 import json
+import os
 import pathlib
 import sys
 import tarfile
 
 import numpy as np
 
-B = pathlib.Path("/mnt/t7/smad_next/AG1")
+B = pathlib.Path(os.environ.get("AG1_BASE", "/mnt/t7/smad_next/AG1"))   # AG1_BASE: tests only
 RES = B / "results"
 DATA = B / "data"
-INP = B / "inputs/pack"
+INP = pathlib.Path("/mnt/t7/smad_next/AG1/inputs/pack")
 CODE = pathlib.Path("/home/narolski/mambamorph-code")
 MADRAW = pathlib.Path("/mnt/t7/smad_heldout/mad22_incoming/marco_owncloud_20261109T103840Z/author_files/original_sorted")
 MADPROC = pathlib.Path("/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z")

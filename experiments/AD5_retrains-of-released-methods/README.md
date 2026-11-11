@@ -98,6 +98,20 @@ No retrain and no score exist yet.
   genuine and 6 morphs, "Images with no Face" in the authors' wording, which also counts empty slices); the MADation
   release log reports 39,730 training images (difference 7, 0.02%). Crop pack `packs/AD5/smdd_train_cropped.tar`
   (2.38 GB, sha256 3189e52a...), report `results/AD5/crop_report.json` (lost list).
+- 11 Nov 19:01-19:07. Smoke B (job 3544217, t0013, 2 x A100-SXM4-40GB; about 6 min = 0.2 GPU-hours) PASSED. The
+  patched MADation code under `torch.distributed.launch` with 2 processes, authors' flags, batch 32 per GPU, on every
+  12th image (3,311) for 3 epochs (155 steps), checkpoint `3_backbone.pth` written:
+  ViT-L/14 73.9 samples/s on 2 GPUs (37 per GPU, 0.87 s per step), peak 16,529 MiB, GPU utilisation 100%;
+  ViT-B/16 318 samples/s on 2 GPUs (159 per GPU), peak 5,863 MiB. MixFaceNet-MAD (patched main.py, 1 epoch of the
+  subset, 207 steps of 16): 10.6 it/s, peak 5,485 MiB. For comparison, the authors' logs show 860 (ViT-L/14) and
+  2,340 (ViT-B/16) samples/s on 8 GPUs of unknown type, i.e. 107 and 292 per GPU.
+  Estimates (39,723 images, 40 epochs, 8 GPUs at the measured per-GPU speed, plus about 5 min start):
+  L 1.5 h wall = about 12.5 GPU-h per seed; B 21 min wall = about 3.2 GPU-h per seed; X (1 GPU, 2,483 steps x 100
+  epochs at 10.6 it/s) 6.5 h = 6.5 GPU-h per seed. Five seeds each: L 62, B 16, X 33 GPU-hours.
+- 11 Nov 19:08. Timing sent to the lead. Production submitted (`ad5_madation_train.sbatch`, `ad5_mixfacenet_train.sbatch`):
+  **3545813** = MADation L, `ARM=L`, `--time=02:45:00`, array 401-405, 8 GPUs per task;
+  **3545814** = MADation B, `ARM=B`, `--time=01:00:00`, array 401-405, 8 GPUs per task;
+  **3545815** = MixFaceNet-MAD X, `--time=09:00:00`, array 401-405, 1 GPU per task. Lead told.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -228,9 +242,18 @@ DGX: no AD5 process running. Athena jobs (logs in
 | 3544190 | smoke A, first try | 1 x 30 min | FAILED 3:53 (localfs full), 0.065 GPU-h | fixed (memfs), resubmitted |
 | 3544192 | smoke B, first try | 2 x 15 min | cancelled before start, 0 GPU-h | resubmitted |
 | 3544216 | smoke A: env (exists) + SMDD crop -> packs/AD5/smdd_train_cropped.tar | 1 x 30 min | COMPLETED 12:13, 0.20 GPU-h | done |
-| 3544217 | smoke B: MADation L/B DDP 2 GPUs, MixFaceNet-MAD 1 epoch | 2 x 15 min | pending (after 3544216) | resubmit with `--dependency=afterok:<A>` |
+| 3544217 | smoke B: MADation L/B DDP 2 GPUs, MixFaceNet-MAD 1 epoch | 2 x 15 min | COMPLETED about 6 min, 0.2 GPU-h | done |
+| 3545813_[401-405] | MADation ViT-L/14 retrains -> results/AD5/madation_L_s<seed>.tar | 8 x 2:45 each | submitted 19:08 | resubmit the failed task ids with `--array=<ids> --export=ALL,ARM=L`; finished seeds are skipped |
+| 3545814_[401-405] | MADation ViT-B/16 retrains -> results/AD5/madation_B_s<seed>.tar | 8 x 1:00 each | submitted 19:08 | as above with ARM=B |
+| 3545815_[401-405] | MixFaceNet-MAD retrains -> results/AD5/mixfacenet_X_s<seed>.tar | 1 x 9:00 each | submitted 19:08 | resubmit failed ids |
 | 3544218 | SelfMAD: env, face labels -> packs/AD5/selfmad_labels.tar.gz, 1-epoch smoke | 1 x 55 min | pending | resubmit; it skips the labels if the tar exists |
-Compute spent so far: 0.065 GPU-hours (plus running jobs).
+Compute spent so far: 0.47 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2; plus running jobs). Planned
+production: about 111 GPU-hours (L 62, B 16, X 33), then SelfMAD.
+Logs on Athena: `/net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-madation-ad5-madL-<job>_<seed>.out`,
+`AD5-madation-ad5-madB-...`, `AD5-mixfacenet-<job>_<seed>.out`.
+DGX: `src/AD5/score/run_selfmad_dgx.sh selfmad_hrnet_w18` is scoring the SelfMAD release through the AD5 path
+(log `/mnt/t7/smad_next/AD5/scores_selfmad_release.log`, output `/mnt/t7/smad_next/AD5/scores_selfmad/`); rerun is
+safe (finished networks are skipped).
 
 ## 11. Reproduce from scratch
 

@@ -25,7 +25,7 @@ C22 = pathlib.Path("/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T1
 WHEEL = pathlib.Path("/mnt/t7/thirdparty/facenet_pytorch_2.6.0_20261107/facenet_pytorch-2.6.0-py3-none-any.whl")
 CODE46 = ("a46_corrective_crop.py", "a12_released.py", "common.py", "a36_madation.py", "archs_a12.py", "archs_v2.py",
           "mixfacenet_port.py", "a41g_score.py")
-CODERS1 = ("ar1_common.py", "crop_rgb.py", "score.py", "athena_run.py")
+CODERS1 = ("ar1_common.py", "crop_rgb.py", "crop_rgb_ext.py", "score.py", "athena_run.py")
 WEIGHTS = ("ddb1455bae4b72331aff4806590bd88ba2447563d803e207099c6b712d6bbe2f",
            "bb452ded624ffce2dc85168f8dde9293fc3709ec8cce755d8ecf1d5f5370e980",
            "6a4d93ba80f3c48ecb0a9d8a6ae07e0c64e8c4f49f2cc62b2588dafbffb84d92",
@@ -64,7 +64,8 @@ AMEND_SETS = ("Gjpeg50_frll", "Gjpeg70_frll", "Gresample50_frll", "FEI_neutral",
 
 
 def main():
-    part2 = len(sys.argv) > 1 and sys.argv[1] == "amend"
+    part2 = len(sys.argv) > 1 and sys.argv[1] in ("amend", "raw")
+    part3 = len(sys.argv) > 1 and sys.argv[1] == "raw"
     rows = []
     man = list(csv.DictReader(open(OUT / "manifest.csv")))
     for r in man:
@@ -76,6 +77,18 @@ def main():
             ext = pathlib.Path(r["src_path"]).suffix
             rows.append(dict(id=r["id"], set=r["set"], label=r["label"], persons=r["persons"], photo=r["photo"],
                              expr=r["expr"], origin="crop", relpath=f"img/src/{r['id']}{ext}", src_path=r["src_path"]))
+    # amendment 3: the raw files behind the reused A46 crops, re-cropped on Athena (ids xr_<A46 id>)
+    rawsha = {}
+    for ln in open(A46 / "attempts_rgb_clip.jsonl"):
+        q = json.loads(ln)
+        rawsha[q["src_path"]] = q["raw_sha256"]
+    a46man = {q["id"]: q for q in csv.DictReader(open(A46 / "manifests/a46c_rgb_clip.csv"))}
+    for r in [r for r in rows if r["origin"] == "a46"]:
+        src = a46man[r["id"]]["src_path"]
+        assert sha(src) == rawsha[src], src
+        rows.append(dict(id="xr_" + r["id"], set=r["set"], label=r["label"], persons=r["persons"], photo=r["photo"],
+                         expr=r["expr"], origin="crop", relpath=f"img/raw/xr_{r['id']}{pathlib.Path(src).suffix}",
+                         src_path=src))
     # corrected MAD22: raw files (hash-checked against the committed inventory) and canonical v3 aligned frames
     inv = {e["path"]: e["sha256"] for e in json.load(open(M22INV)) if "sha256" in e}
     n = 0
@@ -115,6 +128,19 @@ def main():
         w = csv.DictWriter(f, fieldnames=COLS)
         w.writeheader()
         w.writerows(rows)
+    if part3:                                              # amendment 3 raw files + the full manifest + code
+        tp = OUT / "athena/rs1a_pack_raw.tar"
+        with tarfile.open(tp, "w", format=tarfile.PAX_FORMAT) as t:
+            t.add(OUT / "athena/athena_manifest.csv", arcname="manifests/athena_manifest.csv")
+            for f in CODERS1:
+                t.add(SRC / f, arcname=f"code/rs1/{f}")
+            for r in rows:
+                if r["id"].startswith("xr_"):
+                    t.add(r["src_path"], arcname=r["relpath"])
+        h = sha(tp)
+        (OUT / "athena/rs1a_pack_raw.tar.sha256").write_text(f"{h}  rs1a_pack_raw.tar\n")
+        print("pack", tp, tp.stat().st_size / 1e9, "GB", h)
+        return
     if part2:                                              # amendment 2 images + the full manifest only
         tp = OUT / "athena/rs1a_pack_amend.tar"
         with tarfile.open(tp, "w", format=tarfile.PAX_FORMAT) as t:

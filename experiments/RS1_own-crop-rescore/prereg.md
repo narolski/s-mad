@@ -229,3 +229,27 @@ each cell, with a sentence on whether the release's crop removes the border our 
 (e) Acceptance rule unchanged: a row counts only where the published number is reproduced within 1.5 points or 25%.
 For the new pools (no morph class of their own) the flag rates carry the label of the cell whose threshold they use;
 at the 0.5 rule they carry the label of the detector's FRLL / MorDIFF cells, printed beside.
+
+## Amendment 3 (11 Nov 2026, 19:15 CET; before any full RS1 result of a MADation or MixFaceNet release is read)
+
+Trigger: the lead's rule of 18:25 (all rows that are compared with each other come from one platform) and two facts
+found by the platform checks (no efficacy number read): (i) MTCNN boxes differ between the GB10 and the A100 (Athena
+smoke job 3544220: 21 of 200 images by more than 1 px, at most 15.9 px; median 0.03 px), so crops made on different
+machines are not interchangeable; (ii) the release crop step stores a JPEG input as JPEG (SMDD
+`image_preprocess.py` line 43, `cv2.imwrite` with the input's name; A46 did the same), while AR1's `crop_rgb.py`
+always stores PNG.
+
+1. **Primary pipeline: everything on Athena, crop and score.** The raw files that A46 had cropped on the GB10 (FRLL
+   photos, five FRLL-Morphs families, MorDIFF, six DiM families; 11,264 files) are shipped raw and re-cropped on
+   Athena, so every MADation / MixFaceNet-MAD row is cropped and scored on one machine type.
+2. **Crop storage as the release does it:** `src/RS1/crop_rgb_ext.py` = AR1 `crop_rgb.py` with one change, the crop
+   is written in the source's format (JPEG input -> JPEG crop at OpenCV's default quality 95; PNG -> PNG).
+3. **Checks, not primary:** the reused A46 crops (GB10) are also scored on Athena and printed as a crop-platform check
+   (native EER per cell, both crop sets); the DGX scores of the A46 crops (MADation ViT-B/16, ViT-L/14) and the
+   registered A46 scores (WCSS) are printed as scoring-platform checks. The Athena smoke equivalence (same A46 crops,
+   Athena vs DGX): max |logit difference| 0.20 (ViT-B/16) and 0.07 (ViT-L/14); vs the registered WCSS scores up to
+   1.6 and 3.0 on JPEG-stored crops.
+4. **SelfMAD:** two separate runs, each on one platform: the existing files (WCSS: A41 x7 raw files, A32-RSX and A43
+   frames) and the RS1 DGX run (raw FRLL photos, raw MorDIFF, raw E7 MorDIFF, A43 stored files, FEI, FFHQ). Rows are
+   never compared across the two runs.
+Everything else (rule, cells, pools, statistics) is unchanged.

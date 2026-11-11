@@ -50,6 +50,25 @@ dose arms (release source data and pairing). Arms (c), (c′), (d) use the genui
 not name, but CC BY-NC-SA share-alike applies to any distribution. All rebuilt images stay internal (T7 and the WCSS
 project space).
 
+## Expression (A3 substitute, geometry only; `expr_geom.json`)
+
+Logistic mouth-shape probe trained on the AR1 FRLL frames (neutral vs smiling; 5-fold-by-person accuracy 0.79,
+0.88, 0.88, 0.90, 0.95). Applied to SMDD: genuine renders 77.7% "smiling" (24,997), release morphs by the mean of
+their two contributors' points 97.1% (15,000), contributor renders 84.9% (3,858); the five training partners have
+smile probabilities 0.88, 1.00, 1.00, 0.77, 1.00. Domain shift from FRLL photos to StyleGAN2 renders makes the
+absolute rates uncertain; the direction (morph class more "smiling" than the genuine class) is descriptive only. The
+registered pixel probe of the cue checks could not run as is (fixed box of the eye-aligned 512 frame).
+
+## Build facts (no score involved)
+
+- N = 14,734 release pairs have both contributors admissible under A5 (266 dropped); every arm uses N morphs.
+- All rebuilt morphs: 0 engine failures over 30,000 (c, c′) + 58,936 (b, b′, K = 50, K = 500) + 9,520 (audit) + 536
+  (AR1) pairs; halves average within 0.5 grey level of the morph on every pair with halves (16,036 checked by
+  assertion: 15,000 + 536 + 500 smoke).
+- Cross-machine equality: leaseB (x86, OpenCV 4.11.0) outputs equal the DGX (ARM, OpenCV 4.11.0) outputs on every
+  compared file (32 per task, plus the 2,000 smoke files of c and c′); our 536 AR1 morphs equal AR1's own OpenCV R4
+  files (`ar1h_vs_ar1_r4.json`).
+
 ## Part 2: partner audit of released detectors
 
 pending

@@ -20,6 +20,8 @@ import ar1_common as K  # noqa: E402
 PINNED = {"score.py": "56bb124444980f630d676758d25aaefe5b3485874c8aea174e0bd74d3c597cc8",
           "ar1_common.py": "42806acb43b0c8d5c6876622dc5cfd5377c6bac3a38cda250824606fb7d407ab",
           "crop_rgb.py": "07b179bdc5f9532b85326022c241a329e059fd3ee632f4a74033112dc669e922"}
+if (HERE / "crop_rgb_ext.py").exists():
+    PINNED["crop_rgb_ext.py"] = "c75cfa2ef5dd5e3c6fc68d05512825376af0adbc9269df2ea93aba31e39f9958"
 for f, h in PINNED.items():
     assert hashlib.sha256((HERE / f).read_bytes()).hexdigest() == h, f
 old = K.W46 / "smadcvpr"
@@ -40,6 +42,9 @@ sys.argv = [CMD] + sys.argv[4:]
 if CMD == "crop":
     import crop_rgb
     crop_rgb.main()
+elif CMD == "cropx":                                         # amendment 3: crop stored in the source's format
+    import crop_rgb_ext
+    crop_rgb_ext.main()
 elif CMD == "score":
     import score
     score.main()

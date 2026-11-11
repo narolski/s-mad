@@ -33,6 +33,10 @@ if [ -f "$G/packs/RS1/rs1a_pack_amend.tar" ]; then       # amendment 2 images an
   H=$(sha256sum "$G/packs/RS1/rs1a_pack_amend.tar" | cut -d' ' -f1); [ "$H" = "$(cut -d' ' -f1 "$G/packs/RS1/rs1a_pack_amend.tar.sha256")" ] || { echo "pack2 sha mismatch"; exit 3; }
   tar -xf "$G/packs/RS1/rs1a_pack_amend.tar" -C "$W/pack"
 fi
+if [ -f "$G/packs/RS1/rs1a_pack_raw.tar" ]; then         # amendment 3: raw files behind the A46 crops, code, full manifest
+  H=$(sha256sum "$G/packs/RS1/rs1a_pack_raw.tar" | cut -d' ' -f1); [ "$H" = "$(cut -d' ' -f1 "$G/packs/RS1/rs1a_pack_raw.tar.sha256")" ] || { echo "pack3 sha mismatch"; exit 3; }
+  tar -xf "$G/packs/RS1/rs1a_pack_raw.tar" -C "$W/pack"
+fi
 R=$W/pack
 # own environment (the shared venv does not exist yet): the WCSS-container versions plus the crop packages
 if ! "$PY" -I -c "import torch, timm, cv2, facenet_pytorch, requests, safetensors" 2>/dev/null; then
@@ -68,11 +72,11 @@ EOF
 echo "crop $(date +%T)"
 N=3
 for i in $(seq 0 $((N-1))); do
-  "$PY" -I "$R/code/rs1/athena_run.py" "$R" "$SITE" crop --manifest "$R/manifests/tocrop_abs.csv" --out "$W/crops/main" --shard $i/$N > "$W/out/logs/crop_shard$i.log" 2>&1 &
+  "$PY" -I "$R/code/rs1/athena_run.py" "$R" "$SITE" cropx --manifest "$R/manifests/tocrop_abs.csv" --out "$W/crops/main" --shard $i/$N > "$W/out/logs/crop_shard$i.log" 2>&1 &
 done
 FAIL=0; for j in $(jobs -p); do wait $j || FAIL=1; done
 [ $FAIL = 0 ] || { tail -20 "$W"/out/logs/crop_shard*.log; exit 4; }
-"$PY" -I "$R/code/rs1/athena_run.py" "$R" "$SITE" crop --manifest "$R/manifests/check_abs.csv" --out "$W/crops/check" > "$W/out/logs/crop_check.log" 2>&1
+"$PY" -I "$R/code/rs1/athena_run.py" "$R" "$SITE" cropx --manifest "$R/manifests/check_abs.csv" --out "$W/crops/check" > "$W/out/logs/crop_check.log" 2>&1
 echo "merge $(date +%T)"
 "$PY" -I - "$R" "$W" <<'EOF'
 import csv, sys, pathlib, glob, collections

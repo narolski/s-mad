@@ -68,6 +68,19 @@ contrast computed yet. Answer: none yet.
   geometry, A1) and `as0_typ.py` (A10) written; `as0_analyse.py` patched for A1-A8 and A12 (pre-amendment copy
   `/mnt/t7/smad_next/AS0/logs/as0_analyse_pre_amend.py.txt`).
 
+- 18:50-19:04 machine load rose to about 140 (20 cores); my processes at nice 10 slowed from 0.19 to about 1.4 s per
+  512 image and detection to about 0.9-1.5 s per image. Plans re-ordered three times (chain_b2/a2, chain_b3/a3,
+  chain_b4) so that the registered primary cell comes first; each superseded chain was stopped by PID while waiting
+  or between steps (the running measurement of Fm was stopped once at 19:03 after one 256-item chunk; that chunk is
+  kept, duplicate ids are dropped at merge, keeping the first). Phase-1 cuts because of the load (no result was
+  looked at): the expanded123 DiffAE blocks (X) are not measured (128 of 1,224 landmark detections done); diffae256
+  nominal IOD therefore from the A43 photos only (63.91 px, 204); R8 is measured on the colorFERET pairs only
+  (1,792 images; the A7 reading is within colorFERET); the blank sensitivity run uses a host subsample
+  (sha1(host) mod 3 = 0) for R3 / R4; Fe uses the facemorpher and amsl copies; S0 moved from LD1 to LD2.
+- 18:52 nominal IOD (`iod_nominal.json`): ar1_512 130.51, canon512 131.25, shared512_photo 130.49, diffae256 63.91,
+  a43_stored 63.68, smdd256 63.73 (smdd80 19.92), stylegan_raw1024 256.09 (all renders). (The "note" on ar1_512 in
+  that file, "also used for canon512", is stale: since A8 canon512 uses its own value.)
+
 Amendments to the registration: A1-A13 (prereg.md), all registered before any contrast was computed.
 
 ## 3. Data
@@ -147,8 +160,9 @@ Finish detection and measurement, write `as0_analyse.py`, compute the registered
 | Process | PID | Log | Expected end | If it fails |
 |---|---|---|---|---|
 | measurement L, Lsoft, R8, S | 2250330 | `/mnt/t7/smad_next/AS0/logs/measure_a.log` | about 19:10 | rerun `as0_measure.py --sets L,Lsoft,R8,S` (finished parts are skipped) |
-| chain B | 2272290 | `/mnt/t7/smad_next/AS0/logs/chain_b.log` (+ landmarks_b, iod, measure_b, measure_blank logs) | about 20:10 | rerun `src/AS0/chain_b.sh` (every step resumes from parts) |
-| chain A | 2272291 | `/mnt/t7/smad_next/AS0/logs/chain_a.log` (+ landmarks_a.log) | about 20:30 | rerun `src/AS0/chain_a.sh <pid or 0>` |
+| chain B (fourth plan) | 2340361 | `/mnt/t7/smad_next/AS0/logs/chain_b4.log` (+ measure_b, measure_blank, landmarks_b logs) | about 21:00 | rerun `src/AS0/chain_b4.sh` (every step resumes from parts) |
+| chain A (third plan) | 2336841 | `/mnt/t7/smad_next/AS0/logs/chain_a3.log` (+ landmarks_a, measure_a2 logs) | about 21:00 | rerun `src/AS0/chain_a3.sh 0` |
+| superseded chains | chain_b.sh, chain_a.sh, chain_b2.sh, chain_a2.sh, chain_b3.sh (stopped) | logs chain_b*.log | - | do not rerun |
 
 Compute: CPU only; 0 GPU-hours; 0 USD.
 

@@ -29,8 +29,9 @@ twins 0.905 / 0.836 / 0.862 (FRLL / FERET / FRGC). Files: `pairs.csv`, `shards.c
 Athena (target since 11 Nov evening): single pack `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AG1/ag1_pack.tar`
 (sha256 c6b9d2c9...), scripts in `.../tasks/AG1/`; 14 shards (2 smoke, 8 core, 4 AG3 / AG3T), 3,833 images, 912
 inversions, 12.7 H100-h at the WCSS rates (A100 rate to be measured). Mirror rung (R3m) included for all 302 hosts.
-No job submitted: Slurm has no account association for the user yet (11 Nov 17:22; lead's watcher tests every 20
-minutes). Jobs: none. GPU-hours on clusters: 0.
+Jobs (Athena, account plgrestorearc-gpu-a100): smoke 3544188 failed (node-local disk 4 GB; 0.06 GPU-h); smoke
+3544209 passed (19 / 19 images, 0.17 GPU-h); production 3544797 (core, 8 tasks), 3544798 / 3544799 (graded mixing,
+dependent), submitted 11 Nov 19:05, about 19.9 GPU-h expected.
 WCSS (superseded): 13 task dirs in `/lustre/.../smad-next/staging/AG1/`, never in ready/.
 
 ## 4. What was tested for real

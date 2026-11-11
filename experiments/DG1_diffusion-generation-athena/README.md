@@ -118,6 +118,20 @@ here. No answer yet.
   de19e077…, `dg1_prod.sbatch` ad59138c…, `dg1_env.sh` unchanged 56a1a9a3…). **Smoke job resubmitted: Athena job
   3544215** (log `.../smad-next/logs/DG1-smoke-3544215.out`, result `.../results/DG1/DG1_smoke_3544215.tar`).
 
+- 11 Nov 18:47–18:59. **Smoke job 3544215 FAILED after 11 min 6 s** (node t0016, driver 595.91.07, so the cu130 torch
+  build, as on the DGX; 0.185 GPU-hours). The environment built (torch 2.12.1+cu130, torchvision 0.27.1+cu130, every pin
+  installed, about 10 min on the project store), the pack checked and unpacked into `$MEMFS` in 7 s, then `dg1_gen.py`
+  stopped at `from numpy.lib.function_base import flip` (DiffAE `experiment.py`): the venv held **numpy 2.5.4**,
+  although `numpy==1.26.4` had installed as the first pin (no deviation was recorded). Some later install upgraded
+  it; none of the pinned packages declares numpy >= 2 in its metadata (checked on the DGX copies), so the cause is not
+  identified. The environment check did not test versions, which let this through.
+- 11 Nov 19:02. Fix in `dg1_env.sh` (sha256 fb137945…): numpy 1.26.4 and pillow 12.2.0 join torch and torchvision in
+  the constraints file; the other pins install in one pip call under the constraints (one by one only if that
+  fails); `pip check` is logged; the environment check now asserts numpy 1.26.4, pillow 12.2.0, torch 2.12.1,
+  torchvision 0.27.1 and imports `numpy.lib.function_base`; an existing venv whose torch is already pinned is
+  repaired instead of rebuilt (saves the 10-minute torch install).
+- 11 Nov 19:03. **Smoke job resubmitted: Athena job 3544800** (log `.../smad-next/logs/DG1-smoke-3544800.out`).
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):
@@ -245,7 +259,7 @@ manifest check runs regardless).
 
 ## 10. Handover state
 
-18:47: Athena smoke job 3544215 submitted (3544197 failed at module load; see timeline). Before that: no Athena job. Files staged on Athena:
+19:03: Athena smoke job 3544800 submitted (3544197 failed at module load, 3544215 at the numpy version; see timeline). Before that: no Athena job. Files staged on Athena:
 `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/DG1/{dg1_pack.tar,dg1_pack.tar.sha256,dg1_env.sh,dg1_run_task.sh,dg1_smoke.sbatch,dg1_prod.sbatch}`.
 Compute spent: 0 Athena GPU-hours; DGX GB10 about 0.45 GPU-hours (8-image check, shared) plus CPU alignment.
 
