@@ -59,6 +59,20 @@ association for the grant accounts; lead's message 17:30); nothing has been subm
 - 11 Nov 18:10. `prereg.md` written.
 - 11 Nov 18:15. Job scripts written (`src/AD5/athena/`), pack builder started (`src/AD5/build_packs.sh`, log
   `/mnt/t7/smad_next/AD5/build_packs.log`).
+- 11 Nov 18:13 / 18:18. 8-image MADation checks passed on the DGX (`checks/dgx_madation8.sh B` and `L`): epoch-3
+  checkpoints written (`checks/madation8/out_{B,L}/...`). The ViT-B/16 checkpoint converts with the release converter
+  (`a36_madation.py convert`, 155 tensors as the release, CPU equivalence logit max abs 8.5e-8;
+  `checks/madation8/convert_B/`).
+- 11 Nov 18:20. Landmark build finished: 24,982 of 25,000 renders have landmarks; 18 without a face
+  (`data/selfmad/no_face.txt`; the authors' loader skips them). Packed as `packs/selfmad_landmarks.tar`
+  (sha256 a43776b6...).
+- 11 Nov 18:18-18:24. Upload 1 to Athena (`rsync` under the lock): code/, wheels_madation.tar (90dceaf3...),
+  wheels_selfmad.tar (8565c291...), smdd_train_raw.tar (269b7262...): 12.8 GB in 6 min (35 MB/s).
+- 11 Nov 18:25. Scoring wrapper `src/AD5/score/ad5_score_athena.py` (registers a retrain as a copy of its release's
+  spec, then RS1's byte-identical score.py). Check on the DGX (`checks/dgx_wrapper_check.sh`): the release scored
+  through the wrapper and through RS1's `rs1_score.py` on 8 A46 crops: score, score_noTTA, logit_noTTA and features
+  identical (max abs difference 0). First wrapper version imported the A46 tree's own `score.py` (sys.path order):
+  fixed by importing RS1's score.py first and asserting its path.
 
 ## 3. Data
 
@@ -118,6 +132,10 @@ Our scripts (`/home/narolski/smad-next/src/AD5/`), in run order:
 - `athena/ad5_mixfacenet_train.sbatch` (1 GPU, array 401-405): production.
 - `athena/ad5_selfmad_smoke.sbatch` (1 GPU, 55 min): SelfMAD env, face labels -> `selfmad_labels.tar.gz`, 1-epoch smoke.
 - `athena/ad5_selfmad_train.sbatch` (1 GPU, array 401-405): production.
+- `score/ad5_score_athena.py`: scores one retrain through RS1's release path (wrapper around RS1's score.py).
+- `athena/ad5_score_rel.sbatch` (1 GPU): RS1 crops (made once, kept as `results/AD5/rs1_crops.tar`), conversion of
+  MADation retrains, scoring of retrains and releases -> `results/AD5/scores_<TAG>.tar`.
+- `env/score_requirements.txt`: the RS1 Athena environment as wheels (torch 2.2.1, timm 1.0.27, ...).
 Patches: `madation_ad5.patch`, `mixfacenet_ad5.patch` (the SMDD main.py has CRLF line ends; the patch keeps them),
 `selfmad_ad5.patch`. Model files: OpenAI-format CLIP from HF `timm/vit_base_patch16_clip_224.openai` (sha256
 53b40183...) and `timm/vit_large_patch14_clip_224.openai` (eb70c15b...); HRNet-W18 ImageNet weights HF

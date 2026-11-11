@@ -1,0 +1,68 @@
+{
+ "equivariance_F0_max_rel_diff": 0.011735412470798368,
+ "equivariance_F0_ES_max_rel_diff": 0.011727275196393792,
+ "symmetric_image_exact": true,
+ "symmetric_image_EA_over_ES_F0_max": 6.090592817497883e-08,
+ "noise_ratio_F0_Y_by_band": [
+  0.0,
+  0.521,
+  0.799,
+  0.894,
+  0.966,
+  0.997,
+  0.999
+ ],
+ "noise_ratio_F1_Y_by_band": [
+  0.0,
+  0.491,
+  0.803,
+  0.848,
+  1.012,
+  1.004,
+  0.994
+ ],
+ "shifted_axis_c_mid": 250.0,
+ "shifted_symmetric_EA_over_ES_F1_by_band_Y": [
+  8.944215020360164e-08,
+  1.235617791537392e-05,
+  2.1914099829325616e-05,
+  0.00010925775228745134,
+  0.00011332415613090104,
+  2.1322010197061525e-05,
+  5.68315828878294e-05
+ ],
+ "real_photo_L_F0_Y": [
+  -4.258,
+  -2.902,
+  -2.353,
+  -1.771,
+  -0.647,
+  -0.2,
+  -0.026
+ ],
+ "real_photo_cov": {
+  "W": 512,
+  "H": 512,
+  "lm_ok": 1,
+  "c_mid": 254.5,
+  "mid_off": -0.0077,
+  "mask0": 58730,
+  "mask1": 58324,
+  "iod_img": 128.4093,
+  "yaw": -0.0348,
+  "nose_off": -0.0216,
+  "roll": 0.4375,
+  "light": -0.2377,
+  "l1_mask": 19.2051,
+  "lap_full": 4.2829,
+  "lap_mask": 2.2455,
+  "box_l1": NaN,
+  "shape_L": -8.4632
+ },
+ "band_weight_sq_sum_minmax": [
+  0.9999999188819011,
+  1.0000000803507874
+ ],
+ "shape_L_symmetric_shape": -72.94839857103828,
+ "shape_L_photo": -8.463203052634158
+}

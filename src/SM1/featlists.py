@@ -59,7 +59,7 @@ def train():
             continue
         rows = rd(f"{arm}.csv")
         write(f"train_{arm}.csv", [dict(id=r["id"], path=r["out"], pair=r["id"], person=r["na"]) for r in rows])
-        if arm in ("armc", "armcr"):
+        if arm == "armc":                                              # (c') has no halves (A1)
             write(f"train_{arm}_halves.csv", halves(rows, arm))
     # arm (e) shrunk copies (A4): genuine renders = the stored a47 copies; (c) morphs and halves = shrink.py outputs
     st = pathlib.Path("/mnt/t7/smad_heldout/a47/data47/i3/train/smdd_a47e7/os25k_bf_t")
@@ -83,7 +83,7 @@ def smoke():
     for arm in ("armb", "armbp", "armc", "armcr"):
         rows = rd(f"smoke_{arm}.csv")
         write(f"smoke_train_{arm}.csv", [dict(id=r["id"], path=r["out"], pair=r["id"], person=r["na"]) for r in rows])
-        if arm in ("armc", "armcr"):
+        if arm == "armc":
             write(f"smoke_train_{arm}_halves.csv", halves(rows, arm))
 
 

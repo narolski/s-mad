@@ -1,0 +1,212 @@
+{
+ "audit": {
+  "n_keys": 500,
+  "n_candidates": 2458,
+  "match": [
+   {
+    "P": "img054553",
+    "U": "img167417",
+    "P_stats": [
+     0.0632,
+     0.0702,
+     63.2414,
+     0.0026
+    ],
+    "U_stats": [
+     0.0538,
+     0.069,
+     63.6881,
+     -0.0271
+    ],
+    "stats": [
+     "mean_cos_keys",
+     "sd_cos_keys",
+     "iod_px",
+     "yaw_proxy"
+    ]
+   },
+   {
+    "P": "img282038",
+    "U": "img029400",
+    "P_stats": [
+     0.0356,
+     0.0728,
+     64.029,
+     0.0469
+    ],
+    "U_stats": [
+     0.0382,
+     0.0723,
+     63.1754,
+     0.067
+    ],
+    "stats": [
+     "mean_cos_keys",
+     "sd_cos_keys",
+     "iod_px",
+     "yaw_proxy"
+    ]
+   },
+   {
+    "P": "img496816",
+    "U": "img200961",
+    "P_stats": [
+     0.0281,
+     0.063,
+     63.3269,
+     0.034
+    ],
+    "U_stats": [
+     0.0277,
+     0.0638,
+     63.3748,
+     0.0331
+    ],
+    "stats": [
+     "mean_cos_keys",
+     "sd_cos_keys",
+     "iod_px",
+     "yaw_proxy"
+    ]
+   },
+   {
+    "P": "img337488",
+    "U": "img380037",
+    "P_stats": [
+     0.0353,
+     0.0697,
+     64.4473,
+     -0.2417
+    ],
+    "U_stats": [
+     0.0344,
+     0.0675,
+     64.7828,
+     -0.1645
+    ],
+    "stats": [
+     "mean_cos_keys",
+     "sd_cos_keys",
+     "iod_px",
+     "yaw_proxy"
+    ]
+   },
+   {
+    "P": "img099545",
+    "U": "img197375",
+    "P_stats": [
+     0.0213,
+     0.0575,
+     64.3897,
+     -0.2746
+    ],
+    "U_stats": [
+     0.0226,
+     0.0568,
+     63.9724,
+     -0.2125
+    ],
+    "stats": [
+     "mean_cos_keys",
+     "sd_cos_keys",
+     "iod_px",
+     "yaw_proxy"
+    ]
+   }
+  ],
+  "placebo": [
+   "img458808",
+   "img059431",
+   "img341618",
+   "img326733",
+   "img016468",
+   "img526296",
+   "img273904",
+   "img225538",
+   "img152057",
+   "img282434",
+   "img058355",
+   "img181776",
+   "img518032",
+   "img548188",
+   "img050089",
+   "img384759",
+   "img500481",
+   "img105783",
+   "img517246",
+   "img263562"
+  ],
+  "cos_KP_mean": 0.036702639999999995,
+  "cos_KU_mean": 0.03532664,
+  "cos_KX_mean": 0.0275336,
+  "pool_no_face": 42
+ },
+ "release": {
+  "n_release": 15000,
+  "n_with_landmarks": 14734,
+  "dropped": [
+   "img014744_img054553",
+   "img014744_img099545",
+   "img014744_img282038",
+   "img014744_img337488",
+   "img014744_img496816",
+   "img031043_img054553",
+   "img031043_img282038",
+   "img031043_img496816",
+   "img043765_img054553",
+   "img043765_img099545",
+   "img043765_img282038",
+   "img043765_img337488",
+   "img043765_img496816",
+   "img061515_img054553",
+   "img061515_img282038",
+   "img061515_img337488",
+   "img061515_img496816",
+   "img069153_img054553",
+   "img069153_img099545",
+   "img069153_img282038"
+  ],
+  "arma256": 14236
+ },
+ "armd50": {
+  "n": 14734,
+  "partners": 50,
+  "uses_max": 295
+ },
+ "armd500": {
+  "n": 14734,
+  "partners": 500,
+  "uses_max": 30
+ },
+ "armbp": {
+  "n": 14734,
+  "n_replacements": 2433,
+  "repl_pool": 2433,
+  "cap": 7
+ },
+ "armc": {
+  "n": 14734,
+  "renders_used_0_1_2": [
+   4543,
+   11446,
+   9011
+  ],
+  "skipped_no_partner": 0,
+  "lookalike_rank_median": 0.0,
+  "lookalike_rank_max": 10
+ },
+ "armcr": {
+  "n": 14734,
+  "renders_used_0_1_2": [
+   4796,
+   10940,
+   9264
+  ],
+  "skipped_no_partner": 0,
+  "lookalike_rank_median": null,
+  "lookalike_rank_max": null
+ },
+ "ar1h": {
+  "n": 536
+ }
+}

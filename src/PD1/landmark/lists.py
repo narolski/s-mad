@@ -7,6 +7,8 @@
   smdd  : 1,500 SMDD bona fide renders and their existing a47e7 stored-small copies (seed 20261111; 1,000 fit, 500 test)
   bench : AF0's benchmark subsample list bench_s (FRLL-Morphs and corrected MAD22 landmark cells, genuine native, E7)
   h1    : AF0's list of the approved Poisson set (orig variant)
+  ar1soft (amendment 1): AF0 wave-4 shrink-and-enlarge copies of 200 AR1 host photos and warp-only images
+  af0h  (amendment 1): the two warped halves of each AF0 uniform-0.5 morph ('level' column = the morph's id)
 
   python3 -I lists.py
 """
@@ -58,6 +60,12 @@ def main():
                         p1=r["p1"], p2=r["p2"]) for r in K.rows(K.AF0 / "lists/bench_s.csv")]
     out["h1"] = [row(id=r["id"], path=r["path"], set="h1", pool="h1poisson", tool="poisson", rung=r["rung"],
                      p1=r["p1"], p2=r["p2"]) for r in K.rows(K.AF0 / "lists/h1.csv")]
+    # amendment 1: AF0 wave-4 shrink-and-enlarge copies of 200 AR1 hosts, and the warped halves of AF0's u50 morphs
+    out["ar1soft"] = [row(id=r["id"], path=r["path"], set="ar1soft", pool=r["cell"], tool=r["tool"], rung=r["rung"],
+                          p1=r["p1"], p2=r["p2"]) for r in K.rows(K.AF0 / "lists/ar1soft.csv")]
+    out["af0h"] = [row(id=r["id"], path=r["path"], set="af0h", pool=r["tool"], tool="opencv", rung=r["rung"],
+                       p1=r["p1"], p2=r["p2"], split=r["cell"], level=r["id"].rsplit("_", 1)[0])
+                   for r in K.rows(K.AF0 / "lists/af0_h.csv") if "_u50_" in r["id"]]
     summ = {}
     for n, rr in out.items():
         for r in rr:

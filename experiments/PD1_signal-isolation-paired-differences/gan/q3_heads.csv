@@ -1,0 +1,45 @@
+feature,head,set,contrast,auc,lo,hi,paired_win,floor_stat,floor_auc,excess,excess_lo,excess_hi,latent_averageness_auc
+CLIP pooled,one-person head O (x2 vs x1),G (OOF),x3 vs x1,0.8016,0.7662,0.8393,0.9023,mirror_mad,0.6013,0.2004,0.1561,0.2507,0.9998
+CLIP pooled,one-person head O (x2 vs x1),G (OOF),x3 vs x0,0.8547,0.8111,0.8972,0.9062,file_bytes,1.0,-0.1453,-0.1889,-0.1028,
+CLIP pooled,one-person head O (x2 vs x1),G (OOF),x3 vs x2,0.6111,0.572,0.6548,0.6562,hf_energy,0.515,0.0962,0.0212,0.1741,0.9504
+CLIP pooled,one-person head O (x2 vs x1),G (OOF),x2 vs x1,0.6942,0.6609,0.7318,0.8477,mirror_mad,0.6093,0.0849,0.0404,0.1316,0.9248
+CLIP pooled,one-person head O (x2 vs x1),G (OOF),x1 vs x0,0.5244,0.4769,0.5713,0.5547,file_bytes,1.0,-0.4756,-0.5231,-0.4287,
+CLIP pooled,one-person head O (x2 vs x1),H raw frame (transfer),x3 vs x1,0.8243,0.8019,0.8467,0.9054,mirror_mad,0.6136,0.2107,0.1754,0.2455,0.9999
+CLIP pooled,one-person head O (x2 vs x1),H raw frame (transfer),x3 vs x1s,0.4716,0.4427,0.4998,0.461,laplacian_var,0.5443,-0.0727,-0.1109,-0.0353,0.3537
+CLIP pooled,one-person head O (x2 vs x1),H raw frame (transfer),x1s vs x1,0.84,0.8218,0.8591,1.0,mirror_mad,0.6264,0.2136,0.1905,0.2356,1.0
+CLIP pooled,one-person head O (x2 vs x1),"H aligned frame (transfer, descriptive)",x3 vs x1,0.809,0.7857,0.8323,0.8747,,,,,,
+CLIP pooled,one-person head O (x2 vs x1),"H aligned frame (transfer, descriptive)",x3 vs x1s,0.4732,0.4457,0.5011,0.4775,,,,,,
+CLIP pooled,one-person head O (x2 vs x1),"H aligned frame (transfer, descriptive)",x1s vs x1,0.8287,0.8104,0.8484,0.9953,,,,,,
+CLIP pooled,two-person head T (x3 vs x1),G (OOF),x3 vs x1,0.8083,0.7689,0.8506,0.9141,mirror_mad,0.6013,0.2071,0.1561,0.2616,0.9998
+CLIP pooled,two-person head T (x3 vs x1),G (OOF),x3 vs x0,0.8742,0.8351,0.9105,0.9102,file_bytes,1.0,-0.1258,-0.1649,-0.0895,
+CLIP pooled,two-person head T (x3 vs x1),G (OOF),x3 vs x2,0.661,0.6168,0.7109,0.7188,hf_energy,0.515,0.1461,0.0764,0.2241,0.9504
+CLIP pooled,two-person head T (x3 vs x1),G (OOF),x2 vs x1,0.6712,0.6431,0.7056,0.8477,mirror_mad,0.6093,0.062,0.0184,0.1067,0.9248
+CLIP pooled,two-person head T (x3 vs x1),G (OOF),x1 vs x0,0.5717,0.5248,0.6169,0.6406,file_bytes,1.0,-0.4283,-0.4752,-0.3831,
+CLIP pooled,two-person head T (x3 vs x1),H raw frame (transfer),x3 vs x1,0.8416,0.8201,0.8628,0.9291,mirror_mad,0.6136,0.2279,0.1924,0.2636,0.9999
+CLIP pooled,two-person head T (x3 vs x1),H raw frame (transfer),x3 vs x1s,0.469,0.4415,0.4966,0.4539,laplacian_var,0.5443,-0.0753,-0.1127,-0.0384,0.3537
+CLIP pooled,two-person head T (x3 vs x1),H raw frame (transfer),x1s vs x1,0.8606,0.8432,0.879,0.9953,mirror_mad,0.6264,0.2341,0.212,0.2555,1.0
+CLIP pooled,two-person head T (x3 vs x1),"H aligned frame (transfer, descriptive)",x3 vs x1,0.8229,0.8015,0.8446,0.9031,,,,,,
+CLIP pooled,two-person head T (x3 vs x1),"H aligned frame (transfer, descriptive)",x3 vs x1s,0.4676,0.441,0.4935,0.4657,,,,,,
+CLIP pooled,two-person head T (x3 vs x1),"H aligned frame (transfer, descriptive)",x1s vs x1,0.8453,0.8284,0.8634,0.9953,,,,,,
+CLIP mean patch token,one-person head O (x2 vs x1),G (OOF),x3 vs x1,0.798,0.7606,0.8409,0.9336,mirror_mad,0.6013,0.1967,0.1498,0.2522,0.9998
+CLIP mean patch token,one-person head O (x2 vs x1),G (OOF),x3 vs x0,0.748,0.7061,0.7945,0.8477,file_bytes,1.0,-0.252,-0.2939,-0.2055,
+CLIP mean patch token,one-person head O (x2 vs x1),G (OOF),x3 vs x2,0.6251,0.5872,0.6693,0.6641,hf_energy,0.515,0.1101,0.041,0.1841,0.9504
+CLIP mean patch token,one-person head O (x2 vs x1),G (OOF),x2 vs x1,0.7017,0.6718,0.7372,0.8984,mirror_mad,0.6093,0.0924,0.0515,0.1368,0.9248
+CLIP mean patch token,one-person head O (x2 vs x1),G (OOF),x1 vs x0,0.4008,0.3616,0.4365,0.3516,file_bytes,1.0,-0.5992,-0.6384,-0.5635,
+CLIP mean patch token,one-person head O (x2 vs x1),H raw frame (transfer),x3 vs x1,0.8538,0.8332,0.8741,0.9433,mirror_mad,0.6136,0.2402,0.2055,0.2751,0.9999
+CLIP mean patch token,one-person head O (x2 vs x1),H raw frame (transfer),x3 vs x1s,0.4623,0.4355,0.4891,0.4421,laplacian_var,0.5443,-0.082,-0.1189,-0.0444,0.3537
+CLIP mean patch token,one-person head O (x2 vs x1),H raw frame (transfer),x1s vs x1,0.8791,0.8624,0.8961,1.0,mirror_mad,0.6264,0.2527,0.2305,0.2732,1.0
+CLIP mean patch token,one-person head O (x2 vs x1),"H aligned frame (transfer, descriptive)",x3 vs x1,0.8478,0.8272,0.8681,0.9409,,,,,,
+CLIP mean patch token,one-person head O (x2 vs x1),"H aligned frame (transfer, descriptive)",x3 vs x1s,0.4644,0.4378,0.4917,0.4515,,,,,,
+CLIP mean patch token,one-person head O (x2 vs x1),"H aligned frame (transfer, descriptive)",x1s vs x1,0.8717,0.8551,0.8889,1.0,,,,,,
+CLIP mean patch token,two-person head T (x3 vs x1),G (OOF),x3 vs x1,0.7969,0.7556,0.8429,0.9258,mirror_mad,0.6013,0.1956,0.1488,0.2469,0.9998
+CLIP mean patch token,two-person head T (x3 vs x1),G (OOF),x3 vs x0,0.8232,0.7784,0.8705,0.9297,file_bytes,1.0,-0.1768,-0.2216,-0.1295,
+CLIP mean patch token,two-person head T (x3 vs x1),G (OOF),x3 vs x2,0.6611,0.6191,0.7095,0.7578,hf_energy,0.515,0.1462,0.0722,0.2243,0.9504
+CLIP mean patch token,two-person head T (x3 vs x1),G (OOF),x2 vs x1,0.6653,0.6321,0.7055,0.8789,mirror_mad,0.6093,0.0561,0.0103,0.1057,0.9248
+CLIP mean patch token,two-person head T (x3 vs x1),G (OOF),x1 vs x0,0.5187,0.4894,0.5467,0.5156,file_bytes,1.0,-0.4813,-0.5106,-0.4533,
+CLIP mean patch token,two-person head T (x3 vs x1),H raw frame (transfer),x3 vs x1,0.8709,0.8518,0.8893,0.9551,mirror_mad,0.6136,0.2572,0.2233,0.2922,0.9999
+CLIP mean patch token,two-person head T (x3 vs x1),H raw frame (transfer),x3 vs x1s,0.4423,0.4154,0.4686,0.4066,laplacian_var,0.5443,-0.102,-0.1386,-0.0663,0.3537
+CLIP mean patch token,two-person head T (x3 vs x1),H raw frame (transfer),x1s vs x1,0.8981,0.8827,0.9135,1.0,mirror_mad,0.6264,0.2717,0.251,0.2905,1.0
+CLIP mean patch token,two-person head T (x3 vs x1),"H aligned frame (transfer, descriptive)",x3 vs x1,0.8643,0.845,0.883,0.9598,,,,,,
+CLIP mean patch token,two-person head T (x3 vs x1),"H aligned frame (transfer, descriptive)",x3 vs x1s,0.446,0.4189,0.4726,0.4137,,,,,,
+CLIP mean patch token,two-person head T (x3 vs x1),"H aligned frame (transfer, descriptive)",x1s vs x1,0.8924,0.8772,0.9082,1.0,,,,,,

@@ -7,7 +7,7 @@ import numpy as np
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import pd1_common as K  # noqa: E402
 
-LISTS = ("ar1", "smdd", "af0", "bench", "h1", "ar1g")
+LISTS = ("ar1", "smdd", "af0", "bench", "h1", "ar1g", "ar1soft", "af0h")
 
 
 def sources(feat, lst):
@@ -17,7 +17,9 @@ def sources(feat, lst):
                 "af0": [("dinov3_512", "af0_af0_w1_mean", "mean"), ("dinov3_512", "af0_af0_w2_mean", "mean")],
                 "bench": [("dinov3_512", "af0_bench_s_mean", "mean")],
                 "h1": [("dinov3_512", "af0_h1_mean", "mean")],
-                "ar1g": [("dinov3_512", "af0_ar1g_mean", "mean")]}[lst]
+                "ar1g": [("dinov3_512", "af0_ar1g_mean", "mean")],
+                "ar1soft": [("dinov3_512", "ar1soft", "mean")],
+                "af0h": [("dinov3_512", "af0_af0_h_mean", "mean"), ("dinov3_512", "af0h", "mean")]}[lst]
     key = {"clip_cls": "cls", "clip_mean": "mean"}[feat]
     return [("clip224", lst, key)]
 

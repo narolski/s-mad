@@ -1,0 +1,25 @@
+feature,step,n_hosts,share,share_lo,share_hi,proj_auc,proj_auc_lo,proj_auc_hi,consistent
+CLIP pooled,pipeline x0->x1,256,1.0,1.0,1.0,0.9875,0.9794,0.9944,True
+CLIP pooled,same-person mixing x1->x2,256,0.7578,0.6992,0.8125,0.6374,0.6129,0.6651,True
+CLIP pooled,second identity x2->x3,256,0.6836,0.6172,0.75,0.6183,0.5737,0.6649,False
+CLIP pooled,whole morph x1->x3,256,0.8008,0.7578,0.8438,0.7182,0.6873,0.7531,True
+CLIP pooled,camera to morph x0->x3,256,1.0,1.0,1.0,0.998,0.9959,0.9995,True
+CLIP pooled,H whole morph x1->x3,423,0.8794,0.8487,0.9102,0.8068,0.7822,0.8309,True
+CLIP pooled,H latent spread x1->x1s,423,0.9953,0.9882,1.0,0.8428,0.8249,0.8617,True
+CLIP pooled,H morph beyond spread x1s->x3,423,0.6076,0.5626,0.6548,0.5928,0.5626,0.623,False
+CLIP pooled,H aligned frame whole morph x1->x3,423,0.9243,0.8983,0.948,0.8307,0.8085,0.8528,True
+CLIP pooled,H aligned frame latent spread x1->x1s,423,0.9976,0.9929,1.0,0.8672,0.8505,0.8846,True
+CLIP pooled,H aligned frame morph beyond spread x1s->x3,423,0.6265,0.5816,0.6714,0.5929,0.564,0.6224,False
+CLIP pooled,softening SMDD render->E7 copy,2000,1.0,1.0,1.0,0.9982,0.9974,0.999,True
+CLIP mean patch token,pipeline x0->x1,256,1.0,1.0,1.0,0.9845,0.9749,0.993,True
+CLIP mean patch token,same-person mixing x1->x2,256,0.8672,0.8242,0.9062,0.6754,0.653,0.7036,True
+CLIP mean patch token,second identity x2->x3,256,0.7344,0.6797,0.7891,0.6609,0.6231,0.7059,False
+CLIP mean patch token,whole morph x1->x3,256,0.9062,0.8672,0.9414,0.7718,0.7389,0.8107,True
+CLIP mean patch token,camera to morph x0->x3,256,1.0,1.0,1.0,0.9846,0.9738,0.9935,True
+CLIP mean patch token,H whole morph x1->x3,423,0.9433,0.9196,0.9645,0.8633,0.8432,0.883,True
+CLIP mean patch token,H latent spread x1->x1s,423,1.0,1.0,1.0,0.8961,0.881,0.9116,True
+CLIP mean patch token,H morph beyond spread x1s->x3,423,0.6217,0.5745,0.669,0.5857,0.562,0.6091,False
+CLIP mean patch token,H aligned frame whole morph x1->x3,423,0.9314,0.9054,0.9551,0.8514,0.8309,0.8715,True
+CLIP mean patch token,H aligned frame latent spread x1->x1s,423,1.0,1.0,1.0,0.8907,0.8752,0.9066,True
+CLIP mean patch token,H aligned frame morph beyond spread x1s->x3,423,0.6478,0.6028,0.6927,0.587,0.5638,0.6105,False
+CLIP mean patch token,softening SMDD render->E7 copy,2000,1.0,1.0,1.0,0.9106,0.9037,0.9176,True

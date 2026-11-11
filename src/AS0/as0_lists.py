@@ -93,6 +93,8 @@ def main():
         base = dict(set="L", host=pid, db=r["db"], frame="ar1_512")
         add(id=f"L|{pid}|R0", role="R0", tool="none", path=r["H"], lm=f"tem:{H}", persons=pid,
             **base, **pairmeta(r["db"], r["H_raw"], None, meta))
+        add(id=f"L|{pid}|S0", role="S0", tool="none", path=r["S"], lm=f"tem:{S}", persons=pid,   # second photo (other session)
+            **base, **pairmeta(r["db"], r["S_raw"], None, meta))
         shapes = {"R2": f"tem:{H}", "R2w": f"mix:{H};{S};0.5", "R3": f"mix:{H};{S};0.5", "R2wm": f"mix:{H};{Hm};0.5",
                   "R3m": f"mix:{H};{Hm};0.5", "R4": f"mix:{H};{B};0.5"}
         for tool in TOOLS:

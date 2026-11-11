@@ -200,3 +200,34 @@ Not run (the task gives the design and the fixed readings; flagged to the lead).
 ## Result
 
 `result.md` beside this file.
+
+## Amendment 1 (11 Nov, 18:25 CET), before any number of the sets below was computed
+
+Seen before writing it: the first pass (`result.md`), the Q1 tables of the three features, and one code-path test of
+the full analysis on the CLIP class token (one fixed C = 0.01, 2,000 replaced by 200 bootstrap draws, no benchmark
+features yet; it printed the held-out x1 vs x3 AUC, the floor, the SMDD-softening cosines and the SMDD-test flag
+rate). Two image sets appeared after the pre-registration, both built by the alpha-field probe's (AF0) owner:
+
+1. **Shrink-and-enlarge copies of 200 of the 536 hosts** (AF0 wave 4, `AF0/lists/ar1soft.csv`): the host photo x0
+   and its warp-only image x1 (both engines) passed unchanged through the existing E7 path of `prep_eval.py`
+   (verified bit for bit by AF0 against registered E7 frames) at the two registered strengths (FRLL-Morphs AMSL median
+   inter-eye distance 112.7 px; corrected MAD22 FaceMorpher 61.2 px). The task names "the same photo against its
+   existing shrink-and-enlarge copy" as the preferred softening direction, so these are added:
+   - Q2: "softening on hosts" direction = mean of z(x0 softened) - z(x0) over the 200 hosts, per strength and pooled,
+     estimated per split half like the steps; reported beside the SMDD direction.
+   - Q4: one extra projection variant "softh": the pooled host-softening direction estimated on the training hosts of
+     each fold (among the 200), projected out like (a). Descriptive; the registered variants (a), (b), (c) and their
+     readings are unchanged.
+   - Flag rate, set (iii): out-of-fold scores; threshold at 5% of the untouched x0 of all 536 hosts; flag rate of the
+     200 softened x0 per strength; also the softened warp-only images (x1 softened against untouched x1). Reported
+     beside (i) and (ii). The fixed reading stays on (i) and (ii) as registered.
+   - Contrast "softened x1 vs x3" (out-of-fold, 200 hosts, per strength), with its simple-statistic floor: does the
+     head still rank two-person morphs above softened one-person images.
+2. **The warped halves of the 1,000 AF0 uniform-0.5 morphs** (`AF0/lists/af0_h.csv`, 2,000 images, OpenCV-style
+   engine, persons disjoint from the 536 hosts): the morph against its own two halves, i.e. exactly matched geometry
+   and storage (the reviewer's floor setting). Final heads; AUC morph vs halves with the simple-statistic floor;
+   descriptive.
+
+Features of both sets are extracted here (CLIP) or taken from AF0's caches where complete (DINOv3), with the same
+code as above; their simple statistics are taken from AF0's cache where present and otherwise computed with the same
+unchanged function.

@@ -246,6 +246,19 @@ def baseline_compare(man, S, P, tool, contrast_name, pos, neg, oofz):
                 beats=bool(stats.ci(diff)[0] > 0))
 
 
+VAL8 = {r["person"] for r in csv.DictReader(open(K.RES / "pool_person_split.csv")) if r["is_val"] == "true"}
+
+
+def sens_val8(P, S, tool, base):
+    """sensitivity (lead, ID0): main contrast and steps without the 8 validation-reserved FERET hosts (as host or B)."""
+    keep = lambda rows: [r for r in rows if r["p1"] not in VAL8 and r["p2"] not in VAL8]  # noqa
+    o = {}
+    for name, pos, neg in ((base + "vsR4", "R4", base), ("R0vsR4", "R4", "R0"), ("R0->" + base, base, "R0")):
+        a, rep, n1, n0 = contrast(P.D, S, keep(P.rows(tool, pos)), keep(P.rows(tool, neg)))
+        o[name] = dict(auc=a, ci95=stats.ci(rep), n_pos=n1, n_neg=n0)
+    return o
+
+
 def main():
     man = list(csv.DictReader(open(K.OUT / "manifest.csv")))
     assert (K.RES / "gate_b.json").exists() and (K.RES / "gate_c.json").exists(), "gates first"
@@ -271,6 +284,8 @@ def main():
                         else:
                             lad["vs_best_noncontent_main"] = baseline_compare(man, S, P, tool, base + "vsR4", "R4",
                                                                               base, oofz)
+                        if pool == "frgcferet":
+                            lad["sensitivity_without_val8"] = sens_val8(P, S, tool, base)
                         r[f"{pool}/{tool}/{base}-{twin}"] = lad
                     if pool == "frll" and not retrain:      # retrains: bridge not scored (cross-pipeline)
                         PC = Pool(man, "frll")

@@ -1,0 +1,5 @@
+feature,head,G_rho_gain_vs_FR_dissim,G_lo,G_hi,rises,G_rho_host_gain_vs_latent_dist,G_rho_pooled_x2x3_gain_vs_latent_dist,H_rho_x3_minus_x1,H_lo,H_hi,H_rho_x3_minus_x1s,H_s_lo,H_s_hi
+CLIP pooled,one-person head O (x2 vs x1),0.0848,-0.1754,0.34,False,0.2015,0.2788,0.0497,-0.0462,0.146,0.0988,0.0051,0.1942
+CLIP pooled,two-person head T (x3 vs x1),0.2819,0.047,0.491,True,0.334,0.3531,0.0884,-0.0085,0.1874,0.1226,0.0305,0.2186
+CLIP mean patch token,one-person head O (x2 vs x1),0.1125,-0.1465,0.3672,False,0.1781,0.3109,0.0889,-0.0057,0.1782,0.1378,0.0471,0.2283
+CLIP mean patch token,two-person head T (x3 vs x1),0.2107,-0.0252,0.4316,False,0.2126,0.3568,0.1337,0.04,0.2266,0.1609,0.0721,0.2533

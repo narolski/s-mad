@@ -17,9 +17,10 @@ useful. Budget: 30,000 GPU-hours on the grant `plgrestorearc` (669 used by 11 No
 
 - Account `plgrestorearc-gpu-a100` (30,000 GPU-hours to 16 Aug 2027; it appeared in `hpc-grants` on 11 Nov at
   17:20). `plgmultivision-gpu-a100` is the author's fallback.
-- **11 Nov 17:25: Slurm does not accept either account yet** ("Invalid account or account/partition combination";
-  the user has no Slurm association although both grants are listed). Do not submit and do not probe: the lead's
-  watcher `src/athena/wait_and_submit_smoke.sh` asks every 20 minutes and the lead tells owners when it works.
+- 11 Nov 18:25: Slurm accepts both accounts (it refused them from 17:20 to 18:05, until the user's association was
+  synchronised after the access service was activated). First job: 3544186, the environment build and smoke test.
+  To see what Slurm accepts for the user: `sacctmgr -nP show assoc user=plgpnarolski format=Account,Partition`;
+  to test without creating a job: `sbatch --test-only -A <account> -p plgrid-gpu-a100 ... --wrap true`.
 - Partition `plgrid-gpu-a100`: A100 with 40 GB, 8 per node, x86, limit 48 hours.
 - Billing is one GPU-hour per GPU and hour while a job stays within 16 CPU cores and 128 GB per GPU.
   Ask for `-c 8 --mem=64G --gres=gpu:1` unless you need more.

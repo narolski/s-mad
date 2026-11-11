@@ -27,7 +27,7 @@ WEIGHTS = pathlib.Path("/home/narolski/.cache/huggingface/hub/models--timm--vit_
                        "eb70c15b117effa76315db43fcbd9f32a655292fc861798343939a02f561c6ae")
 CODE = {"code/feats_gpu.py": HERE / "feats_gpu.py", "code/common.py": K.W46 / "smadcvpr/common.py",
         "code/a12_released.py": K.W46 / "smadcvpr/a12_released.py"}
-SKIP = ("tab", "tab_smoke8", "smoke_audit")
+SKIP = ("tab", "tab_sub", "tab_smoke8", "smoke_audit", "train_arma")   # arma = subset of train_m15k
 
 
 def write_sha(p):

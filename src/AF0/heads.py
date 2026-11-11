@@ -250,8 +250,8 @@ ARMS = {
     "a_img_photos": dict(kind="img", pos=("u50",), neg=("photo",)),
     "b_img_halves": dict(kind="img", pos=("u50",), neg=("halfA", "halfB")),
     "c_const_halves": dict(kind="dense", target="const", pos=("u50",), neg=("halfA", "halfB")),
-    "d_meas_halves": dict(kind="dense", target="G", pos=("u50",), neg=("halfA", "halfB")),
-    "e_meas_photos": dict(kind="dense", target="G", pos=("u50",), neg=("photo",)),
+    "d_meas_halves": dict(kind="dense", target="D", pos=("u50",), neg=("halfA", "halfB")),
+    "e_meas_photos": dict(kind="dense", target="D", pos=("u50",), neg=("photo",)),
 }
 _SOFT = ("amsl112", "fm61")
 for _k in list(ARMS):                 # wave 4: the same arms with softened copies added on both sides
@@ -367,8 +367,14 @@ def main():
             log["logreg"] = dict(n=len(lt), n_pos=int(yl.sum()))
         json.dump(log, open(od / "log.json", "w"), indent=1)
     for n in a.eval.split(","):
+        if not (L.OUT / "feat" / a.backbone / f"{n}.done").exists():
+            print(f"skip {n}: no features", flush=True)
+            continue
         ev = Source(a.backbone, [n], partial=a.partial)
         N = len(ev.rows[n])
+        if N == 0:
+            print(f"skip {n}: 0 rows extracted", flush=True)
+            continue
         ids = np.array([r["id"] for r in ev.rows[n]])
         face, inner = ev.prep[n]["face"], ev.prep[n]["inner"]
         todo = []

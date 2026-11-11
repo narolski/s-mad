@@ -1,0 +1,15 @@
+{
+ "readings_one_person_head": {
+  "CLIP pooled": "works",
+  "CLIP mean patch token": "works"
+ },
+ "readings_two_person_head": {
+  "CLIP pooled": "works",
+  "CLIP mean patch token": "works"
+ },
+ "family_verdict": "idea works",
+ "features_done": [
+  "CLIP pooled",
+  "CLIP mean patch token"
+ ]
+}

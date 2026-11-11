@@ -108,6 +108,14 @@ rung and tool; bridge 2,443; FRLL benchmark side 204 raw photos, 2,443 published
 Dropped: 510 pixel-duplicate candidate frames (same capture re-aligned); 2 hosts without an independent FR reference
 photo (excluded from G-b only); no image failed a build or a crop.
 
+Person split (added 11 Nov about 19:00 at the lead's request, from the identity-shrinkage triage (ID0)):
+`experiments/AR1/pool_person_split.csv` (person, database, is_val, n_host_images = manifest rows with that host),
+made with the record's rule `prep_train.is_val(subject)` (imported unchanged from `mambamorph-code/smadcvpr`), CPU
+only, no score opened. 8 of the 536 hosts are validation-reserved persons: feret:00468, 00705, 00706, 00712, 00720,
+00771, 00797, 00894 (their photos came from `train.csv` bona_feret rows flagged val = 1; `pool.py` did not apply the
+rule). The other 528 hosts are training-split persons of our own training data. Nothing was rebuilt; results carry a
+sensitivity line without these 8 hosts (as host or as B).
+
 Identity overlap: FRGC / FERET persons are unseen for the released detectors (SMDD-trained; SelfMAD's training set not
 verified) and for M3 / M3L (R x d0, SMDD only). They are training identities of our d1 / A8-W1F networks, which are not
 scored here. FRLL persons are the benchmark bona fide; never trained on.
@@ -223,6 +231,9 @@ SelfMAD's training identities; whether 73_delin_align on FRLL matches prep_eval 
 - Build speed: OpenCV about 2,000-3,200 images/min with 12 processes, FaceMorpher 330-1,030/min (load-dependent),
   warp-only driver 1,900-6,900/min; the bottleneck on the shared DGX is GPU work (crops about 250-300/min, ViT-B/16
   scoring 12.5 images/s).
+- Any network WE train must exclude the ladder persons (pool.csv hosts; FRLL persons anyway) from its training data,
+  or be scored on the ladder out-of-fold by person (lead, 11 Nov). The probes of gate G-c and the AR3 baselines are
+  already out-of-fold by host person.
 - No softness measurement was made by this owner. A process `soften.py build --list ar1soft_src` seen on the DGX
   belongs to another owner.
 
@@ -269,6 +280,8 @@ $P -I $S/baselines.py; $P -I $S/analyse.py; $P -I $S/tables.py; $P -I $S/check_a
 
 ## Log of README updates
 - 11 Nov about 18:00 CET: first version.
+- 11 Nov about 19:00 CET: person split table and the 8 validation-reserved hosts (section 3); training rule (section 8);
+  `analyse.py` gains a sensitivity line without those 8 hosts.
 - 11 Nov about 18:40 CET: baselines (AR3) finished for all contrasts except R2wm (`experiments/AR1/baselines.json`,
   226 entries; copy of that version `/mnt/t7/smad_next/AR1/baselines_v1.json`); an incremental pass
   `baselines.py --only R2wm` merges the R2wm contrasts (log `baselines_r2wm.log`). G-c run crashed once on M3 seed 1

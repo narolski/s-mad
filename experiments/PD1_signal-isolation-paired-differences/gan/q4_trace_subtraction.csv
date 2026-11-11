@@ -1,0 +1,17 @@
+feature,variant,head,G_x3_vs_x1,G_x3_vs_x1_before,drop,G_x3_vs_x2,G_x2_vs_x1,G_x3_vs_x0,excess_over_floor,primary_flag_rate,primary_flag_rate_before,S_test_flag_rate,H_x3_vs_x1,H_x3_vs_x1s,keeps_separation,loses_softening_reaction,reading,G_x3_vs_x1_lo,G_x3_vs_x1_hi
+CLIP pooled,(a) softening removed,one-person head O (x2 vs x1),0.8024,0.8016,-0.0008,0.6124,0.6948,0.8458,0.2011,0.0392,0.0441,0.008,0.8177,0.4661,True,True,works,0.7672,0.8404
+CLIP pooled,(a) softening removed,two-person head T (x3 vs x1),0.8174,0.8083,-0.0091,0.67,0.6841,0.8746,0.2161,0.0539,0.049,0.005,0.842,0.4698,True,True,works,0.7775,0.8595
+CLIP pooled,(b) pipeline removed,one-person head O (x2 vs x1),0.8142,0.8016,-0.0125,0.6189,0.7038,0.8504,0.2129,0.0441,0.0441,0.077,0.8249,0.4721,True,True,works,0.777,0.8536
+CLIP pooled,(b) pipeline removed,two-person head T (x3 vs x1),0.8053,0.8083,0.003,0.6599,0.6788,0.8432,0.204,0.049,0.049,0.029,0.8425,0.47,True,True,works,0.7693,0.8438
+CLIP pooled,(c) softening and pipeline removed,one-person head O (x2 vs x1),0.8036,0.8016,-0.0019,0.6122,0.6954,0.8408,0.2023,0.0392,0.0441,0.007,0.8236,0.4713,True,True,works,0.7689,0.8415
+CLIP pooled,(c) softening and pipeline removed,two-person head T (x3 vs x1),0.8188,0.8083,-0.0105,0.6707,0.6837,0.8463,0.2176,0.0539,0.049,0.003,0.8418,0.4704,True,True,works,0.7791,0.8605
+CLIP pooled,"(d) latent spread (set H) removed, G only, descriptive",one-person head O (x2 vs x1),0.7233,0.8016,0.0783,0.5538,0.664,0.6707,0.1221,0.049,0.0441,0.167,0.5504,0.5533,False,True,in-between,0.6756,0.7737
+CLIP pooled,"(d) latent spread (set H) removed, G only, descriptive",two-person head T (x3 vs x1),0.7374,0.8083,0.0709,0.6068,0.6273,0.7419,0.1361,0.0637,0.049,0.102,0.5356,0.5358,False,True,in-between,0.6915,0.7852
+CLIP mean patch token,(a) softening removed,one-person head O (x2 vs x1),0.8073,0.798,-0.0093,0.6298,0.7061,0.7764,0.206,0.0686,0.0833,0.054,0.8543,0.4603,True,True,works,0.7708,0.8487
+CLIP mean patch token,(a) softening removed,two-person head T (x3 vs x1),0.7935,0.7969,0.0034,0.6578,0.6618,0.825,0.1923,0.0686,0.0686,0.061,0.8682,0.44,True,True,works,0.753,0.8391
+CLIP mean patch token,(b) pipeline removed,one-person head O (x2 vs x1),0.7969,0.798,0.0011,0.6223,0.6969,0.818,0.1956,0.0735,0.0833,0.107,0.8519,0.4569,True,True,works,0.7579,0.8412
+CLIP mean patch token,(b) pipeline removed,two-person head T (x3 vs x1),0.7945,0.7969,0.0024,0.6576,0.6606,0.8199,0.1932,0.0686,0.0686,0.092,0.8713,0.4419,True,True,works,0.7539,0.84
+CLIP mean patch token,(c) softening and pipeline removed,one-person head O (x2 vs x1),0.7888,0.798,0.0092,0.6089,0.6925,0.8151,0.1876,0.0637,0.0833,0.056,0.8554,0.4574,True,True,works,0.7502,0.8318
+CLIP mean patch token,(c) softening and pipeline removed,two-person head T (x3 vs x1),0.794,0.7969,0.0029,0.6578,0.6622,0.8182,0.1927,0.0686,0.0686,0.057,0.8683,0.4401,True,True,works,0.7533,0.8393
+CLIP mean patch token,"(d) latent spread (set H) removed, G only, descriptive",one-person head O (x2 vs x1),0.666,0.798,0.132,0.5104,0.6496,0.5128,0.0647,0.0686,0.0833,0.121,0.5427,0.5446,False,True,in-between,0.6296,0.7052
+CLIP mean patch token,"(d) latent spread (set H) removed, G only, descriptive",two-person head T (x3 vs x1),0.7253,0.7969,0.0716,0.5895,0.6303,0.7614,0.1241,0.0686,0.0686,0.085,0.5118,0.5175,False,True,in-between,0.6832,0.7709

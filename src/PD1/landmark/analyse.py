@@ -27,7 +27,7 @@ STEPS = [("pipeline", "R0", "R2w"), ("mirror_mix", "R2w", "R3m"), ("mirror_mix_m
 CONTRASTS = [("x1_vs_x3", "R2w", "R4"), ("x0_vs_x3", "R0", "R4"), ("x2_vs_x3", "R3", "R4"), ("xm_vs_x3", "R3m", "R4"),
              ("x0_vs_x1", "R0", "R2w"), ("x1_vs_x2", "R2w", "R3"), ("x1_vs_xm", "R2w", "R3m"),
              ("x1m_vs_xm", "R2wm", "R3m"), ("x0_vs_x2", "R0", "R3"), ("x0_vs_xm", "R0", "R3m")]
-VARIANTS = ("none", "soft", "pipe", "both")
+VARIANTS = ("none", "soft", "pipe", "both", "softh")
 HEADS = ("one", "two")
 FLOOR_CONTRASTS = ("x1_vs_x3", "x0_vs_x3", "x2_vs_x3", "xm_vs_x3", "x0_vs_x1", "x1_vs_x2", "x1_vs_xm", "x1m_vs_xm")
 CS = (1e-3, 1e-2, 1e-1, 1.0)
@@ -151,6 +151,22 @@ class Ext:
             out[g] = (np.stack(v), [r["id"] for r in sel]) if len(v) == len(sel) else None
         return out
 
+    def cues_af0(self):
+        if not hasattr(self, "_cu"):
+            self._cu = load_cues("af0")
+        return self._cu
+
+    def halves(self):
+        """AF0 u50 morphs and their two warped halves (amendment 1): (morph X, morph ids, halves X, halves morph ids)."""
+        if "af0h" not in self.F:
+            self.rows["af0h"] = K.rows(K.OUT / "lists/af0h.csv")
+            self.F["af0h"] = L.load(self.feat, "af0h")
+        F, rr = self.F["af0h"], self.rows["af0h"]
+        a = self.af0().get("u50")
+        if a is None or len(F) != len(rr):
+            return None
+        return a[0], a[1], np.stack([F[r["id"]] for r in rr]), [r["level"] for r in rr], [r["id"] for r in rr]
+
     def graded(self):
         F, rr = self.F["ar1g"], self.rows["ar1g"]
         if len(F) != len(rr):
@@ -161,6 +177,20 @@ class Ext:
         for r in rr:
             X[(r["p1"], float(r["level"]))] = F[r["id"]]
         return hosts, lv, X
+
+
+def load_soft(feat, T):
+    """amendment 1: AF0 wave-4 shrink-and-enlarge copies of 200 hosts -> {(tool, rung): (host idx, X, ids)}."""
+    F = L.load(feat, "ar1soft")
+    out = {}
+    for r in K.rows(K.OUT / "lists/ar1soft.csv"):
+        if r["id"] not in F or r["p1"] not in T.ix:
+            continue
+        out.setdefault((r["tool"], r["rung"]), ([], [], []))
+        out[(r["tool"], r["rung"])][0].append(T.ix[r["p1"]])
+        out[(r["tool"], r["rung"])][1].append(F[r["id"]])
+        out[(r["tool"], r["rung"])][2].append(r["id"])
+    return {k: (np.array(v[0]), np.stack(v[1]), v[2]) for k, v in out.items()}
 
 
 # ------------------------------------------------------------------------------------------------ Q1
@@ -231,12 +261,24 @@ def q2(T, gid, ext, heads_final):
     splits = half_splits(gid)
     steps = [(f"{eng}|{n}", eng, a, b) for eng in ENGINES for n, a, b in STEPS if T.has(eng, a) and T.has(eng, b)]
     H = [[{}, {}] for _ in splits]
+    soft_keys = sorted(k for k in T.soft if k[0] == "none")
     for s, (h0, h1) in enumerate(splits):
         for j, hs in enumerate((h0, h1)):
             idx = np.array([T.ix[p] for p in sorted(hs)])
             for key, eng, a, b in steps:
                 H[s][j][key] = L.unit((z(T.get(eng, b)[idx]) - z(T.get(eng, a)[idx])).mean(0))
-    names = [k for k, *_ in steps] + list(fixed)
+            hset = set(idx.tolist())
+            dd = []
+            for sk in soft_keys:
+                si, X, _ = T.soft[sk]
+                m = np.array([i in hset for i in si])
+                d = z(X[m]) - z(T.get("opencv", "R0")[si[m]])
+                dd.append(d)
+                H[s][j][f"softening on hosts ({sk[1].replace('R0_soft_', '')})"] = L.unit(d.mean(0))
+            if dd:
+                H[s][j]["softening on hosts (pooled)"] = L.unit(np.vstack(dd).mean(0))
+    hs_names = sorted(k for k in H[0][0] if k.startswith("softening on hosts"))
+    names = [k for k, *_ in steps] + hs_names + list(fixed)
     M = {}
     for A in names:
         for B in names:
@@ -263,12 +305,23 @@ def q2(T, gid, ext, heads_final):
         if sk:
             for st in ("same_person_mix", "mirror_mix", "mirror_mix_matched", "whole_morph", "second_identity",
                        "pipeline"):
-                r[f"{st}_vs_softening"] = M[f"{eng}|{st} || {sk[0]}"]["mean"]
+                if f"{eng}|{st} || {sk[0]}" in M:
+                    r[f"{st}_vs_softening"] = M[f"{eng}|{st} || {sk[0]}"]["mean"]
+        if "softening on hosts (pooled)" in names:
+            for st in ("same_person_mix", "mirror_mix", "mirror_mix_matched", "whole_morph", "second_identity",
+                       "pipeline"):
+                if f"{eng}|{st} || softening on hosts (pooled)" in M:
+                    r[f"{st}_vs_host_softening"] = M[f"{eng}|{st} || softening on hosts (pooled)"]["mean"]
+            r["host_softening_vs_smdd_softening"] = (M[f"softening on hosts (pooled) || {sk[0]}"]["mean"] if sk
+                                                     else None)
         r["reading_same_person_signal_is_morph_signal"] = (r["same_person_vs_whole"] or 0) >= 0.5
         r["reading_mirror_signal_is_morph_signal"] = (r["mirror_vs_whole"] or 0) >= 0.5
         if sk:
             r["reading_mixing_signal_is_softness"] = bool(max(r["same_person_mix_vs_softening"],
                                                               r["mirror_mix_vs_softening"]) > 0.5)
+        if "same_person_mix_vs_host_softening" in r:
+            r["reading_mixing_signal_is_host_softness (amendment 1)"] = bool(max(
+                r["same_person_mix_vs_host_softening"], r["mirror_mix_vs_host_softening"]) > 0.5)
         read[eng] = r
     return dict(matrix=M, names=names, readings=read, n_splits=len(splits))
 
@@ -277,6 +330,20 @@ def q2(T, gid, ext, heads_final):
 def proj_fn(variant, T, eng, tr, ext):
     if variant == "none":
         return None
+    if variant == "softh":
+        trs = set(np.asarray(tr).tolist())
+        keys = [k for k in T.soft if k[0] == "none"]
+        if not keys:
+            raise RuntimeError("host-softened features missing")
+
+        def fh(mu, sd):
+            dd = []
+            for k in keys:
+                idx, X, _ = T.soft[k]
+                m = np.array([i in trs for i in idx])
+                dd.append(((X[m] - mu) / sd) - ((T.get(eng, "R0")[idx[m]] - mu) / sd))
+            return [np.vstack(dd).mean(0)]
+        return fh
     ren, sma = ext.smdd("fit")
 
     def f(mu, sd):
@@ -321,6 +388,11 @@ def heads_all(T, fold, gid, ext, variants):
                             if not T.has(se, r):
                                 continue
                             S[key].setdefault((se, r), np.full(n, np.nan))[te] = hd.score(T.get(se, r)[te])
+                    tes = set(te.tolist())
+                    for sk, (idx, X, _) in T.soft.items():
+                        m = np.array([i in tes for i in idx])
+                        if m.any():
+                            S[key].setdefault(("soft",) + sk, np.full(n, np.nan))[idx[m]] = hd.score(X[m])
                 allh = np.arange(n)
                 FIN[key] = fit_head(T, gid, eng, head, allh, allh, variant, ext)
                 print(time.strftime("%T"), "heads", key, "C(final)", FIN[key].C, flush=True)
@@ -368,6 +440,37 @@ def eval_contrasts(T, D, S, cues, names):
     return out, {f"{se}|{cn}": f for (se, cn), (f, _) in fl.items()}
 
 
+def eval_soft(T, D, S, cues, names):
+    """amendment 1: flag set (iii) and the contrast softened x1 vs x3, out-of-fold, on the 200 softened hosts."""
+    out = {}
+    for key, sc in S.items():
+        kk = "|".join(key)
+        for sk in [k for k in sc if k[0] == "soft"]:
+            _, tool, rung = sk
+            m = ~np.isnan(sc[sk])
+            idx = np.where(m)[0]
+            base = "R0" if rung.startswith("R0") else "R2w"
+            se = "opencv" if tool == "none" else tool
+            unt = sc[(se, base)]
+            r = dict(n=int(m.sum()), flag_vs_untouched_all_hosts_5pct=K.flag_rate(unt, sc[sk][m]),
+                     auc_soft_vs_untouched_same_hosts=r3(K.auc(sc[sk][m], unt[m])))
+            if base == "R2w":
+                pos, neg = sc[(tool, "R4")][idx], sc[sk][idx]
+                A, Aci, rep_ = L.auc_ci(D, pos, T.persons("R4", idx), neg, T.persons("R2w", idx))
+                r.update(auc_x3_vs_softened_x1=r3(A), auc_x3_vs_softened_x1_ci=Aci)
+                A2, A2ci, rep2 = L.auc_ci(D, pos, T.persons("R4", idx), sc[(tool, "R2w")][idx], T.persons("R2w", idx))
+                r.update(auc_x3_vs_x1_same_hosts=r3(A2), auc_x3_vs_x1_same_hosts_ci=A2ci)
+                sid = dict(zip(T.soft[(tool, rung)][0].tolist(), T.soft[(tool, rung)][2]))
+                ia = [sid[i] for i in idx]
+                ib = [T.ids[(tool, "R4")][i] for i in idx]
+                if cues and all(i in cues for i in ia + ib):
+                    f, frep = floor(D, cues, names, ib, T.persons("R4", idx), ia, T.persons("R2w", idx))
+                    r.update(floor_stat=f["best"], floor_auc=f["auc"], floor_ci=f["ci"], lapvar_auc=f["lapvar"],
+                             excess=r3(A - f["auc"]), excess_ci=K.ci(rep_ - frep))
+            out[f"{kk}|{tool}|{rung}"] = r
+    return out
+
+
 def flag_tables(FIN, ext):
     cells = ext.bench_cells()
     ren, sma = ext.smdd("test")
@@ -407,6 +510,27 @@ def flag_tables(FIN, ext):
                 auc_u50_vs_zero=r3(K.auc(s["u50"], s["zero"])), auc_u25_vs_zero=r3(K.auc(s["u25"], s["zero"])),
                 auc_zero_vs_photo=r3(K.auc(s["zero"], s["photo"])), auc_u50_vs_photo=r3(K.auc(s["u50"], s["photo"])),
                 zero_flag_at_photo5=K.flag_rate(s["photo"], s["zero"]))
+        hv = ext.halves()
+        if hv is not None:
+            Xm, mid, Xh, hmid, hid = hv
+            sm, sh = hd.score(Xm), hd.score(Xh)
+            pos = dict(zip(mid, sm))
+            hmax = {}
+            for m_, v in zip(hmid, sh):
+                hmax[m_] = max(hmax.get(m_, -np.inf), v)
+            r = dict(auc_u50_vs_its_halves=r3(K.auc(sm, sh)),
+                     share_morph_above_both_halves=r3(np.mean([pos[m_] > hmax[m_] for m_ in hmax])),
+                     halves_flag_at_photo5=(K.flag_rate(hd.score(a["photo"][0]), sh) if a.get("photo") is not None
+                                            else None))
+            cu, nm = ext.cues_af0()
+            if cu and all(i in cu for i in mid + hid):
+                P, N = np.stack([cu[i] for i in mid]), np.stack([cu[i] for i in hid])
+                aucs = [K.auc(P[:, j], N[:, j]) for j in range(P.shape[1])]
+                j = int(np.argmax([L.fold_auc(x) for x in aucs]))
+                r.update(floor_stat=nm[j], floor_auc=r3(L.fold_auc(aucs[j])),
+                         lapvar_auc=r3(aucs[nm.index("lapvar")]), excess=r3(r["auc_u50_vs_its_halves"] -
+                                                                       L.fold_auc(aucs[j])))
+            rec["AF0 u50 morph vs its own two warped halves (matched geometry, unseen persons)"] = r
         out[kk] = rec
     return out
 
@@ -523,6 +647,7 @@ def setup(feat):
     T = L.Table(feat)
     for h in T.hosts:
         assert not h.startswith("frll:")
+    T.soft = load_soft(feat, T)
     D = K.Draw(T.hosts, B=K.B_BOOT)
     return pr, gid, fold, T, D
 
@@ -586,9 +711,12 @@ def full(feat, variants):
     od.mkdir(parents=True, exist_ok=True)
     ren, _ = ext.smdd("fit")
     if ren is None:
-        variants = [v for v in variants if v in ("none", "pipe")]
+        variants = [v for v in variants if v not in ("soft", "both")]
         print("SMDD features missing: variants", variants, flush=True)
-    meta = dict(feature=feat, n_hosts=len(T.hosts), fold_sizes=[int(sum(fold[h] == k for h in T.hosts)) for k in
+    if not T.soft:
+        variants = [v for v in variants if v != "softh"]
+        print("host-softened features missing: variants", variants, flush=True)
+    meta = dict(feature=feat, n_hosts=len(T.hosts), n_soft={"|".join(k): len(v[0]) for k, v in T.soft.items()}, fold_sizes=[int(sum(fold[h] == k for h in T.hosts)) for k in
                                                                  range(5)],
                 n_groups=len(set(gid.values())), variants=list(variants),
                 ext_counts={n: len(v) for n, v in ext.F.items()})
@@ -602,6 +730,7 @@ def full(feat, variants):
     meta["cues_available"] = len(cues)
     ev, fl = eval_contrasts(T, D, S, cues, names)
     jdump(dict(meta=meta, contrasts=ev, floors=fl), K.RES / f"q3q4_contrasts_{feat}{TAG}.json")
+    jdump(eval_soft(T, D, S, cues, names), K.RES / f"softened_hosts_{feat}{TAG}.json")
     flags = flag_tables(FIN, ext)
     jdump(flags, K.RES / f"external_{feat}{TAG}.json")
     rd = readings(ev, flags, feat)

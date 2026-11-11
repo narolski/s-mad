@@ -3,8 +3,8 @@
 Arms (heads.py ARMS; positives = uniform-0.5 morphs only, "one global mixing weight"):
   a  image-level logistic, camera photos as negatives      b  image-level logistic, warped halves as negatives
   c  per-patch ridge, constant 0.5 inside the face hull, halves as negatives
-  d  per-patch ridge, measured map (gradient disagreement G, the flat-excluding target) with halves
-  e  per-patch ridge, measured map G with camera photos only;   a4 ... e4: the same with softened copies added.
+  d  per-patch ridge, measured map D (the only target accepted by the wave-3 sanity rule) with halves
+  e  per-patch ridge, measured map D with camera photos only;   a4 ... e4: the same with softened copies added.
 Reads per arm: held-out-tool AUC (landmark ladder (AR1) FaceMorpher R2w vs R4, descriptive; OpenCV R2w vs R4; the
 Poisson set (A27) morph vs genuine; against softened warp-only images R2w_soft), each with the Laplacian-variance and
 best-simple-statistic floor; FRLL genuine native -> E7 shift under mean and top-tenth pooling; flag rate of FRLL E7

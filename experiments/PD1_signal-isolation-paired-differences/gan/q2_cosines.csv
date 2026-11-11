@@ -1,0 +1,91 @@
+feature,pair,cos,lo,hi,method
+CLIP pooled,G pipeline | G same-person mixing,-0.1174,-0.1308,-0.0962,cross-fitted half splits (200)
+CLIP pooled,G pipeline | G second identity,-0.1577,-0.1781,-0.1099,cross-fitted half splits (200)
+CLIP pooled,G pipeline | G whole morph,-0.1777,-0.187,-0.1634,cross-fitted half splits (200)
+CLIP pooled,G same-person mixing | G second identity,0.4426,0.4093,0.4914,cross-fitted half splits (200)
+CLIP pooled,G same-person mixing | G whole morph,0.7001,0.6318,0.7359,cross-fitted half splits (200)
+CLIP pooled,G second identity | G whole morph,0.6645,0.5547,0.7231,cross-fitted half splits (200)
+CLIP pooled,H whole morph | H latent spread,0.9014,0.8931,0.9084,cross-fitted half splits (200)
+CLIP pooled,H whole morph | H morph beyond spread,0.2167,0.1729,0.2439,cross-fitted half splits (200)
+CLIP pooled,H latent spread | H morph beyond spread,-0.0446,-0.0649,-0.03,cross-fitted half splits (200)
+CLIP pooled,G pipeline | H whole morph,-0.1193,-0.1823,-0.0481,"full directions, cluster bootstrap"
+CLIP pooled,G pipeline | H latent spread,0.0038,-0.0471,0.0549,"full directions, cluster bootstrap"
+CLIP pooled,G pipeline | H morph beyond spread,-0.3391,-0.402,-0.18,"full directions, cluster bootstrap"
+CLIP pooled,G pipeline | S softening (SMDD),-0.1754,-0.211,-0.1273,"full directions, cluster bootstrap"
+CLIP pooled,G pipeline | FRLL softening (diagnostic of FRLL images),0.0454,0.0112,0.0808,"full directions, cluster bootstrap"
+CLIP pooled,G same-person mixing | H whole morph,0.673,0.4484,0.7151,"full directions, cluster bootstrap"
+CLIP pooled,G same-person mixing | H latent spread,0.6646,0.5105,0.6713,"full directions, cluster bootstrap"
+CLIP pooled,G same-person mixing | H morph beyond spread,0.11,-0.1487,0.3307,"full directions, cluster bootstrap"
+CLIP pooled,G same-person mixing | S softening (SMDD),0.2372,0.0508,0.3544,"full directions, cluster bootstrap"
+CLIP pooled,G same-person mixing | FRLL softening (diagnostic of FRLL images),-0.0145,-0.0864,0.0476,"full directions, cluster bootstrap"
+CLIP pooled,G second identity | H whole morph,0.6701,0.45,0.6756,"full directions, cluster bootstrap"
+CLIP pooled,G second identity | H latent spread,0.5713,0.4165,0.5898,"full directions, cluster bootstrap"
+CLIP pooled,G second identity | H morph beyond spread,0.3471,-0.0025,0.4955,"full directions, cluster bootstrap"
+CLIP pooled,G second identity | S softening (SMDD),0.3756,0.1788,0.4303,"full directions, cluster bootstrap"
+CLIP pooled,G second identity | FRLL softening (diagnostic of FRLL images),0.1299,0.0504,0.1691,"full directions, cluster bootstrap"
+CLIP pooled,G whole morph | H whole morph,0.7914,0.693,0.7986,"full directions, cluster bootstrap"
+CLIP pooled,G whole morph | H latent spread,0.7247,0.6287,0.747,"full directions, cluster bootstrap"
+CLIP pooled,G whole morph | H morph beyond spread,0.2786,0.0282,0.4105,"full directions, cluster bootstrap"
+CLIP pooled,G whole morph | S softening (SMDD),0.3665,0.2713,0.4151,"full directions, cluster bootstrap"
+CLIP pooled,G whole morph | FRLL softening (diagnostic of FRLL images),0.0736,0.0189,0.115,"full directions, cluster bootstrap"
+CLIP pooled,H whole morph | S softening (SMDD),0.2465,0.1878,0.2872,"full directions, cluster bootstrap"
+CLIP pooled,H whole morph | FRLL softening (diagnostic of FRLL images),0.0295,-0.0125,0.0669,"full directions, cluster bootstrap"
+CLIP pooled,H latent spread | S softening (SMDD),0.1164,0.072,0.1514,"full directions, cluster bootstrap"
+CLIP pooled,H latent spread | FRLL softening (diagnostic of FRLL images),0.0008,-0.0346,0.0323,"full directions, cluster bootstrap"
+CLIP pooled,H morph beyond spread | S softening (SMDD),0.374,0.2172,0.4285,"full directions, cluster bootstrap"
+CLIP pooled,H morph beyond spread | FRLL softening (diagnostic of FRLL images),0.0794,0.0082,0.128,"full directions, cluster bootstrap"
+CLIP pooled,S softening (SMDD) | FRLL softening (diagnostic of FRLL images),0.4054,0.3798,0.4219,"full directions, cluster bootstrap"
+CLIP pooled,G pipeline | itself (split-half reliability),0.9565,0.923,0.9699,split halves (200)
+CLIP pooled,G same-person mixing | itself (split-half reliability),0.6889,0.4995,0.7787,split halves (200)
+CLIP pooled,G second identity | itself (split-half reliability),0.6056,0.3809,0.7107,split halves (200)
+CLIP pooled,G whole morph | itself (split-half reliability),0.8534,0.7835,0.8955,split halves (200)
+CLIP pooled,H whole morph | itself (split-half reliability),0.9376,0.9146,0.9539,split halves (200)
+CLIP pooled,H latent spread | itself (split-half reliability),0.9701,0.9605,0.977,split halves (200)
+CLIP pooled,H morph beyond spread | itself (split-half reliability),0.6553,0.5389,0.7349,split halves (200)
+CLIP pooled,S softening (SMDD) | itself (split-half reliability),0.9988,0.9981,0.9992,split halves (200)
+CLIP pooled,FRLL softening (diagnostic of FRLL images) | itself (split-half reliability),0.973,0.961,0.9811,split halves (200)
+CLIP mean patch token,G pipeline | G same-person mixing,-0.1312,-0.1414,-0.1206,cross-fitted half splits (200)
+CLIP mean patch token,G pipeline | G second identity,0.114,0.0936,0.1315,cross-fitted half splits (200)
+CLIP mean patch token,G pipeline | G whole morph,0.004,-0.0061,0.0148,cross-fitted half splits (200)
+CLIP mean patch token,G same-person mixing | G second identity,0.3962,0.3675,0.4229,cross-fitted half splits (200)
+CLIP mean patch token,G same-person mixing | G whole morph,0.6748,0.637,0.7048,cross-fitted half splits (200)
+CLIP mean patch token,G second identity | G whole morph,0.6004,0.5168,0.6611,cross-fitted half splits (200)
+CLIP mean patch token,H whole morph | H latent spread,0.9162,0.9062,0.9237,cross-fitted half splits (200)
+CLIP mean patch token,H whole morph | H morph beyond spread,-0.1339,-0.1618,-0.1141,cross-fitted half splits (200)
+CLIP mean patch token,H latent spread | H morph beyond spread,-0.2908,-0.3084,-0.2687,cross-fitted half splits (200)
+CLIP mean patch token,G pipeline | H whole morph,-0.0209,-0.0715,0.0329,"full directions, cluster bootstrap"
+CLIP mean patch token,G pipeline | H latent spread,0.03,-0.0141,0.0707,"full directions, cluster bootstrap"
+CLIP mean patch token,G pipeline | H morph beyond spread,-0.1636,-0.2316,-0.0446,"full directions, cluster bootstrap"
+CLIP mean patch token,G pipeline | S softening (SMDD),-0.1245,-0.1486,-0.0934,"full directions, cluster bootstrap"
+CLIP mean patch token,G pipeline | FRLL softening (diagnostic of FRLL images),0.1015,0.0585,0.1352,"full directions, cluster bootstrap"
+CLIP mean patch token,G same-person mixing | H whole morph,0.6593,0.5099,0.6661,"full directions, cluster bootstrap"
+CLIP mean patch token,G same-person mixing | H latent spread,0.6571,0.5272,0.6653,"full directions, cluster bootstrap"
+CLIP mean patch token,G same-person mixing | H morph beyond spread,-0.1335,-0.2197,0.0205,"full directions, cluster bootstrap"
+CLIP mean patch token,G same-person mixing | S softening (SMDD),0.2407,0.16,0.2727,"full directions, cluster bootstrap"
+CLIP mean patch token,G same-person mixing | FRLL softening (diagnostic of FRLL images),0.0916,0.0279,0.1314,"full directions, cluster bootstrap"
+CLIP mean patch token,G second identity | H whole morph,0.646,0.4585,0.6347,"full directions, cluster bootstrap"
+CLIP mean patch token,G second identity | H latent spread,0.6707,0.5037,0.6533,"full directions, cluster bootstrap"
+CLIP mean patch token,G second identity | H morph beyond spread,-0.2193,-0.296,-0.0224,"full directions, cluster bootstrap"
+CLIP mean patch token,G second identity | S softening (SMDD),0.1069,0.0263,0.1531,"full directions, cluster bootstrap"
+CLIP mean patch token,G second identity | FRLL softening (diagnostic of FRLL images),0.0664,-0.0012,0.1145,"full directions, cluster bootstrap"
+CLIP mean patch token,G whole morph | H whole morph,0.7789,0.6621,0.7767,"full directions, cluster bootstrap"
+CLIP mean patch token,G whole morph | H latent spread,0.7935,0.6894,0.7994,"full directions, cluster bootstrap"
+CLIP mean patch token,G whole morph | H morph beyond spread,-0.2143,-0.3075,-0.0381,"full directions, cluster bootstrap"
+CLIP mean patch token,G whole morph | S softening (SMDD),0.202,0.1415,0.241,"full directions, cluster bootstrap"
+CLIP mean patch token,G whole morph | FRLL softening (diagnostic of FRLL images),0.0933,0.0398,0.1295,"full directions, cluster bootstrap"
+CLIP mean patch token,H whole morph | S softening (SMDD),0.2384,0.2013,0.2634,"full directions, cluster bootstrap"
+CLIP mean patch token,H whole morph | FRLL softening (diagnostic of FRLL images),0.0564,0.0163,0.0864,"full directions, cluster bootstrap"
+CLIP mean patch token,H latent spread | S softening (SMDD),0.2101,0.1895,0.2255,"full directions, cluster bootstrap"
+CLIP mean patch token,H latent spread | FRLL softening (diagnostic of FRLL images),0.0683,0.0345,0.0942,"full directions, cluster bootstrap"
+CLIP mean patch token,H morph beyond spread | S softening (SMDD),0.0427,-0.0492,0.1248,"full directions, cluster bootstrap"
+CLIP mean patch token,H morph beyond spread | FRLL softening (diagnostic of FRLL images),-0.0512,-0.1017,0.0172,"full directions, cluster bootstrap"
+CLIP mean patch token,S softening (SMDD) | FRLL softening (diagnostic of FRLL images),0.3398,0.3,0.3629,"full directions, cluster bootstrap"
+CLIP mean patch token,G pipeline | itself (split-half reliability),0.9258,0.8955,0.9435,split halves (200)
+CLIP mean patch token,G same-person mixing | itself (split-half reliability),0.7003,0.6356,0.7535,split halves (200)
+CLIP mean patch token,G second identity | itself (split-half reliability),0.541,0.4207,0.6317,split halves (200)
+CLIP mean patch token,G whole morph | itself (split-half reliability),0.8004,0.7283,0.848,split halves (200)
+CLIP mean patch token,H whole morph | itself (split-half reliability),0.916,0.8921,0.9333,split halves (200)
+CLIP mean patch token,H latent spread | itself (split-half reliability),0.9712,0.9644,0.9765,split halves (200)
+CLIP mean patch token,H morph beyond spread | itself (split-half reliability),0.4635,0.3426,0.5649,split halves (200)
+CLIP mean patch token,S softening (SMDD) | itself (split-half reliability),0.9932,0.9914,0.9944,split halves (200)
+CLIP mean patch token,FRLL softening (diagnostic of FRLL images) | itself (split-half reliability),0.9016,0.8799,0.9196,split halves (200)

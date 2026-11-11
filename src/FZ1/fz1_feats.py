@@ -157,6 +157,8 @@ def main():
     ap.add_argument("--bs", type=int, default=64)
     ap.add_argument("--no-tf32", action="store_true")
     ap.add_argument("--rgb", action="store_true")
+    ap.add_argument("--part", default=None, help="k/n: contiguous k-th of n chunks (1-based), '+flip' sets only")
+    ap.add_argument("--workers", type=int, default=4)
     a = ap.parse_args()
     tf32 = "--no-tf32" not in sys.argv
     torch.backends.cuda.matmul.allow_tf32 = tf32      # A43 scoring ran with tf32_matmul / tf32_cudnn True
@@ -169,16 +171,22 @@ def main():
     for spec in a.set.split(","):                      # e.g. a43,sg3,eval,smdd,smdd_flip,smdd+flip (one pass, both files)
         if spec.endswith("+flip"):
             set_name = spec[:-5]
-            o1 = K.BIG / "feats" / a.backbone / f"{set_name}{'_smoke' if a.smoke else ''}.npz"
-            o2 = K.BIG / "feats" / a.backbone / f"{set_name}_flip{'_smoke' if a.smoke else ''}.npz"
+            tag = f"_part{a.part.replace('/', 'of')}" if a.part else ""
+            o1 = K.BIG / "feats" / a.backbone / f"{set_name}{tag}{'_smoke' if a.smoke else ''}.npz"
+            o2 = K.BIG / "feats" / a.backbone / f"{set_name}_flip{tag}{'_smoke' if a.smoke else ''}.npz"
             if o1.exists() and o2.exists() and not a.smoke:
                 print("exists, skipped:", o1, o2)
                 continue
             items = items_for(set_name)
+            if a.part:
+                k, n = (int(x) for x in a.part.split("/"))
+                lo, hi = (k - 1) * len(items) // n, k * len(items) // n
+                items = items[lo:hi]
+                print(f"part {k}/{n}: items {lo}:{hi}", flush=True)
             if a.smoke:
                 items = items[:8]
             t0 = time.time()
-            f1, f2 = extract(model, norm, items, "both", a.bs, dev)
+            f1, f2 = extract(model, norm, items, "both", a.bs, dev, workers=a.workers)
             dt = time.time() - t0
             print(f"{a.backbone} {set_name} orig+flip: {f1.shape} in {dt:.0f}s; max GPU mem {torch.cuda.max_memory_allocated() / 2**30:.2f} GB", flush=True)
             o1.parent.mkdir(parents=True, exist_ok=True)

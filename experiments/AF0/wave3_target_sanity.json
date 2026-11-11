@@ -1,0 +1,99 @@
+{
+ "af0": {
+  "g": {
+   "median_flat": 1.0314,
+   "median_busy": 0.8729,
+   "contrast_rho": -0.1328,
+   "n_images": 1000,
+   "accepted": false
+  },
+  "D": {
+   "median_flat": 11.6641,
+   "median_busy": 12.8911,
+   "contrast_rho": 0.0967,
+   "n_images": 1000,
+   "accepted": true
+  },
+  "G": {
+   "median_flat": 1.5664,
+   "median_busy": 3.7757,
+   "contrast_rho": 0.7014,
+   "n_images": 1000,
+   "accepted": false
+  },
+  "Dm": {
+   "median_flat": 0.0,
+   "median_busy": 12.8911,
+   "contrast_rho": 0.8166,
+   "n_images": 1000,
+   "accepted": false
+  },
+  "alpha": {
+   "note": "a is constant (0.5) on uniform images: flat = busy, contrast correlation undefined",
+   "accepted": false
+  }
+ },
+ "ar1_ratios_opencv_engine_a05": {
+  "n_hosts": 100,
+  "alpha": {
+   "same_over_two": 1.0,
+   "mirror_over_two": 1.0,
+   "iqr_same": [
+    1.0,
+    1.0
+   ],
+   "iqr_mirror": [
+    1.0,
+    1.0
+   ]
+  },
+  "g": {
+   "same_over_two": 0.7153,
+   "mirror_over_two": 0.7643,
+   "iqr_same": [
+    0.6249,
+    0.8089
+   ],
+   "iqr_mirror": [
+    0.6484,
+    0.8206
+   ]
+  },
+  "D": {
+   "same_over_two": 0.8625,
+   "mirror_over_two": 0.5041,
+   "iqr_same": [
+    0.569,
+    1.3728
+   ],
+   "iqr_mirror": [
+    0.313,
+    0.6767
+   ]
+  },
+  "G": {
+   "same_over_two": 0.8852,
+   "mirror_over_two": 0.8953,
+   "iqr_same": [
+    0.7806,
+    0.9762
+   ],
+   "iqr_mirror": [
+    0.8152,
+    0.9701
+   ]
+  },
+  "Dm": {
+   "same_over_two": 0.8306,
+   "mirror_over_two": 0.5023,
+   "iqr_same": [
+    0.5688,
+    1.1975
+   ],
+   "iqr_mirror": [
+    0.3362,
+    0.6922
+   ]
+  }
+ }
+}

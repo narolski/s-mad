@@ -96,12 +96,40 @@
    "h1poisson|poisson|morph|": 598
   }
  },
+ "ar1soft": {
+  "n": 1200,
+  "duplicates_dropped": 0,
+  "cells": {
+   "frgcferet|facemorpher|R2w_soft_amsl112|": 200,
+   "frgcferet|facemorpher|R2w_soft_fm61|": 200,
+   "frgcferet|none|R0_soft_amsl112|": 200,
+   "frgcferet|none|R0_soft_fm61|": 200,
+   "frgcferet|opencv|R2w_soft_amsl112|": 200,
+   "frgcferet|opencv|R2w_soft_fm61|": 200
+  }
+ },
+ "af0h": {
+  "n": 2000,
+  "duplicates_dropped": 0,
+  "cells": {
+   "feret|opencv|halfA|train": 400,
+   "feret|opencv|halfA|val": 100,
+   "feret|opencv|halfB|train": 400,
+   "feret|opencv|halfB|val": 100,
+   "frgc|opencv|halfA|train": 400,
+   "frgc|opencv|halfA|val": 100,
+   "frgc|opencv|halfB|train": 400,
+   "frgc|opencv|halfB|val": 100
+  }
+ },
  "frll_persons_in_lists": {
   "ar1": 1122,
   "ar1g": 0,
   "af0": 0,
   "smdd": 0,
   "bench": 5936,
-  "h1": 0
+  "h1": 0,
+  "ar1soft": 0,
+  "af0h": 0
  }
 }
