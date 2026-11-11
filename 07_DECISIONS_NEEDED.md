@@ -51,7 +51,7 @@ morph literature note to `narolski/research`.
 ## Author's decision of 11 Nov, night: PLGrid grant
 
 - The S-MAD work is within the scope of the overall grant behind `plgrestorearc` (Cyfronet rule 3 on the research agenda is satisfied, on the author's word). The work moves to a more specific grant once that is approved.
-- Slurm accounts: `plgrestorearc-gpu-gh200` (Helios GPU), `plgrestorearc-gpu-a100` (Athena GPU), `plgrestorearc-cpu`; the login is the personal account `plgpnarolski`. Which of these the grant actually holds is unknown until `hpc-grants` can be read.
+- The grant is on **Athena** (author, 11 Nov): A100 cards with 40 GB, x86; Slurm account `plgrestorearc-gpu-a100`, partition `plgrid-gpu-a100`, 48-hour limit; the login is the personal account `plgpnarolski` at `athena.cyfronet.pl`. Athena offers key login only (no password), so the key must arrive through the Portal sync. Athena is GPU-only: no CPU-only workloads there.
 - Cyfronet rules followed: no computation or compilation on the login node; data under `$SCRATCH`; no `/tmp`; large transfers through a compute-node allocation.
 
 ## Still open
