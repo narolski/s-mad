@@ -41,5 +41,5 @@ morph literature note to `narolski/research`.
 
 ## Still open
 
-1. **Class definitions**, to be fixed after the literature check: proposal in `14_CLASS_DEFINITIONS.md` (pending).
+1. **Class definitions.** Literature check done; proposal of three categories (genuine, morphing attack, single-subject manipulation) in `14_CLASS_DEFINITIONS.md`. Needs the author's yes; until then verdict wording in `11_AUDIT_PLAN.md` is unchanged.
 2. **Literature repository** note is pushed; nothing else open there.

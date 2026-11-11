@@ -22,6 +22,8 @@ people.
 | `11_AUDIT_PLAN.md` | Audit experiments per morph family with fixed verdict rules |
 | `12_STATE_AT_HANDOVER.md` | State and rulings taken over from the Codex loop on 11 Nov |
 | `13_LONG_TERM_PLAN.md` | Stages after the sprint and the WCSS queue policy |
+| `14_CLASS_DEFINITIONS.md` | What the literature says a morph and a genuine image are; proposal of three categories |
+| `literature/` | Raw, verified literature checks |
 | `OWNER_BRIEF.md` | Rules and machine notes for hypothesis owners; the WCSS slot queue |
 | `NOTEBOOK.md` | Live state of every idea, one line each |
 | `EXPERIMENTS.md` | Plain name of every experiment ID |
