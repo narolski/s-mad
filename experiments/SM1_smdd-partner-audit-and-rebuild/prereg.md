@@ -324,6 +324,28 @@ the AR1 FRGC/colorFERET halves. Readings and falsifier mapping as for the frozen
 smoke first (8 images, a few steps). If a fit fails it is rerun once with the same seed; a second failure is
 reported, never replaced by another seed.
 
+## Amendment A10 (19:25 CET, author's decision of 19:13 via the lead; before arm (f) is built and before any score)
+
+- **Arm (f)** = arm (e) plus JPEG copies made by the existing registered `prep_eval.degrade` (imported, never copied
+  or edited; sha256 374408ab…), operations `jpeg90` and `jpeg70` only (`jpeg50` is held out as a test condition;
+  `blur1`, `resample50`, `chip` are not used on training images). Assignment fixed per image, independent of the head
+  seed: a seeded third of every image that can enter arm (e) (renders, their shrunk copies, halves, their shrunk
+  copies, (c) morphs, their shrunk copies; seed 20261111 + 50, by id) gets a JPEG copy, half of those at quality 90 and
+  half at 70; the copy is the decoded JPEG stored as lossless PNG (as the evaluation files are). Composition per seed:
+  arm (e)'s composition with every assigned image replaced by its JPEG copy, so about one third of each class is a
+  JPEG copy (same share in both classes); equal counts kept. Built on the DGX (the platform of the existing
+  evaluation files); first verified by reproducing one existing `jpeg70` evaluation file byte for byte with
+  `prep_eval`'s own `degrade` + `align` (verification only; the aligner is never used on training images).
+  Five LoRA fits of arm (f), seeds 401 to 405, same recipe and settings as A9; frozen-feature heads of (f) as for
+  the other arms; Laplacian acceptance as for (e).
+- **New reads for all arms** (frozen heads and LoRA fits): flag rate of the FRLL genuine photos under `jpeg70` and
+  `jpeg50` (existing evaluation files `eval/frllm/frll_bona/*_{jpeg70,jpeg50}.png`, 204 each; `jpeg90` printed too)
+  at (i) the network's own rule (logit ≥ 0, i.e. probability ≥ 0.5) and (ii) the development threshold = the score
+  flagging 5% of untouched development photos (AR1 FRGC/colorFERET R0, as A1.5), each with the miss rate at the same
+  threshold on the FRLL-Morphs families (per family and pooled over the 4 landmark families). Person-bootstrap
+  intervals; every seed printed. Running LoRA tasks score the JPEG frames only if the frames reach Athena before
+  they start; otherwise a scoring-only job re-scores the saved trainable parameters (no retraining).
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 

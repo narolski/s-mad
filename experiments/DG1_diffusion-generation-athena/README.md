@@ -132,6 +132,30 @@ here. No answer yet.
   repaired instead of rebuilt (saves the 10-minute torch install).
 - 11 Nov 19:03. **Smoke job resubmitted: Athena job 3544800** (log `.../smad-next/logs/DG1-smoke-3544800.out`).
 
+- 11 Nov 19:06–19:11. **Smoke job 3544800 COMPLETED** (node t0012, 4 min 57 s = 0.083 GPU-hours, exit 0:0). Environment
+  repaired (numpy 1.26.4, pillow 12.2.0, torch 2.12.1+cu130, torchvision 0.27.1+cu130, pytorch-lightning 2.5.5; record
+  `/net/pr2/projects/plgrid/plggrestoration/smad-next/envs/DG1/versions.txt`, copy in the result tar). Pack sha OK,
+  unpack 11 s, `eq` (12 encodes in 41 s = 3.38 s per image; 8 renders at 20 steps, 0.33–0.37 s per image in batches
+  of 4) and `smoke8` (8 encodes in 26 s = 3.28 s per image; 100-step renders about 4 s for a batch of one), all finite,
+  genuine writes 2 of 2 lossless, repo git-clean and 70 of 70 manifest files equal, GPU peak 10,249 MiB. Result
+  `.../results/DG1/DG1_smoke_3544800.tar`, fetched with `bash src/DG1/dg1_fetch.sh smoke_3544800` (sha OK) into
+  `/mnt/t7/smad_next/DG1/gen/smoke_3544800/`.
+- 11 Nov 19:13. **Equivalence gate: equivalent.** `.venv-spark/bin/python -I src/DG1/dg1_validity.py equiv --gen
+  /mnt/t7/smad_next/DG1/gen/smoke_3544800/out_smoke_3544800/eq --ref /mnt/t7/smad_heldout/a43/gen --out
+  experiments/DG1_diffusion-generation-athena/equivalence.json`: per-image mean |difference| 0.017–0.059 grey levels
+  (pooled 0.032), max 4, 5–15% of pixels differ (by 1–4 levels), glint cosine Athena vs DGX ≥ 0.99989; the largest
+  change of any image statistic is 0.01 of the between-image standard deviation of that rung (Laplacian variance).
+  Cross-check beside it (not registered): the 10 `smoke8` files from Athena vs the same 10 jobs on the DGX:
+  mean 0.019–0.066, max 4, genuine writes identical (`smoke8_athena_vs_dgx.json`). Reading: Athena images may be
+  combined with DGX images of this generator; every manifest row still carries `gen_run`.
+- 11 Nov 19:14. Estimate (upper bound with margin: 3.4 s per encode, 0.4 s per 20-step render, 2.0 s per 100-step
+  render, 2 min overhead per task): set A (306 encodes, 406 + 406 renders) about 36 min; each set B shard (about 404
+  encodes, about 636 renders) about 30 min; total about 2.6 GPU-hours, at most 3.5. Timing sent to the lead.
+- 11 Nov 19:15. **Production submitted: Athena array job 3545841** (`sbatch --parsable --time=01:30:00
+  packs/DG1/dg1_prod.sbatch`; tasks 0 = setA, 1–4 = setB_s0..s3; logs `.../smad-next/logs/DG1-prod-3545841_<k>.out`;
+  results `.../results/DG1/DG1_<list>.tar`). If a task fails: read its log; the result tar name is refused if it
+  exists, so a rerun of a failed task needs no cleanup unless its tar was written.
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):
@@ -259,9 +283,9 @@ manifest check runs regardless).
 
 ## 10. Handover state
 
-19:03: Athena smoke job 3544800 submitted (3544197 failed at module load, 3544215 at the numpy version; see timeline). Before that: no Athena job. Files staged on Athena:
+19:15: Athena production array 3545841 (5 tasks) submitted; smoke 3544800 passed (3544197 and 3544215 failed; see timeline). Before that: no Athena job. Files staged on Athena:
 `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/DG1/{dg1_pack.tar,dg1_pack.tar.sha256,dg1_env.sh,dg1_run_task.sh,dg1_smoke.sbatch,dg1_prod.sbatch}`.
-Compute spent: 0 Athena GPU-hours; DGX GB10 about 0.45 GPU-hours (8-image check, shared) plus CPU alignment.
+Compute spent: Athena 0.27 GPU-hours so far (3544197 0.001, 3544215 0.185, 3544800 0.083); DGX GB10 about 0.45 GPU-hours (8-image check, shared) plus CPU alignment.
 
 ## 11. Reproduce from scratch
 

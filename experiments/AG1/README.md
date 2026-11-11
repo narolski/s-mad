@@ -64,6 +64,20 @@ the owner. Nothing may be submitted or probed until then.
   R3 2.953 / 1.246, R3m 3.247 / 1.331, R4 5.474 / 5.550, RT 2.947, AG3(0.3) 4.785; MIPGAN-II R2 2.429 / 0.735, R3
   3.304 / 1.457, R3m 3.545 / 1.520, R4 5.676 / 5.706 (persons frll_001 / frll_010). Production estimate 19.9 A100
   GPU-h; array time limit raised to 10 h (longest shard, MIPGAN-II FRLL 00, about 4.5 h).
+- 19:15-19:40 Lead's reading rules registered as amendment 3 in `prereg.md` before any data image or score: three
+  classes (genuine; morphing attack; single-subject manipulation reported in its own table), flag rates under both
+  class policies with no verdict word, SelfMAD own crop primary, no single deciding release, mirror rung for trace
+  contrasts only with a symmetry baseline beside it, every contrast as excess over the best simple baseline (file
+  size, Laplacian variance, high-frequency band power, 32 x 32 thumbnail probe), and the spread-matched one-person
+  render R2s as the decisive control for "two codes mixed" against "closer to the mean code". New code:
+  `ag1_baselines.py` (per-image baselines), reader changes, `ag1_spread.py` + `athena/ag1_spread_task.sh` +
+  `athena/ag1_spread.sbatch` (R2s = G(m + (w_R2 - m) / sqrt(2)), A37 rule; tested on two smoke hosts on the GB10:
+  R2s latent distance 6.80 / 6.02 against R4 6.56 / 6.41 and R2 8.42 / 7.38). Spread array submitted: Athena job
+  3545819 (4 tasks: mip1 frll / feret / frgc, mip2 frll; afterok on the whole core array 3544797; 1 h limit each).
+  Input alignment (rule 2): the H4 / A33 FFHQ alignment (LANCZOS shrink, reflect padding with blur, bilinear quad
+  warp, INTER_AREA 512) is a property of every generated rung, run unchanged and identically for all of them; it
+  cannot create a difference between rungs, and rung images are not compared with camera photos as if it were
+  neutral.
 - 19:05 Production submitted: core array 3544797 (indices 0-7 = `core.txt`: mip1 frll 00/01, feret 00/01, frgc 00/01,
   mip2 frll 00/01); graded mixing 3544798 (indices 0-1, FERET, afterok on 3544797_2 and _3) and 3544799 (indices 2-3,
   FRGC, afterok on 3544797_4 and _5). Logs `.../smad-next/logs/AG1-<job>_<index>.out`.
@@ -243,6 +257,8 @@ Not verified:
 
 ## 10. Handover state (11 Nov ~17:45 CET)
 
+- **Update 19:40:** spread-matched renders 3545819 (4 tasks, wait for the core array). Facts table goes to the lead
+  before any interpretation (amendment 3, rule 7).
 - **Update 19:05:** Athena jobs: smoke 3544188 (failed, 0.06 GPU-h), smoke 3544209 (passed, 0.17 GPU-h); production
   3544797 (8 tasks), 3544798 and 3544799 (2 tasks each, dependent), about 19.9 GPU-h expected. Next: copy every
   `results/AG1/<shard>.tar` + `.sha256` back to `/mnt/t7/smad_next/AG1/results/` with the transfer lock, check hashes,

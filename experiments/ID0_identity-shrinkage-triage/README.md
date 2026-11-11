@@ -194,6 +194,8 @@ Run order: `lists.py` → `feat.py` / `feat_diffae.py` / `h3crops.py` (via `run_
   weighted Spearman; fidelity; c_pair; virtual check; GEO-0 for glint: Λ, ceiling table, gain, virtual head,
   oracle power check).
 - `bench_sim.py` (a6af68b5…), `summarize.py` (4f41511d…), `verdicts.py` (24f7ccc5…), `run_feat.sh` (27a540cb…).
+- Added 19:15: `amend1.py` (amendment 1 reruns; `--part a|b|c|d`, `--B`, `--smoke`); reuses `analyse.py`
+  loaders, `iss.ISS`, AR1 `stats.py` bootstrap, and rebuilds the registered geo0 virtual items exactly.
 
 Environment: DGX GB10 (ARM). Spark venv `/home/narolski/mambamorph-code/.venv-spark/bin/python` (Python 3.12.3,
 numpy 1.26.4, scipy 1.17.1, scikit-learn 1.9.0, torch 2.12.1+cu130, timm 1.0.27, opencv 4.11.0, insightface

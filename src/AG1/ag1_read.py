@@ -530,10 +530,12 @@ def read(rows, S, E, out, boot, pub_eer):
                          "R2>R4": (grp["R4"], grp["R2"]), "R0>R4": (grp["R4"], grp["R0"]),
                          "R2>R3m (mirror, own rung)": (grp["R3m"], grp["R2"]),
                          "R3m>R4 (mirror, own rung)": (grp["R4"], grp["R3m"]),
-                         "R2s>R4 (spread-matched one-person render)": (grp["R4"], grp["R2s"])}
+                         "R2s>R4 (spread-matched one-person render)": (grp["R4"], grp["R2s"]),
+                         "R3>RT (noise floor)": (grp["RT"], [r for r in grp["R3"] if r["pa"] in {x["pa"] for x in grp["RT"]}])}
                 if pool == "frll":
                     pairs.update({"R0>R1": (grp["R1"], grp["R0"]), "R1>R2": (grp["R2"], grp["R1"]),
-                                  "R0>PUB": (grp["PUB"], grp["R0"]), "R2>PUB (AG2)": (grp["PUB"], grp["R2"])})
+                                  "R0>PUB": (grp["PUB"], grp["R0"]), "R2>PUB (AG2)": (grp["PUB"], grp["R2"]),
+                                  "bridge PUB vs BR": ([pub[key(r)] for r in br], br)})
                 for k, (pos, neg) in pairs.items():
                     if not c.get(k) or BASE is None:
                         continue

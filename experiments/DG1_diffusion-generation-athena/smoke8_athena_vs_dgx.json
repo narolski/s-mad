@@ -1,0 +1,74 @@
+{
+ "per_image": [
+  {
+   "pool": "A_G",
+   "name": "001_03.png",
+   "mean_abs": 0.0,
+   "max_abs": 0,
+   "genuine_lossless": "1"
+  },
+  {
+   "pool": "A_REC20",
+   "name": "001_03.png",
+   "mean_abs": 0.0245,
+   "max_abs": 1,
+   "genuine_lossless": ""
+  },
+  {
+   "pool": "A_MIR100",
+   "name": "001_03.png",
+   "mean_abs": 0.0421,
+   "max_abs": 2,
+   "genuine_lossless": ""
+  },
+  {
+   "pool": "A_CONF20",
+   "name": "001_self.png",
+   "mean_abs": 0.037,
+   "max_abs": 1,
+   "genuine_lossless": ""
+  },
+  {
+   "pool": "A_X100",
+   "name": "morph_019_03_and_027_03.png",
+   "mean_abs": 0.0346,
+   "max_abs": 1,
+   "genuine_lossless": ""
+  },
+  {
+   "pool": "B_G",
+   "name": "feret_00003_H.png",
+   "mean_abs": 0.0,
+   "max_abs": 0,
+   "genuine_lossless": "1"
+  },
+  {
+   "pool": "B_REC20",
+   "name": "feret_00003.png",
+   "mean_abs": 0.0187,
+   "max_abs": 1,
+   "genuine_lossless": ""
+  },
+  {
+   "pool": "B_SAME20",
+   "name": "feret_00003.png",
+   "mean_abs": 0.0653,
+   "max_abs": 4,
+   "genuine_lossless": ""
+  },
+  {
+   "pool": "B_X20",
+   "name": "feret_00003__feret_00630.png",
+   "mean_abs": 0.0655,
+   "max_abs": 4,
+   "genuine_lossless": ""
+  },
+  {
+   "pool": "B_DOSE10_20",
+   "name": "feret_00003__feret_00630.png",
+   "mean_abs": 0.0343,
+   "max_abs": 1,
+   "genuine_lossless": ""
+  }
+ ]
+}

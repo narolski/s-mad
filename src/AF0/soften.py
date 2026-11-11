@@ -110,12 +110,14 @@ def build(a):
     rows = list(csv.DictReader(open(OUT / "lists" / f"{a.list}.csv")))
     st = a.strengths.split(",")
     jobs = [(r, st[k % len(st)]) for k, r in enumerate(rows)] if a.alternate else [(r, s) for s in st for r in rows]
+    if a.reverse:                       # a second process can work from the other end (existing outputs are skipped)
+        jobs = jobs[::-1]
     log = []
     for k, j in enumerate(jobs):
         log.append(_job(j))
         if (k + 1) % 500 == 0:
             print(k + 1, len(jobs), flush=True)
-    with open(OUT / f"soft_{a.list}.csv", "w", newline="") as f:
+    with open(OUT / f"soft_{a.list}{'_rev' if a.reverse else ''}.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["src_id", "strength", "path", "aligned", "native_ied", "scale"])
         w.writerows(log)
@@ -131,5 +133,6 @@ if __name__ == "__main__":
     ap.add_argument("--strengths", default="amsl112,fm61")
     ap.add_argument("--workers", type=int, default=1)
     ap.add_argument("--alternate", action="store_true", help="one strength per image, alternating by row")
+    ap.add_argument("--reverse", action="store_true", help="process the job list from the end")
     a = ap.parse_args()
     verify(a) if a.cmd == "verify" else build(a)

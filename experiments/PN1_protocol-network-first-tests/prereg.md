@@ -242,3 +242,35 @@ The lead's independent review of this page before the four fits. Date and verdic
 ## 14. Result
 
 Pending. Numbers go to `result.md` and the README; the lead draws conclusions.
+
+## Amendment 1 (11 Nov 19:20 CET, before any score or statistic of PN1): JPEG arm, manifest C
+
+Source: author's decision of 19:13 (`07_DECISIONS_NEEDED.md`), relayed by the coordinator. The JPEG branch of the
+registered function `degrade` in `/home/narolski/mambamorph-code/smadcvpr/prep_eval.py` (sha256 `374408ab…`,
+operations jpeg90 and jpeg70) may be run unchanged on training images (imported and called, never copied or edited).
+blur1, resample50 and chip stay forbidden on training images.
+
+1. Verification before use (`src/PN1/jpeg_c.py verify`): the registered evaluation branch (raw FRLL photo →
+   `degrade(img, "jpeg70")` → `align` → PNG) must reproduce the existing evaluation file
+   `smadcvpr_data/eval/frllm/frll_bona/<id>_jpeg70.png` pixel for pixel and byte for byte (both printed) on 4 files.
+   If it does not, manifest C is not built and the lead is told.
+2. Manifest C = manifest B plus JPEG copies. Copies are made on the training image itself (the 512 frame that B trains
+   on): `degrade(frame, "jpeg90")` or `degrade(frame, "jpeg70")`, stored as lossless PNG; no re-alignment. Selection:
+   within every source kind of B (AF0 photos, zero images, halves, ladder R0, R2w, ladder halves, 61.2 px copies of
+   each kind, AF0 u50, ladder R4, 61.2 px u50), 50% of the unique images are drawn (`numpy.random.default_rng(20261119)`,
+   the same rate in every kind and in both classes); half of the drawn images (seeded) get a jpeg90 copy, the other
+   half a jpeg70 copy. A copy keeps the label of its source. Class balance then by the rule of section 4.
+   jpeg50 is never in training (held-out test condition).
+3. Tier 1 becomes six networks: A, B, C at seeds 401 (named) and 402, if the lead's pre-run review agrees; GO before
+   any fit as before.
+4. Reads added for every network and head (A, B, C; A0, B0 at tier 0, which have no JPEG arm): flag rate of FRLL genuine
+   photos under jpeg90, jpeg70 and jpeg50 (existing evaluation files, `frll_e5` list), at τ_0.5 and τ_dev, each with the
+   miss rate of the gating attack cells at the same threshold. Corrected-MAD22 genuine photos under JPEG: no such
+   evaluation files exist (`/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z/` holds `native` and
+   `e7` only, checked 19:18); they are built only if the lead says so, with the registered evaluation branch (raw file →
+   `degrade` → `align`), and are otherwise reported as "not available".
+5. Marks for C (descriptive comparison; no new pass mark is invented): C is read with every tier-1 mark of section 7
+   (P-a to P-f) exactly as B; in addition printed: jpeg50 and jpeg70 flag rates of FRLL photos for A, B, C at both
+   thresholds with the misses beside them. The JPEG rows stop being "uncontrolled" for C only (C trains on jpeg90 and
+   jpeg70; jpeg50 is its left-out quality); for A and B they stay uncontrolled.
+6. Certificate (section 9 (i)) for manifest C as well; history flag extended with jpeg90 / jpeg70.
