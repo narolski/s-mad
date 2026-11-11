@@ -5,22 +5,23 @@
 #SBATCH -N 1
 #SBATCH --ntasks-per-node=1
 #SBATCH -c 16
-#SBATCH --mem=96G
+#SBATCH --mem=120G
 #SBATCH --gres=gpu:1
 #SBATCH --time=03:00:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/SM1F-%j.out
 # SMDD five-partner audit and rebuild (SM1), amendment A7: the frozen CLIP ViT-L/14 feature pass on Athena.
 # MODE=smoke (sbatch --export=ALL,MODE=smoke -t 01:00:00): code + test tars only, 400 rows of each test list (the
-# DGX equivalence check), one result tar. MODE=full: every tar in packs/SM1, every list. Work in node-local scratch.
+# DGX equivalence check), one result tar. MODE=full: every tar in packs/SM1, every list. Work in $MEMFS (RAM disk;
+# ATHENA.md: -C localfs gives only 4 GB; memfs counts toward --mem, at most 120G per GPU for one-GPU billing).
 set -eo pipefail
 module load Python/3.10.4 2>&1 || echo "module Python/3.10.4 not loadable"
 set -u
 G=/net/pr2/projects/plgrid/plggrestoration/smad-next
-: "${SCRATCH_LOCAL:?node-local scratch required (-C localfs)}"
+: "${MEMFS:?RAM disk required (-C memfs)}"
 MODE=${MODE:-full}
 PY=$G/venv/bin/python
-W=$SCRATCH_LOCAL/sm1_$MODE; mkdir -p "$W/in"; export TMPDIR=$SCRATCH_LOCAL/tmp; mkdir -p "$TMPDIR"
+W=$MEMFS/sm1_$MODE; mkdir -p "$W/in"; export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"
 hostname; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; date -Is
 [ -x "$PY" ] || { echo "no $PY" >&2; exit 3; }
 if [ "$MODE" = smoke ]; then

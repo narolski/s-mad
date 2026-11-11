@@ -1,0 +1,118 @@
+{
+ "AF0 OpenCV dose|none|one|opencv": {
+  "spearman": 0.7139,
+  "spearman_ci": [
+   0.6952345569464206,
+   0.731762410664739
+  ],
+  "rises": true,
+  "mean": {
+   "0": -4.0255,
+   "0.25": 1.7181,
+   "0.5": 3.1828
+  }
+ },
+ "AF0 OpenCV dose|none|two|opencv": {
+  "spearman": 0.7754,
+  "spearman_ci": [
+   0.7588627812094888,
+   0.7907339181895372
+  ],
+  "rises": true,
+  "mean": {
+   "0": -6.2813,
+   "0.25": 3.5108,
+   "0.5": 5.8468
+  }
+ },
+ "AF0 OpenCV dose|pipe|one|opencv": {
+  "spearman": 0.7007,
+  "spearman_ci": [
+   0.6808380536384734,
+   0.7191689182292327
+  ],
+  "rises": true,
+  "mean": {
+   "0": -3.9765,
+   "0.25": 1.5244,
+   "0.5": 2.9887
+  }
+ },
+ "AF0 OpenCV dose|pipe|two|opencv": {
+  "spearman": 0.7769,
+  "spearman_ci": [
+   0.7600908112620725,
+   0.7927842681916628
+  ],
+  "rises": true,
+  "mean": {
+   "0": -6.1258,
+   "0.25": 3.3791,
+   "0.5": 5.7444
+  }
+ },
+ "dissimilarity|none|one|opencv|s(x3)-s(x1)": {
+  "spearman": 0.009,
+  "ci": [
+   -0.07865882579914207,
+   0.09580682356970527
+  ],
+  "rises": false
+ },
+ "dissimilarity|none|one|opencv|s(x3)": {
+  "spearman": -0.2574,
+  "ci": [
+   -0.33993042548926655,
+   -0.17299718104388004
+  ],
+  "rises": false
+ },
+ "dissimilarity|none|two|opencv|s(x3)-s(x1)": {
+  "spearman": 0.1106,
+  "ci": [
+   0.026037966125057394,
+   0.1915598771148978
+  ],
+  "rises": true
+ },
+ "dissimilarity|none|two|opencv|s(x3)": {
+  "spearman": -0.111,
+  "ci": [
+   -0.1961487372941083,
+   -0.022521092824099063
+  ],
+  "rises": false
+ },
+ "dissimilarity|pipe|one|opencv|s(x3)-s(x1)": {
+  "spearman": -0.0058,
+  "ci": [
+   -0.09321706772371487,
+   0.08245869713860365
+  ],
+  "rises": false
+ },
+ "dissimilarity|pipe|one|opencv|s(x3)": {
+  "spearman": -0.2708,
+  "ci": [
+   -0.3504549383663787,
+   -0.18915790770945073
+  ],
+  "rises": false
+ },
+ "dissimilarity|pipe|two|opencv|s(x3)-s(x1)": {
+  "spearman": 0.1002,
+  "ci": [
+   0.0133358009525888,
+   0.18217207803797053
+  ],
+  "rises": true
+ },
+ "dissimilarity|pipe|two|opencv|s(x3)": {
+  "spearman": -0.1135,
+  "ci": [
+   -0.20074138350322765,
+   -0.025481049066152003
+  ],
+  "rises": false
+ }
+}

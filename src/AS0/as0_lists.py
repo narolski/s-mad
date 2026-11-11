@@ -255,6 +255,13 @@ def main():
         seen.add(s)
         n = next(x for x in items if x["id"] == s)
         add(**{**n, "id": s + "|own", "set": "LsoftN", "lm": "det"})
+    # ---- amendment A10 (lead, 11 Nov 18:45; review of ID0, H-new-2): landmarks DETECTED on the built ladder images
+    for it in [x for x in items if x["set"] == "L"]:
+        r = it["role"]
+        st = "LD1" if r in ("R0", "S0", "R3", "R4") else ("LD2" if r in ("R2w", "R3m", "R2wm", "R2") else "LD3")
+        if r == "R2":
+            continue
+        add(**{**it, "id": it["id"] + "|det", "set": st, "lm": "det", "src": it["id"]})
     missing = [it["id"] for it in items if not pathlib.Path(it["path"]).exists()]
     fields = ["id", "set", "role", "tool", "level", "path", "frame", "lm", "persons", "host", "db", "src", "part",
               "aligned", "s_a", "s_b", "gap_days", "same_session", "expr_a", "expr_b", "env_a", "env_b"]

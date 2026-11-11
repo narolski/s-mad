@@ -1,21 +1,20 @@
 #!/bin/bash
-# Diffusion-autoencoder generation on Athena (DG1): one task = one job list run through dg1_gen.py in node-local
-# scratch; one result tar with a .sha256 beside it in $G/results/DG1/.
+# Diffusion-autoencoder generation on Athena (DG1): one task = one job list run through dg1_gen.py in the job's RAM
+# disk $MEMFS (-C memfs; Athena's -C localfs scratch is only 4 GB); one result tar with a .sha256 in $G/results/DG1/.
 # Arguments: TAG (result name), then one or more job-list names inside the pack's jobs/ (each runs into its own folder).
-# Needs: G, DG1_PY (from dg1_env.sh), SCRATCH_LOCAL. The pack: $G/packs/DG1/dg1_pack.tar (+ .sha256).
+# Needs: G, DG1_PY (from dg1_env.sh), MEMFS. The pack: $G/packs/DG1/dg1_pack.tar (+ .sha256).
 set -euo pipefail
 TAG=$1; shift
-: "${SCRATCH_LOCAL:?node-local scratch required (-C localfs)}"
-W=$SCRATCH_LOCAL/dg1_$TAG
+: "${MEMFS:?RAM disk required (-C memfs)}"
+W=$MEMFS/dg1_$TAG
 R=$G/results/DG1
 [ ! -e "$R/DG1_$TAG.tar" ] || { echo "refused: $R/DG1_$TAG.tar exists"; exit 4; }
 mkdir -p "$W" "$R"
-export TMPDIR=$SCRATCH_LOCAL/tmp TORCH_HOME=$SCRATCH_LOCAL/torch XDG_CACHE_HOME=$SCRATCH_LOCAL/cache OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-8}
+export TMPDIR=$MEMFS/tmp TORCH_HOME=$MEMFS/torch XDG_CACHE_HOME=$MEMFS/cache OMP_NUM_THREADS=${SLURM_CPUS_PER_TASK:-8}
 mkdir -p "$TMPDIR"
 t0=$(date +%s)
-cp "$G/packs/DG1/dg1_pack.tar" "$G/packs/DG1/dg1_pack.tar.sha256" "$W/"
-( cd "$W" && sha256sum -c dg1_pack.tar.sha256 )
-tar -C "$W" -xf "$W/dg1_pack.tar"; rm "$W/dg1_pack.tar"
+( cd "$G/packs/DG1" && sha256sum -c dg1_pack.tar.sha256 )      # read once from the project store
+tar -C "$W" -xf "$G/packs/DG1/dg1_pack.tar"                       # extracted straight into the RAM disk
 K=$W/dg1pack
 ( cd "$K" && sha256sum -c --quiet MANIFEST.sha256 )
 echo "pack manifest ok"

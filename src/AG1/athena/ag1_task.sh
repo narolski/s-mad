@@ -2,7 +2,7 @@
 # AG1 generation task on Athena (one shard). Usage: ag1_task.sh SHARD_NAME
 # In: packs/AG1/ag1_pack.tar (+ .sha256): inner gan_weights.tar, gan_sg1.tar, ag1_code.tar, ag1_inputs.tar and
 #     SHA256SUMS; all checked. AG3 shards also read the core shards' result tars from results/AG1 (exit 3 if absent).
-# Work in $SCRATCH_LOCAL; python = envs/AG1 (pinned, built by the smoke job). Out: results/AG1/<shard>.tar + .sha256
+# Work in $MEMFS (RAM disk, counts toward --mem); python = envs/AG1 (pinned, built by the smoke job). Out: results/AG1/<shard>.tar + .sha256
 # + .log.csv. Idempotent: a verified result tar present -> exit 0. Any failure -> non-zero.
 set -euo pipefail
 SHARD=${1:?shard name}
@@ -10,18 +10,18 @@ G=${AG1_G:-/net/pr2/projects/plgrid/plggrestoration/smad-next}   # AG1_G: local 
 P=$G/packs/AG1
 RES=$G/results/AG1
 PY=$G/envs/AG1/bin/python
-: "${SCRATCH_LOCAL:?node-local scratch required (-C localfs)}"
+: "${MEMFS:?RAM disk required (-C memfs); -C localfs gives only 4 GB on Athena}"
 mkdir -p "$RES"
 if [ -s "$RES/$SHARD.tar" ] && [ -s "$RES/$SHARD.tar.sha256" ] && \
    [ "$(sha256sum "$RES/$SHARD.tar" | cut -c1-64)" = "$(cut -c1-64 "$RES/$SHARD.tar.sha256")" ]; then
   echo "AG1 $SHARD: verified result already present; nothing to do"; exit 0
 fi
 [ -x "$PY" ] || { echo "no $PY (the smoke job builds it)"; exit 6; }
-W=$SCRATCH_LOCAL/ag1_$SHARD; rm -rf "$W"; mkdir -p "$W"; cd "$W"
+W=$MEMFS/ag1_$SHARD; rm -rf "$W"; mkdir -p "$W"; cd "$W"
 export TMPDIR=$W/tmp; mkdir -p "$TMPDIR"
 echo "AG1 $SHARD on $(hostname) $(date +%FT%T)"; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader
-df -h "$SCRATCH_LOCAL" | tail -1
-# smoke job 3544188 ran out of node-local space copying + unpacking the 2.9 GB pack: the outer tar is now checked in
+df -h "$MEMFS" | tail -1
+# smoke job 3544188 ran out of node-local space (-C localfs is 4.0 GB on Athena) copying + unpacking the 2.9 GB pack: the outer tar is now checked in
 # place on the project store (its sha256 covers the inner tars) and the inner tars are streamed out of it, keeping
 # only the weights this generator needs.
 [ "$(sha256sum "$P/ag1_pack.tar" | cut -c1-64)" = "$(cut -c1-64 "$P/ag1_pack.tar.sha256")" ] || { echo "pack sha256 mismatch"; exit 2; }

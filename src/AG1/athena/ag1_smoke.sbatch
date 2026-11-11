@@ -8,7 +8,7 @@
 #SBATCH --mem=64G
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:55:00
-#SBATCH -C localfs
+#SBATCH -C memfs
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AG1smoke-%j.out
 # AG1 smoke (at most 1 GPU-hour): builds envs/AG1 with pinned versions if absent, then the two smoke shards (2 FRLL
 # persons through every rung: R2, R2i, R3m mirror, R3, R4, RT, AG3 alpha, MIPGAN-II) through ag1_task.sh.
@@ -17,8 +17,8 @@ module load Python/3.10.4 2>&1 || echo "module Python/3.10.4 not loadable; using
 set -u
 G=/net/pr2/projects/plgrid/plggrestoration/smad-next
 E=$G/envs/AG1
-: "${SCRATCH_LOCAL:?node-local scratch required (-C localfs)}"
-export TMPDIR=$SCRATCH_LOCAL/tmp; mkdir -p "$TMPDIR"
+: "${MEMFS:?RAM disk required (-C memfs)}"
+export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"
 hostname; python3 --version
 if [ ! -x "$E/bin/python" ] || ! "$E/bin/python" -c "import torch, torchvision, numpy, PIL" 2>/dev/null; then
   mkdir -p "$G/envs"

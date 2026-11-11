@@ -1,0 +1,26 @@
+{
+ "feature": "dino_mean",
+ "n_hosts": 536,
+ "n_soft": {},
+ "fold_sizes": [
+  107,
+  108,
+  107,
+  107,
+  107
+ ],
+ "n_groups": 101,
+ "variants": [
+  "none",
+  "pipe"
+ ],
+ "ext_counts": {
+  "smdd": 0,
+  "bench": 5936,
+  "h1": 0,
+  "af0": 3715,
+  "ar1g": 0
+ },
+ "cues_available": 19417,
+ "seconds": 69.4
+}

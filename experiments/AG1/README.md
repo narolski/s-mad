@@ -56,6 +56,16 @@ the owner. Nothing may be submitted or probed until then.
   the 7 smoke images (`test_score_pipeline.py`, `/mnt/t7/smad_next/AG1/tests/score_pipeline/`): pins, check_scope and
   the strict weight load of MADation ViT-B/16 passed; the move to the GPU failed with CUDA out of memory (the GB10 had
   12 GB free; about 17 other GPU processes of other owners). To retry when the GPU is quieter.
+- 18:31 Smoke job 3544188 FAILED after 3 min 49 s (0.06 GPU-h): the environment build succeeded (python 3.10.4, torch
+  2.2.1+cu121, torchvision 0.17.1+cu121, numpy 1.26.4, pillow 10.2.0, A100-SXM4-40GB on node t0014; `envs/AG1` kept),
+  then "No space left on device" while unpacking the 2.9 GB pack in `$SCRATCH_LOCAL` (`-C localfs` is only 4.0 GB on
+  Athena). Fix 1 (`ag1_task.sh`): check the outer tar's sha256 in place on the project store and stream the inner
+  tars out of it, dropping weights the generator does not need (ffhq.pkl, w600k onnx, and e4e for MIPGAN-I); local
+  footprint 1.1 GB for a MIPGAN-I shard (tested on the DGX against the same pack); result tar written straight to
+  the project store and hashed there. Fix 2 (lead's measurement): work in `$MEMFS` (`-C memfs`, RAM disk counted in
+  `--mem`, kept at 64G). Lead's new lock rule: short commands take `/tmp/smadnext-athena-cmd.lock` (`-w 300`),
+  transfers `/tmp/smadnext-athena.lock` (`-w 1800`); a flock timeout returns 1 silently (a local wait, not a refused
+  login). A first resubmission waited on the old single lock and was stopped before it ran anything.
 - 18:27 Lead: Athena accepts jobs (account plgrestorearc-gpu-a100). Smoke job submitted: Athena job 3544188
   (`tasks/AG1/ag1_smoke.sbatch`, log `.../smad-next/logs/AG1smoke-3544188.out`).
 - 17:41 Local mip2 smoke (WCSS `run.sh` logic, GB10, code before amendment 1) finished: 4 / 4 images, exit 0, tar
