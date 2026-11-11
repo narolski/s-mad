@@ -28,7 +28,10 @@ import numpy as np
 
 B_DEC = 10000
 SEED = 20261111
-RELEASES = ("madation_vitb16", "madation_vitl14", "selfmad_hrnet_w18__rel", "selfmad_hrnet_w18__own")
+RELEASES = ("madation_vitb16", "madation_vitl14", "selfmad_hrnet_w18__own", "selfmad_hrnet_w18__rel")
+PRIMARY_RELEASES = ("madation_vitb16", "madation_vitl14", "selfmad_hrnet_w18__own")   # amendment 3, rule 3
+SINGLE_SUBJECT = ("R2", "R2i", "R2s", "R3", "R3m", "RT")                                # amendment 3, rule 1
+SCALAR_BASELINES = ("bytes", "lapvar", "hfband", "sym")
 NOT_SCORED = ("mixfacenet_mad_smdd",)  # no AG1 scorer yet (a46_rgb_score is bound to the A46 plan)
 POOLS = {"frll": ("frll",), "primary": ("feret", "frgc"), "feret": ("feret",), "frgc": ("frgc",)}
 THR_A23 = 0.239399
@@ -182,7 +185,8 @@ def load_rows(data, logs, photos, synthetic):
     for r in rows:
         if r["id"] in lg:
             for k in ("loss", "msssim", "perc_x_l1", "latdist", "init_latdist"):
-                r[k] = float(lg[r["id"]][k])
+                if lg[r["id"]].get(k) not in (None, ""):
+                    r[k] = float(lg[r["id"]][k])
         elif synthetic and r["source"] == "ours":
             r.update(loss=rng.normal(5, 1), msssim=rng.normal(0.3, 0.05), perc_x_l1=rng.normal(2, 0.3),
                      latdist=rng.normal(30, 3), init_latdist=rng.normal(25, 3))
@@ -207,7 +211,7 @@ def load_scores(rows, scores_dir, synthetic):
     rng = np.random.default_rng(1)
     for rel in RELEASES:
         if synthetic:
-            base = {"R0": 0.0, "R1": 0.3, "R2": 0.8, "R2i": 0.8, "R3": 1.0, "R3m": 0.9, "R4": 1.3, "BR": 1.3, "RT": 1.0, "PUB": 1.4,
+            base = {"R0": 0.0, "R1": 0.3, "R2": 0.8, "R2i": 0.8, "R2s": 1.0, "R3": 1.0, "R3m": 0.9, "R4": 1.3, "BR": 1.3, "RT": 1.0, "PUB": 1.4,
                     "AG3": 0.8, "AG3T": 0.8}
             S[rel] = {r["id"]: base[r["rung"]] + (1.0 * float(r["alpha"] or 0) if r["rung"] == "AG3" else 0)
                       + rng.normal() for r in rows}
@@ -304,6 +308,44 @@ def gates(rows, data, synthetic, out):
            "latdist_median": {k: {kk: float(np.median(vv)) for kk, vv in v.items()} for k, v in ld.items()}}
     json.dump(res, open(out / "gates.json", "w"), indent=1)
     return res
+
+
+# ------------------------------------------------------------------------------------- simple baselines
+BASE = None          # id -> dict of scalar baselines and the thumbnail (ag1_baselines.py), set in main
+
+
+def baseline_block(pos, neg, D):
+    """AUC of each simple baseline for pos vs neg on the same images: scalar baselines oriented by their point
+    estimate; the 32 x 32 thumbnail through a logistic probe, 5-fold grouped by host person, out-of-fold scores."""
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.model_selection import GroupKFold
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+    pos = [r for r in pos if r["id"] in BASE]
+    neg = [r for r in neg if r["id"] in BASE]
+    if len(pos) < 10 or len(neg) < 10:
+        return None
+    wp = D.w([r["pa"] for r in pos], [r["pb"] for r in pos])
+    wn = D.w([r["pa"] for r in neg], [r["pb"] for r in neg])
+    aucs, reps = {}, {}
+    for k in SCALAR_BASELINES:
+        sp = np.array([BASE[r["id"]][k] for r in pos])
+        sn = np.array([BASE[r["id"]][k] for r in neg])
+        a = auc(sp, sn)
+        sgn = 1.0 if a >= 0.5 else -1.0
+        aucs[k] = max(a, 1 - a)
+        reps[k] = wauc(sgn * sp, sgn * sn, wp, wn)
+    X = np.stack([BASE[r["id"]]["thumb"] for r in pos + neg])
+    y = np.r_[np.ones(len(pos)), np.zeros(len(neg))]
+    g = np.array([r["pa"] for r in pos + neg])
+    oof = np.zeros(len(y))
+    for tr, te in GroupKFold(n_splits=5).split(X, y, g):
+        m = make_pipeline(StandardScaler(), LogisticRegression(max_iter=2000, C=1.0)).fit(X[tr], y[tr])
+        oof[te] = m.decision_function(X[te])
+    aucs["thumb"] = auc(oof[:len(pos)], oof[len(pos):])
+    reps["thumb"] = wauc(oof[:len(pos)], oof[len(pos):], wp, wn)
+    best = max(aucs, key=aucs.get)
+    return {"aucs": aucs, "best": best, "best_auc": aucs[best], "best_rep": reps[best]}
 
 
 # ------------------------------------------------------------------------------------- scores
@@ -429,13 +471,15 @@ def read(rows, S, E, out, boot, pub_eer):
             if not any(r["rung"] == "R4" for r in sub):
                 continue
             grp = {k: [r for r in sub if r["rung"] == k] for k in
-                   ("R0", "R1", "R2", "R3", "R3m", "R4", "PUB", "BR", "RT", "AG3", "AG3T")}
+                   ("R0", "R1", "R2", "R2i", "R2s", "R3", "R3m", "R4", "PUB", "BR", "RT", "AG3", "AG3T")}
+            bl_cache = {}
             for rel, sc in S.items():
                 contrast = contrast_fn(sc, D)
                 c = {"R0>R2": contrast(grp["R2"], grp["R0"]), "R2>R3": contrast(grp["R3"], grp["R2"]),
                      "R3>R4": contrast(grp["R4"], grp["R3"]), "R2>R4": contrast(grp["R4"], grp["R2"]),
                      "R0>R4": contrast(grp["R4"], grp["R0"]), "R2>R3m (mirror, own rung)": contrast(grp["R3m"], grp["R2"]),
-                     "R3m>R4 (mirror, own rung)": contrast(grp["R4"], grp["R3m"]), "R3>RT (noise floor)": contrast(grp["RT"], [r for r in grp["R3"] if r["pa"] in {x["pa"] for x in grp["RT"]}])}
+                     "R3m>R4 (mirror, own rung)": contrast(grp["R4"], grp["R3m"]), "R3>RT (noise floor)": contrast(grp["RT"], [r for r in grp["R3"] if r["pa"] in {x["pa"] for x in grp["RT"]}]),
+                     "R2s>R4 (spread-matched one-person render)": contrast(grp["R4"], grp["R2s"])}
                 cell = {}
                 if pool == "frll":
                     c["R0>R1"] = contrast(grp["R1"], grp["R0"])
@@ -464,7 +508,7 @@ def read(rows, S, E, out, boot, pub_eer):
                 cell["R2_line"] = "R2 = the generator's reconstruction of one photo (MIPGAN with A = B)"
                 p_morph = float(np.mean(m24["rep"] <= 0.65))      # H0: R2 vs R4 AUC <= 0.65 (one-sided)
                 cell["p_reads_morphing"] = p_morph
-                if pool == "primary" and gen == "mip1":
+                if pool == "primary" and gen == "mip1" and rel in PRIMARY_RELEASES:
                     pvals[rel] = p_morph
                 fr = [r for r in rows if r["db"] == "frll" and r["id"] in sc]
                 bb = [sc[r["id"]] for r in fr if r["rung"] == "R0"]
@@ -481,6 +525,40 @@ def read(rows, S, E, out, boot, pub_eer):
                 if pool == "frll" and c.get("R2>PUB (AG2)"):
                     cell["AG2"] = ag2_verdict(c["R0>PUB"]["auc"], c["R2>PUB (AG2)"]["auc"], *c["R2>PUB (AG2)"]["ci"],
                                               c["bridge PUB vs BR"]["auc"] if c["bridge PUB vs BR"] else None)
+                # amendment 3, rule 5: every contrast as excess over the best simple baseline on the same images
+                pairs = {"R0>R2": (grp["R2"], grp["R0"]), "R2>R3": (grp["R3"], grp["R2"]), "R3>R4": (grp["R4"], grp["R3"]),
+                         "R2>R4": (grp["R4"], grp["R2"]), "R0>R4": (grp["R4"], grp["R0"]),
+                         "R2>R3m (mirror, own rung)": (grp["R3m"], grp["R2"]),
+                         "R3m>R4 (mirror, own rung)": (grp["R4"], grp["R3m"]),
+                         "R2s>R4 (spread-matched one-person render)": (grp["R4"], grp["R2s"])}
+                if pool == "frll":
+                    pairs.update({"R0>R1": (grp["R1"], grp["R0"]), "R1>R2": (grp["R2"], grp["R1"]),
+                                  "R0>PUB": (grp["PUB"], grp["R0"]), "R2>PUB (AG2)": (grp["PUB"], grp["R2"])})
+                for k, (pos, neg) in pairs.items():
+                    if not c.get(k) or BASE is None:
+                        continue
+                    if k not in bl_cache:
+                        bl_cache[k] = baseline_block(pos, neg, D)
+                    b = bl_cache[k]
+                    if b is None:
+                        continue
+                    c[k]["baselines"] = b["aucs"]
+                    c[k]["best_baseline"] = b["best"]
+                    c[k]["excess_over_best_baseline"] = {"excess": c[k]["auc"] - b["best_auc"],
+                                                         "ci": ci(c[k]["rep"] - b["best_rep"])}
+                # amendment 3, rule 1: flag rates under both class policies, no verdict word
+                if bb and mm:
+                    def fr_(L):
+                        L = [r for r in L if r["id"] in sc]
+                        return exact(int(sum(sc[r["id"]] >= thr for r in L)), len(L))
+                    cell["flag_rates_at_benchmark_thr"] = {
+                        "genuine error, policy N (reconstruction = non-attack: R0 + R2)": fr_(grp["R0"] + grp["R2"]),
+                        "genuine error, policy X (reconstruction inadmissible: R0 only)": fr_(grp["R0"]),
+                        "attack detection (R4)": fr_(grp["R4"]),
+                        "single-subject table": {k: fr_(grp[k]) for k in SINGLE_SUBJECT if grp[k]}}
+                    cell.pop("flag_rate_at_benchmark_thr", None)
+                cell["latdist_median"] = {k: float(np.median([r["latdist"] for r in grp[k] if "latdist" in r]))
+                                          for k in ("R2", "R2s", "R3", "R4") if any("latdist" in r for r in grp[k])}
                 cell["R3_R4_matched_bins (also reported)"] = matched_bins(grp["R3"], grp["R4"], sc, D)
                 if pool != "frll":
                     cell["R3_R4_session_gap"] = session_gap(grp["R3"], grp["R4"], sc, D)
@@ -488,7 +566,8 @@ def read(rows, S, E, out, boot, pub_eer):
                     cell["dose"] = dose(grp, sc, D, E)
                 cell.update({k: ({kk: vv for kk, vv in v.items() if kk != "rep"} if v else None) for k, v in c.items()})
                 cell["shares"] = sh
-                cell["primary"] = pool == "primary" and gen == "mip1"
+                cell["primary"] = pool == "primary" and gen == "mip1" and rel in PRIMARY_RELEASES
+                cell["release_row"] = "primary" if rel in PRIMARY_RELEASES else "secondary (printed beside)"
                 res[f"{gen}/{pool}/{rel}"] = cell
                 ladder.append({"cell": f"{gen}/{pool}/{rel}",
                                **{k: round(v["auc"], 3) if v else "" for k, v in c.items()},
@@ -531,6 +610,19 @@ def main():
     if not a.synthetic:
         z = np.load(pathlib.Path(a.data) / "oracle_glint.npz")
         E = dict(zip(z["id"].tolist(), z["emb"]))
+    global BASE
+    bp = pathlib.Path(a.data) / "baselines.npz"
+    if bp.exists():
+        z = np.load(bp)
+        BASE = {i: {"bytes": z["bytes"][k], "lapvar": z["lapvar"][k], "hfband": z["hfband"][k], "sym": z["sym"][k],
+                    "thumb": z["thumb"][k]} for k, i in enumerate(z["id"].tolist())}
+    elif a.synthetic:
+        rng = np.random.default_rng(4)
+        BASE = {r["id"]: {"bytes": rng.normal(), "lapvar": rng.normal(), "hfband": rng.normal(),
+                          "sym": rng.normal() + (1.0 if r["rung"] == "R3m" else 0.0),
+                          "thumb": rng.normal(size=1024)} for r in rows}
+    else:
+        sys.exit("no baselines.npz (ag1_baselines.py): amendment 3 requires the baseline block")
     S = load_scores(rows, a.scores, a.synthetic)
     pub = json.load(open(a.published_eer)) if a.published_eer else None
     res = read(rows, S, E, out, a.boot, pub)

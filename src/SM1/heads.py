@@ -10,6 +10,7 @@ Reference: the FE ViT-L/14 release header (Linear(768, 2) on the same normalised
   python3 -I heads.py [--arms a,b,...] [--seeds 401,...] [--boot] [--smoke] [--feat-dir D]
   python3 -I heads.py --fe-ref [--feat-dir D]
 -> OUT/heads[/smoke]/<arm>_s<seed>[_boot].npz (id, logit over all test + audit images, W, b), heads_log.json
+Training runs on the GPU by default (--device cpu for the CPU); the seeded initialisation and shuffles are the same.
 """
 import argparse
 import json
@@ -53,6 +54,9 @@ class Bank:
         return self.F[[self.pos[x] for x in ids]]
 
 
+DEV = "cpu"
+
+
 def train(gen, mor, seed, boot):
     import torch
     torch.manual_seed(seed)
@@ -63,14 +67,14 @@ def train(gen, mor, seed, boot):
     X = np.concatenate([gen, mor]).astype(np.float32)
     y = np.concatenate([np.zeros(len(gen)), np.ones(len(mor))]).astype(np.float32)
     mu, sd = X.mean(0), X.std(0) + 1e-6
-    Xt = torch.from_numpy((X - mu) / sd)
-    yt = torch.from_numpy(y)
+    Xt = torch.from_numpy((X - mu) / sd).to(DEV)
+    yt = torch.from_numpy(y).to(DEV)
     w = torch.where(yt == 1, len(y) / (2 * len(mor)), len(y) / (2 * len(gen)))
-    lin = torch.nn.Linear(X.shape[1], 1)
+    lin = torch.nn.Linear(X.shape[1], 1).to(DEV)
     opt = torch.optim.AdamW(lin.parameters(), lr=1e-3, weight_decay=1e-4)
     g = torch.Generator().manual_seed(seed)
     for _ in range(20):
-        perm = torch.randperm(len(y), generator=g)
+        perm = torch.randperm(len(y), generator=g).to(DEV)
         for i in range(0, len(y), 256):
             b = perm[i:i + 256]
             loss = (torch.nn.functional.binary_cross_entropy_with_logits(lin(Xt[b]).squeeze(1), yt[b],
@@ -78,8 +82,9 @@ def train(gen, mor, seed, boot):
             opt.zero_grad()
             loss.backward()
             opt.step()
-    W = lin.weight.detach().numpy()[0] / sd
-    b0 = float(lin.bias.detach()) - float((mu / sd) @ lin.weight.detach().numpy()[0])
+    Wr = lin.weight.detach().cpu().numpy()[0]
+    W = Wr / sd
+    b0 = float(lin.bias.detach().cpu()) - float((mu / sd) @ Wr)
     with torch.no_grad():
         acc = float(((lin(Xt).squeeze(1) > 0).float() == yt).float().mean())
     return W.astype(np.float32), np.float32(b0), dict(n_gen=len(gen), n_morph=len(mor), train_acc=round(acc, 4))
@@ -106,12 +111,15 @@ def main():
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--fe-ref", action="store_true")
     ap.add_argument("--feat-dir", default=str(FEAT))
+    ap.add_argument("--device", default="cuda", help="cuda (default; the DGX CPU is saturated) or cpu")
     a = ap.parse_args()
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
     FEAT = pathlib.Path(a.feat_dir)
+    global DEV
     import torch
     torch.set_num_threads(1)
+    DEV = a.device if (a.device == "cpu" or torch.cuda.is_available()) else "cpu"
     test = Bank(TESTS)
     if a.fe_ref:
         return fe_ref(test)

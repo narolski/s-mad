@@ -104,3 +104,7 @@ propose reporting them as a third category.
 - ISO/IEC 20059:2025 clause 3 (terms) and clause 5; ISO/IEC 39794-5 values.
 - The Bologna group's treatment of same-subject morphs in an IWBF 2024 paper (seen in slides only).
 - "No morph detection paper uses a mirror self-morph" rests on searches, not on proof of absence.
+
+## Status, 11 Nov 2026 19:13
+
+In force. The author accepted the three categories on the condition that they do not affect network performance; they do not (the network stays two-class; the categories only arrange the tables). See `07_DECISIONS_NEEDED.md`.

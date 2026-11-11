@@ -21,10 +21,21 @@ average face than a real person (identity variance falls to (1+c)/2 for contribu
 measurable from one image for landmark, GAN and diffusion morphs, with a statistic fitted on genuine photos only,
 and what are the predicted and observed ceilings?
 
-Status 11 Nov 18:25 CET: **finished** (all five arms analysed; falsifiers applied in `verdicts.json`;
-`result.md` final). Earlier status (17:31): running.
+Status 11 Nov 19:15 CET: **finished, revised after the independent review** (`experiments/reviews/
+REVIEW_ID0_20261111.md`, "needs qualification"); amendment 1 reruns done; `result.md` rewritten with the
+review's corrected statements and five WITHDRAWN statements (first version kept as
+`result_v1_20261111_1820.md`). Earlier status: 18:25 finished (first version), 17:31 running.
 
-Answer in facts (the lead draws conclusions; full table in `result.md`):
+Current answer (19:15, see `result.md` for the corrected statements): no arm is both powered and clean. The
+glintr100 arm is clean but has no power (its ISS scores ideal midpoints below photos, 0.44–0.45); CLIP, DINOv3
+and DiffAE are powered (ideal 0.82–0.92) but fail the MorDIFF-history control. Exact shapes: photo vs
+two-session same-person mean 0.548, same-person mean vs two-person mean 0.687, so most of the shape effect is
+specific to the second person; this is a calculation on landmark files. The same-person rung is the
+informative control; DiffAE passes it (0.747 diffusion, 0.676 landmark) but its level follows frame and pool.
+The 0.70–0.78 "ceiling" is withdrawn (head still rises with persons: 0.611 → 0.751 from 75 to about 620).
+
+Answer in facts at 18:25 (first version; the second and third bullets are WITHDRAWN as worded, see
+`result.md`):
 - No arm reaches the pre-registered "global head" bar (R2 vs R4 ≥ 0.75 with a clean native-vs-E7 control).
   The only arm with a clean control (glintr100) is at chance on one-photo output vs morph (0.50–0.55) with a
   flat dose. The arms that separate (DiffAE R2w vs R4 0.692, MorDIFF D20 vs B20 0.688; CLIP MorDIFF 0.698)
@@ -106,7 +117,21 @@ Amendments to the registration (all after the prereg, none after reading a decis
 2. DINOv3 precision changed from fp16 to bf16 after fp16 gave non-finite output (before any DINOv3 statistic).
 3. Added (descriptive, genuine-only): a 5-fold virtual-midpoint check per arm (`virtual_in_domain`).
 4. The pre-registered per-pair similarity estimator c_pair is reported but fails (values > 1, section 7); a
-   pool-centred variant is planned as a descriptive replacement (not yet computed).
+   pool-centred variant was added as a descriptive replacement (17:44, after the numbers were seen; the review
+   rightly notes that the "within 0.03" agreement depends on it, so that sentence is withdrawn).
+5. **Amendment 1, 18:45 (reason: independent review), registered in `prereg.md`** before the reruns: (a) ideal
+   against realised with a pre-fixed power flag; (b) learning curve and regulariser table of the glintr100 head;
+   (c) review hypothesis H-new-1 (CLIP shift vs loss of fine detail); (d) storage-history rows for the glintr100
+   read-outs. Zero GPU, 2 processes at nice 10.
+
+- 18:40 Review received (coordinator): read in full, with the reviewer's scripts
+  `experiments/reviews/rev_scripts_id0_20261111/rv1–rv4` (unregistered point estimates).
+- 18:45 Amendment 1 appended to `prereg.md` (sha256 after: 0082a861…). 18:46–18:47 `amend1.py` smoke runs
+  (B = 50, outputs in `/mnt/t7/smad_next/ID0/test/`), then full runs: parts a, c, d (seconds each), part b
+  (about 25 min, the C = 100 and MLP fits dominate). Logs `/mnt/t7/smad_next/ID0/logs/amend1_*.log`.
+- 19:15 `result.md` rewritten (corrected statements, WITHDRAWN list, amendment tables); README sections 1, 2,
+  5, 7, 9 updated. The detected-landmark shape arm (review item 3) is assigned to the mirror-asymmetry test
+  (AS0), not to ID0.
 
 ## 3. Data
 
@@ -315,6 +340,28 @@ facemorpher 0.505, stylegan 0.500, mordiff 0.356 [0.300, 0.406]. Dose Page p 4e-
 0.537/0.529 (rise then fall). Shrink law: AR1 R4 −0.150 [−0.313, 0.013]; A43 B20 0.100 [−0.162, 0.344].
 Fidelity medians: R4 0.898 (host 0.806), B20 0.906 (host 0.830), D20 0.948.
 
+### Amendment 1 reruns (added 19:15) — `amend1_{a,b,c,d}.json`, `amend1_{a,b,d}.csv`
+Full tables in `result.md` ("Amendment 1 reruns"); code `src/ID0/amend1.py` (sha256 in section 4 note below).
+- (a) Ideal against realised, power flag (ideal ≥ 0.65 with lower bound > 0.60): glintr100 ISS ideal 0.439–0.449
+  on the AR1 ladder (below a photo), head 0.607–0.642, mean direction 0.601–0.620: not powered on the ladder;
+  powered only for the head on A43 B20 vs E (ideal 0.691, real 0.622, share 0.64 [0.31, 0.97]) and on published
+  MorDIFF vs rec (ideal 0.679, real 0.489, share −0.06 [−0.39, 0.19]). CLIP powered (AR1 ideal 0.845–0.865,
+  realised share −0.30 to −0.39; A43 B20 vs D20 ideal 0.918, share 0.47 [0.28, 0.65]). DINOv3 powered (AR1 ideal
+  0.900–0.905, share 0.07–0.09; B20 vs D20 0.816, share 0.35 [0.08, 0.57]). DiffAE powered (AR1 ideal
+  0.895–0.898, share 0.44–0.49; native B20 vs D20 0.825, share 0.58 [0.41, 0.73]; same-person R3 vs R2w ideal
+  0.719, share 0.17 [0.09, 0.24]; stored B20 vs E share −0.95). Same-person ideals in CLIP and DINOv3 are not
+  powered (0.55–0.62); their real same-person values exceed the ideal (share > 1), i.e. a real mix moves more
+  than its feature midpoint. H3 ideal rows mix pools (source crops vs renders) and are not read.
+- (b) glintr100 virtual head, pooled out-of-fold over the 5 registered person folds (morph vs single photo):
+  see the table in `result.md`; full-size C = 1 reproduces the registered in-domain value (0.744 vs 0.7438 morph
+  vs single + twin).
+- (c) H-new-1: CLIP ρ +0.161 [0.006, 0.313] (face-box Laplacian), +0.079 (whole frame); DiffAE +0.078 [−0.072,
+  0.220], +0.211 [0.056, 0.351]; DINOv3 +0.020, −0.002. CLIP below the predicted 0.3 and above the 0.1
+  falsification line; DiffAE below 0.15 as predicted.
+- (d) Storage history (glintr100): head under MorDIFF history 0.415 [0.396, 0.427], 88% [83, 93] of photos lower,
+  −0.30 SD [−0.35, −0.26]; under the three DiM histories 0.480–0.482, 66–67% lower, −0.06 to −0.07 SD; landmark
+  and AMSL/WebMorph histories 0.493–0.497; mean-direction projection 0.493–0.505 under all nine; ISS 0.500–0.513.
+
 ### Falsifier table — `verdicts.json`
 See `result.md` "Falsifiers". Physics part 1 does not fire (DiffAE 0.688 / 0.692); part 2 fires for CLIP,
 DINOv3, DiffAE with the stricter band (glint clean); part 3 fires for glint and CLIP; landmark kill does not
@@ -367,6 +414,20 @@ self-pairs (061_061 …) are intended.
 - `verdicts.py` piped into a reader the first time: the reader ran before the file existed (race, no effect on
   the file).
 
+- **Statements withdrawn after the independent review (19:15; reasons in `result.md` "Withdrawn"):** the
+  0.70–0.78 "ceiling" (not a bound: ridge Λ 3.70–4.81, head rises with persons and weaker regularisation);
+  "closed form within about 0.03" (holds only with the post hoc pool-centred similarity; registered estimator
+  misses by 0.04 and 0.10–0.11); every reading of the glintr100 ISS "at chance" numbers as evidence about morphs
+  (no power: ideal midpoints 0.44–0.45); calling the exact-shape result a signal read from images (it is a
+  calculation on landmark files); "dose monotone" for exact shapes as evidence (algebra); "physics part 1 does
+  not fire" read as support (best of five arms; MorDIFF lower bound 0.626 < 0.65). Also corrected: the first
+  version read the shape ladder as "averaging in general"; the ladder says most of the effect is specific to the
+  second person (photo vs same-person mean 0.548, same-person mean vs two-person mean 0.687).
+- Review process notes recorded as facts: `prereg.md` first part was committed only at 17:25 (5a19286) together
+  with three arms' results (file time 15:38:57, no independent timestamp); no pre-run review was run; NC vs R3
+  and OpenCV R2 are vacuous controls (practically identical embeddings; R2 equals the host photo).
+- H3 "ideal" rows in amendment 1a compare source-crop midpoints with renders (pool mismatch); not read.
+
 ## 8. Observations and ideas
 
 - CLIP ranks landmark morphs as *less* typical than photos (and less with rising m), while DiffAE and exact
@@ -390,7 +451,12 @@ self-pairs (061_061 …) are intended.
 - Open: why DiffAE z_sem separates MorDIFF E7 frames completely (0.000) — the E7 MorDIFF frames shrink the face
   to the MorDIFF inter-eye distance (about 64 px) and enlarge it; DiffAE then sees a blurred face. A history-
   matched fit set (E7 copies of fit photos) would be needed to use this arm; no such frames exist.
-- Open: a landmark arm on landmarks detected from the images (not exact files).
+- Reassigned 19:15 by the coordinator: the detected-landmark shape arm (review item 3, H-new-2) goes to the
+  mirror-asymmetry test (AS0), not to ID0.
+- Done 19:15: amendment 1 (a)–(d), `result.md` revision.
+- Post-deadline only (review items 7–8, not registered): a larger identity bank for the head (H-new-3, about
+  0.3 GPU-h) and a history-matched fit set (needs the author's yes for shrink-and-enlarge on new images).
+- Not to run (review item 6): the remaining tier 2–3 sets for CLIP, DINOv3, DiffAE.
 - Done 17:31: the 136 fit frames (+ `.tem`) that existed only in `/dev/shm/smad_arms/r6_frgc` were copied
   byte-identically (sha256 checked) to `/mnt/t7/smad_next/ID0/src_shm_copy/<pid>/`, manifest
   `COPY_MANIFEST.csv` (sha256 c89adf30…). `fit.csv` still names the original paths; map through the manifest

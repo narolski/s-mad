@@ -151,6 +151,17 @@ def main():
         o["verdict"] = verdict(o)
         o["role"] = "primary" if det in PRIMARY else "descriptive"
         res[det] = o
+    whole = {}
+    for det in PRIMARY:
+        f = K.OUT / "p2scores/whole" / f"scores_rel_{det}.npz"
+        if f.exists():
+            zf = np.load(f, allow_pickle=False)
+            o = analyse(meta, {str(i): float(v) for i, v in zip(zf["id"], zf["logit_noTTA"])})
+            if o is not None:
+                o.pop("_gk")
+                o.pop("_idx_seed")
+                o["verdict"] = verdict(o)
+                whole[det] = o
     # Part 3 heads on whole-image features (A1.1 difference-in-differences)
     hd = K.OUT / ("heads/smoke" if a.smoke else "heads")
     heads = {}
@@ -180,6 +191,28 @@ def main():
                 did[f"{x}-{ref}"] = dict(did=float(d.mean()), ci=S.ci(d[idx].mean(1)))
     for v in heads.values():
         v.pop("_gk")
+    # bridge to the original tool (A3): whole-file audit scores (KP, KE) beside the whole-file T-A scores of the
+    # release's own morphs with the same partner (training split: the five trained partners; evaluation split: KE)
+    bridge = {}
+    tl = K.OUT / "flists/tab_sub.csv"
+    if tl.exists():
+        tmeta = list(csv.DictReader(open(tl)))
+        for det in PRIMARY:
+            fw, ft = K.OUT / "p2scores/whole" / f"scores_rel_{det}.npz", K.OUT / "p2scores/tab_sub" / f"scores_rel_{det}.npz"
+            if not (fw.exists() and ft.exists()):
+                continue
+            zw = {str(i): float(v) for i, v in zip(np.load(fw)["id"], np.load(fw)["logit_noTTA"])}
+            zt = {str(i): float(v) for i, v in zip(np.load(ft)["id"], np.load(ft)["logit_noTTA"])}
+            b = {}
+            for kind, split, parts in (("KP", "train", K.PARTNERS), ("KE", "eval", K.EVAL_PARTNERS)):
+                for p_ in parts:
+                    ours = [zw[r["id"]] for r in meta if r["kind"] == kind and r["partner"] == p_ and r["id"] in zw]
+                    orig = [zt[r["id"]] for r in tmeta if r["split"] == split and r["kind"] == "morph"
+                            and r["partner"] == p_ and r["id"] in zt]
+                    b[f"{split}:{p_}"] = dict(ours_engine_mean=float(np.mean(ours)) if ours else None, n_ours=len(ours),
+                                              original_tool_mean=float(np.mean(orig)) if orig else None,
+                                              n_original=len(orig))
+            bridge[det] = b
     prim = [res[d] for d in PRIMARY if d in res]
     lead = dict(text="no partner memorisation if the paired gap interval includes 0 for every detector",
                 n_detectors=len(prim),
@@ -188,7 +221,8 @@ def main():
                  holds=bool(all(o["verdict"] != "partner memorisation" for o in prim)) if prim else None,
                  strict_holds=lead["holds"])
     tag = "smoke" if a.smoke else "full"
-    json.dump(dict(detectors=res, heads=heads, did=did, lead_falsifier=lead, smddT_gap_condition=smddT),
+    json.dump(dict(detectors=res, heads=heads, did=did, lead_falsifier=lead, smddT_gap_condition=smddT, bridge=bridge,
+                   whole_file_secondary=whole),
               open(K.RES / f"p2_{tag}.json", "w"), indent=1)
     print(json.dumps(dict(lead=lead, smddT=smddT, verdicts={d: o["verdict"] for d, o in res.items()}), indent=1))
 

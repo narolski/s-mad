@@ -43,6 +43,13 @@ def main():
             rows.append(dict(id=j["stem"], path="x", label=1, rung=j["rung"], gen=j["gen"], db=pa.split("_")[0],
                              pa=pa, pb=pb, photo_a=j["a"], photo_b=j["b"], alpha=j["alpha"], source="ours",
                              aligned=True))
+    for ph, m in photos.items():                         # R2s rows (spread-matched renders), as ag1_spread.py names them
+        if m["slot"] != "s1":
+            continue
+        for g in (("mip1", "mip2") if m["db"] == "frll" else ("mip1",)):
+            rows.append(dict(id=f"{g}_R2s_{m['person']}", path="x", label=0, rung="R2s", gen=g, db=m["db"],
+                             pa=m["person"], pb=m["person"], photo_a=ph, photo_b=ph, alpha=0.0, source="ours",
+                             aligned=True))
     ids = [r["id"] for r in rows]
     assert len(ids) == len(set(ids)), "duplicate ids"
     with open(out / "data/manifests/ag1.csv", "w", newline="") as fh:

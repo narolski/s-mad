@@ -111,6 +111,21 @@ missing); a pack is ready there for later.
 - 18:50. **Athena smoke job 3544220** submitted (`sbatch --time=01:00:00 --export=ALL,RS1_LIMIT=8 tasks/RS1/athena_rs1.sbatch`:
   builds `envs/RS1/venv`, unpacks, crops 8 images of every set, scores them and 8 reused A46 crops of every set with
   all seven releases). Log `.../smad-next/logs/RS1-3544220.out`; result `results/RS1/rs1a_smoke_3544220.tar`.
+- 18:58. SelfMAD DGX run finished (9,209 images, 28 min; `scores/scores_own_selfmad__dgx.npz`).
+- 19:02. Smoke job 3544220 finished in 7 min (environment build, unpack, 360 crops, 464 images x 7 releases). Fetched
+  with `athena_fetch.sh smoke_3544220` (sha OK) to `/mnt/t7/smad_next/RS1/athena/smoke_3544220/`. Equivalence
+  (`athena_check.py`, `rs1_athena_equivalence_smoke_3544220.json`): same A46 crops, Athena vs DGX logits: ViT-B/16 max
+  0.20 (median 0.001), ViT-L/14 max 0.07; Athena vs registered WCSS scores: PNG crops max 0.20 logit, JPEG crops up
+  to 1.6 (ViT-B/16) and 3.0 (ViT-L/14); MTCNN boxes Athena vs DGX on 200 new crops: median 0.03 px, 21 above 1 px, max
+  15.9 px (aligned E7 frames and A43 arms).
+- 19:15. Amendment 3: every MADation / MixFaceNet row cropped and scored on Athena (raw files behind the A46 crops
+  re-cropped there, ids `xr_<A46 id>`); crops stored in the source's format (`crop_rgb_ext.py`, one-line change of
+  AR1's `crop_rgb.py`, sha c75cfa2e); A46 crops kept as a crop-platform check. Third pack
+  `athena/rs1a_pack_raw.tar` (0.67 GB, sha 3d8a359c70802e75bd7065d6f316c76206fa26c52e4413e2f643c2f638e2c82e; raw
+  files hash-checked against the A46 attempt records). `analyse.py`: Athena primary run skips A46 crops;
+  `--crop-check` adds the A46-crop run; empty pools handled. Analysis tested on the smoke output (8 images per set;
+  test outputs moved to `/mnt/t7/smad_next/RS1/athena/smoke_3544220/analysis_test/`, not results).
+- 19:16. **Second smoke job 3545836** (same 8-image mode, now with the raw pack and `cropx`).
 
 ## 3. Data
 

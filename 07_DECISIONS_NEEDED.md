@@ -54,9 +54,26 @@ morph literature note to `narolski/research`.
 - The grant is on **Athena** (author, 11 Nov): A100 cards with 40 GB, x86; Slurm account `plgrestorearc-gpu-a100`, partition `plgrid-gpu-a100`, 48-hour limit; the login is the personal account `plgpnarolski` at `athena.cyfronet.pl`. Athena offers key login only (no password), so the key must arrive through the Portal sync. Athena is GPU-only: no CPU-only workloads there.
 - Cyfronet rules followed: no computation or compilation on the login node; data under `$SCRATCH`; no `/tmp`; large transfers through a compute-node allocation.
 
+## Author's decisions of 11 Nov, 19:13
+
+- **JPEG in training: yes.** The JPEG branch of the existing registered function (`degrade` in
+  `smadcvpr/prep_eval.py`, operations `jpeg90`, `jpeg70`, `jpeg50`) may be run unchanged on training images. The
+  function is imported and called, never copied or edited. Not covered by this answer, so not used until the
+  author confirms: the branches `blur1`, `resample50` and `chip` of the same function.
+- **Class categories: accepted on a condition.** "Will it impact the performance of the networks? If yes, we need
+  to use two classes only (bona fide / morph). If not, go with your proposal." The lead's answer: it does not. The
+  network stays a two-class network with one score (morph or not a morph); single-subject images (warp-only,
+  warped halves, stored copies, same-person and mirror blends, one-photo reconstructions) are never a third
+  output. The three categories only arrange the tables: single-subject images are reported in their own table and
+  are counted neither in the bona fide error rate nor in the attack error rate. Numbers on the published
+  benchmarks are computed exactly as before, because those contain only bona fide photos and two-person morphs.
+  What can change performance is the training protocol itself (constructed images as negatives); that is a
+  two-label choice, it is the method under test, and its cost or gain on the benchmarks is measured by the SMDD
+  rebuild (SM1) and the protocol-network tests (PN1). So the proposal of `14_CLASS_DEFINITIONS.md` is in force.
+
 ## Still open
 
-1. **Class definitions:** the three categories of `14_CLASS_DEFINITIONS.md` (genuine; morphing attack; single-subject manipulation) await a yes or no.
+1. (Closed 11 Nov: class definitions accepted on a condition, see above.) Open instead: may the `blur1`, `resample50` and `chip` branches of the registered function also be run on training images?
 2. **PLGrid access:** Athena works (author activated the access service; jobs are charged to `plgmultivision-gpu-a100` until `plgrestorearc` appears on Athena, by the author's decision). The Helios and WCSS login nodes still refuse connections from our address since about 16:55 on 11 Nov.
 3. **Half-exchange images** for the smiling-half follow-up (a rectangular pixel copy): permitted image code or not.
 

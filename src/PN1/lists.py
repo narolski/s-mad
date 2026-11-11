@@ -18,6 +18,7 @@ EVAL = pathlib.Path("/home/narolski/mambamorph-code/smadcvpr_data/manifests/eval
 EVAL_ROOT = pathlib.Path("/home/narolski/mambamorph-code/smadcvpr_data")
 FIELDS = ["id", "path", "set", "cell", "rung", "tool", "p1", "p2", "geom", "g1", "g2", "w1"]
 FORBID = ("fst", "valx", "a12sp", "a12-sp")
+SPLIT = pathlib.Path("/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/split")
 
 
 def write(name, rows):
@@ -58,6 +59,28 @@ def main(which):
             s0.update(id=f"{r['src_id']}_{r['strength']}", path=r["path"],
                       rung=f"{s0['rung']}_soft_{r['strength']}", set="devsoft")
             rows.append(s0)
+    elif which == "ar1h":       # SMDD-rebuild owner's warped halves of the ladder OpenCV morphs (R4), ladder training hosts
+        lad = {r["pid"]: r for r in csv.DictReader(open(SPLIT / "ladder_split.csv"))}
+        H = pathlib.Path("/mnt/t7/smad_next/SM1/img/ar1h")
+        for pid, r in sorted(lad.items()):
+            if r["train_morph"] != "1":
+                continue
+            stem = pid.replace(":", "_")
+            for h in ("hA", "hB"):
+                p = H / f"{stem}_{h}.png"
+                assert p.exists(), p
+                rows.append(dict(id=f"sm1h_{stem}_{h}", path=str(p), set="ar1h", cell="frgcferet",
+                                 rung="halfA" if h == "hA" else "halfB", tool="opencv", p1=pid, p2=r["partner_B"],
+                                 geom=""))
+    elif which in ("cert_a", "cert_b"):   # certificate cue lists: (a) training pools and ladder; (b) benchmarks, H1
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+        import pn1lib as K
+        cat = [r for r in K.catalog() if r["role"] != "excluded"]
+        if which == "cert_a":
+            rows = [dict(id=r["id"], path=r["path"]) for r in cat if r["fam"] in ("af0", "ladder")]
+            rows += [dict(id=r["id"], path=r["path"]) for r in csv.DictReader(open(OUT / "ar1h.csv"))]
+        else:
+            rows = [dict(id=r["id"], path=r["path"]) for r in cat if r["fam"] in ("h1", "bench")]
     else:
         sys.exit(f"unknown list {which}")
     write(which, rows)

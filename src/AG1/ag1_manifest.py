@@ -33,7 +33,7 @@ INP = pathlib.Path("/mnt/t7/smad_next/AG1/inputs/pack")
 CODE = pathlib.Path("/home/narolski/mambamorph-code")
 MADRAW = pathlib.Path("/mnt/t7/smad_heldout/mad22_incoming/marco_owncloud_20261109T103840Z/author_files/original_sorted")
 MADPROC = pathlib.Path("/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z")
-LABEL = {"R0": 0, "R1": 0, "R2": 0, "R2i": 0, "R3": 1, "R3m": 1, "R4": 1, "BR": 1, "RT": 1, "AG3": 1, "AG3T": 1, "PUB": 1}
+LABEL = {"R0": 0, "R1": 0, "R2": 0, "R2i": 0, "R2s": 0, "R3": 1, "R3m": 1, "R4": 1, "BR": 1, "RT": 1, "AG3": 1, "AG3T": 1, "PUB": 1}
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import build_inputs as BI                                       # noqa: E402  (read_bgr: FERET .ppm.bz2 decode)
 

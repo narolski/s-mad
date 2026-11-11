@@ -97,7 +97,12 @@ pending
 ## Run log
 
 - 16:41 WCSS CPU task `SM1_cpu_c` (arms c and c′, 30,000 morphs + 30,000 halves) staged; submitted by the lead as job
-  6301971 (48 cores). The author accepts SMDD's condition on derived morphs (lead, 17:00).
+  6301971 (48 cores). It cannot succeed (pre-A5 lists, engine failures stop the build); WCSS unreachable since
+  16:54. The author accepts SMDD's condition on derived morphs (lead, 17:00).
+- 17:48 to 18:45 all builds on the rented CPU machine leaseB (96 workers, nice 19; 0 USD of our own).
+- Athena jobs (account plgrestorearc-gpu-a100, A100 40 GB): 3544208 feature smoke (passed; about 0.05 GPU-h),
+  3544789 LoRA smoke (passed; 148 s), 3545820 full feature pass (running from 19:09), 3545823_[0-19] LoRA fits
+  (queued 19:09; estimate under 100 GPU-h).
 
 ## Not verified / caveats
 
