@@ -48,10 +48,16 @@ morph literature note to `narolski/research`.
 - **Codex CLIP fits:** stopped by the author. **CPU-heavy builds:** WCSS CPU nodes.
 - **Author's idea under test:** learn the signal from morphs of the same input image and of the same person (experiment "Signal isolation by paired differences", PD1).
 
+## Author's decision of 11 Nov, night: PLGrid grant
+
+- The S-MAD work is within the scope of the overall grant behind `plgrestorearc` (Cyfronet rule 3 on the research agenda is satisfied, on the author's word). The work moves to a more specific grant once that is approved.
+- Slurm accounts: `plgrestorearc-gpu-gh200` (Helios GPU), `plgrestorearc-gpu-a100` (Athena GPU), `plgrestorearc-cpu`; the login is the personal account `plgpnarolski`. Which of these the grant actually holds is unknown until `hpc-grants` can be read.
+- Cyfronet rules followed: no computation or compilation on the login node; data under `$SCRATCH`; no `/tmp`; large transfers through a compute-node allocation.
+
 ## Still open
 
 1. **Class definitions:** the three categories of `14_CLASS_DEFINITIONS.md` (genuine; morphing attack; single-subject manipulation) await a yes or no.
-2. **PLGrid:** the account `plgpnarolski` is not yet usable from this machine (no account on WCSS; key refused on the Cyfronet clusters).
+2. **PLGrid access:** not yet usable. The key is refused for `plgpnarolski` on the Cyfronet clusters, and since about 16:55 on 11 Nov the Helios and WCSS login nodes refuse all connections from our address (probably a block after repeated failed logins). One login attempt is planned when Helios opens again.
 3. **Half-exchange images** for the smiling-half follow-up (a rectangular pixel copy): permitted image code or not.
 
 ## To do when the experiments stage ends
