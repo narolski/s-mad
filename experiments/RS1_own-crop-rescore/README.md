@@ -106,6 +106,11 @@ missing); a pack is ready there for later.
   GPU). Two locks: short commands `flock -w 300 /tmp/smadnext-athena-cmd.lock ssh ...`, transfers
   `flock -w 1800 /tmp/smadnext-athena.lock rsync ...`; a flock timeout returns 1 silently (a local wait, not a refused
   login). `athena_rs1.sbatch` changed to `-C memfs`, `--mem=110G`, work in `$MEMFS/rs1` (about 30 GB).
+- 18:49. Both packs on Athena (`packs/RS1/rs1a_pack.tar` 9.58 GB in 13 min, `rs1a_pack_amend.tar` 2.53 GB, sha256
+  6cdce864dd33b1d05748b63a9e6a18981813769cb695214c466532d18c146df6); the job checks both hashes on the compute node.
+- 18:50. **Athena smoke job 3544220** submitted (`sbatch --time=01:00:00 --export=ALL,RS1_LIMIT=8 tasks/RS1/athena_rs1.sbatch`:
+  builds `envs/RS1/venv`, unpacks, crops 8 images of every set, scores them and 8 reused A46 crops of every set with
+  all seven releases). Log `.../smad-next/logs/RS1-3544220.out`; result `results/RS1/rs1a_smoke_3544220.tar`.
 
 ## 3. Data
 

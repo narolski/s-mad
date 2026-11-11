@@ -1,5 +1,50 @@
 {
- "cues": {},
+ "cues": {
+  "facemorpher_R2vsR4": {
+   "best": "b3_.125-.25",
+   "best_folded_auc": 0.9049,
+   "top5": {
+    "b3_.125-.25": 0.9049,
+    "b2_.063-.125": 0.8719,
+    "mf_ratio_.125-.25": 0.8706,
+    "haar_LHHL": 0.829,
+    "b4_.25-.375": 0.8235
+   }
+  },
+  "facemorpher_R2wvsR4": {
+   "best": "b3_.125-.25",
+   "best_folded_auc": 0.8892,
+   "top5": {
+    "b3_.125-.25": 0.8892,
+    "b2_.063-.125": 0.8645,
+    "mf_ratio_.125-.25": 0.848,
+    "haar_LHHL": 0.8077,
+    "b4_.25-.375": 0.7966
+   }
+  },
+  "opencv_R2vsR4": {
+   "best": "b3_.125-.25",
+   "best_folded_auc": 0.9277,
+   "top5": {
+    "b3_.125-.25": 0.9277,
+    "haar_LHHL": 0.9205,
+    "mf_ratio_.125-.25": 0.905,
+    "lapvar": 0.9,
+    "b2_.063-.125": 0.8852
+   }
+  },
+  "opencv_R2wvsR4": {
+   "best": "b3_.125-.25",
+   "best_folded_auc": 0.8858,
+   "top5": {
+    "b3_.125-.25": 0.8858,
+    "b2_.063-.125": 0.8602,
+    "mf_ratio_.125-.25": 0.8457,
+    "haar_LHHL": 0.8138,
+    "b4_.25-.375": 0.7953
+   }
+  }
+ },
  "logreg_clip224": {
   "train_facemorpher_test_opencv_R2": {
    "oof_auc_R4_vs_neg": 0.9998,
@@ -42,9 +87,188 @@
    ]
   }
  },
+ "logreg_dinov3_512": {
+  "train_facemorpher_test_opencv_R2": {
+   "oof_auc_R4_vs_neg": 1.0,
+   "R0_flag_rate": 0.1026,
+   "E7_lm_flag_rate": 0.073,
+   "E7_all_flag_rate": 0.0735,
+   "n_E7": [
+    408,
+    816
+   ]
+  },
+  "train_facemorpher_test_opencv_R2w": {
+   "oof_auc_R4_vs_neg": 1.0,
+   "R0_flag_rate": 0.0578,
+   "E7_lm_flag_rate": 0.0922,
+   "E7_all_flag_rate": 0.0936,
+   "n_E7": [
+    408,
+    816
+   ]
+  },
+  "train_opencv_test_facemorpher_R2": {
+   "oof_auc_R4_vs_neg": 1.0,
+   "R0_flag_rate": 0.0821,
+   "E7_lm_flag_rate": 0.0083,
+   "E7_all_flag_rate": 0.0074,
+   "n_E7": [
+    408,
+    816
+   ]
+  },
+  "train_opencv_test_facemorpher_R2w": {
+   "oof_auc_R4_vs_neg": 1.0,
+   "R0_flag_rate": 0.0354,
+   "E7_lm_flag_rate": 0.0348,
+   "E7_all_flag_rate": 0.0343,
+   "n_E7": [
+    408,
+    816
+   ]
+  }
+ },
+ "dense_clip224_mlp_s401": {
+  "test_facemorpher_R2": {
+   "R0_flag_rate": 0.0896,
+   "E7_lm_flag_rate": 0.0098,
+   "E7_all_flag_rate": 0.0096
+  },
+  "test_facemorpher_R2w": {
+   "R0_flag_rate": 0.0784,
+   "E7_lm_flag_rate": 0.0069,
+   "E7_all_flag_rate": 0.0071
+  },
+  "test_opencv_R2": {
+   "R0_flag_rate": 0.1026,
+   "E7_lm_flag_rate": 0.0118,
+   "E7_all_flag_rate": 0.0118
+  },
+  "test_opencv_R2w": {
+   "R0_flag_rate": 0.0989,
+   "E7_lm_flag_rate": 0.0127,
+   "E7_all_flag_rate": 0.0127
+  }
+ },
+ "dense_clip224_mlp_s402": {
+  "test_facemorpher_R2": {
+   "R0_flag_rate": 0.097,
+   "E7_lm_flag_rate": 0.0137,
+   "E7_all_flag_rate": 0.0142
+  },
+  "test_facemorpher_R2w": {
+   "R0_flag_rate": 0.0858,
+   "E7_lm_flag_rate": 0.0103,
+   "E7_all_flag_rate": 0.0103
+  },
+  "test_opencv_R2": {
+   "R0_flag_rate": 0.1026,
+   "E7_lm_flag_rate": 0.0167,
+   "E7_all_flag_rate": 0.0172
+  },
+  "test_opencv_R2w": {
+   "R0_flag_rate": 0.1063,
+   "E7_lm_flag_rate": 0.0147,
+   "E7_all_flag_rate": 0.0152
+  }
+ },
+ "dense_clip224_mlp_s403": {
+  "test_facemorpher_R2": {
+   "R0_flag_rate": 0.097,
+   "E7_lm_flag_rate": 0.0137,
+   "E7_all_flag_rate": 0.0137
+  },
+  "test_facemorpher_R2w": {
+   "R0_flag_rate": 0.0858,
+   "E7_lm_flag_rate": 0.0137,
+   "E7_all_flag_rate": 0.013
+  },
+  "test_opencv_R2": {
+   "R0_flag_rate": 0.1026,
+   "E7_lm_flag_rate": 0.0142,
+   "E7_all_flag_rate": 0.0145
+  },
+  "test_opencv_R2w": {
+   "R0_flag_rate": 0.1007,
+   "E7_lm_flag_rate": 0.0147,
+   "E7_all_flag_rate": 0.0147
+  }
+ },
+ "dense_clip224_mlp_s404": {
+  "test_facemorpher_R2": {
+   "R0_flag_rate": 0.0933,
+   "E7_lm_flag_rate": 0.0221,
+   "E7_all_flag_rate": 0.0225
+  },
+  "test_facemorpher_R2w": {
+   "R0_flag_rate": 0.0802,
+   "E7_lm_flag_rate": 0.0172,
+   "E7_all_flag_rate": 0.0174
+  },
+  "test_opencv_R2": {
+   "R0_flag_rate": 0.1026,
+   "E7_lm_flag_rate": 0.027,
+   "E7_all_flag_rate": 0.0262
+  },
+  "test_opencv_R2w": {
+   "R0_flag_rate": 0.097,
+   "E7_lm_flag_rate": 0.0216,
+   "E7_all_flag_rate": 0.0211
+  }
+ },
+ "dense_clip224_mlp_s405": {
+  "test_facemorpher_R2": {
+   "R0_flag_rate": 0.0933,
+   "E7_lm_flag_rate": 0.0162,
+   "E7_all_flag_rate": 0.0172
+  },
+  "test_facemorpher_R2w": {
+   "R0_flag_rate": 0.0896,
+   "E7_lm_flag_rate": 0.0123,
+   "E7_all_flag_rate": 0.0125
+  },
+  "test_opencv_R2": {
+   "R0_flag_rate": 0.1026,
+   "E7_lm_flag_rate": 0.0201,
+   "E7_all_flag_rate": 0.0201
+  },
+  "test_opencv_R2w": {
+   "R0_flag_rate": 0.1101,
+   "E7_lm_flag_rate": 0.0196,
+   "E7_all_flag_rate": 0.0206
+  }
+ },
+ "dense_clip224_ridge": {
+  "test_facemorpher_R2": {
+   "R0_flag_rate": 0.0951,
+   "E7_lm_flag_rate": 0.0309,
+   "E7_all_flag_rate": 0.0319
+  },
+  "test_facemorpher_R2w": {
+   "R0_flag_rate": 0.0877,
+   "E7_lm_flag_rate": 0.0265,
+   "E7_all_flag_rate": 0.0275
+  },
+  "test_opencv_R2": {
+   "R0_flag_rate": 0.1026,
+   "E7_lm_flag_rate": 0.0319,
+   "E7_all_flag_rate": 0.0333
+  },
+  "test_opencv_R2w": {
+   "R0_flag_rate": 0.0858,
+   "E7_lm_flag_rate": 0.0299,
+   "E7_all_flag_rate": 0.0299
+  }
+ },
  "logreg_clip224_verdict": {
   "worst_flag_rate": 0.1063,
-  "worst_cue_auc": NaN,
-  "verdict": "mixed"
+  "worst_cue_auc": 0.9277,
+  "verdict": "fails"
+ },
+ "logreg_dinov3_512_verdict": {
+  "worst_flag_rate": 0.1026,
+  "worst_cue_auc": 0.9277,
+  "verdict": "fails"
  }
 }

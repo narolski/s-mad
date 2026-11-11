@@ -166,7 +166,7 @@ same (0.44 to 0.47 against spread-matched renders). The separation does not surv
 
 (CLIP pooled / CLIP mean patch / DINOv3 pooled.) Removing softening or the pipeline direction leaves the
 separation (drop ≤ 0.02, "keeps separation") and the flag rate (already ≤ 8.3% before) unchanged. Removing the
-single latent-spread direction learned on set H lowers the set G separation by 0.08 to 0.12. Two-person head:
+single latent-spread direction learned on set H lowers the set G separation by 0.08 to 0.13. Two-person head:
 same pattern (`q4_trace_subtraction.csv`).
 
 ## Q5 Dose and second identity

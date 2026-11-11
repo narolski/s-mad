@@ -17,6 +17,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import pd1_common as K  # noqa: E402
 
 
+ONLY = {"af0_h": "af0h"}       # AF0 cache name -> PD1 list whose ids are needed
+
+
 def main():
     bb, names = sys.argv[1], sys.argv[2:]
     od = K.OUT / "feat" / bb
@@ -39,10 +42,14 @@ def main():
         tok = np.load(d / f"{n}.tokens.npy", mmap_mode="r")
         ids = np.load(d / f"{n}.ids.npy")
         t0 = time.time()
-        M = np.zeros((len(ids), tok.shape[2]), np.float32)
-        for i in range(0, len(ids), 64):
-            M[i:i + 64] = tok[i:i + 64].astype(np.float32).mean(1)
-        np.savez(out, ids=ids, mean=M)
+        keep = np.arange(len(ids))
+        if n in ONLY:                      # read only the rows PD1's list needs
+            want = {r["id"] for r in K.rows(K.OUT / "lists" / f"{ONLY[n]}.csv")}
+            keep = np.array([i for i, x in enumerate(ids) if str(x) in want])
+        M = np.zeros((len(keep), tok.shape[2]), np.float32)
+        for j in range(0, len(keep), 64):
+            M[j:j + 64] = tok[keep[j:j + 64]].astype(np.float32).mean(1)
+        np.savez(out, ids=ids[keep], mean=M)
         print("done", bb, n, M.shape, f"{time.time() - t0:.0f} s", flush=True)
 
 

@@ -111,6 +111,50 @@ Needed from the author:
    not a morph, and the ViT-L/14 recipe fails exactly there.
 2. Yes or no on the three class categories.
 
-## 6. Cross-field analyses
+## 6. Cross-field analyses (added 11 Nov 18:52)
 
-Pending (`../literature/crossfield/`).
+Four dedicated analysts surveyed deepfake detection, detection of GAN images, face anti-spoofing and
+detection of diffusion portraits; each report was then checked by a second agent (references opened,
+claims corrected, ideas attacked). Reports and checks: `../literature/crossfield/<field>.md` and
+`<field>_check.md`; raw output `../literature/crossfield/CROSSFIELD_raw.json`. Between 31 and 57
+references were checked per field; 7 to 13 per field could not be verified or had errors (listed in the
+check files; the checkers' web-search budget ran out, so every number must be re-read from the PDF
+before it is cited).
+
+**Verdicts on the 17 proposed ideas: 1 kept, 12 revised, 4 dropped.**
+
+| Field | Idea | Verdict | Use for us |
+|---|---|---|---|
+| Diffusion | Alignment by selection, with a certificate | **keep** | Choose training images until a classifier that sees only named cues (softness at three scales, eight spectrum bands, border, history flag, engine, pool, partner) is near chance; print that number for the training set and for every evaluation cell. Control: a random subsample of equal size. Goes into the protocol-network tests (PN1) |
+| Diffusion | Three outputs; code-factorial diffusion rungs | revise | One extra labelling arm; audit rungs merged with round 3 |
+| Diffusion | Pass both classes through the autoencoder | drop | Already in the diffusion ladder |
+| Deepfake | Second-identity field with a one-person blend as complement | revise | The only new construction; needs a session-crossed build and an arm showing the field beats a plain label. Not before 14 Nov |
+| Deepfake | Cumulative ladder code; history-subspace surgery | revise | The surgery survives as a half-day audit figure (remove the history direction from a released detector's features and watch the benchmark number) |
+| Deepfake | Identity-agreement slots | drop | Exists as MorDeephy; failed twice in our record |
+| GAN images | Radius-crossed generator ladder | revise | Zero-GPU re-read of stored latent codes; expected to confirm that GAN mixing is "closer to the mean code" |
+| GAN images | Truncation-dose pseudo-morph; declared re-synthesised output; mechanism readers | revise | Audit rows only (one ProGAN-trained classifier on GAN morph against one-person reconstruction) |
+| GAN images | Inversion-encoder bottleneck | drop | Contradicted by our measurements |
+| Anti-spoofing | One-threshold training (genuine side only, offset aligned) | revise | The per-pool fixed-threshold read-out is adopted as it is; the loss terms only if the data-only arm leaves more than 10% flagged on a left-out strength |
+| Anti-spoofing | History as style (per-image token statistics removed) | revise | One-hour premise test |
+| Anti-spoofing | One-sided zero map | revise | Sixth arm of the alpha-field probe (AF0) ablation |
+| Anti-spoofing | Classifier over ladder rungs | drop | Diagnostic at most |
+
+**What the neighbouring fields already know (supports the audit, narrows its novelty):**
+- Format, size and resampling direction act as labels in generated-image benchmarks (Grommelt et al., arXiv
+  2403.17608; Rajan et al., arXiv 2410.11835; Stay-Positive, arXiv 2502.07778; B-Free, arXiv 2412.17671). The
+  remedy there is our remedy: make the two classes share everything except the trace (aligned pairs,
+  reconstruction of real images, matched subsets).
+- Deepfake benchmarks: resolution with the wrong sign (DF40), identity leakage (Dong et al., CVPR 2023),
+  background and pairing (paired training beats unpaired on 14 benchmarks).
+- Anti-spoofing: a CLIP-with-LoRA detector trained on images of vegetables only reaches 92.7% mean AUC on
+  four face benchmarks, so it reads the recapture process, not faces: the same kind of result as our
+  morph-free networks.
+- Morph detection already has: same-person morphs labelled bona fide (MorDeephy, arXiv 2208.03110, about
+  500,000 of them; Pimenta et al.); a deepfake detector scored on morph sets (SelfMAD's Table I); partial
+  morphs with region labels (Seibold et al.); per-pool false detections at one threshold (NIST FATE MORPH).
+  **Not found in morph detection:** a matched ladder with one-photo and same-person rungs for three generator
+  families; a training set certified against named cues; a fixed-threshold table with flag and miss rates on
+  history-matched genuine pools.
+
+**For the class question:** MorDeephy's choice (same-person morphs are bona fide) is published precedent for
+keeping same-person blends out of the attack class.

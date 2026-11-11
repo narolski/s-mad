@@ -212,7 +212,7 @@ def nominal_iod(items, L):
     frames = {}
     genuine = {"R0", "S0", "x0", "photo", "native"}
     for it in items.values():
-        if it["set"] in ("L", "G", "D", "Ds", "Fm", "Fe", "S", "X") and it["role"] in genuine:   # not the O/N copies
+        if it["set"] in ("L", "G", "D", "Ds", "Fm", "Fe", "S") and it["role"] in genuine:   # not the O/N copies; X not measured in phase 1
             lm = L.of(it)
             if lm is not None:
                 frames.setdefault(it["frame"], []).append(float(np.linalg.norm(lm[K.PUPIL_R] - lm[K.PUPIL_L])))
@@ -237,21 +237,23 @@ def iod_for(frame, nom):
     return nom[frame]["median"]          # amendment A8: canon512 uses its own genuine images
 
 
-def run(items, L, sets, limit, chunk, shard, blank=False, roles=None):
+def run(items, L, sets, limit, chunk, shard, blank=False, roles=None, db=""):
     import cv2
     nom = json.load(open(K.OUT / "iod_nominal.json"))
     md = "meas_blank" if blank else "meas"
     (K.OUT / md).mkdir(exist_ok=True)
     si, sn = map(int, shard.split("/"))
     for s in sets:
-        rows = [it for it in items.values() if it["set"] == s and (not roles or it["role"] in roles)]
+        rows = [it for it in items.values() if it["set"] == s and (not roles or it["role"] in roles)
+                and (not db or it["db"] == db)]
+        tag = (f"_{db}" if db else "") + ("_" + "-".join(sorted(roles)) if roles else "")
         if limit:
             rows = rows[:limit]
         chunks = list(range(0, len(rows), chunk))
         for ci, k in enumerate(chunks):
             if ci % sn != si:
                 continue
-            part = K.OUT / md / (f"smoke_{s}_{k:05d}.npz" if limit else f"{s}_{k:05d}.npz")
+            part = K.OUT / md / (f"smoke_{s}_{k:05d}.npz" if limit else f"{s}{tag}_{k:05d}.npz")
             if part.exists():
                 continue
             ch = rows[k: k + chunk]
@@ -302,6 +304,7 @@ def main():
     ap.add_argument("--shard", default="0/1")
     ap.add_argument("--blank", action="store_true", help="amendment A4 sensitivity run -> OUT/meas_blank")
     ap.add_argument("--roles", default="", help="comma list of roles to measure (default all)")
+    ap.add_argument("--db", default="", help="only items of this database (e.g. feret)")
     a = ap.parse_args()
     if a.merge:
         return merge(a.blank)
@@ -309,7 +312,7 @@ def main():
     L = LM(items)
     if a.iod:
         return nominal_iod(items, L)
-    run(items, L, a.sets.split(","), a.limit, a.chunk, a.shard, a.blank, set(a.roles.split(",")) - {""})
+    run(items, L, a.sets.split(","), a.limit, a.chunk, a.shard, a.blank, set(a.roles.split(",")) - {""}, a.db)
 
 
 if __name__ == "__main__":
