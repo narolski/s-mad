@@ -72,9 +72,12 @@ def main():
             print("missing manifest", f)
             continue
         rows = list(csv.DictReader(open(f)))
-        if a.limit:
-            rows = [r for r in rows if r["label"] == "0"][:a.limit // 2] + [r for r in rows if r["label"] == "1"][:a.limit // 2] \
-                if n != "pn1_eval" else rows[:: max(1, len(rows) // a.limit)][:a.limit]
+        if a.limit:                # test pack: limit/2 unique rows per class, repeated to 512 rows (2 batches of 256)
+            if n == "pn1_eval":
+                rows = rows[:: max(1, len(rows) // a.limit)][:a.limit]
+            else:
+                u = [r for r in rows if r["label"] == "0"][:a.limit // 2] + [r for r in rows if r["label"] == "1"][:a.limit // 2]
+                rows = (u * (512 // len(u) + 1))[:512]
         mans[n] = rows
     files = {r["pack_path"]: r["source"] for r in csv.DictReader(open(M / "pack_files.csv"))}
     need = sorted({r["path"] for rows in mans.values() for r in rows})

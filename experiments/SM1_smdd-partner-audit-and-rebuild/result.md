@@ -69,13 +69,88 @@ registered pixel probe of the cue checks could not run as is (fixed box of the e
   compared file (32 per task, plus the 2,000 smoke files of c and c′); our 536 AR1 morphs equal AR1's own OpenCV R4
   files (`ar1h_vs_ar1_r4.json`).
 
+## T-A and T-B: tests with no new image (A3, A8; `tab_sub.json`)
+
+Whole-file path (A6), registered subsample (A8: per split 500 morphs per partner, 1,000 genuine, 400 non-contributor
+source renders, the 5 partner renders). Threshold t = EER threshold of the training split. Miss rate in %, interval
+from 2,000 bootstrap draws over first contributors. The training morphs are these detectors' own training images.
+
+| Release | train-split EER | miss at t, training morphs | miss at t, evaluation morphs | difference [95%] | within 1 point | false alarms on evaluation genuine at t | evaluation-split own EER |
+|---|---|---|---|---|---|---|---|
+| MADation ViT-B/16 | 0.00 | 0.00 | 0.64 | +0.64 [0.36, 1.00] | yes | 0.1 | 0.20 |
+| MADation ViT-L/14 | 0.00 | 0.00 | 5.00 | +5.00 [4.18, 5.82] | no | 0.0 | 0.02 |
+| MADation FE ViT-B/16 | 0.51 | 0.52 | 9.28 | +8.76 [7.64, 9.90] | no | 0.5 | 3.42 |
+| MADation FE ViT-L/14 | 0.62 | 0.64 | 4.72 | +4.08 [3.19, 5.00] | no | 0.4 | 2.09 |
+| MixFaceNet-MAD | 0.60 | 0.60 | 10.08 | +9.48 [8.22, 10.81] | no | 0.4 | 2.20 |
+
+Per-partner miss at t (training five; evaluation five): ViT-B/16 all 0.0; 1.0, 0.0, 1.8, 0.2, 0.2. ViT-L/14 all 0.0;
+8.2, 1.8, 11.0, 4.0, 0.0. FE ViT-B/16 0.2, 0.4, 0.0, 2.0, 0.0; 31.8, 7.0, 3.4, 3.0, 1.2. FE ViT-L/14 0.0, 0.0, 0.0,
+0.8, 2.4; 14.8, 1.6, 0.6, 5.8, 0.8. MixFaceNet 1.0, 0.0, 1.2, 0.8, 0.0; 21.8, 19.8, 5.2, 0.6, 3.0 (evaluation partner
+order img005071, img042475, img141280, img226436, img279570; img005071 is the hardest for four of five releases).
+
+T-B, rank of the unblended partner renders among 400 source renders of their split (share of renders scoring lower):
+
+| Release | training partners (img054553, img099545, img282038, img337488, img496816) | in top 10% (binomial p) | evaluation partners (control) | in top 10% (p) |
+|---|---|---|---|---|
+| MADation ViT-B/16 | 0.87, 0.81, 0.98, 0.67, 1.00 | 2 (0.081) | 0.69, 0.73, 0.82, 0.84, 0.84 | 0 (1) |
+| MADation ViT-L/14 | 0.04, 0.11, 0.62, 0.13, 0.13 | 0 (1) | 0.30, 0.05, 0.40, 0.73, 0.24 | 0 (1) |
+| MADation FE ViT-B/16 | 0.99, 0.81, 0.98, 0.78, 0.98 | 3 (0.0086) | 0.37, 0.95, 0.93, 0.81, 0.93 | 3 (0.0086) |
+| MADation FE ViT-L/14 | 1.00, 0.92, 0.87, 0.99, 0.98 | 4 (0.00046) | 0.16, 0.91, 0.77, 0.06, 0.84 | 1 (0.41) |
+| MixFaceNet-MAD | 0.98, 1.00, 0.80, 0.57, 1.00 | 3 (0.0086) | 0.86, 0.52, 0.69, 0.94, 0.68 | 1 (0.41) |
+
+(The two FS variants are being scored; descriptive.)
+
 ## Part 2: partner audit of released detectors
 
-pending
+pending (audit crops finishing; then the five releases on own crops and on whole files)
 
 ## Part 3: rebuild arms on frozen features
 
-pending
+**Rebuild acceptance, Laplacian variance (A3, A4; `lapvar.json`; 2,000 morphs vs 2,000 genuine-class images per arm;
+AUC = P(morph has the lower variance)).** No rebuilt arm is accepted (bar: AUC ≤ 0.65), so every reading of the
+rebuilt arms below is labelled **"still separable by sharpness"** and is descriptive; falsifier readings involving
+them are printed but not decisive.
+
+| Arm | AUC at stored size | AUC at the loader's 224 px | median variance morph / genuine (stored) |
+|---|---|---|---|
+| a release (reference) | 0.993 | 0.988 | 209 / 854 |
+| b | 0.999 | 0.998 | 161 / 859 |
+| b′ | 0.998 | 0.995 | 177 / 856 |
+| c | 0.997 | 0.993 | 188 / 851 |
+| c′ | 0.998 | 0.995 | 180 / 843 |
+| d (halves as genuine) | 0.936 | 0.949 | 189 / 532 |
+| e (history crossing; acceptance at 224 px) | 0.856 | **0.716** | 336 / 768 |
+| K = 50 | 0.999 | 0.997 | 175 / 863 |
+| K = 500 | 0.998 | 0.995 | 178 / 858 |
+
+A (c) morph against its own two halves: AUC 0.881, median variance ratio morph / mean of its halves 0.52. All rebuilt
+files are 256 x 256. What would be needed to pass: genuine-class images with the morphs' sharpness (the softening of
+blending itself), i.e. more of the approved shrink-and-enlarge history or another approved softening on the genuine
+side; (e) moves the AUC from 0.99 to 0.72 at the loader size. Arm (f) (JPEG copies) is measured when built.
+
+**Feature platform (A7):** all features from Athena job 3545820 (A100, torch 2.2.1). Equivalence with the DGX
+features on all 14,120 FRLL evaluation frames: max |Δ feature| 1.0e-3, max |Δ FE-header logit| 0.097, AUC of the FE
+header (all FRLL morphs vs genuine) 0.88252 on Athena vs 0.88253 on the DGX (Δ −1.1e-5) (`feat_equivalence.json`).
+**Pool-cue check (A1.3):** a head cannot tell `os25k_bf_t` from `os25k_m_t` renders, out-of-fold AUC 0.507
+(5,000 + 5,000; `pool_cue.json`).
+
+**Smoke pass (500 morph pairs + 834 genuine renders per arm, seed 401 only; `p3_smoke.json`; person-bootstrap
+B = 1,000).** EER in %, flag rates as shares. Not the registered result (that is the 5-seed full run below).
+
+| Arm | landmark-7 EER native | E7 | rise | diffusion-7 EER native | rise | GAN-3 EER | halves flagged (AR1 EER thr) | R2w OpenCV flagged | R2w FaceMorpher flagged | AUC R4 vs R2w (OpenCV) | AUC halves vs R0 | neutral above smiling |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| a release | 13.0 | 13.7 | +0.7 | 24.6 | +2.1 | 15.2 | 0.062 | 0.065 | 0.062 | 0.986 | 0.554 | 0.35 |
+| b our tool, release pairs | 12.6 | 13.7 | +1.1 | 23.2 | +3.5 | 14.5 | 0.076 | 0.076 | 0.069 | 0.985 | 0.570 | 0.39 |
+| b′ balanced unused partners | 7.6 | 8.5 | +0.9 | 13.7 | +3.5 | 7.0 | 0.069 | 0.050 | 0.045 | 0.993 | 0.593 | 0.42 |
+| c′ balanced random, genuine pool | 7.7 | 8.8 | +1.1 | 16.2 | +1.6 | 8.0 | 0.066 | 0.049 | 0.052 | 0.993 | 0.575 | 0.47 |
+| c balanced look-alike | 5.3 | 7.6 | +2.2 | 11.8 | +7.8 | 5.4 | 0.074 | 0.063 | 0.047 | 0.994 | 0.621 | 0.48 |
+| d c + halves as genuine | 7.5 | 8.1 | +0.7 | 17.2 | +2.0 | 5.9 | 0.051 | 0.037 | 0.032 | 0.997 | 0.572 | 0.41 |
+
+Smoke reading of the registered SMDD-T rules (descriptive at this size): (c) − (b) landmark-7 native EER −7.2
+[−10.0, −4.9] points (the "partner claim dropped" condition does not hold); (d) − (c) +2.2 [+1.3, +3.0] points
+(within the 5-point rule), halves flag rate 0.074 → 0.051 (not halved, so the halves arm "fails" the registered rule).
+
+**Full run (5 seeds):** pending.
 
 ## Checks
 

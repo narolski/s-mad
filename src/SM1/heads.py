@@ -23,10 +23,10 @@ import numpy as np
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import sm1_common as K  # noqa: E402
 
-TESTS = ("test_eval", "test_mad22", "test_ar1", "test_ar1h", "audit")
+TESTS = ("test_eval", "test_mad22", "test_ar1", "test_ar1h", "audit", "test_eval_jpeg")
 TRAIN = ("train_bf", "train_m15k", "train_armb", "train_armbp", "train_armc", "train_armc_halves", "train_armcr",
-         "train_armd50", "train_armd500", "train_arme_bfS", "train_arme_cS", "train_arme_hS")
-ARMS = ("a", "b", "bp", "c", "cr", "d", "e", "d50", "d500", "a256", "dplus")
+         "train_armd50", "train_armd500", "train_arme_bfS", "train_arme_cS", "train_arme_hS", "train_armf_jpeg")
+ARMS = ("a", "b", "bp", "c", "cr", "d", "e", "f", "d50", "d500", "a256", "dplus")
 FEAT = K.OUT / "feat_athena"
 
 
@@ -136,6 +136,9 @@ def main():
                 continue
             t0 = time.time()
             c = json.load(open(f))
+            if any(x not in bank.pos for x in c["genuine"] + c["morph"]):
+                print(f"{arm}_s{s}: features missing for some training images; skipped", flush=True)
+                continue
             W, b0, info = train(bank.get(c["genuine"]), bank.get(c["morph"]), s, a.boot)
             z = test.F @ W + b0
             tag = f"{arm}_s{s}" + ("_boot" if a.boot else "")

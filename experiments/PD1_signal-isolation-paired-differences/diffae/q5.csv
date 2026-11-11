@@ -1,0 +1,5 @@
+feature,measure,target,n,rho,lo,hi,reading
+clip_pool,fr_dissimilarity,score,258,0.24236280439338986,0.10197177072690983,0.37770172656567663,the score rises with dissimilarity
+clip_pool,fr_dissimilarity,paired_step,258,0.07800094262857814,-0.07084572117526519,0.22439840609050876,no rise detected
+clip_pool,zsem_distance,score,258,0.4468887492143306,0.3259528728830553,0.5535116371419182,the score rises with dissimilarity
+clip_pool,zsem_distance,paired_step,258,0.3966513276982918,0.2790589444936331,0.5038426620676143,the score rises with dissimilarity

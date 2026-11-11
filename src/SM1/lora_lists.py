@@ -17,9 +17,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import sm1_common as K  # noqa: E402
 
 FL = K.OUT / "flists"
-ARMS = ("a", "c", "d", "e")
+ARMS = ("a", "c", "d", "e", "f")
 TRAIN = ("train_bf", "train_m15k", "train_armc", "train_armc_halves", "train_arme_bfS", "train_arme_cS",
-         "train_arme_hS")
+         "train_arme_hS", "train_armf_jpeg")
 COLS = ["path", "label", "source", "tool", "arm", "val", "mixed"]
 
 
@@ -51,6 +51,14 @@ def main():
         for r in csv.DictReader(open(FL / f"{n}.csv")):
             ev.append(dict(id=r["id"], path="x/" + r["path"].lstrip("/"), set="ar1", family=r["cell"],
                            label=r["label"], variant="", src_id=r["id"]))
+    jv = [dict(id=r["id"], path="x/" + r["path"].lstrip("/"), set="frlljpeg", family=r["cell"], label=r["label"],
+               variant=r["hist"], src_id=r["id"]) for r in csv.DictReader(open(FL / "test_eval_jpeg.csv"))]
+    fj = od / "sm1_jpeg_eval.csv"
+    with open(fj, "w", newline="") as fo:
+        w = csv.DictWriter(fo, fieldnames=list(jv[0]), lineterminator="\n")
+        w.writeheader()
+        w.writerows(jv)
+    info[fj.name] = dict(n=len(jv), sha256=K.sha(fj))
     f = od / "sm1_ar1_eval.csv"
     with open(f, "w", newline="") as fo:
         w = csv.DictWriter(fo, fieldnames=list(ev[0]), lineterminator="\n")

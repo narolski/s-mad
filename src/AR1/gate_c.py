@@ -17,7 +17,21 @@ import ar1_common as K  # noqa: E402
 import stats  # noqa: E402
 
 
+def make_model():
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+    return make_pipeline(StandardScaler(), LogisticRegression(C=1.0, max_iter=3000))
+
+
+def oof_persons(X, y, persons):
+    """strict person folds (folds.py): both persons of a morph held out together."""
+    import folds
+    return folds.oof_strict(X, y, persons, make_model)
+
+
 def oof(X, y, g, seed=0):
+    """SUPERSEDED (leaks the second person of a morph across folds; reviewers' note); kept for the record only."""
     from sklearn.linear_model import LogisticRegression
     from sklearn.model_selection import GroupKFold
     from sklearn.pipeline import make_pipeline
@@ -67,12 +81,13 @@ def main():
                         res[name] = dict(auc=None, ci95=[None, None], note="no features for one class (not scored)")
                         continue
                     X = np.stack([F[r["id"]] for r in rows])
-                    g = np.array([r["p1"] for r in rows])
-                    s = oof(X, y, g)
-                    P = [(r["p1"], r["p2"]) for r in rows if r["rung"] == pos]
-                    N = [(r["p1"],) for r in rows if r["rung"] == neg]
-                    au, c = stats.wauc_ci(D, s[y == 1], P, s[y == 0], N)
-                    res[name] = dict(auc=au, ci95=c, n_pos=int(y.sum()), n_neg=int((1 - y).sum()), dim=int(X.shape[1]))
+                    s, nun = oof_persons(X, y, [(r["p1"], r["p2"]) for r in rows])
+                    ok = np.isfinite(s)
+                    P = [(r["p1"], r["p2"]) for r, k in zip(rows, ok) if k and r["rung"] == pos]
+                    N = [(r["p1"],) for r, k in zip(rows, ok) if k and r["rung"] != pos]
+                    au, c = stats.wauc_ci(D, s[ok & (y == 1)], P, s[ok & (y == 0)], N)
+                    res[name] = dict(auc=au, ci95=c, n_pos=int((ok & (y == 1)).sum()), n_neg=int((ok & (y == 0)).sum()),
+                                     n_untested=nun, dim=int(X.shape[1]), folds="strict person folds (folds.py)")
                 res["G_c_readable"] = bool(res["morph_vs_twin"]["auc"] >= 0.65)
                 res["G_c_readable_mirror_twin"] = bool(res["morph_vs_mirror_twin"]["auc"] >= 0.65)
                 if pool == "frll":

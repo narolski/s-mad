@@ -1,0 +1,186 @@
+{
+ "verdict": "weak",
+ "passing_bands": [],
+ "per_band": {
+  "B1": {
+   "qualifiers": {
+    "history_d_native_landmarks": -0.0127,
+    "history_shift_over_K1": -0.0828,
+    "Lsoft_fm61_d": {
+     "R0_fm61|none": null,
+     "R2w_fm61|opencv": null,
+     "R2w_fm61|facemorpher": null
+    },
+    "K1_is_val_dropped": 0.5674,
+    "K1_beyond_geometry": 0.5295,
+    "K1_halves": [
+     0.582,
+     0.592
+    ],
+    "K1_opencv": 0.5734,
+    "K1_facemorpher": 0.5533
+   },
+   "K1_auc": 0.5634,
+   "K1_ci": [
+    0.5246,
+    0.6027
+   ],
+   "history_d": -0.018,
+   "history_ci": [
+    -0.0516,
+    0.0117
+   ],
+   "history_below_cutoff": 1,
+   "R3m_ratio": 0.0,
+   "K5_auc": 1.0,
+   "collapse": true,
+   "passes": false
+  },
+  "B2": {
+   "qualifiers": {
+    "history_d_native_landmarks": 0.1065,
+    "history_shift_over_K1": 0.1466,
+    "Lsoft_fm61_d": {
+     "R0_fm61|none": null,
+     "R2w_fm61|opencv": null,
+     "R2w_fm61|facemorpher": null
+    },
+    "K1_is_val_dropped": 0.6029,
+    "K1_beyond_geometry": 0.5647,
+    "K1_halves": [
+     0.6199,
+     0.5957
+    ],
+    "K1_opencv": 0.6076,
+    "K1_facemorpher": 0.5904
+   },
+   "K1_auc": 0.5991,
+   "K1_ci": [
+    0.5565,
+    0.6355
+   ],
+   "history_d": 0.0484,
+   "history_ci": [
+    0.0172,
+    0.0808
+   ],
+   "history_below_cutoff": 1,
+   "R3m_ratio": 0.0002,
+   "K5_auc": 1.0,
+   "collapse": true,
+   "passes": false
+  },
+  "B3": {
+   "qualifiers": {
+    "history_d_native_landmarks": 0.2041,
+    "history_shift_over_K1": 0.2059,
+    "Lsoft_fm61_d": {
+     "R0_fm61|none": null,
+     "R2w_fm61|opencv": null,
+     "R2w_fm61|facemorpher": null
+    },
+    "K1_is_val_dropped": 0.6217,
+    "K1_beyond_geometry": 0.5962,
+    "K1_halves": [
+     0.6345,
+     0.6242
+    ],
+    "K1_opencv": 0.6253,
+    "K1_facemorpher": 0.6105
+   },
+   "K1_auc": 0.6179,
+   "K1_ci": [
+    0.5783,
+    0.6547
+   ],
+   "history_d": 0.102,
+   "history_ci": [
+    0.0621,
+    0.151
+   ],
+   "history_below_cutoff": 1,
+   "R3m_ratio": 0.0003,
+   "K5_auc": 1.0,
+   "collapse": true,
+   "passes": false
+  },
+  "B4": {
+   "qualifiers": {
+    "history_d_native_landmarks": 0.1238,
+    "history_shift_over_K1": 0.4226,
+    "Lsoft_fm61_d": {
+     "R0_fm61|none": null,
+     "R2w_fm61|opencv": null,
+     "R2w_fm61|facemorpher": null
+    },
+    "K1_is_val_dropped": 0.5672,
+    "K1_beyond_geometry": 0.5424,
+    "K1_halves": [
+     0.5839,
+     0.559
+    ],
+    "K1_opencv": 0.567,
+    "K1_facemorpher": 0.5574
+   },
+   "K1_auc": 0.5622,
+   "K1_ci": [
+    0.5225,
+    0.5994
+   ],
+   "history_d": 0.0947,
+   "history_ci": [
+    0.0411,
+    0.1545
+   ],
+   "history_below_cutoff": 1,
+   "R3m_ratio": 0.0008,
+   "K5_auc": 1.0,
+   "collapse": true,
+   "passes": false
+  },
+  "B5": {
+   "qualifiers": {
+    "history_d_native_landmarks": 0.0141,
+    "history_shift_over_K1": 0.2921,
+    "Lsoft_fm61_d": {
+     "R0_fm61|none": null,
+     "R2w_fm61|opencv": null,
+     "R2w_fm61|facemorpher": null
+    },
+    "K1_is_val_dropped": 0.5264,
+    "K1_beyond_geometry": 0.5116,
+    "K1_halves": [
+     0.5232,
+     0.4919
+    ],
+    "K1_opencv": 0.5288,
+    "K1_facemorpher": 0.5191
+   },
+   "K1_auc": 0.5241,
+   "K1_ci": [
+    0.4836,
+    0.5635
+   ],
+   "history_d": 0.0164,
+   "history_ci": [
+    -0.1019,
+    0.1345
+   ],
+   "history_below_cutoff": 0,
+   "R3m_ratio": 0.0027,
+   "K5_auc": 1.0,
+   "collapse": true,
+   "passes": false
+  }
+ },
+ "external_prediction_A11": {
+  "best_band": "B3",
+  "best_K1": 0.6179,
+  "beta_best": 0.5354,
+  "in_predicted_zone": true,
+  "falsified_by": []
+ },
+ "blank_sensitivity_A4": {},
+ "n_items_floored_A5": 42,
+ "rule": "kill: K1 < 0.60 in every band B1..B5; pass: K1 >= 0.70 and |d| < 0.1 (Fm E7 FaceMorpher) and R3m collapse (median ratio <= 0.25 and AUC >= 0.95) in one band; else weak"
+}

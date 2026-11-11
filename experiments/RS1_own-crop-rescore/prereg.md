@@ -253,3 +253,24 @@ always stores PNG.
    frames) and the RS1 DGX run (raw FRLL photos, raw MorDIFF, raw E7 MorDIFF, A43 stored files, FEI, FFHQ). Rows are
    never compared across the two runs.
 Everything else (rule, cells, pools, statistics) is unchanged.
+
+## Amendment 4 (11 Nov 2026, 19:35 CET; lead's decision on crop storage; before any full RS1 result of a MADation or MixFaceNet release is read)
+
+Replaces item 2 of amendment 3 and the use of the reused A46 crops. No table of this experiment is built from crops
+that were re-encoded as JPEG by code written in this sprint (AR1 / RS1 `crop_rgb_ext.py`) or by the A46 acquisition.
+
+1. **Primary "own preprocessing" rows (variant 1):** the authors' crop script, SMDD `image_preprocess.py` (sha256
+   bcaecd2970cd8d95e37b005f793035f2d0222219bf99215edc1168519fe5ee2c, `/mnt/t7/thirdparty/smdd_9683229_20261107/`),
+   run **unchanged** on Athena on every input image, including its two properties: BGR pixels passed to MTCNN (line
+   24) and the unbounded slice of line 40 (a negative start index wraps or gives an empty crop), and its storage
+   (line 43, `cv2.imwrite` under the input's name: a JPEG input gives a JPEG crop). Images for which the script writes
+   no crop (no face, or an empty / failed write) are counted and listed per set; rows are reported with them excluded,
+   and the count per cell is printed beside each row.
+2. **Secondary rows (variant 2):** the corrected crop (RGB pixels to MTCNN, all four edges clamped; the A46
+   corrective functions through AR1's `crop_rgb.py`, unchanged) stored losslessly as PNG.
+3. Not result rows: the corrected crop with JPEG re-encode (`crop_rgb_ext.py`) and the reused A46 crops. The
+   300-image JPEG-vs-PNG measurement (`jpeg_check.py`, `rs1_jpeg_storage_check.json`) is kept as a recorded effect
+   size. The DGX ViT-B/16 and ViT-L/14 scores of the A46 crops stay as a scoring-platform check only.
+4. Both variants are cropped and scored on Athena with all seven releases (one platform). The reproduction label and
+   every audit number are given for variant 1; variant 2 is printed beside it. Crop files of both variants are kept
+   (tar in the result) with a sha256 list, for the retrains experiment (AD5).

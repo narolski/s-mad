@@ -112,6 +112,43 @@ No retrain and no score exist yet.
   **3545813** = MADation L, `ARM=L`, `--time=02:45:00`, array 401-405, 8 GPUs per task;
   **3545814** = MADation B, `ARM=B`, `--time=01:00:00`, array 401-405, 8 GPUs per task;
   **3545815** = MixFaceNet-MAD X, `--time=09:00:00`, array 401-405, 1 GPU per task. Lead told.
+- 11 Nov 19:20. Independent pre-run review (`experiments/reviews/PRERUN_AD5_20261111.md`): GO WITH FIXES; MADation
+  arrays stay; MixFaceNet-MAD array to be cancelled and resubmitted with per-epoch weights; SelfMAD held until weights
+  every 5 epochs, a training-set size assertion and a time limit from the smoke; changed code only in new folders;
+  analysis amendments before any score (gate as per-seed per-cell label, all-five headline, second window around the
+  release through our path, primary cells by rule, JPEG 50 and 0.5-rule readings, loss overlay, scoring job updated to
+  RS1 amendments). Budget for AD5 raised by the lead to 250 GPU-hours (per experiment).
+- 11 Nov 19:24. Cancelled MixFaceNet-MAD array 3545815 (task 401 had run 11:38 = 0.19 GPU-hours; 402-405 never ran).
+- 11 Nov 19:25-19:32. Patch v2 (`src/AD5/mixfacenet_ad5.patch`, `selfmad_ad5.patch`): MixFaceNet-MAD saves the state
+  dict after every epoch to `AD5_EPOCH_DIR` (job: `results/AD5/mixfacenet_X_s<seed>_epochs/`, persistent, about 11 MB
+  each); SelfMAD saves `{"model", "epoch"}` every 5 epochs to `AD5_EPOCH_DIR` and asserts `len(train_dataset) ==
+  AD5_EXPECT_N` (24,982 in production). `torch.save` draws no random numbers. Epoch 100 stays the registered reading;
+  other epochs are descriptive. DGX 8-image checks: MixFaceNet-MAD 2 epochs -> `epoch_001.pth`, `epoch_002.pth`,
+  epoch_002 equal tensor by tensor to the final file (`checks/mixfacenet8v2/`); SelfMAD v2 check (`checks/selfmad8/
+  epochs_v2`, assertion with a wrong count) running.
+  Job files: every AD5 job now sources `packs/AD5/code_v2/` (or `code_v3/` for SelfMAD), `PYTHONDONTWRITEBYTECODE=1`,
+  `keep_log` copies the training log of a failed run to `logs/AD5_keep/<job>_<task>/`; the MADation job file no longer
+  exits before printing the log tail when `training.log` is missing (only for reruns: the pending arrays 3545813/14
+  use the batch script stored at submission).
+- 11 Nov 19:30. Frozen code trees on Athena (never modified while tasks read them):
+  `packs/AD5/code/` = what smoke A/B and the MADation arrays 3545813/3545814 read. Its hash list (local mirror,
+  103 files) is `/mnt/t7/smad_next/AD5/packs/code_tree_SHA256SUMS_20261111T1930.txt` (sha256 0fce8cb9...); an
+  `rsync -n -c` comparison with the Athena tree shows no content difference; Athena additionally holds `__pycache__`
+  files written by the smoke jobs and `hf_cache/version.txt` (`packs/code_tree_athena_compare_20261111T1930.txt`).
+  Why the reviewer saw a mismatch: `packs/code/CODE_SHA256SUMS` was written by `build_packs.sh` at 18:27; afterwards
+  the job files were edited (memfs switch 18:36, score job 19:14) and only `src/AD5/` was re-synced into `packs/code/`
+  (locally and to Athena, 18:41 and 19:15) without regenerating that list, so the list was stale for 10 files under
+  `src/AD5/`; the batch script of the MADation arrays was stored by Slurm at submission (19:08) from the 18:41 version.
+  `packs/AD5/code_v2/` (CODE_SHA256SUMS sha256 9b51b7f6...; uploaded with `--link-dest=code`, checksum comparison
+  clean) = patch v2 + job files v2; read by MixFaceNet-MAD array 3545870. `packs/AD5/code_v3/` (CODE_SHA256SUMS
+  3edea017...) = code_v2 + SelfMAD job files pointing to code_v3 + `efficientnet-pytorch==0.7.1` in
+  `selfmad_requirements.txt`; read by SelfMAD jobs.
+- 11 Nov 19:33. Resubmitted MixFaceNet-MAD from code_v2: **3545870** (array 401-405, 1 GPU, `--time=12:00:00`).
+- 11 Nov 19:29. SelfMAD smoke 3544218 FAILED after 35:28 (0.59 GPU-hours): face labels done (25,000 files in
+  1,641 s; `packs/AD5/selfmad_labels.tar.gz`, 199,736,221 bytes, sha256 22dc283d...), then `train__.py` failed with
+  `No module named 'efficientnet_pytorch'`: the rewritten `selfmad_requirements.txt` (17:55) had dropped the sdist
+  line (the DGX check passed because the DGX environment has the package). Fixed in code_v3; the smoke rebuilds the
+  environment once and skips the labels (tar exists). Resubmitted: **3545882**.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -245,9 +282,12 @@ DGX: no AD5 process running. Athena jobs (logs in
 | 3544217 | smoke B: MADation L/B DDP 2 GPUs, MixFaceNet-MAD 1 epoch | 2 x 15 min | COMPLETED about 6 min, 0.2 GPU-h | done |
 | 3545813_[401-405] | MADation ViT-L/14 retrains -> results/AD5/madation_L_s<seed>.tar | 8 x 2:45 each | submitted 19:08 | resubmit the failed task ids with `--array=<ids> --export=ALL,ARM=L`; finished seeds are skipped |
 | 3545814_[401-405] | MADation ViT-B/16 retrains -> results/AD5/madation_B_s<seed>.tar | 8 x 1:00 each | submitted 19:08 | as above with ARM=B |
-| 3545815_[401-405] | MixFaceNet-MAD retrains -> results/AD5/mixfacenet_X_s<seed>.tar | 1 x 9:00 each | submitted 19:08 | resubmit failed ids |
-| 3544218 | SelfMAD: env, face labels -> packs/AD5/selfmad_labels.tar.gz, 1-epoch smoke | 1 x 55 min | pending | resubmit; it skips the labels if the tar exists |
-Compute spent so far: 0.47 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2; plus running jobs). Planned
+| 3545815_[401-405] | MixFaceNet-MAD retrains, first submission | 1 x 9:00 | CANCELLED 19:24 (review finding 2); 401 ran 11:38 = 0.19 GPU-h | replaced by 3545870 |
+| 3545870_[401-405] | MixFaceNet-MAD retrains v2 (code_v2, per-epoch weights) -> results/AD5/mixfacenet_X_s<seed>.tar + _epochs/ | 1 x 12:00 each | submitted 19:33 | resubmit failed ids from code_v2; log kept in logs/AD5_keep |
+| 3544218 | SelfMAD: env, face labels -> packs/AD5/selfmad_labels.tar.gz, 1-epoch smoke | 1 x 55 min | FAILED 35:28 (missing package after the labels), 0.59 GPU-h | fixed, resubmitted as 3545882 |
+| 3545882 | SelfMAD smoke v3 (env rebuild, labels reused, 1-epoch smoke) | 1 x 55 min | submitted 19:36 | read log |
+Compute spent so far: 1.25 GPU-hours (3544190 0.065, 3544216 0.20, 3544217 0.2, 3544218 0.59, 3545815_401 0.19;
+plus running jobs). Budget: 250 GPU-hours for AD5 (lead, 19:20). Planned
 production: about 111 GPU-hours (L 62, B 16, X 33), then SelfMAD.
 Logs on Athena: `/net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-madation-ad5-madL-<job>_<seed>.out`,
 `AD5-madation-ad5-madB-...`, `AD5-mixfacenet-<job>_<seed>.out`.

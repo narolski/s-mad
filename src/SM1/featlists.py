@@ -70,6 +70,11 @@ def train():
                                      pair=r["id"], person=r["na"]) for r in rc])
     write("train_arme_hS.csv", [dict(id=f"{h['id']}_S", path=str(K.OUT / "img/arme" / pathlib.Path(h["path"]).name),
                                      pair=h["pair"], person=h["person"]) for h in halves(rc, "armc")])
+    # arm (f) JPEG copies (A10)
+    ja = K.OUT / "lists/jpeg_assign.csv"
+    if ja.exists():
+        write("train_armf_jpeg.csv", [dict(id=r["id"] + ("_J90" if r["op"] == "jpeg90" else "_J70"), path=r["out"],
+                                           pair="", person="") for r in csv.DictReader(open(ja))])
     # pool-cue check (A1.3): 5,000 non-contributor os25k_m_t renders outside the audit set vs 5,000 os25k_bf_t
     aud = {r["name"] for r in rd("audit_renders.csv")}
     contrib = {x for p in K.release_pairs() for x in p}
@@ -137,6 +142,18 @@ def test():
     write("test_ar1h.csv", rows)
 
 
+def test_jpeg():
+    """A10: the existing FRLL genuine JPEG evaluation files (jpeg90 / jpeg70 / jpeg50), 204 each."""
+    rows = []
+    for r in csv.DictReader(open(EVAL)):
+        if r["set"] == "frllm" and r["family"] == "frll_bona" and r["variant"] in ("jpeg90", "jpeg70", "jpeg50"):
+            p = K.MC / "smadcvpr_data" / r["path"]
+            p1, p2 = frll_persons(p.name)
+            rows.append(dict(id=f"ev:{r['id']}", path=str(p), cell=f"frllm:bona_{r['variant']}", label="0",
+                             hist=r["variant"], p1=p1, p2=p2, expr=p.name.split("_")[1]))
+    write("test_eval_jpeg.csv", rows)
+
+
 def audit():
     ren = [dict(id=r["id"], path=r["path"], kind=r["kind"], key="", partner=r["name"], slot="")
            for r in rd("audit_renders.csv")]
@@ -149,4 +166,4 @@ def audit():
 if __name__ == "__main__":
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
-    {"train": train, "test": test, "audit": audit, "smoke": smoke}[sys.argv[1]]()
+    {"train": train, "test": test, "audit": audit, "smoke": smoke, "test_jpeg": test_jpeg}[sys.argv[1]]()

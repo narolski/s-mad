@@ -64,6 +64,13 @@ the owner. Nothing may be submitted or probed until then.
   R3 2.953 / 1.246, R3m 3.247 / 1.331, R4 5.474 / 5.550, RT 2.947, AG3(0.3) 4.785; MIPGAN-II R2 2.429 / 0.735, R3
   3.304 / 1.457, R3m 3.545 / 1.520, R4 5.676 / 5.706 (persons frll_001 / frll_010). Production estimate 19.9 A100
   GPU-h; array time limit raised to 10 h (longest shard, MIPGAN-II FRLL 00, about 4.5 h).
+- 19:20-19:30 Manifest builder tested on the smoke outputs (renamed copies in `/mnt/t7/smad_next/AG1/tests/manifest/`):
+  3,030 rows (604 camera R0, 408 E7 R1, 1,999 published MIPGAN, 19 generated), aligned-flag rate 0.995, RT check
+  runs (1 pair, max 86 grey levels), pins written. The oracle step ran at about 500% CPU and the lead flagged the
+  DGX load (189 on 20 cores): it was stopped and restarted with `OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2
+  MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 nice -n 10` and with onnxruntime sessions rebuilt at 2 intra-op threads
+  (`cap_threads` in `ag1_manifest.py`; onnxruntime ignores OMP_NUM_THREADS). Rule from now on: every DGX process
+  of this owner runs with these caps, at most two at a time; `ag1_baselines.py` defaults to 2 workers.
 - 19:15-19:40 Lead's reading rules registered as amendment 3 in `prereg.md` before any data image or score: three
   classes (genuine; morphing attack; single-subject manipulation reported in its own table), flag rates under both
   class policies with no verdict word, SelfMAD own crop primary, no single deciding release, mirror rung for trace

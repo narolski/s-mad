@@ -258,7 +258,7 @@ def main():
         sub = tool or "pooled"
         tools = [tool] if tool else ["opencv", "facemorpher"]
         for b in BANDS:
-            r3, r3m, r4, a3, s3, gs = [], [], [], [], [], []
+            r3, r3m, r4, a3, s3, gs, ge = [], [], [], [], [], [], []
             pp = []
             bi = BANDS.index(b)
             for t in tools:
@@ -276,6 +276,10 @@ def main():
                     if D.ok(x0) and D.ok(xwm):
                         l0, lm_, lwm = (D.val([q], band=b)[0] for q in (x0, xm, xwm))
                         gs.append((lwm - l0) / (lm_ - l0) if lm_ != l0 else np.nan)
+                        # descriptive (added 19:35 after seeing that the log version is dominated by the near-zero
+                        # mirror self-morph): share of the asymmetric-energy-ratio reduction reached by symmetrising
+                        # the shape only
+                        ge.append((1 - np.exp(lwm - l0)) / (1 - np.exp(lm_ - l0)))
                     r3.append(np.exp(v["R3"] - v["R2w"]))
                     r3m.append(np.exp(v["R3m"] - v["R2w"]))
                     r4.append(np.exp(v["R4"] - v["R2w"]))
@@ -292,6 +296,7 @@ def main():
                                person_share_pi_A=round(2 * float(np.median(a3)) - 1, 4),
                                med_ES_ratio_R3_over_R2w=round(float(np.median(s3)), 4),
                                geometry_share_R2wm=round(float(np.nanmedian(gs)), 4) if gs else "",
+                               geometry_share_energy_R2wm=round(float(np.nanmedian(ge)), 4) if ge else "",
                                med_ratio_R4_over_R2w=round(m4, 4), ci_R4=[round(x, 4) for x in q[:, 2]],
                                predicted_R4=0.5, med_ratio_R3m_over_R2w=round(m3m, 4),
                                ci_R3m=[round(x, 4) for x in q[:, 1]]))

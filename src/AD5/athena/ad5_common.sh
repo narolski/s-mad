@@ -11,7 +11,7 @@ LG=$G/logs
 : "${MEMFS:?RAM disk required (-C memfs)}"
 SCRATCH_LOCAL=$MEMFS
 export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"
-export PIP_NO_CACHE_DIR=1 PYTHONNOUSERSITE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+export PIP_NO_CACHE_DIR=1 PYTHONNOUSERSITE=1 PYTHONDONTWRITEBYTECODE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
 
 untar_checked() {  # untar_checked TAR DEST [MEMBER...]: verify TAR against TAR.sha256, then extract (members) into DEST
   local t=$1 d=$2; shift 2
@@ -36,6 +36,11 @@ gpu_monitor() {  # gpu_monitor FILE: sample GPU memory every 5 s in the backgrou
   ( while :; do nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader,nounits >> "$1"; sleep 5; done ) \
     > /dev/null 2>&1 &
   echo $!
+}
+
+keep_log() {  # keep_log FILE...: copy logs out of the RAM disk (lost when the job ends) to logs/AD5_keep/<job>/
+  local k=$LG/AD5_keep/${SLURM_JOB_ID:-nojob}_${SLURM_ARRAY_TASK_ID:-0}; mkdir -p "$k"; cp "$@" "$k/" 2>/dev/null || true
+  echo "logs kept in $k"
 }
 
 peak_mib() { awk -F", " '{if ($2+0>m) m=$2+0} END {print m+0}' "$1"; }

@@ -20,7 +20,7 @@ import time
 
 import numpy as np
 
-AF0FEAT = pathlib.Path("/home/narolski/smad-next/src/AF0/feat.py")
+AF0FEAT = pathlib.Path(os.environ.get("PN1_AF0FEAT", "/home/narolski/smad-next/src/AF0/feat.py"))   # Athena: featx copy
 AF0FEAT_SHA = "4529c523456455743b241e701ed1b022008f43812a6897cfe4824a570278c84f"
 OUT = pathlib.Path(os.environ.get("PN1_FEAT_OUT", "/mnt/t7/smad_next/PN1/feat"))   # Athena: featx/out
 

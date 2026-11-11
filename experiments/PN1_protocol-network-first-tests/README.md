@@ -92,6 +92,18 @@ None yet.
 - A random development draw (seed 402 over all non-test hosts) would have left 88 ladder training hosts with a usable
   morph (48 if partners of test hosts are also excluded); replaced by the registered partner rule before any score.
 
+- 19:08 to 19:32: the first restart of `featpool.py` stopped the wrong process (`pgrep -f ... | head -1` returned the
+  wrapper shell, not the Python process); the second pooling process (PID 2345152) kept running beside the third, so
+  for about 20 minutes three PN1 CPU processes ran (one more than allowed) and the DINOv3 means of af0_w1 and af0_w2
+  were written twice (identical content; af0_w1 checked equal to PD1's file, max difference 0.0). Stopped by PID at
+  19:32. Rule adopted: stop only by the Python PID read from `ps`.
+- 19:30 `jpeg_c.py verify` on the CPU (`CUDA_VISIBLE_DEVICES=`) is impossible: `prep_eval`'s face detector requires
+  CUDA ("No CUDA GPUs are available"); the first GPU attempt hit a transient CUDA out-of-memory error on the shared
+  GB10. Verification moved into the single PN1 GPU queue (`run_gpu3.sh`).
+- 19:24 DINOv3 extraction on the shared GB10 ran at 1.7 to 1.8 images/s (CLIP 7 images/s); the remaining DINOv3 sets
+  (r2w4_td, frll_e5s, devsoft, AF0 soft, ladder stored copies) go to the Athena smoke job (`build_featx.py`), with a
+  64-image platform check; the DGX DINOv3 job is stopped after ar1soft (`run_gpu2.sh`).
+
 ## 8. Observations and ideas
 
 - AF0 includes 67 validation-reserved persons (49 in its training split); the AF0 owner may want to know.

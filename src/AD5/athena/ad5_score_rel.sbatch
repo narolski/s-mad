@@ -24,11 +24,11 @@
 set -eo pipefail
 module load Python/3.10.4
 set -u
-source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code/src/AD5/athena/ad5_common.sh
+source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code_v2/src/AD5/athena/ad5_common.sh
 ITEMS=${ITEMS-}; TAG=${TAG:?tag}; LIMIT=${LIMIT:-0}   # ITEMS may be empty when RELEASES is given
 [ -f $RS/scores_$TAG.tar.sha256 ] && { echo "scores_$TAG done already"; exit 0; }
 hostname; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; date
-C=$PK/code
+C=$PK/code_v2
 build_env score $C/src/AD5/env/score_requirements.txt $PK/wheels_score.tar
 PY=$EN/score/bin/python
 W=$SCRATCH_LOCAL/ad5score; mkdir -p $W/out/logs $W/scores $W/conv $W/ret; SITE=$W/nosite; mkdir -p $SITE

@@ -12,7 +12,7 @@ ITEMS = BIG / "lists/items.csv"
 SEED_TR = [20261111, 1, 1]
 SEED_FRLL = [20261107, 43, 1]
 CS = (1e-3, 1e-2, 1e-1, 1.0, 10.0)
-FEATS = ("clip_pool", "clip_patch", "dino_pool", "dino_patch")
+FEATS = ("clip_pool", "clip_patch", "dino_pool")   # DINOv3 mean patch = DINOv3 pooled (timm global_pool avg), not run separately
 PRIMARY = "clip_pool"
 STEPS = {"P": ("x0", "x1"), "M": ("x1", "x2"), "I": ("x2", "x3"), "W": ("x1", "x3"), "G": ("x0", "x3")}
 STEP_NAMES = {"P": "pipeline trace (x0 to x1)", "M": "same-person mixing (x1 to x2)", "I": "second identity (x2 to x3)",
@@ -131,6 +131,13 @@ def training_pool(rows):
         hosts.append(dict(host=h, block=d["x0"]["block"], person=A, partner=partner, cohort=d["x0"]["split"],
                           **{k: d[k]["id"] for k in ("x0", "x1", "x2", "x3")}))
     return hosts
+
+
+def frll_persons():
+    """The 102 FRLL persons of the PD1 FRLL images (frll:001 ... frll:173, 102 IDs)."""
+    p = sorted({x for r in items() if r["set"] in ("f256", "fr512", "ev", "ad1b") for x in r["persons"].split(";")})
+    assert len(p) == 102 and all(x.startswith("frll:") for x in p), len(p)
+    return p
 
 
 def persons_of(row):

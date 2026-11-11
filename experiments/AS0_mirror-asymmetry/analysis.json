@@ -1,0 +1,288 @@
+{
+ "excluded_no_face_or_small_mask": {},
+ "not_measured": {
+  "Lsoft": 1200,
+  "R8": 5000,
+  "G": 768,
+  "D": 910,
+  "M": 8,
+  "Ds": 910,
+  "Fm": 280,
+  "Fe": 1020,
+  "S": 4000,
+  "X": 1224,
+  "LsoftO": 1200,
+  "FmO": 408,
+  "FeO": 816,
+  "LsoftN": 600,
+  "LD1": 2680,
+  "LD2": 3752,
+  "LD3": 1800
+ },
+ "K1_abs_yaw_median_R4_R3": [
+  0.03233545888816432,
+  0.042418676441096884
+ ],
+ "K1_pose_gap_median_R4_R3": [
+  0.0653206985147859,
+  0.03800359033664216
+ ],
+ "K1_light_gap_median_R4_R3": [
+  0.08056308375671506,
+  0.06866039335727692
+ ],
+ "K1_abs_light_median_R4_R3": [
+  0.04833680018782616,
+  0.05259600281715393
+ ],
+ "R8_counts_pooled": {
+  "same": 0,
+  "cross": 0
+ },
+ "R8_counts_pooled feret": {
+  "same": 0,
+  "cross": 0
+ },
+ "R8_counts_pooled frgc": {
+  "same": 0,
+  "cross": 0
+ },
+ "R8_counts_opencv": {
+  "same": 0,
+  "cross": 0
+ },
+ "R8_counts_opencv feret": {
+  "same": 0,
+  "cross": 0
+ },
+ "R8_counts_opencv frgc": {
+  "same": 0,
+  "cross": 0
+ },
+ "R8_counts_facemorpher": {
+  "same": 0,
+  "cross": 0
+ },
+ "R8_counts_facemorpher feret": {
+  "same": 0,
+  "cross": 0
+ },
+ "R8_counts_facemorpher frgc": {
+  "same": 0,
+  "cross": 0
+ },
+ "K1_mean_L_R3_minus_R4": {
+  "B0": 0.25071889262050195,
+  "B1": 0.18482096196823505,
+  "B2": 0.21761612095603233,
+  "B3": 0.22487288586967646,
+  "B4": 0.10292479423010581,
+  "B5": 0.01848735632404208,
+  "B6": 0.0043224582115977545,
+  "BB": 0.20034427273260924
+ },
+ "FmO_FaceMorpher_differing_copies": 204,
+ "Fm_FaceMorpher_differing_copies": 204,
+ "FmO_OpenCV_differing_copies": 0,
+ "Fm_OpenCV_differing_copies": 28,
+ "FmO_Webmorph_differing_copies": 0,
+ "Fm_Webmorph_differing_copies": 28,
+ "FeO_amsl_differing_copies": 0,
+ "Fe_amsl_target_ied": 112.71795654296875,
+ "Fe_amsl_differing_copies": 0,
+ "FeO_facemorpher_differing_copies": 0,
+ "Fe_facemorpher_target_ied": 137.83529663085938,
+ "Fe_facemorpher_differing_copies": 0,
+ "FeO_opencv_differing_copies": 0,
+ "Fe_opencv_target_ied": 129.72315979003906,
+ "Fe_opencv_differing_copies": 0,
+ "FeO_webmorph_differing_copies": 0,
+ "Fe_webmorph_target_ied": 112.40223693847656,
+ "Fe_webmorph_differing_copies": 0,
+ "verdict": {
+  "verdict": "weak",
+  "passing_bands": [],
+  "per_band": {
+   "B1": {
+    "qualifiers": {
+     "history_d_native_landmarks": -0.0127,
+     "history_shift_over_K1": -0.0828,
+     "Lsoft_fm61_d": {
+      "R0_fm61|none": null,
+      "R2w_fm61|opencv": null,
+      "R2w_fm61|facemorpher": null
+     },
+     "K1_is_val_dropped": 0.5674,
+     "K1_beyond_geometry": 0.5295,
+     "K1_halves": [
+      0.582,
+      0.592
+     ],
+     "K1_opencv": 0.5734,
+     "K1_facemorpher": 0.5533
+    },
+    "K1_auc": 0.5634,
+    "K1_ci": [
+     0.5246,
+     0.6027
+    ],
+    "history_d": -0.018,
+    "history_ci": [
+     -0.0516,
+     0.0117
+    ],
+    "history_below_cutoff": 1,
+    "R3m_ratio": 0.0,
+    "K5_auc": 1.0,
+    "collapse": true,
+    "passes": false
+   },
+   "B2": {
+    "qualifiers": {
+     "history_d_native_landmarks": 0.1065,
+     "history_shift_over_K1": 0.1466,
+     "Lsoft_fm61_d": {
+      "R0_fm61|none": null,
+      "R2w_fm61|opencv": null,
+      "R2w_fm61|facemorpher": null
+     },
+     "K1_is_val_dropped": 0.6029,
+     "K1_beyond_geometry": 0.5647,
+     "K1_halves": [
+      0.6199,
+      0.5957
+     ],
+     "K1_opencv": 0.6076,
+     "K1_facemorpher": 0.5904
+    },
+    "K1_auc": 0.5991,
+    "K1_ci": [
+     0.5565,
+     0.6355
+    ],
+    "history_d": 0.0484,
+    "history_ci": [
+     0.0172,
+     0.0808
+    ],
+    "history_below_cutoff": 1,
+    "R3m_ratio": 0.0002,
+    "K5_auc": 1.0,
+    "collapse": true,
+    "passes": false
+   },
+   "B3": {
+    "qualifiers": {
+     "history_d_native_landmarks": 0.2041,
+     "history_shift_over_K1": 0.2059,
+     "Lsoft_fm61_d": {
+      "R0_fm61|none": null,
+      "R2w_fm61|opencv": null,
+      "R2w_fm61|facemorpher": null
+     },
+     "K1_is_val_dropped": 0.6217,
+     "K1_beyond_geometry": 0.5962,
+     "K1_halves": [
+      0.6345,
+      0.6242
+     ],
+     "K1_opencv": 0.6253,
+     "K1_facemorpher": 0.6105
+    },
+    "K1_auc": 0.6179,
+    "K1_ci": [
+     0.5783,
+     0.6547
+    ],
+    "history_d": 0.102,
+    "history_ci": [
+     0.0621,
+     0.151
+    ],
+    "history_below_cutoff": 1,
+    "R3m_ratio": 0.0003,
+    "K5_auc": 1.0,
+    "collapse": true,
+    "passes": false
+   },
+   "B4": {
+    "qualifiers": {
+     "history_d_native_landmarks": 0.1238,
+     "history_shift_over_K1": 0.4226,
+     "Lsoft_fm61_d": {
+      "R0_fm61|none": null,
+      "R2w_fm61|opencv": null,
+      "R2w_fm61|facemorpher": null
+     },
+     "K1_is_val_dropped": 0.5672,
+     "K1_beyond_geometry": 0.5424,
+     "K1_halves": [
+      0.5839,
+      0.559
+     ],
+     "K1_opencv": 0.567,
+     "K1_facemorpher": 0.5574
+    },
+    "K1_auc": 0.5622,
+    "K1_ci": [
+     0.5225,
+     0.5994
+    ],
+    "history_d": 0.0947,
+    "history_ci": [
+     0.0411,
+     0.1545
+    ],
+    "history_below_cutoff": 1,
+    "R3m_ratio": 0.0008,
+    "K5_auc": 1.0,
+    "collapse": true,
+    "passes": false
+   },
+   "B5": {
+    "qualifiers": {
+     "history_d_native_landmarks": 0.0141,
+     "history_shift_over_K1": 0.2921,
+     "Lsoft_fm61_d": {
+      "R0_fm61|none": null,
+      "R2w_fm61|opencv": null,
+      "R2w_fm61|facemorpher": null
+     },
+     "K1_is_val_dropped": 0.5264,
+     "K1_beyond_geometry": 0.5116,
+     "K1_halves": [
+      0.5232,
+      0.4919
+     ],
+     "K1_opencv": 0.5288,
+     "K1_facemorpher": 0.5191
+    },
+    "K1_auc": 0.5241,
+    "K1_ci": [
+     0.4836,
+     0.5635
+    ],
+    "history_d": 0.0164,
+    "history_ci": [
+     -0.1019,
+     0.1345
+    ],
+    "history_below_cutoff": 0,
+    "R3m_ratio": 0.0027,
+    "K5_auc": 1.0,
+    "collapse": true,
+    "passes": false
+   }
+  },
+  "external_prediction_A11": {
+   "best_band": "B3",
+   "best_K1": 0.6179,
+   "beta_best": 0.5354,
+   "in_predicted_zone": true,
+   "falsified_by": []
+  },
+  "blank_sensitivity_A4": {},
+  "n_items_floored_A5": 42,
+  "rule": "kill: K1 < 0.60 in every band B1..B5; pass: K1 >= 0.70 and |d| < 0.1 (Fm E7 FaceMorpher) and R3m collapse (median ratio <= 0.25 and AUC >= 0.95) in one band; else weak"
+ }
+}

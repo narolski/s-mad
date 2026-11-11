@@ -7,7 +7,7 @@ For every row of manifests/ag1.csv (the 512 aligned frames the detectors score):
           the eye midpoint: prep_eval puts the eyes at x = 190 and 322 of 512); larger = less symmetric
   thumb   32 x 32 block mean of the gray frame (16 x 16 blocks, the EV1 thumbnail; no resampling routine)
 Out: DATA/baselines.npz (id, bytes, lapvar, hfband, sym, thumb[n, 1024]).
-Usage: python -I ag1_baselines.py DATA [--workers 8]
+Usage: OMP_NUM_THREADS=2 nice -n 10 python -I ag1_baselines.py DATA [--workers 2]
 """
 import csv
 import os
@@ -40,7 +40,7 @@ def feat(rel):
 def main():
     global DATA
     DATA = pathlib.Path(sys.argv[1])
-    workers = int(sys.argv[sys.argv.index("--workers") + 1]) if "--workers" in sys.argv else 8
+    workers = int(sys.argv[sys.argv.index("--workers") + 1]) if "--workers" in sys.argv else 2
     rows = list(csv.DictReader(open(DATA / "manifests/ag1.csv")))
     with Pool(workers) as pool:
         R = pool.map(feat, [r["path"] for r in rows], chunksize=16)

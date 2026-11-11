@@ -20,12 +20,12 @@
 set -eo pipefail
 module load Python/3.10.4
 set -u
-source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code/src/AD5/athena/ad5_common.sh
+source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code_v2/src/AD5/athena/ad5_common.sh
 SEED=$SLURM_ARRAY_TASK_ID; ARM=${ARM:?ARM=L|B|F}
 T=madation_${ARM}_s${SEED}
 [ -f $RS/$T.tar.sha256 ] && { echo "$T done already"; exit 0; }
 hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; date
-C=$PK/code; PY=$EN/madation/bin/python
+C=$PK/code_v2; PY=$EN/madation/bin/python
 [ -f $EN/madation/AD5_ENV_OK ] || { echo "env missing"; exit 1; }
 case $ARM in
   L) A=(--backbone_size="ViT-L/14" --training_type="MAD_training" --lr_model=1e-5 --lr_header=1e-4 --lora_dropout=0.2 --lora_r=2 --lora_a=8); CS=$C/weights/clip_vitl14_openai.bin ;;
@@ -45,10 +45,10 @@ M=$S/out/gpumem.csv; MP=$(gpu_monitor $M); t0=$(date +%s); rc=0
     --batch_size=32 ) > $S/out/train_stdout.log 2>&1 || rc=$?
 kill $MP || true
 SEC=$(( $(date +%s) - t0 ))
-D=$(dirname $(ls $S/run/last_trainings/*/*/*/*/training.log))
+D=$(dirname "$(ls $S/run/last_trainings/*/*/*/*/training.log 2>/dev/null | head -1)")
 echo "rc $rc seconds $SEC peak_MiB $(peak_mib $M) dir $D"
 grep -h "Speed" $D/training.log | tail -3 || true
-[ $rc = 0 ] && [ -s $D/40_backbone.pth ] && [ -s $D/40_header.pth ] || { tail -50 $S/out/train_stdout.log; exit 1; }
+[ $rc = 0 ] && [ -s $D/40_backbone.pth ] && [ -s $D/40_header.pth ] || { tail -50 $S/out/train_stdout.log; keep_log $S/out/train_stdout.log $D/training.log $M; exit 1; }
 cp -r $D/40_backbone.pth $D/40_header.pth $D/training.log $D/tensorboard $S/out/
 cp $EN/madation/pip_freeze.txt $S/out/
 printf '{"task":"%s","arm":"%s","seed":%s,"job":"%s_%s","host":"%s","gpus":%s,"seconds":%s,"train_csv_sha256":"%s","crop_tar_sha256":"%s"}\n' \

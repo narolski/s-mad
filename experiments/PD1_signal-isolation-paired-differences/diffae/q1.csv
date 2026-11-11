@@ -1,0 +1,10 @@
+feature,step,hosts,share,share_lo,share_hi,proj_auc,proj_lo,proj_hi,reading
+clip_pool,pipeline trace (x0 to x1),516,1.0,1.0,1.0,0.8961938885884262,0.8779055683252208,0.9149657660296857,consistent direction
+clip_pool,same-person mixing (x1 to x2),516,0.9437984496124031,0.9224806201550387,0.9651162790697675,0.8946202151313022,0.8736396550688059,0.9147437053061716,consistent direction
+clip_pool,second identity (x2 to x3),516,0.812015503875969,0.726290537766831,0.8841463414634146,0.7616729763836307,0.7130794133192389,0.8095342224221563,consistent direction
+clip_pool,whole morph (x1 to x3),516,0.9263565891472868,0.8848893493900533,0.9605263157894737,0.834279790877952,0.7848100283956282,0.8789721202046389,consistent direction
+clip_pool,genuine to morph (x0 to x3),516,0.9806201550387597,0.9510842924126173,0.998062015503876,0.9179361216273061,0.8753953959044278,0.9525432827968683,consistent direction
+clip_pool,"FRLL pipeline a256->D20 (256) (training step P; diagnostic, FRLL)",204,1.0,,,,,,"diagnostic (FRLL), no reading"
+clip_pool,"FRLL whole morph D20->B20 (256) (training step W; diagnostic, FRLL)",200,0.91,,,,,,"diagnostic (FRLL), no reading"
+clip_pool,"FRLL same-person mix D20->C20 (256) (training step M; confounded, no conclusion)",102,0.9901960784313726,,,,,,"diagnostic (FRLL), no reading"
+clip_pool,"FRLL mirror mix D20r->PAF (256) (training step M; diagnostic, FRLL, AD1b)",4,1.0,,,,,,"diagnostic (FRLL), no reading"

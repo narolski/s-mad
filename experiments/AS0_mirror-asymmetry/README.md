@@ -19,8 +19,16 @@ Question (lead, 11 Nov): averaging two different persons averages two independen
 two-person morph should have a lower ratio of asymmetric to symmetric energy than a same-person morph, and the ratio
 should not move with softness or storage history. Is this a single-image signal for a second identity?
 
-Status 11 Nov 2026, 18:25 CET: **running** (landmark detection and per-image measurement on the DGX CPU). No
-contrast computed yet. Answer: none yet.
+Status 11 Nov 2026, 19:40 CET: **running** (secondary sets still being measured on the overloaded DGX CPU).
+Primary cell computed 19:22-19:29 (first time any contrast was opened): **registered verdict "weak"**. On the
+landmark ladder (536 hosts, both engines) the two-person morph (R4) has a lower asymmetry ratio than the same-person
+morph (R3) in every band, but only at AUC 0.52 to 0.62 (best band B3 0.618 [0.578, 0.655]; broadband B1-B5 0.611);
+no band reaches 0.70, so the pass rule fails; not every band is below 0.60, so the kill rule does not fire. The
+mirror self-morph control collapses (by construction), the FaceMorpher storage history moves the ratio by -0.02 to
++0.10 SD in the bands below its cut-off, softness does not explain the contrast, about a quarter of it disappears when
+geometry (shape asymmetry, midline offsets) is partialled out (B3 0.596). Same-person cross-session morphs already
+lose part of their asymmetry (R3 against warp-only R2w 0.58), and the graded dose curve shrinks less than the
+square-root law (slope 0.54 to 0.63 in B1-B3). Numbers in section 5 and `tables.md`.
 
 ## 2. Timeline (11 Nov 2026, CET)
 
@@ -125,7 +133,52 @@ Run order: `as0_lists.py` -> `as0_landmarks.py` (+ `--merge`) -> `as0_measure.py
 
 ## 5. Results
 
-None yet.
+Source files (this folder): `contrasts.csv` (every AUC), `history.csv`, `dose.csv`, `shares.csv`, `verdict.json`,
+`analysis.json`, `tables.md` (rendered by `src/AS0/as0_tables.py`). First analysis run 19:22-19:29 (`as0_analyse.py
+--B 2000`, log `/mnt/t7/smad_next/AS0/logs/analyse_1.log`) on L, Fm (natives and FaceMorpher copies), FmO
+(FaceMorpher copies with own landmarks), D, M (sets measured at that time). The final run on all measured sets
+overwrites these files; numbers of L below do not change (L is complete).
+
+Primary cell, landmark ladder, both engines pooled, Y, flip F0 (AUC = P(L(R4) < L(R3)), 1,072 / 1,072 images, 536
+persons, two-way person bootstrap B = 2,000):
+
+| band | K1 R4 vs R3 | K1 without the 8 reserved persons | OpenCV / FaceMorpher | halves (person-disjoint) | history d, FaceMorpher E7, own landmarks (below cut-off) | d, native landmarks | R3m collapse |
+|---|---|---|---|---|---|---|---|
+| B1 | 0.563 [0.525, 0.603] | 0.567 | 0.573 / 0.553 | 0.582 / 0.592 | -0.018 [-0.052, +0.012] (yes) | -0.013 | yes (AUC 1.000) |
+| B2 | 0.599 [0.556, 0.635] | 0.603 | 0.608 / 0.590 | 0.620 / 0.596 | +0.048 [+0.017, +0.081] (yes) | +0.106 | yes |
+| B3 | 0.618 [0.578, 0.655] | 0.622 | 0.625 / 0.611 | 0.635 / 0.624 | +0.102 [+0.062, +0.151] (yes) | +0.204 | yes |
+| B4 | 0.562 [0.522, 0.599] | 0.567 | 0.567 / 0.557 | 0.584 / 0.559 | +0.095 [+0.041, +0.154] (yes) | +0.124 | yes |
+| B5 | 0.524 [0.484, 0.564] | 0.526 | 0.529 / 0.519 | 0.523 / 0.492 | +0.016 [-0.102, +0.135] (no) | +0.014 | yes |
+| B1-B5 | 0.611 [0.570, 0.648] | 0.615 | 0.621 / 0.601 | 0.627 / 0.627 | -0.175 | -0.142 | - |
+
+Verdict (registered rule): **weak**. External prediction of the ID0 review (A11): best band 0.618 with dose slope
+0.535 in that band, inside the predicted zone (0.58-0.70, slope < 0.7); not falsified.
+
+Other landmark-ladder contrasts (pooled, Y, F0; full table in `tables.md`): R4 against R2w 0.64 / 0.67 / 0.69 /
+0.62 / 0.56 (B1..B5), broadband 0.719; R3 against R2w 0.58 / 0.58 / 0.58 / 0.56 / 0.53, broadband 0.619; R2w against
+R0 0.51-0.53; R4 against R0 broadband 0.747; S0 against R0 0.47-0.51; R2 against R0 0.500; R2wm (shape symmetrised
+only) against R0 0.56 / 0.66 / 0.71 / 0.73 / 0.74; R3m against R2w 1.000. Shape asymmetry calculated from source
+landmark files (arithmetic, A9): R4 against R3 0.595 [0.553, 0.639], R4 against R0 0.633. Channels R, G, B and the
+channel sum give the same K1 within 0.01; the landmark-midline flip F1 also (B3 0.611).
+
+Confounds on K1 (B3 unless stated): residual after Laplacian variance 0.627, after pose and lighting 0.604, after
+geometry ("beyond geometry": shape asymmetry, three midline offsets, mask size) 0.596, after all 0.608 (fits without
+the reserved persons); covariates alone: |yaw| 0.571, calculated shape asymmetry 0.595, Laplacian variance 0.530,
+lighting 0.502, midline offsets 0.53-0.55. Session-gap strata (all R3 cross-session by construction): <= 60 days
+0.642, 61-365 days 0.621, > 365 days 0.563 (wide intervals); FRGC 0.634, colorFERET 0.581. |yaw| tertiles 0.590 /
+0.635 / 0.588; pose-gap tertiles 0.622 / 0.639 / 0.619; lighting-gap tertiles 0.617 / 0.626 / 0.617.
+
+Paired per-host ratios (pooled, median exp(L_rung - L_R2w)): R3 0.78 / 0.85 / 0.88 / 0.92 / 0.97 (B1..B5); R4 0.61 /
+0.65 / 0.68 / 0.81 / 0.95 (predicted 0.5); person-specific share pi_L 0.55 / 0.70 / 0.75 / 0.84 / 0.95 and, from the
+asymmetric energy alone, pi_A 0.49 / 0.58 / 0.60 / 0.51 / 0.28 (the symmetric energy of R3 also falls in B4-B5: E_S
+ratio 0.82, 0.66, i.e. softening). Dose curve (300 hosts, graded FaceMorpher): slope 0.63 [0.54, 0.72] (B1), 0.60
+[0.53, 0.68] (B2), 0.54 [0.47, 0.60] (B3), 0.27 (B4), 0.08 (B5), broadband 0.63; calculated shape asymmetry 0.84
+(arithmetic). AUC of m = 0.5 against m = 0: 0.64 / 0.67 / 0.71 / 0.64 / 0.57.
+
+Storage history (Y, F0; d in native-SD units, [shift / (mean L_R3 - mean L_R4)]): FaceMorpher E7 (204, scale 0.47,
+B1-B4 below the cut-off), own landmarks: B1 -0.018 [-0.08], B2 +0.048 [+0.15], B3 +0.102 [+0.21], B4 +0.095 [+0.42],
+B5 +0.016, broadband -0.175; with the native landmarks the shifts are larger in B2-B3 (+0.106, +0.204). OpenCV and
+Webmorph E7 copies that differ from the native frame: 28 each, |d| <= 0.04.
 
 ## 6. Checks
 
@@ -183,3 +236,4 @@ OMP_NUM_THREADS=1 nice -n 10 $P -I as0_analyse.py
 
 - 11 Nov 18:25 CET: first version.
 - 11 Nov 18:47 CET: review, amendments A1-A13, chains.
+- 11 Nov 19:40 CET: primary results (section 5), restructured chains.

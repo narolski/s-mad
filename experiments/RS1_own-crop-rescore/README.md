@@ -125,7 +125,33 @@ missing); a pack is ready there for later.
   files hash-checked against the A46 attempt records). `analyse.py`: Athena primary run skips A46 crops;
   `--crop-check` adds the A46-crop run; empty pools handled. Analysis tested on the smoke output (8 images per set;
   test outputs moved to `/mnt/t7/smad_next/RS1/athena/smoke_3544220/analysis_test/`, not results).
-- 19:16. **Second smoke job 3545836** (same 8-image mode, now with the raw pack and `cropx`).
+- 19:16. **Second smoke job 3545836** (same 8-image mode, now with the raw pack and `cropx`). Cancelled at 19:26 by me
+  (it had just started) after the lead's ruling below.
+- 19:24. Lead's question (pre-run review of the retrains, AD5, finding 6): `crop_rgb_ext.py` is sprint code writing
+  JPEG. Answered (19:28): which rows are re-encoded (crops of JPEG inputs: raw FRLL photos, the five FRLL-Morphs
+  families, corrected MAD22 BonaFide / FaceMorpher / OpenCV / Webmorph, and every reused A46 crop of those files), that
+  the SMDD script does the same (line 43), and why it had not been run unchanged (BGR pixels to MTCNN at line 24,
+  unbounded negative slice at line 40).
+- 19:30. **Amendment 4 (lead's decision):** primary rows = the SMDD `image_preprocess.py` run unchanged (sha
+  bcaecd29); secondary = the corrected crop stored as PNG (AR1 `crop_rgb.py` unchanged); no table from crops
+  re-encoded by sprint code or from the reused A46 crops. `athena_rs1.sbatch` rewritten: unpacks the three packs,
+  runs the SMDD script unchanged on 3 shard folders of symlinks (`<id><ext>`) and AR1 `crop_rgb.py` on the same
+  inputs, scores both variants with seven releases, writes `crop_summary.json` (images the script dropped),
+  `crops_sha256.txt` and both crop folders into the result tar. The SMDD script is uploaded to `tasks/RS1/` and its
+  hash checked in the job. `analyse.py` reads `scores_rel_<release>__{v1,v2}.npz`, prints expected vs scored counts.
+- 19:31. **Smoke job 3545869** (8 images per set, both variants). Finished 19:37 (about 4 min on the GPU). Fetched to
+  `/mnt/t7/smad_next/RS1/athena/smoke_3545869/` (sha OK). The unchanged SMDD script wrote 463 of 464 crops; it dropped
+  `rs1a43001217` (A43 stored photo E, 003_08; listed by the script as "no face" or failed write); the corrected crop
+  kept 464 of 464. Throughput of the unchanged script about 15 images/s per process on the A100. Environment: tqdm
+  came in as a dependency of huggingface_hub (4.70.1, not the pinned 4.67.1; recorded in `logs/pip_freeze.txt`).
+  Equivalence with the DGX: identical A46 crop files scored on Athena vs DGX (smoke 3544220): max |logit
+  difference| 0.20 (ViT-B/16), 0.07 (ViT-L/14); corrected-crop boxes Athena vs DGX on the same 200 inputs: median
+  0.03 px, 21 above 1 px, max 15.9 px.
+- 19:40. **Production job 3545884** submitted (`sbatch tasks/RS1/athena_rs1.sbatch`; 4 h limit, 1 A100, 110 GB with
+  memfs). Expected: about 41,000 inputs per variant, 14 scoring runs.
+- 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
+  FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
+  (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.
 
 ## 3. Data
 

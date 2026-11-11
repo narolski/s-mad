@@ -12,11 +12,15 @@ The lead added four waves the same afternoon (registered in `result.md` before t
 (CN0) and the mirror distance (free rider); wave 2 (ghost-energy target), wave 3 (controls: softness can meet the pass
 marks), wave 4 (softened examples through the approved shrink-and-enlarge path).
 
-Status 11 Nov 17:30 CET: running. First small pass done (DINOv3 ViT-L/16 at 512, ridge, 600 training morphs):
-F1 = 0.275 [0.235, 0.312] (between the drop mark 0.2 and the pass mark 0.4); F2 = 0.9992 [0.9968, 1.0000] (met).
-The same head shifts genuine photos by 0.73 R0 standard deviations from R0 to the warp-only rung R2w on FaceMorpher
-(0.30 on OpenCV), which is above F3's 0.3 limit if F3 is read on R2w (the lead's addition); on R2 (= R0 pixels) the
-shift is 0.08 / 0.00. Full design, F3-F5, CN0, mirror, waves 2-4 are in progress (section 10). No conclusions drawn.
+Status 11 Nov 19:30 CET: running. Pre-registered F1, F2, F3 (registered rungs) and F5 are measured on DINOv3 ViT-L/16
+at 512 and CLIP ViT-L/14 at 224 (CLIP-336 features being extracted); F4 measured on CLIP-224 (DINOv3 running).
+DINOv3 MLP heads pass F1 (0.51-0.52, 5 of 5 seeds; lower bounds about 0.46), ridge 0.285; CLIP-224 MLP 0.26-0.28,
+ridge 0.125. F2 (FaceMorpher R2 vs R4) 0.997-1.000 everywhere, but the same contrast is reached by one band-power
+statistic at 0.905 and by Laplacian variance at 0.753 (wave-3 floors). F3 on the registered rungs is at most 0.11
+(R2) and 0.09 (FRLL E7) for the dense heads; on the lead's warp-only rung R2w DINOv3 heads shift 0.65-0.73
+(FaceMorpher). F4 on CLIP-224: logistic baseline drops 0.73, dense heads drop 0.39-0.44 (registered falsifier: a drop
+above 0.15 makes the central claim false). CN0 verdict "fails" (single statistic 0.93 > 0.80). Waves 2-4 and the PN1
+softened-ladder copies are in progress (section 10). No conclusions drawn here.
 
 ## 2. Timeline (11 Nov 2026, CET)
 
@@ -81,6 +85,15 @@ shift is 0.08 / 0.00. Full design, F3-F5, CN0, mirror, waves 2-4 are in progress
   `lists/ladsoft.csv`; then cue statistics; CLIP-224 and DINOv3 extraction appended to both queues).
 - 18:48 Scoring loop rewritten to read each token chunk once for all heads (it re-read 17 GB per head on the ladder);
   DINOv3 full scoring restarted with `--score-only` (heads were already saved).
+- 18:55 CLIP-224 F4 read (`f4_clip224.json`); CN0 rerun with cue statistics (`cn0.json`, both backbones' logistic
+  lines; DINOv3 dense reads pending because its scores were not complete then).
+- 19:00 Thumbnail features and heads done (`metrics_thumb_full.json`). AF0 softened training list complete
+  (`soft.csv`, 2,169 images, one strength per image alternating). A second softening process started from the other
+  end of the PN1 list (`soften.py --reverse`, log `ladsoft_rev.log`).
+- 19:27 DINOv3 full metrics written (`metrics_dinov3_512_full.json`); contact sheets
+  `contact_dinov3_512_mlp_s401_full.png`, `contact_clip224_mlp_s401_full.png` (20 validation images each).
+- Bug: my stdout waiters looked for "seconds_last" in heads.py's printed log, which is cut at 800 characters, so they
+  never fired; the chains read `log.json` instead (unaffected). Stale waiters killed by PID.
 
 Amendments / deviations so far (all reported in `result.md` when final): bench subsample (`bench_s`); wave 2 / 3 / 4
 at reduced scale (ghost targets and halves only for wave-1 pairs plus all uniform-0.5 pairs; softened copies only of
@@ -156,6 +169,12 @@ b8a389f10ce685fc95b50c69cbcdcf3d44a818ed3d6c04a79849534365cf12b1; prep_eval.py 3
 
 ## 5. Results
 
+Full-design numbers are in `result.md` (sections "Full design, interim") and the JSON files named there:
+`metrics_dinov3_512_full.json`, `metrics_clip224_full.json`, `metrics_thumb_full.json`, `f4_clip224.json`,
+`cn0.json`, `madation_vitl14_ref.json`, `wave3_target_sanity.json`, `mirror_clip224.json` (preliminary).
+Contact sheets: DINOv3 MLP predictions follow gradients and bumps partly and are raised along hair, ears and the face
+contour on many images, including zero-field images and photos (visual reading of 20 images, not a measurement).
+
 First pass (DINOv3, ridge, wave-1 training): see `result.md` table; full numbers in
 `experiments/AF0/metrics_dinov3_512_first.json`; F1 template baseline 0.231 [0.138, 0.312], F1 after removing the
 template 0.228 [0.190, 0.267], pair swap 0.209 [0.145, 0.275] (52 image pairs, 16 hosts)
@@ -206,23 +225,25 @@ Full DINOv3 heads -> F1-F5 + F4 + shuffled maps; CLIP-224 heads; CN0 (CLIP-224, 
 wave 3 controls 1-7; wave 4 arms; contact sheets; CLIP-336 if the GPU allows; MADation ViT-L/14 comparison numbers
 (A12REL eval scores for FRLL; AR1's scores when written; corrected MAD22 has no score).
 
-## 10. Handover state (17:30 CET)
+## 10. Handover state (19:30 CET)
 
-DGX processes (logs under `/mnt/t7/smad_next/AF0/`):
-- GPU queue DINOv3: `run_feats.sh queue_dino_c.txt` (PID 1990099): bench_s (running, 2,400/5,936), then wait for
-  `lists/af0_h.csv`, af0_h, h1, ar1g. Log `queue_dino_c.log`. If it dies: rerun
-  `WORKERS=2 src/AF0/run_feats.sh /mnt/t7/smad_next/AF0/queue_dino_c.txt` (resumable).
-- GPU queue CLIP: `run_feats.sh queue_clip_b.txt` (PID 1989809): af0_w2 (running), af0_h, h1 (flip), ar1soft, soft,
-  ar1g, then clip336 af0_w1, af0_w2, ar1, bench_s, h1. Log `queue_clip_b.log`. Same restart rule.
-- `heads.py` DINOv3 full (PID 2072898, chain `chain_heads_dino_full.sh`), log `heads_dino_full.log`; then
-  `chain_dino_post.sh` (F4 conf/unconf, shuffled maps), log `chain_dino_post.log`.
-- `ghost.py --wave 1 --plus-u50 --workers 2` (PID 2066115), log `ghost_w1.log`; then `chain_halves_soft.sh`
-  (af0_h list + prep, sanity.py, soft_src list, soften build, soft list + prep), log `chain_halves_soft.log`.
-- `soften.py build --list ar1soft_src` (PID 2062317, chain `chain_ar1soft.sh`), log `chain_ar1soft.log`.
-- `cues_all.py ar1 h1 bench_s af0_w1` (PID 2042508), log `cues_all.log`; then `chain_thumbs.sh` (thumbnails +
-  thumbnail heads), log `chain_thumbs.log`.
-If any chain dies, rerun its script; every step skips finished outputs. Compute so far: about 2 GPU-hours of shared
-GB10 wall time; no USD; no WCSS / Athena / Vast use (WCSS closed to our address).
+DGX processes (logs in `/mnt/t7/smad_next/AF0/`); every step skips finished outputs, so rerunning a chain is safe:
+- GPU queues: `run_feats.sh queue_dino_c.txt` (waiting for `lists/ladsoft.csv`, then DINOv3 ladsoft);
+  `run_feats.sh queue_clip_b.txt` (CLIP-224 soft running, then ar1g, then waits for ladsoft); `run_feats.sh
+  queue_clip336.txt` (CLIP-336 ar1 running, then bench_s, h1). Restart: `WORKERS=2 src/AF0/run_feats.sh <queue>`.
+- `chain_dino_post.sh`: DINOv3 F4 conf / unconf (ridge, MLP x5, logistic), then the shuffled-map control; log
+  `chain_dino_post.log`. Then `chain_dino_rest.sh`: DINOv3 wave 2 (alpha, g, D, G at wave-1 scale) and scoring on h1,
+  ar1g; log `chain_dino_rest.log`.
+- `chain_clip224_rest.sh`: CLIP-224 wave 2 (running: w2_alpha, w2_g done), then the five-arm ablation (wave 3), then
+  wave 4 arms after the soft features, then `arms.py read`; log `chain_clip224_rest.log`.
+- `chain_ladsoft.sh` + the reverse softening process: PN1 softened ladder copies (2,544), then lists, prep and cue
+  statistics; log `chain_ladsoft.log`, `ladsoft_rev.log`. After both processes end, rerun
+  `python -I lists_extra.py ladsoft` once to recompute the sha256 column (a file could be rewritten by the other
+  process while being linked).
+To do by hand after the chains: `metrics.py` for the wave-2 tags and CLIP-336; `cn0.py read --backbones
+clip224,dinov3_512 --dense-tag full` (DINOv3 dense reads); `mirror.py --backbone clip224` (final); `f4.py read
+--backbone dinov3_512`; result.md and this README.
+Compute so far: about 4.5 h of shared-GB10 wall time for features and heads; no USD; no WCSS / Athena / Vast use.
 
 ## 11. Reproduce from scratch
 

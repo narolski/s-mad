@@ -278,7 +278,7 @@ def external(rows, ids, s):
     byid = {r["id"]: r for r in rows}
     sc = dict(zip(ids, s))
     R = [byid[i] for i in ids]
-    allp = sorted({f"frll:{n:03d}" for n in range(1, 103)} | {p for r in R if r["set"] != "smdd" for p in r["persons"].split(";")})
+    allp = K.frll_persons()          # the 102 FRLL persons (AD1's draw: sorted person set, seed [20261107, 43, 1])
     D = K.Draw(allp, NB_FRLL, K.SEED_FRLL)
     grp = {}
     for r in R:

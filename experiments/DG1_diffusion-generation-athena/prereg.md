@@ -103,3 +103,80 @@ second photo (neutral, other session than H); every partner is itself a host.
 ## Pre-run review
 
 Not run by a separate reviewer (generation only, no detector, no score); the equivalence gate is the binding check.
+
+---
+
+## Amendment 1 (11 Nov 2026, 19:45 CET): reading registration
+
+Written after the independent pre-run review (`experiments/reviews/PRERUN_DG1_20261111.md`, finding 1) and the lead's
+instruction, **before any production image was looked at and before the validity table was computed on production
+images**. Production array 3545841 was running; only the smoke images had been read (equivalence gate). These rules
+bind every experiment that scores DG1 images and the DG1 validity table itself, because its per-rung statistics are
+the simple baselines of every contrast.
+
+- **Primary contrast:** two-person morph (X) against same-person mix (SAME), set B (FRGC and colorFERET), 20 steps.
+- **Morph against reconstruction (X vs REC)** is printed only beside morph against the fresh-noise render (X vs FRESH,
+  amendment 2): the reconstruction is the only rung rendered from its own photo's noise map, so X vs REC alone
+  mixes "two persons" with "noise map not the photo's own".
+- **Mirror mix (MIR)** is a trace contrast only (it tests the mixing operation on one photo; no identity reading).
+- Set A (FRLL) contrasts are benchmark-linked and secondary; its neutral+smiling mix (CONF) stays labelled confounded.
+- **Statistics:** AUC with the two-way person bootstrap (the `a41_read.py` pigeonhole method, host and partner as the
+  two ways), B = 10,000; 95% intervals. Any learned probe or baseline is fitted out of fold with folds that hold out
+  **whole partner cycles** (the landmark ladder's fold rule, `src/AR1/folds.py`), because a morph (H_p, S_q) and the
+  twin (H_q, S_q) share the photo S_q.
+- **Baselines:** every detector number is reported as its excess over the best of five simple baselines computed on
+  the same images and the same contrast: PNG file bytes; Laplacian variance (face box, `dg1_validity.py`); left-right
+  asymmetry (face box); 32-pixel thumbnail (32 × 32 × 3 block means, logistic; `src/AR1/baselines.py` `thumb32`);
+  surround-only thumbnail (face blanked with constant colour, same block means; `src/AR1/baselines.py` `background`).
+  The excess is paired by image, with the same bootstrap.
+- **Flag rates:** at a camera-photo threshold (each detector's score at 5% false alarms on camera photos of a
+  development pool fixed by the scoring experiment, never on DG1 images), the share flagged of every rung, under both
+  class policies of the fixed-threshold re-read (EV1, A1): policy G counts one-person renders (REC, FRESH, MIR, SAME,
+  noise-only and semantic-only mixes with the host's own photo) as genuine, so their flags are false alarms; policy X
+  leaves them out as inadmissible and prints them as their own rows. Exact (Clopper-Pearson) intervals.
+- **Path to the detectors:** the 256-px PNG files go to each released detector through that release's own
+  preprocessing, as in the own-crop re-score (RS1), identical for every rung. The earlier A43 storage step (crop to the
+  eye-relative extent of a published MorDIFF file, OpenCV PNG, `prep_eval.align`) is a secondary, benchmark-linked row
+  only (set A).
+- **No mixing of runs:** images from the DGX and from Athena are never combined inside one contrast, although the
+  equivalence gate passed (finding 7: morphs differ more across machines than reconstructions, max 2–4 against 1). Within
+  Athena, a contrast uses images of one process (one array task) where amendment 2 provides them.
+- **Sensitivity and strata:** every set B contrast is printed with and without flagged items (black wedges in the input
+  photo; greyscale input; the two probable twin pairs `frgc:04637`/`frgc:04638` and `frgc:04692`/`frgc:04856`; shared
+  capture date of the two photos), and per database (FRGC, colorFERET). Input-pair pixel disagreement is a covariate
+  of the dose readings.
+- **Validity table (this experiment):** descriptive. Its cue columns (bytes, Laplacian variance, asymmetry) are printed
+  per rung with intervals; no statement about a detector is drawn from them.
+
+## Amendment 2 (11 Nov 2026, 19:45 CET): self-contained add-on array
+
+Approved by the lead (review findings 2–4, about 4 A100-hours), registered before it is built or run.
+
+- **What:** for all 536 set B hosts, in ONE process per host (8 array tasks cut along the partner cycles, so a host and
+  every image it enters are produced together): encode H, S, flip(H) and the partner's S; **save** the semantic codes
+  and noise maps of every source and the fresh-noise draws; render, with the unchanged generator and the unchanged A43
+  mixing function:
+  - re-renders at 20 steps: REC, SAME, X, MIR (so the primary and trace contrasts come from one run; the re-renders also
+    give a run-to-run check against production);
+  - fresh-noise renders FRESH1, FRESH2: render(ε_k, z(H)), ε_k ~ N(0, I) drawn on the CPU with seed
+    int(sha256("DG1fresh|<host>|<k>")[:15], 16), k = 1, 2;
+  - noise-only mixes (z(H) with the slerped noise map of the A43 mix) and semantic-only mixes (the lerped semantic
+    code with x_T(H)), each with the partner's photo (NOISEX, SEMX) and with the host's own second photo (NOISES,
+    SEMS); both halves come from the unchanged `interp()` output, only one half is used;
+  - 100 steps: REC, SAME, X, FRESH1;
+  - dose series at 20 steps, α = 0.1, 0.2, 0.3, 0.4: two-person (DOSEX) and same-person (DOSES), for the union of the
+    100 production dose hosts and the 191 test-read hosts of the protocol-network split (PN1,
+    `experiments/PN1_protocol-network-first-tests/split/ladder_split.csv`, `test_read = 1`).
+- **Guards (finding 8):** the mixing angle θ is checked finite before rendering (a job with a non-finite θ is not
+  rendered and is recorded); the result tar is written before the task fails on any non-finite item.
+- **Environment:** the existing DG1 environment (same experiment); the same pack (checkpoint, inputs, repo) plus a small
+  add-on pack (code and job lists).
+- **Reading:** amendment 1 applies; the add-on images form their own generation run (`gen_run = athena_DG1_addon`)
+  and are not mixed with production images inside one contrast.
+
+## Deviations
+
+- Production and smoke jobs ran in the job's RAM disk `$MEMFS` (`#SBATCH -C memfs`), not node-local scratch as written
+  above ("all work in `$SCRATCH_LOCAL`"): Athena's `-C localfs` gives only 4 GB (measured by the lead, 11 Nov).
+- `module load Python/3.12.3` needs `GCCcore/13.3.0` first on Athena; the environment pins numpy 1.26.4 and pillow
+  12.2.0 as constraints (job 3544215 ended up with numpy 2.5.4, which DiffAE cannot import).

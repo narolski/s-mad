@@ -13,7 +13,9 @@ import ar1_common as K  # noqa: E402
 
 PAY = pathlib.Path("/mnt/t7/smad_heldout/mad22_production_cpu_stage_v1/payload/models")
 EXTRA = {"madation_fe_vitb16": "6a4d93ba80f3c48ecb0a9d8a6ae07e0c64e8c4f49f2cc62b2588dafbffb84d92",
-         "madation_fe_vitl14": "74dd7fbce8385ec4c080def2c63300243b04ca2abd8ddea6eb2a519296e054a9"}
+         "madation_fe_vitl14": "74dd7fbce8385ec4c080def2c63300243b04ca2abd8ddea6eb2a519296e054a9",
+         "madation_fs_vitb16": "a7cacd4773ed3ef959e78202c7f0e0426e5fff04367418130da78e9e85e64885",
+         "madation_fs_vitl14": "6071ec7b7dcb0b3f28f4c8b71c79692a322404c33893a62f5a89964fb79a9421"}
 for name, h in EXTRA.items():
     K.WEIGHTS[name] = PAY / f"{h}.safetensors"
     K.WEIGHT_SHA[name] = h

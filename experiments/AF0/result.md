@@ -227,3 +227,55 @@ Target sanity (wave 3, control 2; `wave3_target_sanity.json`; 1,000 uniform-0.5 
 | Dm (D above median contrast) | 0.00 | 12.89 | 0.82 | no (contrast) | 0.83 | 0.50 |
 Ratios from 100 AR1 primary hosts on the OpenCV-style engine at a = 0.5 (medians). Arms (d)/(e) of wave 3 therefore use
 D. (Lead's note, CONSOLIDATED_v3 section 3 point 3: the mirror self-blend is not a matched twin; trace contrasts only.)
+
+## Full design, interim (19:30 CET): DINOv3 ViT-L/16 at 512
+
+Same training images and heads as for CLIP-224 (MLP: 384 of 1,024 patches per image per seed). `metrics_dinov3_512_full.json`.
+
+| Head | F1 rho [95%] (pass 0.4 / drop 0.2) | F2 FaceMorpher R2 vs R4 [95%] | FaceMorpher R2w vs R4 | OpenCV R2w vs R4 | FaceMorpher R3 vs R4 | OpenCV R3m vs R4 |
+|---|---|---|---|---|---|---|
+| ridge | 0.285 [0.254, 0.313] | 0.999 [0.997, 1.000] | 0.997 | 0.995 | 0.862 | 0.725 |
+| MLP 401 | 0.514 [0.458, 0.562] | 1.000 [0.999, 1.000] | 0.999 | 0.999 | 0.879 | 0.770 |
+| MLP 402 | 0.520 [0.466, 0.567] | 1.000 | 0.999 | 0.998 | 0.876 | 0.774 |
+| MLP 403 | 0.514 [0.455, 0.565] | 1.000 | 0.999 | 0.998 | 0.876 | 0.770 |
+| MLP 404 | 0.517 [0.465, 0.564] | 1.000 | 0.999 | 0.998 | 0.877 | 0.774 |
+| MLP 405 | 0.513 [0.458, 0.562] | 1.000 | 0.999 | 0.998 | 0.879 | 0.781 |
+| logistic (iii) | — | 1.000 [1.000, 1.000] | 1.000 | 1.000 | 0.858 | 0.751 |
+Floors for the same contrasts: Laplacian variance 0.753 (FaceMorpher R2 vs R4), 0.723 / 0.774 (R2w vs R4,
+FaceMorpher / OpenCV); best simple statistic 0.905 (band power 0.125-0.25 cycles/px).
+F1 MLP: 5 of 5 seeds at or above the 0.4 pass mark (lower bounds 0.455-0.466); ridge between the marks. Template
+baseline about 0.23 (as above); F1 after removing the template 0.49-0.50 (MLP), 0.25 (ridge); pair swap 0.48-0.50
+(lower bounds 0.415-0.426) for MLP, 0.24 [0.21, 0.28] for ridge.
+F3 (R0 standard deviations; MLP seed range, ridge, logistic): registered rungs: FRLL R0 -> R1 (native -> E7 frames)
+opencv 0.08-0.09 (ridge 0.08, logistic 0.18), facemorpher -0.01-0.00, amsl and webmorph -0.00-0.01; R0 -> R2
+0.10-0.11 FaceMorpher, 0.00 OpenCV: all at most 0.3. Lead's added rung R0 -> R2w: FaceMorpher 0.68-0.73 (ridge 0.65,
+logistic 0.47), OpenCV 0.21-0.23 (ridge 0.22, logistic 0.40). Corrected MAD22 native -> E7 (FaceMorpher, outside the
+registered F3): 0.42-0.46 (ridge 0.22, logistic 0.79).
+F5, EER % native / E7 (MLP seed range): FRLL AMSL 8.4-10.3 / 8.8-10.3, FaceMorpher 0.5-1.5 / 0.5-1.0, OpenCV 0.5-0.6 /
+0.5-0.6, WebMorph 9.4-10.8 / 9.3-10.9; corrected MAD22 FaceMorpher 1.5-3.0 / 3.0-4.4, OpenCV 1.5-2.6, Webmorph
+6.3-7.9 / 5.9-7.7. Logistic: AMSL 13.7 / 15.7, WebMorph 3.0 / 3.5, OpenCV 0.5 / 0.9. Ridge: AMSL 14.1, WebMorph 14.1.
+F4 on DINOv3: running.
+
+## Mirror distance (lead's free rider), CLIP ViT-L/14 at 224, final (`mirror_clip224.json`)
+
+Score = mean over in-hull patches of the L2 distance between the image's tokens and the flipped image's tokens.
+"Mirrored token positions" was read two ways (both reported): content-aligned (token (i, j) against the flipped
+image's token (i, n-1-j): the same content, mirrored; primary) and position-aligned (token (i, j) against the flipped
+image's token (i, j): left half against mirrored right half, a symmetry measure). AUC with the higher rung positive;
+folded = max(AUC, 1 - AUC); AR1's person bootstrap. Primary pool, 536 hosts.
+
+| contrast | content-aligned AUC [95%] | position-aligned AUC (folded) |
+|---|---|---|
+| FaceMorpher R2 vs R4 | 0.715 [0.671, 0.759] | 0.428 (0.572) |
+| FaceMorpher R2w vs R4 | 0.678 [0.633, 0.721] | 0.411 (0.589) |
+| FaceMorpher R3 vs R4 | 0.580 [0.539, 0.624] | 0.447 (0.553) |
+| OpenCV R2 vs R4 | 0.608 [0.564, 0.649] | 0.325 (0.676) |
+| OpenCV R2w vs R4 | 0.598 [0.555, 0.639] | 0.338 (0.662) |
+| OpenCV R3 vs R4 | 0.537 [0.498, 0.579] | 0.392 (0.608) |
+| FRLL R0 vs R1 (native vs E7 frames), opencv / facemorpher / amsl / webmorph | 0.481 / 0.481 / 0.473 / 0.471 (folded 0.52-0.53) | 0.49 (folded 0.51-0.52) |
+| corrected MAD22 R0 vs R1, FaceMorpher / OpenCV / Webmorph | 0.427 / 0.499 / 0.497 | 0.464 / 0.501 / 0.500 |
+| benchmark morph vs native: FRLL opencv / facemorpher / amsl / webmorph | 0.723 / 0.798 / 0.546 / 0.653 | 0.379 / 0.406 / 0.299 / 0.348 |
+| benchmark morph vs native: MAD22 FaceMorpher / OpenCV / Webmorph | 0.932 / 0.504 / 0.568 | 0.734 / 0.314 / 0.239 |
+Falsifiers fixed by the lead: "no value for landmark morphs if R2 vs R4 is below 0.60": content-aligned FaceMorpher 0.715,
+OpenCV 0.608 (lower bound 0.564). "Not history-blind if FRLL R0 vs R1 exceeds 0.60": 0.47-0.48 (folded 0.52-0.53).
+Not run: DINOv3 and CLIP-336 flips (GPU time); no training anywhere in this block.

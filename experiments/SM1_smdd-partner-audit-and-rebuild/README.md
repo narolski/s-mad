@@ -130,6 +130,22 @@ detector score of this experiment has been read yet; landmark, build and feature
   all 7 tars, all 19 lists; running on t0013 at 19:09).
 - 19:09 LoRA production array 3545823_[0-19] submitted (arms a, c, d, e x seeds 401 to 405; 12 h limit each;
   estimate 3 to 5 A100-hours per fit, under 100 in total).
+- 19:13 Author's decision (via the lead): the JPEG branch of `prep_eval.degrade` (jpeg90, jpeg70, jpeg50) may run
+  unchanged on training images; class categories in force. → amendment A10 (arm f; JPEG reads for all arms).
+- 19:15 T-A / T-B primary five releases scored (7,810 images x 5, 3,755 s); read (`tab_sub.json`); FS pair running.
+- 19:20 `prep_eval.align(prep_eval.degrade(img, "jpeg70"))` reproduces the existing evaluation files
+  `001_03_jpeg70.png` and `002_03_jpeg70.png` byte for byte (`jpeg_verify.json`). JPEG assignment: 46,330 images
+  (23,241 jpeg90, 23,089 jpeg70) over every image that can enter arm (e) (`lists/jpeg_assign.csv`); DGX build with
+  one worker running (`jpeg_arm.py build`, log `logs_jpeg_build.log`, outputs `img/armf/{jpeg90,jpeg70}/`).
+- 19:24 Athena feature job 3545820 done (all lists, about 340 images/s, ~16 min); fetched, sha256 OK, merged into
+  `/mnt/t7/smad_next/SM1/feat_athena/`. Equivalence on all 14,120 FRLL frames: max |Δ feature| 1.0e-3, FE-header AUC
+  0.88252 vs 0.88253. Pool-cue AUC 0.507. Smoke heads and reader done (`p3_smoke.json`), numbers in `result.md`.
+- 19:30 LoRA task script updated on Athena before any production task started: arm (f) inputs
+  (`sm1gpu_img_armf.tar`, to come), FRLL JPEG frames (`sm1gpu_img_jpegeval.tar`, 612 files, sha256 ea7f7477…) scored
+  as a third manifest, manifests `sm1lora_manifests_v2.tar` (sha256 5b1c41c1…; the a/c/d/e manifests are identical
+  to version 1, checked). The pending array picks up the new script when its tasks start.
+- 19:32 Laplacian acceptance (`lapvar.json`): no rebuilt arm accepted (best: arm e, 0.716 at the loader size);
+  release arm 0.993; morph vs own halves 0.881 (variance ratio 0.52).
 
 ## 3. Data
 

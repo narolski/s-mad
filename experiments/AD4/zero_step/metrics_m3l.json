@@ -1,0 +1,244 @@
+{
+ "info": {
+  "torch": "2.12.1+cu130",
+  "device": "NVIDIA GB10",
+  "smad_data": "/mnt/t7/smad_next/AD4/test/work/task_AD4_m3mf_s401/data",
+  "limit": 0,
+  "host": "gx10-c326",
+  "common_py_sha256": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+  "network": "zero-step",
+  "recipe": "m3l",
+  "seed": 401,
+  "meta_core": {
+   "arch": "a12_clip_vitl14_madation",
+   "res": 224,
+   "ft": "lora",
+   "lora_r": 2,
+   "lora_targets": "qv",
+   "lora_alpha": 4.0,
+   "lora_dropout": 0.4,
+   "lora_rs": true,
+   "seed": 401,
+   "steps": 0
+  },
+  "eval_manifest": "ad4_eval.csv",
+  "eval_manifest_sha256": "5d3950ab5ccdeed4d376a15126cff660da2a35041579b3513eb7a1059baaa061",
+  "n_eval": 19827,
+  "eval_seconds": 5748.5,
+  "train_score_seconds": 8071.1
+ },
+ "cells": {
+  "dim/dim_a/native": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.6679313725490196,
+   "eer": 0.39307843137254905
+  },
+  "dim/dim_a/e7": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.6926568627450981,
+   "eer": 0.37227450980392157
+  },
+  "dim/dim_c/native": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.6284656862745098,
+   "eer": 0.4118823529411765
+  },
+  "dim/dim_c/e7": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.6533725490196078,
+   "eer": 0.40198039215686276
+  },
+  "dim/fast_dim/native": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.6191029411764706,
+   "eer": 0.4207843137254902
+  },
+  "dim/fast_dim/e7": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.6426862745098039,
+   "eer": 0.4064313725490196
+  },
+  "dim/fast_dim_ode/native": {
+   "n_morph": 499,
+   "n_bona": 204,
+   "auc": 0.7431627961805964,
+   "eer": 0.32408935518095017
+  },
+  "dim/fast_dim_ode/e7": {
+   "n_morph": 499,
+   "n_bona": 204,
+   "auc": 0.7659240048724901,
+   "eer": 0.31417737435655624
+  },
+  "dim/greedy_dim/native": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.3576421568627451,
+   "eer": 0.5980196078431372
+  },
+  "dim/greedy_dim/e7": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.37251960784313726,
+   "eer": 0.5792156862745099
+  },
+  "dim/greedy_dim_s/native": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.7323529411764705,
+   "eer": 0.33366666666666667
+  },
+  "dim/greedy_dim_s/e7": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.7549901960784313,
+   "eer": 0.3138627450980392
+  },
+  "frllm/amsl/native": {
+   "n_morph": 2175,
+   "n_bona": 204,
+   "auc": 0.6795413567725941,
+   "eer": 0.37677146720757265
+  },
+  "frllm/amsl/e7": {
+   "n_morph": 2175,
+   "n_bona": 204,
+   "auc": 0.6916407482533243,
+   "eer": 0.3586916835699797
+  },
+  "frllm/facemorpher/native": {
+   "n_morph": 1222,
+   "n_bona": 204,
+   "auc": 0.8539681011520811,
+   "eer": 0.22076874939828633
+  },
+  "frllm/facemorpher/e7": {
+   "n_morph": 1222,
+   "n_bona": 204,
+   "auc": 0.8596081640512179,
+   "eer": 0.22076874939828633
+  },
+  "frllm/opencv/native": {
+   "n_morph": 1221,
+   "n_bona": 204,
+   "auc": 0.8080868301456536,
+   "eer": 0.2740280387339211
+  },
+  "frllm/opencv/e7": {
+   "n_morph": 1221,
+   "n_bona": 204,
+   "auc": 0.8136451959981372,
+   "eer": 0.2695295562942621
+  },
+  "frllm/stylegan/native": {
+   "n_morph": 1222,
+   "n_bona": 204,
+   "auc": 0.6431817817143224,
+   "eer": 0.4067865280318347
+  },
+  "frllm/stylegan/e7": {
+   "n_morph": 1222,
+   "n_bona": 204,
+   "auc": 0.6431817817143224,
+   "eer": 0.4067865280318347
+  },
+  "frllm/webmorph/native": {
+   "n_morph": 1221,
+   "n_bona": 204,
+   "auc": 0.7070988100399865,
+   "eer": 0.3533747651394711
+  },
+  "frllm/webmorph/e7": {
+   "n_morph": 1221,
+   "n_bona": 204,
+   "auc": 0.7179545856016444,
+   "eer": 0.33824131618249265
+  },
+  "mad22c/FaceMorpher/native": {
+   "n_morph": 1000,
+   "n_bona": 204,
+   "auc": 0.8426127450980392,
+   "eer": 0.25
+  },
+  "mad22c/FaceMorpher/e7": {
+   "n_morph": 1000,
+   "n_bona": 204,
+   "auc": 0.8647573529411765,
+   "eer": 0.22524509803921566
+  },
+  "mad22c/MIPGAN_I/native": {
+   "n_morph": 1000,
+   "n_bona": 204,
+   "auc": 0.42360539215686277,
+   "eer": 0.5490098039215686
+  },
+  "mad22c/MIPGAN_I/e7": {
+   "n_morph": 1000,
+   "n_bona": 204,
+   "auc": 0.42360539215686277,
+   "eer": 0.5490098039215686
+  },
+  "mad22c/MIPGAN_II/native": {
+   "n_morph": 999,
+   "n_bona": 204,
+   "auc": 0.5764342774146696,
+   "eer": 0.4413089560148384
+  },
+  "mad22c/MIPGAN_II/e7": {
+   "n_morph": 999,
+   "n_bona": 204,
+   "auc": 0.5764342774146696,
+   "eer": 0.4413089560148384
+  },
+  "mad22c/OpenCV/native": {
+   "n_morph": 984,
+   "n_bona": 204,
+   "auc": 0.6759151323130879,
+   "eer": 0.3872250119560019
+  },
+  "mad22c/OpenCV/e7": {
+   "n_morph": 984,
+   "n_bona": 204,
+   "auc": 0.6771854575163399,
+   "eer": 0.38223338115734096
+  },
+  "mad22c/Webmorph/native": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.7269411764705882,
+   "eer": 0.3381176470588235
+  },
+  "mad22c/Webmorph/e7": {
+   "n_morph": 500,
+   "n_bona": 204,
+   "auc": 0.7286764705882353,
+   "eer": 0.3381176470588235
+  },
+  "mordiff/mordiff/native": {
+   "n_morph": 1000,
+   "n_bona": 204,
+   "auc": 0.5227450980392156,
+   "eer": 0.5
+  },
+  "mordiff/mordiff/e7": {
+   "n_morph": 1000,
+   "n_bona": 204,
+   "auc": 0.607436274509804,
+   "eer": 0.4217843137254902
+  }
+ },
+ "train": {
+  "n": 50000,
+  "acc_vs_training_labels": 0.49234,
+  "acc_vs_true_labels": 0.49234,
+  "auc_vs_training_labels": 0.435067732,
+  "auc_vs_true_labels": 0.435067732,
+  "frac_labels_permuted": 0.0
+ }
+}

@@ -1,0 +1,231 @@
+feature,variant,head,group,contrast,auc,lo,hi,n,note
+clip_pool,none,H1,frll256,B20_vs_D20,0.8862009803921569,0.82228728808796,0.9419050808771174,"[200, 204]",
+clip_pool,none,H1,frll256,B20_vs_a256,0.851078431372549,0.7775692220686659,0.9169795324328935,"[200, 204]",
+clip_pool,none,H1,frll256,D20_vs_a256,0.42111207227989234,0.395426727941612,0.44490771131245893,"[204, 204]",
+clip_pool,none,H1,frll256,C20_vs_D20,0.9889946174548251,0.9712918129921492,0.9997816739627612,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H1,frll256,B100_vs_rec100,0.8890931372549019,0.831175548425462,0.9416509592769622,"[200, 204]",
+clip_pool,none,H1,frll256,self100_vs_rec100,0.9879853902345251,0.9771587479878107,0.9963169948220957,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H1,frll256,rec100_vs_a256,0.6837274125336409,0.6599066700343238,0.7137396888026919,"[204, 204]",
+clip_pool,none,H1,frll256,B20_vs_C20,0.13372549019607843,0.08621942816018852,0.18587992014134358,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H1,frll256,B20_vs_D20_neutral_pairs,0.9029411764705882,0.8215862366047336,0.9648129731308435,"[100, 102]",neutral photos only
+clip_pool,none,H1,frll256,B20_gt_hostD20_share,0.935,,,200,
+clip_pool,none,H1,frll_stored,B20_vs_D20,0.7776470588235294,0.6972243798361961,0.8596197698819493,"[200, 204]",
+clip_pool,none,H1,frll_stored,B_vs_D,0.670171568627451,0.5909287030948487,0.7545338574221327,"[200, 204]",
+clip_pool,none,H1,frll_stored,C20_vs_D20,0.9469434832756632,0.9215207675278844,0.9698675152531224,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H1,frll_stored,C_vs_D,0.9157054978854287,0.8861188629470257,0.9446597924350019,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H1,frll_stored,E_vs_R0,0.41013071895424835,0.387151546463017,0.4290555468812583,"[204, 204]",photo stored small vs native
+clip_pool,none,H1,frll_stored,D20_vs_R0,0.3830017301038062,0.35451910450261415,0.40642456414777633,"[204, 204]",
+clip_pool,none,H1,frll_stored,D_vs_R0,0.5756439830834295,0.5503233424080349,0.6038034949524027,"[204, 204]",
+clip_pool,none,H1,frll_stored,A_vs_D,0.6042892156862745,0.5167762013561321,0.6949234829585853,"[200, 204]",published MorDIFF step count not verified
+clip_pool,none,H1,frll_stored,A_vs_R0,0.6796323529411765,0.5931692402813179,0.7688014027705343,"[200, 204]",published MorDIFF step count not verified
+clip_pool,none,H1,frll_stored,B20_vs_R0,0.6783333333333333,0.5923066993880673,0.7663110701035687,"[200, 204]",
+clip_pool,none,H1,frll_stored,A_vs_B,0.424275,0.3771535096441072,0.45791038725022754,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,none,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,none,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,none,H2,frll256,B20_vs_D20,0.9781127450980392,0.9568198249735137,0.9931192060892416,"[200, 204]",
+clip_pool,none,H2,frll256,B20_vs_a256,0.9274019607843137,0.8863071520240422,0.962179040658119,"[200, 204]",
+clip_pool,none,H2,frll256,D20_vs_a256,0.2860678585159554,0.2543606286946235,0.3134133964889471,"[204, 204]",
+clip_pool,none,H2,frll256,C20_vs_D20,0.994232987312572,0.9831292087388258,0.9998613165680473,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H2,frll256,B100_vs_rec100,0.9470343137254902,0.9149999668610816,0.9744434085351114,"[200, 204]",
+clip_pool,none,H2,frll256,self100_vs_rec100,0.975634371395617,0.9593402157264096,0.9893897955120038,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H2,frll256,rec100_vs_a256,0.7007641291810842,0.6748999489795919,0.732624618433378,"[204, 204]",
+clip_pool,none,H2,frll256,B20_vs_C20,0.24593137254901962,0.17610032528619884,0.3202918998926115,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H2,frll256,B20_vs_D20_neutral_pairs,0.9868627450980392,0.9714969358580515,0.9971432190970566,"[100, 102]",neutral photos only
+clip_pool,none,H2,frll256,B20_gt_hostD20_share,1.0,,,200,
+clip_pool,none,H2,frll_stored,B20_vs_D20,0.9163970588235294,0.8747308285453281,0.9515903197175146,"[200, 204]",
+clip_pool,none,H2,frll_stored,B_vs_D,0.7947794117647059,0.7330532207663081,0.8518561917969032,"[200, 204]",
+clip_pool,none,H2,frll_stored,C20_vs_D20,0.971885813148789,0.9546038679549673,0.9863994617454825,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H2,frll_stored,C_vs_D,0.9000384467512496,0.868721933812734,0.9311300482631715,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,none,H2,frll_stored,E_vs_R0,0.37860438292964244,0.35168149061567855,0.4008706332791536,"[204, 204]",photo stored small vs native
+clip_pool,none,H2,frll_stored,D20_vs_R0,0.246659938485198,0.2091233292936288,0.28086897032093716,"[204, 204]",
+clip_pool,none,H2,frll_stored,D_vs_R0,0.574442522106882,0.5377405170344735,0.6127216886754702,"[204, 204]",
+clip_pool,none,H2,frll_stored,A_vs_D,0.6376960784313725,0.56774173610827,0.7058155051641677,"[200, 204]",published MorDIFF step count not verified
+clip_pool,none,H2,frll_stored,A_vs_R0,0.7019117647058823,0.6383193570002516,0.7631157993619415,"[200, 204]",published MorDIFF step count not verified
+clip_pool,none,H2,frll_stored,B20_vs_R0,0.6922549019607843,0.6278104217139788,0.7549307980124704,"[200, 204]",
+clip_pool,none,H2,frll_stored,A_vs_B,0.3015,0.22855355268638067,0.36311773881777937,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,none,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,none,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft1,H1,frll256,B20_vs_D20,0.8849509803921569,0.8201260135752478,0.9413427492852829,"[200, 204]",
+clip_pool,soft1,H1,frll256,B20_vs_a256,0.8490441176470588,0.7751323460344687,0.9159452698605215,"[200, 204]",
+clip_pool,soft1,H1,frll256,D20_vs_a256,0.42029507881584005,0.3945303596920645,0.4441777141888882,"[204, 204]",
+clip_pool,soft1,H1,frll256,C20_vs_D20,0.9883217993079585,0.9697701248468137,0.9995748751195663,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H1,frll256,B100_vs_rec100,0.8736519607843137,0.8110920318925442,0.931741151682538,"[200, 204]",
+clip_pool,soft1,H1,frll256,self100_vs_rec100,0.9853421760861207,0.9729626388888889,0.9950501036026655,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H1,frll256,rec100_vs_a256,0.6826460976547482,0.6594612210793945,0.7120639520514088,"[204, 204]",
+clip_pool,soft1,H1,frll256,B20_vs_C20,0.1403921568627451,0.0912467809636119,0.19405946090947176,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H1,frll256,B20_vs_D20_neutral_pairs,0.9018627450980392,0.8207151443298139,0.9639287160002575,"[100, 102]",neutral photos only
+clip_pool,soft1,H1,frll256,B20_gt_hostD20_share,0.935,,,200,
+clip_pool,soft1,H1,frll_stored,B20_vs_D20,0.7760784313725491,0.6941238948945966,0.8593297051265004,"[200, 204]",
+clip_pool,soft1,H1,frll_stored,B_vs_D,0.6382598039215687,0.5585799783330881,0.7236133264565348,"[200, 204]",
+clip_pool,soft1,H1,frll_stored,C20_vs_D20,0.9455978469819301,0.9198609848926277,0.9690726927481711,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H1,frll_stored,C_vs_D,0.9006151480199923,0.8688375137752827,0.9322469987237383,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H1,frll_stored,E_vs_R0,0.44482891195693963,0.4235378219915417,0.4634016437800543,"[204, 204]",photo stored small vs native
+clip_pool,soft1,H1,frll_stored,D20_vs_R0,0.4173154555940023,0.3901166801669514,0.44018481424193073,"[204, 204]",
+clip_pool,soft1,H1,frll_stored,D_vs_R0,0.6189446366782007,0.5944897361288266,0.6480579744899532,"[204, 204]",
+clip_pool,soft1,H1,frll_stored,A_vs_D,0.5930882352941177,0.5034831273514139,0.6845837775536232,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft1,H1,frll_stored,A_vs_R0,0.7043137254901961,0.6188827573812771,0.7930283706177359,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft1,H1,frll_stored,B20_vs_R0,0.7049019607843138,0.6199212661310274,0.7928518717676881,"[200, 204]",
+clip_pool,soft1,H1,frll_stored,A_vs_B,0.448825,0.40334761254687995,0.48577157206796984,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,soft1,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft1,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft1,H2,frll256,B20_vs_D20,0.9786029411764706,0.9574255324735259,0.9935083448458355,"[200, 204]",
+clip_pool,soft1,H2,frll256,B20_vs_a256,0.9267401960784314,0.8844120052013535,0.9623759759945405,"[200, 204]",
+clip_pool,soft1,H2,frll256,D20_vs_a256,0.27907535563244906,0.24715901713226804,0.3068048059587648,"[204, 204]",
+clip_pool,soft1,H2,frll256,C20_vs_D20,0.9938485198000769,0.9817996893174166,0.9998979695949393,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H2,frll256,B100_vs_rec100,0.9385294117647058,0.9034284578579854,0.9691964254004939,"[200, 204]",
+clip_pool,soft1,H2,frll256,self100_vs_rec100,0.9692906574394463,0.9501372116901354,0.9858401061596513,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H2,frll256,rec100_vs_a256,0.7039119569396386,0.677841393351146,0.7359629584267685,"[204, 204]",
+clip_pool,soft1,H2,frll256,B20_vs_C20,0.25151960784313726,0.18059091040204747,0.3273754941953471,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H2,frll256,B20_vs_D20_neutral_pairs,0.9874509803921568,0.97246497269925,0.9973857317950017,"[100, 102]",neutral photos only
+clip_pool,soft1,H2,frll256,B20_gt_hostD20_share,1.0,,,200,
+clip_pool,soft1,H2,frll_stored,B20_vs_D20,0.9186764705882353,0.8754933607662604,0.9543151018255649,"[200, 204]",
+clip_pool,soft1,H2,frll_stored,B_vs_D,0.7482843137254902,0.6825537075629545,0.8111870659722222,"[200, 204]",
+clip_pool,soft1,H2,frll_stored,C20_vs_D20,0.9716935793925413,0.9538309809138513,0.9866160096380431,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H2,frll_stored,C_vs_D,0.876441753171857,0.8424034865147869,0.9114432864784616,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1,H2,frll_stored,E_vs_R0,0.43709150326797386,0.4101922531818191,0.4610537190082645,"[204, 204]",photo stored small vs native
+clip_pool,soft1,H2,frll_stored,D20_vs_R0,0.3132208765859285,0.2757200176366843,0.34709146057392254,"[204, 204]",
+clip_pool,soft1,H2,frll_stored,D_vs_R0,0.6462658592848904,0.6121252858740651,0.6836801032303802,"[204, 204]",
+clip_pool,soft1,H2,frll_stored,A_vs_D,0.6248774509803922,0.5523401326655576,0.6969332280158173,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft1,H2,frll_stored,A_vs_R0,0.757671568627451,0.6984006419077405,0.8148555952129023,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft1,H2,frll_stored,B20_vs_R0,0.7521568627450981,0.6925118328362814,0.8093290595872193,"[200, 204]",
+clip_pool,soft1,H2,frll_stored,A_vs_B,0.35345,0.27949291261558085,0.41691423287472823,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,soft1,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft1,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft5,H1,frll256,B20_vs_D20,0.8754411764705883,0.8067556327763664,0.9367876771432646,"[200, 204]",
+clip_pool,soft5,H1,frll256,B20_vs_a256,0.8212254901960784,0.7393494103657938,0.8964305940822931,"[200, 204]",
+clip_pool,soft5,H1,frll256,D20_vs_a256,0.40083141099577085,0.37606539386318694,0.42216951101000355,"[204, 204]",
+clip_pool,soft5,H1,frll256,C20_vs_D20,0.9869761630142253,0.9687611249555002,0.9984425158745371,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H1,frll256,B100_vs_rec100,0.7949264705882353,0.7097144085274474,0.8773066196960134,"[200, 204]",
+clip_pool,soft5,H1,frll256,self100_vs_rec100,0.9657823913879278,0.9459771582018661,0.9834966626029568,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H1,frll256,rec100_vs_a256,0.6660178777393311,0.6436061765880803,0.6945500805446778,"[204, 204]",
+clip_pool,soft5,H1,frll256,B20_vs_C20,0.16254901960784313,0.11044200855439379,0.21995968218999987,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H1,frll256,B20_vs_D20_neutral_pairs,0.8944117647058824,0.8140853031190035,0.9585942853884835,"[100, 102]",neutral photos only
+clip_pool,soft5,H1,frll256,B20_gt_hostD20_share,0.95,,,200,
+clip_pool,soft5,H1,frll_stored,B20_vs_D20,0.7560539215686275,0.6677521152680321,0.8422026023010566,"[200, 204]",
+clip_pool,soft5,H1,frll_stored,B_vs_D,0.5428921568627451,0.46418587551647633,0.6234090526754952,"[200, 204]",
+clip_pool,soft5,H1,frll_stored,C20_vs_D20,0.9375720876585929,0.9100790007996407,0.9630019092743218,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H1,frll_stored,C_vs_D,0.8552960399846213,0.819479894794725,0.8915197957161095,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H1,frll_stored,E_vs_R0,0.5129277201076509,0.4963532684071218,0.5301958365765945,"[204, 204]",photo stored small vs native
+clip_pool,soft5,H1,frll_stored,D20_vs_R0,0.4353133410226836,0.40770609318996415,0.4600603272928994,"[204, 204]",
+clip_pool,soft5,H1,frll_stored,D_vs_R0,0.6634948096885813,0.6374120481659544,0.695080131586039,"[204, 204]",
+clip_pool,soft5,H1,frll_stored,A_vs_D,0.5361029411764706,0.4424098247395128,0.6306012701471342,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft5,H1,frll_stored,A_vs_R0,0.6934313725490197,0.6031583092216121,0.783172690953328,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft5,H1,frll_stored,B20_vs_R0,0.6952205882352941,0.6069351997578692,0.7826208093462313,"[200, 204]",
+clip_pool,soft5,H1,frll_stored,A_vs_B,0.492125,0.4442176415415432,0.5388979666122908,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,soft5,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft5,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft5,H2,frll256,B20_vs_D20,0.9630147058823529,0.9332565091684665,0.9860465611810121,"[200, 204]",
+clip_pool,soft5,H2,frll256,B20_vs_a256,0.8969607843137255,0.847565294707486,0.9424090090581687,"[200, 204]",
+clip_pool,soft5,H2,frll256,D20_vs_a256,0.31002499038831216,0.2806093165430529,0.3345971247635136,"[204, 204]",
+clip_pool,soft5,H2,frll256,C20_vs_D20,0.9907247212610535,0.9776232077298039,0.9987057183982802,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H2,frll256,B100_vs_rec100,0.9011029411764706,0.855814844334933,0.9430927039490495,"[200, 204]",
+clip_pool,soft5,H2,frll256,self100_vs_rec100,0.9509803921568627,0.9277775374855824,0.9724101718727813,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H2,frll256,rec100_vs_a256,0.6615724721261054,0.639167591532999,0.6905447845072946,"[204, 204]",
+clip_pool,soft5,H2,frll256,B20_vs_C20,0.26779411764705885,0.19803550449586593,0.34065746030782745,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H2,frll256,B20_vs_D20_neutral_pairs,0.9724509803921568,0.943348588639891,0.9922075708068154,"[100, 102]",neutral photos only
+clip_pool,soft5,H2,frll256,B20_gt_hostD20_share,0.995,,,200,
+clip_pool,soft5,H2,frll_stored,B20_vs_D20,0.8771813725490196,0.8199096793008257,0.926282243897929,"[200, 204]",
+clip_pool,soft5,H2,frll_stored,B_vs_D,0.6827450980392157,0.6148675647883973,0.751047701636838,"[200, 204]",
+clip_pool,soft5,H2,frll_stored,C20_vs_D20,0.9492983467896963,0.9241909313966663,0.9717674737770807,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H2,frll_stored,C_vs_D,0.8417916186082276,0.8044368484611881,0.8799099912751558,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft5,H2,frll_stored,E_vs_R0,0.4938485198000769,0.47175380940082645,0.5159577294713301,"[204, 204]",photo stored small vs native
+clip_pool,soft5,H2,frll_stored,D20_vs_R0,0.4005190311418685,0.36474930710708614,0.43321939834329964,"[204, 204]",
+clip_pool,soft5,H2,frll_stored,D_vs_R0,0.6715926566705114,0.6418050985205744,0.7057340232213761,"[204, 204]",
+clip_pool,soft5,H2,frll_stored,A_vs_D,0.6257352941176471,0.5460293757791219,0.7040718953235229,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft5,H2,frll_stored,A_vs_R0,0.7818382352941177,0.7172349986973572,0.8422836959406371,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft5,H2,frll_stored,B20_vs_R0,0.7814950980392157,0.7184094337675838,0.8406768962978771,"[200, 204]",
+clip_pool,soft5,H2,frll_stored,A_vs_B,0.4402,0.37700110587906865,0.49572760476739713,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,soft5,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft5,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,pipe,H1,frll256,B20_vs_D20,0.8807107843137255,0.8134181825807355,0.9385097850800279,"[200, 204]",
+clip_pool,pipe,H1,frll256,B20_vs_a256,0.9039705882352941,0.8432456932756462,0.9547616905251964,"[200, 204]",
+clip_pool,pipe,H1,frll256,D20_vs_a256,0.5609621299500193,0.5361667050326048,0.5892512738335834,"[204, 204]",
+clip_pool,pipe,H1,frll256,C20_vs_D20,0.9867839292579778,0.9676863153540716,0.999250150786481,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H1,frll256,B100_vs_rec100,0.9016176470588235,0.8475318772640683,0.9500959743690663,"[200, 204]",
+clip_pool,pipe,H1,frll256,self100_vs_rec100,0.9900999615532488,0.9803499218823641,0.9973749175399309,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H1,frll256,rec100_vs_a256,0.7116733948481353,0.6863074783125706,0.7433482266248477,"[204, 204]",
+clip_pool,pipe,H1,frll256,B20_vs_C20,0.13392156862745097,0.08611813903144955,0.18459955967033972,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H1,frll256,B20_vs_D20_neutral_pairs,0.8931372549019608,0.8055223779318844,0.9597597963288734,"[100, 102]",neutral photos only
+clip_pool,pipe,H1,frll256,B20_gt_hostD20_share,0.93,,,200,
+clip_pool,pipe,H1,frll_stored,B20_vs_D20,0.7784558823529412,0.6988293189053972,0.8598982967569063,"[200, 204]",
+clip_pool,pipe,H1,frll_stored,B_vs_D,0.6911519607843137,0.6145322906894934,0.7733822104036421,"[200, 204]",
+clip_pool,pipe,H1,frll_stored,C20_vs_D20,0.9531910803537101,0.9282222950952292,0.9750836418163189,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H1,frll_stored,C_vs_D,0.9329104190695886,0.9057181116358475,0.9582854046817225,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H1,frll_stored,E_vs_R0,0.3940311418685121,0.3694233159722222,0.41407271499221426,"[204, 204]",photo stored small vs native
+clip_pool,pipe,H1,frll_stored,D20_vs_R0,0.45960688196847366,0.43181979707871776,0.48560150935374147,"[204, 204]",
+clip_pool,pipe,H1,frll_stored,D_vs_R0,0.5962129950019224,0.5708853684273317,0.6256936437142403,"[204, 204]",
+clip_pool,pipe,H1,frll_stored,A_vs_D,0.6454901960784314,0.5591980783980856,0.7351796290413087,"[200, 204]",published MorDIFF step count not verified
+clip_pool,pipe,H1,frll_stored,A_vs_R0,0.7395343137254902,0.6615084699520125,0.8209022038567494,"[200, 204]",published MorDIFF step count not verified
+clip_pool,pipe,H1,frll_stored,B20_vs_R0,0.7388970588235294,0.6617144987157721,0.8190178989868496,"[200, 204]",
+clip_pool,pipe,H1,frll_stored,A_vs_B,0.444775,0.39857881915350274,0.48056022763215844,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,pipe,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,pipe,H2,frll256,B20_vs_D20,0.9727450980392157,0.9484744940413296,0.9904590151416107,"[200, 204]",
+clip_pool,pipe,H2,frll256,B20_vs_a256,0.9668137254901961,0.9402485980248997,0.9867319962266979,"[200, 204]",
+clip_pool,pipe,H2,frll256,D20_vs_a256,0.48111303344867357,0.45392704999918326,0.5082343988777419,"[204, 204]",
+clip_pool,pipe,H2,frll256,C20_vs_D20,0.9921184159938485,0.9786091615226338,0.9996202682562421,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H2,frll256,B100_vs_rec100,0.9546568627450981,0.9250700844761223,0.979316634145042,"[200, 204]",
+clip_pool,pipe,H2,frll256,self100_vs_rec100,0.9785178777393311,0.9635137297032728,0.9911451842404538,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H2,frll256,rec100_vs_a256,0.7405565167243368,0.7132875798498279,0.7738870366138804,"[204, 204]",
+clip_pool,pipe,H2,frll256,B20_vs_C20,0.27034313725490194,0.19623477495480063,0.34991655192693116,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H2,frll256,B20_vs_D20_neutral_pairs,0.981764705882353,0.9619782823477753,0.9951938845450624,"[100, 102]",neutral photos only
+clip_pool,pipe,H2,frll256,B20_gt_hostD20_share,1.0,,,200,
+clip_pool,pipe,H2,frll_stored,B20_vs_D20,0.9161029411764706,0.8723542868865203,0.9517297069522324,"[200, 204]",
+clip_pool,pipe,H2,frll_stored,B_vs_D,0.8458823529411764,0.7915053131871453,0.8960148840543006,"[200, 204]",
+clip_pool,pipe,H2,frll_stored,C20_vs_D20,0.971885813148789,0.9529941973587134,0.9877629626999658,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H2,frll_stored,C_vs_D,0.9315647827758554,0.9045327974444387,0.9569943296602387,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,pipe,H2,frll_stored,E_vs_R0,0.34662149173394846,0.3156714437513589,0.3733902792983768,"[204, 204]",photo stored small vs native
+clip_pool,pipe,H2,frll_stored,D20_vs_R0,0.3752402921953095,0.3352041119136467,0.413838555332117,"[204, 204]",
+clip_pool,pipe,H2,frll_stored,D_vs_R0,0.6061610918877355,0.5689718934911243,0.6456933106575963,"[204, 204]",
+clip_pool,pipe,H2,frll_stored,A_vs_D,0.7390441176470588,0.6737284513999314,0.7997439561504568,"[200, 204]",published MorDIFF step count not verified
+clip_pool,pipe,H2,frll_stored,A_vs_R0,0.8115441176470588,0.7560237768613349,0.8636033030654671,"[200, 204]",published MorDIFF step count not verified
+clip_pool,pipe,H2,frll_stored,B20_vs_R0,0.8044117647058824,0.7481768767962068,0.8580091933023302,"[200, 204]",
+clip_pool,pipe,H2,frll_stored,A_vs_B,0.330775,0.2590493483208471,0.3914122135356746,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,pipe,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft1+pipe,H1,frll256,B20_vs_D20,0.8799509803921569,0.8130333219871221,0.9379801469920014,"[200, 204]",
+clip_pool,soft1+pipe,H1,frll256,B20_vs_a256,0.9017401960784314,0.8402305735217512,0.953254409937353,"[200, 204]",
+clip_pool,soft1+pipe,H1,frll256,D20_vs_a256,0.5568050749711649,0.5324045630396445,0.584207508035848,"[204, 204]",
+clip_pool,soft1+pipe,H1,frll256,C20_vs_D20,0.9864955786236063,0.9672244738063024,0.9991153769118191,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H1,frll256,B100_vs_rec100,0.8921078431372549,0.8340413941514143,0.9441059070888578,"[200, 204]",
+clip_pool,soft1+pipe,H1,frll256,self100_vs_rec100,0.989042675893887,0.9788849562744795,0.9968116895367426,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H1,frll256,rec100_vs_a256,0.710904459823145,0.6858300235614969,0.7422503147827758,"[204, 204]",
+clip_pool,soft1+pipe,H1,frll256,B20_vs_C20,0.13754901960784313,0.08868186646698244,0.18918719286491212,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H1,frll256,B20_vs_D20_neutral_pairs,0.8925490196078432,0.8063059757471005,0.9592716256919809,"[100, 102]",neutral photos only
+clip_pool,soft1+pipe,H1,frll256,B20_gt_hostD20_share,0.93,,,200,
+clip_pool,soft1+pipe,H1,frll_stored,B20_vs_D20,0.7780637254901961,0.6966220235823852,0.8607230584576395,"[200, 204]",
+clip_pool,soft1+pipe,H1,frll_stored,B_vs_D,0.6675735294117647,0.5895123636536592,0.7514863262535931,"[200, 204]",
+clip_pool,soft1+pipe,H1,frll_stored,C20_vs_D20,0.9523740868896579,0.9271200194363459,0.9749112004030472,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H1,frll_stored,C_vs_D,0.9237312572087658,0.894947391785275,0.9509310432098924,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H1,frll_stored,E_vs_R0,0.41943002691272585,0.39598127646541953,0.4394623722222335,"[204, 204]",photo stored small vs native
+clip_pool,soft1+pipe,H1,frll_stored,D20_vs_R0,0.4793348712033833,0.45229801879735,0.5055174403074592,"[204, 204]",
+clip_pool,soft1+pipe,H1,frll_stored,D_vs_R0,0.6253844675124952,0.6005243466553287,0.655622685751908,"[204, 204]",
+clip_pool,soft1+pipe,H1,frll_stored,A_vs_D,0.6356372549019608,0.5482151921657572,0.7264224000444274,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft1+pipe,H1,frll_stored,A_vs_R0,0.7533088235294118,0.674464018857606,0.8355280237583037,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft1+pipe,H1,frll_stored,B20_vs_R0,0.7552941176470588,0.677145406522144,0.8354711054638295,"[200, 204]",
+clip_pool,soft1+pipe,H1,frll_stored,A_vs_B,0.46105,0.4154492756398476,0.49922157612615004,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,soft1+pipe,H1,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft1+pipe,H1,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen
+clip_pool,soft1+pipe,H2,frll256,B20_vs_D20,0.9741421568627451,0.9501765964979328,0.9913821354436948,"[200, 204]",
+clip_pool,soft1+pipe,H2,frll256,B20_vs_a256,0.96625,0.9389448943975086,0.9867407600260444,"[200, 204]",
+clip_pool,soft1+pipe,H2,frll256,D20_vs_a256,0.46981930026912727,0.44243196923248596,0.4964820724338767,"[204, 204]",
+clip_pool,soft1+pipe,H2,frll256,C20_vs_D20,0.9920703575547867,0.9783186287935528,0.9996765241007995,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H2,frll256,B100_vs_rec100,0.9495588235294118,0.9182729455597769,0.9761591563230797,"[200, 204]",
+clip_pool,soft1+pipe,H2,frll256,self100_vs_rec100,0.9746732026143791,0.9574088654654497,0.9892352197045802,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H2,frll256,rec100_vs_a256,0.7438244905805459,0.7166562696206155,0.7770916182335126,"[204, 204]",
+clip_pool,soft1+pipe,H2,frll256,B20_vs_C20,0.27397058823529413,0.19872590083527583,0.35478743536135376,"[200, 102]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H2,frll256,B20_vs_D20_neutral_pairs,0.983921568627451,0.9655537951910711,0.9963917711726991,"[100, 102]",neutral photos only
+clip_pool,soft1+pipe,H2,frll256,B20_gt_hostD20_share,1.0,,,200,
+clip_pool,soft1+pipe,H2,frll_stored,B20_vs_D20,0.9201225490196079,0.8767551318791923,0.9551454714744019,"[200, 204]",
+clip_pool,soft1+pipe,H2,frll_stored,B_vs_D,0.8137254901960784,0.7537387943995735,0.8686025376575313,"[200, 204]",
+clip_pool,soft1+pipe,H2,frll_stored,C20_vs_D20,0.972318339100346,0.9528108949482068,0.9884567708503724,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H2,frll_stored,C_vs_D,0.9184448289119569,0.8889412205111207,0.9465742492187921,"[102, 204]","neutral+smiling mix: confounded, no conclusion"
+clip_pool,soft1+pipe,H2,frll_stored,E_vs_R0,0.39638600538254515,0.3664997133323374,0.42301444960829293,"[204, 204]",photo stored small vs native
+clip_pool,soft1+pipe,H2,frll_stored,D20_vs_R0,0.42454825067281815,0.38449978854286815,0.4640012411754953,"[204, 204]",
+clip_pool,soft1+pipe,H2,frll_stored,D_vs_R0,0.6604430988081507,0.6255225882823285,0.6989853914400057,"[204, 204]",
+clip_pool,soft1+pipe,H2,frll_stored,A_vs_D,0.727671568627451,0.6611972119382655,0.7908198888035045,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft1+pipe,H2,frll_stored,A_vs_R0,0.8461764705882353,0.7960669582010922,0.8938132606439508,"[200, 204]",published MorDIFF step count not verified
+clip_pool,soft1+pipe,H2,frll_stored,B20_vs_R0,0.8414705882352941,0.7907723123213847,0.8896978767200541,"[200, 204]",
+clip_pool,soft1+pipe,H2,frll_stored,A_vs_B,0.370775,0.29796023123347104,0.43457032980800986,"[200, 200]","bridge, published MorDIFF step count not verified"
+clip_pool,soft1+pipe,H2,mirror,PAF_vs_D20r,1.0,1.0,1.0,"[4, 4]",AD1b mirror mixes (n small if smoke only)
+clip_pool,soft1+pipe,H2,mirror,PAF_gt_D20r_share,1.0,,,4,smoke_gen

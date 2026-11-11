@@ -1,7 +1,10 @@
 {
- "n_common": 400,
- "max_abs_feature_diff": 0.0004914617165923119,
- "max_abs_logit_diff": 0.022295211582467722,
- "n_morph": 400,
- "n_genuine": 0
+ "n_common": 14120,
+ "max_abs_feature_diff": 0.0009984374046325684,
+ "max_abs_logit_diff": 0.09674177871609801,
+ "n_morph": 11060,
+ "n_genuine": 3060,
+ "auc_athena": 0.8825158080109681,
+ "auc_dgx": 0.8825270361309081,
+ "auc_diff": -1.1228119940032144e-05
 }

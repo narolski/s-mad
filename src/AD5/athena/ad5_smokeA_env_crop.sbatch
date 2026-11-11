@@ -17,9 +17,9 @@
 set -eo pipefail
 module load Python/3.10.4
 set -u
-source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code/src/AD5/athena/ad5_common.sh
+source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code_v2/src/AD5/athena/ad5_common.sh
 hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; python3 --version; date
-C=$PK/code
+C=$PK/code_v2
 build_env madation $C/src/AD5/env/madation_requirements.txt $PK/wheels_madation.tar
 PY=$EN/madation/bin/python
 $PY -I -c "import torch, torchvision, cv2, facenet_pytorch, clip, easydict, pandas, sklearn; print('torch', torch.__version__, torch.version.cuda, 'cudnn', torch.backends.cudnn.version(), 'gpu', torch.cuda.get_device_name(0), 'cv2', cv2.__version__)"

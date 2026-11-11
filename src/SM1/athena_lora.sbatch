@@ -9,16 +9,17 @@
 #SBATCH --gres=gpu:1
 #SBATCH --time=12:00:00
 #SBATCH -C memfs
-#SBATCH --array=0-19
+#SBATCH --array=0-19                   # A10: arm (f) submitted separately as --array=20-24
 #SBATCH -o /net/pr2/projects/plgrid/plggrestoration/smad-next/logs/SM1L-%A_%a.out
-# SMDD five-partner audit and rebuild (SM1), amendment A9: 20 LoRA fits (arms a, c, d, e x seeds 401-405).
+# SMDD five-partner audit and rebuild (SM1), amendment A9: 20 LoRA fits (arms a, c, d, e x seeds 401-405);
+# amendment A10: 5 more for arm (f) (--array=20-24).
 # Smoke: sbatch --array=0 --time=01:00:00 --export=ALL,STEPS=3,LIMIT=8,SMOKE=1 athena_lora.sbatch
 set -eo pipefail
 module load Python/3.10.4 2>&1 || echo "module Python/3.10.4 not loadable"
 set -u
 G=/net/pr2/projects/plgrid/plggrestoration/smad-next
 : "${MEMFS:?RAM disk required (-C memfs)}"
-ARMS=(a c d e)
+ARMS=(a c d e f)                       # A10: indices 20..24 = arm (f)
 i=$SLURM_ARRAY_TASK_ID
 ARM=${ARMS[$((i / 5))]}; SEED=$((401 + i % 5))
 TASK=SM1L_${ARM}_s${SEED}${SMOKE:+_smoke}

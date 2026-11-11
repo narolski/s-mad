@@ -232,7 +232,7 @@ def _best(P, S, tool, pos, neg, oofz, names):
         key = f"{P.pool}|{tool}|{pos}vs{neg}|{b}"
         if key + "|id" not in oofz:
             continue
-        sc = dict(zip(oofz[key + "|id"].tolist(), oofz[key + "|score"].astype(float)))
+        sc = {i: v for i, v in zip(oofz[key + "|id"].tolist(), oofz[key + "|score"].astype(float)) if np.isfinite(v)}
         a, rep, _, _ = contrast(P.D, sc, P.rows(tool, pos), P.rows(tool, neg))
         if a < 0.5:                     # orientation folded (conservative toward the baseline)
             a, rep = 1 - a, 1 - rep

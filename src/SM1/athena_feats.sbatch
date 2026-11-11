@@ -24,7 +24,10 @@ PY=$G/venv/bin/python
 W=$MEMFS/sm1_$MODE; mkdir -p "$W/in"; export TMPDIR=$MEMFS/tmp; mkdir -p "$TMPDIR"
 hostname; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; date -Is
 [ -x "$PY" ] || { echo "no $PY" >&2; exit 3; }
-if [ "$MODE" = smoke ]; then
+if [ "$MODE" = f ]; then                     # A10: only the new lists (FRLL JPEG frames, arm f JPEG copies)
+  for n in sm1gpu_code_v2.tar sm1gpu_img_jpegeval.tar sm1gpu_img_armf.tar; do ln -sf "$G/packs/SM1/$n" "$W/in/$n"; ln -sf "$G/packs/SM1/$n.sha256" "$W/in/$n.sha256"; done
+  EXTRA="--lists test_eval_jpeg,train_armf_jpeg"
+elif [ "$MODE" = smoke ]; then
   for n in sm1gpu_code.tar sm1gpu_img_test.tar; do ln -sf "$G/packs/SM1/$n" "$W/in/$n"; ln -sf "$G/packs/SM1/$n.sha256" "$W/in/$n.sha256"; done
   EXTRA="--limit 400 --lists test_eval,test_mad22,test_ar1"
 else
@@ -36,7 +39,7 @@ for t in "$W"/in/*.tar; do
   n=$(basename "$t")
   (cd "$W/in" && sha256sum -c "$n.sha256") || { echo "sha256 mismatch $n" >&2; exit 2; }
   case "$n" in
-    sm1gpu_code.tar) tar -C "$W/pack" -xf "$t" ;;
+    sm1gpu_code.tar|sm1gpu_code_v2.tar) tar -C "$W/pack" -xf "$t" ;;
     *) tar -C "$W/pack/images" -xf "$t" ;;
   esac
   echo "extracted $n $(date -Is)"

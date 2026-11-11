@@ -83,6 +83,16 @@ def main():
         elif arm == "d":
             m = pick(src["c"], n)
             g = pick(bf, n // 2) + pick(hal, n - n // 2)
+        elif arm == "f":                                    # A10: the seed-401 composition of compose.py
+            import json as _j
+            idp = {}
+            for n in ("train_bf", "train_arme_bfS", "train_armc_halves", "train_arme_hS", "train_armc",
+                      "train_arme_cS", "train_armf_jpeg"):
+                for r in csv.DictReader(open(FL / f"{n}.csv")):
+                    idp[r["id"]] = r["path"]
+            c = _j.load(open(K.OUT / "compose/f_s401.json"))
+            m = pick([idp[i] for i in c["morph"]], n)
+            g = pick([idp[i] for i in c["genuine"]], n)
         elif arm == "e":
             bfs, cs, hs = paths("train_arme_bfS"), paths("train_arme_cS"), paths("train_arme_hS")
             m = pick(src["c"], n // 2) + pick(cs, n - n // 2)
@@ -104,10 +114,10 @@ def main():
             vg = np.array([vals[p][j] for p in g])
             o[key] = dict(auc=float(S.wauc(-vm, -vg, np.ones((1, len(vm))), np.ones((1, len(vg))))[0]),
                           median_morph=float(np.median(vm)), median_genuine=float(np.median(vg)))
-        acc_key = "loader224" if arm == "e" else "stored"
+        acc_key = "loader224" if arm in ("e", "f") else "stored"
         o["accepted"] = bool(o[acc_key]["auc"] <= 0.65) if arm != "a" else None
         o["acceptance_on"] = acc_key
-        if arm != "a":
+        if arm not in ("a", "f"):
             sz = [size(p) for p in src.get(arm, src["c"])]
             o["files_not_256"] = int(sum(s != (256, 256) for s in sz))
         out[arm] = o
@@ -116,7 +126,7 @@ def main():
     out["c_morph_vs_own_halves"] = dict(
         auc=float(S.wauc(-vm, -vh.ravel(), np.ones((1, len(vm))), np.ones((1, vh.size)))[0]),
         median_ratio_morph_over_mean_halves=float(np.median(vm / vh.mean(1))))
-    json.dump(out, open(K.RES / "lapvar.json", "w"), indent=1)
+    json.dump(out, open(K.RES / ("lapvar.json" if a.arms != "f" else "lapvar_f.json"), "w"), indent=1)
     print(json.dumps(out, indent=1))
 
 

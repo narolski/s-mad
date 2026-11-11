@@ -156,6 +156,35 @@ here. No answer yet.
   results `.../results/DG1/DG1_<list>.tar`). If a task fails: read its log; the result tar name is refused if it
   exists, so a rerun of a failed task needs no cleanup unless its tar was written.
 
+- 11 Nov 19:25. Production tasks started: 3545841_0 (set A, node t0013, 19:24:40), _1 (setB_s0, t0010, Slurm id
+  3545862, 19:25:40), _2 (t0019), _3 (t0010), _4 (t0013, 19:31). Set A encoding at batch 16: 3.04 s per image.
+- 11 Nov 19:28. Lead: independent pre-run review in (`experiments/reviews/PRERUN_DG1_20261111.md`, GO WITH FIXES;
+  production stays). Reviewer's CPU checks copied to `/mnt/t7/smad_next/DG1/review_checks/` (`pair_input_stats.json`,
+  `inputs_vs_renders.png`, `find_twoface.py`). Instructions: (1) reading registration before the validity table on
+  production images; (2) add-on array approved (about 4 A100-hours), register first; (3) manifest columns for person
+  use and cue flags; (4) record corrections; (5) container image for new jobs where packages allow.
+- 11 Nov 19:45. `prereg.md` amendment 1 (reading registration), amendment 2 (add-on) and a deviations section written
+  (no production image read yet).
+- 11 Nov 19:30–19:31. Add-on code: `src/DG1/dg1_addon.py` (modes rec / mix / noise / sem / fresh; codes and fresh draws
+  saved; θ checked before rendering; outputs always written), `src/DG1/dg1_addon_lists.py`, `dg1_addon_task.sh` (tar
+  always written, then the generator's exit code), `dg1_addon.sbatch` (array 0–7, `-C memfs`, 64G, existing DG1
+  environment), `dg1_addon_pack.sh`. Lists: `.venv-spark/bin/python -I src/DG1/dg1_addon_lists.py --pool
+  .../AR1/pool.csv --pn1-split .../PN1_protocol-network-first-tests/split/ladder_split.csv --prod-jobs
+  /mnt/t7/smad_next/DG1/jobs --pool-a256 /mnt/t7/smad_next/DG1/pool_a256 --out /mnt/t7/smad_next/DG1/addon_jobs`:
+  8 shards of 67 hosts, 1,106–1,226 jobs and 201–203 encodes each; 536 per host pool, 255 dose hosts (191 test-read
+  ∪ 100 production dose hosts, 36 in both) × 8 dose renders; totals 7,400 renders at 20 steps, 2,144 at 100 steps,
+  about 1,616 encodes; summary `/mnt/t7/smad_next/DG1/addon_jobs/addon_lists_summary.json`.
+- 11 Nov 19:31. DGX 8-image check of the add-on: first attempt died with CUDA out-of-memory at model load (shared
+  GB10, about 40 GB in use by 19 processes; log `/mnt/t7/smad_next/DG1/dgx_test/addon_test8_attempt0_oom.log`);
+  restarted with up to 6 attempts 60 s apart (`src/DG1/dg1_addon_dgx_test.sh`).
+
+- 11 Nov 19:33–19:36. **Slow node:** production tasks 3545841_1 (setB_s0) and _3 (setB_s2) both landed on node t0010 and
+  encoded at 18.8 and 18.4 s per image (first batch of 16: 300 s and 294 s), against 3.0–3.1 s on t0013 and t0019; at
+  that speed they would exceed the 1:30 limit. Both cancelled at about 10 min (my own jobs) and resubmitted as
+  **array 3545877** (`sbatch --parsable --array=1,3 --exclude=t0010 --time=01:30:00 packs/DG1/dg1_prod.sbatch`;
+  logs `DG1-prod-3545877_1.out`, `_3.out`). t0010 had 124 of 128 CPUs allocated; cause of the slowness not
+  identified (cgroup gives our job its 8 cores). Future DG1 jobs exclude t0010.
+
 ## 3. Data
 
 Inputs (all read-only, nothing moved):

@@ -3,7 +3,7 @@
 # M3L command line of AD4's run.sh, unchanged) on one SM1 arm and seed, then scores on AD4's evaluation manifest and on
 # the AR1 ladder manifest. Inputs on Athena: packs/AD4/ad4_pack.tar (code, CLIP weights, evaluation frames),
 # packs/SM1/sm1gpu_img_{base,armsc,arme,test,audit}.tar (the SM1 images, extracted under data/x/), packs/SM1/
-# sm1lora_manifests.tar (train_sm1<arm>_s<seed>.csv, sm1_ar1_eval.csv). All work in $W (RAM disk), one result tar.
+# sm1lora_manifests_v2.tar (train_sm1<arm>_s<seed>.csv, sm1_ar1_eval.csv). All work in $W (RAM disk), one result tar.
 #   TASK=SM1L_c_s401 ARM=c SEED=401 W=... G=... PY=... [STEPS=6250] [LIMIT=0] bash lora_run.sh
 set -euo pipefail
 : "${TASK:?}" "${ARM:?}" "${SEED:?}" "${W:?}" "${G:?}" "${PY:?}"
@@ -21,12 +21,15 @@ tar -C "$W" -xf "$G/packs/AD4/ad4_pack.tar"
 (cd "$W/ad4" && sha256sum -c --quiet SHA256SUMS) || die "ad4 pack content"
 rm -rf "$W/ad4/data/train"                                  # not used by SM1 (frees RAM disk)
 mkdir -p "$W/data/x" "$W/data/manifests"
-for s in base armsc arme test audit; do
+SETS="base armsc arme test audit"
+[ "$ARM" = f ] && SETS="$SETS armf"                                 # A10: the JPEG copies of arm (f)
+[ -f "$G/packs/SM1/sm1gpu_img_jpegeval.tar.sha256" ] && SETS="$SETS jpegeval"   # A10: FRLL genuine JPEG frames
+for s in $SETS; do
   (cd "$G/packs/SM1" && sha256sum -c --quiet "sm1gpu_img_$s.tar.sha256") || die "sm1gpu_img_$s sha256"
   tar -C "$W/data/x" -xf "$G/packs/SM1/sm1gpu_img_$s.tar"
 done
-(cd "$G/packs/SM1" && sha256sum -c --quiet sm1lora_manifests.tar.sha256) || die "manifests sha256"
-tar -C "$W/data/manifests" -xf "$G/packs/SM1/sm1lora_manifests.tar"
+(cd "$G/packs/SM1" && sha256sum -c --quiet sm1lora_manifests_v2.tar.sha256) || die "manifests sha256"
+tar -C "$W/data/manifests" -xf "$G/packs/SM1/sm1lora_manifests_v2.tar"
 ln -s "$W/ad4/data/eval" "$W/data/eval"
 for f in "$W"/ad4/data/manifests/ad4_eval.csv; do ln -s "$f" "$W/data/manifests/"; done
 cp "$W/data/manifests/train_sm1${ARM}_s${SEED}.csv" "$W/data/manifests/train.csv"
@@ -49,6 +52,10 @@ py "$W/ad4/src/ad4_score.py" --run "$RUN" --code "$W/ad4/code" --eval-manifest a
   --true-manifest train.csv --out "$R/ad4eval" --workers "$WORKERS" --limit "$LIMIT"
 py "$W/ad4/src/ad4_score.py" --run "$RUN" --code "$W/ad4/code" --eval-manifest sm1_ar1_eval.csv \
   --train-manifest train_head8.csv --true-manifest train_head8.csv --out "$R/ar1eval" --workers "$WORKERS" --limit "$LIMIT"
+if [ -f "$W/data/manifests/sm1_jpeg_eval.csv" ] && [[ " $SETS " == *" jpegeval "* ]]; then
+  py "$W/ad4/src/ad4_score.py" --run "$RUN" --code "$W/ad4/code" --eval-manifest sm1_jpeg_eval.csv \
+    --train-manifest train_head8.csv --true-manifest train_head8.csv --out "$R/jpegeval" --workers "$WORKERS" --limit "$LIMIT"
+fi
 cp "$RUN/meta.json" "$W/train.log" "$R/"
 echo "task $TASK arm $ARM seed $SEED steps $STEPS limit $LIMIT wall_s $((SECONDS - T0)) host $(hostname)" > "$R/task_info.txt"
 tar -C "$W/res" -cf "$W/$TASK.tar" "$TASK"

@@ -1,0 +1,33 @@
+detector,platform,threshold,arm,n,flagged,flagged_pt,ties_at_threshold,mordiff_label,src
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t5,E,204,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t_eer,E,204,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t5,D20,204,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t_eer,D20,204,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t5,D,204,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t_eer,D,204,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t5,C20,102,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t_eer,C20,102,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t5,C,102,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t_eer,C,102,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t5,B20,200,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t_eer,B20,200,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t5,B,200,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t_eer,B,200,"99.5 [97.9, 100.0]",99.5,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t5,A,200,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),"existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)",t_eer,A,200,"100.0 [100.0, 100.0]",100.0,0,no published number,SelfMAD crop of our aligned frames (A43 own)
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t5,E,204,"100.0 [100.0, 100.0]",100.0,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t_eer,E,204,"99.5 [98.5, 100.0]",99.51,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t5,D20,204,"100.0 [100.0, 100.0]",100.0,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t_eer,D20,204,"100.0 [99.0, 100.0]",100.0,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t5,D,204,"100.0 [100.0, 100.0]",100.0,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t_eer,D,204,"99.5 [97.5, 100.0]",99.51,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t5,C20,102,"100.0 [100.0, 100.0]",100.0,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t_eer,C20,102,"99.0 [95.1, 100.0]",99.02,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t5,C,102,"100.0 [98.0, 100.0]",100.0,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t_eer,C,102,"96.1 [91.2, 100.0]",96.08,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t5,B20,200,"100.0 [100.0, 100.0]",100.0,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t_eer,B20,200,"99.5 [97.2, 100.0]",99.5,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t5,B,200,"99.5 [96.8, 100.0]",99.5,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t_eer,B,200,"91.0 [82.9, 99.4]",91.0,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t5,A,200,"100.0 [100.0, 100.0]",100.0,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"
+SelfMAD release (HRNet-W18),DGX (RS1 own scoring),t_eer,A,200,"98.5 [95.5, 100.0]",98.5,0,no published number,"SelfMAD own crop of the raw / stored / dataset files (RS1, DGX)"

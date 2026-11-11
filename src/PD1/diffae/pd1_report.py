@@ -25,8 +25,11 @@ def ci(c):
 def wcsv(name, rows):
     if not rows:
         return
+    keys = []
+    for r in rows:
+        keys += [k for k in r if k not in keys]
     with open(K.OUT / name, "w", newline="") as f:
-        w = csv.DictWriter(f, list(rows[0].keys()))
+        w = csv.DictWriter(f, keys, restval="")
         w.writeheader()
         w.writerows(rows)
 

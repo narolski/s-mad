@@ -18,9 +18,11 @@
 set -eo pipefail
 module load Python/3.10.4
 set -u
-source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code/src/AD5/athena/ad5_common.sh
+source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code_v3/src/AD5/athena/ad5_common.sh
 hostname; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; date
-C=$PK/code; SRC=$C/build/selfmad_src; RUN=$C/src/AD5/checks/run_with_site.py
+C=$PK/code_v3; SRC=$C/build/selfmad_src; RUN=$C/src/AD5/checks/run_with_site.py
+# v3: the first build (job 3544218) lacked efficientnet-pytorch; rebuild once if the marker predates the fix
+if [ -f $EN/selfmad/AD5_ENV_OK ] && ! $EN/selfmad/bin/python -I -c "import efficientnet_pytorch" 2>/dev/null; then rm -f $EN/selfmad/AD5_ENV_OK; fi
 build_env selfmad $C/src/AD5/env/selfmad_requirements.txt $PK/wheels_selfmad.tar
 PY=$EN/selfmad/bin/python
 export HF_HUB_CACHE=$C/hf_cache

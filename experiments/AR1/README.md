@@ -258,6 +258,7 @@ Finish scoring (MixFaceNet, ViT-L/14, blanked variants, R2wm extra rows, retrain
 
 | Process | PID | Log | Expected end | If it fails |
 |---|---|---|---|---|
+| NOTE 20:45: rows below superseded by `run_master.sh` (log `run_master.log`) and `run_cpu.sh` (log `run_cpu.log`) | | | | rerun the same scripts; finished files are skipped |
 | chain A `run_rel.sh` (MixFaceNet, ViT-L/14 main, then bg/face, then a46check) | 2086549 | `/mnt/t7/smad_next/AR1/run_rel.log` | several hours (shared GPU) | rerun `bash src/AR1/run_rel.sh >> run_rel.log`; finished files are skipped |
 | chain C `run_extra.sh` (R2wm rows: crop, rel, own, nets) | 2086237 | `run_extra.log` | after chains A and B (waits for REL_DONE and OWN_NETS_DONE) | rerun the same way |
 | chain B `run_own_nets.sh` | stopped (parent killed by me at about 17:40 to free the GPU; M3 s1-s3 done, SelfMAD main / bg / face done) | `run_own_nets.log` | restart after chain A: `nohup bash src/AR1/run_own_nets.sh >> run_own_nets.log &` | - |
@@ -293,6 +294,16 @@ $P -I $S/baselines.py --only R2w4; $P -I $S/analyse.py; $P -I $S/tables.py; $P -
 ```
 
 ## Log of README updates
+- 11 Nov about 20:45 CET: lead's load note (load average 189): my baselines.py (950% CPU) and gate_c.py (540%) were
+  thread-oversubscribed. Both killed; reviewers' note (PLANNING_RECORD section 15 item 7) confirmed a real leak: folds
+  by host only put morph(H_p, S_q) and twin(H_q, S_q), which share the photo S_q, on opposite sides of a fold. New
+  `src/AR1/folds.py`: strict person folds, units = cycles of the host -> B assignment (largest primary cycle 163 of 536
+  persons; folds 163/93/94/94/92; FRLL 46/17/13/14/12), bridge pairs tested only when both persons share the test fold.
+  Leaky outputs kept aside, not used: `/mnt/t7/smad_next/AR1/gate_c_leaky_v1.json`, `baselines_leaky_v2.json`,
+  `scores/baselines_oof_leaky_v2.npz` (and the older `baselines_v1.json`, `baselines_oof_v1.npz`). G-c and baselines
+  rerun as one sequential process with OMP/OPENBLAS/MKL/NUMEXPR threads = 2 and nice 10 (`run_cpu.sh`, log
+  `run_cpu.log`). All chains replaced by `run_master.sh` (same caps; two lanes; waits until the uncapped in-flight
+  score.py runs end). `pkill -f <pattern>` killed my own shell twice more (exit 144); use PIDs only.
 - 11 Nov about 20:00 CET: R2w4, amendments 4-6, warp check, chain D, extra baselines.
 - 11 Nov about 18:00 CET: first version.
 - 11 Nov about 19:00 CET: person split table and the 8 validation-reserved hosts (section 3); training rule (section 8);

@@ -12,7 +12,7 @@ DiffAE morphs above one-photo DiffAE reconstructions without ranking reconstruct
 the fully adapted MADation release loses this. Trigger: the released MADation "FE" ViT-L/14 (frozen CLIP + trained
 linear head) gives B vs D 0.852 on the A43 MorDIFF material, unlike every adapted release.
 
-Status 11 Nov 18:31 CET: **running** (P3 waits for SMDD features). Done so far:
+Status 11 Nov 19:29 CET: **running** (P3 waits for SMDD features). Done so far:
 - P1 (re-read of existing release scores): the six reviewer-preview AUCs reproduce to three decimals.
 - P2 (probe = gate G-c): a cross-validated logistic probe on frozen features separates every A43 contrast
   (B20 vs D20, B vs D, C20 vs D20, B20 vs C20) at AUC 0.945–1.000 on all four feature sets (CLIP with MADation
@@ -70,6 +70,7 @@ All times CET, 11 Nov 2026.
   restarted as two contiguous halves in parallel (`run_feats4.sh`, new `--part k/n` and `--workers` options in
   `fz1_feats.py`, merge by `merge_parts.py` with an id-order check against `train.csv`). 6 CPU processes,
   about 4.6 GB GPU memory in total. Smoke of the part path ok 18:27; both halves running from 18:28.
+- 19:29 Both halves at batch 190 of 313 (13–25 s per batch, varying with the load); expected end about 20:00.
 
 ## 3. Data
 

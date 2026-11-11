@@ -26,7 +26,7 @@ import sm1_common as K  # noqa: E402
 
 FL = K.OUT / "flists"
 SRC = {"a": "arma", "a256": "arma", "b": "armb", "bp": "armbp", "c": "armc", "cr": "armcr", "d": "armc",
-       "dplus": "armc", "d50": "armd50", "d500": "armd500", "e": "armc"}
+       "dplus": "armc", "d50": "armd50", "d500": "armd500", "e": "armc", "f": "armc"}
 ARMS = tuple(SRC)
 
 
@@ -34,7 +34,18 @@ def ids(name):
     return [r["id"] for r in csv.DictReader(open(FL / f"{name}.csv"))]
 
 
+def jpeg_map():
+    """A10: image id -> id of its JPEG copy (fixed assignment of jpeg_arm.py)."""
+    return {r["id"]: r["id"] + ("_J90" if r["op"] == "jpeg90" else "_J70")
+            for r in csv.DictReader(open(K.OUT / "lists/jpeg_assign.csv"))}
+
+
 def compose(arm, seed, smoke=False):
+    if arm == "f":                          # A10: arm (e) with every assigned image replaced by its JPEG copy
+        c = compose("e", seed, smoke)
+        jm = jpeg_map()
+        return dict(arm="f", seed=seed, genuine=[jm.get(i, i) for i in c["genuine"]],
+                    morph=[jm.get(i, i) for i in c["morph"]])
     rng = np.random.default_rng(seed)
     bf = ids("train_bf")
     if smoke:

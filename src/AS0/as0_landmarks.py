@@ -97,6 +97,7 @@ def main():
     ap.add_argument("--threads", type=int, default=2)
     ap.add_argument("--chunk", type=int, default=128)
     ap.add_argument("--merge", action="store_true")
+    ap.add_argument("--reverse", action="store_true", help="process chunks from the last one (second worker on a set)")
     a = ap.parse_args()
     (K.OUT / "lm").mkdir(parents=True, exist_ok=True)
     if a.merge:
@@ -107,7 +108,8 @@ def main():
         rows = [r for r in items if r["set"] == s]
         if a.limit:
             rows = rows[: a.limit]
-        for k in range(0, len(rows), a.chunk):
+        ks = list(range(0, len(rows), a.chunk))
+        for k in (ks[::-1] if a.reverse else ks):
             part = K.OUT / "lm" / (f"smoke_{s}_{k:05d}.npz" if a.limit else f"part_{s}_{k:05d}.npz")
             if part.exists():
                 continue

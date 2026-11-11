@@ -57,7 +57,7 @@ def main():
     ap.add_argument("--only", default="", help="compute only contrasts containing this rung and merge into the outputs")
     ap.add_argument("--feats", default="", help="comma list of baselines to compute (default all); merged into outputs")
     a = ap.parse_args()
-    from gate_c import oof
+    from gate_c import oof_persons
     man = {r["id"]: r for r in csv.DictReader(open(K.OUT / "manifest.csv"))}
     bl = {r["id"]: r for r in csv.DictReader(open(K.OUT / "blank/blank_manifest.csv"))}
     todo = [(i, r["path"], bl[i]["bg_path"] if i in bl else "", bl[i]["face_path"] if i in bl else "")
@@ -89,8 +89,15 @@ def main():
                     if (a.feats and b not in a.feats.split(",")) or b not in F[rr[0]["id"]]:
                         continue
                     X = np.stack([F[r["id"]][b] for r in rr])
-                    s = X[:, 0] if b in ("bytes", "lapvar") else (oof(X, y, g) if np.ptp(X) > 0 else np.zeros(len(y)))
-                    au, c = stats.wauc_ci(D, s[y == 1], P, s[y == 0], N)
+                    if b in ("bytes", "lapvar"):
+                        s = X[:, 0].astype(float)
+                    elif np.ptp(X) > 0:
+                        s, _ = oof_persons(X, y, [(r["p1"], r["p2"]) for r in rr])
+                    else:
+                        s = np.zeros(len(y))
+                    ok = np.isfinite(s)
+                    au, c = stats.wauc_ci(D, s[ok & (y == 1)], [p_ for p_, k in zip(P, ok[len(rows[neg]):]) if k],
+                                          s[ok & (y == 0)], [p_ for p_, k in zip(N, ok[:len(rows[neg])]) if k])
                     key = f"{pool}|{tool}|{pos}vs{neg}|{b}"
                     oofs[key + "|id"] = np.array([r["id"] for r in rr])
                     oofs[key + "|score"] = s.astype(np.float32)

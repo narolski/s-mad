@@ -49,6 +49,10 @@ for ch in ("R", "G", "B", "RGB"):
     md.append(table("L", "pooled", ch=ch, contrasts=["K1 R4 vs R3"], bands=B5[:-1], title=f"K1, channel {ch}"))
 md.append(table("L", "pooled", flip="F1", contrasts=["K1 R4 vs R3"], bands=B5[:-1], title="K1, landmark-midline flip F1"))
 md.append(table("L-confound", None, title="K1 under confound controls (Y, F0)", bands=B5[:-1]))
+cov = [r for r in rows if r["subset"].startswith("covariate alone")]
+md += ["\n**Covariates alone on K1 (score = minus the covariate; AUC = P(R4 lower))**\n", "| covariate | AUC [CI] |", "|---|---|"]
+md += [f"| {r['channel']} | {f(r)} |" for r in cov]
+md.append(table("L-blank", None, title="Blank sensitivity run (outside the mask = mean face colour; host subsample)", bands=B5[:-1]))
 md.append(table("R8", None, title="Same-session and cross-session same-person landmark morphs (R8)"))
 md.append(table("G", "all", title="GAN latent blocks (Y, F0)"))
 md.append(table("G", "all", flip="F1", title="GAN latent blocks (Y, F1)", bands=B5[:-1]))
@@ -84,13 +88,13 @@ for r in d:
               + " / ".join(f"{float(r[f'auc_m{m:02d}_vs_m00']):.3f}" for m in (10, 20, 30, 40, 50)) + " |")
 s = list(csv.DictReader(open(R / "shares.csv")))
 md += ["\n**Paired ratios per host (median exp(L_rung - L_R2w)) and person-specific share pi = 2 x R3 ratio - 1**\n",
-       "| subset | band | n | R3/R2w [CI] | pi_L [CI] | E_A ratio R3/R2w, pi_A | E_S ratio R3/R2w | R4/R2w [CI] (pred 0.5) | R3m/R2w [CI] | geometry share (R2wm) |",
+       "| subset | band | n | R3/R2w [CI] | pi_L [CI] | E_A ratio R3/R2w, pi_A | E_S ratio R3/R2w | R4/R2w [CI] (pred 0.5) | R3m/R2w [CI] | geometry share log / energy (R2wm) |",
        "|---|---|---|---|---|---|---|---|---|---|"]
 for r in s:
     md.append(f"| {r['subset']} | {r['band']} | {r['n_hosts_x_tools']} | {r['med_ratio_R3_over_R2w']} {r['ci_R3']} | "
               f"{r['person_share_pi']} {r['ci_pi']} | {r['med_EA_ratio_R3_over_R2w']}, {r['person_share_pi_A']} | "
               f"{r['med_ES_ratio_R3_over_R2w']} | {r['med_ratio_R4_over_R2w']} {r['ci_R4']} | "
-              f"{r['med_ratio_R3m_over_R2w']} {r['ci_R3m']} | {r['geometry_share_R2wm']} |")
+              f"{r['med_ratio_R3m_over_R2w']} {r['ci_R3m']} | {r['geometry_share_R2wm']} / {r.get('geometry_share_energy_R2wm', '')} |")
 v = json.load(open(R / "verdict.json"))
 md += ["\n**Registered verdict**\n", f"verdict: **{v['verdict']}**; passing bands: {v['passing_bands']}", "",
        "| band | K1 AUC [CI] | history d [CI] (below cut-off) | R3m/R2w | K5 AUC | collapse | passes |", "|---|---|---|---|---|---|---|"]

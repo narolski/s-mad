@@ -30,12 +30,12 @@ GAN3 = ("frllm:stylegan", "mad22:MIPGAN_I", "mad22:MIPGAN_II")
 STEPS = (("a", "b", "tool"), ("b", "bp", "partner balance"), ("bp", "cr", "source pool + shared identities"),
          ("cr", "c", "pair similarity (look-alike)"), ("c", "d", "halves as genuine"), ("a", "a256", "size cue"),
          ("c", "dplus", "halves added (unequal count)"), ("d", "e", "history crossing"),
-         ("b", "d50", "dose K 5 -> 50"), ("b", "d500", "dose K 5 -> 500"), ("b", "bp", "dose K 5 -> all (b')"))
+         ("e", "f", "JPEG copies added"), ("b", "d50", "dose K 5 -> 50"), ("b", "d500", "dose K 5 -> 500"), ("b", "bp", "dose K 5 -> all (b')"))
 
 
 def meta():
     rows = []
-    for t in ("test_eval", "test_mad22", "test_ar1", "test_ar1h"):
+    for t in ("test_eval", "test_mad22", "test_ar1", "test_ar1h", "test_eval_jpeg"):
         p = K.OUT / "flists" / f"{t}.csv"
         if p.exists():
             rows += list(csv.DictReader(open(p)))
@@ -109,7 +109,7 @@ def one(R, z):
     # ---- AR1 ladder, flag rates
     g = lambda pool, tool, rung, lab="0": R.sel(f"ar1:{pool}:{tool}:{rung}", lab, "")  # noqa: E731
     r0, r4 = g("frgcferet", "none", "R0"), g("frgcferet", "opencv", "R4", "1")
-    if len(r0) and len(r4):
+    if len(r0) and len(r4):  # noqa
         _, t_ar1 = S.eer_unit(z[r0], z[r4])
         t5 = float(np.quantile(z[r0], 0.95))
         halves = np.concatenate([g("frgcferet", "opencv", "HA"), g("frgcferet", "opencv", "HB")])
@@ -140,6 +140,36 @@ def one(R, z):
             m["auc:frgcferet:halves_vs_R0"] = (float(S.wauc(z[halves], z[r0], np.ones((1, len(halves))),
                                                             np.ones((1, len(r0))))[0]),
                                                S.wauc(z[halves], z[r0], R.w(halves, True), R.w(r0, True)))
+    # ---- A10: FRLL genuine photos under JPEG (existing evaluation files), with the miss rate at the same threshold
+    jthr = {"own_rule": 0.0}
+    if len(r0):
+        jthr["dev_r0_5pct"] = float(np.quantile(z[r0], 0.95))
+    for tn, t in jthr.items():
+        for q in ("jpeg90", "jpeg70", "jpeg50"):
+            ix = R.sel(f"frllm:bona_{q}", "0", q)
+            if len(ix):
+                f = (z[ix] >= t).astype(float)
+                W = R.w(ix)
+                m[f"jflag:{tn}:{q}"] = (float(f.mean()), (W * f).sum(1) / np.maximum(W.sum(1), 1e-12))
+        ix = R.sel("frllm:bona", "0", "native")
+        if len(ix):
+            f = (z[ix] >= t).astype(float)
+            W = R.w(ix)
+            m[f"jflag:{tn}:native"] = (float(f.mean()), (W * f).sum(1) / np.maximum(W.sum(1), 1e-12))
+        pooled = []
+        for fam in FRLLM:
+            ix = R.sel(f"frllm:{fam}", "1", "morph")
+            if len(ix):
+                f = (z[ix] < t).astype(float)
+                W = R.w(ix)
+                m[f"jmiss:{tn}:{fam}"] = (float(f.mean()), (W * f).sum(1) / np.maximum(W.sum(1), 1e-12))
+                if fam != "stylegan":
+                    pooled.append(ix)
+        if pooled:
+            ix = np.concatenate(pooled)
+            f = (z[ix] < t).astype(float)
+            W = R.w(ix)
+            m[f"jmiss:{tn}:landmark4"] = (float(f.mean()), (W * f).sum(1) / np.maximum(W.sum(1), 1e-12))
     # ---- neutral above smiling, within person
     for cell in ("frllm:bona", "mad22:bona"):
         ix = R.sel(cell, "0", "native")
@@ -179,7 +209,7 @@ def diff(A, B, k):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--smoke", action="store_true")
-    ap.add_argument("--arms", default="a,b,bp,c,cr,d,e,d50,d500,a256,dplus")
+    ap.add_argument("--arms", default="a,b,bp,c,cr,d,e,f,d50,d500,a256,dplus")
     ap.add_argument("--seeds", default="401,402,403,404,405")
     ap.add_argument("--boot", action="store_true")
     ap.add_argument("--B", type=int, default=2000)
@@ -189,9 +219,17 @@ def main():
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
     rows = meta()
+    hd = pathlib.Path(a.dir) if a.dir else K.OUT / ("heads/smoke" if a.smoke else "heads")
+    first = next((hd / f"{arm}_s{s}.npz" for arm in a.arms.split(",") for s in a.seeds.split(",")
+                  if (hd / f"{arm}_s{s}.npz").exists()), None)
+    if first is not None:                  # lists not scored by this score set (e.g. JPEG frames before A10 features)
+        have = {str(i) for i in np.load(first, allow_pickle=False)["id"]}
+        drop = sorted({r["cell"] for r in rows if r["id"] not in have})
+        rows = [r for r in rows if r["id"] in have]
+        if drop:
+            print("cells without scores, left out:", drop, flush=True)
     R = Reader(rows, a.B)
     pos = {r["id"]: i for i, r in enumerate(rows)}
-    hd = pathlib.Path(a.dir) if a.dir else K.OUT / ("heads/smoke" if a.smoke else "heads")
     res, seeds_csv, raw = {}, [], {}
     sets = [(arm, s) for arm in a.arms.split(",") for s in a.seeds.split(",")]
     for arm, s in sets + [("feref", None)]:
@@ -216,7 +254,9 @@ def main():
             "flag:ar1eer:r2w_opencv", "flag:ar1eer:r2w_facemorpher", "flag:r0_5pct:halves", "flag:r0_5pct:r2w_opencv",
             "flag:r0_5pct:r2w_facemorpher", "auc:frgcferet:opencv:R4_vs_R2w", "auc:frgcferet:facemorpher:R4_vs_R2w",
             "auc:frgcferet:opencv:R4_vs_R0", "auc:frgcferet:halves_vs_R0", "neutral_above_smiling:frllm:bona",
-            "neutral_above_smiling:mad22:bona")
+            "neutral_above_smiling:mad22:bona", "jflag:own_rule:jpeg50", "jflag:own_rule:jpeg70",
+            "jflag:dev_r0_5pct:jpeg50", "jflag:dev_r0_5pct:jpeg70", "jmiss:own_rule:landmark4",
+            "jmiss:dev_r0_5pct:landmark4")
     for x, y, what in STEPS:
         if x in raw and y in raw:
             steps[f"{x}->{y}"] = dict(what=what, **{k: diff(raw[x], raw[y], k) for k in keys})

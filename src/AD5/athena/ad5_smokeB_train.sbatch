@@ -17,9 +17,9 @@
 set -eo pipefail
 module load Python/3.10.4
 set -u
-source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code/src/AD5/athena/ad5_common.sh
+source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code_v2/src/AD5/athena/ad5_common.sh
 hostname; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; date
-C=$PK/code; PY=$EN/madation/bin/python
+C=$PK/code_v2; PY=$EN/madation/bin/python
 [ -f $EN/madation/AD5_ENV_OK ] || { echo "env missing: run smoke A first"; exit 1; }
 S=$SCRATCH_LOCAL/ad5B; mkdir -p $S
 untar_checked $PK/smdd_train_cropped.tar $S/crop

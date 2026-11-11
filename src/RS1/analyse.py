@@ -10,6 +10,7 @@ bootstrap), a36_read.wauc, analyze.eer / eer_weighted. Thresholds per replicate 
 prereg.md).
 """
 import argparse
+import collections
 import csv
 import json
 import pathlib
@@ -126,14 +127,19 @@ def rel_pools(det, man, smoke):
             for s, L in by.items()}
 
 
+EXPECTED = {}
 ATH_RUN = None                                          # set in main(): the unpacked production result folder
 
 
-def athena_pools(det, a46_crops=False):
+VARIANT = "v1"                                          # amendment 4: v1 = SMDD script unchanged, v2 = corrected PNG
+
+
+def athena_pools(det, a46_crops=False, variant=None):
     """Athena scores. Primary (amendment 3): every image cropped on Athena (the raw files behind the A46 crops under ids
     xr_<A46 id>); the reused A46 crops (GB10) are skipped. a46_crops=True: the crop-platform check, the A46 crops in
     place of their Athena re-crops."""
-    f = ATH / ATH_RUN / "scores" / f"scores_rel_{det}__athena.npz" if ATH_RUN else pathlib.Path("/nonexistent")
+    variant = variant or VARIANT
+    f = ATH / ATH_RUN / "scores" / f"scores_rel_{det}__{variant}.npz" if ATH_RUN else pathlib.Path("/nonexistent")
     if not f.exists():
         return None
     man = {r["id"]: r for r in csv.DictReader(open(ATH / "athena_manifest.csv"))}
@@ -145,7 +151,8 @@ def athena_pools(det, a46_crops=False):
         if r["origin"] == "check" or (r["origin"] == "a46") != a46_crops and (r["origin"] == "a46" or i.startswith("xr_")):
             continue
         by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"], r["photo"]))
-    return {s_: Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], "own crop (Athena)", "logit",
+    lab = {"v1": "SMDD crop script unchanged (Athena)", "v2": "corrected crop, PNG (Athena)"}[variant]
+    return {s_: Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], lab, "logit",
                      [v[3] for v in L]) for s_, L in by.items()}
 
 
@@ -463,6 +470,11 @@ def main():
     global ATH_RUN
     ATH_RUN = a.athena
     man = manifest()
+    global EXPECTED
+    EXPECTED = collections.Counter(r["set"] for r in man.values())
+    if (ATH / "athena_manifest.csv").exists():
+        EXPECTED = collections.Counter(r["set"] for r in csv.DictReader(open(ATH / "athena_manifest.csv"))
+                                       if r["origin"] == "crop")
     allp = {p for r in man.values() for p in r["persons"].split("|")}
     pers = sorted(p for p in allp if p.isdigit())
     assert len(pers) == 102
@@ -476,15 +488,11 @@ def main():
             if p:
                 runs.append((d, "DGX", p))
     if not a.smoke:
-        for d in REL_ATH:
-            p = athena_pools(d)
-            if p:
-                runs.append((d, "Athena", p))
-        if a.crop_check:
+        for v, plat in (("v1", "Athena, SMDD crop script unchanged (primary)"), ("v2", "Athena, corrected crop PNG (secondary)")):
             for d in REL_ATH:
-                p = athena_pools(d, a46_crops=True)
+                p = athena_pools(d, variant=v)
                 if p:
-                    runs.append((d, "Athena scoring, A46 crops (GB10) for the raw files", p))
+                    runs.append((d, plat, p))
     if not a.skip_selfmad:
         runs.append(("selfmad", "existing files (WCSS: A41 x7 raw files, A32-RSX and A43 frames)", selfmad_pools(man)))
         p = selfmad_dgx(man)
@@ -502,7 +510,9 @@ def main():
             lab, pub, win = label(det, c, pt)
             alt = ALT_PUB.get((det, c))
             altlab = (LAB_OK if alt is not None and abs(pt - alt) <= max(1.5, 0.25 * alt) else LAB_NO) if alt else ""
-            out["reproduction"].append(dict(detector=NAME[det], platform=plat, cell=c, n_genuine=len(G.s),
+            out["reproduction"].append(dict(detector=NAME[det], platform=plat, cell=c,
+                                            n_genuine_expected=EXPECTED.get(gs), n_morph_expected=EXPECTED.get(ms),
+                                            n_genuine=len(G.s),
                                             n_morph=len(Mo.s), native_eer=round(pt, 3), lo=round(ci(rep)[0], 3),
                                             hi=round(ci(rep)[1], 3), published=pub,
                                             abs_diff=None if pub is None else round(abs(pt - pub), 3),
