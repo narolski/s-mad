@@ -204,8 +204,25 @@ def predict_mlp(net, x, mu, sd, dev):
         return net(xx).squeeze(-1).cpu().numpy()
 
 
+def cuda_ok(tries=10, wait=60):
+    """the shared GB10 refuses allocations when system RAM is short; retry, then fall back to the CPU."""
+    import torch
+    for t in range(tries):
+        try:
+            x = torch.zeros(1 << 26, device="cuda")
+            del x
+            torch.cuda.empty_cache()
+            return "cuda"
+        except Exception as e:  # noqa: BLE001
+            print(f"cuda not available now ({type(e).__name__}); retry {t + 1}/{tries} in {wait}s", flush=True)
+            time.sleep(wait)
+    return "cpu"
+
+
 def pooled_gpu(tok, n, dev, k=64):
     import torch
+    if dev == "cuda":
+        dev = cuda_ok()
     out = []
     with torch.no_grad():
         for s in range(0, n, k):
@@ -264,6 +281,8 @@ def main():
         sys.exit("run with python3 -I")
     import torch
     dev = a.device
+    if dev == "cuda":
+        dev = cuda_ok()
     if dev == "cpu":
         torch.set_num_threads(4)
     t0 = time.time()

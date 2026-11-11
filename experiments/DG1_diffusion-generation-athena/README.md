@@ -7,8 +7,9 @@ folder: `/net/pr2/projects/plgrid/plggrestoration/smad-next` (sub-folders `packs
 
 ## 1. Question and current answer
 
-11 Nov 2026, 17:35 CET. Status: **preparing; blocked on Athena accepting jobs** (Slurm rejects both grant accounts for
-`plgpnarolski`; the lead's watcher will report when an account is accepted; no submission and no probing until then).
+11 Nov 2026, 18:15 CET. Status: **ready to submit the smoke job; blocked on Athena accepting jobs** (Slurm rejects
+both grant accounts for `plgpnarolski`; the lead's watcher reports when an account is accepted; no submission and no
+probing until then). Pack, environment script, job files and job lists are on Athena; the 8-image check passed on the DGX.
 DiffAE (diffusion autoencoder) generation on the shared DGX runs at about 157 s per inversion while other jobs share the
 GPU, so the diffusion controls are incomplete: the identical-and-mirrored-inputs check (AD1b) covered 32 of 102
 persons, FRLL has no expression-matched one-person controls, and no diffusion twin set outside FRLL exists. This
@@ -68,6 +69,28 @@ here. No answer yet.
   <the six files> plgpnarolski@athena.cyfronet.pl:/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/DG1/`, exit
   0, 2,880,875,330 bytes in 82 s (35 MB/s). The pack's sha256 is checked again inside every job (`dg1_run_task.sh`),
   not on the login node.
+- 11 Nov 17:44–18:10. **DGX 8-image check passed** (`src/DG1/dg1_dgx_test.sh`, log `/mnt/t7/smad_next/DG1/dgx_test.log`,
+  outputs `/mnt/t7/smad_next/DG1/dgx_test/gen/smoke8/`, validity `/mnt/t7/smad_next/DG1/dgx_test/validity/`):
+  `dg1_gen.py` on `smoke8.csv` with the real command line; 8 encodes in one batch took 1,145 s (143 s per image on
+  the shared GB10); renders 17–18 s per 20-step image and 87 s per 100-step image (shared); all finite, min std 0.206;
+  genuine writes 2 of 2 pixel-identical to their inputs; repo check: git clean at the pinned commit and 70 of 70
+  manifest files equal. The DGX re-render of A43's reconstruction 001_03 (20 steps) differs from the stored A43 D20 file
+  by mean 0.024, max 1 grey level (same-machine reproducibility baseline). `dg1_validity.py manifest` ran on the 10
+  files (every face found; every two-person image verifies against both contributors at 0.239399; DOSE α 0.1 verifies
+  the host only, cosine 0.93 host / 0.18 partner). Contact sheet `/mnt/t7/smad_next/DG1/dgx_test/contact_sheet.png`
+  (rows: FRLL REC20, MIR100, CONF20, X100; pool REC20, SAME20, X20, DOSE10): images look as expected; the CONF mix
+  shows the known coloured spots of neutral+smiling DiffAE mixes.
+- 11 Nov 18:11. Plumbing test of `dg1_run_task.sh` on the DGX with a mock interpreter (fake `DG1_PY` that only makes
+  the output folder) and mock `G` / `SCRATCH_LOCAL` under `/mnt/t7/smad_next/DG1/mock_plumbing` (removed after): pack
+  sha OK, pack manifest OK, unpack 66 s, both job lists run, result tar + sha written and verified. The packed DiffAE
+  repo extracts clean (`git status --porcelain` empty, manifest OK). `bash -n` passes for every shell file.
+- 11 Nov 18:12. Fixes before any Athena job: (1) `dg1_run_task.sh` had `( sha256sum -c MANIFEST ) && echo ok`, which
+  under `set -e` would not stop on a manifest failure; split into two lines. (2) `dg1_env.sh` now builds the environment
+  only when `DG1_ENV_BUILD=1` (set in the smoke job only); production tasks exit 5 if the environment is missing, so
+  parallel array tasks can never run `venv --clear` on a shared environment. Re-uploaded the four small scripts (rsync
+  exit 0). Current sha256: `dg1_env.sh` 56a1a9a3…, `dg1_run_task.sh` 2e0b1f54…, `dg1_smoke.sbatch` 4f771aba…,
+  `dg1_prod.sbatch` d9e40507…. The pack itself is unchanged (`code/dg1_gen.py` in the pack = `src/DG1/dg1_gen.py`,
+  sha 21a6ecb7…).
 
 ## 3. Data
 
@@ -85,7 +108,20 @@ Inputs (all read-only, nothing moved):
 | DiffAE checkpoint | `.../checkpoints_download/ffhq256_autoenc/last.ckpt` | 2,722,085,968 bytes | 9bd2ba9e4c22afde8f18958026a4e8e625ef67d2c3ee76bb3aa72f3e67d3b9ca |
 | dlib landmark model (aligner) | `/mnt/t7/smad_heldout/a41_diffae/work/align_run/temp/shape_predictor_68_face_landmarks.dat` | — | fbdc2cb80eb9aa7a758672cbfdda32ba6300efe9b6e6c7a299ff7e736b11b92f |
 
-Sets to be produced: see `prereg.md` (set A: 1,016 files; set B: 4,688 files planned). None exists yet.
+Produced so far (DGX):
+
+| Item | Path | Items | Hash |
+|---|---|---|---|
+| Pool photos, byte-identical copies (aligner input) | `/mnt/t7/smad_next/DG1/pool_in/` | 1,072 | per-file sha checked against `AR1/src` |
+| Pool photos, DiffAE-aligned (256 px) | `/mnt/t7/smad_next/DG1/pool_a256/` | 1,072 (0 dropped) | list `/mnt/t7/smad_next/DG1/pool_a256.sha256` 77fc3fe8… |
+| DiffAE repo file manifest | `/mnt/t7/smad_next/DG1/repo_manifest.sha256` | 70 tracked files | fb5d24d3… |
+| Job lists | `/mnt/t7/smad_next/DG1/jobs/` (`eq`, `smoke8`, `setA`, `setB_s0..3`, `lists_summary.json`) | 8 / 10 / 914 / 908+904+896+908 jobs | see timeline 17:43 |
+| Athena pack | `/mnt/t7/smad_next/DG1/packs/dg1_pack.tar` (+ `.sha256`); copy on Athena `.../smad-next/packs/DG1/dg1_pack.tar` | 2,880,163,840 bytes | 670b55f19770811505ca00c2be1ea3681440f8190c4e79b4e1c2a68f211336c5 |
+| DGX 8-image check | `/mnt/t7/smad_next/DG1/dgx_test/` | 10 files + validity | `gen/smoke8/gen_rows.csv` |
+
+Planned sets: set A 914 files (102 genuine writes + 812 renders); set B 3,616 files (1,072 genuine writes + 2,544
+renders: REC / MIR / SAME / X 536 each at 20 steps, DOSE 4 × 100). An earlier line of this README said 4,688 for set B;
+that was an arithmetic slip, corrected at 18:16.
 
 ## 4. Code
 
@@ -138,16 +174,29 @@ None yet.
 
 ## 6. Checks
 
-Planned: the 8-image run of the real command line on the DGX; the equivalence gate on Athena (`prereg.md`); per-image
-finite and lossless checks in `dg1_gen.py`; sha256 of every result tar on copy-back.
+Done:
+- DGX 8-image check of the real command line (timeline 17:44–18:10): finite images, genuine writes lossless, repo and
+  checkpoint pinned, validity script runs end to end.
+- Same-machine reproducibility baseline: the DGX re-render of A43's D20 001_03 equals the stored file within mean 0.024,
+  max 1 grey level (A43's own gate g0: mean 0.014–0.021, max 1).
+- Pool alignment: 400 of 400 files shared with AD1b's alignment are byte-identical.
+- Plumbing test of the Athena task script with a mock interpreter; packed repo extracts clean.
+- A43 reference speeds on the unshared GB10: 13.07 s per 250-step inversion, 1.03 / 5.13 s per 20 / 100-step render
+  (`/mnt/t7/smad_heldout/a43/gen/gen_log.json`).
 
-Facts checked so far: A43 measured on the GB10 13.07 s per image for the 250-step inversion and 1.03 / 5.13 s per
-image for 20 / 100-step renders when the GPU was not shared (`/mnt/t7/smad_heldout/a43/gen/gen_log.json`); repeated
-runs of this path on the same GB10 differ by at most 1 grey level (A43 gate g0: mean 0.014–0.021).
+Planned: the equivalence gate on Athena (`prereg.md`); sha256 of every result tar on copy-back.
+
+Not verified: that `module load Python/3.12.3` and the pinned wheels install on an Athena compute node (first seen in the
+smoke job); that compute nodes reach download.pytorch.org and PyPI; that `git` exists on compute nodes (the per-file
+manifest check runs regardless).
 
 ## 7. Dead ends and failures
 
-None yet.
+- 17:31: `pkill -f "run_align_unchanged.py.*DG1/pool_in"` also matched the shell running it (its own command line
+  contains the pattern) and killed that shell (exit 144). It still stopped the one slow aligner process. Lesson: write
+  multi-step process control into a script file or use patterns that cannot match themselves.
+- 18:12: two shell-logic faults found by reading before any Athena job ran (manifest check that `set -e` would not stop
+  on; environment rebuild possible from parallel tasks). Fixed (timeline 18:12).
 
 ## 8. Observations and ideas
 
@@ -158,16 +207,38 @@ None yet.
 
 ## 9. Open items and next steps
 
-1. Write `dg1_lists.py`; align the 1,072 FRGC/colorFERET photos on the DGX CPU with the unchanged aligner.
-2. Run `dg1_gen.py` on 8 images on the DGX with its real command line.
-3. Build the pack (code, checkpoint, inputs, job lists) and upload it to `packs/DG1/` with the Athena lock.
-4. Write the Athena smoke and production job files with account `plgrestorearc-gpu-a100`.
-5. When the lead says an account is accepted: smoke job (≤ 1 GPU-hour), equivalence gate, estimate, production.
+1. Wait for the lead's message that an Athena account is accepted (no submission, no probing before).
+2. Submit the smoke job: `flock -w 120 /tmp/smadnext-athena.lock ssh -o BatchMode=yes plgpnarolski@athena.cyfronet.pl
+   'cd /net/pr2/projects/plgrid/plggrestoration/smad-next && sbatch --parsable packs/DG1/dg1_smoke.sbatch'`.
+3. Fetch its tar (`bash src/DG1/dg1_fetch.sh smoke_<jobid>`), run the equivalence gate
+   (`.venv-spark/bin/python -I src/DG1/dg1_validity.py equiv --gen /mnt/t7/smad_next/DG1/gen/smoke_<jobid>/out_smoke_<jobid>/eq
+   --ref /mnt/t7/smad_heldout/a43/gen --out experiments/DG1_diffusion-generation-athena/equivalence.json`), read the A100
+   speeds from `gen_log.json`, write the estimate into `result.md`.
+4. Submit production (`dg1_prod.sbatch`, array 0–4, `--time` from the estimate, at most 4 h), tell the lead when set A
+   exists, fetch, run `dg1_validity.py manifest` on set A, then on set B.
 
 ## 10. Handover state
 
-No process of this experiment is running. No Athena job submitted. Compute spent: 0 GPU-hours.
+18:16: no process of this experiment is running on the DGX; no Athena job submitted. Files staged on Athena:
+`/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/DG1/{dg1_pack.tar,dg1_pack.tar.sha256,dg1_env.sh,dg1_run_task.sh,dg1_smoke.sbatch,dg1_prod.sbatch}`.
+Compute spent: 0 Athena GPU-hours; DGX GB10 about 0.45 GPU-hours (8-image check, shared) plus CPU alignment.
 
 ## 11. Reproduce from scratch
 
-To be filled as the commands are fixed.
+```
+S=/home/narolski/smad-next/src/DG1; PY=/home/narolski/mambamorph-code/.venv-spark/bin/python
+python3 -I $S/dg1_lists.py poolin --pool /home/narolski/smad-next/experiments/AR1/pool.csv --out /mnt/t7/smad_next/DG1/pool_in
+mkdir -p /mnt/t7/smad_next/DG1/align_run/temp   # + shape_predictor_68_face_landmarks.dat(.bz2) from /mnt/t7/smad_heldout/a41_diffae/work/align_run/temp
+bash $S/dg1_align_parts.sh 4                    # wait until the 4 aligner processes end; expect 1,072 files in pool_a256
+$PY -I $S/dg1_lists.py lists --pool /home/narolski/smad-next/experiments/AR1/pool.csv --pool-a256 /mnt/t7/smad_next/DG1/pool_a256 \
+  --frll-a256 /mnt/t7/smad_heldout/a41_diffae/data/a41diffae/a256/png256 \
+  --a43-pairs /home/narolski/mambamorph-code-a43/smadcvpr/plans/A43/A43_pairs.csv \
+  --self-pairs /mnt/t7/smad_heldout/a41_diffae/data/provenance/self_pairs.csv --out /mnt/t7/smad_next/DG1/jobs
+bash $S/dg1_dgx_test.sh                         # 8-image check on the DGX
+bash $S/dg1_pack.sh                             # /mnt/t7/smad_next/DG1/packs/dg1_pack.tar
+# upload pack + dg1_env.sh dg1_run_task.sh dg1_smoke.sbatch dg1_prod.sbatch to Athena packs/DG1 (rsync under the lock)
+# Athena: sbatch packs/DG1/dg1_smoke.sbatch ; then sbatch --time=<est> packs/DG1/dg1_prod.sbatch
+bash $S/dg1_fetch.sh <TAG...>                   # copy back + sha256 + unpack into /mnt/t7/smad_next/DG1/gen/<TAG>
+$PY -I $S/dg1_validity.py equiv --gen <.../eq> --ref /mnt/t7/smad_heldout/a43/gen --out <json>
+$PY -I $S/dg1_validity.py manifest --gen-root /mnt/t7/smad_next/DG1/gen/<TAG> --pool /home/narolski/smad-next/experiments/AR1/pool.csv --out-dir <dir>
+```

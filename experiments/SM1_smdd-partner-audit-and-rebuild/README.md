@@ -50,6 +50,21 @@ detector score of this experiment has been read yet; landmark, build and feature
 - 17:35 contributor landmark stage restarted with 4 workers (it had been started with 2, then killed by a
   self-matching `grep`); pack c rebuilt with the A5 lists for the rented machine "leaseB" (lead's offer, 17:32).
 - 17:38 leaseB venv: Python 3.10.13, numpy 1.26.4, opencv-python-headless 4.11.0.86 (`/workspace/sm1/venv`).
+- 17:45 First DGX feature list finished: 14,120 FRLL evaluation frames in 4,201 s (3.4 images/s, CPU decode bound,
+  GPU 2.2 GB). Told the lead the full feature pass would take 15 to 19 h on the DGX.
+- 17:48 leaseB 8-pair check of task c: unchanged 78 command line vs wrapper max 0; leaseB vs DGX reference outputs
+  max 0 over 32 files (8 pairs x morph + halves, 8 c′ pairs). Full task c on leaseB (96 workers, nice 19):
+  15,000 (c) morphs + 30,000 halves in 112 s, 15,000 (c′) morphs in 99 s, 0 engine failures, halves average within
+  0.5 grey level; tar 6.75 GB fetched in 291 s, sha256 OK (`/mnt/t7/smad_next/SM1/lease/`).
+- 17:55 Lead's decision: (1) up to 6 extra DataLoader workers at nice 19 on the DGX for the feature and
+  release-scoring passes; (2) the ~190,000 training-image feature pass must not run on the DGX: a self-contained
+  x86 CUDA pack (AD4 environment) is prepared (`gpu_pack.py`, `feats_gpu.py`), run place decided by the lead at
+  19:15; (3) platform rule registered as amendment A7 (all rebuilt-arm head features from one GPU machine; DGX
+  features only for an equivalence check). DGX feature chain stopped after `test_eval` (kept for that check).
+- 17:58 T-A / T-B first start with all 7 releases in one process ran out of GPU memory (GB10 unified memory, about
+  20 GB free system-wide); restarted as three detector groups (`run_tab_multi.sh`, batch 32, 6 loader workers at
+  nice 19). The earlier unexplained CUDA error of the 8-image test was very likely the same out-of-memory condition.
+- 18:05 pack a (audit 9,520 pairs + AR1 halves 536 pairs, 0.49 GB, sha256 f48f125a…) built and sent to leaseB.
 
 ## 3. Data
 

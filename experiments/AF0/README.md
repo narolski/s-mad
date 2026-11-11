@@ -52,6 +52,19 @@ shift is 0.08 / 0.00. Full design, F3-F5, CN0, mirror, waves 2-4 are in progress
   waiting chains (heads, halves/softening, sanity); they were recreated as script files (`src/AF0/chain_*.sh`).
   A stale waiter whose `pgrep` pattern matched itself was found and killed (17:12).
 - 17:05 DINOv3 full heads (ridge, MLP x5, logistic) started on 4,000 training morphs + 569 photos.
+- 17:55 ghost.py finished: measured targets for 1,640 pairs (800 wave-1 + 840 further uniform-0.5 pairs), 3,120 halves
+  (`ghost_targets.npz` 48.8 MB, `halves.csv`). AR1 softened evaluation copies done (600 sources x 2 strengths,
+  `soft_ar1soft_src.csv`, list `ar1soft`).
+- 17:40 CN0 on CLIP ViT-L/14-224, image-level part (cue part waited for the cue statistics): see section 5.
+- 18:00 The DINOv3 full heads had run 45 min reading only ~1 GB: the time went into the per-image patch-mask
+  computation (prep) for af0_w2 under CPU starvation, not into reading. Fixes: exact block means for integer
+  footprints (`af0lib.patch_mean`, identical to the area matrix to 3e-16) and a pread-based token reader
+  (`af0lib.Tok`, 270 MB/s, equal to the memory map on test indices). Heads restarted (18:02).
+- 18:03 A second accidental `pkill -f` (pattern contained in my own command line) killed my shell and the restarted
+  heads; rule adopted: kill only by PID. Two of my own background wait loops matched the halves chain's
+  `pgrep -f "ghost.py --wave"` and blocked it for ~10 min; killed by PID (18:05).
+- 18:05 CN0 rerun inside `chain_clip224_full.sh` died with CUDA out of memory (system RAM); `heads.cuda_ok()` now
+  retries 10 x 60 s and then falls back to the CPU.
 
 Amendments / deviations so far (all reported in `result.md` when final): bench subsample (`bench_s`); wave 2 / 3 / 4
 at reduced scale (ghost targets and halves only for wave-1 pairs plus all uniform-0.5 pairs; softened copies only of

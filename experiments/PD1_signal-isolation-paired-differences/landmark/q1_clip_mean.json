@@ -1,0 +1,240 @@
+{
+ "opencv|pipeline": {
+  "engine": "opencv",
+  "step": "pipeline",
+  "a": "x0",
+  "b": "x1",
+  "share": 0.847,
+  "share_ci": [
+   0.8152985074626866,
+   0.8768656716417911
+  ],
+  "auc": 0.5478,
+  "auc_ci": [
+   0.5430006857039429,
+   0.5534501872633104
+  ],
+  "consistent": true
+ },
+ "opencv|mirror_mix": {
+  "engine": "opencv",
+  "step": "mirror_mix",
+  "a": "x1",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9927,
+  "auc_ci": [
+   0.989435721346625,
+   0.9953047553742482
+  ],
+  "consistent": true
+ },
+ "opencv|mirror_mix_matched": {
+  "engine": "opencv",
+  "step": "mirror_mix_matched",
+  "a": "x1m",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9927,
+  "auc_ci": [
+   0.9894599994430832,
+   0.9953532245488973
+  ],
+  "consistent": true
+ },
+ "opencv|same_person_mix": {
+  "engine": "opencv",
+  "step": "same_person_mix",
+  "a": "x1",
+  "b": "x2",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.906,
+  "auc_ci": [
+   0.8927954966306527,
+   0.9191332284473156
+  ],
+  "consistent": true
+ },
+ "opencv|second_identity": {
+  "engine": "opencv",
+  "step": "second_identity",
+  "a": "x2",
+  "b": "x3",
+  "share": 0.8843,
+  "share_ci": [
+   0.835906599074538,
+   0.9267224372107139
+  ],
+  "auc": 0.821,
+  "auc_ci": [
+   0.7864608460480906,
+   0.8530489289166432
+  ],
+  "consistent": true
+ },
+ "opencv|whole_morph": {
+  "engine": "opencv",
+  "step": "whole_morph",
+  "a": "x1",
+  "b": "x3",
+  "share": 0.9944,
+  "share_ci": [
+   0.9806161964558635,
+   1.0
+  ],
+  "auc": 0.9822,
+  "auc_ci": [
+   0.9708608079081705,
+   0.9906444962312517
+  ],
+  "consistent": true
+ },
+ "opencv|photo_to_morph": {
+  "engine": "opencv",
+  "step": "photo_to_morph",
+  "a": "x0",
+  "b": "x3",
+  "share": 0.9944,
+  "share_ci": [
+   0.9806161964558635,
+   1.0
+  ],
+  "auc": 0.9827,
+  "auc_ci": [
+   0.9713529983060863,
+   0.9909698832346774
+  ],
+  "consistent": true
+ },
+ "facemorpher|pipeline": {
+  "engine": "facemorpher",
+  "step": "pipeline",
+  "a": "x0",
+  "b": "x1",
+  "share": 0.8937,
+  "share_ci": [
+   0.8656716417910447,
+   0.917910447761194
+  ],
+  "auc": 0.5699,
+  "auc_ci": [
+   0.5625445533526399,
+   0.5789822169469815
+  ],
+  "consistent": true
+ },
+ "facemorpher|mirror_mix": {
+  "engine": "facemorpher",
+  "step": "mirror_mix",
+  "a": "x1",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9951,
+  "auc_ci": [
+   0.9924848414179104,
+   0.9971458878647806
+  ],
+  "consistent": true
+ },
+ "facemorpher|mirror_mix_matched": {
+  "engine": "facemorpher",
+  "step": "mirror_mix_matched",
+  "a": "x1m",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9952,
+  "auc_ci": [
+   0.9925894373746936,
+   0.9972572712463801
+  ],
+  "consistent": true
+ },
+ "facemorpher|same_person_mix": {
+  "engine": "facemorpher",
+  "step": "same_person_mix",
+  "a": "x1",
+  "b": "x2",
+  "share": 0.9981,
+  "share_ci": [
+   0.9944029850746269,
+   1.0
+  ],
+  "auc": 0.9205,
+  "auc_ci": [
+   0.9076178401370015,
+   0.9332955383994208
+  ],
+  "consistent": true
+ },
+ "facemorpher|second_identity": {
+  "engine": "facemorpher",
+  "step": "second_identity",
+  "a": "x2",
+  "b": "x3",
+  "share": 0.8843,
+  "share_ci": [
+   0.8333333333333334,
+   0.9261895291832393
+  ],
+  "auc": 0.8309,
+  "auc_ci": [
+   0.7971287728335011,
+   0.8628013612020908
+  ],
+  "consistent": true
+ },
+ "facemorpher|whole_morph": {
+  "engine": "facemorpher",
+  "step": "whole_morph",
+  "a": "x1",
+  "b": "x3",
+  "share": 0.9981,
+  "share_ci": [
+   0.988909426987061,
+   1.0
+  ],
+  "auc": 0.9871,
+  "auc_ci": [
+   0.9776301776874545,
+   0.9936337370454054
+  ],
+  "consistent": true
+ },
+ "facemorpher|photo_to_morph": {
+  "engine": "facemorpher",
+  "step": "photo_to_morph",
+  "a": "x0",
+  "b": "x3",
+  "share": 0.9981,
+  "share_ci": [
+   0.988909426987061,
+   1.0
+  ],
+  "auc": 0.9885,
+  "auc_ci": [
+   0.9799346572996048,
+   0.9944770066573397
+  ],
+  "consistent": true
+ }
+}

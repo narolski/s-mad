@@ -15,6 +15,8 @@ PINS="numpy==1.26.4 pillow==12.2.0 pytorch-lightning==2.5.5 torchmetrics==1.8.2 
 CHECK='import sys, torch, torchvision, numpy, PIL, pytorch_lightning, torchmetrics, scipy, pandas, lmdb, lpips, pytorch_fid; print("python", sys.version.split()[0], "torch", torch.__version__, "cuda", torch.version.cuda, "torchvision", torchvision.__version__, "numpy", numpy.__version__, "pillow", PIL.__version__, "pytorch_lightning", pytorch_lightning.__version__, "gpu", torch.cuda.get_device_name(0)); assert torch.cuda.is_available()'
 if [ -x "$E/bin/python" ] && [ -f "$V" ] && "$E/bin/python" -I -c "$CHECK" > /dev/null 2>&1; then
   echo "DG1 env present: $E"
+elif [ "${DG1_ENV_BUILD:-0}" != 1 ]; then
+  echo "DG1 env missing or broken and this job may not build it (only the smoke job builds; DG1_ENV_BUILD=1)"; exit 5
 else
   mkdir -p "$G/envs/DG1"
   python3 -m venv --clear "$E"

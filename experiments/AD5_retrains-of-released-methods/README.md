@@ -11,9 +11,11 @@ morphing development set), seeds 401 to 405, last checkpoint, do the retrains be
 the readings the own-crop re-score of the audit rows (RS1) takes (history-matched genuine photos, flag rates under
 benign processing, the smiling half of the FRLL genuine class, the MorDIFF control images)?
 
-Status 11 Nov 2026, 17:40 CET: inventory done (section 3/4), pre-registration being written. Athena (Cyfronet A100
-cluster) does not accept jobs yet (no Slurm association for the grant accounts; lead's message 17:30); nothing has
-been submitted. No retrain exists. No score of this experiment exists.
+Status 11 Nov 2026, 18:20 CET: inventory done; `prereg.md` written (18:10); patches, environments (wheel
+houses), Athena job scripts and packs prepared; 8-image checks on the DGX passed for the SMDD crop, the SelfMAD
+landmarks and MixFaceNet-MAD, the MADation one is retrying (shared GPU out of memory). SelfMAD landmarks of the 25,000
+training renders are being built on the DGX CPU. Athena (Cyfronet A100 cluster) does not accept jobs yet (no Slurm
+association for the grant accounts; lead's message 17:30); nothing has been submitted. No retrain and no score exist.
 
 ## 2. Timeline
 
@@ -30,6 +32,33 @@ been submitted. No retrain exists. No score of this experiment exists.
   `/mnt/t7/smad_next/AD5/thirdparty/selfmad_09ed081/repo`.
 - 11 Nov 17:30. Lead: Athena refuses both accounts; do not submit or probe; job files use account
   `plgrestorearc-gpu-a100`. Documentation standard (DOCUMENTATION.md) adopted; this README started.
+- 11 Nov 17:31. One ssh command to Athena (lock held): project folder exists (13 GB used, 2.0 TB free on /net/pr2);
+  only module `Python/3.10.4`; CUDA modules 10.0 to 12.0. No job of ours has ever run there, so compute-node internet
+  access is unknown: every package travels as a local wheel house, every model file in the code pack.
+- 11 Nov 17:32-17:50. Wheel houses (x86_64, cp310) downloaded on the DGX with `pip download --platform ...` into
+  `/mnt/t7/smad_next/AD5/wheels/{madation,selfmad}` from `src/AD5/env/{madation,selfmad}_requirements.txt`; three
+  packages exist only as sdists (easydict 1.10, openai-clip 1.0.1, efficientnet-pytorch 0.7.1; in `*_sdist/`, read:
+  plain setuptools setup.py files). Offline resolution check (`pip download --no-index --find-links`) passes for both.
+- 11 Nov 17:45. CLIP initialisation check (`src/AD5/checks/clip_init_equivalence.py`): building CLIP from the HF
+  OpenAI-format file and casting as the authors do gives tensors identical to the authors' frozen-encoder release
+  checkpoint (ViT-B/16 302 of 302 tensors, ViT-L/14 446 of 446, max abs difference 0). Hence patch 2 (no TorchScript
+  download). Outputs `/mnt/t7/smad_next/AD5/checks/clip_init_equivalence_{vitb16,vitl14}.json`.
+- 11 Nov 17:45-18:00. Patched copies made from `git archive <commit>` in `/mnt/t7/smad_next/AD5/build/{madation,smdd,
+  selfmad}_src` (pristine copies `*_orig`); diffs saved as `src/AD5/{madation,mixfacenet,selfmad}_ad5.patch`.
+- 11 Nov 17:51. 8-image check, SMDD crop: the unchanged `image_preprocess.py` on 4 genuine + 4 morph SMDD images
+  (DGX GPU, facenet-pytorch 2.5.2): 8 of 8 crops written (148-164 x 189-212 px). `checks/crop8/`.
+- 11 Nov 18:00. 8-image check, SelfMAD landmarks: unchanged `preprocessing/dlib_lm.py` on 8 renders: 8 files of
+  shape (1, 81, 2) int64, as the authors' loader comment says for SMDD. `checks/selfmad8/`.
+- 11 Nov 18:03. Started the full landmark build (`src/AD5/selfmad_landmarks.sh`, 4 shards, nice 10), log
+  `/mnt/t7/smad_next/AD5/data/selfmad_landmarks.log`; about 2 images/s per shard on the loaded DGX (load average 93).
+- 11 Nov 18:01-18:11. 8-image check, MADation ViT-B/16 (world size 1, batch 4): first run failed (openai-clip needs
+  `pkg_resources.packaging`; fixed by setuptools 69.5.1), second ran 2 epochs but saved nothing (the authors' saver
+  needs epoch index > 1; run with 3 epochs), third failed with CUDA out of memory at start (shared GPU); retry loop
+  `src/AD5/checks/dgx_madation8.sh` running. 8-image check, MixFaceNet-MAD (patched main.py, 2 epochs, batch 4):
+  passed; the saved state dict has the same 415 keys and shapes as the release file.
+- 11 Nov 18:10. `prereg.md` written.
+- 11 Nov 18:15. Job scripts written (`src/AD5/athena/`), pack builder started (`src/AD5/build_packs.sh`, log
+  `/mnt/t7/smad_next/AD5/build_packs.log`).
 
 ## 3. Data
 
@@ -73,7 +102,28 @@ Authors' training configuration as found (no change made yet):
 - MixFaceNet-MAD `main.py`: MixFaceNet-S from scratch, Adam lr 1e-4, wd 1e-6, batch 16, up to 100 epochs, class-weighted
   cross-entropy, early stopping with patience 20 on the EER of `--test_csv_path` (selection on test data; forbidden
   here). `torch.cuda.manual_seed(0)`.
-Our scripts: none yet.
+Our scripts (`/home/narolski/smad-next/src/AD5/`), in run order:
+- `env/madation_requirements.txt`, `env/selfmad_requirements.txt`: pinned environments (deviations in the header).
+- `checks/clip_init_equivalence.py MODEL_PY HF_BIN FE_BACKBONE OUT_JSON`: CLIP initialisation equality check.
+- `checks/run_with_site.py DIRS SCRIPT args`: runs a third-party script under `python3 -I` with extra sys.path entries.
+- `checks/dgx_madation8.sh B|L`: the 8-image MADation check on the DGX (retries on out of memory).
+- `make_train_csv.py`: training list of the cropped SMDD split in train.csv order (prefix placeholder `CROP_ROOT`).
+- `selfmad_landmarks.sh`: SelfMAD landmarks on the DGX (authors' dlib_lm.py, 4 shards).
+- `build_packs.sh`: assembles `/mnt/t7/smad_next/AD5/packs/` (code/, wheels_madation.tar, wheels_selfmad.tar,
+  smdd_train_raw.tar, each tar with .sha256).
+- `athena/ad5_common.sh`: shared job functions (hash-checked untar, offline env build, GPU memory monitor).
+- `athena/ad5_smokeA_env_crop.sbatch` (1 GPU, 30 min): env build + SMDD crop -> `packs/AD5/smdd_train_cropped.tar`.
+- `athena/ad5_smokeB_train.sbatch` (2 GPUs, 15 min): DDP smoke of MADation L and B, MixFaceNet-MAD 1 epoch.
+- `athena/ad5_madation_train.sbatch` (8 GPUs, array 401-405, `ARM=L|B|F`): production.
+- `athena/ad5_mixfacenet_train.sbatch` (1 GPU, array 401-405): production.
+- `athena/ad5_selfmad_smoke.sbatch` (1 GPU, 55 min): SelfMAD env, face labels -> `selfmad_labels.tar.gz`, 1-epoch smoke.
+- `athena/ad5_selfmad_train.sbatch` (1 GPU, array 401-405): production.
+Patches: `madation_ad5.patch`, `mixfacenet_ad5.patch` (the SMDD main.py has CRLF line ends; the patch keeps them),
+`selfmad_ad5.patch`. Model files: OpenAI-format CLIP from HF `timm/vit_base_patch16_clip_224.openai` (sha256
+53b40183...) and `timm/vit_large_patch14_clip_224.openai` (eb70c15b...); HRNet-W18 ImageNet weights HF
+`timm/hrnet_w18.ms_aug_in1k` rev 7e2c5583 (f9e3c451...); face parser HF `jonathandinu/face-parsing` rev 758b82e1
+(model.safetensors c2bec795...); dlib 81-point predictor `/mnt/t7/thirdparty/dlib81_wcss_20261107/`; MTCNN weights
+inside facenet-pytorch 2.5.2 (identical files to 2.6.0; plain tensor state dicts, checked with weights_only=True).
 
 ## 5. Results
 
@@ -89,7 +139,17 @@ what the log shows; how the SelfMAD and MixFaceNet-MAD releases were selected.
 
 ## 7. Dead ends and failures
 
-none yet.
+- `pip download --only-binary` fails for easydict 1.10, openai-clip 1.0.1 and efficientnet-pytorch 0.7.1 (sdist
+  only): downloaded as sdists and built inside the job with `--no-build-isolation`.
+- `pip download --platform` skips dependencies with environment markers (torch 2.3.1's CUDA 12 packages and triton
+  were missing, 921 MB instead of 2.8 GB): all of them are now pinned explicitly in `selfmad_requirements.txt`.
+  Unpinned indirect dependencies first resolved to 2026 versions (pillow 12.3, pydantic 2.14); now pinned to mid-2024.
+- openai-clip 1.0.1 imports `from pkg_resources import packaging`; setuptools >= 70 removed it (DGX check failed with
+  ImportError). Pinned setuptools 69.5.1 (checked: its pkg_resources binds `packaging`).
+- MADation saver writes only when `epoch > 1 and (epoch+1) % save_every == 0`: a 2-epoch check saves nothing. Smoke
+  runs use 3 epochs.
+- The SMDD main.py has CRLF line ends; a first patch rewrote every line (LF). Regenerated with CRLF kept (46 lines).
+- DGX GPU out of memory at `torch.cuda.set_device` (other jobs fill the unified memory): retried in a loop.
 
 ## 8. Observations and ideas
 
@@ -99,12 +159,20 @@ none yet.
 
 ## 9. Open items and next steps
 
-1. Pre-registration (`prereg.md`). 2. Patch list, packs and environment scripts; 8-image check on the DGX.
-3. Uploads to Athena (allowed; submission waits for the lead). 4. Smoke jobs, then production arrays.
+1. Finish the MADation 8-image DGX check and the landmark build; pack `selfmad_landmarks.tar`.
+2. Upload packs and code to `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/` (allowed now).
+3. When the lead says Athena accepts the account: smoke A, then smoke B (MADation + MixFaceNet), then the L and B
+   production arrays; SelfMAD smoke, then its array; MixFaceNet array.
+4. Scoring path for retrains (convert with a36_madation.py; RS1 score.py wrapper; SelfMAD own mode), analysis with
+   RS1's functions.
 
 ## 10. Handover state
 
-No process running, no job submitted. Compute spent: 0 GPU-hours.
+DGX processes (started by this owner): the landmark build (`src/AD5/selfmad_landmarks.sh`, 4 dlib processes at
+nice 10, log `/mnt/t7/smad_next/AD5/data/selfmad_landmarks.log`, expected end about 19:00; if it dies, rerun the script:
+it re-links and recomputes all shards); the pack builder (`build_packs.sh`, log `/mnt/t7/smad_next/AD5/build_packs.log`;
+rerun is safe); the MADation 8-image check (`checks/dgx_madation8.sh B`, log `checks/madation8/check_B.log`).
+No Athena job submitted. Compute spent: 0 GPU-hours.
 
 ## 11. Reproduce from scratch
 

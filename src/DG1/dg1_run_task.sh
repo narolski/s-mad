@@ -17,7 +17,8 @@ cp "$G/packs/DG1/dg1_pack.tar" "$G/packs/DG1/dg1_pack.tar.sha256" "$W/"
 ( cd "$W" && sha256sum -c dg1_pack.tar.sha256 )
 tar -C "$W" -xf "$W/dg1_pack.tar"; rm "$W/dg1_pack.tar"
 K=$W/dg1pack
-( cd "$K" && sha256sum -c --quiet MANIFEST.sha256 ) && echo "pack manifest ok"
+( cd "$K" && sha256sum -c --quiet MANIFEST.sha256 )
+echo "pack manifest ok"
 echo "unpack $(( $(date +%s) - t0 )) s"
 O=$W/out_$TAG; mkdir -p "$O"
 ( while :; do nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader,nounits >> "$O/gpumem.csv"; sleep 10; done ) & SM=$!

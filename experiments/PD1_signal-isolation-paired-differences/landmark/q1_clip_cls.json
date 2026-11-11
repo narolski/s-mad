@@ -1,0 +1,240 @@
+{
+ "opencv|pipeline": {
+  "engine": "opencv",
+  "step": "pipeline",
+  "a": "x0",
+  "b": "x1",
+  "share": 0.9776,
+  "share_ci": [
+   0.9645522388059702,
+   0.9888059701492538
+  ],
+  "auc": 0.6651,
+  "auc_ci": [
+   0.6505820651871241,
+   0.6814309979950992
+  ],
+  "consistent": true
+ },
+ "opencv|mirror_mix": {
+  "engine": "opencv",
+  "step": "mirror_mix",
+  "a": "x1",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9933,
+  "auc_ci": [
+   0.9898769039596792,
+   0.9963731656549344
+  ],
+  "consistent": true
+ },
+ "opencv|mirror_mix_matched": {
+  "engine": "opencv",
+  "step": "mirror_mix_matched",
+  "a": "x1m",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9926,
+  "auc_ci": [
+   0.9890662417854756,
+   0.9958271260302962
+  ],
+  "consistent": true
+ },
+ "opencv|same_person_mix": {
+  "engine": "opencv",
+  "step": "same_person_mix",
+  "a": "x1",
+  "b": "x2",
+  "share": 0.9907,
+  "share_ci": [
+   0.9813432835820896,
+   0.9981343283582089
+  ],
+  "auc": 0.9237,
+  "auc_ci": [
+   0.9105552287536199,
+   0.9358443034361773
+  ],
+  "consistent": true
+ },
+ "opencv|second_identity": {
+  "engine": "opencv",
+  "step": "second_identity",
+  "a": "x2",
+  "b": "x3",
+  "share": 0.8563,
+  "share_ci": [
+   0.8030018761726079,
+   0.9022997657222344
+  ],
+  "auc": 0.8254,
+  "auc_ci": [
+   0.7890944098914656,
+   0.856076211692968
+  ],
+  "consistent": true
+ },
+ "opencv|whole_morph": {
+  "engine": "opencv",
+  "step": "whole_morph",
+  "a": "x1",
+  "b": "x3",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.982,
+  "auc_ci": [
+   0.9654831563084051,
+   0.9925119806063432
+  ],
+  "consistent": true
+ },
+ "opencv|photo_to_morph": {
+  "engine": "opencv",
+  "step": "photo_to_morph",
+  "a": "x0",
+  "b": "x3",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.985,
+  "auc_ci": [
+   0.9705173544907807,
+   0.9939416613272516
+  ],
+  "consistent": true
+ },
+ "facemorpher|pipeline": {
+  "engine": "facemorpher",
+  "step": "pipeline",
+  "a": "x0",
+  "b": "x1",
+  "share": 0.9049,
+  "share_ci": [
+   0.8768656716417911,
+   0.9291044776119403
+  ],
+  "auc": 0.577,
+  "auc_ci": [
+   0.5699208307807975,
+   0.5855948220650479
+  ],
+  "consistent": true
+ },
+ "facemorpher|mirror_mix": {
+  "engine": "facemorpher",
+  "step": "mirror_mix",
+  "a": "x1",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9959,
+  "auc_ci": [
+   0.9932124881655157,
+   0.9981761841445757
+  ],
+  "consistent": true
+ },
+ "facemorpher|mirror_mix_matched": {
+  "engine": "facemorpher",
+  "step": "mirror_mix_matched",
+  "a": "x1m",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9955,
+  "auc_ci": [
+   0.9926828079750502,
+   0.9979084289374025
+  ],
+  "consistent": true
+ },
+ "facemorpher|same_person_mix": {
+  "engine": "facemorpher",
+  "step": "same_person_mix",
+  "a": "x1",
+  "b": "x2",
+  "share": 0.9925,
+  "share_ci": [
+   0.9850746268656716,
+   0.9981343283582089
+  ],
+  "auc": 0.9308,
+  "auc_ci": [
+   0.9175940493428381,
+   0.9432070930329695
+  ],
+  "consistent": true
+ },
+ "facemorpher|second_identity": {
+  "engine": "facemorpher",
+  "step": "second_identity",
+  "a": "x2",
+  "b": "x3",
+  "share": 0.8302,
+  "share_ci": [
+   0.7727169233316774,
+   0.8809980806142035
+  ],
+  "auc": 0.8239,
+  "auc_ci": [
+   0.7852586276105685,
+   0.8555202589976242
+  ],
+  "consistent": true
+ },
+ "facemorpher|whole_morph": {
+  "engine": "facemorpher",
+  "step": "whole_morph",
+  "a": "x1",
+  "b": "x3",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9863,
+  "auc_ci": [
+   0.9705792626209149,
+   0.9956776699470831
+  ],
+  "consistent": true
+ },
+ "facemorpher|photo_to_morph": {
+  "engine": "facemorpher",
+  "step": "photo_to_morph",
+  "a": "x0",
+  "b": "x3",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9877,
+  "auc_ci": [
+   0.9725588115411707,
+   0.9963912307712781
+  ],
+  "consistent": true
+ }
+}

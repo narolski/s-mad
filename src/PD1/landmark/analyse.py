@@ -29,7 +29,9 @@ CONTRASTS = [("x1_vs_x3", "R2w", "R4"), ("x0_vs_x3", "R0", "R4"), ("x2_vs_x3", "
              ("x1m_vs_xm", "R2wm", "R3m"), ("x0_vs_x2", "R0", "R3"), ("x0_vs_xm", "R0", "R3m")]
 VARIANTS = ("none", "soft", "pipe", "both")
 HEADS = ("one", "two")
-FLOOR_CONTRASTS = ("x1_vs_x3", "x0_vs_x3", "x2_vs_x3", "xm_vs_x3", "x0_vs_x1")
+FLOOR_CONTRASTS = ("x1_vs_x3", "x0_vs_x3", "x2_vs_x3", "xm_vs_x3", "x0_vs_x1", "x1_vs_x2", "x1_vs_xm", "x1m_vs_xm")
+CS = (1e-3, 1e-2, 1e-1, 1.0)
+TAG = ""
 
 
 def jdump(obj, path):
@@ -44,10 +46,11 @@ def r3(x):
 
 # ------------------------------------------------------------------------------------------------ cues / floor
 def load_cues(lst="ar1"):
+    """AF0's cached statistics (read only, same function and names) plus PD1's own files for ids AF0 does not cover."""
     out, names = {}, None
-    for f in (K.OUT / "cues").glob(f"{lst}*.npz"):
-        if "limit" in f.name:
-            continue
+    files = [f for f in (K.AF0 / "cues").glob("*.npz") if "smoke" not in f.name]
+    files += [f for f in (K.OUT / "cues").glob(f"{lst}*.npz") if "limit" not in f.name]
+    for f in files:
         z = np.load(f)
         names = list(z["names"])
         for i, c in zip(z["ids"], z["cues"]):
@@ -297,7 +300,7 @@ def fit_head(T, gid, eng, head, tr, tr2, variant, ext):
     else:
         P, N = T.get(eng, "R4")[tr2], T.get(eng, "R2w")[tr2]
         gg = np.array([gid[T.hosts[i]] for i in tr2])
-    return L.fit_paired(P, N, gg, proj=proj_fn(variant, T, eng, tr, ext))
+    return L.fit_paired(P, N, gg, Cs=CS, proj=proj_fn(variant, T, eng, tr, ext))
 
 
 def heads_all(T, fold, gid, ext, variants):
@@ -520,7 +523,7 @@ def setup(feat):
     T = L.Table(feat)
     for h in T.hosts:
         assert not h.startswith("frll:")
-    D = K.Draw(T.hosts)
+    D = K.Draw(T.hosts, B=K.B_BOOT)
     return pr, gid, fold, T, D
 
 
@@ -579,7 +582,7 @@ def full(feat, variants):
     t0 = time.time()
     pr, gid, fold, T, D = setup(feat)
     ext = Ext(feat)
-    od = K.OUT / "scores" / feat
+    od = K.OUT / "scores" / (feat + TAG)
     od.mkdir(parents=True, exist_ok=True)
     ren, _ = ext.smdd("fit")
     if ren is None:
@@ -590,7 +593,7 @@ def full(feat, variants):
                 n_groups=len(set(gid.values())), variants=list(variants),
                 ext_counts={n: len(v) for n, v in ext.F.items()})
     r1 = q1(T, fold, D)
-    jdump(r1, K.RES / f"q1_{feat}.json")
+    jdump(r1, K.RES / f"q1_{feat}{TAG}.json")
     print(time.strftime("%T"), "Q1 done", flush=True)
     S, FH, FIN = heads_all(T, fold, gid, ext, variants)
     np.savez(od / "oof_scores.npz", **{"|".join(k) + "|" + "|".join(kk): v for k, d in S.items() for kk, v in d.items()},
@@ -598,30 +601,39 @@ def full(feat, variants):
     cues, names = load_cues("ar1")
     meta["cues_available"] = len(cues)
     ev, fl = eval_contrasts(T, D, S, cues, names)
-    jdump(dict(meta=meta, contrasts=ev, floors=fl), K.RES / f"q3q4_contrasts_{feat}.json")
+    jdump(dict(meta=meta, contrasts=ev, floors=fl), K.RES / f"q3q4_contrasts_{feat}{TAG}.json")
     flags = flag_tables(FIN, ext)
-    jdump(flags, K.RES / f"external_{feat}.json")
+    jdump(flags, K.RES / f"external_{feat}{TAG}.json")
     rd = readings(ev, flags, feat)
-    jdump(rd, K.RES / f"readings_{feat}.json")
+    jdump(rd, K.RES / f"readings_{feat}{TAG}.json")
     print(time.strftime("%T"), "Q3/Q4 done", json.dumps(rd, default=str), flush=True)
     r2 = q2(T, gid, ext, {"|".join(k): v for k, v in FIN.items() if k[0] == "none"})
-    jdump(r2, K.RES / f"q2_{feat}.json")
+    jdump(r2, K.RES / f"q2_{feat}{TAG}.json")
     r5 = q5(T, fold, FH, FIN, S, ext, variants)
-    jdump(r5, K.RES / f"q5_{feat}.json")
-    jdump(frll_diag(feat, FIN), K.RES / f"frll_diagnostic_{feat}.json")
+    jdump(r5, K.RES / f"q5_{feat}{TAG}.json")
+    jdump(frll_diag(feat, FIN), K.RES / f"frll_diagnostic_{feat}{TAG}.json")
     meta["seconds"] = round(time.time() - t0, 1)
-    jdump(meta, K.RES / f"meta_{feat}.json")
+    jdump(meta, K.RES / f"meta_{feat}{TAG}.json")
     print(time.strftime("%T"), "ALL DONE", feat, meta["seconds"], flush=True)
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("mode", choices=("first", "full"))
+    ap.add_argument("mode", choices=("first", "full", "q1"))
     ap.add_argument("--feat", default="dino_mean", choices=K.FEATS)
     ap.add_argument("--variants", default=",".join(VARIANTS))
+    ap.add_argument("--test", action="store_true", help="code-path test: B = 200, one C, outputs tagged _test")
     a = ap.parse_args()
+    global CS, TAG
+    if a.test:
+        K.B_BOOT, CS, TAG = 200, (1e-2,), "_test"
+        K.RES = K.OUT / "test_res"
     if a.mode == "first":
         first()
+    elif a.mode == "q1":
+        pr, gid, fold, T, D = setup(a.feat)
+        jdump(q1(T, fold, D), K.RES / f"q1_{a.feat}.json")
+        print("Q1 done", a.feat)
     else:
         full(a.feat, a.variants.split(","))
 

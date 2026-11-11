@@ -51,6 +51,10 @@ def hull_mask(pts, n=512):
 
 
 def patch_mean(M, W):
+    g, n = W.shape
+    if n % g == 0:                        # integer footprint: exact block mean (cheaper than the matrix product)
+        k = n // g
+        return M.astype(np.float64).reshape(g, k, g, k).mean((1, 3))
     return W @ M.astype(np.float64) @ W.T
 
 

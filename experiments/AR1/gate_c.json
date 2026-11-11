@@ -21,7 +21,18 @@
     "n_neg": 536,
     "dim": 2048
    },
-   "G_c_readable": true
+   "morph_vs_mirror_twin": {
+    "auc": 0.9158742203163288,
+    "ci95": [
+     0.8942587057366707,
+     0.9349636201662335
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 2048
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
   },
   "frgcferet/facemorpher": {
    "morph_vs_twin": {
@@ -44,7 +55,18 @@
     "n_neg": 536,
     "dim": 2048
    },
-   "G_c_readable": true
+   "morph_vs_mirror_twin": {
+    "auc": 0.9316140844286033,
+    "ci95": [
+     0.9140648346245811,
+     0.9488322554217551
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 2048
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
   },
   "frll/opencv": {
    "morph_vs_twin": {
@@ -67,7 +89,29 @@
     "n_neg": 102,
     "dim": 2048
    },
-   "G_c_readable": true
+   "morph_vs_mirror_twin": {
+    "auc": 0.9779892349096502,
+    "ci95": [
+     0.9514825418668656,
+     0.994640539669105
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 2048
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": 0.9308426073131956,
+    "ci95": [
+     0.8916430183922478,
+     0.9634942200450675
+    ],
+    "n_pos": 1221,
+    "n_neg": 102,
+    "dim": 2048
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
   },
   "frll/facemorpher": {
    "morph_vs_twin": {
@@ -90,7 +134,29 @@
     "n_neg": 102,
     "dim": 2048
    },
-   "G_c_readable": true
+   "morph_vs_mirror_twin": {
+    "auc": 0.9759707804690504,
+    "ci95": [
+     0.9548176353874884,
+     0.9930753464766738
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 2048
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": 0.9208225024870832,
+    "ci95": [
+     0.883116621414997,
+     0.9537743077107004
+    ],
+    "n_pos": 1222,
+    "n_neg": 102,
+    "dim": 2048
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
   }
  },
  "nets_M3_s1": {
@@ -115,7 +181,18 @@
     "n_neg": 536,
     "dim": 512
    },
-   "G_c_readable": true
+   "morph_vs_mirror_twin": {
+    "auc": 0.9973685676097126,
+    "ci95": [
+     0.9905200514660584,
+     0.9997793054666164
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
   },
   "frgcferet/facemorpher": {
    "morph_vs_twin": {
@@ -138,7 +215,18 @@
     "n_neg": 536,
     "dim": 512
    },
-   "G_c_readable": true
+   "morph_vs_mirror_twin": {
+    "auc": 0.9981030017821341,
+    "ci95": [
+     0.9937062626238318,
+     0.9997831089231395
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
   },
   "frll/opencv": {
    "morph_vs_twin": {
@@ -161,7 +249,27 @@
     "n_neg": 102,
     "dim": 512
    },
-   "G_c_readable": true
+   "morph_vs_mirror_twin": {
+    "auc": 0.9983660130718954,
+    "ci95": [
+     0.9929833619978043,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "note": "no features for one class (not scored)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
   },
   "frll/facemorpher": {
    "morph_vs_twin": {
@@ -184,7 +292,659 @@
     "n_neg": 102,
     "dim": 512
    },
-   "G_c_readable": true
+   "morph_vs_mirror_twin": {
+    "auc": 0.9984621299500193,
+    "ci95": [
+     0.9936496772622092,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "note": "no features for one class (not scored)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  }
+ },
+ "rel_madation_vitb16": {
+  "frgcferet/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.8668342058364892,
+    "ci95": [
+     0.8354144957275919,
+     0.8931126789883727
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5000748357095122,
+    "ci95": [
+     0.4998120405435509,
+     0.5004855619291602
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9943995043439519,
+    "ci95": [
+     0.9904605952712473,
+     0.9974392056261158
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frgcferet/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.8614042659835153,
+    "ci95": [
+     0.832106150391945,
+     0.8888109009884823
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9920917799064379,
+    "ci95": [
+     0.9862242814807597,
+     0.996192697920174
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frll/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.9850057670126874,
+    "ci95": [
+     0.9658404490828589,
+     0.9962434058928801
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.49754901960784315,
+    "ci95": [
+     0.49197424067666284,
+     0.5017301038062284
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9931757016532103,
+    "ci95": [
+     0.9778928249922638,
+     0.9997283496732027
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": 0.9941947294888471,
+    "ci95": [
+     0.9889979679638721,
+     0.9978850240624334
+    ],
+    "n_pos": 1221,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  },
+  "frll/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.9691464821222606,
+    "ci95": [
+     0.9282553087241497,
+     0.9919277325098287
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.4987024221453287,
+    "ci95": [
+     0.49548250672818145,
+     0.5001922337562476
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9925028835063437,
+    "ci95": [
+     0.9792495413876053,
+     0.9991919228883638
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": 0.9933009210230738,
+    "ci95": [
+     0.9863639300150278,
+     0.9980632714021507
+    ],
+    "n_pos": 1222,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  }
+ },
+ "nets_M3_s2": {
+  "frgcferet/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.8882755067943863,
+    "ci95": [
+     0.8632549247214916,
+     0.9113313332280931
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9999303853865004,
+    "ci95": [
+     0.9997671583816191,
+     1.0
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frgcferet/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.8929779739362887,
+    "ci95": [
+     0.8676482489929737,
+     0.9162097595522372
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9999617119625752,
+    "ci95": [
+     0.9998498977332814,
+     1.0
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frll/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.9852941176470589,
+    "ci95": [
+     0.9538729215090292,
+     0.9998427617014548
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9981737793156479,
+    "ci95": [
+     0.9916557106934127,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "note": "no features for one class (not scored)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  },
+  "frll/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.9911572472126106,
+    "ci95": [
+     0.9674334954107429,
+     0.9997999199679872
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9994232987312572,
+    "ci95": [
+     0.9971065621509113,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "note": "no features for one class (not scored)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  }
+ },
+ "nets_M3_s3": {
+  "frgcferet/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.8761277567386946,
+    "ci95": [
+     0.8497206621176948,
+     0.9013762067750232
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9985624582312319,
+    "ci95": [
+     0.9932673968424591,
+     0.9999790393527499
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frgcferet/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.8815785809757184,
+    "ci95": [
+     0.8553451122238236,
+     0.9052273601232358
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9996658498552016,
+    "ci95": [
+     0.9990116268386,
+     0.999993277462462
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 512
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frll/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.9879853902345251,
+    "ci95": [
+     0.9695342934694539,
+     0.9990483349732453
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9974048442906575,
+    "ci95": [
+     0.9904083352708672,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "note": "no features for one class (not scored)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  },
+  "frll/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.9739523260284506,
+    "ci95": [
+     0.9469998442715161,
+     0.9937350827023328
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.9986543637062668,
+    "ci95": [
+     0.9945611693522294,
+     1.0
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 512
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": null,
+    "ci95": [
+     null,
+     null
+    ],
+    "note": "no features for one class (not scored)"
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  }
+ },
+ "rel_mixfacenet_mad_smdd": {
+  "frgcferet/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.7039081644018712,
+    "ci95": [
+     0.6660878344760427,
+     0.7395255741055751
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 128
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5000713549788371,
+    "ci95": [
+     0.5,
+     0.5002210263978615
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 128
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.7384509356204054,
+    "ci95": [
+     0.7004357078568252,
+     0.7744356201667143
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 128
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frgcferet/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.6826339385163733,
+    "ci95": [
+     0.6426234111406292,
+     0.7211172001988392
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 128
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5,
+    "ci95": [
+     0.5,
+     0.5
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 128
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.7217399476498106,
+    "ci95": [
+     0.6834789198338206,
+     0.7570361522805553
+    ],
+    "n_pos": 536,
+    "n_neg": 536,
+    "dim": 128
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true
+  },
+  "frll/opencv": {
+   "morph_vs_twin": {
+    "auc": 0.8713956170703575,
+    "ci95": [
+     0.7964130668990004,
+     0.9306598112295377
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 128
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.502354863514033,
+    "ci95": [
+     0.4997597078046905,
+     0.5067293829296424
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 128
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.7839292579777009,
+    "ci95": [
+     0.6968330782877692,
+     0.8584825606872935
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 128
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": 0.8203176438470556,
+    "ci95": [
+     0.7719777291532612,
+     0.8600761442331433
+    ],
+    "n_pos": 1221,
+    "n_neg": 102,
+    "dim": 128
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
+  },
+  "frll/facemorpher": {
+   "morph_vs_twin": {
+    "auc": 0.8437139561707035,
+    "ci95": [
+     0.763008767897237,
+     0.9117671816201227
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 128
+   },
+   "negctrl_NC_vs_twin": {
+    "auc": 0.5074490580545944,
+    "ci95": [
+     0.5,
+     0.518840109573241
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 128
+   },
+   "morph_vs_mirror_twin": {
+    "auc": 0.7458669742406767,
+    "ci95": [
+     0.6525766001587802,
+     0.833021125719447
+    ],
+    "n_pos": 102,
+    "n_neg": 102,
+    "dim": 128
+   },
+   "nn_morph_vs_mirror_twin (clean FRLL)": {
+    "auc": 0.7702175796668913,
+    "ci95": [
+     0.7160246691220272,
+     0.8165518590450674
+    ],
+    "n_pos": 1222,
+    "n_neg": 102,
+    "dim": 128
+   },
+   "G_c_readable": true,
+   "G_c_readable_mirror_twin": true,
+   "note": "R3 / R4 of FRLL use a smiling file: confounded by capture detail and expression"
   }
  }
 }

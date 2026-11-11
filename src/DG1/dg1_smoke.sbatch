@@ -20,5 +20,6 @@ export G=/net/pr2/projects/plgrid/plggrestoration/smad-next
 : "${SCRATCH_LOCAL:?node-local scratch required (-C localfs)}"
 export TMPDIR=$SCRATCH_LOCAL/tmp; mkdir -p "$TMPDIR"
 hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; python3 --version
+export DG1_ENV_BUILD=1
 source "$G/packs/DG1/dg1_env.sh"
 bash "$G/packs/DG1/dg1_run_task.sh" "smoke_$SLURM_JOB_ID" eq smoke8

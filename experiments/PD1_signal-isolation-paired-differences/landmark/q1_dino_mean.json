@@ -1,0 +1,206 @@
+{
+ "opencv|pipeline": {
+  "engine": "opencv",
+  "step": "pipeline",
+  "a": "x0",
+  "b": "x1",
+  "share": 0.9832,
+  "share_ci": [
+   0.9720149253731343,
+   0.9925373134328358
+  ],
+  "auc": 0.7153,
+  "auc_ci": [
+   0.7021864209734907,
+   0.7300694231733126
+  ],
+  "consistent": true
+ },
+ "opencv|mirror_mix": {
+  "engine": "opencv",
+  "step": "mirror_mix",
+  "a": "x1",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9828,
+  "auc_ci": [
+   0.9767834393795946,
+   0.9879928714635777
+  ],
+  "consistent": true
+ },
+ "opencv|same_person_mix": {
+  "engine": "opencv",
+  "step": "same_person_mix",
+  "a": "x1",
+  "b": "x2",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.8188,
+  "auc_ci": [
+   0.8045026732011584,
+   0.8338850871574961
+  ],
+  "consistent": true
+ },
+ "opencv|second_identity": {
+  "engine": "opencv",
+  "step": "second_identity",
+  "a": "x2",
+  "b": "x3",
+  "share": 0.8526,
+  "share_ci": [
+   0.8007205447732763,
+   0.9007234263720519
+  ],
+  "auc": 0.699,
+  "auc_ci": [
+   0.666256642779563,
+   0.7340459825552662
+  ],
+  "consistent": true
+ },
+ "opencv|whole_morph": {
+  "engine": "opencv",
+  "step": "whole_morph",
+  "a": "x1",
+  "b": "x3",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.8943,
+  "auc_ci": [
+   0.8732985221831325,
+   0.9139867163246421
+  ],
+  "consistent": true
+ },
+ "opencv|photo_to_morph": {
+  "engine": "opencv",
+  "step": "photo_to_morph",
+  "a": "x0",
+  "b": "x3",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9261,
+  "auc_ci": [
+   0.9080582858576194,
+   0.9425080574584579
+  ],
+  "consistent": true
+ },
+ "facemorpher|pipeline": {
+  "engine": "facemorpher",
+  "step": "pipeline",
+  "a": "x0",
+  "b": "x1",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.7367,
+  "auc_ci": [
+   0.7217900701715304,
+   0.7523848226219648
+  ],
+  "consistent": true
+ },
+ "facemorpher|mirror_mix": {
+  "engine": "facemorpher",
+  "step": "mirror_mix",
+  "a": "x1",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9896,
+  "auc_ci": [
+   0.985057049175763,
+   0.9933799983292493
+  ],
+  "consistent": true
+ },
+ "facemorpher|same_person_mix": {
+  "engine": "facemorpher",
+  "step": "same_person_mix",
+  "a": "x1",
+  "b": "x2",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.836,
+  "auc_ci": [
+   0.821340098713522,
+   0.8508438161338828
+  ],
+  "consistent": true
+ },
+ "facemorpher|second_identity": {
+  "engine": "facemorpher",
+  "step": "second_identity",
+  "a": "x2",
+  "b": "x3",
+  "share": 0.8582,
+  "share_ci": [
+   0.8084271194573491,
+   0.9049468081551918
+  ],
+  "auc": 0.7215,
+  "auc_ci": [
+   0.6895530981080704,
+   0.7549110534339787
+  ],
+  "consistent": true
+ },
+ "facemorpher|whole_morph": {
+  "engine": "facemorpher",
+  "step": "whole_morph",
+  "a": "x1",
+  "b": "x3",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9152,
+  "auc_ci": [
+   0.8961817455680511,
+   0.9330589120342739
+  ],
+  "consistent": true
+ },
+ "facemorpher|photo_to_morph": {
+  "engine": "facemorpher",
+  "step": "photo_to_morph",
+  "a": "x0",
+  "b": "x3",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.9425,
+  "auc_ci": [
+   0.9267344656737831,
+   0.9567663226594725
+  ],
+  "consistent": true
+ }
+}

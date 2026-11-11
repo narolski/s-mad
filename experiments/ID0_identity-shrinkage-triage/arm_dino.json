@@ -1,0 +1,1506 @@
+{
+ "arm": "dino",
+ "prereg": "experiments/ID0_identity-shrinkage-triage/prereg.md",
+ "fit": {
+  "k": 64,
+  "k95": 108,
+  "var_kept": 0.9122,
+  "persons": 776,
+  "dof_w": 619,
+  "d": 59,
+  "n_ratio": 0.0279,
+  "lam_top": [
+   743.114,
+   211.199,
+   137.127,
+   115.104,
+   96.952,
+   74.966,
+   64.335,
+   57.916,
+   43.768,
+   38.899
+  ],
+  "lam_sum_J": 2113.861,
+  "photos": 1395
+ },
+ "found_share_items": 1.0,
+ "excluded_is_val_items": 92,
+ "virtual_in_domain": {
+  "auc_single_vs_virtual_midpoint": 0.9624,
+  "n_single": 1395,
+  "n_virtual": 4000,
+  "note": "descriptive, genuine-only; added after the prereg (not a decision quantity)",
+  "c low tercile": {
+   "c_range": [
+    -0.79,
+    -0.281
+   ],
+   "auc": 0.9802
+  },
+  "c mid": {
+   "c_range": [
+    -0.281,
+    0.205
+   ],
+   "auc": 0.9619
+  },
+  "c high tercile": {
+   "c_range": [
+    0.206,
+    1.688
+   ],
+   "auc": 0.9451
+  }
+ },
+ "ceiling_curve": [
+  {
+   "c": 0.0,
+   "closed": 0.9906,
+   "spectrum": 0.987
+  },
+  {
+   "c": 0.1,
+   "closed": 0.9809,
+   "spectrum": 0.9735
+  },
+  {
+   "c": 0.2,
+   "closed": 0.9644,
+   "spectrum": 0.9519
+  },
+  {
+   "c": 0.3,
+   "closed": 0.9387,
+   "spectrum": 0.9208
+  },
+  {
+   "c": 0.4,
+   "closed": 0.9021,
+   "spectrum": 0.8795
+  },
+  {
+   "c": 0.5,
+   "closed": 0.8539,
+   "spectrum": 0.8287
+  },
+  {
+   "c": 0.6,
+   "closed": 0.7948,
+   "spectrum": 0.7696
+  },
+  {
+   "c": 0.7,
+   "closed": 0.7266,
+   "spectrum": 0.7046
+  },
+  {
+   "c": 0.8,
+   "closed": 0.6526,
+   "spectrum": 0.6361
+  },
+  {
+   "c": 0.9,
+   "closed": 0.5759,
+   "spectrum": 0.5665
+  }
+ ],
+ "contrasts": [
+  {
+   "label": "frgcferet opencv R0 vs R4",
+   "kind": "photo_vs_morph",
+   "score": "iss",
+   "neg": "ar1src_frgcferet_H",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.5351,
+   "ci95": [
+    0.4887,
+    0.5796
+   ],
+   "n_neg": 528,
+   "n_pos": 520,
+   "c_arm_median": 0.6183,
+   "c_arm_q10_q90": [
+    -0.0495,
+    1.0371
+   ],
+   "pred_closed": 0.7829,
+   "pred_spectrum": 0.7581,
+   "c_pool_centred_median": 0.4353,
+   "pred_closed_pool_c": 0.8864,
+   "pred_spectrum_pool_c": 0.8626,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "frgcferet opencv R0 vs R4",
+   "kind": "photo_vs_morph",
+   "score": "typ",
+   "neg": "ar1src_frgcferet_H",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.5272,
+   "ci95": [
+    0.4821,
+    0.5738
+   ],
+   "n_neg": 528,
+   "n_pos": 520
+  },
+  {
+   "label": "frgcferet opencv R0 vs R4",
+   "kind": "photo_vs_morph",
+   "score": "ses",
+   "neg": "ar1src_frgcferet_H",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.4666,
+   "ci95": [
+    0.4251,
+    0.511
+   ],
+   "n_neg": 528,
+   "n_pos": 520
+  },
+  {
+   "label": "frgcferet opencv R2w vs R4",
+   "kind": "one_vs_morph",
+   "score": "iss",
+   "neg": "ar1_frgcferet_opencv_R2w",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.5328,
+   "ci95": [
+    0.4864,
+    0.5778
+   ],
+   "n_neg": 528,
+   "n_pos": 520,
+   "c_arm_median": 0.6183,
+   "c_arm_q10_q90": [
+    -0.0495,
+    1.0371
+   ],
+   "pred_closed": 0.7829,
+   "pred_spectrum": 0.7581,
+   "c_pool_centred_median": 0.4353,
+   "pred_closed_pool_c": 0.8864,
+   "pred_spectrum_pool_c": 0.8626,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "frgcferet opencv R2w vs R4",
+   "kind": "one_vs_morph",
+   "score": "typ",
+   "neg": "ar1_frgcferet_opencv_R2w",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.5218,
+   "ci95": [
+    0.4752,
+    0.5686
+   ],
+   "n_neg": 528,
+   "n_pos": 520
+  },
+  {
+   "label": "frgcferet opencv R2w vs R4",
+   "kind": "one_vs_morph",
+   "score": "ses",
+   "neg": "ar1_frgcferet_opencv_R2w",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.4527,
+   "ci95": [
+    0.4123,
+    0.4969
+   ],
+   "n_neg": 528,
+   "n_pos": 520
+  },
+  {
+   "label": "frgcferet opencv R3 vs R4",
+   "kind": "same_vs_morph",
+   "score": "iss",
+   "neg": "ar1_frgcferet_opencv_R3",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.5272,
+   "ci95": [
+    0.482,
+    0.5699
+   ],
+   "n_neg": 528,
+   "n_pos": 520,
+   "c_arm_median": 0.6183,
+   "c_arm_q10_q90": [
+    -0.0495,
+    1.0371
+   ],
+   "pred_closed": 0.7829,
+   "pred_spectrum": 0.7581,
+   "c_pool_centred_median": 0.4353,
+   "pred_closed_pool_c": 0.8864,
+   "pred_spectrum_pool_c": 0.8626,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "frgcferet opencv R3 vs R4",
+   "kind": "same_vs_morph",
+   "score": "typ",
+   "neg": "ar1_frgcferet_opencv_R3",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.5203,
+   "ci95": [
+    0.4744,
+    0.5656
+   ],
+   "n_neg": 528,
+   "n_pos": 520
+  },
+  {
+   "label": "frgcferet opencv R3 vs R4",
+   "kind": "same_vs_morph",
+   "score": "ses",
+   "neg": "ar1_frgcferet_opencv_R3",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.4923,
+   "ci95": [
+    0.4506,
+    0.5358
+   ],
+   "n_neg": 528,
+   "n_pos": 520
+  },
+  {
+   "label": "frgcferet opencv R3m vs R4",
+   "kind": "same_vs_morph",
+   "score": "iss",
+   "neg": "ar1_frgcferet_opencv_R3m",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.5497,
+   "ci95": [
+    0.5021,
+    0.5957
+   ],
+   "n_neg": 528,
+   "n_pos": 520,
+   "c_arm_median": 0.6183,
+   "c_arm_q10_q90": [
+    -0.0495,
+    1.0371
+   ],
+   "pred_closed": 0.7829,
+   "pred_spectrum": 0.7581,
+   "c_pool_centred_median": 0.4353,
+   "pred_closed_pool_c": 0.8864,
+   "pred_spectrum_pool_c": 0.8626,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "frgcferet opencv R3m vs R4",
+   "kind": "same_vs_morph",
+   "score": "typ",
+   "neg": "ar1_frgcferet_opencv_R3m",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.6236,
+   "ci95": [
+    0.5739,
+    0.6705
+   ],
+   "n_neg": 528,
+   "n_pos": 520
+  },
+  {
+   "label": "frgcferet opencv R3m vs R4",
+   "kind": "same_vs_morph",
+   "score": "ses",
+   "neg": "ar1_frgcferet_opencv_R3m",
+   "pos": "ar1_frgcferet_opencv_R4",
+   "auc": 0.7858,
+   "ci95": [
+    0.7476,
+    0.8229
+   ],
+   "n_neg": 528,
+   "n_pos": 520
+  },
+  {
+   "label": "frgcferet opencv R2w vs R3",
+   "kind": "one_vs_same",
+   "score": "iss",
+   "neg": "ar1_frgcferet_opencv_R2w",
+   "pos": "ar1_frgcferet_opencv_R3",
+   "auc": 0.5059,
+   "ci95": [
+    0.4882,
+    0.5236
+   ],
+   "n_neg": 528,
+   "n_pos": 528
+  },
+  {
+   "label": "frgcferet opencv R2w vs R3",
+   "kind": "one_vs_same",
+   "score": "typ",
+   "neg": "ar1_frgcferet_opencv_R2w",
+   "pos": "ar1_frgcferet_opencv_R3",
+   "auc": 0.5032,
+   "ci95": [
+    0.4845,
+    0.5224
+   ],
+   "n_neg": 528,
+   "n_pos": 528
+  },
+  {
+   "label": "frgcferet opencv R2w vs R3",
+   "kind": "one_vs_same",
+   "score": "ses",
+   "neg": "ar1_frgcferet_opencv_R2w",
+   "pos": "ar1_frgcferet_opencv_R3",
+   "auc": 0.4609,
+   "ci95": [
+    0.4413,
+    0.4799
+   ],
+   "n_neg": 528,
+   "n_pos": 528
+  },
+  {
+   "label": "frgcferet opencv R0 vs R2w",
+   "kind": "photo_vs_one",
+   "score": "iss",
+   "neg": "ar1src_frgcferet_H",
+   "pos": "ar1_frgcferet_opencv_R2w",
+   "auc": 0.503,
+   "ci95": [
+    0.4984,
+    0.5073
+   ],
+   "n_neg": 528,
+   "n_pos": 528
+  },
+  {
+   "label": "frgcferet opencv R0 vs R2w",
+   "kind": "photo_vs_one",
+   "score": "typ",
+   "neg": "ar1src_frgcferet_H",
+   "pos": "ar1_frgcferet_opencv_R2w",
+   "auc": 0.506,
+   "ci95": [
+    0.5014,
+    0.5105
+   ],
+   "n_neg": 528,
+   "n_pos": 528
+  },
+  {
+   "label": "frgcferet opencv R0 vs R2w",
+   "kind": "photo_vs_one",
+   "score": "ses",
+   "neg": "ar1src_frgcferet_H",
+   "pos": "ar1_frgcferet_opencv_R2w",
+   "auc": 0.5121,
+   "ci95": [
+    0.5051,
+    0.5195
+   ],
+   "n_neg": 528,
+   "n_pos": 528
+  },
+  {
+   "label": "frgcferet opencv R0 vs R3",
+   "kind": "photo_vs_same",
+   "score": "iss",
+   "neg": "ar1src_frgcferet_H",
+   "pos": "ar1_frgcferet_opencv_R3",
+   "auc": 0.509,
+   "ci95": [
+    0.491,
+    0.5273
+   ],
+   "n_neg": 528,
+   "n_pos": 528
+  },
+  {
+   "label": "frgcferet opencv R0 vs R3",
+   "kind": "photo_vs_same",
+   "score": "typ",
+   "neg": "ar1src_frgcferet_H",
+   "pos": "ar1_frgcferet_opencv_R3",
+   "auc": 0.5091,
+   "ci95": [
+    0.4893,
+    0.5289
+   ],
+   "n_neg": 528,
+   "n_pos": 528
+  },
+  {
+   "label": "frgcferet opencv R0 vs R3",
+   "kind": "photo_vs_same",
+   "score": "ses",
+   "neg": "ar1src_frgcferet_H",
+   "pos": "ar1_frgcferet_opencv_R3",
+   "auc": 0.4743,
+   "ci95": [
+    0.4539,
+    0.4948
+   ],
+   "n_neg": 528,
+   "n_pos": 528
+  },
+  {
+   "label": "control native vs E7 opencv",
+   "kind": "control",
+   "score": "iss",
+   "neg": "e7_native",
+   "pos": "e7_opencv",
+   "auc": 0.5023,
+   "ci95": [
+    0.4979,
+    0.5073
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 opencv",
+   "kind": "control",
+   "score": "typ",
+   "neg": "e7_native",
+   "pos": "e7_opencv",
+   "auc": 0.5034,
+   "ci95": [
+    0.4987,
+    0.5091
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 opencv",
+   "kind": "control",
+   "score": "ses",
+   "neg": "e7_native",
+   "pos": "e7_opencv",
+   "auc": 0.5018,
+   "ci95": [
+    0.4974,
+    0.5069
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 facemorpher",
+   "kind": "control",
+   "score": "iss",
+   "neg": "e7_native",
+   "pos": "e7_facemorpher",
+   "auc": 0.5049,
+   "ci95": [
+    0.5003,
+    0.5108
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 facemorpher",
+   "kind": "control",
+   "score": "typ",
+   "neg": "e7_native",
+   "pos": "e7_facemorpher",
+   "auc": 0.5051,
+   "ci95": [
+    0.5006,
+    0.5104
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 facemorpher",
+   "kind": "control",
+   "score": "ses",
+   "neg": "e7_native",
+   "pos": "e7_facemorpher",
+   "auc": 0.5023,
+   "ci95": [
+    0.4975,
+    0.5077
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 stylegan",
+   "kind": "control",
+   "score": "iss",
+   "neg": "e7_native",
+   "pos": "e7_stylegan",
+   "auc": 0.5,
+   "ci95": [
+    0.5,
+    0.5
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 stylegan",
+   "kind": "control",
+   "score": "typ",
+   "neg": "e7_native",
+   "pos": "e7_stylegan",
+   "auc": 0.5,
+   "ci95": [
+    0.5,
+    0.5
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 stylegan",
+   "kind": "control",
+   "score": "ses",
+   "neg": "e7_native",
+   "pos": "e7_stylegan",
+   "auc": 0.5,
+   "ci95": [
+    0.5,
+    0.5
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 mordiff",
+   "kind": "control",
+   "score": "iss",
+   "neg": "e7_native",
+   "pos": "e7_mordiff",
+   "auc": 0.3559,
+   "ci95": [
+    0.3002,
+    0.4057
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 mordiff",
+   "kind": "control",
+   "score": "typ",
+   "neg": "e7_native",
+   "pos": "e7_mordiff",
+   "auc": 0.3955,
+   "ci95": [
+    0.3435,
+    0.4442
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "control native vs E7 mordiff",
+   "kind": "control",
+   "score": "ses",
+   "neg": "e7_native",
+   "pos": "e7_mordiff",
+   "auc": 0.6803,
+   "ci95": [
+    0.6499,
+    0.7129
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "MorDIFF stored E vs B20",
+   "kind": "photo_vs_morph",
+   "score": "iss",
+   "neg": "a43_E",
+   "pos": "a43_B20",
+   "auc": 0.5457,
+   "ci95": [
+    0.4394,
+    0.6464
+   ],
+   "n_neg": 204,
+   "n_pos": 200,
+   "c_arm_median": 1.1914,
+   "c_arm_q10_q90": [
+    0.6633,
+    1.5055
+   ],
+   "pred_closed": 0.3664,
+   "pred_spectrum": 0.3771,
+   "c_pool_centred_median": 0.5138,
+   "pred_closed_pool_c": 0.8464,
+   "pred_spectrum_pool_c": 0.821,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "MorDIFF stored E vs B20",
+   "kind": "photo_vs_morph",
+   "score": "typ",
+   "neg": "a43_E",
+   "pos": "a43_B20",
+   "auc": 0.4675,
+   "ci95": [
+    0.3784,
+    0.5563
+   ],
+   "n_neg": 204,
+   "n_pos": 200
+  },
+  {
+   "label": "MorDIFF stored E vs B20",
+   "kind": "photo_vs_morph",
+   "score": "ses",
+   "neg": "a43_E",
+   "pos": "a43_B20",
+   "auc": 0.3847,
+   "ci95": [
+    0.3123,
+    0.4594
+   ],
+   "n_neg": 204,
+   "n_pos": 200
+  },
+  {
+   "label": "MorDIFF stored D20 vs B20",
+   "kind": "one_vs_morph",
+   "score": "iss",
+   "neg": "a43_D20",
+   "pos": "a43_B20",
+   "auc": 0.6108,
+   "ci95": [
+    0.522,
+    0.6984
+   ],
+   "n_neg": 204,
+   "n_pos": 200,
+   "c_arm_median": 1.1914,
+   "c_arm_q10_q90": [
+    0.6633,
+    1.5055
+   ],
+   "pred_closed": 0.3664,
+   "pred_spectrum": 0.3771,
+   "c_pool_centred_median": 0.5138,
+   "pred_closed_pool_c": 0.8464,
+   "pred_spectrum_pool_c": 0.821,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "MorDIFF stored D20 vs B20",
+   "kind": "one_vs_morph",
+   "score": "typ",
+   "neg": "a43_D20",
+   "pos": "a43_B20",
+   "auc": 0.5776,
+   "ci95": [
+    0.4979,
+    0.6592
+   ],
+   "n_neg": 204,
+   "n_pos": 200
+  },
+  {
+   "label": "MorDIFF stored D20 vs B20",
+   "kind": "one_vs_morph",
+   "score": "ses",
+   "neg": "a43_D20",
+   "pos": "a43_B20",
+   "auc": 0.5214,
+   "ci95": [
+    0.4491,
+    0.598
+   ],
+   "n_neg": 204,
+   "n_pos": 200
+  },
+  {
+   "label": "MorDIFF stored C20 vs B20",
+   "kind": "same_vs_morph",
+   "score": "iss",
+   "neg": "a43_C20",
+   "pos": "a43_B20",
+   "auc": 0.4784,
+   "ci95": [
+    0.376,
+    0.5802
+   ],
+   "n_neg": 102,
+   "n_pos": 200,
+   "c_arm_median": 1.1914,
+   "c_arm_q10_q90": [
+    0.6633,
+    1.5055
+   ],
+   "pred_closed": 0.3664,
+   "pred_spectrum": 0.3771,
+   "c_pool_centred_median": 0.5138,
+   "pred_closed_pool_c": 0.8464,
+   "pred_spectrum_pool_c": 0.821,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "MorDIFF stored C20 vs B20",
+   "kind": "same_vs_morph",
+   "score": "typ",
+   "neg": "a43_C20",
+   "pos": "a43_B20",
+   "auc": 0.4688,
+   "ci95": [
+    0.381,
+    0.5608
+   ],
+   "n_neg": 102,
+   "n_pos": 200
+  },
+  {
+   "label": "MorDIFF stored C20 vs B20",
+   "kind": "same_vs_morph",
+   "score": "ses",
+   "neg": "a43_C20",
+   "pos": "a43_B20",
+   "auc": 0.3357,
+   "ci95": [
+    0.26,
+    0.4175
+   ],
+   "n_neg": 102,
+   "n_pos": 200
+  },
+  {
+   "label": "MorDIFF stored D20 vs C20",
+   "kind": "one_vs_same",
+   "score": "iss",
+   "neg": "a43_D20",
+   "pos": "a43_C20",
+   "auc": 0.627,
+   "ci95": [
+    0.5898,
+    0.6697
+   ],
+   "n_neg": 204,
+   "n_pos": 102
+  },
+  {
+   "label": "MorDIFF stored D20 vs C20",
+   "kind": "one_vs_same",
+   "score": "typ",
+   "neg": "a43_D20",
+   "pos": "a43_C20",
+   "auc": 0.6012,
+   "ci95": [
+    0.565,
+    0.6405
+   ],
+   "n_neg": 204,
+   "n_pos": 102
+  },
+  {
+   "label": "MorDIFF stored D20 vs C20",
+   "kind": "one_vs_same",
+   "score": "ses",
+   "neg": "a43_D20",
+   "pos": "a43_C20",
+   "auc": 0.6715,
+   "ci95": [
+    0.6283,
+    0.7189
+   ],
+   "n_neg": 204,
+   "n_pos": 102
+  },
+  {
+   "label": "MorDIFF stored E vs D20",
+   "kind": "photo_vs_one",
+   "score": "iss",
+   "neg": "a43_E",
+   "pos": "a43_D20",
+   "auc": 0.4244,
+   "ci95": [
+    0.3869,
+    0.4599
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "MorDIFF stored E vs D20",
+   "kind": "photo_vs_one",
+   "score": "typ",
+   "neg": "a43_E",
+   "pos": "a43_D20",
+   "auc": 0.3938,
+   "ci95": [
+    0.3613,
+    0.4229
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "MorDIFF stored E vs D20",
+   "kind": "photo_vs_one",
+   "score": "ses",
+   "neg": "a43_E",
+   "pos": "a43_D20",
+   "auc": 0.3695,
+   "ci95": [
+    0.3475,
+    0.3883
+   ],
+   "n_neg": 204,
+   "n_pos": 204
+  },
+  {
+   "label": "MorDIFF stored E vs A (published)",
+   "kind": "photo_vs_morph",
+   "score": "iss",
+   "neg": "a43_E",
+   "pos": "a43_A",
+   "auc": 0.5782,
+   "ci95": [
+    0.4683,
+    0.6848
+   ],
+   "n_neg": 204,
+   "n_pos": 200,
+   "c_arm_median": 1.1914,
+   "c_arm_q10_q90": [
+    0.6633,
+    1.5055
+   ],
+   "pred_closed": 0.3664,
+   "pred_spectrum": 0.3771,
+   "c_pool_centred_median": 0.5138,
+   "pred_closed_pool_c": 0.8464,
+   "pred_spectrum_pool_c": 0.821,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "MorDIFF stored E vs A (published)",
+   "kind": "photo_vs_morph",
+   "score": "typ",
+   "neg": "a43_E",
+   "pos": "a43_A",
+   "auc": 0.5072,
+   "ci95": [
+    0.4125,
+    0.6054
+   ],
+   "n_neg": 204,
+   "n_pos": 200
+  },
+  {
+   "label": "MorDIFF stored E vs A (published)",
+   "kind": "photo_vs_morph",
+   "score": "ses",
+   "neg": "a43_E",
+   "pos": "a43_A",
+   "auc": 0.4058,
+   "ci95": [
+    0.3303,
+    0.4807
+   ],
+   "n_neg": 204,
+   "n_pos": 200
+  },
+  {
+   "label": "MorDIFF stored D20 vs A (published)",
+   "kind": "one_vs_morph",
+   "score": "iss",
+   "neg": "a43_D20",
+   "pos": "a43_A",
+   "auc": 0.6367,
+   "ci95": [
+    0.5481,
+    0.7292
+   ],
+   "n_neg": 204,
+   "n_pos": 200,
+   "c_arm_median": 1.1914,
+   "c_arm_q10_q90": [
+    0.6633,
+    1.5055
+   ],
+   "pred_closed": 0.3664,
+   "pred_spectrum": 0.3771,
+   "c_pool_centred_median": 0.5138,
+   "pred_closed_pool_c": 0.8464,
+   "pred_spectrum_pool_c": 0.821,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "MorDIFF stored D20 vs A (published)",
+   "kind": "one_vs_morph",
+   "score": "typ",
+   "neg": "a43_D20",
+   "pos": "a43_A",
+   "auc": 0.6125,
+   "ci95": [
+    0.5287,
+    0.7
+   ],
+   "n_neg": 204,
+   "n_pos": 200
+  },
+  {
+   "label": "MorDIFF stored D20 vs A (published)",
+   "kind": "one_vs_morph",
+   "score": "ses",
+   "neg": "a43_D20",
+   "pos": "a43_A",
+   "auc": 0.5423,
+   "ci95": [
+    0.4709,
+    0.6159
+   ],
+   "n_neg": 204,
+   "n_pos": 200
+  },
+  {
+   "label": "StyleGAN3 h3_bona vs h3_sg3",
+   "kind": "one_vs_morph",
+   "score": "iss",
+   "neg": "sg3_h3_bona",
+   "pos": "sg3_h3_sg3",
+   "auc": 0.6242,
+   "ci95": [
+    0.5976,
+    0.6519
+   ],
+   "n_neg": 423,
+   "n_pos": 423,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "StyleGAN3 h3_bona vs h3_sg3",
+   "kind": "one_vs_morph",
+   "score": "typ",
+   "neg": "sg3_h3_bona",
+   "pos": "sg3_h3_sg3",
+   "auc": 0.6345,
+   "ci95": [
+    0.6072,
+    0.6627
+   ],
+   "n_neg": 423,
+   "n_pos": 423
+  },
+  {
+   "label": "StyleGAN3 h3_bona vs h3_sg3",
+   "kind": "one_vs_morph",
+   "score": "ses",
+   "neg": "sg3_h3_bona",
+   "pos": "sg3_h3_sg3",
+   "auc": 0.568,
+   "ci95": [
+    0.5347,
+    0.6
+   ],
+   "n_neg": 423,
+   "n_pos": 423
+  },
+  {
+   "label": "StyleGAN3 a37spread vs h3_sg3",
+   "kind": "one_vs_morph",
+   "score": "iss",
+   "neg": "sg3_a37spread",
+   "pos": "sg3_h3_sg3",
+   "auc": 0.4688,
+   "ci95": [
+    0.4415,
+    0.4965
+   ],
+   "n_neg": 423,
+   "n_pos": 423,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "StyleGAN3 a37spread vs h3_sg3",
+   "kind": "one_vs_morph",
+   "score": "typ",
+   "neg": "sg3_a37spread",
+   "pos": "sg3_h3_sg3",
+   "auc": 0.4667,
+   "ci95": [
+    0.4401,
+    0.4943
+   ],
+   "n_neg": 423,
+   "n_pos": 423
+  },
+  {
+   "label": "StyleGAN3 a37spread vs h3_sg3",
+   "kind": "one_vs_morph",
+   "score": "ses",
+   "neg": "sg3_a37spread",
+   "pos": "sg3_h3_sg3",
+   "auc": 0.4977,
+   "ci95": [
+    0.4663,
+    0.5313
+   ],
+   "n_neg": 423,
+   "n_pos": 423
+  },
+  {
+   "label": "StyleGAN3 FRLL native photo vs h3_sg3 (cross-pool)",
+   "kind": "photo_vs_morph_xpool",
+   "score": "iss",
+   "neg": "e7_native",
+   "pos": "sg3_h3_sg3",
+   "auc": 0.7439,
+   "ci95": [
+    0.6965,
+    0.787
+   ],
+   "n_neg": 204,
+   "n_pos": 423,
+   "pred_closed_c0": 0.9906
+  },
+  {
+   "label": "StyleGAN3 FRLL native photo vs h3_sg3 (cross-pool)",
+   "kind": "photo_vs_morph_xpool",
+   "score": "typ",
+   "neg": "e7_native",
+   "pos": "sg3_h3_sg3",
+   "auc": 0.7372,
+   "ci95": [
+    0.6875,
+    0.7832
+   ],
+   "n_neg": 204,
+   "n_pos": 423
+  },
+  {
+   "label": "StyleGAN3 FRLL native photo vs h3_sg3 (cross-pool)",
+   "kind": "photo_vs_morph_xpool",
+   "score": "ses",
+   "neg": "e7_native",
+   "pos": "sg3_h3_sg3",
+   "auc": 0.4246,
+   "ci95": [
+    0.3731,
+    0.473
+   ],
+   "n_neg": 204,
+   "n_pos": 423
+  }
+ ],
+ "control_primary_iss": {
+  "control native vs E7 opencv": 0.5023,
+  "control native vs E7 facemorpher": 0.5049,
+  "control native vs E7 stylegan": 0.5,
+  "control native vs E7 mordiff": 0.3559
+ },
+ "control_clean_045_055": false,
+ "dose": {
+  "FaceMorpher graded m000-m050": {
+   "hosts": 294,
+   "L": 22140.0,
+   "p": 3.794592028079941e-05,
+   "levels": [
+    {
+     "level": "ar1g_m000",
+     "mean": -45.6526
+    },
+    {
+     "level": "ar1g_m010",
+     "mean": -44.7367
+    },
+    {
+     "level": "ar1g_m020",
+     "mean": -43.7662
+    },
+    {
+     "level": "ar1g_m030",
+     "mean": -43.5343
+    },
+    {
+     "level": "ar1g_m040",
+     "mean": -43.8833
+    },
+    {
+     "level": "ar1g_m050",
+     "mean": -44.4107
+    }
+   ],
+   "monotone_means": false,
+   "auc_vs_m000": {
+    "ar1g_m010": {
+     "auc": 0.5252,
+     "ci95": [
+      0.5042,
+      0.5482
+     ],
+     "n_neg": 294,
+     "n_pos": 294
+    },
+    "ar1g_m020": {
+     "auc": 0.5479,
+     "ci95": [
+      0.5125,
+      0.5833
+     ],
+     "n_neg": 294,
+     "n_pos": 294
+    },
+    "ar1g_m030": {
+     "auc": 0.5506,
+     "ci95": [
+      0.5027,
+      0.5986
+     ],
+     "n_neg": 294,
+     "n_pos": 294
+    },
+    "ar1g_m040": {
+     "auc": 0.5371,
+     "ci95": [
+      0.4799,
+      0.5924
+     ],
+     "n_neg": 294,
+     "n_pos": 294
+    },
+    "ar1g_m050": {
+     "auc": 0.5291,
+     "ci95": [
+      0.4641,
+      0.5921
+     ],
+     "n_neg": 294,
+     "n_pos": 294
+    }
+   }
+  }
+ },
+ "shrink_law": {
+  "ar1_frgcferet_opencv_R4": {
+   "rho": -0.15,
+   "ci95": [
+    -0.313,
+    0.0129
+   ],
+   "n": 520
+  },
+  "ar1g_pooled": {
+   "rho": -0.0525,
+   "ci95": [
+    -0.1388,
+    0.0348
+   ],
+   "n": 1470
+  },
+  "a43_B20": {
+   "rho": 0.0995,
+   "ci95": [
+    -0.162,
+    0.3436
+   ],
+   "n": 200
+  },
+  "a43_B20 (neutral-neutral)": {
+   "rho": 0.1964,
+   "ci95": [
+    -0.1716,
+    0.5352
+   ],
+   "n": 100
+  },
+  "a43_A": {
+   "rho": 0.0785,
+   "ci95": [
+    -0.1723,
+    0.3273
+   ],
+   "n": 200
+  },
+  "a43_A (neutral-neutral)": {
+   "rho": 0.1731,
+   "ci95": [
+    -0.1815,
+    0.5126
+   ],
+   "n": 100
+  }
+ },
+ "shrink_law_power": {},
+ "fidelity": {
+  "a43_A": {
+   "n": 200,
+   "F_q25_med_q75": [
+    0.8738,
+    0.9069,
+    0.9299
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.7696,
+    0.8274,
+    0.8765
+   ]
+  },
+  "a43_B20": {
+   "n": 200,
+   "F_q25_med_q75": [
+    0.8764,
+    0.9062,
+    0.9285
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.7609,
+    0.8301,
+    0.8723
+   ]
+  },
+  "a43_C20": {
+   "n": 102,
+   "F_q25_med_q75": [
+    0.7967,
+    0.8405,
+    0.8792
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.7853,
+    0.8258,
+    0.858
+   ]
+  },
+  "a43_D20": {
+   "n": 204,
+   "F_q25_med_q75": [
+    0.9349,
+    0.9479,
+    0.9552
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.9349,
+    0.9479,
+    0.9552
+   ]
+  },
+  "ar1_frgcferet_opencv_R2w": {
+   "n": 528,
+   "F_q25_med_q75": [
+    0.9312,
+    0.956,
+    0.9725
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.9945,
+    0.9964,
+    0.9976
+   ]
+  },
+  "ar1_frgcferet_opencv_R3": {
+   "n": 528,
+   "F_q25_med_q75": [
+    0.9302,
+    0.9557,
+    0.9698
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.8707,
+    0.9157,
+    0.9451
+   ]
+  },
+  "ar1_frgcferet_opencv_R4": {
+   "n": 520,
+   "F_q25_med_q75": [
+    0.8413,
+    0.898,
+    0.9319
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.678,
+    0.8064,
+    0.8714
+   ]
+  },
+  "ar1g_m000": {
+   "n": 294,
+   "F_q25_med_q75": [
+    0.9999,
+    0.9999,
+    0.9999
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.9999,
+    0.9999,
+    0.9999
+   ]
+  },
+  "ar1g_m010": {
+   "n": 294,
+   "F_q25_med_q75": [
+    0.9573,
+    0.9795,
+    0.9894
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.9555,
+    0.9794,
+    0.9905
+   ]
+  },
+  "ar1g_m020": {
+   "n": 294,
+   "F_q25_med_q75": [
+    0.9185,
+    0.9504,
+    0.9661
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.9061,
+    0.946,
+    0.9669
+   ]
+  },
+  "ar1g_m030": {
+   "n": 294,
+   "F_q25_med_q75": [
+    0.8739,
+    0.9224,
+    0.9462
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.8538,
+    0.9026,
+    0.9389
+   ]
+  },
+  "ar1g_m040": {
+   "n": 294,
+   "F_q25_med_q75": [
+    0.8452,
+    0.9046,
+    0.9358
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.7866,
+    0.8605,
+    0.9034
+   ]
+  },
+  "ar1g_m050": {
+   "n": 294,
+   "F_q25_med_q75": [
+    0.8409,
+    0.8926,
+    0.928
+   ],
+   "cos_to_src1_q25_med_q75": [
+    0.6917,
+    0.8031,
+    0.8649
+   ]
+  }
+ },
+ "c_arm": {
+  "a43_A": {
+   "n": 200,
+   "median": 1.1914,
+   "q10": 0.6633,
+   "q90": 1.5055,
+   "pool_centred_median": 0.5138,
+   "pool_centred_q10_q90": [
+    0.2069,
+    0.8831
+   ]
+  },
+  "a43_B20": {
+   "n": 200,
+   "median": 1.1914,
+   "q10": 0.6633,
+   "q90": 1.5055,
+   "pool_centred_median": 0.5138,
+   "pool_centred_q10_q90": [
+    0.2069,
+    0.8831
+   ]
+  },
+  "ar1_frgcferet_opencv_R4": {
+   "n": 520,
+   "median": 0.6183,
+   "q10": -0.0495,
+   "q90": 1.0371,
+   "pool_centred_median": 0.4353,
+   "pool_centred_q10_q90": [
+    -0.2076,
+    0.8452
+   ]
+  },
+  "ar1g_m000": {
+   "n": 294,
+   "median": 0.6398,
+   "q10": 0.0101,
+   "q90": 1.064,
+   "pool_centred_median": 0.45,
+   "pool_centred_q10_q90": [
+    -0.1599,
+    0.874
+   ]
+  },
+  "ar1g_m010": {
+   "n": 294,
+   "median": 0.6398,
+   "q10": 0.0101,
+   "q90": 1.064,
+   "pool_centred_median": 0.45,
+   "pool_centred_q10_q90": [
+    -0.1599,
+    0.874
+   ]
+  },
+  "ar1g_m020": {
+   "n": 294,
+   "median": 0.6398,
+   "q10": 0.0101,
+   "q90": 1.064,
+   "pool_centred_median": 0.45,
+   "pool_centred_q10_q90": [
+    -0.1599,
+    0.874
+   ]
+  },
+  "ar1g_m030": {
+   "n": 294,
+   "median": 0.6398,
+   "q10": 0.0101,
+   "q90": 1.064,
+   "pool_centred_median": 0.45,
+   "pool_centred_q10_q90": [
+    -0.1599,
+    0.874
+   ]
+  },
+  "ar1g_m040": {
+   "n": 294,
+   "median": 0.6398,
+   "q10": 0.0101,
+   "q90": 1.064,
+   "pool_centred_median": 0.45,
+   "pool_centred_q10_q90": [
+    -0.1599,
+    0.874
+   ]
+  },
+  "ar1g_m050": {
+   "n": 294,
+   "median": 0.6398,
+   "q10": 0.0101,
+   "q90": 1.064,
+   "pool_centred_median": 0.45,
+   "pool_centred_q10_q90": [
+    -0.1599,
+    0.874
+   ]
+  }
+ },
+ "seconds": 578.0
+}

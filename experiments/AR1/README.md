@@ -269,3 +269,12 @@ $P -I $S/baselines.py; $P -I $S/analyse.py; $P -I $S/tables.py; $P -I $S/check_a
 
 ## Log of README updates
 - 11 Nov about 18:00 CET: first version.
+- 11 Nov about 18:40 CET: baselines (AR3) finished for all contrasts except R2wm (`experiments/AR1/baselines.json`,
+  226 entries; copy of that version `/mnt/t7/smad_next/AR1/baselines_v1.json`); an incremental pass
+  `baselines.py --only R2wm` merges the R2wm contrasts (log `baselines_r2wm.log`). G-c run crashed once on M3 seed 1
+  FRLL (the retrains have no bridge features, so the clean-FRLL probe had one class); fixed (empty class -> "not
+  scored") and rerun for ViT-B/16, SelfMAD, M3 s1-s3 (`gate_c_1.log`), then MixFaceNet (`gate_c_2.log`). Gate files are
+  written by one process at a time (concurrent runs would overwrite each other's tags). MixFaceNet scored (18,239,
+  29 min). Chain B restarted at about 18:20 (PID see `ps -ef | grep run_own_nets`); its `frames.csv` now includes the
+  R2wm rows, so seeds 4+ score them natively; chain C adds them for seeds 1-3. `analyse.py` was tested end to end on
+  synthetic random scores (`AR1_SCORES_DIR` override; scratch output only) before any real score was opened.
