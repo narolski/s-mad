@@ -25,6 +25,7 @@ people.
 | `14_CLASS_DEFINITIONS.md` | What the literature says a morph and a genuine image are; proposal of three categories |
 | `literature/` | Raw, verified literature checks |
 | `OWNER_BRIEF.md` | Rules and machine notes for hypothesis owners; the WCSS slot queue |
+| `ATHENA.md` | How to run on the Athena cluster (account, storage, rules, who may submit what) |
 | `NOTEBOOK.md` | Live state of every idea, one line each |
 | `EXPERIMENTS.md` | Plain name of every experiment ID |
 | `ideas/` | Lead's seeds, strategist's ideas, seven-lens raw output, consolidation |
