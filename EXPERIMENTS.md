@@ -52,6 +52,8 @@ Rule (author, 11 Nov 2026): an experiment is always named by a plain description
 | ID2 | Ideation round 2, vetting | ideation |
 | RS1 | Own-crop re-score of the audit rows | audit, released detectors |
 | PD1 | Signal isolation by paired differences (learn from one-person morphs) | method |
+| DG1 | Diffusion-autoencoder generation on Athena | data builds |
+| AD5 | Retrains of released methods with the authors' code | audit, released detectors |
 | C1c | What the smiling half carries: expression or capture detail | cue checks |
 | AD1b | Identical and mirrored inputs for diffusion | audit, diffusion |
 | CN0 | Clean-negative test (inside the alpha-field probe) | method |
