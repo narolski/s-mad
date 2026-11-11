@@ -11,6 +11,10 @@ result files (CSV/JSON). Code in `src/<ID>/`. Large outputs in `/mnt/t7/smad_nex
 Write only inside those three places. Do not run `git add`, `commit` or `push`; the lead commits.
 Report facts only. The lead draws conclusions.
 
+## Naming (author's request, 11 Nov)
+
+Name an experiment by a plain description with its ID in brackets ("the landmark ladder (AR1)"), never by a bare ID, in every file, table heading and report. Define a rung in words on first use ("warp-only image (R2w)"). The list of names is `EXPERIMENTS.md`. New folders: `experiments/<ID>_<short-name>/`.
+
 ## Hard rules
 
 - Never open, list contents of, or grep files whose name contains `fst`, `valx` (except the allowed

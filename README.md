@@ -24,6 +24,8 @@ people.
 | `13_LONG_TERM_PLAN.md` | Stages after the sprint and the WCSS queue policy |
 | `OWNER_BRIEF.md` | Rules and machine notes for hypothesis owners; the WCSS slot queue |
 | `NOTEBOOK.md` | Live state of every idea, one line each |
+| `EXPERIMENTS.md` | Plain name of every experiment ID |
+| `ideas/` | Lead's seeds, strategist's ideas, seven-lens raw output, consolidation |
 | `WORKFLOW.md` | Roles, review loop, spending and cluster rules |
 | `prior/INDEX.md` | Index of all experiments before 11 Nov |
 | `experiments/` | One folder per new experiment |
