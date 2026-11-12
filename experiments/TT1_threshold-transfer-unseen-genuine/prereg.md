@@ -41,3 +41,32 @@ sources, so TT1 is a false-alarm test only.
 - At this commit no TT1 image, border-matched or crop-geometry-matched reference has been scored, and the
   crop-geometry-matched reference has not been built. Pins of the list, pack, network tar, job script and reader
   follow in a pins section, committed before any score.
+
+## 4. Pins of registration TT1-S (committed before any score; `date`: Thu Nov 12 11:32:53 PM CET 2026)
+
+Built after the registration commit 01557ce; no TT1, border or geo reference row has been scored by any network.
+- Crop-geometry reference (section 2.4): `src/TT1/build_geo_ref.py` `4475ca8798790254c45e9842057ec22f35b1beaf7ffbf3bb707fb76f478d50ca`
+  (imports soften.py `aa90f271…` and prep_eval.py `374408ab…` unchanged, pins asserted); 834 of 834 aligned;
+  `/mnt/t7/smad_next/TT1/geo_ref.csv` `40d211f454274bbfb71d32bfd1ae872e94a70fb044411eeb7877d23113955310` (copy here).
+  8-image test viewed before the full build (one g112 frame inspected: face crop with border, as intended).
+- Border reference (section 2.3, edge-connected mask): `src/TT1/build_border_ref.py`
+  `366058805349dc322088cf98debd78598eaa9900294e2c7f7ec37d5f1293113c`; 4,919 images; `border_ref.csv`
+  `9d866232914ee6c1e3e363f31cf4109d6ec817d0e220abb45cbac217c475b07a` (gz copy here). Median masked share 0.422. The first
+  build with the every-black-pixel mask (never scored) was deleted.
+- Shared definitions `src/TT1/tt1common.py` `1053022792e99ade577abc11490d169e0bec15c6a6dd761fc5aac3b92c52a1a3`;
+  `src/TT1/geometry.py` `85c52d3e54c73afef9ccdb2ae532b4d9ed08b24d684b69d7fe62447f57b5a606` (crop_geometry.json at 01557ce).
+- Scoring list `tt1_score.csv` `c0055b51467cf8d001d56cbc4689706d68f0bf35c64066b1ba49fada5cb45761`: 34,411 rows (gate 3,417;
+  tt1 30,994 = U_all 25,241 + border 4,919 + geo 834); builder `src/TT1/build_pack.py`
+  `34322f3685e1872d426af13caea8b017bbd1debafadc8e2f29eff61fe26337fa` (asserts the forbidden pack files were never read
+  and that every image path is under TT1 outputs or the PN1 fs_tree eval/pn1, eval/hn2).
+- Pack `/mnt/t7/smad_next/TT1/tt1_pack.tar` `2109f742b0378c188f394a3b26c363ef2ffb0ea43eab78ecea7674884022c554`
+  (8,103,157,760 bytes; 34,519 files under SHA256SUMS; bin/rescore.py `6f6eede7…`, bin/gate_check.py
+  `36cfaa63347241d72a535ec898ca012737deb3e32f418c74004dfc1c6be7b657`). Reusable for the FS1 block.
+- Networks `/mnt/t7/smad_next/TT1/tt1_nets_s401402.tar` `92bd1841bd9307659c4666bfc344974592613e310f2ee4187dc3fc6884205303`
+  (12 networks, each tar checked against its .sha256; gate_ref/<net>.npz = stored A100 logits of the 3,417 gate rows;
+  sources in nets.json).
+- Job body `src/TT1/tt1_job.sh` `2a280c5f267a6cefb2314455a2676bc6e78f51b2127c3c9ad9d90aa76e2a21fd`; WCSS file
+  `src/TT1/wcss/tt1.sbatch` `c3ad44cbebfd549db316af7e0f65af307e31d5b9b08aad713767a7350c1d3685`.
+- Local DGX test of the job (TT1_MODE=test, 8 gate rows x 12 networks, torch 2.12.1 on GB10): runs end to end; largest
+  |Δlogit| against the stored A100 logits 0.00067. gate_check.py self-test on identical scores passes.
+- Reader `src/TT1/tt1_read.py`: pinned in the next commit, before the full job is submitted.
