@@ -363,18 +363,63 @@ So SelfMAD's separation of the spliced blend from an unblended patch is below wh
 wording stays "SelfMAD does not read only the patch boundary"; it is not shown to read the blend beyond simple
 statistics.
 
-(b) Noise-residual floor for warp-only vs morph: first-order luma differences, inside and outside the face hull,
-12 numbers, logistic with strict person folds. The R4 hull is used for every rung of a host. The floor is 0.935
-(OpenCV) and 0.917 (FaceMorpher) for both R2w vs R4 and R2w4 vs R4. Detector excess, R2w vs R4, OpenCV / FaceMorpher:
+(b) Noise-residual floor for warp-only vs morph, qualified after REVIEW_FZ2_AR1A10 F9 (reviewer's wording):
+- On warp-only vs morph, both MADation networks exceed a 12-number noise-residual floor by 5 to 8 points, and a
+  combined 22-number floor by 4 to 7.
+- SelfMAD exceeds the residual floor by 3 to 7 points, but on OpenCV R2w it is not shown to exceed the combined floor.
+- MixFaceNet exceeds neither.
+- Detectors sit at 0.96 to 0.99 against floors of 0.92 to 0.95, so the excess is most of the remaining headroom.
+- The residual feature family was chosen after the detector scores were known. Post hoc in substance.
+
+Floors:
+
+| Contrast | 12-number residual floor | Combined 22-number floor (10 simple statistics + 12 residuals, strict person folds) |
+|---|---|---|
+| OpenCV R2w vs R4 | 0.935 | 0.949 |
+| FaceMorpher R2w vs R4 | 0.917 | 0.920 |
+| OpenCV R2w4 vs R4 | 0.935 | 0.933 (the residual floor remains the best) |
+| FaceMorpher R2w4 vs R4 | 0.917 | 0.921 |
+
+Excess over the combined floor, OpenCV / FaceMorpher R2w vs R4 (my recomputation, `floors11.json`):
+
+| Detector | Excess (OC) | Excess (FM) |
+|---|---|---|
+| SelfMAD | +0.017 [-0.002, 0.037] | +0.064 [0.041, 0.091] |
+| ViT-B/16 | +0.037 [0.021, 0.054] | +0.064 [0.043, 0.090] |
+| ViT-L/14 | +0.043 [0.026, 0.061] | +0.074 [0.051, 0.100] |
+| MixFaceNet | -0.059 [-0.088, -0.031] | -0.019 [-0.050, 0.012] |
+
+Excess over the residual floor alone (amendment 10 as first computed):
 
 | Detector | Excess (OC) | Excess (FM) |
 |---|---|---|
 | SelfMAD | +0.031 [0.011, 0.053] | +0.067 [0.043, 0.095] |
-| ViT-B/16 | +0.051 [0.034, 0.070] | +0.067 [0.045, 0.093] |
-| ViT-L/14 | +0.057 [0.039, 0.078] | +0.077 [0.053, 0.104] |
+| ViT-B/16 | +0.051 | +0.067 |
+| ViT-L/14 | +0.057 | +0.077 |
 | MixFaceNet | -0.045 [-0.073, -0.018] | -0.016 [-0.047, 0.016] |
 
-R2w4 vs R4 is within 0.006 of these values.
+## Amendment 11 (registered in git a265476 at 12 Nov 03:36:37 before this ran; post hoc in substance), `floors11.json`
+
+(a) Spliced morph vs swap-splice. Paired excess over the single statistic inside-hull Laplacian variance (0.926),
+my computation:
+
+| Detector | Excess over 0.926 |
+|---|---|
+| SelfMAD | -0.038 [-0.076, -0.004] (equal to the reviewer's value) |
+| ViT-B/16 | -0.203 |
+| ViT-L/14 | -0.309 |
+| MixFaceNet | -0.237 |
+
+No released detector is shown to read more than one simple statistic, interior sharpness, on spliced morph vs
+swap-splice: inside-hull Laplacian variance alone gives 0.926 against SelfMAD's 0.888.
+
+(b) H-D on the FRLL secondary pool, R2w vs R4 (confounded rungs; descriptive):
+- The combined 22-number floor is 1.000 with both tools: the smiling-file confound makes the contrast separable by
+  simple statistics.
+- Detectors 0.96-1.00. Excess: ViT-L/14 -0.000 [-0.001, 0.000] / 0.000 [0.000, 0.000]; SelfMAD OpenCV -0.000
+  [-0.002, 0.000]; ViT-B/16 -0.003 / -0.001; MixFaceNet -0.040 / -0.033.
+- H-D is falsified as registered: ViT-L/14's lower bound is <= 0. The test has no headroom here, because the floor is
+  at ceiling.
 
 ## Gaps and what was not done
 
