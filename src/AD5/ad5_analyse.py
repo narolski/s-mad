@@ -46,11 +46,18 @@ def sha(p):
     return hashlib.sha256(open(p, "rb").read()).hexdigest()
 
 
-def pools_from(f, man):
+# RS1 README "For the retrains experiment (AD5)": the unchanged SMDD crop script (variant 1) fails on these sets
+# (MorDIFF strips, A43 arms, 34% of FRLL FaceMorpher dropped); their variant-1 rows are not used (variant 2 is).
+V1_INVALID = {"M_mordiff", "M_facemorpher", "a43_A", "a43_B", "a43_B20", "a43_C", "a43_C20", "a43_D", "a43_D20", "a43_E"}
+
+
+def pools_from(f, man, drop=()):
     z = np.load(f)
     by = {}
     for i, l in zip(z["id"].tolist(), z["logit_noTTA"]):
         r = man[i]
+        if r["set"] in drop:
+            continue
         by.setdefault(r["set"], []).append((float(l), tuple(r["persons"].split("|")), r["expr"], r["photo"]))
     return {s_: RA.Pool([v[0] for v in L], [v[1] for v in L], [v[2] for v in L], "AD5 " + f.name, "logit",
                         [v[3] for v in L]) for s_, L in by.items()}
@@ -184,11 +191,12 @@ def main():
             fr = sd / f"scores_{mode}_{relname}__ad5{suf}.npz"
             if not fr.exists():
                 continue
-            nets = {"release": pools_from(fr, allman)}
+            drop = V1_INVALID if var == "v1" else ()
+            nets = {"release": pools_from(fr, allman, drop)}
             for s in SEEDS:
                 f = sd / f"scores_{mode}_{PREFIX[arm]}_{arm}_s{s}__ad5{suf}.npz"
                 if f.exists():
-                    nets[f"s{s}"] = pools_from(f, allman)
+                    nets[f"s{s}"] = pools_from(f, allman, drop)
             seeds = [k for k in nets if k != "release"]
             R = {k: readings(S, P) for k, P in nets.items()}
             defs = {"all photos": R}

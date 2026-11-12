@@ -561,6 +561,17 @@ def read(rows, S, E, out, boot, pub_eer):
                     cell.pop("flag_rate_at_benchmark_thr", None)
                 cell["latdist_median"] = {k: float(np.median([r["latdist"] for r in grp[k] if "latdist" in r]))
                                           for k in ("R2", "R2s", "R3", "R4") if any("latdist" in r for r in grp[k])}
+                # amendment 4: readings per generation platform (persons of a shard share one platform)
+                plats = sorted({r.get("platform", "") for r in sub if r["source"] == "ours"})
+                if len(plats) > 1:
+                    ps = {}
+                    for pl in plats:
+                        hosts = {r["pa"] for r in sub if r["source"] == "ours" and r.get("platform") == pl}
+                        g2 = {k: [r for r in v if r["pa"] in hosts] for k, v in grp.items()}
+                        ps[pl] = {k: ({kk: vv for kk, vv in x.items() if kk != "rep"} if x else None) for k, x in
+                                  (("R2>R4", contrast(g2["R4"], g2["R2"])), ("R3>R4", contrast(g2["R4"], g2["R3"])),
+                                   ("R2s>R4", contrast(g2["R4"], g2["R2s"])), ("R0>R4", contrast(g2["R4"], g2["R0"])))}
+                    cell["platform_sensitivity"] = ps
                 cell["R3_R4_matched_bins (also reported)"] = matched_bins(grp["R3"], grp["R4"], sc, D)
                 if pool != "frll":
                     cell["R3_R4_session_gap"] = session_gap(grp["R3"], grp["R4"], sc, D)

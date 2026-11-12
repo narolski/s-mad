@@ -39,7 +39,8 @@ MADRAW = pathlib.Path("/mnt/t7/smad_heldout/mad22_incoming/marco_owncloud_202611
 MADPROC = pathlib.Path("/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z")
 LABEL = {"R0": 0, "R1": 0, "R2": 0, "R2i": 0, "R2s": 0, "R3": 1, "R3m": 1, "R4": 1, "BR": 1, "RT": 1, "AG3": 1,
          "AG3T": 1, "PUB": 1}
-COLS = ["id", "path", "label", "rung", "gen", "db", "pa", "pb", "photo_a", "photo_b", "alpha", "source", "aligned"]
+COLS = ["id", "path", "label", "rung", "gen", "db", "pa", "pb", "photo_a", "photo_b", "alpha", "source", "aligned",
+        "platform"]
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import build_inputs as BI                                       # noqa: E402  (read_bgr: FERET .ppm.bz2 decode)
 
@@ -111,6 +112,8 @@ def stage_shard(tar):
     rows, crops, cids, fail, imgs_r3, rts = [], [], [], [], {}, []
     with tarfile.open(t) as tf:
         log = list(csv.DictReader(tf.extractfile(f"{root}/log.csv").read().decode().splitlines()))
+        meta = json.loads(tf.extractfile(f"{root}/meta.json").read().decode())
+        platform = meta.get("device", "unknown").replace(" ", "_")    # amendment 4: platform per shard
         for r in log:
             mem = f"{root}/png/{r['stem']}.png"
             buf = tf.extractfile(mem).read()
@@ -130,7 +133,8 @@ def stage_shard(tar):
             pa, pb = r["a"].split("__")[0], r["b"].split("__")[0]
             rows.append({"id": r["stem"], "path": str(fp.relative_to(DATA)), "raw": f"tar://{t}::{mem}",
                          "rung": r["rung"], "gen": r["gen"], "db": pa.split("_")[0], "pa": pa, "pb": pb,
-                         "photo_a": r["a"], "photo_b": r["b"], "alpha": r["alpha"], "source": "ours", "aligned": ok})
+                         "photo_a": r["a"], "photo_b": r["b"], "alpha": r["alpha"], "source": "ours", "aligned": ok,
+                         "platform": platform})
         for r in log:                                           # RT check within the tar
             if r["rung"] == "RT":
                 twin = r["stem"].replace("_RT_", "_R3_")
@@ -142,7 +146,7 @@ def stage_shard(tar):
                                 "max": int(d.max()), "mean": float(d.mean())})
     E = embed(crops) if crops else np.zeros((0, 512), np.float32)
     np.savez(SH / f"{root}_oracle.npz", id=np.array(cids), emb=E, fail=np.array(fail))
-    json.dump({"tar": str(t), "tar_sha256": th, "rows": rows, "rt": rts, "oracle_fail": fail},
+    json.dump({"tar": str(t), "tar_sha256": th, "platform": platform, "rows": rows, "rt": rts, "oracle_fail": fail},
               open(SH / f"{root}.json", "w"))
     print(f"SHARD {root}: {len(rows)} images, aligned {np.mean([r['aligned'] for r in rows]):.3f}, oracle "
           f"{len(cids)} / fail {len(fail)}, RT {len(rts)}; the local tar may now be removed (copy on Athena)")
@@ -207,6 +211,7 @@ def stage_frames():
         rows += json.load(open(j))["rows"]
     for r in rows:
         r["label"] = LABEL[r["rung"]]
+        r.setdefault("platform", r["source"])                    # camera / e7 / published rows
     ids = [r["id"] for r in rows]
     if len(set(ids)) != len(ids):
         sys.exit("duplicate ids")

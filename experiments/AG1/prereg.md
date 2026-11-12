@@ -188,4 +188,24 @@ Code: `src/AG1/`. Large outputs: `/mnt/t7/smad_next/AG1/`. Rules: `11_AUDIT_PLAN
      Athena after the core array (render only). R4 vs R2s is printed beside R2 vs R4 with the latent-distance
      medians of R2s and R4; "the detector reads two codes mixed" needs R4 vs R2s to keep the R2 vs R4 reading.
   7. The facts table goes to the lead before any interpretation.
+- **Amendment 4 (12 Nov ~02:50, before any detector score; Athena fair-share exhausted, remaining shards move to a
+  rented Docker GPU):**
+  1. A shard comes from one platform only (all its images and latents on one GPU type and software stack). The
+     manifest carries a `platform` column (the GPU name from the shard's meta.json; camera / e7 / published for
+     non-generated rows). Readings are computed on all persons and, where a pool mixes platforms, per platform as a
+     sensitivity row (R2 vs R4, R3 vs R4, R2s vs R4, R0 vs R4 on the persons of each platform).
+  2. Finished on Athena (A100-SXM4-40GB, torch 2.2.1 + cu121): AG1_mip1_frll_00, _frll_01, _feret_00, _feret_01,
+     _frgc_00. To the rented machine (pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime, numpy 1.26.4 / pillow 10.2.0
+     pinned): AG1_mip1_frgc_01, AG1_mip2_frll_00 / _01, the four graded-mixing shards, the four spread-matched render
+     shards. The FRGC primary pool is therefore split by platform (hosts of frgc_00 on Athena, of frgc_01 rented);
+     graded-mixing doses 0 to 0.4 come from the rented GPU, their 0.5 endpoint (R4) and the R2 baseline from the core
+     shards (Athena, and rented for frgc_01): the dose reading is also printed on levels 0 to 0.4 alone. Spread
+     renders use Athena latents rendered on the rented GPU (render only).
+  3. First check on the rented machine, before any production shard: the smoke shard AG1_smoke_mip1 regenerated and
+     compared with Athena's (job 3544209): the same 11 images, every PNG 1024 x 1024 RGB with only IHDR / IDAT / IEND
+     chunks, every optimised image's final loss within 10% (relative) of Athena's. No pixel tolerance: generation is
+     not bitwise repeatable (same-GPU repeat max |w| 0.379; RT vs R3 2.6 grey levels mean on the A100); the mean pixel
+     difference is printed only. A failed check stops the rental before production.
+  4. A rented shard is accepted only after its tar's sha256 is checked on the DGX and it is processed; then its queued
+     Athena task is cancelled, so no shard is produced twice.
 - **Result:** pending.

@@ -238,6 +238,23 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
 - 12 Nov 00:15. Athena: all 12 usable nodes fully allocated (95 of 96 GPUs in use; 13 nodes reserved and idle, 23
   failed). AD5 tasks wait at the top of our pending list ("ReqNodeNotAvail" = waiting for resources). 00:50: still
   pending; nothing resubmitted or reshaped (lead's instruction).
+- 12 Nov 02:35-02:45. Athena: 5 GPUs free (t0014: 2, t0018: 3) but no AD5 task starts. `scontrol show job` for
+  3545813 / 3545870 / 3545933: Reason=ReqNodeNotAvail, UnavailableNodes t[0001-0031,0034-0036,0038-0047] (every
+  usable node). `sbatch --test-only` (no job created): a 1-GPU, 8-CPU, 32G, memfs job with limit 1 h, 6 h, 12 h or
+  46 h "to start at 2026-12-20T23:47" on t0018 (plgmultivision; 2026-12-22T05:32 with plgrestorearc, memfs or
+  localfs; the same without a constraint); an 8-GPU job 2026-12-21T06:46 on t0014. Looks like a cluster-wide
+  reservation or maintenance not visible to users (`scontrol show res`: none). Lead told at 02:40; nothing changed.
+- 12 Nov 02:50 (lead). Fair share exhausted (0.045 / 0.020), only 12 of 48 nodes work, Slurm forecasts 20-22 Dec for
+  new jobs: jobs stay queued (no resubmission, no account change, no cancel); poll at most hourly (poller now 3600 s);
+  rented machines are the author's decision. Zero-GPU work meanwhile:
+  - `ad5_analyse.py`: variant-1 rows of MorDIFF, the A43 arms and FRLL FaceMorpher are excluded (RS1 README: the
+    authors' crop script fails there; variant 2 is used), set `V1_INVALID`.
+  - Dry run on the DGX (`checks/dgx_score_dryrun.sh`): RS1 smoke crops 3545869 (463 / 464 crops, both variants),
+    wrapper scoring of a stand-in retrain (the MixFaceNet-MAD 8-image check network as `mixfacenet_X_s401`) and two
+    releases, then `ad5_analyse.py --B 50`: ran end to end (60 gate rows, 321 reading rows, 214 verdict rows);
+    analysis outputs deleted unread.
+  - Loss overlay `ad5_loss.py` ready (tested on the authors' logs).
+  - Cost table sent to the lead (section 9).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
@@ -357,6 +374,17 @@ what the log shows; how the SelfMAD and MixFaceNet-MAD releases were selected.
 
 ## 9. Open items and next steps
 
+Cost table (12 Nov 03:00; A100 40 GB measured; same effective batch and schedule as the authors):
+| Arm | GPU-h per seed | x5 | One 40 GB card? | One 80 GB card? |
+|---|---|---|---|---|
+| MADation ViT-L/14 | 12.5 | 64 | no (global batch 256 needs about 130 GB; 4 x 40 GB at 64 per card fits) | no (2 x 80 GB at 128 per card) |
+| MADation ViT-B/16 | 3.2 | 17 | no (about 47 GB at 256; 2 x 40 GB at 128 fits) | yes, 1 process at batch 256 |
+| MixFaceNet-MAD | 6.5 | 34 | yes (5.5 GB) | yes |
+| SelfMAD | 30 | 150 | yes (15 GB) | yes |
+| MADation FE ViT-L/14 (optional) | about 4 | 20 | as ViT-L/14 (no gradients through the encoder, less) | as ViT-L/14 |
+Per-card batches other than 32 change only how the 256 images of a step are split across processes (no batch norm in
+CLIP); a single-card run without accumulation is the authors' setup only where the whole step fits.
+
 1. Smoke A / B / SelfMAD smoke results -> timing to the lead (3 lines), GPU-hour estimates in this README.
 2. Production arrays: MADation L and B (8 GPUs per seed), MixFaceNet-MAD X, SelfMAD S; then F if budget allows.
 3. Scoring: `ad5_score_rel.sbatch` per finished arm (Athena; needs RS1's pack in packs/RS1), SelfMAD on the DGX.
@@ -364,7 +392,16 @@ what the log shows; how the SelfMAD and MixFaceNet-MAD releases were selected.
 
 ## 10. Handover state
 
-DGX: no AD5 process running. Athena jobs (logs in
+12 Nov 03:05 handover: the owner agent hands back while all production tasks are queued (Athena forecasts
+20-22 Dec for new starts). DGX process left running: the hourly poller `src/AD5/athena/poll_jobs.sh` (PID in
+`/mnt/t7/smad_next/AD5/state/poller.pid`, log `state/jobs.log`; kill it or leave it). When tasks finish: run
+`src/AD5/fetch_results.sh 'scores_*'` only for score tars (weights stay on Athena), score MADation / MixFaceNet-MAD
+with `athena/ad5_score_rel.sbatch` (RS1 production tars rs1a_prod_v1_3545918.tar / rs1a_prod_v2_3545919.tar, ITEMS =
+finished result names), SelfMAD with `score/run_selfmad_dgx.sh` (needs the five `selfmad_S_s<seed>.tar` copied back;
+or adapt to Athena), oracle with `athena/ad5_selfmad_oracle.sbatch` (place it in a code_v5 tree), then
+`ad5_analyse.py --scores <dir>` and `ad5_loss.py`, and write result.md. Rule from amendment 3: unfinished seeds by
+14 Nov 18:00 are "incomplete".
+DGX: no other AD5 process running. Athena jobs (logs in
 `/net/pr2/projects/plgrid/plggrestoration/smad-next/logs/AD5-<name>-<jobid>.out`):
 | Job | What | GPUs x limit | State | If it fails |
 |---|---|---|---|---|

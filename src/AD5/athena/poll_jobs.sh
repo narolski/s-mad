@@ -7,5 +7,5 @@ while true; do
   s=$(flock -w 300 /tmp/smadnext-athena-cmd.lock ssh -o BatchMode=yes -o ConnectTimeout=30 plgpnarolski@athena.cyfronet.pl \
       "bash -lc 'sacct -n -X -P -j $J -o JobID,State'" 2>/dev/null | sort | tr '\n' ' ')
   if [ -n "$s" ] && [ "$s" != "$prev" ]; then echo "$(date +%H:%M) $s" >> "$S"; prev=$s; [ "${STOP_ON_CHANGE:-1}" = 1 ] && exit 0; fi
-  sleep 170
+  sleep ${POLL_S:-170}
 done

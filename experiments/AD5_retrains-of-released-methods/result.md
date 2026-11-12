@@ -1,6 +1,6 @@
 # Retrains of released methods with the authors' code (AD5): result
 
-Status 11 Nov 2026, 20:15 CET: training running on Athena; no score of a retrain exists. Full record: `README.md`.
+Status 12 Nov 2026, 03:05 CET: all production tasks queued, none started (Athena forecasts 20-22 Dec for new jobs; fair share exhausted, 12 of 48 nodes working); no retrain and no retrain score exist. Full record: `README.md`.
 
 ## Athena jobs (accounts: plgrestorearc-gpu-a100 for the smoke jobs; plgmultivision-gpu-a100 for the production arrays, moved there by the lead at 19:48 or submitted there)
 
@@ -15,10 +15,11 @@ Status 11 Nov 2026, 20:15 CET: training running on Athena; no score of a retrain
 | 3545870_[401-405] | MixFaceNet-MAD retrains v2 (per-epoch weights) | 1 per seed | about 34 planned | submitted |
 | 3545882 | SelfMAD smoke v3: 1.45 it/s, 30 GPU-h per seed estimated | 1 | 0.57 | COMPLETED |
 | 3545933_[401-404] | SelfMAD retrains | 1 per seed | about 120 planned | submitted |
+| 3545948, 3545960, 3546004 | scoring smoke (two failed: missing setuptools; slow shared-FS start-up), third passed | 1 | 0.01 + 0.58 + 0.04 | done |
 | 3545936 (task 405) | SelfMAD retrain seed 405 | 1 | about 30 planned | submitted |
 | 3545813_[401-405] | MADation ViT-L/14 retrains | 8 per seed | about 62 planned | submitted |
 | 3545814_[401-405] | MADation ViT-B/16 retrains | 8 per seed | about 16 planned | submitted |
 
 ## Results
 
-None yet.
+None. Spent 2.4 GPU-hours (smoke jobs only). Allowance 300 A100-hours; planned about 265.

@@ -28,7 +28,7 @@ for n in "${NAMES[@]}"; do
   [ -s "$B/data/shards/$n.json" ] && { echo "$n: already processed"; continue; }
   grep -qx "$n.tar.sha256" <<< "$AVAIL" || { echo "$n: no result on Athena yet"; continue; }
   free_gb=$(df --output=avail -BG /mnt/t7 | tail -1 | tr -dc 0-9)
-  [ "$free_gb" -ge 42 ] || { echo "only ${free_gb} GB free on /mnt/t7; stopping (lead 11 Nov: keep 40 GB)"; exit 7; }
+  [ "$free_gb" -ge 31 ] || { echo "only ${free_gb} GB free on /mnt/t7; stopping (lead 12 Nov: one tar at a time at 33 GB free; floor 30)"; exit 7; }
   flock -w 1800 /tmp/smadnext-athena.lock rsync -a "$A:$AR/$n.tar" "$A:$AR/$n.tar.sha256" "$A:$AR/$n.log.csv" "$R/"
   [ "$(sha256sum "$R/$n.tar" | cut -c1-64)" = "$(cut -c1-64 "$R/$n.tar.sha256")" ] || { echo "$n: sha256 mismatch after fetch"; exit 8; }
   nice -n 10 "$PY" "$HERE/ag1_manifest.py" shard "$R/$n.tar"
