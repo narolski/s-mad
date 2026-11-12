@@ -1,0 +1,109 @@
+{
+ "antispoof": {
+  "replay_attack": {
+   "rows": 1200,
+   "labels": {
+    "Bona fide": 200,
+    "Screen": 800,
+    "Printed paper": 200
+   },
+   "genuine_by_label": 200,
+   "genuine_by_name": 200,
+   "agree": 1200
+  },
+  "msu_mfsd": {
+   "rows": 280,
+   "labels": {
+    "Bona fide": 70,
+    "Screen": 140,
+    "Printed paper": 70
+   },
+   "genuine_by_label": 70,
+   "genuine_by_name": 70,
+   "agree": 280
+  },
+  "oulu_npu": {
+   "rows": 4950,
+   "labels": {
+    "Printed paper": 1980,
+    "Bona fide": 990,
+    "Screen": 1980
+   },
+   "genuine_by_label": 990,
+   "genuine_by_name": 990,
+   "agree": 4950
+  },
+  "casia_fasd": {
+   "rows": 600,
+   "labels": {
+    "Cutout paper": 50,
+    "Printed paper": 250,
+    "Screen": 150,
+    "Bona fide": 150
+   },
+   "genuine_by_label": 150,
+   "genuine_by_name": 150,
+   "agree": 600
+  }
+ },
+ "packs": {
+  "lfw": {
+   "slots": 12000,
+   "pairs": 6000,
+   "same_pairs": 3000,
+   "distinct": 7701,
+   "kept": 7701
+  },
+  "calfw": {
+   "slots": 12000,
+   "pairs": 6000,
+   "same_pairs": 3000,
+   "distinct": 6098,
+   "kept": 6098
+  },
+  "cfp_ff": {
+   "slots": 14000,
+   "pairs": 7000,
+   "same_pairs": 3500,
+   "distinct": 4737,
+   "kept": 4737
+  },
+  "agedb_30": {
+   "slots": 12000,
+   "pairs": 6000,
+   "same_pairs": 3000,
+   "distinct": 5296,
+   "kept": 5296
+  }
+ },
+ "shared_between_packs": {
+  "lfw&calfw": 0,
+  "lfw&cfp_ff": 0,
+  "lfw&agedb_30": 0,
+  "calfw&cfp_ff": 0,
+  "calfw&agedb_30": 0,
+  "cfp_ff&agedb_30": 0
+ },
+ "kept_per_source": {
+  "replay_attack": 200,
+  "msu_mfsd": 70,
+  "oulu_npu": 989,
+  "casia_fasd": 150,
+  "lfw": 7701,
+  "calfw": 6098,
+  "cfp_ff": 4737,
+  "agedb_30": 5296
+ },
+ "persons_per_source": {
+  "replay_attack": 50,
+  "msu_mfsd": 35,
+  "oulu_npu": 55,
+  "casia_fasd": 50,
+  "lfw": 4859,
+  "calfw": 3098,
+  "cfp_ff": 1586,
+  "agedb_30": 2338
+ },
+ "manifest": "/mnt/t7/smad_next/TT1/raw_manifest.csv",
+ "manifest_sha256": "a7aebe163328d12652c512fcb169152e7c3c4c31f63833d91e1ae3d63dd12168"
+}
