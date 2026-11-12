@@ -6,7 +6,7 @@
 #   bash drive_fs.sh HOST PORT LEASE M pull     # fetch finished tars + logs, verify sha256; RELEASE when the queue is
 #                                               # fetched and verified; RELEASE + FAILED when the queue ended with a
 #                                               # verified partial result
-#   bash drive_fs.sh HOST PORT LEASE M loop     # pull every 10 min until RELEASE (at most 16 h)
+#   bash drive_fs.sh HOST PORT LEASE M loop     # pull every 10 min until RELEASE (at most 25 h)
 #   bash drive_fs.sh HOST PORT LEASE M status
 # Free-disk floor: no pull when /mnt/t7 has under 20 GB free (a fit tar is about 8 MB).
 # One-host layout (PN1_FS_ONEHOST=1): both queues on one 2-GPU host, m1 on GPU 0, m2 on GPU 1 (PN1_GPU sets
@@ -97,7 +97,7 @@ case "$STEP" in
     fi
     ;;
   loop)
-    for k in $(seq 1 96); do bash "$0" "$HOST" "$PORT" "$L" "$M" pull || true; { [ -f "$L/RELEASE" ] || [ -f "$L/DONE_$M" ]; } && break; sleep 600; done
+    for k in $(seq 1 150); do bash "$0" "$HOST" "$PORT" "$L" "$M" pull || true; { [ -f "$L/RELEASE" ] || [ -f "$L/DONE_$M" ]; } && break; sleep 600; done
     ;;
   status)
     R "cat $B/queue_fs_*.log 2>/dev/null; ls $B/root/results/PN1/; for f in $B/logs/PN1_*.log; do echo \$f; grep -E 'step|PN1_TASK_DONE|FAIL' \$f | tail -1; done 2>/dev/null | tail -8; nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader; df -h /workspace | tail -1"

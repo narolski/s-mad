@@ -670,3 +670,5 @@ RAM, 100 GB disk; lease folder `/mnt/t7/smad_next/vast/pn1fs`; cap 9.8 USD, 22 h
   remote_a14.sh, readers and packs unchanged (D2 pins).
 - Local test: the sequential path with a stand-in task script (A14 wait, 16 tasks in the fixed order, a second queue
   blocked by the lock until the first ended, RELEASE + FAILED on a remote-confirmed failure).
+
+- D3 addendum (`date`: Thu Nov 12 08:54:49 AM CET 2026; before any fit): the pull loop of drive_fs.sh is lengthened from 96 to 150 rounds of 10 min (25 h), because 16 sequential fits take about 19.5 h; drive_fs.sh `9a17da124f6db7dfddb23c5d5281e28d35ad056e49742b42cab130f8878a104c`. drive14.sh `start` is re-run only if its first upload failed (each successful start launches one amendment-14 run).
