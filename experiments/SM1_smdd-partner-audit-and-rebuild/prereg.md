@@ -459,6 +459,17 @@ Docker image `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime` with the packages p
 - Reading (lead, 12 Nov): the first registered ViT-B/16 reading is made when the eighth fit (arms a, c, e, f x seeds
   401, 402) is back; earlier single-seed rows are descriptive and labelled incomplete.
 
+## Amendment A14: rank read of the LoRA audit (12 Nov, registered before any score of Athena job 3547052 is opened)
+
+After the ViT-B/16 review (`experiments/reviews/REVIEW_SM1_VITB_20261112.md`, F6): the LoRA heads are Linear(·, 1) on
+normalised features with ‖w‖ about 3.8, so logits are bounded near ±3.8 and trained-partner morphs sit at the ceiling;
+the registered H-new-5 threshold (trained − KE ≥ 1 logit, item 10) cannot be reached on such a head. H-new-5 stays as
+registered and is reported; the decision read for the ViT-L/14 audit (job 3547052, fits SM1L_a_s401 and s402) is:
+- **H-new-D**: within-key AUC of the 5 trained-partner morphs over the 5 KE morphs of the same key (500 keys; AUC per
+  key over the 25 pairs, ties one half, averaged over keys; pooled over the 2 seeds by averaging the per-key AUC), 10,000
+  key-bootstrap draws (seed 20261111). Prediction: trained − KE < 0.2 logit but AUC ≥ 0.70. Falsified if AUC ≤ 0.60.
+  Reported beside it: trained − KE (item 1 reader) and the same AUC for the ViT-B/16 fits (already read by the reviewer).
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 
