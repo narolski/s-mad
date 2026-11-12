@@ -98,3 +98,16 @@ Two losses happened on 12 Nov: the face codes of diffusion add-on shard 7 (DG1) 
 - "One tar at a time" applies to working copies during processing. It does not permit deleting the last copy. If the disk floor prevents keeping it, the driver stops without RELEASE and the owner asks the lead.
 - Trained weights of every fit are kept (they are needed for the sealed final benchmark read).
 - The README of each experiment lists what is kept, where, and what was deliberately not kept.
+
+## Cluster jobs: no placeholders, every job carries its work (lead, 12 Nov 2026, on the author's instruction)
+
+What happened: on 11 Nov the lead queued 108 generic "slot" jobs on WCSS (`src/wcss/slot.sh`) that were meant to pick up tasks placed later in a queue folder. WCSS then became unreachable. On 12 Nov between 12:50 and 19:21 the slots started, found nothing to run and idled: about 69 H100 GPU-hours and 108 queue positions were spent on nothing. The author called this a serious failure, and it is the lead's.
+
+Rules from now on, for every cluster (WCSS, Athena) and every owner:
+
+- **No placeholder, dummy, slot or "hold my place" jobs.** A job is submitted only when its complete workload (code, pack, lists, with pins) is already on the cluster and the job script runs it by itself. Nothing a job needs may arrive after submission.
+- **A job that finds nothing to do exits within one minute** and says so in its log. No waiting loops on a GPU.
+- **Every submitted job has a named owner and an expected start and end** written in the experiment README at submission. The owner checks it at the expected end.
+- **The lead lists every queue at each check** (job, owner, workload, state) and cancels anything of ours that has no owner or no workload.
+- **If access to a cluster is lost,** the lead tells the author at once which of our jobs are queued there and what each will do if it starts unattended. Jobs that would waste time unattended are the reason for the first rule: there must be none.
+- `src/wcss/slot.sh` is retired and refuses to run.
