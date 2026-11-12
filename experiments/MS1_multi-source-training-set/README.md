@@ -58,6 +58,10 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   `sha256sum -c` OK for the pack, run.sh and the held-out pack; sbatch sha256 equal to the f748da4 pins.
 - 12 Nov 23:46:29 and 23:48:05: `sbatch ms1_smoke.sbatch` refused twice ("Unable to contact slurm controller (connect
   failure)"); per the lead's rule no further retry; lead told. Nothing submitted.
+- 12 Nov ~23:50: lead: do not retry; the lead pings the controller every 5 min. If WCSS does not accept jobs by 13 Nov
+  01:00, MS1 switches to rented A100s: deviation MS1-D1 prepared and registered at 5eadc1b (three A100 PCIe 40 GB
+  machines, whole seeds: m1 403+406, m2 404+407, m3 405; held-out step per machine; `src/MS1/rented/drive_ms1.sh`,
+  `remote_ms1.sh`; remote queue tested on the DGX with stand-in tasks in `/mnt/t7/smad_next/MS1/smoke/rtest`).
 
 ## 3. Data
 
