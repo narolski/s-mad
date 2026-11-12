@@ -26,7 +26,8 @@ def test_rows(drop_flagged=False):
     for k in (6, 7):
         f = K.OUT.parent / "DG1/gen" / f"addon_s{k}" / f"out_addon_s{k}" / f"addon_s{k}" / "gen_rows.csv"
         for r in csv.DictReader(open(f)):
-            th[(f"addon_s{k}", r["pool"], r["name"])] = float(r["theta_xT"])
+            if r["theta_xT"] not in ("", "nan"):
+                th[(f"addon_s{k}", r["pool"], r["name"])] = float(r["theta_xT"])
     rows = []
     for r in test:
         if r["family"] not in ("X20", "SAME20"):
