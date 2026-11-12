@@ -484,7 +484,7 @@ pn1_eval.csv extended by 4,365 spliced and blanked ladder rows of development an
 (`22d1c23e9eccca75…`). Manifests A, B, Bn, C byte-equal to pack 1.
 run.sh changed only in its arm list (A|B|Bn|C|Sb|Bv; sha256 `a208fcf8d17e0b8a…`).
 
-## Amendment 12 (12 Nov 03:20 CET, before any Sb/Bv result exists): rescoring B on the spliced rows
+## Amendment 12 (registered at git 1ab1256 (03:19:01); PN1_Sb_s401.tar was already local (03:08:28) but not read (sb_read.json at 1ab1256 has B only)): rescoring B on the spliced rows
 
 Read (i) of amendment 10 compares the face-blanked R2w vs R4 AUC of Sb with B's, but B was scored with pack 1, which
 has no spliced or blanked rows. B (seed 401 on pn1a, seed 402 on pn1b) is rescored on the same machine after its second

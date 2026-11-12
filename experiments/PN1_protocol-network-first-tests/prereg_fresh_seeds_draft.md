@@ -1,11 +1,102 @@
-# DRAFT v2 (not registered, nothing run): protocol network, fresh seeds, with the replacement storage mark P-c′
+# DRAFT v3 (not registered, nothing run): protocol network, fresh seeds for A, B and Sb with scale-free marks
+
+v3 follows the batch-2 review `experiments/reviews/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md` (commit 88f6016),
+section 5. It is the recommended plan. The earlier A/B/C plan (v2) is kept below as the alternative. Both go through the
+pre-run reviewer before anything runs. Both also wait for the author's budget. Amendment 14 (draft
+`prereg_amendment14_draft.md`) is meant to be read before this batch is registered.
+
+## 1. Arms, seeds and why Sb
+
+- **Arms and fits:**
+  - A, B and Sb at seeds 403, 404, 405, 406 and 407 (15 fits), plus the replicate fit of A seed 401 (1 fit).
+  - C is optional, at seeds 403 to 405 only (3 fits), if the author's budget allows. It is printed only and is not part of any primary contrast.
+- **Recipe and pack:**
+  - Unchanged recipe, last checkpoint.
+  - Pack 2 (`266ce5c3…`): manifests A and B byte-equal to pack 1, and train_Sb (`2cf3fda3…`).
+  - run.sh `a208fcf8…`, the pack-2 version with the Sb arm. A pack-1 run.sh cannot run Sb.
+- **Selecting Sb complies with amendment 10.** The selection uses development-ladder reads only (`tier1_sb/sb_read.json`):
+
+| Development-ladder read | Sb (seed 401 / 402) | B (seed 401 / 402) |
+|---|---|---|
+| face-only S0 vs S4 AUC (= face-only R2w vs R4) | 0.925 / 0.938 | 0.836 / 0.862 |
+| S0 vs S4 excess over the 3-statistic floor, bootstrap lower bound | +0.049 / +0.051 | −0.294 / −0.283 |
+
+  Sb's MAD22, H1 and test-ladder numbers (first-test data) did not enter the choice.
+
+## 2. Platform
+
+- **Two leases of one type,** A100-SXM4 40 GB, with GPU UUIDs recorded in every tar. Each seed runs whole on one machine:
+  - machine 1: seeds 403, 405 and 407 (A, B, Sb), 9 fits;
+  - machine 2: seeds 404 and 406, plus the replicate A seed 401, 7 fits (+ C 403 to 405, 3 fits, if included).
+- **Replacement:** same type only, disclosed; the unfinished seed restarts from its first arm. If no same-type machine is available, the batch stops and the lead decides.
+- **Replicate fit:** compared with pn1a's A seed 401 cell by cell. HN9 reads it: machine-driven if FFHQ own-rule genuine flags land outside 22.5 ± 3%, seed-driven if inside. It is never pooled as a seed.
+
+| | Fits | A100-hours (69 min per fit + scoring) | Cost (0.59 USD/h) | Wall time (two leases) |
+|---|---|---|---|---|
+| A, B, Sb × 5 seeds + replicate | 16 | about 19.7 h | about 11.6 USD | about 11 h (machine 1 longer: 9 fits) |
+| plus C at 3 seeds | 19 | about 23.4 h | about 13.8 USD | about 11.5 h (machine 2 then 10 fits) |
+
+Scoring per fit: the pack-2 evaluation (with the splice rows), the HN2 list, the landmark_combined list of amendment 14 and the τ_multi list of the alternative (printed only). Plan v2 (A, B, C at 3 seeds) cost about 7.5 USD and 12.5 h serial on one lease.
+
+## 3. Primary contrasts (fixed), fresh seeds only
+
+The seed rule for every contrast:
+
+| Outcome | Seeds meeting the contrast | Reading |
+|---|---|---|
+| Replicated | ≥ 4 of 5 | contrast replicated |
+| Not replicated | ≤ 1 of 5 | contrast not replicated |
+| Middle | 2 or 3 of 5 | inconclusive, no claim |
+
+Under no effect with p = 0.5 per seed, "≥ 4 of 5" has probability 0.19, and 5 of 5 has 0.031 (printed beside).
+
+1. **H1 (labelled "re-read": first-test data, already read for seeds 401 and 402).** Each seed counts if Sb − B ≥ +0.05 H1 AUC and Sb − A ≥ 0.
+2. **FFHQ landmark_combined against its history-matched genuine pool (amendment-14 list).** Same rule: Sb − B ≥ +0.05 AUC and Sb − A ≥ 0. Stated: seeds 401 and 402 will already have been read on this list under amendment 14.
+3. **Scale-free storage mark on FFHQ.**
+   - The read: the share of the 2,000 FFHQ persons whose logit rises from native to history-matched (amendment-13 list, paired by key).
+   - An arm passes on a seed if that share is ≤ 0.65.
+   - Positive control: A must fail (share > 0.65) on ≥ 4 of 5 seeds, otherwise the mark is "uninformative on these seeds".
+   - Arms B and Sb pass the mark if they pass on ≥ 4 of 5 seeds.
+   - Post hoc tier-1 values, which motivated this mark: A 0.78 / 0.72; B, Bn and C 0.30 to 0.44.
+
+## 4. Printed only
+
+- **Threshold transfer (step 1 of v2):** flags on unseen genuine sources at τ_0.5, τ_cam and, if the author admits calibration sources, τ_multi. All of these are printed only; the expectation is that every arm fails it.
+- P-c′ of v2 on the test ladder.
+- HN2 under the amendment-13 rule.
+- HN7 for the fresh networks.
+- MAD22 E7 EERs, labelled "first-test data, re-read".
+
+## 5. Bootstrap and intervals
+
+2,000 draws, `default_rng(20261118)`. Resampling units:
+- H1 hosts, for H1;
+- images within class, for FFHQ landmark_combined;
+- FFHQ persons, for the paired share.
+
+Per-seed intervals are printed. Arm statements use only the seed counts of section 3.
+
+## 6. Not decided here
+
+- The equality term (loss rule; fresh seeds are a parallel step, not that step).
+- The head change and multi-source genuine training (author items).
+- The budget (author).
+
+## 7. Author questions
+
+- Budget: 16 fits (about 11.6 USD) or 19 fits with C (about 13.8 USD).
+- Questions 1 and 2 of the alternative (SMDD and FEI as calibration sources): these concern only the printed τ_multi read.
+
+---
+
+# ALTERNATIVE (draft v2, arms A, B, C), kept as written at git e75a9c3
 
 This draft replaces v1 (git 1ab1256). It applies every fix F1 to F10 of the pre-run review
 `experiments/reviews/PRERUN_PN1_FRESH_SEEDS_20261112.md` (commit 7d90384) and the lead's decisions. It is for the
 author's budget decision and answers (section 11). No fit, no score, no image build has been run under it. HN2 is
 registered separately as amendment 13 (git a1c6664), FFHQ only.
 
-## 1. Question and standing
+### ALT 1. Question and standing
 
 1. Do the within-seed arm differences of the first eight fits replicate on fresh seeds (HN6, section 7)?
 2. Does any arm pass a storage mark that is not read on the saturated floor of the training sources (P-c′, section 6)?
@@ -16,7 +107,7 @@ registered separately as amendment 13 (git a1c6664), FFHQ only.
 - The C − A contrast (MAD22 Webmorph E7) was chosen on the MAD22 test images and is re-read on the same images: label
   "first-test data, re-read" (F10). The same holds for every MAD22 and H1 cell and for the 191-host test ladder.
 
-## 2. Networks and platform (F6, F9)
+### ALT 2. Networks and platform (F6, F9)
 
 - Arms A, B and C, all three fixed in (B is no longer optional). Bn is not refitted.
 - Recipe and packing:
@@ -43,7 +134,7 @@ registered separately as amendment 13 (git a1c6664), FFHQ only.
 - V3 started on 12 Nov morning ends about 13 Nov 01:00; V5 ends about 13 Nov 09:00.
 - Guard cap: the lead's, at 1.2 × the cost column.
 
-## 3. Claim order (hierarchical, fixed)
+### ALT 3. Claim order (hierarchical, fixed)
 
 1. **Step 1.** Genuine flags on unseen genuine sources at fixed thresholds (section 5). Only an arm that passes step 1 is read in step 2.
 2. **Step 2.** Gating-attack miss at τ_all.
@@ -54,7 +145,7 @@ registered separately as amendment 13 (git a1c6664), FFHQ only.
 
 Middle outcomes, anywhere: "inconclusive, no claim".
 
-## 4. Thresholds (F1, F3, F4, F8)
+### ALT 4. Thresholds (F1, F3, F4, F8)
 
 - **τ_0.5**: the own rule, logit > 0.
 - **τ_cam** of PN1: printed only, because it sits on the training sources' saturated floor.
@@ -85,7 +176,7 @@ Middle outcomes, anywhere: "inconclusive, no claim".
 | H1 | 37.7 px | PNG, 112×112 | 3.5× |
 | SMDD | to be measured before registration | PNG, 256×256 | — |
 
-## 5. Step 1: unseen-source genuine mark (F3, F8)
+### ALT 5. Step 1: unseen-source genuine mark (F3, F8)
 
 - **Per network, all of the following must hold:**
   - at τ_LOSO(s), at most 10% flagged on the test half of each admitted calibration source s;
@@ -95,7 +186,7 @@ Middle outcomes, anywhere: "inconclusive, no claim".
 - **Per arm:** step 1 passes on at least 2 of 3 seeds (V3), or at least 4 of 5 (V5).
 - Clopper-Pearson 95% intervals are printed.
 
-## 6. P-c′ (F2, F7): "written after tier 1; confirmatory on fresh seeds only"
+### ALT 6. P-c′ (F2, F7): "written after tier 1; confirmatory on fresh seeds only"
 
 P-c′ was written after the tier-1 results were seen. On tier 1, B, Bn and C meet parts (i) and (iii) and A fails them.
 
@@ -110,7 +201,7 @@ P-c′ was written after the tier-1 results were seen. On tier 1, B, Bn and C me
 - **Positive control.** P-c′ is informative only if A fails it on at least 2 of 3 fresh seeds (V3), or at least 3 of 5 (V5). Otherwise P-c′ is reported as "uninformative on these seeds" and no arm passes it. The reference recipe's own-rule R0_61 flag spread is 5 to 50%, so a fresh A may pass (i).
 - **P-a, P-b:** printed only (ceiling).
 
-## 7. HN6 (F6): direction and decision
+### ALT 7. HN6 (F6): direction and decision
 
 - HN6 states that seed variance exceeds the tier-1 arm differences. It therefore predicts that the two contrasts below do not replicate.
 - **Contrast 1:** C − A on MAD22 Webmorph E7 EER, at most −5 points per seed (first-test data, re-read).
@@ -127,23 +218,23 @@ Stated probabilities:
 - With a true C − A of −12 points and a per-seed SD of 6 to 9, V3 replicates with probability about 0.5 to 0.7. With winner's-curse shrinkage to −8, it falls to about 0.25 to 0.4.
 - The H1 rule follows the review (B − A ≤ −0.03 on 3 of 3). The reference-recipe seed SD on H1 is 0.018.
 
-## 8. Bootstrap (F8)
+### ALT 8. Bootstrap (F8)
 
 - 2,000 draws, `default_rng(20261115)`.
 - Resampling units: partner cycles for ladder hosts; images within cell for the MAD22 and H1 cells; persons within each calibration development half, with τ_all and τ_LOSO refitted in every draw.
 - Step-2 and HN6 intervals are per seed. Arm-level statements use only the seed counts above.
 
-## 9. HN2
+### ALT 9. HN2
 
 Registered and run separately (amendment 13, FFHQ only, the eight tier-1 networks). The fresh networks are also scored on the amendment-13 list. Their HN2 reads are printed under the same rule and labelled "fresh seeds, same rule".
 
-## 10. Not decided here
+### ALT 10. Not decided here
 
 - The equality term (loss rule).
 - Multi-source genuine training: not before HN2 is read, because it would use up FFHQ and FEI.
 - Head changes (temperature or unbounded head): new code, an author item.
 
-## 11. Questions for the author (D)
+### ALT 11. Questions for the author (D)
 
 1. **SMDD as genuine.** May the SMDD synthetic genuine renders (`os25k_bf_t`) be used as a genuine calibration source?
    - They come from an FFHQ-trained generator, so they are not independent of FFHQ.

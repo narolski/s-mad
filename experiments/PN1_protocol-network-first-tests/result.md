@@ -128,11 +128,13 @@ Reader `src/PN1/sb_read.py` -> `tier1_sb/sb_read.json`.
 | 402 | Sb | 0.999 / 0.999: fails | +0.051: passes | fail, pass, fail | −0.5 [−16.1, +0.7]: passes | 0.913 (0.680): passes | 2.9 / 16.4 (B 4.4 / 19.0) |
 | 402 | Bv | 1.000 / 1.000: fails | −0.287: fails | fail, fail, fail | 0.0 [−0.5, +0.8]: passes | 0.671: passes | 3.9 / 17.6 |
 
-Registered reading: the spliced LoRA arm is **killed** by the amendment-10 rule: (i) fails on both seeds. Face
-blanking does not lower its R2w vs R4 AUC by 0.05 against B. Neither H1 nor P-g triggers the kill. The volume control
-also fails (i) and (ii) on both seeds, so the extra rows by themselves change nothing. Outside the kill, Sb passes (ii)
-(an S0 vs S4 excess over the 3-statistic floor) and raises H1 AUC by about 0.13 / 0.23 over B, while Bv does not. These
-are first-test data, read once (H1, MAD22, test ladder). Per the amendment-10 rule they cannot choose a later arm.
+Registered reading: killed by the amendment-10 rule; (i) fails on both seeds (face-blanked 0.991 / 0.999 vs B 1.000).
+Read (i) asks whether surround reliance falls; it did not, and on OpenCV full-frame morphs the surround carries a real
+blend. It does not show that Sb ignores the face. Post hoc: face-only R4 vs R2w rose from 0.840 / 0.865 (B) to 0.938 /
+0.957 (Sb); Bv equals B (0.838 / 0.861), so the change is not row volume.
+
+H1 (post hoc wording, review F4): Sb raises H1 AUC over B by 0.13 / 0.23 and over A by 0.06 / 0.09; paired
+host-matched ranking equals A's (0.95). First-test data; a lead for a fresh registration, not a result.
 
 ## HN2 on FFHQ (amendment 13, git a1c6664), registered reading
 
@@ -150,11 +152,45 @@ Reader `src/PN1/hn2_read.py` -> `tier1/hn2.json`. Scored on the seed's own machi
 | Bn 402 | 5.4% | 0.998 | calibration shift | 96.8%; 0.995; 10.2% |
 | C 402 | 3.5% | 1.000 | calibration shift | 95.7%; 0.999; 7.4% |
 
-Registered reading: on every arm, both seeds give "calibration shift (not a shortcut)". Within FFHQ the morphs separate
-from the genuine images (AUC ≥ 0.988), and no fit flags 30% of FFHQ genuine at the own rule. The amendment-13 caveat
-applies: the orig read mixes the morph signal with a 2.0x-enlarged against 0.51x-shrunk history. Against the
-history-matched genuine (printed only), AUC stays 0.935 to 0.999, but A flags 34 to 55% of those genuine images at
-the own rule, against 7 to 29% for B, Bn and C.
+Registered reading (rule of amendment 13): every network returns the registered verdict "calibration shift (not a
+shortcut)", both seeds agreeing. Label (review F3): not a source-identity shortcut for ranking: within FFHQ the
+networks rank whole-frame landmark morphs above disjoint genuine persons (AUC ≥ 0.988; against history-matched genuine
+0.993–0.999 for B, Bn, C; 0.935 / 0.971 for A). The decision threshold does not transfer: 3.5–22.5% flagged at the
+own rule, 95–98% at τ_cam. No simple-statistic floor on FFHQ, so "reads the blend" is not shown.
+
+## Post hoc tables (batch-2 review F2, F4; recomputed in `src/PN1/posthoc_b2.py` -> `tier1/posthoc_b2.json`)
+
+POST HOC, descriptive. 95% intervals from 2,000 bootstraps (rng 20261116) over persons (FFHQ) or hosts (H1); they do not
+cover training variance.
+
+FFHQ, the same 2,000 persons, history-matched (shrunk to the morphs' 65 px eye distance and enlarged back) against
+native, paired by key:
+
+| network | AUC history-matched vs native [CI] | share whose logit rises [CI] | mean shift, logits [CI] | median shift | own-rule flags native -> history-matched |
+|---|---|---|---|---|---|
+| A 401 | 0.683 [0.672, 0.693] | 0.778 [0.760, 0.796] | +2.03 [1.92, 2.13] | +0.743 | 22.5 -> 54.7% |
+| B 401 | 0.513 [0.508, 0.519] | 0.443 [0.421, 0.465] | +0.39 [0.34, 0.44] | −0.026 | 17.8 -> 26.3% |
+| Bn 401 | 0.494 [0.487, 0.500] | 0.414 [0.392, 0.436] | +0.34 [0.29, 0.40] | −0.035 | 22.4 -> 29.3% |
+| C 401 | 0.496 [0.490, 0.501] | 0.357 [0.337, 0.378] | +0.23 [0.19, 0.27] | −0.051 | 17.7 -> 23.5% |
+| A 402 | 0.665 [0.654, 0.675] | 0.721 [0.701, 0.740] | +1.61 [1.51, 1.71] | +0.232 | 9.9 -> 34.1% |
+| B 402 | 0.487 [0.480, 0.494] | 0.372 [0.350, 0.394] | +0.27 [0.23, 0.31] | −0.030 | 6.4 -> 11.8% |
+| Bn 402 | 0.482 [0.475, 0.489] | 0.340 [0.320, 0.361] | +0.20 [0.16, 0.24] | −0.041 | 5.4 -> 10.2% |
+| C 402 | 0.476 [0.470, 0.482] | 0.302 [0.282, 0.322] | +0.17 [0.13, 0.21] | −0.040 | 3.5 -> 7.4% |
+
+Reading (post hoc): on 2,000 FFHQ persons (unseen source), the history change raises the plain network's logit for
+72–78% of persons (AUC 0.67–0.68) and B, Bn, C for 30–44% (AUC 0.48–0.51): the tier-1 scale-free storage reading
+replicates on a second source. A small upper tail remains (own-rule flags rise by 4 to 9 points for B, Bn, C).
+
+H1, each Poisson morph against its own host's genuine photo (same 112 px history), 598 pairs:
+
+| network | share of morphs above own host [CI] (401) | genuine flagged / morphs missed, own rule (401) | share [CI] (402) | genuine flagged / morphs missed (402) |
+|---|---|---|---|---|
+| A | 0.955 [0.938, 0.972] | 22.2 / 23.9% | 0.958 [0.941, 0.973] | 15.6 / 36.6% |
+| B | 0.905 [0.881, 0.928] | 8.2 / 49.7% | 0.696 [0.657, 0.732] | 0.3 / 80.3% |
+| Bn | 0.848 [0.818, 0.875] | 7.9 / 56.7% | 0.639 [0.599, 0.679] | 0.3 / 85.8% |
+| C | 0.953 [0.936, 0.970] | 25.6 / 23.2% | 0.905 [0.881, 0.926] | 3.7 / 53.7% |
+| Sb | 0.950 [0.931, 0.967] | 7.0 / 26.1% | 0.948 [0.931, 0.965] | 9.7 / 21.6% |
+| Bv | 0.903 [0.878, 0.926] | 7.7 / 50.8% | 0.669 [0.632, 0.706] | 0.3 / 82.4% |
 
 ## Rented compute, final (guard estimates at RELEASE)
 

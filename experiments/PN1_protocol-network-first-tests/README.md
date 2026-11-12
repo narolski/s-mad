@@ -401,7 +401,11 @@ every arm: "inconclusive, no claim" (P-c, P-c2, P-d fail; P-g non-inferior only 
   1704x2272), colorFERET 132 (PPM 512x768), FRLL 202 (JPEG 1350x1350), FFHQ bona 259 (PNG 1024) and its
   landmark_complete morphs 65 (PNG 256), FEI 90 (JPEG 640x480), H1 37.7 (PNG 112). Tier-1 own-rule flags: FRGC and
   colorFERET 0 on every fit, FRLL 0 to 0.5%, H1 0.3 to 25.6%.
-- Fresh-seed draft v2 with fixes F1 to F10 and the author questions: `prereg_fresh_seeds_draft.md`.
+- Batch-2 review (commit 88f6016): wording F1 to F5 applied in result.md and prereg.md (amendment 12 header); post hoc
+  FFHQ paired-history and H1 paired tables recomputed (`src/PN1/posthoc_b2.py` -> `tier1/posthoc_b2.json`).
+- Drafts for the pre-run reviewer (nothing run): amendment 14 (HN7, HN8, HN2 for Sb and Bv; one lease, about 0.5
+  A100-h) `prereg_amendment14_draft.md`; fresh seeds v3 (A, B, Sb x 403 to 407 + replicate; v2 A/B/C kept as the
+  alternative) `prereg_fresh_seeds_draft.md`.
 
 ## 9b. Open items (older, superseded)
 
