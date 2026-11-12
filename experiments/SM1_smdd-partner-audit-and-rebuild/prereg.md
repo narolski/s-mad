@@ -546,41 +546,49 @@ per-file sha256 `dev16_files.sha256`). No benchmark cell. About 0.2 GPU-h (RTX 6
   HOST PORT LEASE dev16fresh > LEASE/sm1_dev16.log 2>&1 &` (uploads ad4_pack, test images, manifests v2 (about 22 GB),
   the 6 fit tars and the 0.24 GB of rungs; RELEASE only after 6 of 6 SM1E tars and the machine logs are back).
 
-## DRAFT amendment A18: H-n2, is a second-identity signal learnable on our own diffusion ladder? (12 Nov ~23:30; not registered until the pre-run review and the lead; no score exists)
+## Amendment A18: H-n2, does the standard recipe add X-vs-SAME information beyond the measured traces? (registered 12 Nov ~23:45, after the pre-run review `experiments/reviews/PRERUN_SM1_A18_20261112.md`, GO WITH FIXES, all applied; no score exists)
 
 Author's go (12 Nov about 22:55): SAME20 may be labelled genuine for this development experiment, and DG1 shards may
-be used for training. Development data only: no benchmark row is scored anywhere (the fit script links no benchmark
-folder or manifest; the scorer runs only on the test shards and on the training rows).
+be used for training. Lead's decision: θ is allowed as a floor covariate; the image-statistics-only floor is printed
+too. Development data only: no benchmark row anywhere (the fit script links no benchmark folder or manifest; the scorer
+runs only on the test shards and the training rows). Claim limited to FRGC test hosts on a single render platform.
 - Data (`src/SM1/hn2_lists.py` → `/mnt/t7/smad_next/SM1/hn2/`; existing DG1 add-on images, no new image): 536 FRGC /
-  colorFERET hosts in 8 shards of 67. Train = shards 0–5, test = shards 6–7: disjoint hosts; an X20 row is kept only if
-  host and partner are on the same side (2 crossing rows dropped), so test partners and partner cycles are unseen.
-  Arm R: attack X20 (401), genuine REC20 (402). Arm RS: attack X20 (401), genuine REC20 + SAME20 (804); in RS the
-  only difference between X20 and SAME20 is the second person. Test: 133 X20, 134 SAME20, 134 REC20 (134 hosts).
-  Manifests sha256: train_hn2R 351e4475…, train_hn2RS 9f4b056c…, sm1_hn2_test e0b7c840…; 1,606 image files with
-  per-file sha256.
+  colorFERET hosts, 8 shards of 67. Train = shards 0–5, test = shards 6–7 (all test hosts FRGC, rented-GPU renders):
+  disjoint hosts; X20 rows with host and partner on different sides are dropped (2), so the 55 test partner cycles are
+  unseen. Arm RS: attack X20 (401), genuine REC20 + SAME20 (804); the only difference between X20 and SAME20 is the
+  second person. Arm R is dropped (descriptive only, and already shown by A15 / PN1); a third RS seed replaces it.
+  Test: 133 X20, 134 SAME20, 134 REC20. Manifests sha256: train_hn2RS 9f4b056c…, sm1_hn2_test e0b7c840…; 1,606 image
+  files with per-file sha256. `flagged` in `read_addon_items.csv` = DG1's input checks (FZ2 `fz2_read.py:124`): a
+  wedge or greyscale input, a probable twin pair, or a shared capture date (test: 10 X20, 3 SAME20 flagged).
 - Recipe: A11 m3 (CLIP ViT-B/16 + LoRA, `lora_run.sh` command line unchanged: 6,250 steps, batch 256, lr 3.33e-6, LoRA
-  r 2 on q, v), seeds 401 and 402 per arm: 4 fits (`rented/fit_hn2.sh`, `rented/remote_hn2.sh`; a 200-step smoke fit
-  first; a failed fit is rerun once). Pins: Docker `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime` + the
-  `smad_torch221_cu121_v1.def` packages; ad4_pack sha256 1ad170be…. Keep rule: one result tar per fit (scores on the
-  test shards and the training rows, `last_trainable.pt`, `meta.json`, train log) copied back with sha256 and the
-  machine logs before RELEASE.
-- Reads (`src/SM1/hn2_read.py`; host bootstrap B = 10,000, seed 20261111; 2-seed means): X20 over SAME20 raw,
-  Laplacian-stratified (face-box Laplacian quintiles over the test X20 + SAME20, weighted n_X x n_SAME) and
-  θ-stratified (θ = angle between the two inverted noise maps); X20 over REC20; SAME20 over REC20; simple-statistic
-  floors for X20 vs SAME20 on the same test rows (oriented AUC: face-box Laplacian, PNG bytes, asymmetry, input
-  disagreement d, θ).
-- **Decision (arm RS, Laplacian-stratified X20 over SAME20):** prediction ≤ 0.65 (supported); falsified if ≥ 0.75 with
-  the lower bound > 0.65; otherwise undecided. Arm R is read the same way, descriptively (it never sees SAME20).
-- What each outcome lets the paper say: supported → "with this generator and recipe there is no learnable
-  second-identity signal: trained directly on two-person against one-person mixes, the standard recipe stays at the
-  level of simple image statistics on unseen persons." Falsified → "a second-identity signal exists on this generator
-  and the standard recipe can learn it when given the right contrast; our SMDD-trained recipes do not use it."
-  Undecided → no claim either way.
-- Cost: 4 fits x about 78 min (RTX 6000 Ada, 1.41 it/s) + smoke and scoring ≈ 5.5 h, about 4 USD; upload ad4_pack
-  11.2 GB + 0.6 GB of images.
-- Command (fresh lease; the lead starts it): `nohup setsid bash /home/narolski/smad-next/src/SM1/rented/drive_v2.sh
-  HOST PORT LEASE hn2fresh > LEASE/sm1_hn2.log 2>&1 &`. It can share A16's lease: start A16 with
-  `SM1_NO_RELEASE=1` and hn2fresh afterwards on the same host / port / lease (ad4_pack is then already unpacked).
+  r 2 on q, v), seeds 401, 402, 403 (`rented/fit_hn2.sh`, `rented/remote_hn2.sh`; WCSS variant `wcss/wcss_hn2.sbatch`;
+  a 200-step smoke fit first). Disclosure (review M1): with 1,205 training rows this is about 1,330 epochs (the SMDD
+  fits: about 40); memorisation is possible, so the training-row AUC is reported per fit; the step count is not changed.
+  A failed fit is rerun once; a fit with a non-finite loss or scores is never rerun and is reported. Platform: rented
+  RTX 6000 Ada (Docker pins as A13) or WCSS H100 (`~/dmenv`, torch 2.11) — the one used is recorded; all A18 fits on
+  one platform. Keep rule: one result tar per fit (test and training-row scores, `last_trainable.pt`, `meta.json`,
+  train log) back with sha256, and the machine / job logs, before any clean-up.
+- **Primary read (registered, review B1 text; cross-fit variant):** Floor F = logistic regression of X20 vs SAME20 on
+  (θ, face-box Laplacian, PNG bytes, asymmetry, d). ΔAUC = AUC of a logistic model on (F inputs + network logit) over F
+  alone, both cross-fit on test-shard folds (the 55 test partner cycles in 5 folds, seeded; fit on 4, predict the 5th;
+  not on the memorised training rows); 2-seed mean (401, 402); bootstrap over partner cycles (B = 10,000, seed
+  20261111; `src/SM1/hn2_incr.py`, `src/SM1/hn2_read.py`). **Falsified (signal beyond measured traces) if ΔAUC ≥ 0.05
+  with lower bound > 0; supported if the upper bound < 0.03; otherwise undecided.** The decision needs both RS seeds 401
+  and 402 finite; with fewer, the verdict is "undecided (incomplete)" (asserted in the reader). Reported with and
+  without flagged rows; ΔAUC over the image-statistics floor F_img (F without θ) printed beside it; seed 403 and the
+  3-seed mean as a stability check. Secondary: raw, Laplacian- and θ-stratified X20 over SAME20; X20 / SAME20 over
+  REC20.
+- **Outcome sentences (review B2):** supported → "With this generator and this recipe (6,250 steps on 1,205 images,
+  about 1,330 epochs, 2 seeds; FRGC, single render platform), the network adds no X-vs-SAME information beyond simple
+  statistics and the noise-angle θ. This does not show that no second-identity signal exists in diffusion morphs."
+  Falsified → "With this generator and this recipe (…), the network adds X-vs-SAME information beyond the measured
+  traces (θ, sharpness, size, asymmetry); unmeasured render traces are not excluded." Undecided → no claim.
+- **Parallel arm, zero GPU (review improvement 1):** linear probe (logistic regression on standardised features) on
+  the existing frozen CLIP (clip_mad) and DINOv2 features of the DG1 shards (`/mnt/t7/smad_next/FZ2/results/dgx/out/`),
+  trained on X20 vs SAME20 of shards 0–5, scored on shards 6–7, read with the same incremental-over-floor test and
+  thresholds (per feature set; `src/SM1/a18_probe.py`), run on the DGX CPU right after this registration.
+- Cost: 3 fits x about 78 min (RTX 6000 Ada) or less on H100, + smoke and scoring; about 4 h; upload ad4_pack 11.2 GB
+  + 0.6 GB of images.
 
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?

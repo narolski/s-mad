@@ -1,14 +1,13 @@
-"""SM1 H-n2 reader (DRAFT A18): the m3 recipe trained on DG1 shards 0-5, read on the held-out shards 6-7.
+"""SM1 A18 reader (H-n2): the m3 recipe trained on DG1 shards 0-5 (arm RS: X20 vs REC20 + SAME20), read on shards 6-7.
 
-Input: OUT/results_rented/hn2/HN2_{R,RS}_s{401,402}.tar (sha256 checked, extracted): <T>/hn2test/scores_eval.npz
-(logit of the no-TTA score). Test: 133 X20, 134 SAME20, 134 REC20 of 134 hosts never seen in training.
-Host bootstrap B = 10,000 (seed 20261111); 2-seed means per arm.
-Reads per arm: X20 over SAME20 raw, Laplacian-stratified (face-box Laplacian quintiles over the test X20 + SAME20),
-θ-stratified (θ quintiles, DG1 theta_xT); X20 over REC20; SAME20 over REC20. Floors: oriented AUC (max(A, 1 − A))
-of each simple statistic for X20 vs SAME20 on the same test rows: face-box Laplacian, PNG bytes, asymmetry, input
-disagreement d, θ.
-Decision (registered on arm RS, Laplacian-stratified X20 over SAME20, 2-seed mean): supported (no learnable second
-identity) if ≤ 0.65; falsified (a signal exists) if ≥ 0.75 with the lower bound > 0.65; otherwise undecided.
+Input: OUT/results_rented/hn2/HN2_RS_s{401,402,403}.tar (sha256 checked, extracted) — or the WCSS copies placed there:
+<T>/hn2test/scores_eval.npz (logit of the no-TTA score on the test rows), <T>/hn2test/metrics.json (training-row AUC).
+Primary (registered): ΔAUC of (floor inputs + network logit) over the floor F, cross-fit on test partner-cycle folds,
+partner-cycle bootstrap (hn2_incr.py); decision on the mean of seeds 401 and 402: falsified if ΔAUC ≥ 0.05 with lower
+bound > 0, supported if upper bound < 0.03, otherwise undecided; "undecided (incomplete)" unless both seeds exist and
+are finite. Reported with and without flagged rows, and over the image-statistics floor F_img. Seed 403 is reported
+and enters a 3-seed mean as a stability check. Secondary: raw, Laplacian- and θ-stratified X20 over SAME20, X20 / SAME20
+over REC20 (partner-cycle bootstrap); training-row AUC per fit.
 
   python3 -I hn2_read.py -> RES/hn2_read.json
 """
@@ -24,86 +23,80 @@ import numpy as np
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import sm1_common as K  # noqa: E402
 import sm1_stats as S  # noqa: E402
+import hn2_incr as I  # noqa: E402
 
 D = K.OUT / "results_rented/hn2"
-B = 10000
 
 
 def main():
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
     test = list(csv.DictReader(open(K.OUT / "hn2/sm1_hn2_test.csv")))
-    fam = {}
-    for r in test:
-        fam.setdefault(r["family"], []).append(r["id"])
-    host = {r["id"]: r["src_id"] for r in test}
-    hosts = sorted(set(host.values()))
-    hp = {h: i for i, h in enumerate(hosts)}
-    C = np.random.default_rng(K.SEED).multinomial(len(hosts), np.full(len(hosts), 1 / len(hosts)), size=B).astype(float)
-    W = lambda ids: C[:, [hp[host[i]] for i in ids]]  # noqa: E731
-    it = {f"hn2:{r['key']}:{r['host']}": r for r in csv.DictReader(open("/mnt/t7/smad_next/FZ2/read_addon_items.csv"))
-          if r["key"] in ("X20", "SAME20")}
-    th = {}
-    for k in range(8):
-        f = K.OUT.parent / "DG1/gen" / f"addon_s{k}" / f"out_addon_s{k}" / f"addon_s{k}" / "gen_rows.csv"
-        for r in csv.DictReader(open(f)):
-            th[(f"addon_s{k}", r["pool"], r["name"])] = float(r["theta_xT"]) if r["theta_xT"] not in ("", "nan") else np.nan
-    X, SA, REC = fam["X20"], fam["SAME20"], fam["REC20"]
-    stat = {}
-    for i in X + SA:
-        r = it[i]
-        parts = r["id"].split("/")
-        stat[i] = dict(lap=float(r["lapvar_box"]), png=float(r["png_bytes"]), asym=float(r["asym_box"]), d=float(r["d"]),
-                       theta=th[(r["list"], parts[-2], parts[-1])])
-    strata = {}
-    for nm in ("lap", "theta"):
-        v = np.array([stat[i][nm] for i in X + SA])
-        q = np.quantile(v, [0.2, 0.4, 0.6, 0.8])
-        strata[nm] = {i: int(np.searchsorted(q, stat[i][nm])) for i in X + SA}
-
-    def wauc(gp, gn, pos, neg):
-        return float(S.wauc(gp, gn, np.ones((1, len(pos))), np.ones((1, len(neg))))[0]), S.wauc(gp, gn, W(pos), W(neg))
-    floors = {}
-    for nm in ("lap", "png", "asym", "d", "theta"):
-        gx, gs = np.array([stat[i][nm] for i in X]), np.array([stat[i][nm] for i in SA])
-        pt, dr = wauc(gx, gs, X, SA)
-        if pt < 0.5:
-            pt, dr = 1 - pt, 1 - dr
-        floors[nm] = dict(auc_oriented=round(pt, 4), ci=[round(x, 4) for x in S.ci(dr)])
-    per = {}
-    for f in sorted(D.glob("HN2_*_s40?.tar")):
+    items = {f"hn2:{r['key']}:{r['host']}": r for r in csv.DictReader(open("/mnt/t7/smad_next/FZ2/read_addon_items.csv"))
+             if r["key"] in ("X20", "SAME20", "REC20")}
+    fits, train_auc, scores = {}, {}, {}
+    for f in sorted(D.glob("HN2_RS_s40?.tar")):
         assert hashlib.sha256(open(f, "rb").read()).hexdigest() == open(str(f) + ".sha256").read().split()[0], f
         T = f.stem
         if not (D / T).exists():
             with tarfile.open(f) as t:
                 t.extractall(D)
         z = np.load(D / T / "hn2test/scores_eval.npz")
+        if not np.isfinite(z["score_noTTA"]).all():
+            fits[T] = "non-finite"
+            continue
         p = np.clip(z["score_noTTA"].astype(float), 1e-7, 1 - 1e-7)
-        zi = dict(zip([str(i) for i in z["id"]], np.log(p / (1 - p))))
-        g = lambda ids: np.array([zi[i] for i in ids])  # noqa: E731
-        m = {"X20_over_SAME20": wauc(g(X), g(SA), X, SA), "X20_over_REC20": wauc(g(X), g(REC), X, REC),
-             "SAME20_over_REC20": wauc(g(SA), g(REC), SA, REC)}
+        scores[T] = dict(zip([str(i) for i in z["id"]], np.log(p / (1 - p))))
+        m = json.load(open(D / T / "hn2test/metrics.json"))
+        train_auc[T] = m["train"]["auc_vs_training_labels"]
+        fits[T] = "ok"
+    out = dict(fits=fits, train_row_auc=train_auc)
+    need = ("HN2_RS_s401", "HN2_RS_s402")
+    complete = all(fits.get(t) == "ok" for t in need)
+    for tag, drop in (("all", False), ("unflagged", True)):
+        rows = I.test_rows(drop_flagged=drop)
+        per = {T: I.incremental(rows, sc) for T, sc in scores.items()}
+        o = {}
+        if complete:
+            o["decision_2seed"] = I.summarise([per[t] for t in need])
+            o["decision_2seed"]["verdict"] = I.verdict(o["decision_2seed"]["dAUC_over_F"])
+        else:
+            o["decision_2seed"] = dict(verdict="undecided (incomplete)")
+        if len(per) >= 3:
+            o["all_seeds"] = I.summarise(list(per.values()))
+        out[tag] = o
+    cyc_of = {r["id"]: items[r["id"]]["cycle"] for r in test}
+    cyc = sorted(set(cyc_of.values()), key=int)
+    cp = {c: i for i, c in enumerate(cyc)}
+    C = np.random.default_rng(K.SEED).multinomial(len(cyc), np.full(len(cyc), 1 / len(cyc)), size=I.B).astype(float)
+    W = lambda ids: C[:, [cp[cyc_of[i]] for i in ids]]  # noqa: E731
+    fam = {}
+    for r in test:
+        fam.setdefault(r["family"], []).append(r["id"])
+    X, SA, REC = fam["X20"], fam["SAME20"], fam["REC20"]
+    rows = {r["id"]: r for r in I.test_rows()}
+    strata = {}
+    for j, nm in ((1, "lap"), (0, "theta")):
+        v = np.array([rows[i]["f"][j] for i in X + SA])
+        q = np.quantile(v, [0.2, 0.4, 0.6, 0.8])
+        strata[nm] = {i: int(np.searchsorted(q, rows[i]["f"][j])) for i in X + SA}
+    sec = {}
+    for T, sc in scores.items():
+        g = lambda ids: np.array([sc[i] for i in ids])  # noqa: E731
+        wa = lambda a, b: (float(S.wauc(g(a), g(b), np.ones((1, len(a))), np.ones((1, len(b))))[0]),  # noqa: E731
+                           S.wauc(g(a), g(b), W(a), W(b)))
+        m = {"X20_over_SAME20": wa(X, SA), "X20_over_REC20": wa(X, REC), "SAME20_over_REC20": wa(SA, REC)}
         for nm, sm in strata.items():
             pt, dr, wt = 0.0, 0.0, 0.0
             for k in range(5):
                 xs, ss = [i for i in X if sm[i] == k], [i for i in SA if sm[i] == k]
                 if xs and ss:
-                    a, b = wauc(g(xs), g(ss), xs, ss)
+                    a, b = wa(xs, ss)
                     w = len(xs) * len(ss)
                     pt, dr, wt = pt + w * a, dr + w * b, wt + w
             m[f"X20_over_SAME20_{nm}strat"] = (pt / wt, dr / wt)
-        per.setdefault(T.split("_")[1], []).append(m)
-    out = {}
-    for arm, lst in per.items():
-        out[arm] = {k: dict(mean=round(float(np.mean([m[k][0] for m in lst])), 4),
-                            seeds=[round(m[k][0], 4) for m in lst],
-                            ci=[round(x, 4) for x in S.ci(np.mean([m[k][1] for m in lst], 0))]) for k in lst[0]}
-    out["floors_X20_vs_SAME20"] = floors
-    if "RS" in out:
-        v = out["RS"]["X20_over_SAME20_lapstrat"]
-        out["decision"] = dict(value=v, verdict="supported: no learnable second-identity signal on this generator"
-                               if v["mean"] <= 0.65 else ("falsified: a signal exists" if v["mean"] >= 0.75 and v["ci"][0] > 0.65
-                                                         else "undecided"))
+        sec[T] = {k: dict(auc=round(v[0], 4), ci=[round(x, 4) for x in S.ci(v[1])]) for k, v in m.items()}
+    out["secondary"] = sec
     json.dump(out, open(K.RES / "hn2_read.json", "w"), indent=1)
     print(json.dumps(out, indent=1))
 

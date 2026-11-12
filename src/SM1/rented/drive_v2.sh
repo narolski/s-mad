@@ -166,9 +166,9 @@ case "$STEP" in
       if R "[ -f $B/results_hn2/HN2_ALL_DONE ]"; then
         RS --include='*.tar' --include='*.tar.sha256' --exclude='*' "root@$HOST:$B/results_hn2/" "$OH/"
         RS "root@$HOST:$B/logs/" "root@$HOST:$B/queue_hn2.log" "$OH/machine_logs/" || true
-        nh=$(cd "$OH" && sha256sum -c --quiet HN2_*.sha256 2>/dev/null && ls HN2_*_s40?.tar | wc -l)
-        log "hn2 verified ${nh:-0} of 4"
-        [ "${nh:-0}" -eq 4 ] && { touch "$L/RELEASE"; log "RELEASE written (4 of 4 fits and logs back)"; }
+        nh=$(cd "$OH" && sha256sum -c --quiet HN2_*.sha256 2>/dev/null && ls HN2_RS_s40?.tar | wc -l)
+        log "hn2 verified ${nh:-0} of 3"
+        [ "${nh:-0}" -eq 3 ] && { touch "$L/RELEASE"; log "RELEASE written (3 of 3 fits and logs back)"; }
         break
       fi
     done
