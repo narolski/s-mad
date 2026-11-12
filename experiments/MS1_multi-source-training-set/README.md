@@ -34,7 +34,14 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   equal to the unchanged engine; `gate_pixel.json`).
 - 12 Nov 23:14: `mkmanifest.py` -> `/mnt/t7/smad_next/MS1/manifests/train_SbM3.csv` sha256 `885dff9d…`
   (`manifest_SbM3_summary.json`); FRGC / colorFERET rows equal train_Sb's as a multiset (asserted).
-- 12 Nov 23:15: `build_pack.py` started (pack for part 2).
+- 12 Nov 23:15-23:17: `build_pack.py` -> `/mnt/t7/smad_next/MS1/pn1_pack_ms1.tar` sha256 `dac228f5…` (14,508,625,920
+  bytes, 51,272 files); evaluation manifest `d1fab6ad…` (42,366 rows: FS1 19,797, MS1 FFHQ hold-out 1,480, TT1
+  21,089). Tree of symlinks `/mnt/t7/smad_next/MS1/pack_tree/`.
+- 12 Nov 23:17: draft of part 2 (`prereg_comparison_draft.md`, commit cb1cf09) sent to the lead for pre-run review.
+- 12 Nov 23:18-23:20: DGX smoke of `src/MS1/run.sh` (20 steps, 64 scoring rows, SbM3 seed 403, pinned pack):
+  passed; result `/mnt/t7/smad_next/MS1/smoke/results/MS1smoke_SbM3_s403.tar`; work folder (14 GB, mine) deleted.
+- 12 Nov 23:21: reader `src/MS1/ms1_read.py` written and tested on mock scores (`ms1_read_mock.json`); commit c1c4224.
+- 12 Nov 23:2x: inventory of new candidate sources (no build; lead's instruction), see section 8.
 
 ## 3. Data
 
@@ -81,6 +88,23 @@ recorded frame (the aligner's sha256 equals AR1's pin); duplicates of persons be
 
 ## 8. Observations and ideas
 
+- New candidate sources (inventory 12 Nov ~23:25; eye distances measured with the unchanged detector on 2-8 images
+  each, nothing built):
+  - Chicago Face Database 3.0.1: 827 persons (CFD 597, CFD-INDIA 142, CFD-MR 88), exactly one neutral frontal photo
+    each, 2444 x 1718 JPEG, eye distance 329-381 px (all 10 test images aligned); 154 CFD persons also have angry,
+    fear, happy-closed and happy-open photos from the same session (CFD-INDIA 5 extra files). Same-person controls
+    possible for about 154 hosts with the happy-closed photo as the second photo (the FRLL neutral + smiling
+    precedent of AR1's secondary pool). Meets the resolution and count rules.
+  - KDEF: 70 persons x 2 sessions (A, B), 35 photos each (7 expressions x 5 angles); neutral straight NES at
+    562 x 762, eye distance about 150-153 px; two-session same-person controls for all 70, but 70 persons is below
+    the minimum of 400. AKDEF holds 70 averaged faces (composites): not genuine photos, never usable as genuine.
+  - MUCT: 276 persons, 5 cameras, 480 x 640 JPEG; camera a (frontal) 751 images (about 2.7 per person, lighting
+    variants q-z of one session); eye distance 87-93 px (below 112.7, so frames are enlarged about 1.45x); below 400
+    persons; licence forbids reproduction in public documents.
+  - CelebA-HQ: downloading (11.0 of 33.9 GB at 23:18); the HQ-to-CelebA mapping file is not on disk
+    (`CelebAMask-HQ/` empty). Note: CelebA-HQ images were made with JPEG-artefact removal and 4x super-resolution
+    networks (Karras et al. 2018), i.e. network-processed texture.
+
 - FFHQ contains many second photos of development persons: 103 of 1,012 face-passing candidates had glintr100 cosine
   0.40 or more (median 0.565, up to 0.92) to an ffhqm genuine image or contributor. Any experiment that trains on FFHQ
   and reads ffhqm should check identity, not only keys.
@@ -93,12 +117,24 @@ recorded frame (the aligner's sha256 equals AR1's pin); duplicates of persons be
 
 ## 9. Open items and next steps
 
-Build FFHQ (prereg section 3); part 2 (training comparison) registration; pre-run review.
+- Lead's pre-run review of `prereg_comparison_draft.md`; apply fixes; copy the final text into `prereg.md` part 2 and
+  commit before any fit is submitted.
+- Lead runs the upload, smoke and array commands (draft section 9); fetch tars; run `ms1_read.py`; post-result review.
+- A fourth-source arm only after the lead confirms a source (section 8).
 
 ## 10. Handover state
 
-none running yet. Compute spent: 0.
+No process running (DGX selection, build, pack and smoke finished). Nothing submitted on WCSS. Staged for upload:
+`/mnt/t7/smad_next/MS1/pn1_pack_ms1.tar{,.sha256}`, `/mnt/t7/smad_next/MS1/wcss_stage/{run.sh,run.sh.sha256,
+ms1_smoke.sbatch,ms1_fit.sbatch}`. Kept: everything under `/mnt/t7/smad_next/MS1/` (FFHQ frames, images, lists,
+manifests, pack). Compute spent: DGX CPU about 10 minutes, DGX GPU 2 minutes (smoke); 0 USD.
 
 ## 11. Reproduce from scratch
 
-to be filled.
+```
+P=/home/narolski/mambamorph-code/.venv-spark/bin/python; cd /home/narolski/smad-next/src/MS1
+./run_select.sh; $P -I excl_sha.py; $P -I gate.py path; $P -I proof.py
+$P -I ffhq_build.py plan; ./run_build.sh; $P -I mkmanifest.py; $P -I build_pack.py
+# smoke: see /mnt/t7/smad_next/MS1/smoke/smoke_dgx.log for the env line; fits: src/MS1/wcss/*.sbatch
+$P -I ms1_read.py --results /mnt/t7/smad_next/MS1/results --out ../../experiments/MS1_multi-source-training-set/ms1_read.json
+```

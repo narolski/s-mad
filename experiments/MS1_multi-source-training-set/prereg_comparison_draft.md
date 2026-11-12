@@ -140,7 +140,7 @@ FFHQ is unseen for SbM3; any effect of splices (FFHQ adds none).
   scoring for the 42,000 evaluation rows: about 10 H100-hours in all. Wall time about 1.5 hours once the ten jobs
   run in parallel; queue wait unknown.
 - Reader `src/MS1/ms1_read.py` sha256 `64f018b589e234328c4d9a7c39895962c6254026a41b0f29fad9b93891d75e03` (tested on random mock scores only: `ms1_read_mock.json`); ms1_fit.sbatch `be1e79b04b1403c58c54b4548f790bc5fe9884ee92e780cd07fc41484105344c`; ms1_smoke.sbatch `b82990e258d112aee2f8534c438f2212e9d2daac22c90571bc32a1c91ae412c7` (local storage 80 GB: pack 14.5 GB copied and extracted).
-- DGX smoke passed (`date`: Thu Nov 12 11:2x PM CET 2026): run.sh (MS1) with 20 steps and 64 scoring rows on arm SbM3 seed 403 from the pinned pack: train.py read 13,414 rows, result tar complete (scores, last_trainable.pt, gpu.txt); log `/mnt/t7/smad_next/MS1/smoke/smoke_dgx.log`.
+- DGX smoke passed (`date`: result tar written Thu Nov 12 11:19:57 PM CET 2026): run.sh (MS1) with 20 steps and 64 scoring rows on arm SbM3 seed 403 from the pinned pack: train.py read 13,414 rows, result tar complete (scores, last_trainable.pt, gpu.txt); log `/mnt/t7/smad_next/MS1/smoke/smoke_dgx.log`.
 - Smoke first (`ms1_smoke.sbatch`: 20 steps, 64 scoring rows, both arms); the array is submitted only after the smoke
   passes.
 
