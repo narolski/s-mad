@@ -774,3 +774,5 @@ development or benchmark image. Code `src/PN1/pairs_check.py`.
 - Chained at 23:04:27 (QUEUES written 23:03:27); Sp pull loop started (PID 482208). Local mock test: hold while only
   one queue is DONE, RELEASE when both are, RELEASE + FAILED on remote-confirmed Sp failures, Sp fits after the FS1
   queue on the Sp pack.
+
+- Sp reader (`date`: Thu Nov 12 11:06:59 PM CET 2026; before any Sp tar exists): `src/PN1/sp_read.py` sha256 `3ff011086c9953ad2f06f3cc2dff161d4060a118135df3cfd86e505ee323f5cf`; implements the registered predictions, printed reads and reading rules; tested in `--test401` mode only (Bv standing in for Sp against Sb 401/402 on already-read tars; reproduces Sb development S0 flags 0/100 and S0-vs-S4 AUC 0.9875 / 0.9927).

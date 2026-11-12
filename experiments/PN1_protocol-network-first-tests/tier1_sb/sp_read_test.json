@@ -1,0 +1,73 @@
+{
+ "floor3": {
+  "test_auc": 0.855525,
+  "dev_auc": 0.9014,
+  "coef": [
+   -0.21727607146081115,
+   0.3794678411355961,
+   -0.920511300639954,
+   -1.7222142471581656
+  ]
+ },
+ "seeds": {
+  "401": {
+   "read": true,
+   "Sp": {
+    "dev_S0_flag_own": 0.0,
+    "dev_S3_flag_own": 0.07,
+    "dev_S0_vs_S4_auc": 0.6638,
+    "dev_excess_floor3": -0.23760000000000003,
+    "dev_faceonly": 0.8319
+   },
+   "Sb": {
+    "dev_S0_flag_own": 0.0,
+    "dev_S3_flag_own": 0.34,
+    "dev_S0_vs_S4_auc": 0.9875,
+    "dev_excess_floor3": 0.08610000000000007,
+    "dev_faceonly": 0.925
+   },
+   "B": {
+    "dev_S0_flag_own": 0.0,
+    "dev_S3_flag_own": 0.07,
+    "dev_S0_vs_S4_auc": 0.6509,
+    "dev_excess_floor3": -0.25049999999999994,
+    "dev_faceonly": 0.8358
+   },
+   "p1": false,
+   "p2": true
+  },
+  "402": {
+   "read": true,
+   "Sp": {
+    "dev_S0_flag_own": 0.0,
+    "dev_S3_flag_own": 0.04,
+    "dev_S0_vs_S4_auc": 0.6627,
+    "dev_excess_floor3": -0.23870000000000002,
+    "dev_faceonly": 0.8561
+   },
+   "Sb": {
+    "dev_S0_flag_own": 0.0,
+    "dev_S3_flag_own": 0.36,
+    "dev_S0_vs_S4_auc": 0.9927,
+    "dev_excess_floor3": 0.09130000000000005,
+    "dev_faceonly": 0.938
+   },
+   "B": {
+    "dev_S0_flag_own": 0.0,
+    "dev_S3_flag_own": 0.04,
+    "dev_S0_vs_S4_auc": 0.6663,
+    "dev_excess_floor3": -0.23509999999999998,
+    "dev_faceonly": 0.8618
+   },
+   "p1": false,
+   "p2": true
+  }
+ },
+ "read_seeds": [
+  401,
+  402
+ ],
+ "verdict": "inconclusive, no claim",
+ "test_mode": true,
+ "label": "development, n = 3 seeds; not about SBI or SelfMAD; no S0 vs S3 attribution; no benchmark claim"
+}
