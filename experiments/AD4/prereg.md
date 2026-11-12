@@ -374,3 +374,37 @@ machine. The Athena smoke job 3546199 is cancelled before it starts; no Athena r
   convert RGB, bilinear resize to 224). This equals writing and re-reading a lossless PNG of the blanked image (PNG is lossless). An
   image that is not 512 x 512 stops the job.
 - Scoring on the shared GB10 GPU, one process (plus loader workers), thread caps, nice 10; DataLoader 4 workers, batch 64.
+
+## Amendment 5 (12 Nov 2026, 23:02 CET, reading owner; before any WCSS result of this experiment is opened and before any new job is submitted)
+
+Context (lead, 12 Nov about 23:00): WCSS is reachable again. Found on WCSS: all ten ViT-L/14 tasks (`AD4_m3l{mf,perm}_s401..405`)
+were run on 12 Nov between 12:50 and 15:54 by the generic queue slots, with the unchanged `run.sh` and pack (`task_info.txt`: pack
+sha256 `1ad170be…`, `local 0`, steps 6250, limit 0, about 7,200 s wall, nodes r18-*), H100, the WCSS container (torch 2.2.1, CUDA
+12.1) plus `pylib.tar` and `pylib_a12.tar`; all ten `.sha256` check out on WCSS. Only file names, sizes, hashes and two
+`task_info.txt` files were read; no metric or score.
+
+**(a) ViT-L/14 morph-free seeds 403 to 405.** Their Athena tasks were cancelled for slow nodes (11 Nov 22:56); the one unchanged Athena
+rerun (array 3546123_[2-4]) has not started in 26 hours. The registered networks for these three seeds are therefore their existing
+WCSS results, for all three alike, fixed here before any of them is opened. Array 3546123 is cancelled once the WCSS tars are copied
+to the DGX and their hashes verified; any Athena result of these seeds that still appeared would be a cross-platform repeat. The
+registered ViT-L/14 arm thus mixes platforms: morph-free 401 and 402 and label-permuted 401 to 405 on Athena A100 40 GB (Amendment 1c),
+morph-free 403 to 405 on WCSS H100. The platform is printed beside every number.
+- The other seven WCSS ViT-L/14 results are cross-platform repeats under Amendment 1c: per cell, the difference in EER and AUC
+  against the Athena network of the same task. In addition a descriptive reading of the all-WCSS ViT-L/14 arm (ten networks, one
+  platform) is printed, labelled "cross-platform repeat, not registered"; it never replaces or is averaged with the registered arm.
+
+**(b) The ViT-B/16 cluster rerun** (the registered remedy of the missed reproduction gate, Amendment 1 gate 2). The ten tasks
+`AD4_m3{mf,perm}_s401..405` run on WCSS with the unchanged `run.sh`, task folders and pack (H100, container, lem-gpu-short, one GPU
+each). Fixed now: the WCSS ten-network arm is the registered ViT-B/16 arm whatever its outcome ("the cluster tasks then decide"), and
+the rented arm becomes a cross-platform repeat (per-cell differences printed). The reproduction gate is computed on the WCSS morph-free
+seed means with the registered bounds: pass = "reproduced on the cluster stack"; miss = "not reproduced on either stack", printed on
+every number. Every other rule of the reading is unchanged.
+
+**(c) Gates before any WCSS number is read.** (i) The sample-order gate on every WCSS network, as registered. (ii) Scorer equivalence on
+the H100 stack: the original A47 I-3 ViT-B/16 morph-free network (seed 1, `last.pt` on WCSS) re-scored with `ad4_score.py` in the WCSS
+container on an H100 must agree with its registered `scores_eval_last.npz` in every shared cell, |AUC difference| ≤ 0.005 and Kendall
+tau ≥ 0.99 (the Amendment 1 tolerance). If (ii) misses, no WCSS number is read and the lead is told.
+
+**(d) Jobs** (OWNER_BRIEF "no placeholders" rule): every job carries its full workload (pack, task folders and scripts already on WCSS),
+`--extra=FORCE_RM_TMPDIR`, all IO in `$TMPDIR`; at most 6 of our GPUs at once (ViT-B/16 array throttled to 5, plus the 1-GPU equivalence
+job). A short smoke first: one ViT-B/16 task with 50 steps and 8 scored images into a separate smoke root, not read.
