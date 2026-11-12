@@ -79,6 +79,33 @@ def thr5(g):
     return float(g[-1])
 
 
+HM = "/mnt/t7/smad_next/MS1/heldout_tree/pn1/data/manifests/ms1_heldout.csv"
+
+
+def tt1ref_reads(L, M, out):
+    """MS1-D2: printed only. Own-rule flags of TT1's references and AUC(TT1 family k vs R_cam_border(k))."""
+    try:
+        H = [r for r in csv.DictReader(open(HM)) if r["fam"] == "tt1ref" and r["id"] in L]
+    except FileNotFoundError:
+        return
+    if not H:
+        return
+    res = {}
+    for rung in ("R_cam", "R_cam_geo224", "R_cam_geo112"):
+        g = np.array([L[r["id"]] for r in H if r["rung"] == rung], float)
+        if len(g):
+            res[rung] = dict(n=len(g), flag=float((g > 0).mean()))
+    for k in TT1:
+        b = np.array([L[r["id"]] for r in H if r["rung"] == "R_cam_border" and r["cell"] == k], float)
+        u = np.array([L[r["id"]] for r in M if r["fam"] == "tt1" and r["cell"] == k], float)
+        if len(b) and len(u):
+            res[f"border_{k}"] = dict(n=len(b), flag=float((b > 0).mean()), auc_tt1_vs_border=fauc(u, b))
+        fb = np.array([L[r["id"]] for r in H if r["rung"] == "R_ffhq_border" and r["cell"] == k], float)
+        if len(fb):
+            res[f"ffhq_border_{k}"] = dict(n=len(fb), flag=float((fb > 0).mean()))
+    out["tt1ref"] = res
+
+
 def net_reads(L, M):
     """L: id -> logit; M: manifest rows. Returns every per-network quantity."""
     def ids(f):
@@ -151,6 +178,7 @@ def net_reads(L, M):
     res = {r["host"]: L[r["id"]] for r in M if r["fam"] == "ffhq" and r["rung"] == "landmark_complete_resmatch"}
     keys = sorted(set(bona) & set(res))
     out["fs1_c2_share_rise"] = float(np.mean([res[k] > bona[k] for k in keys])) if keys else None
+    tt1ref_reads(L, M, out)
     return out
 
 
@@ -293,7 +321,7 @@ def main():
                     status[f"{arm}_{s}"] = "sha256 mismatch"
                     continue
                 L = load_tar(p)
-                for fam in ("cfd", "kdef"):
+                for fam in ("cfd", "kdef", "tt1ref"):
                     hp = pathlib.Path(a.heldout or "/nonexistent") / f"MS1H_{arm}_s{s}_{fam}.npz"
                     if hp.exists():
                         z = np.load(hp)
