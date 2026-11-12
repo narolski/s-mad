@@ -6,6 +6,7 @@
   "403": {
    "gpu_queue": "WCSS H100, one job per fit",
    "read": true,
+   "adequate": true,
    "A": {
     "lcomb_auc": 0.6445785,
     "lcomb_ci": [
@@ -129,6 +130,7 @@
   "404": {
    "gpu_queue": "WCSS H100, one job per fit",
    "read": true,
+   "adequate": true,
    "A": {
     "lcomb_auc": 0.6459625,
     "lcomb_ci": [
@@ -252,6 +254,7 @@
   "405": {
    "gpu_queue": "WCSS H100, one job per fit",
    "read": true,
+   "adequate": true,
    "A": {
     "lcomb_auc": 0.658118,
     "lcomb_ci": [
@@ -697,6 +700,11 @@
   "sentence": "Sb's gain over B on this development set is not explained by the best single simple statistic or by the 27 statistics combined; Sb does not exceed the best statistic's own AUC, and still reads the surround (R6)."
  },
  "read_seeds": [
+  403,
+  404,
+  405
+ ],
+ "adequate_seeds": [
   403,
   404,
   405

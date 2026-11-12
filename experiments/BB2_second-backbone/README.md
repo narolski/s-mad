@@ -36,7 +36,26 @@ registration written; DGX smoke running; draft goes to the independent pre-run r
 - 23:47 upload of the FS1 pack and the overlay to WCSS `.../smad-next/packs/BB2/` started (rsync under the lock).
   A WCSS check at 23:4x found the Slurm controller unreachable ("Unable to contact slurm controller").
 - 23:50 `bb2_read.py` written; mock test (random logits in mock tars, a fake FS1 reading) runs end to end.
-- 23:48-23:52 draft `prereg.md`, this README, `result.md`.
+- 23:48-23:52 draft `prereg.md`, this README, `result.md`. Commit 05a8e25 (pushed): code, draft, test outputs.
+- 23:52:47 upload of `pn1_pack_fs.tar` and `bb2_overlay.tar` to WCSS `packs/BB2/` finished (rsync rc 0, about 5 min).
+- 23:53 DGX smoke passed: run.sh rc 0, wall 498 s (pack copy and check 86 s, overlay 10 s, 20 steps at batch 64 x 4 in
+  459 s on the shared GB10, scoring 64 + 64 rows); tar `/mnt/t7/smad_next/BB2/dgxsmoke/results/BB2smoke_Sb_s403.tar`
+  (sha256 `ce0ed1e0…`) holds last_trainable.pt (98 tensors = the trainable set; 48 of 48 LoRA B matrices moved from
+  zero), meta.json, train.log, scores, env.txt, gpu.txt, task_info.txt. Rebuild check: `common.build_run_model(meta)` +
+  `last_trainable.pt` loads with no missing trainable key (the path the sealed read will use). Work folder deleted.
+- 23:54 independent pre-run review started (experiment-reviewer, given the files, not conclusions). Draft path sent to
+  the lead.
+- 23:55 run.sh (`0eaa4dce…`) and the smoke script uploaded to WCSS for the WCSS smoke (not a fit; it only decides the
+  batch rule of section 4 of the prereg).
+- 13 Nov 00:00 pre-run review back: GO WITH FIXES (`experiments/reviews/PRERUN_BB2_20261113.md`). Applied (prereg
+  section 12): DINOv3 history disclosed (the Sb idea came from a frozen DINOv3 head read on MAD22); fit script takes
+  batch and time from the command line and refuses other batch settings (tested locally: refuses '/', '256/2'); memory
+  rule with a 72 GiB peak bound, both batch modes run in the smoke; OOM/timeout rerun rule; reader read-seed rule now
+  includes non-finite train.log losses; training-adequacy control (own-rule training accuracy >= 0.75 per arm) for
+  contrasts 1 and 3; contrast 2 not read with < 2 seeds; `featcheck.py` platform check (DGX CPU reference
+  `featref_cpu.npz` 89f3defe…, repeat on CPU max diff 0.0; the DGX GPU was out of memory (other users) so the reference
+  is CPU fp32). Reader re-run on mock tars. Not applied: seeds 406/407 (lead/author decision).
+- 00:05 registration commit (this commit; `date` Fri Nov 13 12:05:19 AM CET 2026).
 
 ## 3. Data
 

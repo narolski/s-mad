@@ -1,9 +1,10 @@
 # Second backbone for the protocol recipe (BB2): registration
 
-Status: DRAFT for the independent pre-run review. Written 12-13 Nov 2026 from 23:36 CET (`date` at first write: Thu Nov
-12 11:36:25 PM CET 2026) by the BB2 owner (Claude agent). It becomes the registration at the git commit that adds its
-final version (after the review), before any BB2 fit is submitted. No BB2 fit exists. The BB2 owner has opened no FS1
-fresh-seed tar or score (the FS1 tars on `/mnt/t7/smad_next/PN1/results_fs/` were not listed beyond their names).
+Status: REGISTERED at the git commit that adds this version (`date` at registration: Fri Nov 13 12:05:19 AM CET 2026),
+after the independent pre-run review (section 12) and before any BB2 fit is submitted. Draft written from Thu Nov 12
+11:36:25 PM CET 2026 by the BB2 owner (Claude agent); draft commit 05a8e25. No BB2 fit exists; only the 20-step DGX smoke
+(never read as a result). The BB2 owner has opened no FS1 fresh-seed tar or score (the FS1 tars on
+`/mnt/t7/smad_next/PN1/results_fs/` were not listed beyond their names).
 
 Author's approval, 12 Nov 2026 about 23:50 CET, his words: "do the second backbone", in answer to "A second backbone
 ... needs new training code for a DINOv3 arm ... On WCSS it would cost nothing ... it could run tomorrow."
@@ -108,13 +109,22 @@ loss or weights is reported and never rerun; a fit that trains to a near-constan
 read as it is and reported; it is never rerun with other settings. An unchanged learning rate may simply be too low or
 too high for this backbone; that risk is accepted and stated with every BB2 sentence.
 
-**Memory rule (batch).** Measured on the DGX (GB10, fp32/TF32, LoRA, train mode): 8.6 GB of activations per 32 images
-for ViT-L/16 against 3.8 GB for CLIP ViT-B/16, so batch 256 needs about 70 GB. The WCSS smoke (section 9) first runs
-100 steps at batch 256 in one pass. If that run completes, all nine fits use batch 256 in one pass. Only if it fails
-(out of memory or any error), all nine fits use `--bs=128 --accum=2` (train.py's existing option: the loss of each half
-divided by 2 and the gradients summed before one optimiser step: the same objective over 256 images per step, the same
-6,250 steps; it differs only in how random draws are consumed), provided its 100-step smoke completes; otherwise BB2
-stops and is reported. The choice is recorded in the README before the fits are submitted.
+**Memory rule (batch; review fix 3).** Measured on the DGX (GB10, fp32/TF32, LoRA, train mode): 8.6 GB of activations
+per 32 images for ViT-L/16 against 3.8 GB for CLIP ViT-B/16, so batch 256 needs about 70 GB. The WCSS smoke (section 9)
+runs 100 steps at batch 256 in one pass and then 100 steps at batch 128 x 2, logging the GPU's memory.used every 2 s.
+All nine fits use batch 256 in one pass only if the 256 x 1 smoke completed and its peak memory.used is at most 72 GiB
+(73,728 MiB); otherwise all nine use `--bs=128 --accum=2` (train.py's existing option, train.py:868-874: the loss of
+each half divided by 2, gradients summed, clipping and one optimiser step after the second half: the same objective
+over 256 images per step and the same 6,250 steps; only the order in which random draws are consumed differs),
+provided the 128 x 2 smoke completed; otherwise BB2 stops and is reported. A fit that runs out of memory or reaches its
+time limit (an infrastructure failure) is rerun once at 128 x 2 with twice the time limit, and labelled so in the
+result. The choice is recorded in the README before the fits are submitted.
+
+**Platform check (review fix 5).** In the WCSS smoke, `src/BB2/featcheck.py` computes the initial (no LoRA, eval, fp32,
+TF32 off) L2-normalised DINOv3 feature of 8 fixed training images (the first 8 unique paths of train_A.csv) under WCSS's
+torch 2.11 / timm 1.0.30 and compares it with the DGX CPU reference (torch 2.12.1, timm 1.0.27;
+`featref_cpu.npz`, sha256 `89f3defe6a6f74ef1852f19ef6e9a2cc8b3867c8e55be895e9ae299425627b75`). If the largest absolute
+difference exceeds 1e-3, no fit is submitted and the lead is told.
 
 ## 5. Reads (unchanged from FS1)
 
@@ -134,21 +144,30 @@ same floor file (`a14_lcomb.npz`, `714cb73d…`), the same bootstraps and rng se
 ## 6. What counts as "repeated" (new: three seeds; written before any BB2 fit)
 
 - **Read seed:** A, B and Sb of that seed all finished with a verified tar and finite evaluation logits (FS1's `load`
-  rule), and no non-finite training loss in train.log. A seed with a lost or non-finite arm is dropped and not
+  rule), and no non-finite training loss in train.log (implemented in `bb2_read.py`, review fix 4). A seed with a lost or non-finite arm is dropped and not
   replaced. An infrastructure failure is rerun once, unchanged, on the same partition. A collapsed fit (section 4)
   is read as it is.
+- **Training-adequacy control (review improvement 1; fixed before any BB2 fit; no CLIP or BB2 training accuracy was
+  looked up to set it):** the CLIP learning rates are used unchanged, so a "not repeated" could mean under-training.
+  A read seed counts for contrasts 1 and 3 only if each of its three arms reaches a training-row accuracy at the own
+  rule (logit > 0, `info.json` `train_acc_rule0`, over the arm's unique training rows) of at least 0.75. If fewer than
+  two read seeds pass, contrasts 1 and 3 read "uninformative (under-trained)". Contrast 2 keeps A as its own positive
+  control and is not gated.
 - **Contrast 1 repeated:** the FS1 seed condition (both margins, same direction, inclusive at full precision) holds on
-  at least 2 of 3 testable read seeds (2 of 2 if only two seeds are testable). Not repeated: otherwise. Fewer than two
-  testable read seeds: "not read (too few seeds)". The floor is read as on CLIP and reported with the sentence.
-- **Contrast 2:** A's positive control holds if A fails (share > 0.65) on at least 2 read seeds and on all but at most
+  at least 2 of 3 testable, adequately trained read seeds (2 of 2 if only two qualify). Not repeated: otherwise. Fewer
+  than two such seeds: "not read (too few seeds)" (or "uninformative (under-trained)", above). The floor is read as on
+  CLIP: exceeded only if the 2.5% bound is above 0 on every testable read seed (FS1's code; review fix 8).
+- **Contrast 2:** fewer than two read seeds: "not read (too few seeds)" (review fix 7). A's positive control holds if A fails (share > 0.65) on at least 2 read seeds and on all but at most
   one; otherwise the mark is "uninformative on these seeds" for BB2. With the control, B and Sb are each "repeated" if
   they pass on at least 2 of 3 read seeds (2 of 2 with two), else "not repeated".
-- **Contrast 3 repeated:** Sb − B ≥ +0.05 on at least 2 of 3 read seeds (2 of 2 with two).
+- **Contrast 3 repeated:** Sb − B ≥ +0.05 on at least 2 of 3 adequately trained read seeds (2 of 2 with two).
 - **R1-R6:** printed per seed. The pre-stated R1-R6 sentence is evaluated as on CLIP, except that its R3 condition "on
   at least 4 of 5 seeds" is read as "on every read seed" (the count cannot reach 4 with 3 seeds).
 - With 3 seeds and a per-seed SD of a difference of about 0.025 (FS1's figure), the chance that a true zero difference
   meets Sb − B ≥ +0.05 on 2 or more of 3 seeds is about 0.002; a true CLIP-size gain that is half as large on DINOv3
-  would often read "not repeated". BB2 can show that a pattern repeats; a "not repeated" is weak evidence of absence.
+  would often read "not repeated" (a true +0.05 repeats about half the time). The 0.025 SD is CLIP's figure; for
+  ViT-L it is unknown. "Repeated" needs 2 of 3 seeds, a lower bar than FS1's 4 of 5; this is stated beside every BB2
+  sentence. BB2 can show that a pattern repeats; a "not repeated" is weak evidence of absence.
 
 ## 7. What the paper says (pre-stated; the reader prints these sentences)
 
@@ -166,7 +185,9 @@ read, uninformative) means there is no CLIP pattern to repeat.
 | any | BB2 control not met | "storage mark uninformative on DINOv3" |
 | contrast 3 replicated | repeated / not repeated | "The face-only ladder gain of Sb over B repeats / did not repeat on a second backbone." |
 
-Every sentence carries: development data only (FFHQ development set and our FRGC / colorFERET ladder), 3 seeds, ViT-L
+Every sentence carries: "2 of 3 seeds (a lower bar than FS1's 4 of 5)"; "the spliced arm was first suggested by a
+frozen DINOv3 ViT-L/16 head read on MAD22 (BENCHMARK_EXPOSURE item 8), so a repeat on DINOv3 is not independent of how
+the arm was chosen"; development data only (FFHQ development set and our FRGC / colorFERET ladder), 3 seeds, ViT-L
 against ViT-B, the CLIP learning rates used unchanged, a different platform. Never a benchmark claim, never "the
 protocol is backbone-independent" in general, never a comparison of CLIP and DINOv3 accuracy as a result.
 
@@ -178,7 +199,13 @@ protocol is backbone-independent" in general, never a comparison of CLIP and DIN
 - The FS1 fresh-seed readings will probably be known (to the lead, perhaps to the BB2 owner) before the BB2 fits end.
   Every BB2 rule is fixed here first; no BB2 rule changes after any FS1 or BB2 score is seen.
 - FFHQ landmark_combined and the HN2 list were read on CLIP seeds 401/402; the 191-host test ladder has been read many
-  times (BENCHMARK_EXPOSURE.md, FS1 v4). DINOv3 networks have never been scored on them.
+  times (BENCHMARK_EXPOSURE.md, FS1 v4). (Corrected after the review, fix 1.) DINOv3 has a history here: frozen
+  DINOv3 ViT-L/16 heads (tier 0, 512 px mean patch tokens, seeds 401-405; PN1 prereg section 3) were read on H1, MAD22
+  and the 191-host test ladder (BENCHMARK_EXPOSURE.md section 1), and the tier-0 lead "protocol plus spliced on DINOv3,
+  MAD22 2.0 / 3.0%" was chosen on MAD22 and motivated the Sb arm (BENCHMARK_EXPOSURE item 8). So the Sb idea came from
+  this backbone family, and a DINOv3 repeat is not independent of how the arm was selected. No DINOv3 LoRA network has
+  been scored on FFHQ landmark_combined, the HN2 list or the FS1 pack. For the sealed read, MAD22, H1 and FRLL are
+  compromised for DINOv3 as for the PN1 family.
 - DINOv3 pretraining data (LVD-1689M, web images) may contain faces; nothing is known about overlap with FFHQ. CLIP's
   pretraining data has the same issue.
 - Platform and software differ from the CLIP arm (section 4).
@@ -195,7 +222,16 @@ protocol is backbone-independent" in general, never a comparison of CLIP and DIN
 - Fits (`src/BB2/wcss/bb2_fit.sbatch`): array of nine tasks, seed by seed (403 A, B, Sb; 404; 405), submitted only after
   the smoke and after this registration is committed, with the complete workload (packs, run.sh, sbatch) already on
   WCSS and hash-checked. Owner, job ID and expected end go into the README at submission.
-- Deadline: seeds whose three fits are finished and fetched by 14 Nov 2026 18:00 CET are read; later seeds are not read.
+- Deadline: seeds whose three fits are finished and fetched by 14 Nov 2026 18:00 CET are read; later seeds are never
+  read for BB2 (no addendum; review fix 9). Partition limit: lem-gpu-short allows 3 days per job (WCSS documentation as
+  recorded in the wcss-gpu notes; review item 6), far above the fits' limit.
+- Registered submission commands (review fix 2; the sbatch file is pinned and not edited; `<T>` = the time limit from
+  the smoke's step rate by the rule above):
+  `/opt/slurm/current/bin/sbatch --extra=FORCE_RM_TMPDIR --time=<T> --export=ALL,BB2_BS=256,BB2_ACCUM=1 bb2_fit.sbatch`
+  or, by the memory rule, `... --export=ALL,BB2_BS=128,BB2_ACCUM=2 bb2_fit.sbatch`. The script refuses any other batch
+  setting before copying anything. A registered rerun (section 4) uses `--array=0-<k-1>`, `BB2_TASKS="<indices>"`,
+  `BB2_BS=128,BB2_ACCUM=2` and twice the time limit; it must first move the failed task's partial outputs aside (run.sh
+  never overwrites a tar).
 - Fetch: each tar and its .sha256 to `/mnt/t7/smad_next/BB2/results/`, sha256 verified; logs fetched and hashed. The
   WCSS copies stay until the local copies are verified; nothing is deleted while it holds the only copy.
 
@@ -209,17 +245,40 @@ the run logs. Not kept: full `last.pt` (its sha256 is inside each tar), optimise
 Role in the sealed read (FINAL prereg): the BB2 networks of the frozen arm are scored once in the sealed read as a
 robustness row, never as an alternative to pick from. If Sb is frozen, BB2 Sb (seeds 403-405); if B, BB2 B. If the
 three-source arm of MS1 is frozen (SbM3), BB2 has no matching arm; the sealed read then prints BB2 Sb labelled
-"single-source counterpart on the second backbone". If no method is frozen, BB2 is not scored there.
+"single-source counterpart on the second backbone". If no method is frozen, BB2 is not scored there. The row's label
+always carries: "the spliced arm was first chosen on a frozen DINOv3 head read on MAD22; MAD22, H1 and FRLL are
+compromised for this backbone family".
 
-## 11. Pins (at the registration commit; draft values)
+## 11. Pins (at the registration commit)
 
 - `src/BB2/archs_a12.py` `a2a68634edfe7f4315f14be1808a2a52ba13ec68fac6c6dba9655820aa18e185` (pinned original `bedfeb86…`)
 - overlay `/mnt/t7/smad_next/BB2/bb2_overlay.tar` `7c0a0b41f2e7bf656dc49db33c34a33ef62b10e8f0aaec24e247e684098d0bad`
   (builder `src/BB2/build_overlay.sh`)
 - `src/BB2/run.sh` `0eaa4dce1df14537990d490bebbe01ad72d0719686cadfce832f3ce2b82f07c3` (= `src/PN1/run.sh` `6a23a7a4…` with the
   BB2 lines marked)
-- `src/BB2/bb2_read.py`, `src/BB2/test_clip_identical.sh`, `src/BB2/wcss/bb2_smoke.sbatch`, `src/BB2/wcss/bb2_fit.sbatch`:
-  sha256 in the README at the registration commit.
+- `src/BB2/bb2_read.py`, `src/BB2/featcheck.py`, `src/BB2/test_clip_identical.sh`, `src/BB2/wcss/bb2_smoke.sbatch`,
+  `src/BB2/wcss/bb2_fit.sbatch`: sha256 in section 12 at the registration commit.
 - FS1 pack `96c31ae2…`, evaluation manifest `f0f29f22…`, fs_read.py `c0d8dc19…`, train.py `cbb2cbd1…`, pn1_score.py `737d6e35…`.
 
 Budget: nine fits of about 2-3 H100-hours each (estimate before the smoke), smoke about 0.5 h; free on WCSS.
+
+## 12. Pre-run review and registration
+
+Review: experiment-reviewer, 13 Nov 2026 about 00:00, on commit 05a8e25, verdict GO WITH FIXES; report saved as
+`experiments/reviews/PRERUN_BB2_20261113.md`. Applied: fix 1 (DINOv3 history disclosed in sections 7, 8, 10), fix 2
+(fit script takes batch and time from the registered command line and refuses others), fix 3 (memory rule with a
+72 GiB peak bound; out-of-memory / timeout rerun rule), fix 4 (read-seed rule implemented), fix 5 (feature check on
+WCSS), item 6 (partition limit), fix 7 (contrast 2 with one seed), fix 8 (floor wording), fix 9 (late seeds), power
+wording, improvement 1 (training-adequacy control). Not applied: improvement 3 (seeds 406, 407): a decision for the
+lead and the author; if added, it needs its own registration before any BB2 score exists.
+
+Pins at registration (sha256): `src/BB2/archs_a12.py` a2a68634edfe7f4315f14be1808a2a52ba13ec68fac6c6dba9655820aa18e185;
+`src/BB2/run.sh` 0eaa4dce1df14537990d490bebbe01ad72d0719686cadfce832f3ce2b82f07c3;
+`src/BB2/bb2_read.py` e85783c5341844c45caca6dc9e8430aa2ac96c31c5211d316552a3a0c6b94031;
+`src/BB2/featcheck.py` 430efddcd01b9c4713c42f6b59bc8fb74c3e529912d34063731960b4a43e837f;
+`src/BB2/test_clip_identical.sh` a2d13f3fb5ebc12fafd6405f0b4620a52a92fa292065714e10606c8a77dd1266;
+`src/BB2/build_overlay.sh` 13805e62495894ac3eb0e3805fc0e1c8ad6c3373ecf37bfafab358e30fae23fc;
+`src/BB2/wcss/bb2_fit.sbatch` 84b21718bb960909003e4ee3354ea90e7da7e63b651f46bba2feaf3e5bbd4e79;
+`src/BB2/wcss/bb2_smoke.sbatch` 2bf724869b8b52ad44be2ac0607fb7dc96b3a8d76f469ad216560efa201fc653;
+overlay 7c0a0b41f2e7bf656dc49db33c34a33ef62b10e8f0aaec24e247e684098d0bad; featref_cpu.npz
+89f3defe6a6f74ef1852f19ef6e9a2cc8b3867c8e55be895e9ae299425627b75; FS1 pack 96c31ae2….

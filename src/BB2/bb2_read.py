@@ -26,6 +26,7 @@ BB2 = pathlib.Path("/mnt/t7/smad_next/BB2")
 RES = HERE.parents[1] / "experiments" / "BB2_second-backbone"
 FS_JSON = HERE.parents[1] / "experiments" / "PN1_protocol-network-first-tests" / "tier_fs" / "fs.json"
 SEEDS = (403, 404, 405)
+ADEQ = 0.75   # training-adequacy threshold (prereg section 6), fixed before any BB2 fit
 ARMS = ("A", "B", "Sb")
 
 
@@ -105,7 +106,12 @@ def main(mock=None, mock_clip=None):
     read = []
     for s in SEEDS:
         S = {a: F.load(rf / f"BB2_{a}_s{s}.tar") for a in ARMS}
-        rec = {"gpu_queue": "WCSS H100, one job per fit", "read": all(v is not None for v in S.values())}
+        INF = {a: info_of(rf / f"BB2_{a}_s{s}.tar") for a in ARMS if S[a] is not None}
+        # BB2 read-seed rule (prereg section 6): verified tars, finite logits, no non-finite loss in train.log
+        rec = {"gpu_queue": "WCSS H100, one job per fit",
+               "read": all(v is not None for v in S.values()) and not any(i["train_log_nonfinite"] for i in INF.values())}
+        # BB2 training-adequacy control (prereg section 6): every arm's own-rule training-row accuracy >= 0.75
+        rec["adequate"] = bool(rec["read"] and all((INF[a]["train_acc_rule0"] or 0) >= ADEQ for a in ARMS))
         if rec["read"]:
             read.append(s)
             for a in ARMS:
@@ -135,7 +141,7 @@ def main(mock=None, mock_clip=None):
             t = rf / f"BB2_{a}_s{s}.tar"
             if S[a] is not None:
                 v = np.array(list(S[a].values()))
-                rec.setdefault("fit", {})[a] = dict(info_of(t), eval_logit_sd=float(v.std()), eval_logit_min=float(v.min()),
+                rec.setdefault("fit", {})[a] = dict(INF[a], eval_logit_sd=float(v.std()), eval_logit_min=float(v.min()),
                                                     eval_logit_max=float(v.max()),
                                                     collapsed=bool(v.std() < 1e-3))
             else:
@@ -155,16 +161,23 @@ def main(mock=None, mock_clip=None):
 
     # ---- BB2 counting (prereg section 5)
     R = [out["seeds"][str(s)] for s in read]
-    t1 = [r for r in R if r["c1_testable"]]
+    RA = [r for r in R if r["adequate"]]
+    t1 = [r for r in RA if r["c1_testable"]]
     c1 = count3([r["c1_meets"] for r in t1], len(t1))
+    if len(R) >= 2 and len(RA) < 2:
+        c1 = "uninformative (under-trained)"
     floor_all = bool(t1) and all(r["c1_floor_exceeded"] for r in t1)
     a_fail = sum(not r["c2"]["A"] for r in R)
     control = len(R) >= 2 and a_fail >= len(R) - 1 and a_fail >= 2
-    c2 = {a: (count3([r["c2"][a] for r in R], len(R)) if control else "uninformative on these seeds") for a in ("B", "Sb")}
-    c3 = count3([r["c3_meets"] for r in R], len(R))
+    c2 = {a: ("not read (too few seeds)" if len(R) < 2 else
+              count3([r["c2"][a] for r in R], len(R)) if control else "uninformative on these seeds") for a in ("B", "Sb")}
+    c3 = count3([r["c3_meets"] for r in RA], len(RA))
+    if len(R) >= 2 and len(RA) < 2:
+        c3 = "uninformative (under-trained)"
     # printed R1-R6 sentence, FS1 conditions with the R3 count read on every read seed (prereg section 6)
     if c1 == "repeated" and not floor_all and RR_:
-        meet = [s for s in read if out["seeds"][str(s)]["c1_testable"] and out["seeds"][str(s)]["c1_meets"]]
+        meet = [s for s in read if out["seeds"][str(s)]["adequate"] and out["seeds"][str(s)]["c1_testable"]
+                and out["seeds"][str(s)]["c1_meets"]]
         a_ = all(RR_[s]["R1_Sb_minus_B"]["point"] >= 0.05 for s in meet)
         b_ = all(max(abs(v) for v in RR_[s]["Sb"]["R2"].values()) <= 0.2 for s in RR_)
         c_ = all(RR_[s]["R3_Sb_inc27_minus_B"] > 0 for s in RR_)
@@ -172,7 +185,7 @@ def main(mock=None, mock_clip=None):
             "Sb's gain over B on this development set is not explained by the best single simple statistic or by the 27 "
             "statistics combined; Sb does not exceed the best statistic's own AUC, and still reads the surround (R6)."
             if (a_ and b_ and c_) else "The gain is not separated from simple statistics."))
-    out.update(read_seeds=read, contrast1=c1, contrast1_testable_seeds=len(t1), floor_exceeded_all=floor_all,
+    out.update(read_seeds=read, adequate_seeds=[s for s in read if out["seeds"][str(s)]["adequate"]], contrast1=c1, contrast1_testable_seeds=len(t1), floor_exceeded_all=floor_all,
                contrast2=c2, contrast2_positive_control=control, contrast3=c3)
 
     # ---- comparison with the CLIP reading (FS1), prereg section 7
@@ -201,8 +214,8 @@ def sentences(out, clip):
     cv = lambda k: None if clip is None else clip.get(k)  # noqa: E731
     # contrast 1
     c1, c1c = out["contrast1"], cv("contrast1")
-    if c1 == "not read (too few seeds)":
-        res["contrast1"] = "Second backbone: not read (too few seeds)."
+    if c1 in ("not read (too few seeds)", "uninformative (under-trained)"):
+        res["contrast1"] = f"Second backbone: {c1}."
     elif c1c == "replicated":
         if c1 == "repeated":
             res["contrast1"] = (f"The gain of spliced positives over protocol-only training on FFHQ landmark_combined repeats on a "
@@ -229,8 +242,8 @@ def sentences(out, clip):
             res[f"contrast2_{a}"] = f"No CLIP effect to repeat for {a} (FS1 contrast 2: {wc}); second backbone printed only."
     # contrast 3
     c3, c3c = out["contrast3"], cv("contrast3")
-    if c3 == "not read (too few seeds)":
-        res["contrast3"] = "Second backbone: not read (too few seeds)."
+    if c3 in ("not read (too few seeds)", "uninformative (under-trained)"):
+        res["contrast3"] = f"Second backbone: {c3}."
     elif c3c == "replicated":
         res["contrast3"] = ("The face-only ladder gain of Sb over B repeats on a second backbone (DINOv3 ViT-L/16)." if c3 == "repeated"
                             else "The face-only ladder gain of Sb over B did not repeat on a second backbone (DINOv3 ViT-L/16).")
