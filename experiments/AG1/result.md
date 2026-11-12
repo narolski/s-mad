@@ -75,3 +75,105 @@ existed. Score files were written 12 Nov 11:34:07, 11:36:38, 11:40:33 and 11:42:
 again by the full reader run. The gate code (`ag1_read.py`, function `gates`) reads only the manifest, the oracle
 embeddings, rt_check.json and the shard logs; it reads no score file. Gates and read/ outputs were first committed
 after the review. No interpretation is written here; the lead draws conclusions.
+
+## Supported summary (the independent reviewer's paragraph, 12 Nov, adopted unchanged)
+
+On MIPGAN-style morphs we generated from 200 FERET and FRGC persons, three released detectors rank two-person morphs
+well above one-person MIPGAN reconstructions (AUC 0.82–0.95) and above reconstructions moved closer to the generator's
+mean latent (0.87–0.94), so averageness does not explain their scores. Most of this separation already appears when
+MIPGAN blends two photographs of the same person (0.72–0.81); the second identity adds a modest step (same-person
+against two-person morph, 0.65–0.72), and 87–100% of same-person morphs are flagged at the benchmark threshold. Our
+morphs are not exchangeable with the published MAD22 MIPGAN files for most detectors, so these controls describe
+responses to MIPGAN-style generation, not the benchmark cells themselves.
+
+## Corrected statements (review `experiments/reviews/REVIEW_AG1_20261112.md`)
+
+- **Readings A and B (non-primary).** Both are printed side by side; the author never selected one before scores
+  (prereg l.71-73 not met). Reading A: mixed / mixed / "reads the benchmark" / mixed (ViT-B/16 / ViT-L/14 / SelfMAD
+  own crop / SelfMAD our pipeline). Reading B: the threshold is met in all four rows (R2 vs R4 AUC >= 0.75 with lower
+  bound > 0.65); this says that two photos blended by MIPGAN score above one photo, and most of that separation is
+  already present between one photo and two photos of the same person. R3 vs R4: mixed in all four rows.
+- **Graded mixing.** Both the two-person arm (AG3) and the same-person arm (AG3T) ramp; the registered meaning of a ramp
+  in both arms is the second photo. The two-person minus same-person difference at matched alpha (80 hosts; post hoc)
+  grows from about 0 at alpha 0.1 to +0.09 (ViT-B/16) / +0.13 (ViT-L/14) / +0.12 (SelfMAD own crop) at alpha 0.5
+  (table below). Platform caveat: levels 0 to 0.4 come from the rented A100, the 0.5 endpoint mostly from Athena.
+- **Excess over the best simple baseline.** The registered excess (detector AUC minus the best baseline) is kept, but it
+  is not attribution: within quintile strata of each baseline the detectors keep nearly all of their separation
+  (post hoc; table below), e.g. R2s>R4 within thumbnail-probe strata 0.850 / 0.919 / 0.856, R2>R4 within file-size
+  strata 0.849 / 0.943 / 0.857. A small or negative excess says the rungs also differ in simple ways, not that the
+  detector uses them.
+- **Platform.** On the 159 Athena hosts alone the readings are identical to the pooled ones for all four rows (table
+  below). The ViT-L/14 R3>R4 excess (+0.097 [0.016, 0.179] pooled) does not survive with rented hosts excluded
+  (+0.095 [-0.001, 0.189]); by amendment 6 the conservative reading stands (no excess shown). R2s, AG3 / AG3T and all
+  MIPGAN-II images are rented-only and cannot be platform-separated.
+- **Reproducibility.** For 41 of 200 primary hosts, all MIPGAN-II images, the graded-mixing and the spread-matched
+  images, only the 512-pixel detector inputs are retained; the generator outputs and latents were deleted by a pipeline
+  error (their SHA-256 are logged). Results are fully reproducible from the retained inputs, not from the generator
+  outputs. The five Athena shards' originals now have a second verified copy
+  (`/net/pr2/projects/plgrid/plggrestoration/smad-next/backup/AG1_originals/`, sha256 matched to the ledger by
+  streaming, `athena_backup_verify.txt`).
+- **R1 on FRLL.** The E7 frames of the MIPGAN cells are identical to the native frames (score and file-size difference
+  0; R0>R1 AUC 0.500 exactly), so the R0 -> R1 / R1 -> R2 split is void.
+- **Flag rates** must be read beside the camera-photo flag rate at the same threshold (corrected-MAD22 EER threshold):
+  on FERET / FRGC camera photos 8.5% (ViT-B/16), 4.8% (ViT-L/14), 31.8% (SelfMAD own crop); same-person morphs R3 are
+  flagged 95.5 / 87.0 / 100%, two-person morphs R4 98.5 / 99.0 / 100%. Under the class ruling same-person morphs are
+  morphs: their flags are not false alarms.
+- **Mirror rung.** The symmetry statistic beats every detector (symmetry AUC 0.950 for R2 vs R3m); the mirror rows say
+  nothing beyond symmetry.
+- **Naming.** Always "MIPGAN-style" (our re-implementation; the bridge to the published files fails for most rows).
+
+## Post-hoc facts (amendment 7; computed after all scores were read; `read/posthoc.json`, `read_athena_only/`)
+
+Primary pool, MIPGAN-I; rows ViT-B/16 | ViT-L/14 | SelfMAD own crop.
+
+Quintile-stratified AUCs [95%]:
+
+| Contrast | file size | Laplacian var. | HF band | symmetry | thumbnail probe |
+|---|---|---|---|---|---|
+| R2>R4 ViT-B/16 | 0.849 [0.787, 0.897] | 0.843 | 0.899 | 0.873 | 0.892 |
+| R2>R4 ViT-L/14 | 0.943 [0.893, 0.968] | 0.940 | 0.955 | 0.940 | 0.946 |
+| R2>R4 SelfMAD own | 0.857 [0.801, 0.899] | 0.823 | 0.828 | 0.823 | 0.818 |
+| R2s>R4 ViT-B/16 | 0.856 | 0.845 | 0.878 | 0.867 | 0.850 [0.758, 0.907] |
+| R2s>R4 ViT-L/14 | 0.935 | 0.926 | 0.936 | 0.938 | 0.919 [0.836, 0.956] |
+| R2s>R4 SelfMAD own | 0.877 | 0.861 | 0.869 | 0.880 | 0.856 [0.762, 0.913] |
+| R3>R4 ViT-B/16 | 0.626 [0.557, 0.696] | 0.627 | 0.670 | 0.641 | 0.667 |
+| R3>R4 ViT-L/14 | 0.701 [0.633, 0.765] | 0.711 | 0.730 | 0.714 | 0.717 |
+| R3>R4 SelfMAD own | 0.654 [0.582, 0.725] | 0.642 | 0.651 | 0.657 | 0.654 |
+| R0>R2 ViT-B/16 | 0.893 | 0.901 | 0.884 | 0.896 | 0.886 |
+| R0>R2 ViT-L/14 | 0.782 | 0.788 | 0.783 | 0.792 | 0.719 |
+| R0>R2 SelfMAD own | 0.912 | 0.920 | 0.912 | 0.933 | 0.907 |
+
+d' decomposition of R2>R4 (share [95%]): second photo (R2>R3) 0.67 [0.58, 0.79] | 0.55 [0.47, 0.64] | 0.61 [0.50, 0.76];
+second identity (R3>R4) 0.34 [0.23, 0.44] | 0.36 [0.27, 0.45] | 0.42 [0.26, 0.57].
+
+Matched-alpha AG3 minus AG3T (AUC against R2 of the same 80 hosts), difference [95%]:
+
+| alpha | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 |
+|---|---|---|---|---|---|
+| ViT-B/16 | +0.016 [-0.076, 0.104] | +0.042 | +0.064 | +0.090 [0.013, 0.154] | +0.093 [0.035, 0.144] |
+| ViT-L/14 | +0.003 [-0.103, 0.100] | +0.023 | +0.079 | +0.115 [0.031, 0.178] | +0.127 [0.068, 0.183] |
+| SelfMAD own | -0.025 [-0.120, 0.073] | +0.094 [0.004, 0.185] | +0.121 | +0.122 | +0.117 [0.038, 0.187] |
+| glint cosine to B (AG3) / to A' (AG3T) | 0.24 / 0.84 | 0.34 / 0.86 | 0.46 / 0.89 | 0.56 / 0.89 | 0.66 / 0.91 |
+
+Spread-matched control: R2s>R2 0.588 [0.565, 0.614] | 0.466 [0.440, 0.490] | 0.466 [0.442, 0.489] (R2s does not score
+above R2 for ViT-L/14 and SelfMAD; slightly for ViT-B/16); within-rung Spearman of score with latent distance -0.05 to
++0.26 (wrong sign for an averageness cue); R2s>R4 in the latent-distance band 5.9-6.3 (26 R4, 35 R2s): 0.895 [0.776,
+0.973] | 0.910 [0.810, 0.982] | 0.826 [0.642, 0.954].
+
+Athena hosts only (159 primary hosts; rented-only rungs left out): reading A mixed / mixed / benchmark / mixed; reading
+B threshold met in all four; R3 vs R4 mixed in all four. R2>R4 0.881 [0.833, 0.922] | 0.938 [0.910, 0.962] | 0.822
+[0.768, 0.870] (SelfMAD our pipeline 0.883); R3>R4 0.663 | 0.711 | 0.656 (0.659); R3>R4 excess +0.047 [-0.041, 0.137]
+| +0.095 [-0.001, 0.189] | +0.041 [-0.063, 0.147].
+
+H-new-1 (registered in amendment 7 before computing): Spearman of R4 score with contributor w600k cosine -0.015 |
+-0.100 | -0.013; R3>R4 by shape-distance tertile 0.673 / 0.680 / 0.632 | 0.691 / 0.757 / 0.714 | 0.632 / 0.649 / 0.690.
+Registered verdict: neither (not falsified only because ViT-L/14 sits at |rho| = 0.1001; prediction rho <= -0.15 not met
+in any row; no consistent rise with shape distance).
+
+H-new-2: R2>R3 by tertile of pose difference 0.814 / 0.800 / 0.776 | 0.777 / 0.804 / 0.828 | 0.702 / 0.736 / 0.767; by
+illumination difference 0.800 / 0.779 / 0.797 | 0.849 / 0.783 / 0.786 | 0.718 / 0.791 / 0.698. Registered verdict: not
+falsified (max - min >= 0.05 in some rows); the predicted increase holds only for pose in ViT-L/14 and SelfMAD.
+
+G-a (published MAD22 values from `docs/sources`, original release; ours on the corrected copy): MADation ViT-B/16
+18.71 vs 33.37 (MIPGAN-I), 13.27 vs 22.21 (MIPGAN-II): not reproduced, descriptive; ViT-L/14 11.68 vs 20.32: not
+reproduced; 9.81 vs 9.06: reproduced. SelfMAD: cannot be evaluated (no published MAD22 MIPGAN value in docs/sources).

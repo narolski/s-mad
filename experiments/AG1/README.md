@@ -286,6 +286,17 @@ Not verified:
 
 ## 10. Handover state (11 Nov ~17:45 CET)
 
+- **Update 12 Nov afternoon (after the independent review, verdict "needs qualification", all numbers reproduced):**
+  (1) Integrity: amendments 5-6, gates.json and read/ outputs committed (ed053bc); result.md corrected: gates were not
+  committed before scores existed (score files 11:34-11:42; gate stage first run ~11:47; gates.json 12:05:38; the gate
+  code reads no score file). Second verified copy of the five Athena originals (3.5 GB; the T7 drive had 23 GB free, so
+  not fetched): `cp -p` within Athena to `/net/pr2/projects/plgrid/plggrestoration/smad-next/backup/AG1_originals/`,
+  then each backup streamed to the DGX and hashed: all five match the ledger (`athena_backup_verify.txt`). New
+  OWNER_BRIEF rule (nothing released while it holds the only copy) noted. (2) Amendment 7 committed (83d4b8f) before
+  computing H-new-1, H-new-2, G-a (`published_eer.json`) and the post-hoc additions. (3) `src/AG1/ag1_posthoc.py`
+  (thread caps, 30 GB limit) -> `read/posthoc.json`, `read_athena_only/`; numbers in result.md "Post-hoc facts".
+  (4) Text corrections and the reviewer's three-sentence paragraph in result.md. (5) Drafts only:
+  `drafts_hnew3_hnew4.md` (H-new-3 render check 0.2 GPU-h; H-new-4 look-alike R4 about 3 A100-h).
 - **Update 12 Nov ~13:30:** scoring on the DGX GPU (MADation ViT-B/16, ViT-L/14, SelfMAD own crop and our pipeline;
   7,229 rows each; write-once npz with hashes in `scoring/score.log`). Reader: first run killed by the kernel OOM
   killer at 114 GB (bug: `np.load(...)["thumb"][k]` re-read the whole array per image; fixed with `dict(np.load())`;
