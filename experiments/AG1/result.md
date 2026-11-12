@@ -155,8 +155,12 @@ Matched-alpha AG3 minus AG3T (AUC against R2 of the same 80 hosts), difference [
 | SelfMAD own | -0.025 [-0.120, 0.073] | +0.094 [0.004, 0.185] | +0.121 | +0.122 | +0.117 [0.038, 0.187] |
 | glint cosine to B (AG3) / to A' (AG3T) | 0.24 / 0.84 | 0.34 / 0.86 | 0.46 / 0.89 | 0.56 / 0.89 | 0.66 / 0.91 |
 
-Spread-matched control: R2s>R2 0.588 [0.565, 0.614] | 0.466 [0.440, 0.490] | 0.466 [0.442, 0.489] (R2s does not score
-above R2 for ViT-L/14 and SelfMAD; slightly for ViT-B/16); within-rung Spearman of score with latent distance -0.05 to
+Spread-matched control, orientation stated: AUC of R2s scoring ABOVE R2, with R2 = the host photo's R2 (s1, the photo
+R2s is rendered from; 200 hosts): 0.588 [0.565, 0.614] | 0.466 [0.440, 0.490] | 0.466 [0.442, 0.489]. Reconciliation
+with the review (0.408 / 0.535 / 0.562): the review reports the opposite orientation (R2 above R2s) and uses all 400 R2
+images (s1 and s2); in our orientation its numbers are 0.592 / 0.465 / 0.438. Same SelfMAD variant (own crop); the
+difference in the third row comes from including the s2 reconstructions, which are not the R2s source photos. Reading
+unchanged: R2s does not score above R2 for ViT-L/14 and SelfMAD, and only slightly for ViT-B/16; within-rung Spearman of score with latent distance -0.05 to
 +0.26 (wrong sign for an averageness cue); R2s>R4 in the latent-distance band 5.9-6.3 (26 R4, 35 R2s): 0.895 [0.776,
 0.973] | 0.910 [0.810, 0.982] | 0.826 [0.642, 0.954].
 
@@ -167,8 +171,8 @@ B threshold met in all four; R3 vs R4 mixed in all four. R2>R4 0.881 [0.833, 0.9
 
 H-new-1 (registered in amendment 7 before computing): Spearman of R4 score with contributor w600k cosine -0.015 |
 -0.100 | -0.013; R3>R4 by shape-distance tertile 0.673 / 0.680 / 0.632 | 0.691 / 0.757 / 0.714 | 0.632 / 0.649 / 0.690.
-Registered verdict: neither (not falsified only because ViT-L/14 sits at |rho| = 0.1001; prediction rho <= -0.15 not met
-in any row; no consistent rise with shape distance).
+Reading: H-new-1 prediction not met; the falsifier is escaped only at |rho| = 0.1001 in one row (ViT-L/14); no
+consistent rise of R3>R4 with shape distance.
 
 H-new-2: R2>R3 by tertile of pose difference 0.814 / 0.800 / 0.776 | 0.777 / 0.804 / 0.828 | 0.702 / 0.736 / 0.767; by
 illumination difference 0.800 / 0.779 / 0.797 | 0.849 / 0.783 / 0.786 | 0.718 / 0.791 / 0.698. Registered verdict: not
