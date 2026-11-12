@@ -162,16 +162,26 @@ case "$STEP" in
       sleep 600
       RS --include='*.tar' --include='*.tar.sha256' --exclude='*' "root@$HOST:$B/results_hn2/" "$OH/" 2>/dev/null || true
       RS "root@$HOST:$B/logs/" "$OH/machine_logs/" 2>/dev/null || true
-      R "[ -f $B/results_hn2_FAILED ]" && { log "hn2 smoke failed: machine kept, see machine_logs"; exit 1; }
+      if R "[ -f $B/results_hn2_FAILED ]"; then
+        RS "root@$HOST:$B/logs/" "$OH/machine_logs/" || true
+        touch "$L/FAILED" "$L/RELEASE"; log "hn2 smoke failed: logs copied, FAILED + RELEASE written"; exit 1
+      fi
       if R "[ -f $B/results_hn2/HN2_ALL_DONE ]"; then
         RS --include='*.tar' --include='*.tar.sha256' --exclude='*' "root@$HOST:$B/results_hn2/" "$OH/"
         RS "root@$HOST:$B/logs/" "root@$HOST:$B/queue_hn2.log" "$OH/machine_logs/" || true
         nh=$(cd "$OH" && sha256sum -c --quiet HN2_*.sha256 2>/dev/null && ls HN2_RS_s40?.tar | wc -l)
         log "hn2 verified ${nh:-0} of 3"
-        [ "${nh:-0}" -eq 3 ] && { touch "$L/RELEASE"; log "RELEASE written (3 of 3 fits and logs back)"; }
+        if [ "${nh:-0}" -eq 3 ]; then touch "$L/RELEASE"; log "RELEASE written (3 of 3 fits and logs back)";
+        else touch "$L/FAILED" "$L/RELEASE"; log "hn2 partial (${nh:-0} of 3 verified, logs back): FAILED + RELEASE written"; fi
         break
       fi
     done
+    ;;
+  a16a18)                                                      # deviation D1: A16 then A18 on one rented lease
+    SM1_NO_RELEASE=1 bash "$0" "$HOST" "$PORT" "$L" dev16fresh || log "dev16fresh returned non-zero"
+    [ -f "$L/DEV_DONE" ] || { touch "$L/FAILED_A16"; log "A16 incomplete (see dev16 logs); continuing with A18"; }
+    rm -f "$L/DEV_PLANNED"
+    bash "$0" "$HOST" "$PORT" "$L" hn2fresh
     ;;
   devfresh)                                                    # A15 on another host: minimal packs + the 6 fit tars, then dev
     R "mkdir -p $B/in $B/bin $B/logs $B/results && nvidia-smi -L && nproc && df -h /workspace" | tee -a "$L/sm1_setup.log"
