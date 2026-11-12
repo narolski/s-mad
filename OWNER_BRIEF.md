@@ -89,3 +89,12 @@ or one-iteration smoke tests of generator code. Same rules as GPU tasks: `--extr
 all IO in `$TMPDIR`, one tar in and one tar out. Stage CPU tasks under
 `.../smad-next/staging/<ID>/cpu/` with `run.sh`, `est_minutes` and a `cpus` file (cores needed); the
 lead submits them directly, since no queue position needs holding.
+
+## Rented machines: nothing is released while it holds the only copy (lead, 12 Nov 2026)
+
+Two losses happened on 12 Nov: the face codes of diffusion add-on shard 7 (DG1) and the eleven original result tars of the MIPGAN controls (AG1: 1024 px PNGs and latents, about 3.5 GB). In both cases the driver removed or never fetched the local copy and then released the machine.
+
+- Before a driver writes RELEASE, every file that exists only on the rented machine and cannot be regenerated bit for bit (original images, latents, codes, trained weights, logs) must have a verified copy on `/mnt/t7`, or on Athena project storage, with its sha256 recorded in the experiment folder.
+- "One tar at a time" applies to working copies during processing. It does not permit deleting the last copy. If the disk floor prevents keeping it, the driver stops without RELEASE and the owner asks the lead.
+- Trained weights of every fit are kept (they are needed for the sealed final benchmark read).
+- The README of each experiment lists what is kept, where, and what was deliberately not kept.
