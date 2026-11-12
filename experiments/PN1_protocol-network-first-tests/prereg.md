@@ -672,3 +672,37 @@ RAM, 100 GB disk; lease folder `/mnt/t7/smad_next/vast/pn1fs`; cap 9.8 USD, 22 h
   blocked by the lock until the first ended, RELEASE + FAILED on a remote-confirmed failure).
 
 - D3 addendum (`date`: Thu Nov 12 08:54:49 AM CET 2026; before any fit): the pull loop of drive_fs.sh is lengthened from 96 to 150 rounds of 10 min (25 h), because 16 sequential fits take about 19.5 h; drive_fs.sh `9a17da124f6db7dfddb23c5d5281e28d35ad056e49742b42cab130f8878a104c`. drive14.sh `start` is re-run only if its first upload failed (each successful start launches one amendment-14 run).
+
+## FS1 printed reads R1–R6 (registered at the commit that adds this section; before any fresh-seed tar is pulled; frozen contrasts v4 untouched; print only, no verdict, no seed may be dropped or chosen on them)
+
+Text as given in `experiments/reviews/REVIEW_PN1_A14_DEVREAD_20261112.md` (commit 7e68455), section 3; `date`: Thu Nov
+12 10:35:55 AM CET 2026 (no fresh-seed tar in `results_fs/` at that time).
+
+Disclosure: R1–R5 were computed post hoc on seeds 401/402 by the post-result review of amendment 14 (values quoted
+there), so the definitions were chosen knowing those values. Data: the 3,000 landmark_combined images and cues file
+`a14_lcomb.npz` (sha 714cb73d…), development only.
+- R1 floor-stratified AUC: strata = deciles of noise_std_face over the 3,000 images (edges computed once from the
+  cues file and committed in this section); AUC within each stratum, weighted by morph×genuine pairs; per network;
+  Sb − B per seed; 2,000 bootstraps of images within class with fixed edges, `default_rng(20261119)`.
+  Edges (numpy quantile, linear, 0.0 to 1.0 in steps of 0.1, over all 3,000 images): 0.302886, 0.362101, 0.378055,
+  0.394011, 0.410915, 0.430752, 0.453196, 0.479793, 0.516776, 0.571266, 3.38642 (stratum k = [edge k, edge k+1),
+  the last closed).
+- R2 within-class Spearman of the logit with noise_std_face and with noise_std_border, morphs and genuine separately.
+- R3 incremental AUC: 5-fold stratified CV (`StratifiedKFold(5, shuffle=True, random_state=0)`), standardised
+  logistic regression (C = 1, max_iter 2000); AUC of out-of-fold scores for (i) noise_std_face, (ii) all 27 cues, each
+  alone and with the network logit added; print increments and Sb's increment minus B's.
+- R4 floor-matched pair AUC: each morph against the nearest genuine image on noise_std_face within 0.1 SD (with
+  replacement).
+- R5 the processing cue: AUC of noise_std_border printed with every contrast-1 number.
+- R6 scale-free surround reliance: AUC(landmark_complete orig vs resmatch genuine) − AUC(combined vs history-matched
+  genuine), and the share of pairs higher on the complete morph, per arm; the mean logit drop is printed with the
+  genuine SD beside it.
+- Pre-stated wording if contrast 1 replicates and the floor is not exceeded: if R1 Sb − B ≥ +0.05 on the same seeds
+  that meet contrast 1, R2 |ρ| ≤ 0.2 for Sb on every read seed, and R3 Sb increment over 27 cues > B's on ≥ 4 of 5
+  seeds, the printed sentence is: "Sb's gain over B on this development set is not explained by the best single
+  simple statistic or by the 27 statistics combined; Sb does not exceed the best statistic's own AUC, and still reads
+  the surround (R6)." Otherwise: "The gain is not separated from simple statistics." Never "reads the face splice";
+  never a benchmark or generalisation claim (the set's README calls it unfit for evaluation and it carries a
+  processing cue, R5).
+- Implementation: `src/PN1/fs_read.py` extension, committed in the immediately following commit (sha256 there),
+  tested on the 401/402 amendment-14 data only.
