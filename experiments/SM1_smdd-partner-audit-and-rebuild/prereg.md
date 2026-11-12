@@ -590,6 +590,18 @@ runs only on the test shards and the training rows). Claim limited to FRGC test 
 - Cost: 3 fits x about 78 min (RTX 6000 Ada) or less on H100, + smoke and scoring; about 4 h; upload ad4_pack 11.2 GB
   + 0.6 GB of images.
 
+## Deviation D1 for A16 and A18 (13 Nov ~00:05, before any A16 score or A18 fit)
+
+The WCSS jobs 6308741 (A16) and 6308742 (A18) are queued with a forecast start of 15 Nov 01:00. Platform for both:
+one rented RTX 6000 Ada (lease `sm1dg`, 89.221.67.144:16307; Docker `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime` +
+the `smad_torch221_cu121_v1.def` pins), the platform the ViT-B/16 fits were trained and scored on. A16: the
+reproduction check tolerance stays max |score diff| ≤ 2e-3 on 256 stored AR1 camera-photo rows per fit (exact
+agreement, 0.0, is expected, as on sm1dev). A18: three RS fits, recipe, lists, decision rule and reader unchanged; all
+A18 fits on this one platform. Order on the lease: A16 (`drive_v2.sh dev16fresh`), then the A18 smoke and the three
+fits (`hn2fresh`). Keep rule: scores, weights and logs fetched and verified before RELEASE; RELEASE plus FAILED on a
+verified partial result. The rented copies are the registered ones; the WCSS jobs stay queued until those are
+verified, are then cancelled, and any WCSS output is never read.
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 
