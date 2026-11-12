@@ -74,6 +74,16 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
   2.2.1 / Pillow 10.2; FFHQ genuine logits lie off the floor). Result tar (gate only)
   /mnt/t7/smad_next/TT1/results/TT1_s401402_full_local.tar sha256
   b33cf2e79026f6540c1c84d46144a4cc455c51ba08a1b2316823e3c9c6217a80 (verified copy). Stopped; lead told.
+- Lead: no tolerance amended; option 1 (rented A100-SXM4 80 GB, lease tt1a, /mnt/t7/smad_next/vast/tt1a, cap 3 USD,
+  2.5 h from about 00:06; host 104.202.122.106:30607; rented by the lead).
+- 00:07-00:12: `gate_check_a100.py` (tested: identical scores pass, the DGX scores fail), `rented/remote_tt1.sh`,
+  `rented/drive_tt1.sh`, `diag_stack.py`. Zero-GPU-budget diagnostic on the DGX stack: `/mnt/t7/smad_next/TT1/diag/diag_dgx.npz`
+  (5 FFHQ genuine rows with the largest DGX gate differences for A_s401).
+- 00:09:49-00:16:42: local test of remote_tt1.sh on the DGX (test mode: pins, extract, diagnostic, 8 gate rows x 12
+  networks, result tar): rc 0.
+- Commit 8bf5e12 (`date` Fri Nov 13 12:13:33 AM CET 2026): deviation TT1-D1 registered (prereg.md section 5).
+- 00:13:49: `drive_tt1.sh ... start full`: networks and pack uploading with rsync --partial (log
+  /mnt/t7/smad_next/vast/tt1a/tt1_start.out, tt1_drive.log).
 
 ## 3. Data
 
@@ -192,7 +202,8 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-No process running: the DGX run ended at the gate (failed, exit 2; no TT1 row scored). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+Rented A100 lease tt1a (lead's lease; guard by the lead): upload then remote_tt1.sh full; driver drive_tt1.sh; pull
+with `bash src/TT1/rented/drive_tt1.sh 104.202.122.106 30607 /mnt/t7/smad_next/vast/tt1a loop full`. Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch
