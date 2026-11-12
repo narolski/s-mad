@@ -708,3 +708,24 @@ there), so the definitions were chosen knowing those values. Data: the 3,000 lan
   tested on the 401/402 amendment-14 data only.
 
 - R1–R6 implementation (`date`: Thu Nov 12 10:38:43 AM CET 2026): `src/PN1/fs_read.py` sha256 `c0d8dc19cbf375aa2daf9dd434b7ab6cc1d7e5810c3da781730fe0cb159dcf21`; tested on the 401/402 amendment-14 scores only (`fs_read.py --a14test` -> `tier1_a14/r1_r6_401_402.json`, post hoc); reproduces the review values (R1 Sb 0.879 / 0.901, B 0.708 / 0.699; R3 bases 0.886 / 0.948; R4 Sb 0.877 / 0.890; R5 0.786). Implementation choice stated before any fresh tar: the R2 condition of the pre-stated wording is read as every |ρ| of Sb (noise_std_face and noise_std_border, morphs and genuine) ≤ 0.2 on every read seed; R4 uses the SD of noise_std_face over all 3,000 images; R1 strata are [edge k, edge k+1), the last closed.
+
+## Amendment 15 (registered at the git commit that adds this section; `date`: Thu Nov 12 10:41:38 AM CET 2026; before the baseline is computed): a simple-statistic baseline trained like the networks (zero GPU, development data only)
+
+Review of amendment 14 (7e68455), section 7 item 3. Question: does Sb's landmark_combined AUC exceed a 27-statistic
+baseline trained on the same ladder data as the networks, scored on landmark_combined without seeing it?
+- Features: the 27 simple statistics of `cues27.py` / AF0 `cues_all.one` (files `/mnt/t7/smad_next/AF0/cues/ar1.npz`
+  for ladder native rows, `/mnt/t7/smad_next/PN1/cues/splice_nat.npz` for OpenCV splice natives,
+  `cues/a14_lcomb.npz` for scoring).
+- Training rows: ladder TRAINING hosts only (role "train"), no development, test or validation host, no FFHQ.
+  (b-lad) the B-like ladder set: attacks R4 (training hosts with a usable partner), negatives R0 and R2w;
+  (s-lad) the Sb-like ladder set: (b-lad) plus attacks S4 OpenCV (train_morph = 1), negatives S0 and S3 OpenCV.
+- Model: standardised logistic regression (StandardScaler, C = 1, max_iter 2000, class_weight "balanced"); no tuning;
+  the sign is fixed by training (no flipping).
+- Read: AUC of the trained score on landmark_combined orig morphs (1,000) vs landmark_combined resmatch genuine
+  (2,000); 95% interval from 2,000 bootstraps of images within class (`default_rng(20261120)`).
+- What it decides (pre-stated; Sb's 401/402 AUCs 0.887 / 0.909 are known): if Sb's AUC exceeds the (s-lad) baseline
+  by at least 0.05 on both seeds 401 and 402, result.md may state "Sb exceeds a 27-statistic baseline trained on the
+  same ladder data (development set)"; if the (s-lad) baseline's AUC is at least Sb's on either seed, it states "Sb's
+  gain is not beyond simple statistics under fair training"; otherwise "inconclusive, no claim". The (b-lad) baseline
+  is compared with B the same way. For FS1 the baseline is printed beside every fresh-seed contrast-1 number only.
+- Code: `src/PN1/baseline27.py` (committed with this section).
