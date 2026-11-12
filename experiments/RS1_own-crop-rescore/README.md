@@ -210,6 +210,30 @@ missing); a pack is ready there for later.
   counts are in `rs1_reproduction*.csv`. Preliminary analysis of variant 1 alone: `rs1_*_v1only.csv`.
 - 01:23. Variant 2 back and verified (29,049 of 29,056 crops kept, 7 no face); driver wrote RELEASE. 01:30 final
   analysis, border summary and tables; `result.md` written.
+- 02:00 (12 Nov). Independent review `experiments/reviews/REVIEW_RS1_20261112.md`: needs qualification, one blocker
+  (the unchanged SMDD script returns edge strips when the face box starts below 0). Amendment 7 registered (sliver
+  criterion fixed before recomputing). `src/RS1/sliver_audit.py`: exact CPU re-run of the script's detection and slice
+  (facenet MTCNN on CPU, BGR pixels; full on every set where the corrected-crop boxes showed a start below 0, sample of
+  50 elsewhere): MorDIFF 95.3% malformed (898 of 945 kept crops are strips, median short side 4 px), A43 arms 85 to
+  98%, FRLL FaceMorpher 34.1% (empty, dropped; the kept 806 are full faces), FRLL OpenCV 0.8%, FFHQ about 3%.
+  The review's proxy (corrected-crop boxes) over-counted OpenCV and FaceMorpher strips; the script's own BGR boxes
+  differ, and the kept crops are faces (logit medians +6.4 / +9.9, not the -0.6 strip plateau). `analyse.py` now
+  labels failing variant-1 cells "release crop script fails on these files" (MorDIFF, the ladder, stored-small,
+  FaceMorpher) and marks failing pools (`crop_script_fails`); adds `t5_aligned` flag rows; `review_addons.py` gives
+  H-new-2/3/4, F3 and F4; `result.md` rewritten with the withdrawn items and the corrected statements.
+- H-new-1: release log `/mnt/t7/smad_next/AD5/release_logs/vitb16_madation/training.log` line 10 (MorDIFF test CSV
+  `/workspace/FaceMAD/Protocols/MorDIFF.csv`, image_size 224, bicubic), line 428 (epoch 39, EER 0.010978 = 1.10);
+  rate denominators 1,002 attacks / 206 bona fide (line 20: 451/1002, 73/206); CSV not released.
+
+### For the retrains experiment (AD5): which crop sets are valid
+
+- **Variant 1 (SMDD script unchanged) is NOT valid** for: MorDIFF morphs (`M_mordiff`), every A43 control arm
+  (`a43_A, a43_B, a43_B20, a43_C, a43_C20, a43_D, a43_D20, a43_E`) and FRLL FaceMorpher (`M_facemorpher`, 34% missing).
+  Do not train or score on variant-1 crops of these sets. Per-image flags: `rs1_sliver_audit.csv`.
+- Variant 1 is valid (malformed at most 5%) for all other sets, including FRLL OpenCV (0.8%), AMSL, WebMorph,
+  StyleGAN2, DiM, MAD22, raw E7, aligned frames, FEI and FFHQ (about 3% without a face).
+- **Variant 2 (corrected crop, PNG) is valid for every set** (7 of 29,056 inputs without a face).
+- Crop files are gone with the rented machine; hashes: `/mnt/t7/smad_next/RS1/results_rented/prod_v{1,2}_rented/crops_sha256.txt`.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.

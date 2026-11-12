@@ -305,3 +305,25 @@ build, by up to several logits per image). If after the fix identical crops stil
 more than 1% of images for any release, the lead is told before any production row is read. Driver run:
 `/mnt/t7/smad_next/RS1/rented_drive_b2.log` (lead's flag `RS1_GATE_DESCRIPTIVE=1`).
 Correction (23:58): the production driver run is `/mnt/t7/smad_next/RS1/rented_drive_c.log` (`RS1_GATE=descriptive`); the b2 run was stopped by the lead.
+
+## Amendment 7 (12 Nov 2026, 02:15 CET; from the independent review `experiments/reviews/REVIEW_RS1_20261112.md`, blocker F1; before any table is recomputed)
+
+The unchanged SMDD script (variant 1) slices `img[round(y1):round(y2), round(x1):round(x2)]` (line 40); when the 5%
+margin pushes x1 or y1 below 0 the slice start wraps and the "crop" is an edge strip or empty.
+1. **Sliver audit, criterion fixed now.** A variant-1 crop is *malformed* if (a) a rounded start index (x or y, after
+   the 5% margin) is below 0, or (b) its short side is below 32 px, or (c) the script wrote no crop. Determined by an
+   exact CPU re-run of the script's arithmetic on the source files (facenet-pytorch MTCNN with the script's
+   arguments, BGR pixels, `boxes[0]`, the same margin and slice; nothing is written), DGX CPU, 4 threads, nice 10.
+   It is run on every input of each set where the variant-2 boxes (the stored rented-machine boxes) show at least one
+   start below 0, and on a random 50 inputs of every other set as a check (CPU and RTX 3090 boxes may differ slightly;
+   disagreements are counted).
+2. **Cell rule.** A variant-1 cell (or genuine pool) in which more than 5% of the images of either class are
+   malformed or dropped is labelled **"release crop script fails on these files"**: no reproduction label, no audit
+   claim. For those cells the corrected crop (variant 2) is the only valid row. Expected from the review: MorDIFF, the
+   whole MorDIFF ladder (A43 arms), FRLL FaceMorpher and FRLL OpenCV.
+3. Withdrawn as stated in the review: variant-1 MorDIFF 0.00 against 1.10 and its +3.9; the 96% and 10.8%
+   stored-small rates; the variant-1 ladder; the reading "storage format changes what the detector reads"; variant-1
+   MorDIFF rows as evidence of non-reproduction (ViT-L/14 2.95, FE ViT-B/16 2.85, FE ViT-L/14 5.90, MixFaceNet 6.36).
+4. Descriptive additions: t5 set on the aligned native pool for the aligned history pools; miss rates beside every
+   0.5-rule rate; H-new-2, H-new-3, H-new-4 from existing files; both genuine-class definitions for every SelfMAD row;
+   H-new-1 from the MADation release log and configs.

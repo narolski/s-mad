@@ -1,0 +1,1593 @@
+{
+ "H-new-2": {
+  "D_t5": "98.5 [95.6, 100.0]",
+  "D20_t5": "100.0 [100.0, 100.0]",
+  "C20_t5": "100.0 [98.0, 100.0]",
+  "C20_vs_D20": "0.609 [0.562, 0.661]",
+  "D_vs_E": "0.882 [0.853, 0.912]",
+  "falsifier": "D flagged < 50% at t5 or C20 vs D20 > 0.65"
+ },
+ "H-new-3": {
+  "madation_fe_vitb16": {
+   "frllm_amsl": {
+    "n": 40,
+    "mean_shift": 5.202,
+    "median_shift": 5.239
+   },
+   "frllm_facemorpher": {
+    "n": 40,
+    "mean_shift": 0.861,
+    "median_shift": 0.874
+   },
+   "frllm_frll_bona": {
+    "n": 100,
+    "mean_shift": 0.562,
+    "median_shift": 0.472
+   },
+   "frllm_opencv": {
+    "n": 40,
+    "mean_shift": 0.865,
+    "median_shift": 0.836
+   },
+   "frllm_stylegan": {
+    "n": 40,
+    "mean_shift": 0.578,
+    "median_shift": 0.634
+   },
+   "frllm_webmorph": {
+    "n": 40,
+    "mean_shift": 4.235,
+    "median_shift": 4.567
+   }
+  },
+  "madation_fe_vitl14": {
+   "frllm_amsl": {
+    "n": 40,
+    "mean_shift": -2.91,
+    "median_shift": -3.515
+   },
+   "frllm_facemorpher": {
+    "n": 40,
+    "mean_shift": 0.502,
+    "median_shift": 0.401
+   },
+   "frllm_frll_bona": {
+    "n": 100,
+    "mean_shift": -0.164,
+    "median_shift": -0.098
+   },
+   "frllm_opencv": {
+    "n": 40,
+    "mean_shift": 0.553,
+    "median_shift": 0.61
+   },
+   "frllm_stylegan": {
+    "n": 40,
+    "mean_shift": 0.208,
+    "median_shift": 0.208
+   },
+   "frllm_webmorph": {
+    "n": 40,
+    "mean_shift": -1.416,
+    "median_shift": -1.915
+   }
+  },
+  "madation_fs_vitb16": {
+   "frllm_amsl": {
+    "n": 40,
+    "mean_shift": 0.055,
+    "median_shift": 0.0
+   },
+   "frllm_facemorpher": {
+    "n": 40,
+    "mean_shift": 0.194,
+    "median_shift": 0.142
+   },
+   "frllm_frll_bona": {
+    "n": 100,
+    "mean_shift": -0.001,
+    "median_shift": 0.0
+   },
+   "frllm_opencv": {
+    "n": 40,
+    "mean_shift": -0.031,
+    "median_shift": -0.006
+   },
+   "frllm_stylegan": {
+    "n": 40,
+    "mean_shift": 0.02,
+    "median_shift": 0.001
+   },
+   "frllm_webmorph": {
+    "n": 40,
+    "mean_shift": 0.154,
+    "median_shift": 0.016
+   }
+  },
+  "madation_fs_vitl14": {
+   "frllm_amsl": {
+    "n": 40,
+    "mean_shift": 0.024,
+    "median_shift": 0.002
+   },
+   "frllm_facemorpher": {
+    "n": 40,
+    "mean_shift": -0.004,
+    "median_shift": -0.001
+   },
+   "frllm_frll_bona": {
+    "n": 100,
+    "mean_shift": -0.003,
+    "median_shift": -0.0
+   },
+   "frllm_opencv": {
+    "n": 40,
+    "mean_shift": 0.032,
+    "median_shift": -0.001
+   },
+   "frllm_stylegan": {
+    "n": 40,
+    "mean_shift": -0.018,
+    "median_shift": -0.006
+   },
+   "frllm_webmorph": {
+    "n": 40,
+    "mean_shift": 0.018,
+    "median_shift": 0.018
+   }
+  },
+  "madation_vitb16": {
+   "frllm_amsl": {
+    "n": 40,
+    "mean_shift": 0.296,
+    "median_shift": 0.281
+   },
+   "frllm_facemorpher": {
+    "n": 40,
+    "mean_shift": -0.118,
+    "median_shift": -0.099
+   },
+   "frllm_frll_bona": {
+    "n": 100,
+    "mean_shift": 0.018,
+    "median_shift": 0.014
+   },
+   "frllm_opencv": {
+    "n": 40,
+    "mean_shift": -0.216,
+    "median_shift": -0.011
+   },
+   "frllm_stylegan": {
+    "n": 40,
+    "mean_shift": 0.005,
+    "median_shift": 0.01
+   },
+   "frllm_webmorph": {
+    "n": 40,
+    "mean_shift": 0.709,
+    "median_shift": 0.334
+   }
+  },
+  "madation_vitl14": {
+   "frllm_amsl": {
+    "n": 40,
+    "mean_shift": 0.026,
+    "median_shift": 0.028
+   },
+   "frllm_facemorpher": {
+    "n": 40,
+    "mean_shift": 1.121,
+    "median_shift": 0.596
+   },
+   "frllm_frll_bona": {
+    "n": 100,
+    "mean_shift": -0.002,
+    "median_shift": 0.001
+   },
+   "frllm_opencv": {
+    "n": 40,
+    "mean_shift": 0.221,
+    "median_shift": 0.044
+   },
+   "frllm_stylegan": {
+    "n": 40,
+    "mean_shift": -0.001,
+    "median_shift": -0.001
+   },
+   "frllm_webmorph": {
+    "n": 40,
+    "mean_shift": 0.616,
+    "median_shift": 0.052
+   }
+  },
+  "mixfacenet_mad_smdd": {
+   "frllm_amsl": {
+    "n": 40,
+    "mean_shift": -0.158,
+    "median_shift": -0.169
+   },
+   "frllm_facemorpher": {
+    "n": 40,
+    "mean_shift": -0.213,
+    "median_shift": -0.158
+   },
+   "frllm_frll_bona": {
+    "n": 100,
+    "mean_shift": -0.0,
+    "median_shift": 0.02
+   },
+   "frllm_opencv": {
+    "n": 40,
+    "mean_shift": -0.076,
+    "median_shift": -0.097
+   },
+   "frllm_stylegan": {
+    "n": 40,
+    "mean_shift": -0.075,
+    "median_shift": -0.078
+   },
+   "frllm_webmorph": {
+    "n": 40,
+    "mean_shift": -0.172,
+    "median_shift": -0.215
+   }
+  }
+ },
+ "H-new-4": {
+  "n_genuine": 204,
+  "share_tied_float32_score": 0.0,
+  "share_at_min_score": 0.005,
+  "genuine_logit_median": -12.802,
+  "genuine_logit_sd": 0.042,
+  "amsl_history_shift_low_half": 0.006,
+  "amsl_history_shift_high_half": -0.012,
+  "falsifier": "under 20% tied"
+ },
+ "F3_t5_on_aligned_native": {
+  "MADation ViT-B/16 (LoRA) release | variant 1 | amsl": {
+   "aligned E7, t5 on aligned native": "46.1 [30.9, 54.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | facemorpher": {
+   "aligned E7, t5 on aligned native": "26.0 [13.2, 35.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | opencv": {
+   "aligned E7, t5 on aligned native": "33.3 [18.6, 44.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | webmorph": {
+   "aligned E7, t5 on aligned native": "44.6 [31.4, 54.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | mordiff": {
+   "aligned E7, t5 on aligned native": "97.0 [89.7, 99.5]",
+   "aligned native, t5 on aligned native": "5.0 [3.5, 5.0]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | dim_a": {
+   "aligned E7, t5 on aligned native": "95.6 [86.8, 99.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | dim_c": {
+   "aligned E7, t5 on aligned native": "95.6 [86.3, 99.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | fast_dim": {
+   "aligned E7, t5 on aligned native": "95.6 [84.3, 99.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "95.6 [87.3, 99.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "95.1 [84.8, 98.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "94.6 [85.8, 98.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "96.1 [88.2, 99.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "7.4 [3.9, 10.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 1 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "5.9 [3.4, 10.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | amsl": {
+   "aligned E7, t5 on aligned native": "4.4 [2.0, 8.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | facemorpher": {
+   "aligned E7, t5 on aligned native": "4.4 [2.0, 7.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | opencv": {
+   "aligned E7, t5 on aligned native": "3.9 [1.5, 7.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | webmorph": {
+   "aligned E7, t5 on aligned native": "5.4 [2.5, 9.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | mordiff": {
+   "aligned E7, t5 on aligned native": "40.9 [32.2, 50.5]",
+   "aligned native, t5 on aligned native": "5.0 [3.5, 5.0]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | dim_a": {
+   "aligned E7, t5 on aligned native": "19.1 [12.3, 26.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | dim_c": {
+   "aligned E7, t5 on aligned native": "17.6 [11.3, 26.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | fast_dim": {
+   "aligned E7, t5 on aligned native": "20.6 [12.7, 28.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "20.6 [12.7, 28.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "17.6 [11.3, 26.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "18.1 [11.3, 25.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "18.6 [11.8, 29.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "4.4 [2.5, 6.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 1 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "2.9 [1.5, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | amsl": {
+   "aligned E7, t5 on aligned native": "8.3 [3.9, 11.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | facemorpher": {
+   "aligned E7, t5 on aligned native": "7.4 [4.4, 9.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | opencv": {
+   "aligned E7, t5 on aligned native": "7.4 [3.9, 9.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | webmorph": {
+   "aligned E7, t5 on aligned native": "8.3 [3.9, 12.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | mordiff": {
+   "aligned E7, t5 on aligned native": "2.5 [1.0, 5.9]",
+   "aligned native, t5 on aligned native": "5.0 [3.5, 5.0]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | dim_a": {
+   "aligned E7, t5 on aligned native": "9.8 [3.9, 15.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | dim_c": {
+   "aligned E7, t5 on aligned native": "8.8 [4.4, 15.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | fast_dim": {
+   "aligned E7, t5 on aligned native": "9.8 [5.4, 17.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "8.3 [4.9, 16.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "8.8 [4.4, 16.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "10.3 [5.4, 17.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "9.8 [4.4, 16.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "4.9 [2.9, 5.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 1 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "5.9 [3.9, 6.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | amsl": {
+   "aligned E7, t5 on aligned native": "36.3 [25.5, 42.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | facemorpher": {
+   "aligned E7, t5 on aligned native": "23.5 [16.2, 29.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | opencv": {
+   "aligned E7, t5 on aligned native": "26.5 [18.1, 32.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | webmorph": {
+   "aligned E7, t5 on aligned native": "35.3 [25.5, 43.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | mordiff": {
+   "aligned E7, t5 on aligned native": "33.0 [17.7, 46.1]",
+   "aligned native, t5 on aligned native": "5.0 [3.5, 5.0]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | dim_a": {
+   "aligned E7, t5 on aligned native": "74.0 [63.7, 82.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | dim_c": {
+   "aligned E7, t5 on aligned native": "75.5 [64.2, 83.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | fast_dim": {
+   "aligned E7, t5 on aligned native": "73.5 [65.7, 82.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "74.0 [64.2, 83.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "75.5 [64.7, 82.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "76.0 [65.2, 82.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "77.9 [62.3, 85.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "6.4 [4.4, 8.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 1 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "8.3 [4.4, 10.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | amsl": {
+   "aligned E7, t5 on aligned native": "27.0 [20.6, 39.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | facemorpher": {
+   "aligned E7, t5 on aligned native": "16.7 [11.3, 25.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | opencv": {
+   "aligned E7, t5 on aligned native": "19.1 [14.7, 31.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | webmorph": {
+   "aligned E7, t5 on aligned native": "28.9 [20.1, 40.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | mordiff": {
+   "aligned E7, t5 on aligned native": "49.8 [41.4, 68.5]",
+   "aligned native, t5 on aligned native": "5.0 [3.5, 5.0]"
+  },
+  "MixFaceNet-MAD release | variant 1 | dim_a": {
+   "aligned E7, t5 on aligned native": "83.3 [73.0, 89.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | dim_c": {
+   "aligned E7, t5 on aligned native": "80.4 [72.5, 89.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | fast_dim": {
+   "aligned E7, t5 on aligned native": "81.4 [71.6, 88.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "81.4 [72.5, 88.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "81.9 [72.0, 89.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "81.4 [73.0, 89.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "83.3 [75.0, 90.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "5.9 [3.4, 7.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 1 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "6.4 [2.9, 8.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | amsl": {
+   "aligned E7, t5 on aligned native": "22.5 [14.2, 30.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | facemorpher": {
+   "aligned E7, t5 on aligned native": "14.7 [6.9, 22.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | opencv": {
+   "aligned E7, t5 on aligned native": "15.2 [9.3, 22.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | webmorph": {
+   "aligned E7, t5 on aligned native": "24.0 [12.7, 32.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | mordiff": {
+   "aligned E7, t5 on aligned native": "29.1 [21.7, 38.1]",
+   "aligned native, t5 on aligned native": "5.0 [3.5, 5.0]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | dim_a": {
+   "aligned E7, t5 on aligned native": "61.8 [50.0, 71.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | dim_c": {
+   "aligned E7, t5 on aligned native": "61.3 [50.5, 70.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | fast_dim": {
+   "aligned E7, t5 on aligned native": "58.3 [48.5, 70.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "59.8 [49.5, 70.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "61.8 [49.0, 71.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "58.8 [49.0, 69.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "63.2 [51.5, 72.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "4.9 [2.9, 6.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 1 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "5.4 [3.4, 7.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | amsl": {
+   "aligned E7, t5 on aligned native": "7.4 [4.9, 11.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | facemorpher": {
+   "aligned E7, t5 on aligned native": "6.9 [4.4, 11.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | opencv": {
+   "aligned E7, t5 on aligned native": "7.4 [4.9, 11.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | webmorph": {
+   "aligned E7, t5 on aligned native": "8.8 [5.9, 11.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | mordiff": {
+   "aligned E7, t5 on aligned native": "6.9 [4.4, 13.2]",
+   "aligned native, t5 on aligned native": "5.0 [3.5, 5.0]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | dim_a": {
+   "aligned E7, t5 on aligned native": "10.3 [5.9, 16.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | dim_c": {
+   "aligned E7, t5 on aligned native": "9.8 [5.4, 16.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | fast_dim": {
+   "aligned E7, t5 on aligned native": "10.3 [6.9, 15.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "9.8 [5.9, 15.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "10.3 [6.9, 16.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "10.8 [7.4, 15.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "8.8 [5.9, 16.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "6.4 [4.4, 8.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 1 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "6.4 [4.4, 10.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | amsl": {
+   "aligned E7, t5 on aligned native": "47.1 [36.8, 58.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | facemorpher": {
+   "aligned E7, t5 on aligned native": "28.4 [21.1, 38.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | opencv": {
+   "aligned E7, t5 on aligned native": "33.8 [26.0, 44.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | webmorph": {
+   "aligned E7, t5 on aligned native": "48.5 [36.8, 58.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | mordiff": {
+   "aligned E7, t5 on aligned native": "97.1 [87.7, 100.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | dim_a": {
+   "aligned E7, t5 on aligned native": "95.1 [89.7, 98.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | dim_c": {
+   "aligned E7, t5 on aligned native": "96.1 [91.7, 99.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | fast_dim": {
+   "aligned E7, t5 on aligned native": "95.1 [90.2, 99.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "96.1 [91.7, 99.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "95.1 [90.2, 98.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "95.1 [90.2, 99.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "95.6 [91.2, 99.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "5.4 [3.9, 6.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "5.4 [3.9, 6.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "5.9 [3.9, 10.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-B/16 (LoRA) release | variant 2 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "6.9 [4.4, 10.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | amsl": {
+   "aligned E7, t5 on aligned native": "2.9 [1.0, 7.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | facemorpher": {
+   "aligned E7, t5 on aligned native": "2.9 [1.0, 5.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | opencv": {
+   "aligned E7, t5 on aligned native": "2.5 [1.0, 5.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | webmorph": {
+   "aligned E7, t5 on aligned native": "3.4 [1.0, 6.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | mordiff": {
+   "aligned E7, t5 on aligned native": "40.2 [30.9, 50.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | dim_a": {
+   "aligned E7, t5 on aligned native": "22.5 [15.2, 31.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | dim_c": {
+   "aligned E7, t5 on aligned native": "23.0 [15.2, 31.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | fast_dim": {
+   "aligned E7, t5 on aligned native": "22.1 [14.7, 30.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "20.6 [13.7, 30.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "22.1 [14.7, 31.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "21.1 [14.2, 30.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "23.5 [16.7, 33.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "5.4 [3.4, 6.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation ViT-L/14 (LoRA) release | variant 2 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "4.4 [2.9, 6.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | amsl": {
+   "aligned E7, t5 on aligned native": "6.9 [4.4, 11.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | facemorpher": {
+   "aligned E7, t5 on aligned native": "5.4 [3.9, 7.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | opencv": {
+   "aligned E7, t5 on aligned native": "5.9 [3.9, 9.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | webmorph": {
+   "aligned E7, t5 on aligned native": "6.9 [4.4, 10.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | mordiff": {
+   "aligned E7, t5 on aligned native": "2.0 [0.5, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | dim_a": {
+   "aligned E7, t5 on aligned native": "9.8 [5.9, 19.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | dim_c": {
+   "aligned E7, t5 on aligned native": "8.3 [5.4, 18.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | fast_dim": {
+   "aligned E7, t5 on aligned native": "8.3 [4.4, 20.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "7.8 [4.9, 18.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "10.3 [5.9, 18.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "8.8 [5.9, 18.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "11.3 [5.4, 22.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "4.4 [2.9, 5.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-L/14 release | variant 2 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 5.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | amsl": {
+   "aligned E7, t5 on aligned native": "37.7 [26.0, 45.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | facemorpher": {
+   "aligned E7, t5 on aligned native": "25.0 [14.7, 31.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | opencv": {
+   "aligned E7, t5 on aligned native": "27.0 [17.2, 33.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | webmorph": {
+   "aligned E7, t5 on aligned native": "35.3 [25.0, 42.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | mordiff": {
+   "aligned E7, t5 on aligned native": "34.3 [27.9, 44.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | dim_a": {
+   "aligned E7, t5 on aligned native": "77.9 [65.2, 83.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | dim_c": {
+   "aligned E7, t5 on aligned native": "74.5 [64.2, 82.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | fast_dim": {
+   "aligned E7, t5 on aligned native": "75.0 [64.7, 82.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "74.5 [65.2, 82.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "75.5 [65.2, 82.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "75.5 [65.2, 82.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "78.4 [67.2, 84.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "6.9 [4.4, 9.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FE ViT-B/16 release | variant 2 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "6.9 [3.9, 9.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | amsl": {
+   "aligned E7, t5 on aligned native": "29.4 [18.6, 38.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | facemorpher": {
+   "aligned E7, t5 on aligned native": "18.1 [11.3, 25.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | opencv": {
+   "aligned E7, t5 on aligned native": "21.6 [13.2, 30.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | webmorph": {
+   "aligned E7, t5 on aligned native": "28.9 [18.1, 37.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | mordiff": {
+   "aligned E7, t5 on aligned native": "55.4 [46.6, 74.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | dim_a": {
+   "aligned E7, t5 on aligned native": "81.9 [66.7, 89.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | dim_c": {
+   "aligned E7, t5 on aligned native": "81.4 [66.2, 89.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | fast_dim": {
+   "aligned E7, t5 on aligned native": "80.4 [66.7, 89.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "80.9 [66.2, 89.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "80.4 [65.2, 88.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "79.9 [67.2, 88.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "81.9 [70.6, 89.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "6.9 [4.4, 8.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MixFaceNet-MAD release | variant 2 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "5.9 [4.4, 8.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | amsl": {
+   "aligned E7, t5 on aligned native": "17.2 [12.7, 26.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | facemorpher": {
+   "aligned E7, t5 on aligned native": "11.3 [8.3, 17.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | opencv": {
+   "aligned E7, t5 on aligned native": "14.2 [9.8, 20.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | webmorph": {
+   "aligned E7, t5 on aligned native": "17.6 [12.3, 26.5]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | mordiff": {
+   "aligned E7, t5 on aligned native": "25.0 [16.2, 32.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | dim_a": {
+   "aligned E7, t5 on aligned native": "59.8 [49.5, 68.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | dim_c": {
+   "aligned E7, t5 on aligned native": "54.9 [46.6, 66.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | fast_dim": {
+   "aligned E7, t5 on aligned native": "55.9 [46.6, 66.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "55.9 [47.1, 66.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "58.3 [48.0, 67.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "56.9 [46.6, 67.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "61.8 [51.0, 71.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.4, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "5.4 [3.4, 6.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-B/16 release | variant 2 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "4.4 [2.9, 6.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | amsl": {
+   "aligned E7, t5 on aligned native": "6.9 [2.9, 8.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | facemorpher": {
+   "aligned E7, t5 on aligned native": "4.4 [1.5, 6.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | opencv": {
+   "aligned E7, t5 on aligned native": "4.4 [1.5, 7.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | webmorph": {
+   "aligned E7, t5 on aligned native": "5.4 [2.5, 8.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | mordiff": {
+   "aligned E7, t5 on aligned native": "9.8 [5.4, 14.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.4, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | dim_a": {
+   "aligned E7, t5 on aligned native": "7.8 [4.4, 10.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | dim_c": {
+   "aligned E7, t5 on aligned native": "7.4 [3.4, 10.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | fast_dim": {
+   "aligned E7, t5 on aligned native": "7.8 [3.9, 10.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | fast_dim_ode": {
+   "aligned E7, t5 on aligned native": "10.3 [2.9, 13.2]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | greedy_dim": {
+   "aligned E7, t5 on aligned native": "7.8 [3.9, 12.3]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | greedy_dim_s": {
+   "aligned E7, t5 on aligned native": "9.3 [4.4, 12.7]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | mad22_FaceMorpher": {
+   "aligned E7, t5 on aligned native": "7.8 [3.9, 10.8]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | mad22_MIPGAN_I": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | mad22_MIPGAN_II": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 4.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | mad22_OpenCV": {
+   "aligned E7, t5 on aligned native": "4.4 [2.9, 5.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "MADation FS ViT-L/14 release | variant 2 | mad22_Webmorph": {
+   "aligned E7, t5 on aligned native": "3.9 [2.5, 5.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "SelfMAD release (HRNet-W18) | existing  | amsl": {
+   "aligned E7, t5 on aligned native": "84.8 [56.4, 94.6]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "SelfMAD release (HRNet-W18) | existing  | facemorpher": {
+   "aligned E7, t5 on aligned native": "53.9 [26.5, 68.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "SelfMAD release (HRNet-W18) | existing  | opencv": {
+   "aligned E7, t5 on aligned native": "65.2 [34.3, 78.9]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "SelfMAD release (HRNet-W18) | existing  | webmorph": {
+   "aligned E7, t5 on aligned native": "85.3 [55.9, 93.1]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "SelfMAD release (HRNet-W18) | existing  | stylegan": {
+   "aligned E7, t5 on aligned native": "4.9 [3.9, 5.4]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "SelfMAD release (HRNet-W18) | existing  | mordiff": {
+   "aligned E7, t5 on aligned native": "99.5 [97.5, 100.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "SelfMAD release (HRNet-W18) | existing  | dim_a": {
+   "aligned E7, t5 on aligned native": "100.0 [98.0, 100.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  },
+  "SelfMAD release (HRNet-W18) | existing  | greedy_dim": {
+   "aligned E7, t5 on aligned native": "100.0 [100.0, 100.0]",
+   "aligned native, t5 on aligned native": "4.9 [3.9, 4.9]"
+  }
+ },
+ "F4_miss_at_release_rule": {
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_amsl": 91.9,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_facemorpher": 12.7,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_opencv": 33.3,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_webmorph": 76.5,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_stylegan": 99.4,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_mordiff": 90.5,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_dim_a": 96.0,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_dim_c": 62.4,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_fast_dim": 94.4,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_fast_dim_ode": 98.8,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_greedy_dim": 100.0,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M_greedy_dim_s": 74.4,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M22_FaceMorpher": 1.0,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M22_MIPGAN_I": 99.2,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M22_MIPGAN_II": 98.5,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M22_OpenCV": 51.7,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | M22_Webmorph": 97.4,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | a43_A": 89.9,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | a43_B": 88.3,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | a43_B20": 92.8,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | a43_C": 84.6,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | a43_C20": 81.8,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | a43_D": 87.6,
+  "MADation ViT-B/16 (LoRA) release | variant 1 | a43_D20": 93.9,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_amsl": 99.7,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_facemorpher": 12.7,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_opencv": 23.0,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_webmorph": 95.7,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_stylegan": 99.8,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_mordiff": 87.9,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_dim_a": 100.0,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_dim_c": 97.8,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_fast_dim": 99.6,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_fast_dim_ode": 100.0,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_greedy_dim": 100.0,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M_greedy_dim_s": 83.8,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M22_FaceMorpher": 9.7,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M22_MIPGAN_I": 98.9,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M22_MIPGAN_II": 96.5,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M22_OpenCV": 42.0,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | M22_Webmorph": 97.2,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | a43_A": 88.8,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | a43_B": 86.3,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | a43_B20": 87.6,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | a43_C": 87.9,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | a43_C20": 90.9,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | a43_D": 83.6,
+  "MADation ViT-L/14 (LoRA) release | variant 1 | a43_D20": 88.3,
+  "MADation FE ViT-L/14 release | variant 1 | M_amsl": 93.0,
+  "MADation FE ViT-L/14 release | variant 1 | M_facemorpher": 21.8,
+  "MADation FE ViT-L/14 release | variant 1 | M_opencv": 19.2,
+  "MADation FE ViT-L/14 release | variant 1 | M_webmorph": 93.0,
+  "MADation FE ViT-L/14 release | variant 1 | M_stylegan": 76.8,
+  "MADation FE ViT-L/14 release | variant 1 | M_mordiff": 10.2,
+  "MADation FE ViT-L/14 release | variant 1 | M_dim_a": 80.2,
+  "MADation FE ViT-L/14 release | variant 1 | M_dim_c": 78.8,
+  "MADation FE ViT-L/14 release | variant 1 | M_fast_dim": 89.0,
+  "MADation FE ViT-L/14 release | variant 1 | M_fast_dim_ode": 90.2,
+  "MADation FE ViT-L/14 release | variant 1 | M_greedy_dim": 96.4,
+  "MADation FE ViT-L/14 release | variant 1 | M_greedy_dim_s": 71.0,
+  "MADation FE ViT-L/14 release | variant 1 | M22_FaceMorpher": 26.5,
+  "MADation FE ViT-L/14 release | variant 1 | M22_MIPGAN_I": 75.9,
+  "MADation FE ViT-L/14 release | variant 1 | M22_MIPGAN_II": 68.0,
+  "MADation FE ViT-L/14 release | variant 1 | M22_OpenCV": 41.4,
+  "MADation FE ViT-L/14 release | variant 1 | M22_Webmorph": 74.4,
+  "MADation FE ViT-L/14 release | variant 1 | a43_A": 13.3,
+  "MADation FE ViT-L/14 release | variant 1 | a43_B": 4.6,
+  "MADation FE ViT-L/14 release | variant 1 | a43_B20": 5.7,
+  "MADation FE ViT-L/14 release | variant 1 | a43_C": 18.7,
+  "MADation FE ViT-L/14 release | variant 1 | a43_C20": 14.8,
+  "MADation FE ViT-L/14 release | variant 1 | a43_D": 14.7,
+  "MADation FE ViT-L/14 release | variant 1 | a43_D20": 13.3,
+  "MADation FE ViT-B/16 release | variant 1 | M_amsl": 94.7,
+  "MADation FE ViT-B/16 release | variant 1 | M_facemorpher": 85.9,
+  "MADation FE ViT-B/16 release | variant 1 | M_opencv": 93.0,
+  "MADation FE ViT-B/16 release | variant 1 | M_webmorph": 93.0,
+  "MADation FE ViT-B/16 release | variant 1 | M_stylegan": 100.0,
+  "MADation FE ViT-B/16 release | variant 1 | M_mordiff": 53.1,
+  "MADation FE ViT-B/16 release | variant 1 | M_dim_a": 99.8,
+  "MADation FE ViT-B/16 release | variant 1 | M_dim_c": 99.8,
+  "MADation FE ViT-B/16 release | variant 1 | M_fast_dim": 99.8,
+  "MADation FE ViT-B/16 release | variant 1 | M_fast_dim_ode": 99.2,
+  "MADation FE ViT-B/16 release | variant 1 | M_greedy_dim": 100.0,
+  "MADation FE ViT-B/16 release | variant 1 | M_greedy_dim_s": 92.4,
+  "MADation FE ViT-B/16 release | variant 1 | M22_FaceMorpher": 43.8,
+  "MADation FE ViT-B/16 release | variant 1 | M22_MIPGAN_I": 99.9,
+  "MADation FE ViT-B/16 release | variant 1 | M22_MIPGAN_II": 100.0,
+  "MADation FE ViT-B/16 release | variant 1 | M22_OpenCV": 90.0,
+  "MADation FE ViT-B/16 release | variant 1 | M22_Webmorph": 100.0,
+  "MADation FE ViT-B/16 release | variant 1 | a43_A": 56.9,
+  "MADation FE ViT-B/16 release | variant 1 | a43_B": 34.5,
+  "MADation FE ViT-B/16 release | variant 1 | a43_B20": 39.9,
+  "MADation FE ViT-B/16 release | variant 1 | a43_C": 37.4,
+  "MADation FE ViT-B/16 release | variant 1 | a43_C20": 45.5,
+  "MADation FE ViT-B/16 release | variant 1 | a43_D": 38.4,
+  "MADation FE ViT-B/16 release | variant 1 | a43_D20": 37.8,
+  "MixFaceNet-MAD release | variant 1 | M_amsl": 87.5,
+  "MixFaceNet-MAD release | variant 1 | M_facemorpher": 16.9,
+  "MixFaceNet-MAD release | variant 1 | M_opencv": 37.6,
+  "MixFaceNet-MAD release | variant 1 | M_webmorph": 90.0,
+  "MixFaceNet-MAD release | variant 1 | M_stylegan": 66.1,
+  "MixFaceNet-MAD release | variant 1 | M_mordiff": 73.4,
+  "MixFaceNet-MAD release | variant 1 | M_dim_a": 99.0,
+  "MixFaceNet-MAD release | variant 1 | M_dim_c": 70.2,
+  "MixFaceNet-MAD release | variant 1 | M_fast_dim": 97.2,
+  "MixFaceNet-MAD release | variant 1 | M_fast_dim_ode": 100.0,
+  "MixFaceNet-MAD release | variant 1 | M_greedy_dim": 89.8,
+  "MixFaceNet-MAD release | variant 1 | M_greedy_dim_s": 51.8,
+  "MixFaceNet-MAD release | variant 1 | M22_FaceMorpher": 6.1,
+  "MixFaceNet-MAD release | variant 1 | M22_MIPGAN_I": 88.0,
+  "MixFaceNet-MAD release | variant 1 | M22_MIPGAN_II": 90.9,
+  "MixFaceNet-MAD release | variant 1 | M22_OpenCV": 50.5,
+  "MixFaceNet-MAD release | variant 1 | M22_Webmorph": 85.8,
+  "MixFaceNet-MAD release | variant 1 | a43_A": 73.9,
+  "MixFaceNet-MAD release | variant 1 | a43_B": 70.6,
+  "MixFaceNet-MAD release | variant 1 | a43_B20": 66.8,
+  "MixFaceNet-MAD release | variant 1 | a43_C": 69.2,
+  "MixFaceNet-MAD release | variant 1 | a43_C20": 64.8,
+  "MixFaceNet-MAD release | variant 1 | a43_D": 67.8,
+  "MixFaceNet-MAD release | variant 1 | a43_D20": 61.7,
+  "MADation FS ViT-B/16 release | variant 1 | M_amsl": 86.6,
+  "MADation FS ViT-B/16 release | variant 1 | M_facemorpher": 19.2,
+  "MADation FS ViT-B/16 release | variant 1 | M_opencv": 29.0,
+  "MADation FS ViT-B/16 release | variant 1 | M_webmorph": 85.4,
+  "MADation FS ViT-B/16 release | variant 1 | M_stylegan": 85.4,
+  "MADation FS ViT-B/16 release | variant 1 | M_mordiff": 98.1,
+  "MADation FS ViT-B/16 release | variant 1 | M_dim_a": 98.0,
+  "MADation FS ViT-B/16 release | variant 1 | M_dim_c": 86.6,
+  "MADation FS ViT-B/16 release | variant 1 | M_fast_dim": 97.8,
+  "MADation FS ViT-B/16 release | variant 1 | M_fast_dim_ode": 100.0,
+  "MADation FS ViT-B/16 release | variant 1 | M_greedy_dim": 100.0,
+  "MADation FS ViT-B/16 release | variant 1 | M_greedy_dim_s": 71.4,
+  "MADation FS ViT-B/16 release | variant 1 | M22_FaceMorpher": 10.1,
+  "MADation FS ViT-B/16 release | variant 1 | M22_MIPGAN_I": 90.4,
+  "MADation FS ViT-B/16 release | variant 1 | M22_MIPGAN_II": 82.1,
+  "MADation FS ViT-B/16 release | variant 1 | M22_OpenCV": 36.4,
+  "MADation FS ViT-B/16 release | variant 1 | M22_Webmorph": 80.2,
+  "MADation FS ViT-B/16 release | variant 1 | a43_A": 98.4,
+  "MADation FS ViT-B/16 release | variant 1 | a43_B": 99.0,
+  "MADation FS ViT-B/16 release | variant 1 | a43_B20": 96.4,
+  "MADation FS ViT-B/16 release | variant 1 | a43_C": 97.8,
+  "MADation FS ViT-B/16 release | variant 1 | a43_C20": 95.5,
+  "MADation FS ViT-B/16 release | variant 1 | a43_D": 96.6,
+  "MADation FS ViT-B/16 release | variant 1 | a43_D20": 96.7,
+  "MADation FS ViT-L/14 release | variant 1 | M_amsl": 83.2,
+  "MADation FS ViT-L/14 release | variant 1 | M_facemorpher": 44.8,
+  "MADation FS ViT-L/14 release | variant 1 | M_opencv": 45.4,
+  "MADation FS ViT-L/14 release | variant 1 | M_webmorph": 76.8,
+  "MADation FS ViT-L/14 release | variant 1 | M_stylegan": 74.0,
+  "MADation FS ViT-L/14 release | variant 1 | M_mordiff": 90.4,
+  "MADation FS ViT-L/14 release | variant 1 | M_dim_a": 90.2,
+  "MADation FS ViT-L/14 release | variant 1 | M_dim_c": 90.2,
+  "MADation FS ViT-L/14 release | variant 1 | M_fast_dim": 94.0,
+  "MADation FS ViT-L/14 release | variant 1 | M_fast_dim_ode": 90.8,
+  "MADation FS ViT-L/14 release | variant 1 | M_greedy_dim": 93.0,
+  "MADation FS ViT-L/14 release | variant 1 | M_greedy_dim_s": 70.2,
+  "MADation FS ViT-L/14 release | variant 1 | M22_FaceMorpher": 41.1,
+  "MADation FS ViT-L/14 release | variant 1 | M22_MIPGAN_I": 36.1,
+  "MADation FS ViT-L/14 release | variant 1 | M22_MIPGAN_II": 41.2,
+  "MADation FS ViT-L/14 release | variant 1 | M22_OpenCV": 63.2,
+  "MADation FS ViT-L/14 release | variant 1 | M22_Webmorph": 62.4,
+  "MADation FS ViT-L/14 release | variant 1 | a43_A": 93.1,
+  "MADation FS ViT-L/14 release | variant 1 | a43_B": 86.3,
+  "MADation FS ViT-L/14 release | variant 1 | a43_B20": 87.0,
+  "MADation FS ViT-L/14 release | variant 1 | a43_C": 82.4,
+  "MADation FS ViT-L/14 release | variant 1 | a43_C20": 85.2,
+  "MADation FS ViT-L/14 release | variant 1 | a43_D": 86.4,
+  "MADation FS ViT-L/14 release | variant 1 | a43_D20": 85.0,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_amsl": 96.0,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_facemorpher": 12.4,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_opencv": 27.5,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_webmorph": 79.0,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_stylegan": 99.2,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_mordiff": 37.1,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_dim_a": 96.0,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_dim_c": 65.0,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_fast_dim": 96.2,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_fast_dim_ode": 98.6,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_greedy_dim": 100.0,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M_greedy_dim_s": 75.4,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M22_FaceMorpher": 1.9,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M22_MIPGAN_I": 99.6,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M22_MIPGAN_II": 98.9,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M22_OpenCV": 47.3,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | M22_Webmorph": 97.8,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | a43_A": 40.0,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | a43_B": 97.0,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | a43_B20": 38.5,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | a43_C": 85.3,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | a43_C20": 42.2,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | a43_D": 70.1,
+  "MADation ViT-B/16 (LoRA) release | variant 2 | a43_D20": 60.8,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_amsl": 100.0,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_facemorpher": 15.1,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_opencv": 18.8,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_webmorph": 99.1,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_stylegan": 99.8,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_mordiff": 95.4,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_dim_a": 100.0,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_dim_c": 98.6,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_fast_dim": 99.2,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_fast_dim_ode": 100.0,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_greedy_dim": 100.0,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M_greedy_dim_s": 84.4,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M22_FaceMorpher": 18.8,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M22_MIPGAN_I": 98.8,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M22_MIPGAN_II": 96.6,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M22_OpenCV": 38.2,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | M22_Webmorph": 96.4,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | a43_A": 97.5,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | a43_B": 100.0,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | a43_B20": 97.5,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | a43_C": 100.0,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | a43_C20": 99.0,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | a43_D": 99.0,
+  "MADation ViT-L/14 (LoRA) release | variant 2 | a43_D20": 98.5,
+  "MADation FE ViT-L/14 release | variant 2 | M_amsl": 95.9,
+  "MADation FE ViT-L/14 release | variant 2 | M_facemorpher": 32.6,
+  "MADation FE ViT-L/14 release | variant 2 | M_opencv": 23.3,
+  "MADation FE ViT-L/14 release | variant 2 | M_webmorph": 95.7,
+  "MADation FE ViT-L/14 release | variant 2 | M_stylegan": 76.4,
+  "MADation FE ViT-L/14 release | variant 2 | M_mordiff": 74.1,
+  "MADation FE ViT-L/14 release | variant 2 | M_dim_a": 82.6,
+  "MADation FE ViT-L/14 release | variant 2 | M_dim_c": 78.6,
+  "MADation FE ViT-L/14 release | variant 2 | M_fast_dim": 88.8,
+  "MADation FE ViT-L/14 release | variant 2 | M_fast_dim_ode": 88.4,
+  "MADation FE ViT-L/14 release | variant 2 | M_greedy_dim": 96.4,
+  "MADation FE ViT-L/14 release | variant 2 | M_greedy_dim_s": 73.2,
+  "MADation FE ViT-L/14 release | variant 2 | M22_FaceMorpher": 40.2,
+  "MADation FE ViT-L/14 release | variant 2 | M22_MIPGAN_I": 74.0,
+  "MADation FE ViT-L/14 release | variant 2 | M22_MIPGAN_II": 66.9,
+  "MADation FE ViT-L/14 release | variant 2 | M22_OpenCV": 42.8,
+  "MADation FE ViT-L/14 release | variant 2 | M22_Webmorph": 66.0,
+  "MADation FE ViT-L/14 release | variant 2 | a43_A": 79.0,
+  "MADation FE ViT-L/14 release | variant 2 | a43_B": 74.0,
+  "MADation FE ViT-L/14 release | variant 2 | a43_B20": 78.5,
+  "MADation FE ViT-L/14 release | variant 2 | a43_C": 75.5,
+  "MADation FE ViT-L/14 release | variant 2 | a43_C20": 80.4,
+  "MADation FE ViT-L/14 release | variant 2 | a43_D": 90.7,
+  "MADation FE ViT-L/14 release | variant 2 | a43_D20": 81.4,
+  "MADation FE ViT-B/16 release | variant 2 | M_amsl": 98.3,
+  "MADation FE ViT-B/16 release | variant 2 | M_facemorpher": 88.6,
+  "MADation FE ViT-B/16 release | variant 2 | M_opencv": 93.9,
+  "MADation FE ViT-B/16 release | variant 2 | M_webmorph": 97.0,
+  "MADation FE ViT-B/16 release | variant 2 | M_stylegan": 100.0,
+  "MADation FE ViT-B/16 release | variant 2 | M_mordiff": 95.2,
+  "MADation FE ViT-B/16 release | variant 2 | M_dim_a": 99.4,
+  "MADation FE ViT-B/16 release | variant 2 | M_dim_c": 99.6,
+  "MADation FE ViT-B/16 release | variant 2 | M_fast_dim": 99.6,
+  "MADation FE ViT-B/16 release | variant 2 | M_fast_dim_ode": 98.8,
+  "MADation FE ViT-B/16 release | variant 2 | M_greedy_dim": 100.0,
+  "MADation FE ViT-B/16 release | variant 2 | M_greedy_dim_s": 89.0,
+  "MADation FE ViT-B/16 release | variant 2 | M22_FaceMorpher": 37.5,
+  "MADation FE ViT-B/16 release | variant 2 | M22_MIPGAN_I": 99.6,
+  "MADation FE ViT-B/16 release | variant 2 | M22_MIPGAN_II": 99.9,
+  "MADation FE ViT-B/16 release | variant 2 | M22_OpenCV": 87.2,
+  "MADation FE ViT-B/16 release | variant 2 | M22_Webmorph": 99.8,
+  "MADation FE ViT-B/16 release | variant 2 | a43_A": 93.0,
+  "MADation FE ViT-B/16 release | variant 2 | a43_B": 99.0,
+  "MADation FE ViT-B/16 release | variant 2 | a43_B20": 92.5,
+  "MADation FE ViT-B/16 release | variant 2 | a43_C": 97.1,
+  "MADation FE ViT-B/16 release | variant 2 | a43_C20": 96.1,
+  "MADation FE ViT-B/16 release | variant 2 | a43_D": 95.6,
+  "MADation FE ViT-B/16 release | variant 2 | a43_D20": 90.2,
+  "MixFaceNet-MAD release | variant 2 | M_amsl": 90.2,
+  "MixFaceNet-MAD release | variant 2 | M_facemorpher": 13.1,
+  "MixFaceNet-MAD release | variant 2 | M_opencv": 36.9,
+  "MixFaceNet-MAD release | variant 2 | M_webmorph": 92.5,
+  "MixFaceNet-MAD release | variant 2 | M_stylegan": 70.0,
+  "MixFaceNet-MAD release | variant 2 | M_mordiff": 49.3,
+  "MixFaceNet-MAD release | variant 2 | M_dim_a": 98.8,
+  "MixFaceNet-MAD release | variant 2 | M_dim_c": 72.6,
+  "MixFaceNet-MAD release | variant 2 | M_fast_dim": 99.0,
+  "MixFaceNet-MAD release | variant 2 | M_fast_dim_ode": 100.0,
+  "MixFaceNet-MAD release | variant 2 | M_greedy_dim": 89.6,
+  "MixFaceNet-MAD release | variant 2 | M_greedy_dim_s": 56.0,
+  "MixFaceNet-MAD release | variant 2 | M22_FaceMorpher": 14.2,
+  "MixFaceNet-MAD release | variant 2 | M22_MIPGAN_I": 88.8,
+  "MixFaceNet-MAD release | variant 2 | M22_MIPGAN_II": 91.7,
+  "MixFaceNet-MAD release | variant 2 | M22_OpenCV": 55.1,
+  "MixFaceNet-MAD release | variant 2 | M22_Webmorph": 89.8,
+  "MixFaceNet-MAD release | variant 2 | a43_A": 46.5,
+  "MixFaceNet-MAD release | variant 2 | a43_B": 99.5,
+  "MixFaceNet-MAD release | variant 2 | a43_B20": 46.0,
+  "MixFaceNet-MAD release | variant 2 | a43_C": 100.0,
+  "MixFaceNet-MAD release | variant 2 | a43_C20": 79.4,
+  "MixFaceNet-MAD release | variant 2 | a43_D": 70.6,
+  "MixFaceNet-MAD release | variant 2 | a43_D20": 48.0,
+  "MADation FS ViT-B/16 release | variant 2 | M_amsl": 93.2,
+  "MADation FS ViT-B/16 release | variant 2 | M_facemorpher": 21.9,
+  "MADation FS ViT-B/16 release | variant 2 | M_opencv": 26.7,
+  "MADation FS ViT-B/16 release | variant 2 | M_webmorph": 89.9,
+  "MADation FS ViT-B/16 release | variant 2 | M_stylegan": 88.4,
+  "MADation FS ViT-B/16 release | variant 2 | M_mordiff": 74.6,
+  "MADation FS ViT-B/16 release | variant 2 | M_dim_a": 99.2,
+  "MADation FS ViT-B/16 release | variant 2 | M_dim_c": 89.8,
+  "MADation FS ViT-B/16 release | variant 2 | M_fast_dim": 98.8,
+  "MADation FS ViT-B/16 release | variant 2 | M_fast_dim_ode": 99.8,
+  "MADation FS ViT-B/16 release | variant 2 | M_greedy_dim": 100.0,
+  "MADation FS ViT-B/16 release | variant 2 | M_greedy_dim_s": 73.8,
+  "MADation FS ViT-B/16 release | variant 2 | M22_FaceMorpher": 21.0,
+  "MADation FS ViT-B/16 release | variant 2 | M22_MIPGAN_I": 87.5,
+  "MADation FS ViT-B/16 release | variant 2 | M22_MIPGAN_II": 80.3,
+  "MADation FS ViT-B/16 release | variant 2 | M22_OpenCV": 36.6,
+  "MADation FS ViT-B/16 release | variant 2 | M22_Webmorph": 80.2,
+  "MADation FS ViT-B/16 release | variant 2 | a43_A": 77.0,
+  "MADation FS ViT-B/16 release | variant 2 | a43_B": 97.5,
+  "MADation FS ViT-B/16 release | variant 2 | a43_B20": 74.5,
+  "MADation FS ViT-B/16 release | variant 2 | a43_C": 100.0,
+  "MADation FS ViT-B/16 release | variant 2 | a43_C20": 92.2,
+  "MADation FS ViT-B/16 release | variant 2 | a43_D": 85.8,
+  "MADation FS ViT-B/16 release | variant 2 | a43_D20": 73.5,
+  "MADation FS ViT-L/14 release | variant 2 | M_amsl": 90.2,
+  "MADation FS ViT-L/14 release | variant 2 | M_facemorpher": 45.4,
+  "MADation FS ViT-L/14 release | variant 2 | M_opencv": 50.4,
+  "MADation FS ViT-L/14 release | variant 2 | M_webmorph": 86.2,
+  "MADation FS ViT-L/14 release | variant 2 | M_stylegan": 87.1,
+  "MADation FS ViT-L/14 release | variant 2 | M_mordiff": 87.2,
+  "MADation FS ViT-L/14 release | variant 2 | M_dim_a": 94.4,
+  "MADation FS ViT-L/14 release | variant 2 | M_dim_c": 91.2,
+  "MADation FS ViT-L/14 release | variant 2 | M_fast_dim": 95.6,
+  "MADation FS ViT-L/14 release | variant 2 | M_fast_dim_ode": 94.6,
+  "MADation FS ViT-L/14 release | variant 2 | M_greedy_dim": 94.4,
+  "MADation FS ViT-L/14 release | variant 2 | M_greedy_dim_s": 76.6,
+  "MADation FS ViT-L/14 release | variant 2 | M22_FaceMorpher": 49.7,
+  "MADation FS ViT-L/14 release | variant 2 | M22_MIPGAN_I": 51.0,
+  "MADation FS ViT-L/14 release | variant 2 | M22_MIPGAN_II": 56.6,
+  "MADation FS ViT-L/14 release | variant 2 | M22_OpenCV": 71.4,
+  "MADation FS ViT-L/14 release | variant 2 | M22_Webmorph": 75.6,
+  "MADation FS ViT-L/14 release | variant 2 | a43_A": 90.0,
+  "MADation FS ViT-L/14 release | variant 2 | a43_B": 92.5,
+  "MADation FS ViT-L/14 release | variant 2 | a43_B20": 89.0,
+  "MADation FS ViT-L/14 release | variant 2 | a43_C": 97.1,
+  "MADation FS ViT-L/14 release | variant 2 | a43_C20": 95.1,
+  "MADation FS ViT-L/14 release | variant 2 | a43_D": 92.7,
+  "MADation FS ViT-L/14 release | variant 2 | a43_D20": 93.1,
+  "SelfMAD release (HRNet-W18) | existing  | M_amsl": 84.0,
+  "SelfMAD release (HRNet-W18) | existing  | M_facemorpher": 8.4,
+  "SelfMAD release (HRNet-W18) | existing  | M_opencv": 1.5,
+  "SelfMAD release (HRNet-W18) | existing  | M_webmorph": 98.7,
+  "SelfMAD release (HRNet-W18) | existing  | M_stylegan": 98.8,
+  "SelfMAD release (HRNet-W18) | existing  | M_mordiff": 73.5,
+  "SelfMAD release (HRNet-W18) | existing  | M_dim_a": 94.4,
+  "SelfMAD release (HRNet-W18) | existing  | M_greedy_dim": 99.8,
+  "SelfMAD release (HRNet-W18) | existing  | a43_A": 43.0,
+  "SelfMAD release (HRNet-W18) | existing  | a43_B": 53.5,
+  "SelfMAD release (HRNet-W18) | existing  | a43_B20": 41.5,
+  "SelfMAD release (HRNet-W18) | existing  | a43_C": 16.7,
+  "SelfMAD release (HRNet-W18) | existing  | a43_C20": 14.7,
+  "SelfMAD release (HRNet-W18) | existing  | a43_D": 27.5,
+  "SelfMAD release (HRNet-W18) | existing  | a43_D20": 26.5,
+  "SelfMAD release (HRNet-W18) | DGX (RS1  | M_mordiff": 73.5,
+  "SelfMAD release (HRNet-W18) | DGX (RS1  | a43_A": 76.0,
+  "SelfMAD release (HRNet-W18) | DGX (RS1  | a43_B": 88.0,
+  "SelfMAD release (HRNet-W18) | DGX (RS1  | a43_B20": 70.5,
+  "SelfMAD release (HRNet-W18) | DGX (RS1  | a43_C": 41.2,
+  "SelfMAD release (HRNet-W18) | DGX (RS1  | a43_C20": 37.2,
+  "SelfMAD release (HRNet-W18) | DGX (RS1  | a43_D": 57.4,
+  "SelfMAD release (HRNet-W18) | DGX (RS1  | a43_D20": 48.0
+ }
+}

@@ -10,7 +10,8 @@ CELL = {**{f"mad22_{f}": f"MAD22 {f}" for f in ("FaceMorpher", "MIPGAN_I", "MIPG
         "stylegan": "FRLL StyleGAN2", "mordiff": "MorDIFF", "dim_a": "DiM-A", "dim_c": "DiM-C", "fast_dim": "Fast-DiM",
         "fast_dim_ode": "Fast-DiM-ODE", "greedy_dim": "Greedy-DiM", "greedy_dim_s": "Greedy-DiM-S"}
 SHORT = {"reproduced": "reproduced", "our pipeline, published number not reproduced": "not reproduced",
-         "no published number": "no published number"}
+         "no published number": "no published number",
+         "release crop script fails on these files": "release crop script fails on these files"}
 
 
 def md(rows, cols, heads):

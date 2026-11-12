@@ -76,6 +76,11 @@ def cell_sets(c):
 
 
 CELLS = FRLL + ("mordiff",) + DIM + tuple(f"mad22_{f}" for f in FAM22)
+LAB_FAIL = "release crop script fails on these files"
+FAILS = {}                                              # amendment 7: set -> share of malformed variant-1 crops
+_sl = pathlib.Path("/home/narolski/smad-next/experiments/RS1_own-crop-rescore/rs1_sliver_summary.csv")
+if _sl.exists():
+    FAILS = {r["set"]: float(r["share_malformed"]) for r in csv.DictReader(open(_sl))}
 LAB_OK, LAB_NO, LAB_NA = "reproduced", "our pipeline, published number not reproduced", "no published number"
 
 
@@ -433,7 +438,8 @@ def amend_blocks(S, det, plat, P, out):
                     fr = flag_rate(sx, wX, thr_5(sT, S.w(T)), True)
                 out["pool_rates"].append(dict(detector=NAME[det], platform=plat, kind=kind, pool=nm, n=len(X.s),
                                               threshold_pool=tn, flagged=fmt(fp, fr, 1, pct=True),
-                                              flagged_pt=round(100 * fp, 2), src=X.src))
+                                              flagged_pt=round(100 * fp, 2), src=X.src,
+                                              crop_script_fails=bool(plat.startswith("variant 1") and FAILS.get(nm, 0) > 0.05)))
     for proc, base in PAIRS:
         X, Bp = P.get(proc), P.get(base)
         if X is None or Bp is None:
@@ -456,7 +462,8 @@ def amend_blocks(S, det, plat, P, out):
                                   mean_logit_shift=fmt(float(d.mean()), mrep, 2), mean_pt=round(float(d.mean()), 3),
                                   median_logit_shift=round(float(np.median(d)), 3),
                                   share_rising=fmt(float(np.mean(d > 0)), rrep, 1, pct=True),
-                                  saturated_prob_values=sat, src=X.src + " / " + Bp.src))
+                                  saturated_prob_values=sat, src=X.src + " / " + Bp.src,
+                                  crop_script_fails=bool(plat.startswith("variant 1") and (FAILS.get(proc, 0) > 0.05 or FAILS.get(base, 0) > 0.05))))
 
 # ------------------------------------------------------------------------------------------------ main
 def main():
@@ -513,6 +520,8 @@ def main():
             G, Mo = P[gs], P[ms]
             pt, rep = S.eer(G, Mo)
             lab, pub, win = label(det, c, pt)
+            if plat.startswith("variant 1") and (FAILS.get(gs, 0) > 0.05 or FAILS.get(ms, 0) > 0.05):
+                lab = LAB_FAIL                                  # amendment 7: crop script fails on these files
             alt = ALT_PUB.get((det, c))
             altlab = (LAB_OK if alt is not None and abs(pt - alt) <= max(1.5, 0.25 * alt) else LAB_NO) if alt else ""
             out["reproduction"].append(dict(detector=NAME[det], platform=plat, cell=c,
@@ -561,7 +570,19 @@ def main():
                 for tn, (fp, fr, ties) in flag_block(S, G, Mo, X).items():
                     out["flags"].append(dict(detector=NAME[det], platform=plat, cell=c, label=lab, threshold=tn, pool=pn,
                                              n=len(X.s), flagged=fmt(fp, fr, 1, pct=True), flagged_pt=round(100 * fp, 2),
-                                             ties_at_threshold=ties, src=X.src))
+                                             ties_at_threshold=ties, src=X.src,
+                                             pool_crop_script_fails=bool(plat.startswith("variant 1") and
+                                                                         any(FAILS.get(k, 0) > 0.05 for k, v in P.items() if v is X))))
+            # review F3 (descriptive): t5 set on the aligned native pool, applied to the aligned history pool
+            if GA is not None and Ealn is not None:
+                for pn, X in (("aligned E7, t5 on aligned native", Ealn), ("aligned native, t5 on aligned native", GA)):
+                    sT, sx = common(GA, X)
+                    fp = float(np.mean(sx > thr_5(sT, np.ones((1, len(sT))))[0]))
+                    fr = flag_rate(sx, S.w(X), thr_5(sT, S.w(GA)), True)
+                    out["flags"].append(dict(detector=NAME[det], platform=plat, cell=c, label=lab, threshold="t5_aligned",
+                                             pool=pn, n=len(X.s), flagged=fmt(fp, fr, 1, pct=True),
+                                             flagged_pt=round(100 * fp, 2), ties_at_threshold=0, src=X.src,
+                                             pool_crop_script_fails=False))
             # expression split of the genuine class
             for spl, code in (("neutral only", "03"), ("smiling only", "08")):
                 Gs = G.sub(G.ex == code)
@@ -581,6 +602,8 @@ def main():
         if "a43_E" in P and "M_mordiff" in P:
             photo = P["a43_photo"] if "a43_photo" in P and P["a43_E"].src == P["a43_photo"].src else P["G_raw"]
             lab = label(det, "mordiff", 100 * A.eer(*pair(P["G_raw"], P["M_mordiff"])))[0]
+            if plat.startswith("variant 1") and any(FAILS.get(k, 0) > 0.05 for k in P if k.startswith("a43_") or k == "M_mordiff"):
+                lab = LAB_FAIL
             C = [("stored-small photo E vs photo", "a43_E", None), ("reconstruction D20 vs stored-small photo E", "a43_D20", "a43_E"),
                  ("reconstruction D (100 steps) vs stored-small photo E", "a43_D", "a43_E"),
                  ("our morph B20 vs reconstruction D20", "a43_B20", "a43_D20"),
