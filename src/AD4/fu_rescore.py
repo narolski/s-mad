@@ -62,6 +62,24 @@ def score(a):
     torch.backends.cudnn.allow_tf32 = True
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     out = pathlib.Path(a.out)
+    from PIL import Image
+    yy, xx = np.mgrid[0:512, 0:512]
+    outside = ((xx - CX) / AX) ** 2 + ((yy - CY) / AY) ** 2 > 1.0
+
+    class BlankItems(C.ImageItems):
+        """ImageItems with the grey fill outside the face ellipse applied in memory before the unchanged load step
+        (common.ImageItems.load: convert RGB, bilinear resize to res); equal to a lossless PNG of the blanked image."""
+
+        def load(self, p):
+            arr = np.array(Image.open(self.root / p).convert("RGB"))
+            if arr.shape[:2] != (512, 512):
+                raise SystemExit(f"FU blank: {p} is {arr.shape}, not 512 x 512")
+            arr[outside] = GREY
+            img = Image.fromarray(arr)
+            w0 = img.size[0]
+            if img.size != (self.res, self.res):
+                img = img.resize((self.res, self.res), Image.BILINEAR)
+            return img, w0
     for nd in sorted(pathlib.Path(a.nets).iterdir()):
         t0 = time.time()
         if (nd / "zero.json").is_file():
@@ -84,11 +102,13 @@ def score(a):
             info = {"network": "trained", "seed": meta["seed"], "n_trained_tensors": len(sd)}
         model.to(dev).eval()
         (out / nd.name).mkdir(parents=True, exist_ok=True)
-        for mf in a.manifests.split(","):
+        for tok in a.manifests.split(","):
+            mf, _, mode = tok.partition(":")          # "name.csv:blank" = in-memory blanking (Amendment 4b)
             rows = C.read_manifest(mf)
             if a.limit:
                 rows = rows[::max(1, len(rows) // a.limit)][:a.limit]
-            dl = DataLoader(C.ImageItems([(r["path"], int(r["label"])) for r in rows], meta["res"]),
+            Items = BlankItems if mode == "blank" else C.ImageItems
+            dl = DataLoader(Items([(r["path"], int(r["label"])) for r in rows], meta["res"]),
                             batch_size=64, num_workers=a.workers)
             s_tta, s_one = [], []
             with torch.no_grad():
@@ -98,7 +118,8 @@ def score(a):
                     p1 = torch.sigmoid(C.forward_logit(model, torch.flip(x, dims=[3]))[0].float())
                     s_one += p0.cpu().tolist()
                     s_tta += ((p0 + p1) / 2).cpu().tolist()
-            np.savez(out / nd.name / f"scores_{pathlib.Path(mf).stem}.npz", id=np.array([r["id"] for r in rows]),
+            stem = pathlib.Path(mf).stem + ("_blank" if mode == "blank" else "")
+            np.savez(out / nd.name / f"scores_{stem}.npz", id=np.array([r["id"] for r in rows]),
                      score=np.array(s_tta, np.float32), score_noTTA=np.array(s_one, np.float32), limit=a.limit,
                      device=torch.cuda.get_device_name(0) if dev == "cuda" else "cpu", torch=torch.__version__,
                      info=json.dumps(info))

@@ -1018,3 +1018,41 @@ Next steps: when the three reruns are back, copy with hash check, `summarise.py 
 for `m3l` (the 23:59 interim copies stay in `/mnt/t7/smad_next/AD4/read/incomplete2_*`). When the production follow-up tar is back
 (`.../smad-next/results/AD4_fu/fu_<job>_limit0.tar`): copy, check the unblanked-score gate, then read H-new-3, H-new-4 and H-new-5 (reader
 for these still to be written; registered rules in Amendment 4). Compute so far for follow-ups: none on GPU.
+
+### Follow-ups (b) and (c) moved to the DGX (lead, 12 Nov about 00:00; Amendment 4b registered 00:02)
+
+- Athena priority collapsed (fair-share 0.045 / 0.020); the lead moved (b) and (c) to the idle DGX GPU. Smoke job 3546199 cancelled
+  (`scancel` 00:02, before it started). The ViT-L/14 reruns 3546123_[2-4] stay on Athena (Amendment 1c); the lead moved them to the
+  better account.
+- Blanking is applied in memory before the unchanged `ImageItems.load` step (subclass `BlankItems` in `fu_rescore.py`); no image is
+  written. Test: in-memory blanking and the PNG-blanked test images give identical scores (largest difference 0.0, 8 rows, GB10).
+- Scorer `src/AD4/fu_rescore.py` sha256 `e0ab24b5…`. Reader `src/AD4/fu_read.py` sha256 `3e86a8c0…`, tested before any production score
+  on a synthetic result folder (`/mnt/t7/smad_next/AD4/fu/readtest/`): unblanked = registered scores gives gate pass with |dAUC| 0.0000;
+  "blanked" = registered scores reproduces the ViT-B/16 reading table exactly (MorDIFF E7 2.9 [1.8, 4.2]); planted ladder gaps recovered
+  (OpenCV 0.218, FaceMorpher 0.001, "mixed").
+- 00:02: full pass started on the DGX: PID 2828502 (`setsid nohup`, nice 10, 2 threads, 4 loader workers), 11 networks (morph-free first),
+  manifests `ad4_eval.csv`, `ad4_eval.csv:blank`, `fu_extra.csv`; data root `/mnt/t7/smad_next/AD4/fu/dgx/data` (symlinks only);
+  scores `/mnt/t7/smad_next/AD4/fu/dgx/out/<network>/scores_*.npz`; log `/mnt/t7/smad_next/AD4/fu/dgx/score.log`. Expected about 15 to 20
+  min per network on the GB10 (estimate from the untrained network's 454 s per 19,827 images), so about 3 to 3.5 h in all.
+  If it dies: rerun the same command with `--nets` pointing at a folder of symlinks to the networks without a finished `scores_fu_extra.npz`.
+
+### Follow-ups (b) and (c): results of the DGX pass (12 Nov 00:02 to 01:03; reader 01:03 to 01:10)
+
+- Scoring done 01:02 (11 networks, 314 to 364 s each on the GB10; `fu/dgx/score.log`). Disk after: 34 GB free (score files only).
+- **Unblanked-score gate: MISS for 3 of the 5 morph-free networks** (seeds 401, 404, 405: Kendall tau 0.988, 0.987, 0.989 against the
+  registered 0.99; largest |AUC difference| 0.0009, 0.0012, 0.0008, inside the 0.005 tolerance). Seeds 402 and 403 pass (tau 0.991, 0.992);
+  the five label-permuted networks and the untrained network pass (tau ≥ 0.999). By Amendment 4 a network that misses is reported and
+  not read, so every follow-up row of the morph-free arm is "incomplete (2 of 5)". The DGX (GB10, torch 2.12.1) and the rented cards
+  (A100, torch 2.2.1) differ in the order of near-tied scores of the saturated morph-free networks; not investigated further.
+- **Reader fix after the first run (01:05), disclosed:** with fewer than five networks the first version printed verdicts (H-new-4
+  "falsified" although both readable seeds were below the FRLL median; H-new-3 and H-new-5 a verdict on two seeds). Amendment 2 (d)
+  makes such rows "incomplete (k of 5)"; the reader now prints that. `fu_read.py` sha256 `cea617cb…` (first version `3e86a8c0…`); no
+  rule or number changed. Logs `read/fu_read.log` (first), `read/fu_read2.log`.
+- Results, our frames (H-new-3) and the ladder's own frames (H-new-5), seeds 402 and 403 only; files `fu_blank_m3.md`, `fu_pools_m3.md`:
+  - H-new-3 (border blanked, both classes): MorDIFF history-matched 2.9 and 13.2% (mean 8.1 [5.3, 10.8]); MorDIFF native 0.0; DiM
+    natives 0.0 to 9.8; corrected MAD22 FaceMorpher native 0.0, history-matched 0.5 and 5.9; FRLL AMSL / FaceMorpher / OpenCV / Webmorph
+    natives 3.2 / 6.1 / 11.2 / 8.3. References (blanked) 31.9 to 56.3%.
+  - H-new-5: gap AUC(R4 vs R0) − AUC(R3 vs R0) OpenCV 0.009 [-0.008, 0.023], FaceMorpher -0.006 [-0.029, 0.015]; R4 vs R3 AUC 0.47 to 0.52;
+    R3 vs R0 0.84 to 0.91.
+  - H-new-4: SMDD evaluation renders sit 0.03 and 0.05 logits below the FRLL genuine median (both readable seeds); StyleGAN3 renders
+    (H3) 0.91 and 1.85 above; StyleGAN v1 renders (H4b, 112 px native) 7.1 above (near the copy class).

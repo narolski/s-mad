@@ -72,6 +72,8 @@ def load_items(run, feats_dir, smoke):
             print(f"{lst}: features missing, skipped", flush=True)
             continue
         Z = {b: np.load(fz[b], allow_pickle=False) for b in BB}
+        pf = DG1 / "gen" / lst / "PLATFORM.txt"
+        platform = "rented" if pf.exists() else "athena"
         ids = Z["clip_mad"]["id"].tolist()
         assert ids == Z["dinov2"]["id"].tolist()
         for j, rel in enumerate(ids):
@@ -86,7 +88,7 @@ def load_items(run, feats_dir, smoke):
             pers = (h, p) if p else (h,)
             items.append(dict(id=rel, list=lst, pool=r["pool"], key=r["pool"].split("_", 1)[1], rung=r["rung"],
                               steps=int(r["steps"]), alpha=r["alpha"], host=h, partner=p, persons=pers, cycle=cyc[h],
-                              db=h.split(":")[0], src_a=r["src_a"], src_b=r["src_b"], path=str(DG1 / "gen" / lst / rel)))
+                              db=h.split(":")[0], platform=platform, src_a=r["src_a"], src_b=r["src_b"], path=str(DG1 / "gen" / lst / rel)))
             for b in BB:
                 F[b].append(Z[b]["feat"][j])
     if smoke:
@@ -296,7 +298,8 @@ def main():
     H = heads(F["clip_mad"])
     out = {"run": a.run, "B": B, "smoke": a.smoke, "counts": counts, "n_hosts": len({it["host"] for it in items})}
     unfl = lambda it: it["flagged"] == 0  # noqa: E731
-    masks = {"all": None, "unflagged": unfl, "frgc": lambda it: it["db"] == "frgc", "feret": lambda it: it["db"] == "feret"}
+    masks = {"all": None, "unflagged": unfl, "frgc": lambda it: it["db"] == "frgc", "feret": lambda it: it["db"] == "feret",
+             "athena": lambda it: it["platform"] == "athena", "rented": lambda it: it["platform"] == "rented"}
 
     def sens(s, pos, neg):
         r = {}
@@ -474,7 +477,7 @@ def main():
     print("H4 reading", out["clip_mad"].get("H4 (probe X20 vs SAME20)", {}).get("reading"), flush=True)
     tag = f"{a.run}{'_smoke' if a.smoke else ''}"
     json.dump(out, open(OUTX / f"read_{tag}.json", "w"), indent=1, default=float)
-    cols = ["id", "list", "key", "rung", "steps", "alpha", "host", "partner", "cycle", "db", "flagged", "d", "png_bytes",
+    cols = ["id", "list", "platform", "key", "rung", "steps", "alpha", "host", "partner", "cycle", "db", "flagged", "d", "png_bytes",
             "lapvar_box", "asym_box"]
     with open(BIG / f"read_{tag}_items.csv", "w", newline="") as fh:
         w = csv.writer(fh)

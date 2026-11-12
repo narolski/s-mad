@@ -359,3 +359,18 @@ evaluation PNGs, writes no image).
 Order: (a) runs on the DGX now; (b) and (c) after an 8-image DGX test, an Athena smoke job (8 images per manifest) and then one
 production job (estimate under 2 A100-hours). Inputs travel to Athena as one tar streamed over ssh (no local copy: `/mnt/t7` has
 35 GB free, below the 50 GB rule).
+
+## Amendment 4b: follow-ups (b) and (c) move to the DGX (12 Nov 2026, 00:02 CET; before any score of these follow-ups exists)
+
+Lead's instruction: Athena scheduling priority collapsed (fair-share 0.045 and 0.020, no start forecast). Follow-ups (b) and (c) of
+Amendment 4 run instead as **one self-contained scoring pass on the DGX** (GB10 GPU, host Python `.venv-spark`, torch 2.12.1+cu130,
+the environment of the scorer-equivalence gate and of the untrained networks). Every row of these follow-ups comes from this one
+machine. The Athena smoke job 3546199 is cancelled before it starts; no Athena result of these follow-ups exists or will be used.
+- Networks, pools, statistics, rules and the unblanked-score gate: unchanged from Amendment 4. The gate compares the DGX re-score of
+  the unblanked images with the registered scores (rented A100 / RTX 6000 Ada), tolerance |AUC difference| ≤ 0.005 and Kendall
+  tau ≥ 0.99 per cell.
+- Blanking without writing images (only score files may be written; `/mnt/t7` has 35 GB free): the grey fill outside the fixed face
+  ellipse is applied in memory to the decoded 512 x 512 RGB image, immediately before the unchanged loader step (`ImageItems.load`:
+  convert RGB, bilinear resize to 224). This equals writing and re-reading a lossless PNG of the blanked image (PNG is lossless). An
+  image that is not 512 x 512 stops the job.
+- Scoring on the shared GB10 GPU, one process (plus loader workers), thread caps, nice 10; DataLoader 4 workers, batch 64.

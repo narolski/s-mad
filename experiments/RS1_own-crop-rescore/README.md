@@ -203,6 +203,11 @@ missing); a pack is ready there for later.
   (finding: a released detector's score depends on the JPEG decoder build). Crops with a different detector box (A100
   vs 3090: 47 v1, 85 v2) differ by up to 9.5 logits. Athena 3545972 / 3545973 cancelled by the driver at 23:58 (never
   started). Production variant 1 then variant 2 running on rs1b.
+- 00:42. Variant 1 back and verified (`results_rented/rs1a_prod_v1_rented.tar`; scoring 94 to 465 s per release on
+  the RTX 3090). The unchanged SMDD script wrote 28,262 of 29,056 crops; it dropped 794: FRLL FaceMorpher 416 of
+  1,222 (34%), FFHQ 66 / 64 / 58, MorDIFF 55, A43 arms 116 in total, FRLL OpenCV 10, FEI 4, MorDIFF aligned / E7 5
+  (no face, or an empty crop from the unbounded slice of line 40). Rows are computed without them; expected vs scored
+  counts are in `rs1_reproduction*.csv`. Preliminary analysis of variant 1 alone: `rs1_*_v1only.csv`.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.

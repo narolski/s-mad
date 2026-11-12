@@ -72,8 +72,13 @@ faces; natives at logit -4.07, copies +4.02). No verdict until five morph-free n
   at AUC 1.000 in all 8 native cells the networks pass at AUC >= 0.99; the networks' scores follow it with Spearman >= 0.7 in 4 of the 8
   (H-new-1: mixed). Across the 7 diffusion history-matched cells the networks' AUC follows how much softer the morphs are than the
   history-matched photos (Spearman 0.86; H-new-2: consistent with overshoot). `fu_sharpness_m3.md`.
-- Border-blanked re-score (H-new-3), ladder same-person and two-person morphs (H-new-5) and held-out generator renders (H-new-4): queued on
-  Athena (smoke job 3546199), not yet run.
+- Border-blanked re-score (H-new-3), ladder morphs (H-new-5), held-out generator renders (H-new-4): scored on the DGX (Amendment 4b).
+  The DGX re-score of the unblanked images misses the registered agreement gate for 3 of 5 morph-free networks (Kendall tau 0.987 to
+  0.989 against 0.99; |AUC difference| at most 0.0012), so these rows are "incomplete (2 of 5)", seeds 402 and 403 only. Blanking
+  everything outside the face: MorDIFF history-matched 2.9 and 13.2% EER, corrected MAD22 FaceMorpher 0.0 native; the cue is not
+  removed on those cells in these two networks. Landmark ladder (its own frames): same-person blends are scored like two-person morphs
+  (gap OpenCV 0.009, FaceMorpher -0.006; R4 vs R3 AUC 0.47 to 0.52). Held-out SMDD renders sit at the FRLL genuine level (0.03 to 0.05
+  logits below). `fu_blank_m3.md`, `fu_pools_m3.md`.
 
 ## Withdrawn
 

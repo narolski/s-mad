@@ -235,6 +235,9 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
 - 11 Nov 21:58. Persistent job poller `src/AD5/athena/poll_jobs.sh` (command lock, every 170 s) writes state changes to
   `/mnt/t7/smad_next/AD5/state/jobs.log` (PID in `state/poller.pid`). 22:40: all AD5 production tasks still pending
   ("ReqNodeNotAvail": 23 nodes failed, 13 reserved, 12 partly used; 8-GPU tasks need a whole node).
+- 12 Nov 00:15. Athena: all 12 usable nodes fully allocated (95 of 96 GPUs in use; 13 nodes reserved and idle, 23
+  failed). AD5 tasks wait at the top of our pending list ("ReqNodeNotAvail" = waiting for resources). 00:50: still
+  pending; nothing resubmitted or reshaped (lead's instruction).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.

@@ -1,7 +1,8 @@
 # FZ2 Frozen read of the new diffusion ladder: result
 
-Status 11 Nov 2026, 21:50 CET: **secondary read (DG1 production set B) done; primary read (DG1 add-on) pending** —
-2 of 8 add-on shards generated and extracted; shards 2–7 are queued on Athena (start estimate 12 Nov 02:27). The
+Status 12 Nov 2026, 00:45 CET: **secondary read (DG1 production set B) done; primary read (DG1 add-on) pending** —
+3 of 8 add-on shards generated and extracted; shards 3–7 are queued on Athena (nodes in a reservation, start unknown).
+The registered read runs automatically when all shards are extracted (`/mnt/t7/smad_next/FZ2/addon_read_when_ready.log`). The
 registered readings of H-new-1 to H-new-4 are made on the add-on only; nothing below is a registered verdict.
 Registration `prereg.md` (20:32, before any DG1 feature), full record `README.md`.
 

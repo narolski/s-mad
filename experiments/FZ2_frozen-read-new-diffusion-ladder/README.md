@@ -6,8 +6,9 @@ Athena folders `/net/pr2/projects/plgrid/plggrestoration/smad-next/{packs,result
 
 ## 1. Question and current answer
 
-11 Nov 2026, 21:35 CET. Status: **registered; features being computed on the DGX** (production set B now; add-on shards
-as they arrive: 2 of 8 generated, the rest queued on Athena). No DG1 feature read yet.
+12 Nov 2026, 00:45 CET. Status: **registered; secondary read (production set B) done; primary read (add-on) waits for
+DG1 add-on shards 3–7** (3 of 8 generated and extracted at 00:14; the rest queued on Athena). Watchers will extract the
+remaining shards and run the registered read automatically.
 Question: on the new diffusion-autoencoder ladder (DG1) with fresh persons (FRGC, colorFERET), do frozen CLIP ViT-L/14
 and DINOv2 features, and the frozen SMDD heads of FZ1, read mixing, or only "not rendered from its own noise map"
 (H-new-1, H-new-2); does the frozen heads' weak ordering of two-person over same-person mixes replicate with an excess
@@ -60,6 +61,13 @@ No answer yet.
 - 21:50 `result.md` (production, secondary) written; interim status sent to the lead.
 - 21:55–00:00 Waiting for DG1 add-on shards 2–7: Athena array 3545907 pending (`ReqNodeNotAvail`; `sinfo`: 13 nodes
   reserved, 11–12 mixed; start estimate N/A). Both FZ2 watchers alive.
+- 00:09–00:14 Add-on shard 2 arrived (DG1 owner's copy, 1,258 PNG) and was extracted by the watcher. Shards 3–7 still
+  pending on Athena at 00:43 (`ReqNodeNotAvail`).
+- 00:50 Lead: shards 2–7 come from a rented RTX 3090 (generation owner's driver, passed the registered equivalence
+  check), unpacked into the same `/mnt/t7/smad_next/DG1/gen/addon_s<k>/` with a `PLATFORM.txt` (shard 2 is rented; 0, 1
+  Athena); last shard about 03:15. Each shard is self-contained, so no contrast mixes platforms within a host.
+  `fz2_read.py` patched before any add-on read: column `platform` (rented if `PLATFORM.txt` exists, else athena) and
+  per-platform sensitivity rows beside unflagged / FRGC / colorFERET. Watchers unchanged (they already found shard 2).
 
 ## 3. Data
 
@@ -124,15 +132,17 @@ Add-on (primary): pending.
 2. When the add-on tars exist: `sbatch packs/FZ2/fz2_job.sbatch addon addon_s0 … addon_s7`, fetch, check, `fz2_read.py
    --run addon` (the primary read), then `result.md`.
 
-## 10. Handover state (21:55)
+## 10. Handover state (00:45, 12 Nov)
 
-- DGX, running (mine): `src/FZ2/fz2_dgx_addon_watch.sh` (log `/mnt/t7/smad_next/FZ2/dgx_addon_watch.log`; extracts each
+- DGX, running (mine): `src/FZ2/fz2_dgx_addon_watch.sh` (PID 2571168; log `/mnt/t7/smad_next/FZ2/dgx_addon_watch.log`; extracts each
   add-on shard once the DG1 owner's copy in `/mnt/t7/smad_next/DG1/gen/addon_s<k>/` is complete; shards 0, 1 done) and
-  `src/FZ2/fz2_addon_read_when_ready.sh` (log `/mnt/t7/smad_next/FZ2/addon_read_when_ready.log`; runs the primary read
-  `fz2_read.py --run addon` when all 16 add-on feature files exist; output `read_addon.json`, log
+  `src/FZ2/fz2_addon_read_when_ready.sh` (PID 2632681; log `/mnt/t7/smad_next/FZ2/addon_read_when_ready.log`; runs the primary read
+  `fz2_read.py --run addon` when all 16 add-on feature files exist (shards 0–2 done at 00:14); output `read_addon.json`, log
   `/mnt/t7/smad_next/FZ2/logs/read_addon.log`). Find them with `ps -ef | grep src/FZ2/`.
-- DG1 add-on shards 2–7 (Athena array 3545907, DG1 owner's job): pending at 21:50, 13 Athena nodes in a reservation,
-  start time unknown.
+- DG1 add-on shards 3–7 (Athena array 3545907, DG1 owner's job): pending at 00:43, 13 Athena nodes in a reservation,
+  start time unknown. If a shard fails for good, the automatic read never starts: run
+  `OMP_NUM_THREADS=2 python -I src/FZ2/fz2_read.py --run addon --feats-dir /mnt/t7/smad_next/FZ2/results/dgx/out` by hand
+  (it analyses the shards present and prints the counts, as registered).
 - If a watcher dies: rerun it (finished files are skipped). If the read fails, rerun the command in its log line.
 - Then: write the add-on part of `result.md` (registered readings H-new-1 to H-new-4) and report.
 - Athena: nothing of FZ2 queued. Compute so far: Athena 0; DGX GB10 about 20 min (shared).
