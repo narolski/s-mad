@@ -33,3 +33,11 @@ sources, so TT1 is a false-alarm test only.
   AR1, AF0 and FFHQ-Morphs went through.
 - The scoring experiment is registered separately (draft `prereg_scoring_draft.md`, for independent pre-run review);
   nothing is scored before that registration is committed.
+
+## 3. Registration TT1-S (scoring), registered at the git commit that adds this section
+
+- Text: `prereg_scoring.md` (applies the pre-run review `experiments/reviews/PRERUN_TT1_SCORING_20261112.md`, commit
+  7c0ecb6, majors M1-M7, platform list, minors; and the lead's rulings R1-R5). `date` at writing: Thu Nov 12 11:25:24 PM CET 2026.
+- At this commit no TT1 image, border-matched or crop-geometry-matched reference has been scored, and the
+  crop-geometry-matched reference has not been built. Pins of the list, pack, network tar, job script and reader
+  follow in a pins section, committed before any score.
