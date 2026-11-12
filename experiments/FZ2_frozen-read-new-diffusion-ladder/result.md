@@ -88,9 +88,11 @@ Descriptive (clip_mad):
 - Reading (review F3): along P_XS, two-person mixes and every two-person dose sit with the reconstruction; what separates
   X from SAME is a property of the same-person mix (face-box sharpness medians REC 87, X 96, SAME 128, reviewer's check).
 
-## Amendment 1 (post hoc in substance; registered in commit dbc151d before computing; **UNREVIEWED** until the next review batch) — `amend1.json`
+## Amendment 1 (post hoc in substance; registered in commit dbc151d before computing; reviewed in `experiments/reviews/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md`, F6) — `amend1.json`
 
 Zero GPU, existing features; partner-cycle folds, two-way person bootstrap B = 10,000. Code `src/FZ2/fz2_amend1.py`.
+Order note (review F6): the registration commits (dbc151d, c258935) precede the result commits, but the gaps are about
+60 s, so the order of computation cannot be proved from timestamps.
 
 - **(i) H-A transfer: supported.** P_XS (clip_mad) on NOISEX vs NOISES 0.907 [0.884, 0.928] (dinov2 0.932); SEMX vs SEMS
   0.579 [0.538, 0.620] (0.553). Mean P_XS scores: NOISES −2.85 (like SAME −2.81), NOISEX +1.46, SEMS +2.09, SEMX +2.61, REC
@@ -110,12 +112,13 @@ Zero GPU, existing features; partner-cycle folds, two-way person bootstrap B = 1
   the floor (−0.137 [−0.185, −0.088]).
 - **(iii) H-C on FZ1's A43 frames: supported** (registered ≤ 0.62): head s401 B20 vs C20 0.621 → 0.569 [0.455, 0.684]
   stratified by centre-256 Laplacian fifths (within-stratum 0.720, 0.463, 0.737, 0.516, 0.479; B20/C20 counts 50/11,
-  47/13, 49/11, 38/22, 16/45; thin strata).
+  47/13, 49/11, 38/22, 16/45; thin strata). "Supported" rests on the point estimate only: 0.569 [0.455, 0.684], and the
+  interval includes the falsifier 0.65.
 - **(iv) P_XS from DG1 on A43 frames** (other persons, 512 frames): B20 vs C20 0.878, B vs C 0.901, C20 vs D20 0.053, B20
   vs D20 0.304, B vs D 0.388 (dinov2 0.930, 0.926, 0.020, 0.241, 0.325). The DG1 direction transfers to FRLL and again
   marks the same-person mix (it scores reconstructions above both mixes).
 
-## Amendment 2 (post hoc in substance; registered in commit c258935 before computing; **UNREVIEWED**) — `amend2.json`
+## Amendment 2 (post hoc in substance; registered in commit c258935 before computing; reviewed in `experiments/reviews/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md`, F6) — `amend2.json`
 
 Saved noise maps of add-on shards 2–6 (335 hosts; shards 0–1 codes on Athena, shard 7's lost). Code `src/FZ2/fz2_amend2.py`.
 
@@ -128,9 +131,10 @@ Saved noise maps of add-on shards 2–6 (335 hosts; shards 0–1 codes on Athena
   With P_XS: c0 −0.239, bands 2–4 −0.50 / −0.52 / −0.41, θ +0.486. Within X every correlation is within ±0.08 (intervals
   include 0).
 - Joint model within SAME (ranks): R² of L on c0 0.009; adding θ raises it to 0.192, ΔR² +0.183 [+0.110, +0.267].
-- **Registered reading, H-A (shared structure in the lowest band): falsified** (θ adds beyond c0; c0 does not predict
-  sharpness). The same-person pairs share far more low-band structure than other-person pairs, but within SAME the
-  sharpness and the P_XS score follow the whole-map angle and the mid / high bands, not the lowest band.
+- **Registered reading: falsified as registered for the lowest-band version (c0, 0.3% of the noise power; ρ +0.095
+  [−0.016, 0.206]). Post hoc: θ is the power-weighted mean of the band cosines, and shared structure in the mid and high
+  bands tracks sharpness within SAME (ρ 0.34–0.44). Coherent-noise sharpening in general is not falsified (descriptive).**
+  (Wording from the review, F6; the identity check is in amendment 3.)
 
 ## Compute
 

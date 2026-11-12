@@ -189,3 +189,18 @@ CPU, `OMP_NUM_THREADS=2`, `nice -n 10`. Code `src/FZ2/fz2_amend2.py`, output `am
   both functions of the same pair; the reading asks which summary carries the sharpness.
 - Descriptive: the same with P_XS as outcome; the same within X; all bands and the low-pass cosine; which of c0,
   low-pass cosine and θ best separates X from SAME on these 335 hosts (θ was 0.916 on all 536).
+
+## Amendment 3 (12 Nov 2026, registered and committed before any of its numbers is computed): HN10 mediation, last step of the mechanism line
+
+Post hoc in substance (review `experiments/reviews/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md`, F6 and HN10). Zero GPU,
+measurement only, same data as amendment 2 (saved noise maps of shards 2–6, 335 hosts; FZ2's face-box Laplacian L of the
+host's SAME20 image). Code `src/FZ2/fz2_amend3.py`, output `amend3.json`. Also computed there: the check of the identity
+cos(a, b) = Σ_k w_k c_k (w_k = power weight of band k, Parseval) and the band power shares.
+
+- Partial Spearman correlations within SAME (rank-transformed variables, residuals of OLS on the controls), person
+  bootstrap over hosts (B = 2,000, seed 20261112): (1) θ with L controlling for c1, c2, c3; (2) c2 with L controlling for θ.
+- **Prediction (HN10) supported** if (1) is within ±0.10 with its 95% interval including 0, **and** (2) ≥ 0.20 with lower
+  bound > 0.
+- **Falsified** if (1) has its interval excluding 0 with |point| ≥ 0.10, **or** (2) has upper bound < 0.20.
+- Otherwise not decided. After this the diffusion mechanism line stops; the paper carries one sentence ("render-path
+  separability, one generator").
