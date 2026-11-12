@@ -40,7 +40,7 @@ What the eight fits and the second batch show (reviews `REVIEW_PN1_TIER1_2026111
 | SMDD rebuild (SM1), ViT-B/16 fits | rented A100 | 4 of 12 fits back; registered reading at the eighth, about midday | 5.1 so far, cap 12 |
 | MIPGAN controls (AG1) | rented A100 | in production since 03:17, 9 to 18 hours of work; accepted under a looser platform rule by lead decision, not a registered pass | 1.4 so far, cap 10 |
 
-Rental spend since your approval: 27.1 USD of the 50 (credit 105.1 to 78.0). If both running machines reach their caps the total is about 43 USD.
+Rental spend since your approval: 27.1 USD of the 50 (credit 105.1 to 78.0). The table itemises 22.3 USD from the lease guards; the remaining 4.8 USD (failed or replaced leases, storage and transfer charges) is not itemised here. If both running machines reach their caps the total is about 43 USD.
 
 Athena is closed for the sprint in practice: fair-share is exhausted and Slurm forecasts new jobs for late December. WCSS is still not reachable.
 
