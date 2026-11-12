@@ -466,3 +466,17 @@ bash upload1.sh; bash upload2.sh        # pack, DINOv3 tar, tasks; smoke submiss
 bash fetch.sh; $P postfeatx.py install; $P tier0.py --backbones dinov3_512; $P postfeatx.py check; $P cert.py tier0
 $P tier1.py; $P report.py tier1
 ```
+
+## 12. FS1 run on the single A100 PCIe host (from 12 Nov 10:13 CET)
+
+- Host 149.248.21.7:30078 (offer 59287573), A100-PCIE-40GB, UUID GPU-5bd20020-715e-e9fd-b9d3-f89ca57849ad, 32 cores,
+  63 GB RAM, 100 GB disk; lease folder `/mnt/t7/smad_next/vast/pn1fs`; guard (lead) cap 11.6 USD, deadline 26 h from
+  08:52. Setup SETUP_OK 09:48:51 (pack upload 3,122 s, under 3 MB/s); amendment 14 started 10:13:22; queue "all"
+  queued 10:13:52 behind A14_DONE; pull loops started from the main session about 10:15. The host clock runs one hour
+  behind CET (remote logs show 09:13 for the 10:13 start).
+- Setup check (`date`: Thu Nov 12 10:14:57 AM CET 2026): the lead's setup ran while drive_fs.sh was edited from `7f92088f…` (D3) to
+  `9a17da12…` (D3 addendum). The only difference is the DGX-side pull-loop length (96 -> 150 rounds); setup, task
+  folders and the remote scripts are the same in both. Checked on the host: the 16 task folders of queue "all" are
+  present with run.sh `04998a7c…` (16 of 16); remote_fs.sh `7e2e6a30…`, remote_a14.sh `fadc2c79…`, rescore.py
+  `6f6eede7…` (the registered pins); pack hash OK at setup. The pull loop was started at about 10:15, after the edit,
+  so it runs the 25 h version. Nothing must be redone.
