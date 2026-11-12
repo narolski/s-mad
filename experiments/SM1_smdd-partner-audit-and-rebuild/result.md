@@ -4,11 +4,11 @@ Owner run, 11 Nov 2026. Pre-registration: `prereg.md` (amendments A1 to A11; A12
 independent review `experiments/reviews/REVIEW_SM1_20261111.md`, registered before each A12 item ran). Code:
 `src/SM1/`. Large outputs: `/mnt/t7/smad_next/SM1/`. Full record: `README.md`.
 
-Status 12 Nov 13:00: Part 1, T-A, T-B, T-C, Part 2, Part 3 frozen heads (14 arms x 5 seeds, incl. five random
-partners), A12 items 1 to 9, 11, 13, 2 ViT-L/14 LoRA fits (Athena) and 9 ViT-B/16 LoRA fits (rented RTX 6000 Ada; A13)
-are read; corrections of the ViT-B/16 review (`experiments/reviews/REVIEW_SM1_VITB_20261112.md`) applied. Running:
-the last 3 ViT-B/16 fits (b′ s401, b s402, b′ s402) on the rented machine; ViT-L/14 audit scoring (Athena 3547052,
-read by the rank rule A14). The other 23 ViT-L/14 fits stay queued on Athena (forecast late December).
+Status 12 Nov 17:00: Part 1, T-A, T-B, T-C, Part 2, Part 3 frozen heads (14 arms x 5 seeds, incl. five random
+partners), A12 items 1 to 9, 11, 13, 2 ViT-L/14 LoRA fits (Athena), all 12 ViT-B/16 LoRA fits (rented RTX 6000 Ada;
+A13), A15 and A17 (development data) are read; corrections of the reviews `REVIEW_SM1_VITB_20261112.md` and
+`REVIEW_SM1_12FITS_A15_20261112.md` applied. Waiting: ViT-L/14 audit scoring (Athena 3547052, rank rule A14). The
+other 23 ViT-L/14 fits stay queued on Athena (forecast late December).
 
 **Development exposure (author's ruling, 12 Nov).** Every benchmark-cell number of the remedy arms c, d, d+, e and f
 (frozen heads, release-recipe heads, LoRA fits) is development exposure: no benchmark set may be used to develop a
@@ -674,15 +674,17 @@ native +3.8 [+3.0, +4.4], diffusion rise −2.1 [−2.9, −0.5], GAN-3 +7.1 [+4
 rule 0.15 → 0.53. Partner trace: rank DiD b − b′ 0.250 [0.238, 0.262], a − b′ 0.190 [0.178, 0.202].
 
 Reading (audit; 2 seeds): on the standard ViT-B/16 recipe the five SMDD partners leave a clear rank trace (0.76 to
-0.82; 0.53 to 0.59 without them). Unlike the frozen linear heads (b → b′ −3.4 landmark points), more partners do
-**not** improve native EER here (+0.5 landmark, +3.8 diffusion, +7.1 GAN) and raise the flags on history-matched
-genuine photos (0.15 → 0.53). Every arm trained on renders reacts to storage history on the diffusion cells (+18 to
+0.82; 0.53 to 0.59 without them). On the standard recipe (2 seeds per arm) no partner-diversity effect is detected:
+b → b′ landmark +0.5 (seed SD of 8 reference retrains 1.7), GAN-3 +7.1 (seed SD 9.9), history-pool flags 0.15 → 0.53
+(reference range 0.00–0.70); the registered intervals resample persons only and leave out seed variance. Diffusion-7
+native +3.8 repeats in both seeds (b 5.8 / 5.9, b′ 10.3 / 9.0) but has no reference spread. The frozen-head gain (−3.4,
+5 seeds) is not shown to carry over to fine-tuning. Every arm trained on renders reacts to storage history on the diffusion cells (+18 to
 +29); the only fits without the rise (e, f) do not detect MorDIFF (development exposure).
 
 ## A15: saved ViT-B/16 a, e, f on development data only (registered d84a1c2; `a15_read.json`)
 
-Run 12 Nov 15:35 to 15:59 on a second rented RTX 6000 Ada (lease `sm1dev`, `drive_v2.sh devfresh`; the first attempt
-on sm1b scored nothing, README). Scorer with the non-benchmark reproduction check (256 stored AR1 camera-photo rows per
+Run 12 Nov 15:35 to 15:59 on a second rented RTX 6000 Ada (lease `sm1dev`, `drive_v2.sh devfresh`; deviation from
+the registered machine sm1b, noted in `prereg.md`; the first attempt on sm1b scored nothing, README). Scorer with the non-benchmark reproduction check (256 stored AR1 camera-photo rows per
 fit, max diff 0.0 for all 6); 6 tars sha256-verified in `/mnt/t7/smad_next/SM1/results_rented/dev/`, machine logs
 back before RELEASE. No benchmark cell scored. Host bootstrap (536 FRGC / colorFERET hosts), B = 10,000; 2-seed means
 [interval] (seeds).
@@ -693,19 +695,46 @@ back before RELEASE. No benchmark cell scored. Host bootstrap (536 FRGC / colorF
 | e | 0.997 [0.995, 0.999] | **0.510 [0.485, 0.536]** (0.508, 0.512) | +0.020 [0.004, 0.042] / +0.091 [0.029, 0.172] | 0.49 / 0.44 |
 | f | 0.993 [0.990, 0.996] | 0.562 [0.538, 0.588] (0.571, 0.553) | +0.042 [0.013, 0.081] / +0.140 [0.068, 0.230] | 0.52 / 0.52 |
 
-- **H-new-A (MorDIFF detection is mostly the storage cue): supported.** e's history-matched AUC 0.510 (≤ 0.65) and a
-  drops 0.254 from native to history-matched (≥ 0.15). On our own diffusion ladder, history crossing leaves no
-  separation of two-person diffusion mixes from one-person reconstructions with the same generator history; arm a
-  keeps some (0.745), at chance level it is not. The native contrast is near 1 for every fit (X20 differs from raw
-  camera photos in crop, resolution and file format as well as history).
-- **H-new-E (e penalises camera detail): falsified.** e's mean increment is above 0 with the interval above 0 at both
-  strengths (+0.020, +0.091): softened photos score higher (more morph-like), not lower; arm a's increment is far larger
-  (+0.22, +1.44; its R0 sits on the floor, so this part is descriptive).
-- **H-new-B, AUC part: undecided.** Paired AUC e − f −0.030 [−0.046, −0.015] (112.7 px) and −0.080 [−0.102, −0.060]
-  (61.2 px): not below 0.05 at both, not 0.10 or more.
-Reading: on development data, the history-crossed networks no longer react to softening (paired AUC about 0.5) but
-also no longer tell a two-person diffusion mix from a one-person reconstruction; the remedy removes the storage cue and
-the diffusion detection together.
+- **H-new-A (render-path matching removes the mix signal): supported as registered.** e's history-matched AUC 0.510
+  (≤ 0.65) and a drops 0.254 from native to history-matched (≥ 0.15; near-automatic, since the native contrast mixes
+  resolution, crop and file format). REC20 controls the generator path, not storage history (no resize, no JPEG), so
+  the ladder tests render-path matching and says nothing directly about MorDIFF. The native contrast is near 1 for
+  every fit, and so is REC20 over R0 (a 0.992, e 0.999, f 0.995): every fit scores one-person reconstructions as
+  morph-like (median logit +1.2 to +2.5 against −3.6 for camera photos), a check that each fit flags generator output
+  and a deployment cost (diffusion-processed genuine photos would be flagged), not morph detection.
+- **H-new-E (e penalises camera detail): falsified as registered, but negligible.** e's mean increment is above 0 with
+  the interval above 0 at both strengths (+0.020, +0.091), but the median increment is about 0 (−0.003 / −0.009) and
+  57% / 65% of hosts decrease: e is close to indifferent to softening, with a small positive tail. Arm a's increment
+  is far larger (+0.22, +1.44; its R0 sits on the floor, descriptive).
+- **H-new-B, AUC part.** Reader deviation: `a15_read.py` used an unpaired estimator (all 200 x 200 cross-host pairs):
+  e − f −0.030 [−0.046, −0.015] (112.7 px) and −0.080 [−0.102, −0.060] (61.2 px), undecided. The registered per-host
+  paired estimator (share of hosts whose softened copy scores above its own raw photo; `a17_read.json`): e 0.430 /
+  0.355, f 0.518 / 0.490; e − f −0.088 [−0.125, −0.052] and **−0.135 [−0.175, −0.097]** at 61.2 px: **falsified under the
+  registered rule.** Caveat: 40% / 29% of e's per-host increments are below 0.01 logit in size, so the sign statistic
+  partly reads noise near zero.
+
+**Post hoc (review F1; recomputed here, `a17_read.json`): the SAME20 rung.** X20 and SAME20 are both mixes; only the
+second person differs, so X20 over SAME20 is the identity-controlled contrast.
+
+| Contrast | a | e | f | a − e |
+|---|---|---|---|---|
+| X20 over REC20 | 0.745 | 0.510 | 0.562 | +0.235 [0.215, 0.256] |
+| SAME20 over REC20 | 0.606 | 0.356 | 0.413 | +0.250 [0.231, 0.271] |
+| X20 over SAME20 | 0.658 | 0.645 | 0.639 | +0.014 [−0.006, +0.033] |
+| X20 over SAME20, Laplacian-stratified (A17) | 0.595 | 0.621 | 0.617 | −0.026 [−0.050, −0.001] |
+| X20 over SAME20, θ-stratified (A17) | 0.568 | 0.583 | 0.587 | −0.015 [−0.054, +0.023] |
+
+**A17 (H-n3, registered f6b06e2 before computing):** H-n3a supported (Laplacian-stratified a − e −0.026, within ±0.03);
+H-n3b undecided (θ-stratified a 0.568 [0.523, 0.612], e 0.583 [0.538, 0.627], f 0.587 [0.540, 0.632]: e and f above
+0.58 at the point, every interval includes 0.58).
+
+Reading: on development data (one generator, 2 seeds), history crossing removes arm a's separation of mixed renders
+from one-person reconstructions, for two-person (X) and one-person (SAME) mixes alike (a − e +0.235 and +0.250). It
+does not change the identity-controlled contrast X vs SAME (a 0.658, e 0.645; a − e +0.014 [−0.006, +0.033]), which no
+arm lifts above one sharpness statistic (face-box Laplacian, 0.695). Every fit still scores one-person reconstructions
+as morph-like against camera photos (0.99+). What the remedy removes is a mixing/render-path signal, not shown
+second-identity detection. Arm a's 0.745 is not face-box sharpness or file size (removing both from its score raises
+its AUC; review F2): a reads mixing in the latent path. The cleanest statement in A15: a = e on X vs SAME.
 
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
@@ -770,5 +799,5 @@ so these increments are not floor reads. Development data (AR1 / AF0), not bench
 - Origin of the `os25k_m_t` / `os25k_m_e` folders on disk is not recorded; the names agree with the content on
   100 morphs per split (A12 item 8), not on all 30,000.
 - The expression check is a geometry substitute trained on FRLL photos (domain shift); the pixel probe did not run.
-- LoRA fits: 2 of 25 ViT-L/14 (Athena) and 9 of 12 ViT-B/16 (rented RTX 6000 Ada) are read; 2 seeds per arm cannot
+- LoRA fits: 2 of 25 ViT-L/14 (Athena) and all 12 ViT-B/16 (rented RTX 6000 Ada) are read; 2 seeds per arm cannot
   estimate flag rates; LoRA heads are bounded (±3.8 to ±4.2), so fixed-threshold cells are floor reads.

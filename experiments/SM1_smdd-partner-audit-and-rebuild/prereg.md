@@ -489,6 +489,9 @@ Readings (logit of the no-TTA score; AR1 person bootstrap, B = 10,000, the same 
 - Descriptive, scale-free (H-new-B AUC part): paired AUC of a photo against its softened copy (R0 vs R0 soft) for e and
   f; prediction difference < 0.05; falsified if ≥ 0.10 with an interval excluding 0.
 Cost: about 0.3 GPU-h on the RTX 6000 Ada (6 networks x 4,152 images x 2 passes, plus 256 check rows each).
+Deviation (12 Nov 16:00, dated after the run): A15 ran on lease `sm1dev`, another rented RTX 6000 Ada (sm1b was
+destroyed at 15:31:55 before A15 produced a score); same pinned packs, same scorer (sha256 925f372d…), reproduction
+check max diff 0.0 on 6 of 6 fits.
 Pre-run check (experiment-reviewer, 12 Nov): GO WITH FIXES; fixes applied before any score:
 - The reproduction check no longer touches a benchmark row: it rescores the first 256 stored rows of the fit's
   `ar1eval/scores_eval.npz` (all AR1 FRGC/colorFERET R0 camera photos; same scorer, same TTA and resolution) against
@@ -518,6 +521,30 @@ with weights n_X x n_SAME of the stratum. Host bootstrap B = 10,000, seed 202611
   excluding 0.
 - **H-n3b**: θ-stratified AUC ≤ 0.58 for every arm (point); falsified if any arm > 0.58 with the interval above 0.58.
 Unstratified X20-over-SAME20 AUC reported beside them.
+
+## DRAFT amendment A16: H-n1, latent-mix path (12 Nov; not registered; development data only; no score exists)
+
+Saved ViT-B/16 fits SM1B_{a,e,f}_s{401,402} (rebuilt from their tars; reproduction check on 256 stored AR1 camera-photo
+rows) scored on existing DG1 add-on rungs of the 536 FRGC / colorFERET hosts: FRESH1_20, NOISES20, NOISEX20, SEMS20,
+SEMX20, MIR20 and REC20 again (3,752 images, 0.24 GB; manifest `/mnt/t7/smad_next/SM1/dev_a16/sm1_dev16_eval.csv`,
+per-file sha256 `dev16_files.sha256`). No benchmark cell. About 0.2 GPU-h (RTX 6000 Ada). Host bootstrap B = 10,000
+(seed 20261111), 2-seed means, logit of the no-TTA score.
+- **H-n1** (arm a's mix signal comes from decoding a latent that is not the photo's own). Prediction: a separates
+  FRESH1_20 and NOISES20 from REC20 at AUC ≥ 0.70, while NOISEX20 over NOISES20 and SEMX20 over SEMS20 stay ≤ 0.60;
+  e about 0.5 throughout. Falsified if FRESH1_20 and NOISES20 over REC20 are ≤ 0.55 and SEMX20 over SEMS20 ≥ 0.70
+  (then a reads semantic mixing). Otherwise undecided. MIR20 over REC20 descriptive.
+- Command (fresh lease; the lead starts it): `nohup setsid bash /home/narolski/smad-next/src/SM1/rented/drive_v2.sh
+  HOST PORT LEASE dev16fresh > LEASE/sm1_dev16.log 2>&1 &` (uploads ad4_pack, test images, manifests v2 (about 22 GB),
+  the 6 fit tars and the 0.24 GB of rungs; RELEASE only after 6 of 6 SM1E tars and the machine logs are back).
+
+## Sketch only (not a registration): H-n2, no learnable second identity on this generator
+
+Train the same ViT-B/16 LoRA recipe (A11 m3) on DG1 X20 (morph) against REC20 (genuine) from shards 0–5, test on
+shards 6–7 with disjoint partner cycles; read Laplacian-stratified X20 over SAME20 on the held-out shards. Prediction
+≤ 0.65; falsified if ≥ 0.75 with the lower bound above 0.65. Cost: 2 fits (2 seeds), about 3 GPU-h (about 1.5 USD
+rented), plus a build of training manifests from existing DG1 images (no new image). Needs: registration before any
+fit, and an author ruling on whether SAME20 (one-person mixes) may be labelled genuine for training and testing, and
+that DG1 shards may serve as training data (they are development data today).
 
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?

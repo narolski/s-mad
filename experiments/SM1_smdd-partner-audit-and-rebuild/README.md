@@ -299,8 +299,14 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
 
 - 12 Nov 15:22 to 15:31 A15 dev run on sm1b (started by the lead with `drive_v2.sh dev`): **no score produced.** Owner
   bug: the dev step uploaded `remote_dev.sh` but not the updated `sm1_lora_audit.py`, so the machine's setup-time
-  scorer rejected `--check-npz` and all 6 fits were skipped (log `results_rented/dev/dev.log`); no network scored any
-  data. At 15:31:11 the stale `drive.sh all` (PID 2725924) wrote RELEASE (12 of 12 fit tars verified). Fixed in
+  scorer rejected `--check-npz` and all 6 fits were skipped; no network scored any data. Evidence: the owner read the
+  first attempt's dev.log at about 15:33 (pulled before sm1b was destroyed at 15:31:55; "unrecognized arguments:
+  --check-npz", SKIP for all six fits); that copy was overwritten at 15:56 by the sm1dev pull to the same path
+  (`results_rented/dev/dev.log` is now the sm1dev run's), so the first log no longer survives and the cause cannot be
+  re-verified from files; what remains is `vast/sm1b/sm1_dev_drive.log` (no tar to verify) and that no SM1D tar
+  exists before 15:54. The DEV_PLANNED hold did not stop the stale driver (its old code has no hold): RELEASE was
+  written at 15:31:11 although DEV_PLANNED existed since 15:21:42. The sm1dev lease file cites the author's 11 Nov
+  authority for a 12 Nov rental; a current approval should be logged by the lead. At 15:31:11 the stale `drive.sh all` (PID 2725924) wrote RELEASE (12 of 12 fit tars verified). Fixed in
   `drive_v2.sh` (dev uploads the scorer, clears the done-marker); A15 runs again only on the lead's start (sm1b if kept,
   else `devfresh` on another lease).
 - 12 Nov 15:25 Full registered ViT-B/16 reading of all 12 fits (a, b, b′, c, e, f x 401, 402) in `result.md`

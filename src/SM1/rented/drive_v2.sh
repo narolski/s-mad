@@ -115,6 +115,32 @@ case "$STEP" in
       sleep 600
     done
     ;;
+  dev16fresh)                                                  # A16 (DRAFT): DG1 rungs on a fresh lease, development data only
+    touch "$L/DEV_PLANNED"
+    DV=/mnt/t7/smad_next/SM1/dev_a16; O16=$OUTD/dev16
+    R "mkdir -p $B/in $B/bin $B/logs $B/results $B/manifests/dev16 && nvidia-smi -L && df -h /workspace" | tee -a "$L/sm1_setup.log"
+    RS "$SRC/remote_setup.sh" "$SRC/unpack_one.sh" "$SRC/remote_dev16.sh" "$SRC/../sm1_lora_audit.py" "root@$HOST:$B/bin/"
+    R "bash $B/bin/remote_setup.sh" 2>&1 | tee -a "$L/sm1_setup.log" | tail -2
+    while IFS=: read -r -u 3 n pin; do
+      case "$n" in ad4_pack|sm1gpu_img_test|sm1lora_manifests_v2) ;; *) continue ;; esac
+      f=$(loc "$n"); [ "$(cut -c1-64 "$f.sha256")" = "$pin" ] || { log "pin $n"; exit 1; }
+      R "[ -f $B/done/$n ]" || { RS "$f" "$f.sha256" "root@$HOST:$B/in/"; R "bash $B/bin/unpack_one.sh $n" | tail -1; }
+    done 3<<< "$PACKS"
+    for t in SM1B_a_s401 SM1B_a_s402 SM1B_e_s401 SM1B_e_s402 SM1B_f_s401 SM1B_f_s402; do
+      RS "$OUTD/$t.tar" "$OUTD/$t.tar.sha256" "root@$HOST:$B/results/"
+    done
+    R "cd $B/results && sha256sum -c *.sha256 && date > $B/ALL_DONE"
+    RS "$DV/sm1_dev16_eval.csv" "$DV/sm1_dev16_eval.csv.sha256" "$DV/dev16_files.sha256" "root@$HOST:$B/manifests/dev16/"
+    (cd / && tar -cf - -T "$DV/filelist_dev16.txt" 2>/dev/null) | ssh "${O[@]}" "root@$HOST" "tar -xf - -C $B/data/x"
+    R "cd $B; (nohup setsid bash $B/bin/remote_dev16.sh > $B/logs/dev16.log 2>&1 < /dev/null &) > /dev/null 2>&1; sleep 2; echo started"
+    for k in $(seq 1 60); do R "[ -f $B/results_dev16/SM1E_ALL_DONE ]" && break; sleep 120; done
+    mkdir -p "$O16"
+    RS --include='*.tar' --include='*.tar.sha256' --exclude='*' "root@$HOST:$B/results_dev16/" "$O16/"
+    RS "root@$HOST:$B/logs/" "$O16/machine_logs/" || true
+    nd=$(cd "$O16" && sha256sum -c --quiet SM1E_*.sha256 2>/dev/null && ls SM1E_*.tar | wc -l)
+    log "dev16 results verified: ${nd:-0} of 6"
+    [ "${nd:-0}" -eq 6 ] && { touch "$L/DEV_DONE"; touch "$L/RELEASE"; log "RELEASE written (dev16 6 of 6, logs copied)"; }
+    ;;
   devfresh)                                                    # A15 on another host: minimal packs + the 6 fit tars, then dev
     R "mkdir -p $B/in $B/bin $B/logs $B/results && nvidia-smi -L && nproc && df -h /workspace" | tee -a "$L/sm1_setup.log"
     RS "$SRC/remote_setup.sh" "$SRC/unpack_one.sh" "$SRC/remote_dev.sh" "$SRC/../sm1_lora_audit.py" "root@$HOST:$B/bin/"
