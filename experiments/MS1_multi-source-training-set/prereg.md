@@ -373,3 +373,26 @@ lead's decision and is recorded with its `date` in the README when made. Until t
   about 4.5 h if the three uploads share the DGX uplink. m1 and m2: about 10.5-13.5 h, m3 about 6-9 h. Cost about
   13 USD expected, at most about 17 USD (caps proposed: m1 7, m2 7, m3 4.5 USD). Starting at 01:00, results about
   11:30-14:30 on 13 Nov, within the 14 Nov 12:00 deadline.
+
+## Deviation MS1-D2 (`date`: Fri Nov 13 12:03:29 AM CET 2026; registered at the commit that adds it, before any fit; no fit or score of any MS1 arm exists)
+
+Lead's decision at 00:00 on 13 Nov: WCSS will not start the jobs tonight (priority about 700 against about 10,800 at
+the head of 139 waiting jobs); the WCSS smoke job 6308826 was cancelled by the lead; MS1 runs on rented machines under
+MS1-D1 (5eadc1b) with these changes:
+- GPU model: NVIDIA L40S 48 GB instead of A100 PCIe 40 GB (no single A100 PCIe 40 GB on the market). All fifteen fits
+  and the held-out scoring run on that one GPU model; GPU name and UUID in every tar (`gpu.txt`, held-out
+  `out/gpu.txt`); never mixed with WCSS or A100 fits. FS1's A100 Sb stays a printed reference only; the smoke
+  comparison against FS1's Sb s403 train.log is printed, not a gate. Batch size and every training flag unchanged (48 GB
+  holds the 30.8 GB peak). Software pins as MS1-D1 (pytorch 2.2.1 / CUDA 12.1 image, timm 1.0.27, numpy 1.26.4,
+  pillow 10.2.0).
+- Leases (lease folders `/mnt/t7/smad_next/vast/<name>`): ms1m1 seeds 403+406 (cap 8 USD, 13 h; GPU-771bd979…),
+  ms1m2 seeds 404+407 (cap 10 USD, 13 h; GPU-214a6ac4…), ms1m3 seed 405 (cap 6 USD, 9 h; GPU-b1d985cf…).
+- Held-out step now includes TT1's registered references (TT1-S at 01557ce; list `tt1_score.csv` `c0055b51…` pinned
+  at ccd6319): R_cam (417, ids prefixed `rcam_`), R_cam_border (7 x 417), R_cam_geo224 and R_cam_geo112 (417 each),
+  R_ffhq_border (2,000), fam `tt1ref`, as part 2 (2.2) allows. Held-out pack rebuilt:
+  `/mnt/t7/smad_next/MS1/ms1_heldout_pack.tar` `396a7ebeacf1f4b31077e04e0588e0ff84b9287457b8980ea95c9c91fee693a7`
+  (7,141 rows: CFD 831, KDEF 140, tt1ref 6,170; manifest `e77fa2e4…`; builder `11daa10b48609d0cbcc4b302367e1458192f7af10782f40ba64671390588ef06`); the CFD and KDEF rows are
+  unchanged. Printed against them (no new decision rule): own-rule flags of R_cam_border(k) beside f_k, and
+  AUC(TT1 family k against R_cam_border(k)) beside P2's AUC_k.
+- Scripts: drive_ms1.sh `60c2ca71a76f7493ebe3dac1fea64ca6c965958d9ce905d977dbb6271dd09d3b` (held-out pin updated), remote_ms1.sh `5484c6e117cb1c7d09a202da446f7bdca5305acc1b430cf936bcbc290e438403` (held-out families cfd, kdef, tt1ref).
+- Everything else of part 2 and MS1-D1 unchanged.

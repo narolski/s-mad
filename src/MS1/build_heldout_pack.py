@@ -1,5 +1,6 @@
 """MS1 held-out scoring pack (prereg part 2, 2.2): code and base weights from the FS1 tree, the unchanged rescorer
-src/PN1/rescore.py, the CFD and KDEF frames (pools pinned in part 2.9) and manifest ms1_heldout.csv (fam cfd / kdef).
+src/PN1/rescore.py, the CFD and KDEF frames (pools pinned in part 2.9), TT1's registered references (fam tt1ref) and
+manifest ms1_heldout.csv (fam cfd / kdef / tt1ref).
   python3 -I build_heldout_pack.py -> OUT/ms1_heldout_pack.tar (+ .sha256)"""
 import csv
 import os
@@ -48,6 +49,21 @@ def main():
             link("data/" + pp, r["frame"], r["frame_sha256"])
             rows.append(dict(id=r["id"], path=pp, label="0", klass="genuine", role="dev", fam=fam, rung="photo",
                              strength="", tool="", cell=fam, host=r["person"], neutral="1"))
+    # TT1's registered references (TT1-S, 01557ce; list pinned at ccd6319): R_cam, its border-blanked and
+    # crop-geometry-matched copies, and R_ffhq_border; fam "tt1ref" (rung and cell as TT1's list)
+    import gzip, io, json
+    TL = pathlib.Path("/home/narolski/smad-next/experiments/TT1_threshold-transfer-unseen-genuine/tt1_score.csv.gz")
+    raw = gzip.open(TL).read()
+    assert __import__("hashlib").sha256(raw).hexdigest() == "c0055b51467cf8d001d56cbc4689706d68f0bf35c64066b1ba49fada5cb45761"
+    srcmap = json.load(open("/mnt/t7/smad_next/TT1/tt1_score_sources.json"))
+    for r in csv.DictReader(io.StringIO(raw.decode())):
+        if r["rung"] not in ("R_cam", "R_cam_border", "R_cam_geo224", "R_cam_geo112", "R_ffhq_border"):
+            continue
+        pp = r["path"]
+        link("data/" + pp, srcmap[pp])
+        rows.append(dict(id=r["id"] if r["rung"] != "R_cam" else "rcam_" + r["id"], path=pp, label="0", klass="genuine",
+                         role="dev", fam="tt1ref", rung=r["rung"], strength=r["strength"], tool=r["tool"], cell=r["cell"],
+                         host=r["host"], neutral=r["neutral"]))
     mf = root / "data/manifests/ms1_heldout.csv"
     C.write_csv(mf, rows)
     sums.append((C.sha(mf), "data/manifests/ms1_heldout.csv"))

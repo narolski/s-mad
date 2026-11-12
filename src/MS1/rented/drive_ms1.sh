@@ -15,7 +15,7 @@ HOST=${1:?host}; PORT=${2:?port}; L=${3:?lease}; Q=${4:?m1|m2|m3}; STEP=${5:?ste
 SRC=$(cd "$(dirname "$0")" && pwd)
 KEY=${MS1_SSH_KEY:-/home/narolski/.config/smad-next/vast_ssh_key}
 PIN=c11b16bc7b76236bae80778f9e36cb67bb50de910f73a9dd200a706fc267fe7d
-HPIN=06b64608f2b83e170b4e85530bac259c0e89fb082a67e39ad84537b746983c7f
+HPIN=396a7ebeacf1f4b31077e04e0588e0ff84b9287457b8980ea95c9c91fee693a7
 RUNSH=098e94cd2821c415803f1b080b5e655e5c164bed040abffa10afe93bf1f669ed
 seeds() { case "$Q" in m1) echo "403 406" ;; m2) echo "404 407" ;; m3) echo "405" ;; *) echo "queue must be m1, m2 or m3" >&2; exit 1 ;; esac; }
 TASKS=""; for s in $(seeds); do for a in Sb SbM3 SbV; do TASKS="$TASKS MS1_${a}_s$s"; done; done; TASKS=${TASKS# }

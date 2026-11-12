@@ -49,7 +49,7 @@ case "$MODE" in
       [ -f "$B/root/results/MS1/$T.tar" ] || continue
       tar -C "$H" -xf "$B/root/results/MS1/$T.tar" "$T/meta.json" "$T/last_trainable.pt"
       ARM=${T#MS1_}; ARM=${ARM%_s*}; SEED=${T##*_s}
-      for FAM in cfd kdef; do
+      for FAM in cfd kdef tt1ref; do
         SMAD_DATA=$D HF_HOME=$H/pn1/hf HF_HUB_OFFLINE=1 python "$H/pn1/src/rescore.py" --resdir "$H/$T" --code "$H/pn1/code" \
           --manifest ms1_heldout.csv --fam "$FAM" --out "$H/out/MS1H_${ARM}_s${SEED}_${FAM}.npz" --workers 7 >> "$B/logs/heldout_$Q.log" 2>&1 \
           || echo "$(date +%T) heldout $T $FAM failed" >> "$B/queue_$Q.log"
