@@ -759,3 +759,18 @@ development or benchmark image. Code `src/PN1/pairs_check.py`.
 - Seeds 403, 404, 405, on the FS1 host (A100-PCIE-40GB, GPU-5bd20020) after the 16 FS1 fits, under the same host lock;
   compared with FS1's Sb at the same seeds. Reader: a small extension of fs_read.py, committed before the first Sp tar
   is pulled.
+
+## Sp operations note (`date`: Thu Nov 12 11:05:04 PM CET 2026; before any Sp fit; FS1 queue and contrasts untouched)
+
+- drive_fs.sh `2e967f2a8311b691dd28125d2c28101b41ce476fee143e8435d600318ad6cbf6` (installed atomically; the running FS1
+  pull loop, PID 3646452, calls the script by path each round and so uses it from its next pull; no restart needed):
+  LEASE/QUEUES = "all sp" holds RELEASE until both queues are DONE (FS1's 16 tars and the 3 Sp tars fetched and
+  verified, logs verified); the FS1 queue's keep step leaves out the still-growing Sp logs, the Sp queue verifies the
+  whole logs folder. New queue "sp" (PN1_Sp_s403, s404, s405) and step "chain".
+- remote_sp.sh `f225d19f6d4d9378e873bf3a0b84a2f2f11f965e4dd77cfb70953b5b336eea22` (a separate file; the running FS1
+  queue's remote_fs.sh is not touched): builds pn1_pack_sp.tar on the host (FS1 pack checked against `96c31ae2…`,
+  plus `tar -A` overlay `1c0d03f3…`, checked against `76528f16…`; on a mismatch no fit runs), then takes the
+  host-wide fit lock (held by the FS1 queue until its 16 fits end) and runs the three Sp fits with run.sh `6a23a7a4…`.
+- Chained at 23:04:27 (QUEUES written 23:03:27); Sp pull loop started (PID 482208). Local mock test: hold while only
+  one queue is DONE, RELEASE when both are, RELEASE + FAILED on remote-confirmed Sp failures, Sp fits after the FS1
+  queue on the Sp pack.
