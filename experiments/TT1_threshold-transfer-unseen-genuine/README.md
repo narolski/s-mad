@@ -12,7 +12,7 @@ small source face is enlarged to the canonical frame and by its sharpness, or by
 (plain A, protocol B, protocol plus spliced positives Sb, and the controls Bn, C, Bv) gives the lowest and most uniform
 genuine false-alarm rates? This is a false-alarm test only: there are no morphs of these sources.
 Status at the commit that adds this section: genuine pools built and aligned (25,241 photos from 8 sources, 7
-families); no network scored; scoring registration to be drafted next.
+families); no network scored; scoring registration drafted (`prereg_scoring_draft.md`), waiting for independent pre-run review.
 
 ## 2. Timeline
 
@@ -25,7 +25,15 @@ families); no network scored; scoring registration to be drafted next.
 - 22:55:46-22:55:52: `align.py --limit 8` test (64 images). Then the full run, log `/mnt/t7/smad_next/TT1/logs/align.log`,
   668 s, finished 23:07:10 (log mtime). Outputs 25,241 aligned PNGs.
 - `summary.py` -> `pools_summary.md/json`. Test outputs (raw_test, aligned_test, *_test.csv) removed (own files).
-- Next: scoring registration draft (`prereg_scoring_draft.md`).
+- After commit 3912ae4 (`date` Thu Nov 12 11:10:42 PM CET 2026): interim report to the lead.
+- `date` Thu Nov 12 11:11:52 PM CET 2026 to 11:12:09 PM: DGX command test of `src/PN1/rescore.py` (unchanged) on 8 FFHQ
+  bona fide rows already scored by pn1a (A_s401): max |logit difference| 0.0015 (`/mnt/t7/smad_next/TT1/dgxtest/`). No
+  TT1 image scored.
+- QC found after alignment, from the manifest only: 54 aligned frames with implausible enlargement (wrong, tiny
+  detections; one viewed, 35x), LFW 40, CALFW 9, CFP-FF 1, AgeDB 4; excluded from the draft's primary pool by a band
+  rule ([1.2, 2.5] for 224 px frames, [2.5, 5.0] for 112 px).
+- `src/TT1/strata.py` -> `strata_edges.json` (fixed sharpness, enlargement and border quintiles; manifests only).
+- Scoring registration drafted: `prereg_scoring_draft.md` (for independent pre-run review; nothing registered).
 
 ## 3. Data
 
@@ -82,7 +90,9 @@ insightface 1.0.1, Pillow 12.2.0; detection on the GB10 GPU via `dmad.quads.gpuf
    asserted) and calls `align(img)` unchanged on `cv2.imread(raw file)`; buffalo_l detection at det 512 with
    prep_eval's padded retry, frontal filter, 2-eye similarity to eyes (190,210)/(322,210) (132 px), 512x512 PNG.
    Writes `aligned_manifest.csv`, `align_run.json`.
-3. `src/TT1/summary.py` (`fae542cf6d2388adb27c30d2d47f716cd9ab8dfc53bec3c41c97f934a03cd094`): `pools_summary.{md,json}`.
+3. `src/TT1/strata.py` (`97ac2c602ed381d6a52d03985531b67d27c36bc3ef18cc4accc279f91a691e3c`): `strata_edges.json`
+   (`4aa95f038397bd45b4446e59b3c696b03e091d042c2bfd5ff99d423fe0fdb798`).
+4. `src/TT1/summary.py` (`fae542cf6d2388adb27c30d2d47f716cd9ab8dfc53bec3c41c97f934a03cd094`): `pools_summary.{md,json}`.
 Measurements: lap_var = variance of the Laplacian (CV_64F) of the greyscale raw image; greyscale = JPEG mode "L" or
 mean channel difference < 1.0; enlarge = 132 / source IED; border_frac = share of exactly-black pixels in the 512 frame.
 No new image operation (no resize, blur, rotation or re-encode written by TT1 code).
@@ -142,7 +152,8 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-No process running. Nothing queued. Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
+No process running. Nothing queued. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch
 
@@ -155,5 +166,6 @@ $E $P /home/narolski/smad-next/src/TT1/extract.py
 $E $P /home/narolski/smad-next/src/TT1/align.py --limit 8     # test
 $E $P /home/narolski/smad-next/src/TT1/align.py
 $P /home/narolski/smad-next/src/TT1/summary.py
+$P /home/narolski/smad-next/src/TT1/strata.py
 cd /home/narolski/smad-next/experiments/TT1_threshold-transfer-unseen-genuine && gzip -n -9 -f raw_manifest.csv aligned_manifest.csv
 ```
