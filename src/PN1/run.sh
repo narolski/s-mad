@@ -30,7 +30,7 @@ if [ -e "$OUT/$TASK.tar" ]; then
     && { echo "PN1 already done: $OUT/$TASK.tar"; exit 0; }
   die "$OUT/$TASK.tar exists without a matching .sha256 (never overwritten)"
 fi
-case "$ARM" in A|B|Bn|C|Sb|Bv) MAN=train_$ARM.csv ;; *) die "arm $ARM" ;; esac
+case "$ARM" in A|B|Bn|C|Sb|Bv|Sp) MAN=train_$ARM.csv ;; *) die "arm $ARM" ;; esac
 case "$SEED" in 401|402|403|404|405|406|407) ;; *) die "seed $SEED" ;; esac
 STEPS=${PN1_STEPS:-6250}
 WORKERS=${PN1_WORKERS:-7}

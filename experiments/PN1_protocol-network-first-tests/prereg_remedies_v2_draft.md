@@ -23,26 +23,54 @@ Train mode (LoRA dropout on):
 
 Pre-stated rule met: **the logit equality term is inert** (every median < 0.05). In train mode a pair term would mostly penalise dropout noise. These are training images, which the networks fit, so the differences are small partly by construction.
 
-## (a) Arm "Sp": spliced positives without seam-matched negatives (review improvement 2)
+## (a) Arm "Sp": spliced positives without seam-matched negatives (review improvement 2; fixes F1–F5 of `PRERUN_PN1_SP_20261112.md`)
 
-**Purpose, plainly.** Sp tests whether constituent-matched negatives, not spliced positives as such, are what the method adds over self-blending training (SBI, SelfMAD-like: splice positives without matched negatives).
+**Status.** Draft. Not registered, not run, pending the author's yes.
+
+**Purpose (F4).** Sp tests whether the constituent-matched negatives (S0 seam-only and S3 same-person splices, removed together), rather than the spliced S4 positives alone, are what stop the network from flagging seam-matched genuine composites. Sp is Sb minus those negatives; it is not a reimplementation of SBI or SelfMAD.
+
+**Must not be claimed:**
+- anything about SBI or SelfMAD (Sp is not a reimplementation of SBI or SelfMAD);
+- S0 versus S3 attribution;
+- any benchmark, cross-source or MAD-performance effect;
+- generalisation beyond the OpenCV splice engine and FRGC / colorFERET hosts.
+
+Everything is labelled development, n = 3 seeds.
+
+**Data read (lead's decision).** The development ladder and FFHQ only. The 191-host test ladder stays unread for remedy arms.
 
 **Manifest.**
-- train_Sp = train_Sb minus the seam-matched negatives lad_S0 (156) and lad_S3 (156).
-- It is re-balanced by the amendment-4 rule: stratified class balance by database × history, with seeded repetition of the smaller class in each stratum.
+- train_Sp = the unique rows of train_Sb minus lad_S0 (156) and lad_S3 (156).
+- It is re-balanced by the amendment-4 rule (`mkmanifests.balanced_strata`, unchanged).
+- Size: 7,762 rows from 5,223 unique images. Strata, negatives / attacks: feret|native 1,550 / 372, frgc|native 1,714 / 604, feret|s61 392 / 166, frgc|s61 225 / 200.
 - The S4 positives (124) and everything else of Sb are unchanged.
-- No code change in train.py. A new manifest from a small list script (existing images only), and "Sp" added to run.sh's arm list.
+- Disclosure: with steps fixed at 6,250 × 256, each image repeats about 8% more in Sp than in Sb (7,762 against 8,386 rows).
 
-**Predictions (development ladder; Sp against Sb at the same seed, FS1 Sb fits 403–405):**
-1. At its own rule (logit > 0), Sp flags at least twice Sb's share of development-ladder S0 images.
-2. Sp's development S0-vs-S4 AUC is at least 0.05 below Sb's.
+**Predictions** (Sp against the FS1 Sb fit at the same seed, seeds 403–405):
+1. At its own rule (logit > 0), Sp flags at least 10 percentage points more of the 100 development-ladder S0 images than Sb at the same seed, and at least twice Sb's share (Sp ≥ max(2·Sb, Sb + 0.10)). Shares are counted out of 100; the bounds are inclusive. Printed reference: B and Bv flag 0.00 of development S0 (Bv s401: S0 0.00, S4 0.04); Sb 401/402 flag 0/100.
+2. Sp's raw development S0-vs-S4 AUC (field `auc` of D_ii, native OpenCV images, 100 vs 100) is at least 0.05 below Sb's at the same seed. Excess-over-floor3 and face-only AUC are printed only.
 
-**Reading.**
-- Supported if both hold on ≥ 2 of 3 seeds.
-- Falsified if neither holds on ≥ 2 of 3 seeds.
+**Printed for both arms:** development S3 own-rule flags (Sb 401/402: 0.34 / 0.36), landmark_combined AUC, R1–R6, and the storage share (paired share rising).
+
+**Reading (F2).**
+- Supported if both predictions hold on ≥ 2 of 3 read seeds.
+- Falsified if, on ≥ 2 of 3 read seeds, neither prediction holds.
 - Otherwise "inconclusive, no claim".
+- A seed is read only if both the Sp fit and the FS1 Sb fit at that seed are finite and complete. Infrastructure failures are re-run unchanged; non-finite runs are never re-run.
+- With fewer than 2 read pairs the arm is "not read". With exactly 2 read pairs, "supported" or "falsified" needs both.
+- All margins are inclusive. Ties count as meeting the bound.
+- Under no effect, each margin is far outside seed noise: Sb's development S0 flags are 0/100 at both seeds, and its development S0-vs-S4 AUC is 0.9875 and 0.9927. So the chance of "supported" by luck is taken as negligible. This is stated, not computed.
 
-**Printed only.** landmark_combined AUC, R1–R6 and the storage share (paired share rising), with the same code as FS1.
+**Operations and pins (F5).**
+- Sp uses its own overlay: the FS1 pack plus train_Sp.csv and its regenerated SHA256SUMS only. The FS1 pack's train.py (`cbb2cbd1…`) is unchanged.
+- Pins, written into the registration:
+  - train_Sp.csv sha256 `cf386dc7aaaee5723e64010cadd742c21fed0236d34e52e65daabba33a5e6848`;
+  - list script `src/PN1/mk_sp.py` `9c84daf62693733761332f5055f3872478d085bc5add4a3e829d368e875ddad2`;
+  - overlay `pn1_overlay_sp.tar` `1c0d03f388834d59f293bdf2874b524c313948527ed646868ec3ebd7741a4bd9`;
+  - pack `pn1_pack_sp.tar` = `cp pn1_pack_fs.tar` + `tar -Af pn1_overlay_sp.tar`, sha256 `76528f16c17aa017d43ca6e872b332907e2c3c857ed02ff545a83e0831340089`. It is assembled the same way on the FS1 host and checked against this pin; it is uploaded only if the check fails.
+  - run.sh `6a23a7a4b3d22a9371e1a5929636c3e233952fe5f12846139dd4d703f3dcce02`, which adds "Sp" to the arm list; nothing else changed.
+- The pack keeps build_pack_fs's assertion that it holds no FRLL, MAD22, MorDIFF, DiM, H1, FEI or sealed row. Its pn1_eval.csv is byte-equal to the FS1 pack's (`f0f29f22…`, checked), so the driver cannot score a benchmark row.
+- Local smoke (20 steps, limit 8, arm Sp, seed 403): rc 0; the pack verified against its SHA256SUMS; train.csv = train_Sp.csv (`cf386dc7…`); pn1_eval.csv byte-equal.
 
 **Cost.** 3 fits × about 75 min, about 3.8 A100-hours, about 1.7 USD at 0.44 USD/h.
 
