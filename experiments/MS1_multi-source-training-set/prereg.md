@@ -338,3 +338,38 @@ border vs splice share); "threshold transfers to unseen sources" in general from
 Reader: `src/MS1/ms1_read.py` is extended for P1-S / P1-T / SbV in a later commit, before any tar is fetched; the fetch
 is gated on that commit (B2). Kept: every result tar on WCSS PD and a verified copy on `/mnt/t7/smad_next/MS1/results`
 before anything is cleaned; trained weights (`last_trainable.pt`) of all fits are kept.
+
+## Deviation MS1-D1 (prepared; `date`: Thu Nov 12 11:54:23 PM CET 2026; registered at the commit that adds it; no fit or score of any MS1 arm exists): rented A100 fallback, in force only if the lead switches
+
+Trigger (lead, 12 Nov, about 23:50): if the WCSS slurm controller does not accept jobs by 13 Nov 2026 01:00 CET, the
+lead switches MS1 to rented machines tonight, instead of waiting for the 12:00 rule of part 2 (2.1). The switch is the
+lead's decision and is recorded with its `date` in the README when made. Until then part 2 (f748da4) stands unchanged.
+- All fifteen fits (Sb, SbM3, SbV at seeds 403-407) run on rented A100 PCIe 40 GB machines of one type (the FS1
+  type, A100-PCIE-40GB), three machines; never mixed with WCSS fits. The WCSS array is not submitted, or is cancelled if
+  it was submitted; no WCSS MS1 fit is ever read. If the smoke job ran on WCSS, it is printed only.
+- Layout, each seed's three arms on one machine: m1 seeds 403 and 406 (6 fits), m2 seeds 404 and 407 (6 fits), m3 seed
+  405 (3 fits). (Five fits per machine is impossible with whole seeds; whole seeds are kept because every comparison is
+  within seed.) GPU UUID per fit in `gpu.txt`; results printed per machine.
+- Software: the FS1 rented setup (image pytorch 2.2.1 / CUDA 12.1, pip pins timm 1.0.27, numpy 1.26.4, pillow 10.2.0,
+  as `src/PN1/rented/remote_fs.sh`), so the arms run under FS1's software; versions in each tar (env.txt).
+- Held-out step (CFD, KDEF): on each machine, after its fits, every finished fit of that machine is rescored with the
+  unchanged `rescore.py` from the held-out pack (`06b64608…`); one tar MS1H_<machine>.tar per machine. (Deviation
+  from "one job": each fit is scored on the GPU it was trained on, and no weights move between hosts.) TT1's
+  border-blanked references are added only if TT1's scoring list is registered before the machines start; otherwise
+  they are scored later on the DGX, labelled "other platform", printed only.
+- Reads, rules, predictions, seed rules, deadline: part 2 unchanged; "WCSS" in 2.1 reads "rented A100 PCIe 40 GB".
+- Keep rule: weights, logs and scores (fit tars with last_trainable.pt, the held-out tar, every log and rc file) are
+  fetched and verified before RELEASE; a second copy of every verified tar in `/home/narolski/ms1_results_copy`;
+  RELEASE + FAILED only on a verified partial result whose failures the remote confirms (no tar and non-zero rc); no
+  RELEASE when the remote state is unreadable; no pull when /mnt/t7 has under 20 GB free; remote setup requires 50 GB
+  free under /workspace.
+- Scripts: `src/MS1/rented/drive_ms1.sh` `eb59456334bd623fa909c1963406ae33bd91aadcd1d605ee210eb41618b63ba0`, `src/MS1/rented/remote_ms1.sh` `305b5d5b39f1f991910ea7f77f9e5a05292727887ec19742874a04c03f7fe8b5` (adapted from FS1's
+  drive_fs.sh / remote_fs.sh; pins: pack `c11b16bc…`, held-out pack `06b64608…`, run.sh). Test: remote_ms1.sh queue
+  run on the DGX with stand-in tasks (two passing, one failing twice: rerun once, rc recorded; held-out step produced
+  4 npz for the two passing fits; ALL_DONE written). drive_ms1.sh is syntax-checked only; its pull and RELEASE logic is
+  FS1's, not run against a host.
+- Cost and time (FS1 measurements on this machine type: 0.468 USD per hour, fit wall 4,026-5,395 s, pack upload
+  8.75 GB in 3,122 s): per fit about 1.45 h (larger evaluation list); upload 15.5 GB per machine 1.5 h alone, up to
+  about 4.5 h if the three uploads share the DGX uplink. m1 and m2: about 10.5-13.5 h, m3 about 6-9 h. Cost about
+  13 USD expected, at most about 17 USD (caps proposed: m1 7, m2 7, m3 4.5 USD). Starting at 01:00, results about
+  11:30-14:30 on 13 Nov, within the 14 Nov 12:00 deadline.
