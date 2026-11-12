@@ -227,10 +227,14 @@ def main():
             if not members:
                 continue
             failed = [x for x in members if not (c1.get(x, {}).get("passed") or x in C1_EXTERNAL_PASS)]
-            if failed:
-                arm_rows.append(dict(arm=arm, method=method, ckpt=ck, family="WITHHELD",
-                                     reading=f"no reading: C1 missing or failed for {failed}"))
-                continue
+            if failed:   # amendment 2: the arm is read on the networks that pass C1 when at least 3 do (count printed)
+                arm_rows.append(dict(arm=arm, method=method, ckpt=ck, family="C1_EXCLUDED",
+                                     reading=f"C1 missing or failed for {failed}"))
+                members = [x for x in members if x not in failed]
+                if len(members) < 3:
+                    arm_rows.append(dict(arm=arm, method=method, ckpt=ck, family="WITHHELD",
+                                         reading=f"no reading: fewer than 3 networks pass C1"))
+                    continue
             for bench in ("mad22c", "frllm"):
                 for pool in ("native", "e7"):
                     fam_means = []

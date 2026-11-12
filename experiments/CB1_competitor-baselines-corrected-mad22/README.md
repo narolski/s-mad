@@ -59,6 +59,27 @@ No CB1 score read yet.
   jobs of ours reach 13 Nov 14:00 and 15 Nov 01:00. Risk reported to the lead.
 - 23:58. Pre-run review requested from the experiment-reviewer (IDistill plan, scorer, analysis).
 
+- 00:00 (13 Nov). Pre-run review: GO WITH FIXES (F1-F11). Applied before any score is read: F1 (IDistill checkpoint
+  selected on the SMDD validation split saved as `.valbest`; `.last` relabelled "stopping epoch set by test-set early
+  stopping"), F2 (FRLL-Morphs contributor parser fixed; list v2 `cb1_cnn_images_v2.csv`, sha256 aa140e91..., ids and
+  paths identical to v1; 10 FRLL-Morphs morph files name one person twice and are kept), F3 (IDistill morph score
+  id1 x id2 in double precision), F4 (checkpoints and logs copied out of TMPDIR every 30 min; `--time` set from the
+  smoke step rate), F5 (C1 row-wise and binding in `analyse_cnn.py`), F6-F10 registered. Amendment 1 in `prereg.md`;
+  commit 114a40e. IDistill code pack v2 (sha256 ceaa1a9c...) uploaded; the pending smoke 6308827 reads it.
+- 00:01. Coordinator: no rental tonight; keep 6308827 queued; prepare the rented variant (done:
+  `src/CB1/idistill/rented/`, README_rented.md with cost and wall time, upload.sh and drive.sh with HOST PORT LEASE;
+  keep rule built in; the job script takes CB1_L / CB1_PIP=online for it). Fallback wording if IDistill cannot finish by
+  the retrain cut-off of 14 Nov 18:00: "IDistill: as reported, not verified; the authors' code selects its checkpoint on
+  the FRLL-Morphs test sets".
+- 00:04-00:06. FD-MAD fused branch: no landmarks exist for the SMDD morph frames or for any evaluation frame, so five
+  facial points are extracted (`src/CB1/landmarks_5pt.py`: insightface buffalo_l SCRFD five points, CPU; det_size 320
+  because at 640 the detector found a face in 1 of 40 evaluation frames and 7 of 40 SMDD frames, at 320 in all 80).
+  List `/mnt/t7/smad_next/CB1/manifests/fdmad_landmark_paths.txt` (30,639 SMDD training rows of seeds 1-3 + 19,171 CB1
+  rows); PID 617534, log `logs/landmarks_5pt.log`, about 27 images/s. Fused wrapper added to `fdmad_cb1.py`
+  (`--branch fused`; points scaled to the loader side; training rows without a face left out of the local fit; list rows
+  without a face keep the global score; both counted). Landmark detection is not image code (no pixel is written).
+- 00:06. WCSS Slurm controller unreachable ("connect failure"); state of 6308827 unknown.
+
 ## 3. Data
 
 See `prereg.md` section 2. Corrected MAD22 aligned frames and E7 pools:

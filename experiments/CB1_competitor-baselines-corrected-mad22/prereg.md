@@ -182,3 +182,13 @@ Pre-run review: GO WITH FIXES (experiment-reviewer, 13 Nov about 00:00; findings
 - Platform: the coordinator declined a rental for tonight; IDistill waits on the WCSS queue. Fallback wording if it
   cannot finish by the retrain cut-off of 14 Nov 18:00: "IDistill: as reported, not verified; the authors' code selects
   its checkpoint on the FRLL-Morphs test sets".
+
+## Amendment 2 (13 Nov 2026, 00:32 CET; after the C1 gate of the first 23 networks, before any reading is looked at)
+
+C1 result on the 224-px networks (es.pt; score version without flip): M6, M8, M8O pass for every seed (median row
+difference <= 2e-4, maximum <= 4.4e-3). PW-MAD (M5) fails the maximum criterion on seeds 1, 2, 6 (max 0.016 / 0.029 /
+0.030; seed 6 also median 1.4e-3) while its EER agrees within 0.5 points in 9-10 of 10 cells for every seed. The stored
+scores were computed on WCSS H100 with TF32, ours on the GB10 with TF32: a platform difference, not a loader difference
+(medians 1e-6 to 7e-4). Rule from here: an arm is read on the networks that pass C1 if at least 3 do; the count and the
+excluded seeds are printed with the reading; fewer than 3: no reading. This is a selection on a technical check, made
+before any benchmark reading of these networks was looked at.

@@ -25,13 +25,19 @@ if [ $STAGE = cls ]; then
 fi
 : "${TMPDIR:?local scratch required}"; W=$TMPDIR/ids; mkdir -p $W/out
 hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; python3 --version; date
-for p in idistill_code idistill_data ad5w_wheels39 smdd_train_cropped; do ( cd $P && sha256sum -c $p.tar.sha256 ) || { echo "HASH MISMATCH $p"; exit 3; }; done
+PK="idistill_code idistill_data smdd_train_cropped"; [ "${CB1_PIP:-}" = online ] || PK="$PK ad5w_wheels39"
+for p in $PK; do ( cd $P && sha256sum -c $p.tar.sha256 ) || { echo "HASH MISMATCH $p"; exit 3; }; done
 tar -xf $P/idistill_code.tar -C $W; mkdir -p $W/wheels $W/smdd $W/data
-tar -xf $P/ad5w_wheels39.tar -C $W/wheels
+[ "${CB1_PIP:-}" = online ] || tar -xf $P/ad5w_wheels39.tar -C $W/wheels
 tar -xf $P/smdd_train_cropped.tar -C $W/smdd; mv $W/smdd/os25k_bf_t $W/smdd/os25k_bf_t_cropped; mv $W/smdd/m15k_t $W/smdd/m15k_t_cropped
 t0=$(date +%s); python3 -m venv $W/env; PY=$W/env/bin/python
-WH=$(find $W/wheels -name 'torch-2.0.1*.whl' -printf '%h' -quit)
-$PY -m pip install -q --no-index --find-links $WH torch==2.0.1 torchvision==0.15.2 numpy pandas scikit-learn opencv-python-headless tqdm Pillow facenet-pytorch tensorboard
+if [ "${CB1_PIP:-}" = online ]; then   # rented variant: the same versions as the WCSS wheel house, from PyPI
+  $PY -m pip install -q torch==2.0.1 torchvision==0.15.2 numpy==1.22.4 pandas==1.5.0 scikit-learn==1.1.1 \
+      opencv-python-headless==4.5.5.64 tqdm==4.64.0 Pillow==9.1.1 facenet-pytorch==2.5.2 tensorboard==2.17.1
+else
+  WH=$(find $W/wheels -name 'torch-2.0.1*.whl' -printf '%h' -quit)
+  $PY -m pip install -q --no-index --find-links $WH torch==2.0.1 torchvision==0.15.2 numpy pandas scikit-learn opencv-python-headless tqdm Pillow facenet-pytorch tensorboard
+fi
 $PY -m pip freeze > $W/out/pip_freeze.txt; echo "env built in $(( $(date +%s) - t0 )) s"
 C=$W/cb1/code; ST=$W/cb1/stubs; RUN="$PY -I $W/cb1/run_code.py $C $ST"
 $PY -I -c "import torch, torchvision, cv2, sklearn, facenet_pytorch, tensorboard; print(torch.__version__, torch.cuda.get_device_name(0))"
