@@ -742,3 +742,20 @@ cos(f_a, f_b) on the head input f (L2-normalised CLIP feature), in eval mode; an
 reads with the pair pass in train mode (LoRA dropout on). Pre-stated: if the median |Δz| of the genuine pairs in eval
 mode is < 0.05, the logit equality term is inert. Training images only (`/mnt/t7/smad_next/PN1/fs_tree`); no
 development or benchmark image. Code `src/PN1/pairs_check.py`.
+
+## Registration Sp (registered at the git commit that adds this section; `date`: Thu Nov 12 10:55:22 PM CET 2026; no FS1 tar has been read (9 of 16 fetched, none opened); no Sp fit exists)
+
+- Author's approval, 12 Nov about 22:55, his words: "2. Yup!" to "Ablation arm: the spliced recipe without its matched
+  genuine composites (about 1.7 USD) ... starts on the same machine when the fresh seeds end".
+- Registered text: `prereg_remedies_v2_draft.md`, arm (a) "Sp", exactly as at commit 017b7eb (pre-run fixes F1–F5 of
+  `PRERUN_PN1_SP_20261112.md`): purpose and must-not-claim list; predictions 1 (Sp ≥ max(2·Sb, Sb + 0.10) of the 100
+  development-ladder S0 images, inclusive) and 2 (raw development S0-vs-S4 `auc` at least 0.05 below Sb's); reading,
+  read-seed, missing-fit, tie and falsifier rules; printed reads (development S3 own-rule flags, landmark_combined,
+  R1–R6, storage share); development ladder and FFHQ only, the 191-host test ladder unread; the 8% repetition
+  disclosure.
+- Pins: train_Sp.csv `cf386dc7…`; mk_sp.py `9c84daf6…`; overlay `pn1_overlay_sp.tar` `1c0d03f3…`; pack
+  `pn1_pack_sp.tar` `76528f16…` (= FS1 pack + `tar -A` overlay; built on the FS1 host and checked against this
+  pin); run.sh `6a23a7a4…` (adds "Sp"); train.py unchanged (`cbb2cbd1…`); pn1_eval.csv byte-equal to FS1's.
+- Seeds 403, 404, 405, on the FS1 host (A100-PCIE-40GB, GPU-5bd20020) after the 16 FS1 fits, under the same host lock;
+  compared with FS1's Sb at the same seeds. Reader: a small extension of fs_read.py, committed before the first Sp tar
+  is pulled.
