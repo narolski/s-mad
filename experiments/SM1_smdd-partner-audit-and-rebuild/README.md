@@ -279,6 +279,12 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
   heads both recipes, readers, `a12_af0soft.py`): H-new-1 falsified (d5 landmark-7 5.07); softened-copy increments
   e / f +0.03 to +0.05 against +0.09 to +0.28 for the other arms. T7 28 GB free at 10:15 (not my writes).
 
+- 12 Nov 11:40 Eight rented ViT-B/16 fits (a, c, e, f x 401, 402) back (hashes OK; pulled by the lead);
+  `lora_read.py` now also reads `audit/scores_audit.npz` (ids unconverted); registered reading in `result.md`
+  (`p3_lora_vitb.json`, `a12_fixed_vitb.json`, `a12_partner_ref_vitb.json`). Release check for sm1b answered to the
+  lead: weights = `ad4eval/last_trainable.pt` (312,570 B) in every tar; only the machine logs and smoke folder were
+  not copied back (one rsync given); no RELEASE written by me.
+
 ## 3. Data
 
 Inputs (read only):

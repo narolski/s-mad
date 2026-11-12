@@ -36,12 +36,13 @@ def main():
             continue
         arm, seed = t.name.split("_")[1], t.name.split("_")[2][1:]
         ids, z = [], []
-        for sub in ("ad4eval", "ar1eval", "jpegeval"):
-            if not (t / sub / "scores_eval.npz").exists():
+        for sub in ("ad4eval", "ar1eval", "jpegeval", "audit"):                  # audit: A12 item 10
+            fn = t / sub / ("scores_audit.npz" if sub == "audit" else "scores_eval.npz")
+            if not fn.exists():
                 continue
-            f = np.load(t / sub / "scores_eval.npz", allow_pickle=False)
+            f = np.load(fn, allow_pickle=False)
             p = np.clip(f["score_noTTA"].astype(np.float64), 1e-7, 1 - 1e-7)
-            ids += [conv(i) for i in f["id"]]
+            ids += [str(i) if sub == "audit" else conv(i) for i in f["id"]]
             z.append(np.log(p / (1 - p)))
         z = np.concatenate(z)
         np.savez(od / f"{arm}_s{seed}.npz", id=np.array(ids), logit=z.astype(np.float32))

@@ -563,33 +563,35 @@ the camera-photo threshold (MorDIFF E7 0.85, seeds 1.00 / 0.71), where this head
 photos and 0.83 of JPEG-50 FRLL photos (seed spread large). So the ViT-L/14 LoRA arm a shows no storage rise in EER;
 the storage comparison for the ViT-L/14 fits does not count at the own rule (A11). Train hours 3.50 per fit.
 
-## ViT-B/16 LoRA fits on the rented machine (A13): INCOMPLETE, descriptive single-seed rows
+## ViT-B/16 LoRA fits on the rented machine (A13): first registered reading (8 fits: a, c, e, f x seeds 401, 402)
 
-Our frames, first-test data, arms fixed in advance; seed 401 only, 2 of 12 fits (`p3_lora_vitb_incomplete.json`;
-RTX 6000 Ada, 4,450 s of training per fit). Not the registered reading (due with the eighth fit).
+One machine type (RTX 6000 Ada, rented; A13), A11 recipe and reads (`p3_lora_vitb.json`, `a12_fixed_vitb.json`,
+`a12_partner_ref_vitb.json`). Our frames, first-test data, arms fixed in advance. **Arms e and f (and c as the
+look-alike base) on benchmark cells are development exposure** (author's ruling of 12 Nov; README §1a), not benchmark
+results of a proposed method. 2-seed means [person bootstrap]; seeds in parentheses.
 
-| Fit | landmark-7 EER native | landmark rise | diffusion-7 EER native | diffusion rise | GAN-3 EER | halves flagged (AR1 EER thr / camera thr) | MorDIFF E7 pool flagged (own / camera) | most-flagged pool, own rule | untouched FRLL flagged, camera thr | JPEG-50 FRLL flagged, camera thr |
-|---|---|---|---|---|---|---|---|---|---|---|
-| a s401 | 2.56 | +1.64 | 7.52 | +17.33 | 22.87 | 0.012 / 0.079 | 0.034 / 1.000 | 0.054 | 0.206 | 0.554 |
-| c s401 | 3.67 | +12.17 | 13.30 | +25.89 | 14.48 | 0.007 / 0.099 | 0.961 / 0.995 | 0.961 | 0.152 | 0.074 |
+| Arm | landmark-7 EER native | landmark rise | diffusion-7 EER native | diffusion rise | GAN-3 EER | MorDIFF E7 pool flagged, own rule | most-flagged pool, own rule |
+|---|---|---|---|---|---|---|---|
+| a release files | 2.76 [2.07, 3.47] | +2.26 | 6.40 (7.52, 5.28) | +18.04 [16.31, 19.96] | 23.91 | 0.20 (0.03, 0.37) | 0.21 |
+| c look-alike | 5.29 [4.13, 6.46] | +13.39 | 15.12 | +29.09 [26.75, 31.48] | 20.88 | 0.90 | 0.96 |
+| e history crossing | 2.24 [1.47, 2.85] | −0.30 | 13.76 | −3.10 [−4.69, −1.36] | 25.03 | 0.00 | 0.00 |
+| f e + JPEG 90 / 70 | 2.38 [1.72, 3.04] | +0.02 | 12.70 | −1.21 [−2.77, +0.35] | 18.79 | 0.00 | 0.00 |
 
-## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
+A11 validity condition (arm a flags more than 10% of some history-matched pool at its own rule): **met** (0.21 on
+average; seed 401 0.05, seed 402 0.37, so seed-dependent). At the camera-photo threshold (always read with the miss
+rate): untouched FRLL photos flagged a 0.110 [0.086, 0.140], c 0.105, e 0.201 [0.149, 0.257], f 0.049 [0.027,
+0.076]; JPEG 50 − untouched a +0.245 [0.201, 0.294], c −0.056, e +0.515 [0.466, 0.566], f +0.120 [0.088, 0.157];
+FRLL landmark-4 miss a 0.020, c 0.184, e 0.002, f 0.150; MorDIFF E7 pool flagged a 0.98, e 0.96, f 0.82. At the own
+rule untouched FRLL photos are never flagged by a, e, f (c 0.145), and landmark-4 miss is 0.48 / 0.50 / 0.44 (c 0.14).
+Reading: on the standard ViT-B/16 recipe, the released SMDD files give a diffusion rise of +18 points under history
+matching; history crossing removes it (−3.1) without a landmark-EER cost (2.24 against 2.76), but at the camera
+threshold it doubles the untouched FRLL photos flagged and the JPEG-50 increment (e); adding JPEG copies (f) brings
+both below arm a. Development exposure: not a method result.
 
-**Item 11, five random pool partners (H-new-1; arm d5, 5 seeds; `p3_full.json`, `p3_fz1.json`).** Landmark-7 native
-EER: d5 5.07 [3.52, 6.78] against SMDD's five (b) 7.61, K = 50 4.79, b′ 4.19; b → d5 −2.54 [−4.21, −0.88], d5 → K = 50
-−0.29 [−1.31, +0.89]. Release recipe: d5 5.04, b → d5 −4.00 [−5.88, −2.00]. Diffusion-7 native 13.5 (b 20.2, K = 50
-9.7); diffusion rise +11.0 (b +14.6); MorDIFF E7 pool flagged at the own rule 0.47 (b 0.21, K = 50 0.55). Partner
-trace of d5 on the audit set (trained − KE, its five are not audit partners) 0.16 [−0.02, 0.35]. Prediction:
-landmark-7 ≥ 6.5%; falsified if ≤ 5.5%. Reading: **falsified** (5.07): five random partners do about as well as 50, so
-the step from SMDD's five is mostly about which five, not how many (F9).
-
-**Item 13, softened AR1 copies at 112.7 and 61.2 px target inter-eye distance (`a12_af0soft.json`).** Flag rate of
-200 softened camera photos (R0) at the head's camera threshold, against the same hosts unsoftened (raw photos; the
-softened copies are aligned frames, so the increment mixes alignment and softening). Increment 112.7 / 61.2 px:
-a +0.11 / +0.18; b +0.09 / +0.20; d5 +0.17 / +0.23; K = 50 +0.05 / +0.13; b′ +0.06 / +0.17; c +0.11 / +0.28;
-d +0.11 / +0.19; **e +0.05 / +0.03; f +0.04 / +0.04**; FE header +0.10 / +0.19 (release recipe: e +0.05 / +0.04,
-f +0.05 / +0.04). Softened OpenCV R4 morphs missed at the same threshold: 0.01 to 0.04 for every arm (increments
-−0.04 to +0.01). History crossing at 80 px also lowers the reaction to softening at sizes not used in training.
+Audit set (A12 item 10, H-new-5 on ViT-B/16): logits of these fits sit at a narrow ceiling (arm a, trained-partner
+morphs mean 3.50, max 3.53), so the gaps are compressed: trained − KE a 0.045 [0.038, 0.053] (seeds 0.056, 0.033),
+c 0.001 [−0.001, 0.002], e 0.001, f 0.003; DiD a − c 0.044 [0.037, 0.052]. Own-rule miss with every partner kind
+≤ 0.3%. A small trace, positive for arm a only; the registered H-new-5 prediction concerns ViT-L/14 (job 3547052).
 
 ## A12 items still open
 
