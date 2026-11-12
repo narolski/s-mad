@@ -8,17 +8,18 @@
 #SBATCH --gres=gpu:hopper:1,storage:local:80G
 #SBATCH --no-requeue
 #SBATCH --time=0-03:00:00
-#SBATCH --array=0-9
+#SBATCH --array=0-14%6
 #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/ms1-fit-%A_%a.out
-# MS1 training comparison (prereg part 2): one fit per array task, arms Sb and SbM3 at seeds 403-407, the unchanged
+# MS1 training comparison (prereg part 2): one fit per array task, arms Sb, SbM3 and SbV (data-volume control) at
+# seeds 403-407, seed by seed, at most 6 GPUs at once; the unchanged
 # PN1 recipe through run.sh (MS1 copy, sha256 in run.sh.sha256), pack pn1_pack_ms1.tar (sha256 checked by run.sh).
 # All IO in $TMPDIR; one result tar per fit to results/MS1. A task whose verified tar exists exits at once.
 set -euo pipefail
 : "${TMPDIR:?no TMPDIR}"
 L=/lustre/pd03/hpc-narolski-1790461090/smad-next
 P=$L/packs/MS1
-ARMS=(Sb SbM3 Sb SbM3 Sb SbM3 Sb SbM3 Sb SbM3)
-SEEDS=(403 403 404 404 405 405 406 406 407 407)
+ARMS=(Sb SbM3 SbV Sb SbM3 SbV Sb SbM3 SbV Sb SbM3 SbV Sb SbM3 SbV)
+SEEDS=(403 403 403 404 404 404 405 405 405 406 406 406 407 407 407)
 ARM=${ARMS[$SLURM_ARRAY_TASK_ID]}; SEED=${SEEDS[$SLURM_ARRAY_TASK_ID]}
 (cd "$P" && sha256sum -c --quiet run.sh.sha256)
 TD=$TMPDIR/td; W=$TMPDIR/w; mkdir -p "$TD" "$W"

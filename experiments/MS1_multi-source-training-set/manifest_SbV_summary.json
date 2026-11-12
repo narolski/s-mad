@@ -1,0 +1,40 @@
+{
+ "rows": 13414,
+ "unique": 5535,
+ "strata": {
+  "feret|native": {
+   "sb_rows_per_label": 1602,
+   "target_per_label": 2562
+  },
+  "feret|s61": {
+   "sb_rows_per_label": 392,
+   "target_per_label": 627
+  },
+  "frgc|native": {
+   "sb_rows_per_label": 1974,
+   "target_per_label": 3158
+  },
+  "frgc|s61": {
+   "sb_rows_per_label": 225,
+   "target_per_label": 360
+  }
+ },
+ "sha256": "8920699f52266f9d78bb3b2da30aa28488c4d8e8286404618b198f97535ac820",
+ "splice_share_of_attack_rows": 0.10496496198002088,
+ "by_kind": {
+  "af0_photo": 827,
+  "lad_R0": 255,
+  "af0_zero": 1184,
+  "af0_half": 2314,
+  "lad_R2w": 251,
+  "lad_half": 394,
+  "lad_S3": 252,
+  "lad_S0": 243,
+  "af0_u50": 4320,
+  "lad_R4": 696,
+  "lad_S4": 704,
+  "af0_photo61": 409,
+  "af0_half61": 578,
+  "af0_u5061": 987
+ }
+}

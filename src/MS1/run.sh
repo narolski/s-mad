@@ -1,5 +1,5 @@
 #!/bin/bash
-# MS1 task (copy of src/PN1/run.sh; changes: arm list adds SbM3, results go to $G/results/MS1 (or MS1_RESULTS), default pack pn1_pack_ms1.tar). One network = one task. Trains one ViT-B/16 row with the UNCHANGED train.py of the AD4 pack
+# MS1 task (copy of src/PN1/run.sh; changes: arm list Sb|SbM3|SbV, software versions written into the result (env.txt), results go to $G/results/MS1 (or MS1_RESULTS), default pack pn1_pack_ms1.tar). One network = one task. Trains one ViT-B/16 row with the UNCHANGED train.py of the AD4 pack
 # (the morph-free networks recipe M3, flag for flag as src/AD4/run.sh), manifest A, B or C, last checkpoint; scores it
 # on the PN1 evaluation manifest and on its own training rows; writes ONE result tar plus .sha256 to $OUT.
 # Reads $TASK_DIR/task.env (TASK ARM SEED). IO: one pack tar in (sha256-checked), all work in $TASK_WORK (RAM disk),
@@ -30,7 +30,7 @@ if [ -e "$OUT/$TASK.tar" ]; then
     && { echo "PN1 already done: $OUT/$TASK.tar"; exit 0; }
   die "$OUT/$TASK.tar exists without a matching .sha256 (never overwritten)"
 fi
-case "$ARM" in Sb|SbM3) MAN=train_$ARM.csv ;; *) die "arm $ARM" ;; esac
+case "$ARM" in Sb|SbM3|SbV) MAN=train_$ARM.csv ;; *) die "arm $ARM" ;; esac
 case "$SEED" in 401|402|403|404|405|406|407) ;; *) die "seed $SEED" ;; esac
 STEPS=${PN1_STEPS:-6250}
 WORKERS=${PN1_WORKERS:-7}
@@ -66,6 +66,7 @@ mkdir -p "$R"
 py "$W/pn1/src/pn1_score.py" --run "$RUN" --code "$W/pn1/code" --eval-manifest pn1_eval.csv \
   --train-manifest train.csv --out "$R" --workers "$WORKERS" --limit "${PN1_LIMIT:-0}"
 cp "$RUN/meta.json" "$W/train.log" "$TASK_DIR/task.env" "$R/"
+py -c "import sys, torch, timm, numpy, PIL; print('python', sys.version.split()[0], 'torch', torch.__version__, 'cuda', torch.version.cuda, 'timm', timm.__version__, 'numpy', numpy.__version__, 'pillow', PIL.__version__)" > "$R/env.txt" 2>&1 || true
 echo "sif $SIF local ${PN1_LOCAL:-0} pack_sha256 $PACK_SHA wall_s $((SECONDS - T0)) host $(hostname) steps $STEPS limit ${PN1_LIMIT:-0}" > "$R/task_info.txt"
 { echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"; nvidia-smi -i "${CUDA_VISIBLE_DEVICES:-0}" --query-gpu=index,uuid,name,driver_version --format=csv,noheader; } > "$R/gpu.txt" 2>&1 || true
 tar -C "$W/res" -cf "$W/$TASK.tar" "$TASK"

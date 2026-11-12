@@ -1,0 +1,16 @@
+{
+ "source": "cfd",
+ "images": 831,
+ "aligned": 831,
+ "failed": [],
+ "persons_aligned": 827,
+ "persons_total": 827,
+ "by_subset": {
+  "CFD": 597,
+  "CFD-INDIA": 146,
+  "CFD-MR": 88
+ },
+ "pool_csv_sha256": "d6ef6793b588fa981ccb27a575ead4b91ffad0f3fe2b2345973c8ec9866b75a9",
+ "aligner_sha256": "47eefed3171d7ee63880b22e986e9666582a55fc3a62839671b9d8104e7e68e0",
+ "seconds": 72
+}

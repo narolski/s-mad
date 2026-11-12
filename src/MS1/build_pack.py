@@ -5,6 +5,7 @@ pn1/code/**, pn1/hf/**, pn1/src/pn1_score.py  from the FS1 tree (/mnt/t7/smad_ne
 pn1/data/train/**                             the images of train_Sb (FS1 tree) + the FFHQ training images of SbM3
 pn1/data/manifests/train_Sb.csv               byte-equal to FS1's (2cf3fda3...)
 pn1/data/manifests/train_SbM3.csv             OUT/manifests/train_SbM3.csv
+pn1/data/manifests/train_SbV.csv              OUT/manifests/train_SbV.csv (data-volume control; Sb images only)
 pn1/data/manifests/pn1_eval.csv               FS1's 19,797 development rows (f0f29f22...) + the MS1 FFHQ hold-out rows
                                               (fam ms1ffhq) + the TT1 aligned genuine photos (fam tt1, cell = family).
                                               No FRLL, MAD22, MorDIFF, DiM, H1, FEI or sealed row (asserted).
@@ -82,6 +83,7 @@ def main():
         assert not (root / pp).exists(), pp
         link(pp, r["source"], r["sha256"])
     link("data/manifests/train_SbM3.csv", C.OUT / "manifests/train_SbM3.csv")
+    link("data/manifests/train_SbV.csv", C.OUT / "manifests/train_SbV.csv")
     ev = list(csv.DictReader(open(FS / "data/manifests/pn1_eval.csv")))
     cols = list(ev[0])
     for r in ev:
