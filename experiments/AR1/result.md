@@ -37,8 +37,9 @@ our pipeline (aligned 512-pixel frames, one DGX).
    FRGC, which has no padded borders. The spliced inner-face morph (amendment 7b) confines the second capture to the
    face: there, R2w4 vs spliced morph is ViT-B/16 0.66 / 0.64, ViT-L/14 0.71 / 0.75, MixFaceNet 0.60 / 0.61 (none
    above the best simple baseline) and SelfMAD 0.91 / 0.95 (+0.15 to +0.26 above it). So for the CLIP detectors and
-   MixFaceNet, most of the unspliced 0.89-0.99 comes from what whole-frame tools blend outside the face. SelfMAD reads
-   the inner-face blend as well. This part is specific to tools that blend the whole frame.
+   MixFaceNet, most of the unspliced 0.89-0.99 comes from what whole-frame tools blend outside the face. SelfMAD
+   separates the inner-face splice too (above the band baseline, but not shown to exceed the 3-statistic seam floor;
+   amendment 9). It does not read only the patch boundary; whether it reads the blend is pending amendment 10. This part is specific to tools that blend the whole frame.
 5. For regular morphs the audit finds both: blend-trace detection that works without benchmark cues, and, on the
    published FRLL files, sensitivity to photo history (SelfMAD strongly; ViT-B/16 and MixFaceNet moderately; not
    ViT-L/14). Neither a second identity nor face-only blending is shown to be what the CLIP detectors and MixFaceNet
@@ -301,7 +302,7 @@ S3 vs S4 (the second identity, inner face only) is 0.47-0.67.
 Transfer read on the existing Poisson-blended set (H1, A27/A36, not rescored): the record has ViT-B/16 0.770 and
 ViT-L/14 0.718 above a file-size floor of 0.620 (via the dossier); no SelfMAD or MixFaceNet H1 number is quoted here.
 
-## Amendment 9 (after the review of the spliced reads; OpenCV-style tool only), `sp_floor.json`
+## Amendment 9 (after the review of the spliced reads; OpenCV-style tool only; POST HOC: registration and computation were committed together in 9f1f810, order not verifiable), `sp_floor.json`
 
 - Evaluation set: the 3-statistic floor (seam tone luma and R-G, sharpness ratio, band5 at 224 px), fitted on the 100
   PN1 development hosts. On the 436 other non-validation hosts it gives S0 vs S4 0.861 [0.834, 0.886].
@@ -330,8 +331,10 @@ ViT-L/14 0.718 above a file-size floor of 0.620 (via the dossier); no SelfMAD or
   | MixFaceNet | 0.688 [0.665, 0.718] |
 
   The registered prediction (SelfMAD AUC <= 0.5, i.e. it reads a patch boundary) is falsified (>= 0.75). SelfMAD
-  scores the spliced blend above the unblended patch, even though the patch has twice the colour step. SelfMAD does
-  not exceed the 3-statistic floor on S0 vs S4 (+0.02, interval includes 0).
+  scores the spliced blend above the unblended patch, even though the patch has 1.7 to 2.0 times the colour step
+  (luma 15.6 vs 9.3, R-G 9.1 vs 5.4, step 15.2 vs 7.8). SelfMAD does not read only the patch boundary (pending the
+  simple-statistic floor of amendment 10). SelfMAD is not shown to exceed the 3-statistic floor on S0 vs S4 (+0.021
+  [-0.013, 0.057]).
 
 ## Gaps and what was not done
 

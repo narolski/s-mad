@@ -202,8 +202,10 @@ thumbnail, band power, Laplacian variance, and the inside/outside sharpness rati
 divided by outside, one scalar, folded). (d) Transfer read on the existing Poisson-blended set (H1, A27/A36): the record's
 released-detector AUCs are quoted (no rescoring in this round). Blanking with the same R4 hull for all arms.
 
-Amendment 9 (lead, after REVIEW_SPLICE_20261111; registered 12 Nov before the computations below ran and before any
-swap-splice score existed). OpenCV-style tool only; FaceMorpher spliced reads are labelled "seam not matched" (its S0
+Amendment 9 (lead, after REVIEW_SPLICE_20261111). CORRECTION (12 Nov, after REVIEW_PN1_TIER1_20261112, Subject 2):
+the header originally said "registered 12 Nov before the computations below ran", but `swap_seam.csv`,
+`floor3_pn1.json` and `sp_floor.json` were written 11 Nov 23:58-23:59 and committed together with this text in
+9f1f810. The order of registration and computation cannot be verified; all amendment 9 items are POST HOC. OpenCV-style tool only; FaceMorpher spliced reads are labelled "seam not matched" (its S0
 has almost no seam: step 1.06 vs 15.83 grey levels, reviewer) and are not used.
 (a) Zero GPU, post hoc: released-detector S0 vs S4 as excess over the 3-statistic floor (seam tone luma and R-G,
     inside/outside sharpness ratio, band5 at 224 px) fitted on the 100 development hosts of the protocol-network split
@@ -217,3 +219,19 @@ has almost no seam: step 1.06 vs 15.83 grey levels, reviewer) and are not used.
     ring, same hull) printed beside S4 and S0. Contrast S4 (positive) vs SW, released detectors. Registered
     prediction (review H-new-2): SelfMAD AUC(S4 vs SW) <= 0.5 (it reads a patch boundary); a detector that reads the
     blend gives >= 0.75. SelfMAD falsifies H-new-2 if >= 0.75.
+
+
+Amendment 10 (12 Nov, after REVIEW_PN1_TIER1_20261112 Subject 2; committed to git before the computations run, so the
+order is verifiable from the commit times). Zero GPU, measurement only, no image written; OpenCV-style tool; thread
+caps. Post hoc in substance (the detector scores are known).
+(a) Simple-statistic floor for S4 (positive) vs swap-splice SW, all 536 primary hosts, same R4 hull per host:
+    single statistics (orientation folded): inside/outside sharpness ratio (variance of the 3x3 Laplacian of luma inside
+    the hull / outside), inside Laplacian variance, the seam tone luma and R-G and mean absolute step (swap.py's
+    `seam`), band shares F1-F5 of the whole image; plus a combined logistic floor on all of them, out of fold with the
+    strict person folds (folds.py). Floor = the best of these. Detector excess = detector AUC minus floor AUC on the
+    same images, paired two-way person bootstrap (B = 2,000). Reading: "SelfMAD reads the blend beyond simple statistics"
+    only if its excess lower bound > 0; otherwise the wording stays "does not read only the patch boundary".
+(b) Noise-residual floor for warp-only vs morph (R2w vs R4 and R2w4 vs R4, both tools): first-order finite differences
+    of luma (horizontal and vertical neighbour differences; no filtering, no resampling): standard deviation, mean
+    absolute value and kurtosis, separately inside and outside the face hull (12 numbers); logistic, strict person
+    folds. Detector excess over this floor with paired intervals.
