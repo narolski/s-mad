@@ -51,7 +51,15 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
   gate_check self-test on identical scores: pass.
 - Commit ccd6319: pins section. 23:33-23:37 WCSS folder check (waited for the shared lock); upload of pack, networks
   and job files started 23:37 (`/mnt/t7/smad_next/TT1/logs/upload.log`).
-- Reader `tt1_read.py` written; mock test started 23:37:45.
+- Reader `tt1_read.py` written; mock test 23:37:45-23:42:13 (12 networks, random scores); pinned in 4f1ce82.
+- `date` Thu Nov 12 11:45:28 PM CET 2026: one WCSS attempt: sha256 of the three uploaded files OK on Lustre; sbatch failed
+  ("Unable to contact slurm controller (connect failure)"). Nothing is queued on WCSS. The uploaded files stay in
+  /lustre/pd03/hpc-narolski-1790461090/smad-next/packs/TT1/ (tt1_pack.tar, tt1_nets_s401402.tar, tt1_job.sh, tt1.sbatch)
+  for the FS1 block. Lead told; lead: go on the DGX fallback.
+- Owner error recorded: the upload (8.1 GB, 23:37-23:42) held /tmp/opencode/wcss-client.lock in one go; new lead rule:
+  take the lock per file.
+- `date` Thu Nov 12 11:48:19 PM CET 2026: DGX fallback run started (tt1_job.sh, TT1_LOCAL=1, TT1_MODE=full; log
+  /mnt/t7/smad_next/TT1/dgxrun/run.log; GPU shared with other jobs incl. CB1).
 
 ## 3. Data
 
@@ -170,7 +178,8 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-No process running. Nothing queued. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+DGX run of tt1_job.sh (see timeline; log /mnt/t7/smad_next/TT1/dgxrun/run.log; result tar to
+/mnt/t7/smad_next/TT1/dgxrun/root/smad-next/results/TT1/). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch
