@@ -69,6 +69,11 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   (e69e063).
 - 13 Nov 00:02: `drive_ms1.sh ... setup` started for the three leases in parallel from this session (uploads allowed);
   `after_setup.sh m1|m2|m3` waits for each setup and then starts the queue and the pull loop.
+- 13 Nov 00:05: upload to ms1m1 (61.206.39.5:21267) stalled (about 10 KB/s); lead told; the lead released and
+  destroyed ms1m1 (0.06 USD) and rented the replacement ms1m1b (L40S, 147.124.211.53:9630, lease folder
+  `/mnt/t7/smad_next/vast/ms1m1b`, cap 10 USD, 13 h), which takes queue m1 (seeds 403+406) as registered. The setup
+  and after_setup processes for the old host were stopped (no fit had started there). 00:09: setup started on ms1m1b
+  (about 16 MB/s); `after_setup.sh` now takes the lease folder as an optional second argument.
 
 ## 3. Data
 
@@ -151,8 +156,8 @@ recorded frame (the aligner's sha256 equals AR1's pin); duplicates of persons be
 
 ## 10. Handover state
 
-13 Nov 00:05: three rented L40S 48 GB leases (lease folders `/mnt/t7/smad_next/vast/ms1m1|ms1m2|ms1m3`, READY line in
-`rent.out`, caps 8 / 10 / 6 USD set by the lead). Per lease: setup upload running (`ms1_setup_run.out`), then
+13 Nov 00:10: three rented L40S 48 GB leases (lease folders `/mnt/t7/smad_next/vast/ms1m1b|ms1m2|ms1m3`, READY line in
+`rent.out`, caps 10 / 10 / 6 USD set by the lead; ms1m1 replaced by ms1m1b). Per lease: setup upload running (`ms1_setup_run.out`), then
 `after_setup.sh` (log `after_setup.out`) starts the queue (m1 seeds 403+406, m2 404+407, m3 405; each queue ends with
 the held-out step) and the pull loop (`ms1_loop.out`, `ms1_drive.log`; RELEASE in the lease folder when every tar,
 the held-out tar and the logs are fetched and verified). Results: `/mnt/t7/smad_next/MS1/results_rented/`, second
