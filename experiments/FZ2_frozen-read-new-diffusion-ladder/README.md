@@ -86,7 +86,11 @@ No answer yet.
 - 12 Nov: pre-run review of that draft: STOP (`experiments/reviews/PRERUN_DG1_SAMEORTH_20261112.md`, f6b28e2); draft marked
   "not run; stopped". Amendment 2 registered (commit c258935) before computing; `python -I src/FZ2/fz2_amend2.py`
   (saved codes of shards 2–6, read from the tars in memory, sha checked) → `amend2.json`: H-A (lowest-band shared
-  structure) falsified as registered for the lowest band only (review F6 wording in `result.md`). DG1 README records that
+  structure) falsified as registered for the lowest band only (review F6 wording in `result.md`).
+- 12 Nov: review of amendments 1–2 (`experiments/reviews/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md`, 88f6016) applied;
+  amendment 3 (HN10) registered in 3c7fbbd before computing; `python -I src/FZ2/fz2_amend3.py` → `amend3.json`: identity
+  cos = power-weighted band-cosine sum verified (r = 1.000000), band power 0.30 / 4.3 / 18.8 / 76.6%; HN10 falsified
+  (θ partial +0.177 [+0.038, +0.322] given c1–c3). Mechanism line stopped by the lead. DG1 README records that
   shard 7's codes no longer exist.
 
 ## 3. Data

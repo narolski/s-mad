@@ -136,6 +136,21 @@ Saved noise maps of add-on shards 2–6 (335 hosts; shards 0–1 codes on Athena
   bands tracks sharpness within SAME (ρ 0.34–0.44). Coherent-noise sharpening in general is not falsified (descriptive).**
   (Wording from the review, F6; the identity check is in amendment 3.)
 
+## Amendment 3 (HN10 mediation; registered in commit 3c7fbbd before computing; post hoc in substance) — `amend3.json`
+
+Same 335 hosts as amendment 2. Code `src/FZ2/fz2_amend3.py`.
+
+- Identity check: cos(a, b) equals the power-weighted sum of the four band cosines (Pearson 1.000000, largest difference
+  2.3e-15 over 335 hosts; the weights sum to 0.99987 because the outermost corner frequencies are not in a band). Band
+  power shares (median): 0.30% / 4.3% / 18.8% / 76.6% (reviewer: 0.3 / 4 / 18 / 77% on 67 hosts).
+- Within SAME: partial Spearman of θ with L given c1, c2, c3: +0.177 [+0.038, +0.322]; partial of c2 with L given θ: +0.139
+  [+0.041, +0.243].
+- **Registered reading, HN10: falsified** (θ keeps a partial correlation with sharpness beyond the band cosines, interval
+  excludes 0; c2's partial correlation is below 0.20, upper bound above it). The mechanism is not resolved to a band.
+
+**The diffusion mechanism line stops here** (lead, 12 Nov). The paper carries one sentence: render-path separability, one
+generator.
+
 ## Compute
 
 Athena: job 3545969 submitted 20:39, cancelled 21:31 before it started (0 GPU-hours). DGX GB10: production features

@@ -1,0 +1,30 @@
+{
+ "n_hosts": 335,
+ "registered_in": "3c7fbbd",
+ "identity": {
+  "pearson_cos_vs_weighted_band_mean": 1.0,
+  "max_abs_diff": 2.3037127760972e-15,
+  "band_power_share_median": [
+   0.0029654893960104666,
+   0.04281601202011538,
+   0.18791108090104158,
+   0.7658676730691487
+  ],
+  "weight_sum_median": 0.9998713216921478
+ },
+ "partial_theta_L_given_c1c2c3": {
+  "rho": 0.17736901943926736,
+  "ci": [
+   0.038412077170474665,
+   0.32168703390387404
+  ]
+ },
+ "partial_c2_L_given_theta": {
+  "rho": 0.139162880288513,
+  "ci": [
+   0.04069846754506296,
+   0.243148537354765
+  ]
+ },
+ "reading_HN10": "falsified"
+}
