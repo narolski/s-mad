@@ -202,7 +202,9 @@ Tar `PN1_A14.tar` verified 10:24:56 (rc 0). Scored on the FS1 host, GPU-5bd20020
 queue. Reader `src/PN1/a14_read.py` (`0f259c8d…`) -> `tier1_a14/a14.json`. No benchmark row read.
 
 **Gate:** equivalent. The rescored A_s401 and B_s402 HN2 files are byte-identical to the pn1a (A100-SXM4-40GB) and
-pn1b (A100-SXM4-80GB) files: max |Δ logit| 0.0, ΔAUC 0.0. HN7 and HN2b keep their verdicts.
+pn1b (A100-SXM4-80GB) files: max |Δ logit| 0.0, ΔAUC 0.0 (byte-identical: scorer bitwise deterministic across A100
+SXM4-40/80 and PCIe-40 with this stack; says nothing about training determinism, see HN9). HN7 and HN2b keep their
+verdicts.
 
 **HN8, landmark_combined orig morphs vs history-matched genuine (AUC [95% CI]; own-rule morph miss / genuine flagged):**
 
@@ -215,19 +217,23 @@ pn1b (A100-SXM4-80GB) files: max |Δ logit| 0.0, ΔAUC 0.0. HN7 and HN2b keep th
 | Sb | 0.887 [0.873, 0.902]; 24.2 / 6.7% | 0.909 [0.897, 0.922]; 18.5 / 9.6% |
 | Bv | 0.752; 31.9 / 25.8% | 0.711; 59.1 / 10.2% |
 
-- Registered reading: **supported**.
+- Registered reading: **supported** (first seeds; Sb selected on them after H1 was read).
   - Both seeds are testable (B 0.754 / 0.716 < 0.95).
   - Sb − B: +0.133 / +0.194 (≥ 0.05). Sb − A: +0.109 / +0.163 (≥ 0).
-- Floor: the best simple statistic is noise_std_face at 0.886. Sb's lower bound over the floor maximum, re-taken per draw, is −0.017 (401) and +0.006 (402).
+- Floor: the best simple statistic is noise_std_face at 0.886. Sb's lower bound over the floor maximum, re-taken per draw, is −0.017 (401) and +0.006 (402); point gaps +0.001 / +0.024.
   - It is not above 0 on both seeds, so **"reads the face splice" is not stated**.
-  - Every other network sits 0.13 to 0.20 below the floor.
-- The aligned==1 subset gives the same AUCs to the third decimal.
+  - Other networks' point AUCs are 0.11–0.17 below the floor.
+  - Post hoc: noise_std_border separates at 0.786 (a processing cue outside the blended face); the 27 cues combined (cross-validated) reach 0.948.
+- The aligned==1 subset gives AUCs within 0.002.
 - Disclosure (registered): A's reading of this pool is partly history-driven.
 
 **Paired landmark_complete minus landmark_combined logit, same pair key (1,000 pairs; printed; complete scores of A, B, Bn, C from pn1a / pn1b):**
 - mean shift 401 / 402: A +0.88 / +2.18; B +2.39 / +3.94; Bn +2.35 / +4.03; C +2.43 / +3.84; Sb +1.62 / +1.41; Bv +2.44 / +4.12.
 - The share scored higher on the complete morph is 0.70 to 0.99 for every network.
-- Every network scores the whole-frame morph above the face-only splice of the same pair. Sb loses the least on seed 402, and A the least on seed 401.
+- Every network, Sb included, ranks the whole-frame morph above the face-only splice of the same pair for 95 to 99% of
+  pairs (A 70 / 84%). Mean logit drops are not comparable across arms (genuine SD 1.2 to 3.0). Scale-free, Sb loses
+  0.09 to 0.11 AUC from complete to combined, B, Bn, C and Bv 0.24 to 0.28. Surround reliance is reduced in degree,
+  not removed.
 
 **HN7 (associational, between arms), face-only R4 vs R2w on the test ladder against landmark_combined AUC, 12 networks:**
 - Spearman: ρ = 0.35 [0.24, 0.70]; arm level (n = 6) 0.66 [0.31, 0.94]; without Sb −0.12 (n = 10), 0.40 at arm level (n = 5).
@@ -237,6 +243,27 @@ pn1b (A100-SXM4-80GB) files: max |Δ logit| 0.0, ΔAUC 0.0. HN7 and HN2b keep th
 **HN2b** (amendment-13 rule): Sb 401 / 402 and Bv 401 / 402 all read "calibration shift (not a shortcut)" (added under amendment 14).
 - Own-rule FFHQ genuine flags: Sb 5.9 / 7.0%, Bv 17.6 / 5.8%.
 - Within-source AUC: 0.995 to 0.998.
+- The label does not mean Sb's threshold shifts more; Sb has the lowest own-rule flags of the 12 networks.
 
 Development data only (FFHQ by designation, our own ladder). Seeds 401/402 are confounded with machine. The FS1
 contrasts were frozen (ac585b7) before this read.
+
+**Post hoc reads on seeds 401 / 402 (review of amendment 14, F1–F3 and §4; recomputed by the owner with the registered
+R1–R6 code, `fs_read.rreads`; `tier1_a14/posthoc_a14_review.json`; POST HOC, development data only).** Floor statistic
+noise_std_face 0.886; 27 cues combined (5-fold CV) 0.948; noise_std_border 0.786.
+
+| network (401 / 402) | R1 floor-stratified AUC | R2 Spearman with noise_std_face (morph; genuine) | R3 increment over noise_std_face / over 27 cues | R4 floor-matched AUC | storage share rising (contrast-2 read) |
+|---|---|---|---|---|---|
+| A | 0.706 / 0.678 | −0.12; −0.21 / −0.09; −0.18 | +0.017 / +0.011; +0.006 / +0.004 | 0.686 / 0.657 | 0.778 / 0.721 |
+| B | 0.708 / 0.699 | −0.08; −0.11 / 0.00; −0.03 | +0.019 / +0.016; +0.006 / +0.006 | 0.712 / 0.682 | 0.443 / 0.372 |
+| Bn | 0.703 / 0.698 | −0.06; −0.10 / −0.02; −0.06 | +0.016 / +0.016; +0.005 / +0.005 | 0.698 / 0.688 | 0.414 / 0.340 |
+| C | 0.721 / 0.741 | −0.08; −0.07 / −0.01; −0.00 | +0.022 / +0.028; +0.007 / +0.010 | 0.718 / 0.727 | 0.357 / 0.302 |
+| Sb | 0.879 / 0.901 | −0.08; −0.03 / −0.09; −0.08 | +0.068 / +0.074; +0.027 / +0.031 | 0.877 / 0.890 | 0.160 / 0.286 |
+| Bv | 0.706 / 0.695 | −0.08; −0.11 / 0.00; −0.02 | +0.018 / +0.015; +0.006 / +0.005 | 0.711 / 0.680 | 0.439 / 0.363 |
+
+Sb − B in floor strata (R1): +0.172 / +0.202. Sb's Spearman with noise_std_border: morph −0.04 / −0.06, genuine
++0.19 / +0.14. Scale-free surround reliance (R6, AUC loss complete -> combined; share higher on complete): A 0.157 /
+0.225, 0.695 / 0.835; B 0.240 / 0.279, 0.953 / 0.983; Sb 0.107 / 0.085, 0.958 / 0.964; genuine SD on the combined
+pool: A 3.02 / 2.92, B 2.52 / 1.90, Sb 1.23 / 1.31. Reading (post hoc): Sb does not exceed the best single statistic's
+AUC, but its ranking is not that statistic (within-strata gain over B no smaller than the raw gap; increment over the
+27 cues about 0.03 against B's 0.006). Limited to this development set, which carries a processing cue (0.786).
