@@ -5,7 +5,7 @@
 #SBATCH -N 1
 #SBATCH -c 8
 #SBATCH --mem=64gb
-#SBATCH --gres=gpu:hopper:1,storage:local:60G
+#SBATCH --gres=gpu:hopper:1,storage:local:80G
 #SBATCH --no-requeue
 #SBATCH --time=0-01:00:00
 #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/ms1-smoke-%j.out

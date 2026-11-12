@@ -5,7 +5,7 @@
 #SBATCH -N 1
 #SBATCH -c 8
 #SBATCH --mem=64gb
-#SBATCH --gres=gpu:hopper:1,storage:local:60G
+#SBATCH --gres=gpu:hopper:1,storage:local:80G
 #SBATCH --no-requeue
 #SBATCH --time=0-03:00:00
 #SBATCH --array=0-9
