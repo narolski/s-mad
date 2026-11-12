@@ -1,7 +1,7 @@
 # Threshold transfer on unseen genuine sources (TT1): full record
 
-Standard: `DOCUMENTATION.md`. Short verdict: `result.md`. Registration: `prereg.md` (pool building) and
-`prereg_scoring_draft.md` (scoring, draft for pre-run review). Code: `/home/narolski/smad-next/src/TT1/`. Large outputs:
+Standard: `DOCUMENTATION.md`. Short verdict: `result.md`. Registration: `prereg.md` (pool building; section 3 registers
+the scoring text `prereg_scoring.md` at 01557ce; section 4 pins at ccd6319). Draft history: `prereg_scoring_draft.md`. Code: `/home/narolski/smad-next/src/TT1/`. Large outputs:
 `/mnt/t7/smad_next/TT1/`.
 
 ## 1. Question and current answer
@@ -12,7 +12,8 @@ small source face is enlarged to the canonical frame and by its sharpness, or by
 (plain A, protocol B, protocol plus spliced positives Sb, and the controls Bn, C, Bv) gives the lowest and most uniform
 genuine false-alarm rates? This is a false-alarm test only: there are no morphs of these sources.
 Status at the commit that adds this section: genuine pools built and aligned (25,241 photos from 8 sources, 7
-families); no network scored; scoring registration drafted (`prereg_scoring_draft.md`), waiting for independent pre-run review.
+families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH FIXES, 7c0ecb6); references built and pinned
+(ccd6319); WCSS H100 run in preparation (see Handover).
 
 ## 2. Timeline
 
@@ -33,7 +34,24 @@ families); no network scored; scoring registration drafted (`prereg_scoring_draf
   detections; one viewed, 35x), LFW 40, CALFW 9, CFP-FF 1, AgeDB 4; excluded from the draft's primary pool by a band
   rule ([1.2, 2.5] for 224 px frames, [2.5, 5.0] for 112 px).
 - `src/TT1/strata.py` -> `strata_edges.json` (fixed sharpness, enlargement and border quintiles; manifests only).
-- Scoring registration drafted: `prereg_scoring_draft.md` (for independent pre-run review; nothing registered).
+- Scoring registration drafted: `prereg_scoring_draft.md` (f4fe159), sent to the lead.
+- Lead's message (after f4fe159): border-matched reference approved; WCSS H100 allowed; gate needed for the H100; pack
+  must be reusable for FS1. Pre-run review `experiments/reviews/PRERUN_TT1_SCORING_20261112.md` (7c0ecb6): GO WITH FIXES,
+  majors M1-M7; lead rulings R1 (build the crop-geometry control with the approved shrink path), R2 (packs outside the
+  CASIA-WebFace closure; overlap statement; never-read assert), R3 (TT-H6 descriptive), R4 (H100 with G-DGX gate +
+  Kendall; DGX fallback), R5 (MS1 FFHQ disjointness).
+- `date` Thu Nov 12 11:23:08 PM CET 2026: `geometry.py` -> `crop_geometry.json` (median non-black boxes of U_p frames).
+- Commit 01557ce (`date` Thu Nov 12 11:25:26 PM CET 2026): registration TT1-S (`prereg_scoring.md`).
+- 23:26:12-23:26:53: `build_geo_ref.py` (after an 8-image test, one frame viewed): 834 geo references, all aligned.
+- 23:27:10-23:28:19: border references rebuilt with the edge-connected mask (M3); the first build (every-black-pixel
+  mask, made 23:17:45-23:18:59, never scored) deleted.
+- 23:28-23:30: list (34,411 rows), network tar, pack (`build_pack.py`); gate_check.py set to the registered tolerances
+  and the pack rebuilt with it.
+- 23:30:49-23:32:00: local DGX test of `tt1_job.sh` in test mode (8 gate rows x 12 networks): max |Δlogit| 0.00067.
+  gate_check self-test on identical scores: pass.
+- Commit ccd6319: pins section. 23:33-23:37 WCSS folder check (waited for the shared lock); upload of pack, networks
+  and job files started 23:37 (`/mnt/t7/smad_next/TT1/logs/upload.log`).
+- Reader `tt1_read.py` written; mock test started 23:37:45.
 
 ## 3. Data
 

@@ -70,3 +70,12 @@ Built after the registration commit 01557ce; no TT1, border or geo reference row
 - Local DGX test of the job (TT1_MODE=test, 8 gate rows x 12 networks, torch 2.12.1 on GB10): runs end to end; largest
   |Δlogit| against the stored A100 logits 0.00067. gate_check.py self-test on identical scores passes.
 - Reader `src/TT1/tt1_read.py`: pinned in the next commit, before the full job is submitted.
+- Reader pin (`date`: Thu Nov 12 11:45:15 PM CET 2026; before any TT1 score): `src/TT1/tt1_read.py`
+  `2b7b0898db9451792ab3dd2f8b02fc232da43d4d8943e3cae109030d2f503940`, tested on random mock scores only
+  (`tt1_read_mock.json`, 4.5 min for 12 networks). Implementation choices stated now: flag-share and AUC intervals use
+  the 2,000 registered draws; the ρ, leave-one-family-out and R5 paired intervals use every 4th of those draws (500) for
+  cost; family-level own-rule intervals (TT-H1) pool the sources of a family (lfw_calfw: LFW and CALFW persons
+  resampled within each source); TT-H3 family AUCs for lfw_calfw are the mean of the two source AUCs; τ_cam for Sb and
+  Bv is computed with the tier-1 rule from their scores_eval.npz; floor = −‖head.cls.weight‖ + head.cls.bias.
+- WCSS: pack, network tar, tt1_job.sh (+ .sha256) and tt1.sbatch uploaded to
+  /lustre/pd03/hpc-narolski-1790461090/smad-next/packs/TT1/ (rsync rc 0, 23:37-23:42).
