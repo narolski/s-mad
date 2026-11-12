@@ -522,7 +522,7 @@ with weights n_X x n_SAME of the stratum. Host bootstrap B = 10,000, seed 202611
 - **H-n3b**: θ-stratified AUC ≤ 0.58 for every arm (point); falsified if any arm > 0.58 with the interval above 0.58.
 Unstratified X20-over-SAME20 AUC reported beside them.
 
-## DRAFT amendment A16: H-n1, latent-mix path (12 Nov; not registered; development data only; no score exists)
+## Amendment A16: H-n1, latent-mix path (registered 12 Nov about 23:00 after the author's approval; development data only; no score exists at registration)
 
 Saved ViT-B/16 fits SM1B_{a,e,f}_s{401,402} (rebuilt from their tars; reproduction check on 256 stored AR1 camera-photo
 rows) scored on existing DG1 add-on rungs of the 536 FRGC / colorFERET hosts: FRESH1_20, NOISES20, NOISEX20, SEMS20,
@@ -533,6 +533,9 @@ per-file sha256 `dev16_files.sha256`). No benchmark cell. About 0.2 GPU-h (RTX 6
   FRESH1_20 and NOISES20 from REC20 at AUC ≥ 0.70, while NOISEX20 over NOISES20 and SEMX20 over SEMS20 stay ≤ 0.60;
   e about 0.5 throughout. Falsified if FRESH1_20 and NOISES20 over REC20 are ≤ 0.55 and SEMX20 over SEMS20 ≥ 0.70
   (then a reads semantic mixing). Otherwise undecided. MIR20 over REC20 descriptive.
+- Packs: the local copies were deleted in the author-approved disk clean-up; ad4_pack, sm1gpu_img_test and
+  sm1lora_manifests_v2 are fetched back from Athena (packs/AD4, packs/SM1) and checked against the recorded sha256
+  before upload.
 - Command (fresh lease; the lead starts it): `nohup setsid bash /home/narolski/smad-next/src/SM1/rented/drive_v2.sh
   HOST PORT LEASE dev16fresh > LEASE/sm1_dev16.log 2>&1 &` (uploads ad4_pack, test images, manifests v2 (about 22 GB),
   the 6 fit tars and the 0.24 GB of rungs; RELEASE only after 6 of 6 SM1E tars and the machine logs are back).
