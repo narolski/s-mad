@@ -84,6 +84,22 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
 - Commit 8bf5e12 (`date` Fri Nov 13 12:13:33 AM CET 2026): deviation TT1-D1 registered (prereg.md section 5).
 - 00:13:49: `drive_tt1.sh ... start full`: networks and pack uploading with rsync --partial (log
   /mnt/t7/smad_next/vast/tt1a/tt1_start.out, tt1_drive.log).
+- 00:27:32 upload done (about 10 MB/s); 00:28:02 remote_tt1.sh full started; pip pins and versions asserted (Python
+  3.10.13, torch 2.2.1, CUDA 12.1, timm 1.0.27, numpy 1.26.4, Pillow 10.2.0, A100-SXM4-80GB GPU-3dc82648-...).
+- 00:32:12 (host clock 23:32:12 UTC) A100 GATE FAILED (`gate_a100.json`): only the FFHQ byte-identity criterion fails,
+  narrowly, in all 12 networks: 16-25 of 3,000 FFHQ rows differ, max |Δlogit| 1e-6 to 2.2e-5 (float32 last-bit level);
+  R_cam max |Δ| 0.0014-0.035, 0 flips, Kendall 0.996-0.998; |ΔAUC| ≤ 2.6e-5. No TT1 row scored. Probable cause (not
+  verified): batch composition (the gate list puts the 417 R_cam rows first, so FFHQ rows fall into other batches of 64
+  than in the HN2 / amendment-14 runs, which scored the HN2 list alone); the registration's "max |Δ| = 0" did not
+  foresee it (owner's error in the deviation text).
+- 00:32:37 driver: result tar and logs verified, second copy in /mnt/t7/smad_next/TT1/results/ verified, RELEASE +
+  FAILED written (registered rule). Result tar `/mnt/t7/smad_next/TT1/results/TT1_A100_s401402_full.tar`.
+- Zero-GPU-budget diagnostic (not a registered read): on the 5 FFHQ genuine rows the decoded image, the resized image
+  and the input tensor are bit-identical between the DGX stack (torch 2.12.1, Pillow 12.2, GB10) and the A100 stack;
+  the A_s401 logits differ by 0.061-0.088 (`diag_stack_compare.json`). So the DGX gate failure lies in the network
+  computation on the GB10 stack, not in decode or resize.
+- Lead told (options: amend the FFHQ criterion to float32 rounding, e.g. max |Δ| ≤ 1e-4 with zero flips; or re-run
+  the gate with the HN2 batching; or stop).
 
 ## 3. Data
 
@@ -202,8 +218,8 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-Rented A100 lease tt1a (lead's lease; guard by the lead): upload then remote_tt1.sh full; driver drive_tt1.sh; pull
-with `bash src/TT1/rented/drive_tt1.sh 104.202.122.106 30607 /mnt/t7/smad_next/vast/tt1a loop full`. Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+No process running. Lease tt1a: RELEASE + FAILED written 00:32:37 (gate failed); the pack is on that host until the
+lead's guard releases it. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch

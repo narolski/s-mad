@@ -1,0 +1,78 @@
+{
+ "versions_a": [
+  "3.12.3",
+  "2.12.1+cu130",
+  "12.2.0",
+  "1.26.4",
+  "NVIDIA GB10"
+ ],
+ "versions_b": [
+  "3.10.13",
+  "2.2.1",
+  "10.2.0",
+  "1.26.4",
+  "NVIDIA A100-SXM4-80GB"
+ ],
+ "per_image": [
+  {
+   "id": "fq016604",
+   "decode_identical": true,
+   "decode_max": 0,
+   "resize_identical": true,
+   "resize_max": 0,
+   "resize_share_px_differ": 0.0,
+   "tensor_max_abs": 0.0,
+   "logit_a": 0.2477083057165146,
+   "logit_b": 0.335704505443573,
+   "logit_diff": -0.08799619972705841
+  },
+  {
+   "id": "fq010376",
+   "decode_identical": true,
+   "decode_max": 0,
+   "resize_identical": true,
+   "resize_max": 0,
+   "resize_share_px_differ": 0.0,
+   "tensor_max_abs": 0.0,
+   "logit_a": 0.7174855470657349,
+   "logit_b": 0.6412135362625122,
+   "logit_diff": 0.07627201080322266
+  },
+  {
+   "id": "fq008900",
+   "decode_identical": true,
+   "decode_max": 0,
+   "resize_identical": true,
+   "resize_max": 0,
+   "resize_share_px_differ": 0.0,
+   "tensor_max_abs": 0.0,
+   "logit_a": 0.8323110938072205,
+   "logit_b": 0.7697850465774536,
+   "logit_diff": 0.06252604722976685
+  },
+  {
+   "id": "fq008528",
+   "decode_identical": true,
+   "decode_max": 0,
+   "resize_identical": true,
+   "resize_max": 0,
+   "resize_share_px_differ": 0.0,
+   "tensor_max_abs": 0.0,
+   "logit_a": 1.2470080852508545,
+   "logit_b": 1.1849466562271118,
+   "logit_diff": 0.062061429023742676
+  },
+  {
+   "id": "fq011276",
+   "decode_identical": true,
+   "decode_max": 0,
+   "resize_identical": true,
+   "resize_max": 0,
+   "resize_share_px_differ": 0.0,
+   "tensor_max_abs": 0.0,
+   "logit_a": 1.4685314893722534,
+   "logit_b": 1.4072210788726807,
+   "logit_diff": 0.061310410499572754
+  }
+ ]
+}
