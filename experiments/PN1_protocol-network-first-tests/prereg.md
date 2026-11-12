@@ -496,3 +496,36 @@ without flip), on the 4,365 spliced and blanked rows of pack 2 (one platform per
 Header times of amendments 10, 11 and the pack 2 pin were typed, not machine-clock times (commit 1c52cbe at 23:38:52
 already contains them; pn1_pack2.tar was written 23:31:05). From here on registrations cite git hashes and `date`
 output.
+
+## Amendment 13 (registered at the git commit that adds this section; no HN2 score exists at that commit): HN2, genuine-source shortcut on FFHQ
+
+Lead decision on the pre-run review `experiments/reviews/PRERUN_PN1_FRESH_SEEDS_20261112.md` (commit 7d90384), items F1,
+F4, F5. FFHQ only (no FEI, no SMDD).
+
+- Networks: the eight tier-1 networks (A, B, Bn, C x seeds 401, 402), unchanged (trained with run.sh `42b335b6…`,
+  amendment 6). Each seed is scored on its own rented machine (seed 401 pn1a, seed 402 pn1b; one platform per seed),
+  after that machine's third queue (amendment 12), from its result tars: `src/PN1/rescore.py` (sha256 `6f6eede7…`;
+  meta.json + last_trainable.pt on the pack-2 code and base weights; logit without flip), driven by
+  `src/PN1/rented/remote_hn2.sh` (`2cc83d14…`). run.sh (pack 2, `a208fcf8…`) is not used for scoring.
+- Scoring list `pn1_hn2.csv` (sha256 `4c0caa89ab25406854b6865c17943ef5e9532b0e5cc8bed58ad8e73d53b15871`, 5,000 rows,
+  built by `src/PN1/build_hn2_pack.py` `4986c42d…` from existing aligned files of `/mnt/t7/smad_heldout/ffhq_morphs`, each
+  checked against its SHA256SUMS; nothing built): ffhq_bona orig 2,000 (label 0), landmark_complete orig 1,000 (label
+  1), landmark_complete resmatch 2,000 (label 0, printed only). Pack `/mnt/t7/smad_next/PN1/pn1_hn2.tar` sha256
+  `7648b15ac67798e7601e24b790e62ef86687949f9af0ac440065c2fcb6ac42a7`. The bona fide persons are disjoint from every
+  morph contributor (dataset design, checked by the builder), so the within-source read compares disjoint persons.
+- Reads per network (`src/PN1/hn2_read.py` `caf027b2…`): (a) share of FFHQ bona fide with logit > 0 (own rule τ_0.5);
+  (b) AUC of landmark_complete orig morphs against ffhq_bona orig.
+- Rule (F5, fixed now): "shortcut supported" if (a) ≥ 0.30 AND (b) ≤ 0.75; "calibration shift (not a shortcut)" if
+  (b) ≥ 0.90; otherwise "inconclusive". An arm sentence needs both seeds with the same verdict, else "mixed".
+- Printed only, no mark: 95% bootstrap intervals (2,000 draws, rng 20261113, images resampled within class); (a) at the
+  network's tier-1 τ_cam; the morphs against the history-matched bona fide (resmatch) and that pool's flag share.
+- Caveat (F4), stated before scoring: the FFHQ bona fide are 1024x1024 PNG, native eye distance median 259 px (shrunk
+  about 0.51x into the 512 frame); the landmark_complete morphs are 256x256 PNG, median 65 px (enlarged about 2.0x).
+  Reading (b) on orig therefore mixes morph signal with an enlargement/resolution history difference that favours a
+  high AUC for a network that reacts to softness; the resmatch read shows the size of that part. The 512 frames of FFHQ
+  are PNG like every other PN1 pool; no JPEG history on either side.
+- Release: drive.sh waits for `PN1_HN2_s<seed>` before RELEASE (task folder created on upload); caps and stop times of
+  the leases are unchanged. If a machine cannot finish it inside its cap, the task is dropped there and reported, not
+  moved to another platform.
+- Native history table (lead item A; post hoc, descriptive, no GPU, no new score): `tier1/native_history.json`
+  (`src/PN1/native_history.py`).

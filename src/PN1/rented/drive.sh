@@ -54,8 +54,10 @@ case "$STEP" in
     RS "root@$HOST:$B/queue.log" "root@$HOST:$B/rc" "$OUTD/logs/" 2>/dev/null || true
     n=0
     WANT="$QT"; [ "$DO_REF" = 1 ] && WANT="$WANT PN1_REF_smdd_m3"
-    Q2=$(R "ls -d $B/tasks/PN1_Sb_s* $B/tasks/PN1_Bv_s* $B/tasks/PN1_Brescore_s* 2>/dev/null | xargs -n1 basename 2>/dev/null" 2>/dev/null | grep PN1_ || true)
-    WANT="$WANT $Q2"; NW=$(echo $WANT | wc -w)   # amendment 10: a second queue, if armed, must finish before RELEASE
+    Q2=$(R "ls -d $B/tasks/PN1_Sb_s* $B/tasks/PN1_Bv_s* $B/tasks/PN1_Brescore_s* $B/tasks/PN1_HN2_s* 2>/dev/null | xargs -n1 basename 2>/dev/null; echo LISTED_OK" 2>/dev/null || true)
+    echo "$Q2" | grep -q LISTED_OK || { log "remote task list unreadable: no RELEASE decision"; exit 0; }
+    Q2=$(echo "$Q2" | grep PN1_ || true)
+    WANT="$WANT $Q2"; NW=$(echo $WANT | wc -w)   # amendments 10, 12, 13: later queues, if armed, must finish before RELEASE
     for t in $WANT; do
       if [ -f "$OUTD/$t.tar" ] && [ -f "$OUTD/$t.tar.sha256" ]; then
         (cd "$OUTD" && sha256sum -c --quiet "$t.tar.sha256") && { n=$((n + 1)); echo "verified $t"; } || log "HASH MISMATCH $t"
