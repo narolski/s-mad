@@ -25,7 +25,7 @@
 Inputs: the registered readings only.
 - FS1 contrasts 1 and 2: `prereg_fresh_seeds_v4_frozen.md`, git ac585b7.
 - Sp: registration 1b8fe48.
-- MS1 part 2 as registered. Currently it is the draft `prereg_comparison_draft.md`, last changed at c1c4224; it becomes an input only at the commit that registers it before its first fit, and that hash is written here at registration.
+- MS1 part 2 as registered at commit f748da4195709ee84c8cc9872c5aac1d9007a049 (co-primaries P1-S on the Chicago Face Database and P1-T on the TT1 pools, each at p ≤ 0.025; arms Sb, SbM3, SbV; guards G1–G3).
 
 No benchmark number enters.
 
@@ -36,8 +36,8 @@ No benchmark number enters.
 3. **Otherwise, no method** is frozen. The read is then an audit of the comparison set only, with no candidate claim.
 
 **MS1 rule (B3).** The three-source version is frozen only if both:
-- MS1 P1 is "supported";
-- every MS1 guard holds, as registered in MS1 prereg.md part 2 at commit <hash, filled at registration> before the first fit.
+- the MS1 primary is "supported", meaning both co-primaries (P1-S and P1-T) are supported as registered in MS1 prereg.md part 2 at commit f748da4195709ee84c8cc9872c5aac1d9007a049;
+- every MS1 guard (G1–G3) holds, as registered there.
 
 If MS1 is unregistered, unread, or B is frozen, the single-source arm is frozen. MS1 has no B arm.
 
