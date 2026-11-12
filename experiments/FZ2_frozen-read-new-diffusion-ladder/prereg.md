@@ -129,3 +129,36 @@ head, separately): X vs SAME, SAME vs FRESH1, and the excess of X vs SAME over t
   (`src/FZ2/fz2_dgx_feats.sh` via `fz2_dgx_addon_watch.sh`, all 8 shards, done 03:10), not on Athena; Athena job
   3545969 was cancelled before it started, so the registered cross-environment check never ran and no Athena feature was
   used. Shards 2–7 were generated on a rented RTX 3090 (DG1), not on Athena.
+
+## Amendment 1 (12 Nov 2026, registered and committed before any of its numbers is computed): post hoc follow-ups of the review
+
+**Post hoc in substance**: ordered by the lead after the independent review (`experiments/reviews/REVIEW_FZ2_AR1A10_20261112.md`),
+which already printed point estimates for θ and Laplacian checks. Zero GPU, existing features and images only, no image
+written; DGX, `OMP_NUM_THREADS=2`, `nice -n 10`. Same folds (whole partner cycles), same two-way person bootstrap
+(B = 10,000, seed [20261112, 2, 1]) and same probe routine as the registered read. Code `src/FZ2/fz2_amend1.py`, output
+`amend1.json`.
+
+- **(i) H-A transfer part (coherent-noise sharpening).** P_XS (clip_mad, trained X20 vs SAME20, out of fold) and D_SR
+  applied to NOISEX20, NOISES20, SEMX20, SEMS20. Predictions: P_XS NOISEX vs NOISES ≥ 0.90 and SEMX vs SEMS ≤ 0.65.
+  Reading: supported if both hold with NOISEX-vs-NOISES lower bound ≥ 0.85 and SEMX-vs-SEMS upper bound ≤ 0.70;
+  falsified if NOISEX vs NOISES ≤ 0.65 or SEMX vs SEMS ≥ 0.85; otherwise not decided. Beside it: θ (angle between the
+  two inverted noise maps, `theta_xT` of the DG1 add-on `gen_rows.csv`) alone as a score for X vs SAME; P_XS on X vs SAME
+  stratified by pooled θ fifths and by pooled face-box Laplacian-variance fifths (pair-weighted within-stratum AUC, strata
+  lacking a class skipped and counted), each with the bootstrap and Δ = A0 − A_s; Spearman of P_XS with θ and with
+  Laplacian inside X and inside SAME. dinov2 descriptive.
+- **(ii) H-B (render path, not content).** For every FZ2 contrast of the add-on read: the AR1 amendment-10 feature
+  families computed on the 256-px DG1 images with the DG1 face box (rows 70–220, columns 64–192) as the inside mask in
+  place of the landmark hull: 10 simple statistics (Laplacian variance inside/outside ratio, inside Laplacian variance,
+  seam luma / red-green / absolute step, five spectral band shares; `src/AR1/floors10.py` definitions) and 12 residual
+  statistics (first-order luma differences in x and y, inside and outside, std / mean absolute / kurtosis). Floors: best
+  single statistic (folded, from the data), residual-12 logistic, simple-10 logistic, combined-22 logistic (out of
+  fold); floor = the highest. Paired excess of each registered probe and head over the floor. Prediction (review): the
+  residual-12 floor ≥ 0.95 on NOISES20 vs REC20 and FRESH1_20 vs REC20 (supported if both); falsified if it is ≤ 0.85 on
+  both; otherwise not decided.
+- **(iii) H-C on FZ1's A43 frames (heads read sharpness).** Head s401 on B20 vs C20 (FZ1 terms for X vs SAME at 20 steps)
+  stratified by pooled fifths of the centre-256 Laplacian variance of the 512 frame (FZ1 P4 / addendum A1 values),
+  pair-weighted, AD1 person bootstrap. Prediction ≤ 0.62 (supported); falsified if ≥ 0.65; otherwise not decided.
+- **(iv) P_XS from DG1 on A43 frames.** A logistic probe with the registered routine trained on all add-on X20 vs SAME20
+  clip_mad features (C chosen by the inner partner-cycle CV), applied to FZ1's A43 clip_mad features (512 frames;
+  different persons and pipeline): AUCs B20 vs C20, B vs C, C20 vs D20, B20 vs D20, B vs D, and mean score per arm;
+  dinov2 the same. Descriptive.
