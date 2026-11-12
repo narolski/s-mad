@@ -306,6 +306,10 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
 - 12 Nov 15:25 Full registered ViT-B/16 reading of all 12 fits (a, b, b′, c, e, f x 401, 402) in `result.md`
   (`p3_lora_vitb12.json`, `a12_rank_vitb12.json`, `a12_fixed_vitb12.json`); reader `a15_read.py` written for A15.
 
+- 12 Nov 15:35 to 15:59 A15 on lease sm1dev (lead's devfresh start; scorer on the machine = local sha256 925f372d…,
+  with --check-npz): 6 dev tars verified, dev log back before RELEASE (written 15:59 by the driver after DEV_DONE).
+  `a15_read.py`: H-new-A supported (e 0.510; a −0.254), H-new-E falsified, H-new-B AUC part undecided.
+
 ## 3. Data
 
 Inputs (read only):

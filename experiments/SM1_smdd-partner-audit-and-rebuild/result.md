@@ -679,6 +679,34 @@ Reading (audit; 2 seeds): on the standard ViT-B/16 recipe the five SMDD partners
 genuine photos (0.15 → 0.53). Every arm trained on renders reacts to storage history on the diffusion cells (+18 to
 +29); the only fits without the rise (e, f) do not detect MorDIFF (development exposure).
 
+## A15: saved ViT-B/16 a, e, f on development data only (registered d84a1c2; `a15_read.json`)
+
+Run 12 Nov 15:35 to 15:59 on a second rented RTX 6000 Ada (lease `sm1dev`, `drive_v2.sh devfresh`; the first attempt
+on sm1b scored nothing, README). Scorer with the non-benchmark reproduction check (256 stored AR1 camera-photo rows per
+fit, max diff 0.0 for all 6); 6 tars sha256-verified in `/mnt/t7/smad_next/SM1/results_rented/dev/`, machine logs
+back before RELEASE. No benchmark cell scored. Host bootstrap (536 FRGC / colorFERET hosts), B = 10,000; 2-seed means
+[interval] (seeds).
+
+| Fit | AUC X20 over AR1 R0 (native) | AUC X20 over REC20 (history-matched) | softening increment R0, 112.7 px / 61.2 px (logit) | paired AUC softened over raw R0, 112.7 / 61.2 |
+|---|---|---|---|---|
+| a | 0.999 [0.997, 1.000] | 0.745 [0.727, 0.763] (0.708, 0.782) | +0.22 [0.18, 0.28] / +1.44 [1.23, 1.66] | 0.80 / 0.95 |
+| e | 0.997 [0.995, 0.999] | **0.510 [0.485, 0.536]** (0.508, 0.512) | +0.020 [0.004, 0.042] / +0.091 [0.029, 0.172] | 0.49 / 0.44 |
+| f | 0.993 [0.990, 0.996] | 0.562 [0.538, 0.588] (0.571, 0.553) | +0.042 [0.013, 0.081] / +0.140 [0.068, 0.230] | 0.52 / 0.52 |
+
+- **H-new-A (MorDIFF detection is mostly the storage cue): supported.** e's history-matched AUC 0.510 (≤ 0.65) and a
+  drops 0.254 from native to history-matched (≥ 0.15). On our own diffusion ladder, history crossing leaves no
+  separation of two-person diffusion mixes from one-person reconstructions with the same generator history; arm a
+  keeps some (0.745), at chance level it is not. The native contrast is near 1 for every fit (X20 differs from raw
+  camera photos in crop, resolution and file format as well as history).
+- **H-new-E (e penalises camera detail): falsified.** e's mean increment is above 0 with the interval above 0 at both
+  strengths (+0.020, +0.091): softened photos score higher (more morph-like), not lower; arm a's increment is far larger
+  (+0.22, +1.44; its R0 sits on the floor, so this part is descriptive).
+- **H-new-B, AUC part: undecided.** Paired AUC e − f −0.030 [−0.046, −0.015] (112.7 px) and −0.080 [−0.102, −0.060]
+  (61.2 px): not below 0.05 at both, not 0.10 or more.
+Reading: on development data, the history-crossed networks no longer react to softening (paired AUC about 0.5) but
+also no longer tell a two-person diffusion mix from a one-person reconstruction; the remedy removes the storage cue and
+the diffusion detection together.
+
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
 **Item 11, five random pool partners (H-new-1; arm d5, 5 seeds; `p3_full.json`, `p3_fz1.json`).** Landmark-7 native
@@ -699,8 +727,7 @@ so these increments are not floor reads. Development data (AR1 / AF0), not bench
 
 ## A12 / A14 / A15 items still open
 
-10 for ViT-L/14 (job 3547052, rank read A14). 12 (ViT-B/16 fits of b and b′): done (all 12 ViT-B/16 fits read above). A15 (registered d84a1c2, development data only): saved ViT-B/16 a, e, f on the development diffusion
-ladder and the AF0 softened copies (H-new-A, H-new-E); the first run on sm1b produced no score (owner bug, README).
+10 for ViT-L/14 (job 3547052, rank read A14). 12 (ViT-B/16 fits of b and b′): done (all 12 ViT-B/16 fits read above). A15: done (above).
 
 ## Checks
 
