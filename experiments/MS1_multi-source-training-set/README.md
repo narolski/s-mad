@@ -41,7 +41,7 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
 - 12 Nov 23:18-23:20: DGX smoke of `src/MS1/run.sh` (20 steps, 64 scoring rows, SbM3 seed 403, pinned pack):
   passed; result `/mnt/t7/smad_next/MS1/smoke/results/MS1smoke_SbM3_s403.tar`; work folder (14 GB, mine) deleted.
 - 12 Nov 23:21: reader `src/MS1/ms1_read.py` written and tested on mock scores (`ms1_read_mock.json`); commit c1c4224.
-- 12 Nov 23:2x: inventory of new candidate sources (no build; lead's instruction), see section 8.
+- 12 Nov 23:21 (before commit 03198c5 at 23:22:09): inventory of new candidate sources (no build; lead's instruction), see section 8.
 
 ## 3. Data
 
@@ -88,7 +88,7 @@ recorded frame (the aligner's sha256 equals AR1's pin); duplicates of persons be
 
 ## 8. Observations and ideas
 
-- New candidate sources (inventory 12 Nov ~23:25; eye distances measured with the unchanged detector on 2-8 images
+- New candidate sources (inventory 12 Nov, before 23:22; eye distances measured with the unchanged detector on 2-8 images
   each, nothing built):
   - Chicago Face Database 3.0.1: 827 persons (CFD 597, CFD-INDIA 142, CFD-MR 88), exactly one neutral frontal photo
     each, 2444 x 1718 JPEG, eye distance 329-381 px (all 10 test images aligned); 154 CFD persons also have angry,
