@@ -320,7 +320,7 @@ $P -I $S/baselines.py --only R2w4; $P -I $S/analyse.py; $P -I $S/tables.py; $P -
     `/mnt/t7/smad_next/AR1/floors11.log`) writes `experiments/AR1/floors11.json`.
   - SelfMAD excess over inside Laplacian variance: -0.038 [-0.076, -0.004].
   - Combined floor: 0.949 (OpenCV) / 0.920 (FaceMorpher).
-  - H-D on FRLL: falsified as registered, with the floor at 1.000 (smiling confound).
+  - H-D untestable on FRLL: the combined floor is 1.000 (smiling-file confound, stated in the registration), so the falsifier fires mechanically; no information on whether AR1(b) replicates. (corrected after review F7)
 - 12 Nov about 03:40 CET, after REVIEW_PN1_TIER1_20261112 (Subject 2):
   - Amendment 9 relabelled post hoc: its text and outputs share commit 9f1f810, so the order cannot be verified.
   - Wording fixed: "1.7 to 2.0 times"; "not shown to exceed the floor"; "does not read only the patch boundary".

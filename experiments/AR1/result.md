@@ -418,8 +418,7 @@ swap-splice: inside-hull Laplacian variance alone gives 0.926 against SelfMAD's 
   simple statistics.
 - Detectors 0.96-1.00. Excess: ViT-L/14 -0.000 [-0.001, 0.000] / 0.000 [0.000, 0.000]; SelfMAD OpenCV -0.000
   [-0.002, 0.000]; ViT-B/16 -0.003 / -0.001; MixFaceNet -0.040 / -0.033.
-- H-D is falsified as registered: ViT-L/14's lower bound is <= 0. The test has no headroom here, because the floor is
-  at ceiling.
+- H-D untestable on FRLL: the combined floor is 1.000 (smiling-file confound, stated in the registration), so the falsifier fires mechanically; no information on whether AR1(b) replicates. (Review F7, commit 88f6016.)
 
 ## Gaps and what was not done
 

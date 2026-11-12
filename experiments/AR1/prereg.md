@@ -250,3 +250,5 @@ Measurement only; DGX CPU with thread caps.
     detector scores for these rows already exist (read in the first round). Caveat, stated now: FRLL R2w (warp toward
     the smiling photo) and R4 (smiling partner) are the rungs labelled "confounded by capture detail and expression";
     H-D is read descriptively for that reason.
+
+Note to amendment 11 (12 Nov, review F7, commit 88f6016): H-D untestable on FRLL: the combined floor is 1.000 (smiling-file confound, stated in the registration), so the falsifier fires mechanically; no information on whether AR1(b) replicates.
