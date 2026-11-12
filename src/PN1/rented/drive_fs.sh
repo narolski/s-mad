@@ -1,6 +1,6 @@
 #!/bin/bash
 # PN1 fresh seeds (registration FS1), DGX-side driver for one rented lease (no rental API; SSH key by path only).
-#   bash drive_fs.sh HOST PORT LEASE M setup    # M = m1 | m2: upload the development pack (8.8 GB), run.sh v3 task folders,
+#   bash drive_fs.sh HOST PORT LEASE M setup    # M = all (D3: one GPU, all 16 fits in one queue) | m1 | m2: upload the development pack (8.8 GB), run.sh v3 task folders,
 #                                               # remote_fs.sh; pip pins; versions and GPU UUID -> LEASE/fs_setup.log
 #   bash drive_fs.sh HOST PORT LEASE M queue    # start this machine's fixed queue, detached
 #   bash drive_fs.sh HOST PORT LEASE M pull     # fetch finished tars + logs, verify sha256; RELEASE when the queue is
@@ -21,7 +21,8 @@ RUNSH=04998a7c274229b861b840e2b5a793854a712a7fb031fb572e34e1c791a4c87e
 case "$M" in
   m1) TASKS="PN1_A_s403 PN1_B_s403 PN1_Sb_s403 PN1_A_s405 PN1_B_s405 PN1_Sb_s405 PN1_A_s407 PN1_B_s407 PN1_Sb_s407" ;;
   m2) TASKS="PN1_A_s404 PN1_B_s404 PN1_Sb_s404 PN1_A_s406 PN1_B_s406 PN1_Sb_s406 PN1_Arep_s401" ;;
-  *) echo "machine must be m1 or m2"; exit 1 ;;
+  all) TASKS="PN1_A_s403 PN1_B_s403 PN1_Sb_s403 PN1_A_s404 PN1_B_s404 PN1_Sb_s404 PN1_A_s405 PN1_B_s405 PN1_Sb_s405 PN1_A_s406 PN1_B_s406 PN1_Sb_s406 PN1_A_s407 PN1_B_s407 PN1_Sb_s407 PN1_Arep_s401" ;;   # deviation D3: one GPU, one queue
+  *) echo "queue must be all, m1 or m2"; exit 1 ;;
 esac
 P=/mnt/t7/smad_next/PN1; OUTD=$P/results_fs; B=/workspace/pn1
 mkdir -p "$L" "$OUTD/logs_$M"
@@ -49,7 +50,7 @@ case "$STEP" in
     grep -q SETUP_OK "$L/fs_setup.log" && log "SETUP_OK $M" || { log "SETUP FAILED $M"; exit 1; }
     ;;
   queue)
-    G=${PN1_GPU:-}; [ -z "$G" ] && { [ "$M" = m1 ] && G=0 || G=1; }; [ "${PN1_FS_ONEHOST:-0}" = 1 ] || G=0
+    G=${PN1_GPU:-}; [ -z "$G" ] && { [ "$M" = m2 ] && G=1 || G=0; }; [ "${PN1_FS_ONEHOST:-0}" = 1 ] || G=0
     msg=$(timeout 30 ssh "${O[@]}" "root@$HOST" "cd $B && CUDA_VISIBLE_DEVICES=$G nohup setsid bash $B/bin/remote_fs.sh queue $PIN2 '$TASKS' $M ${PN1_FS_AFTER_A14:+after_a14} > $B/logs/queue_fs_driver_$M.log 2>&1 < /dev/null & sleep 3; cat $B/QUEUE_FS_STARTED_$M && echo FS_QUEUE_STARTED" || true)
     echo "$msg" | grep -q FS_QUEUE_STARTED || { log "queue start not confirmed"; exit 1; }
     log "queue $M started: $TASKS"

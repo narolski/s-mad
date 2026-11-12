@@ -649,3 +649,24 @@ Reason: no single A100-SXM4 40 GB is on offer (lead, 12 Nov morning).
   FAILED); unreachable remote (no decision); failed re-pull after the queue's end (no decision); rc missing without a
   tar (no decision); A14 wait timeout (queue proceeds); drive14 loop give-up (A14_DONE touched); fs_read.py and
   a14_read.py on random mock scores.
+
+## Deviation FS1-D3 (`date`: Thu Nov 12 08:54:23 AM CET 2026; committed before any fit or amendment-14 lease starts; frozen contrasts v4 untouched): one single-GPU host
+
+Reason: the 2-GPU host never became reachable (lead). One single A100 PCIe 40 GB host (offer 59287573; 32 cores, 63 GB
+RAM, 100 GB disk; lease folder `/mnt/t7/smad_next/vast/pn1fs`; cap 9.8 USD, 22 h).
+- Layout: everything sequential on GPU 0: amendment 14 first (about 0.5 h), then ONE queue "all" of the 16 fits, one at
+  a time, in this order: seed 403 A, B, Sb; 404 A, B, Sb; 405; 406; 407; replicate A seed 401 last. Seed by seed, so
+  that a deadline cut leaves only whole seeds; the replicate last because it counts for no contrast. All 16 fits run
+  on one GPU of one type, which is cleaner than the two-queue layout of D1/D2; "per machine" / "per GPU/queue"
+  printing reduces to one GPU.
+- No two fits can run at once: the fit queue holds a host-wide lock (`flock` on `fs_queue.lock` in remote_fs.sh),
+  so a second queue started by mistake waits until the first ends; the queue waits for A14_DONE (at most 2.5 h).
+- Disk: one fit at a time needs about 35 GB (pack 8.75 + copy 8.75 + extract 8.75 + amendment-14 pack 4.4 and its
+  extract during amendment 14); setup requires 45 GB free; 100 GB disk. RAM: one training process with 7 loader
+  workers; 63 GB is enough (the same load ran on pn1a's 16-core host).
+- Deadline: the fits end about 05:00-06:00 CET on 13 Nov; the frozen 14 Nov rule is unaffected.
+- Upload: rsync with --partial (resumable; re-running setup continues the transfer).
+- Pins: drive_fs.sh `7f92088f63870862bc343089d46aecf4502cf53d46ba103f75346f2f595d2066` (queue "all" added); remote_fs.sh `7e2e6a30ac8e8b6e35d1106459f382bff4d8f7c1b01f742d330f519050aa4983` (queue lock added); run.sh, drive14.sh,
+  remote_a14.sh, readers and packs unchanged (D2 pins).
+- Local test: the sequential path with a stand-in task script (A14 wait, 16 tasks in the fixed order, a second queue
+  blocked by the lock until the first ended, RELEASE + FAILED on a remote-confirmed failure).

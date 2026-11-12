@@ -26,6 +26,7 @@ case "$MODE" in
     ;;
   queue)
     TASKS=${3:?tasks}; Q=${4:?queue id}
+    exec 9> "$B/fs_queue.lock"; flock 9          # at most one fit queue runs on this host at a time (D3)
     date > "$B/QUEUE_FS_STARTED_$Q"
     echo "$(date +%T) queue $Q CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}" >> "$B/queue_fs_$Q.log"
     if [ "${5:-}" = after_a14 ]; then
