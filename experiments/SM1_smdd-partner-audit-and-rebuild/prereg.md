@@ -533,6 +533,12 @@ per-file sha256 `dev16_files.sha256`). No benchmark cell. About 0.2 GPU-h (RTX 6
   FRESH1_20 and NOISES20 from REC20 at AUC ≥ 0.70, while NOISEX20 over NOISES20 and SEMX20 over SEMS20 stay ≤ 0.60;
   e about 0.5 throughout. Falsified if FRESH1_20 and NOISES20 over REC20 are ≤ 0.55 and SEMX20 over SEMS20 ≥ 0.70
   (then a reads semantic mixing). Otherwise undecided. MIR20 over REC20 descriptive.
+- Platform (12 Nov 23:10, before any A16 score): WCSS H100 (lem-gpu-short), Python `~/dmenv` (torch 2.11.0+cu128,
+  timm 1.0.30, numpy 2.5.2, pillow 12.3.0), not the rented RTX 6000 Ada / torch 2.2.1 of the fits. Platform equivalence
+  = each fit's rebuilt network reproduces its 256 stored AR1 camera-photo rows within max |score diff| ≤ 2e-3 (the
+  scorer's tolerance); if any fit fails, that fit is not scored, the job is stopped for review and the lead rents an RTX
+  6000 Ada instead. Only FRGC / colorFERET AR1 frames, the DG1 rungs and the code / weights are staged (no benchmark
+  frame). Script `src/SM1/wcss/wcss_a16.sbatch`.
 - Packs: the local copies were deleted in the author-approved disk clean-up; ad4_pack, sm1gpu_img_test and
   sm1lora_manifests_v2 are fetched back from Athena (packs/AD4, packs/SM1) and checked against the recorded sha256
   before upload.
