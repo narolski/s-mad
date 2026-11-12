@@ -54,6 +54,10 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   de10419 (B2), sha256 `5e5ada46…`.
 - 12 Nov 23:30: held-out scoring pack `ms1_heldout_pack.tar` (`06b64608…`, 971 rows: CFD 831, KDEF 140; manifest
   `b3fe4e77…`) and `wcss/ms1_heldout.sbatch`; tested locally on the smoke result (RESCORE_DONE 831 and 140).
+- 12 Nov 23:27:54-~23:36: pack and scripts uploaded to WCSS; 23:43 held-out pack and job uploaded; 23:46 on WCSS:
+  `sha256sum -c` OK for the pack, run.sh and the held-out pack; sbatch sha256 equal to the f748da4 pins.
+- 12 Nov 23:46:29 and 23:48:05: `sbatch ms1_smoke.sbatch` refused twice ("Unable to contact slurm controller (connect
+  failure)"); per the lead's rule no further retry; lead told. Nothing submitted.
 
 ## 3. Data
 
@@ -136,10 +140,12 @@ recorded frame (the aligner's sha256 equals AR1's pin); duplicates of persons be
 
 ## 10. Handover state
 
-No process running (DGX selection, build, pack and smoke finished). Nothing submitted on WCSS. Staged for upload:
-`/mnt/t7/smad_next/MS1/pn1_pack_ms1.tar{,.sha256}`, `/mnt/t7/smad_next/MS1/wcss_stage/{run.sh,run.sh.sha256,
-ms1_smoke.sbatch,ms1_fit.sbatch}`. Kept: everything under `/mnt/t7/smad_next/MS1/` (FFHQ frames, images, lists,
-manifests, pack). Compute spent: DGX CPU about 10 minutes, DGX GPU 2 minutes (smoke); 0 USD.
+State 12 Nov 23:48 CET: nothing submitted (WCSS slurm controller unreachable at 23:46 and 23:48). Staged and verified on
+WCSS under `/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/MS1/`: `pn1_pack_ms1.tar` (`c11b16bc…`), `run.sh`,
+`ms1_smoke.sbatch`, `ms1_fit.sbatch` (array 0-14%6), `ms1_heldout_pack.tar` (`06b64608…`), `ms1_heldout.sbatch`.
+Order: smoke -> fits (after MS1_SMOKE_DONE) -> held-out job (after all 15 tars exist) -> fetch results/MS1 and
+results/MS1H to `/mnt/t7/smad_next/MS1/results/` (keep the WCSS copies) -> `ms1_read.py --results ... --heldout ...`.
+No local process running. Compute spent: DGX CPU about 15 minutes, DGX GPU about 3 minutes; 0 USD.
 
 ## 11. Reproduce from scratch
 
