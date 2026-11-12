@@ -1,0 +1,184 @@
+{
+ "floor3": {
+  "test_auc": 0.855525,
+  "dev_auc": 0.9014,
+  "coef": [
+   -0.21727607146081115,
+   0.3794678411355961,
+   -0.920511300639954,
+   -1.7222142471581656
+  ]
+ },
+ "s401": {
+  "B": {
+   "D_i_faceblanked": "not scored",
+   "T_i_faceblanked": "not scored",
+   "iii_storage": {
+    "P-c": {
+     "shift_sd": 3.905950551710251,
+     "flag": {
+      "own": 0.015706806282722512,
+      "cam": 0.07853403141361257
+     },
+     "pass_": false
+    },
+    "P-c2": {
+     "shift_sd": 1.6489932225464392,
+     "flag": {
+      "own": 0.010471204188481676,
+      "cam": 0.041884816753926704
+     },
+     "pass_": false
+    },
+    "P-c2_kernels": {
+     "flags": {
+      "FRLL_bona_blur1": {
+       "own": 0.0,
+       "cam": 0.5637254901960784
+      },
+      "FRLL_bona_resample50": {
+       "own": 0.0,
+       "cam": 0.4019607843137255
+      },
+      "FRLL_amsl_e7": {
+       "own": 0.0,
+       "cam": 0.5049019607843137
+      },
+      "FRLL_facemorpher_e7": {
+       "own": 0.0,
+       "cam": 0.5735294117647058
+      },
+      "FRLL_opencv_e7": {
+       "own": 0.0,
+       "cam": 0.5588235294117647
+      },
+      "FRLL_webmorph_e7": {
+       "own": 0.0,
+       "cam": 0.4950980392156863
+      },
+      "MAD22_OpenCV_e7": {
+       "own": 0.0,
+       "cam": 0.7303921568627451
+      },
+      "MAD22_Webmorph_e7": {
+       "own": 0.0,
+       "cam": 0.7450980392156863
+      }
+     },
+     "pass_": false
+    },
+    "jpeg_flags": {
+     "FRLL_bona_jpeg90": {
+      "own": 0.0,
+      "cam": 0.7745098039215687
+     },
+     "FRLL_bona_jpeg70": {
+      "own": 0.0,
+      "cam": 0.8333333333333334
+     },
+     "FRLL_bona_jpeg50": {
+      "own": 0.0,
+      "cam": 0.9117647058823529
+     }
+    },
+    "jpeg50_gt10": true,
+    "jpeg50_le10_both": false,
+    "A_violation_parts": {
+     "R0_61_or_left_out_gt10_own": false,
+     "R0_61_or_left_out_gt10_cam": true
+    }
+   },
+   "H1_auc": 0.7814649724276015,
+   "mad22_e7_eer": [
+    1.8292682926829267,
+    13.725490196078427
+   ]
+  }
+ },
+ "s402": {
+  "B": {
+   "D_i_faceblanked": "not scored",
+   "T_i_faceblanked": "not scored",
+   "iii_storage": {
+    "P-c": {
+     "shift_sd": 6.730503483452661,
+     "flag": {
+      "own": 0.010471204188481676,
+      "cam": 0.13612565445026178
+     },
+     "pass_": false
+    },
+    "P-c2": {
+     "shift_sd": 1.399802719439355,
+     "flag": {
+      "own": 0.0,
+      "cam": 0.07329842931937172
+     },
+     "pass_": false
+    },
+    "P-c2_kernels": {
+     "flags": {
+      "FRLL_bona_blur1": {
+       "own": 0.024509803921568627,
+       "cam": 0.5196078431372549
+      },
+      "FRLL_bona_resample50": {
+       "own": 0.03431372549019608,
+       "cam": 0.47549019607843135
+      },
+      "FRLL_amsl_e7": {
+       "own": 0.029411764705882353,
+       "cam": 0.4950980392156863
+      },
+      "FRLL_facemorpher_e7": {
+       "own": 0.014705882352941176,
+       "cam": 0.5392156862745098
+      },
+      "FRLL_opencv_e7": {
+       "own": 0.029411764705882353,
+       "cam": 0.5245098039215687
+      },
+      "FRLL_webmorph_e7": {
+       "own": 0.03431372549019608,
+       "cam": 0.4950980392156863
+      },
+      "MAD22_OpenCV_e7": {
+       "own": 0.004901960784313725,
+       "cam": 0.6421568627450981
+      },
+      "MAD22_Webmorph_e7": {
+       "own": 0.004901960784313725,
+       "cam": 0.6470588235294118
+      }
+     },
+     "pass_": false
+    },
+    "jpeg_flags": {
+     "FRLL_bona_jpeg90": {
+      "own": 0.004901960784313725,
+      "cam": 0.6519607843137255
+     },
+     "FRLL_bona_jpeg70": {
+      "own": 0.0,
+      "cam": 0.7843137254901961
+     },
+     "FRLL_bona_jpeg50": {
+      "own": 0.0,
+      "cam": 0.9901960784313726
+     }
+    },
+    "jpeg50_gt10": true,
+    "jpeg50_le10_both": false,
+    "A_violation_parts": {
+     "R0_61_or_left_out_gt10_own": false,
+     "R0_61_or_left_out_gt10_cam": true
+    }
+   },
+   "H1_auc": 0.6802272905224773,
+   "mad22_e7_eer": [
+    4.411764705882348,
+    19.0
+   ]
+  }
+ }
+}

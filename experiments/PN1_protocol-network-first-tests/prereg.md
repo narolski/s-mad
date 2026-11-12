@@ -459,7 +459,7 @@ registration; two tier-1 tars (PN1_A_s401, PN1_A_s402) have been copied back and
   only; PN1's test-ladder, MAD22 and Poisson numbers stay "first-test data, read once".
 - Cost: about 3.5 A100-hours (four fits).
 
-## Amendment 11 (11 Nov 23:58 CET, before computing; approved by the lead): face-only heads, face-blanked benchmark reads, post hoc items
+## Amendment 11 (written by 23:38 (git 1c52cbe); header times of amendments 10, 11 and the pack 2 pin were not machine-clock times; approved by the lead): face-only heads, face-blanked benchmark reads, post hoc items
 
 - H-new-3: frozen heads (CLIP, DINOv3; section 3 rules) trained on face-only copies (background blanked with the R4
   hull, AR1 `blank_splice2/bg`; R4 with its own hull, AR1 `blank/bg`) of the ladder training hosts: attacks S4_bg and
@@ -483,3 +483,16 @@ manifests train_Sb (`2cf3fda3affc8dd3…`, 8,648 rows) and train_Bv
 pn1_eval.csv extended by 4,365 spliced and blanked ladder rows of development and test hosts
 (`22d1c23e9eccca75…`). Manifests A, B, Bn, C byte-equal to pack 1.
 run.sh changed only in its arm list (A|B|Bn|C|Sb|Bv; sha256 `a208fcf8d17e0b8a…`).
+
+## Amendment 12 (12 Nov 03:20 CET, before any Sb/Bv result exists): rescoring B on the spliced rows
+
+Read (i) of amendment 10 compares the face-blanked R2w vs R4 AUC of Sb with B's, but B was scored with pack 1, which
+has no spliced or blanked rows. B (seed 401 on pn1a, seed 402 on pn1b) is rescored on the same machine after its second
+queue, from its result tar (meta.json + last_trainable.pt on the pack-2 base weights; `src/PN1/rescore.py`, logit
+without flip), on the 4,365 spliced and blanked rows of pack 2 (one platform per seed kept). Tested on 8 rows on the DGX.
+
+## Note on times (12 Nov, review REVIEW_PN1_TIER1_20261112.md)
+
+Header times of amendments 10, 11 and the pack 2 pin were typed, not machine-clock times (commit 1c52cbe at 23:38:52
+already contains them; pn1_pack2.tar was written 23:31:05). From here on registrations cite git hashes and `date`
+output.

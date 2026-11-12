@@ -54,7 +54,7 @@ case "$STEP" in
     RS "root@$HOST:$B/queue.log" "root@$HOST:$B/rc" "$OUTD/logs/" 2>/dev/null || true
     n=0
     WANT="$QT"; [ "$DO_REF" = 1 ] && WANT="$WANT PN1_REF_smdd_m3"
-    Q2=$(R "ls -d $B/tasks/PN1_Sb_s* $B/tasks/PN1_Bv_s* 2>/dev/null | xargs -n1 basename 2>/dev/null" 2>/dev/null | grep PN1_ || true)
+    Q2=$(R "ls -d $B/tasks/PN1_Sb_s* $B/tasks/PN1_Bv_s* $B/tasks/PN1_Brescore_s* 2>/dev/null | xargs -n1 basename 2>/dev/null" 2>/dev/null | grep PN1_ || true)
     WANT="$WANT $Q2"; NW=$(echo $WANT | wc -w)   # amendment 10: a second queue, if armed, must finish before RELEASE
     for t in $WANT; do
       if [ -f "$OUTD/$t.tar" ] && [ -f "$OUTD/$t.tar.sha256" ]; then

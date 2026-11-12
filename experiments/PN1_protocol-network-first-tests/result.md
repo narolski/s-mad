@@ -1,9 +1,8 @@
 # Protocol network, first tests (PN1): result (short page)
 
-Status 11 Nov 2026, 21:00 CET: tier 0 done (CLIP and DINOv3, recomputed under amendment 4), certificate and
-matched-subsample test done; tier 1 (eight ViT-B/16 LoRA fits) and the reference row submitted on Athena, pending
-(Slurm forecast 12 Nov 16:56 for the fits). Full record: `README.md`. Registration: `prereg.md` (amendments 1 to 5,
-pack pin). No conclusion is drawn here; the lead draws conclusions.
+Status 12 Nov 03:00 CET: tier 1 read as registered on rented A100s (amendment 7); Athena jobs cancelled or discarded.
+Full record: `README.md`. Registration: `prereg.md` (amendments 1 to 12, pack pins). No conclusion is drawn here; the
+lead draws conclusions. Review of tier 1: `experiments/reviews/REVIEW_PN1_TIER1_20261112.md` (corrections applied).
 
 ## Tier 0 (frozen heads; tier 0 decides nothing in favour, prereg section 7)
 
@@ -70,7 +69,7 @@ Platform: pn1a (A100-SXM4 40 GB) seed 401, pn1b (A100-SXM4 80 GB) seed 402; host
 | τ_0.5 flag FRLL jpeg50 / H1 genuine | 0 / 22.2% | 0 / 8.2% | 0 / 7.9% | 0 / 25.6% | 0 / 15.6% | 0 / 0.3% | 0 / 0.3% | 0 / 3.7% |
 | τ_0.5 gating-family mean miss | 30.3% | 28.8% | 31.1% | 14.2% | 34.7% | 38.9% | 38.3% | 22.0% |
 | τ_cam flag T_R0 / T_R0_61 / T_R0_112 | 1.0 / 75.9 / 16.8% | 1.0 / 7.9 / 4.2% | 3.7 / 10.5 / 6.3% | 2.1 / 11.5 / 5.8% | 6.3 / 93.2 / 33.0% | 2.6 / 13.6 / 7.3% | 3.7 / 17.8 / 8.4% | 0.5 / 11.5 / 5.2% |
-| τ_cam flag FRLL native / jpeg70 / jpeg50 | 51 / 57 / 79% | 78 / 83 / 91% | 95 / 96 / 99% | 30 / 21 / 32% | 66 / 84 / 99% | 67 / 78 / 99% | 70 / 87 / 98% | 38 / 31 / 47% |
+| τ_cam flag FRLL native / jpeg70 / jpeg50 | 51 / 57 / 79% | 77 / 83 / 91% | 95 / 96 / 99% | 30 / 21 / 32% | 66 / 84 / 99% | 67 / 78 / 99% | 70 / 87 / 98% | 38 / 31 / 47% |
 | τ_cam flag H1 genuine | 100% | 100% | 100% | 99.5% | 100% | 100% | 100% | 100% |
 | τ_cam miss ladder R4 / MAD22 OpenCV / Webmorph / H1 | 0 / 0.2 / 5.0 / 0% | 0 / 0 / 2.2 / 0% | 0 / 0 / 0.2 / 0% | 0 / 0 / 4.2 / 0% | 0 / 0.2 / 2.8 / 0% | 0 / 0.3 / 4.0 / 0% | 0 / 0.1 / 3.4 / 0% | 0 / 0 / 3.0 / 0% |
 
@@ -79,22 +78,40 @@ P-c2 fail (unseen kernels and other E7 strengths fail: FRLL and MAD22 genuine po
 fail (H1 below 0.85); kill rules not met. P-g (gating miss at τ_cam, X minus A, paired bootstrap refitting τ_cam):
 B 401 -0.8 points [-4.1, +8.5], B 402 +0.3 [-1.6, +16.4], Bn -1.3 [-4.4, +14.2] / +0.1 [-1.6, +24.9], C -0.3 [-3.1,
 +5.3] / -0.0 [-2.3, +1.6]; non-inferior (upper bound at most +3) only C 402. A violation: yes on both seeds (storage and
-JPEG 50). JPEG mark for C: FRLL jpeg50 flagged 32% / 47% at τ_cam (not at most 10%). Registered reading for every arm:
-"inconclusive, no claim". Training-row minus held-out logit gaps per kind: within ±0.2 logits for every kind.
+JPEG 50). JPEG mark for C: FRLL jpeg50 flagged 32% / 47% at τ_cam (not at most 10%).
+Registered reading: B, Bn and C do not pass (P-c, P-c2, P-d fail on both seeds); no kill rule met; loss rule (§7)
+applies (pass P-a and P-b, fail P-c → equality term, outside PN1). A violation on both seeds, robust at the own rule
+(20.4 / 31.9% of 61 px copies). No "removes" sentence.
+Scale caveat: the head is linear on normalised features (‖w‖ 3.84 to 3.86, bias about 0.01), so logits are bounded at
+about ±3.87. Camera photos sit at −3.67 with SD 0.02 to 0.19, and τ_cam lies 0.03 to 0.10 logits above them. P-c's SD
+unit and every τ_cam mark (P-c, P-c2, JPEG, P-g) read this saturated band. At τ_cam the gating-family miss is 0.05 to
+1.3% for every fit, bought by flagging 30 to 95% of FRLL and 99.5 to 100% of H1 genuine photos, so P-g carries no
+information. MAD22 genuine = the same 204 FRLL photos. P-a and P-b are at ceiling (identical excess in all 8 fits).
+Training-row minus held-out logit gaps per kind: within ±0.2 logits (up to 7 floor-SDs: lad_R2w −0.17 C401, −0.14
+Bn401).
 
 Reference row "standard recipe on released SMDD" (eight A12-BR ViT-B/16 retrains, same scorer, rented pn1a): seven of
 eight flag more than 10% of some history-matched genuine pool at the own rule, all eight at τ_cam (largest pool flag
 43 to 74%); JPEG pools 0 to 6.4% at τ_cam; gating-family mean miss 13 to 56% at the own rule, 8 to 22% at τ_cam.
 Athena reference result 3545977 discarded (amendment 6).
 
+## Tier-1 follow-ups (POST HOC, descriptive; README section 5.3)
+
+Head norm 3.84 to 3.86 (logits bounded at about ±3.87); test photos sit 0.15 to 0.19 logits above the floor. Share of
+hosts whose logit rises photo -> 61 px copy: A 0.98 / 0.99, B 0.66 / 0.61, Bn 0.50 / 0.56, C 0.69 / 0.53. The
+corrected-MAD22 raw files are JPEG in every class; C − A score difference vs blockiness: |ρ| ≤ 0.013.
+
 ## Compute
 
 - DGX GB10 (shared), one process: about 37 minutes of GPU wall time (allowance 30 minutes).
+- Rented A100s (lead's leases, amendment 7): pn1a A100-SXM4 40 GB at 0.59 USD/h, pn1b A100-SXM4 80 GB at 1.06 USD/h;
+  at 03:05: pn1a 5.8 h / 3.44 USD, pn1b 5.8 h / 6.19 USD (guard estimates in the lease folders' LIVE.json); final
+  figures when RELEASE is written. Fit times 69 min (pn1a), 82 to 85 min (pn1b).
 - Athena (account plgmultivision-gpu-a100, A100-SXM4-40GB, container image `fedeff10…`):
 
 | Job | Purpose | State | Elapsed | GPU-hours |
 |---|---|---|---|---|
 | 3545947 | smoke 1 (arm Bn) + DINOv3 extraction | FAILED (path bug in the smoke job file; DINOv3 part done) | 0:04:14 | 0.07 |
 | 3545968 | smoke 2 (arm Bn, 200 steps, 64 rows) | COMPLETED, rc 0, 1.24 it/s, peak 30,833 MiB | 0:05:21 | 0.09 |
-| 3545976_[0-7] | eight fits A, B, Bn, C x seeds 401, 402 (limit 2 h 15 min) | pending, forecast 12 Nov 16:56 | | |
-| 3545977 | reference row (amendment 5; limit 1 h) | pending, forecast 13 Nov 12:01 | | |
+| 3545976_[0-7] | eight fits (limit 2 h 15 min) | cancelled 21:46 before start (amendment 6) | 0 | 0 |
+| 3545977 | reference row (amendment 5) | completed 7 min 46 s; result discarded (amendment 6) | 0:07:46 | 0.13 |

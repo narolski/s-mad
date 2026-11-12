@@ -18,12 +18,15 @@ training, own table in reporting).
 Question: does the registered MADation recipe (CLIP with LoRA, last checkpoint), trained on manifest B (negatives =
 camera photos, warp-only images, the morph's own warped halves and 61.2 px copies of photos and halves; attacks =
 two-person morphs and their 61.2 px copies), keep the morph signal while not reacting to storage history and softness
-at one fixed threshold, where the same recipe on manifest A (camera photos against two-person morphs) does react?
-Amendment 1 adds manifest C (B plus JPEG 90/70 copies of half of B's images in both classes).
+at one fixed threshold, where the same recipe on manifest A does react? Arms Bn (equal size) and C (B plus JPEG copies)
+were added (amendments 1, 4).
 
-Status 11 Nov 19:55 CET: tier 0 on CLIP features done (section 5.1); DINOv3 tier 0, certificate and matched-subsample
-test pending (inputs being computed); tier 1 pack being written; Athena smoke job next; the six fits wait for the
-lead's GO (pre-run review restarted by the lead). No conclusion is drawn here.
+Status 12 Nov, `date` 03:20 CET: tier 1 read as registered (commit 4f2eea6; corrections of the tier-1 review applied).
+Registered reading: B, Bn and C do not pass (P-c, P-c2, P-d fail on both seeds); no kill; the loss rule points to the
+equality term (outside PN1); A's storage violation holds at the own rule. The marks read a saturated logit scale
+(bounded cosine head, ‖w‖ 3.84 to 3.86); P-a, P-b at ceiling; P-g uninformative. Running: the spliced LoRA arm and its
+volume control (amendment 10) and B's rescoring on spliced rows (amendment 12) on pn1a / pn1b. Draft for fresh seeds
+with P-c′: `prereg_fresh_seeds_draft.md`.
 
 ## 2. Timeline (11 Nov 2026, CET, machine clock)
 
@@ -370,7 +373,30 @@ every arm: "inconclusive, no claim" (P-c, P-c2, P-d fail; P-g non-inferior only 
 - At the own 0.5 rule both frozen heads flag no genuine image and miss 44 to 80% of MAD22 and Poisson morphs: the
   operating point sits far on the genuine side (descriptive).
 
+## 5.3 Tier-1 follow-ups (review HN1, HN3, HN5; POST HOC, descriptive; `tier1/followups.json`, `src/PN1/followups.py`)
+
+- HN1: head weight norm 3.835 to 3.863, bias 0.007 to 0.020 (floor −‖w‖+b −3.82 to −3.85); test-ladder R0 median −3.645
+  to −3.680, i.e. 0.15 to 0.19 logits above the floor (prediction "within 0.1": not met; falsifier "more than 0.3":
+  not met).
+- Scale-free storage reads: share of test hosts whose logit rises R0 -> R0_61: A 0.98 / 0.99, B 0.66 / 0.61, Bn 0.50 /
+  0.56, C 0.69 / 0.53; R0 -> R0_112: A 0.78 / 0.83, B 0.52 / 0.43, Bn 0.39 / 0.39, C 0.53 / 0.41; paired AUC(R0_61 vs
+  R0): A 0.98 / 0.99, B 0.62 / 0.60, Bn 0.52 / 0.56, C 0.63 / 0.55.
+- Genuine flags by source (own rule / τ_cam), every fit: FRGC/colorFERET test ladder 0 / 0.5-6.3%, development ladder 0
+  -2 / 4-5%, AF0 validation 0 / 1.6-4.8%, FRLL (= MAD22 genuine) 0-0.5 / 30-95%, CASIA H1 genuine 0.3-25.6 / 99.5-100%.
+- HN3: the corrected-MAD22 raw files are JPEG in every class (Webmorph 500, OpenCV 984, FaceMorpher 1,000, BonaFide
+  204, by file header); Spearman correlation of the C − A score difference with blockiness8 on the morph files: 0.009 /
+  0.013 (Webmorph), 0.010 / 0.011 (OpenCV), all p > 0.7.
+- HN5: not computed (no ghost-energy measurement exists for the H1 images).
+
 ## 9. Open items and next steps
+
+- Read the spliced LoRA arm (amendment 10) and B's rescoring (amendment 12) when their tars land (`sb_read.py`);
+  extending the rescoring to A and C needs a short amendment before scoring.
+- Fresh seeds 403 to 405 with P-c′ and the hierarchical claim: draft `prereg_fresh_seeds_draft.md`, for the lead's
+  pre-run reviewer; nothing submitted.
+- HN2 (unused genuine sources FFHQ, FEI; aligned frames exist): about 0.2 A100-hours, not run.
+
+## 9b. Open items (older, superseded)
 
 DINOv3 tier 0 (Athena smoke job); certificate and matched-subsample test (cues); pack upload; smoke job; lead's GO;
 six fits; tier-1 reads; result.md; results review by the lead.
