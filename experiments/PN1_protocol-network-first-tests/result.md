@@ -52,9 +52,40 @@ cue in A0. Those tables are kept under `tier0_v1_provisional/`, `tier0_v1_provis
   the surround. A lead to re-test, not a method result. Seeds vary only the inner folds." Post hoc training-person
   resampling: OpenCV E7 EER 1.0 to 8.8% (median 2.75%).
 
-## Tier 1
+## Tier 1 (eight ViT-B/16 LoRA fits, rented A100s, amendment 7; read as registered, 12 Nov 03:00)
 
-Not yet run (pending on Athena).
+Platform: pn1a (A100-SXM4 40 GB) seed 401, pn1b (A100-SXM4 80 GB) seed 402; host Python, pinned packages, pack
+`5c642790…`; scores = logit without flip. Test ladder 191 hosts (OpenCV-style). τ_cam = 5% on development camera photos.
+
+| Read | A 401 | B 401 | Bn 401 | C 401 | A 402 | B 402 | Bn 402 | C 402 |
+|---|---|---|---|---|---|---|---|---|
+| R2w vs R4 / R2w4 vs R4 (excess +0.112 [0.076, ...] over 0.888) | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 |
+| R0_61 vs R4 / R2w_61 vs R4 | 0.999 / 0.998 | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 | 0.999 / 0.997 | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 |
+| mean logit shift R0 -> R0_61 (SD of R0 logits) | +1.73 (0.027) | +0.15 (0.039) | +0.22 (0.060) | +0.19 (0.187) | +2.64 (0.024) | +0.13 (0.019) | +0.16 (0.028) | +0.11 (0.026) |
+| shift in SD units (P-c reads this) | 63.4 | 3.9 | 3.7 | 1.0 | 108.2 | 6.7 | 5.5 | 4.2 |
+| H1 AUC | 0.847 | 0.781 | 0.747 | 0.838 | 0.827 | 0.680 | 0.661 | 0.816 |
+| MAD22 E7 EER OpenCV / Webmorph (%) | 3.4 / 18.4 | 1.8 / 13.7 | 2.1 / 11.8 | 0.5 / 7.8 | 5.0 / 20.6 | 4.4 / 19.0 | 3.6 / 18.2 | 0.9 / 7.0 |
+| R4 vs R3 | 0.731 | 0.767 | 0.770 | 0.772 | 0.756 | 0.761 | 0.765 | 0.773 |
+| τ_0.5 flag T_R0_61 / T_R0_112 | 20.4 / 2.1% | 1.6 / 1.0% | 3.1 / 1.0% | 2.1 / 1.0% | 31.9 / 3.7% | 1.0 / 0.0% | 0.5 / 0.0% | 1.0 / 0.0% |
+| τ_0.5 flag FRLL jpeg50 / H1 genuine | 0 / 22.2% | 0 / 8.2% | 0 / 7.9% | 0 / 25.6% | 0 / 15.6% | 0 / 0.3% | 0 / 0.3% | 0 / 3.7% |
+| τ_0.5 gating-family mean miss | 30.3% | 28.8% | 31.1% | 14.2% | 34.7% | 38.9% | 38.3% | 22.0% |
+| τ_cam flag T_R0 / T_R0_61 / T_R0_112 | 1.0 / 75.9 / 16.8% | 1.0 / 7.9 / 4.2% | 3.7 / 10.5 / 6.3% | 2.1 / 11.5 / 5.8% | 6.3 / 93.2 / 33.0% | 2.6 / 13.6 / 7.3% | 3.7 / 17.8 / 8.4% | 0.5 / 11.5 / 5.2% |
+| τ_cam flag FRLL native / jpeg70 / jpeg50 | 51 / 57 / 79% | 78 / 83 / 91% | 95 / 96 / 99% | 30 / 21 / 32% | 66 / 84 / 99% | 67 / 78 / 99% | 70 / 87 / 98% | 38 / 31 / 47% |
+| τ_cam flag H1 genuine | 100% | 100% | 100% | 99.5% | 100% | 100% | 100% | 100% |
+| τ_cam miss ladder R4 / MAD22 OpenCV / Webmorph / H1 | 0 / 0.2 / 5.0 / 0% | 0 / 0 / 2.2 / 0% | 0 / 0 / 0.2 / 0% | 0 / 0 / 4.2 / 0% | 0 / 0.2 / 2.8 / 0% | 0 / 0.3 / 4.0 / 0% | 0 / 0.1 / 3.4 / 0% | 0 / 0 / 3.0 / 0% |
+
+Marks (section 7, amendments 1 and 4), every B, Bn and C network: P-a pass, P-b pass, P-e pass, P-f pass; P-c fail,
+P-c2 fail (unseen kernels and other E7 strengths fail: FRLL and MAD22 genuine pools flagged above 10% at τ_cam), P-d
+fail (H1 below 0.85); kill rules not met. P-g (gating miss at τ_cam, X minus A, paired bootstrap refitting τ_cam):
+B 401 -0.8 points [-4.1, +8.5], B 402 +0.3 [-1.6, +16.4], Bn -1.3 [-4.4, +14.2] / +0.1 [-1.6, +24.9], C -0.3 [-3.1,
++5.3] / -0.0 [-2.3, +1.6]; non-inferior (upper bound at most +3) only C 402. A violation: yes on both seeds (storage and
+JPEG 50). JPEG mark for C: FRLL jpeg50 flagged 32% / 47% at τ_cam (not at most 10%). Registered reading for every arm:
+"inconclusive, no claim". Training-row minus held-out logit gaps per kind: within ±0.2 logits for every kind.
+
+Reference row "standard recipe on released SMDD" (eight A12-BR ViT-B/16 retrains, same scorer, rented pn1a): seven of
+eight flag more than 10% of some history-matched genuine pool at the own rule, all eight at τ_cam (largest pool flag
+43 to 74%); JPEG pools 0 to 6.4% at τ_cam; gating-family mean miss 13 to 56% at the own rule, 8 to 22% at τ_cam.
+Athena reference result 3545977 discarded (amendment 6).
 
 ## Compute
 

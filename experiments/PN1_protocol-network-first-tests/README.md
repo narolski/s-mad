@@ -325,7 +325,10 @@ used ("seam not matched"); every splice read here is OpenCV-style.
 
 ### 5.2 Tier 1
 
-Not run.
+Read as registered on 12 Nov about 03:00 (`tier1.py --results /mnt/t7/smad_next/PN1/results_rented`); full tables in
+`result.md` (section "Tier 1"), JSON per network in `tier1/`, comparisons and the reference row in `tier1/compare.json`.
+Result tars and logs: `/mnt/t7/smad_next/PN1/results_rented/` (sha256 checked by the pull loops). Registered reading of
+every arm: "inconclusive, no claim" (P-c, P-c2, P-d fail; P-g non-inferior only for C 402).
 
 ## 6. Checks
 
@@ -372,7 +375,15 @@ Not run.
 DINOv3 tier 0 (Athena smoke job); certificate and matched-subsample test (cues); pack upload; smoke job; lead's GO;
 six fits; tier-1 reads; result.md; results review by the lead.
 
-## 10. Handover state (20:47)
+## 10. Handover state (12 Nov 03:05)
+
+- Rented pn1a (173.183.191.220:24545, lease folder `/mnt/t7/smad_next/vast/pn1a`): first queue done (4 fits + reference
+  row verified); second queue PN1_Sb_s401, PN1_Bv_s401 running (pack 2), expected end about 04:55. pn1b
+  (82.66.51.122:53776, `/mnt/t7/smad_next/vast/pn1b`): first queue done; second queue PN1_Sb_s402, PN1_Bv_s402, expected
+  end about 06:20. Pull loops (`pull_loop.sh`) write RELEASE per lease folder when 7 / 6 tars are verified.
+- After those: read amendment 10 with `tier1.py` extended to arms Sb and Bv (development ladder first).
+
+## 10b. Handover state (20:47, superseded)
 
 - Athena: array 3545976_[0-7] (PN1_A_s401, PN1_B_s401, PN1_Bn_s401, PN1_C_s401, then the s402 four), each about 1.5 h
   (1.24 it/s; time limit 2 h 15 min since 20:59), logs `/net/pr2/projects/plgrid/plggrestoration/smad-next/results/PN1/logs/fit-3545976_<i>.out`, result

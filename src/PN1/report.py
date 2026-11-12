@@ -74,7 +74,7 @@ def key_row(R):
     for k in ("c_R0_to_R0_61", "c_R0_to_R0_112"):
         c3 = dl.get(k, {})
         row[f"dev-ladder {k} (SD)"] = f"{c3['shift_sd']:+.3f} [{c3['lo']:+.3f}, {c3['hi']:+.3f}]" if "shift_sd" in c3 else "n/a"
-    if "marks" in R and "storage" in R["marks"]:
+    if "marks" in R and "NU_a_violations_gt10pct_own" in R["marks"]:
         m = R["marks"]
         row["K0 (R2w61 vs R4 < 0.60)"] = str(m.get("K0_b_R2w61_lt_0.60"))
         row["2x2"] = (f"min(g1..g3) {m['2x2_min_g1_g3']:.3f} pass {m['2x2_pass']} kill-set {m['2x2_kill_this_feature_set']}"
