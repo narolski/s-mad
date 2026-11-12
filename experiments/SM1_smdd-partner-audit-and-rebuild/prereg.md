@@ -506,6 +506,19 @@ Pre-run check (experiment-reviewer, 12 Nov): GO WITH FIXES; fixes applied before
   otherwise undecided.
 - H-new-B AUC part: difference e − f of the paired AUC (photo against its softened copy), both strengths reported.
 
+## Amendment A17: H-n3, stratified identity contrast on the A15 scores (12 Nov, zero GPU; registered before computing)
+
+After the review `experiments/reviews/REVIEW_SM1_12FITS_A15_20261112.md`. Scores: the existing A15 tars (fits a, e, f x
+seeds 401, 402; logit of the no-TTA score). Contrast: X20 (two-person mix) over SAME20 (one-person mix), the 536 hosts.
+Strata, each pooled over X20 and SAME20: (i) quintiles of the face-box Laplacian variance (`lapvar_box`,
+`/mnt/t7/smad_next/FZ2/read_addon_items.csv`); (ii) quintiles of θ, the angle between the two inverted noise maps
+(`theta_xT` of DG1's `gen_rows.csv`, joined on list / pool / file). Stratified AUC = AUC within each stratum, averaged
+with weights n_X x n_SAME of the stratum. Host bootstrap B = 10,000, seed 20261111 (the A15 draws); 2-seed means.
+- **H-n3a**: Laplacian-stratified AUC a − e within ±0.03 (point); falsified if |a − e| > 0.03 with the interval
+  excluding 0.
+- **H-n3b**: θ-stratified AUC ≤ 0.58 for every arm (point); falsified if any arm > 0.58 with the interval above 0.58.
+Unstratified X20-over-SAME20 AUC reported beside them.
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 
