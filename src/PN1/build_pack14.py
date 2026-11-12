@@ -6,7 +6,8 @@
                                     FFHQ-Morphs landmark_combined orig 1,000 + resmatch 2,000 (fam ffhq_lcomb)
   pn14/data/manifests/pn1_a14.csv   one manifest (pn1_eval.csv columns)
   pn14/SHA256SUMS
-Out /mnt/t7/smad_next/PN1/pn1_a14.tar (+ .sha256).   python3 -I build_pack14.py"""
+Out /mnt/t7/smad_next/PN1/pn1_a14.tar (+ .sha256).   python3 -I build_pack14.py [--reduced]
+--reduced: the reduced variant 14R without the ffhq_lcomb rows -> pn1_a14r.tar (tree a14r_tree)."""
 import csv
 import hashlib
 import os
@@ -32,9 +33,11 @@ def sha(p):
 
 
 def main():
+    red = "--reduced" in sys.argv[1:]
+    tag = "a14r" if red else "a14"
     p2sums = dict(reversed(line.rstrip("\n").split("  ", 1)) for line in open(P2 / "SHA256SUMS"))
     fqsums = dict(reversed(line.rstrip("\n").split("  ", 1)) for line in open(FQ / "SHA256SUMS"))
-    tree = PN1 / "a14_tree"
+    tree = PN1 / f"{tag}_tree"
     if tree.exists():
         shutil.rmtree(tree)                    # only symlinks and small files made by this script
     root = tree / "pn14"
@@ -66,7 +69,7 @@ def main():
         link("data/" + r["path"], HN2 / "data" / r["path"])
         rows.append(r)
     for r in csv.DictReader(open(FQ / "manifests" / "ffhqm.csv")):
-        if r["family"] != "landmark_combined":
+        if red or r["family"] != "landmark_combined":
             continue
         pp = f"eval/a14/{r['id']}.png"
         link("data/" + pp, FQ / r["path"], fqsums[r["path"]])
@@ -85,11 +88,11 @@ def main():
     with open(root / "SHA256SUMS", "w") as f:
         for h, p in sums:
             f.write(f"{h}  {p}\n")
-    tar = PN1 / "pn1_a14.tar"
+    tar = PN1 / f"pn1_{tag}.tar"
     subprocess.run(["tar", "-C", str(tree), "-chf", str(tar), "--sort=name", "--owner=0", "--group=0", "--numeric-owner",
                     "--mtime=2026-11-12 00:00:00", "pn14"], check=True)
     th = sha(tar)
-    (PN1 / "pn1_a14.tar.sha256").write_text(f"{th}  pn1_a14.tar\n")
+    (PN1 / f"pn1_{tag}.tar.sha256").write_text(f"{th}  pn1_{tag}.tar\n")
     import collections
     print("rows", len(rows), dict(collections.Counter((r["fam"], r["label"]) for r in rows)))
     print("list_sha256", sha(mf))

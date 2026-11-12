@@ -406,6 +406,10 @@ every arm: "inconclusive, no claim" (P-c, P-c2, P-d fail; P-g non-inferior only 
 - Drafts for the pre-run reviewer (nothing run): amendment 14 (HN7, HN8, HN2 for Sb and Bv; one lease, about 0.5
   A100-h) `prereg_amendment14_draft.md`; fresh seeds v3 (A, B, Sb x 403 to 407 + replicate; v2 A/B/C kept as the
   alternative) `prereg_fresh_seeds_draft.md`.
+- Pre-run review 3f2bd14 (GO WITH FIXES): amendment 14 draft v2 with F1 to F6, two ready texts (14 full, 14R without
+  landmark_combined), packs pn1_a14.tar `bda5fd3d…` and pn1_a14r.tar `efa700a9…`, scripts re-pinned; HOLD until the
+  author answers on ffhqm endpoints (nothing scored on landmark_combined). Fresh-seed plan v3.1 with B2-F1 to B2-F5;
+  its section 3 frozen at git e4a4590 (`prereg_fresh_seeds_v3_frozen.md`).
 
 ## 9b. Open items (older, superseded)
 

@@ -1,67 +1,74 @@
-# DRAFT v3 (not registered, nothing run): protocol network, fresh seeds for A, B and Sb with scale-free marks
+# DRAFT v3.1 (not registered, nothing run): protocol network, fresh seeds for A, B and Sb with scale-free marks
 
-v3 follows the batch-2 review `experiments/reviews/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md` (commit 88f6016),
-section 5. It is the recommended plan. The earlier A/B/C plan (v2) is kept below as the alternative. Both go through the
-pre-run reviewer before anything runs. Both also wait for the author's budget. Amendment 14 (draft
-`prereg_amendment14_draft.md`) is meant to be read before this batch is registered.
+v3.1 applies B2-F1 to B2-F5 of the pre-run review `experiments/reviews/PRERUN_PN1_A14_AND_SEEDS_V3_20261112.md`
+(commit 3f2bd14) to v3 (from the batch-2 review, commit 88f6016). The earlier A/B/C plan (v2) is kept below as the
+alternative. Before anything runs, the plan waits for:
+- the author's rulings (section 7);
+- his budget;
+- a pre-run review of the final text.
+
+**Section 3 (contrasts, margins, seed rules) is frozen at git e4a4590** (`prereg_fresh_seeds_v3_frozen.md`). That
+commit came before any amendment-14 tar exists. Nothing in it changes except the budget and whether C is included.
 
 ## 1. Arms, seeds and why Sb
 
 - **Arms and fits:**
   - A, B and Sb at seeds 403, 404, 405, 406 and 407 (15 fits), plus the replicate fit of A seed 401 (1 fit).
-  - C is optional, at seeds 403 to 405 only (3 fits), if the author's budget allows. It is printed only and is not part of any primary contrast.
+  - C is optional, at seeds 403 to 405 only (3 fits). It is decided at the author's budget answer, before any fresh fit starts. It is printed only and enters no contrast.
 - **Recipe and pack:**
   - Unchanged recipe, last checkpoint.
   - Pack 2 (`266ce5c3…`): manifests A and B byte-equal to pack 1, and train_Sb (`2cf3fda3…`).
   - run.sh `a208fcf8…`, the pack-2 version with the Sb arm. A pack-1 run.sh cannot run Sb.
-- **Selecting Sb complies with amendment 10.** The selection uses development-ladder reads only (`tier1_sb/sb_read.json`):
+- **Disclosure (B2-F1): Sb was killed by its registered rule.**
+  - Amendment 10, read (i): face-blanked development AUC 0.991 / 0.999 against B's 1.000, which fails on both seeds.
+  - The refit is chosen on development reads after H1 was seen. The batch-2 review read "Sb above all 8 reference seeds" on H1 before this plan existed, and the 0.05 margin was set knowing the 401/402 H1 gains of +0.13 / +0.23 over B.
+  - This meets the letter of amendment 10 (choices for later fits made on the development ladder and AF0 validation only) but not its spirit.
+  - The author rules whether a killed arm may be refitted (section 7a).
+- **Development-ladder reads cited for the choice** (`tier1_sb/sb_read.json`), the killing read first:
 
 | Development-ladder read | Sb (seed 401 / 402) | B (seed 401 / 402) |
 |---|---|---|
+| (i) face-blanked R2w vs R4 AUC (amendment-10 kill read) | 0.991 / 0.999 | 1.000 / 1.000 |
 | face-only S0 vs S4 AUC (= face-only R2w vs R4) | 0.925 / 0.938 | 0.836 / 0.862 |
 | S0 vs S4 excess over the 3-statistic floor, bootstrap lower bound | +0.049 / +0.051 | −0.294 / −0.283 |
-
-  Sb's MAD22, H1 and test-ladder numbers (first-test data) did not enter the choice.
 
 ## 2. Platform
 
 - **Two leases of one type,** A100-SXM4 40 GB, with GPU UUIDs recorded in every tar. Each seed runs whole on one machine:
   - machine 1: seeds 403, 405 and 407 (A, B, Sb), 9 fits;
   - machine 2: seeds 404 and 406, plus the replicate A seed 401, 7 fits (+ C 403 to 405, 3 fits, if included).
+- Every result is printed per machine as well as pooled.
 - **Replacement:** same type only, disclosed; the unfinished seed restarts from its first arm. If no same-type machine is available, the batch stops and the lead decides.
-- **Replicate fit:** compared with pn1a's A seed 401 cell by cell. HN9 reads it: machine-driven if FFHQ own-rule genuine flags land outside 22.5 ± 3%, seed-driven if inside. It is never pooled as a seed.
+- **Lost seeds, non-finite runs, ties and the 14 Nov deadline:** the frozen rules in `prereg_fresh_seeds_v3_frozen.md` apply.
+- **HN9 (platform plus nondeterminism):**
+  - The replicate A seed 401 is compared with pn1a's A seed 401 cell by cell.
+  - "Platform plus nondeterminism" if FFHQ own-rule genuine flags land outside 22.5 ± 3%; "consistent with seed-driven" if inside.
+  - One replicate cannot separate the machine from run-to-run nondeterminism.
+  - It is never pooled as a seed.
 
 | | Fits | A100-hours (69 min per fit + scoring) | Cost (0.59 USD/h) | Wall time (two leases) |
 |---|---|---|---|---|
 | A, B, Sb × 5 seeds + replicate | 16 | about 19.7 h | about 11.6 USD | about 11 h (machine 1 longer: 9 fits) |
 | plus C at 3 seeds | 19 | about 23.4 h | about 13.8 USD | about 11.5 h (machine 2 then 10 fits) |
 
-Scoring per fit: the pack-2 evaluation (with the splice rows), the HN2 list, the landmark_combined list of amendment 14 and the τ_multi list of the alternative (printed only). Plan v2 (A, B, C at 3 seeds) cost about 7.5 USD and 12.5 h serial on one lease.
+- **Scoring per fit:**
+  - the pack-2 evaluation (with the splice rows);
+  - the HN2 list;
+  - the landmark_combined list of amendment 14 (only if the author does not reserve it).
+- **The τ_multi list is dropped** (B2-F3): it is not pinned and depends on open FEI/SMDD answers.
+- Plan v2 (A, B, C at 3 seeds) cost about 7.5 USD and 12.5 h serial on one lease.
 
-## 3. Primary contrasts (fixed), fresh seeds only
+## 3. Primary contrasts: frozen
 
-The seed rule for every contrast:
-
-| Outcome | Seeds meeting the contrast | Reading |
-|---|---|---|
-| Replicated | ≥ 4 of 5 | contrast replicated |
-| Not replicated | ≤ 1 of 5 | contrast not replicated |
-| Middle | 2 or 3 of 5 | inconclusive, no claim |
-
-Under no effect with p = 0.5 per seed, "≥ 4 of 5" has probability 0.19, and 5 of 5 has 0.031 (printed beside).
-
-1. **H1 (labelled "re-read": first-test data, already read for seeds 401 and 402).** Each seed counts if Sb − B ≥ +0.05 H1 AUC and Sb − A ≥ 0.
-2. **FFHQ landmark_combined against its history-matched genuine pool (amendment-14 list).** Same rule: Sb − B ≥ +0.05 AUC and Sb − A ≥ 0. Stated: seeds 401 and 402 will already have been read on this list under amendment 14.
-3. **Scale-free storage mark on FFHQ.**
-   - The read: the share of the 2,000 FFHQ persons whose logit rises from native to history-matched (amendment-13 list, paired by key).
-   - An arm passes on a seed if that share is ≤ 0.65.
-   - Positive control: A must fail (share > 0.65) on ≥ 4 of 5 seeds, otherwise the mark is "uninformative on these seeds".
-   - Arms B and Sb pass the mark if they pass on ≥ 4 of 5 seeds.
-   - Post hoc tier-1 values, which motivated this mark: A 0.78 / 0.72; B, Bn and C 0.30 to 0.44.
+See `prereg_fresh_seeds_v3_frozen.md` (git e4a4590):
+- Contrast 1, H1: "fresh networks, re-read images, contrast set after the 401/402 H1 read". Sb − B ≥ +0.05 and Sb − A ≥ −0.02 (non-inferiority; about 0.72 no-effect probability for 4 or more of 5).
+- Contrast 2, FFHQ landmark_combined: second read of the images. Same margins, with the ceiling clause (B ≥ 0.95 → that seed untestable).
+- Contrast 3, FFHQ paired share rising ≤ 0.65, with A as the positive control.
+- Seed counting for n = 5, 4 or ≤ 3, lost or non-finite seeds, ties, when C is decided, the deadline, and the outcome-to-claim table.
 
 ## 4. Printed only
 
-- **Threshold transfer (step 1 of v2):** flags on unseen genuine sources at τ_0.5, τ_cam and, if the author admits calibration sources, τ_multi. All of these are printed only; the expectation is that every arm fails it.
+- **Threshold transfer** (step 1 of v2): flags on unseen genuine sources at τ_0.5 and τ_cam. The expectation is that every arm fails it.
 - P-c′ of v2 on the test ladder.
 - HN2 under the amendment-13 rule.
 - HN7 for the fresh networks.
@@ -69,23 +76,36 @@ Under no effect with p = 0.5 per seed, "≥ 4 of 5" has probability 0.19, and 5 
 
 ## 5. Bootstrap and intervals
 
-2,000 draws, `default_rng(20261118)`. Resampling units:
-- H1 hosts, for H1;
-- images within class, for FFHQ landmark_combined;
-- FFHQ persons, for the paired share.
-
-Per-seed intervals are printed. Arm statements use only the seed counts of section 3.
+As frozen: 2,000 draws, `default_rng(20261118)`, per seed. Arm statements use only the frozen seed counts.
 
 ## 6. Not decided here
 
 - The equality term (loss rule; fresh seeds are a parallel step, not that step).
 - The head change and multi-source genuine training (author items).
-- The budget (author).
 
 ## 7. Author questions
 
-- Budget: 16 fits (about 11.6 USD) or 19 fits with C (about 13.8 USD).
-- Questions 1 and 2 of the alternative (SMDD and FEI as calibration sources): these concern only the printed τ_multi read.
+**(a) Refitting the killed Sb arm.** Sb was killed by amendment 10, read (i). May it be refitted on fresh seeds on these grounds?
+- development-ladder face-only and excess reads (section 1);
+- the refit chosen after the 401/402 H1 read was seen, which is disclosed.
+
+**(b) Reserved ffhqm families.** Is any ffhqm family reserved as an endpoint by the main registration (`/mnt/t7/smad_heldout/ffhq_morphs/REGISTRATION_DRAFT.md` lines 46–47: "the proposed held-out mean over diffae and landmark_complete")? landmark_combined is included in the question.
+
+What PN1 has already read:
+- Amendment 13 (registered git a1c6664, read in a51ca22): the eight tier-1 networks (A, B, Bn, C × seeds 401, 402) scored on 5,000 ffhqm rows:
+  - ffhq_bona orig, 2,000 genuine;
+  - landmark_complete orig, 1,000 morphs;
+  - landmark_complete resmatch, 2,000 genuine shrunk to the morphs' eye distance.
+  - Reads: own-rule and τ_cam flag shares of the genuine images; AUC of the landmark_complete morphs against ffhq_bona orig (0.988 to 1.000) and against landmark_complete resmatch (0.935 to 0.999).
+- Post hoc, the same scores re-read (`tier1/posthoc_b2.json`, commit 33f4d0c): paired native vs history-matched genuine per person (AUC, share rising, shift).
+- The batch-2 reviewer read the same scores.
+- Not read by PN1: landmark_combined, stylegan_w, stylegan_wplus and diffae (no score, no statistic). Reads of ffhqm by other experiments are not listed here.
+
+If landmark_complete is an endpoint, PN1's reading of it under amendment 13 has already happened and needs his ruling.
+
+**(c) Budget.** 16 fits (about 11.6 USD, about 11 h on two leases), or 19 with C (about 13.8 USD).
+
+**(d) SMDD / FEI calibration sources.** No longer needed for this plan, because the τ_multi list is dropped. They remain open only for the alternative v2.
 
 ---
 
