@@ -31,7 +31,7 @@ if [ -e "$OUT/$TASK.tar" ]; then
   die "$OUT/$TASK.tar exists without a matching .sha256 (never overwritten)"
 fi
 case "$ARM" in A|B|Bn|C|Sb|Bv) MAN=train_$ARM.csv ;; *) die "arm $ARM" ;; esac
-case "$SEED" in 401|402|403|404|405) ;; *) die "seed $SEED" ;; esac
+case "$SEED" in 401|402|403|404|405|406|407) ;; *) die "seed $SEED" ;; esac
 STEPS=${PN1_STEPS:-6250}
 WORKERS=${PN1_WORKERS:-7}
 
@@ -67,6 +67,7 @@ py "$W/pn1/src/pn1_score.py" --run "$RUN" --code "$W/pn1/code" --eval-manifest p
   --train-manifest train.csv --out "$R" --workers "$WORKERS" --limit "${PN1_LIMIT:-0}"
 cp "$RUN/meta.json" "$W/train.log" "$TASK_DIR/task.env" "$R/"
 echo "sif $SIF local ${PN1_LOCAL:-0} pack_sha256 $PACK_SHA wall_s $((SECONDS - T0)) host $(hostname) steps $STEPS limit ${PN1_LIMIT:-0}" > "$R/task_info.txt"
+nvidia-smi --query-gpu=uuid,name,driver_version --format=csv,noheader > "$R/gpu.txt" 2>&1 || true
 tar -C "$W/res" -cf "$W/$TASK.tar" "$TASK"
 cp "$W/$TASK.tar" "$OUT/$TASK.tar.part"
 (cd "$W" && sha256sum "$TASK.tar") > "$W/$TASK.tar.sha256"

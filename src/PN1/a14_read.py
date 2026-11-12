@@ -5,12 +5,12 @@ cues/a14_lcomb.npz (mandatory; sha256 must equal the committed tier1_a14/a14_lco
   gate  A_s401 and B_s402 on the HN2 list: new lease vs pn1a / pn1b scores; equivalent if max |d logit| <= 0.05,
         mean |d logit| <= 0.01 and |d AUC(b)| <= 0.002 for both. The gate binds only the reads that cross platforms
         (HN7, HN2b): if it fails they are printed "platform not equivalent" with no verdict. HN8 (one lease) is not
-        voided. A failed gate is not re-run on another platform.
+        voided. (HN7 also needs HN8's landmark_combined scores, which come from the one lease.) A failed gate is not re-run on another platform.
   HN7   associational, between arms. Per network (12): face-only R4 vs R2w AUC on test hosts (T_S4_bg vs T_S0_bg) and
-        H1 AUC; Spearman across the 12 (supported if rho >= 0.6 and A's face-only AUC > B's on both seeds; falsified
+        FFHQ landmark_combined AUC (development set; H1 is sealed and not read); Spearman across the 12 (supported if rho >= 0.6 and A's face-only AUC > B's on both seeds; falsified
         if rho <= 0.2; else inconclusive). Printed: arm-level rho (seed means, n = 6), rho without Sb (n = 10; arm
         level n = 5). The only prediction made blind: A's face-only AUC > B's on both seeds. Interval: 2,000 joint
-        bootstraps (rng 20261117) of test partner cycles and H1 hosts (hosts only, not training).
+        bootstraps (rng 20261117) of test partner cycles and landmark_combined images (not training).
   HN8   per network: AUC of landmark_combined orig morphs vs landmark_combined resmatch genuine. A seed with B >= 0.95
         is untestable (ceiling). Over testable seeds: falsified if Sb <= B on any; supported if both seeds testable,
         Sb - B >= 0.05 and Sb - A >= 0 on both; untestable if no seed is testable; else inconclusive. Intervals: 2,000
@@ -141,8 +141,11 @@ def main():
             x.update(npz(untar(RR / f"PN1_HN2_s{s}.tar") / f"scores_hn2_{a}.npz"))
         S[(a, s)] = x
     # ---- HN7
-    pos, neg, hm, hb = P["T_S4_bg"], P["T_S0_bg"], P["H1_morph"], P["H1_bona"]
-    ok7 = all(all(r["id"] in S[k] for r in pos + neg) for k in NETS)
+    # transfer axis: FFHQ landmark_combined (development set, lead ruling 12 Nov); H1 is sealed and not read
+    pos, neg = P["T_S4_bg"], P["T_S0_bg"]
+    hm = [dict(id=r["id"], host=r["id"]) for r in man if r["fam"] == "ffhq_lcomb" and r["label"] == "1"]
+    hb = [dict(id=r["id"], host=r["id"]) for r in man if r["fam"] == "ffhq_lcomb" and r["label"] == "0"]
+    ok7 = bool(hm) and all(all(r["id"] in S[k] for r in pos + neg + hm + hb) for k in NETS)
     if ok7:
         units = sorted({RD.unit(r) for r in pos + neg})
         hosts = sorted({r["host"] for r in hm + hb})
@@ -184,12 +187,12 @@ def main():
         ci = lambda j: [float(np.nanpercentile(bs[:, j], 2.5)), float(np.nanpercentile(bs[:, j], 97.5))]
         out["HN7"] = dict(label="associational, between arms", blind_prediction="A face-only AUC > B on both seeds",
                           faceonly_auc={f"{a}_s{s}": float(x) for (a, s), x in zip(NETS, fo)},
-                          h1_auc={f"{a}_s{s}": float(x) for (a, s), x in zip(NETS, h1)},
+                          lcomb_auc={f"{a}_s{s}": float(x) for (a, s), x in zip(NETS, h1)},
                           rho_12=float(r12), rho_12_ci=ci(0), rho_arm_6=float(r6), rho_arm_6_ci=ci(1),
                           rho_without_Sb_10=float(r10), rho_without_Sb_10_ci=ci(2), rho_arm_without_Sb_5=float(r5),
                           A_faceonly_above_B_both_seeds=a_gt_b, verdict=xlab + v7)
     else:
-        out["HN7"] = dict(verdict="not read: splice scores missing (rc)")
+        out["HN7"] = dict(verdict="not read: splice or landmark_combined scores missing (rc)")
     # ---- HN8 (full variant)
     if var == "full":
         assert FLOOR_NPZ.exists(), "floor file missing"

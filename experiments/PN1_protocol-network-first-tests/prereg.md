@@ -529,3 +529,44 @@ F4, F5. FFHQ only (no FEI, no SMDD).
   moved to another platform.
 - Native history table (lead item A; post hoc, descriptive, no GPU, no new score): `tier1/native_history.json`
   (`src/PN1/native_history.py`).
+
+## Benchmark ruling and development designation (12 Nov 2026; `date`: Thu Nov 12 08:11:57 AM CET 2026)
+
+- Author ruling, his words: "We can't use the set for development we're using to benchmark methods, that is a grave
+  error. We are aiming for CVPR." Follow-up: "Just use another dataset to compare them, unless we do not plan to use
+  FFHQ in benchmarks."
+- Lead designation under that ruling: the FFHQ set (genuine and every morph family under
+  `/mnt/t7/smad_heldout/ffhq_morphs`) is the development comparison set of this sprint and is not reported as a
+  benchmark in the paper.
+- FRLL, MAD22, MorDIFF, DiM, H1, FEI and the sealed sets stay sealed for every candidate network until the method is
+  frozen. No PN1 network, existing or fresh, is scored on them from now on.
+- What PN1 has already read on those sets: `BENCHMARK_EXPOSURE.md`. H1, MAD22 and FRLL exposure is unchanged by the
+  designation.
+- Suspended: the frozen fresh-seed contrasts v3 (git e4a4590; primary contrast on H1). They are replaced by
+  registration FS1 below. The two amendment-14 drafts (full, reduced) as written on H1 are cancelled. Amendment 14 is
+  revived only as a development read (separate section, committed after FS1).
+
+## Registration FS1: fresh seeds on development data only (registered at the git commit that adds this section; no fresh-seed fit, no FFHQ landmark_combined score or statistic exists at that commit)
+
+- Author's answers (12 Nov, his words: "2. Yes", "3 go"): the killed Sb arm may be refitted on the stated grounds;
+  budget approved for arms A, B, Sb at seeds 403 to 407 plus the replicate fit of A seed 401, 16 fits, about 11.6 USD,
+  two leases of one type, each seed whole on one machine. C decided: not run.
+- Contrasts, margins, seed rules, deadline and claims: `prereg_fresh_seeds_v4_frozen.md` (committed with this section;
+  development data only).
+- Recipe: unchanged train.py and flags (README section 4), last checkpoint, manifests train_A (`af070a60…`), train_B
+  (`bd53dc32…`), train_Sb (`2cf3fda3…`), byte-equal to pack 2; training images are our own AF0 and ladder images from
+  FRGC / colorFERET (no FFHQ, FRLL, MAD22, CASIA, FEI image in any training manifest).
+- Pack (development only): `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar`, sha256
+  `96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004` (8,752,445,440 bytes; builder
+  `src/PN1/build_pack_fs.py` `613398bb…`, which asserts that no benchmark row or image is included); evaluation
+  manifest `pn1_eval.csv` `f0f29f2201bd3a1dc67f24772347960ba7a383a9e5c1fa8920d0cc1b854a5045` (19,797 rows: af0 1,339,
+  ladder 6,093, splice 4,365, FFHQ HN2 list 5,000, FFHQ landmark_combined 3,000). The driver cannot score a benchmark
+  row: none is in the pack.
+- Scorer `pn1_score.py` `737d6e35…` (inside the pack); run.sh `74a49b0baaeb99108664bf8243d079b708c94f4f87c154ff5840796288e48bb0`
+  (pack-2 run.sh plus seeds 406, 407 in its seed list and the GPU UUID written into each result tar; training and
+  scoring commands unchanged); `src/PN1/rented/remote_fs.sh` and `src/PN1/rented/drive_fs.sh` (sha256 at this commit).
+- Platform: two leases of A100-SXM4 40 GB; GPU UUID recorded per lease (setup log) and per fit (gpu.txt in the tar).
+  Machine 1: seeds 403, 405, 407 (A, B, Sb each), 9 fits. Machine 2: seeds 404, 406 (A, B, Sb each), then the
+  replicate A seed 401, 7 fits. Replacement of a lost lease: same type only, disclosed; the unfinished seed restarts.
+- Reader `src/PN1/fs_read.py`: committed before the first fresh-seed tar is pulled; it implements exactly the frozen
+  rules.

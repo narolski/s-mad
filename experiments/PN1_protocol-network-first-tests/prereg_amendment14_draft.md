@@ -1,3 +1,7 @@
+> **CANCELLED by author ruling 12 Nov** (both texts as written: HN7 read H1, a sealed benchmark). Amendment 14 is
+> revived as a development read in prereg.md ("Amendment 14 (development read)"): HN7 against FFHQ landmark_combined
+> instead of H1; Text 14R is not used. This file is kept as the record of the draft.
+
 # DRAFT amendment 14 (not registered, nothing run): face-interior reads on one rented lease
 
 v2 of this draft applies F1 to F6 of the pre-run review `experiments/reviews/PRERUN_PN1_A14_AND_SEEDS_V3_20261112.md`
@@ -122,7 +126,7 @@ Basis: review `REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md` (commit 88f6016) and
 
 ---
 
-## Text 14R (reduced, if the author reserves landmark_combined): to be pasted into prereg.md instead
+## Text 14R (reduced): CANCELLED by author ruling 12 Nov (not used)
 
 ### Amendment 14R (registered at the git commit that adds this section; no amendment-14 score exists at that commit; landmark_combined not read on the author's answer [to fill]): HN7 and HN2b on one lease
 

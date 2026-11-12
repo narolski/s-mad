@@ -1,3 +1,7 @@
+> **Superseded 12 Nov by the author ruling**: the H1 contrasts of v3.1 and the frozen v3 file (git e4a4590) are
+> suspended. The registered plan is FS1 in prereg.md with `prereg_fresh_seeds_v4_frozen.md` (development data only).
+> This draft is kept as the record.
+
 # DRAFT v3.1 (not registered, nothing run): protocol network, fresh seeds for A, B and Sb with scale-free marks
 
 v3.1 applies B2-F1 to B2-F5 of the pre-run review `experiments/reviews/PRERUN_PN1_A14_AND_SEEDS_V3_20261112.md`
