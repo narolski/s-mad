@@ -112,3 +112,33 @@ Built after the registration commit 01557ce; no TT1, border or geo reference row
   tensor and the A_s401 logit on each stack (DGX output `/mnt/t7/smad_next/TT1/diag/diag_dgx.npz`, already computed;
   the A100 output comes back in the result tar). It answers which stage differs: decode, resize or network.
 - Local test of remote_tt1.sh on the DGX (test mode, pip skipped) started before this commit; result in the README.
+
+## 6. Deviation TT1-D2 (`date`: Fri Nov 13 12:35:01 AM CET 2026; registered at the git commit that adds this section, before any TT1 row is scored on any platform): batching of the gate rows
+
+- Facts (commit 7a781f7, `gate_a100.json`): on lease tt1a (A100-SXM4 80 GB, torch 2.2.1, Pillow 10.2.0) the TT1-D1
+  gate failed only on FFHQ byte identity, in all 12 networks: 16-25 of 3,000 FFHQ rows per network differ, by at most
+  2.2e-5 logit; R_cam passed (max |Δ| 0.0014-0.035, 0 flips, Kendall 0.996-0.998); |ΔAUC| ≤ 2.6e-5. No TT1 row was
+  scored. Probable cause: batch composition (the gate list put the 417 R_cam rows first, so the FFHQ rows fell into
+  other batches of 64 than in the runs that produced the stored scores). tt1a was released by the lead's guard
+  (0.56 USD).
+- Fix (lead's decision, option b). The registered criterion stays (byte identity on the 3,000 FFHQ rows). The FFHQ
+  rows are scored as in the runs that produced their stored scores: the HN2 list alone (`pn1_hn2.csv` sha256
+  `4c0caa89ab25406854b6865c17943ef5e9532b0e5cc8bed58ad8e73d53b15871`, 5,000 rows, fam ffhq, original order,
+  rescore.py batch 64; the amendment-14 list's ffhq rows are in the same order, checked), from
+  `/mnt/t7/smad_next/TT1/tt1_hn2.tar`, rebuilt from the HN2 tree and byte-identical to the registered HN2 pack
+  (sha256 `7648b15ac67798e7601e24b790e62ef86687949f9af0ac440065c2fcb6ac42a7`). The R_cam rows keep their
+  tolerance criterion: their original run (pn1_score.py over whole evaluation manifests that contain benchmark rows)
+  cannot be repeated under the 12 Nov ruling, and TF32 differs; they are scored in their own family (fam gate of the
+  TT1 list). Order on the host: HN2 list for all 12 networks, gate family for all 12, gate decision, then the TT1 rows.
+- Stated now: the TT1 rows themselves are scored in fixed batches whose composition is pinned by the list order
+  (`tt1_score.csv` `c0055b51…`, fam tt1, batch 64). Last-bit differences between batchings (about 1e-5 logit, as
+  measured on tt1a) are far below anything a registered read depends on. No tolerance is amended.
+- If the gate fails again with matched batching: stop with RELEASE + FAILED and report; the lead decides.
+- Scripts: `src/TT1/rented/remote_tt1.sh` `c1e11eef13ec550c8ace5d2d13080f6af5f2fd5f0abfb7c4756dc60003ebdc30`; `src/TT1/rented/drive_tt1.sh` `17ebdce5ebeb108ec2690bd95af08bffecb2923b7ca7cf67a2ad4d1c3a402909` (uploads tt1_hn2.tar too);
+  `src/TT1/gate_check_a100.py` `a636ff6c474b250b92e026bf2f745b787162fb4f3430f74b48303f4c04ab0666` (`--require-hn2`: FFHQ logits from <net>__hn2.npz).
+- Platform fact for the final read (zero-GPU-budget diagnostic, `diag_stack_compare.json`, not a registered read): on
+  five FFHQ genuine images the decoded image, the resized image and the input tensor are bit-identical between the
+  DGX stack (torch 2.12.1, Pillow 12.2.0, GB10) and the A100 stack (torch 2.2.1, Pillow 10.2.0); the A_s401 logits
+  differ by 0.061-0.088. The DGX gate failure lies in the network computation on GB10 / torch 2.12, not in decode or
+  resize.
+- Lease tt1b: /mnt/t7/smad_next/vast/tt1b, A100-SXM4 80 GB, host 104.202.122.106 port 30463, cap 2.5 USD, 2 h.

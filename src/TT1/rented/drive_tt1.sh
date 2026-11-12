@@ -28,7 +28,7 @@ case "$STEP" in
     cp "$SRC/remote_tt1.sh" "$SRC/../gate_check_a100.py" "$SRC/../diag_stack.py" "$BIN/"
     (cd "$BIN" && sha256sum remote_tt1.sh gate_check_a100.py diag_stack.py > SHA256SUMS)
     RS "$BIN/" "root@$HOST:$B/bin/"
-    RS "$O/tt1_nets_s401402.tar" "$O/tt1_nets_s401402.tar.sha256" "root@$HOST:$B/packs/"
+    RS "$O/tt1_nets_s401402.tar" "$O/tt1_nets_s401402.tar.sha256" "$O/tt1_hn2.tar" "$O/tt1_hn2.tar.sha256" "root@$HOST:$B/packs/"
     RS "$O/tt1_pack.tar" "$O/tt1_pack.tar.sha256" "root@$HOST:$B/packs/"
     log "uploaded"
     msg=$(timeout 30 ssh "${SO[@]}" "root@$HOST" "cd $B && rm -f $B/DONE && nohup setsid bash $B/bin/remote_tt1.sh $PSHA $NSHA $MODE > $B/logs/remote.log 2>&1 < /dev/null & sleep 2; echo TT1_STARTED" || true)

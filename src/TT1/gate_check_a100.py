@@ -1,7 +1,8 @@
 """Threshold transfer on unseen genuine sources (TT1): platform gate of deviation TT1-D1 (rented A100, the stack of the
 stored scores). numpy only. For each of the 12 networks, new logits of the 3,417 gate rows against the stored logits:
   FFHQ rows (R_ffhq 2,000 + M_ffhq 1,000; stored by the same script rescore.py on A100s): byte identity required,
-      max |dlogit| == 0 (float32 equality);
+      max |dlogit| == 0 (float32 equality). Deviation TT1-D2: these logits come from <net>__hn2.npz, the HN2 list
+      (pn1_hn2.csv, 5,000 rows) scored alone in its original order and batch size, as the stored runs did;
   R_cam rows (417; stored by pn1_score.py, which enables TF32 and scores the whole evaluation manifest in other
       batches, so bit identity is not expected): max |dlogit| <= 0.02, zero own-rule decision changes, Kendall tau-b
       >= 0.99;
@@ -41,6 +42,7 @@ def main():
     ap.add_argument("--ref", required=True)
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--require-hn2", action="store_true")
     a = ap.parse_args()
     pool = {r["id"]: r["rung"] for r in csv.DictReader(open(a.manifest)) if r["fam"] == "gate"}
     res, ok_all = dict(tolerance=TOL, nets={}), True
@@ -55,6 +57,17 @@ def main():
             continue
         z0, z1 = np.load(rf), np.load(sf)
         m1 = dict(zip(z1["id"].tolist(), z1["logit"].astype(np.float32).tolist()))
+        hf = pathlib.Path(a.scores) / f"{task}__hn2.npz"
+        if hf.exists():                                   # TT1-D2: FFHQ rows from the HN2-batched run
+            zh = np.load(hf)
+            mh = dict(zip(zh["id"].tolist(), zh["logit"].astype(np.float32).tolist()))
+            for i, k in pool.items():
+                if k in ("R_ffhq", "M_ffhq"):
+                    m1[i] = mh[i]
+        elif a.require_hn2:
+            res["nets"][task] = dict(ok=False, why="no HN2-batched scores")
+            ok_all = False
+            continue
         ids = z0["id"].tolist()
         assert set(ids) == set(pool) == set(m1), task
         s0 = z0["logit"].astype(np.float32)

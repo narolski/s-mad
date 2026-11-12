@@ -57,13 +57,22 @@ $PY "$B/bin/diag_stack.py" --data "$D" --code "$W/tt1/code" --net "$W/tt1nets/ne
   --ids fq016604,fq010376,fq008900,fq008528,fq011276 --out "$R/diag_a100.npz" > "$R/diag_a100.log" 2>&1 \
   && log "diag ok" || log "diag FAILED (diagnostic only; continuing)"
 NETL=$(ls "$W/tt1nets/nets")
+# deviation TT1-D2: the FFHQ gate rows are scored as in the runs that produced the stored scores: the HN2 list alone
+# (pn1_hn2.csv, 5,000 rows, fam ffhq, original order, rescore.py batch 64)
+[ "$(sha256sum < "$B/packs/tt1_hn2.tar" | cut -c1-64)" = "7648b15ac67798e7601e24b790e62ef86687949f9af0ac440065c2fcb6ac42a7" ] || abort "hn2 pin"
+rm -rf "$W/pn1h"; tar -C "$W" -xf "$B/packs/tt1_hn2.tar" && (cd "$W/pn1h" && sha256sum -c --quiet SHA256SUMS) || abort "hn2 sums"
+for n in $NETL; do
+  SMAD_DATA=$W/pn1h/data $PY "$W/tt1/bin/rescore.py" --resdir "$W/tt1nets/nets/$n" --code "$W/tt1/code" --manifest pn1_hn2.csv \
+    --fam ffhq --out "$R/scores/${n}__hn2.npz" --workers 7 >> "$B/logs/score.log" 2>&1 || abort "hn2 score $n"
+  log "hn2 scored $n"
+done
 for n in $NETL; do
   $PY "$W/tt1/bin/rescore.py" --resdir "$W/tt1nets/nets/$n" --code "$W/tt1/code" --manifest "$MAN" --fam gate \
     --out "$R/scores/${n}__gate.npz" --workers 7 >> "$B/logs/score.log" 2>&1 || abort "gate score $n"
   log "gate scored $n"
 done
 if [ "$MODE" = test ]; then log "test done"; finish 0; exit 0; fi
-$PY "$B/bin/gate_check_a100.py" --scores "$R/scores" --ref "$W/tt1nets/gate_ref" --manifest "$D/manifests/tt1_score.csv" \
+$PY "$B/bin/gate_check_a100.py" --require-hn2 --scores "$R/scores" --ref "$W/tt1nets/gate_ref" --manifest "$D/manifests/tt1_score.csv" \
   --out "$R/gate.json" > "$R/gate.txt" 2>&1
 grc=$?
 log "gate rc $grc: $(head -c 300 "$R/gate.txt")"
