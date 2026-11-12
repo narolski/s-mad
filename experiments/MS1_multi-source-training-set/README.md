@@ -42,6 +42,18 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   passed; result `/mnt/t7/smad_next/MS1/smoke/results/MS1smoke_SbM3_s403.tar`; work folder (14 GB, mine) deleted.
 - 12 Nov 23:21: reader `src/MS1/ms1_read.py` written and tested on mock scores (`ms1_read_mock.json`); commit c1c4224.
 - 12 Nov 23:21 (before commit 03198c5 at 23:22:09): inventory of new candidate sources (no build; lead's instruction), see section 8.
+- 12 Nov ~23:22: pre-run review `experiments/reviews/PRERUN_MS1_COMPARISON_20261112.md`: GO WITH FIXES (B1 register,
+  B2 reader before fetch, B3 sharp unseen source; M1-M5; minors). Lead rulings: CFD becomes a held-out evaluation
+  source (never training), KDEF printed secondary, data-volume control arm SbV, owner may upload and submit on WCSS.
+- 12 Nov 23:23-23:25: `heldout_pool.py cfd` (831 of 831 aligned, 827 persons) and `kdef` (140 of 140, 70 persons);
+  `mkmanifest_vol.py` -> train_SbV (13,414 rows, `8920699f…`); run.sh: arm SbV and env.txt line; pack rebuilt with
+  train_SbV.csv: `c11b16bc…` (the reviewed pack `dac228f5…` deleted after the rebuild; it differed only by that file).
+- 12 Nov 23:26:12: part 2 registered in `prereg.md` at f748da4 (pins included).
+- 12 Nov 23:27:54: upload of the pack and scripts to WCSS started (`/mnt/t7/smad_next/MS1/logs/upload.log`).
+- 12 Nov 23:29: reader extended (P1-S, P1-T, SbV prints) and tested on mock scores incl. a supported path; commit
+  de10419 (B2), sha256 `5e5ada46…`.
+- 12 Nov 23:30: held-out scoring pack `ms1_heldout_pack.tar` (`06b64608…`, 971 rows: CFD 831, KDEF 140; manifest
+  `b3fe4e77…`) and `wcss/ms1_heldout.sbatch`; tested locally on the smoke result (RESCORE_DONE 831 and 140).
 
 ## 3. Data
 
