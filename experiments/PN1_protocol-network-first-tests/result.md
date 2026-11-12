@@ -115,3 +115,47 @@ corrected-MAD22 raw files are JPEG in every class; C − A score difference vs b
 | 3545968 | smoke 2 (arm Bn, 200 steps, 64 rows) | COMPLETED, rc 0, 1.24 it/s, peak 30,833 MiB | 0:05:21 | 0.09 |
 | 3545976_[0-7] | eight fits (limit 2 h 15 min) | cancelled 21:46 before start (amendment 6) | 0 | 0 |
 | 3545977 | reference row (amendment 5) | completed 7 min 46 s; result discarded (amendment 6) | 0:07:46 | 0.13 |
+
+## Spliced LoRA arm and volume control (amendment 10, with B rescored under amendment 12), registered reading
+
+Tars verified, RELEASE written by the pull loops: pn1a 04:18:58 (9 of 9), pn1b 05:04:26 (8 of 8) (pull-log times).
+Reader `src/PN1/sb_read.py` -> `tier1_sb/sb_read.json`.
+
+| seed | arm | (i) face-blanked R2w vs R4 AUC, dev / test (B: 1.000 / 0.999-1.000) | (ii) S0 vs S4 excess lower bound, dev | (iii) P-c, P-c2, kernels | (iv) P-g vs B, diff [lo, hi] | (v) H1 AUC (B) | MAD22 E7 EER OpenCV / Webmorph |
+|---|---|---|---|---|---|---|---|
+| 401 | Sb | 0.991 / 0.995: fails | +0.049: passes | fail, fail, fail | +0.6 [−12.5, +1.9] pts: passes | 0.909 (0.781): passes | 1.9 / 8.2 (B 1.8 / 13.7) |
+| 401 | Bv | 1.000 / 0.999: fails | −0.283: fails | fail, fail, fail | −0.3 [−1.4, +0.4]: passes | 0.777: passes | 1.7 / 13.4 |
+| 402 | Sb | 0.999 / 0.999: fails | +0.051: passes | fail, pass, fail | −0.5 [−16.1, +0.7]: passes | 0.913 (0.680): passes | 2.9 / 16.4 (B 4.4 / 19.0) |
+| 402 | Bv | 1.000 / 1.000: fails | −0.287: fails | fail, fail, fail | 0.0 [−0.5, +0.8]: passes | 0.671: passes | 3.9 / 17.6 |
+
+Registered reading: the spliced LoRA arm is **killed** by the amendment-10 rule: (i) fails on both seeds. Face
+blanking does not lower its R2w vs R4 AUC by 0.05 against B. Neither H1 nor P-g triggers the kill. The volume control
+also fails (i) and (ii) on both seeds, so the extra rows by themselves change nothing. Outside the kill, Sb passes (ii)
+(an S0 vs S4 excess over the 3-statistic floor) and raises H1 AUC by about 0.13 / 0.23 over B, while Bv does not. These
+are first-test data, read once (H1, MAD22, test ladder). Per the amendment-10 rule they cannot choose a later arm.
+
+## HN2 on FFHQ (amendment 13, git a1c6664), registered reading
+
+Reader `src/PN1/hn2_read.py` -> `tier1/hn2.json`. Scored on the seed's own machine: seed 401 on GPU-268644bb
+(A100-SXM4-40GB, pn1a), seed 402 on GPU-eb4176c8 (A100-SXM4-80GB, pn1b).
+
+| network | (a) FFHQ genuine flagged at own rule [95% CI] | (b) AUC lc morphs vs FFHQ genuine [95% CI] | verdict | printed: flagged at τ_cam; AUC vs history-matched genuine; history-matched flagged at own rule |
+|---|---|---|---|---|
+| A 401 | 22.5% [20.6, 24.3] | 0.988 [0.984, 0.991] | calibration shift | 94.8%; 0.935; 54.7% |
+| B 401 | 17.8% | 0.998 | calibration shift | 95.3%; 0.994; 26.3% |
+| Bn 401 | 22.4% | 0.997 | calibration shift | 97.7%; 0.993; 29.3% |
+| C 401 | 17.7% | 0.999 | calibration shift | 96.5%; 0.997; 23.5% |
+| A 402 | 9.9% | 0.997 | calibration shift | 95.5%; 0.971; 34.1% |
+| B 402 | 6.4% | 0.998 | calibration shift | 95.9%; 0.995; 11.8% |
+| Bn 402 | 5.4% | 0.998 | calibration shift | 96.8%; 0.995; 10.2% |
+| C 402 | 3.5% | 1.000 | calibration shift | 95.7%; 0.999; 7.4% |
+
+Registered reading: on every arm, both seeds give "calibration shift (not a shortcut)". Within FFHQ the morphs separate
+from the genuine images (AUC ≥ 0.988), and no fit flags 30% of FFHQ genuine at the own rule. The amendment-13 caveat
+applies: the orig read mixes the morph signal with a 2.0x-enlarged against 0.51x-shrunk history. Against the
+history-matched genuine (printed only), AUC stays 0.935 to 0.999, but A flags 34 to 55% of those genuine images at
+the own rule, against 7 to 29% for B, Bn and C.
+
+## Rented compute, final (guard estimates at RELEASE)
+
+pn1a: 7.13 h, about 4.22 USD (cap 6). pn1b: 7.9 h, about 8.39 USD (cap 11). The lead stops the instances.

@@ -390,8 +390,9 @@ every arm: "inconclusive, no claim" (P-c, P-c2, P-d fail; P-g non-inferior only 
 
 ## 9. Open items and next steps
 
-- Read the spliced LoRA arm (amendment 10) and B's rescoring (amendment 12) when their tars land (`sb_read.py`);
-  extending the rescoring to A and C needs a short amendment before scoring.
+- Done: spliced LoRA arm killed (amendment 10 (i) fails on both seeds; Bv also fails (i), (ii)); HN2 on FFHQ:
+  "calibration shift (not a shortcut)" on all eight networks (result.md). Extending the spliced rescoring to A and C
+  would need a short amendment before scoring.
 - Fresh seeds 403 to 405 with P-c′ and the hierarchical claim: draft `prereg_fresh_seeds_draft.md`, for the lead's
   pre-run reviewer; nothing submitted.
 - HN2 on FFHQ registered as amendment 13 (git a1c6664) before any score; armed on pn1a / pn1b after their third queue;
