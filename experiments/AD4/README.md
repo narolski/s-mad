@@ -1056,3 +1056,15 @@ for these still to be written; registered rules in Amendment 4). Compute so far 
     R3 vs R0 0.84 to 0.91.
   - H-new-4: SMDD evaluation renders sit 0.03 and 0.05 logits below the FRLL genuine median (both readable seeds); StyleGAN3 renders
     (H3) 0.91 and 1.85 above; StyleGAN v1 renders (H4b, 112 px native) 7.1 above (near the copy class).
+
+### Handover state, 12 Nov 01:07 (supersedes the 00:01 table)
+
+| Where | What | Id | Expected | If it fails |
+|---|---|---|---|---|
+| Athena | ViT-L/14 morph-free reruns, seeds 403 to 405 | array 3546123_[2-4], PENDING (priority 2215, no start forecast) | about 3 h 45 min each after start | the one registered rerun is used; the arm stays "incomplete (k of 5)" |
+| DGX | watcher `src/AD4/watch_m3l.sh 14` (one ssh per 15 min; copies each finished tar with hash check to `results_athena/`) | background task of the reading owner | exits when all three are verified, on a bad task state, on a login problem (never retried), or after 14 h | log `/mnt/t7/smad_next/AD4/read/watch_m3l.log` |
+| none | follow-ups (b), (c) | done on the DGX | | |
+
+When all five ViT-L/14 morph-free tars are in: `summarise.py --stage gates`, then `--stage read`, then `posthoc_m3.py --recipe m3l`
+(commands as for ViT-B/16 with `--results /mnt/t7/smad_next/AD4/results_athena --recipe m3l`), then update result.md with the review's
+wording rules. Compute for the follow-ups: DGX GB10 about 1 h (11 networks x about 5.3 min); Athena none (smoke job cancelled unstarted).

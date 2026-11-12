@@ -208,6 +208,8 @@ missing); a pack is ready there for later.
   1,222 (34%), FFHQ 66 / 64 / 58, MorDIFF 55, A43 arms 116 in total, FRLL OpenCV 10, FEI 4, MorDIFF aligned / E7 5
   (no face, or an empty crop from the unbounded slice of line 40). Rows are computed without them; expected vs scored
   counts are in `rs1_reproduction*.csv`. Preliminary analysis of variant 1 alone: `rs1_*_v1only.csv`.
+- 01:23. Variant 2 back and verified (29,049 of 29,056 crops kept, 7 no face); driver wrote RELEASE. 01:30 final
+  analysis, border summary and tables; `result.md` written.
 - 19:27. JPEG storage effect size started on the DGX (`jpeg_check.py`, `run_jpegcheck.sh`): 300 JPEG raw files (100
   FRLL photos, 40 per FRLL-Morphs family), the A46 crop as stored (JPEG q95) vs the identical crop region as PNG
   (PSNR median 45.9 dB, min 43.6 dB), scored by the seven releases.
@@ -288,29 +290,13 @@ MixFaceNet-MAD `/mnt/t7/mixfacenet_mad_official/mixfacenet_SMDD.pth` (3d507c8b);
 
 ## 5. Results
 
-MADation / MixFaceNet-MAD: pending (Athena jobs 3545972, 3545973).
-
-SelfMAD (11 Nov 20:10; `analyse.py --B 2000 --suffix _selfmad_only`; files `rs1_*_selfmad_only.csv`,
-`rs1_results_selfmad_only.json`; rendered `/mnt/t7/smad_next/RS1/tables_selfmad_only.md`). Two runs, never compared
-with each other: (A) existing files on WCSS (A41 x7 raw files; A32-RSX and A43 frames), (B) RS1 DGX scoring of raw /
-stored / dataset files.
-- Reproduction (run A, all photos): AMSL 2.44 [0.94, 4.86] vs 0.99 reproduced; FaceMorpher 0.98 vs 0.00 reproduced;
-  OpenCV 0.37 vs 0.00 reproduced; WebMorph 7.36 vs 3.45 not reproduced; StyleGAN2 16.60 vs 10.34 not reproduced;
-  Greedy-DiM 6.39 vs 7.60 reproduced; MorDIFF 1.49, DiM-A 4.41 no published number. Neutral-only genuine photos:
-  0.97 / 0.21 / 0.08 / 4.91 / 12.59 (all five FRLL cells reproduced), Greedy-DiM 3.07 (not reproduced).
-  Run B reproduces run A's MorDIFF EER exactly (1.49; raw E7 45.20 in both).
-- History (run A, raw E7 files): MorDIFF 1.49 -> 45.20 (+43.7 [38.4, 48.9]); Greedy-DiM 6.39 -> 87.23 (+80.8);
-  DiM-A 4.41 -> 69.50. Aligned-frame E7 (FRLL cells, labelled): AMSL aligned native 4.91 -> aligned E7 49.02
-  (+44.1), FaceMorpher +6.8, OpenCV +5.8, WebMorph +55.2; StyleGAN2: E7 is the identity (morphs larger than photos).
-- 0.5 rule (run B): unprocessed raw FRLL photos 0%, raw E7 MorDIFF photos 26.0% [18.1, 33.8], stored-small photos
-  56.9% [49.0, 65.2], MorDIFF morphs 26.5% [19.3, 34.8]; FEI frames 33.3% (neutral) / 40.1% (smiling); FFHQ orig 17.7%
-  -> 48.1% (DiffAE history) / 47.9% (landmark history). Run A (frames): 50% shrink-and-enlarge 44.6%, aligned E7
-  MorDIFF 78.9%, A43 stored-small frames 97.1%.
-- Paired logit shifts (run B): raw E7 MorDIFF vs its raw photo +5.06 [4.84, 5.27], 100% rise; stored-small vs raw
-  photo +6.04 [5.77, 6.30], 100%; FFHQ history copies vs orig +2.37 [2.26, 2.48], 89.5% rise.
-- MorDIFF ladder (run B, all on raw / stored files, AUC higher rung positive): stored-small E vs photo 0.999; D20 vs
-  E 0.465 [0.429, 0.499]; B20 vs D20 0.334 [0.260, 0.407]; B vs D 0.222; published A vs B20 0.463 [0.424, 0.493];
-  A vs E 0.282; A vs photo 0.998. Run A (frames): D20 vs E 0.152, B20 vs D20 0.403, A vs B20 0.481.
+Final (12 Nov 01:40): `result.md` (summary and reproduced rows), all tables `rs1_*.csv` / `rs1_results.json` in this
+folder (`analyse.py --B 2000 --athena-v1 /mnt/t7/smad_next/RS1/results_rented/prod_v1_rented --athena-v2
+/mnt/t7/smad_next/RS1/results_rented/prod_v2_rented`), border `rs1_border.csv` (`border.py 0 <v1> <v2>`), rendered
+`/mnt/t7/smad_next/RS1/tables.md`. Platform labels in the csv: "variant 1: SMDD crop script unchanged (primary)",
+"variant 2: corrected crop, PNG (secondary)" (rented RTX 3090), "existing files (WCSS ...)" and "DGX (RS1 own
+scoring)" for SelfMAD. Earlier partial outputs (`*_selfmad_only`, `*_v1only`) moved to
+`/mnt/t7/smad_next/RS1/analysis_tests/`; they equal the final numbers for the runs they contain.
 
 ## 6. Checks
 
@@ -359,31 +345,23 @@ Finish crops and scoring on the DGX; platform and crop checks; border check (ame
 amendment 2 (0.5 rule, threshold-pool column, paired logit shifts, SelfMAD both definitions); `result.md`; Athena run
 when the account works (corrected MAD22 cells and FS releases need it unless run on the DGX).
 
-## 10. Handover state (11 Nov 20:50)
+## 10. Handover state (12 Nov 01:45)
 
-- DGX: no RS1 process running. Finished: SelfMAD DGX run (`scores/scores_own_selfmad__dgx.npz`), JPEG-storage check
-  (`jpegcheck/`), DGX MADation ViT-B/16 and ViT-L/14 scores of the A46 crops (platform check only), DGX crops of the
-  4,884 new inputs (`crops/main`, equivalence material only). Stopped on purpose at 18:29: DGX MADation scoring and the
-  amendment crops.
-- Athena (user plgpnarolski, account `plgmultivision-gpu-a100`): **3545972** (variant 1, SMDD script unchanged) and
-  **3545973** (variant 2, corrected PNG crop), pending, 2 h limit each; job file `.../smad-next/tasks/RS1/athena_rs1.sbatch`
-  (copy `src/RS1/athena_rs1.sbatch`), logs `.../smad-next/logs/RS1-<job>.out`, results
-  `.../smad-next/results/RS1/rs1a_prod_v{1,2}_<job>.tar` (small; copy back) and `..._crops.tar` (stays on Athena).
-- When both finish: `src/RS1/athena_fetch.sh prod_v1_3545972` and `... prod_v2_3545973`, then
-  `analyse.py --B 2000 --athena-v1 prod_v1_3545972 --athena-v2 prod_v2_3545973` (writes `rs1_*.csv`,
-  `rs1_results.json`), `border.py 0 prod_v1_3545972 prod_v2_3545973`, `tables.py`, then fill `result.md`.
-  If a job fails: read its log; every step is idempotent; resubmit with the same command
-  (`sbatch --time=02:00:00 --export=ALL,RS1_VARIANT=v1 athena_rs1.sbatch`).
-- Compute so far: Athena 0.21 GPU-hours (three smoke jobs); DGX shared GPU (about 2 h of scoring and cropping).
+Nothing running. Rented machine rs1b released by the driver (RELEASE written 01:23). Athena: no RS1 job queued.
+Result tars (small) with sha256: `/mnt/t7/smad_next/RS1/results_rented/rs1a_prod_v{1,2}_rented.tar`, unpacked beside
+them. Crop files existed only on rs1b (gone); hashes in `prod_v{1,2}_rented/crops_sha256.txt`. Open: lead to decide on
+deleting the local pack tars (list sent 20:45).
 
 ## 11. Reproduce from scratch
 
 ```
 P=/home/narolski/mambamorph-code/.venv-spark/bin/python; S=/home/narolski/smad-next/src/RS1
-$P -I $S/manifest.py build && $P -I $S/manifest.py amend
-$S/run_crop.sh            # main crops (2 shards), crop check, merge
-$S/run_score.sh a46       # five releases on the reused A46 crops
-$S/run_after.sh           # amendment crops, merge, new + amendment scoring, SelfMAD own on new pools
-$P -I $S/platform_check.py
-$P -I $S/analyse.py --B 2000 && $P -I $S/tables.py > /mnt/t7/smad_next/RS1/tables.md
+$P -I $S/manifest.py build && $P -I $S/manifest.py amend          # image manifest (DGX)
+$P -I $S/athena_pack.py && $P -I $S/athena_pack.py amend && $P -I $S/athena_pack.py raw   # three packs
+# GPU machine (Docker pytorch 2.2.1-cuda12.1): src/RS1/rented/drive.sh HOST PORT LEASE  (or tasks/RS1/athena_rs1.sbatch on Athena)
+#   -> setup (pinned, PyPI Pillow), 8-image gate, variant 1 (SMDD script unchanged) and variant 2 (corrected PNG crop)
+$S/run_selfmad_dgx.sh                                             # SelfMAD own crop on the DGX
+$P -I $S/analyse.py --B 2000 --athena-v1 /mnt/t7/smad_next/RS1/results_rented/prod_v1_rented --athena-v2 /mnt/t7/smad_next/RS1/results_rented/prod_v2_rented
+$P -I $S/border.py 0 /mnt/t7/smad_next/RS1/results_rented/prod_v1_rented /mnt/t7/smad_next/RS1/results_rented/prod_v2_rented
+$P -I $S/tables.py > /mnt/t7/smad_next/RS1/tables.md
 ```
