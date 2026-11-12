@@ -31,3 +31,11 @@ Still to be listed by their owners: the protocol-network tests (PN1, pack of 10 
 Total on this list: about 135 GB.
 
 Note, 11 Nov: owners removed their own rebuildable temporary files (test work folders, build intermediates): the MIPGAN controls owner 20 GB, the protocol-network owner 12 GB, the frozen-features owner 2.4 GB. Working copies of result tars fetched from Athena only for processing may be removed after processing when the hash of the Athena copy is recorded.
+
+## Executed 12 Nov 2026 22:37 by the lead, on the author's instruction ("Run the disk cleanup proposal list")
+
+Every listed file and folder was deleted. Before deleting, the byte sizes of all Athena-backed packs were compared with the copies under Athena packs/{AD4,RS1,AG1,AD5,SM1,DG1}: all equal. Kept in SM1/gpupack: the file lists, .sha256 files, upload logs and the three small packs not on the list (sm1gpu_lists_a12, sm1lora_manifests_audit, sm1lora_manifests_b). Free space went from 23 GB to 151 GB.
+
+Consequence: uploads that used the local packs (for example the drafted SM1 development scoring, which needs ad4_pack.tar, sm1gpu_img_test.tar and sm1lora_manifests_v2.tar) must first fetch them back from Athena packs/ and check the recorded sha256.
+
+Also cancelled on Athena at the author's instruction ("Cancel the (5) jobs"): the 20 queued remedy-arm fits of the SMDD rebuild, 3545823_[5-19] and 3545894. The three released-recipe fits 3545823_[2-4] stay queued.
