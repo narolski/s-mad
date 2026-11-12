@@ -290,6 +290,13 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
   x 39,723 images = 1.59 M samples): 2.8 h per seed + about 15 min set-up; 1 card: 14.5 h, 5 cards: 3.1 h, 2 cards:
   8.7 h; about 15 GPU-hours in every layout, so 15-23 USD at 1.0-1.5 USD per card-hour. Risk: the authors' loader
   reads images in the main process (num_workers 0); if it cannot feed 256-image steps at that rate the run is slower.
+- 13 Nov 00:50. WCSS controller up (lead, 00:47). One check and submission (owner AD5; job script as in the repo,
+  uploaded again; real workloads, chained, so nothing idles): **6308948** = MADation ViT-B/16, array 401-405%3,
+  1 H100 each, 6 h limit, `afterok:6308828`; **6308949** = MixFaceNet-MAD, 401-405%2, 1 H100, 12 h, `afterok:6308829`;
+  **6308950** = MADation ViT-L/14, 401-405%2, 2 H100 at batch 128 each, 200G, 12 h, `afterok:6308948` (so at most
+  3 + 2 GPUs, then 2 + 4: never more than 6). Slurm forecast for the smokes: start 15 Nov 01:00 (after the stage
+  ends); production starts after them. Not polled further. The realistic route for the final read is the rented
+  ViT-B/16 variant (author's budget decision at 09:00).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
