@@ -480,3 +480,7 @@ $P tier1.py; $P report.py tier1
   present with run.sh `04998a7c…` (16 of 16); remote_fs.sh `7e2e6a30…`, remote_a14.sh `fadc2c79…`, rescore.py
   `6f6eede7…` (the registered pins); pack hash OK at setup. The pull loop was started at about 10:15, after the edit,
   so it runs the 25 h version. Nothing must be redone.
+- Amendment 14 read (10:25-10:35): gate equivalent (byte-identical rescoring across SXM4 / PCIe / 80 GB); HN8
+  supported (Sb - B +0.133 / +0.194, Sb - A +0.109 / +0.163) but Sb does not exceed the simple-statistic floor
+  (noise_std_face 0.886) on both seeds, so "reads the face splice" is not stated; HN7 inconclusive (rho 0.35); HN2b
+  calibration shift for Sb and Bv. Details: result.md, `tier1_a14/a14.json`.

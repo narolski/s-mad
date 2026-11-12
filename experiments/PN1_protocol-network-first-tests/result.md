@@ -195,3 +195,48 @@ H1, each Poisson morph against its own host's genuine photo (same 112 px history
 ## Rented compute, final (guard estimates at RELEASE)
 
 pn1a: 7.13 h, about 4.22 USD (cap 6). pn1b: 7.9 h, about 8.39 USD (cap 11). The lead stops the instances.
+
+## Amendment 14, development read on FFHQ (registered a1dc46e; deviations de30e7f, bcf2164, 12e55c6), registered reading
+
+Tar `PN1_A14.tar` verified 10:24:56 (rc 0). Scored on the FS1 host, GPU-5bd20020 (A100-PCIE-40GB), before the fit
+queue. Reader `src/PN1/a14_read.py` (`0f259c8d…`) -> `tier1_a14/a14.json`. No benchmark row read.
+
+**Gate:** equivalent. The rescored A_s401 and B_s402 HN2 files are byte-identical to the pn1a (A100-SXM4-40GB) and
+pn1b (A100-SXM4-80GB) files: max |Δ logit| 0.0, ΔAUC 0.0. HN7 and HN2b keep their verdicts.
+
+**HN8, landmark_combined orig morphs vs history-matched genuine (AUC [95% CI]; own-rule morph miss / genuine flagged):**
+
+| network | 401 | 402 |
+|---|---|---|
+| A | 0.778 [0.760, 0.795]; 11.2 / 54.4% | 0.746 [0.727, 0.765]; 29.3 / 33.8% |
+| B | 0.754 [0.733, 0.772]; 31.1 / 26.1% | 0.716 [0.694, 0.736]; 54.9 / 11.8% |
+| Bn | 0.748; 31.8 / 29.7% | 0.724; 57.0 / 10.3% |
+| C | 0.752; 32.4 / 23.5% | 0.751; 54.0 / 7.7% |
+| Sb | 0.887 [0.873, 0.902]; 24.2 / 6.7% | 0.909 [0.897, 0.922]; 18.5 / 9.6% |
+| Bv | 0.752; 31.9 / 25.8% | 0.711; 59.1 / 10.2% |
+
+- Registered reading: **supported**.
+  - Both seeds are testable (B 0.754 / 0.716 < 0.95).
+  - Sb − B: +0.133 / +0.194 (≥ 0.05). Sb − A: +0.109 / +0.163 (≥ 0).
+- Floor: the best simple statistic is noise_std_face at 0.886. Sb's lower bound over the floor maximum, re-taken per draw, is −0.017 (401) and +0.006 (402).
+  - It is not above 0 on both seeds, so **"reads the face splice" is not stated**.
+  - Every other network sits 0.13 to 0.20 below the floor.
+- The aligned==1 subset gives the same AUCs to the third decimal.
+- Disclosure (registered): A's reading of this pool is partly history-driven.
+
+**Paired landmark_complete minus landmark_combined logit, same pair key (1,000 pairs; printed; complete scores of A, B, Bn, C from pn1a / pn1b):**
+- mean shift 401 / 402: A +0.88 / +2.18; B +2.39 / +3.94; Bn +2.35 / +4.03; C +2.43 / +3.84; Sb +1.62 / +1.41; Bv +2.44 / +4.12.
+- The share scored higher on the complete morph is 0.70 to 0.99 for every network.
+- Every network scores the whole-frame morph above the face-only splice of the same pair. Sb loses the least on seed 402, and A the least on seed 401.
+
+**HN7 (associational, between arms), face-only R4 vs R2w on the test ladder against landmark_combined AUC, 12 networks:**
+- Spearman: ρ = 0.35 [0.24, 0.70]; arm level (n = 6) 0.66 [0.31, 0.94]; without Sb −0.12 (n = 10), 0.40 at arm level (n = 5).
+- Registered reading: **inconclusive, no claim** (between 0.2 and 0.6).
+- The blind prediction holds: A's face-only AUC is above B's on both seeds (0.941 / 0.932 against 0.840 / 0.865). But A's landmark_combined AUC is only 0.778 / 0.746, so face-only sensitivity on our ladder does not rank-predict the combined read without Sb.
+
+**HN2b** (amendment-13 rule): Sb 401 / 402 and Bv 401 / 402 all read "calibration shift (not a shortcut)" (added under amendment 14).
+- Own-rule FFHQ genuine flags: Sb 5.9 / 7.0%, Bv 17.6 / 5.8%.
+- Within-source AUC: 0.995 to 0.998.
+
+Development data only (FFHQ by designation, our own ladder). Seeds 401/402 are confounded with machine. The FS1
+contrasts were frozen (ac585b7) before this read.
