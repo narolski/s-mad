@@ -314,6 +314,14 @@ $P -I $S/baselines.py --only R2w4; $P -I $S/analyse.py; $P -I $S/tables.py; $P -
 ```
 
 ## Log of README updates
+- 12 Nov about 03:40 CET, after REVIEW_PN1_TIER1_20261112 (Subject 2):
+  - Amendment 9 relabelled post hoc: its text and outputs share commit 9f1f810, so the order cannot be verified.
+  - Wording fixed: "1.7 to 2.0 times"; "not shown to exceed the floor"; "does not read only the patch boundary".
+  - Amendment 10 committed in 81864bd before computing. `src/AR1/floors10.py` (log
+    `/mnt/t7/smad_next/AR1/floors10.log`) writes `experiments/AR1/floors10.json`.
+  - Results: the S4 vs swap-splice floor is 0.959 (inside Laplacian variance alone 0.926), and SelfMAD's excess over
+    it is -0.071. The noise-residual floor for warp-only vs morph is 0.935 / 0.917; CLIP and SelfMAD exceed it by
+    +0.03 to +0.08, MixFaceNet does not.
 - 12 Nov (amendment 9, after REVIEW_SPLICE_20261111): registered in prereg.md before running.
   - New code: `src/AR1/swap.py` (swap-splice SW, 536 PNG in `img/frgcferet/opencv/SW/`, 189 MB, `manifest_swap.csv`;
     seam statistics in `experiments/AR1/swap_seam.csv`), `run_swap.sh`, and `sp_floor.py` (floor excess,

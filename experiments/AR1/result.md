@@ -39,7 +39,8 @@ our pipeline (aligned 512-pixel frames, one DGX).
    above the best simple baseline) and SelfMAD 0.91 / 0.95 (+0.15 to +0.26 above it). So for the CLIP detectors and
    MixFaceNet, most of the unspliced 0.89-0.99 comes from what whole-frame tools blend outside the face. SelfMAD
    separates the inner-face splice too (above the band baseline, but not shown to exceed the 3-statistic seam floor;
-   amendment 9). It does not read only the patch boundary; whether it reads the blend is pending amendment 10. This part is specific to tools that blend the whole frame.
+   amendment 9). It does not read only the patch boundary, and is not shown to read the blend beyond simple statistics
+   (amendment 10: S4 vs swap-splice 0.888 vs a sharpness floor of 0.959). This part is specific to tools that blend the whole frame.
 5. For regular morphs the audit finds both: blend-trace detection that works without benchmark cues, and, on the
    published FRLL files, sensitivity to photo history (SelfMAD strongly; ViT-B/16 and MixFaceNet moderately; not
    ViT-L/14). Neither a second identity nor face-only blending is shown to be what the CLIP detectors and MixFaceNet
@@ -332,9 +333,48 @@ ViT-L/14 0.718 above a file-size floor of 0.620 (via the dossier); no SelfMAD or
 
   The registered prediction (SelfMAD AUC <= 0.5, i.e. it reads a patch boundary) is falsified (>= 0.75). SelfMAD
   scores the spliced blend above the unblended patch, even though the patch has 1.7 to 2.0 times the colour step
-  (luma 15.6 vs 9.3, R-G 9.1 vs 5.4, step 15.2 vs 7.8). SelfMAD does not read only the patch boundary (pending the
-  simple-statistic floor of amendment 10). SelfMAD is not shown to exceed the 3-statistic floor on S0 vs S4 (+0.021
+  (luma 15.6 vs 9.3, R-G 9.1 vs 5.4, step 15.2 vs 7.8). SelfMAD does not read only the patch boundary; its S4 vs SW
+  is below the simple-statistic floor of amendment 10 (excess -0.071). SelfMAD is not shown to exceed the 3-statistic floor on S0 vs S4 (+0.021
   [-0.013, 0.057]).
+
+## Amendment 10 (registered in git 81864bd at 12 Nov 03:14:54 before this ran; post hoc in substance), `floors10.json`
+
+Measurement only, no image written; OpenCV-style tool for (a); paired two-way person bootstrap.
+
+(a) Simple-statistic floor for spliced morph S4 vs swap-splice SW (536 hosts):
+
+| Statistic | AUC (folded) |
+|---|---|
+| Inside Laplacian variance | 0.926 [0.898, 0.951] |
+| Inside/outside sharpness ratio | 0.774 |
+| Band shares | 0.72-0.78 |
+| Absolute seam step | 0.693 |
+| Seam tone luma / R-G | 0.506 / 0.503 |
+| Combined logistic, strict person folds (the floor) | 0.959 [0.938, 0.975] |
+
+| Detector | S4 vs SW | Excess over floor |
+|---|---|---|
+| SelfMAD | 0.888 | -0.071 [-0.110, -0.036] |
+| ViT-B/16 | 0.723 | -0.236 |
+| ViT-L/14 | 0.616 | -0.342 |
+| MixFaceNet | 0.688 | -0.270 |
+
+So SelfMAD's separation of the spliced blend from an unblended patch is below what interior sharpness alone gives. The
+wording stays "SelfMAD does not read only the patch boundary"; it is not shown to read the blend beyond simple
+statistics.
+
+(b) Noise-residual floor for warp-only vs morph: first-order luma differences, inside and outside the face hull,
+12 numbers, logistic with strict person folds. The R4 hull is used for every rung of a host. The floor is 0.935
+(OpenCV) and 0.917 (FaceMorpher) for both R2w vs R4 and R2w4 vs R4. Detector excess, R2w vs R4, OpenCV / FaceMorpher:
+
+| Detector | Excess (OC) | Excess (FM) |
+|---|---|---|
+| SelfMAD | +0.031 [0.011, 0.053] | +0.067 [0.043, 0.095] |
+| ViT-B/16 | +0.051 [0.034, 0.070] | +0.067 [0.045, 0.093] |
+| ViT-L/14 | +0.057 [0.039, 0.078] | +0.077 [0.053, 0.104] |
+| MixFaceNet | -0.045 [-0.073, -0.018] | -0.016 [-0.047, 0.016] |
+
+R2w4 vs R4 is within 0.006 of these values.
 
 ## Gaps and what was not done
 
