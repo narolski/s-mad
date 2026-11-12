@@ -58,7 +58,7 @@ def main():
         print(arm, json.dumps(res[arm]), flush=True)
     did = {}
     for x in ("a", "b"):
-        for y in ("c", "e", "f"):
+        for y in ("bp", "c", "e", "f"):
             if x in vec and y in vec:
                 d = vec[x] - vec[y]
                 did[f"{x}-{y}"] = dict(did=round(float(d.mean()), 4), ci=[round(v, 4) for v in S.ci(d[draws].mean(1))])

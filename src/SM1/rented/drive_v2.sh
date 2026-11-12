@@ -135,7 +135,8 @@ case "$STEP" in
     DV=/mnt/t7/smad_next/SM1/dev_a14
     R "mkdir -p $B/manifests/dev"
     RS "$DV/sm1_dev_eval.csv" "$DV/sm1_dev_eval.csv.sha256" "$DV/dev_files.sha256" "root@$HOST:$B/manifests/dev/"
-    RS "$SRC/remote_dev.sh" "root@$HOST:$B/bin/"
+    RS "$SRC/remote_dev.sh" "$SRC/../sm1_lora_audit.py" "root@$HOST:$B/bin/"   # fixed: the scorer with --check-npz
+    R "rm -f $B/results_dev/SM1D_ALL_DONE"
     (cd / && tar -cf - -T "$DV/filelist_dev.txt" 2>/dev/null) | ssh "${O[@]}" "root@$HOST" "tar -xf - -C $B/data/x"
     log "dev files streamed ($(wc -l < "$DV/filelist_dev.txt") files)"
     R "cd $B; (nohup setsid bash $B/bin/remote_dev.sh > $B/logs/dev.log 2>&1 < /dev/null &) > /dev/null 2>&1; sleep 2; echo dev started"

@@ -651,6 +651,34 @@ H-new-B, ρ part (Spearman of the flag rate with threshold − source median ove
 cells; −0.719 over 101 cells without the duplicated FRLL photo sources); prediction |ρ| ≥ 0.8: not met, but flag rates
 at the camera threshold are largely set by where the threshold sits on the floor.
 
+## ViT-B/16 LoRA, full registered set (A13: 12 fits, arms a, b, b′, c, e, f x seeds 401, 402; `p3_lora_vitb12.json`, `a12_rank_vitb12.json`, `a12_fixed_vitb12.json`)
+
+One rented RTX 6000 Ada; all 12 tars sha256-verified (`/mnt/t7/smad_next/SM1/results_rented/`). Our frames, first-test
+data, arms fixed in advance; 2-seed means (seeds in parentheses). **c, e, f on benchmark cells are development
+exposure**; a, b, b′ are audit arms of SMDD's construction (no row recommends them as a training set). Camera-threshold
+cells are floor-calibrated and not read here.
+
+| Arm | landmark-7 EER native | landmark rise | diffusion-7 EER native | diffusion rise | MorDIFF native EER / rise / own-rule miss | MorDIFF E7 pool flagged, own rule | GAN-3 EER | partner trace, within-key AUC trained over KE |
+|---|---|---|---|---|---|---|---|---|
+| a release files | 2.76 (2.56, 2.95) | +2.26 | 6.40 | +18.04 (17.3, 18.8) | 7.9 / +12.0 / 0.26 | 0.20 (0.03, 0.37) | 23.9 | 0.757 [0.745, 0.768] |
+| b our tool, SMDD's five | 2.59 (2.26, 2.93) | +2.99 | 5.88 | +22.41 (20.3, 24.5) | 4.1 / +14.0 / 0.37 | 0.15 (0.00, 0.29) | 28.0 | 0.817 [0.806, 0.827] |
+| b′ 2,433 partners | 3.06 (2.34, 3.78) | +5.31 | 9.70 | +20.35 (16.9, 23.9) | 4.4 / +10.0 / 0.04 | 0.53 (0.41, 0.64) | 35.1 | 0.567 [0.554, 0.579] |
+| c look-alike (exposure) | 5.29 | +13.39 | 15.12 | +29.09 | 2.5 / +12.2 / 0.00 | 0.90 | 20.9 | 0.533 |
+| e history (exposure) | 2.24 | −0.30 | 13.76 | −3.10 | 40.5 / −12.5 / 0.97 | 0.00 | 25.0 | 0.562 |
+| f e + JPEG (exposure) | 2.38 | +0.02 | 12.70 | −1.21 | 36.1 / −10.4 / 0.98 | 0.00 | 18.8 | 0.586 |
+
+Steps (paired person bootstrap): a → b (our engine instead of SMDD's files): landmark −0.16 [−0.61, +0.04], diffusion
+rise +4.4 [+3.3, +5.2], GAN-3 +4.1. b → b′ (SMDD's five → 2,433 partners), the partner-diversity question on the
+standard recipe (A12 item 12): landmark-7 native +0.47 [+0.01, +1.23], landmark rise +2.3 [+1.6, +3.1], diffusion-7
+native +3.8 [+3.0, +4.4], diffusion rise −2.1 [−2.9, −0.5], GAN-3 +7.1 [+4.7, +9.1], MorDIFF E7 pool flagged at the own
+rule 0.15 → 0.53. Partner trace: rank DiD b − b′ 0.250 [0.238, 0.262], a − b′ 0.190 [0.178, 0.202].
+
+Reading (audit; 2 seeds): on the standard ViT-B/16 recipe the five SMDD partners leave a clear rank trace (0.76 to
+0.82; 0.53 to 0.59 without them). Unlike the frozen linear heads (b → b′ −3.4 landmark points), more partners do
+**not** improve native EER here (+0.5 landmark, +3.8 diffusion, +7.1 GAN) and raise the flags on history-matched
+genuine photos (0.15 → 0.53). Every arm trained on renders reacts to storage history on the diffusion cells (+18 to
++29); the only fits without the rise (e, f) do not detect MorDIFF (development exposure).
+
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
 **Item 11, five random pool partners (H-new-1; arm d5, 5 seeds; `p3_full.json`, `p3_fz1.json`).** Landmark-7 native
@@ -671,9 +699,8 @@ so these increments are not floor reads. Development data (AR1 / AF0), not bench
 
 ## A12 / A14 / A15 items still open
 
-10 for ViT-L/14 (job 3547052, rank read A14). 12 (ViT-B/16 fits of b and b′): b s401 read; b′ s401, b s402, b′ s402
-running on the rented machine. A15 (draft, development data only): saved ViT-B/16 a, e, f on the development diffusion
-ladder and the AF0 softened copies (H-new-A, H-new-E), awaiting the pre-run check and the lead.
+10 for ViT-L/14 (job 3547052, rank read A14). 12 (ViT-B/16 fits of b and b′): done (all 12 ViT-B/16 fits read above). A15 (registered d84a1c2, development data only): saved ViT-B/16 a, e, f on the development diffusion
+ladder and the AF0 softened copies (H-new-A, H-new-E); the first run on sm1b produced no score (owner bug, README).
 
 ## Checks
 

@@ -297,6 +297,15 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
   lead: weights = `ad4eval/last_trainable.pt` (312,570 B) in every tar; only the machine logs and smoke folder were
   not copied back (one rsync given); no RELEASE written by me.
 
+- 12 Nov 15:22 to 15:31 A15 dev run on sm1b (started by the lead with `drive_v2.sh dev`): **no score produced.** Owner
+  bug: the dev step uploaded `remote_dev.sh` but not the updated `sm1_lora_audit.py`, so the machine's setup-time
+  scorer rejected `--check-npz` and all 6 fits were skipped (log `results_rented/dev/dev.log`); no network scored any
+  data. At 15:31:11 the stale `drive.sh all` (PID 2725924) wrote RELEASE (12 of 12 fit tars verified). Fixed in
+  `drive_v2.sh` (dev uploads the scorer, clears the done-marker); A15 runs again only on the lead's start (sm1b if kept,
+  else `devfresh` on another lease).
+- 12 Nov 15:25 Full registered ViT-B/16 reading of all 12 fits (a, b, b′, c, e, f x 401, 402) in `result.md`
+  (`p3_lora_vitb12.json`, `a12_rank_vitb12.json`, `a12_fixed_vitb12.json`); reader `a15_read.py` written for A15.
+
 ## 3. Data
 
 Inputs (read only):
