@@ -270,6 +270,26 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
   so it no longer mirrors Athena's code_v2, whose hash list remains `packs/code_v2/CODE_SHA256SUMS`), the crop pack
   fetched from Athena (`smdd_train_cropped.tar`, 3189e52a..., sha256 OK), cp39 wheel house being downloaded
   (`wcss/wheels39/`, slow network about 1 MB/s).
+- 12 Nov 23:35-23:55. cp39 wheel house downloaded (56 files, offline resolution passes), packed
+  `wcss/ad5w_wheels39.tar` (sha256 ac10259a...); uploaded with the code and crop packs to
+  `/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/packs/` (2.5 min); `sha256sum -c` OK on WCSS. The WCSS Slurm
+  controller did not answer from 23:40 to about 00:00 ("Unable to contact slurm controller"); retried every 5 min.
+- 13 Nov 00:00. Submitted smokes (owner AD5; each 1 H100, limit 45 min; expected start within minutes, end about
+  00:30): **6308828** = ViT-B/16, `SMOKE=1` (every 12th image, 3 epochs, batch 256 on 1 GPU); **6308829** =
+  MixFaceNet-MAD, `SMOKE=1 EPOCHS=1`. Logs `/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/logs/ad5w-<name>-<job>_401.out`.
+- 13 Nov 00:25 (lead). Smokes 6308828 / 6308829 pending at priority 682 (head of the queue about 10,800; 139 waiting
+  jobs); both WCSS controllers down at 00:16. I stopped my 4-minute watcher; the lead's single watcher tells me when
+  the controller is back; production will be submitted behind the smokes with `--dependency=afterok`.
+- 13 Nov 00:30. Rented variant of the ViT-B/16 retrain prepared (`src/AD5/rented/`): `upload.sh HOST PORT LEASE`
+  (same three packs + job script, hashes checked on the machine), `start.sh HOST PORT LEASE` (detached
+  `remote_run.sh`: Python 3.9 from the image or a conda env, then the WCSS job script run unchanged as a plain script,
+  one seed per GPU at a time, batch 256 on 1 GPU, `ARM=B`), `fetch.sh HOST PORT LEASE` (results and logs to
+  `/mnt/t7/smad_next/AD5/results/rented/`, sha256 checked; writes `RELEASE` for the lead's guard when 5 of 5 verify).
+  The job script now takes `AD5_L` / `AD5_PYTHON` and counts GPUs with torch (respects CUDA_VISIBLE_DEVICES).
+  Not run. Cost and wall time (A100 80 GB, the measured 159 images/s per A100 at the authors' per-GPU load; 40 epochs
+  x 39,723 images = 1.59 M samples): 2.8 h per seed + about 15 min set-up; 1 card: 14.5 h, 5 cards: 3.1 h, 2 cards:
+  8.7 h; about 15 GPU-hours in every layout, so 15-23 USD at 1.0-1.5 USD per card-hour. Risk: the authors' loader
+  reads images in the main process (num_workers 0); if it cannot feed 256-image steps at that rate the run is slower.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.

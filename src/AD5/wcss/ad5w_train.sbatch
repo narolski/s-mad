@@ -16,7 +16,8 @@
 # the shipped wheels (MADation README: Python 3.9), one result tar + .sha256 back to Lustre. No placeholder: the job
 # carries its whole workload and exits non-zero on any failure.
 set -euo pipefail
-L=/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5
+L=${AD5_L:-/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5}   # AD5_L / AD5_PYTHON: rented-machine runs (src/AD5/rented)
+PYBIN=${AD5_PYTHON:-python3}
 SEED=${SLURM_ARRAY_TASK_ID:?array task = seed}; ARM=${ARM:?ARM=B|L|X}
 case $ARM in B|L) T=madation_${ARM}_s${SEED} ;; X) T=mixfacenet_X_s${SEED} ;; *) echo "bad ARM"; exit 2 ;; esac
 [ -n "${SMOKE:-}" ] && T=${T}_smoke
@@ -24,7 +25,7 @@ case $ARM in B|L) T=madation_${ARM}_s${SEED} ;; X) T=mixfacenet_X_s${SEED} ;; *)
 : "${TMPDIR:?local scratch required}"; S=$TMPDIR/ad5; mkdir -p $S/out
 keep() { mkdir -p $L/logs/keep/$T; cp "$@" $L/logs/keep/$T/ 2>/dev/null || true; }
 trap 'echo "TERM $(date +%T)"; keep $S/out/*.log $S/out/*.csv; exit 1' TERM
-hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; python3 --version; date
+hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; $PYBIN --version; date
 for p in ad5w_code ad5w_wheels39 smdd_train_cropped; do
   ( cd $L/packs && sha256sum -c $p.tar.sha256 ) || { echo "HASH MISMATCH $p"; exit 3; }
 done
@@ -32,7 +33,7 @@ mkdir -p $S/code $S/wheels $S/crop
 tar -xf $L/packs/ad5w_code.tar -C $S/code; tar -xf $L/packs/ad5w_wheels39.tar -C $S/wheels
 tar -xf $L/packs/smdd_train_cropped.tar -C $S/crop
 t0=$(date +%s)
-python3 -m venv $S/env; PY=$S/env/bin/python
+$PYBIN -m venv $S/env; PY=$S/env/bin/python
 $PY -m pip install -q --no-index --find-links $S/wheels setuptools==69.5.1 wheel==0.43.0
 $PY -m pip install -q --no-index --find-links $S/wheels --no-build-isolation -r $S/code/src/AD5/env/madation_requirements.txt
 $PY -m pip freeze > $S/out/pip_freeze.txt; echo "env built in $(( $(date +%s) - t0 )) s"
@@ -40,7 +41,7 @@ $PY -I -c "import sys, torch, torchvision, cv2, clip, pandas; print(sys.version.
 sed "s#^CROP_ROOT#$S/crop#" $S/crop/smdd_train_cropped_rel.csv > $S/train.csv
 [ -n "${SMOKE:-}" ] && { awk 'NR==1 || (NR-2) % 12 == 0' $S/train.csv > $S/t.csv; mv $S/t.csv $S/train.csv; }
 echo "train rows $(( $(wc -l < $S/train.csv) - 1 ))"
-NG=$(nvidia-smi -L | wc -l)
+NG=${AD5_NG:-$($PY -I -c 'import torch; print(torch.cuda.device_count())')}   # respects CUDA_VISIBLE_DEVICES
 ( while :; do nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader,nounits >> $S/out/gpumem.csv; sleep 10; done ) >/dev/null 2>&1 &
 MP=$!; t0=$(date +%s); rc=0
 C=$S/code
