@@ -302,10 +302,11 @@ def gates(rows, data, synthetic, out):
         if "latdist" in r:
             ld.setdefault(k, {"latdist": [], "init_latdist": []})
             ld[k]["latdist"].append(r["latdist"])
-            ld[k]["init_latdist"].append(r["init_latdist"])
+            ld[k]["init_latdist"].append(r.get("init_latdist", float("nan")))     # R2s: render only, no start latent
     res = {"G-b": G, "RT": rtg,
            "aligned_rate": {k: {"rate": float(np.mean(v)), "flag": bool(np.mean(v) < 0.90)} for k, v in al.items()},
-           "latdist_median": {k: {kk: float(np.median(vv)) for kk, vv in v.items()} for k, v in ld.items()}}
+           "latdist_median": {k: {kk: float(np.nanmedian(vv)) if np.isfinite(vv).any() else None for kk, vv in v.items()}
+                              for k, v in ld.items()}}
     json.dump(res, open(out / "gates.json", "w"), indent=1)
     return res
 
@@ -562,11 +563,14 @@ def read(rows, S, E, out, boot, pub_eer):
                 cell["latdist_median"] = {k: float(np.median([r["latdist"] for r in grp[k] if "latdist" in r]))
                                           for k in ("R2", "R2s", "R3", "R4") if any("latdist" in r for r in grp[k])}
                 # amendment 4: readings per generation platform (persons of a shard share one platform)
-                plats = sorted({r.get("platform", "") for r in sub if r["source"] == "ours"})
+                # platform of a host = platform of its core rows (R2 / R3 / R4 come from one core shard); spread and
+                # graded-mixing shards ran on the rented machine for hosts of either platform and do not define it
+                core = [r for r in sub if r["rung"] in ("R2", "R3", "R4") and r["source"] == "ours"]
+                plats = sorted({r.get("platform", "") for r in core})
                 if len(plats) > 1:
                     ps = {}
                     for pl in plats:
-                        hosts = {r["pa"] for r in sub if r["source"] == "ours" and r.get("platform") == pl}
+                        hosts = {r["pa"] for r in core if r.get("platform") == pl}
                         g2 = {k: [r for r in v if r["pa"] in hosts] for k, v in grp.items()}
                         ps[pl] = {k: ({kk: vv for kk, vv in x.items() if kk != "rep"} if x else None) for k, x in
                                   (("R2>R4", contrast(g2["R4"], g2["R2"])), ("R3>R4", contrast(g2["R4"], g2["R3"])),
@@ -626,7 +630,7 @@ def main():
     global BASE
     bp = pathlib.Path(a.data) / "baselines.npz"
     if bp.exists():
-        z = np.load(bp)
+        z = dict(np.load(bp))           # load every array once (indexing an NpzFile re-reads the whole array)
         BASE = {i: {"bytes": z["bytes"][k], "lapvar": z["lapvar"][k], "hfband": z["hfband"][k], "sym": z["sym"][k],
                     "thumb": z["thumb"][k]} for k, i in enumerate(z["id"].tolist())}
     elif a.synthetic:

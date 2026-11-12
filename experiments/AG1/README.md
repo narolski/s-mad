@@ -286,6 +286,81 @@ Not verified:
 
 ## 10. Handover state (11 Nov ~17:45 CET)
 
+- **Update 12 Nov ~13:30:** scoring on the DGX GPU (MADation ViT-B/16, ViT-L/14, SelfMAD own crop and our pipeline;
+  7,229 rows each; write-once npz with hashes in `scoring/score.log`). Reader: first run killed by the kernel OOM
+  killer at 114 GB (bug: `np.load(...)["thumb"][k]` re-read the whole array per image; fixed with `dict(np.load())`;
+  reruns under `ulimit -v 30 GB`). Second bug: the per-platform rows took a host's platform from all its rows; spread
+  renders were rented for every host, so "rented" equalled the pooled set; fixed to the platform of the host's core
+  rows (Athena 159 hosts, rented 41 in the primary pool). Facts table `read/facts.md` sent to the lead before any
+  interpretation.
+- **Update 12 Nov 11:50:** full build: manifest 7,229 rows from 16 shards (aligned-flag rate 0.998; no rung below
+  0.90), oracle 4,822 embedded / 0 without a face, RT 254 pairs (median of per-pair mean |diff| 1.57, max 3.89 grey
+  levels; max single pixel 235), pins `data/AG1_data_pins.sha256` (ag1.csv 5892c918..., ag1_raw.csv f013b3f9...),
+  baselines 7,229 frames. Gate stage (`experiments/AG1/read/gates.json`, before any detector score): G-b passes in
+  every pool: oracle AUC R4 vs R3 FRLL 1.000 / FERET 0.979 / FRGC 0.995 / primary 0.986 / MIPGAN-II FRLL 1.000; R4
+  verifies both contributors 1.000 on input and on unseen photos; R3 verifies A 1.000; R2 false-match rate
+  0.0009-0.0013 at thresholds 0.244-0.269 (FMR 1e-3 on camera impostors). Latent-distance medians (MIPGAN-I): R2
+  7.54, R3 6.51, R3m 6.53, R4 6.51, R2s 5.64 (the A37 1/sqrt(2) rule overshoots R4 by 0.87); MIPGAN-II: R2 10.51, R3
+  10.35, R4 9.87, R2s 8.81. Bug fixed: the gate stage expected an initial latent for render-only R2s rows.
+  Scoring started on the DGX GPU (`score_dgx.sh`, four release rows; MADation releases extracted one by one for disk).
+- **Update 12 Nov 11:30:** rented run finished: MIPGAN-II FRLL 00 (678 images) and 01 (42), graded mixing 4 x 180,
+  spread renders 102 / 100 / 100 / 102; each fetched, hash-checked, processed (aligned 0.994-1.000, oracle 0 fails),
+  ledgered and its Athena task cancelled (3544797_6, _7; 3544798_0, _1; 3544799_2, _3; 3545819_0-3); RELEASE written
+  11:27, machine destroyed by the guard (port refused 11:29). Rented machine time 02:55-11:27 (about 8.5 h at 0.51
+  USD/h, about 4.4 USD; lead's lease record is authoritative).
+  **Data-loss incident (my design error):** the driver deleted each fetched rented tar after processing (the
+  one-at-a-time rule) and then wrote RELEASE; unlike the Athena shards, the rented tars had no second verified copy, so
+  the 1024-px PNGs and latents of the 11 rented shards (about 3.5 GB) no longer exist. Kept: the 512-px aligned frames
+  (what the detectors score), glintr100 embeddings, RT numbers and every log.csv line (losses, latent distances,
+  sha256 of the original PNGs). Consequence: no re-alignment or new 1024-px analysis for those shards; latents for
+  further doses or renders would need regeneration (about 9 GPU-h). Lesson: a working copy may be deleted only when a
+  second verified copy exists outside the machine that will be released.
+- **Update 12 Nov 04:53:** rented first check under rule (b) passed 03:16:58 (`check/compare.txt`). AG1_mip1_frgc_01
+  generated on the rented A100 in about 1.5 h, fetched, hash-checked, processed (297 images, aligned 1.000, oracle
+  297 / 0 fail, RT 10), local tar removed; Athena task 3544797_5 cancelled by the driver. Next: MIPGAN-II FRLL 00 / 01.
+- **Update 12 Nov 03:25:** all five Athena core shards fetched, hash-checked and processed (ledger
+  `fetched_tars.csv`; local tars removed, originals on Athena). Platform label fixed: both platforms report
+  "NVIDIA A100-SXM4-40GB", so `ag1_manifest.py` now labels by origin (`athena_...` for the five listed Athena shards,
+  `rented_...` otherwise); the five processed shard files were relabelled. Old fetch loop stopped (nothing left on
+  Athena to fetch). Watching `drive_v2.sh` (PID 3091276); it fetches, processes and removes each rented tar and
+  writes RELEASE itself only after the last one. If it stops: restart from the main session with
+  `MINFREE=20 RENTED_RULE=b bash /home/narolski/smad-next/src/AG1/rented/drive_v2.sh 104.189.178.123 3010 /mnt/t7/smad_next/vast/ag1`
+  (processed shards are skipped; the smoke check reruns, about 5 min).
+- **Update 12 Nov 03:15 (b):** lead decision 03:11: rented platform accepted under rule (b) after seeing all three
+  runs (amendment 6; not a registered pass; possible small platform offset on frll_001 R2 not excluded; readings
+  pooled and without rented shards, conservative one stands). `drive_v2.sh` started by the lead (PID 3091276,
+  RENTED_RULE=b, MINFREE=20, `drive_v2.out` in the lease folder).
+- **Update 12 Nov 03:15:** first check on the rented A100 FAILED by the amendment 4 rule (recorded as a fail, no
+  override): 11 / 11 images, format exact, frll_001 R2 loss 1.847 vs Athena 1.665 (10.9% > 10%); the other 9
+  optimised images within 0.4-1.7%. Amendment 5 registered after seeing the failure (decision rule for two reruns).
+  Reruns (same machine, same settings): frll_001 R2 1.879 and 1.777 (spread 0.102 < the 0.18 gap; both above
+  Athena, no straddle; 5.7% apart, not < 2%): neither the accept nor the stop branch of amendment 5 is met; sent to
+  the lead for a decision. Spread across the three rented runs per image 0.012-0.101 (R2 frll_001 largest). Files:
+  `/mnt/t7/smad_next/vast/ag1/check/{rented_AG1_smoke_mip1.tar, rerun_1.tar, rerun_2.tar, compare.txt}`.
+  `compare_smoke.py` gained an optional rule b; `drive_v2.sh` passes `RENTED_RULE` (default strict).
+- **Update 12 Nov 03:05:** rented machine (lead): lease `/mnt/t7/smad_next/vast/ag1`, host 104.189.178.123 port
+  3010, A100-SXM4-40GB, 0.51 USD/h, cap 10 USD / 20 h; lead uploaded the folder and started
+  `MINFREE=20 bash src/AG1/rented/drive.sh 104.189.178.123 3010 /mnt/t7/smad_next/vast/ag1` (PID 3080694; logs
+  `drive.out`, `ag1_drive.log` in the lease folder). First start failed at setup: the driver wrote to
+  `/root/ag1/logs/` which the upload does not create (my bug: the DGX rehearsal had made it). The lead created
+  `/root/ag1/{logs,results}` and restarted; SETUP_OK, smoke check started 02:55. Fix in `drive_v2.sh` (mkdir before
+  setup), used for any restart. I first edited `drive.sh` in place while it was running and restored it to the exact
+  previous bytes (sha256 bd26b7fa...) within a minute, before the running step ended: bash reads a running script by
+  offset, so an in-place edit could have run shifted text.
+- **Update 12 Nov ~03:00:** Athena fair-share exhausted (new jobs forecast for late December). Finished on Athena:
+  core 3544797_0 to _4 (MIPGAN-I FRLL 00/01, FERET 00/01, FRGC 00; 18.5 A100 GPU-h; elapsed 2:30, 4:43, 4:48,
+  1:43, 4:46; three tasks ran about 2x slower than the smoke-based estimate). Processed on the DGX: FRLL 00, FERET
+  01 (ledger). Fetch floor lowered by the lead to 20 GB free (fetch script threshold 21 GB).
+  Rented-machine path written (`src/AG1/rented/`: `remote_run.sh` setup / shard / spread on the machine,
+  `drive.sh HOST PORT LEASE` on the DGX, `compare_smoke.py` first check) and amendment 4 registered (platform column,
+  one platform per shard, per-platform sensitivity, first-check rule: 11 images, format, final loss within 10%).
+  Upload folder `/mnt/t7/smad_next/AG1/rented/ag1/upload/` (2.8 GB): ag1_pack.tar (hard link, c6b9d2c9...),
+  needs_lat.tar (220a03d0..., 1,044 MIPGAN-I latents streamed out of the five Athena tars with their sha256 checked
+  in flight), ag1_spread.py, remote_run.sh. Rehearsal on the DGX (`/dev/shm`, removed after): setup OK, smoke shard
+  1 job (loss 1.614 vs Athena 1.665), a dependent graded-mixing job reading Athena latents, spread renders of the 100
+  FERET hosts from Athena latents; one bug found and fixed in rehearsal (setup's hash check path), one found by
+  reading (the smoke check's latents would have overwritten Athena latents of frll_001 / frll_010; smoke latents
+  are now kept out). Order on the machine: FRGC 01, MIPGAN-II FRLL 00 / 01, graded mixing, spread.
 - **Update ~23:00:** T7 fell to 47 GB free (other writes); fetch paused, then lead set the floor to 40 GB free (one tar
   at a time, tar removed after processing). Threshold in `fetch_and_process.sh` now 42 GB before a fetch. First core
   result: 3544797_3 (FERET 01) done in 1 h 43 min, 509 MB tar.

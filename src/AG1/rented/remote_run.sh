@@ -43,8 +43,10 @@ shard)
   RC=$?; kill $MON 2>/dev/null; set -e
   tail -3 "logs/$S.log"
   [ "$RC" = 0 ] || { echo "SHARD_FAILED $S rc=$RC"; exit "$RC"; }
-  cp "$OUT"/lat/inv_*.npz "$B/lat/$GEN/" 2>/dev/null || true          # per generator: names collide across them
-  cp "$OUT"/lat/*_R2_*__s1.npz "$B/lat/$GEN/" 2>/dev/null || true
+  if [[ "$S" != *smoke* ]]; then                                      # the check shard never feeds later shards
+    cp "$OUT"/lat/inv_*.npz "$B/lat/$GEN/" 2>/dev/null || true        # per generator: names collide across them
+    cp "$OUT"/lat/*_R2_*__s1.npz "$B/lat/$GEN/" 2>/dev/null || true
+  fi
   tar -C "$B/out" -cf "results/$S.tar" "$S"
   (cd results && sha256sum "$S.tar" > "$S.tar.sha256"); cp "$OUT/log.csv" "results/$S.log.csv"
   echo "SHARD_DONE $S $(cut -c1-64 results/$S.tar.sha256)" ;;

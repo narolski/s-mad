@@ -39,6 +39,7 @@ MADRAW = pathlib.Path("/mnt/t7/smad_heldout/mad22_incoming/marco_owncloud_202611
 MADPROC = pathlib.Path("/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z")
 LABEL = {"R0": 0, "R1": 0, "R2": 0, "R2i": 0, "R2s": 0, "R3": 1, "R3m": 1, "R4": 1, "BR": 1, "RT": 1, "AG3": 1,
          "AG3T": 1, "PUB": 1}
+ATHENA_SHARDS = {"AG1_mip1_frll_00", "AG1_mip1_frll_01", "AG1_mip1_feret_00", "AG1_mip1_feret_01", "AG1_mip1_frgc_00"}
 COLS = ["id", "path", "label", "rung", "gen", "db", "pa", "pb", "photo_a", "photo_b", "alpha", "source", "aligned",
         "platform"]
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -113,7 +114,9 @@ def stage_shard(tar):
     with tarfile.open(t) as tf:
         log = list(csv.DictReader(tf.extractfile(f"{root}/log.csv").read().decode().splitlines()))
         meta = json.loads(tf.extractfile(f"{root}/meta.json").read().decode())
-        platform = meta.get("device", "unknown").replace(" ", "_")    # amendment 4: platform per shard
+        # amendments 4 / 6: platform per shard. Both platforms report "NVIDIA A100-SXM4-40GB", so the label is set
+        # by where the shard was made: the five Athena core shards are listed; every other shard ran on the rented A100
+        platform = ("athena_" if root in ATHENA_SHARDS else "rented_") + meta.get("device", "unknown").replace(" ", "_")
         for r in log:
             mem = f"{root}/png/{r['stem']}.png"
             buf = tf.extractfile(mem).read()

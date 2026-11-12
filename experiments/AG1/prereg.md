@@ -208,4 +208,27 @@ Code: `src/AG1/`. Large outputs: `/mnt/t7/smad_next/AG1/`. Rules: `11_AUDIT_PLAN
      difference is printed only. A failed check stops the rental before production.
   4. A rented shard is accepted only after its tar's sha256 is checked on the DGX and it is processed; then its queued
      Athena task is cancelled, so no shard is produced twice.
+- **Amendment 5 (12 Nov ~03:15, written AFTER seeing the first-check failure; goes to the independent review with
+  the results):** the registered first check (amendment 4) FAILED on the rented A100: 11 / 11 images, format exact,
+  10 of 11 final losses within 0.4 to 1.7% of Athena's, but frll_001 R2 at 1.847 against 1.665 (10.9% > 10%, 0.18
+  absolute). This is recorded as a fail; no override. Decision rule for continuing, fixed before any rerun: rerun
+  the smoke shard twice on the same machine, same settings, and measure the run-to-run spread of every image's final
+  loss. If the rented-vs-rented spread on frll_001 R2 is at least the rented-vs-Athena gap (0.18 absolute), or the
+  two reruns straddle Athena's value within 10%, the platform is accepted under rule (b): count and format exact,
+  every optimised image within max(10% relative, 0.25 absolute), median relative difference <= 5%; production
+  starts. If the reruns agree to under 2% and stay more than 10% from Athena, the difference is platform-specific:
+  stop and report (the lead releases the machine). Seeding: `ag1_gen.py` sets `torch.manual_seed(0)`, but the
+  procedure draws nothing random (inversion starts at the mean latent, noise buffers are fixed); repeat runs differ
+  only through non-deterministic GPU arithmetic (same-GPU repeat on the GB10: max |w| 0.379 after 150 steps), so
+  the spread is not zero by construction; the DGX value for this image (1.614, 3% below Athena) is further noise
+  evidence.
+- **Amendment 6 (12 Nov 03:11, lead decision, AFTER seeing all three rented smoke runs; goes to the independent
+  review with the results):** the original first check failed (amendment 4 rule); amendment 5's pre-stated rule did
+  not decide (neither branch met). The rented A100 is accepted under rule (b) (count and format exact, every image
+  within max(10%, 0.25 absolute), median relative difference <= 5%) by the lead's decision, not by a registered
+  pass. All three rented runs of frll_001 R2 lie above Athena (1.847, 1.879, 1.777 vs 1.665; DGX 1.614), so a small
+  platform offset on that image is not excluded. Conditions: every output row carries a platform label (Athena
+  A100 / rented A100); every registered reading of AG1 is reported pooled and with rented shards excluded, or as a
+  platform-stratified check where the design allows; if a reading changes between the two, the conservative one
+  stands.
 - **Result:** pending.

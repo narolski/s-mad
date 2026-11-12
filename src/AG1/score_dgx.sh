@@ -10,16 +10,18 @@
 set -euo pipefail
 DATA=${1:?data root}; OUT=${2:?out root}; shift 2
 HERE=$(cd "$(dirname "$0")" && pwd)
-PY=/home/narolski/mambamorph-code/.venv-spark/bin/python
+PY="nice -n 10 /home/narolski/mambamorph-code/.venv-spark/bin/python"
+export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2
 PRED=/mnt/t7/thirdparty/dlib81_wcss_20261107/shape_predictor_81_face_landmarks.dat
 JOBS=("$@")
 [ ${#JOBS[@]} -gt 0 ] || JOBS=(madation_vitb16:rel madation_vitl14:rel selfmad_hrnet_w18:rel selfmad_hrnet_w18:own
                                 madation_fe_vitb16:rel madation_fe_vitl14:rel madation_fs_vitb16:rel madation_fs_vitl14:rel)
 mkdir -p "$OUT"
 [ -d "$OUT/jobroot" ] || bash "$HERE/make_score_root.sh" "$OUT/jobroot" "$DATA/AG1_data_pins.sha256"
-if [ ! -d "$OUT/A12REL/madation_vitb16" ]; then
-  tar -xf /mnt/t7/wcss_backups/madation_official_upload/madation_official.tar -C "$OUT"
-fi
+for j in "${JOBS[@]}"; do                                   # extract only the releases asked for (disk)
+  rel=${j%%:*}
+  case $rel in madation_*) [ -d "$OUT/A12REL/$rel" ] || tar -xf /mnt/t7/wcss_backups/madation_official_upload/madation_official.tar -C "$OUT" "A12REL/$rel" ;; esac
+done
 if [ ! -s "$OUT/A12REL/selfmad_hrnet_w18/hrnet_w18_checkpoint.model.safetensors" ]; then
   mkdir -p "$OUT/A12REL/selfmad_hrnet_w18"
   cp /mnt/t7/smad_next/AR1/weights/selfmad_release/hrnet_w18_checkpoint.model.safetensors "$OUT/A12REL/selfmad_hrnet_w18/"
@@ -33,6 +35,6 @@ for j in "${JOBS[@]}"; do
   [ -e "$o" ] && { echo "exists: $o"; continue; }
   extra=()
   [ "$mode" = own ] && extra=(--predictor "$PRED")
-  SMAD_DATA=$DATA "$PY" -I "$OUT/jobroot/smadcvpr/ag1_score.py" --item ag1 --mode "$mode" \
-    --ckpt "$OUT/A12REL/$rel/$ck" --list "$LIST" --manifest ag1.csv --out "$o" --workers 8 "${extra[@]}"
+  SMAD_DATA=$DATA $PY -I "$OUT/jobroot/smadcvpr/ag1_score.py" --item ag1 --mode "$mode" \
+    --ckpt "$OUT/A12REL/$rel/$ck" --list "$LIST" --manifest ag1.csv --out "$o" --workers 2 "${extra[@]}"
 done

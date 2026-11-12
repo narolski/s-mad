@@ -55,3 +55,23 @@ WCSS (superseded): 13 task dirs in `/lustre/.../smad-next/staging/AG1/`, never i
   on T7 (AR1 copy, sha256 0ad8db6f...).
 
 Full record: `README.md`.
+
+## Rented platform (12 Nov)
+
+First check on the rented A100 (amendment 4) failed: frll_001 R2 final loss 1.847 vs Athena 1.665 (10.9% > 10%); the
+other 9 optimised images within 0.4-1.7%. Amendment 5's rule did not decide (reruns 1.879 and 1.777). The lead accepted
+the platform under rule (b) after seeing all three runs (amendment 6): a decision, not a registered pass. All three
+rented runs of that image lie above Athena, so a small platform offset is not excluded. Every reading is reported
+pooled and without rented shards; the conservative one stands. Driver: drive_v2.sh (PID 3091276), lease
+/mnt/t7/smad_next/vast/ag1, A100-SXM4-40GB at 0.51 USD/h.
+
+## Facts table (12 Nov, before interpretation; sent to the lead)
+
+Full table: `read/facts.md`; machine-readable `read/ag1_read.json`, `read/gates.json`, `read/ag1_ladder.csv`. Scores:
+`/mnt/t7/smad_next/AG1/scoring/a41g_out/ag1/<release>/<mode>/scores_ag1.npz` (7,229 rows each; manifest ag1.csv
+5892c918...). Correction (review of 12 Nov, finding 9): the gates were NOT computed or committed before scores
+existed. Score files were written 12 Nov 11:34:07, 11:36:38, 11:40:33 and 11:42:33 CET; the gate stage first ran at about
+11:47 (it crashed on render-only rows, was fixed and rerun), and the current `read/gates.json` is dated 12:05:38, written
+again by the full reader run. The gate code (`ag1_read.py`, function `gates`) reads only the manifest, the oracle
+embeddings, rt_check.json and the shard logs; it reads no score file. Gates and read/ outputs were first committed
+after the review. No interpretation is written here; the lead draws conclusions.
