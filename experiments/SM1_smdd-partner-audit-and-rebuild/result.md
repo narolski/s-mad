@@ -736,6 +736,22 @@ as morph-like against camera photos (0.99+). What the remedy removes is a mixing
 second-identity detection. Arm a's 0.745 is not face-box sharpness or file size (removing both from its score raises
 its AUC; review F2): a reads mixing in the latent path. The cleanest statement in A15: a = e on X vs SAME.
 
+## A18 parallel arm: frozen-feature probe on our own diffusion ladder (registered d2a0b49; `a18_probe.json`)
+
+Development data only. Logistic probe on frozen CLIP (clip_mad) and DINOv2 features, trained on X20 vs SAME20 of DG1
+shards 0–5, scored on shards 6–7 (133 X20, 134 SAME20, 55 partner cycles); incremental read over the fixed floor
+(θ, face-box Laplacian, PNG bytes, asymmetry, d), cross-fit on test partner-cycle folds, partner-cycle bootstrap.
+
+| Features | probe AUC X20 over SAME20 | floor F | F + probe | ΔAUC over F | floor F_img (no θ) | ΔAUC over F_img | registered reading |
+|---|---|---|---|---|---|---|---|
+| CLIP (clip_mad) | 0.963 [0.941, 0.983] | 0.901 | 0.962 | **+0.061 [0.030, 0.092]** | 0.778 | +0.180 [0.127, 0.233] | falsified: information beyond the measured traces |
+| DINOv2 | 0.963 [0.938, 0.986] | 0.901 | 0.970 | **+0.069 [0.038, 0.101]** | 0.778 | +0.180 [0.129, 0.231] | falsified |
+| (unflagged rows) | 0.964 / 0.964 | 0.900 | 0.962 / 0.969 | +0.062 / +0.069 | 0.788 | +0.168 / +0.169 | falsified |
+
+Reading (FRGC test hosts, one generator, one render platform): frozen foundation features carry X-vs-SAME information
+beyond simple statistics and the noise-angle θ; unmeasured render traces are not excluded. The fine-tuned recipe's
+answer (A18 fits) is pending (WCSS 6308742).
+
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
 **Item 11, five random pool partners (H-new-1; arm d5, 5 seeds; `p3_full.json`, `p3_fz1.json`).** Landmark-7 native
