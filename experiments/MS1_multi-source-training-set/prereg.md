@@ -396,3 +396,7 @@ MS1-D1 (5eadc1b) with these changes:
   AUC(TT1 family k against R_cam_border(k)) beside P2's AUC_k.
 - Scripts: drive_ms1.sh `60c2ca71a76f7493ebe3dac1fea64ca6c965958d9ce905d977dbb6271dd09d3b` (held-out pin updated), remote_ms1.sh `5484c6e117cb1c7d09a202da446f7bdca5305acc1b430cf936bcbc290e438403` (held-out families cfd, kdef, tt1ref).
 - Everything else of part 2 and MS1-D1 unchanged.
+
+- MS1-D2 note (`date`: Fri Nov 13 12:33:45 AM CET 2026; no fit had started on ms1m1): lease ms1m1 (GPU-771bd979…) was released by the lead before
+  any fit because its upload stalled; queue m1 (seeds 403+406) runs on the replacement ms1m1b (L40S 48 GB,
+  GPU-c1ff3444-2b67-80c8-b31d-2c9ad1528acc, cap 10 USD, 13 h). Same GPU model; nothing else changes.
