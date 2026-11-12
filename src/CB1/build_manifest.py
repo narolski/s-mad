@@ -24,9 +24,13 @@ MAD = pathlib.Path("/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T1
 FAM = ("FaceMorpher", "MIPGAN_I", "MIPGAN_II", "OpenCV", "Webmorph")
 COUNTS = {"BonaFide": 204, "FaceMorpher": 1000, "MIPGAN_I": 1000, "MIPGAN_II": 999, "OpenCV": 984, "Webmorph": 500}
 PID = re.compile(r"(\d{3})_\d{2}")
+FRLLM = re.compile(r"^(\d{3})_(\d{3})(?:_|$)")      # FRLL-Morphs morph names: 001_002[_orig]
 
 
 def persons(name):
+    q = FRLLM.match(name)
+    if q:
+        return q.group(1), q.group(2)
     p = PID.findall(name)
     return (p[0], p[1] if len(p) > 1 else p[0]) if p else ("", "")
 
@@ -66,6 +70,9 @@ def main(out):
                          label=int(r["label"]), pool=pool, person_a=a, person_b=b))
     for r in rows:
         assert pathlib.Path(r["path"]).is_file(), r["path"]
+        assert r["person_a"] and r["person_b"], r
+    same = [r["id"] for r in rows if int(r["label"]) == 1 and r["person_a"] == r["person_b"]]
+    print(f"morph rows whose file name names one person twice (kept, listed): {len(same)}", same[:20])
     with open(out, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
         w.writeheader()

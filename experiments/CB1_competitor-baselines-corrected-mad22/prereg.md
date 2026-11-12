@@ -147,3 +147,38 @@ threads, or WCSS CPU. Decisive rows by 13 Nov 18:00; whatever is unfinished then
 
 To be requested from the experiment-reviewer before the IDistill production jobs; the scoring of existing networks
 (sections 3-6) is a re-score of fixed networks with a fixed rule and starts on registration.
+
+## Amendment 1 (13 Nov 2026, 00:05 CET; after the pre-run review, before any CB1 score is read)
+
+Pre-run review: GO WITH FIXES (experiment-reviewer, 13 Nov about 00:00; findings F1-F11, recorded in README). Changes:
+- F1. IDistill's early stopping is driven by the FRLL-Morphs test sets, so its last checkpoint is also test-dependent.
+  Three checkpoints are kept and reported: "test-selected as in the authors' code" (the gate checkpoint), "selected on
+  the SMDD validation split" (new patch line: saved whenever the code's own 15% SMDD validation EER improves; the label
+  for a no-test-selection row), and "stopping epoch set by test-set early stopping" (the `.last` file).
+- F2. FRLL-Morphs morph file names are `AAA_BBB`; the person parser read them as one person. Fixed in
+  `build_manifest.py`; new list `/mnt/t7/smad_next/CB1/manifests/cb1_cnn_images_v2.csv` (sha256 aa140e91..., same ids and
+  paths in the same order as v1, so existing score files stay valid; 7,051 contributor fields corrected). Ten
+  FRLL-Morphs morph files name one person twice (e.g. facemorpher `036_036`); they are kept (they are part of the
+  published set) and listed.
+- F3. IDistill morph score = id1 x id2 (outputs[3] x outputs[4]), written in double precision; y~ kept beside it.
+- F5. C1 is row-wise and binding: on the score version chosen on M1 seed 1 (and A45 incep_ofc seed 1), median absolute
+  probability difference <= 1e-3 and maximum <= 1e-2 over all gate and FRLL-Morphs rows, and EER within 0.5 points in at
+  least 9 of 10 cells. Networks without stored scores or failing C1 get no reading (enforced in `analyse_cnn.py`). FD-MAD
+  C1-F: the same row-wise rule against `/mnt/t7/smad_heldout/a45/fdmad/fdmad_global_r<res>_s<seed>/scores_eval.npz`.
+  IDistill has no stored score; its gate is the published-number gate of section 7.
+- F6. M4 (SelfMAD-style) gets no reproduction reading (descriptive). OrthoMAD FRLL is read against 9.50 (manuscript)
+  and, printed beside, against 14.80 (IDistill Table I). IDistill gate: seed mean over 401-403 of the test-selected
+  checkpoint; binding: five-family mean within 1.5 points of 2.90; per-family windows and the paper's BPCER at APCER 1%
+  (21.10 / 4.26 / 6.14 / 8.51 / 14.41) and 20% (2.85 / 0.16 / 0.16 / 0.08 / 0.33) printed descriptively.
+- F7. For IDistill (morphs cropped from raw files, E7 photos cropped from aligned frames) the history effect is read as
+  E7 minus aligned-native genuine (both aligned frames through the same crop), not against the raw genuine pool.
+- F8. Crop failures (SMDD crop script finds no face, or a strip) are counted per folder. A morph without a crop counts
+  as accepted (scored as the most bona-fide-like value); the analysis that excludes them is printed beside. Training
+  morphs dropped for missing contributor latents are counted.
+- F9. Running a competitor's own preprocessing unchanged (IDistill: the SMDD release MTCNN crop and the authors' resize
+  to 224) follows the precedent of the own-crop re-score (RS1) and the AD5 authors'-code retrains; no image code of ours.
+- F10. The CUDA seed stays 0 as in the authors' code (the patch seeds CPU/numpy/random with the seed); the 85/15 split
+  stays at the authors' seed 420.
+- Platform: the coordinator declined a rental for tonight; IDistill waits on the WCSS queue. Fallback wording if it
+  cannot finish by the retrain cut-off of 14 Nov 18:00: "IDistill: as reported, not verified; the authors' code selects
+  its checkpoint on the FRLL-Morphs test sets".
