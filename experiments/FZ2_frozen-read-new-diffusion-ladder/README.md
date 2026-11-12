@@ -75,6 +75,13 @@ No answer yet.
   `/mnt/t7/smad_next/FZ2/read_addon_items.csv`. Readings: H-new-1 not decided, H-new-2 not decided, H-new-3 falsified,
   H-new-4 falsified (numbers in `result.md`).
 - 03:30 `result.md` completed; report sent.
+- 12 Nov: independent review (`experiments/reviews/REVIEW_FZ2_AR1A10_20261112.md`, commit a91e120) applied (F1–F7) in commit
+  8be8361; DG1 platform-equivalence record `experiments/DG1_diffusion-generation-athena/platform_reproducibility_fz2.json`.
+- 12 Nov: amendment 1 registered (commit dbc151d) before computing; smoke (120 hosts, B = 300; output deleted), full run
+  `OMP_NUM_THREADS=2 nice -n 10 python -I src/FZ2/fz2_amend1.py` (log `/mnt/t7/smad_next/FZ2/logs/amend1.log`) →
+  `amend1.json`: H-A transfer supported, H-B falsified, H-C supported (numbers in `result.md`).
+- 12 Nov: draft DG1 amendment for SAME_orth / X_corr rungs written for pre-run review:
+  `experiments/DG1_diffusion-generation-athena/drafts/AMENDMENT_SAMEorth_Xcorr_DRAFT.md` (not run).
 
 ## 3. Data
 

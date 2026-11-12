@@ -88,6 +88,33 @@ Descriptive (clip_mad):
 - Reading (review F3): along P_XS, two-person mixes and every two-person dose sit with the reconstruction; what separates
   X from SAME is a property of the same-person mix (face-box sharpness medians REC 87, X 96, SAME 128, reviewer's check).
 
+## Amendment 1 (post hoc in substance; registered in commit dbc151d before computing) — `amend1.json`
+
+Zero GPU, existing features; partner-cycle folds, two-way person bootstrap B = 10,000. Code `src/FZ2/fz2_amend1.py`.
+
+- **(i) H-A transfer: supported.** P_XS (clip_mad) on NOISEX vs NOISES 0.907 [0.884, 0.928] (dinov2 0.932); SEMX vs SEMS
+  0.579 [0.538, 0.620] (0.553). Mean P_XS scores: NOISES −2.85 (like SAME −2.81), NOISEX +1.46, SEMS +2.09, SEMX +2.61, REC
+  +2.23, X +2.17. So the same-person signature travels with the slerped noise map, not with the semantic code. D_SR: NOISEX
+  vs NOISES 0.146, SEMX vs SEMS 0.608.
+- θ alone, X vs SAME: 0.916 [0.895, 0.935] (median X 1.564, SAME 1.537 rad). P_XS stratified by θ fifths: 0.941 → 0.876
+  [0.835, 0.913], Δ +0.065 [+0.038, +0.096] (4 usable strata; X/SAME counts 0/215, 17/197, 145/69, 186/28, 188/27). By
+  Laplacian fifths: 0.929 [0.906, 0.949], Δ +0.013 [+0.006, +0.021]. Spearman of P_XS with θ: +0.50 inside SAME, 0.00
+  inside X; with Laplacian −0.33 inside SAME, +0.01 inside X. θ vs Laplacian: −0.40 (SAME), −0.34 (NOISES), +0.09 (X,
+  NOISEX), −0.10 (SEMS).
+- **(ii) H-B: falsified** (residual-12 floor ≤ 0.85 on both): NOISES vs REC 0.810 [0.791, 0.829], FRESH1 vs REC 0.827
+  [0.805, 0.849]. Floors (best of single / residual-12 / simple-10 / combined-22) and clip_mad probe excess over them:
+  NOISES vs REC floor 0.857, excess +0.140 [+0.122, +0.158]; FRESH1 vs REC 0.827, +0.149; SAME vs REC 0.868, +0.13; X vs
+  SAME 0.798, +0.143 [+0.112, +0.176]; SEMS vs REC 0.654, +0.248; X vs REC 0.749, +0.246; FRESH1 vs FRESH2 0.516, +0.001;
+  100 steps: SAME vs REC 0.983, +0.016; FRESH1 vs REC 0.888, +0.101; X vs SAME 0.831, +0.121. dinov2 excesses alike. So the
+  frozen features read the render path beyond these 22 residual and simple statistics. Head s401 on X vs SAME is below
+  the floor (−0.137 [−0.185, −0.088]).
+- **(iii) H-C on FZ1's A43 frames: supported** (registered ≤ 0.62): head s401 B20 vs C20 0.621 → 0.569 [0.455, 0.684]
+  stratified by centre-256 Laplacian fifths (within-stratum 0.720, 0.463, 0.737, 0.516, 0.479; B20/C20 counts 50/11,
+  47/13, 49/11, 38/22, 16/45; thin strata).
+- **(iv) P_XS from DG1 on A43 frames** (other persons, 512 frames): B20 vs C20 0.878, B vs C 0.901, C20 vs D20 0.053, B20
+  vs D20 0.304, B vs D 0.388 (dinov2 0.930, 0.926, 0.020, 0.241, 0.325). The DG1 direction transfers to FRLL and again
+  marks the same-person mix (it scores reconstructions above both mixes).
+
 ## Compute
 
 Athena: job 3545969 submitted 20:39, cancelled 21:31 before it started (0 GPU-hours). DGX GB10: production features
