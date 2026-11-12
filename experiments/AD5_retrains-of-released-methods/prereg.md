@@ -254,3 +254,20 @@ scored.
    "incomplete (k seeds)" (amendment 1, item 1).
 2. **Allowance.** 300 A100-hours for this experiment (lead, 20:17). SelfMAD seed 405 is submitted (job 3545936).
 3. The SelfMAD tasks exclude the slow node t0010 (lead's instruction); this changes no setting of the training.
+
+## Amendment 4 (12 Nov 2026, 23:20 CET; lead's instruction after the author's go-ahead; before any retrain exists)
+
+Athena will not start the arrays before the stage ends; the retrains move to WCSS (H100 80 GB, `lem-gpu-short`), in
+the order MADation ViT-B/16, MixFaceNet-MAD, MADation ViT-L/14, then SelfMAD only if GPUs remain (at most 6 of our
+GPUs at once across the sprint). Changes, all fixed now:
+1. **Platform.** NVIDIA H100 (recorded per job). Python 3.9 (WCSS system Python; the MADation README's version), the
+   same pinned packages as wheels for cp39, built in each job's local scratch.
+2. **GPUs per MADation run.** The authors' global batch of 256 is kept: ViT-B/16 on 1 GPU at batch 256, ViT-L/14 on
+   2 GPUs at 128 per GPU (authors: 8 x 32). The number of updates per epoch (155) and the 40-epoch schedule are
+   unchanged; CLIP has no batch normalisation, so the split only changes how one step's 256 images are distributed
+   over processes (and the DistributedSampler's shuffling across replicas). If a run does not fit, the next split is
+   2 x 128 (B) or 4 x 64 (L).
+3. **SMDD crops.** The crop pack made by the authors' script on Athena (job 3544216, sha256 3189e52a..., 39,723
+   images) is reused unchanged.
+4. **Everything else** (patches, seeds 401-405, last epoch, readings, gate, verdicts, amendments 1-3) is unchanged.
+   Athena tasks stay queued until a WCSS copy of the same task is verified, then that Athena task is cancelled.

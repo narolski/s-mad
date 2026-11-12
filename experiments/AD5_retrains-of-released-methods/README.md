@@ -255,6 +255,21 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
     analysis outputs deleted unread.
   - Loss overlay `ad5_loss.py` ready (tested on the authors' logs).
   - Cost table sent to the lead (section 9).
+- 12 Nov 23:00 (lead). WCSS reachable again; the author asked the lead to execute without waiting. Retrains move
+  to WCSS (H100) in the order ViT-B/16, MixFaceNet-MAD, ViT-L/14, SelfMAD if GPUs remain; at most 6 sprint GPUs at
+  once; no placeholder jobs (OWNER_BRIEF 92799d8). Athena tasks stay queued until a WCSS copy is verified.
+- 12 Nov 23:05. WCSS probe (one connection under `/tmp/opencode/wcss-client.lock`): login works; system Python 3.9.25;
+  partitions lem-gpu-short (3 days) and lem-gpu-normal (7 days); our queue holds only the held array 6294928_[4-14].
+  The login banner says the home directory was archived (old home in `/lustre/archived-users/narolski/`); Lustre
+  project folder used instead: `/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/{packs,results,logs}`.
+- 12 Nov 23:10-23:30. Prereg amendment 4 (WCSS, H100, Python 3.9, global batch 256 on 1 GPU (B) or 2 x 128 (L)).
+  Job script `src/AD5/wcss/ad5w_train.sbatch` (one seed per array task; code, cp39 wheels and the crop pack untarred
+  in $TMPDIR; venv built there; one result tar back; `--extra=FORCE_RM_TMPDIR`; logs of failed runs to
+  `logs/keep/<task>/`). Packs: `/mnt/t7/smad_next/AD5/wcss/ad5w_code.tar` (sha256 d263083c...; = the local code_v2
+  tree with current `src/AD5`, without hf_cache and SelfMAD; the local `packs/code_v2/src/AD5` was refreshed for this,
+  so it no longer mirrors Athena's code_v2, whose hash list remains `packs/code_v2/CODE_SHA256SUMS`), the crop pack
+  fetched from Athena (`smdd_train_cropped.tar`, 3189e52a..., sha256 OK), cp39 wheel house being downloaded
+  (`wcss/wheels39/`, slow network about 1 MB/s).
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
