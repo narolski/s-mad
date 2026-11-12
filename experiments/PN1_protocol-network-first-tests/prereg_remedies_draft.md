@@ -6,7 +6,10 @@ Status: this is for the author's decision and a pre-run review. It follows the r
 - Temperature or Platt scaling is dropped: a monotone map cannot change a quantile threshold.
 - Both arms would run after FS1, on the FS1 GPU type (A100 PCIe 40 GB), at seeds 403, 404 and 405. They are compared with the FS1 fits of A, B and Sb at the same seeds on the same GPU type, so no new A, B or Sb fit is needed.
 
-## (a) Equality-term arm (H-new-4)
+## (a) Equality-term arm (H-new-4): STOPPED AT PRE-RUN REVIEW
+
+> STOPPED AT PRE-RUN REVIEW (`experiments/reviews/PRERUN_PN1_REMEDIES_20261112.md`, commit 4b424f2: comparator B instead of Sb, storage mark rewards over-correction, the logit penalty acts on the head and the floor, A49 failed with a paired consistency term at λ = 1). Replaced by the SbHI draft in `prereg_remedies_v2_draft.md`.
+
 
 ### Arm
 
@@ -81,7 +84,10 @@ Other outcomes:
 - About 1 h more for the 8.75 GB upload at the measured 3 MB/s, unless the FS1 host is kept.
 - BEQ would add the same again.
 
-## (b) Splice-only-positives arm (H-new-3)
+## (b) Splice-only-positives arm (H-new-3): STOPPED AT PRE-RUN REVIEW
+
+> STOPPED AT PRE-RUN REVIEW (same review: drops every stored-small morph and 91% of unique positives; each of the 124 positives would be seen about 6,400 times, not 35). Replaced by the Sp draft in `prereg_remedies_v2_draft.md`.
+
 
 ### Arm
 

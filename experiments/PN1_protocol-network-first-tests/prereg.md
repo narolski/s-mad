@@ -731,3 +731,14 @@ baseline trained on the same ladder data as the networks, scored on landmark_com
 - Code: `src/PN1/baseline27.py` (committed with this section).
 
 - Amendment 15 implementation note (`date`: Thu Nov 12 10:42:45 AM CET 2026): two corrections to `baseline27.py` after the registration commit 733c7dc, both disclosed. (1) Before the first run: the network AUCs are read exactly from `tier1_a14/a14.json` instead of 3-decimal constants. (2) After a first run whose output was seen: the R4 attacks are restricted to rows whose both persons are training hosts (the registered "usable partner"; 124 rows, as the training manifests), the first run had taken all 156 R4 rows of training hosts. First run: b-lad 0.810, s-lad 0.813; corrected: b-lad 0.814, s-lad 0.814; the verdicts are the same. Final code sha256 `cd5b30cf45d07a5e1d62a7cf4305f1074e3017f4d63a6e28e9c9671d0a29fe11`.
+
+## Note (`date`: Thu Nov 12 10:53:19 AM CET 2026; before computing; zero GPU-hours, training data only): pair-term inertness check
+
+Pre-run review `PRERUN_PN1_REMEDIES_20261112.md` (4b424f2), improvement 1. The existing B and Sb checkpoints of seeds
+401 and 402 score, on the DGX (one GPU process at nice 10, a few minutes, thread caps), the 773 genuine training pairs
+(af0_photo<->af0_photo61 254, af0_half<->af0_half61 363, ladder R0<->R2w 156), the 366 morph pairs af0_u50<->af0_u5061
+and 50 null pairs (a, a) (the first 50 af0_photo images by id). Printed: median |Δz| (logit) and |Δcos| = 1 −
+cos(f_a, f_b) on the head input f (L2-normalised CLIP feature), in eval mode; and the dropout-noise level: the same
+reads with the pair pass in train mode (LoRA dropout on). Pre-stated: if the median |Δz| of the genuine pairs in eval
+mode is < 0.05, the logit equality term is inert. Training images only (`/mnt/t7/smad_next/PN1/fs_tree`); no
+development or benchmark image. Code `src/PN1/pairs_check.py`.
