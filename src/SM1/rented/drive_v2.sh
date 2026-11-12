@@ -139,7 +139,39 @@ case "$STEP" in
     RS "root@$HOST:$B/logs/" "$O16/machine_logs/" || true
     nd=$(cd "$O16" && sha256sum -c --quiet SM1E_*.sha256 2>/dev/null && ls SM1E_*.tar | wc -l)
     log "dev16 results verified: ${nd:-0} of 6"
-    [ "${nd:-0}" -eq 6 ] && { touch "$L/DEV_DONE"; touch "$L/RELEASE"; log "RELEASE written (dev16 6 of 6, logs copied)"; }
+    if [ "${nd:-0}" -eq 6 ]; then touch "$L/DEV_DONE"
+      if [ -n "${SM1_NO_RELEASE:-}" ]; then log "dev16 6 of 6, logs copied; RELEASE not written (SM1_NO_RELEASE: lease reused)";
+      else touch "$L/RELEASE"; log "RELEASE written (dev16 6 of 6, logs copied)"; fi
+    fi
+    ;;
+  hn2fresh)                                                    # H-n2 (DRAFT A18): train on DG1 shards 0-5, test 6-7
+    DV=/mnt/t7/smad_next/SM1/hn2; OH=$OUTD/hn2
+    R "mkdir -p $B/in $B/bin $B/logs $B/manifests/hn2 $B/data/x && nvidia-smi -L && df -h /workspace" | tee -a "$L/sm1_setup.log"
+    RS "$SRC/remote_setup.sh" "$SRC/unpack_one.sh" "$SRC/fit_hn2.sh" "$SRC/remote_hn2.sh" "root@$HOST:$B/bin/"
+    R "bash $B/bin/remote_setup.sh" 2>&1 | tee -a "$L/sm1_setup.log" | tail -2
+    f=$(loc ad4_pack); [ "$(cut -c1-64 "$f.sha256")" = "$(echo "$PACKS" | grep ^ad4_pack | cut -d: -f2)" ] || { log "pin ad4_pack"; exit 1; }
+    R "[ -f $B/done/ad4_pack ]" || { RS "$f" "$f.sha256" "root@$HOST:$B/in/"; R "bash $B/bin/unpack_one.sh ad4_pack" | tail -1; }
+    RS "$DV/sm1_hn2_manifests.tar" "$DV/sm1_hn2_manifests.tar.sha256" "root@$HOST:$B/manifests/hn2/"
+    R "cd $B/manifests/hn2 && sha256sum -c sm1_hn2_manifests.tar.sha256 && tar -xf sm1_hn2_manifests.tar && rm sm1_hn2_manifests.tar"
+    (cd / && tar -cf - -T "$DV/filelist_hn2.txt" 2>/dev/null) | ssh "${O[@]}" "root@$HOST" "tar -xf - -C $B/data/x"
+    R "cd $B/data/x && sha256sum -c --quiet $B/manifests/hn2/hn2_files.sha256 && echo DG1_FILES_OK"
+    R "cd $B; (nohup setsid bash $B/bin/remote_hn2.sh > $B/logs/hn2_queue_driver.log 2>&1 < /dev/null &) > /dev/null 2>&1; sleep 2; echo started"
+    log "hn2 queue started (smoke, then 4 fits)"
+    mkdir -p "$OH"
+    for k in $(seq 1 120); do
+      sleep 600
+      RS --include='*.tar' --include='*.tar.sha256' --exclude='*' "root@$HOST:$B/results_hn2/" "$OH/" 2>/dev/null || true
+      RS "root@$HOST:$B/logs/" "$OH/machine_logs/" 2>/dev/null || true
+      R "[ -f $B/results_hn2_FAILED ]" && { log "hn2 smoke failed: machine kept, see machine_logs"; exit 1; }
+      if R "[ -f $B/results_hn2/HN2_ALL_DONE ]"; then
+        RS --include='*.tar' --include='*.tar.sha256' --exclude='*' "root@$HOST:$B/results_hn2/" "$OH/"
+        RS "root@$HOST:$B/logs/" "root@$HOST:$B/queue_hn2.log" "$OH/machine_logs/" || true
+        nh=$(cd "$OH" && sha256sum -c --quiet HN2_*.sha256 2>/dev/null && ls HN2_*_s40?.tar | wc -l)
+        log "hn2 verified ${nh:-0} of 4"
+        [ "${nh:-0}" -eq 4 ] && { touch "$L/RELEASE"; log "RELEASE written (4 of 4 fits and logs back)"; }
+        break
+      fi
+    done
     ;;
   devfresh)                                                    # A15 on another host: minimal packs + the 6 fit tars, then dev
     R "mkdir -p $B/in $B/bin $B/logs $B/results && nvidia-smi -L && nproc && df -h /workspace" | tee -a "$L/sm1_setup.log"
