@@ -115,6 +115,21 @@ case "$STEP" in
       sleep 600
     done
     ;;
+  devfresh)                                                    # A15 on another host: minimal packs + the 6 fit tars, then dev
+    R "mkdir -p $B/in $B/bin $B/logs $B/results && nvidia-smi -L && nproc && df -h /workspace" | tee -a "$L/sm1_setup.log"
+    RS "$SRC/remote_setup.sh" "$SRC/unpack_one.sh" "$SRC/remote_dev.sh" "$SRC/../sm1_lora_audit.py" "root@$HOST:$B/bin/"
+    R "bash $B/bin/remote_setup.sh" 2>&1 | tee -a "$L/sm1_setup.log" | tail -2
+    while IFS=: read -r -u 3 n pin; do
+      case "$n" in ad4_pack|sm1gpu_img_test|sm1lora_manifests_v2) ;; *) continue ;; esac
+      f=$(loc "$n"); [ "$(cut -c1-64 "$f.sha256")" = "$pin" ] || { log "pin $n"; exit 1; }
+      R "[ -f $B/done/$n ]" || { RS "$f" "$f.sha256" "root@$HOST:$B/in/"; R "bash $B/bin/unpack_one.sh $n" | tail -1; }
+    done 3<<< "$PACKS"
+    for t in SM1B_a_s401 SM1B_a_s402 SM1B_e_s401 SM1B_e_s402 SM1B_f_s401 SM1B_f_s402; do
+      RS "$OUTD/$t.tar" "$OUTD/$t.tar.sha256" "root@$HOST:$B/results/"
+    done
+    R "cd $B/results && sha256sum -c *.sha256 && date > $B/ALL_DONE"
+    bash "$0" "$HOST" "$PORT" "$L" dev
+    ;;
   dev)                                                         # A15 draft: development-data scoring (after the queue)
     touch "$L/DEV_PLANNED"                                      # holds RELEASE until DEV_DONE
     DV=/mnt/t7/smad_next/SM1/dev_a14

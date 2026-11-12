@@ -470,7 +470,7 @@ registered and is reported; the decision read for the ViT-L/14 audit (job 354705
   key-bootstrap draws (seed 20261111). Prediction: trained − KE < 0.2 logit but AUC ≥ 0.70. Falsified if AUC ≤ 0.60.
   Reported beside it: trained − KE (item 1 reader) and the same AUC for the ViT-B/16 fits (already read by the reviewer).
 
-## DRAFT amendment A15 (12 Nov; not registered until the pre-run check and the lead's approval; no score exists)
+## Amendment A15 (registered 12 Nov after the pre-run check and the lead's approval; no score exists at registration)
 
 Development data only; no benchmark cell is scored. Saved ViT-B/16 fits SM1B_{a,e,f}_s{401,402} (rebuilt from their
 result tars, reproduction check on 256 stored rows) scored on the rented machine sm1b after its last registered fit
