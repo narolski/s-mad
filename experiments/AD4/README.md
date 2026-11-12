@@ -1116,3 +1116,12 @@ Job files (on WCSS in `/lustre/pd03/hpc-narolski-1790461090/smad-next/jobs_ad4/`
   (never read), then the H100 scorer-equivalence gate: A47 I-3 seed-1 `last.pt` re-scored with `ad4_score.py` in the container; tar to
   `smad-next/results/AD4_equiv/`.
 - `ad4_vitb_array.sbatch` (array 0-9%5, 2 h 30 min limit): the ten ViT-B/16 tasks through the unchanged `run.sh`; results to `smad-next/results/AD4/`.
+| 23:36 | Third attempt failed the same way; retry loop every 15 min (one ssh each). | |
+| 23:57 | **Job 6308825 submitted** (smoke + H100 equivalence; owner: AD4 reading owner). Slurm forecast start 13 Nov 14:00, end 15:00 (forecast assumes full limits; 20 nodes powered down, 139 jobs pending in lem-gpu-short). | `squeue` |
+| 23:59 | **Job 6308830_[0-9%5] submitted** (the ten ViT-B/16 tasks; owner: AD4 reading owner), `--dependency=afterok:6308825` so the smoke passes first. Expected: starts when 6308825 ends OK (forecast about 13 Nov 15:00); each task about 45 to 75 min on an H100 (A47 I-3 trained in 0.52 h; scoring and pack copy about 15 to 20 min); two waves of five, so about 2.5 h after start: end about 13 Nov 17:30 (estimate from the A47 H100 train time, to be replaced by the step rate of the first task log). | `squeue` |
+
+Check plan (no polling loop): at the 6308825 forecast start plus 40 min (13 Nov about 14:40), read
+`/lustre/pd03/hpc-narolski-1790461090/smad-next/logs/ad4-smoke-equiv-6308825.out`; if `AD4 equiv done`, copy
+`results/AD4_equiv/equiv_h100_6308825.tar` + `.sha256` and run `gates.py equiv` against the registered A47 `scores_eval_last.npz`;
+then compute the array's ETA from the first task's step rate and check at that time. If 6308825 fails, 6308830 stays pending on its
+dependency (DependencyNeverSatisfied): fix, re-test, resubmit both, and cancel 6308830.
