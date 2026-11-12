@@ -79,3 +79,36 @@ Built after the registration commit 01557ce; no TT1, border or geo reference row
   Bv is computed with the tier-1 rule from their scores_eval.npz; floor = −‖head.cls.weight‖ + head.cls.bias.
 - WCSS: pack, network tar, tt1_job.sh (+ .sha256) and tt1.sbatch uploaded to
   /lustre/pd03/hpc-narolski-1790461090/smad-next/packs/TT1/ (rsync rc 0, 23:37-23:42).
+
+## 5. Deviation TT1-D1 (`date`: Fri Nov 13 12:13:30 AM CET 2026; registered at the git commit that adds this section, before any TT1 row is scored on any platform): rented A100 instead of the DGX
+
+- Fact: the DGX fallback gate (G-DGX tolerances) FAILED for all 12 networks (commit 3fb51f6, `gate_dgx_run2.json`):
+  max |Δlogit| 0.032-0.116 against 0.02; the large differences lie only on the 2,000 FFHQ genuine rows (A_s401: R_cam
+  max 0.0048, M_ffhq 0.0006, R_ffhq 0.088); one own-rule flip in A_s401, A_s402, C_s401; |ΔAUC| ≤ 0.00006; Kendall on R_cam
+  0.995-0.998. Stacks: DGX torch 2.12.1 / Pillow 12.2 / GB10 against the stored scores' torch 2.2.1 / Pillow 10.2 / A100.
+  No TT1 row was scored on the DGX, and no row of the DGX run is read (its gate scores are kept only as the record).
+  No tolerance is amended.
+- Platform (lead's decision): one rented A100-SXM4 80 GB (lease tt1a, `/mnt/t7/smad_next/vast/tt1a`, image
+  pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime, the pn1b type), pip pins exactly as the PN1 hosts
+  (`src/PN1/rented/remote_setup.sh`: timm 1.0.27, huggingface_hub 0.36.2, safetensors 0.8.0, numpy 1.26.4, pyyaml 6.0.3,
+  pillow 10.2.0; torch held at 2.2.1), cap 3 USD, deadline 2.5 h. Same pack (`2109f742…`), network tar (`92bd1841…`),
+  list, rescore.py and reader as pinned; everything else of TT1-S unchanged.
+- Gate (byte-identity gate, applied to all 12 networks, gate rows scored first, gate.json, stop on failure):
+  `src/TT1/gate_check_a100.py` `69f341014c43c5f988aa6ee9906efc93b3331ec5c4e4df31fbbcf961a169e578`:
+  - the 3,000 FFHQ rows (R_ffhq 2,000 + M_ffhq 1,000), whose stored logits were produced by the same script
+    (rescore.py) on A100s: byte identity, max |Δlogit| = 0 (float32);
+  - the 417 R_cam rows: their stored logits come from pn1_score.py, which sets TF32 on (allow_tf32 = True; rescore.py
+    leaves PyTorch's defaults) and scored the whole evaluation manifest in other batches, so bit identity is not
+    expected there (stated now, before any A100 number): max |Δlogit| ≤ 0.02, zero own-rule changes, Kendall τ-b ≥ 0.99;
+  - |ΔAUC(R_ffhq vs R_cam)| ≤ 0.002.
+  On failure: result tar with rc GATE_FAILED, no TT1 row scored, RELEASE + FAILED after verification, lead told.
+- Scripts: remote `src/TT1/rented/remote_tt1.sh` `dedc9f5c33976d5f6d29cd3190b9f9ee14a4ad1689d77bf35cf8696cb5b5467d` (pins, pip, extract, diagnostic, gate, TT1 rows, result tar);
+  driver `src/TT1/rented/drive_tt1.sh` `b797cafe19d88a151da685c6fa6f1e0d23e0ddc228c8e0d1d5f9ea40bfd255c7` (rsync --partial upload, start, pull, sha256 of the result tar and of every
+  log, second local copy in /mnt/t7/smad_next/TT1/results/, RELEASE only after both copies verify; RELEASE + FAILED
+  on a verified failed gate; no decision on unreadable remote state; no RELEASE in test mode).
+- Zero-GPU-budget diagnostic (lead's request; NOT a registered read, decides nothing): `src/TT1/diag_stack.py`
+  `71e503bf372af6aeb09d1f4cf9a1487cbec77f15efc34dda80dca9f695660105` saves, for the 5 FFHQ genuine rows with the largest DGX-A100 gate differences for A_s401 (fq016604, fq010376,
+  fq008900, fq008528, fq011276; chosen from the failed DGX gate), the decoded array, the resized array, the input
+  tensor and the A_s401 logit on each stack (DGX output `/mnt/t7/smad_next/TT1/diag/diag_dgx.npz`, already computed;
+  the A100 output comes back in the result tar). It answers which stage differs: decode, resize or network.
+- Local test of remote_tt1.sh on the DGX (test mode, pip skipped) started before this commit; result in the README.
