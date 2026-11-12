@@ -1,6 +1,6 @@
 # DRAFT registration: the sealed final benchmark read (FINAL), v2
 
-**Not to be executed without the author's explicit go.** This is a draft. No benchmark file was opened to write it. No score of any candidate network on any benchmark exists for the fresh seeds or later fits.
+**Not to be executed without the author's explicit go.** The author answered the design decisions on 12 Nov (section 10); the execution go for the read itself is still pending and needs the freeze outcome first. This is a draft. No benchmark file was opened to write it. No score of any candidate network on any benchmark exists for the fresh seeds or later fits.
 
 - v1 (71fa6e4) was reviewed in `experiments/reviews/PRERUN_FINAL_SEALED_READ_20261112.md` (GO WITH FIXES, blockers B1–B4).
 - v2 applies B1–B4, M1–M8 and the minor points, using the reviewer's replacement texts where given.
@@ -41,6 +41,8 @@ No benchmark number enters.
 
 If MS1 is unregistered, unread, or B is frozen, the single-source arm is frozen. MS1 has no B arm.
 
+**Second backbone (BB2; author: "do the second backbone").** The second-backbone arm of the frozen recipe (experiment BB2, its registered fits) is scored in the same sealed read as a robustness row, never as an alternative method to pick from.
+
 Sp's outcome does not change the frozen arm; it only qualifies the claim. The FS1 printed reads R1–R6 and the amendment-15 baseline do not change it either.
 
 **Networks read.**
@@ -53,7 +55,14 @@ Thresholds (τ_dev from both pools, and the own rule) are fixed before the read 
 
 ## 2. Sets and cells (B2)
 
-**Confirmatory:** the morph side of MorDIFF and DiM. FEI gtest and the sealed sets are added only if the author assigns them.
+**Confirmatory (author: "Yes, please.").** These are read once, in the same single read:
+- **FEI gtest** (`smadcvpr_data/manifests/gtest.csv`, named from metadata only). It holds FEI genuine photos (neutral 198, smiling 187) and 1,000 StyleGAN W+ morphs (500 neutral, 500 smiling), with genuine photos no network of ours has seen. Caveats from the record: the G-test generator (StyleGAN W+) was used in the earlier MADMamba program, and FFHQ-Morphs, our development set, has a stylegan_wplus family that no PN1 network has scored.
+- **The sealed sets.** The candidates are named only from the main registration's documents (10_ASSET_INVENTORY.md, mambamorph-code CONCLUSIONS.md, PLANNING_RECORD.md). No sealed file was opened.
+  - **VAL-X** (`smadcvpr_data/manifests/valx.csv`): the sealed selection set built from the val10 FRGC/FERET subjects. These persons were excluded from every PN1 training, but they come from our training databases. VALX-A (`valx_a.csv`) is the allowed selection subset and was used for selection in the earlier program.
+  - **FST** (the "final sealed test"): F1 splice and F4 diffusion components. CONCLUSIONS.md says it "has not been delivered" and is "not built with its diffusion family". Whether it exists on disk, and what it contains, is unknown.
+  - **A12SP** ("tool diversity", ledger A12-SP): an A12 side-study set kept sealed. Its contents are not described in the documents read.
+  - **Ambiguity for the author:** whether FST exists and which of its parts are assigned; what A12SP contains and whether it is a test set at all; whether VAL-X counts as confirmatory, since its persons come from our training databases although they are identity-disjoint.
+- **The morph side of MorDIFF and DiM.** Label: "morphs unseen; genuine pool seen".
 
 **Reported, labelled "seen during development":** MAD22, FRLL-Morphs and H1.
 - The author's stated goal is a comparison with the state of the art on MAD22 and FRLL-Morphs. So a full standard-form table is reported for both, labelled, but it is not the confirmatory endpoint.
@@ -67,7 +76,7 @@ The sets:
 
 **Genuine pools.** Every cell is printed with the full genuine pool and the neutral-only genuine pool (the expression cue, C1).
 
-**Not read:** FEI and the sealed sets unless assigned; FFHQ (development set by designation).
+**Not read:** FFHQ (development set by designation), and any sealed set the author does not confirm after the ambiguity above is resolved.
 
 ## 3. Metrics and endpoint
 
@@ -82,7 +91,13 @@ Every detector is reported under every form.
 
 Exact Clopper–Pearson intervals are printed for every rate.
 
-**Single confirmatory endpoint (M2).** The τ_dev form on the confirmatory cells: APCER per family at τ_dev(i), and BPCER on the E7 pool, combined as (mean APCER + BPCER)/2. It is read on the MorDIFF and DiM family means, two confirmatory cells, with Holm correction across them. Everything else is descriptive.
+**Single confirmatory endpoint (M2).** The τ_dev form on the confirmatory cells: APCER per family at τ_dev(i), and BPCER on the E7 pool, combined as (mean APCER + BPCER)/2. It is read on the confirmatory cells, with Holm correction across all of them:
+- FEI gtest (neutral and smiling halves pooled);
+- each assigned sealed set;
+- the MorDIFF family mean;
+- the DiM family mean.
+
+Everything else is descriptive. The author accepted this endpoint ("Yes."); the standard form is secondary.
 
 **Statistics (M3).** A two-level bootstrap: seeds first, then persons, 2,000 draws, `default_rng(20261121)`.
 - **Exceeded:** the 95% interval of (ours − best comparison) lies entirely below 0, AND ≥ 4 of 5 seeds are individually better.
@@ -96,11 +111,18 @@ Exact Clopper–Pearson intervals are printed for every rate.
 | Group | Detectors |
 |---|---|
 | Released checkpoints | MADation ViT-B/16 and ViT-L/14, SelfMAD, MixFaceNet-MAD |
-| AD5 retrains (seed means) | the same four methods at seeds 401–405, where finished and verified by the read date; otherwise "not available" |
+| AD5 retrains (seed means) | MADation ViT-B/16, MixFaceNet-MAD and MADation ViT-L/14 at seeds 401–405 (required); SelfMAD if it finishes |
+| Competitor baselines (CB1) | as registered in experiment CB1, by the same cut-off |
 | Reference lines (printed only, never "best") | AD4's morph-free networks (M3, M3L); PN1 internal arms (A, and B or Sb, whichever is not frozen) |
 
+**Cut-off (author: "Wait for retrains").**
+- The read waits for the AD5 retrains and the CB1 baselines until **14 Nov 2026, 18:00 CET**, and starts after that cut-off and after the freeze.
+- A retrain method counts only if at least 3 of its 5 seeds have verified result tars by the cut-off. Its row is the mean over the seeds present, with the count printed.
+- A method with fewer than 3 seeds, a CB1 baseline not finished, or SelfMAD unfinished: printed "not available".
+- Nothing is added after the read starts.
+
 **Definition:**
-- **Best comparison** = the lowest value among released checkpoints and AD5 retrain seed means only.
+- **Best comparison** = the lowest value among released checkpoints, AD5 retrain seed means and CB1 baselines only.
 - Morph-free and internal networks are printed reference lines.
 - Any cell where a morph-free network has EER ≤ 5% is labelled "shortcut-saturated" and cannot support a SOTA claim.
 - In the own-rule and τ_dev forms, best comparison = the released/retrain detector with the lowest (mean APCER + BPCER)/2 on that cell.
@@ -127,7 +149,14 @@ Exact Clopper–Pearson intervals are printed for every rate.
 
 ## 7. One read
 
-**Who runs it.** The lead is not blind (section 6), so the proposal is either an owner agent that has never seen a candidate's benchmark score, or the second author. The PN1 owner prepares the pack and sees no score before the commit.
+**Who runs it (author: "You!").** The lead runs the read. The disclosure stays: the lead is not blind (endorsed the Sb refit after H1 was seen). Safeguards that make blindness unnecessary:
+- the freeze rule is mechanical;
+- the pack and reader are pinned by sha256 before the read;
+- outputs go to a sealed file shown only after the whole job finishes;
+- no re-run;
+- independent review before and after.
+
+The PN1 owner prepares the pack and sees no score before the commit.
 
 **Pack** (one tar, pinned by sha256 at registration):
 - the frozen networks' `last_trainable.pt` and `meta.json` (all seeds), plus the reference lines';
@@ -166,7 +195,7 @@ Exact Clopper–Pearson intervals are printed for every rate.
 
 ## 8. What the paper says under each outcome
 
-**Prediction (M5), stated now.** The frozen arm's E7 EER on MorDIFF/DiM is ≥ 30%. The releases' low standard-form EER there is read as render-path/storage detection (AD4, RS1). Under this prediction the abstract carries no SOTA claim.
+**Prediction (M5), stated now.** The frozen arm's E7 EER on MorDIFF/DiM is ≥ 30%. The releases' low standard-form EER there is read as render-path/storage detection (AD4, RS1). No claim is pre-committed either way (author: "only if we cannot propose SOTA"): the abstract's claim is whatever the registered criteria of section 5 give on the confirmatory endpoint.
 
 | Outcome | Paper statement |
 |---|---|
@@ -181,19 +210,30 @@ Exact Clopper–Pearson intervals are printed for every rate.
 
 ## 9. Missing for CVPR (reviewer's list), with the cost by 14 Nov
 
+**Deliverables (author: "sure"), with the files that feed them:**
+- **Source-by-source protocol table.** Training sources against test sources. Feeds: PN1 README section 3; MS1 prereg.md; TT1; the FINAL manifests.
+- **Ablation table** (A, B, Sb, Sp, SbM3, SbV). Feeds: `tier_fs/fs.json`, `tier_fs/sp.json`, the MS1 reader output, `tier1_a14/*.json`.
+- **Paired seed tests.** Sign / Wilcoxon over seeds per contrast. Feeds: the same reader outputs; computed in the readers.
+- **Compute disclosure.** GPU-hours including audits and rentals. Feeds: each experiment's compute section; the lease folders' LIVE.json / guard logs.
+- **Limitations.** Threshold transfer unless MS1 passes; the shared 204-photo FRLL genuine pool; one generator per family; the second backbone (BB2). Feeds: this file, BENCHMARK_EXPOSURE.md, MS1 and BB2 results.
+
 | Item | What | Cost by 14 Nov |
 |---|---|---|
-| Second backbone | a DINOv3 or ViT-B/16-variant rerun of the frozen arm, or an explicit limitation statement | rerun: about 5 fits × 1.4 h ≈ 7 A100-h (≈ 3.3 USD), needs code for a DINOv3 LoRA arm (author item); limitation statement: 0 |
+| Second backbone | run as experiment BB2 (author: "do the second backbone"); scored as a robustness row in the sealed read | BB2's own registration |
 | Cross-dataset protocol table | training sources against test sources (FRGC/colorFERET, +FFHQ in MS1; tests: ladder, FFHQ, benchmarks) | 0 (writing) |
 | Ablation table | A, B, Sb, Sp, SbM3, from registered development reads | 0 compute once FS1, Sp and MS1 are read |
 | Paired seed tests | sign / Wilcoxon over seeds for each ablation contrast | 0 (in the readers) |
 | Compute disclosure | GPU-hours including audits and rentals | 0 (collect from records) |
 | Limitation statements | thresholds do not transfer to unseen genuine sources unless MS1 passes; all benchmarks share one genuine pool of 204 FRLL photos | 0 |
 
-## 10. Author decisions (reviewer's five items)
+## 10. Author decisions (answered 12 Nov about 23:50 CET; recorded `date`: Thu Nov 12 11:30:53 PM CET 2026)
 
-1. Release FEI gtest and/or the sealed sets as the confirmatory set (only matters if B2 is accepted).
-2. Accept the controlled τ_dev form as the confirmatory endpoint, with the standard form secondary.
-3. Who runs the read, given that the lead is not blind.
-4. Wait for the AD5 retrains, or print "not available".
-5. Accept that the expected outcome is no SOTA claim in the abstract.
+1. **Confirmatory set: "Yes, please."** FEI gtest and the sealed sets are assigned as confirmatory (section 2). The ambiguity about which sealed sets exist and what they contain is listed there, for the author.
+2. **Endpoint: "Yes."** The development-threshold (τ_dev) form is the confirmatory endpoint; the standard form is secondary.
+3. **Who runs the read: "You!"** The lead runs it, with the disclosure and the safeguards of section 7.
+4. **Retrains: "Wait for retrains."** The cut-off rule is in section 4: 14 Nov 18:00 CET; ≥ 3 of 5 seeds per method; CB1 baselines included.
+5. **SOTA on diffusion: "Well, only if we cannot propose SOTA... ;)"** The prediction and outcome table are kept, but there is no pre-commitment to "no claim": the claim is whatever the registered criteria give.
+6. **Second backbone: "do the second backbone".** Experiment BB2 is scored in the same read as a robustness row (section 1).
+7. **Writing items: "sure".** The deliverables are listed in section 9.
+
+The execution go for the read itself is still pending: it needs the freeze outcome first.
