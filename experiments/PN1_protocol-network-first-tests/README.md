@@ -394,7 +394,13 @@ every arm: "inconclusive, no claim" (P-c, P-c2, P-d fail; P-g non-inferior only 
   extending the rescoring to A and C needs a short amendment before scoring.
 - Fresh seeds 403 to 405 with P-c′ and the hierarchical claim: draft `prereg_fresh_seeds_draft.md`, for the lead's
   pre-run reviewer; nothing submitted.
-- HN2 (unused genuine sources FFHQ, FEI; aligned frames exist): about 0.2 A100-hours, not run.
+- HN2 on FFHQ registered as amendment 13 (git a1c6664) before any score; armed on pn1a / pn1b after their third queue;
+  reader `src/PN1/hn2_read.py` -> `tier1/hn2.json`.
+- Native history table (POST HOC, `tier1/native_history.json`): native eye distance median FRGC 271 px (JPEG
+  1704x2272), colorFERET 132 (PPM 512x768), FRLL 202 (JPEG 1350x1350), FFHQ bona 259 (PNG 1024) and its
+  landmark_complete morphs 65 (PNG 256), FEI 90 (JPEG 640x480), H1 37.7 (PNG 112). Tier-1 own-rule flags: FRGC and
+  colorFERET 0 on every fit, FRLL 0 to 0.5%, H1 0.3 to 25.6%.
+- Fresh-seed draft v2 with fixes F1 to F10 and the author questions: `prereg_fresh_seeds_draft.md`.
 
 ## 9b. Open items (older, superseded)
 
