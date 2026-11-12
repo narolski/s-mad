@@ -60,6 +60,20 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
   take the lock per file.
 - `date` Thu Nov 12 11:48:19 PM CET 2026: DGX fallback run started (tt1_job.sh, TT1_LOCAL=1, TT1_MODE=full; log
   /mnt/t7/smad_next/TT1/dgxrun/run.log; GPU shared with other jobs incl. CB1).
+- Run 1 failed (infrastructure): it exited 1 at 23:49:51 inside the first rescore call (A_s401, gate rows) without a
+  traceback (the job keeps only the last output line of each rescore call; that line was empty), before any score file
+  was written. The same call run by hand at 23:50 completed (3,417 rows; output discarded, not read). Log kept as
+  /mnt/t7/smad_next/TT1/dgxrun/run1_failed.log. Probable cause not established (run 1 was started under nohup; GPU and
+  RAM shared). Re-run unchanged (registration section 8) from 23:52:06, without nohup; first rescore done 23:54.
+- Run 2: gate rows of 12 networks scored in 748 s (shared GB10). GATE FAILED (all 12 networks) at `date` Fri Nov 13
+  12:04:34 AM CET 2026; job exited 2 and scored no TT1 row. `gate_dgx_run2.json` (copy here). Per network: max |Δlogit|
+  0.032-0.116 (tolerance 0.02), median |Δ| 0.0001-0.0004, own-rule flips 1 in A_s401, A_s402, C_s401 (stored logits
+  0.029, 0.010, 0.004 from zero) and 0 elsewhere, |ΔAUC| ≤ 0.00006 (tol 0.002), Kendall on R_cam 0.9949-0.9977 (tol
+  0.99). The large differences sit in R_ffhq only (A_s401: R_cam max 0.0048, M_ffhq 0.0006, R_ffhq 0.088 with 63 of
+  2,000 rows above 0.02); likely cause not established (DGX torch 2.12.1 / Pillow 12.2 against the A100 stack torch
+  2.2.1 / Pillow 10.2; FFHQ genuine logits lie off the floor). Result tar (gate only)
+  /mnt/t7/smad_next/TT1/results/TT1_s401402_full_local.tar sha256
+  b33cf2e79026f6540c1c84d46144a4cc455c51ba08a1b2316823e3c9c6217a80 (verified copy). Stopped; lead told.
 
 ## 3. Data
 
@@ -178,8 +192,7 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-DGX run of tt1_job.sh (see timeline; log /mnt/t7/smad_next/TT1/dgxrun/run.log; result tar to
-/mnt/t7/smad_next/TT1/dgxrun/root/smad-next/results/TT1/). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+No process running: the DGX run ended at the gate (failed, exit 2; no TT1 row scored). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch

@@ -1,0 +1,155 @@
+{
+ "tolerance": {
+  "max_abs": 0.02,
+  "max_flips": 0,
+  "d_auc": 0.002,
+  "kendall_cam": 0.99
+ },
+ "nets": {
+  "PN1_A_s401": {
+   "n": 3417,
+   "max_abs": 0.08800438046455383,
+   "median_abs": 0.0001575946807861328,
+   "flips": 1,
+   "flips_max_abs_stored": 0.028784969821572304,
+   "auc_ffhq_cam_stored": 0.9952589928057554,
+   "auc_ffhq_cam_new": 0.9952685851318945,
+   "d_auc": 9.592326139173935e-06,
+   "kendall_cam": 0.9950481065946543,
+   "ok": false
+  },
+  "PN1_A_s402": {
+   "n": 3417,
+   "max_abs": 0.11552339792251587,
+   "median_abs": 0.00011444091796875,
+   "flips": 1,
+   "flips_max_abs_stored": 0.009736157022416592,
+   "auc_ffhq_cam_stored": 0.9901079136690647,
+   "auc_ffhq_cam_new": 0.9901714628297362,
+   "d_auc": 6.354916067152772e-05,
+   "kendall_cam": 0.9949501936912009,
+   "ok": false
+  },
+  "PN1_B_s401": {
+   "n": 3417,
+   "max_abs": 0.07283937931060791,
+   "median_abs": 0.0001671314239501953,
+   "flips": 0,
+   "flips_max_abs_stored": 0.0,
+   "auc_ffhq_cam_stored": 0.9949052757793765,
+   "auc_ffhq_cam_new": 0.994916067146283,
+   "d_auc": 1.0791366906515165e-05,
+   "kendall_cam": 0.9948521655081685,
+   "ok": false
+  },
+  "PN1_B_s402": {
+   "n": 3417,
+   "max_abs": 0.10172861814498901,
+   "median_abs": 0.00014352798461914062,
+   "flips": 0,
+   "flips_max_abs_stored": 0.0,
+   "auc_ffhq_cam_stored": 0.993220623501199,
+   "auc_ffhq_cam_new": 0.9932458033573142,
+   "d_auc": 2.5179856115165045e-05,
+   "kendall_cam": 0.9958725327430363,
+   "ok": false
+  },
+  "PN1_Bn_s401": {
+   "n": 3417,
+   "max_abs": 0.08305846154689789,
+   "median_abs": 0.0001628398895263672,
+   "flips": 0,
+   "flips_max_abs_stored": 0.0,
+   "auc_ffhq_cam_stored": 0.9908345323741007,
+   "auc_ffhq_cam_new": 0.9908033573141487,
+   "d_auc": 3.117505995198222e-05,
+   "kendall_cam": 0.9958436857046443,
+   "ok": false
+  },
+  "PN1_Bn_s402": {
+   "n": 3417,
+   "max_abs": 0.048077404499053955,
+   "median_abs": 0.00016641616821289062,
+   "flips": 0,
+   "flips_max_abs_stored": 0.0,
+   "auc_ffhq_cam_stored": 0.9902565947242207,
+   "auc_ffhq_cam_new": 0.9902961630695444,
+   "d_auc": 3.95683453237039e-05,
+   "kendall_cam": 0.9964662681535942,
+   "ok": false
+  },
+  "PN1_Bv_s401": {
+   "n": 3417,
+   "max_abs": 0.07469356060028076,
+   "median_abs": 0.00016641616821289062,
+   "flips": 0,
+   "flips_max_abs_stored": 0.0,
+   "auc_ffhq_cam_stored": 0.9949796163069544,
+   "auc_ffhq_cam_new": 0.9949916067146283,
+   "d_auc": 1.1990407673856396e-05,
+   "kendall_cam": 0.9955958310274857,
+   "ok": false
+  },
+  "PN1_Bv_s402": {
+   "n": 3417,
+   "max_abs": 0.1041949987411499,
+   "median_abs": 0.00014162063598632812,
+   "flips": 0,
+   "flips_max_abs_stored": 0.0,
+   "auc_ffhq_cam_stored": 0.9929724220623501,
+   "auc_ffhq_cam_new": 0.9929652278177458,
+   "d_auc": 7.194244604380451e-06,
+   "kendall_cam": 0.9958609558510501,
+   "ok": false
+  },
+  "PN1_C_s401": {
+   "n": 3417,
+   "max_abs": 0.07778385281562805,
+   "median_abs": 0.00016307830810546875,
+   "flips": 1,
+   "flips_max_abs_stored": 0.004003443755209446,
+   "auc_ffhq_cam_stored": 0.9893968824940048,
+   "auc_ffhq_cam_new": 0.9893968824940048,
+   "d_auc": 0.0,
+   "kendall_cam": 0.996327916498272,
+   "ok": false
+  },
+  "PN1_C_s402": {
+   "n": 3417,
+   "max_abs": 0.09445077180862427,
+   "median_abs": 0.00013780593872070312,
+   "flips": 0,
+   "flips_max_abs_stored": 0.0,
+   "auc_ffhq_cam_stored": 0.9933621103117506,
+   "auc_ffhq_cam_new": 0.9933717026378897,
+   "d_auc": 9.592326139062912e-06,
+   "kendall_cam": 0.996333702268954,
+   "ok": false
+  },
+  "PN1_Sb_s401": {
+   "n": 3417,
+   "max_abs": 0.03231700509786606,
+   "median_abs": 0.0003383159637451172,
+   "flips": 0,
+   "flips_max_abs_stored": 0.0,
+   "auc_ffhq_cam_stored": 0.99728896882494,
+   "auc_ffhq_cam_new": 0.9972901678657075,
+   "d_auc": 1.199040767452253e-06,
+   "kendall_cam": 0.9965585025904757,
+   "ok": false
+  },
+  "PN1_Sb_s402": {
+   "n": 3417,
+   "max_abs": 0.03268992900848389,
+   "median_abs": 0.0004038810729980469,
+   "flips": 0,
+   "flips_max_abs_stored": 0.0,
+   "auc_ffhq_cam_stored": 0.9963860911270983,
+   "auc_ffhq_cam_new": 0.9963824940047962,
+   "d_auc": 3.5971223021347143e-06,
+   "kendall_cam": 0.9976883744422738,
+   "ok": false
+  }
+ },
+ "pass": false
+}
