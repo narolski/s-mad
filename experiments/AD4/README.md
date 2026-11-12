@@ -1098,3 +1098,21 @@ Applied on the lead's instruction:
   DGX unblanked-score gate in the follow-ups (rerun on an A100, or leave "incomplete (2 of 5)").
 - Nothing of this owner runs on any machine. Compute of the reading owner: DGX CPU readings; DGX GB10 about 1 h (follow-up scoring);
   Athena 0 GPU-h (smoke job 3546199 cancelled before it started).
+
+## Resumed by the reading owner, 12 Nov from 23:00 (WCSS reachable again)
+
+| Time | What | Evidence |
+|---|---|---|
+| 23:00 | Lead: WCSS reachable since about 23:00; finish the ViT-L/14 seeds 403 to 405 and the ViT-B/16 cluster rerun on WCSS. Local pack `/mnt/t7/smad_next/AD4/ad4_pack.tar` still present, sha256 `1ad170be…` OK; reader working copy re-extracted to `/mnt/t7/smad_next/AD4/test/work/task_AD4_m3mf_s401/` (pack `SHA256SUMS` OK; `data/` symlinks as `run.sh` makes them). | |
+| 23:01 | WCSS listing: pack, library packs, the ten ViT-B/16 task folders in `staging/AD4` (`run.sh` sha256 `5aae2ef9…` in all ten) and **all ten ViT-L/14 result tars** in `results/AD4/`, written 12 Nov 12:50 to 15:54 by the generic queue slots (`queue/done/` lists the ten tasks; `task_info.txt`: `local 0`, pack `1ad170be…`, steps 6250, limit 0, wall about 7,200 s, nodes r18-*). All ten `.sha256` OK on WCSS. No score opened. | ssh listing |
+| 23:02 | **Amendment 5** registered and committed (ba88926, 23:03:06), before any WCSS result was opened: WCSS results are the registered networks for ViT-L/14 morph-free seeds 403 to 405; the other seven WCSS ViT-L/14 results are cross-platform repeats; the WCSS ViT-B/16 ten-network rerun is the registered ViT-B/16 arm whatever its outcome; H100 gates before reading. | `prereg.md` |
+| 23:03 | Ten WCSS ViT-L/14 tars copied to `/mnt/t7/smad_next/AD4/results_wcss/` (rsync under the WCSS lock), all ten `sha256sum -c` OK. Athena array 3546123_[2-4] cancelled (never started). Registered ViT-L/14 folder `/mnt/t7/smad_next/AD4/results_m3l_registered/` (symlinks: Athena morph-free 401, 402 and label-permuted 401 to 405; WCSS morph-free 403 to 405). | |
+| 23:14, 23:18 | First two `sbatch` attempts of the smoke + equivalence job failed: "Unable to contact slurm controller (connect failure)" (ssh login fine). Nothing submitted. Retry every 15 min. | |
+| 23:20 | Sample-order gate: **20 of 20 pass** (registered ViT-L/14 arm and the ten WCSS repeats); no refusal; meta seed and arch correct; cards: Athena A100-SXM4-40GB, WCSS H100. Files `ad4_gates_m3l.json` (registered arm), `ad4_gates_m3l_results_m3l_registered.json`, `ad4_gates_m3l_results_wcss.json`; logs `read/gates_m3l_results_*.log`. | |
+
+Job files (on WCSS in `/lustre/pd03/hpc-narolski-1790461090/smad-next/jobs_ad4/`, copies in `src/wcss/`), both carry their full workload,
+`--extra=FORCE_RM_TMPDIR`, IO in `$TMPDIR`:
+- `ad4_smoke_equiv.sbatch` (1 H100, 1 h limit): `run.sh` of `AD4_m3mf_s401` with 50 steps and 8 scored images into `smad-next/smoke_AD4/root`
+  (never read), then the H100 scorer-equivalence gate: A47 I-3 seed-1 `last.pt` re-scored with `ad4_score.py` in the container; tar to
+  `smad-next/results/AD4_equiv/`.
+- `ad4_vitb_array.sbatch` (array 0-9%5, 2 h 30 min limit): the ten ViT-B/16 tasks through the unchanged `run.sh`; results to `smad-next/results/AD4/`.
