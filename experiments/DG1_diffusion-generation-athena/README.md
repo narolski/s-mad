@@ -595,3 +595,13 @@ bash $S/dg1_fetch.sh <TAG...>                   # copy back + sha256 + unpack in
 $PY -I $S/dg1_validity.py equiv --gen <.../eq> --ref /mnt/t7/smad_heldout/a43/gen --out <json>
 $PY -I $S/dg1_validity.py manifest --gen-root /mnt/t7/smad_next/DG1/gen/<TAG> --pool /home/narolski/smad-next/experiments/AR1/pool.csv --out-dir <dir>
 ```
+
+## Platform-equivalence check from the frozen read (FZ2), recorded 12 Nov by the FZ2 owner (review FZ2 F1)
+
+The add-on re-renders REC, SAME, X and MIR at 20 steps of every set-B host; production set B rendered the same jobs.
+Matched by (rung, host, partner): 2,144 of 2,144 images. Byte-identical PNGs: Athena shards (add-on shards 0–1 against
+production) 470 of 536; rented RTX 3090 shards 0 of 1,608. Agreement of per-image values (production vs add-on):
+frozen SMDD head s401 score Spearman 0.99973 (largest difference 0.055); face-box Laplacian variance Spearman 0.999994;
+FZ2's P_XS probe score 0.99975 (probes refitted per run). A far larger platform-equivalence check than the 8-image gate:
+DG1 images from the A100 and the RTX 3090 are equivalent for every statistic FZ2 reads. File
+`platform_reproducibility_fz2.json`; code `src/FZ2/fz2_platform_repro.py`.

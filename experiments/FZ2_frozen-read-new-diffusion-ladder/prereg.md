@@ -125,3 +125,7 @@ head, separately): X vs SAME, SAME vs FRESH1, and the excess of X vs SAME over t
   DGX features exactly on the 64 A43 frames, `envcheck_dgx_vs_fz1.json`), so no cross-environment check is needed for
   them. The Athena job stays queued; its check decides whether Athena features may be used for the add-on. Within one
   run (production or add-on) all features come from one source.
+- 12 Nov 03:10 (recorded 12 Nov after the review, finding F7): the add-on features too were computed on the DGX
+  (`src/FZ2/fz2_dgx_feats.sh` via `fz2_dgx_addon_watch.sh`, all 8 shards, done 03:10), not on Athena; Athena job
+  3545969 was cancelled before it started, so the registered cross-environment check never ran and no Athena feature was
+  used. Shards 2–7 were generated on a rented RTX 3090 (DG1), not on Athena.

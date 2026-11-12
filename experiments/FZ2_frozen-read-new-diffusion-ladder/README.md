@@ -6,9 +6,8 @@ Athena folders `/net/pr2/projects/plgrid/plggrestoration/smad-next/{packs,result
 
 ## 1. Question and current answer
 
-12 Nov 2026, 00:45 CET. Status: **registered; secondary read (production set B) done; primary read (add-on) waits for
-DG1 add-on shards 3–7** (3 of 8 generated and extracted at 00:14; the rest queued on Athena). Watchers will extract the
-remaining shards and run the registered read automatically.
+12 Nov 2026, 03:30 CET. Status: **finished.** H-new-1 not decided, H-new-2 not decided, H-new-3 falsified, H-new-4
+falsified (registered readings on the DG1 add-on).
 Question: on the new diffusion-autoencoder ladder (DG1) with fresh persons (FRGC, colorFERET), do frozen CLIP ViT-L/14
 and DINOv2 features, and the frozen SMDD heads of FZ1, read mixing, or only "not rendered from its own noise map"
 (H-new-1, H-new-2); does the frozen heads' weak ordering of two-person over same-person mixes replicate with an excess
@@ -68,6 +67,14 @@ No answer yet.
   Athena); last shard about 03:15. Each shard is self-contained, so no contrast mixes platforms within a host.
   `fz2_read.py` patched before any add-on read: column `platform` (rented if `PLATFORM.txt` exists, else athena) and
   per-platform sensitivity rows beside unflagged / FRGC / colorFERET. Watchers unchanged (they already found shard 2).
+- 00:51–03:10 Shards 3–7 extracted by the watcher as each arrived (rented, about 37 min apart).
+- 03:19 The automatic read had not started: its `pgrep -f "fz2_feats.py --backbone"` matched the still-open launching
+  shell (PID 2632680, whose command line held the script text). Killed both (my own), ran the read by hand:
+  `OMP_NUM_THREADS=2 python -I src/FZ2/fz2_read.py --run addon --feats-dir /mnt/t7/smad_next/FZ2/results/dgx/out
+  --workers 3` (log `/mnt/t7/smad_next/FZ2/logs/read_addon.log`) → `read_addon.json`, items
+  `/mnt/t7/smad_next/FZ2/read_addon_items.csv`. Readings: H-new-1 not decided, H-new-2 not decided, H-new-3 falsified,
+  H-new-4 falsified (numbers in `result.md`).
+- 03:30 `result.md` completed; report sent.
 
 ## 3. Data
 
@@ -99,7 +106,9 @@ No answer yet.
 
 ## 5. Results
 
-Production set B (secondary replication; full table in `result.md`, all numbers in `read_prod.json`):
+Production set B: the same 536 hosts and pairs re-rendered with the same deterministic sampler; its agreement with the
+add-on is a cross-platform reproducibility check (Athena A100 vs RTX 3090), not an independent replication (review F1).
+Full table in `result.md`, all numbers in `read_prod.json`:
 - Heads s401 / release, X20 vs SAME20: 0.662 [0.622, 0.699] / 0.665 [0.625, 0.703]; best baseline thumb32 0.700
   [0.656, 0.741]; excess −0.038 [−0.094, +0.019] / −0.035 [−0.089, +0.023]. Heads s402–s405 0.660–0.661.
   SAME20 vs REC20 0.378 / 0.396; X20 vs REC20 0.537 / 0.561; MIR20 vs REC20 0.702 / 0.722.
@@ -107,14 +116,17 @@ Production set B (secondary replication; full table in `result.md`, all numbers 
 - clip_mad probes: D_SR (SAME vs REC) 0.999; along it X vs REC 0.987, MIR vs REC 0.994, X vs SAME 0.162. P_XS (X vs
   SAME) 0.941 [0.923, 0.957]; stratified by d 0.933, Δ +0.008 [+0.001, +0.017]; A_hi 0.912. P_XS mean scores: SAME
   −2.81, MIR −0.64, REC +2.21, X +2.17, dose α 0.1–0.4 +2.37 to +2.52. dinov2: P_XS 0.953, Δ +0.007.
-Add-on (primary): pending.
+Add-on (primary): see `result.md` (all registered numbers, sensitivity per platform) and `read_addon.json`.
 
 ## 6. Checks
 
 - 8-image DGX check of `fz2_feats.py` (both backbones): ran.
 - `fz2_feats.py` on the DGX reproduces FZ1's features exactly on 64 A43 frames.
 - `fz2_read.py` smoke on random features: runs end to end.
-- Pending: the registered cross-environment check of the Athena container (inside job 1).
+- The registered cross-environment check of the Athena container was never run: job 3545969 was cancelled before it
+  started and every feature (production and add-on) was computed on the DGX (dated deviations in `prereg.md`).
+- Independent review 12 Nov (`experiments/reviews/REVIEW_FZ2_AR1A10_20261112.md`): every registered number reproduced
+  from `read_addon_items.csv`; verdict needs qualification (F1–F7 applied to `result.md` 12 Nov).
 
 ## 7. Dead ends and failures
 
@@ -127,25 +139,15 @@ Add-on (primary): pending.
 
 ## 9. Open items and next steps
 
-1. Job 1 (3545969) runs after 3545877; fetch `bash src/FZ2/fz2_fetch.sh prod`; run `fz2_envcheck.py` on
-   `results/prod/out/{clip_mad,dinov2}_a43check.npz`; if it passes, `fz2_read.py --run prod`.
-2. When the add-on tars exist: `sbatch packs/FZ2/fz2_job.sbatch addon addon_s0 … addon_s7`, fetch, check, `fz2_read.py
-   --run addon` (the primary read), then `result.md`.
+1. Post hoc amendment 1 (zero GPU, `prereg.md`): P_XS and D_SR on the noise-only / semantic-only rungs with H-A's
+   transfer predictions, θ- and Laplacian-stratified readings; residual + simple floor for every contrast (H-B); H-C on
+   FZ1's A43 frames; P_XS applied to the A43 frames.
+2. Draft DG1 amendment for SAME_orth / X_corr rungs (H-A causal test), for pre-run review.
 
-## 10. Handover state (00:45, 12 Nov)
+## 10. Handover state (03:30, 12 Nov)
 
-- DGX, running (mine): `src/FZ2/fz2_dgx_addon_watch.sh` (PID 2571168; log `/mnt/t7/smad_next/FZ2/dgx_addon_watch.log`; extracts each
-  add-on shard once the DG1 owner's copy in `/mnt/t7/smad_next/DG1/gen/addon_s<k>/` is complete; shards 0, 1 done) and
-  `src/FZ2/fz2_addon_read_when_ready.sh` (PID 2632681; log `/mnt/t7/smad_next/FZ2/addon_read_when_ready.log`; runs the primary read
-  `fz2_read.py --run addon` when all 16 add-on feature files exist (shards 0–2 done at 00:14); output `read_addon.json`, log
-  `/mnt/t7/smad_next/FZ2/logs/read_addon.log`). Find them with `ps -ef | grep src/FZ2/`.
-- DG1 add-on shards 3–7 (Athena array 3545907, DG1 owner's job): pending at 00:43, 13 Athena nodes in a reservation,
-  start time unknown. If a shard fails for good, the automatic read never starts: run
-  `OMP_NUM_THREADS=2 python -I src/FZ2/fz2_read.py --run addon --feats-dir /mnt/t7/smad_next/FZ2/results/dgx/out` by hand
-  (it analyses the shards present and prints the counts, as registered).
-- If a watcher dies: rerun it (finished files are skipped). If the read fails, rerun the command in its log line.
-- Then: write the add-on part of `result.md` (registered readings H-new-1 to H-new-4) and report.
-- Athena: nothing of FZ2 queued. Compute so far: Athena 0; DGX GB10 about 20 min (shared).
+Nothing of FZ2 is running. Compute: Athena 0 GPU-hours (3545969 cancelled before start); DGX GB10 about 40 min of
+shared GPU time (features) plus CPU reads.
 
 ## 11. Reproduce from scratch
 
