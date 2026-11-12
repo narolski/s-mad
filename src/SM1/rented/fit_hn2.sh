@@ -6,7 +6,7 @@
 set -euo pipefail
 : "${TASK:?}" "${ARM:?}" "${SEED:?}"
 STEPS=${STEPS:-6250}; LIMIT=${LIMIT:-0}; WORKERS=${WORKERS:-6}
-B=/workspace/sm1r; OUT=${RESULTS:-$B/results_hn2}; PY=python
+B=${SM1R_BASE:-/workspace/sm1r}; OUT=${RESULTS:-$B/results_hn2}; PY=${SM1R_PY:-python}
 die() { echo "HN2 FAIL: $*" >&2; exit 1; }
 T0=$SECONDS
 [ -f "$B/done/ad4_pack" ] || die "ad4_pack not unpacked"
