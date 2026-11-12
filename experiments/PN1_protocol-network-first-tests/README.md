@@ -484,3 +484,21 @@ $P tier1.py; $P report.py tier1
   supported (Sb - B +0.133 / +0.194, Sb - A +0.109 / +0.163) but Sb does not exceed the simple-statistic floor
   (noise_std_face 0.886) on both seeds, so "reads the face splice" is not stated; HN7 inconclusive (rho 0.35); HN2b
   calibration shift for Sb and Bv. Details: result.md, `tier1_a14/a14.json`.
+
+## 13. What is kept (OWNER_BRIEF rule of 12 Nov: nothing is released while it holds the only copy)
+
+- Trained weights: every fit tar carries `<task>/last_trainable.pt` (312,570 bytes: all trainable tensors, LoRA and
+  head) and `meta.json`; with the pinned base CLIP weights of the pack this rebuilds the network exactly
+  (`rescore.py` asserts the trainable set; the amendment-14 gate rescored A_s401 and B_s402 byte-identically). The 12
+  networks of seeds 401/402 (A, B, Bn, C, Sb, Bv): `/mnt/t7/smad_next/PN1/results_rented/PN1_*_s40[12].tar`, sha256 in
+  `tier1_tars_sha256.txt` and the `.sha256` files; FS1: `/mnt/t7/smad_next/PN1/results_fs/`, sha256 lists in
+  `fs_kept/` (written by the driver before DONE).
+- Not kept, deliberately: the full checkpoint `last.pt` (base + trainable; its sha256 is in `last_pt.sha256` inside
+  each tar). run.sh's work folder is deleted after each task on the host by design; `last.pt` is regenerable as a
+  model from base weights + `last_trainable.pt`, not as the identical file. No optimiser state is kept.
+- Logs: the run logs (`<task>.log`, run.sh and train.py output incl. step losses), `train.log` (in the tar), rc files,
+  queue log, pip and version logs. From `date` Thu Nov 12 11:31:11 AM CET 2026 (`drive_fs.sh` `3ad3181a9be5e6ac1f7563b0ee41787b4e30917f242e162ff63ad1d16e97fae4`; training and scoring unchanged)
+  the pull copies the host's logs folder, rc files and queue log, and verifies every log file against a remote
+  sha256 listing before DONE / RELEASE; the lists are written to `fs_kept/`. The 20 GB floor on /mnt/t7 still
+  applies (logs are about 50 KB per task).
+- Amendment 14: `PN1_A14.tar` (scores, calls log, pip log, versions, GPU) verified; no weights (rescoring only).

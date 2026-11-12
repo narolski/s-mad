@@ -62,6 +62,19 @@ case "$STEP" in
     RS "root@$HOST:$B/logs/" "$OUTD/logs_$M/" || true
     RS "root@$HOST:$B/rc" "root@$HOST:$B/queue_fs_$M.log" "$OUTD/logs_$M/" 2>/dev/null || true
     ended=$(R "[ -f $B/ALL_DONE_FS_$M ] && echo ENDED || echo RUNNING" 2>/dev/null || echo UNKNOWN)
+    keep() {  # OWNER_BRIEF rule (12 Nov): logs are copied back and verified before DONE; sha256 lists kept in the repo
+      RS "root@$HOST:$B/logs/" "$OUTD/logs_$M/" || return 1
+      RS "root@$HOST:$B/rc" "root@$HOST:$B/queue_fs_$M.log" "$OUTD/logs_$M/" || return 1
+      rem=$(R "cd $B/logs && sha256sum * 2>/dev/null | sort -k2; echo KEEP_LISTED" 2>/dev/null) || return 1
+      echo "$rem" | grep -q KEEP_LISTED || return 1
+      loc=$(cd "$OUTD/logs_$M" && sha256sum $(echo "$rem" | grep -v KEEP_LISTED | awk '{print $2}') 2>/dev/null | sort -k2)
+      [ "$loc" = "$(echo "$rem" | grep -v KEEP_LISTED)" ] || { log "log copy differs from the remote: retry"; return 1; }
+      E=/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/fs_kept
+      mkdir -p "$E"
+      echo "$loc" > "$E/logs_${M}_sha256.txt"
+      (cd "$OUTD" && cat $(for t in $TASKS; do [ -f "$t.tar.sha256" ] && echo "$t.tar.sha256"; done)) > "$E/tars_${M}_sha256.txt"
+      log "kept: logs verified ($(echo "$loc" | wc -l) files), tar sha256 list written"
+    }
     verify() { n=0; NW=0; bad=""
       for t in $TASKS; do
         NW=$((NW + 1))
@@ -70,7 +83,7 @@ case "$STEP" in
       done; }
     verify
     log "$M verified $n of $NW (remote $ended)"
-    if [ "$n" -eq "$NW" ]; then touch "$L/DONE_$M"; log "DONE_$M"
+    if [ "$n" -eq "$NW" ]; then keep || { log "keep step failed: retry next loop"; exit 0; }; touch "$L/DONE_$M"; log "DONE_$M"
     elif [ "$ended" = ENDED ]; then
       sleep ${PN1_FS_REPULL_WAIT:-60}
       RS --include='PN1_*.tar' --include='PN1_*.tar.sha256' --exclude='*' "root@$HOST:$B/root/results/PN1/" "$OUTD/" || { log "re-pull failed: retry next loop"; exit 0; }
@@ -81,6 +94,7 @@ case "$STEP" in
         [ "$st" = FAILED ] || { log "$t: remote $st, not confirmed failed: retry next loop"; exit 0; }
         conf="$conf $t"
       done
+      keep || { log "keep step failed: retry next loop"; exit 0; }
       if [ -n "$conf" ]; then
         echo "failed (remote-confirmed: no tar, non-zero rc):$conf" > "$L/FAILED_$M"; touch "$L/DONE_$M"; log "DONE_$M + FAILED_$M ($conf)"
       else touch "$L/DONE_$M"; log "DONE_$M (after re-pull)"; fi
