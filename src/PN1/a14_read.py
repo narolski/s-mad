@@ -68,6 +68,8 @@ def pools():
     cat = {r["id"]: r for r in K.catalog()}
     rows = []
     for r in csv.DictReader(open(K.PN1 / "manifests2" / "pn1_eval.csv")):
+        if r["fam"] not in ("af0", "ladder", "splice"):      # no benchmark row enters any pool
+            continue
         x = dict(r)
         x["neutral"] = r["neutral"] == "True"
         c = cat.get(r["id"])

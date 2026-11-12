@@ -21,7 +21,7 @@ EVAL_SHA = "f0f29f2201bd3a1dc67f24772347960ba7a383a9e5c1fa8920d0cc1b854a5045"
 FLOOR = K.PN1 / "cues" / "a14_lcomb.npz"
 FLOOR_SHA = K.RES / "tier1_a14" / "a14_lcomb_floor.sha256"
 SEEDS = (403, 404, 405, 406, 407)
-MACHINE = {403: "m1", 405: "m1", 407: "m1", 404: "m2", 406: "m2"}
+MACHINE = {403: "m1 (GPU 0)", 405: "m1 (GPU 0)", 407: "m1 (GPU 0)", 404: "m2 (GPU 1)", 406: "m2 (GPU 1)"}  # "machine" = GPU/queue
 ARMS = ("A", "B", "Sb")
 
 
@@ -96,7 +96,7 @@ def main():
     read = []
     for s in SEEDS:
         S = {a: load(RF / f"PN1_{a}_s{s}.tar") for a in ARMS}
-        rec = {"machine": MACHINE[s], "read": all(v is not None for v in S.values())}
+        rec = {"gpu_queue": MACHINE[s], "read": all(v is not None for v in S.values())}
         if rec["read"]:
             read.append(s)
             for a in ARMS:
@@ -140,7 +140,7 @@ def main():
     elif c1 == "not replicated" and c3 == "not replicated":
         claims.append("The Sb lead was selection or seed noise")
     if control and c2["B"] == "replicated" and c2["Sb"] == "replicated":
-        claims.append("The protocol removes the storage reaction on an unseen development source, 5 seeds")
+        claims.append("The protocol removes the storage reaction on a development source not used in training (already read on seeds 401/402), 5 seeds")
     if not claims:
         claims.append("inconclusive, no claim")
     out.update(read_seeds=read, contrast1=c1, contrast1_testable_seeds=len(t1), floor_exceeded_all=floor_all,

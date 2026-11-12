@@ -12,6 +12,8 @@ cd "$B/root/packs/PN1" || exit 1
 [ "$(cut -c1-64 pn1_pack_fs.tar.sha256)" = "$PIN2" ] || { echo "pack .sha256 differs from the pin"; exit 1; }
 case "$MODE" in
   setup)
+    avail=$(df --output=avail -B1G /workspace | tail -1 | tr -d ' ')
+    [ "$avail" -ge "${PN1_MIN_FREE_GB:-45}" ] || { echo "workspace has ${avail} GB free (< ${PN1_MIN_FREE_GB:-45} GB)"; exit 1; }
     sha256sum -c pn1_pack_fs.tar.sha256 || exit 1
     python -c "import torch, torchvision; print('torch==' + torch.__version__.split('+')[0]); print('torchvision==' + torchvision.__version__.split('+')[0])" > "$B/constraints.txt"
     python -m pip install --no-cache-dir -c "$B/constraints.txt" timm==1.0.27 huggingface_hub==0.36.2 safetensors==0.8.0 \
@@ -26,7 +28,12 @@ case "$MODE" in
     TASKS=${3:?tasks}; Q=${4:?queue id}
     date > "$B/QUEUE_FS_STARTED_$Q"
     echo "$(date +%T) queue $Q CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}" >> "$B/queue_fs_$Q.log"
-    [ "${5:-}" = after_a14 ] && { until [ -f "$B/A14_DONE" ]; do sleep 30; done; echo "$(date +%T) A14_DONE seen" >> "$B/queue_fs_$Q.log"; }
+    if [ "${5:-}" = after_a14 ]; then
+      w=0; lim=${PN1_A14_WAIT_S:-9000}           # at most 2.5 h
+      until [ -f "$B/A14_DONE" ] || [ $w -ge $lim ]; do sleep 30; w=$((w + 30)); done
+      if [ -f "$B/A14_DONE" ]; then echo "$(date +%T) A14_DONE seen" >> "$B/queue_fs_$Q.log"
+      else echo "$(date +%T) A14 timeout after $lim s: proceeding" >> "$B/queue_fs_$Q.log"; fi
+    fi
     for T in $TASKS; do
       for try in 1 2; do
         W=$B/work/$T; rm -rf "$W"; mkdir -p "$W"

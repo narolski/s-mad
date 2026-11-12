@@ -618,3 +618,34 @@ Reason: no single A100-SXM4 40 GB is on offer (lead, 12 Nov morning).
 - Local checks: the 20-step smoke of run.sh on the development pack passed (rc 0, full tar); the two-queue path
   (both queues, A14_DONE wait, per-queue markers, joint RELEASE and FAILED on a partial queue) passed a mock test with a
   stand-in task script.
+
+## Deviation FS1-D2 and amendment-14 deviation (`date`: Thu Nov 12 08:23:41 AM CET 2026; committed before any fit or amendment-14 lease starts; fixes of pre-run check `PRERUN_PN1_FS1_DEVONLY_20261112.md`, commit 3c86410)
+
+- Layout (lead's decision): ONE 2-GPU A100 PCIe 40 GB host (not SXM4). Both queues share the host's CPU, RAM, disk and
+  GPU type; queue m1 on GPU 0 (seeds 403, 405, 407), queue m2 on GPU 1 (amendment 14 first, then seeds 404, 406 and
+  the replicate A 401). "Machine" in FS1 and v4 means GPU/queue; results are printed per GPU/queue. Guard: one lease,
+  cap 11.6 USD, deadline 13.5 h. The replicate A 401 runs on PCIe against an SXM4 original: "platform plus
+  nondeterminism".
+- Release logic (drive_fs.sh): after the queue's end the driver re-pulls and re-verifies every task; a task counts as
+  failed only if the remote confirms it (no tar there and a non-zero rc file); otherwise the driver exits without DONE
+  and the next loop retries. RELEASE (+ FAILED) only when both queues are DONE; never with unfetched tars on the
+  remote. An unreachable remote never leads to a decision.
+- remote_fs.sh: the m2 queue waits for A14_DONE at most 2.5 h, then logs "A14 timeout" and proceeds; drive14.sh's loop
+  touches A14_DONE remotely when it gives up. Setup requires at least 45 GB free on /workspace.
+- a14_read.py: pools are built from development rows only (af0, ladder, splice); no FRLL or other benchmark row enters
+  a pool.
+- Disclosure added to v4 and to BENCHMARK_EXPOSURE.md (choice 10): contrast 2's 0.65 threshold and A's positive control
+  were set knowing the 401/402 paired shares on the same FFHQ images; claim wording changed to "a development source
+  not used in training (already read on seeds 401/402)".
+- Splice wording: all 4,365 splice rows are OpenCV-style (fixed in D1).
+- Pins at this commit: run.sh `04998a7c274229b861b840e2b5a793854a712a7fb031fb572e34e1c791a4c87e` (also the RUNSH pin
+  inside drive_fs.sh); drive_fs.sh `e7abe5075f36e0945671851db262cced31265db2eb3d76d55531728b2f5572d5`; remote_fs.sh
+  `d01fb93eca65ad409a32b024669f6e5e85aecbbf225c5a5d059a9e2a82486fe2`; drive14.sh
+  `d8dd7784308345bef576d948acfe7793d984f9ec2d18d3001f5b72c84db1a591`; remote_a14.sh
+  `fadc2c79174d48b6dbdca678356da8bd445c215743b473f02e66f97be190f58a`; fs_read.py
+  `48877d61dbc3406398cc30e1b93ca33093c72206f02a23bbbef4dfa87c256bfd`; a14_read.py
+  `0f259c8dfeb948c6b78967d8d8630521693f7c65186cff7cabda7a4131a1a8e8`; packs unchanged (`96c31ae2…`, `bda5fd3d…`).
+- Local tests: two-queue mock with a stand-in task script (joint RELEASE; remote-confirmed failure gives RELEASE +
+  FAILED); unreachable remote (no decision); failed re-pull after the queue's end (no decision); rc missing without a
+  tar (no decision); A14 wait timeout (queue proceeds); drive14 loop give-up (A14_DONE touched); fs_read.py and
+  a14_read.py on random mock scores.

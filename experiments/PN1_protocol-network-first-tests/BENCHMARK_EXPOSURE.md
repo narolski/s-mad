@@ -52,6 +52,10 @@ and FRLL cells (amendment 5, 9bb7295). Those numbers were seen in result.md.
 8. **The tier-0 "best of 8 heads" lead.** Protocol plus spliced on DINOv3, MAD22 2.0 / 3.0%, was chosen on MAD22 and labelled "a lead to re-test". It motivated amendment 10 (the Sb LoRA arm).
 9. **HN7 (amendment 14 draft).** It was defined against H1 AUC with all 12 H1 values known. The revived development version uses FFHQ landmark_combined instead.
 
+10. **The FFHQ storage mark (FS1 contrast 2).**
+    - Its 0.65 threshold and A's positive control were set knowing the 401/402 paired shares on the same FFHQ images: A 0.72 / 0.78, others 0.30–0.44 (post hoc table, 33f4d0c).
+    - FFHQ is a development set by designation, but this choice was not blind.
+
 ## 3. Status of each set for PN1-family networks
 
 Lead's designation, 12 Nov (`date` above):

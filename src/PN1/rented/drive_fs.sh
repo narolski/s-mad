@@ -61,18 +61,28 @@ case "$STEP" in
     RS "root@$HOST:$B/logs/" "$OUTD/logs_$M/" || true
     RS "root@$HOST:$B/rc" "root@$HOST:$B/queue_fs_$M.log" "$OUTD/logs_$M/" 2>/dev/null || true
     ended=$(R "[ -f $B/ALL_DONE_FS_$M ] && echo ENDED || echo RUNNING" 2>/dev/null || echo UNKNOWN)
-    n=0; NW=0; bad=""
-    for t in $TASKS; do
-      NW=$((NW + 1))
-      if [ -f "$OUTD/$t.tar" ] && [ -f "$OUTD/$t.tar.sha256" ]; then
-        (cd "$OUTD" && sha256sum -c --quiet "$t.tar.sha256") && n=$((n + 1)) || { log "HASH MISMATCH $t"; bad="$bad $t"; }
-      else bad="$bad $t"; fi
-    done
+    verify() { n=0; NW=0; bad=""
+      for t in $TASKS; do
+        NW=$((NW + 1))
+        if [ -f "$OUTD/$t.tar" ] && [ -f "$OUTD/$t.tar.sha256" ] && (cd "$OUTD" && sha256sum -c --quiet "$t.tar.sha256"); then n=$((n + 1))
+        else bad="$bad $t"; fi
+      done; }
+    verify
     log "$M verified $n of $NW (remote $ended)"
     if [ "$n" -eq "$NW" ]; then touch "$L/DONE_$M"; log "DONE_$M"
     elif [ "$ended" = ENDED ]; then
-      sleep 60; RS --include='PN1_*.tar' --include='PN1_*.tar.sha256' --exclude='*' "root@$HOST:$B/root/results/PN1/" "$OUTD/" || true
-      echo "missing or failed:$bad" > "$L/FAILED_$M"; touch "$L/DONE_$M"; log "DONE_$M + FAILED_$M (missing or failed:$bad)"
+      sleep ${PN1_FS_REPULL_WAIT:-60}
+      RS --include='PN1_*.tar' --include='PN1_*.tar.sha256' --exclude='*' "root@$HOST:$B/root/results/PN1/" "$OUTD/" || { log "re-pull failed: retry next loop"; exit 0; }
+      verify
+      # a task counts as failed only if the remote confirms it: no tar there AND a non-zero rc file
+      conf=""; for t in $bad; do
+        st=$(R "if [ -f $B/root/results/PN1/$t.tar ]; then echo PRESENT; elif [ -s $B/rc/$t ] && [ \"\$(cat $B/rc/$t)\" != 0 ]; then echo FAILED; else echo UNKNOWN; fi" 2>/dev/null || echo UNREACHABLE)
+        [ "$st" = FAILED ] || { log "$t: remote $st, not confirmed failed: retry next loop"; exit 0; }
+        conf="$conf $t"
+      done
+      if [ -n "$conf" ]; then
+        echo "failed (remote-confirmed: no tar, non-zero rc):$conf" > "$L/FAILED_$M"; touch "$L/DONE_$M"; log "DONE_$M + FAILED_$M ($conf)"
+      else touch "$L/DONE_$M"; log "DONE_$M (after re-pull)"; fi
     fi
     if [ -f "$L/DONE_$M" ]; then
       if [ "${PN1_FS_ONEHOST:-0}" = 1 ]; then

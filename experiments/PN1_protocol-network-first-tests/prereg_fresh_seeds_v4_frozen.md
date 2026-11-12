@@ -20,7 +20,7 @@ Development data only. The scoring pack holds no FRLL, MAD22, MorDIFF, DiM, H1, 
 
 - Fresh networks only: A, B and Sb at seeds 403, 404, 405, 406 and 407.
 - Seeds 401 and 402 and the replicate A seed 401 are printed beside the fresh seeds and never counted.
-- Each seed runs whole on one machine. Results are printed per machine.
+- Each seed runs whole on one GPU/queue. Results are printed per GPU/queue ("machine" means GPU/queue, deviation FS1-D2).
 
 ## Disclosures
 
@@ -28,6 +28,8 @@ Development data only. The scoring pack holds no FRLL, MAD22, MorDIFF, DiM, H1, 
 - No landmark_combined score or statistic has been computed or seen by anyone at this commit.
 - Sb was killed by its registered amendment-10 rule (read (i)). The author allowed the refit on 12 Nov.
 - The 191-host test ladder is our own development data and has been read many times.
+- Contrast 2's 0.65 threshold and A's positive control were set knowing the 401/402 paired shares on the same FFHQ
+  images (A 0.72 / 0.78, B, Bn, C 0.30 to 0.44; `tier1/posthoc_b2.json`). (Added by deviation FS1-D2, before any fit.)
 
 ## Contrasts
 
@@ -88,5 +90,5 @@ None of these is a benchmark claim; benchmark numbers come only from the sealed 
 | Contrast 1 replicated, floor not exceeded | "Higher AUC than B, but not shown beyond simple statistics" |
 | Contrast 1 not replicated, contrast 3 replicated | "Engine-specific: the gain holds on our OpenCV ladder splices only" |
 | Contrast 1 and contrast 3 not replicated | "The Sb lead was selection or seed noise" |
-| Contrast 2: B and Sb pass, A fails | "The protocol removes the storage reaction on an unseen development source, 5 seeds" |
+| Contrast 2: B and Sb pass, A fails | "The protocol removes the storage reaction on a development source not used in training (already read on seeds 401/402), 5 seeds" |
 | Any middle outcome | "inconclusive, no claim" |

@@ -42,6 +42,9 @@ case "$STEP" in
     fi
     ;;
   loop)
-    for k in $(seq 1 30); do bash "$0" "$HOST" "$PORT" "$L" pull || true; [ -f "$L/RELEASE" ] && break; sleep 300; done
+    for k in $(seq 1 30); do bash "$0" "$HOST" "$PORT" "$L" pull || true; [ -f "$L/RELEASE" ] && break; sleep ${PN1_A14_LOOP_SLEEP:-300}; done
+    if [ ! -f "$L/RELEASE" ]; then   # gave up: let a waiting fit queue proceed
+      R "date > $B/A14_DONE; echo given_up >> $B/A14_DONE" && log "A14 loop gave up: A14_DONE touched remotely"
+    fi
     ;;
 esac
