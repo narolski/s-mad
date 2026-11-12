@@ -231,4 +231,25 @@ Code: `src/AG1/`. Large outputs: `/mnt/t7/smad_next/AG1/`. Rules: `11_AUDIT_PLAN
   A100 / rented A100); every registered reading of AG1 is reported pooled and with rented shards excluded, or as a
   platform-stratified check where the design allows; if a reading changes between the two, the conservative one
   stands.
+- **Amendment 7 (12 Nov, after the independent review `experiments/reviews/REVIEW_AG1_20261112.md`, after all
+  scores were read; committed before any of the following is computed; all of it is post hoc and labelled so):**
+  1. *H-new-1 (the second-identity step tracks how different the two people look).* Primary pool, per primary release
+     row: Spearman of the R4 score with the contributor w600k cosine of s1(p) and s2(sigma p) (`pairs.csv`); and
+     the R3 vs R4 AUC within tertiles of the contributor 5-point shape distance (kps256 of s1(p) and s2(q), each
+     similarity-normalised to the two eyes, mean point distance in inter-eye units). Prediction: Spearman <= -0.15
+     and the tertile AUCs rising with shape distance. Falsified if |Spearman| < 0.1 for all three primary rows.
+  2. *H-new-2 (the one-photo-to-same-person step comes from differences between the two capture sessions).* Per
+     host: pose difference (5-point shape distance as above between s1(p) and s2(p)) and illumination difference
+     (absolute difference of the mean gray level of the two 512 crops); R2 (s1) vs R3 AUC within tertiles of each.
+     Prediction: increasing across tertiles. Falsified if the tertile AUCs differ by < 0.05 (max - min) for both
+     covariates in all three primary rows.
+  3. *G-a* evaluated with `published_eer.json` (MADation ViT-B/16 33.37 / 22.21, ViT-L/14 20.32 / 9.06% on MAD22
+     MIPGAN-I / -II, published on the original MAD22 release, not the corrected copy we score). No published SelfMAD
+     MAD22 MIPGAN value exists in `docs/sources`: G-a cannot be evaluated for SelfMAD.
+  4. *Post-hoc additions to the facts (review items):* quintile-stratified AUCs on each simple baseline; matched-alpha
+     AG3 minus AG3T differences with bootstrap intervals; the full readings on the 159 Athena hosts alone; the d'
+     decomposition of R2>R4 into R2>R3 and R3>R4; the spread-matched control's support (R2s vs R2; within-rung
+     Spearman of score with latent distance; R2s vs R4 in the latent-distance band 5.9-6.3).
+  5. Reading A and reading B: the author never selected one before scores (prereg l.71-73 not met); both are
+     printed side by side as non-primary.
 - **Result:** pending.
