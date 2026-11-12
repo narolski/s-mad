@@ -56,6 +56,11 @@ registration written; DGX smoke running; draft goes to the independent pre-run r
   `featref_cpu.npz` 89f3defe…, repeat on CPU max diff 0.0; the DGX GPU was out of memory (other users) so the reference
   is CPU fp32). Reader re-run on mock tars. Not applied: seeds 406/407 (lead/author decision).
 - 00:05 registration commit (this commit; `date` Fri Nov 13 12:05:19 AM CET 2026).
+- 00:06 uploaded to WCSS `packs/BB2/`: featcheck.py, featref_cpu.npz, bb2_smoke.sbatch, bb2_fit.sbatch with .sha256
+  files; all hashes checked on WCSS (pack, overlay, run.sh, featcheck, reference, both sbatch: OK).
+- 00:07:20 smoke sbatch refused: "Unable to contact slurm controller (connect failure)". 00:15:10 the one allowed
+  retry refused the same way (squeue also could not reach the controller). Stopped and reported to the lead. Nothing
+  of BB2 is queued or running on WCSS.
 
 ## 3. Data
 
@@ -107,12 +112,16 @@ None yet.
 
 DGX smoke result; pre-run review; registration commit; WCSS smoke; fit submission; fetch; read; post-result review.
 
-## 10. Handover state
+## 10. Handover state (13 Nov 00:16)
 
-- DGX: smoke `run.sh` (log `/mnt/t7/smad_next/BB2/dgxsmoke/smoke.log`, work folder `/mnt/t7/smad_next/BB2/dgxsmoke/work`
-  (about 18 GB while it runs, delete after)).
-- Upload to WCSS: log `/mnt/t7/smad_next/BB2/upload.log`.
-- Nothing submitted on WCSS. Compute: DGX only.
+- Nothing running and nothing queued for BB2 (DGX smoke finished; WCSS submission refused twice: Slurm controller down).
+- Ready on WCSS `/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/` (hash-checked 00:07): complete workload of
+  the smoke and the fits. Next: `cd .../packs/BB2 && /opt/slurm/current/bin/sbatch --extra=FORCE_RM_TMPDIR
+  bb2_smoke.sbatch` when the controller answers (lead's go after the retry rule); then apply the memory and time
+  rules from its log (BB2_PEAK_MIB, step rate from "step 100/100 ... it/s", BB2_FEATCHECK_RC 0), record them here, and
+  submit the registered fit command (prereg section 9).
+- DGX files: `/mnt/t7/smad_next/BB2/` (overlay, test outputs, smoke tar, local test trees, staging copy for WCSS).
+- Compute so far: DGX only (smoke 8 min, CPU tests); WCSS 0.
 
 ## 11. Reproduce from scratch
 
