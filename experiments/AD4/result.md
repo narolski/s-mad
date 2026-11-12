@@ -12,6 +12,15 @@ CLIP ViT-B/16 with LoRA, five seeds (401 to 405), last checkpoint, **trained onl
 synthetic SMDD faces (no morph, no blending)**: label 0 = SMDD renders, label 1 = their copies shrunk to 31% and enlarged
 again. Training saturates: natives at a logit of about -3.65, copies at about +3.62 (5th to 95th percentile within 0.03;
 posthoc_m3 A). References: five networks trained on the same images with shuffled labels and the untrained network.
+**Bounded head (affects every threshold read in this experiment).** The head is a linear layer on L2-normalised CLIP features
+(`archs_a12.py` line 277), so a logit cannot exceed the head's weight norm plus its bias. Measured on the trained tensors: ViT-B/16
+morph-free ||w|| 3.72 to 3.76, bias -0.035 to 0.013 (logits bounded at about ±3.8; natives sit at -3.65, copies at +3.62);
+ViT-L/14 morph-free ||w|| 4.16 (bound about ±4.17; natives -4.07, copies +4.02); label-permuted ViT-B/16 ||w|| 0.61 to 0.65 (bound
+about ±0.65, hence their logits near 0). Every genuine photo of a training-like source therefore sits on a floor about 0.03 logits
+wide, and the FRLL-5% threshold lies a few hundredths of a logit above it: flag rates at FRLL-5% (for example 50.7% of MorDIFF's own
+genuine photos) read a cosine band about 0.03 wide, not a large score difference. The same mechanism is documented for the protocol
+network's fits in `experiments/reviews/REVIEW_PN1_TIER1_20261112.md` (finding 1: ||w|| 3.84 to 3.86, logits within about ±3.87).
+
 The label-permuted networks partly learned the true task (true-label accuracy 0.399 to 0.686), so they are conservative
 references; they show the effect needs the true labels, not which feature carries it.
 
@@ -74,11 +83,12 @@ faces; natives at logit -4.07, copies +4.02). No verdict until five morph-free n
   history-matched photos (Spearman 0.86; H-new-2: consistent with overshoot). `fu_sharpness_m3.md`.
 - Border-blanked re-score (H-new-3), ladder morphs (H-new-5), held-out generator renders (H-new-4): scored on the DGX (Amendment 4b).
   The DGX re-score of the unblanked images misses the registered agreement gate for 3 of 5 morph-free networks (Kendall tau 0.987 to
-  0.989 against 0.99; |AUC difference| at most 0.0012), so these rows are "incomplete (2 of 5)", seeds 402 and 403 only. Blanking
+  0.989 against 0.99; |AUC difference| at most 0.0012; probably ties at the saturation floor, not rescued), so these rows are "incomplete (2 of 5)", seeds 402 and 403 only. Blanking
   everything outside the face: MorDIFF history-matched 2.9 and 13.2% EER, corrected MAD22 FaceMorpher 0.0 native; the cue is not
   removed on those cells in these two networks. Landmark ladder (its own frames): same-person blends are scored like two-person morphs
-  (gap OpenCV 0.009, FaceMorpher -0.006; R4 vs R3 AUC 0.47 to 0.52). Held-out SMDD renders sit at the FRLL genuine level (0.03 to 0.05
-  logits below). `fu_blank_m3.md`, `fu_pools_m3.md`.
+  (gap OpenCV 0.009, FaceMorpher -0.006; R4 vs R3 AUC 0.47 to 0.52). Held-out SMDD renders and FRLL genuine photos are
+  indistinguishable: both at the trained floor (differences of -0.03 and -0.05 logits inside a floor whose 5th to 95th percentile
+  spans about 0.03; no interval). `fu_blank_m3.md`, `fu_pools_m3.md`.
 
 ## Withdrawn
 

@@ -5,14 +5,14 @@
 Status: **incomplete (2 of 5 morph-free networks): descriptive rows only**. All numbers on our frames (our alignment of every benchmark). EER in %, signed AUC (morph positive). 95% intervals: person bootstrap (Amendment 2 (a)), descriptive; the verdicts use point values.
 
 Networks (arm, seed, platform and card):
-- morph-free seed 402 (`AD4_m3mf_s402`): Athena, NVIDIA GB10, blanked
-- morph-free seed 403 (`AD4_m3mf_s403`): Athena, NVIDIA GB10, blanked
-- label-permuted seed 401 (`AD4_m3perm_s401`): Athena, NVIDIA GB10, blanked
-- label-permuted seed 402 (`AD4_m3perm_s402`): Athena, NVIDIA GB10, blanked
-- label-permuted seed 403 (`AD4_m3perm_s403`): Athena, NVIDIA GB10, blanked
-- label-permuted seed 404 (`AD4_m3perm_s404`): Athena, NVIDIA GB10, blanked
-- label-permuted seed 405 (`AD4_m3perm_s405`): Athena, NVIDIA GB10, blanked
-- untrained seed 401 (`AD4_m3zero_s401`): Athena, NVIDIA GB10, blanked
+- morph-free seed 402 (`AD4_m3mf_s402`): DGX, NVIDIA GB10, blanked (Amendment 4b)
+- morph-free seed 403 (`AD4_m3mf_s403`): DGX, NVIDIA GB10, blanked (Amendment 4b)
+- label-permuted seed 401 (`AD4_m3perm_s401`): DGX, NVIDIA GB10, blanked (Amendment 4b)
+- label-permuted seed 402 (`AD4_m3perm_s402`): DGX, NVIDIA GB10, blanked (Amendment 4b)
+- label-permuted seed 403 (`AD4_m3perm_s403`): DGX, NVIDIA GB10, blanked (Amendment 4b)
+- label-permuted seed 404 (`AD4_m3perm_s404`): DGX, NVIDIA GB10, blanked (Amendment 4b)
+- label-permuted seed 405 (`AD4_m3perm_s405`): DGX, NVIDIA GB10, blanked (Amendment 4b)
+- untrained seed 401 (`AD4_m3zero_s401`): DGX, NVIDIA GB10, blanked (Amendment 4b)
 - morph-free: seeds 401, 404, 405 not present
 
 ## Table 1. EER per cell (%), our frames, CLIP ViT-B/16 with LoRA (M3)

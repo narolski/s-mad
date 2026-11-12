@@ -100,7 +100,7 @@ def main():
             continue
         s, z = aligned(d / "scores_ad4_eval_blank.npz", ids)
         nets[d.name] = dict(arm=arm(d.name), seed=seed(d.name), score=s, train=None, meta=None, info={},
-                            platform=f"Athena, {z['device']}, blanked")
+                            platform=f"DGX, {z['device']}, blanked (Amendment 4b)")
     if a.test:
         keep = [i for i in range(len(rows)) if all(np.isfinite(n["score"][i]) for n in nets.values())]
         sub = [rows[i] for i in keep]

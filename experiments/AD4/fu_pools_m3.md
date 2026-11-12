@@ -4,6 +4,8 @@ Flag on the networks: not reproduced on this stack. The ladder images are the la
 
 Unblanked re-score gate: AD4_m3mf_s401 MISS (max |dAUC| 0.0009, min tau 0.988), AD4_m3mf_s402 pass (max |dAUC| 0.0004, min tau 0.991), AD4_m3mf_s403 pass (max |dAUC| 0.0004, min tau 0.992), AD4_m3mf_s404 MISS (max |dAUC| 0.0012, min tau 0.987), AD4_m3mf_s405 MISS (max |dAUC| 0.0008, min tau 0.989), AD4_m3perm_s401 pass (max |dAUC| 0.0001, min tau 1.000), AD4_m3perm_s402 pass (max |dAUC| 0.0001, min tau 1.000), AD4_m3perm_s403 pass (max |dAUC| 0.0001, min tau 0.999), AD4_m3perm_s404 pass (max |dAUC| 0.0002, min tau 0.999), AD4_m3perm_s405 pass (max |dAUC| 0.0001, min tau 0.999), AD4_m3zero_s401 pass (max |dAUC| 0.0000, min tau 1.000)
 
+The three misses (Kendall tau 0.987 to 0.989) are probably ties and near-ties at the saturation floor, where small numerical differences between the GB10 and the rented cards reorder scores; they are reported as misses and not rescued (review, Subject 2).
+
 ## H-new-5: incomplete (2 of 5). Morph-free seed-mean gap AUC(R4 vs R0) − AUC(R3 vs R0): OpenCV 0.009 [-0.008, 0.023], FaceMorpher -0.006 [-0.029, 0.015] (rule: at most 0.1 for both tools supported).
 
 | tool | network | R3 vs R0 | R4 vs R0 | gap | R4 vs R3 | R3 vs R2w | R4 vs R2w |
@@ -26,6 +28,8 @@ Unblanked re-score gate: AD4_m3mf_s401 MISS (max |dAUC| 0.0009, min tau 0.988), 
 | facemorpher | `AD4_m3zero_s401` | 0.488 | 0.501 | 0.013 | 0.514 | 0.494 | 0.508 |
 
 ## H-new-4: incomplete (2 of 5). SMDD evaluation renders below the FRLL genuine median in 2 of 2 morph-free seeds.
+
+Reading (review `REVIEW_PN1_TIER1_20261112.md`, Subject 2): **indistinguishable: both at the trained floor.** The −0.03 and −0.05 logit differences lie inside a floor whose 5th to 95th percentile spans about 0.03, and no interval was computed; they are not evidence for or against H-new-4.
 
 | pool | network | n | pool median logit | FRLL genuine median logit | difference |
 |---|---|---|---|---|---|

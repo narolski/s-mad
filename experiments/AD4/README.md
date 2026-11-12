@@ -1068,3 +1068,18 @@ for these still to be written; registered rules in Amendment 4). Compute so far 
 When all five ViT-L/14 morph-free tars are in: `summarise.py --stage gates`, then `--stage read`, then `posthoc_m3.py --recipe m3l`
 (commands as for ViT-B/16 with `--results /mnt/t7/smad_next/AD4/results_athena --recipe m3l`), then update result.md with the review's
 wording rules. Compute for the follow-ups: DGX GB10 about 1 h (11 networks x about 5.3 min); Athena none (smoke job cancelled unstarted).
+
+### Review of follow-ups (b), (c) and the bounded head (12 Nov; review `experiments/reviews/REVIEW_PN1_TIER1_20261112.md`, Subject 2, commit 64863c6)
+
+Applied on the lead's instruction:
+- `fu_blank_m3.md` and `fu_blank_m3.json`: platform "Athena, NVIDIA GB10" corrected to "DGX, NVIDIA GB10, blanked (Amendment 4b)" (8
+  occurrences each, edited in place; numbers unchanged); `src/AD4/fu_read.py` now writes that label.
+- H-new-4: worded "indistinguishable: both at the trained floor" (the -0.03 and -0.05 logit differences lie inside a floor whose 5th to
+  95th percentile spans about 0.03, with no interval); added to `fu_pools_m3.md` and result.md. Its printed status stays "incomplete (2 of 5)".
+- Unblanked-score gate misses (tau 0.987 to 0.989): noted as probably ties at the saturation floor; not rescued (`fu_pools_m3.md`, result.md).
+- H-new-5 stands as written.
+- Bounded head, measured on the AD4 tensors (`last_trainable.pt`, key `head.cls`; features L2-normalised in `archs_a12.py` line 277):
+  ViT-B/16 morph-free ||w|| 3.721 / 3.747 / 3.740 / 3.758 / 3.739, bias -0.035 / 0.013 / -0.020 / 0.004 / 0.008; label-permuted ||w||
+  0.609 to 0.649; ViT-L/14 morph-free 401 and 402 ||w|| 4.155 and 4.156. Logits are bounded by ||w|| + |b|, so the training floor
+  (-3.65 for ViT-B/16, -4.07 for ViT-L/14) is near the bound, and every FRLL-5% reading of AD4 reads a band about 0.03 logits wide.
+  Paragraph added to result.md ("What the networks are").
