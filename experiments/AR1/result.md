@@ -39,8 +39,8 @@ our pipeline (aligned 512-pixel frames, one DGX).
    above the best simple baseline) and SelfMAD 0.91 / 0.95 (+0.15 to +0.26 above it). So for the CLIP detectors and
    MixFaceNet, most of the unspliced 0.89-0.99 comes from what whole-frame tools blend outside the face. SelfMAD
    separates the inner-face splice too (above the band baseline, but not shown to exceed the 3-statistic seam floor;
-   amendment 9). It does not read only the patch boundary, and is not shown to read the blend beyond simple statistics
-   (amendment 10: S4 vs swap-splice 0.888 vs a sharpness floor of 0.959). This part is specific to tools that blend the whole frame.
+   amendment 9). No released detector is shown to read more than one simple statistic, interior sharpness, on spliced
+   morph vs swap-splice: inside-hull Laplacian variance alone gives 0.926 against SelfMAD's 0.888 (amendments 10, 11). This part is specific to tools that blend the whole frame.
 5. For regular morphs the audit finds both: blend-trace detection that works without benchmark cues, and, on the
    published FRLL files, sensitivity to photo history (SelfMAD strongly; ViT-B/16 and MixFaceNet moderately; not
    ViT-L/14). Neither a second identity nor face-only blending is shown to be what the CLIP detectors and MixFaceNet

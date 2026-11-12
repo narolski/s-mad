@@ -235,3 +235,18 @@ caps. Post hoc in substance (the detector scores are known).
     of luma (horizontal and vertical neighbour differences; no filtering, no resampling): standard deviation, mean
     absolute value and kurtosis, separately inside and outside the face hull (12 numbers); logistic, strict person
     folds. Detector excess over this floor with paired intervals.
+
+
+Amendment 11 (12 Nov, after REVIEW_FZ2_AR1A10_20261112 F8 / F9; committed before computing; post hoc in substance).
+Measurement only; DGX CPU with thread caps.
+(a) Record my own computation of the paired excess of each release over the single statistic inside-hull Laplacian
+    variance on spliced morph vs swap-splice (reviewer: SelfMAD -0.038 [-0.076, -0.004]), and the combined 22-number
+    floor (the 10 statistics of amendment 10 (a) + the 12 residuals, logistic, strict person folds) on the primary-pool
+    warp-only vs morph contrasts, both tools. The residual family of amendment 10 (b) was chosen after the detector
+    scores were known.
+(b) H-D, FRLL secondary pool, R2w vs R4, both tools, the combined 22-number floor fixed as above (fitted out of fold
+    on the FRLL rows with strict person folds; hull = the FRLL R4 geometry). Prediction: ViT-L/14 excess >= +0.03
+    with lower bound > 0, and the SelfMAD OpenCV interval includes 0. Falsified if ViT-L/14's lower bound <= 0. The
+    detector scores for these rows already exist (read in the first round). Caveat, stated now: FRLL R2w (warp toward
+    the smiling photo) and R4 (smiling partner) are the rungs labelled "confounded by capture detail and expression";
+    H-D is read descriptively for that reason.
