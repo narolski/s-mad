@@ -27,6 +27,27 @@ history-matched genuine photos; halves and history copies lower the storage reac
 in untouched photos flagged at a fixed camera-photo threshold; no rebuilt arm passes the sharpness acceptance (0.89
 to 0.96 inside every storage size), so Part 3 is descriptive.
 
+## 1a. Author's ruling of 12 Nov: development exposure of the remedy arms
+
+Ruling: no benchmark set may be used to develop a method. The remedy arms of this experiment, history crossing (e) and
+history crossing + JPEG copies (f) (and, by the same logic, the halves arms d and d+, which are remedy steps toward
+e), have been scored on benchmark cells; those scores are **development exposure** and are labelled so. They are never
+presented as benchmark results of a proposed method. The audit arms (Part 2, the partner audit and the partner-only
+arms a, a256, b, K = 5 random, K = 50, K = 500, b′, c′, c) are unaffected.
+
+Benchmark cells on which the remedy arms have been scored (native and history-matched E7 genuine pools of each):
+- FRLL-Morphs: AMSL, FaceMorpher, OpenCV, StyleGAN, WebMorph (morphs, FRLL genuine photos, E7 copies per family);
+- MorDIFF (morphs, genuine, E7 copies);
+- DiM: DiM-A, DiM-C, Fast-DiM, Fast-DiM-ODE, Greedy-DiM, Greedy-DiM-S (morphs, genuine, E7 copies);
+- corrected MAD22: FaceMorpher, MIPGAN-I, MIPGAN-II, OpenCV, Webmorph (morphs, genuine, E7 copies);
+- FRLL genuine photos under JPEG 90 / 70 / 50 (derived from the FRLL benchmark photos).
+Score sets that touched them: frozen heads e, f, d, d+ (our recipe, 5 seeds; `heads/`), the same with the release
+recipe (`heads_fz1/`), and on the rented machine the ViT-B/16 LoRA fits of e and f (A13; `ad4_eval.csv`, the same
+cells) as they finish; the ViT-L/14 LoRA fits of d, e, f would too if Athena runs them. Reads: `p3_full.json`,
+`p3_fz1.json`, `a12_fixed*.json`, `a12_border.json`, the A11 history-pool and A10 JPEG reads. Not benchmark cells:
+the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development material), the softened AR1 copies
+(AF0), the audit set and SMDD's own splits.
+
 ## 2. Timeline
 
 - 15:25 Read OWNER_BRIEF, NOTEBOOK, 11_AUDIT_PLAN, 10_ASSET_INVENTORY, 12_STATE_AT_HANDOVER, CONSOLIDATED_v1, the
@@ -253,6 +274,10 @@ to 0.96 inside every storage size), so Part 3 is descriptive.
   new `pullloop` step with a final pull and RELEASE); the running `drive.sh` was not edited (bash reads it while it
   runs) and its stuck processes were not killed (permission refused). Single-seed descriptive rows in `result.md`.
   `lora_read.py` takes a prefix and output name (SM1B, lora_scores_vitb) and skips non-folders.
+
+- 12 Nov 10:12 Athena 3546033 (A12 features) done; `run_a12f.sh 3546033` (fetch sha OK, merge, d5 compositions, d5
+  heads both recipes, readers, `a12_af0soft.py`): H-new-1 falsified (d5 landmark-7 5.07); softened-copy increments
+  e / f +0.03 to +0.05 against +0.09 to +0.28 for the other arms. T7 28 GB free at 10:15 (not my writes).
 
 ## 3. Data
 

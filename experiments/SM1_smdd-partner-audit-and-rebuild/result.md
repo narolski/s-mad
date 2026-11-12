@@ -8,6 +8,11 @@ Status 11 Nov 22:00: Part 1, T-A, T-B, T-C, Part 2 (primary and whole-file secon
 5 seeds), the A12 tonight items 1 to 4 and the A12 CPU items 5 to 9 are done. Running: ViT-L/14 and ViT-B/16 LoRA fits, the A12 feature job
 for the five-random-partner arm and the softened AR1 copies, the ViT-B/16 fits of arms b and b′ (Athena). 
 
+**Development exposure (author's ruling, 12 Nov).** Every benchmark-cell number of the remedy arms d, d+, e and f
+(frozen heads, release-recipe heads, LoRA fits) is development exposure: no benchmark set may be used to develop a
+method, so these rows are never benchmark results of a proposed method (list of cells: `README.md` §1a). The audit
+arms are unaffected.
+
 **Labels.** Every Part 3 number in this file is **"our frames, first-test data, arms fixed in advance"**: frozen CLIP
 ViT-L/14 features in the FE release's input convention, our linear head recipe, our aligned evaluation frames (morph
 frames carry our aligner's border, genuine frames none; review F8), benchmark cells read for the first time by arms
@@ -568,14 +573,29 @@ RTX 6000 Ada, 4,450 s of training per fit). Not the registered reading (due with
 | a s401 | 2.56 | +1.64 | 7.52 | +17.33 | 22.87 | 0.012 / 0.079 | 0.034 / 1.000 | 0.054 | 0.206 | 0.554 |
 | c s401 | 3.67 | +12.17 | 13.30 | +25.89 | 14.48 | 0.007 / 0.099 | 0.961 / 0.995 | 0.961 | 0.152 | 0.074 |
 
+## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
+
+**Item 11, five random pool partners (H-new-1; arm d5, 5 seeds; `p3_full.json`, `p3_fz1.json`).** Landmark-7 native
+EER: d5 5.07 [3.52, 6.78] against SMDD's five (b) 7.61, K = 50 4.79, b′ 4.19; b → d5 −2.54 [−4.21, −0.88], d5 → K = 50
+−0.29 [−1.31, +0.89]. Release recipe: d5 5.04, b → d5 −4.00 [−5.88, −2.00]. Diffusion-7 native 13.5 (b 20.2, K = 50
+9.7); diffusion rise +11.0 (b +14.6); MorDIFF E7 pool flagged at the own rule 0.47 (b 0.21, K = 50 0.55). Partner
+trace of d5 on the audit set (trained − KE, its five are not audit partners) 0.16 [−0.02, 0.35]. Prediction:
+landmark-7 ≥ 6.5%; falsified if ≤ 5.5%. Reading: **falsified** (5.07): five random partners do about as well as 50, so
+the step from SMDD's five is mostly about which five, not how many (F9).
+
+**Item 13, softened AR1 copies at 112.7 and 61.2 px target inter-eye distance (`a12_af0soft.json`).** Flag rate of
+200 softened camera photos (R0) at the head's camera threshold, against the same hosts unsoftened (raw photos; the
+softened copies are aligned frames, so the increment mixes alignment and softening). Increment 112.7 / 61.2 px:
+a +0.11 / +0.18; b +0.09 / +0.20; d5 +0.17 / +0.23; K = 50 +0.05 / +0.13; b′ +0.06 / +0.17; c +0.11 / +0.28;
+d +0.11 / +0.19; **e +0.05 / +0.03; f +0.04 / +0.04**; FE header +0.10 / +0.19 (release recipe: e +0.05 / +0.04,
+f +0.05 / +0.04). Softened OpenCV R4 morphs missed at the same threshold: 0.01 to 0.04 for every arm (increments
+−0.04 to +0.01). History crossing at 80 px also lowers the reaction to softening at sizes not used in training.
+
 ## A12 items still open
 
 10 (audit scored by the LoRA fits, H-new-5): when the fits finish (two ViT-L/14 fits running, the rest pending on
-Athena). 11 (five random partners, H-new-1): built (14,734 morphs, 0 failures), features in Athena job 3546033
-(pending). 12 (ViT-B/16 fits of b and b′): Athena array 3546034 (pending). 13 (softened AR1 copies at 112.7 / 61.2
-px): features in job 3546033; 80-px copies of the same AR1 photos do not exist and are not made (no new resampling by
-agents), so the comparison is against the untouched frames; the softened copies are aligned frames (prep_eval.align)
-while AR1 R0 enters as the raw photo.
+Athena). 11 and 13: done (above). 12 (ViT-B/16 fits of b and b′): on the rented machine (A13), queued after the 8 fits of
+a, c, e, f.
 
 ## Checks
 
