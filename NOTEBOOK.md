@@ -79,6 +79,7 @@ Last update: 11 Nov 2026, 15:15 CET. Started. WCSS: 48 one-GPU slots queued (job
 | Landmark twins from an unseen source (X5) | Landmark twins from an unseen source (CASIA), built with the unchanged approved script | planned | | | CPU |
 | Pipeline-count ablation (X3) | Does the number of different pipelines per class matter once twins are present? | planned | | | cut first |
 | — | Generated-morph training arms (CG, CD, CGD) of the old plan | retired (author, 11 Nov) | | | |
+| Multi-source training set for threshold transfer (MS1) | With FFHQ photos, morphs and matched controls added to the Sb training set, do genuine flag rates at the own rule fall on unseen sources? | running (build) | plan registered; Multi-PIE unusable (128 px crops), FLUXSynID ruled out by the author | | build FFHQ, register the SbM3 vs Sb comparison, pre-run review |
 
 ## Zero-compute cue checks (from the cue table)
 
