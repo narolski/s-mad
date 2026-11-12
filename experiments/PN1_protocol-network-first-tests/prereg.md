@@ -706,3 +706,5 @@ there), so the definitions were chosen knowing those values. Data: the 3,000 lan
   processing cue, R5).
 - Implementation: `src/PN1/fs_read.py` extension, committed in the immediately following commit (sha256 there),
   tested on the 401/402 amendment-14 data only.
+
+- R1–R6 implementation (`date`: Thu Nov 12 10:38:43 AM CET 2026): `src/PN1/fs_read.py` sha256 `c0d8dc19cbf375aa2daf9dd434b7ab6cc1d7e5810c3da781730fe0cb159dcf21`; tested on the 401/402 amendment-14 scores only (`fs_read.py --a14test` -> `tier1_a14/r1_r6_401_402.json`, post hoc); reproduces the review values (R1 Sb 0.879 / 0.901, B 0.708 / 0.699; R3 bases 0.886 / 0.948; R4 Sb 0.877 / 0.890; R5 0.786). Implementation choice stated before any fresh tar: the R2 condition of the pre-stated wording is read as every |ρ| of Sb (noise_std_face and noise_std_border, morphs and genuine) ≤ 0.2 on every read seed; R4 uses the SD of noise_std_face over all 3,000 images; R1 strata are [edge k, edge k+1), the last closed.

@@ -61,6 +61,107 @@ def count(meets, n):
     return "inconclusive, no claim"
 
 
+# ---------------- printed reads R1-R6 (registered e95656a; print only, no verdict)
+R1_EDGES = [0.302886, 0.362101, 0.378055, 0.394011, 0.410915, 0.430752, 0.453196, 0.479793, 0.516776, 0.571266, 3.38642]
+
+
+def strata(v):
+    k = np.searchsorted(np.array(R1_EDGES), v, side="right") - 1
+    return np.clip(k, 0, 9)
+
+
+def r1_auc(m, g, km, kg):
+    num = den = 0.0
+    for k in range(10):
+        a, b = m[km == k], g[kg == k]
+        if len(a) and len(b):
+            w = len(a) * len(b)
+            num += w * fauc(a, b)
+            den += w
+    return num / den if den else float("nan")
+
+
+def cv_auc(X, y):
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.model_selection import StratifiedKFold
+    from sklearn.pipeline import make_pipeline
+    from sklearn.preprocessing import StandardScaler
+    oof = np.zeros(len(y))
+    for tr, te in StratifiedKFold(5, shuffle=True, random_state=0).split(X, y):
+        mdl = make_pipeline(StandardScaler(), LogisticRegression(C=1.0, max_iter=2000)).fit(X[tr], y[tr])
+        oof[te] = mdl.decision_function(X[te])
+    return fauc(oof[y == 1], oof[y == 0])
+
+
+def rreads(nets, lc_m, lc_g, cid, names, comp_m=None, comp_g=None, pair_keys=None):
+    """nets: {name: score dict}. lc_m / lc_g: landmark_combined orig morph / resmatch genuine ids; comp_m / comp_g:
+    landmark_complete orig morph / resmatch genuine ids; pair_keys: [(complete morph id, combined morph id)]."""
+    from scipy.stats import spearmanr
+    jf, jb = names.index("noise_std_face"), names.index("noise_std_border")
+    CM = np.array([cid[i] for i in lc_m], float); CG = np.array([cid[i] for i in lc_g], float)
+    fm, fg = CM[:, jf], CG[:, jf]
+    km, kg = strata(fm), strata(fg)
+    sdf = np.std(np.r_[fm, fg])
+    y = np.r_[np.ones(len(lc_m)), np.zeros(len(lc_g))]
+    Xall = np.r_[CM, CG]
+    base_face = cv_auc(Xall[:, [jf]], y)
+    base_27 = cv_auc(Xall, y)
+    r5 = fauc(CM[:, jb], CG[:, jb])
+    rng = np.random.default_rng(20261119)
+    draws = [(rng.integers(0, len(lc_m), len(lc_m)), rng.integers(0, len(lc_g), len(lc_g))) for _ in range(2000)]
+    out = {"R3_base": dict(noise_std_face=base_face, all_27=base_27),
+           "R5_noise_std_border_auc": dict(auc=float(r5), direction_free=float(max(r5, 1 - r5)))}
+    r1d = {}
+    for n, x in nets.items():
+        m = np.array([x[i] for i in lc_m]); g = np.array([x[i] for i in lc_g])
+        r1 = r1_auc(m, g, km, kg)
+        r1d[n] = np.array([r1_auc(m[im], g[ig], km[im], kg[ig]) for im, ig in draws])
+        r2 = {f"{c}_{cls}": float(spearmanr(v, cue).correlation)
+              for c, j in (("noise_std_face", jf), ("noise_std_border", jb))
+              for cls, v, cue in (("morph", m, CM[:, j]), ("genuine", g, CG[:, j]))}
+        lg = np.r_[m, g][:, None]
+        f1 = cv_auc(np.c_[Xall[:, [jf]], lg], y); f27 = cv_auc(np.c_[Xall, lg], y)
+        # R4: each morph vs the nearest genuine on noise_std_face within 0.1 SD (with replacement)
+        order = np.argsort(fg); fs = fg[order]
+        wins = []
+        for i in range(len(m)):
+            p = np.searchsorted(fs, fm[i])
+            cand = [q for q in (p - 1, p) if 0 <= q < len(fs)]
+            q = min(cand, key=lambda q: abs(fs[q] - fm[i]))
+            if abs(fs[q] - fm[i]) <= 0.1 * sdf:
+                gv = g[order[q]]
+                wins.append(1.0 if m[i] > gv else 0.5 if m[i] == gv else 0.0)
+        rec = dict(R1_strat_auc=float(r1), R1_ci=[float(np.percentile(r1d[n], 2.5)), float(np.percentile(r1d[n], 97.5))],
+                   R2=r2, R3=dict(face_plus_logit=f1, inc_over_face=f1 - base_face, all27_plus_logit=f27, inc_over_27=f27 - base_27),
+                   R4_matched_auc=float(np.mean(wins)) if wins else None, R4_n_matched=len(wins))
+        if comp_m is not None:
+            cm_ = np.array([x[i] for i in comp_m]); cg_ = np.array([x[i] for i in comp_g])
+            dd = np.array([x[a] - x[b] for a, b in pair_keys])
+            rec["R6"] = dict(auc_complete=float(fauc(cm_, cg_)), auc_combined=float(fauc(m, g)),
+                             auc_loss=float(fauc(cm_, cg_) - fauc(m, g)), share_complete_higher=float(np.mean(dd > 0)),
+                             mean_logit_drop=float(dd.mean()), genuine_sd_combined=float(np.std(g)))
+        out[n] = rec
+    if "Sb" in nets and "B" in nets:
+        dd = r1d["Sb"] - r1d["B"]
+        out["R1_Sb_minus_B"] = dict(point=out["Sb"]["R1_strat_auc"] - out["B"]["R1_strat_auc"],
+                                    ci=[float(np.percentile(dd, 2.5)), float(np.percentile(dd, 97.5))])
+        out["R3_Sb_inc27_minus_B"] = out["Sb"]["R3"]["inc_over_27"] - out["B"]["R3"]["inc_over_27"]
+    return out
+
+
+def prestated(recs, c1_meeting_seeds):
+    """recs: {seed: rreads output}. Registered sentence if contrast 1 replicates and the floor is not exceeded.
+    R2 condition read as: every |rho| of Sb (both statistics, morphs and genuine) <= 0.2 on every read seed."""
+    a = all(recs[s]["R1_Sb_minus_B"]["point"] >= 0.05 for s in c1_meeting_seeds)
+    b = all(max(abs(v) for v in recs[s]["Sb"]["R2"].values()) <= 0.2 for s in recs)
+    c = int(sum(bool(recs[s]["R3_Sb_inc27_minus_B"] > 0) for s in recs)) >= 4
+    ok = bool(a and b and c)
+    return dict(R1_ok=bool(a), R2_ok=bool(b), R3_ok=bool(c), sentence=(
+        "Sb's gain over B on this development set is not explained by the best single simple statistic or by the 27 "
+        "statistics combined; Sb does not exceed the best statistic's own AUC, and still reads the surround (R6)."
+        if ok else "The gain is not separated from simple statistics."))
+
+
 def main():
     assert sha(EVAL) == EVAL_SHA
     assert sha(FLOOR) == FLOOR_SHA.read_text().split()[0]
@@ -122,6 +223,17 @@ def main():
             rec["c2"] = {a: rec[a]["share_rising"] <= 0.65 for a in ARMS}
             rec["c3_meets"] = bool(Sb["faceonly_test"] - B["faceonly_test"] >= 0.05)
         out["seeds"][str(s)] = rec
+    names = [str(n) for n in z["names"]]
+    cmp_m = [r["id"] for r in man if r["fam"] == "ffhq" and r["rung"] == "landmark_complete_orig"]
+    cmp_g = [r["id"] for r in man if r["fam"] == "ffhq" and r["rung"] == "landmark_complete_resmatch"]
+    hc = {r["host"]: r["id"] for r in man if r["fam"] == "ffhq" and r["rung"] == "landmark_complete_orig"}
+    hb_ = {r["host"]: r["id"] for r in man if r["fam"] == "ffhq_lcomb" and r["rung"] == "landmark_combined_orig"}
+    pk = [(hc[k], hb_[k]) for k in sorted(set(hc) & set(hb_))]
+    RR_ = {}
+    for s in read:
+        nets = {a: load(RF / f"PN1_{a}_s{s}.tar") for a in ARMS}
+        RR_[s] = rreads(nets, lc_m, lc_g, cid, names, cmp_m, cmp_g, pk)
+    out["printed_R1_R6"] = {str(s): v for s, v in RR_.items()}
     R = [out["seeds"][str(s)] for s in read]
     t1 = [r for r in R if r["c1_testable"]]
     c1 = count([r["c1_meets"] for r in t1], len(t1))
@@ -135,6 +247,10 @@ def main():
         claims.append("Spliced positives raise detection of face-spliced morphs over protocol-only training on a development "
                       "set with an unseen splice engine (FFHQ landmark_combined), 5 seeds" if floor_all else
                       "Higher AUC than B, but not shown beyond simple statistics")
+        if not floor_all:
+            meet = [s for s in read if out["seeds"][str(s)]["c1_testable"] and out["seeds"][str(s)]["c1_meets"]]
+            out["printed_R1_R6_sentence"] = prestated(RR_, meet)
+            claims.append("Printed (R1-R6): " + out["printed_R1_R6_sentence"]["sentence"])
     elif c3 == "replicated":
         claims.append("Engine-specific: the gain holds on our OpenCV ladder splices only")
     elif c1 == "not replicated" and c3 == "not replicated":
@@ -160,7 +276,50 @@ def main():
     print("claims", claims)
 
 
+def a14test():
+    """R1-R6 on the 401/402 amendment-14 data only (test of the extension; no fresh-seed tar is touched)."""
+    A14 = K.PN1 / "results_a14" / "unpacked" / "PN1_A14"
+    U = K.PN1 / "results_rented" / "unpacked"
+    man = list(csv.DictReader(open(K.PN1 / "a14_tree" / "pn14" / "data" / "manifests" / "pn1_a14.csv")))
+    lc_m = [r["id"] for r in man if r["fam"] == "ffhq_lcomb" and r["rung"] == "landmark_combined_orig"]
+    lc_g = [r["id"] for r in man if r["fam"] == "ffhq_lcomb" and r["rung"] == "landmark_combined_resmatch"]
+    cmp_m = [r["id"] for r in man if r["fam"] == "ffhq" and r["rung"] == "landmark_complete_orig"]
+    cmp_g = [r["id"] for r in man if r["fam"] == "ffhq" and r["rung"] == "landmark_complete_resmatch"]
+    hc = {r["host"]: r["id"] for r in man if r["fam"] == "ffhq" and r["rung"] == "landmark_complete_orig"}
+    hb_ = {r["host"]: r["id"] for r in man if r["fam"] == "ffhq_lcomb" and r["rung"] == "landmark_combined_orig"}
+    pk = [(hc[k], hb_[k]) for k in sorted(set(hc) & set(hb_))]
+    assert sha(FLOOR) == FLOOR_SHA.read_text().split()[0]
+    z = np.load(FLOOR)
+    cid = {str(i): c for i, c in zip(z["ids"], z["cues"])}
+    names = [str(n) for n in z["names"]]
+
+    def npz(p):
+        q = np.load(p)
+        return dict(zip([str(i) for i in q["id"]], q["logit"].astype(float)))
+    res = {}
+    for s in (401, 402):
+        nets = {}
+        for a in ("A", "B", "Sb"):
+            x = npz(A14 / f"PN1_{a}_s{s}__ffhq_lcomb.npz")
+            x.update(npz(U / f"PN1_HN2_s{s}" / f"scores_hn2_{a}.npz") if a != "Sb" else npz(A14 / f"PN1_Sb_s{s}__ffhq.npz"))
+            nets[a] = x
+        res[str(s)] = rreads(nets, lc_m, lc_g, cid, names, cmp_m, cmp_g, pk)
+    res["prestated_test"] = prestated({int(k): v for k, v in res.items()}, [401, 402])
+    d = K.RES / "tier1_a14"
+    K.dump(dict(post_hoc=True, note="test of fs_read.py R1-R6 on seeds 401/402 (amendment-14 scores)", **res), d / "r1_r6_401_402.json")
+    for s in ("401", "402"):
+        r = res[s]
+        print(s, "R1 Sb-B", round(r["R1_Sb_minus_B"]["point"], 3), "R3 base", {k: round(v, 3) for k, v in r["R3_base"].items()},
+              "R5", round(r["R5_noise_std_border_auc"]["direction_free"], 3))
+        for a in ("A", "B", "Sb"):
+            q = r[a]
+            print("  ", a, "R1", round(q["R1_strat_auc"], 3), "R2", {k: round(v, 2) for k, v in q["R2"].items()},
+                  "R3 inc27", round(q["R3"]["inc_over_27"], 3), "R4", round(q["R4_matched_auc"], 3), q["R4_n_matched"],
+                  "R6 loss", round(q["R6"]["auc_loss"], 3), "share", round(q["R6"]["share_complete_higher"], 3))
+    print(res["prestated_test"])
+
+
 if __name__ == "__main__":
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
-    main()
+    a14test() if "--a14test" in sys.argv[1:] else main()
