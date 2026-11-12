@@ -115,6 +115,23 @@ Zero GPU, existing features; partner-cycle folds, two-way person bootstrap B = 1
   vs D20 0.304, B vs D 0.388 (dinov2 0.930, 0.926, 0.020, 0.241, 0.325). The DG1 direction transfers to FRLL and again
   marks the same-person mix (it scores reconstructions above both mixes).
 
+## Amendment 2 (post hoc in substance; registered in commit c258935 before computing; **UNREVIEWED**) — `amend2.json`
+
+Saved noise maps of add-on shards 2–6 (335 hosts; shards 0–1 codes on Athena, shard 7's lost). Code `src/FZ2/fz2_amend2.py`.
+
+- Medians, same-person pair (a, b) vs other-person pair (a, p): θ 1.536 vs 1.564 rad; band cosines (lowest to highest)
+  0.400 / 0.172 / 0.058 / 0.021 vs 0.167 / 0.029 / 0.006 / 0.005; 8×8 low-pass cosine 0.224 vs 0.056.
+- Separation of X from SAME (two-way person bootstrap): θ 0.918 [0.894, 0.942] (0.916 on all 536); lowest-band cosine c0
+  0.971 [0.957, 0.983]; band 2 0.985 [0.975, 0.994]; low-pass 0.985 [0.975, 0.993]; band 3 0.918; band 4 0.827.
+- Within SAME, Spearman with face-box Laplacian L: c0 +0.095 [−0.016, +0.206]; band 2 +0.343 [+0.241, +0.437]; band 3
+  +0.440 [+0.347, +0.525]; band 4 +0.414 [+0.318, +0.503]; low-pass +0.231 [+0.125, +0.331]; θ −0.424 [−0.513, −0.327].
+  With P_XS: c0 −0.239, bands 2–4 −0.50 / −0.52 / −0.41, θ +0.486. Within X every correlation is within ±0.08 (intervals
+  include 0).
+- Joint model within SAME (ranks): R² of L on c0 0.009; adding θ raises it to 0.192, ΔR² +0.183 [+0.110, +0.267].
+- **Registered reading, H-A (shared structure in the lowest band): falsified** (θ adds beyond c0; c0 does not predict
+  sharpness). The same-person pairs share far more low-band structure than other-person pairs, but within SAME the
+  sharpness and the P_XS score follow the whole-map angle and the mid / high bands, not the lowest band.
+
 ## Compute
 
 Athena: job 3545969 submitted 20:39, cancelled 21:31 before it started (0 GPU-hours). DGX GB10: production features

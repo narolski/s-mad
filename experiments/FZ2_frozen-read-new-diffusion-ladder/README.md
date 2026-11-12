@@ -83,6 +83,11 @@ No answer yet.
   review batch).
 - 12 Nov: draft DG1 amendment for SAME_orth / X_corr rungs written for pre-run review:
   `experiments/DG1_diffusion-generation-athena/drafts/AMENDMENT_SAMEorth_Xcorr_DRAFT.md` (not run).
+- 12 Nov: pre-run review of that draft: STOP (`experiments/reviews/PRERUN_DG1_SAMEORTH_20261112.md`, f6b28e2); draft marked
+  "not run; stopped". Amendment 2 registered (commit c258935) before computing; `python -I src/FZ2/fz2_amend2.py`
+  (saved codes of shards 2–6, read from the tars in memory, sha checked) → `amend2.json`: H-A (lowest-band shared
+  structure) falsified; θ and the mid / high bands carry sharpness within SAME (UNREVIEWED). DG1 README records that
+  shard 7's codes no longer exist.
 
 ## 3. Data
 
