@@ -489,6 +489,22 @@ Readings (logit of the no-TTA score; AR1 person bootstrap, B = 10,000, the same 
 - Descriptive, scale-free (H-new-B AUC part): paired AUC of a photo against its softened copy (R0 vs R0 soft) for e and
   f; prediction difference < 0.05; falsified if ≥ 0.10 with an interval excluding 0.
 Cost: about 0.3 GPU-h on the RTX 6000 Ada (6 networks x 4,152 images x 2 passes, plus 256 check rows each).
+Pre-run check (experiment-reviewer, 12 Nov): GO WITH FIXES; fixes applied before any score:
+- The reproduction check no longer touches a benchmark row: it rescores the first 256 stored rows of the fit's
+  `ar1eval/scores_eval.npz` (all AR1 FRGC/colorFERET R0 camera photos; same scorer, same TTA and resolution) against
+  `sm1_ar1_eval.csv`; no benchmark folder or manifest is linked into the dev work folder.
+- The machine is not released before the dev step: `drive_v2.sh dev` writes DEV_PLANNED and holds RELEASE until 6 of
+  6 dev tars are verified; the remote script is detached; a missing fit tar is logged and skipped.
+- Bootstrap unit: the host (536 FRGC / colorFERET hosts; X20 keyed by host, partners re-enter as hosts), B = 10,000,
+  seed 20261111. The 200 softened R0 hosts are AF0's `ar1soft_src.csv` (the lead's list). SAME20 is descriptive only.
+- H-new-A: native contrast (X20 vs AR1 R0) mixes diffusion history with crop, resolution and file format; the
+  history-matched contrast (X20 vs REC20) decides. Zone 0.65 < AUC(e) < 0.80 = undecided.
+- H-new-E: floor check on the stored ar1eval scores of the 200 hosts (zero GPU, done before registration): share of R0
+  within 0.2 logit of the lower bound −‖w‖ + b: a 0.69 / 0.73, e 0.00 / 0.00, f 0.00 / 0.00. So a's "> 0" part is
+  favoured mechanically and is descriptive; the decision is on e only: supported if e's mean increment < 0 with the
+  host-bootstrap interval below 0 at both strengths; falsified if e's increment ≥ 0 with the interval above 0 at both;
+  otherwise undecided.
+- H-new-B AUC part: difference e − f of the paired AUC (photo against its softened copy), both strengths reported.
 
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?

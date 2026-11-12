@@ -94,7 +94,10 @@ case "$STEP" in
       fi
     done
     log "verified $n of 12"
-    if [ "$n" -eq 12 ]; then touch "$L/RELEASE"; log "RELEASE written"; fi
+    if [ "$n" -eq 12 ]; then
+      if [ -f "$L/DEV_PLANNED" ] && [ ! -f "$L/DEV_DONE" ]; then log "12 of 12, RELEASE held for the dev step (A15)";
+      else touch "$L/RELEASE"; log "RELEASE written"; fi
+    fi
     if R "[ -f $B/ALL_DONE ]" && [ "$n" -lt 12 ]; then log "queue finished with $n of 12 (see queue.log): RELEASE not written"; R "cat $B/queue.log" | tee -a "$L/sm1_drive.log"; fi
     ;;
   status)
@@ -113,16 +116,23 @@ case "$STEP" in
     done
     ;;
   dev)                                                         # A15 draft: development-data scoring (after the queue)
+    touch "$L/DEV_PLANNED"                                      # holds RELEASE until DEV_DONE
     DV=/mnt/t7/smad_next/SM1/dev_a14
     R "mkdir -p $B/manifests/dev"
     RS "$DV/sm1_dev_eval.csv" "$DV/sm1_dev_eval.csv.sha256" "$DV/dev_files.sha256" "root@$HOST:$B/manifests/dev/"
     RS "$SRC/remote_dev.sh" "root@$HOST:$B/bin/"
     (cd / && tar -cf - -T "$DV/filelist_dev.txt" 2>/dev/null) | ssh "${O[@]}" "root@$HOST" "tar -xf - -C $B/data/x"
     log "dev files streamed ($(wc -l < "$DV/filelist_dev.txt") files)"
-    R "bash $B/bin/remote_dev.sh" 2>&1 | tee -a "$L/sm1_dev.log" | tail -8
+    R "cd $B; (nohup setsid bash $B/bin/remote_dev.sh > $B/logs/dev.log 2>&1 < /dev/null &) > /dev/null 2>&1; sleep 2; echo dev started"
+    log "dev started detached on the machine (waits for the queue's ALL_DONE)"
+    for k in $(seq 1 60); do R "[ -f $B/results_dev/SM1D_ALL_DONE ]" && break; sleep 300; done
     mkdir -p "$OUTD/dev"
     RS --include='*.tar' --include='*.tar.sha256' --exclude='*' "root@$HOST:$B/results_dev/" "$OUTD/dev/"
+    RS "root@$HOST:$B/logs/dev.log" "$OUTD/dev/" || true
     (cd "$OUTD/dev" && sha256sum -c *.sha256) | tee -a "$L/sm1_drive.log"
+    nd=$(cd "$OUTD/dev" && sha256sum -c --quiet *.sha256 2>/dev/null && ls SM1D_*.tar | wc -l)
+    log "dev results verified: ${nd:-0} of 6"; [ "${nd:-0}" -eq 6 ] && touch "$L/DEV_DONE"
+    [ -f "$L/DEV_DONE" ] && bash "$0" "$HOST" "$PORT" "$L" pull
     ;;
   all)
     bash "$0" "$HOST" "$PORT" "$L" setup

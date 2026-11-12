@@ -38,6 +38,9 @@ def main():
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--bs", type=int, default=64)
     ap.add_argument("--ncheck", type=int, default=256)
+    ap.add_argument("--check-npz", default="ad4eval/scores_eval.npz", help="stored scores for the reproduction check "
+                    "(A15: ar1eval/scores_eval.npz, so no benchmark row is scored)")
+    ap.add_argument("--check-manifest", default="ad4_eval.csv")
     a = ap.parse_args()
     sys.path.insert(0, str(pathlib.Path(a.code) / "smadcvpr"))
     import torch
@@ -72,12 +75,12 @@ def main():
         return np.array(s_tta, np.float32), np.array(s_one, np.float32)
 
     t0 = time.time()
-    st = np.load(fit / "ad4eval/scores_eval.npz", allow_pickle=False)
-    byid = {r["id"]: r for r in C.read_manifest("ad4_eval.csv")}
+    st = np.load(fit / a.check_npz, allow_pickle=False)
+    byid = {r["id"]: r for r in C.read_manifest(a.check_manifest)}
     ev = [byid[str(i)] for i in st["id"][:a.ncheck]]          # the first stored rows (a smoke fit stores 8 spread rows)
     c_tta, c_one = score(ev)
     dmax = float(max(np.abs(c_one - st["score_noTTA"][:a.ncheck]).max(), np.abs(c_tta - st["score"][:a.ncheck]).max()))
-    chk = dict(fit=fit.name, n_check=len(ev), max_abs_score_diff=dmax, passed=bool(dmax <= 2e-3),
+    chk = dict(fit=fit.name, check_npz=a.check_npz, n_check=len(ev), max_abs_score_diff=dmax, passed=bool(dmax <= 2e-3),
                n_trainable_tensors=len(sd), last_trainable_sha256=sha256(fit / "ad4eval/last_trainable.pt"),
                steps=meta.get("steps"), arch=meta.get("arch"), seed=meta.get("seed"))
     json.dump(chk, open(out / "check.json", "w"), indent=1)
