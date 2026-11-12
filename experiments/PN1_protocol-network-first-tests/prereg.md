@@ -570,3 +570,24 @@ F4, F5. FFHQ only (no FEI, no SMDD).
   replicate A seed 401, 7 fits. Replacement of a lost lease: same type only, disclosed; the unfinished seed restarts.
 - Reader `src/PN1/fs_read.py`: committed before the first fresh-seed tar is pulled; it implements exactly the frozen
   rules.
+
+## Amendment 14 (development read; registered at the git commit that adds this section, after the FS1 freeze ac585b7; no amendment-14 score and no landmark_combined statistic exists at that commit)
+
+Text 14 of `prereg_amendment14_draft.md` (pre-run fixes F1 to F6 of `PRERUN_PN1_A14_AND_SEEDS_V3_20261112.md`, commit
+3f2bd14) is registered with these changes under the 12 Nov ruling and designation:
+- HN7's transfer axis is the FFHQ landmark_combined AUC (development set), not H1; H1 is sealed and is not read.
+  Prediction and falsifier unchanged (Spearman ≥ 0.6 and A's face-only AUC > B's on both seeds; falsified ≤ 0.2);
+  label "associational, between arms"; bootstrap over test partner cycles and landmark_combined images (rng 20261117).
+  Disclosure: the 12 H1 values that motivated HN7 were known; no landmark_combined value is known.
+- Text 14R is not used.
+- Pack contents checked: `pn1_a14.tar` (`bda5fd3d…`) holds the 4,365 splice rows (our own OpenCV-style splices of
+  FRGC / colorFERET ladder hosts, files under `/mnt/t7/smad_next/AR1`), the HN2 list and landmark_combined (FFHQ,
+  development); no FRLL, MAD22, MorDIFF, DiM, H1, FEI or sealed image or row.
+- Reader `src/PN1/a14_read.py` sha256 `c2e81363fd53844795272255dfa84819a72c1d37fb7b2017ef290a30a8964cc7`. Unchanged:
+  rescore.py `6f6eede7…`, remote_a14.sh `adc0b84d…`, drive14.sh `e079e4b5…`, build_pack14.py `1f08b98d…`, list
+  `9f199c3a…`, floor list `e1df77a5…`, cues27.py `2338780c…`.
+- Platform: run first on fresh-seed machine 2 (A100-SXM4 40 GB), before its fit queue (the queue waits for A14_DONE);
+  the driver's lease folder for this step is a sub-folder (`LEASE/a14`), so its RELEASE marker does not release the
+  machine. Gate, guard values (1.5 USD of the machine-2 cap, 2.5 h) and failure rules as in Text 14.
+- Order: the floor cues on landmark_combined (`cues27.py`) are computed and their sha256 committed
+  (`tier1_a14/a14_lcomb_floor.sha256`) before the lease starts; they serve both amendment 14 and FS1 contrast 1.
