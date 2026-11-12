@@ -1,0 +1,13 @@
+{
+ "af0_pairs": {
+  "train/zero": 400,
+  "train/u50": 400,
+  "hold/zero": 150,
+  "hold/u50": 150
+ },
+ "halves": 1100,
+ "soft_rows": 2150,
+ "soft_built": 1525,
+ "ladder": 150,
+ "ladder_cos_median": 0.17255
+}
