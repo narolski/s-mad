@@ -4,7 +4,7 @@ no-TTA score of ad4_score.py; monotone, so AUC, EER and thresholded flags are un
 Id mapping: AD4 eval ids "e…" -> "ev:e…"; "mad22c/<native|e7>/<fam>/<file>.png" -> "m22:<native|e7>/<fam>/<stem>";
 AR1 ids are the SM1 ids already.
 
-  python3 -I lora_read.py DIR   (DIR holds the extracted SM1L_* folders)
+  python3 -I lora_read.py DIR [PREFIX OUTNAME]   (DIR holds the extracted SM1L_* folders; ViT-B/16: SM1B lora_scores_vitb)
 """
 import json
 import pathlib
@@ -27,10 +27,11 @@ def conv(i):
 
 def main():
     d = pathlib.Path(sys.argv[1])
-    od = K.OUT / "lora_scores"
+    pre = sys.argv[2] if len(sys.argv) > 2 else "SM1L"                     # A13: SM1B for the ViT-B/16 fits
+    od = K.OUT / (sys.argv[3] if len(sys.argv) > 3 else "lora_scores")
     od.mkdir(parents=True, exist_ok=True)
     out = {}
-    for t in sorted(d.glob("SM1L_*_s*")):
+    for t in sorted(d.glob(f"{pre}_*_s*")):
         if t.name.endswith("_smoke") or not t.is_dir():
             continue
         arm, seed = t.name.split("_")[1], t.name.split("_")[2][1:]

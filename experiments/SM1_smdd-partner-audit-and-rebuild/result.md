@@ -558,6 +558,16 @@ the camera-photo threshold (MorDIFF E7 0.85, seeds 1.00 / 0.71), where this head
 photos and 0.83 of JPEG-50 FRLL photos (seed spread large). So the ViT-L/14 LoRA arm a shows no storage rise in EER;
 the storage comparison for the ViT-L/14 fits does not count at the own rule (A11). Train hours 3.50 per fit.
 
+## ViT-B/16 LoRA fits on the rented machine (A13): INCOMPLETE, descriptive single-seed rows
+
+Our frames, first-test data, arms fixed in advance; seed 401 only, 2 of 12 fits (`p3_lora_vitb_incomplete.json`;
+RTX 6000 Ada, 4,450 s of training per fit). Not the registered reading (due with the eighth fit).
+
+| Fit | landmark-7 EER native | landmark rise | diffusion-7 EER native | diffusion rise | GAN-3 EER | halves flagged (AR1 EER thr / camera thr) | MorDIFF E7 pool flagged (own / camera) | most-flagged pool, own rule | untouched FRLL flagged, camera thr | JPEG-50 FRLL flagged, camera thr |
+|---|---|---|---|---|---|---|---|---|---|---|
+| a s401 | 2.56 | +1.64 | 7.52 | +17.33 | 22.87 | 0.012 / 0.079 | 0.034 / 1.000 | 0.054 | 0.206 | 0.554 |
+| c s401 | 3.67 | +12.17 | 13.30 | +25.89 | 14.48 | 0.007 / 0.099 | 0.961 / 0.995 | 0.961 | 0.152 | 0.074 |
+
 ## A12 items still open
 
 10 (audit scored by the LoRA fits, H-new-5): when the fits finish (two ViT-L/14 fits running, the rest pending on

@@ -12,7 +12,7 @@ cd "$B"
 mkdir -p logs results lat
 case "${1:?setup|shard|spread}" in
 setup)
-  sha256sum -c upload/ag1_pack.tar.sha256 upload/needs_lat.tar.sha256 upload/ag1_spread.py.sha256 > logs/setup_hashes.txt
+  (cd upload && sha256sum -c ag1_pack.tar.sha256 needs_lat.tar.sha256 ag1_spread.py.sha256) > logs/setup_hashes.txt
   if [ -z "${AG1_PY:-}" ]; then
     python -c "import torch, torchvision; print('torch==' + torch.__version__.split('+')[0]); print('torchvision==' + torchvision.__version__.split('+')[0])" > constraints.txt
     python -m pip install --no-cache-dir -c constraints.txt numpy==1.26.4 pillow==10.2.0 > logs/pip.log 2>&1 || { tail -20 logs/pip.log; exit 1; }

@@ -453,6 +453,11 @@ Docker image `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime` with the packages p
 - Smoke: 200 steps on arm a seed 401; the Athena ViT-B/16 jobs (3545957 array, 3546034 array) are cancelled only
   after it passes. A failed fit is rerun once unchanged.
 - Results: one tar + sha256 per fit, verified, in `/mnt/t7/smad_next/SM1/results_rented/`.
+- Note (12 Nov 02:50, before any registered ViT-B/16 reading): the rented machine is an NVIDIA RTX 6000 Ada
+  Generation (48 GB), not an A100 (`/mnt/t7/smad_next/vast/sm1b/driver.log`; 1.41 steps/s). The rule stands with
+  that machine type: all ViT-B/16 fits of this experiment come from this one RTX 6000 Ada machine.
+- Reading (lead, 12 Nov): the first registered ViT-B/16 reading is made when the eighth fit (arms a, c, e, f x seeds
+  401, 402) is back; earlier single-seed rows are descriptive and labelled incomplete.
 
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?

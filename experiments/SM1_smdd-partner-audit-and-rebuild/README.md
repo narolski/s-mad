@@ -245,6 +245,15 @@ to 0.96 inside every storage size), so Part 3 is descriptive.
   unpack_one.sh, fit_local.sh, remote_smoke.sh, remote_queue.sh); uploads from owner sessions are refused tonight,
   so the lead starts the driver. 12 packs, 45.8 GB; about 14 h for 12 fits.
 
+- 22:49 to 02:50 (rented, lead's machine `/mnt/t7/smad_next/vast/sm1b`, RTX 6000 Ada, not an A100): setup 3,238 s
+  (45.8 GB, every pack hash OK), smoke rc 0 (1.43 it/s, peak 30,840 MiB, audit check max diff 0.0), Athena ViT-B/16
+  jobs 3545957 and 3546034 cancelled, queue started 22:49 UTC. Bug: the `queue` step's ssh never returned (the
+  backgrounded `cd && nohup ... &` list kept the session's stdout), so `all` never reached its pull loop; the lead
+  copied SM1B_a_s401 and SM1B_c_s401 by hand (hashes re-checked here). Fixed in `rented/drive_v2.sh` (queue line;
+  new `pullloop` step with a final pull and RELEASE); the running `drive.sh` was not edited (bash reads it while it
+  runs) and its stuck processes were not killed (permission refused). Single-seed descriptive rows in `result.md`.
+  `lora_read.py` takes a prefix and output name (SM1B, lora_scores_vitb) and skips non-folders.
+
 ## 3. Data
 
 Inputs (read only):
