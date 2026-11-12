@@ -99,7 +99,20 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
   the A_s401 logits differ by 0.061-0.088 (`diag_stack_compare.json`). So the DGX gate failure lies in the network
   computation on the GB10 stack, not in decode or resize.
 - Lead told (options: amend the FFHQ criterion to float32 rounding, e.g. max |Δ| ≤ 1e-4 with zero flips; or re-run
-  the gate with the HN2 batching; or stop).
+  the gate with the HN2 batching; or stop). Lead: option (b); tt1a destroyed by the guard (0.56 USD).
+- 00:34:08-00:34:17: `tt1_hn2.tar` built from the HN2 tree: byte-identical to the registered HN2 pack (sha256 7648b15a…).
+  The amendment-14 list's ffhq rows have the same order as the HN2 list (checked).
+- Commit 4454f3f (`date` Fri Nov 13 12:35:03 AM CET 2026): deviation TT1-D2 (prereg.md section 6).
+- 00:35: lease tt1b (host 104.202.122.106:30463, A100-SXM4 80 GB, cap 2.5 USD, 2 h): upload, start and pull loop
+  (`/mnt/t7/smad_next/vast/tt1b/tt1_drive.log`).
+
+### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
+
+The decoded image, the resized image and the input tensor are bit-identical between the DGX stack (torch 2.12.1,
+Pillow 12.2.0, GB10) and the A100 stack (torch 2.2.1, Pillow 10.2.0) on five FFHQ genuine images; the logits differ by
+0.061-0.088. The difference lies in the network computation on GB10 / torch 2.12. On the A100 stack, batch composition
+alone changes logits at the 1e-6 to 2e-5 level. A final read must pin GPU type and torch build (and the batching for
+bit identity), not only the image libraries.
 
 ## 3. Data
 
@@ -218,8 +231,8 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-No process running. Lease tt1a: RELEASE + FAILED written 00:32:37 (gate failed); the pack is on that host until the
-lead's guard releases it. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+Lease tt1b running (driver loop in the background on the DGX; log /mnt/t7/smad_next/vast/tt1b/tt1_drive.log). tt1a
+released. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch
