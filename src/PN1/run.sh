@@ -67,7 +67,7 @@ py "$W/pn1/src/pn1_score.py" --run "$RUN" --code "$W/pn1/code" --eval-manifest p
   --train-manifest train.csv --out "$R" --workers "$WORKERS" --limit "${PN1_LIMIT:-0}"
 cp "$RUN/meta.json" "$W/train.log" "$TASK_DIR/task.env" "$R/"
 echo "sif $SIF local ${PN1_LOCAL:-0} pack_sha256 $PACK_SHA wall_s $((SECONDS - T0)) host $(hostname) steps $STEPS limit ${PN1_LIMIT:-0}" > "$R/task_info.txt"
-nvidia-smi --query-gpu=uuid,name,driver_version --format=csv,noheader > "$R/gpu.txt" 2>&1 || true
+{ echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"; nvidia-smi -i "${CUDA_VISIBLE_DEVICES:-0}" --query-gpu=index,uuid,name,driver_version --format=csv,noheader; } > "$R/gpu.txt" 2>&1 || true
 tar -C "$W/res" -cf "$W/$TASK.tar" "$TASK"
 cp "$W/$TASK.tar" "$OUT/$TASK.tar.part"
 (cd "$W" && sha256sum "$TASK.tar") > "$W/$TASK.tar.sha256"

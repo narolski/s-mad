@@ -1,13 +1,15 @@
 #!/bin/bash
 # PN1 fresh seeds (registration FS1), rented machine. Modes:
 #   bash remote_fs.sh setup PIN2      check the development pack against its pin, pip pins (as remote_setup.sh), versions -> logs
-#   bash remote_fs.sh queue PIN2 "T1 T2 ..." [after_a14]   (after_a14: wait for A14_DONE first, machine 2)   run the tasks one after another with the development pack through run.sh (v3), one
+#   bash remote_fs.sh queue PIN2 "T1 T2 ..." Q [after_a14]   Q = queue id m1 | m2 (markers QUEUE_FS_STARTED_Q,
+#        ALL_DONE_FS_Q, queue_fs_Q.log); the GPU is chosen by the caller's CUDA_VISIBLE_DEVICES (one-host layout:
+#        m1 on GPU 0, m2 on GPU 1); after_a14: wait for A14_DONE first   run the tasks one after another with the development pack through run.sh (v3), one
 #        result tar per task in root/results/PN1; a failed task is re-run once unless the log shows a non-finite loss;
 #        rc per task in rc/; ALL_DONE_FS at the end. The pack holds no benchmark image: run.sh scores the development pn1_eval.csv only.
 set -u
 B=/workspace/pn1; MODE=${1:?mode}; PIN2=${2:?pin}
 cd "$B/root/packs/PN1" || exit 1
-[ "$(cut -c1-64 pn1_pack_fs.tar.sha256)" = "$PIN2" ] || { echo "pack2 .sha256 differs from the pin"; exit 1; }
+[ "$(cut -c1-64 pn1_pack_fs.tar.sha256)" = "$PIN2" ] || { echo "pack .sha256 differs from the pin"; exit 1; }
 case "$MODE" in
   setup)
     sha256sum -c pn1_pack_fs.tar.sha256 || exit 1
@@ -21,20 +23,21 @@ case "$MODE" in
     echo SETUP_OK
     ;;
   queue)
-    TASKS=${3:?tasks}
-    date > "$B/QUEUE_FS_STARTED"
-    [ "${4:-}" = after_a14 ] && { until [ -f "$B/A14_DONE" ]; do sleep 30; done; echo "$(date +%T) A14_DONE seen" >> "$B/queue_fs.log"; }
+    TASKS=${3:?tasks}; Q=${4:?queue id}
+    date > "$B/QUEUE_FS_STARTED_$Q"
+    echo "$(date +%T) queue $Q CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}" >> "$B/queue_fs_$Q.log"
+    [ "${5:-}" = after_a14 ] && { until [ -f "$B/A14_DONE" ]; do sleep 30; done; echo "$(date +%T) A14_DONE seen" >> "$B/queue_fs_$Q.log"; }
     for T in $TASKS; do
       for try in 1 2; do
         W=$B/work/$T; rm -rf "$W"; mkdir -p "$W"
         ( cd "$W" && TMPDIR=$B/tmp TASK_DIR="$B/tasks/$T" TASK_WORK="$W" PN1_ROOT="$B/root" PN1_PACK="$B/root/packs/PN1/pn1_pack_fs.tar" \
           PN1_LOCAL=1 PN1_PY=python PN1_WORKERS=7 bash "$B/tasks/$T/run.sh" ) >> "$B/logs/$T.log" 2>&1
         rc=$?; echo "$rc" > "$B/rc/$T"; rm -rf "$W"
-        echo "$(date +%T) $T try $try rc $rc" >> "$B/queue_fs.log"
+        echo "$(date +%T) $T try $try rc $rc" >> "$B/queue_fs_$Q.log"
         [ $rc -eq 0 ] && break
-        grep -qiE "loss +nan|loss +inf|non-finite" "$B/logs/$T.log" && { echo "$(date +%T) $T non-finite: not re-run" >> "$B/queue_fs.log"; break; }
+        grep -qiE "loss +nan|loss +inf|non-finite" "$B/logs/$T.log" && { echo "$(date +%T) $T non-finite: not re-run" >> "$B/queue_fs_$Q.log"; break; }
       done
     done
-    date > "$B/ALL_DONE_FS"
+    date > "$B/ALL_DONE_FS_$Q"
     ;;
 esac

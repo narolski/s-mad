@@ -19,7 +19,7 @@ finish() {
   if [ ${#FAILS[@]} -eq 0 ]; then echo 0 > "$OUT/rc"; else printf '%s\n' "${FAILS[@]}" > "$OUT/rc"; fi
   cp "$OUT/rc" "$B/rc/$T"
   cp "$B/logs/$T.log" "$B/logs/pip.log" "$OUT/" 2>/dev/null
-  nvidia-smi --query-gpu=uuid,name,driver_version --format=csv,noheader > "$OUT/gpu.txt" 2>&1
+  { echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"; nvidia-smi -i "${CUDA_VISIBLE_DEVICES:-0}" --query-gpu=index,uuid,name,driver_version --format=csv,noheader; } > "$OUT/gpu.txt" 2>&1
   python -c "import sys, torch, timm, numpy, PIL; print(sys.version.split()[0], torch.__version__, torch.version.cuda, timm.__version__, numpy.__version__, PIL.__version__)" > "$OUT/versions.txt" 2>&1
   echo "$VAR" > "$OUT/variant.txt"
   tar -C "$W/res" -cf "$B/root/results/PN1/$T.tar" "$T"; (cd "$B/root/results/PN1" && sha256sum "$T.tar" > "$T.tar.sha256")

@@ -591,3 +591,30 @@ Text 14 of `prereg_amendment14_draft.md` (pre-run fixes F1 to F6 of `PRERUN_PN1_
   machine. Gate, guard values (1.5 USD of the machine-2 cap, 2.5 h) and failure rules as in Text 14.
 - Order: the floor cues on landmark_combined (`cues27.py`) are computed and their sha256 committed
   (`tier1_a14/a14_lcomb_floor.sha256`) before the lease starts; they serve both amendment 14 and FS1 contrast 1.
+
+## Deviation FS1-D1 (`date`: Thu Nov 12 08:19:22 AM CET 2026; committed before any fit starts; frozen contrasts v4 untouched): GPU type and one-host layout
+
+Reason: no single A100-SXM4 40 GB is on offer (lead, 12 Nov morning).
+- GPU type rule: A100 40 GB of either form factor (SXM4 or PCIe; same GA100 chip, sm_80). GPU index, name and UUID are
+  recorded in every result tar (`gpu.txt`, the GPU named by CUDA_VISIBLE_DEVICES). All arms of one seed run on one
+  GPU; results are printed per GPU. The replicate A seed 401 is then read as "platform plus nondeterminism" against
+  an SXM4 original (pn1a), which mixes form factor, host and run-to-run nondeterminism; it separates none of them.
+- Preferred layout: ONE 2-GPU A100 PCIe 40 GB host, queue m1 (seeds 403, 405, 407) on GPU 0 and queue m2 (amendment
+  14 first, then seeds 404, 406 and the replicate A 401) on GPU 1, via CUDA_VISIBLE_DEVICES; separate work folders per
+  task, task-named result tars, per-queue markers; one guard, cap 11.6 USD total, deadline 13.5 h; disk 120 GB.
+  RELEASE (+ FAILED) only when both queues are fetched and verified (`PN1_FS_ONEHOST=1`).
+- Fallback: two single A100 40 GB leases of whichever form factors are on offer (same queues, one per lease); if the
+  two differ, the mixed-type layout is disclosed in the result and every read is printed per GPU.
+- Scripts re-pinned (training and scoring commands unchanged): run.sh
+  `04998a7c274229b861b840e2b5a793854a712a7fb031fb572e34e1c791a4c87e` (only the gpu.txt line: the visible GPU and
+  CUDA_VISIBLE_DEVICES); remote_fs.sh `010f1f621392916f2281d448b756da70916c17ce404d2f5df8c1bd1c8e5ae7e1`; drive_fs.sh
+  (sha256 at this commit; pins run.sh `04998a7c…` and the pack `96c31ae2…`); amendment 14's remote_a14.sh
+  `fadc2c79174d48b6dbdca678356da8bd445c215743b473f02e66f97be190f58a` (only the gpu.txt line) and drive14.sh
+  `f0c99f172a55ba8c5dab5369cd03339120bec7a7740be70b76d3455236259d1d` (CUDA_VISIBLE_DEVICES for its scoring).
+- Reader `src/PN1/fs_read.py` `ff363aa4abc2fc13d500e274b4d2bc2fd9a65348f3b3652cc383b716de6f879a`, committed here,
+  before any fresh-seed tar exists (tested on random mock scores only).
+- Wording fix: the 4,365 splice rows in the FS1 pack and in amendment 14 are all OpenCV-style splices of FRGC /
+  colorFERET ladder hosts (tool column "opencv" for all 4,365).
+- Local checks: the 20-step smoke of run.sh on the development pack passed (rc 0, full tar); the two-queue path
+  (both queues, A14_DONE wait, per-queue markers, joint RELEASE and FAILED on a partial queue) passed a mock test with a
+  stand-in task script.

@@ -3,7 +3,7 @@
 #   bash drive14.sh HOST PORT LEASE start full|reduced   # upload pack, rescore.py, remote_a14.sh; start detached
 #   bash drive14.sh HOST PORT LEASE pull                  # copy PN1_A14.tar back, verify; RELEASE (+ FAILED) when verified
 #   bash drive14.sh HOST PORT LEASE loop                  # pull every 5 min until RELEASE (at most 2.5 h)
-# Guard values registered with amendment 14 (the lead's guard): cap 1.5 USD, deadline lease start + 2.5 h.
+# PN1_GPU: CUDA_VISIBLE_DEVICES for the scoring (one-host layout: 1). Guard values registered with amendment 14 (the lead's guard): cap 1.5 USD, deadline lease start + 2.5 h.
 set -euo pipefail
 HOST=${1:?host}; PORT=${2:?port}; L=${3:?lease folder}; STEP=${4:?step}; VAR=${5:-}
 SRC=$(cd "$(dirname "$0")" && pwd)
@@ -25,7 +25,7 @@ case "$STEP" in
     R "mkdir -p $B/root/packs/PN1 $B/root/results/PN1 $B/bin $B/logs $B/rc && nvidia-smi -L && df -h /workspace | tail -1" | tee -a "$L/pn1_a14_drive.log"
     RS "$P/$PK" "$P/$PK.sha256" "root@$HOST:$B/root/packs/PN1/"
     RS "$SRC/../rescore.py" "$SRC/remote_a14.sh" "root@$HOST:$B/bin/"
-    msg=$(timeout 30 ssh "${O[@]}" "root@$HOST" "cd $B && nohup setsid bash $B/bin/remote_a14.sh $PIN $VAR > $B/logs/a14_driver.log 2>&1 < /dev/null & sleep 2; echo A14_STARTED" || true)
+    msg=$(timeout 30 ssh "${O[@]}" "root@$HOST" "cd $B && CUDA_VISIBLE_DEVICES=${PN1_GPU:-0} nohup setsid bash $B/bin/remote_a14.sh $PIN $VAR > $B/logs/a14_driver.log 2>&1 < /dev/null & sleep 2; echo A14_STARTED" || true)
     echo "$msg" | grep -q A14_STARTED || { log "A14_STARTED not seen: remote start failed"; exit 1; }
     log "a14 ($VAR) uploaded and started"
     ;;

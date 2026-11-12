@@ -9,12 +9,15 @@
 #   bash drive_fs.sh HOST PORT LEASE M loop     # pull every 10 min until RELEASE (at most 16 h)
 #   bash drive_fs.sh HOST PORT LEASE M status
 # Free-disk floor: no pull when /mnt/t7 has under 20 GB free (a fit tar is about 8 MB).
+# One-host layout (PN1_FS_ONEHOST=1): both queues on one 2-GPU host, m1 on GPU 0, m2 on GPU 1 (PN1_GPU sets
+# CUDA_VISIBLE_DEVICES for queue; default m1 -> 0, m2 -> 1). Each queue writes LEASE/DONE_<M> (+ FAILED_<M>);
+# RELEASE (+ FAILED) only when DONE_m1 and DONE_m2 both exist. Without PN1_FS_ONEHOST, RELEASE per lease as before.
 set -euo pipefail
 HOST=${1:?host}; PORT=${2:?port}; L=${3:?lease}; M=${4:?m1|m2}; STEP=${5:?step}
 SRC=$(cd "$(dirname "$0")" && pwd)
 KEY=${PN1_SSH_KEY:-/home/narolski/.config/smad-next/vast_ssh_key}
 PIN2=96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004
-RUNSH=74a49b0baaeb99108664bf8243d079b708c94f4f87c154ff5840796288e48bb0
+RUNSH=04998a7c274229b861b840e2b5a793854a712a7fb031fb572e34e1c791a4c87e
 case "$M" in
   m1) TASKS="PN1_A_s403 PN1_B_s403 PN1_Sb_s403 PN1_A_s405 PN1_B_s405 PN1_Sb_s405 PN1_A_s407 PN1_B_s407 PN1_Sb_s407" ;;
   m2) TASKS="PN1_A_s404 PN1_B_s404 PN1_Sb_s404 PN1_A_s406 PN1_B_s406 PN1_Sb_s406 PN1_Arep_s401" ;;
@@ -46,7 +49,8 @@ case "$STEP" in
     grep -q SETUP_OK "$L/fs_setup.log" && log "SETUP_OK $M" || { log "SETUP FAILED $M"; exit 1; }
     ;;
   queue)
-    msg=$(timeout 30 ssh "${O[@]}" "root@$HOST" "cd $B && nohup setsid bash $B/bin/remote_fs.sh queue $PIN2 '$TASKS' ${PN1_FS_AFTER_A14:+after_a14} > $B/logs/queue_fs_driver.log 2>&1 < /dev/null & sleep 3; cat $B/QUEUE_FS_STARTED && echo FS_QUEUE_STARTED" || true)
+    G=${PN1_GPU:-}; [ -z "$G" ] && { [ "$M" = m1 ] && G=0 || G=1; }; [ "${PN1_FS_ONEHOST:-0}" = 1 ] || G=0
+    msg=$(timeout 30 ssh "${O[@]}" "root@$HOST" "cd $B && CUDA_VISIBLE_DEVICES=$G nohup setsid bash $B/bin/remote_fs.sh queue $PIN2 '$TASKS' $M ${PN1_FS_AFTER_A14:+after_a14} > $B/logs/queue_fs_driver_$M.log 2>&1 < /dev/null & sleep 3; cat $B/QUEUE_FS_STARTED_$M && echo FS_QUEUE_STARTED" || true)
     echo "$msg" | grep -q FS_QUEUE_STARTED || { log "queue start not confirmed"; exit 1; }
     log "queue $M started: $TASKS"
     ;;
@@ -55,8 +59,8 @@ case "$STEP" in
     [ "$avail" -ge 20 ] || { log "T7 has ${avail} GB free (< 20 GB floor): not pulling"; exit 1; }
     RS --include='PN1_*.tar' --include='PN1_*.tar.sha256' --exclude='*' "root@$HOST:$B/root/results/PN1/" "$OUTD/" || true
     RS "root@$HOST:$B/logs/" "$OUTD/logs_$M/" || true
-    RS "root@$HOST:$B/rc" "root@$HOST:$B/queue_fs.log" "$OUTD/logs_$M/" 2>/dev/null || true
-    ended=$(R "[ -f $B/ALL_DONE_FS ] && echo ENDED || echo RUNNING" 2>/dev/null || echo UNKNOWN)
+    RS "root@$HOST:$B/rc" "root@$HOST:$B/queue_fs_$M.log" "$OUTD/logs_$M/" 2>/dev/null || true
+    ended=$(R "[ -f $B/ALL_DONE_FS_$M ] && echo ENDED || echo RUNNING" 2>/dev/null || echo UNKNOWN)
     n=0; NW=0; bad=""
     for t in $TASKS; do
       NW=$((NW + 1))
@@ -65,16 +69,26 @@ case "$STEP" in
       else bad="$bad $t"; fi
     done
     log "$M verified $n of $NW (remote $ended)"
-    if [ "$n" -eq "$NW" ]; then touch "$L/RELEASE"; log "RELEASE written"
+    if [ "$n" -eq "$NW" ]; then touch "$L/DONE_$M"; log "DONE_$M"
     elif [ "$ended" = ENDED ]; then
       sleep 60; RS --include='PN1_*.tar' --include='PN1_*.tar.sha256' --exclude='*' "root@$HOST:$B/root/results/PN1/" "$OUTD/" || true
-      echo "missing or failed:$bad" > "$L/FAILED"; touch "$L/RELEASE"; log "RELEASE + FAILED written (missing or failed:$bad)"
+      echo "missing or failed:$bad" > "$L/FAILED_$M"; touch "$L/DONE_$M"; log "DONE_$M + FAILED_$M (missing or failed:$bad)"
+    fi
+    if [ -f "$L/DONE_$M" ]; then
+      if [ "${PN1_FS_ONEHOST:-0}" = 1 ]; then
+        if [ -f "$L/DONE_m1" ] && [ -f "$L/DONE_m2" ]; then
+          cat "$L"/FAILED_m* > "$L/FAILED" 2>/dev/null || rm -f "$L/FAILED"; [ -s "$L/FAILED" ] || rm -f "$L/FAILED"
+          touch "$L/RELEASE"; log "RELEASE written (both queues)$( [ -f "$L/FAILED" ] && echo ' + FAILED')"
+        else log "DONE_$M; waiting for the other queue before RELEASE"; fi
+      else
+        [ -f "$L/FAILED_$M" ] && cp "$L/FAILED_$M" "$L/FAILED"; touch "$L/RELEASE"; log "RELEASE written"
+      fi
     fi
     ;;
   loop)
-    for k in $(seq 1 96); do bash "$0" "$HOST" "$PORT" "$L" "$M" pull || true; [ -f "$L/RELEASE" ] && break; sleep 600; done
+    for k in $(seq 1 96); do bash "$0" "$HOST" "$PORT" "$L" "$M" pull || true; { [ -f "$L/RELEASE" ] || [ -f "$L/DONE_$M" ]; } && break; sleep 600; done
     ;;
   status)
-    R "cat $B/queue_fs.log 2>/dev/null; ls $B/root/results/PN1/; for f in $B/logs/PN1_*.log; do echo \$f; grep -E 'step|PN1_TASK_DONE|FAIL' \$f | tail -1; done 2>/dev/null | tail -8; nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader; df -h /workspace | tail -1"
+    R "cat $B/queue_fs_*.log 2>/dev/null; ls $B/root/results/PN1/; for f in $B/logs/PN1_*.log; do echo \$f; grep -E 'step|PN1_TASK_DONE|FAIL' \$f | tail -1; done 2>/dev/null | tail -8; nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader; df -h /workspace | tail -1"
     ;;
 esac
