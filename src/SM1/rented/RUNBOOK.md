@@ -1,4 +1,7 @@
-# SM1 rented-A100 runbook (ViT-B/16 LoRA fits; amendment A13)
+# SM1 rented-GPU runbook (ViT-B/16 LoRA fits; amendment A13)
+
+Note 12 Nov: the machine actually rented (sm1b) is an NVIDIA RTX 6000 Ada (48 GB), 1.41 steps/s, about 78 min per
+fit; A13's one-machine-type rule names that machine. `drive.sh`'s queue step hangs (see README); use `drive_v2.sh`.
 
 Machine: plain Docker host, image `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime`, root, one A100 40 GB, 16 cores,
 about 80 GB disk under `/workspace`, no Slurm, no Apptainer. The lead rents and destroys it from the main session;

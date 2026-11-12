@@ -30,10 +30,22 @@ to 0.96 inside every storage size), so Part 3 is descriptive.
 ## 1a. Author's ruling of 12 Nov: development exposure of the remedy arms
 
 Ruling: no benchmark set may be used to develop a method. The remedy arms of this experiment, history crossing (e) and
-history crossing + JPEG copies (f) (and, by the same logic, the halves arms d and d+, which are remedy steps toward
-e), have been scored on benchmark cells; those scores are **development exposure** and are labelled so. They are never
-presented as benchmark results of a proposed method. The audit arms (Part 2, the partner audit and the partner-only
-arms a, a256, b, K = 5 random, K = 50, K = 500, b′, c′, c) are unaffected.
+history crossing + JPEG copies (f), and by the same logic the look-alike arm c (the morph base of d, e and f, proposed
+by SMDD-T as a better SMDD) and the halves arms d and d+, have been scored on benchmark cells; those scores are
+**development exposure** and are labelled so. They are never presented as benchmark results of a proposed method. The
+audit arms (Part 2, the partner audit, and the partner-only arms a, a256, b, K = 5 random, K = 50, K = 500, b′, c′)
+stay audits of SMDD's construction only as long as no sentence recommends them as a training set. The FRLL JPEG photos
+are benchmark-derived, so the e-against-f JPEG comparison is exposure too. The team (including the protocol-network
+owner, PN1) has seen benchmark scores of history-crossing and JPEG remedies.
+
+Still to score benchmark cells by their registered run script (12 Nov 13:00; the author may stop them):
+- rented machine sm1b: SM1B_bp_s401, SM1B_b_s402, SM1B_bp_s402 (partner-only arms b, b′, not remedy arms): every
+  cell of `ad4_eval.csv` (FRLL-Morphs 5 families, MorDIFF, DiM 6, corrected MAD22 5, native and E7), the AR1 ladder,
+  the FRLL JPEG photos, and the audit set;
+- Athena, queued, forecast late December: 3545823_[2-19] and 3545894_[20-24], ViT-L/14 fits of a (s403 to s405), c,
+  d, e (5 seeds each) and f (5 seeds): the same cells. If they ever run, the c, d, e, f fits add remedy exposure; to
+  prevent it they must be cancelled (`scancel 3545823 3545894`), which only the lead or author decides.
+No new benchmark scoring of c, d, e or f is submitted by this owner.
 
 Benchmark cells on which the remedy arms have been scored (native and history-matched E7 genuine pools of each):
 - FRLL-Morphs: AMSL, FaceMorpher, OpenCV, StyleGAN, WebMorph (morphs, FRLL genuine photos, E7 copies per family);
@@ -261,7 +273,7 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
   `a12_af0soft.py` for item 13) waits for 3546033. `sm1_lora_audit.py` smoke on the 3-step smoke fit submitted as
   3546052 (pipeline check only; its scores mean nothing).
 
-- 22:10 Lead: Athena cannot start the queue tonight; ViT-B/16 fits move to one rented A100 (amendment A13,
+- 22:10 Lead: Athena cannot start the queue tonight; ViT-B/16 fits move to one rented RTX 6000 Ada (amendment A13,
   registered). Prepared `src/SM1/rented/` (RUNBOOK.md, drive.sh with one `all` command, remote_setup.sh,
   unpack_one.sh, fit_local.sh, remote_smoke.sh, remote_queue.sh); uploads from owner sessions are refused tonight,
   so the lead starts the driver. 12 packs, 45.8 GB; about 14 h for 12 fits.

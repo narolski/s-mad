@@ -112,6 +112,18 @@ case "$STEP" in
       sleep 600
     done
     ;;
+  dev)                                                         # A15 draft: development-data scoring (after the queue)
+    DV=/mnt/t7/smad_next/SM1/dev_a14
+    R "mkdir -p $B/manifests/dev"
+    RS "$DV/sm1_dev_eval.csv" "$DV/sm1_dev_eval.csv.sha256" "$DV/dev_files.sha256" "root@$HOST:$B/manifests/dev/"
+    RS "$SRC/remote_dev.sh" "root@$HOST:$B/bin/"
+    (cd / && tar -cf - -T "$DV/filelist_dev.txt" 2>/dev/null) | ssh "${O[@]}" "root@$HOST" "tar -xf - -C $B/data/x"
+    log "dev files streamed ($(wc -l < "$DV/filelist_dev.txt") files)"
+    R "bash $B/bin/remote_dev.sh" 2>&1 | tee -a "$L/sm1_dev.log" | tail -8
+    mkdir -p "$OUTD/dev"
+    RS --include='*.tar' --include='*.tar.sha256' --exclude='*' "root@$HOST:$B/results_dev/" "$OUTD/dev/"
+    (cd "$OUTD/dev" && sha256sum -c *.sha256) | tee -a "$L/sm1_drive.log"
+    ;;
   all)
     bash "$0" "$HOST" "$PORT" "$L" setup
     bash "$0" "$HOST" "$PORT" "$L" smoke

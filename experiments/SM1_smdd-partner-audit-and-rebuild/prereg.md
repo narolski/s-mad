@@ -470,6 +470,26 @@ registered and is reported; the decision read for the ViT-L/14 audit (job 354705
   key-bootstrap draws (seed 20261111). Prediction: trained − KE < 0.2 logit but AUC ≥ 0.70. Falsified if AUC ≤ 0.60.
   Reported beside it: trained − KE (item 1 reader) and the same AUC for the ViT-B/16 fits (already read by the reviewer).
 
+## DRAFT amendment A15 (12 Nov; not registered until the pre-run check and the lead's approval; no score exists)
+
+Development data only; no benchmark cell is scored. Saved ViT-B/16 fits SM1B_{a,e,f}_s{401,402} (rebuilt from their
+result tars, reproduction check on 256 stored rows) scored on the rented machine sm1b after its last registered fit
+(`src/SM1/rented/remote_dev.sh`, `drive_v2.sh dev`; manifest `/mnt/t7/smad_next/SM1/dev_a14/sm1_dev_eval.csv`, 4,152
+rows; 3,080 new files, 0.55 GB, sha256 per file):
+- development diffusion ladder (DG1 add-on, 536 FRGC / colorFERET hosts): X20 (two-person diffusion mix, morph class),
+  REC20 (one-person diffusion reconstruction: a genuine image with the generator's history), SAME20;
+- AR1 camera photos R0 and OpenCV morphs R4 of the same 536 hosts (unsoftened, already on the machine);
+- AF0 softened copies (112.7 / 61.2 px): R0 of 200 hosts, R4 of 536 hosts.
+Readings (logit of the no-TTA score; AR1 person bootstrap, B = 10,000, the same draws for every fit; 2-seed means):
+- **H-new-A** (MorDIFF detection is mostly the storage cue): AUC(X20 > AR1 R0) "native" and AUC(X20 > REC20)
+  "history-matched". Prediction: e's history-matched AUC ≤ 0.65 and a's AUC drops by ≥ 0.15 from native to history-
+  matched. Falsified if e's history-matched AUC ≥ 0.80.
+- **H-new-E** (e penalises camera detail): per host, logit(softened R0) − logit(R0), mean over hosts, per strength.
+  Prediction: < 0 for e and > 0 for a. Falsified if e's increment ≥ 0.
+- Descriptive, scale-free (H-new-B AUC part): paired AUC of a photo against its softened copy (R0 vs R0 soft) for e and
+  f; prediction difference < 0.05; falsified if ≥ 0.10 with an interval excluding 0.
+Cost: about 0.3 GPU-h on the RTX 6000 Ada (6 networks x 4,152 images x 2 passes, plus 256 check rows each).
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 
