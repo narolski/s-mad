@@ -37,7 +37,9 @@ def main():
     lc, nc = cues(FLOOR)
     assert nl == ns == nc
     cat = [r for r in K.catalog() if r["fam"] == "ladder" and r["role"] == "train" and r["strength"] == ""]
-    pos_b = [r["id"] for r in cat if r["rung"] == "R4" and r["tool"] == "opencv"]
+    split, _ = K.split_tables()
+    pos_b = [r["id"] for r in cat if r["rung"] == "R4" and r["tool"] == "opencv"
+             and all(split.get(p, {}).get("role") == "train" for p in r["persons"])]   # usable partner: both persons train
     neg_b = [r["id"] for r in cat if r["rung"] in ("R0", "R2w") and r["tool"] in ("opencv", "none")]
     sp = SP.splice_rows()
     pos_s = [r["id"] for r in sp if r["rung"] == "S4" and r["tool"] == "opencv" and r["role"] == "train" and r["train_morph"] == "1"]
@@ -59,8 +61,10 @@ def main():
         out[name] = dict(n_train_pos=len(P), n_train_neg=len(N), auc=float(fauc(sm, sg)),
                          ci=[float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))],
                          train_auc=float(fauc(mdl.decision_function(np.array(P)), mdl.decision_function(np.array(N)))))
-    sb = {401: 0.887, 402: 0.909}
-    bb = {401: 0.754, 402: 0.716}
+    import json
+    h8 = json.load(open(K.RES / "tier1_a14" / "a14.json"))["HN8"]["per_net"]
+    sb = {s: h8[f"Sb_s{s}"]["auc"] for s in (401, 402)}
+    bb = {s: h8[f"B_s{s}"]["auc"] for s in (401, 402)}
     def rule(net, base):
         if all(net[s] - base >= 0.05 for s in net):
             return "exceeds"
@@ -69,7 +73,7 @@ def main():
         return "inconclusive, no claim"
     out["Sb_vs_s_lad"] = rule(sb, out["s_lad"]["auc"])
     out["B_vs_b_lad"] = rule(bb, out["b_lad"]["auc"])
-    out["note"] = "network AUCs from tier1_a14/a14.json (Sb 0.887/0.909, B 0.754/0.716; rounded to 3 decimals)"
+    out["note"] = "network AUCs read from tier1_a14/a14.json (exact)"
     K.dump(out, K.RES / "tier1_a14" / "baseline27.json")
     print(out)
 

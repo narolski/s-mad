@@ -267,3 +267,21 @@ Sb − B in floor strata (R1): +0.172 / +0.202. Sb's Spearman with noise_std_bor
 pool: A 3.02 / 2.92, B 2.52 / 1.90, Sb 1.23 / 1.31. Reading (post hoc): Sb does not exceed the best single statistic's
 AUC, but its ranking is not that statistic (within-strata gain over B no smaller than the raw gap; increment over the
 27 cues about 0.03 against B's 0.006). Limited to this development set, which carries a processing cue (0.786).
+
+## Amendment 15: 27-statistic baseline trained on the ladder (registered 733c7dc; zero GPU; development data only)
+
+`src/PN1/baseline27.py` -> `tier1_a14/baseline27.json`. The baseline is a standardised logistic regression (C = 1,
+class-balanced) on the 27 simple statistics, fitted on ladder training hosts only and scored on FFHQ landmark_combined.
+It never saw any FFHQ image.
+
+| baseline | training rows (attacks / negatives) | training AUC | landmark_combined AUC [95% CI] |
+|---|---|---|---|
+| b-lad (R4 vs R0, R2w) | 124 / 312 | 0.977 | 0.814 [0.799, 0.829] |
+| s-lad (b-lad + S4 vs S0, S3) | 248 / 624 | 0.911 | 0.814 [0.800, 0.830] |
+
+- Registered reading:
+  - Sb (0.887 / 0.909) exceeds the s-lad baseline by at least 0.05 on both seeds 401 and 402. So: "Sb exceeds a 27-statistic baseline trained on the same ladder data (development set)."
+  - B (0.754 / 0.716) is below the b-lad baseline. So: "B's gain is not beyond simple statistics under fair training."
+  - Seeds 401/402 only (Sb selected on them after H1 was read).
+- The cross-validated 27-cue combination fitted on landmark_combined itself (0.948) is not a fair rival: it is trained on the test set.
+- Implementation corrections, disclosed in prereg.md: the R4 attacks were restricted to rows whose persons are both training hosts, after a first run (b-lad 0.810, s-lad 0.813); the verdicts are unchanged.

@@ -1,0 +1,29 @@
+{
+ "n_lcomb": [
+  1000,
+  2000
+ ],
+ "b_lad": {
+  "n_train_pos": 124,
+  "n_train_neg": 312,
+  "auc": 0.8138695,
+  "ci": [
+   0.79858555,
+   0.8290175875
+  ],
+  "train_auc": 0.9773314722911497
+ },
+ "s_lad": {
+  "n_train_pos": 248,
+  "n_train_neg": 624,
+  "auc": 0.8144465,
+  "ci": [
+   0.7997652,
+   0.8297079
+  ],
+  "train_auc": 0.9109413771712159
+ },
+ "Sb_vs_s_lad": "exceeds",
+ "B_vs_b_lad": "not beyond",
+ "note": "network AUCs read from tier1_a14/a14.json (exact)"
+}
