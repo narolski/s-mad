@@ -1083,3 +1083,18 @@ Applied on the lead's instruction:
   0.609 to 0.649; ViT-L/14 morph-free 401 and 402 ||w|| 4.155 and 4.156. Logits are bounded by ||w|| + |b|, so the training floor
   (-3.65 for ViT-B/16, -4.07 for ViT-L/14) is near the bound, and every FRLL-5% reading of AD4 reads a band about 0.03 logits wide.
   Paragraph added to result.md ("What the networks are").
+
+### Handover state, 12 Nov 15:18 (reading owner hands back)
+
+- The watcher `src/AD4/watch_m3l.sh 14` ended after 14 h (01:05 to 15:02) with array **3546123_[2-4] still PENDING** (never started;
+  log `/mnt/t7/smad_next/AD4/read/watch_m3l.log`). No watcher runs now. The ViT-L/14 morph-free arm stays "incomplete (2 of 5)".
+- To finish when the three reruns are back: copy `AD4_m3lmf_s40{3,4,5}.tar` + `.sha256` from `.../smad-next/results/AD4/` with
+  `flock -w 1800 /tmp/smadnext-athena.lock rsync` and `sha256sum -c`; then in `/home/narolski/smad-next/src/AD4`:
+  `summarise.py --stage gates --results /mnt/t7/smad_next/AD4/results_athena --recipe m3l`, then `--stage read`, then
+  `posthoc_m3.py --results /mnt/t7/smad_next/AD4/results_athena --recipe m3l` (all with `CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 nice -n 10`,
+  Python `/home/narolski/mambamorph-code/.venv-spark/bin/python`); write result.md with the review's wording rules (Amendment 3) and the
+  bounded-head caveat. Readers are frozen: `summarise.py` `8fd182b4…`, `posthoc_m3.py` `595af89b…`.
+- Open for the lead: the ViT-B/16 reproduction flag (WCSS cluster tasks, queued); the three morph-free ViT-B/16 networks that missed the
+  DGX unblanked-score gate in the follow-ups (rerun on an A100, or leave "incomplete (2 of 5)").
+- Nothing of this owner runs on any machine. Compute of the reading owner: DGX CPU readings; DGX GB10 about 1 h (follow-up scoring);
+  Athena 0 GPU-h (smoke job 3546199 cancelled before it started).
