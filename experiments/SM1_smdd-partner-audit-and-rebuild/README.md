@@ -323,14 +323,14 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
   test shards 0.963 / 0.963; floor F 0.901; ΔAUC over F +0.061 [0.030, 0.092] / +0.069 [0.038, 0.101] (falsified
   under the registered rule: linearly decodable information beyond the measured traces); unflagged rows the same.
   A parse fix in `hn2_incr.py` (empty θ of other rungs skipped) was needed before this first run (773e5f9).
-- 12 Nov ~23:45 WCSS submissions (owner SM1; `--extra=FORCE_RM_TMPDIR`; workload complete on PD before submission:
+- 12 Nov ~23:20 WCSS submissions (owner SM1; `--extra=FORCE_RM_TMPDIR`; workload complete on PD before submission:
   `packs/SM1A16/` 22.4 GB, `packs/SM1A18/` 0.1 GB + the shared ad4_pack; one GPU each, 2 GPUs in total). A first
-  sbatch at about 23:40 failed with "Unable to contact slurm controller" (no job created); the retry at about 23:45
+  sbatch at about 23:15 failed with "Unable to contact slurm controller" (no job created); the retry at about 23:20
   succeeded:
   - 6308741 `sm1-a16` (A16 scoring, 1 H100, limit 2 h): expected start within minutes (idle nodes), expected end
-    about 00:30 (staging about 10 min, 6 fits x about 2 min). Check at 00:30.
+    about 00:00 (staging about 10 min, 6 fits x about 2 min). Check at 00:00.
   - 6308742 `sm1-a18` (A18 smoke + 3 RS fits, 1 H100, limit 8 h): expected start within minutes, expected end about
-    04:30 (smoke 5 min, 3 x about 70 min on H100 + scoring). Check at 04:30.
+    04:00 (smoke 5 min, 3 x about 70 min on H100 + scoring). Check at 04:00.
   Results to `/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SM1A16/` and `.../SM1A18/` (tar + sha256 per fit,
   per-fit logs); job logs `.../logs/sm1-a16-<id>.out`, `sm1-a18-<id>.out`.
 
