@@ -62,6 +62,13 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   01:00, MS1 switches to rented A100s: deviation MS1-D1 prepared and registered at 5eadc1b (three A100 PCIe 40 GB
   machines, whole seeds: m1 403+406, m2 404+407, m3 405; held-out step per machine; `src/MS1/rented/drive_ms1.sh`,
   `remote_ms1.sh`; remote queue tested on the DGX with stand-in tasks in `/mnt/t7/smad_next/MS1/smoke/rtest`).
+- 13 Nov 00:00: lead: WCSS will not start the jobs tonight (priority); smoke job 6308826 cancelled by the lead; three
+  L40S 48 GB leases rented (ms1m1, ms1m2, ms1m3). TT1-S registered (01557ce, pins ccd6319): its references added to
+  the held-out step; held-out pack rebuilt (`396a7ebe…`, 7,141 rows; first version kept as
+  `ms1_heldout_pack_v1.tar`). Deviation MS1-D2 registered at 86b4b69 (00:03:29). Reader prints the TT1 reference reads
+  (e69e063).
+- 13 Nov 00:02: `drive_ms1.sh ... setup` started for the three leases in parallel from this session (uploads allowed);
+  `after_setup.sh m1|m2|m3` waits for each setup and then starts the queue and the pull loop.
 
 ## 3. Data
 
@@ -144,12 +151,13 @@ recorded frame (the aligner's sha256 equals AR1's pin); duplicates of persons be
 
 ## 10. Handover state
 
-State 12 Nov 23:48 CET: nothing submitted (WCSS slurm controller unreachable at 23:46 and 23:48). Staged and verified on
-WCSS under `/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/MS1/`: `pn1_pack_ms1.tar` (`c11b16bc…`), `run.sh`,
-`ms1_smoke.sbatch`, `ms1_fit.sbatch` (array 0-14%6), `ms1_heldout_pack.tar` (`06b64608…`), `ms1_heldout.sbatch`.
-Order: smoke -> fits (after MS1_SMOKE_DONE) -> held-out job (after all 15 tars exist) -> fetch results/MS1 and
-results/MS1H to `/mnt/t7/smad_next/MS1/results/` (keep the WCSS copies) -> `ms1_read.py --results ... --heldout ...`.
-No local process running. Compute spent: DGX CPU about 15 minutes, DGX GPU about 3 minutes; 0 USD.
+13 Nov 00:05: three rented L40S 48 GB leases (lease folders `/mnt/t7/smad_next/vast/ms1m1|ms1m2|ms1m3`, READY line in
+`rent.out`, caps 8 / 10 / 6 USD set by the lead). Per lease: setup upload running (`ms1_setup_run.out`), then
+`after_setup.sh` (log `after_setup.out`) starts the queue (m1 seeds 403+406, m2 404+407, m3 405; each queue ends with
+the held-out step) and the pull loop (`ms1_loop.out`, `ms1_drive.log`; RELEASE in the lease folder when every tar,
+the held-out tar and the logs are fetched and verified). Results: `/mnt/t7/smad_next/MS1/results_rented/`, second
+copies `/home/narolski/ms1_results_copy/`. If a setup fails: rerun `drive_ms1.sh HOST PORT LEASE Q setup` (rsync
+resumes), then `after_setup.sh Q`. WCSS: staged packs remain under packs/MS1, unused for MS1 (MS1-D2).
 
 ## 11. Reproduce from scratch
 
