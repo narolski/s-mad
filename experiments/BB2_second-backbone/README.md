@@ -61,6 +61,15 @@ registration written; DGX smoke running; draft goes to the independent pre-run r
 - 00:07:20 smoke sbatch refused: "Unable to contact slurm controller (connect failure)". 00:15:10 the one allowed
   retry refused the same way (squeue also could not reach the controller). Stopped and reported to the lead. Nothing
   of BB2 is queued or running on WCSS.
+- 00:47 the lead submitted the smoke with the registered command after the controller came back: **WCSS job 6308946
+  (bb2-smoke), PENDING, priority 682; owner BB2 owner; workload: the smoke of prereg section 9 (complete on WCSS,
+  hash-checked); expected run about 30-45 min once started.** Slurm's forecast for our other WCSS jobs: 15 Nov 01:00,
+  after the experiment stage ends, so WCSS may not deliver BB2 in time. Lead: no polling; one check at about 09:00.
+- 00:50 rented variant prepared for the author's 09:00 decision (nothing rented): `src/BB2/rented/RUNBOOK.md`
+  (what the registration allows: platform deviation needed for any rental; 80 GB cards keep the registered memory
+  rule; 48 GB cards fall to the registered 128 x 2 without amendment; 40 GB cards would need an amendment), layouts,
+  wall time and cost for 1-3 machines, keep rule), `remote_bb2.sh`, `drive_bb2.sh` (HOST PORT LEASE placeholders);
+  queue rerun logic tested with a stand-in run.sh.
 
 ## 3. Data
 
@@ -114,7 +123,9 @@ DGX smoke result; pre-run review; registration commit; WCSS smoke; fit submissio
 
 ## 10. Handover state (13 Nov 00:16)
 
-- Nothing running and nothing queued for BB2 (DGX smoke finished; WCSS submission refused twice: Slurm controller down).
+- WCSS job 6308946 (bb2-smoke) PENDING since 00:47 (submitted by the lead); check once at about 09:00. If it has run:
+  apply the memory and time rules from its log and submit the fits. If the author chooses the rented variant: commit
+  the platform deviation, cancel 6308946 first, then `src/BB2/rented/RUNBOOK.md`.
 - Ready on WCSS `/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/` (hash-checked 00:07): complete workload of
   the smoke and the fits. Next: `cd .../packs/BB2 && /opt/slurm/current/bin/sbatch --extra=FORCE_RM_TMPDIR
   bb2_smoke.sbatch` when the controller answers (lead's go after the retry rule); then apply the memory and time
