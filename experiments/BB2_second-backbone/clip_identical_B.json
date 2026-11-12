@@ -1,0 +1,24 @@
+{
+ "last_pt_same_keys": true,
+ "last_pt_all_tensors_equal": true,
+ "n_tensors": 203,
+ "meta_keys_differing_after_dropping_wallclock": [],
+ "meta_differing_values": {},
+ "train_stdout_lines": [
+  8,
+  8
+ ],
+ "train_stdout_differing_lines": [],
+ "n_scored_eval": 16,
+ "eval_ids_equal": true,
+ "eval_logits_bit_equal": true,
+ "train_logits_bit_equal": true,
+ "eval_logits_first4": [
+  -0.05178312584757805,
+  -0.021252430975437164,
+  -0.034610211849212646,
+  -0.0519205741584301
+ ],
+ "dinov3_name_absent_from_pinned_registry": true,
+ "PASS": true
+}
