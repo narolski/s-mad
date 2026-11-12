@@ -79,7 +79,8 @@ No answer yet.
   8be8361; DG1 platform-equivalence record `experiments/DG1_diffusion-generation-athena/platform_reproducibility_fz2.json`.
 - 12 Nov: amendment 1 registered (commit dbc151d) before computing; smoke (120 hosts, B = 300; output deleted), full run
   `OMP_NUM_THREADS=2 nice -n 10 python -I src/FZ2/fz2_amend1.py` (log `/mnt/t7/smad_next/FZ2/logs/amend1.log`) →
-  `amend1.json`: H-A transfer supported, H-B falsified, H-C supported (numbers in `result.md`).
+  `amend1.json`: H-A transfer supported, H-B falsified, H-C supported (numbers in `result.md`; UNREVIEWED until the next
+  review batch).
 - 12 Nov: draft DG1 amendment for SAME_orth / X_corr rungs written for pre-run review:
   `experiments/DG1_diffusion-generation-athena/drafts/AMENDMENT_SAMEorth_Xcorr_DRAFT.md` (not run).
 

@@ -162,3 +162,30 @@ written; DGX, `OMP_NUM_THREADS=2`, `nice -n 10`. Same folds (whole partner cycle
   clip_mad features (C chosen by the inner partner-cycle CV), applied to FZ1's A43 clip_mad features (512 frames;
   different persons and pipeline): AUCs B20 vs C20, B vs C, C20 vs D20, B20 vs D20, B vs D, and mean score per arm;
   dinov2 the same. Descriptive.
+
+## Amendment 2 (12 Nov 2026, registered and committed before any of its numbers is computed): shared noise structure from the saved codes
+
+**Post hoc in substance** (review of the SAME_orth draft, `experiments/reviews/PRERUN_DG1_SAMEORTH_20261112.md`, F2; the
+reviewer printed shard-2 medians of the band and low-pass cosines). Zero GPU, measurement only, no image written; DGX
+CPU, `OMP_NUM_THREADS=2`, `nice -n 10`. Code `src/FZ2/fz2_amend2.py`, output `amend2.json`.
+
+- **Data.** Saved codes (`codes.npz`, noise maps x_T float32, read from the tars in memory) of add-on shards 2–6, the only
+  local ones: `/mnt/t7/smad_next/DG1/rented_results/DG1_addon_s{2..6}_codes.tar` (sha256 in the `.sha256` beside each,
+  checked), 335 hosts. Shards 0 and 1 have their codes on Athena (not fetched); shard 7's codes were never copied back
+  and no longer exist (DG1 README). Per host: a = x_T(H), b = x_T(S) (same person), p = x_T(partner's S) (other person).
+- **Measures per pair (a, b) and (a, p).** θ = arccos(cos(a, b)) (whole-map angle, recomputed); cosines in four radial
+  frequency bands of the 2-D FFT per channel (bands r < 1/32, [1/32, 1/8), [1/8, 1/4), [1/4, 0.75) cycles/pixel; the
+  reviewer's definition); cosine of the 8 × 8 block-mean low-pass maps. **Primary predictor: the lowest-band cosine
+  c0(a, ·).**
+- **Outcomes.** FZ2's face-box Laplacian variance L and the clip_mad P_XS score (out of fold, `read_addon_items.csv`) of
+  the host's SAME20 and X20 image.
+- **Statistics.** Spearman correlations within SAME and within X with a person bootstrap (B = 2,000; SAME: host resampled;
+  X: two-way weights of host and partner); AUC of c0, low-pass cosine and θ for X vs SAME with the two-way person
+  bootstrap (B = 10,000, seed [20261112, 2, 1]); joint model within SAME: OLS of rank(L) on rank(c0) and rank(θ) (ranks
+  scaled to [0, 1]); ΔR² from adding θ to c0, bootstrap interval (B = 2,000, hosts resampled).
+- **Fixed reading, H-A (shared structure).** Supported if, within SAME, Spearman(c0, L) ≥ 0.30 with lower bound > 0.10,
+  **and** θ adds nothing beyond it (ΔR² interval includes 0 or ΔR² < 0.02). Falsified if Spearman(c0, L) within SAME has
+  upper bound < 0.10, **or** θ adds beyond c0 (ΔR² ≥ 0.02 with lower bound > 0). Otherwise not decided. Note: θ and c0 are
+  both functions of the same pair; the reading asks which summary carries the sharpness.
+- Descriptive: the same with P_XS as outcome; the same within X; all bands and the low-pass cosine; which of c0,
+  low-pass cosine and θ best separates X from SAME on these 335 hosts (θ was 0.916 on all 536).

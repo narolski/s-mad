@@ -1,5 +1,11 @@
 # DRAFT — DG1 amendment: orthogonalised same-person and correlated two-person rungs (SAME_orth, X_corr)
 
+**NOT RUN; STOPPED AT PRE-RUN REVIEW (12 Nov 2026).** Verdict STOP as drafted: `experiments/reviews/PRERUN_DG1_SAMEORTH_20261112.md`
+(commit f6b28e2). Main reason (F1): projecting out the single whole-map direction changes the slerped map by a median 1.7%
+and leaves the low-band same-person correlation almost intact (lowest band cosine 0.41 → 0.38; X 0.16), so the
+falsifier would fire by construction. Editing the noise map is also an author item (F4). Replaced by the zero-GPU
+analysis FZ2 amendment 2. Kept for the record; do not run.
+
 Status: **draft, not registered, not run.** Written 12 Nov 2026 by the frozen-features owner (FZ2) at the lead's
 request; it goes through the pre-run review, then the DG1 owner / lead registers it in `prereg.md` before any code runs.
 Purpose: the causal test of the review's hypothesis H-A (`experiments/reviews/REVIEW_FZ2_AR1A10_20261112.md`):

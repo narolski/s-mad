@@ -88,7 +88,7 @@ Descriptive (clip_mad):
 - Reading (review F3): along P_XS, two-person mixes and every two-person dose sit with the reconstruction; what separates
   X from SAME is a property of the same-person mix (face-box sharpness medians REC 87, X 96, SAME 128, reviewer's check).
 
-## Amendment 1 (post hoc in substance; registered in commit dbc151d before computing) — `amend1.json`
+## Amendment 1 (post hoc in substance; registered in commit dbc151d before computing; **UNREVIEWED** until the next review batch) — `amend1.json`
 
 Zero GPU, existing features; partner-cycle folds, two-way person bootstrap B = 10,000. Code `src/FZ2/fz2_amend1.py`.
 

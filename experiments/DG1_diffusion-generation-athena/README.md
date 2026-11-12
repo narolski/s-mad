@@ -605,3 +605,15 @@ frozen SMDD head s401 score Spearman 0.99973 (largest difference 0.055); face-bo
 FZ2's P_XS probe score 0.99975 (probes refitted per run). A far larger platform-equivalence check than the 8-image gate:
 DG1 images from the A100 and the RTX 3090 are equivalent for every statistic FZ2 reads. File
 `platform_reproducibility_fz2.json`; code `src/FZ2/fz2_platform_repro.py`.
+
+## Saved codes of add-on shard 7 do not exist (recorded 12 Nov by the FZ2 owner)
+
+The rented driver copied codes tars back only while /mnt/t7 kept more than 55 GB free. Shard 7's codes tar
+(`DG1_addon_s7_codes.tar`, sha256 b568fb73…) is listed in `/mnt/t7/smad_next/DG1/rented_results/codes_not_copied.sha256`
+but was never copied ("03:08:33 shard 7 codes NOT copied (/mnt/t7 free 32 GB <= 56)", `/mnt/t7/smad_next/vast/dg1/dg1_drive.log`);
+the machine was released at 03:08:34 (RELEASE written), so these codes exist nowhere. Shards 2–6 codes are local
+(`rented_results/DG1_addon_s{2..6}_codes.tar`, 67 hosts each, 335 hosts); shards 0–1 codes are on Athena
+(`.../results/DG1/DG1_addon_s{0,1}_codes.tar`). Regenerating shard 7's codes: re-encode its 67 hosts (about 200 sources:
+H, S, flip H, partner S; deterministic, η = 0) with `dg1_addon.py` on one A100 at about 3.1 s each ≈ 10–15 minutes
+(≈ 0.25 GPU-h with setup; about 0.15 USD rented or Athena), images not needed; the re-encoded codes would match the lost
+ones only up to platform noise (A100 vs RTX 3090 not byte-identical, `platform_reproducibility_fz2.json`).
