@@ -56,6 +56,8 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
   review's mechanism wording and cannot-claim lines.
 - about 17:45: SE1 A100 block (f302cfa, 4d21dde; REVIEW_SE1_A100) and BB2 part 1 (6dcbdf9; REVIEW_BB2_PART1) added as
   separate arm tables with the reviews' wording; SE1 H100 block and BB2 E2/E3 marked pending; matrix counts unchanged.
+- about 18:30: NIST MEDS block (TT1-M and S1/S2; corrections c4c2233, bf774cb) added to row 4 with the review's may-say
+  sentence; aggregates only, no MEDS image, file name or person identifier; matrix counts unchanged.
 
 ## 3. Data
 
