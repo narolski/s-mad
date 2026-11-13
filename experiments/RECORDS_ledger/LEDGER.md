@@ -173,3 +173,32 @@ and so is the time 17:45. Notebook header times are wrong as the correction entr
 19:20 entry, "17:11" (the real time is 17:13:31), "18:46" (18:45:24), and BB2 wave 2 "in the queue". The dispatcher's
 ticks.log and STATE.md carry times 15-35 min ahead of the machine clock. BD1 amendment 4 has no pre-run file. RZ1 and
 the FINAL MAD22 scope are not committed while work for them is already on disk.
+
+---
+
+## Entry 2. `date`: Fri Nov 13 07:16:37 PM CET 2026. Second-backbone owner report, BB2 part 2 (storage test on the CLIP-rate DINOv3 fits)
+
+| Claim | Verdict | Evidence |
+|---|---|---|
+| commit ef77d99 "BB2 part 2 read" | VERIFIED | 19:15:25, on origin; adds bb2_c2p.json and 26 lines of result.md; subject says "unreviewed" |
+| commit e0325b5 "CLIP comparison file fixed before the BB2 C2P scoring" | VERIFIED | 15:38:32, on origin; adds clip_choice.json only |
+| e0325b5 precedes the scoring job's output | VERIFIED | job 6313488 started 19:04:52 (dispatcher MEMORY.md:230), `.out` 19:05:07 start, "BB2_C2P_DONE failures 0 2026-11-13T19:13:46"; tar members 19:06-19:13. Note: the dispatcher says the job was submitted 15:37-15:38, about the same minute as e0325b5. The job does not need that file; the DGX reader does |
+| read once at 19:14 | VERIFIED | bb2_c2p.json mtime 19:14:42; tar on the DGX by 19:14:18; one read file, mock = false |
+| file bb2_c2p.json sha256 c80249baaf08aaef | VERIFIED | sha256sum |
+| file BB2C2P.tar sha256 1ab51f3e51adb7e3 | VERIFIED | sha256sum equals BB2C2P.tar.sha256; pins in `.out` all OK; c2p_tar_checks: H100, TF32 effective, same GPU model as the fits |
+| all 15 networks passed the platform gate, max abs difference ≤ 0.0006 | VERIFIED (rounded) | gates: 15 of 15 passed = true; largest max 0.000619 (B_s404 0.000607) |
+| contrast 2-prime uninformative for B and Sb | VERIFIED | contrast2prime.B.verdict and .Sb.verdict = "uninformative" |
+| plain-arm control fails on 5 of 5 seeds at both sizes | VERIFIED | A_control: fm61 and amsl112 false for 403-407 |
+| A's flag rise −0.007 to +0.003 | VERIFIED | per_network.A_s*.{fm61,amsl112}.d_flag: −0.0069 to +0.0034 |
+| A's mean shift −0.15 to −0.11 SD | WRONG (incomplete) | fm61 −0.152 to −0.109 fits; amsl112 is −0.109 to −0.087 |
+| H-new-1 falsified for B and Sb | VERIFIED | H_new_1.B.verdict and .Sb.verdict = "falsified" |
+| morph shift within ±0.01 SD on 5 of 5 seeds | WRONG for Sb | B: max abs 0.0042, 10 of 10 within. Sb: fm61 s405 +0.0102 and s406 −0.0131 lie outside; 8 of 10 within (max abs 0.013) |
+| H-new-3 met | VERIFIED | prediction logged in 6f36c0c (15:47:45) before the read; A_control fails on 5 of 5 at both sizes |
+| H-new-2 met: Sb development S3 flags 0.55-0.60, S4 vs S3 AUC 0.57 | VERIFIED | printed_S3.BB2_Sb_s*.D: S3_flag 0.57, 0.55, 0.55, 0.60, 0.56; auc_S4_vs_S3 0.567-0.574; logged in 6f36c0c. Name note: prereg.md:330 says "H-new-2 is not read for BB2", which refers to the C2P registration's own H-new-2 (sharpness), a different hypothesis with the same label |
+| A and B flag 43-49% of same-person splices | VERIFIED | D S3_flag A 0.43-0.49, B 0.44-0.48 |
+| A and B miss 42-51% of S4 | VERIFIED | D S4_miss A 0.43-0.51, B 0.42-0.50 |
+| CLIP 2-7% | VERIFIED | BB2/result.md:82; PR1/result.md (A and B flag development S3 2-7%) |
+| reviewed | not claimed | ef77d99 says "unreviewed"; no REVIEW_BB2 part-2 file yet |
+
+Summary: the hashes, times, gate, verdicts and order are correct. Two descriptions are wrong: the mean-shift range
+leaves out the 112.7 px size (down to −0.09), and Sb's morph shift goes beyond ±0.01 SD on 2 of 10 reads (−0.013).
