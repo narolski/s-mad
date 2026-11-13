@@ -187,7 +187,7 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
 - 15:36 registered read of the fits (`bb2_read.py`, once; `bb2.json`, log `bb2_read.log`): contrast 1 not repeated,
   contrast 2 uninformative, contrast 3 repeated (details in `result.md`).
 
-- 16:20-16:50 lead's go for E2 and E3 (post-result review's E2/E3). Code and drafts of amendments 4 (E3) and 5 (E2):
+- 15:40-15:59 lead's go for E2 and E3 (post-result review's E2/E3). Code and drafts of amendments 4 (E3) and 5 (E2):
   `run_lr.sh`, `wcss/bb2l_fit.sbatch`, `bb2l_read.py`, `freeze_mode_L.py`, `e2_score.py`, `wcss/bb2_e2.sbatch`,
   `e2_read.py`; DGX smoke of run_lr.sh (LoRA lr 1.17e-05 confirmed in the optimiser groups); CPU tests of e2_score.py
   and e2_read.py; bb2l_read.py mock test. Diffs:

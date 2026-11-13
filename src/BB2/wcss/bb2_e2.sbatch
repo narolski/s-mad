@@ -22,7 +22,7 @@ P=$L/packs/BB2; R=$L/results/BB2; OUTN=${BB2_E2_OUT:-BB2E2}
 fail() { echo "BB2_E2_FAIL $*"; exit 1; }
 [ -e "$R/$OUTN.tar" ] && fail "$OUTN.tar exists (never overwritten)"
 (cd "$P" && sha256sum -c pn1_pack_fs.tar.sha256 bb2_overlay.tar.sha256 e2_score.py.sha256 precision_probe.py.sha256) || fail "pack, overlay, e2_score.py or probe"
-[ "$(cut -c1-64 $P/e2_score.py.sha256)" = dc9188422220f3a73d358d42ac4a9686f2ae273ebfc8dc0f7e74687797bd11fe ] || fail "e2_score.py pin"
+[ "$(cut -c1-64 $P/e2_score.py.sha256)" = d183171829ea07abbd13d47fca3548498cafb6c170ebaa6ed3db1d32ea1f8a99 ] || fail "e2_score.py pin"
 [ "$(cut -c1-64 $P/precision_probe.py.sha256)" = b49c1e704bc8957db76398abfd5ab54218ee152ac32ed9e061c634378148605e ] || fail "probe pin"
 DEF=""
 for s in 403 404 405 406 407; do for a in A B Sb; do DEF="$DEF $R/BB2_${a}_s$s.tar"; done; done

@@ -248,8 +248,10 @@ def main(mock=None, mock_clip=None):
     if c1 == "repeated":
         e3 = ("did not transfer because under-fitted: with the splice rows fitted (Sb training AUC S4 vs S3 >= 0.80) at the "
               "rule-fixed learning rate, the landmark_combined gain of Sb over B repeats on DINOv3 ViT-L/16")
-    elif c1.startswith("uninformative") or c1.startswith("not read"):
-        e3 = f"under-fitted again or too few seeds ({c1}): BB2 stays uninformative about backbone dependence"
+    elif c1.startswith("uninformative"):
+        e3 = f"under-fitted again ({c1}): BB2 stays uninformative about backbone dependence"
+    elif c1.startswith("not read"):
+        e3 = "too few testable seeds (gate met, but B at the ceiling or seeds lost): no claim"
     elif small == "repeated":
         e3 = ("backbone-dependent (for DINOv3 ViT-L/16 with a CLS read-out): with the splice rows fitted, the landmark_combined "
               "gain of Sb over B does not appear (Sb - B < +0.02 by the seed count)")
@@ -257,9 +259,14 @@ def main(mock=None, mock_clip=None):
         e3 = "inconclusive, no claim"
     out["e3_outcome"] = e3
     out["e3_sb_minus_b_below_0.02"] = small
+    # review fix 5 (printed only): the same counts over all adequate seeds, ungated
+    ta = [r for r in R if r["adequate"] and r["c1_testable"]]
+    out["printed_ungated"] = dict(contrast1=count_mode([r["c1_meets"] for r in ta], len(ta)) if ta else "not read",
+                                  sb_minus_b_below_0_02=count_mode([r["Sb"]["lcomb_auc"] - r["B"]["lcomb_auc"] < 0.02 for r in ta], len(ta)) if ta else "not read",
+                                  n=len(ta))
     # printed R1-R6 sentence, FS1 conditions with the R3 count read on every read seed (prereg section 6)
     if c1 == "repeated" and not floor_all and RR_:
-        meet = [s for s in read if out["seeds"][str(s)]["adequate"] and out["seeds"][str(s)]["c1_testable"]
+        meet = [s for s in read if out["seeds"][str(s)]["adequate"] and out["seeds"][str(s)]["splice_fit"] and out["seeds"][str(s)]["c1_testable"]
                 and out["seeds"][str(s)]["c1_meets"]]
         a_ = all(RR_[s]["R1_Sb_minus_B"]["point"] >= 0.05 for s in meet)
         b_ = all(max(abs(v) for v in RR_[s]["Sb"]["R2"].values()) <= 0.2 for s in RR_)
@@ -303,7 +310,7 @@ def sentences(out, clip):
     cv = lambda k: None if clip is None else clip.get(k)  # noqa: E731
     # contrast 1
     c1, c1c = out["contrast1"], cv("contrast1")
-    if c1 in ("not read (too few seeds)", "uninformative (under-trained)"):
+    if c1.startswith(("not read", "uninformative")):
         res["contrast1"] = f"Second backbone: {c1}."
     elif c1c == "replicated":
         if c1 == "repeated":
@@ -331,7 +338,7 @@ def sentences(out, clip):
             res[f"contrast2_{a}"] = f"No CLIP effect to repeat for {a} (FS1 contrast 2: {wc}); second backbone printed only."
     # contrast 3
     c3, c3c = out["contrast3"], cv("contrast3")
-    if c3 in ("not read (too few seeds)", "uninformative (under-trained)"):
+    if c3.startswith(("not read", "uninformative")):
         res["contrast3"] = f"Second backbone: {c3}."
     elif c3c == "replicated":
         res["contrast3"] = ("The face-only ladder gain of Sb over B repeats on a second backbone (DINOv3 ViT-L/16)." if c3 == "repeated"
@@ -359,7 +366,7 @@ def mock_test(d):
             np.savez(u / "scores_eval.npz", id=np.array(ids), logit=lg)
             json.dump({"train_acc_rule0": 0.9}, open(u / "info.json", "w"))
             kk = np.array(["lad_S4"] * 120 + ["lad_S3"] * 150 + ["af0_photo"] * 30)
-            lt = rg.normal(0, 1, len(kk)) + np.where(kk == "lad_S4", 2.0 if a == "Sb" else 0.2, 0.0)
+            lt = rg.normal(0, 1, len(kk)) + np.where(kk == "lad_S4", (0.2 if "--gatefail" in sys.argv else 2.0) if a == "Sb" else 0.2, 0.0)
             np.savez(u / "scores_train.npz", path=np.array([f"p{i}" for i in range(len(kk))]), logit=lt.astype(np.float32),
                      label=(kk == "lad_S4").astype(int), kind=kk)
             (u / "train.log").write_text("step 100 loss 0.6\n")

@@ -83,6 +83,20 @@ def main():
     a = ap.parse_args()
     if pathlib.Path(a.out).exists():
         sys.exit("refused: output exists (read once)")
+    import hashlib
+    sha = lambda p: hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()  # noqa: E731
+    e2s = pathlib.Path(a.e2 + ".sha256")
+    if not e2s.exists() or sha(a.e2) != e2s.read_text().split()[0]:
+        sys.exit("refused: E2 tar sha256 missing or mismatched")
+    frozen = json.load(open(HERE.parents[1] / "experiments" / "BB2_second-backbone" / "seed_mode.json"))["tars"]
+    for t, h in frozen.items():
+        if sha(BB2R / t) != h:
+            sys.exit(f"refused: {t} is not the frozen BB2 tar")
+    for arm in ARMS:
+        for s in SEEDS:
+            t = FS1R / f"PN1_{arm}_s{s}.tar"
+            if sha(t) != (FS1R / f"PN1_{arm}_s{s}.tar.sha256").read_text().split()[0]:
+                sys.exit(f"refused: {t} off its sha256")
     man = list(csv.DictReader(open(f"{FS1M}/pn1_eval.csv")))
     assert {r["fam"] for r in man} <= {"af0", "ladder", "splice", "ffhq", "ffhq_lcomb"}
     gate_ids = [r["id"] for r in man if r["fam"] in ("af0", "ffhq")]

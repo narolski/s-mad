@@ -483,7 +483,7 @@ Printed beside the registered reads; they change no registered rule.
 - H-new-3 (the storage shortcut needs adaptation): in C2P, A's positive control fails on DINOv3 at both sizes on at
   least 4 of 5 seeds (contrast 2-prime "uninformative").
 
-## Amendment 4: E3, one DINOv3 arm at a learning rate fixed by rule (DRAFT for pre-run review; lead's go 13 Nov about 16:20 under the author's standing instruction; registered at the commit that adds its final version; no E3 fit exists)
+## Amendment 4: E3, one DINOv3 arm at a learning rate fixed by rule (registered with its pre-run fixes at the commit that adds the section "Pre-run check of amendments 4 and 5"; lead's go 13 Nov about 15:40 under the author's standing instruction; registered at the commit that adds its final version; no E3 fit exists)
 
 **Why.** The post-result review of part 1 (`experiments/reviews/REVIEW_BB2_PART1_20261113.md`) found that at the CLIP
 learning rates DINOv3 Sb did not fit its own splice training rows (training AUC lad_S4 vs lad_S3 0.58-0.59 against
@@ -525,10 +525,10 @@ Contrast 3 and contrast 2 are read and worded as in BB2 sections 6-7. Caveats as
 frozen DINOv3 head; ViT-L against ViT-B; CLS read-out at 224 px, not the 512 px mean-patch read-out of tier 0; a
 learning rate changed from the CLIP recipe by one rule).
 
-**Operations.** WCSS H100s as BB2, time limit 2:15, `--export=ALL,BB2_BS=256,BB2_ACCUM=1`; queued right behind the BB2
+**Operations.** WCSS H100s as BB2, time limit 3:03 (section 9's rule; review fix 2), `--export=ALL,BB2_BS=256,BB2_ACCUM=1`; queued right behind the BB2
 C2P job and SE1's SE fits. About 15 x 1.6 h ≈ 24 H100-hours.
 
-## Amendment 5: E2, zero-LoRA ablation and a frozen-feature linear probe (DRAFT for pre-run review; same go; descriptive, post hoc; development and training rows only)
+## Amendment 5: E2, zero-LoRA ablation and a frozen-feature linear probe (registered with amendment 4; descriptive, post hoc; development and training rows only)
 
 - **Networks:** the 15 BB2 DINOv3 networks (results/BB2, frozen in seed_mode.json) and the 15 FS1 CLIP networks (A, B,
   Sb x 403-407, `/mnt/t7/smad_next/PN1/results_fs`, copied to WCSS with sha256).
@@ -552,3 +552,32 @@ C2P job and SE1's SE fits. About 15 x 1.6 h ≈ 24 H100-hours.
 - **Smoke:** the job with one DINOv3 and one CLIP tar, 8 rows per set (`BB2_E2_TARS`, `BB2_E2_LIMIT=8`,
   `BB2_E2_OUT=BB2E2smoke`), before the production job is queued. Local CPU test of e2_score.py and e2_read.py passed.
 - About 1-1.5 H100-hours.
+
+### Pre-run check of amendments 4 and 5 (`experiments/reviews/PRERUN_BB2_A45_20261113.md`, Opus, on db25468; GO WITH FIXES), fixes applied and registered here (`date`: see the commit; no E3 fit and no E2 score exists)
+
+1. The E3 reader's sentences treat every "uninformative ..." and "not read ..." label as not read (it could have printed
+   "did not repeat ... not independent of the CLIP backbone" when the gate failed); mock-tested with a failing gate.
+2. E3 time limit 3:03 (section 9's rule), not 2:15 (arm A took up to 1:49 in BB2).
+3. `src/BB2/fetch_bb2l.sh` (remote results/BB2L, BB2L_* tars, local results_L, fetch.log there) fetches E3.
+4. Wording: zeroing the LoRA B matrices removes LoRA from the trained network (the head was trained with LoRA-shifted
+   features); "as trained minus zeroed" is an upper bound on LoRA's contribution, so "LoRA did little" is conservative
+   and "LoRA contributed" may be inflated. The probe separates S4 from S3 alone, while the network's head must also fit
+   every other training row, so a probe AUC ≥ 0.80 points at the loss mix or the optimisation, not only the features.
+5. The gate selects on Sb's own fit: the reader also prints contrast 1 and the Sb − B < +0.02 count over all adequate
+   seeds, ungated (`printed_ungated`), beside the gated counts; printed only.
+6. The R1-R6 sentence's seed list includes the gate.
+7. Outcome labels: "under-fitted again" only when the gate fails; "too few testable seeds" when the gate is met but
+   B is at the ceiling or seeds are lost. Inherited counting with the gate: if only 2 seeds pass in three-seed mode,
+   2 of 2 are needed; if only 4 pass in five-seed mode, 4 of 4.
+8. e2_score.py asserts 48 (DINOv3) / 24 (CLIP) zeroed B matrices and that every trainable non-head tensor is a LoRA
+   A_/B_ matrix; its pin in bb2_e2.sbatch updated.
+9. e2_read.py verifies the E2 tar's sha256, the frozen BB2 tars (seed_mode.json) and the CLIP tars' .sha256 files.
+10. No E2 result can change E3's learning rate, seeds, counting or submission.
+11. E3 has no separate WCSS smoke: its path is the one 6310084/6310092 ran in production on WCSS, changed only in the
+    learning-rate string and names; the DGX smoke of run_lr.sh confirmed the learning rates (1.17e-05 LoRA, 3.33e-05
+    head) and the BB2L names. Lead's acceptance requested.
+12. freeze_mode_L.py docstring corrected; its cut-off is local time on the DGX (CET).
+- Pins (sha256): `src/BB2/run_lr.sh` 916bef3b0f62054c9d2281915d4a3146753c0438b6a4ee6b26435ce0b9bf50f5; `src/BB2/wcss/bb2l_fit.sbatch` 777b2fcd5e9be40b9d430ceff8eb80d5324902804e99d990f8fe61c1a829c4a9; `src/BB2/bb2l_read.py` 6ccf6f2f013c51e4958e47aebd0f0fc74ff9b1ba3643d76bee042a7c54ed44e0; `src/BB2/freeze_mode_L.py` be04a5e1843631989d4326ac2afe639127508d09a6afcdda1db0cbe55578a7ca; `src/BB2/fetch_bb2l.sh` 152b10360c3de11cea6ddac536f35fc586ca21d378328398fc47967df0fd6ffd; `src/BB2/e2_score.py` d183171829ea07abbd13d47fca3548498cafb6c170ebaa6ed3db1d32ea1f8a99; `src/BB2/wcss/bb2_e2.sbatch` 42130501f1a587f935925652c910be80bcda131cb8f55e79c20b1d1a33ad0a9f; `src/BB2/e2_read.py` f3efd051ca68984874d5f0a0753f29498228ab05af318dc7fb910f9edca175de.
+- Commands: E3 `cd /lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2 && /opt/slurm/current/bin/sbatch --extra=FORCE_RM_TMPDIR --time=0-03:03:00 --export=ALL,BB2_BS=256,BB2_ACCUM=1 bb2l_fit.sbatch`;
+  E2 smoke `... sbatch --extra=FORCE_RM_TMPDIR --job-name=bb2-e2smoke --time=0-00:40:00 --export=ALL,BB2_E2_TARS="<one DINOv3 and one CLIP tar>",BB2_E2_LIMIT=8,BB2_E2_OUT=BB2E2smoke bb2_e2.sbatch`;
+  E2 production (after the smoke passes) `... sbatch --extra=FORCE_RM_TMPDIR bb2_e2.sbatch`.

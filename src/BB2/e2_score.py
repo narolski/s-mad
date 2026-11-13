@@ -4,7 +4,8 @@ unchanged). TF32 on for matmul and cuDNN (as pn1_score.py in the fits). Logit wi
 For each result tar (meta.json + last_trainable.pt):
   - CLIP nets only: the full network (LoRA as trained) on the platform-gate rows (fam af0 + ffhq of pn1_eval.csv) ->
     E2_<T>_gate.npz (the reader compares them with the fit's stored A100 logits by C2P.2's thresholds);
-  - every net: the same network with every LoRA B matrix set to zero (head on the frozen tower = the base features)
+  - every net: the same network with every LoRA B matrix set to zero (LoRA removed from the trained network; the head was trained with LoRA-shifted features, so "as trained minus
+    zeroed" is an upper bound on LoRA's contribution)
     on the unique rows of its own training manifest -> E2_<T>_train0.npz (path, logit, kind) and on the whole FS1
     evaluation manifest -> E2_<T>_eval0.npz (id, logit).
 Once: the frozen DINOv3 feature (CLS after the final norm, L2-normalised) of the unique rows of train_Sb.csv ->
@@ -95,6 +96,8 @@ def main():
                 if ".B_" in n:
                     p.zero_()
                     nb += 1
+        assert nb == (48 if not clip else 24), (T, nb)              # 2 x depth (q, v) for ViT-L/16 and ViT-B/16
+        assert all(n.startswith("head.") or n.rsplit(".", 1)[-1][:2] in ("A_", "B_") for n in names), T
         trows = take(uniq(C.read_manifest(f"train_{arm}.csv")))
         lt = run(model, trows, meta["res"])
         np.savez(out / f"E2_{T}_train0.npz", path=np.array([r["path"] for r in trows]), logit=lt,

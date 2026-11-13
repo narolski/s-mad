@@ -1,4 +1,5 @@
-"""BB2 amendment 4: copy of freeze_mode.py for the E3 fits (BB2L_*, results_L, seed_mode_L.json). BB2 amendment 2 (fix 1): freeze the seed mode before any reader runs on real tars.
+"""BB2 amendment 4: copy of freeze_mode.py for the E3 fits (BB2L_* tars in /mnt/t7/smad_next/BB2/results_L, mode file
+seed_mode_L.json; the text below is the original docstring with BB2/results and seed_mode.json read accordingly). BB2 amendment 2 (fix 1): freeze the seed mode before any reader runs on real tars.
 Allowed when (a) all 15 fit tars are present and verified in /mnt/t7/smad_next/BB2/results, or (b) every missing fit
 is listed with --failed (a remote-confirmed failure: no tar after its one rerun), or (c) it is 14 Nov 2026 18:00 CET
 or later. Mode = five if all six tars of seeds 406 and 407 are present and verified, else three (bb2_read.seed_mode).
