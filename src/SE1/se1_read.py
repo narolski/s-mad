@@ -113,12 +113,19 @@ def load(arm, seed, M, mock):
         log = t.extractfile(f"{T}/train.log").read().decode(errors="replace")
         gpu = t.extractfile(f"{T}/gpu.txt").read().decode(errors="replace").strip()
         ti = t.extractfile(f"{T}/task_info.txt").read().decode(errors="replace")
+        env = t.extractfile(f"{T}/env.txt").read().decode(errors="replace").strip()
     L = dict(zip([str(i) for i in z["id"]], z["logit"].astype(float)))
     Ltr = dict(zip([str(i) for i in zt["id"]], zt["logit"].astype(float)))
     losses = [float(x) for x in re.findall(r"loss[ =:]+(-?(?:inf|nan)|[-+0-9.eE]+)", log, flags=re.I)]
     fin = bool(losses) and all(math.isfinite(v) for v in losses) and all(math.isfinite(v) for v in L.values())
     full = " steps 6250 limit 0" in " " + ti.replace("\n", " ")
-    return L, dict(task=T, sha256=h, sha_ok=ok, finite_loss=fin, full_run=full, gpu=gpu, train_logits=Ltr,
+    prov = {"SE1": "overlay_sha256 de26d6ce3facc90a439209d690b099fea351ace91808a5256ba5bdee5ba27a7c",
+            "SE1H": "overlay_sha256 de26d6ce3facc90a439209d690b099fea351ace91808a5256ba5bdee5ba27a7c",
+            "AB1": "overlay_sha256 171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149"}[pre]
+    full = full and prov in ti and "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004" in ti
+    if pre in ("SE1H", "AB1"):
+        full = full and "H100" in gpu
+    return L, dict(task=T, sha256=h, sha_ok=ok, finite_loss=fin, full_run=full, gpu=gpu, env=env, train_logits=Ltr,
                    last_loss=losses[-1] if losses else None)
 
 
@@ -188,6 +195,10 @@ def main():
         BLOCK["paths"] = {x: (RES, "SE1") for x in ARMS}
     else:
         ab1 = pathlib.Path("/mnt/t7/smad_next/AB1/results")
+        ab1read = sorted(pathlib.Path("/home/narolski/smad-next/experiments/AB1_protocol-ablation-and-replication").glob("ab1_read*.json"))
+        ab1read = [q for q in ab1read if "mock" not in q.name]
+        if not ab1read and not a.mock:
+            raise SystemExit("AB1's registered read (ab1_read*.json) is not there yet: the H100 block is read only after it")
         BLOCK["paths"] = {"A": (ab1, "AB1"), "Sb": (ab1, "AB1"), "SE": (pathlib.Path("/mnt/t7/smad_next/SE1/results_h100"), "SE1H")}
     M = list(csv.DictReader(open(EVAL)))
     P = pools(M)
@@ -237,7 +248,7 @@ def main():
             nets[(arm, s)] = n
             raw[(arm, s)] = L
     read = [s for s in SEEDS if all((x, s) in nets for x in ARMS)]
-    R = dict(block=a.block, mock=a.mock, info=info, read_seeds=read, n_read=len(read),
+    R = dict(block=a.block, mock=a.mock, info=info, envs={k: v.get("env") for k, v in info.items()}, read_seeds=read, n_read=len(read),
              per_network={f"{k[0]}_s{k[1]}": v for k, v in nets.items()}, baseline=base)
 
     def per(fn):

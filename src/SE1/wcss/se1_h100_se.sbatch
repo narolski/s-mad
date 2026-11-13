@@ -7,7 +7,7 @@
 #SBATCH --mem=64gb
 #SBATCH --gres=gpu:hopper:1,storage:local:80G
 #SBATCH --no-requeue
-#SBATCH --time=0-03:00:00
+#SBATCH --time=0-01:30:00
 #SBATCH --array=0-4
 #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/se1h-se-%A_%a.out
 # Same-person blends as negatives (SE1), amendment SE1-A1: the SE arm only, seeds 408-412, on WCSS H100, paired within seed
