@@ -108,7 +108,7 @@ SbR's volume rng named; F5 reader asserts the c2p_read and evaluation-manifest p
 share table; B2-5b registered; multiplicity and post hoc labelling. Not taken: an arm holding the S3-negative share
 fixed while removing halves (new weighting code; author); replacing SbH61 by a larger weight change (overlaps SbS).
 
-## Amendment B2-A1 (`date`: Fri Nov 13 2026, evening; lead's instruction; no B2 tar or score exists at this commit)
+## Amendment B2-A1 (`date`: Fri Nov 13 03:15 PM CET 2026; lead's instruction; no B2 tar or score exists at this commit)
 
 Reason: WCSS is full; Slurm forecasts array 6313020 to start at 14 Nov 11:20, which could end after the registered
 read time. The read time of batch B2 moves from "all 25 ended, or 14 Nov 12:00 with those present" to **"all 25
