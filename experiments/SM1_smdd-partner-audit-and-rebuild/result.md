@@ -872,6 +872,25 @@ find no evidence that it reads a second identity. Render-path detection is not s
   similarity. Its stronger response to noise-only mixes (0.92) than to semantic-only mixes (0.72) is consistent with,
   not against, a reading in which it tracks noise-map similarity.
 
+## A22 (registered 73bf220 before computing; DGX CPU; development data only; `a22_read.json`; last diffusion follow-up round before the freeze)
+
+- **H-E (rung-matched floor; shard 6, 67 hosts; network = A19 CPU scores, ranks only): does not match.** With each
+  feature group taken from the pair whose component was mixed (and the unmixed component set to the host's own pair),
+  the floor gives NOISEX20 over NOISES20 0.994 (network 0.922; difference +0.072) and SEMX20 over SEMS20 **0.440**
+  (network **0.718**; difference −0.278). The semantic-only rung is where the pair-similarity account fails: the
+  floor's semantic-code cosine carries no X-vs-SAME information for semantic-only mixes, while the network separates
+  them at 0.72. So the network responds to semantic-only two-person mixing beyond the measured pair similarity; what
+  that response reads (second identity or other semantic render properties) is not identified. On the noise-only rung
+  the floor overshoots the network by 0.07 (between the 0.05 and 0.10 marks).
+- **H-F (descriptive, 6 points): Spearman 0.27** between rung mean network logit (REC −3.56, NOISES −3.24, SEMS +0.23,
+  FRESH1 +1.12, NOISEX +0.93, SEMX +1.98) and mean noise-map distance from the host's own map (0, 0.28, 0, 1.00, 0.29,
+  0). Below the 0.4 mark: rung means are not ordered by noise-map departure; the semantic rungs (SEMS, SEMX) score high
+  with zero noise departure.
+- **H-G (arm a; PNG-size deciles and nearest-neighbour matching): undecided.** Seed 401: deciles 0.408, nearest
+  neighbour 0.360; seed 402: 0.503 / 0.474 (deciles still imbalanced, 6/102 to 103/5). Arm e (control): 0.281 / 0.250
+  and 0.298 / 0.258. Finer PNG matching moves arm a's ordering to about 0.45 on average without settling it; arm e's
+  ordering is not explained by file size.
+
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
 **Item 11, five random pool partners (H-new-1; arm d5, 5 seeds; `p3_full.json`, `p3_fz1.json`).** Landmark-7 native
