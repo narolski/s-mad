@@ -393,3 +393,9 @@ Definitions from the builders:
   landmark shape. The 159 other read test hosts and all development hosts have no such link.
 - No result is recomputed here. A sensitivity read without these 32 hosts would separate the two. That needs an owner
   amendment.
+
+## Note from the strategy review (13 Nov 2026, `experiments/reviews/REVIEW_ADV_STAGE3_STRATEGY_20261113.md`, 93f4210)
+
+- 171 of the 191 read test hosts share a person component with a development host.
+- Ladder reads must therefore bootstrap by person component, not by host.
+- The component of every host can be rebuilt with `src/DATA/partner_overlap_audit.py` (variables `comp`, `sizes`).

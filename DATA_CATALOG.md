@@ -118,6 +118,9 @@ job packs are not catalogued file by file; packs are named where they carry the 
 | Partner-overlap audit outputs | `DATA/overlap/{clean_eval_hosts.csv, test_hosts_clean_of_dev.csv}`; counts in `experiments/DATA_builds/partner_overlap_*.json`, report `PARTNER_OVERLAP_AUDIT.md` | small | file sha in the report's CLAIMS | `src/DATA/partner_overlap_audit.py` | 16 training lists x 4 evaluation sets | development lists (FRGC / colorFERET ids on /mnt/t7 only) | none |
 | Battery person and source lists (D7) and GD overlap (D8) | `DATA/battery/persons_{dev,tt1,meds,gd}.csv` (MEDS ids on /mnt/t7 only); counts `experiments/DATA_builds/{battery_person_source.csv, gd_overlap.csv, battery_set_training_overlap.json}` | small | sha in `battery_persons_summary.json` | `src/DATA/battery_persons.py` | dev 5,006, tt1 16,477, meds 446, gd 4,247 persons | development | none |
 
+| D12a FFHQ FaceMorpher two-person morphs FM(H, B), MS1 hold-out frames, no mutual pairs (use this set) | `DATA/D12a/facemorpher/R4/<H>__<B>.png`, `pairs.csv`, `manifest.csv` (each row also points to the host's D1d render FM(H, H) with its sha256), `SHA256SUMS`, `failures.csv` (empty), `build_log.json` | 121 MB | `SHA256SUMS` (299, checked); manifest sha 9df020e1... | `src/DATA/d12_ffhq_fm_pairs.py --no-mutual`, unchanged `96_facemorpher_tool.py` (954e9c02...) | 299 morphs of 299 hold-out persons (each host once, partner once); pairing by eye distance, no sex matching (no label) | development only; **FaceMorpher is a seen engine for the SbFM arm (AB1)** | none |
+| D12 same, first build (mutual pairs allowed) | `DATA/D12/` | 121 MB | `SHA256SUMS` (299, checked); manifest sha bd72f579... | as above without `--no-mutual` | 299 files, 190 distinct images: the 109 mutual pairs give byte-identical FM(A, B) = FM(B, A) | **contains duplicates: do not use**; kept, not deleted | duplicates |
+
 ## 4. In progress tonight (entered only; owners keep them)
 
 | Product | Owner | Where | State at 19:00 |

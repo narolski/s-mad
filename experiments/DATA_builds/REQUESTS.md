@@ -165,7 +165,7 @@ Source: `experiments/BATTERY_shared-test-battery/MISSING_DATA.md` (commits 761a3
 | D10 aligned CFD / KDEF neutral-against-happy pool (audit row 16) | alignment of the happy images with the unchanged aligner, pairing by person (G11: CFD 158, KDEF 70 persons) | **needs the author's word, no build** (aligning those photos is on his decision list) | held |
 | D11 AB1 border rows and FaceMorpher rows as battery sets | not missing data; catalogue entry only (`AB1/x/manifests/ab1x_eval.csv`, already in the catalogue) | battery owner and reviewed reader pins | catalogue only |
 
-## D12. FFHQ FaceMorpher two-person morphs FM(H, B) on the MS1 hold-out frames (registered 13 Nov 2026, about 20:43 machine clock, before any build)
+## D12. FFHQ FaceMorpher two-person morphs FM(H, B) on the MS1 hold-out frames (registered 13 Nov 2026, commit 77a5513 at 20:42:33 machine clock, before any build)
 
 Source: strategy review `experiments/reviews/REVIEW_ADV_STAGE3_STRATEGY_20261113.md` (93f4210), Part 2 rank 3; lead's go.
 Purpose: a pipeline-matched external development contrast: two-person FaceMorpher morph FM(H, B) against the D1d
@@ -197,7 +197,7 @@ Recipe (fixed here, before building):
 - **Catalogue note.** The FaceMorpher engine is a seen engine for the SbFM arm (AB1).
 - **Cost.** CPU about 2 minutes. No GPU.
 
-### D12 amendment a (registered 13 Nov 2026, about 20:46 machine clock, after the D12 build and before building D12a)
+### D12 amendment a (registered 13 Nov 2026, commit 952b784 at 20:44:25 machine clock, after the D12 build at 20:43 and before building D12a)
 
 - **Finding in the D12 build.** The minimum-cost derangement produced 109 mutual pairs: H paired with B and B with H.
   The unchanged FaceMorpher tool is symmetric (mean shape, 0.5 blend, averaged background), so FM(A, B) and FM(B, A)
@@ -209,3 +209,15 @@ Recipe (fixed here, before building):
 - Every person is still host once and partner exactly once, and every morph is a distinct unordered pair.
 - **D12a build.** The same unchanged tool and 2 workers, written to `/mnt/t7/smad_next/DATA/D12a/`. Expected 299 distinct
   morphs.
+
+### D12 / D12a build record (13 Nov 2026, machine clock)
+
+- **D12** (20:43:04-20:43:45; test on 8 pairs first):
+  - 299 of 299 morphs, 0 tool failures, 0 training persons dropped;
+  - eye-distance gap median 0.06 px, max 6.46 px;
+  - 109 mutual pairs, all byte-identical (190 distinct images).
+- **D12a** (20:44:30-20:45:13): 299 of 299, 0 failures, 0 mutual pairs, 299 distinct images.
+  - Forbidding 2-cycles took 227 assignment rounds.
+  - It widened the eye-distance gap: median 3.48 px, max 27.45 px (source eye distance about 245-272 px, p10-p90).
+- **D12a is the set to use.** D12 is kept, labelled "contains duplicates".
+- Nothing was scored.
