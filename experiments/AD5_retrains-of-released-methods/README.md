@@ -339,6 +339,10 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
   array resubmitted: the main A100 partition is reserved until about 22 Dec, so all five SelfMAD seeds go to WCSS H100
   (`wcss_ad5_selfmad_test.cmd`, then `wcss_ad5_selfmad.cmd`); no seed runs on both clusters. WCSS controller still down at
   08:47; nothing submitted there yet.
+- 13 Nov 09:02. WCSS answered. The dispatcher cancelled the stranded arrays 6308948, 6308949 and 6308950 (scancel rc 0) and
+  submitted on lem-gpu-short (owner: AD5 owner agent; submitted by the dispatcher): smokeB2 6310087_401, smokeX2
+  6310088_401, SelfMAD test 6310089_401. At 09:03 all three were pending (Priority), no start forecast. madB, mixX and
+  madL go in only after their smoke logs are read and pass; the SelfMAD array only after its test log passes.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
