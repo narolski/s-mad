@@ -164,3 +164,35 @@ Source: `experiments/BATTERY_shared-test-battery/MISSING_DATA.md` (commits 761a3
 | D9 development JPEG pack (audit row 3) | the same genuine photos native and re-saved as JPEG 90/70/50 with the registered `degrade()` branch, paired manifest | **needs the author's word, no build** (JPEG re-encoding of development evaluation images is on his decision list) | held |
 | D10 aligned CFD / KDEF neutral-against-happy pool (audit row 16) | alignment of the happy images with the unchanged aligner, pairing by person (G11: CFD 158, KDEF 70 persons) | **needs the author's word, no build** (aligning those photos is on his decision list) | held |
 | D11 AB1 border rows and FaceMorpher rows as battery sets | not missing data; catalogue entry only (`AB1/x/manifests/ab1x_eval.csv`, already in the catalogue) | battery owner and reviewed reader pins | catalogue only |
+
+## D12. FFHQ FaceMorpher two-person morphs FM(H, B) on the MS1 hold-out frames (registered 13 Nov 2026, about 20:43 machine clock, before any build)
+
+Source: strategy review `experiments/reviews/REVIEW_ADV_STAGE3_STRATEGY_20261113.md` (93f4210), Part 2 rank 3; lead's go.
+Purpose: a pipeline-matched external development contrast: two-person FaceMorpher morph FM(H, B) against the D1d
+one-photo FaceMorpher render FM(H, H) against the plain photo H, all through the same rendering path. Development
+data only (FFHQ). Nothing is scored by DATA.
+
+Recipe (fixed here, before building):
+- **Persons.**
+  - The MS1 FFHQ hold-out frames that have a D1d render: 299 of the 300 hold-out persons. FFHQ key 08060 is left out:
+    the unchanged tool failed on it in D1d.
+  - Any person of any training list is dropped (MS1 SbM3 / SbM3S / SbV and every PN1 / AB1 / SE1 list; check through
+    `src/DATA/battery_persons.py` arms). Expected: none, because the hold-out is disjoint from MS1 training by
+    construction.
+- **Pairing rule.** Each remaining person is host once and partner exactly once: a derangement chosen by minimum-cost
+  assignment.
+  - Cost: |pre-alignment eye distance of H - that of B|, from `/mnt/t7/smad_next/DATA/D5/frames_ied.csv`.
+  - Self-pairs are forbidden; `scipy.optimize.linear_sum_assignment`, ties broken by key order.
+  - **Sex matching is not applied.** No sex label for FFHQ exists on disk (FFHQ-Morphs metadata and the MS1 lists
+    carry none). A predicted sex would be a new model output, and this registration does not use one. If the lead
+    wants same-sex pairs, a registered amendment can add a sex estimate and re-pair (CPU, minutes).
+- **Build.** The unchanged `scripts/96_facemorpher_tool.py` (sha256 954e9c02..., the D1d file) on (H, B), with each
+  frame's own `.tem`, 2 workers, nice 19, PNG.
+- **Outputs.** In `/mnt/t7/smad_next/DATA/D12/`:
+  - `facemorpher/R4/<H>__<B>.png`;
+  - `pairs.csv` (host, partner, eye distances, cost);
+  - `manifest.csv` (host, partner, frame paths and sha256, output sha256, the matching D1d render path and sha256);
+  - `SHA256SUMS`, `build_log.json`, and the tool's failures (listed, never retried with changes).
+- **Expected count.** Up to 299 morphs.
+- **Catalogue note.** The FaceMorpher engine is a seen engine for the SbFM arm (AB1).
+- **Cost.** CPU about 2 minutes. No GPU.
