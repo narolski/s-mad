@@ -36,7 +36,9 @@ def auc_ci(pos, neg):
     for c in C:
         wp = c[pa] * c[pb]; wn = c[na]
         W = wp[:, None] * wn[None, :]
-        reps.append((gt * W).sum() / max(W.sum(), 1e-12))
+        if W.sum() == 0:   # review F3: a resample without weight in a class is dropped (was counted as AUC 0)
+            continue
+        reps.append((gt * W).sum() / W.sum())
     return dict(auc=round(float(a), 3), ci95=[round(float(np.percentile(reps, 2.5)), 3), round(float(np.percentile(reps, 97.5)), 3)], n_pos=n1, n_neg=n0)
 gen = [x for x in rec if x["family"] == "frll_bona" and x["variant"] == "orig"]
 res = {"genuine_orig_border": dict(median=float(np.median([x["border"] for x in gen])), max=float(max(x["border"] for x in gen)))}
