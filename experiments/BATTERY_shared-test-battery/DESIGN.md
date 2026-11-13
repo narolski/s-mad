@@ -37,6 +37,12 @@ Steps of `battery.run`, in this order; a failure stops the run before anything l
      304), so batch composition equals the stored run's (TT1-D2: batching changes the last bits). The rows span the logit
      range: camera photos at the floor, FFHQ genuine and morphs, splices; on the two references the stored logits run from
      -3.6 to +3.5 with 369-498 of them between -2 and +2 (floor rows alone would hide platform differences).
+   - **Node rule (fixed 13 Nov 2026 20:05 CET, before smoke 6316361 is fetched or read; lead's answer (2) in
+     `experiments/reviews/PRERUN_BATTERY_RC1_20261113.md`).** A run is *byte-gated* if all 2,496 gate logits are equal.
+     Otherwise it is *tolerance-gated* if max |dlogit| <= 1e-4 and 0 own-rule flips on the 2,496 gate rows; its records
+     carry `gate_class = "tolerance-gated"` and are never pooled with byte-gated records (the reader prints them as a
+     separate arm entry). Anything else fails (exit 2, nothing scored). The rule is not changed after any gate is seen.
+     If smoke 6316361 ran on r18-8 (the node of the H100 reference), a second smoke with `--exclude=r18-8` is queued.
    - Pinned references: **A100 PCIe 40 GB, torch 2.2.1, TF32 on**: FS1 `PN1_Sb_s403` (tar 8dec83b8...), stored by
      `pn1_score.py` in its fit job on a rented A100-PCIE-40GB (container smad_torch221_cu121_v1.sif). **WCSS H100, torch
      2.11.0+cu128 (~/dmenv), TF32 on**: AB1 `AB1_Sb_s408` (tar a84b551f...), stored by `pn1_score.py` in AB1 fit job
