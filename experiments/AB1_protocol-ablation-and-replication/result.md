@@ -241,7 +241,7 @@ FaceMorpher R4 vs R3 (the less-trained check) Sb − B +0.044 on dev + clean80, 
 dev+clean80 +0.175, on development hosts alone +0.212. Example levels at seed 408 (dev + clean80, D-stratified): R4 vs R3
 Sb 0.870, B 0.816, A 0.793; FaceMorpher Sb 0.857, B 0.803, A 0.777; S4 vs S3 on clean80 Sb 0.628, B 0.537, A 0.525.
 
-Adversary floors (printed; "exceeds" = lower 95% bound of the host-bootstrap AUC difference > 0, \`check.exceeds\`,
+Adversary floors (printed; "exceeds" = lower 95% bound of the host-bootstrap AUC difference > 0, `check.exceeds`,
 unstratified, on the adversary's row sets — ri = all 291 hosts, test = 191 — not the deciding host set): on ri_R4_vs_R3 (all-cue floor 0.793,
 nuisance 0.705) Sb's AUC 0.849-0.866 exceeds the all-cue floor on 5 of 5 seeds, B (0.798-0.814) and A (0.772-0.802) on 0
 of 5; on test_cv_R4_vs_R3 (floor 0.774) Sb exceeds it on 4 of 5, B and A on 0; on test_fm_R4_vs_R3 (floor 0.796) none of
@@ -249,7 +249,7 @@ the three exceeds it (Sb 0.799-0.835). On the splice contrasts (ri_S4_vs_S3 floo
 test_S4_vs_S3 0.754) no network exceeds the all-cue floor (Sb 0.715-0.804); Sb exceeds the nuisance floor on 3 of 5
 (ri), 1 of 5 (dev) and 2 of 5 (test). The adversary's same-data transfer learner is not yet committed (not printed).
 
-What this licenses (registered wording, qualified by the results review \`REVIEW_AB1_A4_20261113.md\`): on development data
+What this licenses (registered wording, qualified by the results review `REVIEW_AB1_A4_20261113.md`): on development data
 and clean test hosts, Sb ranks two-person above same-person whole-frame morphs better than the protocol-only and plain
 recipes, on a contrast whose negative class (R3) no arm was trained on. Sb exceeds the all-cue floor on the pooled
 291-host contrast on 5 of 5 seeds and on test_cv on 4 of 5, not on test_fm; B and A never exceed it, i.e. B and A sit at
