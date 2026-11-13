@@ -624,3 +624,50 @@ score on R4, R3, S4 or S3 rows and has not checked whether other owners' FS1 rea
    held-out evidence, and no change to the frozen candidate follows from it. 'Inconclusive' on FS1 with 'present' at
    408-412: the recipe effect is not shown to hold for the frozen networks."
 - Reader `src/AB1/ab1_pm2_read.py` after these fixes: sha256 `77ace4b3e98668adbb842b8a5aebac23c2bb19f0f8486911807bce9291395b1d` (replaces 5ef35155…); mock-tested for both pairs.
+
+## Amendment 6 (`date`: Fri Nov 13 21:27 CET 2026; POST HOC; zero GPU; DESCRIPTIVE ONLY, no verdict): three reads requested by the results review of amendment 5
+
+Reader `src/AB1/ab1_desc_read.py` (sha256 in pins.sha256), mock-tested; read once after the lead's pre-run check.
+Networks: A, B, Sb, Sp at 408-412 (AB1 H100) and A, B, Sb at 403-407 plus Sp at 403-405 (FS1 A100), fit-job scores, the
+loaders of ab1_read.py and ab1_pm2_read.py. Host set: 100 development + 80 clean test hosts, printed by part.
+1. **D cue (do the splice positives teach a blend-energy cue?):** Spearman(logit, log D) within the pooled S4 + S3 rows and
+   within the pooled R4 + R3 rows (OpenCV), and within each class, per network. The review's H-new-1 direction (printed,
+   not decided): higher for Sp than for Sb and B.
+2. **Breakdown of the development versus clean-host difference:** unstratified R4-vs-R3 AUC per network and the paired
+   differences Sb − B, Sb − Sp, Sp − B in cells part × database (FRGC, colorFERET) and part × D tercile (edges over the
+   pooled R4 + R3 rows of both parts); cells with fewer than 10 rows of either class print None.
+3. **Own-rule flag rates** (logit > 0) on R3 and R4 (both engines), S3, S0 and S4, per part, for A, B, Sb and Sp.
+- Descriptive only: no verdict, no new claim; any number may be cited only as "descriptive, post hoc".
+
+## Amendment 7 (`date`: Fri Nov 13 21:27 CET 2026; POST-FREEZE ABLATION ROWS; registered before any fit): batch C, a volume-matched Sp and B plus the matched negatives
+
+Lead's instruction. These arms are ablation rows only; they are not challengers under the selection-rule draft and
+cannot become the method; the frozen candidate is unchanged. Existing images and manifests only (no new image
+operation); recipe, steps, pack (FS1 96c31ae2…), platform (WCSS H100) and in-job scoring on ab1_eval.csv exactly as AB1;
+seeds 408-412; built by `src/AB1/mk_ab1c.py` (from FS1 train_Sb / train_B rows), overlay `ab1c_overlay.tar` 62712bb9…,
+task script `src/AB1/run_c.sh` 7da6688a…, job `src/AB1/wcss/ab1c_fit.sbatch` 07c132a3… (array 0-9, limit 1:15).
+
+| Arm | Definition | Unique | Rows before / after balance | sha256 |
+|---|---|---|---|---|
+| **SpV** volume-matched Sp | Sb without lad_S0 and lad_S3 (as Sp) + 312 repeated rows, one per dropped row, drawn (rng 20261171) from the remaining unique native negatives of the same database | 5,223 | 5,535 / 8,386 (as Sb; positive row shares identical to Sb: af0_u50 32.33%, lad_R4 5.19%, lad_S4 5.13%) | f6521d96… |
+| **BN** B plus the matched negatives | B's unique rows + Sb's 156 lad_S0 and 156 lad_S3 rows; no lad_S4 | 5,411 | 5,411 / 8,386 | c1b4497b… |
+
+**Hypotheses, rule unchanged (amendments 4, 4b, 5b: primary R4 vs R3 OpenCV, D-stratified, 100 development + 80 clean test
+hosts, with the unstratified-agreement condition and the sign-disagreement cap; secondary S4 vs S3 on the 80 clean test
+hosts, unstratified, with stratified seed-mean > 0; joint component bootstrap 2,000 draws, rng 20261120; "present" ≥ +0.03
+with lower bound > 0 and ≥ 4 of 5 seeds positive; "absent" upper bound < +0.03):**
+- **H-c1 (count and class mix, Sb − SpV):** Sb − SpV on R4 vs R3. Prediction: **present** (the S0 + S3 content, not their
+  count or class mix, carries the gain over Sp). If it is absent or inconclusive while Sb − Sp was present, the count and
+  class-mix share of Sb − Sp is not excluded.
+- **H-c2 (negatives without positives, BN − B):** BN − B on R4 vs R3. Prediction: **present** (the matched negatives alone
+  carry the R4-vs-R3 gain; amendment 5: Sp − B ≈ 0 on the pooled hosts). If absent or inconclusive, the negatives need the
+  S4 positives (interaction).
+- **Printed (no verdict):** Sb − BN (interaction: near 0 if the positives add nothing given the negatives), SpV − Sp (the
+  volume effect itself), Sb − Sp and Sb − B re-printed from the same draws; S4 vs S3 for every pair; the adversary's floors;
+  the adversary's same-data learner on train_SpV and train_BN when committed (requested through the lead). Family:
+  4 new registered verdicts (H-c1, H-c2 on two contrasts each); 99.5% intervals printed.
+- **What each outcome licenses:** development plus clean test hosts, post-freeze ablation rows, not held-out. S4 vs S3 for
+  BN − B is near-certain by design (BN trains S3 negatives) and is not a test.
+- Reader `src/AB1/ab1_pm3_read.py` (copy of ab1_pm2_read.py with --pair C; sha256 in pins.sha256), mock-tested. Read once
+  when the 10 fits have ended, latest 15 Nov 18:00; later rows labelled late. Placement in the queue: behind the
+  selection-rule challengers, ahead of the retrains (lead). The S0-only versus S3-only split waits until these are read.
