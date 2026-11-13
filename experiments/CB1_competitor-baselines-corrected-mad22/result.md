@@ -182,3 +182,63 @@ Answer to the lead's question (review section 3.2): show numbers for 5-MFN (it m
 interpretable (reversed)". Risk noted by the review: released detectors are not neutral to our aligner's black frame;
 tables that score them on our frames should carry a border-matched caveat. Open, zero GPU (review H-new-1): MixFaceNet
 logit against border share and border-matched FRLL-Morphs AUC.
+
+## Black frame vs storage history (amendment 7, post hoc, zero GPU; not yet reviewed)
+
+### (A) MixFaceNet-MAD on our frames: score against black-border share (`border/border_mfn.json`, rows `border/border_mfn_rows.csv`)
+
+Black share = pixels with R = G = B = 0 in the 512-px frame. FRLL photos (orig) median 0.000 (max 2.3e-5); E7 pools
+median 0.000; morph medians AMSL 0.053, FaceMorpher 0.260, OpenCV 0.192, StyleGAN2 0.032, WebMorph 0.051.
+
+| Family | Spearman (logit, border) in morphs | AUC all morphs vs photos | morphs with border <= 0.005 | AUC border-matched morphs vs photos |
+|---|---|---|---|---|
+| AMSL | −0.80 | 0.100 [0.058, 0.151] | 26 (1.2%) | 0.462 [0.276, 0.651] |
+| FaceMorpher | −0.39 | 0.002 [0.000, 0.006] | 0 | none |
+| OpenCV | −0.46 | 0.003 [0.000, 0.010] | 0 | none |
+| StyleGAN2 | −0.50 | 0.768 [0.697, 0.830] | 10 (0.8%) | 0.908 [0.000, 0.990] |
+| WebMorph | −0.90 | 0.168 [0.111, 0.229] | 74 (6.1%) | 0.761 [0.614, 0.881] |
+
+The more black frame a morph carries, the more genuine MixFaceNet-MAD scores it; among the few border-free morphs the
+ranking is no longer inverted (WebMorph 0.76, StyleGAN2 0.91 with a wide interval, AMSL 0.46). FaceMorpher and OpenCV
+have no border-free morph on our frames, so no border-matched value exists there.
+
+### (B) The history-matched rise on each release's own crop path: aligner path vs storage history vs black frame (`border/history_split_own_crop.csv`)
+
+On the own crop path the black frame is absent from every pool that enters the native or history-matched cells: mean
+black fraction after the crop is 0.0000 for the raw genuine photos (G_raw, G22_raw), our aligned native frames (Galn_frll,
+G22_aln), every aligned E7 pool (E7aln_*, E7aln22_*) and every raw morph set (largest: FRLL WebMorph 0.0002), crop
+variant 1 and 2 alike (`experiments/RS1_own-crop-rescore/rs1_border.csv`). Only the MorDIFF-frame pools carry it
+(Galn_mordiff 0.050 / 0.083, E7aln_mordiff 0.047), and the RS1 MorDIFF history cell used the raw E7 files (0.0000).
+So the black frame contributes nothing to the history rises in `cb1_released_rs1_bpcer.csv`. The rise splits into an
+aligner-path step (raw genuine photo -> the same photo through our aligner, no history) and a storage-history step
+(aligned native -> aligned E7), EER points, crop variant 1:
+
+| Release | Cell | raw genuine | aligned native | aligned E7 | aligner-path step | history step |
+|---|---|---|---|---|---|---|
+| MADation ViT-B/16 | AMSL | 3.91 | 5.45 | 24.42 | +1.54 | +18.97 |
+| MADation ViT-B/16 | WebMorph | 2.33 | 2.94 | 15.71 | +0.61 | +12.77 |
+| MADation ViT-B/16 | OpenCV | 1.97 | 2.96 | 6.86 | +0.99 | +3.90 |
+| MADation ViT-B/16 | MAD22 FaceMorpher | 0.00 | 0.05 | 13.66 | +0.05 | +13.61 |
+| MADation ViT-B/16 | MAD22 OpenCV / Webmorph | 3.94 / 10.89 | 5.89 / 12.77 | 6.49 / 14.21 | +1.95 / +1.88 | +0.60 / +1.44 |
+| MADation ViT-L/14 | all 10 cells | | | | −3.87 to +0.07 | −0.54 to +1.98 |
+| MixFaceNet-MAD | AMSL | 15.16 | 21.57 | 41.19 | +6.41 | +19.62 |
+| MixFaceNet-MAD | WebMorph | 12.27 | 17.26 | 35.79 | +4.99 | +18.53 |
+| MixFaceNet-MAD | OpenCV | 4.89 | 5.87 | 11.75 | +0.98 | +5.88 |
+| MixFaceNet-MAD | MAD22 FaceMorpher | 4.90 | 4.95 | 13.32 | +0.05 | +8.37 |
+| MixFaceNet-MAD | StyleGAN2 / MIPGAN-I / MIPGAN-II | 9.20 / 16.24 / 20.60 | 13.21 / 21.58 / 26.00 | same | +4.01 / +5.34 / +5.40 | 0 (E7 leaves these photos unchanged) |
+
+(Full table with both crop variants and FaceMorpher, StyleGAN2, MIPGAN cells for every release: the CSV.) SelfMAD
+(own preprocessing): raw 2.44 -> aligned native 4.91 -> aligned E7 49.02 on AMSL (aligner +2.5, history +44.1);
+WebMorph 7.36 -> 15.79 -> 71.00 (RS1 result.md SelfMAD section and `sa1_cells/selfmad_croppath_bridge.json`).
+
+**Files that allow the split without new scoring:** RS1's score files of the released detectors (both crop variants)
+for G_raw / G22_raw, Galn_frll / G22_aln and E7aln_* / E7aln22_* with RS1's border table; the SelfMAD A41 x7 / A43 own
+logits. **What would need new scoring:** (1) the storage history applied to the raw photos without our aligner (raw E7
+files exist only for MorDIFF, DiM-A and Greedy-DiM, so for FRLL landmark and MAD22 cells the history step is measured
+on aligned frames: "aligned vs aligned"); (2) a direct test that the aligner-path step is not frame-related (the
+aligned frames carry no black border after the crop, so it is resampling / framing of the face, not the black frame).
+**Consequence for the comparison table:** on the released detectors' own crop path a border-matched column is not
+needed (the black frame is absent in every pool); the native vs history-matched contrast there measures storage
+history plus a small aligner-path step (up to +6.4 points for MixFaceNet-MAD, +2 for ViT-B/16). On OUR frames (where
+our own networks and the A12-BR retrains are scored) the morphs carry 3-26% black frame and the photos none, so any
+table of our-frames numbers needs the border caveat or a border-matched column (part A).
