@@ -80,11 +80,17 @@ Reader `src/PR1/z2b_read.py` (committed at 7222d71 before the TT1 read existed).
 Output `z2b_read.json`. The TT1-FS read is not yet reviewed by its own reviewer.
 - **Z2b-τ5:** each network's τ5 (from part 1) applied to the 7 unseen-source families. G_unseen = largest family
   flag share.
-  - A: 0.018, 0.112, 0.040, 0.008, 0.044 (largest LFW/CALFW) → **"usable on unseen sources"** (4 of 5 ≤ 0.10).
-  - B: 0.005, 0.007, 0.005, 0.022, 0.028 → **"usable on unseen sources"** (5 of 5).
+  - A: 0.018, 0.112, 0.040, 0.008, 0.044 (largest LFW/CALFW; AgeDB on seed 406) → registered label "usable on unseen
+    sources" (4 of 5 ≤ 0.10), which means **genuine flags ≤ 10% on unseen sources, genuine side only**. At τ5, A misses
+    41-55% of landmark_combined morphs (Z2a).
+  - B: 0.005, 0.007, 0.005, 0.022, 0.028 → same label (5 of 5), genuine side only. At τ5, B misses 62-70% of
+    landmark_combined (Z2a).
   - Sb: 0.088, 0.163, 0.042, 0.060, 0.117 (largest CFP-FF every seed) → **"inconclusive"** (3 of 5 ≤ 0.10).
-  - Limit: τ5 comes from TF32-on stored scores and TT1 rows were scored with TF32 off (TT1 measured up to 0.035
-    logit).
+  - Sb's τ5 is below its own rule (0) on every seed, so calibrating on FFHQ raises its CFP-FF flags (0.042-0.163 at
+    τ5 against 0.034-0.134 at the own rule; post hoc, reviewer). Sb meets both Z2a and Z2b-τ5 on seeds 405 and 406
+    only (2 of 5; post hoc). **F10 is not answered by these reads.**
+  - The TF32 mismatch (≤ 0.035 logit) cannot change any verdict: Sb seed 407 would need about 82 CFP-FF rows to cross,
+    and only 59 TT1 rows of any family lie within 0.035 above their τ5 (reviewer's count).
 - **Z2b-ρ** (x = TT1 F̄, y = mean own-rule miss over three development attack pools, 15 networks): ρ = −0.346
   (permutation p 0.21; within-arm p 0.76; arm-mean ρ −0.5). **Registered verdict: "weak (not decided)"**, across
   recipes.
@@ -176,6 +182,8 @@ evidence about a trade-off within a recipe.
 
 ## Part 2: GD0, GD1, GD2 (new scoring on pn1fs; read once at about 11:45)
 
+Results review (Opus) `experiments/reviews/REVIEW_PR1_PART2_20261113.md`: accept with corrections; every number recomputed and matched (gate max |Δ| 0 on 15 of 15); corrections applied below.
+
 - **Platform and gate:** rented A100 pn1fs (GPU-5bd20020, the card that trained and stored these networks), TF32 on,
   batch 64, manifest order. The job ran 10:01-10:15 host time (11:01-11:15 CET) under the FS1 queue lock after
   TT1-FS and TT1-X. Gate on all 19,797 FS1 evaluation rows: **15 of 15 passed, all byte-identical (max |Δ| 0)**.
@@ -195,10 +203,13 @@ Label (amendment 1, F2): StyleGAN morph against camera photo; the GAN render cue
 | stylegan_w | 0.861, 0.927, 0.875, 0.910, 0.874 | 0.725, 0.901, 0.798, 0.835, 0.711 | 0.881, 0.937, 0.896, 0.967, 0.942 | 0.897 / 0.913 | 0.910 (same) |
 | diffae (printed) | 0.649-0.735 | 0.676-0.741 | 0.686-0.760 | 0.638 / 0.666 | 0.755 (noise_std) |
 
-- **Sb (decides): stylegan_wplus "transfers"**, beyond the 27-statistic baseline (Sb − s-lad +0.066 to +0.104, 5 of 5).
-  **stylegan_w "transfers"**, not shown beyond simple statistics (Sb − s-lad −0.016 to +0.069; ≥ +0.05 on 1 seed).
-  Both carry the coupling qualifier "not shown to be morph detection (GAN one-person renders are not separated,
-  GD2)", because Sb's GD2 verdict is "inconclusive". **H-GD0: supported, with that qualifier.**
+- **Sb (decides):** both StyleGAN families pass the registered AUC ≥ 0.80 bar ("transfers"). wplus is beyond the
+  27-statistic baseline on 5 of 5 seeds (Sb − s-lad +0.066 to +0.104). w is not beyond it (≥ +0.05 on 1 seed) and is
+  above the best single statistic on only 3 of 5. This is StyleGAN morph against camera photo. It is **not shown to be
+  morph detection**: Sb flags 78-90% of one-photo MIPGAN renders (GD2). Descriptively and across sets (post hoc,
+  reviewer), Sb's stylegan_wplus morph logits do not exceed its one-photo-render logits (AUC 0.39, 0.51, 0.61, 0.45,
+  0.61; medians about +3.1 against +3.2). **H-GD0 is supported only in this sense; it is not evidence for GAN
+  benchmark cells.**
 - A (printed): wplus "transfers" (beyond the baseline on 4 of 5), w "transfers" (not beyond). B: wplus "transfers"
   (not beyond), w "inconclusive". Same coupling qualifier.
 - Own-rule misses, Sb: wplus 2.2-11.3%, w 6.7-24.0%, diffae 57-70%. Genuine resmatch flags, Sb 2.2-5.1%; A
@@ -214,8 +225,12 @@ Label (amendment 1, F2): StyleGAN morph against camera photo; the GAN render cue
 | SAME vs REC | 0.317-0.470 | 0.241-0.300 | 0.206-0.269 |
 | X vs SAME | 0.642-0.737 | 0.682-0.752 | 0.778-0.846 |
 
-- **Registered verdict: "render path used" for A, B and Sb (5 of 5).** REC vs G ≥ 0.75 on every seed; X vs REC
-  ≤ 0.60 on 2-5 seeds. A's verdict carries "history-confounded".
+- **Registered verdict: "render path used" for A, B and Sb (5 of 5)**, within the 256 px DiffAE frame; it does not
+  carry over to E7 frames. REC vs G ≥ 0.92 on every network. X vs REC ≤ 0.60 on 3 seeds for A, 5 for B, 5 for Sb.
+  A's verdict carries "history-confounded". The frame alone raises camera-photo flags to 2.4-52%.
+- Printed: latent mixes score below the reconstruction (Sb SAME vs REC 0.21-0.27, MIR vs REC 0.28-0.37). Two-person
+  mixes rank above same-person mixes (X vs SAME Sb 0.78-0.85; A 0.64-0.74; B 0.68-0.75). On DiffAE, only Sb seed 407
+  (0.760) reaches the single statistic noise_std (0.755) in GD0.
 - Own-rule flags (frame-confounded): REC 89-100%, SAME 71-100%, X 93-100% for every arm. G (camera photos in the
   DiffAE frame): A 18-52%, B 12-40%, Sb 2.4-10%. Stored test R0 native: 0% for every network.
 
@@ -233,8 +248,12 @@ Rows: R0 227, R2 238, R2s 119, R3 119, R3m 119, R4 74.
 | AUC R4 vs R3 | 0.530-0.627 | 0.583-0.667 | 0.619-0.690 |
 | AUC R2 vs R0 | 0.957-0.985 | 0.911-0.978 | 0.992-0.998 |
 
-- **Registered verdict: "inconclusive" for A, B and Sb.** R2 is flagged ≥ 50% on 4-5 seeds for A and Sb, but AUC(R4
-  vs R2) > 0.65 on every seed, so the amended "flagged like a morph" branch is not met. R2 flags are not ≤ 10% on any
-  seed.
+- **Registered verdict: "inconclusive" for A, B and Sb.** R2 is flagged ≥ 50% on 5 of 5 seeds for A and Sb (B 3 of
+  5), but AUC(R4 vs R2) > 0.65 on every seed, so the amended "flagged like a morph" branch is not met. R2 flags are
+  not ≤ 10% on any seed.
+- Descriptive (post hoc, reviewer): most of R4's lead over R2 also appears without a second identity (Sb R3 vs R2
+  0.79-0.83, R3m vs R2 0.74-0.81, against R4 vs R2 0.86-0.93). The identity step R4 vs R3 is 0.62-0.69 (A 0.53-0.63,
+  B 0.58-0.67), matching AG1's released detectors. At the own rule, Sb raises a false alarm on 78-90% of one-photo
+  MIPGAN renders.
 - R4 has only 74 rows; partners of many hosts are training persons and were excluded.
 
