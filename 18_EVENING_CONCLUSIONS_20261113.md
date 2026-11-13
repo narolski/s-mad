@@ -52,3 +52,11 @@ On WCSS, waiting in a saturated queue (read when the fits end, latest 15 Nov 18:
 ## Spend
 
 About 48.5 USD of rentals today against the 50 approved.
+
+## Corrections after the record keeper's check (19:06, ledger entry 1 at 486d089)
+
+- **Released detectors and storage history.** "Lose 13-20 points on landmark families" is wrong as a general statement. It holds for the AMSL and WebMorph families (+12.8 to +19.6). The OpenCV family rises by +3.90 (MADation ViT-B/16) and +5.88 (MixFaceNet-MAD), and MixFaceNet-MAD on MAD22 FaceMorpher by +8.37. MADation ViT-L/14: −0.54 to +1.98 (unchanged). Source: `experiments/CB1_competitor-baselines-corrected-mad22/result.md` lines 227-235.
+- **Morph-free networks on MorDIFF (AD4).** The 0.0% figure is confirmed for both backbones, but a saved review file exists only for ViT-B/16. The ViT-L/14 half is therefore "unreviewed" until a review is saved.
+- **NIST mugshot block.** Numbers confirmed against the result file; no review file is saved, so it is "unreviewed" until one is.
+- **Storage-test re-run (C2P-R).** Its pre-run check is written inside the draft only; no separate review file exists.
+- **Times.** This document was committed at 17:38, not written at 17:45; the author's ruling cited as 17:15 was recorded at 17:13.
