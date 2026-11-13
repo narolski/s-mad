@@ -588,3 +588,11 @@ Lead's instruction: WCSS is saturated and the part-4 jobs (smoke 6312973, array 
 part-4 read deadline in 4.5 moves from "fits finished and fetched by 14 Nov 2026 15:00 CET" to **14 Nov 2026 18:00 CET**
 (end of the experiment stage); fewer than 4 read seeds at 18:00 is reported as "not read (deadline)". Nothing else
 changes. At this commit no part-4 tar, smoke result or score exists.
+
+## Part 4 amendment A2: read time (`date`: Fri Nov 13 05:14:51 PM CET 2026; registered at the commit that adds it)
+
+Author ruling, verbatim (NOTEBOOK, 13 Nov 17:15, relayed by the lead through the dispatcher): "For now, assume that we
+can go over the cutoff date due to WCSS and Athena waiting time." The fetch deadline of amendment A1 (14 Nov 2026
+18:00 CET) is replaced by: **read once when all fits of the batch (array 6312974) have ended, latest 15 Nov 2026 18:00
+CET; rows arriving later are labelled late.** Nothing else changes; the queue order stays as set. At this commit no
+part-4 tar, smoke result or score exists (smoke 6312973 and array 6312974 have not started).
