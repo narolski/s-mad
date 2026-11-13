@@ -142,6 +142,11 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   18:00 for the first wave if the forecast holds; limit 3:03). GPU-hours: 15 fits x 1.7 h ≈ 25.5 H100-h + smoke 0.3 +
   C2P job ≈ 0.5. Next check at the forecast start (16:15), then at start + 1.7 h; fetch with `src/BB2/fetch_bb2.sh`.
 
+- 09:07 dispatcher (operational deviation, recorded): time limit of 6310084 and 6310092 lowered from 3:03 (prereg
+  rule 1.5 x projected + 0.5 h) to 2:15 (projected 1.65 h + about 30%) to help backfill; Nice=10 on all BB2 jobs. A
+  fit that reaches the limit is an infrastructure failure: rerun once with twice the time (prereg section 4).
+  Forecast start 18:10 (unreliable).
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
