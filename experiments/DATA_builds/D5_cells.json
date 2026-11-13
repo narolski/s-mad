@@ -1,10 +1,12 @@
 {
+ "version": 2,
  "seed": 20261113,
  "sources": {
   "tt1": "8b3c6fa932ac24c13a086984468539ba841f2facc1ac883be34c89b1c6971bef",
-  "meds": "3698bcb4ff9e694219a0d1675920621724303eee034692f9374f70400fec6c8d"
+  "meds": "3698bcb4ff9e694219a0d1675920621724303eee034692f9374f70400fec6c8d",
+  "measured": "6090a0ba6398f6a9bfb318dc00332aa2a74316ade42b352aa7c7172cf13d9c62"
  },
- "all_sources": {
+ "bied_all_sources": {
   "available_images": {
    "border_any|ied_61to113": 1586,
    "border_any|ied_lt61": 19723,
@@ -27,9 +29,9 @@
    "tt1": 94,
    "meds": 176
   },
-  "list_sha256": "8b27d67d9ee7699e3d707f53e743c9c22abef4371ea1092b0a4f117cfe68e4dd"
+  "list_sha256": "b45c6ed9e9884729fb6bde9acbf3506bb28d69a697198ff7074fcbb8313a15ad"
  },
- "without_meds": {
+ "bied_without_meds": {
   "available_images": {
    "border_any|ied_61to113": 1403,
    "border_any|ied_lt61": 19677,
@@ -45,6 +47,47 @@
   "by_source": {
    "tt1": 27
   },
-  "list_sha256": "02a05f1247c1bbd31cc7cd99ae3631a54082c999d8dce65db4982f326a5be259"
+  "list_sha256": "e18dac9ac10c2d5d23b6b6ac2f5015006c1c1e4a2764688ec9291fc2d187c018"
+ },
+ "border_all_sources": {
+  "available_images": {
+   "border_any": 32803,
+   "border_none": 2175
+  },
+  "one_per_person": {
+   "border_any": 15857,
+   "border_none": 1120
+  },
+  "per_cell": 1120,
+  "rows": 2240,
+  "by_source": {
+   "celebahq": 416,
+   "tt1": 747,
+   "ar1": 504,
+   "ms1_ffhq": 55,
+   "meds": 254,
+   "af0": 264
+  },
+  "list_sha256": "46d237d03d60f1fc6ba9d93cf0f16b2e6920e244a2e535016ba3f1714262af7b"
+ },
+ "border_without_meds": {
+  "available_images": {
+   "border_any": 32343,
+   "border_none": 1770
+  },
+  "one_per_person": {
+   "border_any": 15600,
+   "border_none": 879
+  },
+  "per_cell": 879,
+  "rows": 1758,
+  "by_source": {
+   "tt1": 589,
+   "celebahq": 363,
+   "af0": 259,
+   "ms1_ffhq": 49,
+   "ar1": 498
+  },
+  "list_sha256": "97b3f30c431e0b1cc370f82dc45defc476c6afb23aed59f28d35d51e4123d50a"
  }
 }

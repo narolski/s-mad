@@ -27,6 +27,10 @@ and an 8-image test with the real command line before the full run.
   distance, border-free and high-resolution genuine frames come almost only from MEDS: without MEDS, D5 has 9 images
   per cell over 3 cells.
 
+- 19:15 update: D5 version 2 built (border measured on 13,024 more frames; border-only lists 1,758 rows without MEDS).
+  The eye-distance dimension still rests on TT1 and MEDS only; filling it for the other sources needs face detection
+  on their source images (CPU measurement, the lead's go).
+
 ## Summary
 
 | Request | Purpose | Needs | CPU | GPU |
