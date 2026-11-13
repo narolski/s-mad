@@ -41,7 +41,8 @@ C2P-R score exists.
 > start was refused without overwriting ("a result tar exists already"). Disclosure: the mock runs scored Sb 403 (a
 > network that passed the first gate and whose first-run statistics were already printed) on the DGX GB10 with stand-in
 > paths; those score files were deleted unopened by the owner. The remote script takes the host's FS1 queue lock
-> (`/workspace/pn1/fs_queue.lock`), aborts with under 60 min to the lease deadline, works in a new folder
+> (`/workspace/pn1/fs_queue.lock`), aborts if the lock is taken after 14:51 CET (its built-in limit: 60 min before 15:51, kept as a margin although
+> the lead moved pn1fs's lease deadline to 16:30 on 13 Nov), works in a new folder
 > `work_<epoch>`, records the effective torch, cuDNN, TF32 and SDPA settings in `env.txt`, and refuses to run if a
 > result tar exists. The driver's `start` refuses unless this amendment, with the remote script's sha256, is in
 > `prereg.md` at HEAD; its pull loop runs until C2PR_DONE or 16:00 CET.
@@ -71,8 +72,8 @@ C2P-R score exists.
   about 20-35 min. C2P-R must be started on the host (waiting on `fs_queue.lock`) before the Sp queue ends and before
   13:30 CET (TT1-FS waits for `/workspace/c2pr/DONE` or `NO_C2PR` only until 13:30, then joins the flock, which is not
   FIFO). If Sp is still running at 13:15, the lead decides whether to write `NO_C2PR`. If the author declines, write
-  `/workspace/c2pr/NO_C2PR` at once. With the 60-min abort margin the lock must be taken by 14:51 (lease 15:51).
-  PR1 uses a 16:30 lease deadline (`remote_gd.sh:36`) against 15:51 elsewhere: to be reconciled by its owner.
+  `/workspace/c2pr/NO_C2PR` at once. The lock must be taken by 14:51 (the script's built-in margin). The lease deadline is 16:30
+  (moved by the lead on 13 Nov; cap unchanged); the read-by time stays 16:00.
 - Commands after the author's yes and the registration commit:
   ```
   cd /home/narolski/smad-next/src/PN1/c2pr
