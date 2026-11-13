@@ -426,7 +426,7 @@ What the table shows:
   trained on different GPUs, with different TF32 settings for U. Printed only. MS1's registered F_T values
   (ms1_read.json) differ from these in the 4th decimal and are the registered ones.
 
-# MEDS extension TT1-M (NIST SD32 mugshots; registered reading, not yet reviewed)
+# MEDS extension TT1-M (NIST SD32 mugshots; registered reading; reviewed 13 Nov (results-reviewer): needs qualification, corrections applied)
 
 Setup:
 - Registration: `prereg_meds_block.md` (4ca7755; pre-run fixes f5389a3; driver guard fix 41803d6).
@@ -471,7 +471,9 @@ Pool: MEDS primary pool, 865 aligned frontal images of 400 persons. MEDS is its 
   largest is A_s404 at 7.2%.
   - The predictions for B and Sb are confirmed.
   - No prediction was made for A; A also meets the bar.
-- **TT-M2: "displaced" for all arms, 5 of 5.** AUC against R_cam is 0.977-0.999.
+- **TT-M2: "displaced" for all arms, 5 of 5.** AUC against R_cam is 0.979-0.999 for the deciding arms (Sp
+  0.977-0.979). R_cam is a tight floor (p95 within 0.05 logit of its median), so the median shift is only 0.16-0.52
+  logit, 2-8% of u.
 - **TT-M3 (descriptive), all "not distinguished".**
 
 | Pair | Mean ± SD | Seeds negative |
@@ -480,13 +482,36 @@ Pool: MEDS primary pool, 865 aligned frontal images of 400 persons. MEDS is its 
 | Sb − A | −0.026 ± 0.016 | 5 / 5 |
 | Sb − B | −0.006 ± 0.011 | 3 / 5 |
 
+B − A: interval excludes 0 on 5 of 5 seeds, −0.03 met on 1 of 5 seeds. Sb − A: interval excludes 0 on 4 of 5 seeds, met
+on 2 of 5. Sb − B: 3 negative, 2 equal.
+
 ## Printed reads (no rule)
 
-- **AUC against R_ffhq is 0.14-0.62.** MEDS scores at or below the FFHQ genuine photos for most networks. It is
-  displaced from the training-source camera photos but less than FFHQ.
-- **TT-M4.** Inside MEDS, Spearman of logit with log Laplacian variance is +0.37 to +0.50 for every network, and with
-  log enlargement +0.21 to +0.46. Sharper and more enlarged MEDS photos score higher. This is the opposite sign to A's
-  packs in TT1, and it is confounded with native size and source part.
-- **By source part.** MEDS-I-only images are flagged more than MEDS-II (A: 0.040-0.159 against 0.008-0.032).
-- **240x240 images.** 156 in total, 0.000-0.391 flagged; A is the highest arm.
+- **AUC against R_ffhq is 0.14-0.62**, below 0.5 on 16 of 18 networks (A_s406 0.616, B_s406 0.562). MEDS scores at or
+  below the FFHQ genuine photos for most networks.
+- **TT-M4.** Spearman of logit with log Laplacian variance is +0.37 to +0.50 and with log enlargement +0.21 to +0.46.
+  Laplacian variance is computed on the full native frame, so across MEDS's mixed sizes it tracks image size (ρ with
+  width −0.51). Post hoc review split by size: inside the 240x240 group, ρ with sharpness is −0.10 to −0.24 for A and B
+  (the TT1 sign) and ρ with enlargement +0.29 to +0.53. Among the other images, ρ with enlargement is about 0. No sign
+  reversal relative to TT1 is shown.
+- **240x240 images:** 110 in the primary pool, 54 persons, enlarged 1.6-5.8x (median 2.8); 0.000-0.391 flagged (A
+  0.10-0.39, B 0.009-0.23, Sb 0-0.027). Post hoc review: nearly all flags fall in this group (for example A_s404 43 of
+  44, B_s404 25 of 25), with at most 1 flag per network among the other 755 images. The MEDS-I against MEDS-II
+  difference (A 0.040-0.159 against 0.008-0.032) follows from this: 51 of 126 MEDS-I images are 240x240, and MEDS-I
+  images above 240x240 have 0 flags. Size, JPEG coding and part cannot be separated.
 - **Secondary pool.** 153 non-aligned frames: 0-1.3% flagged.
+
+## What may and may not be said (MEDS; review of 13 Nov)
+
+May say: "On 865 frontal NIST MEDS mugshots of 400 persons, unseen in training, all 15 fresh-seed networks stayed within
+the fixed decision rule (bootstrap upper bound ≤ 7.2%). The false alarms that occur concentrate in small 240x240
+mugshots whose faces are enlarged about 3x. There the plain network flags up to 39% of 54 persons and the protocol
+network up to 23%." The platform result also stands: the 18 networks reproduced byte for byte on a second A100 PCIe
+host with another driver (570.211.01 against 610.57.04).
+
+May not say: that MEDS-I or the source itself causes the flags; that sharper photos score higher; that MEDS is strongly
+displaced in magnitude; that any arm is better; anything about misses.
+
+Next (review): a registered post hoc stratified print (size group × part) for all 18 networks (zero GPU); MEDS 240-group
+flags against TT1 families at matched enlargement (zero GPU); a downsampling test of the larger MEDS images to about
+46 px eye distance (author item: resampling code); morph pairs from the 157 multi-encounter persons later.
