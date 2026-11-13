@@ -104,7 +104,14 @@ share.
 
 # Part 3b (printed-only amendment registered at 616a910; computed once at 10:14 on 13 Nov 2026; `ms1_part3b.json`)
 
-- Rank-AUC memorisation (mean over 11 FRGC / colorFERET kinds): A(SbM3) < A(Sb) on 5 of 5 seeds; A(SbV) < A(Sb) on 1 of
-  5. Values in `ms1_part3b.json` (reproduces the reviewer's post hoc 0.541-0.557 vs 0.514-0.535).
+- Rank-AUC memorisation (printed only; mean over 11 FRGC / colorFERET kinds, equal weights): A(SbM3) < A(Sb) on 5 of 5
+  seeds (Sb 0.541-0.557, SbM3 0.514-0.535; reproduces the reviewer's post hoc values exactly); A(SbV) < A(Sb) on 1 of 5
+  (expected null). Per kind, SbM3 is lower on 5/5 seeds for photo, R0, R2w, S0, S3, S4, on 4/5 for photo61 and R4, and on
+  2/5 for zero, halves and u50. SbM3 lad_R4 is below 0.5 on all seeds (training attacks scored less confidently than
+  held-out), so A is a between-arm comparison on identical rows, not a measure with a 0.5 baseline. It does not
+  separate dilution (0.625x exposure) from regularisation.
 - Within-sex ρ(CFD logit, Feminine), medians over seeds: women Sb 0.248, SbM3 0.007, SbV 0.257; men Sb 0.097, SbM3
-  −0.125, SbV 0.074. Per race group × sex and flag counts per seed in `ms1_part3b.json`. Printed only; associational.
+  −0.125, SbV 0.074. Per race group × sex and flag counts per seed in `ms1_part3b.json`. Printed only; associational. Per seed, women Sb
+  0.05-0.31 and SbM3 −0.21-0.20; Sb > SbM3 within seed on 5/5 for each sex; SbM3 men negative on 5/5. SbM3 flags 1 CFD
+  image in total, so its ρ describes ranking below the own rule. Race × sex cells (n 52-104) are not interpretable
+  singly. Reviewed (REVIEW_MS1_PART3B_20261113.md).

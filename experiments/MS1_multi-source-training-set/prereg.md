@@ -462,3 +462,10 @@ thread caps.
   on an attack pool from an unseen pipeline, two printed guards: sex-stratified CFD own-rule flags and within-sex
   ρ(CFD logit, Feminine), per arm. Warning recorded (reviewer): CelebA-HQ images are super-resolved and often heavily
   made up, so this source may teach "smooth means genuine" and raise misses on smooth morphs.
+
+- Part 3b note (13 Nov, after its review REVIEW_MS1_PART3B_20261113.md; the registered text above is unchanged): the
+  rank-AUC memorisation statistic for later arms is printed with the per-kind table, the count of kinds below 0.5 and
+  per-seed paired differences against the reference arm on identical row sets, kinds and weights fixed at
+  registration. For the CelebA-HQ printed guards: per-seed ρ paired against the Sb reference with flag counts beside it,
+  signed ρ (does the feminine-means-attack link return?); the unseen-pipeline miss guard printed stratified by parent sex
+  (a smoothness / make-up proxy if available); CFD stays printed-only (not a selection set).
