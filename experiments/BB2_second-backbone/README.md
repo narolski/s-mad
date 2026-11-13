@@ -165,6 +165,10 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   about 0.1 h copy and scoring = 1.9 h, inside the 2:15 limit with about 20 min to spare). Expected ends 13:30-13:50
   for the nine; fetch planned at 13:55.
 
+- 13:24 dispatcher: seven fits COMPLETED (exit 0, 1:29:31-1:30:25 each). 13:24:51 first fetch (`fetch_bb2.sh`): 8 tars
+  verified (local = .sha256 = WCSS sha256): B 403-406, Sb 403-406 (see `/mnt/t7/smad_next/BB2/results/fetch.log`).
+  Not opened: no reader runs before the seed mode is frozen (amendment 2).
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
