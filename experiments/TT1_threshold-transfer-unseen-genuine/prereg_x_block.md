@@ -1,0 +1,91 @@
+# Registration TT1-X: extension of the TT1 fresh-seed block to the Sp arm and to SbM3, for the shortcut audit table (SA1)
+
+Status: registered at the git commit that adds this text. The lead requested it on 13 Nov (SA1 has empty cells for
+border, crop geometry and unseen genuine sources for Sp and SbM3). At this commit:
+- no Sp or SbM3 network has been scored on a TT1 row by TT1;
+- no MS1 score has been opened.
+
+It inherits TT1-FS (`prereg_fs1_block.md`, a2fef5c + amendment ab81b35) in full: the F4 limits (false alarms only;
+low-resolution bordered frames; not a sharp-source result; no detection or miss claim), the platform pins, the reads
+R1-R5 and the clipped intervals. Only what differs is written here.
+
+## Part 1: the Sp arm (seeds 403-405) on pn1fs, after the main block
+
+- **Networks.** PN1_Sp_s403, s404, s405 (registration Sp in PN1 prereg.md; trained on pn1fs after FS1's fits, same
+  GPU GPU-5bd20020…, same image). Pins: the sha256 of the verified local copies of the Sp result tars; the driver
+  writes them into `nets_pins.txt`.
+  - Sp is an ablation arm with three seeds. It enters no TT1 decision rule. Its numbers are printed only, labelled
+    "Sp, three seeds, printed only".
+  - The per-network gate rule still applies: a failing network is not scored and is printed "not available (failed
+    platform gate)".
+- **Gate.** As TT1-FS §2, unchanged:
+  - Every row of the FS1 evaluation manifest `pn1_eval.csv` (f0f29f22…, 19,797 rows). The Sp pack does not change it:
+    `mk_sp.py` asserts byte equality. Sp's stored scores_eval.npz were made by run.sh → pn1_score.py on that manifest.
+  - Scored in manifest order, batch 64, TF32 on.
+  - Byte identity per network.
+- **TT1 rows.** For passing networks, fam tt1 (30,994) and fam gate (3,417) of `tt1_score.csv` (c0055b51…) with
+  rescore.py unchanged.
+- **Scripts.**
+  - `src/TT1/rented/remote_tt1_x.sh`: a copy of remote_tt1_fs.sh parameterized by TAG, its own bin and work folders,
+    pinned GPU UUID and deadline.
+  - `src/TT1/rented/drive_tt1_x.sh`: never writes RELEASE; writes `tt1/TT1X_DONE_sp` after two verified copies.
+  - sha256 of both are at this commit, below. Neither touches the running main job's files.
+  - Mechanics tested on the DGX mock host (test mode; one 401 network, rows differ by design → not scored).
+- **Order and time.** The job is started on pn1fs once the three Sp tars are fetched and verified locally. It takes the
+  host's fit lock, so it runs after the main TT1-FS job: gate about 3 min, TT1 rows about 5 min, extraction about
+  3 min. Expected end about 13:45, before 15:51; the skip rule (under 60 min left) applies. **No deadline extension is
+  needed** unless the Sp queue ends after about 13:30; in that case the lead is told before the start.
+- **Release.** The lead adds "tt1x" to QUEUES. The lead touches DONE_tt1x only after `tt1/TT1X_DONE_sp` exists.
+- **Reader.** `src/TT1/tt1_read_x.py`, written and mock-tested before any Sp TT1 score exists, pinned in a short
+  amendment. It prints R1-R5, the TT1-FS printed reads (F̄ at cut-offs; geometry and border flags; R_cam spread) and
+  the TF32-split print, per Sp network. Beside them it prints the same reads for FS1 Sb at seeds 403-405 from the
+  TT1-FS result, as a reference only. No rule.
+
+## Part 2: SbM3 (seeds 403-407): no new scoring, a read of scores MS1 already makes
+
+The MS1 owner confirmed (13 Nov, message from the MS1 owner) that no job is needed:
+- **References.** Under deviation MS1-D2 (86b4b69), every MS1 machine's queue ends with a held-out step. It runs
+  rescore.py unchanged (6f6eede7…, logit without flip) on the TT1 reference rows of `tt1_score.csv` (R_cam, R_cam^border
+  ×7, R_cam^geo224, R_cam^geo112, R_ffhq^border; 6,170 rows per network). It runs on the L40S 48 GB that trained each
+  network (torch 2.2.1). Tars: `MS1H_m1|m2|m3.tar` in `/mnt/t7/smad_next/MS1/results_rented/`.
+- **Unseen photos.** The 21,089 aligned TT1 frames are in the MS1 fit-pack evaluation manifest (d1fab6ad…). They were
+  scored inside each fit by run.sh → pn1_score.py (TF32 on, batch 64) on the training machine.
+- **No platform gate is needed.** Every SbM3 score comes from the machine and stack that trained the network. Nothing
+  is moved across platforms. The GPU model is L40S, so SbM3 numbers are never compared bit-for-bit with A100 numbers.
+
+**Stated limits, before reading:**
+- (a) The U frames were scored with TF32 on and the references with TF32 off. Measured on PN1 networks, that split
+  moves logits by up to 0.035 near the decision boundary. The R3(c), R3(f), R3(g) AUCs therefore mix two TF32 settings.
+  This is printed as a label and is not corrected.
+- (b) The U pool available is all 21,089 aligned frames. U_p (21,035) is taken as the subset by id, so the primary pool
+  is unchanged.
+- (c) The R_ffhq and M_ffhq reference rows are not in the tt1ref step:
+  - u is computed from MS1's in-pack FFHQ rows if present, labelled "in-pack, TF32 on";
+  - R3(b) and R3(d) are printed "not available" where a pool is missing.
+
+**Order (lead's and MS1 owner's condition):** the MS1 registered read is committed first. TT1 opens no MS1 score
+before that commit.
+
+**Reader:** `src/TT1/tt1_read_ms1.py`. It is written after the MS1 read is committed, reading ids only (no score) to
+build the pools, and is mock-tested and pinned in an amendment before any SbM3 score is read. It applies the TT1 reader
+statistics unchanged and prints the SA1 cells per SbM3 seed:
+- R1 own-rule flags per source;
+- R3(a), (c), (e), (f), (g);
+- geometry-224 and geometry-112 flags and paired shifts;
+- border flags and paired shifts.
+
+It decides nothing. MS1's own registered comparisons are not revisited.
+
+## Cost
+
+- Part 1: about 0.2 A100-hours inside the pn1fs lease, about 0.1 USD.
+- Part 2: 0 GPU.
+
+## Scripts (sha256 at this commit)
+
+| Script | sha256 |
+|---|---|
+| `src/TT1/rented/remote_tt1_x.sh` | 39aaa573251d2aaf8aeebc75ad802ec16d55853240b67ba3362d976d7752113c |
+| `src/TT1/rented/drive_tt1_x.sh` | c7291730270042a561fefc936482acdcee96e6475d351649858394bf1ab52867 |
+| `src/TT1/rescore_tf32.py` | 0d0b6b6f… (unchanged) |
+| `src/TT1/gate_check_fs.py` | 6d1962bf… (unchanged) |

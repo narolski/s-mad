@@ -232,3 +232,9 @@ Code: `src/TT1/hnew.py` (committed with the results).
   limits; platform pins; no scoring beside the Sp fits: the job waits for the host's fit lock). Reader
   `src/TT1/tt1_read_fs.py` fe9f97401f3633c2947b23af685be5587e741ed97163d64810e971469f5b4a62 (mock-tested with one network missing: `tt1_read_fs_mock.json`).
 - Pre-run check by the experiment-reviewer follows; fixes are registered as amendment lines before the job starts.
+
+## 11. Registration TT1-X (`date`: Fri Nov 13 08:56:40 AM CET 2026; registered at the git commit that adds this section; nothing of it scored or read)
+
+- Text: `prereg_x_block.md` (Sp seeds 403-405 on pn1fs after the main block, same per-network gate, printed only;
+  SbM3 seeds 403-407: a read of MS1's existing L40S scores after the MS1 registered read, no new scoring). Pre-run check
+  by the experiment-reviewer follows; fixes as amendment lines before any start.
