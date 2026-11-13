@@ -285,3 +285,14 @@ It never saw any FFHQ image.
   - Seeds 401/402 only (Sb selected on them after H1 was read).
 - The cross-validated 27-cue combination fitted on landmark_combined itself (0.948) is not a fair rival: it is trained on the test set.
 - Implementation corrections, disclosed in prereg.md: the R4 attacks were restricted to rows whose persons are both training hosts, after a first run (b-lad 0.810, s-lad 0.813); the verdicts are unchanged.
+
+
+## Fresh seeds (FS1): registered reading and independent review, 13 Nov 2026
+
+The experiment's owner agent was stopped by the author during the night of 12 to 13 Nov. The lead verified the 16 tar hashes and ran the registered reader unchanged (src/PN1/fs_read.py, sha256 c0d8dc19…), once; raw output in tier_fs/fs.json and tier_fs/fs_read_stdout.txt (commit cdccb25). The text below is the independent reviewer's exact wording (experiments/reviews/REVIEW_PN1_FS1_20261113.md); every number was recomputed by the reviewer from the raw tars.
+
+**Fresh seeds (FS1), registered reading (reader c0d8dc19, run once on 13 Nov 06:38; development data only).** Contrast 1 replicated on 5 of 5 seeds: on FFHQ landmark_combined, Sb 0.860 ± 0.030 (0.814–0.885) against B 0.674 ± 0.028 and A 0.736 ± 0.031. Claim: "Higher AUC than B, but not shown beyond simple statistics." Sb does not exceed the best single statistic chosen on the same images (0.886; gaps −0.071 to −0.001). It is level with a 27-statistic baseline trained on the ladder (0.814): above it on 4 of 5 seeds, equal on seed 403, and by at least 0.05 on 3 of 5. The amendment-15 sentence is therefore limited to seeds 401/402. Printed: "The gain is not separated from simple statistics" (R2: Sb's correlation with noise_std_border on genuine images 0.18–0.22, above 0.2 on three seeds). Contrast 2: uninformative on these seeds. Fresh plain networks have shares of 0.53–0.63, below the 0.65 mark set from seeds 401/402, so the positive control failed. Contrast 3 replicated (Sb − B +0.114). HN9: consistent with seed-driven. **Freeze rule: no method is frozen.**
+
+*Post hoc, descriptive, not a claim:* the plain recipe's storage reaction is present on every fresh seed but sits in the upper tail (own-rule flags rise from 6–11% to 21–31%). Protocol negatives reduce the rise to +2.5 to +5.5 points (B) and +0.5 to +2.7 points (Sb), and reverse the bulk shift. The reaction is reduced, not removed. Sb flags 31–41% of same-person face splices.
+
+Note on fs.json: the seed labels "m1 (GPU 0)" / "m2 (GPU 1)" are stale; under deviation D3 all fits ran on one GPU (GPU-5bd20020).
