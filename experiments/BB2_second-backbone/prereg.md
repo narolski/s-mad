@@ -283,7 +283,7 @@ Pins at registration (sha256): `src/BB2/archs_a12.py` a2a68634edfe7f4315f14be180
 overlay 7c0a0b41f2e7bf656dc49db33c34a33ef62b10e8f0aaec24e247e684098d0bad; featref_cpu.npz
 89f3defe6a6f74ef1852f19ef6e9a2cc8b3867c8e55be895e9ae299425627b75; FS1 pack 96c31ae2….
 
-## Amendment 1 (DRAFT for pre-run review; registered at the git commit that adds its final version; written from Fri Nov 13 08:3x CET 2026; before any BB2 fit score is read and before any BB2 network is scored on the MS1 FFHQ hold-out)
+## Amendment 1 (registered at the git commit that adds this version, with its pre-run fixes A1.7 and amendment 2; written from Fri Nov 13 08:36 CET 2026; before any BB2 fit exists, before any BB2 score is read and before any BB2 network is scored on the MS1 FFHQ hold-out)
 
 **Why.** Registration 4393990 predates today's CLIP results: FS1 read 13 Nov 06:38 (`experiments/PN1_protocol-network-
 first-tests/result.md`, review `experiments/reviews/REVIEW_PN1_FS1_20261113.md`): contrast 1 replicated 5 of 5, contrast
@@ -307,14 +307,21 @@ was "uninformative" on CLIP, its BB2 sentence is "No CLIP effect to repeat" by s
   morphs and their copies) of the MS1 pack `pn1_pack_ms1.tar` `c11b16bc…` (evaluation manifest `d1fab6ad…`), FFHQ =
   development only. No BB2 network has scored it. No FRLL, MAD22, MorDIFF, DiM, H1, FEI, CASIA-WebFace or sealed row is
   scored (the job scores only fams af0, ffhq, ms1ffhq).
-- Scoring: one WCSS H100 job (`src/BB2/wcss/bb2_c2p.sbatch`), submitted only after all nine fit tars exist and verify;
-  unchanged `src/PN1/rescore.py` (`6f6eede7…`, logit without flip) on the MS1 pack with the BB2 overlay unpacked over it
-  (the job asserts the pack's archs_a12.py is the pinned bedfeb86… before the overlay). Families af0 and ffhq for the
-  platform gate (C2P.2's thresholds, against each fit's stored pn1_score.py logits; same GPU type; rescore.py runs
-  without TF32), ms1ffhq for the read. Local check: rescore.py on the BB2 smoke network reproduces its WCSS fit logits
-  on the shared af0 rows within 5.2e-5 (DGX GPU against H100).
+- Scoring: one WCSS H100 job (`src/BB2/wcss/bb2_c2p.sbatch`), submitted only after every fit of the read set has
+  ended (its inputs exist at submission; never queued with a dependency on the fits); unchanged `src/PN1/rescore.py`
+  (`6f6eede7…`, logit without flip) run through the unchanged wrapper `src/TT1/rescore_tf32.py` (`0d0b6b6f…`, TF32 on
+  for matmul and cuDNN, the numerics of pn1_score.py in the fits; review fix F1), on the MS1 pack with the BB2 overlay
+  unpacked over it (the job asserts the pack's archs_a12.py is the pinned bedfeb86… before the overlay). Families af0
+  and ffhq for the platform gate (C2P.2's thresholds, against each fit's stored pn1_score.py logits, same GPU type),
+  ms1ffhq for the read. Disclosure: CLIP's C2P was scored with TF32 off (rescore.py defaults); C2P's statistics compare
+  scores within one network, so this matters little. Local plumbing check only: rescore.py runs on a BB2 network
+  (the 100-step smoke network; its logits are tiny, so this says nothing about the gate on trained networks).
 - Statistics: C2P.3 and C2P.4 exactly, through `src/PN1/c2p_read.py` (`45e72914…`, imported unchanged; same pairs,
   bootstrap draws rng 20261131, margins).
+- Read seeds and adequacy (review fixes F2, F3): a seed enters C2P only if it is a read seed by section 6 (verified tars,
+  finite logits, no non-finite training loss); X's pass on a seed counts only if X and A both reach the training-
+  adequacy accuracy (≥ 0.75, section 6) on that seed (an under-trained network that reacts little must not pass);
+  X's native-morph miss is printed beside every pass.
 - Three-seed counting (new): per size z, A's control as C2P.3. X ∈ {B, Sb} **passes** if it passes on ≥ 2 of 3 seeds at
   fm61 AND at amsl112; **fails** if it passes on 0 seeds at a size where A's control is met on ≥ 2 seeds;
   **uninformative** if A's control is met on ≤ 1 seed at either size; otherwise "inconclusive, no claim". Gate-failed or
@@ -326,7 +333,11 @@ was "uninformative" on CLIP, its BB2 sentence is "No CLIP effect to repeat" by s
   and BB2 does not: "... did not repeat on a second backbone (<verdict>): not shown to be independent of the CLIP
   backbone"; if BB2 is uninformative: "uninformative (the plain arm's control is not met on DINOv3)"; if CLIP does not
   pass: "No CLIP effect to repeat; printed only". H-new-1 printed beside CLIP's, both verdicts. The caveats of section 7
-  apply (2 of 3 seeds; Sb chosen on a DINOv3 head; development only; CLIP learning rates; different platform).
+  apply (2 of 3 seeds; Sb chosen on a DINOv3 head; development only; CLIP learning rates; different platform). Review
+  F5: with a per-seed pass probability of 0.3 / 0.5 / 0.9, "≥ 2 of 3" passes with probability 0.22 / 0.50 / 0.97
+  against 0.03 / 0.19 / 0.92 for CLIP's "≥ 4 of 5"; a false pass on a partial reaction is 2-7 times more likely than on
+  CLIP. This sentence accompanies every three-seed BB2 C2P sentence; amendment 2 replaces it by CLIP's own rule when
+  five seeds are read.
 
 **A1.3 New printed read: same-person splice flags (S3).** From each fit's stored scores (FS1 pack, splice rows): own-
 rule flag share of S3 (development 100, test 191), of S0, S4 miss, AUC S3 vs S0 and S4 vs S3, per arm and seed. Printed
@@ -342,5 +353,42 @@ same seed. No BB2 rule above changes when it is added.
 **A1.5 Freeze and sealed read.** BB2 never enters the freeze rule (FINAL section 1 as amended at 6691adc); its networks
 of the arm FINAL freezes are scored once in the sealed read as a robustness row (section 10 unchanged).
 
+**A1.7 Pre-run review and operations.** Review `experiments/reviews/PRERUN_BB2_A1_20261113.md` (Opus, on ddf8b0b;
+GO WITH FIXES): F1 (TF32 wrapper), F2 (adequacy for C2P passes), F3 (job takes a registered task-list override
+`BB2_TASKS`, results-folder and output-name overrides; default unchanged; reader applies section 6's read-seed rule and
+verifies tar hashes; C2P deadline: the job is submitted after the last fit of the read set ends and read by 14 Nov
+2026 23:59 CET; an infrastructure failure is rerun once unchanged after the failed output is moved to
+`*.bak-<label>`; a gate failure is never rerun), F4 (a WCSS smoke of the job on the two smoke networks,
+`BB2_TASKS="BB2smoke_Sb_s403_bs256x1 BB2smoke_Sb_s403_bs128x2"`, results `results/BB2_smoke`, output `BB2C2Psmoke`;
+never read as a result), F5 (power sentence above), F6 (reader checks the output tar's members, TF32 on and the GPU
+model against the fits'; records the sha256 of CLIP's c2p_read.json when it reads it; mock outputs renamed), F7
+(operational deviation, lead 13 Nov 08:4x: the array throttle of the nine fits is raised from 5 to 9 after submission
+because WCSS had about 20 idle H100 nodes; every fit still runs alone on one H100; no fit changes). Improvement 5:
+the seam arm (A1.4) is registered only after BB2 Sb results are known, which it discloses; its manifest uses existing
+images only (no new blur, blending or resize code) and its overlay is pinned by sha256.
+
 **A1.6 Pins.** `src/BB2/bb2_c2p_read.py`, `src/BB2/wcss/bb2_c2p.sbatch`: sha256 at the commit that registers this
 amendment (README). `rescore.py` 6f6eede7…; `c2p_read.py` 45e72914…; MS1 pack c11b16bc….
+
+## Amendment 2 (registered at the same commit as amendment 1's final version; lead's go 13 Nov about 08:50: "go for amendment 2 (seeds 406 and 407, six more fits, counting rule fixed now ...)"; before any BB2 fit exists or any BB2 score is read)
+
+- **Fits.** Seeds 406 and 407, arms A, B, Sb: six more fits, the same recipe, packs, batch rule (256 x 1, from the WCSS
+  smoke 6308946) and time limit (`--time=0-03:03:00`) on WCSS H100s, the platform of the smoke and the first nine
+  fits. Driver `src/BB2/run_s5.sh` = `run.sh` (0eaa4dce…) with 406 and 407 added to the seed list (a new file, so the
+  queued array of the first nine fits, which checks run.sh's own hash, is untouched); `src/BB2/wcss/bb2_fit2.sbatch` =
+  `bb2_fit.sbatch` with the six-task table and run_s5.sh (diff in the README). Command:
+  `cd /lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2 && /opt/slurm/current/bin/sbatch --extra=FORCE_RM_TMPDIR --time=0-03:03:00 --export=ALL,BB2_BS=256,BB2_ACCUM=1 bb2_fit2.sbatch`.
+  About 10.2 H100-hours.
+- **Which counting applies (fixed now; decided by completion, never by a score).** If all six fits of 406 and 407 are
+  fetched with verified sha256 by 14 Nov 2026 18:00 CET (later tars are never placed in the results folder), the read
+  set is seeds 403-407 and every BB2 count uses CLIP's own rules: contrasts 1-3 FS1's table (n = 5: repeated on ≥ 4,
+  not repeated on ≤ 1; n = 4: 4 of 4 / ≤ 1; n ≤ 3: not read), contrast 2's control "A fails on all but at most one
+  read seed, n ≥ 4", the R1-R6 sentence's R3 condition "≥ 4 seeds"; C2P.3 and C2P.4 exactly (passes ≥ 4 of 5 at both
+  sizes; fails ≤ 1 with the control on ≥ 4; uninformative with the control on ≤ 3; H-new-1 on ≥ 4 of 5); the adequacy
+  gate keeps its threshold and needs ≥ 4 adequate seeds. Otherwise the registered three-seed rules on 403-405 apply
+  and seeds 406/407 are not read. "Repeated" keeps its meaning (CLIP's "replicated" condition met on BB2).
+- **C2P job.** With five seeds, `BB2_TASKS` lists the 15 fit tasks; otherwise the default 9.
+- **Readers.** `bb2_read.py` and `bb2_c2p_read.py` choose the mode by the file rule above (`seed_mode`), print it, and
+  apply the matching counts. Mock-tested in both modes.
+- **Disclosure.** Added after amendment 1's review recommended it and with the CLIP FS1 values known; no BB2 score
+  exists.

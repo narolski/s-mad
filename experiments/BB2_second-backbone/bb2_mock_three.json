@@ -699,6 +699,12 @@
   "R3_ok_every_read_seed": true,
   "sentence": "Sb's gain over B on this development set is not explained by the best single simple statistic or by the 27 statistics combined; Sb does not exceed the best statistic's own AUC, and still reads the surround (R6)."
  },
+ "seed_mode": "three",
+ "seeds_considered": [
+  403,
+  404,
+  405
+ ],
  "read_seeds": [
   403,
   404,
@@ -740,6 +746,7 @@
   "contrast1": "The gain of spliced positives over protocol-only training on FFHQ landmark_combined repeats on a second backbone (DINOv3 ViT-L/16, 3 seeds), but is not shown beyond simple statistics there.",
   "contrast2_B": "Second backbone, B: storage mark uninformative (A's positive control not met on DINOv3).",
   "contrast2_Sb": "Second backbone, Sb: storage mark uninformative (A's positive control not met on DINOv3).",
-  "contrast3": "No CLIP effect to repeat (FS1 contrast 3: not replicated); second backbone printed only."
+  "contrast3": "No CLIP effect to repeat (FS1 contrast 3: not replicated); second backbone printed only.",
+  "counting_caveat": "Counting: 2 of 3 seeds, a lower bar than FS1's 4 of 5."
  }
 }

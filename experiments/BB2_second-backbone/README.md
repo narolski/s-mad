@@ -78,6 +78,16 @@ registration written; DGX smoke running; draft goes to the independent pre-run r
 - 08:30 **rules applied (prereg section 4 and 9):** memory rule -> batch 256 in one pass (69,225 ≤ 73,728 MiB);
   projected fit time 6,250 / 1.12 it/s = 1.55 h + about 0.15 h pack copy and scoring = 1.7 h; time limit 1.5 x 1.7 h +
   0.5 h = 3.05 h -> `--time=0-03:03:00`.
+- 08:30:14 fit sbatch refused ("Unable to contact slurm controller"); 08:35:53 the one retry refused the same way.
+  Reported to the lead. The lead put the exact command into the dispatcher's queue
+  (`/mnt/t7/smad_next/dispatch/submit_queue/wcss_bb2_fits.cmd`); the dispatcher submits it when the controller
+  answers and raises the array throttle from 5 to 9 (lead's operational decision: WCSS has about 20 idle H100 nodes;
+  prereg section 9 said at most 5 GPUs at once; every fit still runs alone on one GPU, so no fit changes). Job ID: to
+  be recorded when the dispatcher reports it.
+- 08:40 amendment 1 drafted (C2P reads on the MS1 FFHQ hold-out with 3-seed counting via `bb2_c2p_read.py` and the
+  rescoring job `wcss/bb2_c2p.sbatch`; S3 printed reads; room for a seam-shortcut arm); mock test of the reader passed;
+  rescore.py on the BB2 smoke network matched its WCSS logits on shared af0 rows within 5.2e-5. Draft commit ddf8b0b;
+  pre-run review (Opus) started.
 
 ## 3. Data
 

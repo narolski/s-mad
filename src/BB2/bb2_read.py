@@ -25,7 +25,10 @@ FS_READ_SHA = "c0d8dc19cbf375aa2daf9dd434b7ab6cc1d7e5810c3da781730fe0cb159dcf21"
 BB2 = pathlib.Path("/mnt/t7/smad_next/BB2")
 RES = HERE.parents[1] / "experiments" / "BB2_second-backbone"
 FS_JSON = HERE.parents[1] / "experiments" / "PN1_protocol-network-first-tests" / "tier_fs" / "fs.json"
-SEEDS = (403, 404, 405)
+SEEDS3 = (403, 404, 405)
+SEEDS5 = (403, 404, 405, 406, 407)    # amendment 2
+SEEDS = SEEDS3                        # set by seed_mode() in main()
+MODE = "three"
 ADEQ = 0.75   # training-adequacy threshold (prereg section 6), fixed before any BB2 fit
 ARMS = ("A", "B", "Sb")
 
@@ -65,8 +68,29 @@ def count3(meets, n):
     return "not repeated"
 
 
+def seed_mode(rf):
+    """Amendment 2: the five-seed reading applies only if all six fits of seeds 406 and 407 are present in the results
+    folder with a verified sha256 (fetched by the 14 Nov 18:00 cut-off; later tars are never placed there); otherwise
+    the registered three-seed reading on 403-405. Decided by completion only, never by a score."""
+    extra = [rf / f"BB2_{a}_s{s}.tar" for s in (406, 407) for a in ARMS]
+    ok = all(t.exists() and (t.parent / (t.name + ".sha256")).exists() and
+             F.sha(t) == (t.parent / (t.name + ".sha256")).read_text().split()[0] for t in extra)
+    return (SEEDS5, "five") if ok else (SEEDS3, "three")
+
+
+def count_mode(meets, n):
+    """three: count3; five: FS1's own table (fs_read.count), with 'replicated' read as 'repeated'."""
+    if MODE == "three":
+        return count3(meets, n)
+    w = F.count(meets, n)
+    return {"replicated": "repeated", "not replicated": "not repeated"}.get(w, w)
+
+
 def main(mock=None, mock_clip=None):
+    global SEEDS, MODE
     rf = pathlib.Path(mock) if mock else BB2 / "results"
+    SEEDS, MODE = seed_mode(rf)
+    NMIN = 2 if MODE == "three" else 4
     assert F.sha(HERE.parent / "PN1" / "fs_read.py") == FS_READ_SHA, "fs_read.py changed"
     assert F.sha(F.EVAL) == F.EVAL_SHA
     assert F.sha(F.FLOOR) == F.FLOOR_SHA.read_text().split()[0]
@@ -163,16 +187,16 @@ def main(mock=None, mock_clip=None):
     R = [out["seeds"][str(s)] for s in read]
     RA = [r for r in R if r["adequate"]]
     t1 = [r for r in RA if r["c1_testable"]]
-    c1 = count3([r["c1_meets"] for r in t1], len(t1))
-    if len(R) >= 2 and len(RA) < 2:
+    c1 = count_mode([r["c1_meets"] for r in t1], len(t1))
+    if len(R) >= NMIN and len(RA) < NMIN:
         c1 = "uninformative (under-trained)"
     floor_all = bool(t1) and all(r["c1_floor_exceeded"] for r in t1)
     a_fail = sum(not r["c2"]["A"] for r in R)
-    control = len(R) >= 2 and a_fail >= len(R) - 1 and a_fail >= 2
-    c2 = {a: ("not read (too few seeds)" if len(R) < 2 else
-              count3([r["c2"][a] for r in R], len(R)) if control else "uninformative on these seeds") for a in ("B", "Sb")}
-    c3 = count3([r["c3_meets"] for r in RA], len(RA))
-    if len(R) >= 2 and len(RA) < 2:
+    control = len(R) >= NMIN and a_fail >= len(R) - 1 and a_fail >= NMIN
+    c2 = {a: ("not read (too few seeds)" if len(R) < NMIN else
+              count_mode([r["c2"][a] for r in R], len(R)) if control else "uninformative on these seeds") for a in ("B", "Sb")}
+    c3 = count_mode([r["c3_meets"] for r in RA], len(RA))
+    if len(R) >= NMIN and len(RA) < NMIN:
         c3 = "uninformative (under-trained)"
     # printed R1-R6 sentence, FS1 conditions with the R3 count read on every read seed (prereg section 6)
     if c1 == "repeated" and not floor_all and RR_:
@@ -180,12 +204,13 @@ def main(mock=None, mock_clip=None):
                 and out["seeds"][str(s)]["c1_meets"]]
         a_ = all(RR_[s]["R1_Sb_minus_B"]["point"] >= 0.05 for s in meet)
         b_ = all(max(abs(v) for v in RR_[s]["Sb"]["R2"].values()) <= 0.2 for s in RR_)
-        c_ = all(RR_[s]["R3_Sb_inc27_minus_B"] > 0 for s in RR_)
+        c_ = (all(RR_[s]["R3_Sb_inc27_minus_B"] > 0 for s in RR_) if MODE == "three" else
+              sum(bool(RR_[s]["R3_Sb_inc27_minus_B"] > 0) for s in RR_) >= 4)      # five: FS1's own condition
         out["printed_R1_R6_sentence"] = dict(R1_ok=bool(a_), R2_ok=bool(b_), R3_ok_every_read_seed=bool(c_), sentence=(
             "Sb's gain over B on this development set is not explained by the best single simple statistic or by the 27 "
             "statistics combined; Sb does not exceed the best statistic's own AUC, and still reads the surround (R6)."
             if (a_ and b_ and c_) else "The gain is not separated from simple statistics."))
-    out.update(read_seeds=read, adequate_seeds=[s for s in read if out["seeds"][str(s)]["adequate"]], contrast1=c1, contrast1_testable_seeds=len(t1), floor_exceeded_all=floor_all,
+    out.update(seed_mode=MODE, seeds_considered=list(SEEDS), read_seeds=read, adequate_seeds=[s for s in read if out["seeds"][str(s)]["adequate"]], contrast1=c1, contrast1_testable_seeds=len(t1), floor_exceeded_all=floor_all,
                contrast2=c2, contrast2_positive_control=control, contrast3=c3)
 
     # ---- comparison with the CLIP reading (FS1), prereg section 7
@@ -195,7 +220,9 @@ def main(mock=None, mock_clip=None):
                                                      contrast3=clip.get("contrast3"), read_seeds=clip.get("read_seeds"),
                                                      same_seeds={str(s): clip["seeds"].get(str(s)) for s in SEEDS} if clip.get("seeds") else None)
     out["sentences"] = sentences(out, clip)
-    o = RES / ("bb2_mock.json" if mock else "bb2.json")
+    out["sentences"]["counting_caveat"] = ("Counting: 2 of 3 seeds, a lower bar than FS1's 4 of 5." if MODE == "three" else
+                                           "Counting: FS1's own rule (4 of 5 seeds).")
+    o = RES / ((f"bb2_mock_{MODE}.json") if mock else "bb2.json")
     o.parent.mkdir(parents=True, exist_ok=True)
     K.dump(out, o)
     print("read seeds", read, "| c1", c1, "floor", floor_all, "| c2", c2, "control", control, "| c3", c3)
@@ -225,7 +252,7 @@ def sentences(out, clip):
             res["contrast1"] = "The gain of spliced positives on FFHQ landmark_combined did not repeat on a second backbone (DINOv3 ViT-L/16): it is not shown to be independent of the CLIP backbone."
     else:
         res["contrast1"] = (f"No CLIP effect to repeat (FS1 contrast 1: {c1c}); second backbone printed only"
-                            + (" (it met the margins on at least 2 of 3 seeds; not claimed)." if c1 == "repeated" else "."))
+                            + (" (it met the margins by the BB2 count; not claimed)." if c1 == "repeated" else "."))
     # contrast 2
     c2c = cv("contrast2") or {}
     for a in ("B", "Sb"):
@@ -259,7 +286,7 @@ def mock_test(d):
     man = list(csv.DictReader(open(F.EVAL)))
     ids = [r["id"] for r in man]
     rg = np.random.default_rng(7)
-    for s in SEEDS:
+    for s in (SEEDS5 if "--five" in sys.argv else SEEDS3):
         for a in ARMS:
             name = f"BB2_{a}_s{s}"
             u = d / "src" / name
