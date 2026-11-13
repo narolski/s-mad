@@ -59,14 +59,25 @@ number in this section is **post hoc** (reviewer, from the registered feature fi
 
 ## Amendment 2 (post hoc; registered at cbbcdae with pre-run fixes 2b at 3f65cf9; read once at 19:51 machine clock)
 
+Results review (Opus) `experiments/reviews/REVIEW_TB1_A2_20261113.md`: accept with corrections. Every number recomputed and matched; corrections applied below. Review numbers are post hoc.
+
 Reader: `src/TB1/tb1_amend2.py`. Output: `tb1_amend2.json`, `tb1_amend2_stdout.txt`. 291 hosts. Folds and bootstrap
 by connected components of the person graph: 110 components (the same count as the review; the 2b note expected it
-to differ).
+to differ; the 2b F6 expectation was wrong, see the erratum in prereg.md).
 
 - **Binding rule.** The profile's gain over [log E, log W] is **+0.010**: base 0.888, plus profile 0.898, 95%
   percentile interval over components [−0.006, +0.021], 0 of 2,000 draws failed. Five other fold seeds give
-  +0.009 to +0.012. **Registered verdict: "falsified: the profile adds < +0.02 over band energy and geometry".**
-  H-new-1 is "not falsified".
+  +0.009 to +0.012. **Registered verdict: "falsified: the profile adds < +0.02 over band energy and geometry"**, by
+  the registered point rule (+0.010 < +0.02). The interval excludes the supported bar (+0.03) but not +0.02.
+- **H-new-1 survives:** its falsifier, a gain ≥ +0.03 with a lower bound > 0, did not occur. Band energy and geometry
+  carry the all-hosts premise.
+- **The databases behave in opposite ways.** On FRGC alone (descriptive, post hoc) the profile adds +0.018 (reviewer's
+  component interval about [+0.003, +0.030]): small, probably above zero, below the +0.03 bar. On colorFERET it adds
+  nothing (−0.016, n = 56). The base is near the ceiling (0.888; FRGC 0.921), so any gain is capped at about
+  0.08-0.11.
+- All-hosts within-strata AUCs mix databases: FRGC two-person rows are compared with colorFERET same-person rows in the
+  same stratum. FRGC within E is 0.72 and within E × W 0.75. So "at equal band-limited energy it falls to 0.62" is
+  partly a database-mix artefact.
 - Gain over [log D, log E, log W]: +0.011 (base 0.888).
 - Alone (direction-free): E 0.805, W 0.869, D 0.651. Profile 0.785.
 - Profile within strata (descriptive): E 0.625 (coverage 0.80); W 0.709 (0.60); D 0.761; D × W 0.727 (0.69);
@@ -79,5 +90,16 @@ to differ).
   - Same-day anecdote (n ≤ 8, no claim): FRGC 0.942 (n = 3), colorFERET 0.536 (n = 5).
 - **(b) Matched W (descriptive):** 100 pairs matched within the caliper, 10 dropped, mean |Δ ln W| 0.024, medians 6.78
   / 6.78 px. AUC **0.672**, "not resolved". No verdict on H-new-2.
+  - There were 110 eligible pairs, not about 40 as 2b expected.
+  - The pooled 0.672 mixes FRGC (0.81) and colorFERET (0.48), and E is not matched (E alone gives 0.71 in the matched
+    set).
+  - On FRGC the profile still separates at matched W, which argues against a purely geometric reading (descriptive).
+- **Day gap.** On FRGC the separation does not change with capture-day gap from 1 day to over 180 days. Same-day pairs
+  cannot be tested (0 same-person).
+- **Combined TB1 reading (premise, its review and amendment 2; all post hoc except the premise verdict).** "In an
+  oracle half-difference reading on one morphing engine, two-person pairs differ from same-person pairs mainly through
+  larger band-limited energy and larger landmark displacement. On FRGC the shape of the band profile adds a small
+  further amount (about +0.02 AUC). On colorFERET there is no visible signal. This is not a texture trace of a second
+  identity and not a detector." No arm may be justified by a profile-shape premise. Any arm must report per database.
 - **Limit.** The earlier mock run may have written a W-only base value to an unviewed scratchpad file. Two matched-W
   medians from that mock were seen (amendment 2b F4).

@@ -183,3 +183,13 @@ tested on mock features only. Zero GPU. It reads the registered feature file, BD
 - **F6.** n_components differs from the review's 110, because partners outside the 291 hosts are graph nodes (shared B
   photos).
 - **F7.** Within-strata AUCs are descriptive; coverage is printed; no rule uses them.
+
+**Erratum to 2b F6 (13 Nov, after the read; results review `REVIEW_TB1_A2_20261113.md`).** F6 was wrong: counting the
+partners outside the host set as nodes gives 110 components, the review's count. The JSON field `note_components`
+(a hard-coded string in `tb1_amend2.py`) is superseded by this erratum. The registered output is not edited.
+
+## Amendment 3 (13 Nov, before ADVERSARY's floor commit and before the S part is read; from the amendment-2 review)
+
+The S part adds per-database prints, descriptive only: FRGC-only and colorFERET-only values of the S4-vs-S3 within-D
+AUC, the binding-gain components (baseline, plus r, gain) and the three binding controls. The binding rule is
+unchanged; it stays on all 291 hosts. Code: `src/TB1/tb1_read.py` (re-pinned).

@@ -187,6 +187,25 @@ def main():
                 rec[tag] = dict(sb=a1, sb_plus_r=a2, gain=a2 - a1)
             inc[str(s)] = rec
         S["increment"] = inc
+        # amendment 3: per-database prints (descriptive; the binding rule stays on all hosts)
+        dbs = np.array([r["db"] for r in R])
+        per = {}
+        for d_ in ("frgc", "feret"):
+            m = dbs == d_
+            hm = [hosts[i] for i in np.where(m)[0]]
+            okm = [i for i in ok if m[i]]
+            hhm = [hosts[i] for i in okm]
+            Xpm = np.array([sc(R[i]["S4_id"]) for i in okm])
+            Xnm = np.array([sc(R[i]["S3_id"]) for i in okm])
+            bm = crossfit_auc(Xpm, Xnm, hhm)
+            pm_ = crossfit_auc(np.c_[Xpm, r4[okm]], np.c_[Xnm, r3[okm]], hhm)
+            per[d_] = dict(n=int(m.sum()), S4_vs_S3_within_D=strat_auc(s4[m], s3[m], D4[m], D3[m])[0],
+                           shortcut_gain=dict(baseline=bm, plus_r=pm_, gain=pm_ - bm),
+                           controls={k: auc(score_oof(M, g, col(v[0], "r"))[m], score_oof(M, g, col(v[1], "r"))[m])
+                                     for k, v in dict(R0_61_vs_R0=("R0_61", "R0"), R2w4_vs_R2w=("R2w4", "R2w"),
+                                                      S0_vs_R2w4=("S0", "R2w4")).items()})
+            del hm
+        S["per_database_descriptive"] = per
         out["S"] = S
     if a.part == "all":
         pD, sD = out["P"]["hull"]["within_D"]["auc"], out["S"]["S4_vs_S3"]["within_D"]
