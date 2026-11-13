@@ -187,6 +187,76 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
 - 15:36 registered read of the fits (`bb2_read.py`, once; `bb2.json`, log `bb2_read.log`): contrast 1 not repeated,
   contrast 2 uninformative, contrast 3 repeated (details in `result.md`).
 
+- 16:20-16:50 lead's go for E2 and E3 (post-result review's E2/E3). Code and drafts of amendments 4 (E3) and 5 (E2):
+  `run_lr.sh`, `wcss/bb2l_fit.sbatch`, `bb2l_read.py`, `freeze_mode_L.py`, `e2_score.py`, `wcss/bb2_e2.sbatch`,
+  `e2_read.py`; DGX smoke of run_lr.sh (LoRA lr 1.17e-05 confirmed in the optimiser groups); CPU tests of e2_score.py
+  and e2_read.py; bb2l_read.py mock test. Diffs:
+
+```
+$ diff src/BB2/run_s5.sh src/BB2/run_lr.sh
+2c2
+< # BB2 amendment 2: run.sh (0eaa4dce...) with seeds 406 and 407 added to the seed list; nothing else changed.
+---
+> # BB2 amendment 4 (E3): run_s5.sh with the LoRA learning rate 1.17e-05 (BB2_LR, fixed), run folder and results folder BB2L; nothing else changed.
+22a23
+> BB2_LR=1.17e-05                                                                       # BB2 amendment 4 (E3): LoRA learning rate fixed by rule (3.5 x 3.33e-06, rounded as registered); head LR unchanged
+25c26
+< OUT=${BB2_RESULTS:-$G/results/BB2}
+---
+> OUT=${BB2_RESULTS:-$G/results/BB2L}
+69c70
+< RUN=$W/runs/BB2/${ARCH}_r224_d0_train90_none_lr3.33e-06_s${SEED}_bb2${ARM}
+---
+> RUN=$W/runs/BB2L/${ARCH}_r224_d0_train90_none_lr${BB2_LR}_s${SEED}_bb2L${ARM}
+71c72
+<   --lr 3.33e-06 --seed "$SEED" --res 224 --workers "$WORKERS" --out "$RUN" \
+---
+>   --lr "$BB2_LR" --seed "$SEED" --res 224 --workers "$WORKERS" --out "$RUN" \
+84c85
+< echo "sif $SIF local ${PN1_LOCAL:-0} pack_sha256 $PACK_SHA overlay_sha256 $OVERLAY_SHA arch $ARCH bs $BB2_BS accum $BB2_ACCUM wall_s $((SECONDS - T0)) host $(hostname) steps $STEPS limit ${PN1_LIMIT:-0}" > "$R/task_info.txt"
+---
+> echo "sif $SIF local ${PN1_LOCAL:-0} pack_sha256 $PACK_SHA overlay_sha256 $OVERLAY_SHA arch $ARCH lr $BB2_LR bs $BB2_BS accum $BB2_ACCUM wall_s $((SECONDS - T0)) host $(hostname) steps $STEPS limit ${PN1_LIMIT:-0}" > "$R/task_info.txt"
+$ diff src/BB2/wcss/bb2_fit2.sbatch src/BB2/wcss/bb2l_fit.sbatch
+3c3
+< #SBATCH -J bb2-fit2
+---
+> #SBATCH -J bb2l-fit
+10,13c10,13
+< #SBATCH --array=0-5%6
+< #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/bb2-fit2-%A_%a.out
+< # Second backbone (BB2), amendment 2: six fits (arms A, B, Sb at seeds 406, 407), one per array task,
+< # seed by seed, at most 6 GPUs at once; src/BB2/run_s5.sh (sha256 in run_s5.sh.sha256) on the FS1 pack + BB2 overlay (both
+---
+> #SBATCH --array=0-14%15
+> #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/bb2l-fit-%A_%a.out
+> # Second backbone (BB2), amendment 4 (E3): 15 fits at the rule-fixed LoRA learning rate (run_lr.sh), arms A, B, Sb, seeds 403-407, one per array task,
+> # seed by seed (403-405 first), at most 15 GPUs at once; src/BB2/run_lr.sh (sha256 in run_lr.sh.sha256) on the FS1 pack + BB2 overlay (both
+16c16
+< # All IO in $TMPDIR; one result tar per fit to results/BB2. A task whose verified tar exists exits at once.
+---
+> # All IO in $TMPDIR; one result tar per fit to results/BB2L. A task whose verified tar exists exits at once.
+23,24c23,24
+< ARMS=(A B Sb A B Sb)
+< SEEDS=(406 406 406 407 407 407)
+---
+> ARMS=(A B Sb A B Sb A B Sb A B Sb A B Sb)
+> SEEDS=(403 403 403 404 404 404 405 405 405 406 406 406 407 407 407)
+28c28
+< (cd "$P" && sha256sum -c --quiet run_s5.sh.sha256)
+---
+> (cd "$P" && sha256sum -c --quiet run_lr.sh.sha256)
+30c30
+< printf 'TASK=BB2_%s_s%s\nARM=%s\nSEED=%s\n' "$ARM" "$SEED" "$ARM" "$SEED" > "$TD/task.env"
+---
+> printf 'TASK=BB2L_%s_s%s\nARM=%s\nSEED=%s\n' "$ARM" "$SEED" "$ARM" "$SEED" > "$TD/task.env"
+34,35c34,35
+< TASK_DIR=$TD TASK_WORK=$W PN1_ROOT=$L PN1_PACK=$P/pn1_pack_fs.tar BB2_OVERLAY=$P/bb2_overlay.tar BB2_RESULTS=$L/results/BB2 \
+<   BB2_BS=$BB2_BS BB2_ACCUM=$BB2_ACCUM PN1_LOCAL=1 PN1_PY=$HOME/dmenv/bin/python PN1_WORKERS=7 bash "$P/run_s5.sh"
+---
+> TASK_DIR=$TD TASK_WORK=$W PN1_ROOT=$L PN1_PACK=$P/pn1_pack_fs.tar BB2_OVERLAY=$P/bb2_overlay.tar BB2_RESULTS=$L/results/BB2L \
+>   BB2_BS=$BB2_BS BB2_ACCUM=$BB2_ACCUM PN1_LOCAL=1 PN1_PY=$HOME/dmenv/bin/python PN1_WORKERS=7 bash "$P/run_lr.sh"
+```
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the

@@ -482,3 +482,73 @@ Printed beside the registered reads; they change no registered rule.
   the AUC is at least 0.75 (on at least 4 of 5 seeds); otherwise inconclusive.
 - H-new-3 (the storage shortcut needs adaptation): in C2P, A's positive control fails on DINOv3 at both sizes on at
   least 4 of 5 seeds (contrast 2-prime "uninformative").
+
+## Amendment 4: E3, one DINOv3 arm at a learning rate fixed by rule (DRAFT for pre-run review; lead's go 13 Nov about 16:20 under the author's standing instruction; registered at the commit that adds its final version; no E3 fit exists)
+
+**Why.** The post-result review of part 1 (`experiments/reviews/REVIEW_BB2_PART1_20261113.md`) found that at the CLIP
+learning rates DINOv3 Sb did not fit its own splice training rows (training AUC lad_S4 vs lad_S3 0.58-0.59 against
+CLIP's 0.85-0.88) and that the relative LoRA update was about 3.5 times smaller than on CLIP (1.5-1.9% against
+5.2-6.3%). BB2's "contrast 1 not repeated" therefore cannot separate "the recipe did not transfer because it under-fitted"
+from "the effect depends on the backbone". E3 asks that question once.
+
+**The one value tried, and where it comes from.** LoRA learning rate 1.17e-5 = 3.5 x 3.33e-6 (rounded as stated by the
+lead), so that the relative LoRA update can reach the size it had on CLIP; head learning rate unchanged (3.33e-5);
+everything else as BB2 (recipe, flags, steps, batch 256 x 1, packs, overlay, lists, arch). The factor 3.5 was fixed from
+the training-fit diagnosis of part 1 (weights and training rows only), not from any development read of E3 (none exists)
+and not from any BB2 development score. Only this one value is tried; there is no search, no second value, no rerun with
+other settings. Code: `src/BB2/run_lr.sh` = `run_s5.sh` with `BB2_LR=1.17e-05`, run folder and results folder BB2L
+(diff in the README); `src/BB2/wcss/bb2l_fit.sbatch` = `bb2_fit2.sbatch` with 15 tasks (A, B, Sb x 403-407, seed by seed,
+403-405 first), task names `BB2L_<arm>_s<seed>`, results `results/BB2L`. DGX smoke of run_lr.sh: 20 steps, optimiser
+groups show LoRA lr 1.17e-05 and head lr 3.33e-05.
+
+**Seeds and counting.** All 15 fits are submitted; the counting is frozen before any E3 tar is opened, exactly as
+amendment 2 (`src/BB2/freeze_mode_L.py` -> `seed_mode_L.json`, committed; five-seed rules if all six 406/407 fits are
+fetched and verified by 14 Nov 2026 18:00 CET, else three-seed rules on 403-405; late tars are reported as late, never
+read). The fetch deadline for all E3 reads is 14 Nov 2026 18:00 CET.
+
+**Splice-fit gate (new, fixed now).** A read seed counts for contrasts 1 and 3 only if (a) the training-adequacy rule of
+section 6 holds and (b) Sb's training-row AUC of lad_S4 against lad_S3 (unique rows of `scores_train.npz`) is at least
+0.80. If fewer than the counting minimum of seeds (4 in five-seed mode, 2 in three-seed mode) pass, contrasts 1 and 3
+read "uninformative (splice rows under-fitted)".
+
+**Reads.** BB2's reads unchanged (contrasts 1-3 with FS1's rules, R1-R6 printed, own-rule flags printed), through
+`src/BB2/bb2l_read.py` = `bb2_read.py` with the E3 names, the gate and the outcome below. No C2P read for E3.
+
+**What each outcome means (pre-stated, printed by the reader as `e3_outcome`).**
+| E3 result | Meaning |
+|---|---|
+| contrast 1 "repeated" (gate met) | "did not transfer because under-fitted": with the splice rows fitted at the rule-fixed learning rate, the landmark_combined gain of Sb over B repeats on DINOv3 ViT-L/16; BB2's "not repeated" was under-fitting |
+| contrast 1 not repeated and Sb − B < +0.02 by the seed count (≥ 4 of 5, or 2 of 3) | "backbone-dependent (for DINOv3 ViT-L/16 with a CLS read-out)": with the splice rows fitted, the gain does not appear |
+| gate not met, or too few seeds | "under-fitted again or too few seeds": BB2 stays uninformative about backbone dependence |
+| anything else | "inconclusive, no claim" |
+Contrast 3 and contrast 2 are read and worded as in BB2 sections 6-7. Caveats as BB2 (development only; Sb chosen on a
+frozen DINOv3 head; ViT-L against ViT-B; CLS read-out at 224 px, not the 512 px mean-patch read-out of tier 0; a
+learning rate changed from the CLIP recipe by one rule).
+
+**Operations.** WCSS H100s as BB2, time limit 2:15, `--export=ALL,BB2_BS=256,BB2_ACCUM=1`; queued right behind the BB2
+C2P job and SE1's SE fits. About 15 x 1.6 h ≈ 24 H100-hours.
+
+## Amendment 5: E2, zero-LoRA ablation and a frozen-feature linear probe (DRAFT for pre-run review; same go; descriptive, post hoc; development and training rows only)
+
+- **Networks:** the 15 BB2 DINOv3 networks (results/BB2, frozen in seed_mode.json) and the 15 FS1 CLIP networks (A, B,
+  Sb x 403-407, `/mnt/t7/smad_next/PN1/results_fs`, copied to WCSS with sha256).
+- **Scoring (one WCSS H100 job, `src/BB2/wcss/bb2_e2.sbatch`, `src/BB2/e2_score.py`):** every network with all LoRA B
+  matrices set to zero (head on the frozen tower) on its own training rows (unique) and on the whole FS1 evaluation
+  pack; CLIP networks also with LoRA on the platform-gate rows (fams af0 + ffhq). TF32 on as in the fits; GPU asserted
+  and precision logged (precision_probe.py). Plus the frozen DINOv3 CLS features of train_Sb's unique rows.
+- **CLIP on a different GPU (lead's rule):** the CLIP networks were trained and scored on an A100 PCIe. Their H100
+  head-only scores are used only for networks that pass C2P.2's gate on the H100 (LoRA on, against their stored A100
+  logits: p99 |Δ| ≤ 0.05, max ≤ 0.10, decisions agree ≥ 99.5%). For a network that fails, E2 reports only what its
+  stored A100 scores already give (as-trained values), and says so.
+- **Reads (`src/BB2/e2_read.py`, once):** per network, as trained (stored scores) and with LoRA zeroed: own-rule
+  training accuracy, Sb's training AUC lad_S4 vs lad_S3, FFHQ landmark_combined AUC, test-ladder face-only AUC
+  (S4_bg vs S0_bg, unpaired); LoRA's contribution = as trained − zeroed. Linear probe: frozen DINOv3 CLS features of
+  train_Sb (StandardScaler + LogisticRegression C = 1; 5-fold StratifiedGroupKFold by person, random_state 0); CV AUC
+  of lad_S4 vs lad_S3 and of lad_S4 vs lad_S0.
+- **Pre-stated readings (printed, decide nothing):** "LoRA did little for Sb's splice fit on DINOv3" if LoRA's
+  contribution to Sb's training AUC S4 vs S3 is within ±0.03 on ≥ 4 of 5 seeds; otherwise "LoRA contributed". Probe:
+  CV AUC S4 vs S3 ≥ 0.80 -> "linearly separable in frozen DINOv3 CLS features: the under-fit is an optimisation
+  matter"; ≤ 0.65 -> "frozen DINOv3 CLS features barely separate S4 from S3"; otherwise "partly separable".
+- **Smoke:** the job with one DINOv3 and one CLIP tar, 8 rows per set (`BB2_E2_TARS`, `BB2_E2_LIMIT=8`,
+  `BB2_E2_OUT=BB2E2smoke`), before the production job is queued. Local CPU test of e2_score.py and e2_read.py passed.
+- About 1-1.5 H100-hours.
