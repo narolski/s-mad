@@ -187,6 +187,7 @@ Frozen by `floors/pins_stage7.sha256` (Sb) and `floors/pins_stage8.sha256` (the 
 
 - **SpV** (list sha256 f6521d96de7d93ff…, 5223 unique images): lcomb 0.777 / 0.620; lcomb_bal 0.783 / 0.572; sel360 0.725 / 0.725; splice80 S4 vs S3 0.668 / 0.622; splice80 own-rule flags S4 / S3 / S0 logreg 0.93 / 0.75 / 0.35, gbt 0.94 / 0.72 / 0.15 (logreg / gbt throughout).
 - **BN** (list sha256 c1b4497bb59343b7…, 5411 unique images): lcomb 0.822 / 0.639; lcomb_bal 0.836 / 0.592; sel360 0.719 / 0.686; splice80 S4 vs S3 0.597 / 0.457; splice80 own-rule flags S4 / S3 / S0 logreg 0.47 / 0.29 / 0.09, gbt 0.06 / 0.17 / 0.00 (logreg / gbt throughout).
+- **BV** (amendment 6 addendum; list sha256 ee4e227b…; frozen by `floors/pins_stage12.sha256`): lcomb 0.822 / 0.619; sel360 0.716 / 0.667; splice80 S4 vs S3 0.620 / 0.481; flags S4 / S3 / S0 logreg 0.72 / 0.55 / 0.21, gbt 0.28 / 0.34 / 0.07. **Identical to B's learner** (max difference 0.0 on every contrast): train_BV holds exactly B's 5,099 unique images, and the learner fits each image once, so it cannot see the 312 added repetitions. For BV the comparator is therefore B's learner; the repetition effect is not measurable by this learner.
 - Per-row scores: `floors/transfer_SpV_rows.csv`, `floors/transfer_BN_rows.csv` (set, id, rung, label, component, logreg, gbt). If the AB1 owner re-pins either list, these are recomputed and these files are labelled superseded.
 
 ## Descriptive reads of amendment 4 (registered at 1067700 before computing)
