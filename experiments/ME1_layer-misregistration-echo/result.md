@@ -22,3 +22,10 @@ Development data only. Registration: `prereg.md` (draft ddf75a7) with amendment 
   and the single-image part stays on hold (it also waits for the adversary floors).
 - A different gate (for example a lower null percentile, or a gate on the pair's own response distribution) would be a
   new design. It needs a new amendment and a pre-run check before any value is read. That decision is the lead's.
+
+## Lead's ruling (13 Nov): oracle closed as "not measurable with this estimator"
+
+The only reading allowed: window-level phase correlation finds no above-null correlated structure between the two
+layers on about 91% of pairs. It fails even on the calibration (one person's texture at two geometries) for 142 of
+291 hosts. This is a property of the estimator and gives no verdict on the mechanism. No new gate is designed after
+seeing that the registered one fails.

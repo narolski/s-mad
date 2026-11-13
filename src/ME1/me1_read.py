@@ -18,7 +18,30 @@ sys.path.insert(0, "/home/narolski/smad-next/src/BD1")
 sys.path.insert(0, "/home/narolski/smad-next/src/TB1")
 sys.path.insert(0, "/home/narolski/smad-next/src/RI1")
 from bd1_read import auc, sha, strat_auc  # noqa: E402
-from tb1_amend2 import cf_scores, components, tem  # noqa: E402
+from tb1_amend2 import components, tem  # noqa: E402
+
+EMPTY = {"folds": 0}
+
+
+def cf_scores(X1, X0, comp, seed=20261181, folds=5):
+    """code fix after the ME1 oracle outcome: like tb1_amend2.cf_scores, but empty folds are skipped and counted"""
+    from sklearn.linear_model import LogisticRegression
+    cs = sorted(set(comp))
+    rng = np.random.default_rng(seed)
+    f = dict(zip(cs, rng.permutation(len(cs)) % folds))
+    g = np.array([f[c] for c in comp] * 2)
+    X = np.r_[X1, X0]
+    y = np.r_[np.ones(len(X1)), np.zeros(len(X0))]
+    s = np.zeros(len(y))
+    for k in range(folds):
+        tr, te = g != k, g == k
+        if te.sum() == 0 or len(set(y[tr])) < 2:
+            EMPTY["folds"] += 1
+            continue
+        mu, sd = X[tr].mean(0), X[tr].std(0) + 1e-9
+        m = LogisticRegression(C=1.0, max_iter=5000).fit((X[tr] - mu) / sd, y[tr])
+        s[te] = m.decision_function((X[te] - mu) / sd)
+    return s[: len(X1)], s[len(X1):]
 from ri1_read import crossfit_best_single  # noqa: E402
 
 FFILE = pathlib.Path("/mnt/t7/smad_next/ME1/me1_feats.csv")
@@ -257,6 +280,7 @@ def main():
         S["arm_condition"] = dict(sb_increment_seeds=sum(v["all"] >= 0.03 for v in inc.values()),
                                   shortcut_gain_rule=S["shortcut_gain"]["rule"], note="no arm before the look-alike set (LA1) exists")
         out["single"] = S
+    out["empty_folds"] = EMPTY["folds"]
     pathlib.Path(a.out).write_text(json.dumps(out, indent=1, default=float))
     print(json.dumps(out, indent=0, default=float)[:3000])
 

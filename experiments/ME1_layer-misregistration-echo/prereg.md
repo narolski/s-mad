@@ -155,3 +155,13 @@ re-pinned in `src/ME1/SHA256SUMS` and tested on 4 hosts and on fully randomised 
     halves within 0.5 levels on all 536 hosts.
 - **Order.** The oracle part is read once now, after the full measurement. The single-image part waits for the
   adversary floors.
+
+## Code fix after the oracle outcome (13 Nov; labelled as such) and a prediction logged before the single-image read
+
+- **Code fix (after the oracle outcome, which is closed by the lead's ruling).** The shared cross-fitting helper is
+  `src/TB1/tb1_amend2.py` `cf_scores`. TB1 amendment 2 was read with it, so it is left unchanged. Instead,
+  `src/ME1/me1_read.py` uses its own copy, `cf_scores_safe`, which skips empty folds and counts them in the output
+  (`empty_folds`). Re-pinned.
+- **Logged prediction for the single-image part (held for the adversary's dev_S4_vs_S3 and test_S4_vs_S3 floors):** the
+  "sees a second layer" check (S4 vs R2w4 and S3 vs R2w) fails, with both ≤ 0.55, because the layers share no
+  window-level correlated structure.
