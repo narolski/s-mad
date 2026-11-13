@@ -10,8 +10,8 @@
 #SBATCH --time=0-01:15:00
 #SBATCH --array=0-24
 #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/ab1b2-fit-%A_%a.out
-# AB1 follow-up batch B2 (DRAFT registration prereg_b2_draft.md; submitted only after the author agrees and the batch is
-# registered and pre-run checked): 25 fits, arms SbH61, SbSp, SbnS0, SbnS3, SbR at seeds 408-412, seed by seed;
+# AB1 follow-up batch B2 (registration experiments/AB1_protocol-ablation-and-replication/prereg_b2.md, pre-run check
+# PRERUN_AB1B2_20261113.md; lead's go under the author's standing instruction for 13 Nov): 25 fits, arms SbH61, SbSp, SbnS0, SbnS3, SbR at seeds 408-412, seed by seed;
 # src/AB1/run_b2.sh (on Lustre as packs/AB1/run_b2.sh, pinned here) on the FS1 pack + packs/AB1/ab1b2_overlay.tar
 # (pinned here and in run_b2.sh). SbL (Sb twice as long) runs separately with ab1_long.sbatch (unchanged).
 # Owner: AB1 owner (Claude agent for the lead). All IO in $TMPDIR; one tar per fit to results/AB1B2.

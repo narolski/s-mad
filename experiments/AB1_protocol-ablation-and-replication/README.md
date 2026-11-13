@@ -91,6 +91,12 @@ method candidate.
 - 15:10 follow-up batch B2 drafted for the author (prereg_b2_draft.md): SbR, SbH61, SbSp, SbnS0, SbnS3 (25 fits,
   ab1b2_fit.sbatch, run_b2.sh, overlay /mnt/t7/smad_next/AB1/b2/ab1b2_overlay.tar d2038b98…) + SbL (5 fits,
   ab1_long.sbatch); about 23-27 H100-hours; nothing uploaded or submitted.
+- 15:20 lead: go for B2 without SbL (author's standing instruction for today; SbL stays with the author). Draft renamed
+  prereg_b2.md; reader src/AB1/ab1b2_read.py written and mock-tested (full; two seeds dropped; real AB1 loading path with
+  no B2 tar). Pre-run check GO WITH FIXES (PRERUN_AB1B2_20261113.md), all fixes applied; pins in pins_b2.sha256.
+  run_b2.sh differs from run.sh v2 only in: header comment; OVERLAY path ab1b2_overlay.tar and pin d2038b98…; SUMS file
+  AB1B2SUMS; arm list SbH61|SbSp|SbnS0|SbnS3|SbR (SbL line removed); results folder results/AB1B2. 25 fits, about
+  15 H100-hours.
 
 ## 3. Data
 
