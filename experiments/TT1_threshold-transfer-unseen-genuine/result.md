@@ -346,7 +346,7 @@ FFHQ).
 Sp (review F7): Sp F̄ 0.023-0.033 against Sb 0.013-0.041 at the same seeds, not separable; Sp flags more FFHQ genuine
 photos (8.5-15.4%) and is the only arm with nonzero R_cam flags (0.2-0.7%).
 
-## Post-result items Z1-Z4 (registered before computing at 62139a7; `zfs.json`, `src/TT1/zfs.py`; zero GPU)
+## Post-result items Z1-Z4 (registered before computing at 62139a7; `zfs.json`, `src/TT1/zfs.py`; zero GPU; reviewed by results-reviewer (opus): sound, wording fixes applied)
 
 - **Z1 (post hoc): flags against development misses, 15 fresh-seed networks.** Verdict: **"no B-against-A miss cost
   shown"**.
@@ -354,23 +354,33 @@ photos (8.5-15.4%) and is the only arm with nonzero R_cam flags (0.2-0.7%).
   - B − A development miss is −0.002, +0.001, +0.010, +0.003, +0.010 on seeds 403-407, all ≤ 0.02. The ladder R4 and
     AF0 u50 misses are 0-0.3% for every network; splice S4 is B − A −0.7 to +3.1 points.
   - Sb − B is −0.22 to −0.25: Sb misses far fewer splices, about 25% against about 97%.
-  - As on seeds 401/402, the negative ρ comes from Sb (more genuine flags, fewer splice misses), not from a B-against-A
-    trade.
+  - Ladder R4 and AF0 u50 misses are at the floor (≤ 0.6%) for every network, and A and B both miss 92-99% of S4
+    splices. So y can show a B-against-A cost only on splices, and both arms are near the ceiling there. The verdict
+    is therefore weak evidence of no cost. The pooled ρ is between arms. Within each arm, Spearman(F̄, y) is +0.2 (A),
+    +0.7 (B) and +0.8 (Sb) (post hoc, from zfs.json), so within an arm more false alarms go with more misses. The p
+    value is a one-sided permutation p.
 - **Z2 (descriptive): A's flags track its storage sensitivity.** Verdict: **"related"**.
-  - Within A at seeds 403-407, Spearman(F̄, geometry-112 flag share) = 0.90 and Spearman(F̄, |ρ_LFW|) = 0.70.
+  - Spearman(F̄, geometry-112 flag share) = 0.90 and Spearman(F̄, |ρ_LFW|) = 0.70, the latter exactly at the 0.7 cut.
+    With n = 5, Spearman moves in steps of 0.1. 'Related' is the coded label for ≥ 0.7.
   - F̄ per seed: 0.007, 0.048, 0.034, 0.004, 0.023.
   - Geometry-112 flags per seed: 0.415, 0.504, 0.475, 0.185, 0.348.
   - Seeds 401/402, printed separately because they come from other hosts: F̄ 0.057 / 0.038 and geometry-112 flags
     0.460 / 0.566.
+  - A_s401 has the highest F̄ of all seven seeds but a middling geometry-112 share.
   - Association only, five seeds.
 - **Z3 (descriptive): Sb and CFP-sized borders.** Verdict: **"Sb above B on 5 of 5 seeds"**.
   - CFP-FF border-reference flag share, Sb against B: 0.118 / 0.014, 0.060 / 0.010, 0.067 / 0.007, 0.029 / 0.000,
     0.163 / 0.019.
-  - So Sb flags training-source camera photos that carry only a CFP-sized black border, and B does not.
+  - Sb flags more training-source camera photos once a CFP-FF-shaped constant border is blanked in (Sb 0.029-0.163;
+    B 0.000-0.019). On the same photos without the border, both flag 0.000 on all five seeds. The excess is not
+    specific to CFP: Sb − B is +0.026 to +0.060 on MSU-MFSD and +0.026 to +0.048 on Oulu-NPU, and +0.00 to +0.03
+    elsewhere. CFP-FF is the largest gap on 3 of 5 seeds. This is descriptive and Sb is splice-trained, so it does not
+    show that Sb uses borders on unseen CFP-FF images.
   - R3(c) for CFP-FF (Sb − B) is mixed: −0.074 to +0.082.
 - **Z4 (descriptive): B's FFHQ flags against its unseen-source flags.** Verdict: **"one seed-level instability
   consistent"**.
   - Over B's 7 seeds, Spearman(FFHQ genuine flag share, F̄) = 0.96.
   - FFHQ flags: 0.179, 0.064, 0.052, 0.108, 0.061, 0.038, 0.025.
   - F̄: 0.0238, 0.0022, 0.0016, 0.0073, 0.0020, 0.0003, 0.0010.
-  - The seeds come from two hosts.
+  - This is an association over 7 seeds from two hosts. Seeds 401/402 were trained on pn1a/pn1b and scored on tt1c;
+    seed 401 is the extreme on both axes. On seeds 403-407 alone, ρ = 0.90.
