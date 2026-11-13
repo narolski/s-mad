@@ -345,3 +345,32 @@ FFHQ).
 
 Sp (review F7): Sp F̄ 0.023-0.033 against Sb 0.013-0.041 at the same seeds, not separable; Sp flags more FFHQ genuine
 photos (8.5-15.4%) and is the only arm with nonzero R_cam flags (0.2-0.7%).
+
+## Post-result items Z1-Z4 (registered before computing at 62139a7; `zfs.json`, `src/TT1/zfs.py`; zero GPU)
+
+- **Z1 (post hoc): flags against development misses, 15 fresh-seed networks.** Verdict: **"no B-against-A miss cost
+  shown"**.
+  - Spearman ρ(F̄, development miss) = −0.35 (permutation p = 0.10).
+  - B − A development miss is −0.002, +0.001, +0.010, +0.003, +0.010 on seeds 403-407, all ≤ 0.02. The ladder R4 and
+    AF0 u50 misses are 0-0.3% for every network; splice S4 is B − A −0.7 to +3.1 points.
+  - Sb − B is −0.22 to −0.25: Sb misses far fewer splices, about 25% against about 97%.
+  - As on seeds 401/402, the negative ρ comes from Sb (more genuine flags, fewer splice misses), not from a B-against-A
+    trade.
+- **Z2 (descriptive): A's flags track its storage sensitivity.** Verdict: **"related"**.
+  - Within A at seeds 403-407, Spearman(F̄, geometry-112 flag share) = 0.90 and Spearman(F̄, |ρ_LFW|) = 0.70.
+  - F̄ per seed: 0.007, 0.048, 0.034, 0.004, 0.023.
+  - Geometry-112 flags per seed: 0.415, 0.504, 0.475, 0.185, 0.348.
+  - Seeds 401/402, printed separately because they come from other hosts: F̄ 0.057 / 0.038 and geometry-112 flags
+    0.460 / 0.566.
+  - Association only, five seeds.
+- **Z3 (descriptive): Sb and CFP-sized borders.** Verdict: **"Sb above B on 5 of 5 seeds"**.
+  - CFP-FF border-reference flag share, Sb against B: 0.118 / 0.014, 0.060 / 0.010, 0.067 / 0.007, 0.029 / 0.000,
+    0.163 / 0.019.
+  - So Sb flags training-source camera photos that carry only a CFP-sized black border, and B does not.
+  - R3(c) for CFP-FF (Sb − B) is mixed: −0.074 to +0.082.
+- **Z4 (descriptive): B's FFHQ flags against its unseen-source flags.** Verdict: **"one seed-level instability
+  consistent"**.
+  - Over B's 7 seeds, Spearman(FFHQ genuine flag share, F̄) = 0.96.
+  - FFHQ flags: 0.179, 0.064, 0.052, 0.108, 0.061, 0.038, 0.025.
+  - F̄: 0.0238, 0.0022, 0.0016, 0.0073, 0.0020, 0.0003, 0.0010.
+  - The seeds come from two hosts.
