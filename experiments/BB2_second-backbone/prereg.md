@@ -680,3 +680,29 @@ E3's fits are running (6313860); no E3 tar exists locally and none has been open
   development S4 vs S3 stays ≤ 0.60 on ≥ 4 of 5 seeds.
 - Statistics computed as in `experiments/reviews/scripts_bb2/s3dx.py` (development splice rows, own rule logit > 0,
   rank AUC) and `bb2_c2p_read.py`'s C2P quantities; a reader is committed before the read.
+
+## Amendment 7c: platform gate by bit identity with the fit scorer's batch composition (`date`: Sat Nov 14 12:28:15 AM CET 2026; no E3 contrast value, no splice-fit gate and no W2 output has been opened; the wave-2 smoke output was opened only for its gate check)
+
+- **Why.** The wave-2 smoke 6315675 (14 Nov 00:18-00:22, node r14-5, NVIDIA H100; output BB2LW2smoke.tar, sha256 in
+  the README) refused the AB1 comparator AB1_Sb_s408 under amendment 7a's bit-identity rule ("mismatch fq016976").
+  Diagnosis from the smoke files: af0 1,339 / 1,339 rows bit-identical for both networks; ffhq 4,992 / 5,000 for both
+  (the DINOv3 network BB2_Sb_s403 and AB1_Sb_s408; the same 8 rows differ, max |Δ| 0.0003 and 0.0021). The rescorer
+  scored ffhq alone, so its final 8 rows (5,000 = 78 x 64 + 8) sat in a partial batch, while the fit job's scorer had
+  scored them inside a full batch of 64; H100 GEMM kernels depend on the batch size. A tolerance was proposed and not
+  accepted by the lead (no tolerance; reproduce the composition). Job 6315676 (the production job with the faulty gate)
+  was cancelled by the dispatcher before it started.
+- **Change.** The gate is now `src/BB2/bb2_gate.py` (sha256 08d430dc…), the gate step of `src/RZ1/rz1_rescore.py`
+  (sha256 02628562…) copied without RZ1's input-transform patch: rebuild the network, score the fit job's own
+  evaluation manifest exactly as pn1_score.py did in the fit job (whole manifest, manifest order, batch 64, TF32, logit
+  without flip), require the same manifest sha256 and ids, and **every float32 logit equal** (np.array_equal). For BB2
+  and E3 (BB2L) networks the manifest is the FS1 pack's pn1_eval.csv (19,797 rows, incl. the 6,339 af0 + ffhq rows);
+  for the AB1 comparators it is ab1_eval.csv (21,277 rows; FS1 pack + AB1 overlay v2, 171fdb21…). A network that fails
+  is refused and none of its other families is scored; the job's af0/ffhq family scoring is dropped (the gate covers
+  those rows). The MS1, GD, TT1 and MEDS families are scored as before. The job unpacks the FS1 pack (96c31ae2…) and the
+  AB1 overlay v2 in addition; local storage 200G. Diff against the registered 7/7a script: `w2_amendment7c.diff`.
+  `src/BB2/wcss/bb2l_w2.sbatch` sha256 10ec4040…. The registered reads, rules and deadline are unchanged; the C2P.2
+  tolerance gate of the readers is superseded by this stricter gate for W2 outputs.
+- **Re-smoke** (must show bit identity on the whole fit manifest, which includes all 6,339 af0 + ffhq rows, for one
+  DINOv3 and one AB1 network): `BB2_W2_TARS=results/BB2/BB2_Sb_s403.tar`, `BB2_W2_CMP=AB1_Sb_s408`,
+  `BB2_W2_RESULTS=results/BB2_smoke`, `BB2_W2_OUT=BB2LW2smoke2`. Then a short pre-run check of the diff, then the
+  production job is resubmitted (afterok on the new smoke, afterany on E3, per the dispatcher).

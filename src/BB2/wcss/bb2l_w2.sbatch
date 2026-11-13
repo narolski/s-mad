@@ -5,15 +5,17 @@
 #SBATCH -N 1
 #SBATCH -c 8
 #SBATCH --mem=64gb
-#SBATCH --gres=gpu:hopper:1,storage:local:150G
+#SBATCH --gres=gpu:hopper:1,storage:local:200G
 #SBATCH --no-requeue
 #SBATCH --time=0-04:00:00
 #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/bb2l-w2-%j.out
 # BB2 DINOv3 programme, wave 2 (merged rescoring; plan PLAN_DINOV3_PROGRAMME_20261113.md section 8, lead's go 20:00):
 # every E3 network (results/BB2L/BB2L_<arm>_s<seed>.tar present with a matching .sha256 when the job starts) is rescored
 # with the unchanged src/PN1/rescore.py through src/TT1/rescore_tf32.py (TF32 on, pn1_score.py's numerics) on
-#   (a) the platform-gate rows (fam af0 + ffhq of the MS1 pack's pn1_eval.csv; compared with the fit's in-fit logits by
-#       C2P.2's thresholds in the reader) and the MS1 FFHQ hold-out (fam ms1ffhq)      -> C2P, H-new-1
+#   (0) amendment 7c: the platform gate by bit identity, reproducing the fit job's scorer (src/BB2/bb2_gate.py: the whole
+#       fit evaluation manifest in manifest order, batch 64, TF32; pn1_eval.csv of the FS1 pack for BB2/BB2L networks,
+#       ab1_eval.csv of the FS1 pack + AB1 overlay v2 for AB1 networks); a network that fails is not scored further
+#   (a) the MS1 FFHQ hold-out (fam ms1ffhq)      -> C2P, H-new-1
 #   (b) the PR1 GAN and diffusion development families (pr1_gd.csv fams gd0, gd1, gd2)  -> PR1 GD reads
 #   (c) the TT1 unseen-source pools incl. border and geometry references (tt1_score.csv fam tt1) -> TT1 reads
 #   (d) NIST MEDS aligned frontal mugshots (meds_score.csv fam meds; aggregate reads only; no MEDS image or identifier
@@ -32,7 +34,10 @@ fail() { echo "BB2L_W2_FAIL $*"; exit 1; }
 [ -e "$R/$OUTN.tar" ] && fail "$OUTN.tar exists (never overwritten)"
 (cd "$L/packs/MS1" && sha256sum -c pn1_pack_ms1.tar.sha256) && [ "$(cut -c1-64 $L/packs/MS1/pn1_pack_ms1.tar.sha256)" = c11b16bc7b76236bae80778f9e36cb67bb50de910f73a9dd200a706fc267fe7d ] || fail "MS1 pack"
 (cd "$L/packs/TT1" && sha256sum -c tt1_pack.tar.sha256) && [ "$(cut -c1-64 $L/packs/TT1/tt1_pack.tar.sha256)" = 2109f742b0378c188f394a3b26c363ef2ffb0ea43eab78ecea7674884022c554 ] || fail "TT1 pack"
-(cd "$P" && sha256sum -c bb2_overlay.tar.sha256 pr1_gd.tar.sha256 tt1m_meds.tar.sha256 rescore.py.sha256 rescore_tf32.py.sha256 precision_probe.py.sha256) || fail "BB2 packs or scripts"
+(cd "$P" && sha256sum -c bb2_overlay.tar.sha256 pr1_gd.tar.sha256 tt1m_meds.tar.sha256 rescore.py.sha256 rescore_tf32.py.sha256 precision_probe.py.sha256 pn1_pack_fs.tar.sha256 bb2_gate.py.sha256) || fail "BB2 packs or scripts"
+[ "$(cut -c1-64 $P/pn1_pack_fs.tar.sha256)" = 96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004 ] || fail "FS1 pack pin"
+[ "$(cut -c1-64 $P/bb2_gate.py.sha256)" = 08d430dc6451b10f66754ad7185a3a96d01ea9788aececd033d17dc92e73f168 ] || fail "bb2_gate.py pin"
+(cd "$L/packs/AB1" && sha256sum -c ab1_overlay_v2.tar.sha256) && [ "$(cut -c1-64 $L/packs/AB1/ab1_overlay_v2.tar.sha256)" = 171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149 ] || fail "AB1 overlay v2"
 [ "$(cut -c1-64 $P/bb2_overlay.tar.sha256)" = 7c0a0b41f2e7bf656dc49db33c34a33ef62b10e8f0aaec24e247e684098d0bad ] || fail "overlay pin"
 [ "$(cut -c1-64 $P/pr1_gd.tar.sha256)" = 40aa95d2b48719025bc3b80ebf9fa997bb1adf6c69da894120716a6e962b7329 ] || fail "GD pack pin"
 [ "$(cut -c1-64 $P/tt1m_meds.tar.sha256)" = 3fb917b226c6d31fab176a4d8fdd5d6e6b22b8274cc091591f444e623a87ab61 ] || fail "MEDS pack pin"
@@ -65,6 +70,12 @@ cp "$L/packs/MS1/pn1_pack_ms1.tar" "$TMPDIR/p.tar" && tar -C "$C" -xf "$TMPDIR/p
 (cd "$C/pn1" && sha256sum -c --quiet SHA256SUMS) || fail "MS1 pack content"
 [ "$(sha256sum $C/pn1/code/smadcvpr/archs_a12.py | cut -c1-64)" = bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876 ] || fail "MS1 archs_a12.py is not the pinned one"
 tar -C "$C" -xf "$P/bb2_overlay.tar" && (cd "$C/pn1" && sha256sum -c --quiet BB2SUMS) || fail "overlay content"
+# the fit jobs' own tree for the gate: FS1 pack + AB1 overlay v2 (ab1_eval.csv and its images) + BB2 overlay
+mkdir -p "$C/fs"
+cp "$P/pn1_pack_fs.tar" "$TMPDIR/p.tar" && tar -C "$C/fs" -xf "$TMPDIR/p.tar" && rm -f "$TMPDIR/p.tar"
+(cd "$C/fs/pn1" && sha256sum -c --quiet SHA256SUMS) || fail "FS1 pack content"
+tar -C "$C/fs" -xf "$L/packs/AB1/ab1_overlay_v2.tar" && (cd "$C/fs/pn1" && sha256sum -c --quiet AB1SUMS) || fail "AB1 overlay content"
+tar -C "$C/fs" -xf "$P/bb2_overlay.tar" && (cd "$C/fs/pn1" && sha256sum -c --quiet BB2SUMS) || fail "BB2 overlay content (fs)"
 for pk in "$P/pr1_gd.tar:pr1g" "$L/packs/TT1/tt1_pack.tar:tt1" "$P/tt1m_meds.tar:tt1m"; do
   f=${pk%%:*}; top=${pk##*:}
   cp "$f" "$TMPDIR/p.tar" && tar -C "$C" -xf "$TMPDIR/p.tar" && rm -f "$TMPDIR/p.tar"
@@ -75,6 +86,8 @@ mk() {  # data root with manifests/ and eval/ of one pack
   for f in "$2"/manifests/*.csv; do ln -sf "$f" "$d/manifests/$(basename "$f")"; done; echo "$d"
 }
 DMS1=$(mk ms1 "$C/pn1/data"); DGD=$(mk gd "$C/pr1g/data"); DTT=$(mk tt1 "$C/tt1/data"); DMD=$(mk meds "$C/tt1m/data")
+DFS=$C/data_fs; mkdir -p "$DFS/manifests"; ln -sfn "$C/fs/pn1/data/eval" "$DFS/eval"; ln -sfn "$C/fs/pn1/data/train" "$DFS/train"
+for f in "$C"/fs/pn1/data/manifests/*.csv; do ln -sf "$f" "$DFS/manifests/$(basename "$f")"; done
 PY=$HOME/dmenv/bin/python
 $PY -I "$P/precision_probe.py" --expect-gpu "NVIDIA H100" > "$O/precision.txt" 2>&1 || fail "GPU or probe: $(tail -1 $O/precision.txt)"
 (cd "$P" && sha256sum rescore_tf32.py rescore.py precision_probe.py) > "$O/scripts.sha256"
@@ -83,27 +96,15 @@ n_fail=0; : > "$O/tasks.txt"
 for t in $TARS $CTARS; do
   T=$(basename "$t" .tar); echo "$T" >> "$O/tasks.txt"
   tar -C "$C/nets" -xf "$t" "$T/meta.json" "$T/last_trainable.pt"
-  case "$T" in AB1_*)
-    tar -C "$C/nets" -xf "$t" "$T/scores_eval.npz"
-    for FAM in af0 ffhq; do
-      SMAD_DATA=$DMS1 HF_HOME=$C/pn1/hf HF_HUB_OFFLINE=1 $PY "$P/rescore_tf32.py" "$P/rescore.py" --resdir "$C/nets/$T" \
-        --code "$C/pn1/code" --manifest pn1_eval.csv --fam "$FAM" --out "$O/W2_${T}_${FAM}.npz" --workers 7 >> "$O/rescore.log" 2>&1
-    done
-    if ! $PY -I -c "
-import sys, numpy as np
-s = np.load(sys.argv[1]); S = dict(zip(map(str, s['id']), s['logit']))
-for f in sys.argv[2:]:
-    z = np.load(f)
-    for i, v in zip(map(str, z['id']), z['logit']):
-        if i not in S or np.float32(S[i]).view(np.uint32) != np.float32(v).view(np.uint32): sys.exit(f'mismatch {i}')
-print('bit-identical', sum(len(np.load(f)['id']) for f in sys.argv[2:]))
-" "$C/nets/$T/scores_eval.npz" "$O/W2_${T}_af0.npz" "$O/W2_${T}_ffhq.npz" > "$O/cmp_${T}.txt" 2>&1; then
-      echo "$(date +%T) $T REFUSED (stored scores not reproduced bit for bit): $(cat $O/cmp_${T}.txt)" | tee -a "$O/rescore.log"; continue
-    fi
-    echo "$(date +%T) $T $(cat $O/cmp_${T}.txt)" | tee -a "$O/rescore.log"
-    JOBS="$DMS1:pn1_eval.csv:ms1ffhq $DGD:pr1_gd.csv:gd0 $DGD:pr1_gd.csv:gd1 $DGD:pr1_gd.csv:gd2 $DTT:tt1_score.csv:tt1 $DMD:meds_score.csv:meds" ;;
-  *) JOBS="$DMS1:pn1_eval.csv:af0 $DMS1:pn1_eval.csv:ffhq $DMS1:pn1_eval.csv:ms1ffhq $DGD:pr1_gd.csv:gd0 $DGD:pr1_gd.csv:gd1 $DGD:pr1_gd.csv:gd2 $DTT:tt1_score.csv:tt1 $DMD:meds_score.csv:meds" ;;
-  esac
+  case "$T" in AB1_*) GMAN=ab1_eval.csv ;; *) GMAN=pn1_eval.csv ;; esac
+  SMAD_DATA=$DFS HF_HOME=$C/fs/pn1/hf HF_HUB_OFFLINE=1 $PY -I "$P/bb2_gate.py" --tar "$t" --code "$C/fs/pn1/code" \
+    --manifest "$GMAN" --out "$O" --workers 7 >> "$O/rescore.log" 2>&1
+  grc=$?
+  if [ $grc -ne 0 ]; then
+    echo "$(date +%T) $T REFUSED by the bit-identity gate (rc $grc): $(grep BB2GATE "$O/rescore.log" | tail -1 | cut -c1-300)" | tee -a "$O/rescore.log"; continue
+  fi
+  echo "$(date +%T) $T gate passed (bit-identical on its whole fit manifest)" | tee -a "$O/rescore.log"
+  JOBS="$DMS1:pn1_eval.csv:ms1ffhq $DGD:pr1_gd.csv:gd0 $DGD:pr1_gd.csv:gd1 $DGD:pr1_gd.csv:gd2 $DTT:tt1_score.csv:tt1 $DMD:meds_score.csv:meds"
   for job in $JOBS; do
     IFS=: read -r D MAN FAM <<< "$job"
     SMAD_DATA=$D HF_HOME=$C/pn1/hf HF_HUB_OFFLINE=1 $PY "$P/rescore_tf32.py" "$P/rescore.py" --resdir "$C/nets/$T" \
