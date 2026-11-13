@@ -384,3 +384,35 @@ photos (8.5-15.4%) and is the only arm with nonzero R_cam flags (0.2-0.7%).
   - F̄: 0.0238, 0.0022, 0.0016, 0.0073, 0.0020, 0.0003, 0.0010.
   - This is an association over 7 seeds from two hosts. Seeds 401/402 were trained on pn1a/pn1b and scored on tt1c;
     seed 401 is the extreme on both axes. On seeds 403-407 alone, ρ = 0.90.
+
+## TT1-X Part 2: MS1 Sb, SbM3, SbV, seeds 403-407 (printed only; no rule; not yet reviewed)
+
+Source: MS1's own L40S scores. Reader `tt1_read_ms1.py` (fdc41e2), run once. Output `tt1_read_ms1.json` (sha256
+`f5787f57…`); tables in `tt1_read_fs_tables.md`.
+
+Labels:
+- Every number comes from the L40S that trained the network: seeds 403+406 on machine m1, 404+407 on m2, 405 on m3.
+  Seed and machine are confounded across seeds, not within a seed.
+- U and the in-pack references were scored with TF32 on; tt1ref references with TF32 off. The TF32 split on R_cam is
+  max |Δ| 0.002-0.022 logit, with 0 decision changes.
+- For SbM3, every FFHQ read is from a trained source (development persons excluded, other pipeline).
+- U pools are aligned frames only; U_p is unchanged.
+
+| Seed | F̄ Sb | F̄ SbM3 | F̄ SbV | F_max Sb | F_max SbM3 | F_max SbV | Geo-112 flag Sb | Geo-112 flag SbM3 | Geo-112 flag SbV | CFP-border flag Sb | CFP-border flag SbM3 | CFP-border flag SbV |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 403 | 0.014 | 0.008 | 0.021 | 0.041 | 0.025 | 0.056 | 0.089 | 0.029 | 0.082 | 0.108 | 0.149 | 0.113 |
+| 404 | 0.041 | 0.003 | 0.036 | 0.136 | 0.007 | 0.109 | 0.062 | 0.026 | 0.053 | 0.062 | 0.034 | 0.041 |
+| 405 | 0.013 | 0.009 | 0.013 | 0.035 | 0.030 | 0.032 | 0.031 | 0.031 | 0.019 | 0.072 | 0.106 | 0.041 |
+| 406 | 0.013 | 0.004 | 0.012 | 0.041 | 0.011 | 0.039 | 0.029 | 0.007 | 0.010 | 0.026 | 0.024 | 0.017 |
+| 407 | 0.017 | 0.002 | 0.016 | 0.062 | 0.007 | 0.055 | 0.058 | 0.014 | 0.038 | 0.163 | 0.082 | 0.115 |
+
+What the table shows:
+- **SbM3 against Sb.** SbM3's F̄ is below L40S Sb's on 5 of 5 seeds (difference −0.004 to −0.039). Printed only; MS1's
+  registered comparison decides this, not TT1.
+- **FFHQ genuine flags.** Sb 0.024-0.050; SbM3 0.002-0.007 (trained source); SbV 0.026-0.043.
+- **Camera photos (R_cam).** Flagged 0-0.5% by every network.
+- **Geometry-224 flags.** 0-1.2% for every network.
+- **R3(g) at 112 px over the four packs.** Sb 0.81-0.95, SbM3 0.83-0.95, SbV 0.83-0.97.
+- **Platform reference, not a comparison.** L40S Sb F̄ (0.0141, 0.0414, 0.0132, 0.0132, 0.0172) is within 0.002 of FS1
+  A100 Sb at the same seeds (0.015, 0.041, 0.013, 0.014, 0.018). Different machines and TF32 settings for U; printed
+  only.
