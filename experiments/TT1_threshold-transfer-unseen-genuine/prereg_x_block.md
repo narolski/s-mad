@@ -118,3 +118,11 @@ Pre-run check (experiment-reviewer, opus): GO WITH FIXES (B1, M1-M3, m1-m3). App
   404+407 and 405 come from three L40S machines (seed and machine confounded across seeds, not within a seed).
 - M3: for SbM3, every read built on R_ffhq, R_ffhq^border, M_ffhq or u carries the label "trained source (FFHQ),
   development persons excluded, other pipeline". The unseen-genuine SA1 cell uses the seven TT1 families only.
+
+## Reader pin, Part 1 (`date`: Fri Nov 13 11:09:37 AM CET 2026; before any Sp TT1 score is opened)
+
+`src/TT1/tt1_read_x.py` d7760b030f71548211b0fc0642b85e88c363e0db5a9ecbf6b26a1ce4bac8ac02 (TT1 reader statistics unchanged; TT1-FS printed reads; clipped intervals and
+Clopper-Pearson; TF32-split print; no rule). Disclosure: written after the Sp result tar
+(`TT1_pn1fs_sp.tar`, gate 3 of 3 passed, byte identity) had been fetched and verified, but before any Sp TT1 score was
+opened (the registration said "before any Sp TT1 score exists"; the job finished earlier than planned). Mock-tested on
+random scores only. FS1 Sb 403-405 reference values are copied from `tt1_read_fs.json`.
