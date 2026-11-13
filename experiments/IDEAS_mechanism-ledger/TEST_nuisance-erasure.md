@@ -1,6 +1,6 @@
 # Draft test design: nuisance directions in the candidate's own features [NE1]
 
-Draft by the ideas and literature role (IDEAS), 13 Nov 2026, 19:40 CET. **Not registered; nothing run.** Ledger entries
+Draft by the ideas and literature role (IDEAS), 13 Nov 2026, about 19:05 CET (machine clock; committed in 6db5154 at 19:07). **Not registered; nothing run.** Ledger entries
 M7 (group DRO), M9 (paired invariance), M10 (adversarial debiasing and erasure).
 
 ## Question

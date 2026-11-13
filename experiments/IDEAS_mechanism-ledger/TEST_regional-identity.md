@@ -1,6 +1,6 @@
 # Draft test design: regional identity disagreement [RI1]
 
-Draft by the ideas and literature role (IDEAS), 13 Nov 2026, 19:40 CET. **Not registered; nothing run.** A hypothesis
+Draft by the ideas and literature role (IDEAS), 13 Nov 2026, about 19:05 CET (machine clock; committed in 6db5154 at 19:07). **Not registered; nothing run.** A hypothesis
 owner who takes it writes `prereg.md` from the template, gets the pre-run check and the lead's go. Ledger entry M1.
 
 ## Question

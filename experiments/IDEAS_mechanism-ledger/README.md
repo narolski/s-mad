@@ -13,7 +13,7 @@ opens no image data, edits no other owner's folder.
 
 ## Record
 
-- 13 Nov 2026, 18:55-19:45 CET (machine clock): read the brief and the files listed at the top of `LEDGER.md`; about 30
+- 13 Nov 2026, 18:55-19:07 CET (machine clock; first commit 6db5154 at 19:07): read the brief and the files listed at the top of `LEDGER.md`; about 30
   web searches and page openings (each source in the ledger is marked opened, abstract only, or not verified); wrote
   version 1. The BTAS 2018 PRNU paper was fetched as a PDF to the session's scratch area and read with `pdftotext`; it
   is not kept in the repository.

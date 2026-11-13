@@ -1,6 +1,6 @@
 # Draft test design: texture band profile of two people against one [TB1]
 
-Draft by the ideas and literature role (IDEAS), 13 Nov 2026, 19:40 CET. **Not registered; nothing run.** Ledger entry M2.
+Draft by the ideas and literature role (IDEAS), 13 Nov 2026, about 19:05 CET (machine clock; committed in 6db5154 at 19:07). **Not registered; nothing run.** Ledger entry M2.
 
 ## Question
 

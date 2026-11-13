@@ -1,6 +1,6 @@
 # Mechanism ledger, ideas and literature role (IDEAS)
 
-Version 1, started 13 Nov 2026 18:55 CET, written 19:00-19:40 CET (machine clock, `date`). Owner: the standing ideas
+Version 1, started 13 Nov 2026 18:55 CET, written 18:56-19:07 CET (machine clock, `date`; first commit 6db5154 at 19:07). Owner: the standing ideas
 and literature agent (IDEAS, OWNER_BRIEF "Five standing roles", item 1). **Proposals only.** Nothing here was run,
 scored, trained or computed on an image. No benchmark file, no `valx`, FST or A12SP file and no image was opened. The
 numbers quoted from our record come from committed result files named beside them; numbers quoted from papers come
@@ -401,4 +401,5 @@ measures subject similarity, and it does so with a reference image.
 
 ## Change log
 
-- v1, 13 Nov 2026, 19:40 CET: first ranked ledger; three test designs (RI1, NE1, TB1).
+- v1, 13 Nov 2026, 19:07 CET (6db5154): first ranked ledger; three test designs (RI1, NE1, TB1).
+- v1.1, 13 Nov 2026, 19:07 CET: clock times corrected; v1 stamps (19:40) were written from an estimate, not from `date`.
