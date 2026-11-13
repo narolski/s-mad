@@ -169,6 +169,10 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   verified (local = .sha256 = WCSS sha256): B 403-406, Sb 403-406 (see `/mnt/t7/smad_next/BB2/results/fetch.log`).
   Not opened: no reader runs before the seed mode is frozen (amendment 2).
 
+- 13:56 second fetch: 12 of 15 tars verified (A, B, Sb at 403-406). Seed 407 (6310092_3-5) running at 13:57: steps
+  1,100-1,400 at 0.97-1.19 it/s; expected ends about 15:15-15:30; next fetch 15:35. Squeue refused (controller); logs
+  read directly. No tar opened.
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
