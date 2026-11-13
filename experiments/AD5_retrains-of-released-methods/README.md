@@ -319,6 +319,20 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
   the wheel house; new `ad5w_wheels39.tar` (sha256 d9329afc...) and `ad5w_code.tar` (508c41ae...) uploaded and
   hash-checked on Lustre. The arrays chained behind the smokes (6308948, 6308949, 6308950) can never start; cancelling
   them and submitting two new smokes failed at 09:00 because the controller did not answer; to be retried.
+- 13 Nov 08:40-09:05. Dispatch: the lead's dispatcher submits for owners from `/mnt/t7/smad_next/dispatch/submit_queue/`.
+  Queued (registration aead489): `wcss_ad5_cancel_stranded.cmd`, `wcss_ad5_smoke.cmd` (smokeB2 + smokeX2 through the
+  real path), `wcss_ad5_selfmad_test.cmd`, then `wcss_ad5_madB.cmd` (401-405%3), `wcss_ad5_mixX.cmd` (401-405%2: the
+  whole MixFaceNet-MAD method moves to H100 for one platform; the Athena A100 seed 401 becomes a descriptive
+  cross-platform check; Athena 3545870_[402-405] to be cancelled once the WCSS array starts),
+  `wcss_ad5_madL_after_madB.cmd` (2 H100 per task), `wcss_ad5_selfmad.cmd` (after its test).
+  SelfMAD on WCSS: WCSS has only Python 3.9 and SelfMAD's pins need 3.10 (networkx 3.3 etc.), so a portable CPython
+  3.10.14 (python-build-standalone 20240814, sha256 88dee5e4..., equal to the published hash) plus the Athena cp310
+  wheel house (`wheels_selfmad.tar`, 8565c291..., fetched from Athena, sha OK). Packs on Lustre (sha OK there):
+  `ad5w_selfmad_code.tar` (b661f73e...: selfmad_src v2 patch, src/AD5, hf_cache), `ad5w_selfmad_data.tar`
+  (fc386dac...: 25,000 renders + landmarks), `selfmad_labels.tar.gz` (22dc283d..., from Athena), `ad5w_py310.tar.gz`.
+  Job script `src/AD5/wcss/ad5w_selfmad.sbatch` (TEST=1 mode; d8aa2bc).
+  Athena: the lead's dispatcher moved test job 3548459 to partition plgrid-now (1 h, 1 GPU) at 08:41; running. All 48
+  Athena A100 nodes are in a hidden reservation; new plgrid-gpu-a100 jobs are forecast for 22 Dec.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
