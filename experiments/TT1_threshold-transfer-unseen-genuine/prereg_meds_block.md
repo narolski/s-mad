@@ -139,3 +139,6 @@ Pre-run check (experiment-reviewer, opus): GO WITH FIXES (F1, F2 majors; F3-F7 m
 - Re-pinned: remote_tt1_m.sh `70028d9b9deccb296daf801482df40de5e2dce2a89067af4a811733a0d6ae690`; drive_tt1_m.sh
   `8b1b544e999507f718c18a6bc423b4bc01af0e78d395c64eef09fb3fb05f9b9c`; tt1_read_meds.py
   `0b5d86b154c2455f3279ded63ee9a606196140fa65b707d6a173212d0cb84b11`. Packs staged and verified on se1d at 13:50:43.
+- F7 answered by the lead: after TT1M_DONE (two verified copies of the result on the DGX), the owner removes the MEDS pack
+  (/workspace/tt1m/packs/tt1m_meds.tar) and the extracted MEDS frames (/workspace/tt1m/work/tt1m) from se1d, confirms,
+  and the lead releases the machine. Nothing else is removed there, and nothing on the DGX.
