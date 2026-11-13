@@ -1,6 +1,6 @@
 # Competitor baselines on the corrected MAD22 and FRLL-Morphs (CB1): result
 
-Status 13 Nov 2026, 01:15 CET: task 1 done; task 2 readings for the es.pt networks of A12-BR (M1, M2, M5, M6, M8, M8O); last.pt, M4 and the A45 arms running; task 4 FD-MAD global 256 and fused 256 read, global/fused 512 running; task 3 IDistill waits on WCSS (smoke 6308827 pending). Full record `README.md`;
+Status 13 Nov 2026, 03:55 CET: tasks 1, 2 and 4 read (FD-MAD fused 512 seed 3 still running); task 3 IDistill running on the DGX GPU (amendment 3; autoencoder 3.0 it/s, projected end 14 Nov 04:00-08:30). Full record `README.md`;
 registration `prereg.md`.
 
 ## Task 1: what exists per competitor row, how it was evaluated, what a valid row needs
@@ -34,7 +34,7 @@ Every other row in the manuscript tables is currently "as reported, not verified
 
 ## Results (registered readings; amendments 1-2 committed before reading)
 
-Full tables: `tables_es_and_fdmad.md` (per family, native and E7 pools, BPCER at APCER 1/5/10/20%), `cnn_es_per_arm.csv`,
+Full tables: `tables_all.md` (all arms; es/last/A45/FD-MAD) (per family, native and E7 pools, BPCER at APCER 1/5/10/20%), `cnn_es_per_arm.csv`,
 `cnn_es_per_network.csv`, checks `cnn_es_c1_gate.csv`, `cnn_es_c1_verdicts.json`, `cnn_es_c2_pipeline_shift.csv`;
 FD-MAD `fdmad_per_arm.csv`, `fdmad_c1f_gate.json`; released detectors (from RS1's scores) `cb1_released_rs1_bpcer.csv`.
 
@@ -59,6 +59,15 @@ FD-MAD `fdmad_per_arm.csv`, `fdmad_c1f_gate.json`; released detectors (from RS1'
 | M6 ResNet-18 orthogonal (OrthoMAD) | 5 | 23.98 [21.30, 27.08] | none | descriptive | 61.26 [58.36, 64.02] | 6.60 (14.80 in IDistill Table I) | does not reproduce (worse) |
 | M8 MixFaceNet-S, our pipeline (MixFaceNet-MAD) | 5 | 23.06 [20.23, 26.20] | 13.69 | inconclusive (delta +9.37 [-0.32, +19.05], M 4.11) | 47.80 [44.91, 50.99] | 8.96 | does not reproduce (worse) |
 | M8O MixFaceNet-S, official procedure re-implemented | 5 | 27.59 [24.56, 30.32] | 13.69 | does not reproduce (worse) | 61.66 [58.36, 64.94] | 8.96 | does not reproduce (worse) |
+| M4 SelfMAD-style HRNet-W18 384 (descriptive) | 4 of 5 (seed 3 fails C1) | 46.48 [44.75, 48.38] | none | descriptive | 75.72 [74.02, 77.53] | (not read: M4 is descriptive) | descriptive |
+| A45 incep_ofc, Inception-v3 by the official SMDD procedure, last.pt (A45 primary) | 5 | 32.20 [29.12, 35.23] | 10.53 | does not reproduce (worse) | 44.50 [41.45, 47.64] | 8.11 | does not reproduce (worse) |
+| A45 hrnet_w18, MorphHRNet recipe at W18, last.pt (A45 primary) | 5 | 40.33 [37.10, 43.63] | 9.42 | does not reproduce (worse) | 63.87 [60.30, 67.28] | none per family | descriptive |
+
+Secondary checkpoints (same rule): A12-BR last.pt: M1 MAD22 16.19 (inconclusive), FRLL 40.50 (does not reproduce); M2
+MAD22 34.60 (does not); M8 25.83 / 42.85 (does not / does not); M8O 34.56 / 54.83 (does not / does not); M6 FRLL 68.79
+(does not); M5 last.pt withheld (6 of 8 seeds fail C1); M4 last.pt not scored (pass stopped at 03:00 to free the GPU
+for IDistill; descriptive arm). A45 es.pt: incep_ofc 21.38 / 39.98 (does not / does not); hrnet_w18 MAD22 29.04 (does
+not). C1 passes for all 20 A45 networks.
 
 With the history-matched (E7) genuine pools the five-family means rise in every arm (e.g. M8 MAD22 23.06 -> 31.03,
 FaceMorpher 26.55 -> 65.12; M5 FaceMorpher 1.06 -> 17.74); MIPGAN cells are unchanged by construction (E7 leaves those
@@ -70,7 +79,8 @@ photos unchanged). Several FRLL-Morphs cells are above 50% (inverted ranking), a
 |---|---|---|---|---|
 | Global branch, 256 (A45 primary) | 3 | 56.08 [53.51, 58.77] | 83.02 [81.08, 84.92] | does not reproduce (worse); ranking inverted on most landmark cells |
 | Fused (0.6 global + 0.4 local MRF), 256 | 3 | 56.08 [53.51, 58.77] | 83.02 [81.09, 84.93] | same as global: the local branch outputs P(bona) near 0 for every frame (median 7e-7), so fusion does not change the ranking |
-| Global branch, 512 (disclosed variant) | 1 of 3 so far | 28.45 [25.99, 31.41] | 14.56 [12.93, 16.38] (AMSL 0.00, FaceMorpher 0.98, WebMorph 0.00, OpenCV 15.58, StyleGAN2 56.26) | seeds 2-3 running |
+| Global branch, 512 (disclosed variant) | 3 | 28.13 [25.55, 30.79] | 14.90 [13.25, 16.59] (AMSL 0.02, FaceMorpher 0.98, OpenCV 14.83, StyleGAN2 58.64, WebMorph 0.00) | does not reproduce (worse) |
+| Fused, 512 (96-px windows as built) | 2 of 3 so far | 33.03 [30.73, 35.21] | 18.85 [16.87, 21.26] | does not reproduce (worse) |
 
 The paper's global-only means are 16.62 (MAD22) and 2.08 (FRLL); neither is reached. This is a partial
 re-implementation on the 256-px SMDD copy with our frames, so the row label is "as reported, not verified"; our
@@ -80,3 +90,20 @@ numbers are not a failure to reproduce FD-MAD.
 
 `cb1_released_rs1_bpcer.csv`: MADation ViT-B/16, ViT-L/14 and MixFaceNet-MAD, both crop variants, corrected MAD22 (204 +
 1,000 / 984 / 500 / 1,000 / 999) and FRLL-Morphs, native raw genuine, aligned native and aligned E7. EERs equal RS1's.
+
+### Task 5: paper label per method row (current state; IDistill pending)
+
+| Row | Label for the paper | Basis |
+|---|---|---|
+| PW-MAD | as reported, not verified | no release; our re-implementation in our pipeline (M5) is inconclusive on FRLL (17.41 vs 10.62) and has no published MAD22 number |
+| MixFaceNet-MAD | released weights, our scoring (RS1) | release reproduces 9 of 9 FRLL+MAD22 cells through its own crop (RS1); our retrains M8/M8O do not reproduce (MAD22 23.06 inconclusive / 27.59; FRLL 47.80 / 61.66) |
+| Inception-MAD | as reported, not verified (our retrain does not reproduce) | M1: MAD22 13.31 inconclusive, FRLL 34.46 does not; A45 official-procedure retrain: 32.20 / 44.50 does not |
+| OrthoMAD | as reported, not verified (our retrain does not reproduce) | M6: FRLL 61.26 vs 6.60 (or 14.80) |
+| MorphHRNet | as reported, not verified (our retrain does not reproduce) | M2 W48 33.74, A45 W18 40.33 vs 9.42 on corrected MAD22 |
+| MADation | released weights, our scoring (RS1) | ViT-B/16 reproduces 4 FRLL + 4 MAD22 cells (RS1) |
+| SelfMAD | released weights, our scoring (RS1) | FRLL rows through its own crop (RS1, run A) |
+| FD-MAD | as reported, not verified | no code; our partial re-implementation (256-px SMDD copy, our frames) does not reach the published numbers in any configuration (best: global 512, FRLL 14.90, MAD22 28.13) |
+| IDistill | pending (DGX run, amendment 3); fallback: "as reported, not verified; the authors' code selects its checkpoint on the FRLL-Morphs test sets" | |
+
+Every "our retrain" row is a re-implementation in our pipeline (our 512-px frames, forbidden augmentations removed;
+A45 incep_ofc follows the official SMDD training procedure on our frames), not the authors' pipeline.

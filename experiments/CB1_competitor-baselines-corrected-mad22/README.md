@@ -93,6 +93,17 @@ No CB1 score read yet.
   A first chain was killed and restarted to put the fast 256 runs first; the FD-MAD global 512 runs take about 1.5 h
   per seed (training features 38 min).
 
+- 01:05-01:41. es.pt pass finished (M2, M1, M4). C1: M1, M2 pass all seeds; M4 seed 3 fails (EER cells 7 of 10;
+  saturated probabilities). Readings committed (9cc05b4; tables `tables_es_and_fdmad.md`).
+- 01:41. last.pt pass started (38 networks; log `logs/score_cnn_bk_last.log`); the A45 arms follow (PID 610751 waits).
+- 01:44. WCSS controller back: Slurm forecasts 15 Nov 01:00 for every pending job of ours incl. smoke 6308827
+  (after the retrain cut-off). Coordinator informed; at 01:50 approved IDistill on the DGX GPU after the CNN work.
+- 01:50-02:00. DGX variant prepared: extra packages (pandas 2.2.3, tensorboard 2.21, facenet-pytorch 2.5.2; pillow and
+  numpy copies removed so the venv's are used) in `/mnt/t7/smad_next/CB1/site_idistill_dgx`; `run_code.py` reads
+  CB1_EXTRA_SITE; job script mode CB1_PIP=dgx; local run root `/mnt/t7/smad_next/CB1/dgxrun/` (packs symlinked, hashes
+  checked by the script). A first attempt with a `--system-site-packages` venv failed (a venv of a venv does not see
+  the parent's packages) and was removed. Amendment 3 committed (1ad2566). Code pack v3 sha256 07794689....
+
 ## 3. Data
 
 See `prereg.md` section 2. Corrected MAD22 aligned frames and E7 pools:
