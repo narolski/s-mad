@@ -449,3 +449,7 @@ Author ruling (NOTEBOOK, 13 Nov 17:15, verbatim): "For now, assume that we can g
 time." Amendment 6 set no cutoff or fetch deadline; none is replaced. Added: the follow-up re-score (WCSS smoke 6310086, production
 6310123) is **read once when all its jobs have ended, latest 15 Nov 18:00; rows arriving later are labelled late**. Checked at 17:14: both
 jobs PENDING, no result folder `results/AD4_fu/` on WCSS. Nothing else changes.
+
+Note on Amendment 6b (13 Nov 2026, 18:48 CET by `date`): the author ruling quoted there as "13 Nov 17:15" was given at about 17:11 by
+the machine clock; the lead's message said 17:15 (NOTEBOOK, "13 Nov 2026, 18:46 machine clock (lead): CORRECTION OF TIMES"). No rule
+or deadline changes.
