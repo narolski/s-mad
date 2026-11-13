@@ -382,3 +382,46 @@ all 3,000 rows; no network's score on any history-balanced subset or surround st
   landmark_combined (`--arm` option of the same reader; printed only, their registered verdicts unchanged).
 - Reader `src/AB1/ab1_hb_read.py` (de6e61ae…), mock-tested (`ab1_hb_read_mock.json`); read once when the adversary
   posts the lcomb_bal commit; then the results-reviewer. Pre-run check: requested from the lead.
+
+## Amendment 3b (`date`: Fri Nov 13 20:28 CET 2026; before the lcomb_bal commit exists; fixes of the pre-run check `experiments/reviews/PRERUN_AB1_A3_20261113.md`, 3a5d712, GO WITH FIXES)
+
+**Disclosure.** While implementing these fixes the owner looked at the adversary's **uncommitted** build files in
+experiments/ADV_shortcut-floors/floors/ for their structure: `lcomb_bal_build.json` (converged true, 125 morphs and 125
+genuine) and the column names of `lcomb_bal_rows.csv`, `lcomb_regional_heldout.csv` and `lcomb_bal_regional.json`. No
+network score on any subset was computed or seen. Under the rule below a committed subset of that size would be
+"not read".
+
+1. **Exclusive per-seed rule (F1).** Per seed: *shrinks* if g_full > 0 and g_bal ≤ ½·g_full; *stays* if g_bal ≥ +0.10
+   and g_bal > ½·g_full; a seed with g_full ≤ 0 counts as neither. Supported if ≥ 4 of 5 seeds shrink; falsified if ≥ 4
+   of 5 stay; otherwise inconclusive; ≤ 3 read seeds "not read". Sb − A secondary, same rule.
+2. **Minimum size and subset noise (F2; lead's answer).** **Not read if lcomb_bal has fewer than 150 morphs or fewer than
+   150 genuine photos;** nothing is loosened afterwards. All five seeds share one subset, so the seed vote does not
+   average subset noise. Printed, not binding: the seed-mean g_bal with a joint row bootstrap (the same draws for all
+   seeds; 500 of the registered 2,000 draws), and a null from 2,000 random class-balanced subsets of the same sizes
+   (rng 20261117) with the percentile of each seed's g_bal and of the seed mean.
+3. **Convergence and blend signal (F3).** The reader asserts that `floors/lcomb_bal_build.json` is committed and pinned
+   with converged = true and n_morph = n_genuine equal to the rows file's counts; otherwise "not read". It prints the
+   adversary's face-region floor on lcomb_bal (`floors/lcomb_bal_regional.json`, face_floor); if that floor is below
+   0.80, a supported outcome reads "gain lost on the subset, not attributable to history alone".
+4. **Printed (F4):** the covariate table for retained against dropped rows within each class (pre_ied, pre_w,
+   pre_png_bytes, border_frac, scale, aligned_png_bytes from `ffhqm_meta.csv`; nu_gbt from `lcomb_heldout.csv`;
+   face_logreg and surround_logreg from `lcomb_regional_heldout.csv`); each network's AUC decomposed as retained
+   morphs against all genuine and all morphs against retained genuine; the gain on the probit scale √2·Φ⁻¹(AUC).
+5. **Quintiles (F5):** no difference is printed for a quintile with fewer than 20 morphs or 20 genuine photos.
+6. **Fixed inputs (F6):** surround score = `experiments/ADV_shortcut-floors/floors/lcomb_regional_heldout.csv`, column
+   `surround_logreg` (round 0, all 3,000 rows). The reader asserts that `src/adversary/balance.py` is committed with
+   the sha256 given in the adversary's amendment, in a commit no later than the commit that adds the rows file, and that
+   every input file is tracked, unmodified and at the stated sha256.
+7. **Intervals (F8):** all intervals are conditional on the chosen subset and leave out the uncertainty of the matching.
+
+**What each outcome licenses** (development data, post hoc; the reviewer's text):
+- **Supported** (with item 3 satisfied): "On a history-balanced development subset, most of the candidate's
+  landmark_combined gain disappears." The +0.12 to +0.21 figure is then not presented as evidence of better morph
+  detection.
+- **Falsified:** "The gain stays ≥ 0.10 on a history-balanced development subset (post hoc)." It does not say "not
+  history": the matching balanced only surround statistics.
+- **Inconclusive or not read:** keep the review's qualifier unchanged ("on a development set whose surround carries a
+  kernel-history cue (0.79) and which in-distribution shortcut models separate at 0.96-0.98; whether the gain holds at
+  matched history is untested").
+- Never worded as held-out or test evidence.
+- Reader `src/AB1/ab1_hb_read.py` after these fixes: sha256 `2ff58b5b8201a273d33f9c73a656b394dd2e72add6f05538c2a340739cb35df6` (replaces de6e61ae… in the pins files); mock-tested (`ab1_hb_read_mock.json`).
