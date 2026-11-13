@@ -193,3 +193,4 @@ See prereg section 10.
   run_c.sh, wcss/ab1c_fit.sbatch, reader src/AB1/ab1_pm3_read.py; H-c1 Sb − SpV, H-c2 BN − BV on R4 vs R3. Pre-run check
   PRERUN_AB1_A6_A7_20261113.md (218dd02), fixes in 6b / 7b.
 - Fri Nov 13 21:39 CET 2026: batch C submitted by the dispatcher as WCSS array 6316845_[0-14] (limit 1:15, Nice 0, priority 679; behind the challengers and MS1, ahead of CB1, AD4, AD5). Owner: AB1 owner; about 36 min per fit; read with ab1_pm3_read.py --pair C when all 15 end, latest 15 Nov 18:00.
+- Sat Nov 14 00:25 CET 2026: SbFM 6315597_0 started 00:17:42, _1 00:22:54, _[2-4] pending (forecast 01:32); read hold on contrast numbers stands; fetch and verification proceed when tasks end.
