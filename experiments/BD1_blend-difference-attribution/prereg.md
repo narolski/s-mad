@@ -85,3 +85,38 @@ Per Sb network, test hosts:
   then `... -I src/BD1/bd1_read.py --out experiments/BD1_blend-difference-attribution/bd1_read.json`.
 - Pre-run review: experiment-reviewer (Opus) on this registration. Blockers and majors are fixed in a dated
   amendment before any computation.
+
+## Amendment 1: pre-run review fixes (`experiments/reviews/PRERUN_BD1_20261113.md`, GO WITH FIXES; registered before any D of the full set or any S3/S4/S0 logit is computed)
+
+Times corrected: the registration commit 33bdee6 is at 17:49:13 CET. The lead's message was stamped 17:55 by the lead
+and arrived before that commit. The README's "18:00-18:20" should read about 17:35-17:50. The code tests wrote 8 and 9
+rows of D (`d_values_limit8.csv`, `d_values_limit9.csv`); they were not looked at.
+- **F1, pure-D reference and a relative rule.** A detector that reads only D keeps an AUC above 0.5 inside quintile
+  strata. The reviewer's simulation gives 0.57-0.71 as the AUC of D alone rises from 0.76 to 0.96. So the rule is
+  set against a reference: the same stratified (or window) AUC computed with D itself as the score, on the same rows
+  and the same functions. The reference matches each seed's primary kind.
+  - **PASS, renamed "no S4-vs-S3 signal beyond pixel-difference magnitude D":** primary − reference ≤ +0.05 on ≥ 4
+    seeds, AND ρ(logit, D) within test S3 ≥ 0.2 on ≥ 4 seeds (Sb responds to D where no second person exists), AND
+    ρ_P ≥ 0.4.
+  - **FAIL, renamed "a residual beyond D (identity or content D misses)":** primary − reference ≥ +0.12 on ≥ 4 seeds.
+  - Otherwise "inconclusive". Thresholds are fixed now, before any value is seen. SE1: 4 of 4.
+- **F2, D partly carries identity.** For S4, D ≈ half the pixel difference between two persons. A pass therefore
+  means only what its new name says, not "not identity". Identity-free controls are printed:
+  - S0 rows (R2w4 outside, R2w inside the same hull, one photo, geometry only; 191 test, 100 development, scored in
+    the same tars): D_S0 against R2w4, ρ(logit, D) within S0, and S0 flags;
+  - ρ(logit, D) within S3, now a registered co-condition (above).
+- **F3, the hull does not fit S3's geometry** (amendment-7b hull from mean(H, B); S3's inside follows mean(H, S)).
+  Printed:
+  - D_int, D on the hull eroded by 5 px (cv2.erode with an 11 × 11 ellipse; a mask operation, not an image
+    operation);
+  - D_band, the hull minus the interior;
+  - for each: the stratified AUC, ρ within S3 and ρ_P;
+  - G, the mean landmark distance between mean(H, S) and mean(H, B), with ρ(D_S3, G) and ρ(S3 logit, G);
+  - D medians by host × partner database.
+  - Answer to the review's question: Sb's 156 training S3 rows are the same amendment-7b builds (ids `sp2_S3_*`).
+- **F4:** the mock no longer opens any tar.
+- **F6:** D > 0 is asserted. ρ_P is None if k is constant. Hosts flagged on all seeds and on all but one are both
+  printed. Bootstrap draws with quintile coverage < 0.5 are counted.
+- **F7, wording:** all blocks use the same 382 test rows, and AB1 and SE1 share seeds 408-411. "Replicates" means over
+  fits and platforms, not over hosts. A pass is worded "accounts for most of", never "explains".
+- Not adopted now: an ArcFace identity-similarity covariate (a new model inference; needs the lead's approval).

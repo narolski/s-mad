@@ -78,9 +78,22 @@ def main():
     if not a.mock:
         assert sha(a.dfile) == pathlib.Path(a.dfile + ".sha256").read_text().split()[0]
     out = dict(mock=a.mock, dfile_sha256=sha(a.dfile), blocks={})
-    test = {rg: sorted([i for i, r in D.items() if r["role"] == "test" and r["rung"] == rg], key=lambda i: D[i]["host"]) for rg in ("S4", "S3")}
-    dev = {rg: sorted([i for i, r in D.items() if r["role"] == "dev" and r["rung"] == rg], key=lambda i: D[i]["host"]) for rg in ("S4", "S3")}
-    dv = lambda L: np.array([float(D[i]["D"]) for i in L])   # noqa: E731
+    for r in D.values():
+        for k in ("D", "D_int", "D_band"):
+            if k in r:
+                assert float(r[k]) > 0 or r["rung"] == "S0" or k != "D", ("D must be > 0", r["id"])
+    RG = ("S4", "S3", "S0")
+    test = {rg: sorted([i for i, r in D.items() if r["role"] == "test" and r["rung"] == rg], key=lambda i: D[i]["host"]) for rg in RG}
+    dev = {rg: sorted([i for i, r in D.items() if r["role"] == "dev" and r["rung"] == rg], key=lambda i: D[i]["host"]) for rg in RG}
+    dv = lambda L, k="D": np.array([float(D[i][k]) for i in L])   # noqa: E731
+    # amendment 1: pure-D reference (D itself as the score), same rows and same functions
+    ref_q = strat_auc(dv(test["S4"]), dv(test["S3"]), dv(test["S4"]), dv(test["S3"]))
+    ref_w = window_auc(dv(test["S4"]), dv(test["S3"]), dv(test["S4"]), dv(test["S3"]))
+    out["reference_pure_D"] = dict(quintile=ref_q[0], quintile_cover=ref_q[1], window=ref_w[0], window_pairs=ref_w[1])
+    out["D_by_db"] = {f"{rg}:{hd}-{pd}": float(np.median([float(D[i]["D"]) for i in test[rg] if D[i]["db_host"] == hd and D[i]["db_partner"] == pd]))
+                      for rg in RG for hd in ("frgc", "feret") for pd in ("frgc", "feret")
+                      if any(D[i]["db_host"] == hd and D[i]["db_partner"] == pd for i in test[rg])}
+    out["rho_DS3_G"] = float(spearmanr(dv(test["S3"]), dv(test["S3"], "G")).correlation)
     a0 = auc(dv(test["S4"]), dv(test["S3"]))
     out["D_alone_test_S4_vs_S3"] = max(a0, 1 - a0)
     out["D_median_test"] = {rg: float(np.median(dv(test[rg]))) for rg in test}
@@ -90,14 +103,16 @@ def main():
         flags = {}
         for path, name, arm, s in nets:
             try:
-                want = pathlib.Path(path + ".sha256").read_text().split()[0]
-                assert sha(path) == want, "sha"
-                with tarfile.open(path) as tf:
-                    z = np.load(io.BytesIO(tf.extractfile(f"{name}/scores_eval.npz").read()))
-                L = dict(zip(z["id"].tolist(), z["logit"].astype(float).tolist()))
-                if a.mock:
+                if not a.mock:
+                    want = pathlib.Path(path + ".sha256").read_text().split()[0]
+                    assert sha(path) == want, "sha"
+                if a.mock:                               # review F4: the mock opens no tar
                     rng = np.random.default_rng(s)
-                    L = {i: float(rng.normal(-1, 2)) for i in L}
+                    L = {i: float(rng.normal(-1, 2)) for i in D}
+                else:
+                    with tarfile.open(path) as tf:
+                        z = np.load(io.BytesIO(tf.extractfile(f"{name}/scores_eval.npz").read()))
+                    L = dict(zip(z["id"].tolist(), z["logit"].astype(float).tolist()))
                 assert all(i in L for v in list(test.values()) + list(dev.values()) for i in v)
             except Exception as ex:                      # missing or off-pin: counts as not meeting
                 res[f"{arm}_s{s}"] = dict(error=repr(ex))
@@ -111,14 +126,23 @@ def main():
             rng = np.random.default_rng(20261151)
             hs = len(test["S4"])
             assert [D[i]["host"] for i in test["S4"]] == [D[i]["host"] for i in test["S3"]], "host order"
-            bs = []
+            bs, low = [], 0
             for _ in range(B):
                 ix = rng.integers(0, hs, hs)
-                x = strat_auc(p[ix], n[ix], dv(test["S4"])[ix], dv(test["S3"])[ix])[0] if readable_q else \
-                    window_auc(p[ix], n[ix], dv(test["S4"])[ix], dv(test["S3"])[ix])[0]
+                if readable_q:
+                    x, cv_, _ = strat_auc(p[ix], n[ix], dv(test["S4"])[ix], dv(test["S3"])[ix])
+                    low += int(cv_ < 0.5)
+                else:
+                    x = window_auc(p[ix], n[ix], dv(test["S4"])[ix], dv(test["S3"])[ix])[0]
                 if x is not None:
                     bs.append(x)
             pd_, nd_ = v(dev["S4"]), v(dev["S3"])
+            ref = ref_q[0] if readable_q else (ref_w[0] if readable_w else None)
+            extra = {}
+            for kk in ("D_int", "D_band", "D_Y"):
+                extra[f"strat_auc_{kk}"] = strat_auc(p, n, dv(test["S4"], kk), dv(test["S3"], kk))[0]
+                extra[f"rho_logit_{kk}_S3"] = float(spearmanr(n, dv(test["S3"], kk)).correlation)
+            s0 = v(test["S0"])
             res[f"{arm}_s{s}"] = dict(
                 auc_test=auc(p, n), strat_auc_test=sa, cover=cover, strata=strata, window_auc_test=wa, window_pairs=npairs,
                 primary=primary, primary_kind=("quintile" if readable_q else ("window" if readable_w else "not readable")),
@@ -126,7 +150,10 @@ def main():
                 rho_logit_D_S3=float(spearmanr(n, dv(test["S3"])).correlation),
                 rho_logit_D_S4=float(spearmanr(p, dv(test["S4"])).correlation),
                 auc_dev=auc(pd_, nd_), strat_auc_dev=strat_auc(pd_, nd_, dv(dev["S4"]), dv(dev["S3"]))[0],
-                S3_flag_test=float((n > 0).mean()))
+                S3_flag_test=float((n > 0).mean()), reference=ref,
+                primary_minus_ref=(primary - ref) if (primary is not None and ref is not None) else None,
+                boot_low_cover_draws=low, rho_logit_D_S0=float(spearmanr(s0, dv(test["S0"])).correlation),
+                S0_flag_test=float((s0 > 0).mean()), rho_logit_G_S3=float(spearmanr(n, dv(test["S3"], "G")).correlation), **extra)
             if arm == "Sb":
                 flags[s] = (n > 0).astype(int)
         V = {}
@@ -134,32 +161,43 @@ def main():
         nseed = len([x for x in nets if x[2] == "Sb"])
         need = 4
         prim = [res[k].get("primary") for k in sb]
+        rel = [res[k].get("primary_minus_ref") for k in sb]
+        r3 = [res[k].get("rho_logit_D_S3") for k in sb]
         if flags:
             kcount = np.sum(list(flags.values()), axis=0)
-            rho_p = float(spearmanr(dv(test["S3"]), kcount).correlation)
-            persist = int((kcount >= (len(flags) - 1 if len(flags) >= 4 else len(flags))).sum())
+            rho_p = float(spearmanr(dv(test["S3"]), kcount).correlation) if kcount.std() > 0 else None
+            persist_all = int((kcount == len(flags)).sum())
+            persist_all_but1 = int((kcount >= len(flags) - 1).sum())
+            rho_p_var = {kk: (float(spearmanr(dv(test["S3"], kk), kcount).correlation) if kcount.std() > 0 else None)
+                         for kk in ("D_int", "D_band", "D_Y", "G")}
         else:
-            rho_p, persist = None, 0
-        npass = sum(1 for x in prim if x is not None and x <= 0.62)
-        nfail = sum(1 for x in prim if x is not None and x >= 0.70)
-        ver = ("pass: blend-difference energy explains" if npass >= need and rho_p is not None and rho_p >= 0.4 else
-               "fail: identity residual" if nfail >= need else "inconclusive")
-        V["Sb"] = dict(n_seeds=nseed, primary=prim, n_le_062=npass, n_ge_070=nfail, rho_D_persistence=rho_p,
-                       n_persistent_S3_hosts=persist, verdict=ver, role=("registered" if blk == "FS1" else "replication"))
+            rho_p, persist_all, persist_all_but1, rho_p_var = None, 0, 0, {}
+        # amendment 1 rule: relative to the pure-D reference, with the within-S3 co-condition
+        npass = sum(1 for x in rel if x is not None and x <= 0.05)
+        n_r3 = sum(1 for x in r3 if x is not None and x >= 0.2)
+        nfail = sum(1 for x in rel if x is not None and x >= 0.12)
+        ver = ("pass: no S4-vs-S3 signal beyond pixel-difference magnitude D" if npass >= need and n_r3 >= need
+               and rho_p is not None and rho_p >= 0.4 else
+               "fail: a residual beyond D (identity or content D misses)" if nfail >= need else "inconclusive")
+        V["Sb"] = dict(n_seeds=nseed, primary=prim, primary_minus_ref=rel, rho_logit_D_S3=r3, n_rel_le_005=npass,
+                       n_rho_S3_ge_02=n_r3, n_rel_ge_012=nfail, rho_D_persistence=rho_p, rho_persistence_variants=rho_p_var,
+                       n_S3_flagged_all_seeds=persist_all, n_S3_flagged_all_but_one=persist_all_but1, verdict=ver,
+                       role=("registered" if blk == "FS1" else "replication"))
         out["blocks"][blk] = dict(per_net=res, verdicts=V)
     reg = out["blocks"]["FS1"]["verdicts"]["Sb"]["verdict"]
     for blk in ("AB1", "SE1"):
         v = out["blocks"][blk]["verdicts"]["Sb"]
         v["replicates_registered"] = (v["verdict"] == reg)
     pathlib.Path(a.out).write_text(json.dumps(out, indent=1, default=float))
-    print(json.dumps(dict(D_alone=out["D_alone_test_S4_vs_S3"], D_median=out["D_median_test"], n=out["n"])))
+    print(json.dumps(dict(D_alone=out["D_alone_test_S4_vs_S3"], D_median=out["D_median_test"], n=out["n"],
+                          reference=out["reference_pure_D"], rho_DS3_G=out["rho_DS3_G"], D_by_db=out["D_by_db"]), default=float))
     for blk in out["blocks"]:
         print(blk, json.dumps(out["blocks"][blk]["verdicts"], default=float))
         for k, r in out["blocks"][blk]["per_net"].items():
             if "error" in r:
                 print("  ", k, r["error"])
             else:
-                print("  ", k, {x: (round(r[x], 3) if isinstance(r[x], float) else r[x]) for x in ("auc_test", "strat_auc_test", "cover", "window_auc_test", "primary_kind", "rho_logit_D_S3", "S3_flag_test")})
+                print("  ", k, {x: (round(r[x], 3) if isinstance(r[x], float) else r[x]) for x in ("auc_test", "strat_auc_test", "cover", "window_auc_test", "primary_kind", "primary_minus_ref", "rho_logit_D_S3", "rho_logit_D_S0", "S3_flag_test", "strat_auc_D_int", "strat_auc_D_band")})
 
 
 if __name__ == "__main__":
