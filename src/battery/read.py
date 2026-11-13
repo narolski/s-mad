@@ -92,7 +92,8 @@ def main():
     for arm in sorted(by):
         nets = sorted(by[arm], key=lambda x: x[1]["seed"])
         seeds = [r["seed"] for _, r in nets]
-        plats = sorted({r["platform"]["key"] for _, r in nets})
+        plats = sorted({(f"stored logits ({r['block_set']}; sources per block in battery.json)" if r.get("source") == "stored"
+                         else r["platform"]["key"]) for _, r in nets})
         vers = sorted({r["battery_version"] for _, r in nets})
         print(f"\n=== arm {arm}: seeds {seeds}; platform {'; '.join(plats)}; battery {', '.join(vers)}")
         if len(plats) > 1:
