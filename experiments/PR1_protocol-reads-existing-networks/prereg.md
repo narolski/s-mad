@@ -386,3 +386,24 @@ All changes are registered before any Z or GD number is computed.
   file and contain no score. Replacement: the deciding stratified AUC is the n_pos × n_neg-weighted mean over the
   quintile strata with ≥ 10 rows of each class. A seed is readable if those strata hold ≥ 50% of the 382 rows (here
   229, 60%). The all-strata version and the decile version are printed. Rule thresholds are unchanged.
+
+## Amendment 3: follow-up reads from the part-1 results review (`date`: Fri Nov 13 about 09:45 CET; registered before computing; zero GPU; stored scores; post hoc, labelled so)
+
+From `REVIEW_PR1_PART1_20261113.md`. Part-1 values are known; these reads are post hoc and are labelled so.
+- **Z1b-1 (host memorisation, H-new-1).** For each pair of Sb seeds: Jaccard overlap of the sets of training S3 rows
+  flagged at the own rule, and chance overlap (the expectation for two independent sets of those sizes out of 156).
+  Per seed: mean ratio over its 4 pairs. **Falsified** if ratio ≤ 1.5 on ≥ 4 of 5 seeds; **supported** if ≥ 3.0 on
+  ≥ 4 of 5; otherwise "weak". Printed: the paired-host margin (S4 minus S3 logit, same host) on training rows against
+  the test hosts.
+- **Z1b-2 (ranking, not weighting, H-new-3).** Per Sb seed: the training S4 miss at the cut-off flagging 5% of
+  training S3 (the 95% quantile of training S3 logits). **Supported** if ≥ 0.30 on ≥ 4 of 5 seeds; **falsified** if
+  ≤ 0.10 on ≥ 4 of 5; otherwise "weak".
+- **Z1b-3 (development against test, H-new-5).** Per Sb seed: AUC(S4 vs S3) on development minus test, with a 2,000-draw
+  bootstrap over hosts in each set (`default_rng(20261146)`). "Sampling-compatible" if the 95% interval holds 0 on
+  ≥ 3 of 5 seeds; otherwise "a dev/test difference beyond sampling". Printed only; no claim beyond the label.
+- **Z3b (engine contrast on a non-saturated axis, H-new-4).** Test ladder, native: Δ3 = AUC(R4 vs R3) opencv minus
+  facemorpher and Δ3m = the same for R3m, paired host bootstrap. Rule (Sb decides; A and B printed with the same
+  rule): **"engine gap"** if Δ3 ≥ +0.03 on ≥ 4 of 5 seeds; **"no engine gap"** if Δ3 ≤ +0.01 on ≥ 4 of 5; otherwise
+  "inconclusive". Stated: R3 is a same-person morph (not a trained negative of any arm), so this contrast measures
+  how the arm ranks a two-person over a one-person morph per engine; it is not a transfer test of detection alone.
+- Reader `src/PR1/z1b_read.py` (committed with this section), mock-free (stored scores only); run once.

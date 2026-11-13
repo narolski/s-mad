@@ -16,9 +16,25 @@ GD1 (DG1 diffusion ladder) and GD2 (AG1 MIPGAN controls) if their frames exist. 
 - Reader `src/PR1/pr1_read.py` tested on mock scores only (`pr1_read_mock.json`, random logits over the true ids).
 - `src/PR1/rescore_tf32.py` is a byte copy of `src/TT1/rescore_tf32.py` (sha256 0d0b6b6f...).
 
+- 09:00-09:15: lead's go for pn1fs (hold "pr1" in QUEUES); order agreed with the TT1 owner (after DONE_FS, then
+  DONE_sp or NO_SP for at most 30 min, then the FS1 queue lock). GD pack built (`/mnt/t7/smad_next/PR1/pr1_gd.tar`
+  40aa95d2…, 11,042 rows; test pack daff078c…). Upload to `/workspace/pr1/packs` started at 30 MB/s.
+  GD0 cues: `/mnt/t7/smad_next/PR1/cues/gd0.npz` (cues27 unchanged, via `src/PR1/cues_gd.py`).
+- Pre-run review GO WITH FIXES (`experiments/reviews/PRERUN_PR1_20261113.md`); amendments 1-2 registered (4320366).
+  Code no longer deletes anything (F1). A DGX code smoke test of `remote_gd.sh` passed: 2 networks, 64 gate rows,
+  34-row pack, in `/mnt/t7/smad_next/PR1/smoke_dgx/` (scores never read; DGX is not a scoring platform).
+- 09:16-09:20: part 1 read once (`z_read.json`); result.md part 1; results review started.
+- Dead end: the first GD1 host check required partners to be test hosts too; partners of test hosts are often
+  development hosts, so the builder follows the section 6a rule (contributors outside PN1 training and validation).
+- Note: the GD reader's mock run (`gd_read_mock.json`) computed the GD0 cue baselines on the real cue file; they are
+  printed baselines, not a rule, and were not looked at before the read.
+
 ## Files
 - `prereg.md` registration; `pr1_read_mock.json` mock test output; `z_read.json` the registered read (once).
 - Code: `src/PR1/` (pins in `src/PR1/SHA256SUMS`). Large outputs: `/mnt/t7/smad_next/PR1/`.
 
 ## Handover state
-Registration committed; pre-run review pending; nothing read.
+Part 1 read and committed (6aa02f8); results review running. GD job: upload running, then bin re-upload, then
+`bash src/PR1/drive_gd.sh start` (the job waits on the host); `drive_gd.sh pull` when PR1_DONE exists; then
+`gd_read.py --tar /mnt/t7/smad_next/PR1/results/PR1_GD_pn1fs.tar --out gd_read.json` once. Temporary, own:
+`/mnt/t7/smad_next/PR1/smoke_dgx/` (about 9 GB of extracted FS pack, removable after the GD job).
