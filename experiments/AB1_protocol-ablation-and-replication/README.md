@@ -168,3 +168,15 @@ See prereg section 10.
   (fit array: 5 fits, limit 1:15, results/AB1X; rescore job: Sb/B on border rows, results/AB1X/AB1Xrescore.tar).
   Read with src/AB1/ab1x_read.py when both have ended, latest 15 Nov 18:00. Local test folder
   /mnt/t7/smad_next/AB1/localtest_x holds only the 20-step test tar and log.
+
+### Second-engine arm SbFM (13 Nov evening; strategist's TD1, author's go)
+- 18:50 lead's instruction. Built with src/AB1/mk_ab1fm.py: Sb's 8,386 rows unchanged + a self-balanced block of
+  FaceMorpher ladder rows of training hosts (R4fm 124, R2wfm 156, R2w4fm 124; 560 rows, half attacks); no FaceMorpher
+  splices (no seam in their negatives), no partner-side half (does not exist), no ladder stored copies (as Sb).
+  Evaluation manifest ab1x_eval.csv with the border rows. Overlay /mnt/t7/smad_next/AB1/fm/ab1fm_overlay.tar 681525d8…
+  (WCSS packs/AB1). Hypotheses: H-fm1 landmark_combined +0.02 / +0.005 (primary), H-fm2 test FaceMorpher R4 vs R2w,
+  H-fm3 OpenCV guard; printed engine-crossed table, storage, S3, R3, border, engine-prior diagnostic.
+- Dead end: a first build re-balanced the whole manifest (FaceMorpher attack share 0.594, Sb's repetition changed);
+  replaced before registration (pre-run check F2). A loading-path test of the reader on real AB1 tars wrote a scratch
+  JSON with the H-fm2/H-fm3 baselines; deleted unopened at 18:42 (F1).
+- Pre-run check GO WITH FIXES (PRERUN_AB1FM_20261113.md), fixes applied; registration prereg_fm.md; pins pins_fm.sha256.
