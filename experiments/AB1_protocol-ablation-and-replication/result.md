@@ -327,3 +327,28 @@ frozen networks show the same direction (+0.051 over B, 5 of 5 seeds)." Not allo
 performance, a volume-controlled effect, an S0-versus-S3 split, or rejection of same-person morphs.
 Results review done 13 Nov (all ten verdicts recomputed independently; F1-F7 applied; reviewer's script
 `src/AB1/review/a5_recompute.py`, outputs `review_a5_recompute_{sp,fs1}.txt`).
+
+## Descriptive reads (amendments 6 and 6b, post hoc, no verdict, no direction tested): read once (Fri Nov 13 21:38 CET 2026)
+
+Reader `src/AB1/ab1_desc_read.py` (8fb683a1…), output `ab1_desc_read.json`; 38 networks (A, B, Sb, Sp at 408-412, H100;
+A, B, Sb at 403-407 and Sp at 403-405, A100 — Sp 403-405 is 3 seeds, pack 76528f16). Development (100) and clean test (80)
+hosts. Seed means; "descriptive, post hoc" only.
+
+**1. D cue (within-class Spearman of logit with log D; the pooled value includes class separation and is not read).**
+408-412 means (positive class, negative class): S4/S3 — A 0.15 / 0.17, B 0.19 / 0.23, Sb 0.26 / 0.48, Sp 0.19 / 0.44; R4/R3 —
+A −0.02 / 0.22, B −0.02 / 0.20, Sb 0.05 / 0.25, Sp −0.01 / 0.22. 403-407: S4/S3 — A 0.09 / 0.12, B 0.14 / 0.17, Sb 0.28 / 0.48,
+Sp 0.17 / 0.44; R4/R3 — A −0.01 / 0.17, B −0.02 / 0.17, Sb 0.00 / 0.22, Sp −0.04 / 0.16. Splice-trained arms (Sb, Sp) show the
+largest correlation of the S3 logit with D; on whole-frame R3 the correlations are similar across arms.
+
+**2. Development versus clean-host breakdown (unstratified R4 vs R3; cells with < 20 rows of a class print None; colorFERET
+cells and most D-tercile cells are None).** Paired seed means: FRGC development hosts — Sb − B +0.030 (408-412) / +0.052
+(403-407), Sb − Sp +0.051 / +0.056 (3 seeds), Sp − B −0.022 / −0.001; FRGC clean test hosts — Sb − B +0.063 / +0.042, Sb − Sp
++0.052 / +0.012 (3 seeds), Sp − B +0.011 / +0.022. Middle D tercile: development Sb − B +0.045 / +0.083, Sp − B −0.029 / +0.006;
+clean test Sb − B +0.127 / +0.104, Sp − B +0.040 / +0.034 (25 / 34 rows: noise-dominated). Upper D tercile, development:
+Sb − B +0.011 / +0.037, Sp − B −0.037 / +0.006.
+
+**3. Own-rule flag rates (408-412 seed means; 403-407 in brackets where different by > 0.02).** Same-person whole-frame morphs
+R3 (OpenCV), development / clean test: A 0.99 / 0.98 (0.97), B 0.93 / 0.91, Sb 0.85 / 0.85 (0.87 dev), Sp 0.89 / 0.90.
+Same-person splices S3: A 0.05 / 0.06, B 0.03 / 0.03, Sb 0.38 / 0.41 (0.36 / 0.38), Sp 0.72 / 0.75 (0.70 / 0.71). Seam-only S0:
+at most 0.02 for every arm. S4: A 0.04-0.06, B 0.02-0.04, Sb 0.79 / 0.73, Sp 0.92 / 0.90. R4: 1.00 for every arm.
+Every arm flags most same-person whole-frame morphs; Sp flags fewer than B but more than Sb.
