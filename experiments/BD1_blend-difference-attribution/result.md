@@ -85,6 +85,8 @@ corrections. D was recomputed for all 573 test rows (max |Δ| 0) and every AUC m
 
 ## Amendments 2-3: development-host follow-ups (registered at 7697fbf and 23266fb; read once at about 18:25 CET)
 
+Results review (Opus) `experiments/reviews/REVIEW_BD1_AMEND2_20261113.md`: accept with corrections. All values were recomputed and matched; the corrections are applied below.
+
 Features: `/mnt/t7/smad_next/BD1/d_feats.csv`, sha256 `7391328e…`. Reader: `src/BD1/bd1b_read.py`. Output:
 `bd1b_read.json` and `bd1b_read_stdout.txt`. Development data only. Development hosts: 100 (81 FRGC, 19 colorFERET).
 Seeds share the same hosts, so "4 of 5 seeds" is close to one draw.
@@ -94,26 +96,48 @@ Seeds share the same hosts, so "4 of 5 seeds" is close to one draw.
 | H1: partial ρ(S3 logit, cos_HS ∣ D, D_lin, D_dc, database) | −0.183, −0.259, −0.149, −0.248, −0.259 → **supported** | −0.17 to −0.22 → supported | −0.16 to −0.22 → supported |
 | H2: S4 vs S3 within D_dc quintiles, minus own reference (0.496) | +0.25 to +0.29 → **residual beyond this colour statistic** | +0.23 to +0.28 → same | +0.23 to +0.27 → same |
 | H2: within D_lin quintiles, minus own reference (0.584) | +0.13 to +0.20 → **residual beyond this colour statistic** | +0.12 to +0.17 → same | +0.12 to +0.17 → same |
-| H4: gain of Sb's logit over the 7-statistic propensity (0.741, SD over 20 splits 0.00x) | +0.059 to +0.066 → **supported** | +0.034 to +0.089 → supported | +0.033 to +0.089 → supported |
+| H4: gain of Sb's logit over the 7-statistic propensity (0.741; SD over 20 splits 0.004-0.006) | +0.059 to +0.066 → **supported** | +0.034 to +0.089 → supported | +0.033 to +0.089 → supported |
 | Session gap: stratified partial ρ (∣ cos_HS, D, D_dc, database), 291 hosts | −0.022 to +0.036 → **falsified** | −0.034 to +0.003 → falsified | −0.035 to +0.003 → falsified |
 | Blanked rows (post hoc formalisation): inside / outside only | 0.651-0.761 / 0.482-0.518 → **inside-only signal; outside read non-diagnostic** | 0.713-0.760 / 0.483-0.495 → same | 0.713-0.762 / 0.483-0.495 → same |
 
-- H1 intervals (FS1, host bootstrap): seed 403 [−0.39, +0.04], 404 [−0.45, −0.05], 405 [−0.37, +0.07],
-  406 [−0.44, −0.04], 407 [−0.46, −0.03]. The raw ρ is −0.30 to −0.39. This is consistent with the post hoc
-  test-host values (−0.31 to −0.38 raw; −0.17 to −0.25 partial).
-- Development S4 vs S3 for Sb, unstratified: 0.781-0.816. Within D_dc quintiles: 0.74-0.79. Within D_lin: 0.72-0.78.
+- **H1 is supported by the registered rule** (point estimates −0.15 to −0.26 on 5 of 5 FS1 seeds).
+  - Seeds share the hosts and rank them almost identically (ρ 0.87-0.95), so this is one sample of 100 hosts.
+  - The seed-averaged partial is −0.23 (95% host interval −0.42 to −0.01; reviewer).
+  - Per-seed intervals: FS1 403 [−0.39, +0.04], 404 [−0.45, −0.05], 405 [−0.37, +0.07], 406 [−0.44, −0.04],
+    407 [−0.46, −0.03]. They include or reach 0 on most AB1 and SE1 seeds.
+  - The direction and size reproduce the post hoc test-host value on new hosts.
+  - The effect does not weaken when geometry and all difference statistics are added as covariates (−0.21 to −0.30;
+    reviewer). Within S3, cos_HS correlates with D_ac at −0.57 and with D_lin at −0.51.
+- Development S4 vs S3 for Sb, unstratified: 0.781-0.816 (known before). Within D_dc quintiles: 0.74-0.79. Within
+  D_lin: 0.72-0.78.
+  - The D_dc verdict follows almost entirely from the known development AUC, because D_dc has no within-stratum signal
+    of its own.
+  - The D_lin verdict (+0.12 to +0.20) is the informative colour control. Both are one-dimensional stratifications;
+    the joint control is H4.
+- H4: Sb's logit adds +0.06 AUC to a cross-fitted linear model of 7 oracle difference statistics, so Sb is not a
+  linear read of these statistics. A non-linear model of them was not tested. Sb alone (0.78-0.82) exceeds that
+  oracle (0.741).
 - Session gap per database (descriptive): FRGC partial +0.004 to +0.067; colorFERET −0.10 to +0.04 (n = 56, wide
   intervals). The raw FRGC ρ is +0.10 to +0.16, as expected through cos_HS alone.
 - Blanked rows:
   - Face-blanked rows (outside only) are flagged 0-5% in both classes, with logit SD 0.45-0.92. Inside-only rows are
     flagged 88-100% in both classes.
-  - So the outside-only read is non-diagnostic ("no outside-only signal"), and the inside-only rows are above the own
-    rule for both classes. The ranking still separates them (0.65-0.76).
+  - So the outside-only read is non-diagnostic ("no outside-only signal").
+  - Correction: inside-only (background-blanked) rows are mostly flagged in both classes (S4 0.88-1.00, S3 0.62-1.00
+    across blocks), so they do not separate at the own rule. Their ranking does (0.65-0.76): two-person logits sit at
+    a ceiling (SD 0.2-0.4 in FS1) and part of the same-person rows fall below it.
+  - These rows are out of distribution. This is a post hoc ranking observation, not evidence that a deployable cue
+    lives inside the face. FS1 seed 405's 0.6506 is at the bar; the verdict holds on 4 of 5 either way.
   - The inside-only contrast still carries S3's hull/geometry mismatch.
 - **Outcome-table action (amendment 3), H1 supported and H2 "residual beyond colour":** FR similarity of the host's
   two photos is a candidate control at equal blend energy and colour; it also tracks pose, illumination and age.
   - A later arm matched on FR similarity needs two-person and same-person pairs that overlap in FR similarity. The
     existing pools cannot supply them: 2 cross-person pairs above 0.6 among 536 persons, against a same-person range
     of 0.77-0.93. New look-alike morphs from a much larger person pool are an author item.
-  - H4 supported: Sb carries about +0.06 AUC beyond the oracle 7-statistic propensity.
-  - Session gap falsified: no gap matching is needed on this evidence.
+  - Session gap adds nothing beyond FR similarity. Without the cos_HS covariate the FS1 partial is +0.03 to +0.08
+    (ρ(gap, cos_HS) −0.45 on the development hosts). An arm that matches on FR similarity needs no separate gap
+    matching; an arm that does not match on it should not assume the gap is harmless.
+- **What BD1 licenses:** BD1 supports no training arm before the freeze. It ranks a future FR-matched look-alike arm
+  (an author item; new morphs from a much larger person pool needed) above a colour-matched rescore, which BD1's
+  colour controls do not motivate. Before the freeze, at most a registered zero-GPU descriptive read of low-cos_HS
+  same-person splices from the existing files.
