@@ -34,10 +34,10 @@ verdict below does not depend on that choice.
 - **A's positive control: not met on any seed** (every A network failed the gate, so by C2P.2 its seed counts as
   control failed).
 - **Contrast 2-prime: "uninformative" for B and for Sb** (A's control met on 0 of 5 seeds at both sizes).
-- **H-new-1: Sb "falsified"** (Δm_att(Sb, z) ≥ −0.10 on 4 read seeds at both sizes: fm61 +0.056, +0.105, +0.061,
-  +0.071; amsl112 −0.024, +0.041, −0.012, +0.005 for seeds 403, 405, 406, 407; seed 404 not read, gate). **B
-  "inconclusive"** (one read seed).
-- **H-new-2: "inconclusive"** (no A network read).
+- **H-new-1: Sb "falsified" on 4 of 4 read seeds, seed 404 not read** (gate; Δm_att(Sb, z) ≥ −0.10 at both sizes:
+  fm61 +0.056, +0.105, +0.061, +0.071; amsl112 −0.024, +0.041, −0.012, +0.005 for seeds 403, 405, 406, 407). **B: not
+  read: one B seed passed the gate (C2P.2)** (the reader's label was "inconclusive").
+- **H-new-2: not read: no A network passed the gate (C2P.2)** (the reader's label was "inconclusive").
 - **Freeze rule implied (FINAL section 1 as amended, 6691adc): no method is frozen** (contrast 2-prime does not pass
   for Sb or B).
 
@@ -53,3 +53,35 @@ verdict below does not depend on that choice.
 
 Not computed by the registered reader: any read of the A networks or of gate-failed networks (their hold-out scores
 exist in the tar; any use of them is post hoc and needs the lead's decision and labelling).
+
+## Attestation and quarantine (`date`: Fri Nov 13 09:36:59 AM CET 2026; post-result review `experiments/reviews/REVIEW_PN1_C2P_20261113.md`, e2af82c)
+
+- `C2P_m1.tar` sha256 `4e25fcc1ed845229420337021831b54ca107336eb91073d38e7c14b747f8d542` (local
+  `/mnt/t7/smad_next/MS1/c2p/C2P_m1.tar` and second copy `/home/narolski/ms1_results_copy/C2P_m1.tar`, identical);
+  `c2p_read.json` sha256 `62ee0bf430388be8094158f3f3aac429521612751a29c91c2290ae28ff4e5598`.
+- Statement by the owner: no hold-out (fam ms1ffhq) statistic of any gate-failed network (A 403-407, B 403, 404, 406,
+  407, Sb 404) has been computed, plotted, printed or opened. The reader (`c2p_read.py` lines 137-141) loaded their
+  hold-out logits into memory together with the gate rows and skipped them at line 149: **loaded, not used**. The
+  owner opened no ms1ffhq member of the tar outside the reader; the tar is not unpacked anywhere. Nobody opens these
+  scores until a re-scoring (amendment C2P-R, if approved) has been read; any later use is labelled post hoc.
+- Cause (review F1): scoring on L40S with TF32 off against stored A100 PCIe logits made with TF32 on (pn1_score.py),
+  contrary to `PLATFORM_PINS_FOR_FINAL_READ.md` item 7 (f2c2023) and C2P.2's "never two GPU models".
+
+## What can and cannot be said today (review Q3, Q4)
+
+Paper wording for the gate: "The registered gate (99th percentile ≤ 0.05, maximum ≤ 0.10, tightened from 0.15 before
+any score) failed on its maximum condition for all plain networks because scoring used another GPU model and TF32
+setting than training. We report the test as uninformative [and the registered re-scoring on the training platform
+beside it]."
+
+Can be said: "On 300 FFHQ persons no network was trained on, the four protocol-plus-splice networks that passed the
+platform gate (seeds 403, 405, 406, 407) raised their own-rule flag rate on stored genuine photos by +1.0 to +3.8
+points at the trained size (61.2 px) and by −0.3 to +3.4 points at an untrained size (112.7 px). Their mean genuine
+logit moved toward genuine (−0.02 to −0.24 genuine SD). Stored morphs did not become easier to miss (morph shift +0.06
+to +0.11 SD at 61.2 px and −0.02 to +0.04 SD at 112.7 px; storage evasion falsified on 4 of 4 read seeds). Development
+data only. No plain network passed the gate, so these reactions are not compared with the plain recipe, and the
+registered storage contrast is uninformative." Sb 406 is the largest (native flags 6.0%; upper 95% bounds of Δf 6.5
+and 5.9 points).
+
+Cannot be said: "reduced relative to the plain recipe" or "at most one third of it"; "removed", "absent" or
+"shortcut-free"; anything about B (one seed) or A; anything about H-new-2; any generalisation beyond development data.
