@@ -97,7 +97,7 @@ one kind re-weights the others; check improvement 1):
   ab1b2_fit.sbatch to packs/AB1) → dispatcher's queue, unthrottled. No new smoke: run_b2.sh differs from the smoked and
   40-times-run run.sh v2 only in the overlay, its SUMS file name, the arm list and the results folder (diff in the
   README); the pre-run check may require one.
-- Read once when all 25 have ended (or at 14 Nov 18:00 with those present; amendment B2-A1), two verified copies first.
+- Read once when all 25 have ended, latest 15 Nov 18:00; later rows labelled late (amendment B2-A2); two verified copies first.
 
 ## Pre-run check (`PRERUN_AB1B2_20261113.md`)
 
@@ -114,3 +114,11 @@ Reason: WCSS is full; Slurm forecasts array 6313020 to start at 14 Nov 11:20, wh
 read time. The read time of batch B2 moves from "all 25 ended, or 14 Nov 12:00 with those present" to **"all 25
 ended, or 14 Nov 2026 18:00 CET (the end of the experiment stage) with those present"**, whichever comes first. Nothing
 else changes: arms, fits, reader (15406ab7), rules and pins are as registered at 324b4fa.
+
+## Amendment B2-A2 (`date`: Fri Nov 13 05:15 PM CET 2026; before any B2 tar exists: results/AB1B2 on WCSS is empty and array 6313020 is pending, checked 17:14)
+
+Author's ruling (NOTEBOOK, 13 Nov 17:15), verbatim: "For now, assume that we can go over the cutoff date due to WCSS and
+Athena waiting time." Relayed by the lead through the dispatcher. The read time of amendment B2-A1 (14 Nov 18:00) is
+replaced by: **read once when all fits of the batch have ended, latest 15 Nov 2026 18:00 CET; rows arriving later are
+labelled late.** Nothing else changes (arms, fits, reader 15406ab7, rules and pins as registered at 324b4fa); no B2
+score exists.
