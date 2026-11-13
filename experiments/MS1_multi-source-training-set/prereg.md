@@ -596,3 +596,7 @@ can go over the cutoff date due to WCSS and Athena waiting time." The fetch dead
 18:00 CET) is replaced by: **read once when all fits of the batch (array 6312974) have ended, latest 15 Nov 2026 18:00
 CET; rows arriving later are labelled late.** Nothing else changes; the queue order stays as set. At this commit no
 part-4 tar, smoke result or score exists (smoke 6312973 and array 6312974 have not started).
+
+- Note on times (`date`: Fri Nov 13 06:49:02 PM CET 2026; nothing else changes, no rule, no deadline): amendment A2 quotes the author's cut-off ruling
+  as "13 Nov 17:15"; it was 13 Nov, about 17:11 by the machine clock (the lead's message said 17:15; NOTEBOOK "13 Nov
+  2026, 18:46 machine clock (lead): CORRECTION OF TIMES").
