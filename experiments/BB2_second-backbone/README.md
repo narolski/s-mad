@@ -349,3 +349,9 @@ python3 -I src/BB2/bb2_read.py
   bb2l-w2 (afterany:6313860; valid only if 6315675 passes; output results/BB2L/BB2LW2.tar). Queue: E3 6313860
   (priority 844), then 6315675/6315676 (679), C2P 6313488, E2 6313858/6313861. DINOv3 ViT-B/16 official weights on disk
   (lead, author's login): loading and verification rule in the plan, section 1 (27ab727); no arm registered yet.
+
+- Fri Nov 13 08:48:39 PM CET 2026: lead's read hold (selection rule v2 in its pre-run check): no E3 contrast value, no splice-fit gate and no
+  wave-2 output is opened until the lead releases them (in any case before the 15 Nov 18:00 read deadline of amendment
+  6). Run on time: the seed-mode freeze (freeze_mode_L.py, no score opened), tar hashes, GPU (gpu.txt) and the
+  learning-rate guard lines. 20:44: E3 tars B 403-405 and Sb 403-404 fetched and verified (results_L/fetch.log); none
+  opened. BB2 part 2 (C2P on the CLIP-rate fits) was read before the hold (19:14) and reviewed.
