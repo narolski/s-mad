@@ -23,6 +23,15 @@ version (the current candidate was frozen by the author at 18:28; MAD22 is a see
   GO WITH FIXES (`PRERUN_GX1_20261113.md`).
 - 18:40-18:41 Generation scripts written. 18:47:21 pairs; shard plans (22 shards incl. 2 smoke).
 - 18:48:45 Amendment 1 committed (eabdcc4: review fixes F1-F8, time note, generation pins). 18:49 pack uploaded to WCSS packs/GX1 (GX1SUMS checked there; ~/dmenv torch 2.11.0+cu128); submission files in the dispatcher queue: wcss_gx1_gensmoke.cmd, wcss_gx1_gen_mip1.cmd and wcss_gx1_gen_mip2.cmd (both gated on the smoke).
+- 18:51:09 Amendment 1b committed (748f4e2): lead's answers (FFHQ-Morphs is the development comparison set; seeds
+  408-412 accepted; ~/dmenv in the WCSS home, job IO on $TMPDIR) and the registered sensitivity print without the four
+  pairs of cosine > 0.4.
+- About 18:52 Dispatcher submitted all three on WCSS (Nice 2, priority 677, behind AB1's second-engine arm): smoke
+  **6315653**, MIPGAN-I array **6315654_[0-11]**, MIPGAN-II array **6315655_[0-7]**. The arrays went in beside the smoke
+  (lead's standing rule of 13 Nov 09:05: arrays age in the queue with their smokes), not after it; the gate holds: no
+  shard output counts unless 6315653 COMPLETES with GX1_SMOKE_OK in its log, and the dispatcher cancels 6315654 and
+  6315655 at once if it fails. Owner: AG1 owner. Expected start: unknown (WCSS saturated at submission); expected
+  run: smoke about 10 min, MIPGAN-I tasks 30-150 min each, MIPGAN-II 30-65 min each.
 
 ## 3. Data
 
@@ -58,7 +67,7 @@ Pre-run check; finish prep; pairs and shards; packs to WCSS; smoke + generation 
 
 ## 10. Handover state
 
-DGX: `build_gx1.py prep` (background, log above). No cluster job yet. Compute spent: 0.
+WCSS: 6315653 (smoke), 6315654_[0-11], 6315655_[0-7] pending (see timeline). Owner checks each at its expected end. Compute spent so far: 0.
 
 ## 11. Reproduce from scratch
 
