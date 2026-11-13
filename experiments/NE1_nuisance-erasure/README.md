@@ -16,3 +16,5 @@ networks are not changed and the sealed read is not touched. Current answer: non
 - `date` Fri Nov 13 07:20:05 PM CET 2026: pack and network tars built (`build_ne1_pack.py`); host overlap of T with every read set 0.
 - 8-row extraction test on the DGX (one network) and `ne1_heads.py --mock` test (one network, 1 min 52 s): code checks only.
 - Fri Nov 13 07:27:01 PM CET 2026: registration draft committed for the pre-run check.
+- Pre-run check GO WITH FIXES (experiments/reviews/PRERUN_NE1_20261113.md, 653a766). Fixes F1-F8 applied: paired rank shift in the camera-photo pool as primary read, H0e/ceiling/null/morph-check erasers, H1d/H2d fitted on L development hosts with splice reads on L test hosts, narrowed wording, host assert, half-B splice prints for erased heads, TF32 sentence. Pack rebuilt (6456f550…).
+- Fri Nov 13 07:41:59 PM CET 2026: registered (commit that changes the prereg status line).

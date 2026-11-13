@@ -1,9 +1,8 @@
 # Nuisance directions in the frozen candidate's own features (NE1): registration draft
 
 Owner: TT1 owner, on the lead's assignment (13 Nov 2026, from the IDEAS mechanism ledger, commit 6db5154, rank 2; the
-lead's draft is `experiments/IDEAS_mechanism-ledger/TEST_nuisance-erasure.md`). Status: draft for the pre-run check.
-It is registered at the git commit that changes this status line. At this commit no feature has been extracted and no
-head has been fitted.
+lead's draft is `experiments/IDEAS_mechanism-ledger/TEST_nuisance-erasure.md`). Status: registered (this commit changes the status line; draft 2a31a56, pre-run check GO WITH FIXES at 653a766, fixes
+F1-F8 applied). At this commit no feature has been extracted and no head has been fitted.
 
 What NE1 is: a post-freeze diagnostic on stored and extracted features of development rows. It does not change the
 frozen candidate (arm Sb, seeds 403-407) and does not touch the sealed read. It is not a new method. Any arm it licenses
@@ -17,7 +16,10 @@ Are two known failures of the frozen candidate separable directions in its penul
 - The flags on same-person face splices (S3).
 
 If a last-layer change removes them without losing detection on development landmark morphs, debiasing or group-robust
-arms are worth H100 time. If not, the features lack a separating signal, and only new data or a new signal can help.
+arms are worth H100 time. If not, NE1 shows only that a rank-1 linear eraser or a last-layer reweighting does not
+remove them (section 7 wording); it does not show what else could. Last-layer refits on held-out data follow deep
+feature reweighting (Kirichenko et al., 2023), which retrains the last layer on held-out, group-balanced data: here
+H1d/H2d on L's development hosts.
 
 ## 2. Networks (frozen; development rows only)
 
@@ -26,7 +28,8 @@ arms are worth H100 time. If not, the features lack a separating signal, and onl
   `/mnt/t7/smad_next/PN1/results_fs/*.tar.sha256` and checked by the job.
 - Features: the input of the linear head `head.cls`, an L2-normalised 512-d CLIP feature. Extracted with
   rescore.py's model build (`common.build_run_model` + `last_trainable.pt`; code from the FS1 tree, base weights
-  `4b869929…`). Logit without flip, eval mode, batch 64, list order, PyTorch defaults (TF32 off).
+  `4b869929…`). Logit without flip, eval mode, batch 64, list order, PyTorch 2.2 defaults (matmul TF32 off, cuDNN TF32 on), as
+  rescore.py ran in TT1-FS; the gate checks the match.
 
 ## 3. Rows (all development; no benchmark, sealed, FRLL, MAD22, MorDIFF, DiM, H1, FEI or CASIA-WebFace row)
 
@@ -47,78 +50,106 @@ arms are worth H100 time. If not, the features lack a separating signal, and onl
   every border read and border probe uses half B only. Bootstrap units are hosts, not photos.
 - **Storage.** The 300 MS1 hold-out persons are split the same way on sha256(host): half A fits the storage eraser
   (native against fm61 and amsl112 copies); reads use half B only.
-- **Same-person splices and detection** (sets L, C): no eraser is fitted on them, so no split is needed. The heads are
-  fitted on T only, which contains no L, C, B, G or S image and no L, C, B, G or S host (asserted by id and path in the
-  pack builder; host overlap counted 0 for every set).
+- **Same-person splices** (set L): H1d, H1dc and H2d are fitted on L's 100 development hosts and every splice read
+  uses L's 191 test hosts (disjoint, asserted). No eraser is fitted on L or C.
+- **T.** The T-fitted heads contain no L, C, B, G or S image or host (ids, paths and hosts asserted disjoint in the pack
+  builder, F6).
 - **Hosts in T.** pn1lib's catalog host for AF0 and ladder ids; for the SM1 warped halves (`sm1h_<db>_<n>_h{A,B}`) and
   the training splices (`sp2_S<k>_<tool>_<db>_<n>`), the ladder pid `<db>:<n>` they were made from (asserted to be a
   ladder host). 637 hosts in T.
 - **Overlap inside the read sets.** 291 of the 417 R_cam photos are also ladder R0 genuine rows of L (the same source
-  image, under another path). Both are read rows; nothing is fitted on L, so this is not a leak. The border eraser's
-  half-A rows include some of those photos; the border and splice reads are on different images.
+  image, under another path). The border eraser's half-A rows include some of those photos, whose derived splices sit
+  in L. So the splice reads of heads with an eraser use half-B test hosts only (F7). The reference pool P (section 6)
+  holds L's R0 rows of development hosts, which H1d/H2d are fitted on; P is used only for the border and storage
+  ranks of the T-fitted heads.
 
-## 5. Heads (all on the same extracted features of one network)
+## 5. Heads (all linear, on the same extracted features of one network)
 
-- **H0.** The original head (reference). Its logits on G are the gate.
-- **H1.** Logistic refit on T, class-balanced (sklearn LogisticRegression, L2, C = 1, max_iter 5000; repeats removed,
-  unique images).
-- **H2.** Group-balanced refit on T: equal total weight per kind (14 groups), class-balanced within each group's label.
-  C is chosen from {0.01, 0.1, 1, 10} by 5-fold cross-validation on T, grouped by host (pn1lib catalog host for AF0 and
-  ladder ids), maximising worst-group accuracy.
-- **H3.** Border erasure, then H1. Eraser: mean-difference projection. d = mean(feature of the bordered copies) −
-  mean(feature of the unbordered photos) over half A of B and G-R_cam; d̂ = d / ‖d‖; every feature x → x − (x·d̂) d̂.
-  Then the H1 refit on erased T features. Rank 1, one direction.
-- **H4.** Storage erasure, the same: d = mean(stored copies) − mean(native) over half A of S. Then H1 on erased T.
+Pre-run check (PRERUN_NE1_20261113.md, 653a766, GO WITH FIXES) fixes F1-F8 are applied in this section and below.
 
-**Operating point (fixed rule; no head gains by moving it).** Each head's threshold is the smallest t such that its
-flag share on G-R_cam (417 camera photos) is ≤ H0's own-rule share there. H0's own threshold stays at logit 0. Flag rule:
-score > t. If H0 flags k of the 417 photos, t is the (k+1)-th largest score of that head on them; if k = 0 (TT1-FS
-found 0.000 for Sb on R_cam), t is the head's largest R_cam score. This makes every head's threshold rest on its
-most extreme camera photo when k = 0; it is the registered rule and is printed beside each read.
-- **H2 tie rule.** Equal worst-group accuracy across C values: the smaller C (stronger L2) is chosen.
-- **Matched S4 recall (read 2).** For each head, the cut is the largest t with share(S4 score > t) ≥ H0's own-rule S4
-  recall; the S3 share is read at that cut.
+| Head | Eraser | Fit |
+|---|---|---|
+| H0 | none | the original head (reference; its logits on G are the gate) |
+| H0e | border, half A | H0's w, b on erased features, no refit |
+| H0e4 | storage, half A | H0's w, b on erased features, no refit |
+| H0ec | border, half B (ceiling) | H0's w, b, no refit |
+| H0em | morph direction of T | H0's w, b, no refit (erasure-works check) |
+| H1 | none | logistic refit on T, class-balanced, C = 1 |
+| H1c | none | as H1, at H2's chosen C |
+| H2 | none | group-balanced refit on T (equal total weight per kind, 14 kinds), C by grouped CV |
+| H3 | border, half A | H1 refit on erased T |
+| H3c | border, half B (ceiling) | H1 refit on erased T |
+| H4 | storage, half A | H1 refit on erased T |
+| N00-N19 | 20 random directions | H1 refit on erased T (null) |
+| H1d | none | logistic refit on the development hosts of L, class-balanced, C = 1 |
+| H1dc | none | as H1d, at H2d's chosen C |
+| H2d | none | group-balanced refit on the development hosts of L (equal weight per L kind, 32 kinds), C by grouped CV |
+
+- **Logistic fits.** sklearn 1.9.0 LogisticRegression, L2, lbfgs, max_iter 5000. T is used with repeats removed.
+- **Development hosts of L** (lead's answer 1; binding for the splice rows): 100 hosts, 3,200 rows (32 kinds × 100:
+  ladder R0 at three strengths, R2w, R3, R3m, R2w4, R4 at the native and resized strengths, and the splice kinds S0,
+  S3, S4 with their _bg/_face variants and the R2w/R2w4/R4 blends). All splice reads are on the 191 test hosts of L
+  only. The test and development hosts are disjoint (asserted).
+- **C choice (H2, H2d).** C from {0.01, 0.1, 1, 10} by 5-fold GroupKFold on hosts, group-balanced weights, maximising
+  worst-group accuracy at decision 0. Ties: the smaller C. T's worst-group accuracy is printed for every C. If it is
+  ≥ 0.98 for every C on ≥ 4 seeds, the training-list splice row reads "not testable on in-sample features".
+- **Erasers (rank 1, mean-difference projection; x → x − (x·d̂) d̂).**
+  - Border (H3, H0e): d = mean(half-A bordered copies) − mean(half-A R_cam photos).
+  - Ceiling (H3c, H0ec): the same on half B, i.e. on the rows the border is read on. It shows the most a rank-1
+    mean-difference eraser can remove.
+  - Storage (H4, H0e4): d = mean(half-A fm61 and amsl112 photo copies) − mean(half-A native photos) in S.
+  - Morph check (H0em): d = mean(T morphs) − mean(T genuine).
+  - Null (N00-N19): 20 directions drawn from N(0, Cov(T features)), `default_rng(20261129)`, one stream across
+    networks in seed order.
 
 ## 6. Reads per network and head
 
-1. **Border.** Flag share on half-B bordered copies, pooled over the seven masks and per mask (CFP-FF, MSU-MFSD and
-   OULU-NPU named). Border removal fraction = 1 − flags(Hk) / flags(H0), pooled, each head at its own threshold.
-   Computed only if H0 has at least 10 flagged half-B bordered copies on that seed; otherwise that seed is "floor".
-2. **Same-person splices.** On set L, S3 flag share at the threshold where the S4 recall equals H0's own-rule S4
-   recall (dev + test hosts, OpenCV-style), and the full front (S3 flag share against S4 recall, printed).
-3. **Detection.** AUC of landmark_combined orig morphs against resmatch genuine (set C).
-4. **Storage.** Flag share (head threshold) on half-B stored photo copies minus that on the same persons' native
-   photos, at fm61 and at amsl112 (Δf).
-5. **Probes (printed).** Logistic probe AUC (5-fold, grouped by host, C = 1, class-balanced) for border presence on
-   half-B bordered copies against half-B R_cam photos, before and after the H3 eraser; and for stored (fm61, amsl112)
-   against native on half-B S photos, before and after the H4 eraser.
-6. **Printed beside the reads.** Each head's threshold, R_cam share, own-threshold S3 share and S4 recall, the S3/S4
-   front at five S4 quantiles, landmark_combined recall at the head threshold, H2's chosen C with the grouped-CV
-   worst-group accuracy per C, and H0's recomputed logit against the extracted one.
+**Reference pool and units (F1; lead's answer 2).** P = R_cam (417) ∪ L ladder R0 at all three strengths (873):
+1,290 camera photos, 406 hosts. A score is converted to a mid percentile rank in the head's own scores on P.
 
-## 7. Outcome table (fixed before reading; "on ≥ 4 of 5 seeds", computed over seeds that are not "floor")
+1. **Border shift (primary, threshold-free).** For each half-B bordered copy: rank(copy) − rank(the same unbordered
+   photo). Averaged within each host, then over half-B hosts. Removal(Hk vs ref) = 1 − shift(Hk) / shift(ref). The
+   reported removals are H3 vs H1, H0e vs H0, H3c vs H1, H0ec vs H0, H1 vs H0, and each null N vs H1. A seed is "floor"
+   if shift(H0) or shift(H1) ≤ 0.01.
+2. **Border flags (secondary).** Every head, H0 included, is cut at the 99th and the 95th percentile of its own scores
+   on P. Printed at each cut: flag share on the half-B bordered copies (pooled and per mask), flag share on their
+   unbordered photos, and landmark_combined recall. The old rule (H0 at logit 0, other heads at the (k+1)-th largest
+   R_cam score) is printed only.
+3. **Same-person splices (test hosts of L only).** S3 flag share at the cut where each head's S4 recall equals H0's
+   own-rule (logit 0) S4 recall on the same hosts. The S4-vs-S3 AUC is printed. For heads with an eraser (H0e*, H3,
+   H3c, H4, nulls), the splice reads use half-B test hosts only (F7), with H0's matched recall recomputed on those hosts.
+4. **Detection.** AUC of landmark_combined orig morphs against resmatch genuine (set C). C and S are FFHQ, and T has
+   no FFHQ, so for every refitted head these reads are cross-domain.
+5. **Storage shift (threshold-free).** On half-B S persons: rank(copy) − rank(the same person's native photo) in P
+   units, at fm61 and at amsl112, averaged within each host and then over hosts. Δf at the 99th and 95th percentile
+   cuts is printed. A seed is storage "floor" if H0's amsl112 shift ≤ 0.02.
+6. **Erasure-works check (F3).** AUC(H0) − AUC(H0em) must be ≥ 0.05. Where it is not, the AUC guards on that seed are
+   labelled "AUC guard insensitive".
+7. **Probes (printed).** Logistic probe AUC (5-fold, grouped by host) for border presence (half-B bordered copies
+   against half-B R_cam photos) before and after the H3 eraser, and for stored against native (half-B S photos) before
+   and after the H4 eraser.
 
-| Result | Reading | Next |
+## 7. Outcome table (fixed before reading; a row holds on ≥ 4 seeds)
+
+| Result (per seed; counted over available, non-floor seeds) | Reading | Next |
 |---|---|---|
-| H3 removes ≥ 70% of H0's border flags AND landmark AUC within −0.01 of H0 | the border reaction is a separable direction | the lead may register a border nuisance head or erasure layer, read beside the border-crossed data arm (Sbx) |
-| H3 removes < 50%, OR costs > 0.02 AUC | border and detection share features | only data or a new input treatment can help; no adversarial arm |
+| H3 removes ≥ 70% of H1's border shift AND H0e removes ≥ 50% of H0's AND AUC(H3) ≥ AUC(H1) − 0.01 AND H3's removal exceeds the largest of the 20 null removals | the border shift is a separable rank-1 direction, beyond refitting and the random-direction null | the lead may register a border nuisance head or erasure layer, read beside the border-crossed data arm (Sbx) |
+| else: the ceiling eraser H3c removes < 70% of H1's shift | rank-1 erasure cannot test this | a richer eraser (LEACE, rank-k) on the saved features; no GPU needed |
+| else: H3 removes < 50% of H1's shift, OR AUC(H3) < AUC(H1) − 0.02 | the border shift is not removable by a rank-1 linear eraser; gradient-reversal arms get no support from NE1 | data or input-treatment arms only, as far as NE1 informs |
 | Otherwise | "inconclusive (border)" | — |
-| H2's S3 share at matched S4 recall ≥ 0.05 below H0's | reweighting can move the trade-off | the lead may register a group-DRO arm with strong L2 |
-| H2 within 0.03 of H0 AND of H1 | the same-person-splice flags are not a weighting problem | group DRO / JTT closed for this backbone; the second-identity route needs a new signal |
+| H2d's S3 share at matched S4 recall ≥ 0.05 below H0's (binding: fitted on development hosts, read on test hosts) | reweighting can move the trade-off | the lead may register a group-DRO arm with strong L2; if H1dc also moves ≥ 0.05, attributed to refitting |
+| H2d within 0.03 of H0 AND of H1dc | reweighting the last layer on held-out development features does not move the trade-off | the group DRO / JTT route gets no support from NE1 on this backbone |
 | Otherwise | "inconclusive (splices)" | — |
-| H4 lowers the amsl112 Δf by ≥ 0.02 below H0's with AUC within −0.01 | residual storage reaction is a separable direction | a note for the next version; no claim about the frozen network |
+| The same two rows with H2 and H1c (fitted on T) | printed only; "not testable on in-sample features" if T's worst-group accuracy is ≥ 0.98 for every C | — |
+| H4's amsl112 storage shift ≥ 0.02 below H1's AND H0e4's ≥ 0.02 below H0's AND AUC(H4) ≥ AUC(H1) − 0.01 | residual storage reaction is a separable direction | a note for the next version; no claim about the frozen network |
 | Otherwise | "no separable storage direction shown" | — |
 
-Counting. A row holds if its condition is met on at least 4 seeds. Border rows count only non-floor seeds; with fewer
-than 4 non-floor seeds the border reads "floor (not testable)". Ties between "separable" and "shared" cannot occur on 5
-seeds (each needs ≥ 4 and the conditions exclude each other). Comparisons use point values; the bootstrap intervals of
-section 9 are printed, not used.
+Counting. The border rows are checked in the order listed: the first that holds on ≥ 4 non-floor seeds is the
+reading. With fewer than 4 non-floor seeds the border reads "floor (not testable)", and the same applies to storage.
+Comparisons use point values. The bootstrap intervals of section 9 are printed, not used.
 
 **Kill condition.** A network whose extraction fails (no feature file) is "not available". With fewer than 4 available
 networks, NE1 reads "not available" for every row. A gate failure (section 8) does not remove a network; it labels it.
-
-**H1 control.** If H1 alone moves a read by as much as H3 or H2, that change is attributed to refitting, not to erasure
-or reweighting. The table rows compare H3 and H2 with H0, and H1 is printed beside them.
 
 ## 8. Platform and gate
 
@@ -140,29 +171,39 @@ or reweighting. The table rows compare H3 and H2 with H0, and H1 is printed besi
 
 ## 9. Analysis (DGX CPU, after the result tar is verified)
 
-`src/NE1/ne1_heads.py`, run once. Bootstrap intervals (2,000 draws, `default_rng(20261128)`, persons) are printed for
-the border share, the S3 share at matched recall and the AUC; the table rows use point values on ≥ 4 of 5 seeds.
+`src/NE1/ne1_heads.py`, run once. Bootstrap intervals (2,000 draws, `default_rng(20261128)`, hosts) are printed for:
+- the border shift of H0, H0e, H1, H3 and H3c, and the differences H3 − H1 and H0e − H0. Hosts of P are redrawn, and
+  the reference ranks are recomputed in every draw.
+- the S3 share at matched recall for H0, H1d, H1dc, H2d, H1, H1c and H2, and each minus H0. Test hosts are redrawn, and
+  the matched cut is recomputed in every draw.
+- the landmark_combined AUC of H0, H1, H3, H4 and H0em, and the differences H3 − H1 and H4 − H1.
+
+The table rows use point values on ≥ 4 of 5 seeds. All features stay saved, so later erasers (LEACE, rank-k) need no
+new GPU slot.
 
 ## 10. Code, inputs and job (pins at registration)
 
 | File | sha256 |
 |---|---|
-| `src/NE1/build_ne1_pack.py` | `7055c7ec250880d9…` |
+| `src/NE1/build_ne1_pack.py` | `20b1a0088ca96267…` |
 | `src/NE1/ne1_extract.py` | `5082d0e37f947ded…` |
 | `src/NE1/ne1_gate.py` | `79f45a880f8f9602…` |
 | `src/NE1/athena_ne1.sbatch` | `bdfd96ef10ed1ee9…` |
-| `src/NE1/ne1_heads.py` | `8c2063ce390ef400…` |
-| `ne1_pack.tar` (code, base weights, images, manifests; 8.9 GB) | `4f88b779f2229ba3…` |
+| `src/NE1/ne1_heads.py` | `5c6fdcd2173d7fb9…` |
+| `ne1_pack.tar` (code, base weights, images, manifests; 8.9 GB) | `6456f550bb6d8f58…` |
 | `ne1_nets.tar` (five Sb meta.json + last_trainable.pt, TT1-FS gate refs) | `010337f9482ad442…` |
-| `ne1_train.csv` (5,535 rows) | `457f77d05fcb0c88…` |
-| `ne1_gate.csv` (3,417 rows) | `a3df29327690f24b…` |
-| `ne1_read.csv` (17,857 rows: L 10,458, C 3,000, B 2,919, S 1,480) | `06cc63160b67d2cd…` |
+| `ne1_train.csv` (5,535 rows) | `39125d0ff1141101…` |
+| `ne1_gate.csv` (3,417 rows) | `98c4d808ebf86728…` |
+| `ne1_read.csv` (17,857 rows: L 10,458, C 3,000, B 2,919, S 1,480; L rows carry role dev/test) | `ea1a5ca8b59ddfe6…` |
 
 Full values: `/mnt/t7/smad_next/NE1/*.sha256` and `git show` of this commit.
 
 - **Tests before the job.** ne1_extract.py on 8 rows of each manifest, one network, on the DGX: features of norm 1,
   logit = feature · w + b within 5e-7 (no score printed or read). ne1_heads.py in `--mock` mode (random unit features
-  with the real manifests and H0 weights) on one network: every read and interval computed, about 2 min per network.
+  with the real manifests and H0 weights) on all five networks after the F1-F8 fixes: every read and interval computed,
+  1 min 42 s in all. Every branch of the outcome table was exercised with synthetic values (separable, ceiling-fail,
+  not removable, null beats H3, splice moves / no change, storage). The pack was rebuilt after F6 (role column, host
+  assert); the extraction code and job script are unchanged since 2a31a56.
 - **Job.** `sbatch -p plgrid-now -A plgmultivision-gpu-a100 -t 01:00:00 athena_ne1.sbatch` from the Athena task folder
   `tasks/NE1` (scripts + SHA256SUMS); inputs in `packs/NE1`; output `results/NE1/NE1_feats.tar` + `.sha256`. Expected run
   time: about 5-10 min to copy and unpack 8.9 GB into memfs, about 70-90 s of extraction per network (TT1-FS: about 80 s

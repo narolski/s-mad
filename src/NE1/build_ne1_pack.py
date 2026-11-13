@@ -62,7 +62,7 @@ def main():
     R = []
     for r in csv.DictReader(open(FS / "data/manifests/pn1_eval.csv")):
         if r["fam"] in ("ladder", "splice") and r["role"] in ("dev", "test"):
-            R.append(dict(id=r["id"], path=r["path"], label=r["label"], kind=f"{r['fam']}:{r['rung']}:{r['strength']}:{r['tool']}", host=r["host"], set="L"))
+            R.append(dict(id=r["id"], path=r["path"], label=r["label"], kind=f"{r['fam']}:{r['rung']}:{r['strength']}:{r['tool']}", host=r["host"], set="L", role=r["role"]))
         elif r["fam"] == "ffhq_lcomb":
             R.append(dict(id=r["id"], path=r["path"], label=r["label"], kind=r["rung"], host=r["host"], set="C"))
         else:
@@ -79,13 +79,16 @@ def main():
     for rows in (T, G, R):  # ids unique within each manifest; 291 G R_cam photos are also L ladder genuine rows (other path, same source image)
         assert len({x["id"] for x in rows}) == len(rows), "duplicate ids"
     assert not ({x["id"] for x in T} & {x["id"] for x in G + R}), "fit ids overlap read ids"
+    assert not ({x["host"] for x in T} & {x["host"] for x in G + R}), "fit hosts overlap read hosts"  # pre-run F6
+    Ld, Lt = ({x["host"] for x in R if x["set"] == "L" and x["role"] == k} for k in ("dev", "test"))
+    assert Ld and Lt and not (Ld & Lt), "L dev and test hosts overlap"
     assert not ({x["path"] for x in T} & {x["path"] for x in G + R}), "fit rows overlap read rows"
     for p, s in links.items():
         assert not any(b in str(p).lower() or b in str(s).lower() for b in BENCH), p
         (D / p).parent.mkdir(parents=True, exist_ok=True); os.symlink(s.resolve(), D / p)
     for name, rows in (("ne1_train.csv", T), ("ne1_gate.csv", G), ("ne1_read.csv", R)):
         with open(D / "manifests" / name, "w", newline="") as fh:
-            w = csv.DictWriter(fh, fieldnames=["id", "path", "label", "kind", "host", "set"]); w.writeheader(); w.writerows(rows)
+            w = csv.DictWriter(fh, fieldnames=["id", "path", "label", "kind", "host", "set", "role"], restval=""); w.writeheader(); w.writerows(rows)
         shutil.copyfile(D / "manifests" / name, OUT / name)
     ss = subprocess.run(f"cd {root} && find -L . -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum", shell=True, check=True, capture_output=True, text=True).stdout
     (root / "SHA256SUMS").write_text(ss)
