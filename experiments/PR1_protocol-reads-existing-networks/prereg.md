@@ -328,3 +328,61 @@ added below as a dated amendment before any read.
   landmark_combined AUC 0.8138695 and 0.8144465, reproduced exactly). GD0 cues are computed by `src/PR1/cues_gd.py`
   (runs `cues27.py` unchanged, output in `/mnt/t7/smad_next/PR1/cues/gd0.npz`).
 - Code pins: `src/PR1/SHA256SUMS`.
+
+## Amendment 1: pre-run review fixes (`date`: Fri Nov 13 about 09:25 CET; before any read; review GO WITH FIXES, `experiments/reviews/PRERUN_PR1_20261113.md`)
+
+All changes are registered before any Z or GD number is computed.
+- **F1 (deletions):** the pack builder refuses to run if its tree exists (no rmtree). The remote job uses a new work
+  folder per run (`/workspace/pr1/work_<epoch>`) and deletes nothing. The driver never removes a result tar and
+  refuses `start` if one exists.
+- **F2 (GD0 label and coupling):** H-GD0 reads "StyleGAN morph against camera photo; the GAN render cue is not
+  separated". If Sb's GD2 verdict is not "not flagged" (that is, it is "one-person render flagged like a morph" or
+  "inconclusive"), a GD0 "transfers" verdict is written "transfers; not shown to be morph detection (GAN one-person
+  renders are not separated, GD2)".
+- **F3 (Z2a in-source):** Z2a is labelled "within the calibration sources". New, registered now, before TT1-FS is read
+  by its owner: **Z2b-τ5.** Per network, flag shares at that network's τ5 on each TT1-FS unseen-source family. This
+  uses the per-row TT1-FS logits in the TT1 owner's result tar, read only after that owner has committed its read.
+  G_unseen = the largest family share. "Usable on unseen sources" if G_unseen ≤ 0.10 on ≥ 4 of 5 seeds; "not usable"
+  if G_unseen > 0.15 on ≥ 4 of 5; otherwise "inconclusive". Stated: τ5 comes from stored TF32-on scores and TT1 rows
+  were scored with TF32 off. TT1 measured differences of up to 0.035 logit between the two, which is printed as a
+  limit. Networks that failed TT1's gate are missing (they count as not meeting).
+- **F4 (ρ):** printed beside the H-new-4 rule: the permutation p with y permuted within arms only, and ρ over the
+  three arm means. The verdict is labelled "across recipes (3 arms; effective n about 3)".
+- **F5 (Z3):** "engine gap" also requires Δ_R0 = AUC(R4 opencv vs R0) − AUC(R4 facemorpher vs R0) ≥ +0.03 on the same
+  ≥ 4 of 5 seeds. "No engine gap" also requires Δ_R0 ≤ +0.01 on ≥ 4 of 5. Otherwise "inconclusive". Stated: R2w opencv
+  is a trained negative of B and Sb.
+- **F6 (Z1):** a third outcome is checked first. "S3 underfit with S4 fit" if f_tr(S3) ≥ 0.20 and m_tr(S4) ≤ 0.05 on
+  ≥ 4 of 5 seeds: consistent with class weighting (S4 repeated about 3.5 times, S3 once) or with not reading identity.
+  It does not point to longer training (SL1) without an author decision. Printed: training-minus-development gaps.
+  scores_train.npz holds plain logits only (no flip average), and this is stated.
+- **F7:** a missing or off-pin tar is recorded as missing (None) and the denominator stays 5.
+- **F8:** A's GD1 verdict carries "history-confounded" (G is a camera photo resampled to 256 px). Printed: G's
+  own-rule flags beside test R0 native flags.
+- **F9:** Z0 prints "holds" or "differs" per cited range (0.01 AUC, 1 point). Image-bootstrap intervals are printed
+  for Z0/Z4 AUCs (S3 vs S0, S4 vs S3, S4 vs S0, R4 vs R2w, R4 vs R3, lcomb vs dev S3).
+- **F10:** "trained negative type" is stated on the B and Sb rows of Z4 row 6 and Z6 (R2w), and on Sb's S0 and S3 rows.
+- **F11:** cue and list files are filtered to manifest ids at load, so no FRLL row of `ar1.csv` or `ar1.npz` is held.
+  The engine fact check covers train_A, train_B and train_Sb. Stated: AF0 morphs use the same Delaunay/OpenCV-style
+  engine (`AF0/prereg.md`).
+- **F12 (Z6):** the deciding stratified AUC needs ≥ 4 strata with ≥ 10 rows of each class. If fewer, that seed is
+  "not readable" (counts as not meeting). A decile version is printed, with no rule.
+- **F13 (Z5):** "networks that passed the C2P gate" (the gate is per network). A's Δm_att is computed from the C2P
+  hold-out tar only with the C2P owner's and the lead's explicit OK. Otherwise only the values in `c2p_read.json` are
+  copied.
+- **F14 (GD gate):** the tolerance gate stays the deciding one. Printed beside it: byte identity per network, and the
+  TT1-FS byte-identity gate result of the same network (from the TT1 owner's committed gate file, after its read). If
+  any GD logit of a network is non-finite, that network's GD part is not read. The pn1fs smoke test is replaced by a
+  code smoke test on the DGX GPU (2 networks, 64 gate rows, the 34-row pack, platform checks off). Its scores only
+  check the code and are never read. On pn1fs the job runs only under the lock.
+- **F15 (disclosure, added to section 1):** the mock run printed real cue-only numbers (lapvar_face alone, direction-free:
+  R4 vs R2w 0.772 and S4 vs S3 0.503; Z6 stratum counts). PN1 amendment 9 frozen heads have read the DG1 frames
+  before (frozen CLIP and DINOv3 heads, not these networks).
+
+## Amendment 2 (`date`: Fri Nov 13 about 09:35 CET; before any read; cue-only facts)
+
+- Z6 readability (F12) is changed before any score is read. The F12 rule (≥ 4 quintile strata with ≥ 10 rows of each
+  class) cannot be met on these images. The cue-only stratum counts from the mock are, for the test opencv R4 / R2w
+  natives, (43, 34), (67, 9), (52, 24), (27, 49), (2, 75), so only 3 strata qualify. These counts come from the cue
+  file and contain no score. Replacement: the deciding stratified AUC is the n_pos × n_neg-weighted mean over the
+  quintile strata with ≥ 10 rows of each class. A seed is readable if those strata hold ≥ 50% of the 382 rows (here
+  229, 60%). The all-strata version and the decile version are printed. Rule thresholds are unchanged.

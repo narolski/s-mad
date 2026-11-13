@@ -157,6 +157,18 @@ def main():
         fsman = {r["id"]: r for r in csv.DictReader(open("/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/pn1_eval.csv"))}
         return np.array([lg for i, lg in zip(z["id"].tolist(), z["logit"].tolist()) if fsman[i]["rung"] == "ffhq_bona_orig"])
     G0 = ("stylegan_wplus", "stylegan_w", "diffae")
+
+    def r0_native(arm, s):                # F8: G's flags printed beside the stored test R0 native flags
+        if a.mock:
+            return None
+        n = f"PN1_{arm}_s{s}"
+        with tarfile.open(FS / f"{n}.tar") as tf:
+            z = np.load(io.BytesIO(tf.extractfile(f"{n}/scores_eval.npz").read()))
+        fsman = {r["id"]: r for r in csv.DictReader(open("/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/pn1_eval.csv"))}
+        x = [lg for i, lg in zip(z["id"].tolist(), z["logit"].tolist()) if fsman[i]["fam"] == "ladder"
+             and fsman[i]["role"] == "test" and fsman[i]["rung"] == "R0" and fsman[i]["strength"] == ""]
+        assert len(x) == 191
+        return share(x)
     ids = lambda **kw: [r["id"] for r in man if all(r[k] == v for k, v in kw.items())]   # noqa: E731
     # cue baselines on GD0 (once)
     base = {}
@@ -176,7 +188,9 @@ def main():
     for n, sc in scores.items():
         arm, s = n.split("_")[1], int(n.split("_s")[1])
         ok = gate.get(n, {}).get("ok", False)
-        R = dict(gate_ok=ok)
+        finite = all(np.isfinite(x) for x in sc.values())          # F14: non-finite GD logits -> part not read
+        R = dict(gate_ok=ok, finite=bool(finite), gate=gate.get(n))
+        ok = ok and finite
         if not ok:
             out["per_net"][f"{arm}_s{s}"] = R
             continue
@@ -197,6 +211,7 @@ def main():
             P, N = rung("gd1", x), rung("gd1", y)
             gd1[f"{x}_vs_{y}"] = dict(auc=auc(v(P), v(N)), ci=boot_unit(v(P), v(N), h(P), h(N), 20261144))
         gd1["flags_own_frame_confounded"] = {rg: share(v(rung("gd1", rg))) for rg in ("G", "REC", "MIR", "SAME", "X")}
+        gd1["test_R0_native_flag_own_stored"] = r0_native(arm, s)
         R["gd1"] = gd1
         gd2 = {}
         for x, y in (("R4", "R2"), ("R4", "R3"), ("R2", "R0"), ("R2s", "R0"), ("R4", "R2s"), ("R3", "R0"), ("R3m", "R0"), ("R4", "R0")):
@@ -225,13 +240,22 @@ def main():
         rg_ = get(arm, lambda r: r["gd1"]["REC_vs_G"]["auc"])
         notused = sum(1 for p_, q_ in zip(xr, rg_) if p_ is not None and q_ is not None and p_ >= 0.75 and q_ <= 0.60)
         used = cnt(rg_, lambda z: z >= 0.75) >= 4 or cnt(xr, lambda z: z <= 0.60) >= 4
-        V[f"GD1_{arm}"] = dict(X_vs_REC=xr, REC_vs_G=rg_, verdict="render path not used" if notused >= 4 else
+        V[f"GD1_{arm}"] = dict(X_vs_REC=xr, REC_vs_G=rg_, label=("history-confounded (G is a camera photo resampled to 256 px)"
+                                                                  if arm == "A" else ""), verdict="render path not used" if notused >= 4 else
                                ("render path used" if used else "inconclusive, no claim"))
         f2 = get(arm, lambda r: r["gd2"]["flags_own"]["R2"])
         a42 = get(arm, lambda r: r["gd2"]["R4_vs_R2"]["auc"])
         like = sum(1 for p_, q_ in zip(f2, a42) if p_ is not None and q_ is not None and p_ >= 0.50 and q_ <= 0.65)
         V[f"GD2_{arm}"] = dict(f_R2=f2, R4_vs_R2=a42, verdict="one-person render flagged like a morph" if like >= 4 else
                                ("not flagged" if cnt(f2, lambda z: z <= 0.10) >= 4 else "inconclusive"))
+    # F2: GD0 label and coupling to Sb's GD2 verdict
+    for arm in ARMS:
+        V[f"GD0_{arm}"]["label"] = "StyleGAN morph against camera photo; the GAN render cue is not separated"
+        for f in ("stylegan_wplus", "stylegan_w"):
+            fam = V[f"GD0_{arm}"]["families"][f]
+            if fam["verdict"] == "transfers" and V[f"GD2_{arm}"]["verdict"] != "not flagged":
+                fam["qualifier"] = (fam["qualifier"] + "; " if fam["qualifier"] else "") + \
+                    "not shown to be morph detection (GAN one-person renders are not separated, GD2)"
     out["verdicts"] = V
     pathlib.Path(a.out).write_text(json.dumps(out, indent=1))
     print(json.dumps(dict(baseline_check=chk, gd0_baselines=base), indent=0))

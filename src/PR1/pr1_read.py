@@ -216,26 +216,36 @@ def main():
     by = {r["id"]: r for r in rows}
     P = pools(rows)
     ids_eval = set(by)
-    nets = {(arm, s): load_net(arm, s, a.mock, ids_eval, None) for arm in ARMS for s in SEEDS}
+    nets, missing = {}, {}
+    for arm in ARMS:
+        for s in SEEDS:
+            try:
+                nets[(arm, s)] = load_net(arm, s, a.mock, ids_eval, None)
+            except Exception as ex:          # F7: a missing or off-pin network counts as not meeting (denominator 5)
+                missing[f"{arm}_s{s}"] = repr(ex)
     out = dict(mock=a.mock, manifest_sha256=MAN_SHA, pools_n={k: len(v) for k, v in P.items()},
-               tars={f"{k[0]}_s{k[1]}": v["tar_sha256"] for k, v in nets.items()}, per_net={})
+               tars={f"{k[0]}_s{k[1]}": v["tar_sha256"] for k, v in nets.items()}, missing=missing, per_net={})
     # engine check of training rows (fact check, no score)
-    ar1 = {r["id"]: r for r in csv.DictReader(open(AR1_LIST))}
-    eng = {}
-    for r in csv.DictReader(open(TRAIN_SB)):
+    ar1 = {r["id"]: r for r in csv.DictReader(open(AR1_LIST)) if r["cell"] == "frgcferet"}   # F11: no FRLL row kept
+    engs = {}
+    for arm_ in ARMS:
+      eng = engs.setdefault(arm_, {})
+      for r in csv.DictReader(open(TRAIN_SB.parent / f"train_{arm_}.csv")):
         if r["kind"] in ("lad_R4", "lad_R2w", "lad_R0", "lad_half"):
             i = pathlib.Path(r["path"]).stem
-            eng.setdefault(r["kind"], {}).setdefault(ar1[i]["tool"] if i in ar1 else "not_in_ar1", 0)
-            eng[r["kind"]][ar1[i]["tool"] if i in ar1 else "not_in_ar1"] += 1
+            t = ar1[i]["tool"] if i in ar1 else "not_in_ar1_frgcferet"
+            eng.setdefault(r["kind"], {}).setdefault(t, 0)
+            eng[r["kind"]][t] += 1
         elif r["kind"] in ("lad_S0", "lad_S3", "lad_S4"):
             t = "opencv" if "_opencv_" in r["path"] else "other"
             eng.setdefault(r["kind"], {}).setdefault(t, 0)
             eng[r["kind"]][t] += 1
-    out["z3_train_engine_Sb_list"] = eng
+    out["z3_train_engine"] = engs
+    out["z3_note"] = "af0 morphs: AF0's Delaunay/OpenCV-style engine (AF0/prereg.md); R2w opencv is a trained negative of B and Sb"
     zl, zs = np.load(CUE_LAD), np.load(CUE_SPL)
     li = list(zl["names"]).index("lapvar_face")
-    lap = {str(i): float(c[li]) for i, c in zip(zl["ids"], zl["cues"])}
-    lap.update({str(i): float(c[li]) for i, c in zip(zs["ids"], zs["cues"])})
+    lap = {str(i): float(c[li]) for i, c in zip(zl["ids"], zl["cues"]) if str(i) in ids_eval}   # F11: manifest ids only
+    lap.update({str(i): float(c[li]) for i, c in zip(zs["ids"], zs["cues"]) if str(i) in ids_eval})
     rng_seed = 20261141
     for (arm, s), N in nets.items():
         e = N["eval"]
@@ -260,6 +270,13 @@ def main():
         A_["lcomplete_vs_resmatch"] = auc(v("lcomplete_orig"), v("ffhq_lcomplete_resmatch_all"))
         A_["lcomb_vs_devS3"] = auc(v("lcomb_orig"), v("spl_S3_dev"))
         R["auc"] = A_
+        R["auc_ci"] = {k: boot_auc(*pp, 20261141) for k, pp in (
+            ("S3_vs_S0_test", (v("spl_S3_test"), v("spl_S0_test"))), ("S4_vs_S3_test", (v("spl_S4_test"), v("spl_S3_test"))),
+            ("S4_vs_S0_test", (v("spl_S4_test"), v("spl_S0_test"))), ("S3_vs_S0_dev", (v("spl_S3_dev"), v("spl_S0_dev"))),
+            ("S4_vs_S3_dev", (v("spl_S4_dev"), v("spl_S3_dev"))),
+            ("R4_vs_R2w_opencv_test", (v("lad_R4_opencv_test_nat"), v("lad_R2w_opencv_test_nat"))),
+            ("R4_vs_R3_opencv_test", (v("lad_R4_opencv_test_nat"), v("lad_R3_opencv_test_nat"))),
+            ("lcomb_vs_devS3", (v("lcomb_orig"), v("spl_S3_dev"))))}
         # Z2c printed: lcomb miss at cut-offs flagging 10% / 20% of dev S3
         s3 = v("spl_S3_dev")
         R["z2c_lcomb_miss_at_S3_flag"] = {str(q): share(v("lcomb_orig"), gt=False, t=float(np.quantile(s3, 1 - q)))
@@ -315,7 +332,12 @@ def main():
             return np.array([e[i] for i in ids]), np.array([lap[i] for i in ids]), len(P[k]) - len(ids)
         p4, c4, m4 = lv("lad_R4_opencv_test_nat")
         p2, c2, m2 = lv("lad_R2w_opencv_test_nat")
-        sa, per = stratified_auc(p4, p2, c4, c2)
+        sa_all, per = stratified_auc(p4, p2, c4, c2)
+        sa10, per10 = stratified_auc(p4, p2, c4, c2, q=10)
+        good = [x for x in per if x["n_pos"] >= 10 and x["n_neg"] >= 10]      # amendment 2: deciding strata
+        cover = sum(x["n_pos"] + x["n_neg"] for x in good) / (len(p4) + len(p2))
+        valid = cover >= 0.50
+        sa = (sum(x["auc"] * x["n_pos"] * x["n_neg"] for x in good) / sum(x["n_pos"] * x["n_neg"] for x in good)) if good else None
         s4, cs4, ms4 = lv("spl_S4_test")
         s3_, cs3, ms3 = lv("spl_S3_test")
         sa2, per2 = stratified_auc(s4, s3_, cs4, cs3)
@@ -324,7 +346,7 @@ def main():
                   "spl_S0_test", "spl_S3_test", "spl_S4_test"):
             x, c, _ = lv(k)
             rho[k] = spearman(x, np.log(c + 1e-12))
-        R["z6"] = dict(strat_auc_R4_vs_R2w=sa, strata=per, auc_R4_vs_R2w=auc(p4, p2),
+        R["z6"] = dict(strat_auc_R4_vs_R2w=sa, strat_auc_all_strata=sa_all, cover=cover, strata=per, readable=valid, strat10_auc_R4_vs_R2w=sa10, strata10=per10, auc_R4_vs_R2w=auc(p4, p2),
                        strat_auc_S4_vs_S3=sa2, strata_S=per2, auc_S4_vs_S3=auc(s4, s3_), rho_logit_loglap=rho,
                        missing_cues=dict(R4=m4, R2w=m2, S4=ms4, S3=ms3))
         out["per_net"][f"{arm}_s{s}"] = R
@@ -337,78 +359,142 @@ def main():
     # ---------------------------------------------------------- verdicts
     V = {}
     pn = out["per_net"]
-    get = lambda arm, f: [f(pn[f"{arm}_s{s}"]) for s in SEEDS]   # noqa: E731
-    # Z1 (Sb)
-    f3, m4_ = get("Sb", lambda r: r["z1"].get("f_tr_S3")), get("Sb", lambda r: r["z1"].get("m_tr_S4"))
-    under = sum(1 for x, y in zip(f3, m4_) if (x is not None and x >= 0.20) or (y is not None and y >= 0.15))
-    fitg = sum(1 for x, y in zip(f3, m4_) if x is not None and y is not None and x <= 0.05 and y <= 0.05)
-    V["Z1_Sb"] = dict(f_tr_S3=f3, m_tr_S4=m4_, n_underfit=under, n_fit=fitg,
-                      verdict="underfit" if under >= 4 else ("fit, does not generalise" if fitg >= 4 else "mixed, no claim"))
-    # Z2a
+
+    def get(arm, f):
+        o = []
+        for s_ in SEEDS:
+            r = pn.get(f"{arm}_s{s_}")
+            try:
+                o.append(f(r) if r is not None else None)
+            except (KeyError, TypeError):
+                o.append(None)
+        return o
+    ok = lambda x: x is not None   # noqa: E731
+    TN = {"A": "", "B": " (R2w is a trained negative type of B)", "Sb": " (R2w, S0, S3 are trained negative types of Sb)"}
+    # Z1 (Sb): F6 order: S3-underfit-with-S4-fit, then underfit, then fit
+    f3, m4_ = get("Sb", lambda r: r["z1"]["f_tr_S3"]), get("Sb", lambda r: r["z1"]["m_tr_S4"])
+    pair = [(x, y) for x, y in zip(f3, m4_)]
+    n_s3 = sum(1 for x, y in pair if ok(x) and ok(y) and x >= 0.20 and y <= 0.05)
+    under = sum(1 for x, y in pair if (ok(x) and x >= 0.20) or (ok(y) and y >= 0.15))
+    fitg = sum(1 for x, y in pair if ok(x) and ok(y) and x <= 0.05 and y <= 0.05)
+    ver = ("S3 underfit with S4 fit (class weighting or identity; no SL1 without an author decision)" if n_s3 >= 4 else
+           "underfit" if under >= 4 else ("fit, does not generalise" if fitg >= 4 else "mixed, no claim"))
+    gaps = dict(S3_dev_minus_train=[None if not (ok(x) and ok(d)) else d - x for x, d in
+                                    zip(f3, get("Sb", lambda r: r["pools"]["spl_S3_dev"]["above_own"]))],
+                S4miss_dev_minus_train=[None if not (ok(y) and ok(d)) else (1 - d) - y for y, d in
+                                        zip(m4_, get("Sb", lambda r: r["pools"]["spl_S4_dev"]["above_own"]))])
+    V["Z1_Sb"] = dict(f_tr_S3=f3, m_tr_S4=m4_, n_s3_underfit_s4_fit=n_s3, n_underfit=under, n_fit=fitg, gaps=gaps,
+                      note="plain logits only (scores_train.npz holds no flip average)", verdict=ver)
+    # Z2a (within calibration sources)
     for arm in ARMS:
         u = get(arm, lambda r: r["z2a"]["usable"])
-        n = sum(u)
-        V[f"Z2a_{arm}"] = dict(usable=u, n=n, verdict="usable operating point" if n >= 4 else
-                               ("no usable operating point" if n <= 1 else "inconclusive, no claim"))
+        n = sum(1 for x in u if x)
+        V[f"Z2a_{arm}"] = dict(usable=u, G_max=get(arm, lambda r: r["z2a"]["G_max"]),
+                               G_max_pool=get(arm, lambda r: r["z2a"]["G_max_pool"]),
+                               lcomb_miss_t5=get(arm, lambda r: r["z2a"]["lcomb_miss_t5"]), n=n, label="within the calibration sources",
+                               verdict="usable operating point" if n >= 4 else ("no usable operating point" if n <= 1 else "inconclusive, no claim"))
     # Z2c (Sb)
     c = get("Sb", lambda r: r["auc"]["lcomb_vs_devS3"])
-    V["Z2c_Sb"] = dict(auc=c, verdict="same band (supported)" if count(c, lambda x: x <= 0.65) >= 4 else
+    V["Z2c_Sb"] = dict(auc=c, ci=get("Sb", lambda r: r["auc_ci"]["lcomb_vs_devS3"]),
+                       lcomb_miss_at_S3_flag=get("Sb", lambda r: r["z2c_lcomb_miss_at_S3_flag"]),
+                       verdict="same band (supported)" if count(c, lambda x: x <= 0.65) >= 4 else
                        ("separate bands (falsified)" if count(c, lambda x: x >= 0.80) >= 4 else "inconclusive"))
-    # Z2-rho
+    # Z2-rho (F4: within-arm permutation p and arm-mean rho printed)
     from scipy.stats import spearmanr
-    keys = [(arm, s) for arm in ARMS for s in SEEDS]
+    keys = [(a_, s_) for a_ in ARMS for s_ in SEEDS if f"{a_}_s{s_}" in pn]
+    arm_of = np.array([a_ for a_, _ in keys])
+    nperm = 200000 if not a.mock else 2000
     for tag, xk, yk in (("own", "x_own", "y_own"), ("t5", "x_t5", "y_t5")):
-        x = np.array([pn[f"{a_}_s{s}"]["z2rho"][xk] for a_, s in keys])
-        y = np.array([pn[f"{a_}_s{s}"]["z2rho"][yk] for a_, s in keys])
+        x = np.array([pn[f"{a_}_s{s_}"]["z2rho"][xk] for a_, s_ in keys])
+        y = np.array([pn[f"{a_}_s{s_}"]["z2rho"][yk] for a_, s_ in keys])
         rho = float(spearmanr(x, y).correlation)
         rng = np.random.default_rng(20261142)
-        perm = np.array([spearmanr(x, rng.permutation(y)).correlation for _ in range(200000 if not a.mock else 2000)])
-        p = float((np.abs(perm) >= abs(rho) - 1e-12).mean())
-        within = {arm: spearman(x[i * 5:(i + 1) * 5], y[i * 5:(i + 1) * 5]) for i, arm in enumerate(ARMS)}
-        V[f"Z2rho_{tag}"] = dict(rho=rho, p_perm_two_sided=p, within_arm=within, x=x.tolist(), y=y.tolist(),
+        perm = np.array([spearmanr(x, rng.permutation(y)).correlation for _ in range(nperm)])
+        p_ = float((np.abs(perm) >= abs(rho) - 1e-12).mean())
+        rng2 = np.random.default_rng(20261142)
+        pw = []
+        for _ in range(nperm):
+            yy = y.copy()
+            for arm in ARMS:
+                m = arm_of == arm
+                yy[m] = rng2.permutation(y[m])
+            pw.append(spearmanr(x, yy).correlation)
+        p_w = float((np.abs(np.array(pw)) >= abs(rho) - 1e-12).mean())
+        xm = [float(x[arm_of == arm].mean()) for arm in ARMS]
+        ym = [float(y[arm_of == arm].mean()) for arm in ARMS]
+        within = {arm: spearman(x[arm_of == arm], y[arm_of == arm]) for arm in ARMS}
+        V[f"Z2rho_{tag}"] = dict(n=len(keys), rho=rho, p_perm_two_sided=p_, p_perm_within_arm=p_w,
+                                 rho_arm_means=float(spearmanr(xm, ym).correlation), arm_means=dict(x=xm, y=ym),
+                                 within_arm=within, x=x.tolist(), y=y.tolist(), label="across recipes (3 arms; effective n about 3)",
                                  verdict=(("falsified" if rho >= 0 else ("supported" if rho <= -0.6 else "weak (not decided)"))
                                           if tag == "own" else "printed only"))
-    # Z3
+    # Z3 (F5: Delta_R0 co-condition)
     for arm in ARMS:
         d = get(arm, lambda r: r["z3"]["test"]["delta"])
-        V[f"Z3_{arm}"] = dict(delta=d, verdict="engine gap" if count(d, lambda x: x >= 0.03) >= 4 else
-                              ("no engine gap" if count(d, lambda x: x <= 0.01) >= 4 else "inconclusive, no claim"))
+        d0 = get(arm, lambda r: r["z3"]["test"]["r4_vs_r0_cv"] - r["z3"]["test"]["r4_vs_r0_fm"])
+        gap = sum(1 for x, y in zip(d, d0) if ok(x) and ok(y) and x >= 0.03 and y >= 0.03)
+        nog = sum(1 for x, y in zip(d, d0) if ok(x) and ok(y) and x <= 0.01 and y <= 0.01)
+        V[f"Z3_{arm}"] = dict(delta=d, delta_ci=get(arm, lambda r: r["z3"]["test"]["delta_ci"]), delta_R0=d0,
+                              note=TN[arm], verdict="engine gap" if gap >= 4 else ("no engine gap" if nog >= 4 else "inconclusive, no claim"))
     # Z4
     for arm in ARMS:
         fr2 = get(arm, lambda r: r["pools"]["lad_R2w_opencv_test_nat"]["above_own"])
         a42 = get(arm, lambda r: r["auc"]["R4_vs_R2w_opencv_test"])
-        n_ok = sum(1 for f, x in zip(fr2, a42) if f <= 0.05 and x >= 0.90)
-        V[f"Z4_row6_R2w_{arm}"] = dict(f=fr2, auc_R4_vs_R2w=a42, verdict="warp-only not flagged" if n_ok >= 4 else
+        n_ok = sum(1 for f, x in zip(fr2, a42) if ok(f) and ok(x) and f <= 0.05 and x >= 0.90)
+        V[f"Z4_row6_R2w_{arm}"] = dict(f=fr2, auc_R4_vs_R2w=a42, note=TN[arm],
+                                       verdict="warp-only not flagged" if n_ok >= 4 else
                                        ("warp-only flagged" if count(fr2, lambda x: x >= 0.20) >= 4 else "inconclusive, no claim"))
         for rg, key in (("R3", "lad_R3_opencv_test_nat"), ("R3m", "lad_R3m_opencv_test_nat"), ("S3", "spl_S3_test")):
             f = get(arm, lambda r, key=key: r["pools"][key]["above_own"])
-            V[f"Z4_{rg}_{arm}"] = dict(f=f, verdict="flagged like a morph" if count(f, lambda x: x >= 0.50) >= 4 else
+            extra = {}
+            if rg in ("R3", "R3m"):
+                extra["auc_R4_vs_" + rg] = get(arm, lambda r, rg=rg: r["auc"][f"R4_vs_{rg}_opencv_test"])
+            else:
+                extra["auc_S4_vs_S3"] = get(arm, lambda r: r["auc"]["S4_vs_S3_test"])
+            V[f"Z4_{rg}_{arm}"] = dict(f=f, **extra, note=(TN[arm] if rg == "S3" else ""),
+                                       verdict="flagged like a morph" if count(f, lambda x: x >= 0.50) >= 4 else
                                        ("not flagged" if count(f, lambda x: x <= 0.10) >= 4 else "inconclusive"))
         f0 = get(arm, lambda r: r["pools"]["spl_S0_test"]["above_own"])
         a40 = get(arm, lambda r: r["auc"]["S4_vs_S0_test"])
-        n0 = sum(1 for f, x in zip(f0, a40) if f <= 0.05 and x >= 0.90)
-        V[f"Z4_row9_S0_{arm}"] = dict(f=f0, auc_S4_vs_S0=a40, verdict="seam-only not flagged" if n0 >= 4 else
+        n0 = sum(1 for f, x in zip(f0, a40) if ok(f) and ok(x) and f <= 0.05 and x >= 0.90)
+        V[f"Z4_row9_S0_{arm}"] = dict(f=f0, auc_S4_vs_S0=a40, note=TN[arm], verdict="seam-only not flagged" if n0 >= 4 else
                                       ("seam-only flagged" if count(f0, lambda x: x >= 0.20) >= 4 else "inconclusive"))
-    # Z6
+    # Z6 (F12: a seed counts only if readable)
     for arm in ARMS:
-        sa = get(arm, lambda r: r["z6"]["strat_auc_R4_vs_R2w"])
-        V[f"Z6_{arm}"] = dict(strat_auc=sa, verdict="softness explains" if count(sa, lambda x: x <= 0.70) >= 4 else
+        sa = get(arm, lambda r: r["z6"]["strat_auc_R4_vs_R2w"] if r["z6"]["readable"] else None)
+        V[f"Z6_{arm}"] = dict(strat_auc=sa, readable=get(arm, lambda r: r["z6"]["readable"]),
+                              strat10=get(arm, lambda r: r["z6"]["strat10_auc_R4_vs_R2w"]), note=TN[arm],
+                              verdict="softness explains" if count(sa, lambda x: x <= 0.70) >= 4 else
                               ("not softness alone" if count(sa, lambda x: x >= 0.85) >= 4 else "inconclusive, no claim"))
-    # Z0 fact check (printed)
+    # Z0 fact check (printed; F9 holds/differs at 0.01 AUC / 1 point)
     def rng_(arm, f):
         xs = [x for x in get(arm, f) if x is not None]
-        return [min(xs), max(xs)]
-    V["Z0"] = dict(
-        Sb_dev_S0_flags_per_seed=get("Sb", lambda r: r["pools"]["spl_S0_dev"]["above_own"]),
-        Sb_dev_S3_flags=rng_("Sb", lambda r: r["pools"]["spl_S3_dev"]["above_own"]), cited_S3=[0.31, 0.41],
-        Sb_S3_vs_S0_dev=rng_("Sb", lambda r: r["auc"]["S3_vs_S0_dev"]),
-        Sb_S3_vs_S0_test=rng_("Sb", lambda r: r["auc"]["S3_vs_S0_test"]), cited_S3_vs_S0=[0.86, 0.93],
-        Sb_S4_vs_S3_dev=rng_("Sb", lambda r: r["auc"]["S4_vs_S3_dev"]),
-        Sb_S4_vs_S3_test=rng_("Sb", lambda r: r["auc"]["S4_vs_S3_test"]), cited_S4_vs_S3=[0.78, 0.82],
-        Sb_lcomb_miss_own=rng_("Sb", lambda r: 1 - r["pools"]["lcomb_orig"]["above_own"]),
-        cited_lcomb_miss=[0.26, 0.47],
-        AB_dev_S3_flags={arm: rng_(arm, lambda r: r["pools"]["spl_S3_dev"]["above_own"]) for arm in ("A", "B")},
-        Sb_dev_S4_miss=rng_("Sb", lambda r: 1 - r["pools"]["spl_S4_dev"]["above_own"]), cited_S4_miss=[0.15, 0.29])
+        return [min(xs), max(xs)] if xs else None
+
+    def hold(got, cited, tol):
+        if got is None:
+            return "not available"
+        return "holds" if abs(got[0] - cited[0]) <= tol + 1e-9 and abs(got[1] - cited[1]) <= tol + 1e-9 else "differs"
+    Z0 = {}
+    for name, f, cited, tol in (
+            ("Sb_dev_S3_flags", lambda r: r["pools"]["spl_S3_dev"]["above_own"], [0.31, 0.41], 0.01),
+            ("Sb_S3_vs_S0_dev", lambda r: r["auc"]["S3_vs_S0_dev"], [0.86, 0.93], 0.01),
+            ("Sb_S3_vs_S0_test", lambda r: r["auc"]["S3_vs_S0_test"], [0.86, 0.93], 0.01),
+            ("Sb_S4_vs_S3_dev", lambda r: r["auc"]["S4_vs_S3_dev"], [0.78, 0.82], 0.01),
+            ("Sb_S4_vs_S3_test", lambda r: r["auc"]["S4_vs_S3_test"], [0.78, 0.82], 0.01),
+            ("Sb_lcomb_miss_own", lambda r: 1 - r["pools"]["lcomb_orig"]["above_own"], [0.26, 0.47], 0.01),
+            ("Sb_dev_S4_miss", lambda r: 1 - r["pools"]["spl_S4_dev"]["above_own"], [0.15, 0.29], 0.01)):
+        g = rng_("Sb", f)
+        Z0[name] = dict(fresh_range=g, cited=cited, check=hold(g, cited, tol))
+    for arm in ("A", "B"):
+        g = rng_(arm, lambda r: r["pools"]["spl_S3_dev"]["above_own"])
+        Z0[f"{arm}_dev_S3_flags"] = dict(fresh_range=g, cited=[0.02, 0.07], check=hold(g, [0.02, 0.07], 0.01),
+                                         note="cited for A and B together (2-7%)")
+    g0 = get("Sb", lambda r: r["pools"]["spl_S0_dev"]["above_own"])
+    Z0["Sb_dev_S0_flags_per_seed"] = dict(fresh=g0, cited="0 of 100 (seeds 401/402, PN1 prereg.md:778)",
+                                          check="holds" if all(x == 0 for x in g0 if x is not None) else "differs")
+    Z0["Sb_test_S0_flags_per_seed"] = get("Sb", lambda r: r["pools"]["spl_S0_test"]["above_own"])
+    V["Z0"] = Z0
     out["verdicts"] = V
     pathlib.Path(a.out).write_text(json.dumps(out, indent=1))
     for k, x in V.items():

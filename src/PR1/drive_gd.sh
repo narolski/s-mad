@@ -20,10 +20,9 @@ case "$STEP" in
     RS "$D/bin_SHA256SUMS" "root@$HOST:$B/bin/SHA256SUMS"
     RS "$D/pr1_gd_limit8.tar" "$D/pr1_gd.tar" "root@$HOST:$B/packs/"
     R "cd $B/bin && sha256sum -c --quiet SHA256SUMS && cd $B/packs && echo '$GSHA  pr1_gd.tar' | sha256sum -c --quiet && echo '$GSHA8  pr1_gd_limit8.tar' | sha256sum -c --quiet && echo UPLOAD_OK" ;;
-  test)   # 2 networks x 64 gate rows + the 34-row pack; no waits, no lock; GPU memory small (runs beside a fit)
-    R "cd $B && PR1_TEST=1 timeout 1200 bash $B/bin/remote_gd.sh $GSHA8 $FSHA > $B/logs/test.log 2>&1; tail -5 $B/logs/test.log; cat $B/work/res/PR1_GD_pn1fs/rc; cat $B/work/res/PR1_GD_pn1fs/gate_gd.txt" ;;
   start)
-    R "cd $B && rm -f $B/PR1_DONE $B/results/PR1_GD_pn1fs.tar* && rm -rf $B/work && CUDA_VISIBLE_DEVICES=0 nohup setsid bash $B/bin/remote_gd.sh $GSHA $FSHA > $B/logs/run.log 2>&1 < /dev/null & sleep 3; tail -2 $B/logs/run.log" ;;
+    R "test ! -e $B/results/PR1_GD_pn1fs.tar && test ! -e $B/PR1_DONE" || { echo "result or PR1_DONE exists; refusing (F1)"; exit 1; }
+    R "cd $B && CUDA_VISIBLE_DEVICES=0 nohup setsid bash $B/bin/remote_gd.sh $GSHA $FSHA > $B/logs/run.log 2>&1 < /dev/null & sleep 3; tail -2 $B/logs/run.log" ;;
   status)
     R "tail -3 $B/logs/run.log; ls $B/PR1_DONE 2>/dev/null; ls /workspace/tt1/DONE_FS /workspace/tt1/DONE_sp /workspace/tt1/NO_SP 2>/dev/null" ;;
   pull)

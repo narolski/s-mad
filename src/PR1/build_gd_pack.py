@@ -9,7 +9,6 @@ import csv
 import hashlib
 import os
 import pathlib
-import shutil
 import subprocess
 import sys
 
@@ -95,8 +94,8 @@ def main():
         rows = keep[:8] if len(keep) < 8 else keep
     tag = "pr1_gd_limit8" if lim else "pr1_gd"
     tree = OUT / f"{tag}_tree"
-    if tree.exists():
-        shutil.rmtree(tree)                      # only symlinks and small files made by this script
+    if tree.exists():                            # pre-run review F1: never delete; a rebuild needs a new tag
+        sys.exit(f"{tree} exists; refusing to overwrite")
     root = tree / "pr1g"
     (root / "data" / "eval" / "gd").mkdir(parents=True)
     (root / "data" / "manifests").mkdir(parents=True)
