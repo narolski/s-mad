@@ -7,7 +7,7 @@ import numpy as np
 sys.path.insert(0, "/home/narolski/smad-next/src/RS1")
 import analyse as A
 A.ATH_RUNS.update(v1="/mnt/t7/smad_next/RS1/results_rented/prod_v1_rented", v2="/mnt/t7/smad_next/RS1/results_rented/prod_v2_rented")
-rng = np.random.default_rng(0); out = {}
+rng = np.random.default_rng(20261111); out = {}   # amendment 6: EV1 seed
 for det in ("madation_vitb16", "madation_vitl14", "mixfacenet_mad_smdd"):
     for v in ("v1", "v2"):
         P = A.athena_pools(det, variant=v)

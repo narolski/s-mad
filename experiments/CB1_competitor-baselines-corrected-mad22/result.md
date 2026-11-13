@@ -153,3 +153,24 @@ SMDD, blur / resampling / JPEG augmentations removed, early stopping on our vali
 weights reach 12.5 / 17.1 (FRLL-Morphs / MAD22) with the same genuine frames, so these gaps measure our pipeline, not the
 methods." Every table row should show both genuine pools (native and E7): swapping the pool alone moves single cells by
 up to 99 points (e.g. M4 MAD22 FaceMorpher 99.6 vs 0.6).
+
+## SA1 gap item 10: released-detector cells (amendments 5-6; benchmark audit, our scoring, not reviewed)
+
+Files: `sa1_cells/` (rs1_existing.json, selfmad_croppath.json, a43_mfn.json, ag1_mfn/). New scoring: MixFaceNet-MAD
+release, 'rel' mode (our frames), DGX CPU; reproduction gate on 212 eval.csv rows against the stored A12REL scores:
+median |logit difference| 0.0057, max 0.070: pass; A43 consistency check (608 eval.csv frames): median 0.025, max
+0.100: pass.
+
+| Cell | Value | Path / source |
+|---|---|---|
+| 5-ViTL (frame alone, MorDIFF tight frame vs FRLL orig, same 204 photos) | +0.067 logit [0.058, 0.084] (93% of photos rise) | our frames, EV1 `AM2_B4_border_pairing.csv` (computed 11 Nov, not stated in EV1's result) |
+| 5-ViTL, own crop | +0.024 [0.019, 0.028] (crop v1, n 201); +0.029 [0.025, 0.034] (v2, n 204) | RS1 scores; own crop keeps the border (black fraction MorDIFF frame 5.0% / 8.3%, FRLL orig 0.0%) |
+| 5-MFN | −38.8 logit [−39.8, −37.2] (0% rise) | our frames, EV1 file; MixFaceNet is reversed on our frames (C1b), so not interpretable as a border cue |
+| 5-MFN, own crop | −3.66 [−4.80, −2.76] (v1); −3.92 [−4.91, −2.96] (v2); 18-25% of photos rise | RS1 scores: the tight frame makes photos look more genuine |
+| 13-MFN (diffusion render path: B20 morph vs D20 reconstruction, AUC) | 0.589 [0.527, 0.656]; same-person mix C20 vs D20 0.428; B20 vs C20 0.671; validity (published MorDIFF vs photos) 0.800 [0.732, 0.865]: valid | our frames, new scores, `a43_mfn.json` (person bootstrap B 2,000) |
+| 13-MFN, own crop | 0.489 [0.410, 0.567] | RS1 corrected crop (existing) |
+| 16-MFN (EER change, neutral-only minus all genuine) | our frames: mean −0.26 (C1b; reversed release, EERs 75-98% on four cells, descriptive); own crop: −0.37 to −0.99 (v1, five FRLL families, mean −0.58), −0.50 to 0.00 (v2) | C1b result; RS1 `rs1_expression.csv` |
+| 10-SelfMAD (crop path; SelfMAD's own dlib preprocessing, not the SMDD crop script) | FRLL five-family mean EER 5.55 with raw genuine photos → 10.24 with our aligned genuine frames (AMSL 2.44 → 4.91, FaceMorpher 0.98 → 1.51, OpenCV 0.37 → 0.49, StyleGAN2 16.60 → 28.50, WebMorph 7.36 → 15.79); same raw-file morphs | existing scores (A41 x7, A32-RSX) via RS1's pools |
+| 4-ViTL (own rule on FFHQ, own crop) | 0.0% of 1,934 (v1) / 1,997 (v2) FFHQ photos flagged; same rule catches AMSL 0.3%, WebMorph 4.3%, MAD22 FaceMorpher 90.3% (v1) | RS1 pool rates |
+| 19-MFN (own 0.5 rule, own crop v1) | raw FRLL photos flagged 0.5%; morphs caught: AMSL 12.5%, WebMorph 10.0%, StyleGAN2 33.9%, OpenCV 62.4%, MAD22 FaceMorpher 93.9%, MIPGAN-I 12.0%, MIPGAN-II 9.1% | RS1 `rs1_pool_rates.csv` |
+| 14-MFN | pending (AG1 frames scoring) | |

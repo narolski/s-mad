@@ -1,0 +1,59 @@
+{
+ "consistency_check": {
+  "n": 608,
+  "median": 0.02460479736328125,
+  "max": 0.1004486083984375,
+  "passed": true
+ },
+ "validity: published MorDIFF (A) vs FRLL photos R0": {
+  "auc": 0.8,
+  "ci95": [
+   0.732,
+   0.865
+  ],
+  "n_pos": 200,
+  "n_neg": 204,
+  "boot": 2000
+ },
+ "valid": true,
+ "R4 (B20) vs R2 (D20) [AD1 main]": {
+  "auc": 0.589,
+  "ci95": [
+   0.527,
+   0.656
+  ],
+  "n_pos": 200,
+  "n_neg": 204,
+  "boot": 2000
+ },
+ "R3 (C20) vs R2 (D20)": {
+  "auc": 0.428,
+  "ci95": [
+   0.393,
+   0.463
+  ],
+  "n_pos": 102,
+  "n_neg": 204,
+  "boot": 2000
+ },
+ "R4 (B20) vs R3 (C20)": {
+  "auc": 0.671,
+  "ci95": [
+   0.598,
+   0.743
+  ],
+  "n_pos": 200,
+  "n_neg": 102,
+  "boot": 2000
+ },
+ "published (A) vs B20 [bridge]": {
+  "auc": 0.464,
+  "ci95": [
+   0.408,
+   0.512
+  ],
+  "n_pos": 200,
+  "n_neg": 200,
+  "boot": 2000
+ }
+}
