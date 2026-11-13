@@ -140,6 +140,12 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
   mock-tested; FS1 networks extracted locally to /mnt/t7/smad_next/TT1/nets_fs/ (meta, last_trainable, scores_eval of
   the 15 verified tars); decision: no scoring beside the Sp fits (job waits for the host fit lock). Pre-run check by
   the experiment-reviewer (opus) running.
+- 07:29 pre-run check GO WITH FIXES (B1 blocker: FS1 driver would release pn1fs when Sp ends; lead wrote "all sp tt1"
+  to QUEUES at 07:35; I2 agreed: all-15 gate failure = platform finding, block not available). Fixes registered at
+  ab81b35 (reader M1-M3, m1-m3; GPU UUID and deadline checks; I3 TF32-split print). Mock re-run with A missing on two
+  seeds: correct "not available" handling.
+- 07:35:38 `drive_tt1_fs.sh ... start`: job on pn1fs waits for the host fit lock (Sp queue until about 12:45); pull
+  loop scheduled from 12:40 (background on the DGX; log /mnt/t7/smad_next/vast/pn1fs/tt1/tt1_fs_drive.log).
 
 ### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
 
@@ -269,7 +275,9 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-No process running. tt1a, tt1b, tt1c released after verified copies (tt1c: rc 0). Nothing queued on WCSS. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+pn1fs: TT1 FS1-block job waiting for the fit lock (owner TT1; expected start about 12:45, end about 13:30; the lead
+holds the release via QUEUES 'tt1' until tt1/TT1_DONE). DGX: background wait-then-pull loop from 12:40. tt1a-c
+released. Nothing queued on WCSS. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch
