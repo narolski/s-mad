@@ -8,7 +8,7 @@
 #SBATCH --gres=gpu:hopper:1,storage:local:80G
 #SBATCH --no-requeue
 #SBATCH --time=0-03:00:00
-#SBATCH --array=0-19%6
+#SBATCH --array=0-19%20
 #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/ms1p4-fit-%A_%a.out
 # MS1 part 4 (prereg.md part 4): 20 fits on WCSS H100, arms Sb (6,250 steps), Sb63 (train_Sb at 3,938 steps), SbM3,
 # SbM3S, seeds 403-407, seed by seed; the unchanged PN1 recipe through run_p4.sh; every score in the fit job. All IO in

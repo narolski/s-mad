@@ -575,3 +575,9 @@ splice share. Statistic: AUC of development S4 (100) against development S0 + S3
 - Pre-run check: experiment-reviewer (opus), GO WITH FIXES (F1-F8), all applied (G3 rule, per-tar configuration check,
   G2 interpretation and prints, floor label, paired prints, guard notes, power and deadline text, environment asserts);
   the reader was mock-tested on every G3 branch (uninformative, inconclusive, falsified, supported) and G2.
+
+- Part 4 operational note (`date`: Fri Nov 13 02:34:13 PM CET 2026; before any part-4 job was submitted): lead's instruction: the array throttle in
+  `src/MS1/wcss/ms1p4_fit.sbatch` is raised from 6 to 20 (account cap 32 GPUs; free GPUs this evening); nothing else
+  changes. New sha256 `0e084217d5919b246fb4880d2101d49b30a5e014828a6594caf10247461f9c32` (was e0b19fcc…). The array file is queued beside the smoke and is valid only if the smoke
+  passes (the dispatcher cancels it otherwise). The lead's answers: the G2 wording "truncation reproduces it" is
+  acceptable; `~/dmenv` is frozen for today's batches; the dispatcher orders the queue (no --nice needed).
