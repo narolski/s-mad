@@ -1,0 +1,145 @@
+row,shortcut,column,cell_id,status
+1,storage history of genuine photos,A,1-A,reviewed
+1,storage history of genuine photos,B,1-B,reviewed
+1,storage history of genuine photos,Sb,1-Sb,reviewed
+1,storage history of genuine photos,Sp,1-Sp,not measured (pending today)
+1,storage history of genuine photos,SbM3,1-SbM3,not measured (pending today)
+1,storage history of genuine photos,MADation_ViT-B16,1-MADation_ViT-B16,reviewed
+1,storage history of genuine photos,MADation_ViT-L14,1-MADation_ViT-L14,reviewed
+1,storage history of genuine photos,MixFaceNet-MAD,1-MixFaceNet-MAD,reviewed
+1,storage history of genuine photos,SelfMAD,1-SelfMAD,reviewed
+2,storage history of morphs (evasion),A,2-A,unreviewed; two seeds only
+2,storage history of morphs (evasion),B,2-B,reviewed; two seeds only
+2,storage history of morphs (evasion),Sb,2-Sb,not measured (pending today)
+2,storage history of morphs (evasion),Sp,2-Sp,not measured
+2,storage history of morphs (evasion),SbM3,2-SbM3,not measured
+2,storage history of morphs (evasion),MADation_ViT-B16,2-MADation_ViT-B16,not measured
+2,storage history of morphs (evasion),MADation_ViT-L14,2-MADation_ViT-L14,not measured
+2,storage history of morphs (evasion),MixFaceNet-MAD,2-MixFaceNet-MAD,not measured
+2,storage history of morphs (evasion),SelfMAD,2-SelfMAD,not measured
+3,JPEG history,A,3-A,not measured (exposure only)
+3,JPEG history,B,3-B,not measured (exposure only)
+3,JPEG history,Sb,3-Sb,not measured (exposure only)
+3,JPEG history,Sp,3-Sp,not measured
+3,JPEG history,SbM3,3-SbM3,not measured
+3,JPEG history,MADation_ViT-B16,3-MADation_ViT-B16,unreviewed
+3,JPEG history,MADation_ViT-L14,3-MADation_ViT-L14,reviewed
+3,JPEG history,MixFaceNet-MAD,3-MixFaceNet-MAD,unreviewed
+3,JPEG history,SelfMAD,3-SelfMAD,unreviewed
+4,unseen camera source (source comparison),A,4-A,reviewed; two seeds only
+4,unseen camera source (source comparison),B,4-B,reviewed; two seeds only
+4,unseen camera source (source comparison),Sb,4-Sb,reviewed; two seeds only
+4,unseen camera source (source comparison),Sp,4-Sp,not measured (pending today)
+4,unseen camera source (source comparison),SbM3,4-SbM3,not measured (pending today)
+4,unseen camera source (source comparison),MADation_ViT-B16,4-MADation_ViT-B16,reviewed
+4,unseen camera source (source comparison),MADation_ViT-L14,4-MADation_ViT-L14,not measured
+4,unseen camera source (source comparison),MixFaceNet-MAD,4-MixFaceNet-MAD,unreviewed
+4,unseen camera source (source comparison),SelfMAD,4-SelfMAD,reviewed
+5,image border or frame,A,5-A,reviewed; two seeds only
+5,image border or frame,B,5-B,reviewed; two seeds only
+5,image border or frame,Sb,5-Sb,reviewed; two seeds only
+5,image border or frame,Sp,5-Sp,not measured
+5,image border or frame,SbM3,5-SbM3,not measured
+5,image border or frame,MADation_ViT-B16,5-MADation_ViT-B16,unreviewed
+5,image border or frame,MADation_ViT-L14,5-MADation_ViT-L14,not measured
+5,image border or frame,MixFaceNet-MAD,5-MixFaceNet-MAD,not measured
+5,image border or frame,SelfMAD,5-SelfMAD,unreviewed
+6,warp only (R2w),A,6-A,reviewed; two seeds only
+6,warp only (R2w),B,6-B,reviewed; two seeds only
+6,warp only (R2w),Sb,6-Sb,reviewed; two seeds only
+6,warp only (R2w),Sp,6-Sp,not measured
+6,warp only (R2w),SbM3,6-SbM3,not measured
+6,warp only (R2w),MADation_ViT-B16,6-MADation_ViT-B16,reviewed
+6,warp only (R2w),MADation_ViT-L14,6-MADation_ViT-L14,reviewed
+6,warp only (R2w),MixFaceNet-MAD,6-MixFaceNet-MAD,reviewed
+6,warp only (R2w),SelfMAD,6-SelfMAD,reviewed
+7,same-person morph (R3),A,7-A,reviewed; two seeds only
+7,same-person morph (R3),B,7-B,reviewed; two seeds only
+7,same-person morph (R3),Sb,7-Sb,not measured
+7,same-person morph (R3),Sp,7-Sp,not measured
+7,same-person morph (R3),SbM3,7-SbM3,not measured
+7,same-person morph (R3),MADation_ViT-B16,7-MADation_ViT-B16,reviewed
+7,same-person morph (R3),MADation_ViT-L14,7-MADation_ViT-L14,reviewed
+7,same-person morph (R3),MixFaceNet-MAD,7-MixFaceNet-MAD,reviewed
+7,same-person morph (R3),SelfMAD,7-SelfMAD,reviewed
+8,same-person face splice (S3),A,8-A,reviewed
+8,same-person face splice (S3),B,8-B,reviewed
+8,same-person face splice (S3),Sb,8-Sb,reviewed
+8,same-person face splice (S3),Sp,8-Sp,not measured (pending today)
+8,same-person face splice (S3),SbM3,8-SbM3,not measured
+8,same-person face splice (S3),MADation_ViT-B16,8-MADation_ViT-B16,unreviewed
+8,same-person face splice (S3),MADation_ViT-L14,8-MADation_ViT-L14,unreviewed
+8,same-person face splice (S3),MixFaceNet-MAD,8-MixFaceNet-MAD,unreviewed
+8,same-person face splice (S3),SelfMAD,8-SelfMAD,unreviewed
+9,blending seam (S0),A,9-A,not measured
+9,blending seam (S0),B,9-B,reviewed; two seeds only
+9,blending seam (S0),Sb,9-Sb,reviewed; two seeds only
+9,blending seam (S0),Sp,9-Sp,not measured (pending today)
+9,blending seam (S0),SbM3,9-SbM3,not measured
+9,blending seam (S0),MADation_ViT-B16,9-MADation_ViT-B16,reviewed
+9,blending seam (S0),MADation_ViT-L14,9-MADation_ViT-L14,reviewed
+9,blending seam (S0),MixFaceNet-MAD,9-MixFaceNet-MAD,reviewed
+9,blending seam (S0),SelfMAD,9-SelfMAD,reviewed
+10,alignment or crop path,A,10-A,reviewed; two seeds only
+10,alignment or crop path,B,10-B,reviewed; two seeds only
+10,alignment or crop path,Sb,10-Sb,reviewed; two seeds only
+10,alignment or crop path,Sp,10-Sp,not measured
+10,alignment or crop path,SbM3,10-SbM3,not measured
+10,alignment or crop path,MADation_ViT-B16,10-MADation_ViT-B16,reviewed
+10,alignment or crop path,MADation_ViT-L14,10-MADation_ViT-L14,reviewed
+10,alignment or crop path,MixFaceNet-MAD,10-MixFaceNet-MAD,reviewed
+10,alignment or crop path,SelfMAD,10-SelfMAD,reviewed
+11,data volume,A,11-A,n/a
+11,data volume,B,11-B,reviewed; two seeds only
+11,data volume,Sb,11-Sb,reviewed; two seeds only
+11,data volume,Sp,11-Sp,n/a
+11,data volume,SbM3,11-SbM3,not measured (pending today)
+11,data volume,MADation_ViT-B16,11-MADation_ViT-B16,n/a
+11,data volume,MADation_ViT-L14,11-MADation_ViT-L14,n/a
+11,data volume,MixFaceNet-MAD,11-MixFaceNet-MAD,n/a
+11,data volume,SelfMAD,11-SelfMAD,n/a
+12,surround blend (whole-frame tools),A,12-A,unreviewed
+12,surround blend (whole-frame tools),B,12-B,reviewed; two seeds only
+12,surround blend (whole-frame tools),Sb,12-Sb,reviewed
+12,surround blend (whole-frame tools),Sp,12-Sp,not measured
+12,surround blend (whole-frame tools),SbM3,12-SbM3,not measured
+12,surround blend (whole-frame tools),MADation_ViT-B16,12-MADation_ViT-B16,reviewed
+12,surround blend (whole-frame tools),MADation_ViT-L14,12-MADation_ViT-L14,reviewed
+12,surround blend (whole-frame tools),MixFaceNet-MAD,12-MixFaceNet-MAD,reviewed
+12,surround blend (whole-frame tools),SelfMAD,12-SelfMAD,reviewed
+13,diffusion render path,A,13-A,not measured
+13,diffusion render path,B,13-B,not measured
+13,diffusion render path,Sb,13-Sb,not measured
+13,diffusion render path,Sp,13-Sp,not measured
+13,diffusion render path,SbM3,13-SbM3,not measured
+13,diffusion render path,MADation_ViT-B16,13-MADation_ViT-B16,reviewed
+13,diffusion render path,MADation_ViT-L14,13-MADation_ViT-L14,reviewed
+13,diffusion render path,MixFaceNet-MAD,13-MixFaceNet-MAD,not measured
+13,diffusion render path,SelfMAD,13-SelfMAD,reviewed
+14,GAN one-person render (MIPGAN),A,14-A,not measured
+14,GAN one-person render (MIPGAN),B,14-B,not measured
+14,GAN one-person render (MIPGAN),Sb,14-Sb,not measured
+14,GAN one-person render (MIPGAN),Sp,14-Sp,not measured
+14,GAN one-person render (MIPGAN),SbM3,14-SbM3,not measured
+14,GAN one-person render (MIPGAN),MADation_ViT-B16,14-MADation_ViT-B16,reviewed
+14,GAN one-person render (MIPGAN),MADation_ViT-L14,14-MADation_ViT-L14,reviewed
+14,GAN one-person render (MIPGAN),MixFaceNet-MAD,14-MixFaceNet-MAD,not measured
+14,GAN one-person render (MIPGAN),SelfMAD,14-SelfMAD,reviewed
+15,training-partner trace (SMDD),A,15-A,not measured
+15,training-partner trace (SMDD),B,15-B,not measured
+15,training-partner trace (SMDD),Sb,15-Sb,not measured
+15,training-partner trace (SMDD),Sp,15-Sp,not measured
+15,training-partner trace (SMDD),SbM3,15-SbM3,not measured
+15,training-partner trace (SMDD),MADation_ViT-B16,15-MADation_ViT-B16,reviewed
+15,training-partner trace (SMDD),MADation_ViT-L14,15-MADation_ViT-L14,reviewed
+15,training-partner trace (SMDD),MixFaceNet-MAD,15-MixFaceNet-MAD,reviewed
+15,training-partner trace (SMDD),SelfMAD,15-SelfMAD,n/a
+16,expression / capture detail (FRLL smiling half),A,16-A,not measured (exposure only)
+16,expression / capture detail (FRLL smiling half),B,16-B,not measured (exposure only)
+16,expression / capture detail (FRLL smiling half),Sb,16-Sb,not measured (exposure only)
+16,expression / capture detail (FRLL smiling half),Sp,16-Sp,not measured (exposure only)
+16,expression / capture detail (FRLL smiling half),SbM3,16-SbM3,not measured
+16,expression / capture detail (FRLL smiling half),MADation_ViT-B16,16-MADation_ViT-B16,reviewed
+16,expression / capture detail (FRLL smiling half),MADation_ViT-L14,16-MADation_ViT-L14,reviewed
+16,expression / capture detail (FRLL smiling half),MixFaceNet-MAD,16-MixFaceNet-MAD,not measured
+16,expression / capture detail (FRLL smiling half),SelfMAD,16-SelfMAD,reviewed
