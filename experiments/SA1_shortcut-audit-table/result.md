@@ -377,11 +377,11 @@ fresh-seed parts of 4, 5 and 10 wait for TT1-FS).
    releases do not rank diffusion morphs above one-photo reconstructions (0.40–0.49, REVIEW_AD1_AG5_C; post hoc, one
    genuine pool, released weights scored once).
 
-8. **Ablation without matched splice negatives (Sp, 3 seeds; REVIEW_PN1_SP).** Registered verdict "falsified": "Sp did
+7. **Ablation without matched splice negatives (Sp, 3 seeds; REVIEW_PN1_SP).** Registered verdict "falsified": "Sp did
    not learn an S0-type seam cue. It does not say that the matched negatives are inert" (floor and ceiling). May say
    (descriptive): "Sp flags more S3, ranks S3 against S4 worse, flags more FFHQ genuine images, has higher
    landmark_combined AUC".
-7. **Three-source training (SbM3, MS1, five seeds, development data).** "With the three-source protocol, genuine flag
+8. **Three-source training (SbM3, MS1, five seeds, development data).** "With the three-source protocol, genuine flag
    rates at the network's own rule fall on a sharp unseen studio source (CFD), 5 seeds" (Sb median 3.5%, SbM3 0.0%);
    the result "is not evidence that the operating point transfers". Beside it (REVIEW_MS1 F1): on FFHQ landmark_combined
    morphs the own-rule miss rate rises from 0.271 (one source) to 0.585 (three sources) with AUC unchanged, "a threshold
