@@ -81,10 +81,26 @@ not registered). Output `bb2_c2p.json` (sha256 c80249ba…). Five-seed rules (fr
 - **Logged predictions (6f36c0c):** H-bb2-storage (logged as "H-new-3"; A's control fails at both sizes on ≥ 4 of 5
   seeds): **met** (5 of 5). H-bb2-mismatch (logged as "H-new-2"; development S3 flags ≥ 50% on ≥ 4 of 5 seeds and S4-vs-S3 AUC ≤ 0.65): **met** (Sb S3 0.55-0.60, S4 vs S3
   0.567-0.574 on 5 of 5).
+- **Review (`experiments/reviews/REVIEW_BB2_PART2_20261113.md`) wording, which replaces the two bullets below where they
+  differ:** "On DINOv3 at CLIP's learning rates, the plain and protocol arms flag about half of all face splices,
+  same-person (43-49%) and two-person (49-58%) alike (S4 vs S3 0.53-0.55). The CLIP arms rank these splices similarly
+  (S3 vs S0, test: 0.72-0.78 for the plain arm) but flag almost none of them (S4 1-5%). The difference between backbones
+  is mainly where the splices fall relative to the decision rule. Neither backbone's untrained arms use identity inside a
+  splice." H-bb2-mismatch: "Met on its stated numbers. The numbers do not test the mechanism. Face-blanked copies are
+  not flagged (0-1%). Face-only copies still rank S3 above S0 (0.60-0.65), and A and B show the same pattern. The data
+  point to a blend inside the face, not to a face-surround mismatch." Storage: "On 300 unseen FFHQ hold-out persons,
+  storing a photo small does not raise any DINOv3 network's own-rule flags (change −0.007 to +0.007; upper 95% bound
+  ≤ 2.1 points at either size). The mean genuine logit moves slightly toward genuine in every arm (−0.09 to −0.18
+  genuine SD). This is the opposite sign to CLIP's plain arm, which raised flags from 6-11% to 21-31% on FFHQ
+  development photos (part 1)." Evasion: "Falsified where no arm uses a storage cue and morph misses are at the floor.
+  This is not evidence about evasion under a storage-sensitive backbone." Contrast 3 (part 1) caveat: face-only copies
+  of seam-only composites are flagged 55-98% by every DINOv3 arm; the ladder AUC is read on images the networks treat
+  as off-distribution (S4_bg vs S3_bg 0.38-0.46). Post hoc decomposition script:
+  `experiments/reviews/scripts_bb2/s3dx.py`.
 - **Printed S3 reads (development ladder, own rule):** Sb flags 55-60% of same-person splices (test ladder 62-66%),
   7-8% of seam-only composites (S0), misses 23-26% of face-spliced morphs (S4); S3 vs S0 AUC 0.78-0.79; S4 vs S3 AUC
   0.57. The plain and protocol arms also flag 43-49% of S3 (S0 9-13%), and miss 42-51% of S4; S4 vs S3 0.53-0.55.
   (CLIP at the same seeds: Sb 31-41% of development S3, A and B 2-7%.) On DINOv3 at CLIP's learning rates every arm
   reacts to a same-person blend inside the face about as often as to a two-person one.
-- Storage reading for DINOv3 at these learning rates: none of the arms reacts to storage on the unseen hold-out
-  persons (flag rise within ±0.007 at both sizes), so there is nothing for the protocol to remove there (descriptive).
+- Storage reading for DINOv3 at these learning rates: see the review wording above (no flag-raising reaction; a small
+  genuine-ward mean shift in every arm).

@@ -664,3 +664,19 @@ The two predictions logged at 6f36c0c as "H-new-2" (DINOv3 Sb reads a face-surro
 storage shortcut needs adaptation) are renamed **H-bb2-mismatch** and **H-bb2-storage**: "H-new-2" also names C2P's
 sharpness hypothesis (A1.2, "H-new-2 is not read for BB2"), and "H-new-3" names the FS1 review's blend-processing
 hypothesis. Their texts and rules are unchanged.
+
+## Predictions for E3's reads, logged before any E3 tar is opened (post-result review of part 2; `date`: see the commit; printed beside the registered reads; change no rule)
+
+E3's fits are running (6313860); no E3 tar exists locally and none has been opened. Read with E3's frozen seed mode
+(five-seed counts "on ≥ 4 of 5", three-seed "on ≥ 2 of 3").
+- **H-new-A (storage needs adaptation)**, from the wave-2 C2P read of E3 (amendment 7): E3's plain arm A raises its
+  own-rule flags on the stored hold-out photos by ≥ +0.05 with mean shift > 0 at 61.2 px on ≥ 4 of 5 seeds. Falsified if
+  the rise stays ≤ +0.01 on ≥ 4 of 5 seeds; otherwise inconclusive.
+- **H-new-B (DINOv3 locates the blend cue inside the face)**, from E3's in-fit scores: for E3 A and B, development
+  surround-only (face-blanked `*_face`) splice flags ≤ 2% and face-only S3_bg vs S0_bg AUC ≥ 0.58 on ≥ 4 of 5 seeds.
+  Falsified if surround-only flags exceed 10% on ≥ 3 seeds.
+- **H-new-C (Sb's identity component was an under-fit)**: if E3's Sb passes the splice-fit gate, its development S4 vs
+  S3 AUC is ≥ 0.70 and its development S3 own-rule flags are ≤ 41% on ≥ 4 of 5 seeds. Falsified if the gate passes but
+  development S4 vs S3 stays ≤ 0.60 on ≥ 4 of 5 seeds.
+- Statistics computed as in `experiments/reviews/scripts_bb2/s3dx.py` (development splice rows, own rule logit > 0,
+  rank AUC) and `bb2_c2p_read.py`'s C2P quantities; a reader is committed before the read.
