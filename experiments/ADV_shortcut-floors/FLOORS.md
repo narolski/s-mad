@@ -209,6 +209,21 @@ Frozen by `floors/pins_stage7.sha256` (Sb) and `floors/pins_stage8.sha256` (the 
 | `gd0_sgwp_vs_resmatch` | 1000 / 2000 | 0.980 [0.976, 0.983] (gbt) | 0.955 | 0.876 (F27:b3_.125-.25) |
 | `gd0_diffae_vs_resmatch` | 1000 / 2000 | 0.966 [0.960, 0.971] (logreg) | 0.927 | 0.823 (RENDER:resid_corr_rg) |
 
+## XF1: matched FaceMorpher render on FFHQ hold-out hosts (amendment 7; frozen by `floors/pins_stage13.sha256`; computed before any XF1 network score exists in this folder)
+
+| Contrast | Binding unit | ADV floor [binding 95%; alternative-unit 95%] | Non-F27/non-BLEND | Surround only (single / logreg / gbt) | Face box (s / l / g) | File (s / l / g) | Pixel-only |
+|---|---|---|---|---|---|---|---|
+| `xf1_FMHB_vs_FMHH` | 12 pairing components (= cell) (alternative: host (299)) | 0.989 [0.986, 0.994; 0.983, 0.994] (gbt) | 0.969 | 0.775 / 0.839 / 0.849 | 0.888 / 0.952 / 0.964 | 0.696 / 0.675 / 0.621 | 0.989 |
+| `xf1_FMHH_vs_H` | host (299) (alternative: cell (12)) | 0.587 [0.560, 0.615; 0.529, 0.612] (logreg) | 0.589 | 0.500 / 0.500 / 0.500 | 0.561 / 0.575 / 0.580 | 0.568 / 0.559 / 0.504 | 0.576 |
+
+Same-data learner (logreg / gbt AUC; own-rule flag share of the positive / negative side, logreg):
+
+- train_Sb: FM(H,B) vs FM(H,H) 0.897 / 0.945 (flags 0.78 / 0.14); FM(H,H) vs H 0.521 / 0.515 (flags 0.14 / 0.13).
+- train_A: FM(H,B) vs FM(H,H) 0.901 / 0.775 (flags 0.77 / 0.13); FM(H,H) vs H 0.502 / 0.516 (flags 0.13 / 0.13).
+- train_B: FM(H,B) vs FM(H,H) 0.898 / 0.893 (flags 0.27 / 0.03); FM(H,H) vs H 0.522 / 0.499 (flags 0.03 / 0.03).
+
+Plainly: **the one-photo FaceMorpher render is pixel-identical to the plain photo in the surround ring** (all 18 surround measures equal row for row; surround floor exactly 0.500 for all three models), and the whole shortcut set separates the render from the photo only at 0.587 [0.560, 0.615] (face box 0.58, file 0.57). So a network's "render reaction" on FM(H,H) vs H cannot be a border, canvas or format read; whatever it reacts to is inside the face. The two-person morph against the render is separated at 0.989 by shortcut-only cues (face box 0.964, surround 0.849): FaceMorpher two-person morphs carry a strong blend signature, including outside the face box; the first contrast has only 12 person components, so its folds and intervals are coarse.
+
 ## Attack sets (requests to the DATA role through the lead; nothing built by the adversary)
 
 Only allowed operations: the approved warp `h1_build.py`, the unchanged OpenCV and FaceMorpher morphers, constant-colour

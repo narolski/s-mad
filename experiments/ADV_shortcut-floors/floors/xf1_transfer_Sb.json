@@ -1,0 +1,22 @@
+{
+ "arm": "Sb",
+ "n_train": 5535,
+ "summary": {
+  "xf1_FMHB_vs_FMHH": {
+   "logreg": 0.8974955537410096,
+   "gbt": 0.9452019552354001,
+   "flag_pos_logreg": 0.7759197324414716,
+   "flag_neg_logreg": 0.14046822742474915,
+   "flag_pos_gbt": 0.12709030100334448,
+   "flag_neg_gbt": 0.0
+  },
+  "xf1_FMHH_vs_H": {
+   "logreg": 0.5211574814599389,
+   "gbt": 0.5147425644008456,
+   "flag_pos_logreg": 0.14046822742474915,
+   "flag_neg_logreg": 0.12709030100334448,
+   "flag_pos_gbt": 0.0,
+   "flag_neg_gbt": 0.0
+  }
+ }
+}
