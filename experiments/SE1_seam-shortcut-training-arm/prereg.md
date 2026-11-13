@@ -243,3 +243,23 @@ experiment-reviewer (Opus), 13 Nov 2026: **GO WITH FIXES** (`experiments/reviews
 6. Pins: section 13; the job files hard-code them.
 
 Minor points: (a) the docstring seeds were fixed; (b) $PY is used in place of system python3; (c) a full-run check was added; (d) section 9 is in the reader; (e) the Athena twin is now registered (lead's order, section 4); (f) the seed ruling is recorded; (g) the flip precedent is cited; (h) the half rule uses integer counts; (i) the loss regex handles -inf and nan; (j) the symmetric share is disclosed; (k) the deadline note was added.
+
+## Deviation SE1-D1 (`date`: Fri Nov 13 09:17 CET 2026; committed before any SE1 fit has started; no score of any SE1 network exists): platform moved to rented A100 PCIe 40 GB
+
+- **Why.** WCSS gave our jobs no start (priority 681 against 10,821; smoke 6310083 forecast 15:30; fit array 6310122 without a forecast). Athena's A100 partition is reserved until about 22 Dec. The lead moved SE1 to rented machines, and the author approved the budget (13 Nov about 09:25).
+- **Platform.** Every SE1 network is fitted and scored on rented A100 PCIe 40 GB machines with the image `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime` and FS1's pip pins (timm 1.0.27, numpy 1.26.4, pillow 10.2.0, huggingface_hub 0.36.2, safetensors 0.8.0, pyyaml 6.0.3). This is the GPU model and software stack of the FS1 networks.
+  - The WCSS jobs 6310083 and 6310122 are cancelled by the dispatcher once the first rented fit has started. No WCSS or Athena result of SE1 exists or will be read.
+- **Layout.** One lease = one whole seed (A, Sb, SE in this order).
+  - se1a: seed 408. se1b: seed 409. se1c: seed 410.
+  - Seeds 411 and 412 run on further A100 PCIe 40 GB leases only if the author approves the budget. pn1fs may be one of them.
+  - A seed that cannot start by **14:15 CET** (about 0.5 h upload and setup, 0.25 h smoke, 3 × about 1.4 h fits) cannot end by the registered 19:00 deadline. Such a seed is not started, and the counting rule of section 7 applies to the seeds that finish.
+- **Code.** The registered `src/SE1/run.sh` (b2a975f1) runs unchanged with the FS1 pack (96c31ae2…, uploaded from the DGX in four parallel chunks and sha256-checked on the lease) and the SE1 overlay (de26d6ce…). Rented drivers:
+  - `src/SE1/rented/drive_se1.sh` (542c81a7…);
+  - `remote_se1.sh` (d9ea96b3…);
+  - `chain_se1.sh` (caca7866…).
+
+  `run_rented.sh` (4f51b9a4…; MS1 base pack for the shared L40S hosts) was staged as a fallback and is not used. Its staging on the MS1 hosts was removed before any GPU use.
+- **Smoke and reproduction check on every lease** (section 9, unchanged): 100 steps, 64 rows, and FS1's Sb seed 403 rescored on the gate rows. The seed's fits start only if that lease's smoke passed. The gate verdict is printed per lease.
+- **AB1.** AB1 no longer reuses SE1's A and Sb networks (lead, 09:10); it fits its own on WCSS. Section 3's sentence about AB1 reusing these networks is void.
+- **Fetching versus reading.** OWNER_BRIEF requires every rented output to be fetched and verified in two copies before a lease is released. The blindness rule of section 4 is therefore applied to reading: tars are fetched and hash-checked as they finish, but no SE1 score file is opened (by the reader or anyone) before AB1's registration commit exists or the lead waives the rule in writing.
+- Caps and deadlines of the leases are the lead's (guard running). RELEASE is written by chain_se1.sh only after the seed's three fit tars and the lease's platform-check tar are verified in two copies (`/mnt/t7/smad_next/SE1/results`, `/home/narolski/se1_results_copy`) and the logs are fetched.
