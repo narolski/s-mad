@@ -107,6 +107,14 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   until "C2P kept (45 of 45"; HOLD stays until then. While C2P runs, the MS1 keep step on ms1m1b may report "log copy
   differs" (the C2P logs in logs/ still grow); it passes once C2P ends. The hold on ms1_read.py is lifted (C2P
   registered); the MS1 read runs once all 15 fits and the three held-out tars are in.
+- 13 Nov 09:10: author: "Use CeleA-HQ as a source, it is valid" (candidate fourth source; after today's two readings;
+  nothing trained without a registered amendment and a pre-run check). 09:07: `src/MS1/celebahq_prep.py align` started
+  in two processes (indices 0-15000, 15000-30000; frames streamed from the zip, no unpacked copy of the 37 GB archive;
+  zip sha256 `bda2d6f0…` checked; unchanged 73_delin_align; glintr100 embeddings). Rate about 2.7 images/s per process;
+  expected end about 10:45. Test on 8 images: 4 aligned, 4 failed the frontal filter. `celebahq_persons.py` written
+  (CASIA-WebFace embeddings from its packed 112 px crops, used only to exclude persons; threshold error on labelled
+  CelebA; references FFHQ, CFD, KDEF, TT1, FRGC / colorFERET; connected-component persons at cos >= 0.40; overlapping
+  persons dropped); not run yet.
 
 ## 3. Data
 
