@@ -258,11 +258,15 @@ Rows: R0 227, R2 238, R2s 119, R3 119, R3m 119, R4 74.
 - R4 has only 74 rows; partners of many hosts are training persons and were excluded.
 
 
-## Part 3: amendment 4, GD control table and cue floors (post hoc; registered at 6b3af89; read once at about 12:40)
+## Part 3: amendment 4, GD control table and cue floors (post hoc; registered at 6b3af89, 12:10:23; read once at 12:11:47)
+
+Results review (Opus) `experiments/reviews/REVIEW_PR1_PART3_20261113.md`: accept with corrections; floors, all 18 verdicts and the part-A sample recomputed and matched; corrections applied.
 
 Reader `src/PR1/gd_extra.py`; output `gd_extra.json`, `gd_extra_stdout.txt`. Cues: GD2 with `cues27.py` unchanged;
-GD1 through `cue_floor._cue_one` (the networks' loader view at 512 px) plus file size. The cue computation started
-about two minutes before the registration commit; no cue value had been looked at.
+GD1 through `cue_floor._cue_one` (the networks' loader view at 512 px) plus file size. Times (git and file mtimes):
+an 8-row cue smoke run wrote its files at 12:09:33-35; the full cues finished at 12:11:03 (GD1) and 12:11:34 (GD2),
+after the registration commit (12:10:23); the reader ran once at 12:11:47. The network AUCs of these contrasts were
+known from part 2, so the contrasts and the rule were chosen with them in view.
 
 ### Part B: is each network contrast beyond the 27-statistic floor? (rule: network − F ≥ +0.05 on ≥ 4 of 5)
 
@@ -270,18 +274,24 @@ F = max(best single statistic on the same images, s-lad, b-lad).
 
 | Contrast | F (component) | A | B | Sb |
 |---|---|---|---|---|
-| GD1 X vs REC | 0.705 (file size) | 0.53-0.66 → not beyond | 0.46-0.56 → not beyond | 0.53-0.60 → not beyond |
-| GD1 REC vs G | 0.996 (band power > .5) | 0.97-1.00 → not beyond | 0.92-0.99 → not beyond | 0.991-0.996 → not beyond |
-| GD1 X vs SAME | 0.730 (noise_std_face) | 0.64-0.74 → not beyond | 0.68-0.75 → inconclusive | 0.778, 0.821, 0.778, 0.846, 0.822 (F +0.048 to +0.116) → **inconclusive** (≥ +0.05 on 3 of 5) |
-| GD2 R2 vs R0 | 0.902 (s-lad) | 0.96-0.99 → **beyond** | 0.91-0.98 → **beyond** | 0.992-0.998 → **beyond** |
+| GD1 X vs REC | 0.705 (file size of the 256 px file; 0.689 without it, verdicts unchanged) | 0.53-0.66 → not beyond | 0.46-0.56 → not beyond | 0.53-0.60 → not beyond |
+| GD1 REC vs G | 0.996 (band power > .5) | 0.97-1.00 → not beyond by the rule (ceiling: the +0.05 bar is unreachable; no information) | 0.92-0.99 → same (ceiling) | 0.991-0.996 → same (ceiling; margins −0.005 to +0.00003, a tie) |
+| GD1 X vs SAME | 0.730 (noise_std_face) | 0.64-0.74 → not beyond | 0.68-0.75 → inconclusive | 0.778, 0.821, 0.778, 0.846, 0.822 (network − F +0.048 to +0.116; seeds 403 and 405 miss the bar by 0.002 and 0.0015) → **inconclusive** (3 of 5) |
+| GD2 R2 vs R0 | 0.902 (s-lad) | 0.96-0.99 (margin +0.055 to +0.083) → **beyond** | 0.91-0.98 (margin +0.009 to +0.075; seed 407 below the bar) → **beyond** | 0.992-0.998 (margin +0.090 to +0.095) → **beyond** |
 | GD2 R4 vs R2 | 0.911 (b-lad) | 0.73-0.87 → not beyond | 0.81-0.91 → not beyond | 0.86-0.93 → not beyond |
 | GD2 R4 vs R3 | 0.702 (b-lad) | 0.53-0.63 → not beyond | 0.58-0.67 → not beyond | 0.62-0.69 → not beyond |
 
 - Printed, Sb, within quintiles of the best single statistic: GD1 X vs SAME 0.71-0.79; GD2 R4 vs R3 0.64-0.73; GD2 R2
   vs R0 0.99-1.00; GD1 REC vs G 0.97-0.99.
-- In words: the only contrast where the networks exceed the simple-statistic floor is "one-photo MIPGAN render
-  against camera photo" (the render response). The identity contrasts (R4 vs R3, X vs SAME) and the
-  reconstruction contrasts do not exceed it, or are inconclusive for Sb's X vs SAME.
+- In words: the networks exceed the simple-statistic floor only for one-photo MIPGAN render against camera photo
+  (A, B and Sb, ≥ 4 of 5 seeds). They do not exceed it for two-person against same-person MIPGAN (R4 vs R3), MIPGAN
+  morph against one-photo render (R4 vs R2), or DiffAE latent mix against reconstruction (X vs REC). GD1 X vs SAME is
+  inconclusive for B and Sb and not beyond for A. REC vs G is at the ceiling.
+- R4 and R3 also differ in simple statistics (b-lad 0.70), so the networks' 0.53-0.69 shows no identity sensitivity
+  beyond pixel cues (R4 has 74 rows).
+- F's best-single component is chosen on the same images and is optimistic. The GD2 R4 vs R3 and R4 vs R2 verdicts
+  rest on the ladder-trained b-lad and are unaffected. A cross-fitted floor would move only Sb's GD1 X vs SAME
+  (0.721; post hoc, reviewer), and that verdict stays inconclusive under the registered rule.
 
 ### Part A: printed control table (no rule)
 
@@ -295,4 +305,15 @@ F = max(best single statistic on the same images, s-lad, b-lad).
   - At τ5: Sb seeds 405 and 406 (2 of 5); A and B none.
   - At the cut-off max(τ5, 0): Sb seeds 406 and 407 (2 of 5); A and B none. Sb's misses at the own rule are
     0.256-0.468, and seed 404's unseen flags are 0.134.
-  - H-new-3 of the part-2 review (joint pass on ≥ 4 of 5 at max(τ5, 0)) is not met. Printed only.
+  - H-new-3 of the part-2 review (joint pass on ≥ 4 of 5 at max(τ5, 0)) is not met. max(τ5, 0) equals the own rule
+    for every Sb seed. Changing the cut-off from τ5 to max(τ5, 0) does not raise Sb's joint pass (2 of 5 under
+    both), so these reads give no evidence for the F10 change.
+
+### Wording for GAN and diffusion results (proposed by the reviewer, for use before any sealed read)
+
+"On development MIPGAN controls, our networks separate GAN re-renders of a single genuine photo from camera photos
+beyond a 27-statistic floor, and flag 30-90% of them as morphs at the own rule. They do not separate two-person from
+same-person MIPGAN renders, or MIPGAN morphs from one-photo renders, beyond that floor, nor diffusion latent mixes
+from reconstructions. Scores on GAN- or diffusion-based benchmark cells may therefore reflect detection of
+re-synthesis rather than of a second identity, and we do not claim them as morph-specific." Not to be written: "detects
+GAN/diffusion morphs".

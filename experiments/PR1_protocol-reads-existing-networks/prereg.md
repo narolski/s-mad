@@ -443,3 +443,11 @@ post hoc. Development data only. Code `src/PR1/gd_extra.py` and `src/PR1/cues_gd
 - Disclosure (operations): the GD1/GD2 cue computation (pixel statistics only, no network score) was started about
   two minutes before this commit; no cue value has been looked at. The reader `gd_extra.py` is committed here and run
   once after the cues finish.
+
+## Correction of record for amendment 4 (from `REVIEW_PR1_PART3_20261113.md`; times from git and file mtimes)
+
+The registration commit is 6b3af89 at 12:10:23 CET (the header's "about 12:25" is wrong). An 8-row smoke run of the
+cue code wrote gd1/gd2_limit8.npz at 12:09:33-35. The full GD1/GD2 cue computation (pixel statistics only, no network
+score) started about 12:09 and finished at 12:11:03 (GD1) and 12:11:34 (GD2), after the commit. The reader ran once
+at 12:11:47 and the result was committed at 12:12:13. The network AUCs of these contrasts were known from part 2, so
+the contrasts and the rule were chosen with them in view (post hoc, as labelled).
