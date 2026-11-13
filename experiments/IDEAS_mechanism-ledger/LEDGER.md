@@ -88,20 +88,35 @@ are a learned property of the training list (ADV). Three directions, ranked.
   this matching, not the extra positives, carries the gain.
 
 **The matched version.** For each training two-person morph of host H with partner B, build a same-person negative from
-H and a second photo S of H **at the two-person geometry**: H and S each warped once by the approved warp (the
-`h1_build.py` path used for the warp-only images R2w4) to the mean landmarks of H and B, then blended with the same
-alpha; and build the positive with the same code from H and B. The pair then shares the host photo, the target
-geometry, the number of warps, the blend code, the alpha and the storage. It differs in whether the second layer's
-texture is H's own other session or B's. W, the target mean shape and the warp count are equal by construction; D and
-luma energy remain free and are printed. Also:
+H and a second photo S of H **at the two-person geometry**, and build the positive with the same code from H and B. The
+pair then shares the host photo, the target geometry L (mean of H's and B's landmarks), the triangulation, the alpha and
+the storage; it differs in whether the second layer's texture is H's own other session or B's. D and luma energy remain
+free and are printed.
+
+**Correction (13 Nov 2026, 21:54 CET, on the lead's message; source: data owner's recipe draft, `experiments/DATA_builds/REQUESTS.md`
+entry D13, commits 2257ecb and ae1e8a4).** Version 3 as first committed (cd2f41f) named the wrong warp. It said H and S
+are warped "by the approved warp (the `h1_build.py` path used for the warp-only images R2w4)". That is wrong: the
+existing warp-only images (R2w4, R2w) were made with `src/AR1/variants.py` `warp_cv` (lines 81-100), the triangle warp
+of `68_hires_morph.py` that the unchanged OpenCV morpher applies to each of its inputs. `h1_build.py` is the builder of
+the closed H1 benchmark (MediaPipe landmarks plus Poisson blending). D13 leaves it to the author to name which warp is
+approved for this use. The two build variants, as the data owner defines them:
+- **(a) Direct composite (exact match).** Positive = 0.5 · warp_cv(H → L) + 0.5 · warp_cv(B → L); negative = 0.5 ·
+  warp_cv(H → L) + 0.5 · warp_cv(S → L), with the same L and triangulation; the H layer is bit-identical in both; one
+  warp per layer; the positive is built new by the same composite (it may differ from the existing OpenCV R4 by one grey
+  level). It is not the splice builder's code path (the 7b splice is a pixel copy) and not a call of the unchanged
+  morpher, so it is **a new composite and needs the author's word**.
+- **(b) Unchanged morpher on a pre-warped S.** Negative = the unchanged OpenCV morpher on H and S′, where S′ = warp_cv(S
+  → lm_B) and S′'s landmarks are given as lm_B, so the morpher's own target is L; positive = the unchanged-morpher R4(H,
+  B). S is warped twice (to lm_B, then to L), B once. Needs the control rows **C1** (genuine: S warped twice, S → lm_B →
+  L, alone) and **C2** (genuine: S warped once, S → L); the adversary's floor on C1 against C2 measures how detectable
+  the extra warp is. Whether warp-then-morph counts as "approved warp plus unchanged morpher" is also the author's word.
+- **Training hosts.** Training would use only the **124 training hosts whose pool partner is also a training host**
+  (D13, partner-sharing constraints); the 32 whose partner is a read test host are excluded, because their L would carry
+  a test person's landmarks.
+Also, unchanged from version 3:
 - keep natural R3 negatives but drop mirror self-morphs (they teach symmetry);
 - stored-small copies of both members, as for every protocol rung;
 - paired sampling: each positive and its matched negative in the same minibatch.
-- Open point for the lead and the author: averaging two approved warps is a new composite (like the splice composite of
-  amendment 7b), not a call of the unchanged morpher. Building both classes with the same composite code is what makes
-  the pair matched. If only the unchanged morpher may be used, the next best is the unchanged engine on (H, S) after S
-  is warped to B's landmarks; that adds one warp to the negative side and needs a warp-count control (a warp-only image
-  of S with the same two warps, as a genuine row).
 
 **Cheapest decisive test (before any fit, CPU only).** Build the pairs for the 291 development and test hosts only, and
 ask the standing adversary for its floors on the new contrast (positive composite against shape-matched negative), within
@@ -111,7 +126,8 @@ D quintiles, all-cue and luma-only.
 - Floor ≥ 0.75: the construction leaks (warp strength, energy); fix it before any fit.
 - In between: the arm may run, but its gain counts only beside this floor.
 - Cost: about 4-6 CPU-hours to build (about 1,200 images with stored copies); floors under 1 CPU-hour. For the arm, the
-  same build on the PN1 training hosts, about 6-8 CPU-hours.
+  same build on the 124 eligible training hosts (D13), about 6-8 CPU-hours by the ledger's estimate (D13 measures the
+  real rate on 8 pairs first).
 
 **What makes it an arm.** Sb plus shape-matched negatives, five seeds 408-412 on WCSS H100. Batch C fits take about 36
 minutes, so about 3-4 GPU-hours. Read with the battery. It earns a claim if, on 4 of 5 seeds:
@@ -717,3 +733,6 @@ measures subject similarity, and it does so with a reference image.
 - v3, 13 Nov 2026, 21:49 CET: outcomes of RI1, TB1 single image, ME1 and NE1b; AB1 amendments 4-6 and the adversary floors
   folded in; new rank 1 shape-matched same-person negatives (HN1, proposed), look-alike set rank 2, count target rank 3;
   RI1, TB1, NE1 closed, ME1 parked. Not informed by the sealed MAD22 read.
+- v3.1, 13 Nov 2026, 21:54 CET: HN1 warp corrected (warp_cv of `src/AR1/variants.py`, not `h1_build.py`), build variants (a) and
+  (b) with control rows C1 and C2 and the 124-host training constraint recorded, from DATA's D13 draft (2257ecb, ae1e8a4).
+  Nothing else changed.
