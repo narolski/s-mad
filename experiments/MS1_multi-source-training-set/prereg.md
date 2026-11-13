@@ -400,3 +400,43 @@ MS1-D1 (5eadc1b) with these changes:
 - MS1-D2 note (`date`: Fri Nov 13 12:33:45 AM CET 2026; no fit had started on ms1m1): lease ms1m1 (GPU-771bd979…) was released by the lead before
   any fit because its upload stalled; queue m1 (seeds 403+406) runs on the replacement ms1m1b (L40S 48 GB,
   GPU-c1ff3444-2b67-80c8-b31d-2c9ad1528acc, cap 10 USD, 13 h). Same GPU model; nothing else changes.
+
+# Part 3: zero-GPU reads after the part-2 read (registered at the git commit that adds this part; `date` at writing: Fri Nov 13 10:06:18 AM CET 2026; no part-3 statistic exists on real scores)
+
+Source: post-result review `experiments/reviews/REVIEW_MS1_20261113.md` (F8; hypotheses H-new-4 and item 3) and the
+lead's instruction (13 Nov, about 10:10): produce the missing registered printed items; register and run the two
+zero-GPU hypotheses; one results-reviewer pass. Disclosure: written after the part-2 read and the review; the review
+recomputed some quantities already (CFD flags by group and sex for Sb; no correlation with the norming variables and
+no train-minus-held-out gap was computed by anyone). Data: the existing MS1 result tars and held-out npz (sha256 in
+`rented_kept/`), the MS1 evaluation manifest (d1fab6ad…), the CFD pool (d6ef6793…), the CFD 3.0.1 norming workbook
+(main set, U.S. norming), the pinned cues file `/mnt/t7/smad_next/PN1/cues/a14_lcomb.npz`. Reader
+`src/MS1/ms1_part3.py` sha256 `9986a87045c6635425d85dddf4e9ff80cd59e0478ab8b5f644691fdc4c7daf44` (tested on mock scores only: `ms1_part3_mock.json`), run once with thread caps.
+
+## 3.1 Printed items (no decision)
+
+(a) Training-row minus held-out mean logit per kind and network (PN1 amendment 4 item 3 form): training rows from each
+fit's `scores_train.npz` (unique rows of its own manifest), held-out rows of the same kind from the evaluation
+manifest (FRGC / colorFERET: AF0 validation photos, their 61.2 px copies, zero, halves, u50; development-ladder R0,
+R2w, R4; development splice S0, S3, S4; FFHQ kinds of SbM3: the MS1 hold-out photo, fm61 photo, zero, u50, fm61 u50).
+(b) FS1 R1-R6 per arm (Sb, SbM3, SbV) and seed on FFHQ landmark_combined, `src/PN1/fs_read.rreads` unchanged.
+(c) The smoke gate: not producible (the WCSS smoke job was cancelled by the lead on 13 Nov 00:00 before it ran; the
+rented runs had no separate smoke).
+
+## 3.2 H-mem (memorisation or dilution; zero GPU)
+
+Statement: SbM3 sees each FRGC / colorFERET image 0.63x as often as Sb, so it memorises them less. Gap per kind =
+mean(train) − mean(held-out) for attack kinds and mean(held-out) − mean(train) for negative kinds (positive = training
+rows scored more confidently than held-out rows of the same kind). M = mean gap over the 11 FRGC / colorFERET kinds
+listed in 3.1 (a). **Supported** if M(SbM3) < M(Sb) on ≥ 4 of 5 seeds; **falsified** if M(SbM3) ≥ M(Sb) on ≥ 4 of 5
+seeds; otherwise "inconclusive". Printed: SbV, every kind's gap. Reading if supported: consistent with dilution; it
+cannot separate dilution from diversity (that needs the step-matched arm, H-new-2, GPU).
+
+## 3.3 H-new-4 (appearance cue on smooth faces; zero GPU)
+
+Statement: Sb's CFD false flags follow perceived femininity (blending smooths skin), which FFHQ genuine photos
+counter-train. Within each CFD race group (A, B, L, W; the 597 main-set models with U.S. norming), Spearman ρ of the
+network's CFD logit with the "Feminine" norming mean, per seed; group ρ = median over the 5 seeds. **Supported** if
+ρ(Sb) > 0.2 in ≥ 3 of 4 groups AND |ρ(SbM3)| < 0.1 in ≥ 3 of 4 groups; **falsified** if ρ(Sb) < 0.1 in ≥ 3 of 4 groups;
+otherwise "inconclusive". Printed: Masculine, Attractive, Babyfaced, AgeRated, LuminanceMedian; own-rule flag rates by
+group and self-reported gender (mean over seeds). Associational only; never a causal or demographic-bias claim
+beyond these development images.
