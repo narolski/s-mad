@@ -192,3 +192,29 @@ scores were computed on WCSS H100 with TF32, ours on the GB10 with TF32: a platf
 (medians 1e-6 to 7e-4). Rule from here: an arm is read on the networks that pass C1 if at least 3 do; the count and the
 excluded seeds are printed with the reading; fewer than 3: no reading. This is a selection on a technical check, made
 before any benchmark reading of these networks was looked at.
+
+## Amendment 3 (13 Nov 2026, 02:00 CET; IDistill on the DGX GPU; coordinator's yes at about 01:50; before any IDistill run)
+
+WCSS forecasts 15 Nov 01:00 for every pending job of ours (after the retrain cut-off), so IDistill runs on the DGX GB10
+after the CNN re-score and the A45 arms have finished, one GPU process at a time, `nice -n 10`, thread caps 2.
+- One seed (401). The paper's settings exactly as in section 7 (autoencoder: UNet, latent 128, 300 epochs, batch 32,
+  lr 1e-4, SMDD bona fide crops; classifier: ResNet-18 product fusion, latent 128, lr 1e-4, batch 16, prefusion KD
+  loss with weight 1, at most 250 epochs, authors' early stopping), the same job script (`cb1_idistill.sbatch` with
+  `CB1_PIP=dgx`), the same packs (idistill_code.tar v3, idistill_data.tar aa161436..., smdd_train_cropped.tar 3189e52a...).
+- Stack deviation, stated plainly: torch 2.12.1+cu130, torchvision 0.27.1, numpy 1.26.4, OpenCV 4.11, scikit-learn
+  1.9, Pillow 12.2 on ARM / GB10 (program venv), plus pandas 2.2.3, tensorboard 2.21, facenet-pytorch 2.5.2 from
+  `/mnt/t7/smad_next/CB1/site_idistill_dgx`, instead of the authors' torch 2.0.1 / x86 stack. Tonight's TT1 diagnostic
+  found that this stack changes ViT logits by 0.06-0.09 at inference; numerical equivalence with the authors' stack is
+  NOT established, and with one seed the seed spread is unknown.
+- Checkpoints reported: (a) "selected on the SMDD validation split" (`.valbest`, no test data); (b) "test-selected as
+  in the authors' code" (best five-family FRLL-Morphs mean EER every 5 epochs); (c) "stopping epoch set by test-set early
+  stopping" (`.last`), descriptive.
+- Reproduction gate (on checkpoint (b), the authors' rule, FRLL-Morphs native genuine, morph score id1 x id2): binding:
+  five-family mean EER within M = max(0.30 x 2.90, 1.5) = 1.5 points of 2.90; descriptive: per family within max(1.5,
+  25%) of 4.00 / 2.05 / 2.46 / 1.96 / 4.01 and the paper's BPCER at APCER 1% and 20%. With one seed there is no seed
+  interval; the point estimate decides, with the two-way person bootstrap 95% interval printed.
+- Row label by outcome: "our retrain on a different stack, one seed: reproduces within tolerance" or "our retrain on a
+  different stack, one seed: does not reproduce"; checkpoint (a) is reported beside on both benchmarks with its E7
+  column. If the author funds the rented variant, the DGX run continues as a second, separately labelled run.
+- Stop rule: the step rate is measured in the first ten minutes; if the projected end is after 14 Nov 16:00 the
+  coordinator is told before the run continues.

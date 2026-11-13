@@ -25,22 +25,27 @@ if [ $STAGE = cls ]; then
 fi
 : "${TMPDIR:?local scratch required}"; W=$TMPDIR/ids; mkdir -p $W/out
 hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; python3 --version; date
-PK="idistill_code idistill_data smdd_train_cropped"; [ "${CB1_PIP:-}" = online ] || PK="$PK ad5w_wheels39"
+PK="idistill_code idistill_data smdd_train_cropped"; case "${CB1_PIP:-}" in online|dgx) ;; *) PK="$PK ad5w_wheels39" ;; esac
 for p in $PK; do ( cd $P && sha256sum -c $p.tar.sha256 ) || { echo "HASH MISMATCH $p"; exit 3; }; done
 tar -xf $P/idistill_code.tar -C $W; mkdir -p $W/wheels $W/smdd $W/data
-[ "${CB1_PIP:-}" = online ] || tar -xf $P/ad5w_wheels39.tar -C $W/wheels
+case "${CB1_PIP:-}" in online|dgx) ;; *) tar -xf $P/ad5w_wheels39.tar -C $W/wheels ;; esac
 tar -xf $P/smdd_train_cropped.tar -C $W/smdd; mv $W/smdd/os25k_bf_t $W/smdd/os25k_bf_t_cropped; mv $W/smdd/m15k_t $W/smdd/m15k_t_cropped
-t0=$(date +%s); python3 -m venv $W/env; PY=$W/env/bin/python
-if [ "${CB1_PIP:-}" = online ]; then   # rented variant: the same versions as the WCSS wheel house, from PyPI
+t0=$(date +%s)
+if [ "${CB1_PIP:-}" = dgx ]; then   # DGX variant (amendment 3): program venv (torch 2.12, ARM/GB10) + extra packages dir
+  PY=/home/narolski/mambamorph-code/.venv-spark/bin/python; export CB1_EXTRA_SITE=/mnt/t7/smad_next/CB1/site_idistill_dgx
+  export OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2
+elif [ "${CB1_PIP:-}" = online ]; then
+  python3 -m venv $W/env; PY=$W/env/bin/python   # rented variant: the same versions as the WCSS wheel house, from PyPI
   $PY -m pip install -q torch==2.0.1 torchvision==0.15.2 numpy==1.22.4 pandas==1.5.0 scikit-learn==1.1.1 \
       opencv-python-headless==4.5.5.64 tqdm==4.64.0 Pillow==9.1.1 facenet-pytorch==2.5.2 tensorboard==2.17.1
 else
+  python3 -m venv $W/env; PY=$W/env/bin/python
   WH=$(find $W/wheels -name 'torch-2.0.1*.whl' -printf '%h' -quit)
   $PY -m pip install -q --no-index --find-links $WH torch==2.0.1 torchvision==0.15.2 numpy pandas scikit-learn opencv-python-headless tqdm Pillow facenet-pytorch tensorboard
 fi
-$PY -m pip freeze > $W/out/pip_freeze.txt; echo "env built in $(( $(date +%s) - t0 )) s"
+$PY -m pip freeze > $W/out/pip_freeze.txt; [ -n "${CB1_EXTRA_SITE:-}" ] && ls $CB1_EXTRA_SITE >> $W/out/pip_freeze.txt; echo "env built in $(( $(date +%s) - t0 )) s"
 C=$W/cb1/code; ST=$W/cb1/stubs; RUN="$PY -I $W/cb1/run_code.py $C $ST"
-$PY -I -c "import torch, torchvision, cv2, sklearn, facenet_pytorch, tensorboard; print(torch.__version__, torch.cuda.get_device_name(0))"
+$PY -I -c "import os,sys; sys.path[:0]=[p for p in os.environ.get('CB1_EXTRA_SITE','').split(':') if p]; import torch, torchvision, cv2, sklearn, facenet_pytorch, tensorboard; print(torch.__version__, torch.cuda.get_device_name(0))"
 ( n=0; while :; do nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader,nounits >> $W/out/gpu.csv; sleep 30; n=$((n+1))
     if [ $((n % 60)) = 0 ]; then mkdir -p $R/${T}_partial   # review F4: checkpoints and logs leave TMPDIR every 30 min
       find $W/out -maxdepth 4 \( -name '*_best.pt' -o -name '*.pt' -o -name '*.pt.valbest' -o -name '*.log' \) -exec cp {} $R/${T}_partial/ \; ; fi
