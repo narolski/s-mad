@@ -254,3 +254,8 @@ top quintiles of cos_HS (pooled edges). Print per Sb seed: own-rule S3 flag rate
 using only the S3 rows of that quintile (all 291 S4 rows); the median D, D_dc and D_lin of each quintile; the number of
 hosts per database in each quintile. Code `src/BD1/bd1c_read.py`; post hoc (the test S3 logits and the cos_HS link
 are known).
+
+Note on times (13 Nov, 18:48 by the machine clock; NOTEBOOK "CORRECTION OF TIMES"): the lead's stamps "17:55"
+(request) and "18:10" (go for amendment 2) were written from memory and ran ahead of the machine clock. The record is
+git: registration 33bdee6 17:49:13, amendment 2 7697fbf 18:07:01. The BD1 result's "read once at about 18:25" for
+amendments 2-3 should read: read commit ca76ca3 at 18:15:40.

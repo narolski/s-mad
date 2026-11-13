@@ -221,3 +221,7 @@ These corrections take precedence over the sections above where they differ.
 - **Cost:** about 0.5 GPU-hour or less on the DGX, or WCSS once the route above exists.
 - **Not registered here:** it needs the lead's go (and the author's, since the instruction named WCSS) and its own
   pre-run check.
+
+Note on times (13 Nov, 18:48 by the machine clock): the freeze ruling was at about 18:27 by the machine clock (the
+lead's relay said 18:28). The lead's relay of the LA1 instruction was stamped "18:30" from memory; LA1's first commit is
+7121c76 at 18:36:59. Times are taken from `date` and git only (NOTEBOOK, "CORRECTION OF TIMES").
