@@ -147,6 +147,12 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
 - 07:35:38 `drive_tt1_fs.sh ... start`: job on pn1fs waits for the host fit lock (Sp queue until about 12:45); pull
   loop scheduled from 12:40 (background on the DGX; log /mnt/t7/smad_next/vast/pn1fs/tt1/tt1_fs_drive.log).
 
+- 08:40-09:10: TT1-X registered (86da3d4; Sp seeds 403-405 on pn1fs after the main job; SbM3 read of MS1's L40S
+  scores after the MS1 read); pre-run check GO WITH FIXES, fixes registered (1b985d6). QUEUES on pn1fs now
+  "all sp tt1 tt1x pr1" (lead). PR1 owner's GD0 waits for /workspace/tt1/DONE_sp or NO_SP (at most 30 min after
+  DONE_FS). Background chain `src/TT1/rented/chain_x_sp.sh` (log /mnt/t7/smad_next/vast/pn1fs/tt1/chain_x_sp.out): waits
+  for tt1/TT1_DONE and the three verified Sp tars, checks disk, runs the pinned start call and the pull loop.
+
 ### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
 
 The decoded image, the resized image and the input tensor are bit-identical between the DGX stack (torch 2.12.1,
