@@ -152,6 +152,10 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   replacement smoke `wcss_bb2_c2psmoke2.cmd`. Lead: fits stay queued; the CLIP branch stays as registered ("passes" ->
   repeat sentences; any other verdict -> "No CLIP effect to repeat; printed only"); no further change.
 
+- 10:04 dispatcher: 6310085 cancelled (never ran); amended C2P smoke submitted as **6310376** (bb2-c2psmoke2, Nice 10,
+  output `results/BB2_smoke/BB2C2Psmoke2.tar`, about 15-20 min once started). Fits 6310084 / 6310092 pending,
+  forecast 17:10 (unreliable).
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
@@ -204,7 +208,7 @@ DGX smoke result; pre-run review; registration commit; WCSS smoke; fit submissio
 
 ## 10. Handover state (13 Nov 09:05)
 
-- WCSS jobs (owner BB2 owner): 6310084 (9 fits), 6310092 (6 fits), 6310085 (C2P smoke); all PENDING; forecast start
+- WCSS jobs (owner BB2 owner): 6310084 (9 fits), 6310092 (6 fits), 6310376 (C2P smoke, amended; 6310085 cancelled); all PENDING; forecast start
   16:14; logs `/lustre/pd03/hpc-narolski-1790461090/smad-next/logs/bb2-fit-6310084_<i>.out`, `bb2-fit2-6310092_<i>.out`,
   `bb2-c2psmoke` -> `bb2-c2p-6310085.out`; results `.../results/BB2/` and `.../results/BB2_smoke/BB2C2Psmoke.tar`.
 - After the fits: `bash src/BB2/fetch_bb2.sh` at each end; then `python3 -I src/BB2/freeze_mode.py` and commit
