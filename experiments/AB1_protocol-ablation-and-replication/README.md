@@ -85,6 +85,12 @@ method candidate.
   spread across components; H-ab2 floor-limited, H-ab3 not; "not shown to exceed" the floor; S3 reduction is about the
   training fit; H-sp1 shrinkage; SbH repeats confound; Δm toward genuine). Reviewer's scripts kept in src/AB1/review/,
   output review_recompute.json; review text REVIEW_AB1_20261113.md.
+- 15:00 Note 2 registered (5455c42) before computing; sharpness of flipped persons: A and SbS not enriched, AS
+  inconclusive (ab1_sharp.json); short review (Opus) confirmed every number, wording applied; reviewer's script
+  src/AB1/review/sharp_recompute.py.
+- 15:10 follow-up batch B2 drafted for the author (prereg_b2_draft.md): SbR, SbH61, SbSp, SbnS0, SbnS3 (25 fits,
+  ab1b2_fit.sbatch, run_b2.sh, overlay /mnt/t7/smad_next/AB1/b2/ab1b2_overlay.tar d2038b98…) + SbL (5 fits,
+  ab1_long.sbatch); about 23-27 H100-hours; nothing uploaded or submitted.
 
 ## 3. Data
 

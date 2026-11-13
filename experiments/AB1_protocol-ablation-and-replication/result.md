@@ -152,6 +152,12 @@ SbH fits its training S3 best (0.20-0.22 flagged). Full table in
   flags also lowers landmark detection.
 - The FFHQ persons whose flag flips under fm61 storage in AS and SbS are mostly a subset of A's (A&AS 17-28 of 22-44
   against chance 6-15; A&SbS 10-21 of 16-32 against chance 4-12).
+- Post hoc (Note 2, registered before computing, zero GPU, decides nothing; reviewed): the net storage flag increase on
+  FFHQ hold-out photos does not come disproportionately from the sharpest quartile (lapvar_face; chance share 0.25,
+  0.25-0.27 among photos not flagged at native). A: fm61 0.17-0.23 (net 77-112), amsl112 0.14-0.26 (net 16-44), not
+  enriched. AS: fm61 0.07-0.19, amsl112 0.17-0.50 (net 2-12), inconclusive. SbS: fm61 0.06-0.33, amsl112 0.00-0.22 (net
+  6-10), not enriched; the amsl112 reads rest on few persons. At fm61 sharp photos are, if anything, under-represented
+  among flipped persons in all three arms (pooled 0.13-0.19). (`ab1_sharp.json`, `src/AB1/ab1_sharp.py`.)
 - FFHQ hold-out warp-only images (ms1ffhq "zero", not at the floor): excess placement over native photos A +0.06 to
   +0.10, Sb +0.03 to +0.06; SbZ − Sb −0.027 to −0.007 (removing warp-only images does not raise it).
 - Mean Δm at amsl112 orders with the per-pass weight of stored-small genuine copies: SbH −0.11, SbZ −0.08, Sb −0.07,
@@ -167,4 +173,4 @@ copies.
 Follow-ups proposed by the review (each needs registration and the author; about 6-12 H100-hours each): a random-drop
 control repeated like SbH; Sb without af0_half61 only (reverse storage cue); Sb without both the stored copies and the
 matched negatives (additivity); SbL with the trade-off prediction added before it runs; S3-only against S0-only
-negative arms. Zero GPU: sharpness enrichment of flipped persons.
+negative arms. Zero GPU: sharpness enrichment of flipped persons, done (Note 2): not enriched for A and SbS, inconclusive for AS.
