@@ -29,6 +29,159 @@ in memory to an aligned 112 px face-recognition crop (the registered glintr100 r
 and BD1, already does an in-memory similarity crop); in-memory FFT band images (registered as an allowed measurement in
 the mirror-asymmetry test, AS0 `prereg.md` "Bands"). No image is written by any proposed test.
 
+## Version 3 (13 Nov 2026, 21:45-21:49 CET by the machine clock): tonight's outcomes, and where a real effect is still possible
+
+Nothing in this version uses, cites or was informed by the sealed MAD22 read. I did not open
+`experiments/FINAL_sealed-benchmark-read/`.
+
+### Outcomes of the four cheap single-image identity tests (all reviewed)
+
+| Test [ID], ledger entry | Registered outcome | What it means | Source |
+|---|---|---|---|
+| Regional identity disagreement [RI1], M1 | **"inconclusive: P1 invalid (projection carries scale)"**: oracle premise 0.702, but its validity gate gave 0.934 / 0.873 against the required [0.40, 0.60]. Single image: S4 vs S3 0.540, R4 vs R3 0.595, against simple-cue floors 0.773 and 0.793; within D 0.522 (pure-D reference 0.524); gain over the hand cues −0.0002 | occluded face-recognition embeddings show no second identity; licensed sentence "Occluded face-recognition embeddings did not reveal a second identity in single images". The review traces the gate failure to cos_HB ≤ 0.65 < 0.68 ≤ cos_HS. M1 is not closed in principle (a trained region encoder is untested), but its off-the-shelf route is | `experiments/RI1_regional-identity-disagreement/result.md`; `experiments/reviews/REVIEW_TB1S_ME1_RI1_20261113.md` findings 6-7 |
+| Texture band profile [TB1], M2 | oracle gain over band energy and landmark displacement +0.010 (**falsified**); single image 0.654 against the all-cue floor 0.773 (difference −0.118 [−0.151, −0.087]); equals the best single cue (0.657); its band statistics separate storage history as well as the classes (0.657) | closed | `experiments/TB1_texture-band-profile/result.md`; same review, findings 3-5 |
+| Layer misregistration echo [ME1], M13 | oracle not measurable with the phase-correlation estimator (non-finite on about 91% of pairs; the calibration R2w4 against R2w failed on 142 of 291 hosts); single image "not measured" by the code, "invalid (control)" by the registered text (R2w4 vs R0 0.002, S0 vs R2w4 0.991) | the chosen echo statistic records resampling history (exactly 0 after one warp or one downscale on 287 of 291 warp-only images), not a second layer. The mechanism is not decided; the estimator failed | `experiments/ME1_layer-misregistration-echo/result.md`; same review, findings 1-2 |
+| Nuisance erasure [NE1, NE1b], M10 (and M7 through its probe) | border cue linearly decodable, but mean-based erasers (rank-7 span, LEACE) leave 28-74% of the excess border flags: bordered copies keep 2.5-4.7 times the logit spread (a dispersion effect no first-moment eraser can fix); the splice probe on frozen features gains +0.003 to +0.039 over the frozen head (best 0.791), inside the simple-cue floor 0.773 | **line closed**: erasure cannot remove the border false alarms, and the frozen features hold no splice information beyond what simple cues give | `experiments/NE1_nuisance-erasure/result_ne1b.md` |
+
+### Two further facts folded in
+
+1. **Hard negatives by construction are the one lever that moved a two-person-versus-same-person ranking.** The
+   protocol ablation (AB1 amendments 4-6, `experiments/AB1_protocol-ablation-and-replication/result.md`): removing the
+   matched same-person and seam-only splice negatives (Sp) loses Sb's better ranking of two-person over same-person
+   whole-frame morphs at equal blend energy (−0.049 AUC, 5 of 5 seeds); splice positives alone add nothing (−0.008
+   [−0.033, +0.022]); the frozen networks show the same direction (+0.051 over B). But ranking is not rejection: every
+   arm still flags most same-person whole-frame morphs (R3 own-rule flags A 0.99, B 0.93, Sb 0.85, Sp 0.89). Count and
+   class mix are not controlled; the 2 x 2 with volume controls (SpV, BN, BV) is queued as batch C (WCSS 6316845).
+2. **The standing adversary's floors** (`experiments/ADV_shortcut-floors/FLOORS.md`):
+   - a shortcut-only learner trained on the candidate's own training list flags 44-48% of development same-person
+     splices and 72-86% of same-person morphs, close to the candidate's 31-48% and 83-88%: **the candidate's
+     same-person false alarms are what hand-made statistics learn from the same rows**;
+   - at equal blend energy (within BD1 D quintiles) the two-person excess over same-person morphs is in luma texture
+     statistics (0.723), not chroma (0.540) (H-new-3, "falsified" for chroma).
+   With cos_HB ≤ 0.65 < 0.68 ≤ cos_HS, the luma excess is real but cannot yet be called identity: on our ladder "two
+   people" and "two dissimilar inputs" coincide.
+
+### Answer: the directions with the best chance of a real effect in the remaining time
+
+Four cheap single-image statistics (regional FR, band profile, echo, erasure probes) gave nothing above simple blend
+statistics. The evidence points away from a new statistic and towards **changing what the training data force the
+network to separate**: that is the only intervention that moved the same-person ranking (AB1), and the residual failures
+are a learned property of the training list (ADV). Three directions, ranked.
+
+#### Direction 1 (rank 1): matched same-person negatives for whole-frame morphs, in the spirit of S3 [proposed: shape-matched same-person morphs, HN1]
+
+**Why the same-person arm (SE1) mostly shifted the operating point** (`experiments/SE1_seam-shortcut-training-arm/result.md`,
+"Post hoc descriptive readings"):
+- *Its negatives were not matched to its positives.* A natural same-person morph R3 = blend(H, S) differs from the
+  two-person morph R4 = blend(H, B) not only in identity but in everything that tracks input dissimilarity: landmark
+  displacement W (oracle 0.869 by itself, TB1), blend-difference energy D, luma texture energy (ADV 0.723). The cheapest
+  rule for such classes is a threshold on how different the two inputs were, which lowers the decision point without
+  improving the ranking: R4 vs R3 AUC only 0.880-0.912 → 0.911-0.926, and at a threshold giving Sb SE's R4 miss rate, Sb
+  itself flags R3 at 0.28-0.38, about SE's 0.25-0.32.
+- *Most of its new negatives taught another cue.* 674 of the 830 new negatives were mirror self-morphs, which a symmetry
+  cue separates: SE flags 0.00-0.01 of mirror self-morphs against 0.25-0.32 of ordinary same-person morphs.
+- *Its residual flags are a host property and a label conflict.* 23 development hosts are flagged on 4 of 4 seeds;
+  training flags (0.22-0.27) are close to development flags; host order correlates 0.83 with Sb's. For hosts whose two
+  sessions differ strongly, R3 looks like R4 on every cue the network can use.
+- *Why S3 worked where R3 did not.* Each S3 negative shares with its S4 positive the host photo, the hull, the outer
+  region and the warp geometry; only the inner content differs, so the gradient sees a paired contrast. AB1 shows that
+  this matching, not the extra positives, carries the gain.
+
+**The matched version.** For each training two-person morph of host H with partner B, build a same-person negative from
+H and a second photo S of H **at the two-person geometry**: H and S each warped once by the approved warp (the
+`h1_build.py` path used for the warp-only images R2w4) to the mean landmarks of H and B, then blended with the same
+alpha; and build the positive with the same code from H and B. The pair then shares the host photo, the target
+geometry, the number of warps, the blend code, the alpha and the storage. It differs in whether the second layer's
+texture is H's own other session or B's. W, the target mean shape and the warp count are equal by construction; D and
+luma energy remain free and are printed. Also:
+- keep natural R3 negatives but drop mirror self-morphs (they teach symmetry);
+- stored-small copies of both members, as for every protocol rung;
+- paired sampling: each positive and its matched negative in the same minibatch.
+- Open point for the lead and the author: averaging two approved warps is a new composite (like the splice composite of
+  amendment 7b), not a call of the unchanged morpher. Building both classes with the same composite code is what makes
+  the pair matched. If only the unchanged morpher may be used, the next best is the unchanged engine on (H, S) after S
+  is warped to B's landmarks; that adds one warp to the negative side and needs a warp-count control (a warp-only image
+  of S with the same two warps, as a genuine row).
+
+**Cheapest decisive test (before any fit, CPU only).** Build the pairs for the 291 development and test hosts only, and
+ask the standing adversary for its floors on the new contrast (positive composite against shape-matched negative), within
+D quintiles, all-cue and luma-only.
+- All-cue floor ≤ 0.60 and luma ≤ 0.60: the construction removes the shortcuts the candidate is known to use; a network
+  that separates the pair must use something else. Go to the arm.
+- Floor ≥ 0.75: the construction leaks (warp strength, energy); fix it before any fit.
+- In between: the arm may run, but its gain counts only beside this floor.
+- Cost: about 4-6 CPU-hours to build (about 1,200 images with stored copies); floors under 1 CPU-hour. For the arm, the
+  same build on the PN1 training hosts, about 6-8 CPU-hours.
+
+**What makes it an arm.** Sb plus shape-matched negatives, five seeds 408-412 on WCSS H100. Batch C fits take about 36
+minutes, so about 3-4 GPU-hours. Read with the battery. It earns a claim if, on 4 of 5 seeds:
+1. the composite pair ranks ≥ +0.05 above its own list's shortcut learner;
+2. natural R4 against R3 within D improves by ≥ +0.03 over Sb (a ranking gain, not a threshold move);
+3. same-person flags fall **at matched two-person recall** (at the threshold that gives Sb's R4 miss rate), not only at
+   the own rule;
+4. the guards of the selection rule (NEXT) hold.
+Batch C is read first or together, so that a gain is not volume. Even then, on our ladder the claim is "separates two
+people from two sessions of one person at equal geometry", not "reads identity", until Direction 2 exists.
+
+#### Direction 2 (rank 2): the look-alike set [LA1; entry M12], now also as matched training material
+
+Unchanged in substance from version 2: the smallest decisive evaluation set is 100 disjoint look-alike pairs with 100
+same-person pairs matched on FR similarity and W (±0.076 at 100 per class; about 200 per class for a true AUC between
+0.62 and 0.68). What changes:
+- it is the only route to the word "identity" for anything Direction 1 achieves, because cos_HB and cos_HS do not
+  overlap on our ladder;
+- the shape-matched construction of Direction 1 should be applied to the look-alike pairs too, so the decisive row is
+  "look-alike two-person composite against shape- and similarity-matched same-person composite";
+- cheapest decisive step: LA1-0 (labelled tail calibration, about 0.5 GPU-hour), which says whether 100 matched pairs can
+  exist at all. If it predicts fewer than 50, the paper should say the identity question cannot be decided with the
+  available data, and report Direction 1 as "two sessions against two people at equal geometry";
+- arm: only after Direction 1 shows a ranking gain; look-alike composites then join training as positives with their
+  matched negatives (a few hundred rows at most).
+
+#### Direction 3 (rank 3): what the literature offers for learning "two sources" without identity labels
+
+Three families; none gives a ready "two identities" detector, one gives a useful training target.
+- **Self-consistency learning.** Huh, Liu, Owens, Efros, "Fighting fake news: image splice detection via learned
+  self-consistency", https://arxiv.org/abs/1805.04096 (abstract opened; the page lists only arXiv, the paper is usually
+  cited as ECCV 2018): trained on real photos only, with EXIF metadata as free labels for "do these two patches come
+  from one imaging pipeline". Zhao et al., "Learning self-consistency for deepfake detection", ICCV 2021,
+  https://arxiv.org/abs/2012.09311 (opened): pair-wise patch consistency of source features plus a generator of
+  inconsistent images; cross-dataset mean AUC 86.03% → 92.18%. For us this covers splices (inner against outer), where
+  S4/S3 already are such generated inconsistencies. In whole-frame blends every patch is a mixture, so patch
+  consistency reads "mixed against pure", not two persons. Low.
+- **Layer decomposition.** Gandelsman, Shocher, Irani, "Double-DIP", https://arxiv.org/abs/1812.00467 (opened): a mixture
+  of layers has more complex internal statistics than either layer, so coupled priors can separate them per image. A
+  same-person morph is also a two-layer mixture, so this reads "two captures", and it costs minutes of GPU per image.
+  Low.
+- **Source counting as the target.** Stöter, Chakrabarty, Edler, Habets, "Classification vs. regression in supervised
+  learning for single channel speaker count estimation", ICASSP 2018, https://arxiv.org/abs/1712.04555 (opened): a
+  network trained on synthetic mixtures with the number of sources as the label. The idea that transfers: predict two
+  counts, **captures** and **persons**, from labels that construction gives for free (one capture; two captures of one
+  person; two persons), instead of one binary label. The binary head then no longer has to put "two captures of one
+  person" on the genuine side using the very features that detect blending: blend evidence gets its own output, and the
+  person count must rest on what separates the last two classes. This is the three-level ordinal idea of round 3
+  (`ideas/round3/mechanism_vetting.md`, idea 1, "revise"), now with matched data that make it meaningful. No test is
+  cheaper than the arm. Cost: an extra head on the Direction 1 arm, five more fits, about 3-4 GPU-hours. Arm condition:
+  the persons output separates the Direction 1 pairs ≥ +0.05 above the shortcut floor and beats the binary Direction 1
+  arm by ≥ +0.02 on 4 of 5 seeds; otherwise an ablation row.
+
+### Ranking, version 3 (supersedes version 2)
+
+| Rank | Direction or mechanism [ID] | Status | GPU-h | CPU-h | Prior (my estimate) |
+|---|---|---|---|---|---|
+| 1 | Shape-matched same-person negatives for whole-frame morphs [HN1, proposed] | proposal; needs the lead's and the author's word on the composite | 0 for the floor test; 3-4 for the arm | 10-14 | 0.35 that the floor test passes; 0.25 that the arm then shows a ranking gain |
+| 2 | Look-alike set [LA1; M12] | plan; LA1-0 drafted; build is an author item | 0.5, arm later | 4-8 | n/a (control) |
+| 3 | Count target, captures and persons as two outputs, on Direction 1 data [variant of HN1] | proposal | 3-4 | — | 0.2 |
+| 4 | AB1 batch C (volume-controlled 2 x 2) | queued (WCSS 6316845) | in queue | — | decides whether the matched-negative gain is volume |
+| 5 | Border: data route (Sbx) under the selection rule; paired invariance loss [M9] | Sbx queued; erasure route closed by NE1b | — | — | — |
+| 6 | Group DRO / JTT [M7] | lowered: NE1b found no splice information beyond the simple-cue floor to reweight towards | 6-12 | — | 0.1 |
+| 7-11 | Landmark shape typicality [M4], noise mixing [M3], demorphing [M5], IRM / V-REx [M8], SBI / SelfMAD [M11] | unchanged, low | — | — | — |
+| parked | Layer misregistration echo [ME1; M13] | estimator failed, mechanism undecided; a new estimator needs a new design and would still meet the W confound | — | — | — |
+| closed | Regional identity, off-the-shelf FR [RI1; M1] | inconclusive (P1 invalid); Δ below every floor | — | — | — |
+| closed | Texture band profile [TB1; M2] | falsified | — | — | — |
+| closed | Nuisance erasure [NE1, NE1b; M10] | closed | — | — | — |
+| closed | Frequency traces of warping [M6] | closed by design | — | — | — |
+
 ## Version 2 (13 Nov 2026, 19:55-19:58 CET by the machine clock): what the first test outcome changed
 
 **Texture band profile (TB1, entry M2): closed as a texture mechanism.** Sources: `experiments/TB1_texture-band-profile/result.md`
@@ -62,7 +215,7 @@ the premise `experiments/reviews/REVIEW_TB1_PREMISE_20261113.md` (needs qualific
    raised to rank 1**: it is the necessary condition for any "two identities" sentence, whatever RI1 or M13 show. Its
    smallest decisive size is given in M12.
 
-## Ranking by expected information per GPU-hour, version 2 (supersedes version 1 below)
+## Ranking by expected information per GPU-hour, version 2 (superseded by version 3 above)
 
 | Rank | Mechanism or control [ID] | Status at 19:58 | Why this rank | GPU-h | CPU-h | Prior (my estimate) |
 |---|---|---|---|---|---|---|
@@ -561,3 +714,6 @@ measures subject similarity, and it does so with a reference image.
 - v2, 13 Nov 2026, 19:58 CET: texture band profile (TB1) closed as falsified and my M2 prediction recorded as contradicted;
   look-alike matched contrast raised to rank 1 with its smallest decisive size; new entry M13 (layer misregistration
   echo); RI1 note on the FR-similarity non-overlap.
+- v3, 13 Nov 2026, 21:49 CET: outcomes of RI1, TB1 single image, ME1 and NE1b; AB1 amendments 4-6 and the adversary floors
+  folded in; new rank 1 shape-matched same-person negatives (HN1, proposed), look-alike set rank 2, count target rank 3;
+  RI1, TB1, NE1 closed, ME1 parked. Not informed by the sealed MAD22 read.

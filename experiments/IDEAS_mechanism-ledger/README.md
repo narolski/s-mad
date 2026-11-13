@@ -23,6 +23,10 @@ opens no image data, edits no other owner's folder.
   `experiments/TB1_texture-band-profile/result.md`, `experiments/reviews/REVIEW_TB1_PREMISE_20261113.md`,
   `experiments/reviews/REVIEW_TB1_A2_20261113.md`, `experiments/reviews/PRERUN_RI1_TB1_20261113.md`. No web search.
 
+- 13 Nov 2026, 21:45-21:49 CET: version 3 on the lead's request. Read the RI1, ME1, NE1b, SE1 and AB1 results, the joint review
+  `experiments/reviews/REVIEW_TB1S_ME1_RI1_20261113.md` and `experiments/ADV_shortcut-floors/FLOORS.md`; opened four arXiv
+  abstracts for Direction 3. Did not open `experiments/FINAL_sealed-benchmark-read/`.
+
 ## Handover state
 
-Version 2 committed (TB1 closed; look-alike contrast rank 1; new M13). Next update: when RI1, NE1 or TB1 is registered or read, or when the lead asks for a re-rank.
+Version 3 committed (four single-image tests closed or parked; shape-matched same-person negatives rank 1). Next update: when RI1, NE1 or TB1 is registered or read, or when the lead asks for a re-rank.
