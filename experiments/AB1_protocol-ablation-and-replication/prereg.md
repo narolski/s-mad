@@ -551,3 +551,39 @@ needed.
 7. **Verdict line (F7):** "recipe at replication seeds 408-412, development plus clean test hosts, post hoc, not
    held-out; not a property of the frozen networks 403-407".
 - Reader `src/AB1/ab1_pm_read.py` after these fixes: sha256 `ba6efdada789c2a42ef47fa1fa39e707012f66641be40b6346ce9b45b067ed5e` (replaces 9ff52c1b…).
+
+## Amendment 5 (`date`: Fri Nov 13 21:04 CET 2026; POST HOC; before any score of these contrasts is opened for Sp at 408-412 or for the FS1 networks)
+
+Lead's instruction after the results review of amendment 4. Zero GPU. Rule, host sets, statistic, contrasts, bootstrap,
+sign-disagreement cap and prints exactly as amendments 4 and 4b (reader `ab1_pm_read.py` ba6efdad… imported unchanged by
+`src/AB1/ab1_pm2_read.py`), plus one registered addition:
+
+- **Unreadable bootstrap draws (the review's lesson, F1 of REVIEW_AB1_A4):** a draw is unreadable if any network's
+  stratified AUC in it is unreadable. The reader counts them and reports the share. **If more than 10% of draws are
+  unreadable, the decision uses the unstratified statistic throughout** (seed mean, per-seed signs and the bootstrap
+  interval of the unstratified seed-mean gain, computed for every draw); otherwise the stratified statistic decides with
+  amendment 4b's unstratified-agreement condition. Both intervals are printed.
+
+**(1) Sb − Sp at seeds 408-412** (AB1 H100 fit-job scores; Sp = Sb without the matched seam-only and same-person splice
+negatives, registered manifest). It separates "same-person splice negatives" from "splice positives and image count" as
+the source of Sb's gain over B. **Prediction (stated before the read):** if the same-person splice negatives carry the
+gain, Sb − Sp on R4 vs R3 (primary, dev + 80 clean test hosts) is "present" (≥ +0.03, interval > 0, ≥ 4 of 5 seeds
+positive); if it is "absent" or "inconclusive" while Sb − B is present, the gain is attributed to the splice positives
+and/or image count (Sp keeps both), not to the negatives. For S4 vs S3 on the 80 clean test hosts the prediction is
+"present" (Sp never sees S3 negatives). **Disclosure:** known before this amendment: AB1's H-sp3/H-sp3b at 408-412
+(development-host splice reads: Sp flags 0.70-0.74 of development S3 against Sb's 0.36-0.41; development S3-vs-S4 AUC
+Sp − Sb −0.057 to −0.095) and Sp's landmark_combined and storage reads; Sp's R4 vs R3 and its clean-test-host S4 vs S3
+have not been computed by anyone. Asymmetry: both arms train on S4 positives; only Sb has S0/S3 negatives; Sp has 5,223
+unique images against Sb's 5,535.
+
+**(2) Sb − B and Sb − A at seeds 403-407** (the FS1 block: A, B, Sb, stored development scores from their own fit jobs on
+the A100 PCIe host, `/mnt/t7/smad_next/PN1/results_fs/`; tars verified against their .sha256; the owner checked by row ids
+only that all 15 tars hold the 1,746 R4/R3/S4/S3 rows; FS1 evaluation manifest f0f29f22…). Label: **"frozen networks'
+own seeds, development plus clean test hosts, post hoc"**; identical rule, no changes; a replication on a second,
+independent seed set and platform. **Prediction:** "present" for Sb − B and Sb − A on the primary and the secondary
+contrasts, as at 408-412. **Disclosure:** known before this amendment: the AB1 408-412 result of amendment 4; BD1's FS1
+Sb-only test S4-vs-S3 values (unstratified 0.716-0.744); FS1 contrast 1. The owner has not computed or seen any FS1 A or B
+score on R4, R3, S4 or S3 rows and has not checked whether other owners' FS1 reads (e.g. PR1) printed these contrasts.
+
+- Reader `src/AB1/ab1_pm2_read.py` (sha256 in pins.sha256), mock-tested for both pairs (the mock exercised the >10%
+  unreadable branch). Read once each after the lead's pre-run check; then the results-reviewer.
