@@ -454,3 +454,30 @@ unweighted 3,000-row gain. Sb − A secondary.
 - Reader `src/AB1/ab1_hbw_read.py` (2cffd88b…); weighted AUC checked against brute force and,
   with unit weights, against c2p_read.fauc; mock-tested (`ab1_hbw_read_mock.json`). Pre-run check: requested from the
   lead. Read once when the adversary commits the weights.
+
+## Amendment 3d (`date`: Fri Nov 13 20:36 CET 2026; fixes of the pre-run check of 3c, `experiments/reviews/PRERUN_AB1_A3C_20261113.md`, 9e88ed4, GO WITH FIXES)
+
+**Disclosure.** These fixes were made AFTER the effective sample size of the adversary's weights (8.0 morphs, 413.8
+genuine; "not usable") was known to the owner and to the lead (reported by the adversary at about 20:35 and passed on),
+and after the owner had read `lcomb_ipw_build.json` (to take the field names). No network score under any weighting
+or on any subset has been computed or seen.
+
+1. **Binding gate (F1):** usable only if `floors/lcomb_ipw_build.json` (committed, pinned in pins_stage5, sha256
+   c5ba5eff…) has usable = true, i.e. ESS ≥ 300 per class and the adversary's refit weighted surround floor ≤ 0.60 for
+   logreg and gbt. The reader recomputes ESS from the weights file and asserts it matches the build file to 1e-6. The
+   weighted AUC of the round-0 held-out surround and face scores and the refit weighted file floor are printed only.
+2. **Pins (F2):** the reader asserts the build file and `src/adversary/ipw.py` (5d15fa61…, as pinned at 104ee36) are
+   committed and unmodified at those hashes, and that every label in the weights file matches the manifest.
+3. **Face guard (F3):** the build file's refit weighted face floor, max(logreg, gbt), below 0.80 → a supported outcome
+   reads "gain lost under weighting, not attributable to history alone".
+4. **Printed (F4):** per class the maximum weight, the number of rows at the maximum, the share of total weight carried by
+   the top 1% and top 5% of rows, and the adversary's propensity clip.
+5. **Licence wording (F5):** "balanced on the round-0 surround score and pre-alignment eye distance", not "on history".
+6. **Null (F7):** one-sided (percentile of g_w; low = more shrinkage) and conditional on the rows.
+7. **Seeds (F8):** a seed counts only if A, B and Sb are all read (as before), so a missing A run also drops that seed's
+   Sb − B read; stated.
+8. **Order and no new routes (F9), the reviewer's words:** "(a) `ab1_hb_read.py` once on the committed lcomb_bal,
+   labelled descriptive, not read; (b) `ab1_hbw_read.py` once. 3c is the only verdict-bearing history read. Both
+   outputs are reported. If 3c is not read, no further weighting, trimming, overlap or matching route is added for H-hb1,
+   and the 3b licence text for 'not read' applies. The weights are not re-tuned (ADV prereg 341)."
+- Reader `src/AB1/ab1_hbw_read.py` after these fixes: sha256 `78e0f2e4e7c5ae38d12706b49080cf5b869d761e0a56f2d99bc52924688c8d94` (replaces 2cffd88b…); mock-tested.

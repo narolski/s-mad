@@ -37,6 +37,9 @@ A = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(A)
 AB1_READ_SHA = "74ecdf7a2ecb35812dcf4e5d5b9f5c3b1f095fc6846ae6f4813bfb28404d035b"
 REGIONAL = "/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/lcomb_regional_heldout.csv"
+BUILD = "/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/lcomb_ipw_build.json"
+IPW_PY = "/home/narolski/smad-next/src/adversary/ipw.py"
+IPW_PY_SHA = "5d15fa611e00ec0f026a6d4d3ece869b46de1e8d94ffa48faa38f0e96a8bbcdc"   # check 3c F2 (at 104ee36)
 SEEDS = A.SEEDS
 
 
@@ -64,7 +67,7 @@ def wauc(sp, wp, sn, wn):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--weights"); ap.add_argument("--weights-sha"); ap.add_argument("--regional-sha")
+    ap.add_argument("--weights"); ap.add_argument("--weights-sha"); ap.add_argument("--regional-sha"); ap.add_argument("--build-sha")
     ap.add_argument("--out", required=True)
     ap.add_argument("--mock", action="store_true")
     a = ap.parse_args()
@@ -78,10 +81,20 @@ def main():
         reg = {i: dict(surround_logreg=float(r0.normal()), surround_gbt=float(r0.normal()),
                        face_logreg=float(r0.normal(1.0 if i in set(pos) else 0.0)), face_gbt=float(r0.normal(1.0 if i in set(pos) else 0.0)))
                for i in pos + neg}
+        _wp = np.array([w[i] for i in pos]); _wn = np.array([w[i] for i in neg])
+        build = dict(usable=True, ess_morph=float(_wp.sum() ** 2 / (_wp ** 2).sum()), ess_genuine=float(_wn.sum() ** 2 / (_wn ** 2).sum()),
+                     weighted_face_floor=dict(logreg=0.85, gbt=0.85), weighted_surround_floor=dict(logreg=0.5, gbt=0.5),
+                     weighted_file_floor=dict(logreg=0.5, gbt=0.5))
     else:
         committed(a.weights, a.weights_sha)
         committed(REGIONAL, a.regional_sha)
-        W = {r["id"]: float(r["weight"]) for r in csv.DictReader(open(a.weights))}
+        committed(BUILD, a.build_sha)                         # check 3c F1/F2: the build report is binding and pinned
+        committed(IPW_PY, IPW_PY_SHA)
+        build = json.loads(pathlib.Path(BUILD).read_text())
+        rows = list(csv.DictReader(open(a.weights)))
+        sp_ = set(pos)
+        assert all(int(r["label"]) == (1 if r["id"] in sp_ else 0) for r in rows), "labels in the weights file disagree"
+        W = {r["id"]: float(r["weight"]) for r in rows}
         assert set(W) == set(pos + neg) and all(v > 0 for v in W.values()), "weights must cover the 3,000 rows, > 0"
         w = W
         reg = {r["id"]: {k: float(r[k]) for k in ("surround_logreg", "surround_gbt", "face_logreg", "face_gbt")}
@@ -91,9 +104,22 @@ def main():
     fold = lambda u: max(u, 1 - u)
     wsur = {k: fold(wauc([reg[i][k] for i in pos], wp, [reg[i][k] for i in neg], wn)) for k in ("surround_logreg", "surround_gbt")}
     wface = {k: fold(wauc([reg[i][k] for i in pos], wp, [reg[i][k] for i in neg], wn)) for k in ("face_logreg", "face_gbt")}
-    gate = dict(ess_morph=ess(wp), ess_genuine=ess(wn), weighted_surround_floor=wsur, weighted_face_floor=wface)
-    gate["ok"] = bool(gate["ess_morph"] >= 300 and gate["ess_genuine"] >= 300 and all(v <= 0.60 for v in wsur.values()))
-    face_floor = max(wface.values())
+    gate = dict(ess_morph=ess(wp), ess_genuine=ess(wn), build_usable=bool(build["usable"]),
+                build_ess=dict(morph=build["ess_morph"], genuine=build["ess_genuine"]),
+                build_refit_weighted_surround_floor=build.get("weighted_surround_floor"),
+                build_refit_weighted_face_floor=build.get("weighted_face_floor"),
+                printed_build_refit_weighted_file_floor=build.get("weighted_file_floor"),
+                printed_round0_weighted_surround_auc=wsur, printed_round0_weighted_face_auc=wface)
+    gate["ess_matches_build"] = bool(abs(build["ess_morph"] - gate["ess_morph"]) < 1e-6 and abs(build["ess_genuine"] - gate["ess_genuine"]) < 1e-6)
+    assert gate["ess_matches_build"], "ESS recomputed from the weights does not match the build file"
+    gate["ok"] = bool(build["usable"] and gate["ess_matches_build"])   # check 3c F1: the build report decides
+    face_floor = max(build["weighted_face_floor"]["logreg"], build["weighted_face_floor"]["gbt"])   # check 3c F3
+    # check 3c F4 (printed): extreme-weight diagnostics per class
+    def wdiag(v):
+        o = np.sort(v)[::-1]
+        return dict(n=len(v), max=float(o[0]), share_top1pct=float(o[:max(1, len(v) // 100)].sum() / v.sum()),
+                    share_top5pct=float(o[:max(1, len(v) // 20)].sum() / v.sum()), n_at_max=int((v >= o[0] - 1e-12).sum()))
+    gate["printed_weight_diagnostics"] = dict(morph=wdiag(wp), genuine=wdiag(wn), propensity_clip=build.get("propensity_clip"))
     R = dict(mock=a.mock, gate=gate, status={}, networks={}, seeds={})
     nets = {}
     for arm in ("A", "B", "Sb"):
@@ -129,7 +155,7 @@ def main():
             dd = [wauc(sps[i], wp[i], sns[j], wn[j]) - wauc(spo[i], wp[i], sno[j], wn[j]) for i, j in draws]
             nul = [wauc(sps, wp[pi], sns, wn[pj]) - wauc(spo, wp[pi], sno, wn[pj]) for pi, pj in perms]
             rec[f"Sb_minus_{o}"] = dict(g_full=gf, g_w=gw, g_w_ci=[float(np.percentile(dd, 2.5)), float(np.percentile(dd, 97.5))],
-                                        null_percentile=float(np.mean(np.array(nul) <= gw) * 100),
+                                        null_percentile_one_sided_low=float(np.mean(np.array(nul) <= gw) * 100),
                                         probit=dict(full=pr(nf[f"Sb_s{s}"]["auc_full"]) - pr(nf[f"{o}_s{s}"]["auc_full"]),
                                                     weighted=pr(nf[f"Sb_s{s}"]["auc_w"]) - pr(nf[f"{o}_s{s}"]["auc_w"])),
                                         shrinks=bool(gf > 0 and gw <= 0.5 * gf), stays=bool(gw >= 0.10 and gw > 0.5 * gf))
