@@ -69,6 +69,9 @@ splice)? No answer yet. No arm is a method candidate.
   Platform measurement (descriptive, decides nothing): FS1 Sb s403 A100 PCIe stored logits against H100 rescoring,
   p99 |Δlogit| 0.0047, max 0.026, own-rule agreement 1.000 (`smoke_platform.json`). Smoke verdict: PASS, sent to the
   dispatcher at 11:55; array 6310270 stays.
+- 12:00 dispatcher lowered the array's limit from 2:30 to 1:15 (expected 43-45 min per fit; about 1.7x margin).
+- 12:29-12:34 tasks 6310270_[0-8] started (seed 408 all eight arms, seed 409 arm A); _[9-39] pending, forecast 13:06.
+  First ends expected about 13:15.
 
 ## 3. Data
 
