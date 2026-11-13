@@ -6,7 +6,7 @@ The author asked for scientific evidence that the training protocol is shortcut-
 one column per training arm or released detector, every cell from a paired control (the same images with and without
 the suspected cue), with seeds, intervals, source file and review status. Status 13 Nov 2026, about 09:45 CET:
 version 2 (reviewed) compiled from registered results only (no scoring). After the PR1 part-1, C2P and MS1 readings (13 Nov about 10:00), of 180 cells (20 rows x 9 columns) 122 are reviewed
-(2 of them on two seeds only), 16 unreviewed, 27 empty, 15 not applicable (about 15:00, after AB1). For our own arms, 42 of 100 cells are empty. The best-measured row
+(2 of them on two seeds only), 16 unreviewed, 27 empty, 15 not applicable (about 15:00, after AB1; unchanged at 17:45: SE1 and BB2 sit in separate arm tables). For our own arms, 42 of 100 cells are empty. The best-measured row
 (storage history of genuine photos, five fresh seeds) supports "reduced, not removed", not "removed". The table is
 `result.md`; the cell list is `cells.csv`. Waiting for today's readings (Sp ablation, SbM3 three-source training,
 contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cells.
@@ -54,6 +54,8 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
 - about 15:00: AB1 (a423637, REVIEW_AB1) entered: second seed block on H100 in rows 1, 2, 6, 8, 9, 18 (B's evasion cell
   filled on that block; Sp printed cells), and a separate leave-one-component-out table (SbZ, SbH, SbS, AS, Sp) with the
   review's mechanism wording and cannot-claim lines.
+- about 17:45: SE1 A100 block (f302cfa, 4d21dde; REVIEW_SE1_A100) and BB2 part 1 (6dcbdf9; REVIEW_BB2_PART1) added as
+  separate arm tables with the reviews' wording; SE1 H100 block and BB2 E2/E3 marked pending; matrix counts unchanged.
 
 ## 3. Data
 
