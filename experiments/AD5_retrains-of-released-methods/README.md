@@ -343,6 +343,14 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
   submitted on lem-gpu-short (owner: AD5 owner agent; submitted by the dispatcher): smokeB2 6310087_401, smokeX2
   6310088_401, SelfMAD test 6310089_401. At 09:03 all three were pending (Priority), no start forecast. madB, mixX and
   madL go in only after their smoke logs are read and pass; the SelfMAD array only after its test log passes.
+- 13 Nov ~09:10. On the lead's order the dispatcher submitted all four production arrays now (they age in the queue with
+  the smokes; Nice=50, AD5 last in the sprint order SE1, AB1, BB2, CB1, AD4, AD5). Owner: AD5 owner agent.
+  MADation ViT-B/16 (madB) 6310124_[401-405%3], 1 H100, limit 3:40; MixFaceNet-MAD (mixX) 6310125_[401-405%2], 1 H100,
+  limit 8:45; MADation ViT-L/14 (madL) 6310126_[401-405%2], 2 H100, limit 12:00; SelfMAD 6310127_[401-405%2], 1 H100,
+  limit 39:00. Expected start: unknown (pending, Priority). Expected run time per seed from the A100 measurements: madB
+  about 1-1.5 h, mixX under 6.7 h, madL about 2-3 h, SelfMAD under 30 h; end times to be computed from the log step
+  rates once each starts. Validity rule: an array's outputs are read only if its gate passed (smokeB2 6310087 for madB and
+  madL, smokeX2 6310088 for mixX, SelfMAD test 6310089 for SelfMAD); a failed gate cancels that method's array.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
