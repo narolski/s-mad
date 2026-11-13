@@ -202,3 +202,30 @@ the FINAL MAD22 scope are not committed while work for them is already on disk.
 
 Summary: the hashes, times, gate, verdicts and order are correct. Two descriptions are wrong: the mean-shift range
 leaves out the 112.7 px size (down to −0.09), and Sb's morph shift goes beyond ±0.01 SD on 2 of 10 reads (−0.013).
+
+---
+
+## Entry 3. `date`: Fri Nov 13 07:39:31 PM CET 2026. Texture band profile (TB1) premise read
+
+| Claim | Verdict | Evidence |
+|---|---|---|
+| commit 93f5d93 (RI1 amendment 1a) | VERIFIED | 19:24:55, on origin; RI1 prereg, SHA256SUMS, ri1_embed.py |
+| commit 6af821f (RI1 amendment 1b and TB1 amendment 1) | VERIFIED | 19:30:02, on origin; both preregs, src/TB1 tb1_measure.py, tb1_read.py, SHA256SUMS |
+| commit fdfa458 (TB1 premise read once) | VERIFIED | 19:38:06, on origin; result.md, tb1_premise.json, tb1_premise_stdout.txt |
+| pre-run review 3f9f136 precedes 6af821f | VERIFIED | 3f9f136 19:23:49 adds experiments/reviews/PRERUN_RI1_TB1_20261113.md; verdict "TB1: GO WITH FIXES. Nothing may run until fixes T1 to T5 are in the code and registered" |
+| 6af821f precedes the write time of tb1_premise.json | VERIFIED | tb1_premise.json mtime 19:37:16; full feature file /mnt/t7/smad_next/TB1/tb1_feats.csv 19:37:08; both after 19:30:02 |
+| code used is the registered code | VERIFIED | src/TB1/*.py sha256 match the SHA256SUMS of 6af821f (77479ee0..., 712fb40c...); no change since |
+| nothing ran before the fixes | VERIFIED with a note | a 7-host test file tb1_feats_limit7.csv was written at 19:28:34, before 6af821f (a small test run, like the 6-host test at 19:14:26); the full measurement came after |
+| file tb1_premise.json sha256 d74967bbdb3d9c5e | VERIFIED | sha256sum |
+| within D 0.758 [0.718, 0.795], pure-D reference 0.524 | VERIFIED | P.hull.within_D.auc 0.7576, within_D_ci [0.7178, 0.7950], pure_reference 0.5242 |
+| within D_lin 0.707 (0.566) | VERIFIED | P.hull.within_D_lin 0.7073 / 0.5661 |
+| within D_dc 0.776 (0.509) | VERIFIED | P.hull.within_D_dc 0.7755 / 0.5093 |
+| within G 0.787 (0.500) | VERIFIED | P.hull.within_G 0.7869 / 0.5 |
+| overall 0.783 | VERIFIED | P.hull.auc 0.7835 |
+| hull eroded 16 px within D 0.809 | VERIFIED | P.hull_eroded16.within_D.auc 0.8095 |
+| FRGC 0.864; colorFERET 0.554 (n = 56) | VERIFIED | P.hull.auc_frgc 0.8637, auc_feret 0.5539; by_db.feret 56 (frgc 235, n_hosts 291) |
+| joint D x G strata 0.61-0.84 | VERIFIED | six strata 0.6085 to 0.8429 |
+| verdict "premise holds" | VERIFIED | P.verdict "premise holds (>= 0.70 within D)" |
+| reviewed (post-result) | not claimed | no post-result review file yet |
+
+Summary: all claims verified; order of review, registration, measurement and read is correct.
