@@ -63,6 +63,15 @@ recomputed or replaced by battery output.
   smad_torch221_cu121_v1.sif, `--test-gate-key` for the A100 PCIe key on PN1_Sb_s403; reads the existing
   `packs/SE1/` copies of the FS1 pack and PN1_Sb_s403; uploaded `packs/BATTERY/battery_code_v1rc2.tar` and
   `ab1_overlay_v2.tar`). An Athena platform key is pinned only if byte-gated, in a later version.
+- **Athena 3551166 result** (fetched 21:2x, tar sha256 checked; copies of gate.json, platform.json, task_info.txt in
+  `smoke_athena_3551166/`; full tar `/mnt/t7/smad_next/BATTERY/athena/`): ran 21:14:28-21:15:19 on node t0010, NVIDIA
+  A100-SXM4-40GB, driver 595.91.07, container torch 2.2.1, cuDNN 8902, TF32 on/on, cudnn.benchmark False, code hash
+  15f36f62... (rc2). The A100 PCIe reference PN1_Sb_s403 was reproduced **byte-gated**: 2,496 of 2,496 gate logits equal
+  (max |dlogit| 0, 0 own-rule flips; stored range -3.59 to +3.46, 369 rows between -2 and +2); 21,277 dev images checked
+  against the pack checksums; meta keys equal to the reference. TEST run (`--test-gate-key`), nothing else scored, never
+  read. Consequence, as decided in advance: the key `NVIDIA A100-SXM4-40GB|torch 2.2.1|tf32 1/1` may be pinned as its own
+  platform (reference PN1_Sb_s403) in the next battery version; that is a code change (new VERSION, regression rerun),
+  not made in rc2.
 - Rounding corrections 1-A (10.8%) and 7-B (0.74) relayed to SA1 by the dispatcher (SA1 applied them at ad70142, by the
   dispatcher's report) and the 7-B text to PR1.
 - Release conditions (lead): the rc2 H100 smoke passes on a node other than r18-8 with its gate class recorded; the exit-5
