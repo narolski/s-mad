@@ -97,6 +97,10 @@ method candidate.
   run_b2.sh differs from run.sh v2 only in: header comment; OVERLAY path ab1b2_overlay.tar and pin d2038b98…; SUMS file
   AB1B2SUMS; arm list SbH61|SbSp|SbnS0|SbnS3|SbR (SbL line removed); results folder results/AB1B2. 25 fits, about
   15 H100-hours.
+- 15:45 registration commit 324b4fa; B2 files uploaded to packs/AB1 (hashes verified); queue file wcss_ab1b2_fit.cmd;
+  dispatcher submitted WCSS array 6313020_[0-24] (limit 1:15, owner AB1 owner, about 36 min per fit; expected end
+  about 1.5 h after start). Read with src/AB1/ab1b2_read.py after fetching to /mnt/t7/smad_next/AB1/b2/results
+  (fetch: rsync of results/AB1B2, as fetch_ab1.sh). Local staging folders removed.
 
 ## 3. Data
 
