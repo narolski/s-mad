@@ -208,3 +208,39 @@ blocks' per-seed counts (k_shrinks, k_stays: these are the counts behind the ver
 reported as a result), every g_bal and g_w value with its intervals, the null percentiles, the balanced and weighted
 per-network AUCs, the probit gains, the decomposition AUCs, the within-quintile differences, and the covariate table
 (citable only for the data facts above, never about the networks).
+
+## Pipeline-matched contrasts (amendments 4 and 4b, post hoc): read once (Fri Nov 13 20:56 CET 2026)
+
+Reader `src/AB1/ab1_pm_read.py` (ba6efdad…), AB1 H100 fit-job scores of A, B, Sb at 408-412 (all 15 read), output
+`ab1_pm_read.json`. Label: recipe at replication seeds 408-412, development plus clean test hosts, post hoc, not
+held-out; not a property of the frozen networks 403-407. R4 is a trained positive (OpenCV engine) in all three arms; R3
+is in no training list; Sb alone has same-person splice negatives, so an Sb − B gain on R4 vs R3 reads as transfer from
+those negatives to whole-frame same-person morphs.
+
+| Contrast (decides) | Sb − B seed-mean [95% component bootstrap] | per seed | Sb − A seed-mean [95%] | Verdict (B / A) |
+|---|---|---|---|---|
+| R4 vs R3, OpenCV, D-stratified, dev + 80 clean test hosts (primary) | +0.042 [+0.019, +0.070] | +0.054 +0.051 +0.055 +0.014 +0.036 | +0.063 [+0.037, +0.097] | **present / present** |
+| S4 vs S3, D-stratified, 80 clean test hosts (secondary; asymmetric: Sb is trained on S4/S3) | +0.118 [+0.069, +0.245] | +0.091 +0.168 +0.113 +0.119 +0.099 | +0.123 [+0.077, +0.240] | **present / present** |
+
+Checks of the rule: unstratified seed-mean gains agree in sign (R4 vs R3: +0.046 against B, +0.065 against A); the
+development and clean-test seed means agree in sign (Sb − B +0.024 on the 100 development hosts, +0.098 on the 80
+clean test hosts), so no cap applies; 151 components (largest 6); interval half-width 0.026 (B) and 0.030 (A).
+
+Printed (no verdict): R4 vs R3 Sb − B on dev+clean69 +0.036, test191 +0.070, test159 (not shape-linked) +0.064;
+FaceMorpher R4 vs R3 (the less-trained check) Sb − B +0.044 on dev + clean80, +0.072 on test191. S4 vs S3 Sb − B on
+dev+clean80 +0.175, on development hosts alone +0.212. Example levels at seed 408 (dev + clean80, D-stratified): R4 vs R3
+Sb 0.870, B 0.816, A 0.793; FaceMorpher Sb 0.857, B 0.803, A 0.777; S4 vs S3 on clean80 Sb 0.628, B 0.537, A 0.525.
+
+Adversary floors (printed, other row sets: ri = all 291 hosts, test = 191): on ri_R4_vs_R3 (all-cue floor 0.793,
+nuisance 0.705) Sb's AUC 0.849-0.866 exceeds the all-cue floor on 5 of 5 seeds, B (0.798-0.814) and A (0.772-0.802) on 0
+of 5; on test_cv_R4_vs_R3 (floor 0.774) Sb exceeds it on 4 of 5, B and A on 0; on test_fm_R4_vs_R3 (floor 0.796) none of
+the three exceeds it (Sb 0.799-0.835). On the splice contrasts (ri_S4_vs_S3 floor 0.773, dev_S4_vs_S3 0.82,
+test_S4_vs_S3 0.754) no network exceeds the all-cue floor (Sb 0.715-0.804); Sb exceeds the nuisance floor on 3 of 5
+(ri), 1 of 5 (dev) and 2 of 5 (test). The adversary's same-data transfer learner is not yet committed (not printed).
+
+What this licenses (registered wording): on development data and clean test hosts, Sb ranks two-person above
+same-person whole-frame morphs better than the protocol-only and plain recipes, on a contrast whose negative class (R3)
+no arm was trained on, beside the adversary's floor (beyond the all-cue floor on the pooled 291-host contrast for Sb
+only); read as transfer from Sb's same-person splice negatives; post hoc, not held-out evidence. The S4-vs-S3 gain shows
+what Sb's splice training buys on new persons (asymmetric by design), and does not exceed the adversary's all-cue floor.
+Results review pending.
