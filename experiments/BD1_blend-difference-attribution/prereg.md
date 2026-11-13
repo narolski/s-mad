@@ -246,3 +246,11 @@ amendment 2).**
 - H4: if falsified, any arm is judged first against the 7-statistic propensity.
 - Session gap: if supported, an arm matches on session gap as well; if falsified or inconclusive, it needs no gap
   matching on this evidence.
+
+## Amendment 4 (lead's go, 13 Nov; one line, registered before computing): descriptive read of the least-similar same-person splices
+
+Printed only, no rule, per block (FS1, AB1, SE1; never pooled). Over the 291 dev+test S3 hosts, take the bottom and
+top quintiles of cos_HS (pooled edges). Print per Sb seed: own-rule S3 flag rate in each quintile; AUC(S4 vs S3)
+using only the S3 rows of that quintile (all 291 S4 rows); the median D, D_dc and D_lin of each quintile; the number of
+hosts per database in each quintile. Code `src/BD1/bd1c_read.py`; post hoc (the test S3 logits and the cos_HS link
+are known).
