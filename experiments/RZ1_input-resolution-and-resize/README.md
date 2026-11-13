@@ -143,3 +143,7 @@ None yet.
 - Rescoring job (amendment 1) submitted by the dispatcher as WCSS 6316319 (afterok:6316283, Nice 9).
 - All RZ1 reads are held until ADVERSARY's stage-1 floor hash is announced by the lead.
 - Note 1 (ADV stage-1a floors): reader extended, mock (crop wave) rc 0 (`/mnt/t7/smad_next/RZ1/mock/mock_crop_adv.json`); pinned.
+- 13 Nov about 20:25 by the machine clock (dispatcher, relaying the lead): every RZ1 contrast number stays closed until
+  the lead announces that the next-method selection rule (experiments/NEXT_method-selection-rule/prereg_draft_v2.md,
+  3c2b9d5) binds, or the author rules otherwise. This replaces the release of the landmark_combined read. Jobs,
+  fetching, tar verification and gates are not affected.
