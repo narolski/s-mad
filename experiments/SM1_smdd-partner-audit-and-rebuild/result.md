@@ -842,26 +842,35 @@ seed variance (NOISES over REC seeds 0.50 / 0.61). The mix-type contrasts (NOISE
   noise-map similarity that in DiffAE also carries identity, and with look-alike partners the expected sign is not
   fixed. The bootstrap keeps ranks and residuals fixed, so its interval is conditional.
 
-## A21 (registered b43857a before computing; zero GPU; development data only; `a21_read.json`)
+## A21 (registered b43857a before computing; zero GPU; development data only; `a21_read.json`; reviewed 13 Nov, `REVIEW_SM1_A21_20261113.md`)
+
+Overall (review): on development data from one DiffAE generator, the detector's two-person signal is not shown to
+exceed the similarity of the inverted noise maps; its response follows noise-path mixing more than semantic mixing; we
+find no evidence that it reads a second identity. Render-path detection is not shown by A21 (H-D does not test it).
 
 - **H-A (detail account of A16): falsified.** Arm e's FRESH1_20 over REC20 stratified by PNG-size quintiles 0.281 [0.251,
   0.313], by face-box high-frequency-energy quintiles 0.251 [0.229, 0.273] (raw 0.241); both ≤ 0.40. Arm a: 0.443 (PNG;
-  seeds 0.398 / 0.488) and 0.344 (HF); arm f: 0.332 / 0.304. PNG size moves arm a toward 0.45 but not arm e: neither
-  sharpness (H-N4) nor file size nor high-frequency energy explains why e scores the reconstruction above the
-  fresh-noise renders.
+  seeds 0.398 / 0.488) and 0.344 (HF); arm f: 0.332 / 0.304. For arm e, quintile stratification on PNG size or face-box
+  high-frequency energy leaves FRESH1_20 over REC20 at 0.25–0.28. These coarse detail measures do not explain the
+  ordering. Quintiles are imbalanced (15/200 to 195/20), so finer matching is untested. Arm a reaches 0.443 under PNG
+  stratification (seeds 0.398 / 0.488, straddling 0.45). For arm a, file size is a partial explanation that has not
+  been ruled out.
 - **H-B (pair-dissimilarity sign; confirmation test, the raw ρ was known post hoc): undecided.** Within the 133 test X20,
   partial ρ of the A18 logit with contributor dissimilarity (1 − cos_HB) given F: +0.120 [−0.074, +0.315] (raw +0.102).
-  On shard 6 given F + c0–c3: −0.054 [−0.303, +0.207] (descriptive; the noise-path reading predicted |ρ| < 0.10).
+  On shard 6 given F + c0–c3: −0.054 [−0.303, +0.207] (descriptive; the noise-path reading predicted |ρ| < 0.10). The
+  known post hoc value (−0.10) was ρ with cos_HB, i.e. +0.10 with dissimilarity. Dissimilarity is range-restricted
+  (IQR 0.707–0.772), so the test had little power. The bootstrap is conditional.
 - **H-C (departure from the reconstruction; A19 CPU scores, ranks only): falsified.** Partial ρ of the score with the
   face-box mean squared difference from the host's REC20, given image statistics: SEMS20 +0.075 [−0.084, +0.254],
-  NOISES20 −0.015 [−0.196, +0.172] (134 hosts each); the 0.93 flag of SEMS20 over REC20 is not explained by pixel
-  distance from the reconstruction.
-- **H-D (floor reproduces the rung ranking; shard 6, 67 hosts; network = A19 CPU scores, ranks only): falsified.** The
-  shard 0–5 extended floor scores NOISEX20 over NOISES20 0.992 and SEMX20 over SEMS20 0.996; the network 0.922 and 0.718
-  (differences 0.070 and 0.278). Caveat: the floor's pair features are those of the same source pair for every rung
-  (NOISEX / SEMX share X20's pair, NOISES / SEMS share SAME20's), so the floor separates two-person from one-person
-  pairs whatever the rung; the network does not: it follows the noise-only mix more than the semantic-only mix, so it is
-  not a function of the source-pair similarity alone.
+  NOISES20 −0.015 [−0.196, +0.172] (134 hosts each). Within each rung, the score does not rise with pixel distance from
+  the host's reconstruction. This within-rung test does not address the between-rung shift (SEMS20 over REC20 0.93).
+- **H-D (floor reproduces the rung ranking; shard 6, 67 hosts; network = A19 CPU scores, ranks only): falsified as
+  registered; uninformative about the noise-path reading.** Floor NOISEX20 over NOISES20 0.992, SEMX20 over SEMS20
+  0.996; network 0.922 and 0.718 on the same 67 shard-6 hosts (A19's 0.920 / 0.738 are over 134 hosts). Network AUCs
+  were known from A19 before registration. The floor's pair features are the same for every rung, so the floor is the
+  X20-vs-SAME20 floor relabelled. The result shows only that the network is not a rung-blind function of source-pair
+  similarity. Its stronger response to noise-only mixes (0.92) than to semantic-only mixes (0.72) is consistent with,
+  not against, a reading in which it tracks noise-map similarity.
 
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
