@@ -180,3 +180,4 @@ See prereg section 10.
   replaced before registration (pre-run check F2). A loading-path test of the reader on real AB1 tars wrote a scratch
   JSON with the H-fm2/H-fm3 baselines; deleted unopened at 18:42 (F1).
 - Pre-run check GO WITH FIXES (PRERUN_AB1FM_20261113.md), fixes applied; registration prereg_fm.md; pins pins_fm.sha256.
+- Submitted by the dispatcher as WCSS job 6315597_[0-4] (limit 1:15, results/AB1FM); read with src/AB1/ab1fm_read.py when the 5 fits end, latest 15 Nov 18:00.
