@@ -196,3 +196,16 @@ Recipe (fixed here, before building):
 - **Expected count.** Up to 299 morphs.
 - **Catalogue note.** The FaceMorpher engine is a seen engine for the SbFM arm (AB1).
 - **Cost.** CPU about 2 minutes. No GPU.
+
+### D12 amendment a (registered 13 Nov 2026, about 20:46 machine clock, after the D12 build and before building D12a)
+
+- **Finding in the D12 build.** The minimum-cost derangement produced 109 mutual pairs: H paired with B and B with H.
+  The unchanged FaceMorpher tool is symmetric (mean shape, 0.5 blend, averaged background), so FM(A, B) and FM(B, A)
+  are byte-identical for all 109. D12 therefore holds 299 files but only 190 distinct images.
+- **D12 stays as built.** Nothing is deleted. Its manifest marks the duplicates (see the D12 catalogue row).
+- **D12a rule.** As D12, but mutual pairs are forbidden:
+  - solve the assignment;
+  - while any 2-cycle remains, give both of its directed edges an infinite cost and solve again.
+- Every person is still host once and partner exactly once, and every morph is a distinct unordered pair.
+- **D12a build.** The same unchanged tool and 2 workers, written to `/mnt/t7/smad_next/DATA/D12a/`. Expected 299 distinct
+  morphs.
