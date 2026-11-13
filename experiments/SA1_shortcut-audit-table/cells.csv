@@ -8,9 +8,9 @@ row,shortcut,column,cell_id,status
 1,storage history of genuine photos,MADation_ViT-L14,1-MADation_ViT-L14,reviewed
 1,storage history of genuine photos,MixFaceNet-MAD,1-MixFaceNet-MAD,reviewed
 1,storage history of genuine photos,SelfMAD,1-SelfMAD,reviewed
-2,storage history of morphs (evasion),A,2-A,unreviewed; two seeds only
-2,storage history of morphs (evasion),B,2-B,reviewed; two seeds only
-2,storage history of morphs (evasion),Sb,2-Sb,not measured (pending today)
+2,storage history of morphs (evasion),A,2-A,not measured (pending today)
+2,storage history of morphs (evasion),B,2-B,not measured (pending today)
+2,storage history of morphs (evasion),Sb,2-Sb,reviewed
 2,storage history of morphs (evasion),Sp,2-Sp,not measured
 2,storage history of morphs (evasion),SbM3,2-SbM3,not measured
 2,storage history of morphs (evasion),MADation_ViT-B16,2-MADation_ViT-B16,not measured
@@ -44,18 +44,18 @@ row,shortcut,column,cell_id,status
 5,image border or frame,MADation_ViT-L14,5-MADation_ViT-L14,not measured
 5,image border or frame,MixFaceNet-MAD,5-MixFaceNet-MAD,not measured
 5,image border or frame,SelfMAD,5-SelfMAD,unreviewed
-6,warp only (R2w),A,6-A,reviewed; two seeds only
-6,warp only (R2w),B,6-B,reviewed; two seeds only
-6,warp only (R2w),Sb,6-Sb,reviewed; two seeds only
+6,warp only (R2w),A,6-A,reviewed
+6,warp only (R2w),B,6-B,reviewed
+6,warp only (R2w),Sb,6-Sb,reviewed
 6,warp only (R2w),Sp,6-Sp,not measured
 6,warp only (R2w),SbM3,6-SbM3,not measured
 6,warp only (R2w),MADation_ViT-B16,6-MADation_ViT-B16,reviewed
 6,warp only (R2w),MADation_ViT-L14,6-MADation_ViT-L14,reviewed
 6,warp only (R2w),MixFaceNet-MAD,6-MixFaceNet-MAD,reviewed
 6,warp only (R2w),SelfMAD,6-SelfMAD,reviewed
-7,same-person morph (R3),A,7-A,reviewed; two seeds only
-7,same-person morph (R3),B,7-B,reviewed; two seeds only
-7,same-person morph (R3),Sb,7-Sb,not measured
+7,same-person morph (R3),A,7-A,reviewed
+7,same-person morph (R3),B,7-B,reviewed
+7,same-person morph (R3),Sb,7-Sb,reviewed
 7,same-person morph (R3),Sp,7-Sp,not measured
 7,same-person morph (R3),SbM3,7-SbM3,not measured
 7,same-person morph (R3),MADation_ViT-B16,7-MADation_ViT-B16,reviewed
@@ -71,9 +71,9 @@ row,shortcut,column,cell_id,status
 8,same-person face splice (S3),MADation_ViT-L14,8-MADation_ViT-L14,unreviewed
 8,same-person face splice (S3),MixFaceNet-MAD,8-MixFaceNet-MAD,unreviewed
 8,same-person face splice (S3),SelfMAD,8-SelfMAD,unreviewed
-9,blending seam (S0),A,9-A,not measured
-9,blending seam (S0),B,9-B,reviewed; two seeds only
-9,blending seam (S0),Sb,9-Sb,reviewed; two seeds only
+9,blending seam (S0),A,9-A,reviewed
+9,blending seam (S0),B,9-B,reviewed
+9,blending seam (S0),Sb,9-Sb,reviewed
 9,blending seam (S0),Sp,9-Sp,not measured (pending today)
 9,blending seam (S0),SbM3,9-SbM3,not measured
 9,blending seam (S0),MADation_ViT-B16,9-MADation_ViT-B16,reviewed
@@ -145,7 +145,7 @@ row,shortcut,column,cell_id,status
 16,expression / capture detail (FRLL smiling half),SelfMAD,16-SelfMAD,reviewed
 17,softness / detail loss,A,17-A,unreviewed; two seeds only
 17,softness / detail loss,B,17-B,reviewed; two seeds only
-17,softness / detail loss,Sb,17-Sb,not measured
+17,softness / detail loss,Sb,17-Sb,reviewed
 17,softness / detail loss,Sp,17-Sp,not measured
 17,softness / detail loss,SbM3,17-SbM3,not measured
 17,softness / detail loss,MADation_ViT-B16,17-MADation_ViT-B16,reviewed
@@ -161,8 +161,8 @@ row,shortcut,column,cell_id,status
 18,processing cue in the surround of the development set,MADation_ViT-L14,18-MADation_ViT-L14,n/a
 18,processing cue in the surround of the development set,MixFaceNet-MAD,18-MixFaceNet-MAD,n/a
 18,processing cue in the surround of the development set,SelfMAD,18-SelfMAD,n/a
-19,operating point / bounded output scale,A,19-A,reviewed; two seeds only
-19,operating point / bounded output scale,B,19-B,reviewed; two seeds only
+19,operating point / bounded output scale,A,19-A,reviewed
+19,operating point / bounded output scale,B,19-B,reviewed
 19,operating point / bounded output scale,Sb,19-Sb,reviewed
 19,operating point / bounded output scale,Sp,19-Sp,not measured
 19,operating point / bounded output scale,SbM3,19-SbM3,not measured
@@ -170,3 +170,12 @@ row,shortcut,column,cell_id,status
 19,operating point / bounded output scale,MADation_ViT-L14,19-MADation_ViT-L14,reviewed
 19,operating point / bounded output scale,MixFaceNet-MAD,19-MixFaceNet-MAD,not measured
 19,operating point / bounded output scale,SelfMAD,19-SelfMAD,reviewed
+20,morph engine of the training morphs,A,20-A,reviewed
+20,morph engine of the training morphs,B,20-B,reviewed
+20,morph engine of the training morphs,Sb,20-Sb,reviewed
+20,morph engine of the training morphs,Sp,20-Sp,not measured
+20,morph engine of the training morphs,SbM3,20-SbM3,not measured
+20,morph engine of the training morphs,MADation_ViT-B16,20-MADation_ViT-B16,n/a
+20,morph engine of the training morphs,MADation_ViT-L14,20-MADation_ViT-L14,n/a
+20,morph engine of the training morphs,MixFaceNet-MAD,20-MixFaceNet-MAD,n/a
+20,morph engine of the training morphs,SelfMAD,20-SelfMAD,n/a

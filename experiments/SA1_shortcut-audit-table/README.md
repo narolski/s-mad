@@ -5,9 +5,8 @@
 The author asked for scientific evidence that the training protocol is shortcut-free: one row per known shortcut,
 one column per training arm or released detector, every cell from a paired control (the same images with and without
 the suspected cue), with seeds, intervals, source file and review status. Status 13 Nov 2026, about 09:45 CET:
-version 2 (reviewed) compiled from registered results only (no scoring). Of 171 cells (19 rows x 9 columns), 79 are
-reviewed (22 of them on two seeds only), 18 unreviewed, 63 empty, 11 not applicable. For our own arms, 51 of 95 cells
-are empty (after G9 filled row 15 for our arms). The best-measured row
+version 2 (reviewed) compiled from registered results only (no scoring). After the PR1 part-1 and C2P readings (13 Nov 09:50), of 180 cells (20 rows x 9 columns) 85 are reviewed (12 of
+them on two seeds only), 17 unreviewed, 63 empty, 15 not applicable. For our own arms, 51 of 100 cells are empty. The best-measured row
 (storage history of genuine photos, five fresh seeds) supports "reduced, not removed", not "removed". The table is
 `result.md`; the cell list is `cells.csv`. Waiting for today's readings (Sp ablation, SbM3 three-source training,
 contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cells.
@@ -31,6 +30,12 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
   Version 2 committed 08:48:58 (347e8be).
 - 08:50: lead's instruction: save the review verbatim (`experiments/reviews/REVIEW_SA1_20261113.md`); do gap items 9 and 11; registered G9 and G11 in `prereg.md` (3a0065e) before computing.
 - 08:52-08:56: G9 (`src/SA1/g9_partners.py` -> `g9_partners.json`): "partner structure present" by the registered 1% rule (largest share 1.6-3.1%, AF0 FRGC persons in up to 25 morphs); far weaker than SMDD's 5 partners. G11 (`src/SA1/g11_expression_pool.py` -> `g11_expression_pool.json`): "a paired expression pool exists" (CFD 158, KDEF 70 persons). Note: the G11 code also accepts a combined count of 100; CFD alone meets the registered rule, so the reading is the same.
+
+- 09:40-09:50: lead's message: PR1 part 1 (`experiments/PR1_protocol-reads-existing-networks/result.md`, review
+  REVIEW_PR1_PART1_20261113) and C2P (`PN1/c2p_result.md`, review REVIEW_PN1_C2P_20261113) entered from the files and
+  reviews: rows 6-9 go to five seeds, row 19 gets the τ5 read, new row 20 (engine, ceiling read), rows 1 and 2 get the
+  C2P wording (Sb evasion falsified on 4 of 4 read seeds; A and B not read; C2P-R pending). Also the SM1 A14/A23 partner
+  trace (row 15, 15b).
 
 ## 3. Data
 

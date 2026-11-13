@@ -1,6 +1,6 @@
 # Shortcut audit table (SA1): result, version 2 (13 Nov 2026, reviewed; before today's readings)
 
-Status 13 Nov 2026, 08:49 CET (machine clock; earlier "09:30" and "10:10" stamps in these files were estimates and wrong). Update 08:58: G9 and G11 added. Update about 09:15: row 15 carries the A23 within-key AUCs of the released networks (logit gaps moved to detail). Update about 09:05: row 15b (retrained ViT-L/14 partner trace, SM1 A14) and AD4 cluster-stack wording. Version 2 applies the independent review (results-reviewer, Opus, 13 Nov; 20 corrections, summarised in `README.md` section 2). Compiled from registered, committed results only. **Nothing was scored, computed
+Status 13 Nov 2026, 08:49 CET (machine clock; earlier "09:30" and "10:10" stamps in these files were estimates and wrong). Update 08:58: G9 and G11 added. Update about 09:45: PR1 part 1 (five fresh seeds for rows 6-9, 17, 19; new row 20) and C2P (rows 1, 2) entered from their reviewed results. Update about 09:15: row 15 carries the A23 within-key AUCs of the released networks (logit gaps moved to detail). Update about 09:05: row 15b (retrained ViT-L/14 partner trace, SM1 A14) and AD4 cluster-stack wording. Version 2 applies the independent review (results-reviewer, Opus, 13 Nov; 20 corrections, summarised in `README.md` section 2). Compiled from registered, committed results only. **Nothing was scored, computed
 on images or run for this page.** No file whose name contains `fst`, `valx` or `A12SP` was opened. Numbers that come
 from the 12 Nov benchmark exposure of candidate networks (FRLL, MAD22, H1 reads of the protocol networks;
 `experiments/PN1_protocol-network-first-tests/BENCHMARK_EXPOSURE.md`) are **not** used: those cells say
@@ -44,15 +44,15 @@ when the lead says the readings are in.
 
 | # | Shortcut (paired control) | A plain | B protocol | Sb protocol + splice | Sp | SbM3 | MADation ViT-B/16 | MADation ViT-L/14 | MixFaceNet-MAD | SelfMAD |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Storage history of genuine photos (shrink and re-store) | **used**: own-rule flags on FFHQ +14.7 to +21.8 pts (5 seeds) | **reduced, not removed**: +2.5 to +5.5 pts (5 seeds), at a near-trained size; unseen-size test (amsl112, C2P) pending | **reduced, not removed**: +0.5 to +2.7 pts (5 seeds), at a near-trained size; unseen-size test (amsl112, C2P) pending | pending today | pending today | **used**: EER +12.2 to +19.0 pts | not shown (saturated; small effects not excluded): −1.0 to +2.0 pts; MAD22 FaceMorpher 17.6 vs 3.4% flagged | **used**: EER +18.5 to +21.1 pts | **used**: 0% → 44.6–97.1% flagged |
-| 2 | Storage history of morphs (stored-small morph missed) | not evaluable: R4 miss at floor (2 seeds) | in training (61 px morph copies are B's attacks); ladder at floor; evasion untested (C2P H-new-1 pending) | pending today (C2P H-new-1) | not measured | not measured | not measured | not measured | not measured | not measured |
+| 1 | Storage history of genuine photos (shrink and re-store) | **used**: own-rule flags on FFHQ +14.7 to +21.8 pts (5 seeds); C2P not read (every plain network failed the platform gate; re-scoring C2P-R pending) | **reduced, not removed**: +2.5 to +5.5 pts (5 seeds), at a near-trained size; C2P not read (1 seed passed the gate) | **reduced, not removed**: +0.5 to +2.7 pts (5 seeds); C2P (4 gate-passed seeds): +1.0 to +3.8 pts at 61.2 px, −0.3 to +3.4 at the untrained 112.7 px, not compared with the plain recipe (registered contrast uninformative) | pending today | pending today | **used**: EER +12.2 to +19.0 pts | not shown (saturated; small effects not excluded): −1.0 to +2.0 pts; MAD22 FaceMorpher 17.6 vs 3.4% flagged | **used**: EER +18.5 to +21.1 pts | **used**: 0% → 44.6–97.1% flagged |
+| 2 | Storage history of morphs (stored-small morph missed) | not available: C2P gate failed all 5 plain networks (C2P-R pending) | not read: 1 seed passed the C2P gate (C2P-R pending) | **evasion falsified** on 4 of 4 read seeds (C2P H-new-1) | not measured | not measured | not measured | not measured | not measured | not measured |
 | 3 | JPEG history | not measured (exposure only) | not measured (exposure only) | not measured (exposure only) | not measured | not measured | graded reaction (older ledger) | 0.13 logit shift, no own-rule change (saturated) | 4.9% flagged at JPEG 50 (older ledger) | not evaluable (own crop) |
 | 4 | Unseen camera source (source comparison, not paired) | own rule fails on 2 of 7 families (2 seeds; fresh seeds pending today, TT1-FS) | own rule holds (≤ 4.9%), but FFHQ 17.8 / 6.4% (2 seeds; TT1-FS pending) | own rule fails narrowly on 2 of 7 families (2 seeds; TT1-FS pending) | not measured | pending today (its purpose) | 0.1–2.6% FFHQ at own rule | not measured (earlier figure withdrawn) | source-dependent flags (older ledger) | 25–47% of ladder photos at its FRLL threshold |
 | 5 | Image border / frame (black border alone) | inconclusive (TT-H3): +0.04 to +0.10 logit; CFP-sized borders +0.21 to +0.38; FFHQ mixed in sign (2 seeds; TT1-FS pending) | inconclusive (TT-H3), same range (2 seeds; TT1-FS pending) | inconclusive (TT-H3), same range; FFHQ flags 7.0 → 13.4% (2 seeds; TT1-FS pending) | not measured | not measured | frame alone +0.42 logit | not measured | not measured | frame alone +0.72 logit |
-| 6 | Warp only, no second person (R2w) | not used: R2w vs R4 1.000, R2w placed 0% (2 seeds) | in training (negative type) | in training (negative type) | not measured | not measured | small (warp share 0.01–0.07; registered "reads morphing"): R0→R2w 0.51–0.57 | not used: 0.43–0.46 | small (share 0.05–0.15): 0.53–0.59 | **reacts**: R0→R2w 0.65–0.71 |
-| 7 | Same-person morph (R3) | **flagged**: 97.4 / 99.0% (2 seeds) | **flagged**: 92.7 / 93.7% (2 seeds) | not measured | not measured | not measured | **flagged like morphs**: R2w→R3 0.948 | **flagged**: 0.90–0.93 | **flagged**: 0.81–0.84 | **flagged**: 0.92–0.96 |
-| 8 | Same-person face splice (S3) | 2–7% flagged (5 seeds), but misses splices | 2–7% flagged (5 seeds), but misses splices | **flagged**: 31–41% (5 seeds), a trained negative type | pending today | not measured | S3 ≈ S4 (0.473, OpenCV) | S3 ≈ S4 (0.519) | S3 ≈ S4 (0.511) | S3 vs S4 0.579 |
-| 9 | Blending seam (S0 seam-only negative) | not measured | S0 vs S4 0.68 / 0.73 (2 seeds) | S0 in training; S0 vs S4 0.98–0.99 (2 seeds) | pending today (its purpose) | not measured | seam alone not used (R2w4 vs S0 0.46–0.54) | not used (same) | not used (same) | not used (same); reads face blend 0.889 |
+| 6 | Warp only, no second person (R2w) | **not flagged** (5 seeds) | not flagged (5 seeds; trained negative) | not flagged (5 seeds; trained negative) | not measured | not measured | small (warp share 0.01–0.07; registered "reads morphing"): R0→R2w 0.51–0.57 | not used: 0.43–0.46 | small (share 0.05–0.15): 0.53–0.59 | **reacts**: R0→R2w 0.65–0.71 |
+| 7 | Same-person morph (R3) | **flagged like a morph**: 94.8–99.5% (5 seeds) | **flagged like a morph**: 90.6–95.3% (5 seeds) | **flagged like a morph**: 83.2–88.5% (5 seeds) | not measured | not measured | **flagged like morphs**: R2w→R3 0.948 | **flagged**: 0.90–0.93 | **flagged**: 0.81–0.84 | **flagged**: 0.92–0.96 |
+| 8 | Same-person face splice (S3) | not flagged: 2.1–5.8% (5 seeds), but misses splices | not flagged: 0.5–3.7% (5 seeds), but misses splices | **inconclusive**: 37.2–48.2% flagged (5 seeds), a trained negative type | pending today | not measured | S3 ≈ S4 (0.473, OpenCV) | S3 ≈ S4 (0.519) | S3 ≈ S4 (0.511) | S3 vs S4 0.579 |
+| 9 | Blending seam (S0 seam-only negative) | inconclusive: S0 flagged 0–0.5%, weak S4 detection (5 seeds) | inconclusive: S0 flagged 0%, 91–98% of S4 missed (5 seeds) | **seam-only not flagged** (5 seeds; trained negative) | pending today (its purpose) | not measured | seam alone not used (R2w4 vs S0 0.46–0.54) | not used (same) | not used (same) | not used (same); reads face blend 0.889 |
 | 10 | Alignment or crop path | small at 224 px crop geometry (2 seeds; TT1-FS pending) | small (2 seeds) | small (2 seeds) | not measured | not measured | **crop-path dependent** | crop-path dependent | crop-path dependent | not measured |
 | 11 | Data volume | n/a (reference) | not volume: Bn ≈ B (2 seeds) | not volume: Bv ≈ B (2 seeds) | n/a | pending today (SbV arm) | n/a | n/a | n/a | n/a |
 | 12 | Surround blend (whole-frame tools; a real blend, not an artefact) | relies on it | relies on it | reduced in degree, not removed | not measured | not measured | relies on it | relies on it | relies on it | reads the face too |
@@ -60,9 +60,10 @@ when the lead says the readings are in.
 | 14 | GAN one-person render (MIPGAN) | not measured | not measured | not measured | not measured | not measured | **mostly second photo**: same-person flagged 95.5% | 87.0% | not measured | 100% |
 | 15 | Training-partner trace (SMDD five partners) | mild structure (one person in ≤ 2.9% of morphs; use untested) | same (≤ 2.9%) | same (≤ 2.6%) | same (≤ 2.6%) | same (≤ 1.6%) | within-key AUC 0.716 (crop) / 0.702 (whole) | within-key AUC 0.768 (crop) / 0.835 (whole) | within-key AUC 0.909 (crop) / 0.808 (whole) | n/a (not SMDD) |
 | 16 | Expression / capture detail of the FRLL smiling half | not measured (exposure only) | not measured (exposure only) | not measured (exposure only) | not measured (exposure only) | not measured | change < 1.5 pts | **+4.5 pts** with neutral-only genuine | not measured | change < 1.5 pts |
-| 17 | Softness / detail loss | reads missing high frequency (TT1 H-new-1, unreviewed) | mostly softness on R2w vs R4 (2 seeds) | not measured | not measured | not measured | mixed (AR1 softened copies) | more than detail loss (not separated from ghosting) | **detail loss explains** at 61 px | more than detail loss |
+| 17 | Softness / detail loss | reads missing high frequency (TT1 H-new-1, unreviewed) | mostly softness on R2w vs R4 (2 seeds) | "not softness alone" at the ceiling (decides nothing); S4 vs S3 within lapvar strata 0.71–0.75 (5 seeds) | not measured | not measured | mixed (AR1 softened copies) | more than detail loss (not separated from ghosting) | **detail loss explains** at 61 px | more than detail loss |
 | 18 | Processing cue in the surround of the development set (FFHQ landmark_combined) | below floor | below floor | level with floor; R2 fails on noise_std_border (5 seeds) | pending today (printed R1–R6) | not measured | n/a | n/a | n/a | n/a |
-| 19 | Operating point / bounded output scale | τ_cam degenerate (saturated) | τ_cam and τ_dev degenerate | τ_dev degenerate (96–98% of FFHQ flagged) | not measured | not measured | own 0.5 rule catches 4% of AMSL | saturated genuine scores | not measured | own rule usable (0% unprocessed) |
+| 19 | Operating point / bounded output scale | no usable operating point at τ5 (0 of 5); τ_cam saturated | no usable operating point at τ5 (0 of 5) | τ5 usable within the calibration sources (4 of 5), but flags 32–43% of dev S3; τ_dev degenerate | not measured | not measured | own 0.5 rule catches 4% of AMSL | saturated genuine scores | not measured | own rule usable (0% unprocessed) |
+| 20 | Morph engine of the training morphs (OpenCV-style trained, FaceMorpher held out) | "no engine gap" at the ceiling (decides nothing; 5 seeds) | same | same | not measured | not measured | n/a | n/a | n/a | n/a |
 
 Columns pending (not yet in the matrix): SE1 (same-person blend arm), BB2 (second backbone), AB1 (protocol ablation and replication, seeds 408–412, leave-one-component-out arms that say which component removes which shortcut).
 
@@ -83,6 +84,7 @@ Path shorthand: **PN1/** = `experiments/PN1_protocol-network-first-tests/`; **TT
 | 1-A | FFHQ genuine, own rule: 6.4–10.7% native → 21.1–30.7% history-matched (+14.7 to +21.8 points; 294 to 436 discordant persons, all one direction, McNemar p < 1e-88); paired share rising 0.576 ± 0.044 [0.527, 0.626]; mean shift +0.70 ± 0.07 genuine SD; flag ratio 2.8–3.5. Earlier seeds: test ladder R0_61 flagged 20.4 / 31.9% at own rule; FFHQ share rising 0.78 / 0.72; TT1 112 px camera photos 46.0 / 56.6% (paired shift +2.85 / +5.37 logit) | 403–407 (5); 401/402 for the earlier reads | development (FFHQ 2,000 persons; test ladder 191 hosts; TT1 417 camera photos) | rev/REVIEW_PN1_FS1_20261113.md:36-41, :45-51; PN1/result.md:296, :68, :169-182; TT1/result.md:96-98 | REVIEW_PN1_FS1, REVIEW_PN1_TIER1 (:29, :74), REVIEW_PN1_BATCH2 (F2, :37-45), REVIEW_TT1 (F2, :24-38) | reviewed (post hoc, descriptive: the registered contrast 2 was "uninformative" because A's positive control failed) |
 | 1-B | At a near-trained size (FFHQ history copies about 64.6 px against the trained 61.2 px; "the evidential weight is carried by amsl112", PN1/prereg.md:791-793; unseen-size test C2P pending). FFHQ own-rule flag increase +2.5 to +5.5 points; share rising 0.243 ± 0.060 [0.180, 0.326]; mean shift +0.07 ± 0.04 SD; flag ratio 1.5–2.0; A above B on all three storage reads at every seed (Mann–Whitney p = 0.0079). Earlier seeds: test ladder 1.6 / 1.0%; FFHQ share 0.443 / 0.372; TT1 112 px 1.0 / 0.2% | 403–407; 401/402 | development | rev/REVIEW_PN1_FS1_20261113.md:45-55; PN1/result.md:63-68, :172, :176; TT1/result.md:96-97 | as 1-A | reviewed (post hoc; registered contrast 2 "uninformative") |
 | 1-Sb | At a near-trained size (as 1-B). FFHQ own-rule flag increase +0.5 to +2.7 points; share rising 0.140 ± 0.034 [0.084, 0.175]; mean shift −0.09 ± 0.06 SD (reversed bulk shift); flags still rise, McNemar p ≤ 0.0012 on 4 of 5 seeds (403: p = 0.078). TT1 112 px camera photos 7.7 / 3.4% (401/402) | 403–407; 401/402 | development | rev/REVIEW_PN1_FS1_20261113.md:45-57; TT1/result.md:96-97 | REVIEW_PN1_FS1, REVIEW_TT1 | reviewed (post hoc; registered contrast 2 "uninformative") |
+| 1-Sb (C2P) | Review Q4, can be said: "On 300 FFHQ persons no network was trained on, the four protocol-plus-splice networks that passed the platform gate (seeds 403, 405, 406, 407) raised their own-rule flag rate on stored genuine photos by +1.0 to +3.8 points at the trained size (61.2 px) and by −0.3 to +3.4 points at an untrained size (112.7 px). Their mean genuine logit moved toward genuine (−0.02 to −0.24 genuine SD). ... No plain network passed the gate, so these reactions are not compared with the plain recipe, and the registered storage contrast is uninformative." Sb 406 is the largest (native flags 6.0%; upper 95% bounds 6.5 and 5.9 points). Cannot be said: "reduced relative to the plain recipe" or "at most one third of it"; "removed", "absent" or "shortcut-free"; anything about B (one seed) or A. C2P-R (re-scoring on the training platform) awaits the author | 403, 405, 406, 407 | development | PN1/c2p_result.md:70-87; rev/REVIEW_PN1_C2P_20261113.md:112-127 | REVIEW_PN1_C2P_20261113 | reviewed |
 | 1-Sp | — (registered printed read "storage share"; Sp s403 tar landed 13 Nov, not read) | 403–405 | development | PN1/prereg.md:746-761 | — | not measured (pending today) |
 | 1-SbM3 | — (MS1 hold-out has fm61 and amsl112 stored copies of 300 unseen FFHQ persons) | 403–407 | development | experiments/MS1_multi-source-training-set/README.md:123-126 | — | not measured (pending today) |
 | 1-ViTB | EER rise with the morphs' shrink-and-store history on the genuine photos: +12.8 to +19.0 points on AMSL, WebMorph and MAD22 FaceMorpher (our aligned frames in both arms), +12.2 [8.3, 16.3] on MorDIFF (raw files, corrected crop); at the threshold flagging 5% of unprocessed photos: 38–56% of history-matched photos against 10% of the same aligned photos without history; 68% on MorDIFF. On 2,000 FFHQ photos the 63–65 px history raises 99% of scores by 0.36 logit | one released network | benchmark audit (FFHQ part: development) | rev/REVIEW_RS1_20261112.md:79; rev/REVIEW_EV1_20261111.md:13-16 | REVIEW_RS1, REVIEW_EV1 | reviewed |
@@ -94,9 +96,9 @@ Path shorthand: **PN1/** = `experiments/PN1_protocol-network-first-tests/`; **TT
 
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
-| 2-A | Not evaluable: R4_61 (OpenCV) miss at own rule 0 of 191 on both seeds, but ladder R4 misses are at the floor for every network (0–0.6%, TT1/result.md:182), so the read has no headroom | 401/402 | development (test ladder) | PN1/tier1/A_s401.json, A_s402.json (`fixed.own.T_R4_opencv_61`; test-ladder rows only); PN1/result.md:76 | — (the review's P-f sentence covers B, Bn, C only) | unreviewed; two seeds only |
-| 2-B | "P-f pass: R4_61 miss is 0 to 0.5%" (B, Bn, C, both seeds). Not evidence against evasion: 61.2 px morph copies are B's training attacks (PN1/prereg.md:38) and ladder misses are at the floor; evasion untested (C2P H-new-1 pending) | 401/402 | development (test ladder) | PN1/result.md:76-77; rev/REVIEW_PN1_TIER1_20261112.md:70 | REVIEW_PN1_TIER1 | reviewed; two seeds only |
-| 2-Sb | — (registered as H-new-1 in contrast 2-prime: Sb's miss on stored u50 morphs against native, MS1 hold-out) | 403–407 | development | PN1/prereg.md:780ff; rev/REVIEW_PN1_FS1_20261113.md:147-152 | — | not measured (pending today) |
+| 2-A | "not available": the C2P gate (L40S, TF32 off) failed for all five A networks on the max condition (max abs Δlogit 0.119–0.249 > 0.10). The tier-1 read (R4_61 miss 0 of 191, seeds 401/402) is at the floor and not evaluable. A registered re-scoring on the training platform (C2P-R) awaits the author | 403–407 | development (MS1 FFHQ hold-out) | PN1/c2p_result.md:34-39; experiments/PR1_protocol-reads-existing-networks/result.md:131-132 | REVIEW_PN1_C2P_20261113 | not measured (pending: C2P-R) |
+| 2-B | Not read: only seed 405 passed the C2P gate (C2P.2). Seeds 401/402: 61.2 px morph copies are B's training attacks and ladder misses are at the floor, so the tier-1 "P-f pass" is not evidence against evasion | 403–407 | development | PN1/c2p_result.md:37-39; rev/REVIEW_PN1_TIER1_20261112.md:70 | REVIEW_PN1_C2P_20261113 | not measured (pending: C2P-R) |
+| 2-Sb | H-new-1 "falsified" on 4 of 4 read seeds (seed 404 not read, gate): "Stored morphs did not become easier to miss (morph shift +0.06 to +0.11 SD at 61.2 px and −0.02 to +0.04 SD at 112.7 px; storage evasion falsified on 4 of 4 read seeds). Development data only." | 403, 405, 406, 407 | development (300 unseen FFHQ persons) | PN1/c2p_result.md:37-39; rev/REVIEW_PN1_C2P_20261113.md:116 | REVIEW_PN1_C2P_20261113 | reviewed |
 | 2-Sp, 2-SbM3, 2-released | — | — | — | — | — | not measured |
 
 ### Row 3. JPEG history (same photo native against JPEG re-saved)
@@ -139,9 +141,9 @@ Path shorthand: **PN1/** = `experiments/PN1_protocol-network-first-tests/`; **TT
 
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
-| 6-A | R2w vs R4 1.000 (both engines) in all 8 tier-1 fits; R2w placed above the own rule 0 of 191 on both seeds (R2w is not in A's training). Caveat (review Q4): "Mostly softness. AD4's morph-free networks, which never saw a blend, reach R4 vs R2w 0.84 to 0.86 on the ladder. One band-power statistic gives 0.888." [AD4 wording since 13 Nov: "trained only to flag shrink-and-enlarge copies" replaces "never saw a morph" alone, experiments/AD4/result.md:132] Stored at 61 px, R2w is placed at 29.8% (s401), which is row 1, not row 6 | 401/402 | development (test ladder) | rev/REVIEW_PN1_TIER1_20261112.md:25, :96-104; PN1/tier1/A_s401.json, A_s402.json (`fixed.own.T_R2w_opencv`) | REVIEW_PN1_TIER1 (AUC); placement unreviewed | reviewed; two seeds only |
-| 6-B | R2w is a training negative type of B (in distribution, not a held-out test); R2w vs R4 1.000; placed 0% | 401/402 | development | as 6-A; PN1/prereg.md:36-41 | REVIEW_PN1_TIER1 | reviewed; two seeds only |
-| 6-Sb | R2w is a training negative type; face-blanked R2w vs R4 dev / test 0.991 / 0.995 (401), 0.999 / 0.999 (402); fresh seeds face-blanked test 0.987–1.000 | 401/402; 403–407 | development | PN1/result.md:126-131; PN1/tier_fs/fs.json (`faceblanked_test`) | REVIEW_PN1_BATCH2 (F1, :24-35) for 401/402 | reviewed (401/402); fresh seeds unreviewed |
+| 6-A | Five fresh seeds (PR1 Z4, test ladder, own rule, OpenCV): R2w flagged 0%; R4 vs R2w 1.000 → "not flagged" (R2w is not in A's training). Seeds 401/402 the same. Caveat (tier-1 review Q4): "Mostly softness": networks trained only to flag shrink-and-enlarge copies reach R4 vs R2w 0.84–0.86 and one band-power statistic 0.888 | 403–407 (and 401/402) | development (test ladder) | experiments/PR1_protocol-reads-existing-networks/result.md:92-94; rev/REVIEW_PN1_TIER1_20261112.md:25, :102 | REVIEW_PR1_PART1_20261113, REVIEW_PN1_TIER1 | reviewed |
+| 6-B | R2w flagged 0%; R4 vs R2w 1.000 → "not flagged" (trained negative, in distribution) | 403–407 | development | experiments/PR1_protocol-reads-existing-networks/result.md:94 | REVIEW_PR1_PART1_20261113 | reviewed |
+| 6-Sb | R2w flagged 0–0.5%; R4 vs R2w 1.000 → "not flagged" (trained negative); face-blanked test 0.987–1.000 | 403–407 | development | experiments/PR1_protocol-reads-existing-networks/result.md:94; PN1/tier_fs/fs.json | REVIEW_PR1_PART1_20261113 | reviewed |
 | 6-Sp, 6-SbM3 | — | — | — | — | — | not measured |
 | 6-ViTB | Small: warp share 0.07 / 0.01, interval excludes 0.5 on OpenCV; registered "reads morphing". R0 → R2w 0.566 [0.55, 0.58] (OpenCV) / 0.511 (FaceMorpher); R2w vs R4 0.986 / 0.984 | one network | development (536 FRGC/colorFERET hosts, our frames) | experiments/AR1/result.md:106-107 | REVIEW_AR1 (:7, :100) | reviewed |
 | 6-ViTL | R0 → R2w 0.427 / 0.463; R2w vs R4 0.992 / 0.994 | one network | development | experiments/AR1/result.md:108-109 | REVIEW_AR1 | reviewed |
@@ -152,9 +154,9 @@ Path shorthand: **PN1/** = `experiments/PN1_protocol-network-first-tests/`; **TT
 
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
-| 7-A | Per-seed values from the tier-1 JSON test-ladder rows (unreviewed as single values): placed above the own rule 97.4% [94.0, 99.1] / 99.0% (OpenCV); R4 vs R3 0.731 / 0.756 (PN1/result.md:67). Review: "Same-person morphs (R3) are placed above the own rule 91 to 99% of the time, and mirror self-morphs (R3m) 90 to 98%. R4 vs R3 is only 0.73 to 0.77" (all 8 fits) | 401/402 | development (test ladder) | PN1/tier1/A_s40[12].json (`fixed.own.T_R3_opencv`, `h_R4_vs_R3`); rev/REVIEW_PN1_TIER1_20261112.md:101 | REVIEW_PN1_TIER1 | reviewed; two seeds only |
-| 7-B | 92.7 / 93.7%; R4 vs R3 0.767 / 0.761 (Bn 92.7 / 95.8%, C 92.7 / 91.1%) | 401/402 | development | as 7-A | REVIEW_PN1_TIER1 | reviewed; two seeds only |
-| 7-Sb | — (R3 rows are in the FS1 evaluation list; not read out) | — | — | — | — | not measured |
+| 7-A | Five fresh seeds (PR1 Z4): R3 flagged 94.8–99.5%, R4 vs R3 0.72–0.75; mirror self-morph R3m 97.9–99.5%, R4 vs R3m 0.77–0.79 → "flagged like a morph". Seeds 401/402: 91–99% (tier-1 review) | 403–407 | development (test ladder) | experiments/PR1_protocol-reads-existing-networks/result.md:95-96; rev/REVIEW_PN1_TIER1_20261112.md:101 | REVIEW_PR1_PART1_20261113 | reviewed |
+| 7-B | R3 90.6–95.3%, R4 vs R3 0.75–0.79; R3m 94.8–97.4% → "flagged like a morph" | 403–407 | development | experiments/PR1_protocol-reads-existing-networks/result.md:95-96 | REVIEW_PR1_PART1_20261113 | reviewed |
+| 7-Sb | R3 83.2–88.5%, R4 vs R3 0.80–0.85; R3m 95.8–96.9% → "flagged like a morph". Engine contrast on R4 vs R3 (Z3b, amendment 3): "inconclusive" | 403–407 | development | experiments/PR1_protocol-reads-existing-networks/result.md:95-96, :120-122 | REVIEW_PR1_PART1_20261113 (Z4); Z3b unreviewed | reviewed |
 | 7-Sp, 7-SbM3 | — | — | — | — | — | not measured |
 | 7-released | "A same-person morph is flagged almost as readily (0.81 to 0.96). Swapping in a second, dissimilar person adds 0.60 to 0.75, an upper bound." R2w → R3 / R3 → R4: ViT-B/16 0.948 / 0.695 (OpenCV); ViT-L/14 0.896 / 0.749; MixFaceNet 0.813 / 0.619; SelfMAD 0.922 / 0.689 (FaceMorpher: 0.948/0.672, 0.926/0.737, 0.841/0.598, 0.959/0.663) | one network each | development | experiments/AR1/result.md:102-111; rev/REVIEW_AR1_20261111.md:101 | REVIEW_AR1 | reviewed |
 | 7-note | Class status: same-person morphs are "single-subject" images under the lead's working rule (PN1/prereg.md:26-30); whether flagging them is an error awaits the author's class ruling (`14_CLASS_DEFINITIONS.md`) | — | — | — | — | — |
@@ -163,8 +165,8 @@ Path shorthand: **PN1/** = `experiments/PN1_protocol-network-first-tests/`; **TT
 
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
-| 8-A, 8-B | "A and B flag 2–7%" of development S3. But A and B miss most face splices: development S4 miss 93–97% for A, B, C, Bv (TT1 H-new-4), so a low S3 rate here is not evidence of avoiding the cue | 403–407 (S3 flags); 401/402 (S4 miss) | development (ladder) | rev/REVIEW_PN1_FS1_20261113.md:85; TT1/result.md:179-185 | REVIEW_PN1_FS1 (F6); S4 miss unreviewed (TT1 post-result amendment) | reviewed (S3 flags); S4 miss unreviewed |
-| 8-Sb | "Sb flags 31–41% of development S3 images (same-person inside-face splices, a negative type it was trained on)"; S3 vs S0 0.86–0.93; S4 vs S3 0.78–0.82 | 403–407 | development | rev/REVIEW_PN1_FS1_20261113.md:84-87; PN1/result.md:296 | REVIEW_PN1_FS1 | reviewed |
+| 8-A, 8-B | Test ladder S3 flagged: A 2.1–5.8%, B 0.5–3.7% → "not flagged". But A and B miss most face splices (development S4 missed 91–98% for B; 93–97% for A, B, C, Bv in TT1 H-new-4), so a low S3 rate is not evidence of avoiding the cue | 403–407 | development | experiments/PR1_protocol-reads-existing-networks/result.md:97-98; rev/REVIEW_PN1_FS1_20261113.md:85; TT1/result.md:179-185 | REVIEW_PR1_PART1_20261113, REVIEW_PN1_FS1 | reviewed |
+| 8-Sb | Test ladder S3 flagged 37.2–48.2%, S4 vs S3 0.72–0.74 → "inconclusive" (trained negative); development S3 31–41%. Sb's own training S3 rows are flagged nearly as often (26–37%): a training-level problem; the flagged training rows are largely the same on every seed (Z1b-1, unreviewed) | 403–407 | development | experiments/PR1_protocol-reads-existing-networks/result.md:28-46, :97, :112-115; rev/REVIEW_PN1_FS1_20261113.md:84-87 | REVIEW_PR1_PART1_20261113 (finding 2), REVIEW_PN1_FS1; Z1b unreviewed | reviewed |
 | 8-Sp | — (registered printed read "development S3 own-rule flags") | 403–405 | development | PN1/prereg.md:751-755 | — | not measured (pending today) |
 | 8-SbM3 | — (FFHQ supplies no S3; the FRGC/colorFERET S3 rows equal Sb's) | — | — | experiments/MS1_multi-source-training-set/README.md:124-125 | — | not measured |
 | 8-released | S3 vs S4 (second identity inside the face only), OpenCV only (FaceMorpher splice reads are "not used for conclusions", AR1/result.md:279-280): SelfMAD 0.579, ViT-B/16 0.473, ViT-L/14 0.519, MixFaceNet 0.511. S3 flag rates not measured | one network each | development | experiments/AR1/result.md:282-301 | values not restated in REVIEW_SPLICE | unreviewed |
@@ -173,9 +175,9 @@ Path shorthand: **PN1/** = `experiments/PN1_protocol-network-first-tests/`; **TT
 
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
-| 9-A | — | — | — | — | — | not measured |
-| 9-B | S0 vs S4 (test) 0.682 / 0.725; B flags 0/100 development S0 (rev/PRERUN_PN1_SP_20261112.md:13) | 401/402 | development | rev/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md:28 | REVIEW_PN1_BATCH2 | reviewed; two seeds only |
-| 9-Sb | S0 is a training negative. S0 vs S4 (test) 0.983 / 0.989; excess over the 3-statistic floor (seam tone, sharpness ratio, band5) +0.125 / +0.131 (lower bounds +0.08 / +0.09); development S0 placed 0 of 100 on both seeds (rev/PRERUN_PN1_SP_20261112.md:10; PN1/prereg_remedies_v2_draft.md:50). The OpenCV seam "is equal in size but not in kind" (a colour step separates S4 from S0 at about 0.71) | 401/402 | development | rev/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md:28-29; rev/PRERUN_PN1_SP_20261112.md:10; rev/REVIEW_SPLICE_20261111.md:19, :99 | REVIEW_PN1_BATCH2, REVIEW_SPLICE | reviewed; two seeds only |
+| 9-A | S0 flagged 0–0.5%; S4 vs S0 0.75–0.83 → "inconclusive" (0–0.5% seam-only flags; weak S4 detection) | 403–407 | development (test ladder) | experiments/PR1_protocol-reads-existing-networks/result.md:98 | REVIEW_PR1_PART1_20261113 | reviewed |
+| 9-B | S0 flagged 0%; S4 vs S0 0.68–0.78 → "inconclusive" (the verdict comes from weak S4 detection: 91–98% of S4 missed). Seeds 401/402: S0 vs S4 0.682 / 0.725; development S0 0 of 100 | 403–407 (and 401/402) | development | experiments/PR1_protocol-reads-existing-networks/result.md:98; rev/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md:28 | REVIEW_PR1_PART1_20261113, REVIEW_PN1_BATCH2 | reviewed |
+| 9-Sb | Five fresh seeds: S0 flagged 0–0.5% (development 0 of 100 on all five; test 1 of 191 once), S4 vs S0 0.985–0.994 → "seam-only not flagged" (trained negative; experiments/PR1_protocol-reads-existing-networks/result.md:18, :98). Seeds 401/402: S0 is a training negative. S0 vs S4 (test) 0.983 / 0.989; excess over the 3-statistic floor (seam tone, sharpness ratio, band5) +0.125 / +0.131 (lower bounds +0.08 / +0.09); development S0 placed 0 of 100 on both seeds (rev/PRERUN_PN1_SP_20261112.md:10; PN1/prereg_remedies_v2_draft.md:50). The OpenCV seam "is equal in size but not in kind" (a colour step separates S4 from S0 at about 0.71) | 401/402 | development | rev/REVIEW_PN1_BATCH2_FZ2A12_AR1A11_20261112.md:28-29; rev/PRERUN_PN1_SP_20261112.md:10; rev/REVIEW_SPLICE_20261111.md:19, :99 | REVIEW_PN1_BATCH2, REVIEW_SPLICE | reviewed |
 | 9-Sp | — (registered prediction 1: Sp places at least max(2·Sb, Sb + 0.10) of the 100 development S0 images) | 403–405 | development | PN1/prereg.md:746-755 | — | not measured (pending today) |
 | 9-SbM3 | — | — | — | — | — | not measured |
 | 9-released | Seam alone: "No release flags it: R2w4 vs S0 is 0.46 to 0.54." Face blend: "Only SelfMAD reads a face-confined blend beyond simple cues (0.889 seam-matched), possibly as a blend boundary. The MADation CLIP releases read mainly surround ghosting; MixFaceNet-MAD mainly detail loss." Swap-splice: "No released detector is shown to read more than one simple statistic, interior sharpness, on spliced morph vs swap-splice: inside-hull Laplacian variance alone gives 0.926 against SelfMAD's 0.888." Post hoc AR1 amendment 9: excess of S0 vs S4 over the 3-statistic floor (0.861): SelfMAD +0.021 [−0.013, 0.057], ViT-B/16 −0.185, ViT-L/14 −0.138, MixFaceNet −0.231 | one network each | development | rev/REVIEW_SPLICE_20261111.md:21, :100; rev/REVIEW_FZ2_AR1A10_20261112.md:78; experiments/AR1/result.md:306-317 | REVIEW_SPLICE, REVIEW_FZ2_AR1A10; amendment 9 unreviewed | reviewed (seam alone, swap-splice); amendment 9 unreviewed |
@@ -261,7 +263,8 @@ attacks.
 |---|---|---|---|---|---|---|
 | 17-A | Consistent with reading missing high frequency: geometry-matched 112 px camera photos (face-box Laplacian variance 7.3) score 2.26 / 4.91 logits above pack photos (10.7); OLS slope of logit on log variance −0.88 (measurement only, not causal) | 401/402 | development | TT1/result.md:173-178 | — (post-result amendment) | unreviewed; two seeds only |
 | 17-B | "Mostly softness. AD4's morph-free networks, which never saw a blend, reach R4 vs R2w 0.84 to 0.86 on the ladder. One band-power statistic gives 0.888." [AD4 wording since 13 Nov: "trained only to flag shrink-and-enlarge copies" replaces "never saw a morph" alone, experiments/AD4/result.md:132] (said of all 8 tier-1 fits) | 401/402 | development | rev/REVIEW_PN1_TIER1_20261112.md:102 | REVIEW_PN1_TIER1 | reviewed; two seeds only |
-| 17-Sb, Sp, SbM3 | — | — | — | — | — | not measured |
+| 17-A, 17-B, 17-Sb (PR1 Z6) | "not softness alone" for A, B, Sb (5 of 5), read at the ceiling: it rests on one statistic (lapvar_face), the strata cover 60% of rows, and R2w is a trained negative of B and Sb. Informative part: Sb's S4 vs S3 within lapvar strata 0.71–0.75 on all five seeds (lapvar alone 0.50) | 403–407 | development | experiments/PR1_protocol-reads-existing-networks/result.md:100-108 | REVIEW_PR1_PART1_20261113 (finding 4) | reviewed (A and B keep their earlier entries as the matrix headline) |
+| 17-Sp, SbM3 | — | — | — | — | — | not measured |
 | 17-released | Softened warp-only against native two-person morph: MixFaceNet 0.58 / 0.78 ("detail loss explains" at 61 px); ViT-B/16 0.79 / 0.96 ("mixed"); SelfMAD 0.98 / 0.90 and ViT-L/14 0.97 / 0.99 ("more than detail loss"); ViT-L/14's "more than detail loss" "is not separated from ghosting" | one network each | development | experiments/AR1/result.md:30-35; rev/REVIEW_SPLICE_20261111.md:30, :100 | REVIEW_SPLICE | reviewed |
 | 17-note | Networks trained only to flag shrink-and-enlarge copies of synthetic faces (AD4) reach 0.0% EER on MorDIFF native in all five seeds [0.0, 0.0] (references 37.3 to 60.8%): low error there is not by itself evidence of morph detection. Matching resolution history does not remove the cue on MorDIFF (2.4%) | 5 seeds | benchmark audit | experiments/AD4/result.md:43, :54 (cluster-stack readings, review corrections applied in ad792a0); rev/REVIEW_AD4_VITB_20261111.md | REVIEW_AD4_VITB and the AD4 cluster-stack review (applied ad792a0) | — |
 
@@ -281,29 +284,39 @@ attacks.
 |---|---|---|---|---|---|---|
 | 19-A, 19-B | Head linear on normalised features, logits bounded near ±3.87; camera photos at −3.67 (SD 0.02–0.19), τ_cam 0.03–0.10 logit above them; every τ_cam mark reads a saturated band | 401/402 | development | PN1/result.md:85-89; rev/REVIEW_PN1_TIER1_20261112.md:39-48 | REVIEW_PN1_TIER1 | reviewed; two seeds only |
 | 19-Sb | At 5% false alarms on R0 + AF0 (FINAL's τ_dev), every arm and seed flags 96–98% of FFHQ genuine photos (threshold about −3.6 for A and B, −3.4 for Sb) | 403–407 | development | rev/REVIEW_PN1_FS1_20261113.md:111-114 | REVIEW_PN1_FS1 (F10) | reviewed |
+| 19-A, B, Sb (PR1 Z2a, τ5) | τ5 = smallest cut-off with ≤ 5% flags in each calibration source (FRGC/colorFERET dev photos, FFHQ calibration half); "within the calibration sources". A: "no usable operating point" (0 of 5; fails through history-matched FFHQ copies, 19–22% flagged); B: "no usable operating point" (0 of 5; landmark_combined missed 62–70%); Sb: "usable operating point" (4 of 5; seed 403 misses 0.39), but G_max excludes one-person images and Sb flags 32–43% of dev S3 at τ5. Unseen-source version (Z2b-τ5) waits for TT1-FS | 403–407 | development | experiments/PR1_protocol-reads-existing-networks/result.md:48-63 | REVIEW_PR1_PART1_20261113 (finding 5) | reviewed |
 | 19-Sp, 19-SbM3 | — | — | — | — | — | not measured |
 | 19-ViTB | "The same rule catches only 4.0% of AMSL, 0.8% of StyleGAN2 and 21% of WebMorph morphs, so the release rule is not a meaningful operating point for this release" | one network | benchmark audit | rev/REVIEW_RS1_20261112.md:49 | REVIEW_RS1 | reviewed |
 | 19-ViTL | Genuine logits saturated (median −12.80, SD 0.056, own crop); all genuine logits within 0.3 logit on our frames | one network | benchmark audit | rev/REVIEW_RS1_20261112.md:68; rev/REVIEW_EV1_20261111.md:17-19 | REVIEW_RS1, REVIEW_EV1 | reviewed |
 | 19-MFN | — | — | — | — | — | not measured |
 | 19-SelfMAD | Own 0.5 rule needs no threshold pool: 0% of unprocessed genuine photos flagged | one network | benchmark audit | rev/REVIEW_EV1_20261111.md:7-12 | REVIEW_EV1 | reviewed |
 
-## Counts (version 2, after the independent review)
+### Row 20. Morph engine of the training morphs (OpenCV-style in training; FaceMorpher never trained)
 
-Counted over the 171 cells of the matrix (19 rows × 9 columns); a register line that covers several columns counts
-once per column. See `cells.csv` for the cell-by-cell list (written by `src/SA1/cells.py`).
+| Cell | Number [interval] | Seeds | Data | Source | Review | Status |
+|---|---|---|---|---|---|---|
+| 20-A, 20-B, 20-Sb | Every ladder R4, S0, S3, S4 training row is OpenCV-style. AUC(R4 vs R2w) and (R4 vs R0) 1.0000 for both engines, every arm and seed; misses 0–0.5%. Registered "no engine gap", read at the ceiling: "It gives no evidence that our training engine transfers beyond whole-frame ladder morphs". Engine contrast on the non-saturated R4 vs R3 axis (Z3b, amendment 3, unreviewed): "inconclusive" (Sb Δ3 +0.006 to +0.029) | 403–407 | development | experiments/PR1_protocol-reads-existing-networks/result.md:76-88, :120-122 | REVIEW_PR1_PART1_20261113 (finding 1); Z3b unreviewed | reviewed |
+| 20-Sp, 20-SbM3 | — | — | — | — | — | not measured |
+| 20-released | Released detectors are not trained on our engines | — | — | — | — | n/a |
 
-| Status | Our arms (A, B, Sb, Sp, SbM3; 95 cells) | Released detectors (76 cells) | All 171 |
+## Counts (version 2, updated 13 Nov 09:50 with PR1 part 1 and C2P)
+
+Counted over the 180 cells of the matrix (20 rows × 9 columns); a register line that covers several columns counts
+once per column. Row 15b (retrained networks) is outside the matrix. See `cells.csv` (written by `src/SA1/cells.py`).
+
+| Status | Our arms (A, B, Sb, Sp, SbM3; 100 cells) | Released detectors (80 cells) | All 180 |
 |---|---|---|---|
-| reviewed | 34 (22 of them two seeds only) | 45 | 79 |
-| unreviewed | 8 (2 two seeds only) | 10 | 18 |
-| not measured | 36 | 12 | 48 |
+| reviewed | 40 (12 of them two seeds only) | 45 | 85 |
+| unreviewed | 7 (1 two seeds only) | 10 | 17 |
+| not measured | 35 | 12 | 47 |
 | not measured (exposure only) | 7 | 0 | 7 |
-| not measured (pending today) | 8 | 0 | 8 |
-| n/a | 2 | 9 | 11 |
+| not measured (pending: today's readings, or C2P-R for 2-A and 2-B) | 9 | 0 | 9 |
+| n/a | 2 | 13 | 15 |
 
-Empty cells in total: 63 (48 + 7 + 8). For our arms, 51 of 95 cells are empty; of the 42 filled ones, 24 rest on two
-seeds that are confounded with machine. Five fresh seeds exist for rows 1, 8, 18, 19 and the fresh-seed parts of 4
-(FFHQ), 6-Sb and 12.
+Empty cells in total: 63 (47 + 7 + 9). For our arms, 51 of 100 cells are empty: Sp and SbM3 in every row they apply
+to (39 cells); A, B and Sb in rows 3 (JPEG, exposure only), 13 (diffusion render path), 14 (GAN one-person render) and
+16 (smiling half, exposure only); A and B in row 2 (storage evasion, C2P-R pending). Of the 47 filled cells for our
+arms, 13 rest on seeds 401/402 only.
 
 ## What the filled cells support today (reviewers' wording)
 
@@ -313,7 +326,19 @@ seeds that are confounded with machine. Five fresh seeds exist for rows 1, 8, 18
    in the upper tail (own-rule flags rise from 6–11% to 21–31%). Protocol negatives reduce the rise to +2.5 to +5.5
    points (B) and +0.5 to +2.7 points (Sb), and reverse the bulk shift. The reaction is reduced, not removed."
    (PN1/result.md:296). The registered contrast for this read was uninformative (its positive control failed), so
-   this is a descriptive statement; the registered replacement (C2P) is scored today.
+   this is a descriptive statement. The registered replacement (contrast 2-prime) is "uninformative": the platform
+   gate removed every plain network. For Sb the review allows (REVIEW_PN1_C2P Q4): "On 300 FFHQ persons no network was
+   trained on, the four protocol-plus-splice networks that passed the platform gate (seeds 403, 405, 406, 407) raised
+   their own-rule flag rate on stored genuine photos by +1.0 to +3.8 points at the trained size (61.2 px) and by −0.3
+   to +3.4 points at an untrained size (112.7 px). Their mean genuine logit moved toward genuine (−0.02 to −0.24
+   genuine SD). Stored morphs did not become easier to miss (...; storage evasion falsified on 4 of 4 read seeds).
+   Development data only. No plain network passed the gate, so these reactions are not compared with the plain
+   recipe, and the registered storage contrast is uninformative." A registered re-scoring on the training platform
+   (C2P-R) awaits the author.
+6. **One-person images, five fresh seeds (PR1 Z4, test ladder).** Warp-only images are not flagged by A, B or Sb;
+   same-person morphs and mirror self-morphs are "flagged like a morph" by all three (83.2–99.5%); seam-only images
+   are not flagged by Sb (a trained negative). Engine and softness reads are at the ceiling and decide nothing
+   (REVIEW_PR1_PART1 findings 1 and 4).
 2. **Storage history, unseen source (seeds 401/402).** "On 2,000 FFHQ persons (unseen source), shrinking to the
    morphs' 65 px eye distance and enlarging back raises the plain network's logit for 72–78% of persons (AUC
    0.67–0.68). It raises B, Bn and C for 30–44% (AUC 0.48–0.51). ... A small upper tail remains: own-rule flags rise by 5 to 8 points." (REVIEW_PN1_BATCH2 F2). The share statistic was later judged the wrong instrument for the plain arm's tail reaction (REVIEW_PN1_FS1:18). The volume control Bn
@@ -342,17 +367,24 @@ seeds that are confounded with machine. Five fresh seeds exist for rows 1, 8, 18
 - Anything about JPEG history for our arms: every such cell is "not measured (exposure only)".
 - That the border is not used: TT-H3 is "inconclusive"; the effect is small on camera photos but mixed in sign on
   FFHQ, and only two seeds exist.
-- That the protocol stops same-person morphs or same-person splices from being flagged: A and B place 91–99% of R3
-  above the rule, and Sb flags 31–41% of S3, a type it was trained to reject. Whether flagging R3 is an error waits for
+- That the protocol stops same-person morphs or same-person splices from being flagged: on five fresh seeds A, B and Sb
+  place 83.2–99.5% of R3 above the rule, and Sb flags 37.2–48.2% of test S3 ("inconclusive"), a type it was trained to
+  reject. The claim must be "detects in-face blending", never identity (REVIEW_PR1_PART1, risks). Whether flagging R3 is an error waits for
   the author's class ruling.
 - That Sb is better than B on unseen genuine sources (Sb flags more: +0.021 / +0.031), or that any threshold transfers
   in general, to sharp sources or with calibration.
 - Any benchmark or generalisation statement for A, B, Sb, Sp or SbM3 (sealed until the freeze; FRLL, MAD22 and H1
   reads of PN1 networks are compromised by the 12 Nov exposure).
-- That the arms read a second identity: R4 vs R3 is 0.73–0.77 for every arm, and AD4's morph-free networks reach R4
+- That the arms read a second identity: R4 vs R3 is 0.72–0.85 for every arm on five fresh seeds, and AD4's morph-free networks reach R4
   vs R2w 0.84–0.86 ("mostly softness").
-- That stored morphs are still caught (storage evasion, the FS1 review's "key threat", REVIEW_PN1_FS1:147-152):
-  untested on fresh seeds; the 401/402 read is at the floor and B trains on stored morph copies.
+- Storage evasion for A or B: not read (C2P gate); it is falsified only for Sb on 4 of 4 read seeds.
+- From contrast 2-prime (REVIEW_PN1_C2P Q4): "reduced relative to the plain recipe" or "at most one third of it";
+  "removed", "absent" or "shortcut-free"; anything about B (one seed) or A; anything about H-new-2; any generalisation
+  beyond development data. "Small absolute reactions are not evidence of reduction, because the plain networks may not
+  react at 112.7 px either."
+- That our training engine transfers to other morph tools: the engine read is at the ceiling (REVIEW_PR1_PART1 F1).
+- That Sb's τ5 operating point holds beyond its calibration sources (Z2b-τ5 waits for TT1-FS), or that it is usable
+  for one-person images (32–43% of development S3 flagged at τ5).
 - Any BPCER at τ_dev: the decision pool is degenerate (96–98% of FFHQ genuine flagged; REVIEW_PN1_FS1 F10).
 - That A or B detect face-spliced morphs: development S4 miss 93–97% (TT1/result.md:183).
 - For the unseen sources (REVIEW_TT1 Q6): anything about detection or misses on these sources; the cause of the source
