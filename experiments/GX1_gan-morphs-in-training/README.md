@@ -32,6 +32,10 @@ version (the current candidate was frozen by the author at 18:28; MAD22 is a see
   shard output counts unless 6315653 COMPLETES with GX1_SMOKE_OK in its log, and the dispatcher cancels 6315654 and
   6315655 at once if it fails. Owner: AG1 owner. Expected start: unknown (WCSS saturated at submission); expected
   run: smoke about 10 min, MIPGAN-I tasks 30-150 min each, MIPGAN-II 30-65 min each.
+- Later (dispatcher, on the lead's order): `--dependency=afterok:6315653` added to arrays 6315654 and 6315655 (Slurm
+  accepted; priority 672); no shard task can start before the smoke completes successfully; the dispatcher cancels both
+  arrays if it fails. Five standing roles (OWNER_BRIEF, 6e42c86): reports end with a CLAIMS block; ADVERSARY publishes a
+  shortcut-only floor before the read (no read while it is pending).
 
 ## 3. Data
 
