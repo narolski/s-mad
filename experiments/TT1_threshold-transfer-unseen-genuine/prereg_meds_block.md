@@ -142,3 +142,6 @@ Pre-run check (experiment-reviewer, opus): GO WITH FIXES (F1, F2 majors; F3-F7 m
 - F7 answered by the lead: after TT1M_DONE (two verified copies of the result on the DGX), the owner removes the MEDS pack
   (/workspace/tt1m/packs/tt1m_meds.tar) and the extracted MEDS frames (/workspace/tt1m/work/tt1m) from se1d, confirms,
   and the lead releases the machine. Nothing else is removed there, and nothing on the DGX.
+- Operational fix (`date`: Fri Nov 13 05:05:44 PM CET 2026; before start, nothing scored): the driver's single-job guard `pgrep -f remote_tt1_m.sh`
+  matched its own ssh command line, so `start` refused at 17:03:12 ("already running"; nothing was running). The guard
+  now uses `pgrep -f [r]emote_tt1_m.sh`. drive_tt1_m.sh re-pinned `9006cc99d47db85503b0232ed71813eb7d8e6f0f3c2c064612ffb87ac1ca3e96`.
