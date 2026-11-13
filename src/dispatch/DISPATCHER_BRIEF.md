@@ -98,8 +98,12 @@ Owners (job-name prefix, experiment in plain words, agent ID):
 | tt1 | unseen genuine sources (TT1) | a816d6792267a5ad3 |
 | se1 | seam-shortcut training arm (SE1) | a59fe3e811d8f0254 |
 | (no jobs) | shortcut audit table (SA1) | a672752ad0ef1e6b4 |
-| ab1 | protocol ablation and replication (AB1), seeds 408-412, WCSS H100; reuses SE1's A and Sb networks | a52f34a7253f2e605 |
-| pr1 | registered reads of the existing fresh-seed networks (PR1), mostly zero GPU | ab9bd8ba6f227ed86 |
+| ab1 | protocol ablation and replication (AB1), with batch B2 (ab1b2), border-crossed arm (ab1x) and second-engine arm (ab1fm); fits its own A and Sb on WCSS H100 | a52f34a7253f2e605 |
+| pr1 | registered reads of the existing fresh-seed networks (PR1); also blend-difference attribution (BD1) and the look-alike pair search (LA1, off the cluster) | ab9bd8ba6f227ed86 |
+| gx1 | GAN morphs in training (GX1; AG1 owner): MIPGAN generation shards, then fits | a3a314c40f746765a |
+| rz1 | input resolution and resize study (RZ1): wave 1 at 224, crops, 512 input | af47ae7e63faed336 |
+| (rented A100) | sealed MAD22 read of the frozen candidate (FINAL); not a cluster job | a3d90d135908fea49 |
+| (no jobs) | five standing roles (OWNER_BRIEF, 6e42c86): ideas and literature (IDEAS), shared test battery (BATTERY), standing adversary (ADVERSARY, CPU only), data building (DATA), record keeper (RECORDS). None submits cluster jobs; BATTERY may queue a GPU smoke file, handled like any owner's file | via the lead |
 | mv30 | an older held job, not part of this sprint: report it, ask nobody |
 
 ## Step 5: write the state and report
