@@ -115,6 +115,15 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   (CASIA-WebFace embeddings from its packed 112 px crops, used only to exclude persons; threshold error on labelled
   CelebA; references FFHQ, CFD, KDEF, TT1, FRGC / colorFERET; connected-component persons at cos >= 0.40; overlapping
   persons dropped); not run yet.
+- 13 Nov 10:21: CelebA-HQ alignment finished: 22,806 of 30,000 aligned (11,234 + 11,572), 7,194 failed the frontal
+  filter (`/mnt/t7/smad_next/MS1/celebahq/align_log_*.csv`, `emb_*.npz`, frames in `frames/`).
+- 13 Nov 10:22-10:44: `run_celebahq_persons.sh`: CASIA-WebFace references 10,572 identities / 31,715 crops (exclusion
+  only); threshold calibration on labelled CelebA (2,000 images, 1,000 identities): at cosine 0.40 FNMR 0.183, FMR
+  1.45e-5 (genuine median 0.622, impostor 99.9th percentile 0.236; CelebA aligned images are 178x218, so indicative);
+  references FFHQ 4,899, CFD 831, KDEF 140, TT1 11,037 (one per person), FRGC/colorFERET 2,321; grouping
+  (`celebahq_persons_summary.json`): 5,664 connected components at cos ≥ 0.40 (largest 137: chaining), 2,444 persons /
+  12,908 images dropped for overlap (image hits: CASIA 10,988, TT1 1,287, FFHQ 101, FRGC/colorFERET 4, CFD 0, KDEF 0);
+  kept 9,898 images of 3,220 persons, 1,814 persons with 2 or more images.
 - 13 Nov 09:40, label fixed before the MS1 read (lead confirmed): two PRINTED-ONLY reads compare scores made with
   different TF32 settings on the same GPU model: (a) the CFD offset AUC printed beside P2 (CFD scored in the held-out
   step by rescore.py, TF32 off, against development camera photos scored in the fit job by pn1_score.py, TF32 on), and

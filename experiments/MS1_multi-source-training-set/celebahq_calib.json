@@ -1,0 +1,11 @@
+{
+ "threshold": 0.4,
+ "n_images": 2000,
+ "genuine_pairs": 1000,
+ "impostor_pairs": 1998000,
+ "FNMR": 0.183,
+ "FMR": 1.4514514514514514e-05,
+ "genuine_median": 0.6223130226135254,
+ "impostor_p999": 0.23556654392183354,
+ "note": "CelebA aligned 178x218 JPEG (lower resolution than CelebA-HQ frames); error is indicative"
+}
