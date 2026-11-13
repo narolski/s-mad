@@ -232,3 +232,34 @@ after the CNN re-score and the A45 arms have finished, one GPU process at a time
 - The C1 actually used is the row-wise comparison with stored scores (amendment 1); the comparison with the A12 report
   values in section 6 was not used, because those values are computed on the E7 genuine pool with the flip-averaged
   score (results review F1). A table of A12-style versus CB1-style EERs is added (`review_addons/a12style_vs_cb1.csv`).
+
+## Amendment 5 (13 Nov 2026, about 09:05 CET; lead's request for the shortcut audit table SA1, gap item 10; before any new score)
+
+Audits of released weights (benchmark and development data allowed for released detectors). Cells and how each is
+filled; "existing" = a committed or stored score file, read only.
+- 5-ViTL, 5-MFN (border / frame alone; same 204 FRLL photos, MorDIFF tight frame against FRLL orig frame, median
+  paired logit shift with 95% interval, as 5-ViTB / 5-SelfMAD): (a) our-frames path, existing EV1 file
+  `experiments/EV1_fixed-threshold-reread/AM2_B4_border_pairing.csv` (computed 11 Nov, never stated in EV1's result);
+  (b) own-crop path, existing RS1 pools Galn_mordiff vs Galn_frll (both crop variants, RS1 score files through RS1's
+  analyse.py), paired by photo.
+- 13-MFN (diffusion render path, AD1 main contrast R2 = D20 reconstruction vs R4 = B20 our morph, AUC with two-way
+  person bootstrap): (a) our-frames path, NEW scores of the A43 frames (`/mnt/t7/smad_heldout/a43/data/manifests/a43.csv`,
+  2,024 rows) in the 'rel' mode of the other releases; (b) own-crop path, existing RS1 value (corrected crop) printed
+  beside.
+- 14-MFN (GAN one-person render, AG1 metrics as for the other releases: R2 > R3 and R3 > R4 AUC on the primary pool
+  mip1/frll, and same-person (R3) and two-person (R4) flag rates at the corrected-MAD22 EER threshold (MIPGAN-I family,
+  as AG1)): NEW 'rel' scores of the 7,229 AG1 frames and of the 5,707 corrected-MAD22 aligned frames (threshold).
+- 16-MFN (expression; EER change neutral-only minus all genuine, FRLL-Morphs): existing C1b row "MixFaceNet-MAD, our
+  frames (desc.)" (`experiments/C1b/result.md`); cited, nothing computed.
+- 10-SelfMAD (crop path): own crop on raw files with raw genuine photos against the same morphs with our aligned genuine
+  frames through the own crop, FRLL five-family mean EER (as 10-released for MixFaceNet), from existing SelfMAD score
+  files if both genuine pools exist; otherwise reported as not computable without new scoring.
+- Also, from existing RS1 files: 4-ViTL (own-rule flag rate on the 2,000 FFHQ photos, own crop) and 19-MFN (own 0.5
+  rule miss and flag rates, RS1 `rs1_pool_rates.csv`).
+New scoring: `src/CB1/score_mfn_rel.py` (a12_released.py adapter and common.ImageItems from the AG1 job root, imported
+unchanged; checkpoint sha256 3d507c8b...), on the DGX CPU (the DGX GPU runs IDistill; WCSS's controller refuses
+submissions; Athena's main partition is reserved). Reproduction gate before any reading: 212 eval.csv rows (every 40th
+FRLL-Morphs / MorDIFF orig row) against the stored A12REL MixFaceNet scores of the same release and mode
+(`smadcvpr_runs/A12_scored/A12REL/mixfacenet_mad_smdd/scores_eval.npz`): median |logit difference| <= 0.05 and maximum
+<= 0.5; failing that, no new-score cell is read. Smoke (8 rows): logits within 0.02 of the stored GPU values.
+Everything is labelled "benchmark audit, our scoring, not reviewed" until a review.
