@@ -314,27 +314,26 @@ attacks.
 | 20-Sp, 20-SbM3 | — | — | — | — | — | not measured |
 | 20-released | Released detectors are not trained on our engines | — | — | — | — | n/a |
 
-## Counts (version 2, updated 13 Nov about 10:35 with PR1 part 1, C2P, MS1 parts 1-3b, CB1 cells and the Sp ablation)
+## Counts (version 2, updated 13 Nov about 12:00 with TT1-FS, TT1-X and PR1 part 2)
 
 Counted over the 180 cells of the matrix (20 rows × 9 columns); a register line that covers several columns counts
 once per column. Row 15b (retrained networks) is outside the matrix. See `cells.csv` (written by `src/SA1/cells.py`).
 
 | Status | Our arms (A, B, Sb, Sp, SbM3; 100 cells) | Released detectors (80 cells) | All 180 |
 |---|---|---|---|
-| reviewed | 58 (12 of them two seeds only; "not interpretable" and "uninformative" cells counted here) | 53 | 111 |
-| unreviewed | 7 (1 two seeds only) | 10 | 17 |
-| not measured | 24 | 4 (row 2, storage evasion) | 28 |
+| reviewed | 60 (2 of them two seeds only: row 11 for B and Sb) | 53 | 113 |
+| unreviewed | 12 (rows 13 and 14 for A, B, Sb: PR1 part 2, review pending; row 15 manifest audit; 12-A) | 10 | 22 |
+| not measured | 17 | 4 (row 2, storage evasion) | 21 |
 | not measured (exposure only) | 7 | 0 | 7 |
 | not measured (pending: C2P-R for 2-A and 2-B) | 2 | 0 | 2 |
 | n/a | 2 | 13 | 15 |
 
-Empty cells in total: 37 (28 + 7 + 2). For our arms, 33 of 100 cells are empty:
-- A, B, Sb: rows 3 (JPEG, exposure only), 13 (diffusion render path), 14 (GAN one-person render), 16 (smiling half,
-  exposure only); A and B also row 2 (storage evasion, C2P-R pending).
-- Sp (3 seeds): rows 2, 3, 5, 6, 7, 10, 13, 14, 16, 17, 20.
+Empty cells in total: 30 (21 + 7 + 2). For our arms, 26 of 100 cells are empty:
+- A, B, Sb: rows 3 (JPEG, exposure only) and 16 (smiling half, exposure only); A and B also row 2 (storage evasion,
+  C2P-R pending).
+- Sp (3 seeds): rows 2, 3, 5, 6, 7, 13, 14, 16, 17, 20.
 - SbM3: rows 2, 3, 7, 13, 14, 16, 17, 20.
-Of the 65 filled cells for our arms, 13 rest on seeds 401/402 only (rows 4, 5, 10, 11, 17 for A, B or Sb; the
-fresh-seed parts of 4, 5 and 10 wait for TT1-FS).
+Only 2 of the 72 filled cells for our arms now rest on seeds 401/402 alone (row 11, the volume controls Bn and Bv).
 
 ## What the filled cells support today (reviewers' wording)
 

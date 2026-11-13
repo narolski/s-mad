@@ -5,8 +5,8 @@
 The author asked for scientific evidence that the training protocol is shortcut-free: one row per known shortcut,
 one column per training arm or released detector, every cell from a paired control (the same images with and without
 the suspected cue), with seeds, intervals, source file and review status. Status 13 Nov 2026, about 09:45 CET:
-version 2 (reviewed) compiled from registered results only (no scoring). After the PR1 part-1, C2P and MS1 readings (13 Nov about 10:00), of 180 cells (20 rows x 9 columns) 111 are reviewed
-(12 of them on two seeds only), 17 unreviewed, 37 empty, 15 not applicable (about 10:35, after the Sp ablation). For our own arms, 42 of 100 cells are empty. The best-measured row
+version 2 (reviewed) compiled from registered results only (no scoring). After the PR1 part-1, C2P and MS1 readings (13 Nov about 10:00), of 180 cells (20 rows x 9 columns) 113 are reviewed
+(2 of them on two seeds only), 22 unreviewed, 30 empty, 15 not applicable (about 12:00, after TT1-FS and PR1 part 2). For our own arms, 42 of 100 cells are empty. The best-measured row
 (storage history of genuine photos, five fresh seeds) supports "reduced, not removed", not "removed". The table is
 `result.md`; the cell list is `cells.csv`. Waiting for today's readings (Sp ablation, SbM3 three-source training,
 contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cells.
@@ -44,6 +44,9 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
 - about 10:35: Sp ablation (PN1 result Sp section, ee61116; REVIEW_PN1_SP) entered as registered verdict plus printed
   reads; released-detector storage cells relabelled "aligned-frame history (our aligner + history)" with the aligned-only
   step beside them (CB1 "Black frame vs storage history", REVIEW_CB1_BORDER_HISTORY); MS1 parts 3/3b (REVIEW_MS1_PART3).
+- about 12:00: TT1-FS block, Z1-Z4 and TT1-X parts 1-2 (TT1 result b16dba4; REVIEW_TT1_FS and the Z review, cdb79b4)
+  entered with the review's may-say / may-not-say wording (rows 4, 5, 10, 17 to seven seeds; Sb border finding; B's FFHQ
+  rate; Sp and SbM3 printed cells). PR1 part 2 (GD0-GD2, 5a10e33) entered as unreviewed in rows 13 and 14.
 
 ## 3. Data
 
