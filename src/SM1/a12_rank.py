@@ -39,7 +39,7 @@ def main():
         for s in a.seeds.split(","):
             f = hd / f"{arm}_s{s}.npz"
             if not f.exists():
-                continue
+                sys.exit(f"missing score file {f} (requested seed {s})")   # fail loudly (review 13 Nov)
             z = np.load(f)
             zi = {str(i): float(v) for i, v in zip(z["id"], z["logit"])}
             P = np.array([[zi[idx[("KP", k, j)]] for j in range(5)] for k in keys])

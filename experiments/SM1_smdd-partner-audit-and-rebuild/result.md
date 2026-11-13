@@ -655,15 +655,22 @@ at the camera threshold are largely set by where the threshold sits on the floor
 
 Athena job 3547052 (12 Nov 20:19–20:25, A100) scored the 10,055 audit images with SM1L_a_s401 and SM1L_a_s402 (the
 two finished ViT-L/14 fits, arm a); reproduction check max diff 0.0 on 256 stored rows for both; tars sha256-verified
-(fetched 13 Nov). Both fits' logits are bounded (head ‖w‖ about 4.2).
-- **A14 H-new-D (registered decision): supported.** Within-key AUC trained-partner over KE 0.756 [0.746, 0.765] (seeds
-  0.755, 0.756) ≥ 0.70, while trained − KE is 0.045 [0.032, 0.061] logit < 0.2. Own-rule miss with every partner kind
+(fetched 13 Nov). Note: on 12–13 Nov this owner reported 3547052 as still pending; that was a stale Slurm
+answer (the controller was flapping), and the job had in fact completed at 20:25 on 12 Nov. Logits lie in [−4.20, +3.97]; KP and KE both sit at the upper bound (median 3.92 vs 3.91).
+- **A14 H-new-D (registered decision): supported.** Within-key AUC trained-partner over KE 0.756 [0.746, 0.765] (2 seeds;
+  seeds 0.755, 0.756) ≥ 0.70, while trained − KE is 0.045 [0.032, 0.061] logit < 0.2. Own-rule miss with every partner kind
   ≤ 0.44%.
-- **H-new-5 (registered on 11 Nov): its 1-logit threshold is not reached (0.045)**; its DiD part (against a ViT-L/14 arm
-  c fit) cannot be computed, because no ViT-L/14 arm c fit exists (Athena tasks for c, d, e, f will not start before
-  22 Dec). As A14 states, the threshold cannot be reached on a head bounded near ±4.
-- Reading (audit, 2 seeds): the standard ViT-L/14 recipe trained on the SMDD release files ranks morphs with SMDD's five
-  training partners above morphs with SMDD's evaluation partners (AUC 0.76), as the ViT-B/16 fits do (0.76; b 0.82).
+- **H-new-5 (registered 11 Nov): prediction not met** (trained − KE 0.045 [0.032, 0.061] < 1 logit); the registered
+  decision (DiD against a ViT-L/14 arm c, interval above 0) cannot be computed, since no arm c fit exists before 22 Dec;
+  H-new-5 stays untested for this paper. The 1-logit bar cannot be met when both morph kinds sit at the head ceiling.
+- Reading (audit, 2 seeds): the MADation-recipe ViT-L/14 LoRA trained on the SMDD release files ranks morphs with SMDD's
+  five training partners above morphs with SMDD's evaluation partners (AUC 0.76), as the ViT-B/16 fits do (0.76; b 0.82)
+  (interval over keys only; per-key seed correlation 0.38; ViT-B/16 arms without SMDD's five give 0.53–0.59; no ViT-L/14
+  baseline arm). Reviewed (13 Nov, results-reviewer, registration order clean). Audit-table caption: "SMDD partner
+  trace, MADation-recipe ViT-L/14 (LoRA) retrained on SMDD release files: within-key AUC, morphs with SMDD's five
+  training partners over morphs with SMDD evaluation partners (same first contributor, 500 keys), 0.756 [0.746, 0.765],
+  2 seeds (401: 0.755; 402: 0.756), key bootstrap B = 10,000 (seed variance not included); whole image, no TTA; audit
+  set, not a benchmark." Keep it apart from the released detector's logit gap (0.95 crop path; 0.45 whole file).
 
 ## ViT-B/16 LoRA, full registered set (A13: 12 fits, arms a, b, b′, c, e, f x seeds 401, 402; `p3_lora_vitb12.json`, `a12_rank_vitb12.json`, `a12_fixed_vitb12.json`)
 
