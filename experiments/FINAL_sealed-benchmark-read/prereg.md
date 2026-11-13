@@ -22,18 +22,33 @@
 
 ## 1. Freeze rule (applied mechanically; fallback order fixed now)
 
+**Amended 13 Nov 2026 (`date` at writing: Fri Nov 13 07:04:46 AM CET 2026) on the author's approval.** The author, asked "adopt the
+replacement storage test and the amended freeze rule, yes or no?", answered "Yes". The replacement test is registration
+C2P in `experiments/PN1_protocol-network-first-tests/prereg.md` (commit 2715e488bf87ad81a93cc4fede7b5899d97bc225). Lead
+decision recorded with it: H-new-1 must be "falsified" (stricter than "not supported"). Superseded text: the previous
+steps 1-3, which required FS1 contrast 2 "replicated"; FS1 contrast 2 was read "uninformative" (13 Nov 06:38, the plain
+arm's positive control failed) and that result is reported beside contrast 2-prime in the paper.
+
 Inputs: the registered readings only.
-- FS1 contrasts 1 and 2: `prereg_fresh_seeds_v4_frozen.md`, git ac585b7.
+- FS1 contrast 1: `prereg_fresh_seeds_v4_frozen.md`, git ac585b7 (read 13 Nov 06:38: "replicated", 5 of 5 seeds).
+- FS1 contrast 2 (reported, not deciding): read "uninformative".
+- Contrast 2-prime, H-new-1 and the platform gate: registration C2P, commit 2715e488bf87ad81a93cc4fede7b5899d97bc225.
 - Sp: registration 1b8fe48.
-- MS1 part 2 as registered at commit f748da4195709ee84c8cc9872c5aac1d9007a049 (co-primaries P1-S on the Chicago Face Database and P1-T on the TT1 pools, each at p ≤ 0.025; arms Sb, SbM3, SbV; guards G1–G3).
+- MS1 part 2 as registered at commit f748da4195709ee84c8cc9872c5aac1d9007a049 (co-primaries P1-S on the Chicago Face Database and P1-T on the TT1 pools, each at p ≤ 0.025; arms Sb, SbM3, SbV; guards G1–G3), with deviations MS1-D1 (5eadc1b) and MS1-D2 (86b4b69).
 
 No benchmark number enters.
 
-1. **Sb** is frozen if both hold:
-   - FS1 contrast 1 is "replicated";
-   - FS1 contrast 2 is "replicated" for Sb, with A's positive control met.
-2. **Otherwise, B** is frozen if FS1 contrast 2 is "replicated" for B, with A's positive control met.
+1. **Sb** is frozen if all hold:
+   - FS1 contrast 1 is "replicated" (it is);
+   - contrast 2-prime "passes" for Sb, with A's positive control met (C2P.3);
+   - H-new-1 is "falsified" for Sb (C2P.4).
+2. **Otherwise, B** is frozen if contrast 2-prime "passes" for B with A's positive control met AND H-new-1 is
+   "falsified" for B (contrast 1 is not required for B).
 3. **Otherwise, no method** is frozen. The read is then an audit of the comparison set only, with no candidate claim.
+
+Both the failed original contrast 2 and contrast 2-prime are reported in the paper, with the disclosure that contrast
+2-prime was registered after the original failed on its control and that its margins were set knowing the FS1 effect
+sizes on other FFHQ persons (fm61 replicates FS1 on new persons; amsl112 carries the evidential weight).
 
 **MS1 rule (B3).** The three-source version is frozen only if both:
 - the MS1 primary is "supported", meaning both co-primaries (P1-S and P1-T) are supported as registered in MS1 prereg.md part 2 at commit f748da4195709ee84c8cc9872c5aac1d9007a049;
@@ -235,5 +250,13 @@ The PN1 owner prepares the pack and sees no score before the commit.
 5. **SOTA on diffusion: "Well, only if we cannot propose SOTA... ;)"** The prediction and outcome table are kept, but there is no pre-commitment to "no claim": the claim is whatever the registered criteria give.
 6. **Second backbone: "do the second backbone".** Experiment BB2 is scored in the same read as a robustness row (section 1).
 7. **Writing items: "sure".** The deliverables are listed in section 9.
+
+8. **Freeze rule amended (13 Nov 2026): "Yes"** to "adopt the replacement storage test and the amended freeze rule, yes
+   or no?" (relayed by the lead; recorded Fri Nov 13 07:04:46 AM CET 2026). Section 1 above; registration C2P at 2715e48.
+9. **Not yet decided (proposal, awaiting the author):** the confirmatory operating point (post-result review of FS1,
+   F10). At τ_dev(i) every arm and seed flags 96-98% of FFHQ genuine photos, so BPCER at τ_dev(i) on an unseen genuine
+   pool reads about 100%. PROPOSED, NOT IN FORCE: "The confirmatory endpoint is AUC and EER within each cell; BPCER and
+   APCER at the own rule, at τ_dev(ii) and at τ_dev(i) are printed beside them, never deciding; M4's 'the decision uses
+   (i)' is withdrawn." Until the author answers, decision 2 above stands.
 
 The execution go for the read itself is still pending: it needs the freeze outcome first.
