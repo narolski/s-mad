@@ -172,7 +172,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
     ap.add_argument("--mock", action="store_true")
-    ap.add_argument("--platformcheck", help="SE1_platformcheck_*.tar from the smoke on the chosen platform")
+    ap.add_argument("--platformcheck", action="append", default=[], help="SE1_platformcheck_*.tar, one per lease (printed only)")
     a = ap.parse_args()
     assert hashlib.sha256(EVAL.read_bytes()).hexdigest() == EVAL_SHA
     M = list(csv.DictReader(open(EVAL)))
@@ -350,16 +350,20 @@ def main():
             Lf = dict(zip([str(i) for i in z["id"]], z["logit"].astype(float)))
             fs1[s] = {k: float(np.mean([Lf[i] > 0 for i in P[k]])) for k in ("S3_cv", "R3_cv", "R3m_cv") if all(i in Lf for i in P[k])}
     R["printed_FS1_Sb_A100"] = fs1
-    if a.platformcheck:
+    R["printed_platform_check"] = {}
+    for pct in a.platformcheck:
         new = {}
         for fam in ("af0", "ffhq"):
-            d = C2P.npz_from_tar(a.platformcheck, f"PC_PN1_Sb_s403_{fam}.npz")
+            d = C2P.npz_from_tar(pct, f"PC_PN1_Sb_s403_{fam}.npz")
             new.update(d or {})
         stored = C2P.npz_from_tar("/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s403.tar", "scores_eval.npz") or {}
         gids = [r["id"] for r in csv.DictReader(open(C2P.FS1M)) if r["fam"] in ("af0", "ffhq")]
         g = C2P.gate(new, stored, gids)
-        g["sentence"] = "platform reproduces FS1 scores" if g.get("passed") else "platform differs"
-        R["printed_platform_check"] = g
+        g["label"] = ("precision and GPU together: rescore.py runs with TF32 off, the stored FS1 A100 logits were made with "
+                      "TF32 on (REVIEW_PN1_C2P Q5/F6); a miss is not a platform failure of the lease")
+        g["sentence"] = ("reproduces FS1 scores (precision and GPU together)" if g.get("passed")
+                         else "differs from FS1 scores (precision and GPU together)")
+        R["printed_platform_check"][pathlib.Path(pct).name] = g
     # section 8 outcome
     g1v = R["G1_two_person"]["verdict"]
     g3v = R["G3_camera"]["verdict"]
