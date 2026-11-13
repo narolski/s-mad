@@ -72,6 +72,39 @@ Frozen by `floors/pins_stage3.sha256`. Within-D: BD1's rule (quintile edges of l
 - Reading (post hoc, H-new-1 of the review): where the surround is balanced (lcomb_bal), the face box still separates morphs from genuine photos at about 0.94, so landmark_combined carries a face-region difference besides the surround history; the subset is small (125 per class) and selected on a score, so this is descriptive.
 
 
+## Stage 1c and stage 2 (training rows, GX1 analogues on GD2, RI1/TB1 controls, the audit rows of the frozen candidate)
+
+Stage-2 rows for the frozen candidate are labelled post hoc (after the frozen candidate's read; features designed with Sb's landmark_combined value known). The `train_lad_*` floors are context only (E3's gate is in-sample; E2 uses other folds). Frozen by `floors/pins_stage2.sha256`.
+
+| Contrast | Kind | Rows (pos / neg; components) | ADV floor [95%] (model) | Non-F27/non-BLEND floor | Carried by | In-sample best single (all) |
+|---|---|---|---|---|---|---|
+| `train_lad_S4_vs_S3` | simple morph-cue floor | 124 / 156; 63 | 0.768 [0.712, 0.819] (logreg) | 0.697 | F27 | 0.658 (F27:b2_.063-.125) |
+| `train_lad_S4_vs_S0` | context only | 124 / 156; 63 | 0.963 [0.943, 0.981] (gbt) | 0.910 | F27 | 0.841 (F27:mf_ratio_.125-.25) |
+| `gd2_R4_vs_R3` | simple morph-cue floor | 74 / 119; 57 | 0.715 [0.649, 0.785] (logreg) | 0.673 | F27 | 0.692 (F27:b1_.031-.063) |
+| `gd2_R4_vs_R2` | floor | 74 / 238; 57 | 0.946 [0.916, 0.969] (logreg) | 0.883 | F27 | 0.890 (F27:b2_.063-.125) |
+| `gd2_R4_vs_R2s1` | floor | 74 / 119; 57 | 0.942 [0.908, 0.970] (gbt) | 0.887 | F27 | 0.915 (F27:b2_.063-.125) |
+| `ri_R0s61_vs_R0` | ceiling (should not separate) | 291 / 291; 291 | 0.999 [0.998, 1.000] (logreg) | 0.999 | F27 | 0.994 (F27:b6_diag>.5) |
+| `ri_S0_vs_R0` | ceiling (should not separate) | 291 / 291; 291 | 0.999 [0.998, 1.000] (gbt) | 0.998 | F27 | 0.873 (STORE:png_zlib_level) |
+| `ri_R2w4_vs_R0` | ceiling (should not separate) | 291 / 291; 110 | 0.999 [0.998, 1.000] (gbt) | 0.999 | RENDER | 0.873 (STORE:png_zlib_level) |
+| `dev_cv_R4_vs_R2w` | floor; post hoc (Sb read) | 100 / 100; 100 | 0.986 [0.972, 0.995] (gbt) | 0.964 | RENDER | 0.917 (F27:b3_.125-.25) |
+| `dev_cv_R4_vs_R2w4` | floor; post hoc (Sb read) | 100 / 100; 100 | 0.983 [0.968, 0.995] (gbt) | 0.972 | RENDER | 0.920 (F27:b3_.125-.25) |
+| `dev_cv_R4_vs_R3` | simple morph-cue floor; post hoc (Sb read) | 100 / 100; 100 | 0.748 [0.695, 0.800] (logreg) | 0.662 | F27 | 0.719 (F27:b2_.063-.125) |
+| `dev_cv_R4_vs_R3m` | simple morph-cue floor; post hoc (Sb read) | 100 / 100; 100 | 1.000 [1.000, 1.000] (gbt) | 0.685 | BLEND | 1.000 (BLEND:mirror_mad_face) |
+| `dev_fm_R4_vs_R2w` | floor | 100 / 100; 100 | 0.989 [0.979, 0.997] (logreg) | 0.989 | RENDER | 0.921 (F27:b3_.125-.25) |
+| `dev_fm_R4_vs_R3` | simple morph-cue floor | 100 / 100; 100 | 0.762 [0.705, 0.816] (gbt) | 0.726 | F27 | 0.696 (F27:b2_.063-.125) |
+| `dev_S4_vs_S0` | floor; post hoc (Sb read) | 100 / 100; 100 | 0.947 [0.915, 0.973] (gbt) | 0.885 | F27 | 0.862 (F27:b3_.125-.25) |
+| `dev_S4bg_vs_S0bg` | floor; post hoc (Sb read) | 100 / 100; 100 | 0.959 [0.927, 0.984] (gbt) | 0.947 | F27 | 0.932 (F27:b3_.125-.25) |
+| `dev_R4face_vs_R2wface` | floor; post hoc (Sb read) | 100 / 100; 100 | 0.948 [0.918, 0.976] (logreg) | 0.915 | F27 | 0.802 (STORE:dct_comb_score) |
+| `ms1_morph_vs_photo_native` | floor; post hoc (Sb read) | 150 / 300; 150 | 0.999 [0.998, 1.000] (logreg) | 0.999 | F27 | 0.996 (F27:b6_diag>.5) |
+| `af0_dev_u50_vs_photo` | floor; post hoc (Sb read) | 180 / 378; 26 | 0.991 [0.973, 1.000] (gbt) | 0.980 | RENDER | 0.945 (RENDER:chroma_noise_cr) |
+| `hn2_lcomplete_vs_bona` | floor; post hoc (Sb read) | 1000 / 2000; 3000 | 0.996 [0.995, 0.998] (logreg) | 0.978 | F27 | 0.958 (F27:noise_std) |
+| `gd1_X_vs_REC` | floor; post hoc (Sb read) | 191 / 191; 130 | 0.945 [0.920, 0.967] (logreg) | 0.910 | F27 | 0.750 (RENDER:chroma_noise_cb) |
+| `gd1_X_vs_SAME` | simple morph-cue floor; post hoc (Sb read) | 191 / 191; 130 | 0.833 [0.791, 0.870] (logreg) | 0.812 | F27 | 0.786 (RENDER:chroma_noise_cr) |
+
+In-sample gbt AUC on `train_lad_S4_vs_S3` (context for E3's in-sample gate): 1.000.
+
+In-sample gbt AUC on `train_lad_S4_vs_S0` (context for E3's in-sample gate): 1.000.
+
 ## Same-data shortcut learner (prereg section 5.3; the fair comparator for networks that never saw the evaluation rows)
 
 Fitted on the unique training rows of the arm's own training list (labels from the list), all 72 features, applied to the development rows; no fit on any evaluation row. Frozen candidate's list (`train_Sb`, 5,535 images, 1,342 attacks) first; the other arms follow in `floors/transfer_<arm>.json`. Frozen by `floors/pins_stage7.sha256` (and later stage files).

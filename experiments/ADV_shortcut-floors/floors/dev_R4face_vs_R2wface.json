@@ -1,0 +1,133 @@
+{
+ "n_pos": 100,
+ "n_neg": 100,
+ "n_components": 100,
+ "n_folds": 5,
+ "insample_best_single": 0.8025,
+ "insample_best_single_stat": "STORE:dct_comb_score",
+ "insample_best_single_f27": 0.7946,
+ "insample_best_single_f27_stat": "F27:b4_.25-.375",
+ "single": {
+  "auc": 0.75485,
+  "eer": 0.33,
+  "ci": [
+   0.7011487500000001,
+   0.80816375
+  ],
+  "chosen_per_fold": [
+   "-F27:b4_.25-.375",
+   "-STORE:dct_comb_score",
+   "-STORE:dct_comb_score",
+   "-F27:b4_.25-.375",
+   "-STORE:dct_comb_score"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9481,
+  "eer": 0.11,
+  "ci": [
+   0.9176949999999999,
+   0.9757
+  ]
+ },
+ "gbt": {
+  "auc": 0.9432,
+  "eer": 0.11,
+  "ci": [
+   0.9080975,
+   0.9730025
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.8356,
+  "ci": [
+   0.7953,
+   0.8772
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.9481,
+  "eer": 0.11,
+  "ci": [
+   0.9176949999999999,
+   0.9757
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.8504,
+   "logreg": 0.8356
+  },
+  "BORDER": {
+   "gbt": 0.523,
+   "logreg": 0.5503
+  },
+  "RES": {
+   "gbt": 0.6727,
+   "logreg": 0.7119
+  },
+  "STORE": {
+   "gbt": 0.8464,
+   "logreg": 0.8486
+  },
+  "RENDER": {
+   "gbt": 0.75965,
+   "logreg": 0.7367
+  },
+  "BLEND": {
+   "gbt": 0.60745,
+   "logreg": 0.7191
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.923,
+  "BORDER": 0.9498,
+  "RES": 0.9529,
+  "STORE": 0.8669,
+  "RENDER": 0.9519,
+  "BLEND": 0.9381
+ },
+ "contrast": "dev_R4face_vs_R2wface",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.9517,
+  "eer": 0.11,
+  "ci": [
+   0.9218975,
+   0.978505
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 0.9153,
+  "eer": 0.14,
+  "ci": [
+   0.8784924999999999,
+   0.9511025
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "splice",
+   "role": "dev",
+   "rung": "R4_face"
+  },
+  "negative": {
+   "fam": "splice",
+   "role": "dev",
+   "rung": "R2w_face"
+  },
+  "note": "SA1 row 12 (surround only: face blanked)"
+ }
+}

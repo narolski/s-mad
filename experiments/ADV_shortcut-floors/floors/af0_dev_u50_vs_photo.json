@@ -1,0 +1,133 @@
+{
+ "n_pos": 180,
+ "n_neg": 378,
+ "n_components": 26,
+ "n_folds": 5,
+ "insample_best_single": 0.945164609053498,
+ "insample_best_single_stat": "RENDER:chroma_noise_cr",
+ "insample_best_single_f27": 0.8812757201646091,
+ "insample_best_single_f27_stat": "F27:haar_LHHL",
+ "single": {
+  "auc": 0.9263227513227513,
+  "eer": 0.1287037037037037,
+  "ci": [
+   0.8665504798593088,
+   0.9821038382349162
+  ],
+  "chosen_per_fold": [
+   "+RENDER:chroma_noise_cr",
+   "+RENDER:chroma_noise_cr",
+   "+RENDER:chroma_noise_cr",
+   "+RENDER:chroma_noise_cr",
+   "+RENDER:chroma_noise_cr"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9611552028218695,
+  "eer": 0.0664021164021164,
+  "ci": [
+   0.9158574907508507,
+   0.9990476287618271
+  ]
+ },
+ "gbt": {
+  "auc": 0.9910787771898883,
+  "eer": 0.03386243386243386,
+  "ci": [
+   0.9730141671404519,
+   0.9999809576638611
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9697383891828336,
+  "ci": [
+   0.9523931605696838,
+   0.989582346250025
+  ]
+ },
+ "floor": {
+  "model": "gbt",
+  "auc": 0.9910787771898883,
+  "eer": 0.03386243386243386,
+  "ci": [
+   0.9730141671404519,
+   0.9999809576638611
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.9350088183421517,
+   "logreg": 0.9697383891828336
+  },
+  "BORDER": {
+   "gbt": 0.8245737801293357,
+   "logreg": 0.890733392122281
+  },
+  "RES": {
+   "gbt": 0.6537624926513815,
+   "logreg": 0.9086713697824809
+  },
+  "STORE": {
+   "gbt": 0.7199294532627866,
+   "logreg": 0.8675338036449147
+  },
+  "RENDER": {
+   "gbt": 0.9700396825396825,
+   "logreg": 0.8689153439153439
+  },
+  "BLEND": {
+   "gbt": 0.6490446796002352,
+   "logreg": 0.944077013521458
+  }
+ },
+ "carrying_family": "RENDER",
+ "leave_family_out": {
+  "F27": 0.9894620811287478,
+  "BORDER": 0.9915931804820693,
+  "RES": 0.9911081716637272,
+  "STORE": 0.9905790711346267,
+  "RENDER": 0.9387860082304527,
+  "BLEND": 0.9907995296884186
+ },
+ "contrast": "af0_dev_u50_vs_photo",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "gbt",
+  "auc": 0.9908583186360964,
+  "eer": 0.028439153439153438,
+  "ci": [
+   0.9724747427532436,
+   0.9999809576638611
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.9799015285126397,
+  "eer": 0.0664021164021164,
+  "ci": [
+   0.9593765271566531,
+   1.0
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "af0",
+   "role": "dev",
+   "rung": "u50"
+  },
+  "negative": {
+   "fam": "af0",
+   "role": "dev",
+   "rung": "photo"
+  },
+  "note": "AF0 development"
+ }
+}

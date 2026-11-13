@@ -1,0 +1,137 @@
+{
+ "n_pos": 100,
+ "n_neg": 100,
+ "n_components": 100,
+ "n_folds": 5,
+ "insample_best_single": 1.0,
+ "insample_best_single_stat": "BLEND:mirror_mad_face",
+ "insample_best_single_f27": 0.6593,
+ "insample_best_single_f27_stat": "F27:b2_.063-.125",
+ "single": {
+  "auc": 0.99995,
+  "eer": 0.005,
+  "ci": [
+   0.9997,
+   1.0
+  ],
+  "chosen_per_fold": [
+   "+BLEND:mirror_mad_face",
+   "+BLEND:mirror_mad_face",
+   "+BLEND:mirror_mad_face",
+   "+BLEND:mirror_mad_face",
+   "+BLEND:mirror_mad_face"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9997,
+  "eer": 0.01,
+  "ci": [
+   0.9988,
+   1.0
+  ]
+ },
+ "gbt": {
+  "auc": 1.0,
+  "eer": 0.0,
+  "ci": [
+   1.0,
+   1.0
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.7713,
+  "ci": [
+   0.7195975,
+   0.8204075
+  ]
+ },
+ "floor": {
+  "model": "gbt",
+  "auc": 1.0,
+  "eer": 0.0,
+  "ci": [
+   1.0,
+   1.0
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.747,
+   "logreg": 0.7713
+  },
+  "BORDER": {
+   "gbt": 0.5,
+   "logreg": 0.4653
+  },
+  "RES": {
+   "gbt": 0.601,
+   "logreg": 0.6929
+  },
+  "STORE": {
+   "gbt": 0.5831,
+   "logreg": 0.5599
+  },
+  "RENDER": {
+   "gbt": 0.6029,
+   "logreg": 0.5117
+  },
+  "BLEND": {
+   "gbt": 1.0,
+   "logreg": 1.0
+  }
+ },
+ "carrying_family": "BLEND",
+ "leave_family_out": {
+  "F27": 1.0,
+  "BORDER": 1.0,
+  "RES": 1.0,
+  "STORE": 1.0,
+  "RENDER": 1.0,
+  "BLEND": 0.7511
+ },
+ "contrast": "dev_cv_R4_vs_R3m",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "gbt",
+  "auc": 1.0,
+  "eer": 0.0,
+  "ci": [
+   1.0,
+   1.0
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.6853,
+  "eer": 0.38,
+  "ci": [
+   0.62619,
+   0.7490025
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "ladder",
+   "strength": "",
+   "role": "dev",
+   "rung": "R4",
+   "tool": "opencv"
+  },
+  "negative": {
+   "fam": "ladder",
+   "strength": "",
+   "role": "dev",
+   "rung": "R3m",
+   "tool": "opencv"
+  },
+  "note": "SA1 row 7 (mirror same-person)"
+ }
+}

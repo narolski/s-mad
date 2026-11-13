@@ -1,0 +1,133 @@
+{
+ "n_pos": 150,
+ "n_neg": 300,
+ "n_components": 150,
+ "n_folds": 5,
+ "insample_best_single": 0.9955555555555555,
+ "insample_best_single_stat": "F27:b6_diag>.5",
+ "insample_best_single_f27": 0.9955555555555555,
+ "insample_best_single_f27_stat": "F27:b6_diag>.5",
+ "single": {
+  "auc": 0.9949444444444444,
+  "eer": 0.04666666666666667,
+  "ci": [
+   0.9888991347959701,
+   0.9986012779556894
+  ],
+  "chosen_per_fold": [
+   "-F27:b6_diag>.5",
+   "-F27:b6_diag>.5",
+   "-F27:b6_diag>.5",
+   "-F27:b6_diag>.5",
+   "-F27:b6_diag>.5"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9993111111111111,
+  "eer": 0.013333333333333334,
+  "ci": [
+   0.9978042676704273,
+   1.0
+  ]
+ },
+ "gbt": {
+  "auc": 0.9992,
+  "eer": 0.013333333333333334,
+  "ci": [
+   0.9975060219090611,
+   0.9999852716808412
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9969555555555556,
+  "ci": [
+   0.9920439740094511,
+   0.9996889899848828
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.9993111111111111,
+  "eer": 0.013333333333333334,
+  "ci": [
+   0.9978042676704273,
+   1.0
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.9957333333333334,
+   "logreg": 0.9969555555555556
+  },
+  "BORDER": {
+   "gbt": 0.9661555555555555,
+   "logreg": 0.9680444444444445
+  },
+  "RES": {
+   "gbt": 0.9228777777777778,
+   "logreg": 0.9406666666666667
+  },
+  "STORE": {
+   "gbt": 0.8842666666666666,
+   "logreg": 0.9119555555555555
+  },
+  "RENDER": {
+   "gbt": 0.9878,
+   "logreg": 0.9872888888888889
+  },
+  "BLEND": {
+   "gbt": 0.9708666666666667,
+   "logreg": 0.9704
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.9996,
+  "BORDER": 0.9968888888888889,
+  "RES": 0.9992,
+  "STORE": 0.9993111111111111,
+  "RENDER": 0.9993777777777778,
+  "BLEND": 0.9992666666666666
+ },
+ "contrast": "ms1_morph_vs_photo_native",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.9993333333333333,
+  "eer": 0.013333333333333334,
+  "ci": [
+   0.9978735111238354,
+   1.0
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 0.9993333333333333,
+  "eer": 0.008333333333333333,
+  "ci": [
+   0.9979504594772242,
+   1.0
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "ms1ffhq",
+   "rung": "u50",
+   "id_plain": true
+  },
+  "negative": {
+   "fam": "ms1ffhq",
+   "rung": "photo",
+   "id_plain": true
+  },
+  "note": "SA1 row 2 (native)"
+ }
+}

@@ -1,0 +1,131 @@
+{
+ "n_pos": 191,
+ "n_neg": 191,
+ "n_components": 130,
+ "n_folds": 5,
+ "insample_best_single": 0.7860804254269346,
+ "insample_best_single_stat": "RENDER:chroma_noise_cr",
+ "insample_best_single_f27": 0.7299142019133247,
+ "insample_best_single_f27_stat": "F27:noise_std_face",
+ "single": {
+  "auc": 0.785641840958307,
+  "eer": 0.2774869109947644,
+  "ci": [
+   0.748014859059889,
+   0.8240266199517529
+  ],
+  "chosen_per_fold": [
+   "-RENDER:chroma_noise_cr",
+   "-RENDER:chroma_noise_cr",
+   "-RENDER:chroma_noise_cr",
+   "-RENDER:chroma_noise_cr",
+   "-RENDER:chroma_noise_cr"
+  ]
+ },
+ "logreg": {
+  "auc": 0.8327896713357639,
+  "eer": 0.24083769633507854,
+  "ci": [
+   0.7910405332759015,
+   0.8700768610738193
+  ]
+ },
+ "gbt": {
+  "auc": 0.7959211644417642,
+  "eer": 0.2931937172774869,
+  "ci": [
+   0.7546730831076848,
+   0.8345599059513962
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.8103122173186043,
+  "ci": [
+   0.768318441484661,
+   0.8497885799797578
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.8327896713357639,
+  "eer": 0.24083769633507854,
+  "ci": [
+   0.7910405332759015,
+   0.8700768610738193
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.7788163701652915,
+   "logreg": 0.8103122173186043
+  },
+  "BORDER": {
+   "gbt": 0.5,
+   "logreg": 0.5
+  },
+  "RES": {
+   "gbt": 0.6289712453057756,
+   "logreg": 0.6474054987527754
+  },
+  "STORE": {
+   "gbt": 0.5853457964419835,
+   "logreg": 0.627340259313067
+  },
+  "RENDER": {
+   "gbt": 0.7242126038211671,
+   "logreg": 0.7840245607302432
+  },
+  "BLEND": {
+   "gbt": 0.7063128751953072,
+   "logreg": 0.6662372193744689
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.8075436528603931,
+  "BORDER": 0.8327896713357639,
+  "RES": 0.8295825224089252,
+  "STORE": 0.845700501630986,
+  "RENDER": 0.8142320660069625,
+  "BLEND": 0.8286505304130918
+ },
+ "contrast": "gd1_X_vs_SAME",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.8414517145911571,
+  "eer": 0.24083769633507854,
+  "ci": [
+   0.800169371550444,
+   0.8789875439840575
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 0.8122036128395603,
+  "eer": 0.27225130890052357,
+  "ci": [
+   0.7725002486715431,
+   0.8500774043218743
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "GD",
+  "positive": {
+   "fam": "gd1",
+   "rung": "X"
+  },
+  "negative": {
+   "fam": "gd1",
+   "rung": "SAME"
+  },
+  "note": "SA1 row 13"
+ }
+}
