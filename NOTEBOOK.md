@@ -340,3 +340,9 @@ The lead wrote clock times into this evening's entries and messages from memory 
 - The entry headed "19:25" (the author's "Go with A READ NOW, improve later for MAD22 ...") was committed at 18:36:07; **that ruling was given at about 18:36, not 19:25.** Messages of the lead to owners that cite "the 19:25 ruling", and the times 19:05, 19:15, 19:35, 19:50 and 20:00 in the lead's messages, are all between 18:36 and 18:46 by the machine clock.
 - The earlier entry headed "17:15" (cut-off ruling) was committed at about 17:11 by the machine clock; the SE1 wording approval cited as "17:25" likewise carries a time written from memory.
 The order of events is unaffected: every ruling was recorded before the actions that rely on it. Owners correct any registration text that quotes one of these times to "13 Nov, about 18:36 by the machine clock (lead's messages said 19:25)", by a dated note, without changing anything else. From now on the lead takes every time from `date`.
+
+## 13 Nov 18:56 — five standing roles; selection rule pre-run check (lead)
+
+- Author: "Implement these changes, please! How will it impact existing agents?" Five standing roles written into OWNER_BRIEF.md (6e42c86) and five Opus agents started: ideas and literature (IDEAS), shared test battery (BATTERY), standing adversary (ADVERSARY), data building (DATA), record keeper (RECORDS). Dispatcher told to add them to its table and relay to owners. Registered arms and queued jobs unchanged.
+- Selection rule for the next version (NEXT, draft 351a7f2): pre-run check GO WITH FIXES, saved as experiments/reviews/PRERUN_NEXT_SELECTION_RULE_20261113.md. Still a draft; not binding until fixed and approved by the author. No MAD22 number of the frozen candidate has been seen.
+- GAN morphs in training (GX1): generation smoke 6315653 and arrays 6315654, 6315655 submitted on WCSS, pending. Second backbone (BB2): wave-2 rescoring registered (d7018f8), in the dispatcher queue.
