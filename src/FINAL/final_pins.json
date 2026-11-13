@@ -104,17 +104,17 @@
   "src/FINAL/final_config.json": "79bd4e3e446232133a4265254b519d1430a3774e6b8aca266202c7ac406817af",
   "src/FINAL/build_pack.py": "b80b4fcdec7bc1368561b5f74c5cf2bb175c2fd9879a01578025e66b78e1fcec",
   "src/FINAL/remote_final.sh": "54925f22f8856fd7e5101d5487b69bd8480becdde1b809afef97045dc506384d",
-  "src/FINAL/drive_final.sh": "8fb39b8a085e1464927c5e2996554f184b7a9a644da0bf88894892fb4b4f432f",
+  "src/FINAL/drive_final.sh": "42e2104e9ec046d8d52210d01a1ded8de495bc6a2c2f5009a20bf1ed2cb8b043",
   "src/FINAL/gate_check_final.py": "ac2e5f578faf9622b784558b0a280856c2c8d3654c2e3c2d661707731ec7ef24",
   "src/FINAL/final_metrics.py": "9c202f9749e5c1d5f7b7fa856d6cb589511f1415ee1a554044bba39b537a5370",
-  "src/FINAL/final_read.py": "f8ab8e55217a400396a7611bfe1432fdaa4408c6d51d60808ae3fa408a049df2",
+  "src/FINAL/final_read.py": "557a5dc56e372ac36abfc8c10831d947b179716ed74411158ac86e465b1103a4",
   "src/FINAL/mock_test.py": "7648a3632e8f6f89441b256dcc5cf67c2482f57ed86af9448cd9926cf1026a6e",
   "src/FINAL/make_standin.py": "f91e7503974fbb9cc7038320e61e85443fd0185f840e5f15ef85a15eb87baf24",
   "src/FINAL/thresholds.py": "36d0474ca3512e26f860c92e729f06c747b11e1d67d98d35b8f0fa34260470d6",
   "src/FINAL/extract_release_scores.py": "9e2c9de985e722357fb8ce113ca0be2e6085371b4aa976bea25b413881862c99",
   "src/FINAL/selfmad_mad22.py": "696d1a7aaf92dea0f20084d86e94b208963db62e721e861bc3f8084c749477c2",
   "src/FINAL/beststat_mad22.py": "094eed87e478cff7440294ae5397aabbab35ad5ecba14104251286d0632b015d",
-  "src/FINAL/make_pins.py": "fca462b1c41c6f99a923b89cf0c372fbc7d44a9f65dcd1c7f9432862a940e556",
+  "src/FINAL/make_pins.py": "a1463f274680a45d52dd988aba602e69e2af5cd0ebe0e70cde3b243660801e79",
   "thresholds (committed)": "0293c3adad2487114fded4555fd235a6ad9946c993381ea1e3f702e6851983d4",
   "released detectors, existing rows": "dba3acdad6cea543fde2b323a2118a2eb6a32b6d15cc2f0de1d0f304749e963b",
   "AF0 cues_all.py (reference statistic)": "1ab50f3098e9eac6fcdfeb7a08cb6b02613d728f87aa24a4a396509f41cdcc9f",
@@ -122,5 +122,7 @@
   "RS1 athena_manifest.csv (SelfMAD inputs)": "11cef1c5b285fba6d50f7828a2d2fb8fe11e0b653facbbe631409572949f1b7e",
   "rs1_border.csv (release crop border)": "0b3bad62e83a04515ab9fe6a315e706b72f58734c0da666edebd328710905fa5"
  },
- "bytes_pack": 5756416000
+ "bytes_pack": 5756416000,
+ "selfmad": "ec5e760988e7c9c609a6fd14a7c8ffcdc5969cedcef5b8d705137ac2b1bbb224",
+ "beststat": "9c34cccfd4bef4d15757cd4af6d92dd3b327c24c7b629d61243b72f8577495bc"
 }

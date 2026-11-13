@@ -95,6 +95,9 @@ class Read:
     # ------------------------------------------------------------------ inputs
     def load(self):
         a, P = self.a, self.pins
+        for k in ("selfmad", "beststat"):          # guard amendment F2: a pinned comparison input cannot be dropped
+            if k in P and not getattr(a, k):
+                sys.exit(f"{k} is pinned in final_pins.json: pass --{k}; it cannot be dropped at read time")
         for k, p in (("result", a.result), ("pack", a.pack), ("release_existing", a.release_existing),
                      ("thresholds", a.thresholds)):
             h = sha(p)
@@ -347,6 +350,12 @@ class Read:
                     + (["no border in either class (mask empty): border-equalised = unblanked"] if fam in FAMS and form.startswith("BE") and self.binfo["be"][fam]["copies"] == 0 else [])
                 if fam in FAMS and form.startswith("BE"):
                     row["mask_share"] = self.binfo["be"][fam]["mask_share"]
+                if fam in FAMS:                    # F7: where a release cell's n differs from ours, say so
+                    o0 = ours[names[0]][0][form][fam]
+                    row["n_ours"] = (o0["n_morph"], o0["n_genuine"])
+                    row["n_differs"] = {k: (v[0][form][fam]["n_morph"], v[0][form][fam]["n_genuine"]) for k, v in rels.items()
+                                        if v is not None and v[0][form].get(fam) is not None
+                                        and (v[0][form][fam]["n_morph"], v[0][form][fam]["n_genuine"]) != row["n_ours"]}
                 cells[form][fam] = row
         self.out["cells"] = cells
         # comparisons: best comparison = the released detector (variant 1 crop; SelfMAD own DGX) with the lowest point EER
@@ -480,6 +489,8 @@ def tables_md(o):
             c = o["cells"][form][fam]; v = o["verdicts"][form].get(fam, {})
             seeds = ", ".join(f"{100 * x:.1f}" for x in c["ours_seed_eer"])
             dci = f"{100 * v['diff']:+.1f} [{100 * v['diff_ci'][0]:+.1f}, {100 * v['diff_ci'][1]:+.1f}]" if "diff" in v else "-"
+            if c.get("n_differs"):
+                L.append(f"| {fam} n | ours {c['n_ours']} | releases with another n: {c['n_differs']} | | | | | |")
             L.append(f"| {fam} | {seeds} | {100 * c['ours_mean_eer']:.1f} ({100 * c['ours_sd_eer']:.1f}) | {v.get('best_name', '-')} | "
                      f"{100 * v['best_eer']:.1f} | {dci} | {v.get('verdict', '-')} | {'; '.join(c['labels'][1:])} |" if "best_eer" in v else
                      f"| {fam} | {seeds} | {100 * c['ours_mean_eer']:.1f} ({100 * c['ours_sd_eer']:.1f}) | - | - | - | {v.get('verdict', '-')} | |")
@@ -497,8 +508,12 @@ def main():
     a = ap.parse_args()
     pins = json.load(open(a.pins))
     marker = pathlib.Path(a.marker or f"/mnt/t7/smad_next/FINAL/READ_ONCE_{pins['config']['read_id']}")
-    if pathlib.Path(a.out).exists():
+    if pathlib.Path(a.out).exists() or pathlib.Path(a.tables).exists():
         sys.exit("output exists: the reader runs once")
+    real = str(pathlib.Path(a.result).resolve())  # guard amendment F3: the real result only with default pins and marker
+    if real.startswith(("/mnt/t7/smad_next/FINAL/results/", "/mnt/t7/smad_next/vast/")) and \
+            (a.marker is not None or pathlib.Path(a.pins).resolve() != (HERE / "final_pins.json").resolve()):
+        sys.exit("the real result is read only with the default pins and marker")
     if marker.exists():
         sys.exit(f"read marker {marker} exists: the reader runs once")
     rd = Read(a)

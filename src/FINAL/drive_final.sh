@@ -23,6 +23,18 @@ PACK=$O/${RID}_pack.tar
 PSHA=$(cut -c1-64 "$PACK.sha256")
 CSHA=$(sha256sum < "$CFG" | cut -c1-64)
 B=${FINAL_B:-/workspace/final}
+# guard amendment F1 (lead's review PRERUN_FINAL_MAD22_LEAD_20261113): outside test mode the config, the pack and the
+# scripts must be at their registered pins (final_pins.json); a reduced config cannot score MAD22 or use the lock
+if [ "${FINAL_TEST:-0}" != 1 ]; then
+  PINS=$SRC/final_pins.json
+  pin() { python3 -c "import json,sys; print(json.load(open('$PINS'))['files'][sys.argv[1]])" "$1"; }
+  [ "$CFG" = "$SRC/final_config.json" ] || { echo "FINAL_CONFIG override refused outside test mode"; exit 1; }
+  [ "$CSHA" = "$(pin src/FINAL/final_config.json)" ] || { echo "config not at its registered pin"; exit 1; }
+  [ "$PSHA" = "$(python3 -c "import json; print(json.load(open('$PINS'))['pack'])")" ] || { echo "pack not at its registered pin"; exit 1; }
+  for f in remote_final.sh gate_check_final.py drive_final.sh; do
+    [ "$(sha256sum < "$SRC/$f" | cut -c1-64)" = "$(pin src/FINAL/$f)" ] || { echo "$f not at its registered pin"; exit 1; }
+  done
+fi
 log() { echo "$(date +%FT%T) [final] $*" | tee -a "$L/final_drive.log"; }
 if [ "${FINAL_TEST:-0}" = 1 ]; then
   R() { bash -c "$*"; }

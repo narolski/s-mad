@@ -58,6 +58,7 @@ def main():
         rows.append((k, str(p), sha(p)))
     pins = dict(config=cfg, pack=sha(pack), release_existing=sha(O / "release_scores_existing.npz"),
                 thresholds=sha(EXP / "final_thresholds.json"), files={r[0]: r[2] for r in rows}, bytes_pack=pack.stat().st_size)
+    prev = json.load(open(HERE / "final_pins.json")).get("files", {}) if (HERE / "final_pins.json").exists() else {}
     for k, p in (("selfmad", a.selfmad), ("beststat", a.beststat)):
         if p:
             pins[k] = sha(p)
@@ -70,9 +71,13 @@ def main():
     if a.selfmad or a.beststat:                      # after the registration commit: append a dated addendum only
         import subprocess
         now = subprocess.run(["date"], capture_output=True, text=True).stdout.strip()
-        add = [f"\n## 12. Pin addendum ({now}): sealed outputs made after the registration commit\n",
+        add = [f"\n## 13. Pin addendum ({now}): sealed outputs made after the registration commit\n",
                "Made by the registered scripts after the registration commit; not opened. Nothing above changes.\n"]
         add += [f"- {k}: `{p}` sha256 `{h}`" for k, p, h in rows if k.startswith("sealed output")]
+        changed = [(k, p, h) for k, p, h in rows if not k.startswith("sealed output") and prev.get(k) != h]
+        if changed:
+            add += ["", "Pinned files changed since the table of section 10 (guards-only amendment; new sha256):"]
+            add += [f"- {k}: `{p}` sha256 `{h}` (was `{prev.get(k)}`)" for k, p, h in changed]
         pr = EXP / "prereg.md"
         pr.write_text(pr.read_text().rstrip("\n") + "\n" + "\n".join(add) + "\n")
         print("PINS addendum", [k for k, _, _ in rows if k.startswith("sealed output")])

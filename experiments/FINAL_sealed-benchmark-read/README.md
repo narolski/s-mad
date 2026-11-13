@@ -115,6 +115,48 @@ Owner: FINAL owner (agent), for the lead. Registration: `prereg.md` (v3). Code: 
     for byte. This read keeps the built and tested rented A100-PCIE-40GB path. Athena is possible only by a dated
     amendment with its own runner and test (prereg §9).
 
+15. **Sealed runs after the registration commit** (DGX, 20:03-20:24). Neither output was opened.
+    - SelfMAD's MAD22 rows: RS1 score.py --mode own, 5,911 images, 1,232 s, beside IDistill (6 GB). The output is
+      `/mnt/t7/smad_next/FINAL/selfmad/selfmad_mad22_scores.npz`, ec5e7609….
+      - score.py writes a per-row `cropped` flag. The reader uses every row, as the other releases' rows are used.
+    - The reference statistic on the 9,930 frames: `/mnt/t7/smad_next/FINAL/beststat/beststat_mad22.npz`,
+      9c34cccf….
+16. **Lead's pre-run check of a7d7454** (`experiments/reviews/PRERUN_FINAL_MAD22_LEAD_20261113.md`, c7b2daa): GO WITH
+    FIXES. Applied as amendment G1, guards only, signed by the lead (prereg §12): F1-F7.
+    - Refusal tests, each refused before any action:
+      - F1, the real driver: a FINAL_CONFIG override is refused ("override refused outside test mode"); an edited
+        remote_final.sh in a copy is refused ("not at its registered pin"); a config with 3 networks in a copy is
+        refused ("config not at its registered pin"). The unmodified driver passes the pins and stops at the
+        missing lease.json, with no ssh.
+      - F2: the reader without --selfmad is refused when it is pinned.
+      - F3: a result path under /mnt/t7/smad_next/vast/ with a non-default marker is refused; so are non-default
+        pins, and an existing tables file. No marker was created by any refusal.
+    - `mock_full6`: 7 of 7 branches pass.
+    - End-to-end stand-in D: `start` without a dry run refused; dry run 5 of 5 byte-identical; read rc 0; second
+      start refused; reader read 4 forms × 8 cells.
+    - Pin addendum, prereg §13: the sealed outputs and the changed pinned files (drive_final.sh, final_read.py,
+      make_pins.py). final_pins.json was regenerated.
+
+## Ready: what the lead does (F4) and the commands
+
+- **Offer filters:** 1 × A100 PCIe 40 GB. The GPU name must be exactly "NVIDIA A100-PCIE-40GB" (the job aborts on
+  anything else, before any score).
+  - Image `pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime`; disk ≥ 40 GB; internet up and down ≥ 100 Mbps (pip, and
+    a 5.76 GB upload); reliability ≥ 0.98; CUDA driver ≥ 12.1.
+  - Write `/mnt/t7/smad_next/vast/<LEASE>/lease.json` with `ssh_host`, `ssh_port` (and the usual lease fields).
+- **Commands (owner):**
+  - `cd /home/narolski/smad-next`
+  - `bash src/FINAL/drive_final.sh stage <LEASE>`
+  - `bash src/FINAL/drive_final.sh dryrun <LEASE>`
+  - `bash src/FINAL/drive_final.sh loopdry <LEASE>`
+  - Then report DRYRUN_PASSED to the lead. Only on the lead's explicit word:
+    `bash src/FINAL/drive_final.sh start <LEASE>` and `bash src/FINAL/drive_final.sh loop <LEASE>`.
+- **After FINAL_DONE (F4):** the lead destroys (not stops) the instance. The lease ID and time go in the README and
+  NOTEBOOK.
+- **On FINAL_FAILED (F5):** the two result tars are renamed `*.QUARANTINE-<lease>` and never extracted.
+- **Then:** the reader once (command above, default pins and marker), the results-reviewer, then the report to the
+  lead (F6).
+
 ## Dead ends and fixes
 
 - Driver start: `cd $B && nohup … &` sent the whole list to the background and held the ssh/command pipe until the

@@ -383,3 +383,46 @@ Pack size 5,756,416,000 bytes. `final_pins.json` itself is pinned by the commit.
 - Section 7, "a failed gate may be repeated once": replaced by section 9 (no second platform).
 - Section 8, the outcome table: replaced by section 6.
 - Section 10 item 9 (proposal F10): adopted as C2 by the lead under the author's go.
+
+## 12. Amendment G1: guards only, signed by the lead (written `date`: Fri Nov 13 08:15:02 PM CET 2026)
+
+**Basis.** The lead's independent pre-run check of a7d7454, `experiments/reviews/PRERUN_FINAL_MAD22_LEAD_20261113.md`
+(c7b2daa), verdict GO WITH FIXES. The lead signs this as a guards-only amendment. No measure, cell, threshold, label
+or test changes. It is written before any score of the frozen networks on any benchmark row exists.
+
+- **F1.** Outside test mode, `drive_final.sh` refuses any FINAL_CONFIG override. It also refuses unless the config,
+  the pack, `remote_final.sh`, `gate_check_final.py` and `drive_final.sh` itself equal their pins in
+  `final_pins.json`.
+- **F2.** `final_read.py` refuses to run without `--selfmad` and `--beststat` when they are pinned in
+  `final_pins.json`, so the comparison set cannot be dropped at read time.
+- **F3.** `final_read.py` refuses a real result (under `/mnt/t7/smad_next/FINAL/results/` or
+  `/mnt/t7/smad_next/vast/`) with a non-default `--marker` or `--pins`. It also refuses when `--tables`
+  already exists.
+- **F4.** The lead destroys (not stops) the instance only after `pull` has logged FINAL_DONE with both copies
+  verified (or FINAL_FAILED, verified).
+  - The lease ID and the time of destruction are recorded in the README and NOTEBOOK.
+  - No key or token other than the lease SSH key is on the host (HF_HUB_OFFLINE=1; base weights are in the pack).
+- **F5.** On FINAL_FAILED, the result tar and its copy are renamed `*.QUARANTINE-<lease>` and never extracted.
+  Only `rc`, `gate.txt` and `calls.log` are read.
+- **F6.** `final_read.json` and the tables go to the results-reviewer before any sentence reaches the paper, NOTEBOOK
+  or the author.
+  - The lead sees the result when the owner reports it, and passes on only numbers to the author, with
+    interpretation held until the review.
+  - The labels attached by the reader may not be dropped: "seen during development", "shortcut-saturated"
+    (FaceMorpher, mean5), the MIPGAN label and the release-path sentence.
+- **F7.** Where a release cell's n (morphs, genuine) differs from ours, the table says so (`n_differs`, printed per
+  cell).
+  - For MAD22 the existing release rows are complete in both crop variants: M22 1,000 / 1,000 / 999 / 984 / 500,
+    G22_raw, G22_aln and E7aln22 204 each (`release_scores_existing.json` counts). These equal ours.
+
+## 13. Pin addendum (Fri Nov 13 08:34:59 PM CET 2026): sealed outputs made after the registration commit
+
+Made by the registered scripts after the registration commit; not opened. Nothing above changes.
+
+- sealed output: selfmad: `/mnt/t7/smad_next/FINAL/selfmad/selfmad_mad22_scores.npz` sha256 `ec5e760988e7c9c609a6fd14a7c8ffcdc5969cedcef5b8d705137ac2b1bbb224`
+- sealed output: beststat: `/mnt/t7/smad_next/FINAL/beststat/beststat_mad22.npz` sha256 `9c34cccfd4bef4d15757cd4af6d92dd3b327c24c7b629d61243b72f8577495bc`
+
+Pinned files changed since the table of section 10 (guards-only amendment; new sha256):
+- src/FINAL/drive_final.sh: `/home/narolski/smad-next/src/FINAL/drive_final.sh` sha256 `42e2104e9ec046d8d52210d01a1ded8de495bc6a2c2f5009a20bf1ed2cb8b043` (was `8fb39b8a085e1464927c5e2996554f184b7a9a644da0bf88894892fb4b4f432f`)
+- src/FINAL/final_read.py: `/home/narolski/smad-next/src/FINAL/final_read.py` sha256 `557a5dc56e372ac36abfc8c10831d947b179716ed74411158ac86e465b1103a4` (was `f8ab8e55217a400396a7611bfe1432fdaa4408c6d51d60808ae3fa408a049df2`)
+- src/FINAL/make_pins.py: `/home/narolski/smad-next/src/FINAL/make_pins.py` sha256 `a1463f274680a45d52dd988aba602e69e2af5cd0ebe0e70cde3b243660801e79` (was `fca462b1c41c6f99a923b89cf0c372fbc7d44a9f65dcd1c7f9432862a940e556`)
