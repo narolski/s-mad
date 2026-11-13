@@ -14,6 +14,19 @@ Each build will deliver: images under `/mnt/t7/smad_next/DATA/<request>/`, a man
 (source ids, role, engine, sha256), a SHA256SUMS file, the builder in `src/DATA/` with its commit, a catalogue row,
 and an 8-image test with the real command line before the full run.
 
+## Status (13 Nov 2026, 19:12 machine clock; lead's go received about 19:04)
+
+- Built: D1a (coverage table), D1d (898 of 900 renders), D2 (941 MEDS pairs, ids on /mnt/t7 only), D5 (balanced
+  lists, thin). Records: `README.md` in this folder and `DATA_CATALOG.md` section 3b.
+- Held by the lead: D1b until an owner registers a use for it.
+- Waiting for the author (the lead is asking): D1c, D3, D4, D6, and a verified copy of the record's 33 GB of frames from
+  the home disk. Lead's note on D1c: hull-shaped spliced morphs on the OpenCV path are already allowed; only the
+  FaceMorpher splice is new.
+- Findings: D1d controls have no matching positive family yet (no FaceMorpher two-person morphs on FFHQ). In AG1,
+  MIPGAN-II exists only for FRLL persons; GX1 adds FERET and FRGC. In the sources that already record border and eye
+  distance, border-free and high-resolution genuine frames come almost only from MEDS: without MEDS, D5 has 9 images
+  per cell over 3 cells.
+
 ## Summary
 
 | Request | Purpose | Needs | CPU | GPU |

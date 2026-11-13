@@ -103,7 +103,17 @@ job packs are not catalogued file by file; packs are named where they carry the 
 | CB1 SMDD training crops pack | `smad_next/CB1/packs/smdd_train_cropped.tar` | (in CB1, 27 GB) | `.sha256` | `src/CB1/` | not counted | training source (baseline retrains) | none |
 | AD1b DiffAE pool and generation | `smad_next/AD1b/` | 502 MB | `pool_selection.csv`; no SUMS file found | `src/AD1b/` | not counted | development | NO-SUM (to confirm) |
 | FINAL MAD22 read pack | `smad_next/FINAL/FINAL_mad22_pack.tar` (+ test8), `tree_FINAL_mad22*/` | 25 GB | pack `.sha256`; `SHA256SUMS` in trees | FINAL owner; `src/FINAL` has no commit at 19:00 | MAD22 corrected cells | **closed benchmark** pack | NO-BLD (builder not committed at 19:00) |
-| Legacy RAM-disk landmark twins R8 (copy) | `smad_next/volatile_backup_20261111/{r8_cv,r8_fm}/` (+ GAN protocol, own-generation canonical256, A138, MAD22 raw manifest copy) | 2.9 GB | none in the backup (README.txt only) | record's `smadcvpr/build_arms.py` (mambamorph-code; commit not recorded here) | 2,500 per tool | training identities of old networks; development use only after a person check | NO-SUM |
+| Legacy RAM-disk landmark twins R8 (copy) | `smad_next/volatile_backup_20261111/{r8_cv,r8_fm}/` (+ GAN protocol, own-generation canonical256, A138, MAD22 raw manifest copy) | 2.9 GB | `SHA256SUMS` written 13 Nov 19:05 by DATA (17,506 files, sha 77f37bf06f5fcf5e...); r8_cv and r8_fm (5,002 files) match `/dev/shm` byte for byte | record's `smadcvpr/build_arms.py` (mambamorph-code; commit not recorded here) | 2,500 per tool | training identities of old networks; development use only after a person check | none |
+| R6 extra FRGC stills and r6/r8 logs (copy of `/dev/shm/smad_arms`) | `smad_next/volatile_backup_20261113/` | 1.6 GB | `SHA256SUMS` (8,454 files, sha 9f1a8eb24646de14...), computed on the source and checked on the copy | `cp -a` by DATA, 13 Nov 19:04 (lead's go) | 4,223 png + 4,223 tem; r6_feret is an empty directory at the source | as R6 in the record: training-split FRGC subjects | none |
+
+## 3b. Products built by DATA (`/mnt/t7/smad_next/DATA/`, builders in `src/DATA/`)
+
+| Product | Path | Size | Checksum record | Builder | Images / rows | Status | Flags |
+|---|---|---|---|---|---|---|---|
+| D1d one-photo FaceMorpher renders R2 = tool(H, H) of the MS1 FFHQ frames | `DATA/D1d/facemorpher/R2/<key>.png`, `manifest.csv` (1bfa13ec...), `SHA256SUMS`, `build_log.json`; 8-image test in `DATA/D1d/test8/` | 367 MB | `SHA256SUMS` (898 files, checked), input and output sha256 per row | `src/DATA/d1d_fm_r2.py`, unchanged `96_facemorpher_tool.py` (954e9c02..., same file as AR1) | 898 of 900 (af0 449, hold-out 299, ladder 150); 2 dropped: the tool fails (IndexError) on two frames whose landmarks reach the frame edge | development (hold-out rows) and training-person rows; a control for FaceMorpher morphs, none of which exist yet on FFHQ | none |
+| D1a paired-control coverage table | `DATA/D1a/coverage.csv`; copy `experiments/DATA_builds/D1a_coverage.csv` | small | file sha in the README | `src/DATA/d1a_coverage.py` | 37 rows | lists only | none |
+| D2 MEDS cross-encounter genuine pairs | `DATA/D2/meds_cross_encounter_pairs.csv` (+ `.sha256`, `counts.json`); counts only in `experiments/DATA_builds/D2_counts.json` | small | list sha 2ac6112e... | `src/DATA/d2_meds_pairs.py` | 941 pairs, 157 persons, 560 images | **restricted terms**; development only; ids never in the repository | none |
+| D5 border- and resolution-balanced genuine lists | `DATA/D5/genuine_balanced_{all,nomeds}.csv` (+ `.sha256`, `cells.json`); cell table in `experiments/DATA_builds/D5_cells.json` | small | list sha 8b27d67d... (all), 02a05f12... (no MEDS) | `src/DATA/d5_balanced_genuine.py` | all: 6 cells x 45 = 270 (176 MEDS, 94 TT1); without MEDS: 3 cells x 9 = 27 | development only (MEDS rows: restricted terms) | thin: see REQUESTS D5 |
 
 ## 4. In progress tonight (entered only; owners keep them)
 
@@ -138,7 +148,7 @@ Builders are the record's scripts in `/home/narolski/mambamorph-code/smadcvpr/` 
 |---|---|---|---|
 | Record's training frames and morphs behind `smadcvpr_data/train/` (genuine FERET 2,400 and FRGC 1,686 frames; OpenCV, OpenCV-68, WebMorph and FaceMorpher morphs of FERET 5,000 and FRGC 1,449 each) | `/home/narolski/mambamorph-code/baselines/{webmorph/aligned, webmorph/morphs_opencv, webmorph/morphs, facemorpher_out}/` (about 33 GB, home disk at 98%) | **yes, as far as found** (no copy located on `/mnt/t7`; AF0 and AR1 hold byte copies of a subset only) | OFF-T7, NO-SUM. Training data of the record's networks. |
 | Record's evaluation frames and manifests | `/home/narolski/mambamorph-code/smadcvpr_data/{eval,gtest,manifests}/` (12 GB) | not checked | OFF-T7 (closed benchmark frames: frllm, mad22 old subset, mordiff, dim, FEI gtest) |
-| FRGC extra stills R6 (4,223 frames, 490 subjects) and its provenance csv | `/dev/shm/smad_arms/r6_frgc/` (1.7 GB, RAM) | **yes** (the 11 Nov backup copied only r8_cv and r8_fm) | OFF-T7, lost on reboot. AF0 took byte copies of the frames it used only. |
+| FRGC extra stills R6 (4,223 frames, 490 subjects) and its provenance csv | `/dev/shm/smad_arms/r6_frgc/` (1.7 GB, RAM) | no longer: verified copy in `smad_next/volatile_backup_20261113/` (13 Nov 19:04) | `/dev/shm` left untouched; `r6_feret` holds no file, so nothing was at risk there |
 | R8 landmark twins | `/dev/shm/smad_arms/r8_{cv,fm}` | no: copy in `smad_next/volatile_backup_20261111/` | backup has no checksum |
 | SMDD 106-point landmarks | `/dev/shm/smad_arms/smdd_bona_landmarks_if106.npz` | no: also `Datasety/downloads/SMDD/` (byte equality not checked) | - |
 | Corrected MAD22 raw manifest | `/tmp/opencode/.../raw_manifest.json` | no: copy `smad_next/volatile_backup_20261111/mad22_fixed_raw_manifest.json` | - |
@@ -149,8 +159,8 @@ Builders are the record's scripts in `/home/narolski/mambamorph-code/smadcvpr/` 
 
 ## 7. Open checks (DATA, CPU only, no image operation)
 
-1. Hash and back up `/dev/shm/smad_arms/r6_frgc` to `/mnt/t7` (1.7 GB): a copy, which the brief allows; needs the lead's go.
-2. Hash `smad_next/volatile_backup_20261111/` and record SHA256SUMS (2.9 GB).
+1. Done 13 Nov 19:04-19:06: R6 copied and verified (`volatile_backup_20261113`); SHA256SUMS for `volatile_backup_20261111`.
+2. Measure border fraction and source eye distance for the MS1 FFHQ, CelebA-HQ and AR1 / AF0 genuine frames (from existing .tem and align logs, no image operation), so D5 can fill its border-free and high-resolution cells without MEDS.
 3. Decide with the author whether the record's training frames on the home disk (about 33 GB) get a verified copy on
    `/mnt/t7` (196 GB free; the 50 GB floor holds).
 4. Per-file hash lists for the AR1 and AF0 images (manifests carry none), AD1b, SM1 and TT1 border references.

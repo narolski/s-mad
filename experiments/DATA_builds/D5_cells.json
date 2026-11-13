@@ -1,0 +1,50 @@
+{
+ "seed": 20261113,
+ "sources": {
+  "tt1": "8b3c6fa932ac24c13a086984468539ba841f2facc1ac883be34c89b1c6971bef",
+  "meds": "3698bcb4ff9e694219a0d1675920621724303eee034692f9374f70400fec6c8d"
+ },
+ "all_sources": {
+  "available_images": {
+   "border_any|ied_61to113": 1586,
+   "border_any|ied_lt61": 19723,
+   "border_none|ied_lt61": 67,
+   "border_none|ied_61to113": 257,
+   "border_any|ied_ge113": 231,
+   "border_none|ied_ge113": 90
+  },
+  "one_per_person": {
+   "border_any|ied_61to113": 321,
+   "border_any|ied_ge113": 142,
+   "border_any|ied_lt61": 10885,
+   "border_none|ied_61to113": 157,
+   "border_none|ied_ge113": 56,
+   "border_none|ied_lt61": 45
+  },
+  "per_cell": 45,
+  "rows": 270,
+  "by_source": {
+   "tt1": 94,
+   "meds": 176
+  },
+  "list_sha256": "8b27d67d9ee7699e3d707f53e743c9c22abef4371ea1092b0a4f117cfe68e4dd"
+ },
+ "without_meds": {
+  "available_images": {
+   "border_any|ied_61to113": 1403,
+   "border_any|ied_lt61": 19677,
+   "border_none|ied_lt61": 9
+  },
+  "one_per_person": {
+   "border_any|ied_61to113": 190,
+   "border_any|ied_lt61": 10860,
+   "border_none|ied_lt61": 9
+  },
+  "per_cell": 9,
+  "rows": 27,
+  "by_source": {
+   "tt1": 27
+  },
+  "list_sha256": "02a05f1247c1bbd31cc7cd99ae3631a54082c999d8dce65db4982f326a5be259"
+ }
+}
