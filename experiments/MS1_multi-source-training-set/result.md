@@ -80,19 +80,24 @@ share.
   (WCSS smoke cancelled by the lead, 13 Nov 00:00).
 - Reviewed: `experiments/reviews/REVIEW_MS1_20261113.md` (verdicts follow; interpretation qualified as above).
 
-# Part 3 (registered at cff1ada; read once at 10:06 on 13 Nov 2026; `ms1_part3.json`; owner's numbers, not reviewed)
+# Part 3 (registered at cff1ada; read once at 10:06 on 13 Nov 2026; `ms1_part3.json`; reviewed)
 
-- **H-mem (memorisation / dilution): supported** (M(SbM3) < M(Sb) on 5 of 5 seeds). M (mean gap over 11
-  FRGC/colorFERET kinds, logits): Sb 0.153, 0.134, 0.130, 0.143, 0.112; SbM3 0.110, 0.085, 0.097, 0.090, 0.088; SbV
-  0.163, 0.135, 0.144, 0.150, 0.123. Per-kind medians (Sb / SbM3 / SbV): zero 0.170 / 0.097 / 0.168; halves 0.172 /
-  0.096 / 0.171; S3 0.285 / 0.182 / 0.273; S4 0.731 / 0.444 / 0.776; photo 0.010 / −0.001 / 0.009; R0 0.011 / 0.019 /
-  0.010; R2w 0.022 / 0.043 / 0.023; S0 0.017 / 0.042 / 0.016. The smaller gap comes from zero, halves, S3 and S4; on R0,
-  R2w and S0 SbM3's gap is larger. Consistent with dilution; does not separate dilution from diversity (H-new-2 needs a
-  step-matched arm).
-- **H-new-4 (Feminine rating and CFD logits): inconclusive** (ρ(Sb) > 0.2 in 1 of 4 groups; |ρ(SbM3)| < 0.1 in 2 of 4).
-  Group medians ρ(Feminine) A / B / L / W: Sb 0.421 / −0.068 / 0.038 / 0.170; SbM3 0.023 / −0.289 / −0.173 / −0.000; SbV
-  0.459 / −0.048 / 0.016 / 0.192. Own-rule flag rates by group and gender (mean over seeds), Sb: AF 0.102, AM 0.004, BF
-  0.033, BM 0.013, LF 0.050, LM 0.035, WF 0.073, WM 0.045; SbM3 all ≤ 0.004. Associational, development images only.
+- **H-mem (memorisation / dilution): supported** by the registered rule (M(SbM3) < M(Sb), 5 of 5 seeds; M Sb 0.153,
+  0.134, 0.130, 0.143, 0.112; SbM3 0.110, 0.085, 0.097, 0.090, 0.088; SbV 0.163, 0.135, 0.144, 0.150, 0.123). Reviewed
+  (REVIEW_MS1_PART3_20261113.md). Robustness (post hoc, printed): 5/5 also in probability units and as a rank AUC
+  (training vs held-out rows of the same kind: Sb 0.541-0.557, SbM3 0.514-0.535); 3/5 with medians. The logit gap sits
+  in the tails of unsaturated kinds (S4, S3, and FRGC zero/halves); without S3 and S4 it is 2/5. Which kinds carry it
+  depends on the scale (logits: zero, halves, S3, S4; rank: R0, R2w, S0, photo). Memorisation is small in both arms.
+  SbM3 fits training rows no less tightly than Sb; the gap closes because held-out tails approach the training level.
+  Consistent with lower exposure per image or with regularisation by the added source; it does not separate them.
+- **H-new-4 (Feminine rating and CFD logits): inconclusive** by the registered rule (Sb ρ > 0.2 in 1 of 4 groups; SbM3
+  |ρ| < 0.1 in 2 of 4; Sb ρ < 0.1 in 2 of 4). The registered within-group statistic is confounded by sex (ρ(Feminine,
+  sex) = 0.86). Post hoc, within sex: Sb ρ(Feminine) women 0.248 (n = 307; AF 0.24, BF 0.27, WF 0.16, LF 0.00), men
+  0.097; SbM3 0.007 and −0.125; SbV as Sb. Sb's female-skewed own-rule flags (AF 0.102, WF 0.073, BF 0.033 against AM
+  0.004, WM 0.045, BM 0.013; 1-15 images per cell and seed, seed 406 the largest) are the same signal. Associational,
+  development images only; not a demographic-bias claim.
+- Printed: FS1 mean logit drop from landmark_complete to landmark_combined morphs Sb 1.67-2.70, SbM3 3.06-4.06, SbV
+  1.82-2.63.
 - **Printed items (F8):** train-minus-held-out gaps per kind in `ms1_part3.json`; FS1 R1-R6 per arm and seed in
   `ms1_part3.json` (e.g. R1 stratified AUC Sb 0.823-0.887, SbM3 0.856-0.893, SbV 0.816-0.876; R6 AUC loss complete →
   combined Sb 0.110-0.176, SbM3 0.109-0.149); smoke gate: not producible (the WCSS smoke was cancelled before it ran).
