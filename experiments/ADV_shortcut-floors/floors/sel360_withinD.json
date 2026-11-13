@@ -1,0 +1,30 @@
+{
+ "product": "sel360",
+ "n_rows": 360,
+ "n_pos": 180,
+ "n_components": 110,
+ "within_D": {
+  "n_rows": 360,
+  "D": "D",
+  "single": 0.6895246478873239,
+  "coverage": 1.0,
+  "logreg": 0.7943661971830986,
+  "gbt": 0.7742957746478873,
+  "pure_D_reference": 0.5598591549295775
+ },
+ "ci": {
+  "single": [
+   0.6396927769726659,
+   0.7359461980087927
+  ],
+  "logreg": [
+   0.7477652658633103,
+   0.8356960147796253
+  ],
+  "gbt": [
+   0.72562202987895,
+   0.8208837926033357
+  ]
+ },
+ "note": "quintile edges over these rows; bootstrap unit = component column; edges are recomputed in each draw (BD1's rule applied to the drawn rows)"
+}

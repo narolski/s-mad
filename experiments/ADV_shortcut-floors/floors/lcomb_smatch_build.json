@@ -1,0 +1,28 @@
+{
+ "product": "lcomb_smatch",
+ "n_pairs": 360,
+ "rule": "1:1 greedy on logit(surround_gbt), caliper 0.1 SD, default_rng(20261117)",
+ "known_limit": "surround-balanced only",
+ "balance_refit": {
+  "surround": {
+   "single": 0.5423804012345679,
+   "logreg": 0.6615277777777778,
+   "gbt": 0.4634645061728395
+  },
+  "face": {
+   "single": 0.8541473765432098,
+   "logreg": 0.9164506172839506,
+   "gbt": 0.9267592592592593
+  },
+  "file": {
+   "single": 0.557337962962963,
+   "logreg": 0.548641975308642,
+   "gbt": 0.515011574074074
+  },
+  "all_cue": {
+   "single": 0.8375655864197531,
+   "logreg": 0.9516358024691358,
+   "gbt": 0.944675925925926
+  }
+ }
+}

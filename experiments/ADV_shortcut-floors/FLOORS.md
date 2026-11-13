@@ -187,6 +187,12 @@ Frozen by `floors/pins_stage7.sha256` (Sb) and `floors/pins_stage8.sha256` (the 
 - **H-new-1** (F27 + BLEND alone on lcomb_bal, 250 rows): single / logreg / gbt 0.888 / 0.929 / 0.914: **supported** (bar ≥ 0.90). Where the surround history is balanced to within detection power, the remaining separation is carried by blend-texture statistics.
 - **H-new-3** (chroma-only vs luma-only face statistics, R4 vs R3 within BD1 D quintiles): all 291 hosts chroma 0.540, luma 0.723; test hosts chroma 0.542, luma 0.723: **falsified**. At equal D the two-person excess sits in luma texture statistics (noise, Laplacian, gradient, band powers), not in colour mismatch.
 
+## Amendment 5 products (selection rule; frozen by `floors/pins_stage9.sha256`)
+
+- **lcomb_smatch** (1:1 greedy on logit(surround_gbt), caliper 0.1 SD, default_rng(20261117); `floors/lcomb_smatch_rows.csv`): 360 pairs. Refit balance on the matched rows (single / logreg / gbt): surround 0.542 / 0.662 / 0.463; file 0.557 / 0.549 / 0.515; face box 0.854 / 0.916 / 0.927; all-cue 0.838 / 0.952 / 0.945. **Known limit: surround-balanced only** — and only for the boosted-tree surround score it was matched on: the linear surround refit still reaches 0.662.
+- **sel360** (OpenCV R4 and R3 of the 100 development hosts and the 80 test hosts clean of development; `floors/sel360_rows.csv`; 360 rows, 110 components): within-D simple morph-cue floor (held-out scores of `ri_R4_vs_R3`, edges over these rows) single 0.690 [0.640, 0.736], logreg 0.794 [0.748, 0.836], gbt 0.774 [0.726, 0.821]; pure-D reference 0.560; coverage 1.00.
+- **Per-row same-data learner scores** `floors/transfer_Sb_rows.csv`, `floors/transfer_SbFM_rows.csv` (set, id, label, component, logreg, gbt) on lcomb, sel360 and lcomb_smatch. AUC logreg / gbt: train_Sb lcomb 0.787 / 0.665, sel360 0.739 / 0.750, lcomb_smatch 0.762 / 0.606; train_SbFM 0.777 / 0.648, 0.734 / 0.756, 0.752 / 0.590.
+
 ## Attack sets (requests to the DATA role through the lead; nothing built by the adversary)
 
 Only allowed operations: the approved warp `h1_build.py`, the unchanged OpenCV and FaceMorpher morphers, constant-colour
