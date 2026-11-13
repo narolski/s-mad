@@ -238,3 +238,27 @@ Code: `src/TT1/hnew.py` (committed with the results).
 - Text: `prereg_x_block.md` (Sp seeds 403-405 on pn1fs after the main block, same per-network gate, printed only;
   SbM3 seeds 403-407: a read of MS1's existing L40S scores after the MS1 registered read, no new scoring). Pre-run check
   by the experiment-reviewer follows; fixes as amendment lines before any start.
+
+## 12. Post-result items Z1-Z4 on the fresh seeds (`date`: Fri Nov 13 11:26:20 AM CET 2026; registered at the git commit that adds this section, before computing; zero GPU; development data only; review REVIEW_TT1_FS_20261113.md items 1-4)
+
+All are written after the TT1-FS scores were read; labels: Z1 post hoc, Z2-Z4 descriptive. Code `src/TT1/zfs.py`
+(committed with the results). Inputs: `tt1_read_fs.json` (TT1-FS), `tt1_read.json` (TT1 401/402),
+`posthoc_review.json`, the stored FS1 `scores_eval.npz` in `/mnt/t7/smad_next/TT1/nets_fs/`.
+- **Z1 (post hoc): flags against development misses on the 15 fresh-seed networks** (H-new-4 repeated). x = TT1 F̄;
+  y = mean of own-rule miss shares (logit ≤ 0) over the three development attack pools of H-new-4 (FS1 `pn1_eval.csv`
+  rows: ladder R4 native, OpenCV and FaceMorpher, dev and test hosts, 582; AF0 u50, 180; splice S4, dev and test
+  hosts, 291; asserted fam in {ladder, af0, splice}, path prefix eval/pn1/), from each fit's stored scores_eval.npz.
+  Printed: Spearman ρ(x, y) over 15 networks with a permutation p (200,000 permutations, default_rng(20261124)); per
+  seed the B − A and Sb − B difference of y and of each pool's miss. Prediction: the trade is driven by Sb's lower
+  splice misses, with no B-against-A trade. Rule: "B pays in misses" if B's y exceeds A's by more than 0.02 on at least
+  4 of 5 seeds; otherwise "no B-against-A miss cost shown".
+- **Z2 (descriptive): A's false-alarm rate against its storage sensitivity.** Within A at seeds 403-407: Spearman of
+  F̄ with the geometry-112 flag share and with |ρ_LFW| (TT-H4 LFW ρ). Prediction ≥ 0.7; "not related" if < 0.3;
+  otherwise "weak". Seeds 401/402 printed separately (other hosts; not pooled).
+- **Z3 (descriptive): Sb's excess and CFP-sized borders.** Per seed, Sb minus B on the CFP-FF border-reference flag
+  share (R_cam^border(cfp_ff) own-rule flags) and on R3(c) for CFP-FF. Prediction: Sb's border-reference flag share
+  above B's on at least 4 of 5 seeds. "Not a border cue on CFP" if Sb − B ≤ 0.005 on at least 4 of 5 seeds; otherwise
+  as observed. Also printed for the other six families.
+- **Z4 (descriptive): B's FFHQ genuine flags against its TT1 flags.** Over B's seven seeds (401, 402 from tt1_read.json;
+  403-407 from tt1_read_fs.json; two hosts, labelled): Spearman of R_ffhq own-rule flag share with F̄. "One seed-level
+  instability consistent" if ρ ≥ 0.7; "not consistent" if ρ < 0.3; otherwise "weak".
