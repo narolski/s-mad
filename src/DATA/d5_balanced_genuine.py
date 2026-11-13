@@ -10,6 +10,8 @@ Two lists: all sources, and without MEDS (so a reader can use it without the NIS
 Version 2 (13 Nov, lead's go): adds the MS1 FFHQ, CelebA-HQ and AR1 / AF0 genuine frames measured by
 d5_measure_border.py (border only: their source eye distance is in no existing record). Design "bied" = border x eye
 distance (rows with a recorded eye distance only); design "border" = border none / any over every source.
+Version 3 (13 Nov, lead's go): source eye distance measured for those frames (d5_measure_ied.py, detection only);
+the pooled border x eye-distance lists now include them, and "biedstrat" lists balance cells within each source.
 Lists stay on /mnt/t7 (MEDS ids); the repository gets the cell table only.
 
   python3 -I d5_balanced_genuine.py
@@ -46,11 +48,60 @@ for name, p in SRC.items():
         items.append(dict(id=r["id"], source=name, family=fam, person=person, role="development",
                           border_frac=r["border_frac"], ied_src=r["ied_src"], path=r["aligned_path"],
                           sha256=r["aligned_sha256"]))
-for r in csv.DictReader(open(OUT / "frames_measured.csv")):
+MEAS = OUT / "frames_ied.csv"   # version 3: frames_measured.csv + source eye distance (d5_measure_ied.py)
+for r in csv.DictReader(open(MEAS)):
     if r["border_frac"] == "":
         continue
     items.append(dict(id=pathlib.Path(r["path"]).stem, source=r["source"], family=r["source"], person=r["person"],
-                      role=r["role"], border_frac=r["border_frac"], ied_src="", path=r["path"], sha256=""))
+                      role=r["role"], border_frac=r["border_frac"], ied_src=r["ied_src"], path=r["path"], sha256=""))
+MIN_STRAT = 20
+
+
+def one_per_person(v, rng):
+    v = sorted(v, key=lambda x: (x["source"], x["id"]))
+    rng.shuffle(v)
+    seen, keep = set(), []
+    for it in v:
+        if it["person"] not in seen:
+            seen.add(it["person"])
+            keep.append(it)
+    return keep
+
+
+def stratified(pool, tag):
+    """Within each source: equal counts over the cells in which that source has >= MIN_STRAT persons."""
+    pool = [dict(it, cell=cell(it, "bied")) for it in pool if it["ied_src"] != ""]
+    tag = f"biedstrat_{tag}"
+    rng = random.Random(20261113)
+    by = collections.defaultdict(list)
+    for it in pool:
+        by[(it["source"], it["cell"])].append(it)
+    avail = {k: one_per_person(v, rng) for k, v in sorted(by.items())}
+    out, caps = [], {}
+    for src in sorted({k[0] for k in avail}):
+        cells = {c: v for (s_, c), v in avail.items() if s_ == src and len(v) >= MIN_STRAT}
+        if len(cells) < 2:
+            caps[src] = dict(cap=0, cells=sorted(cells), note="fewer than 2 cells with >= 20 persons: not used")
+            continue
+        cap = min(len(v) for v in cells.values())
+        caps[src] = dict(cap=cap, cells=sorted(cells))
+        for c in sorted(cells):
+            out += [dict(it, list=tag) for it in cells[c][:cap]]
+    p = OUT / f"genuine_balanced_{tag}.csv"
+    with open(p, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(out[0].keys()))
+        w.writeheader()
+        w.writerows(out)
+    h = hashlib.sha256(p.read_bytes()).hexdigest()
+    (OUT / f"genuine_balanced_{tag}.csv.sha256").write_text(f"{h}  {p.name}\n")
+    table = collections.defaultdict(dict)
+    for (s_, c), v in avail.items():
+        table[s_][c] = len(v)
+    sel = collections.defaultdict(lambda: collections.Counter())
+    for it in out:
+        sel[it["source"]][it["cell"]] += 1
+    return dict(min_persons_per_cell=MIN_STRAT, persons_available_by_source_cell=dict(table), caps=caps,
+                selected_by_source_cell={k: dict(v) for k, v in sel.items()}, rows=len(out), list_sha256=h)
 
 
 def balanced(pool, tag, design):
@@ -79,17 +130,22 @@ def balanced(pool, tag, design):
         w.writerows(out)
     h = hashlib.sha256(p.read_bytes()).hexdigest()
     (OUT / f"genuine_balanced_{tag}.csv.sha256").write_text(f"{h}  {p.name}\n")
+    bys = collections.defaultdict(lambda: collections.Counter())
+    for it in out:
+        bys[it["source"]][it["cell"]] += 1
     return dict(available_images=dict(collections.Counter(it["cell"] for it in pool)),
+                selected_by_source_cell={k: dict(v) for k, v in bys.items()},
                 one_per_person=dict((c, len(v)) for c, v in picked.items()), per_cell=cap, rows=len(out),
                 by_source=dict(collections.Counter(it["source"] for it in out)), list_sha256=h)
 
 
 OUT.mkdir(parents=True, exist_ok=True)
-SRC["measured"] = OUT / "frames_measured.csv"
+SRC["measured"] = MEAS
 nomeds = [i for i in items if i["source"] != "meds"]
-res = dict(version=2, seed=20261113, sources={k: hashlib.sha256(v.read_bytes()).hexdigest() for k, v in SRC.items()},
+res = dict(version=3, seed=20261113, sources={k: hashlib.sha256(v.read_bytes()).hexdigest() for k, v in SRC.items()},
            bied_all_sources=balanced(items, "all", "bied"), bied_without_meds=balanced(nomeds, "nomeds", "bied"),
-           border_all_sources=balanced(items, "all", "border"), border_without_meds=balanced(nomeds, "nomeds", "border"))
+           border_all_sources=balanced(items, "all", "border"), border_without_meds=balanced(nomeds, "nomeds", "border"),
+           bied_stratified_all_sources=stratified(items, "all"), bied_stratified_without_meds=stratified(nomeds, "nomeds"))
 json.dump(res, open(OUT / "cells.json", "w"), indent=1)
 json.dump(res, open(REPO, "w"), indent=1)
 print(json.dumps(res, indent=1))

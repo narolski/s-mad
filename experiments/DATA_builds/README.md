@@ -29,6 +29,17 @@ Outputs: `/mnt/t7/smad_next/DATA/`. Code: `src/DATA/`. Clock times are from `dat
 - 19:15 D5 version 2 lists (two designs, each with and without MEDS); version 1 files kept, superseded.
 - FaceMorpher tool limit (D1d): FFHQ keys 69321 (af0) and 08060 (hold-out) fail with IndexError in the unchanged tool.
 
+- 19:19 lead's go for source eye distance; first run with 4 workers stopped by me at 19:38 on the lead's load
+  request (it could not resume; no output kept); restarted 19:39 resumable, 2 workers, one thread per process
+  (onnxruntime sessions re-created with intra/inter-op threads 1; cv2.setNumThreads(1)), nice 19; ended about 20:22.
+  13,024 of 13,024 measured, all pass the aligner's frontal filter; the geometric border from the detected eyes agrees
+  with the measured black-pixel border within 0.02 on AF0 644/644, AR1 1,582/1,582, CelebA-HQ 9,317/9,898, FFHQ
+  855/900. Median source eye distance: FFHQ 259, CelebA-HQ 254, AR1 260, AF0 65 px.
+- 20:17-20:20 partner-overlap audit (`PARTNER_OVERLAP_AUDIT.md`), urgent request of the lead.
+- About 20:22 D5 version 3 lists; 20:22 battery person tables (D7) and GD overlap (D8): every battery set and every
+  GD family has 0 persons in common with every arm's training persons (incl. SbM3 / SbM3S FFHQ persons and GX1's
+  planned training persons).
+
 ## Commands (DGX; thread caps OMP/OPENBLAS/MKL/NUMEXPR = 2, nice 10)
 
 ```
@@ -36,7 +47,10 @@ Outputs: `/mnt/t7/smad_next/DATA/`. Code: `src/DATA/`. Clock times are from `dat
 python3 -I src/DATA/d1a_coverage.py
 python3 -I src/DATA/d2_meds_pairs.py
 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/DATA/d5_measure_border.py --workers 2 [--limit 8]
+nice -n 19 .venv-spark python -I src/DATA/d5_measure_ied.py --workers 2   (OMP/OPENBLAS/MKL = 1)
 python3 -I src/DATA/d5_balanced_genuine.py
+python3 -I src/DATA/partner_overlap_audit.py
+python3 -I src/DATA/battery_persons.py
 ```
 
 ## Products
