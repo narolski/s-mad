@@ -451,6 +451,6 @@ unweighted 3,000-row gain. Sb − A secondary.
   conditional on the weights.
 - **What each outcome licenses:** as amendment 3b, with "under history weighting" in place of "on a history-balanced
   subset". Never held-out or test evidence.
-- Reader `src/AB1/ab1hbw` = `src/AB1/ab1_hbw_read.py` (2cffd88b…); weighted AUC checked against brute force and,
+- Reader `src/AB1/ab1_hbw_read.py` (2cffd88b…); weighted AUC checked against brute force and,
   with unit weights, against c2p_read.fauc; mock-tested (`ab1_hbw_read_mock.json`). Pre-run check: requested from the
   lead. Read once when the adversary commits the weights.
