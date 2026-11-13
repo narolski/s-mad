@@ -162,6 +162,9 @@ A source is usable if it provides:
   ffhqm.
 Persons needed: about 900 (600 training, 300 hold-out), of which at least 150 training persons with two photos;
 minimum workable 400 (300 training incl. 100 with two photos, 100 hold-out).
+- Added 13 Nov 2026 (lead's instruction after the MS1 post-result review, H-new-5; plan text, not a registration):
+  **no fit on a fourth source without a registered own-rule miss guard on an attack pool from an unseen pipeline**
+  (details in `prereg_gpu_hypotheses_draft.md`, section "Fourth source").
 
 ## 7. Not done / out of scope of part 1
 
