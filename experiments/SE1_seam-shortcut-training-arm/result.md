@@ -1,6 +1,6 @@
 # Same-person blends as negatives (SE1): result of the A100 block
 
-Read once on 13 Nov 2026 at 17:05 CET with `src/SE1/se1_read.py` (fbf9b260…; the registered reader with the print-only and provenance changes recorded in prereg.md). Output: `se1_read.json`. Development data only. Not reviewed yet.
+Read once on 13 Nov 2026 at 17:05 CET with `src/SE1/se1_read.py` (fbf9b260…; the registered reader with the print-only and provenance changes recorded in prereg.md). Output: `se1_read.json`. Development data only. Reviewed by the results-reviewer (Opus), 13 Nov (`experiments/reviews/REVIEW_SE1_A100_20261113.md`); its corrections are applied below.
 
 **Platform.** Rented A100 PCIe 40 GB, image pytorch 2.2.1 / CUDA 12.1 (deviations SE1-D1 and SE1-D2).
 - Read seeds: 408, 409, 410 and 411 (4 seeds), so "met" means 4 of 4. Seed 412 was not run.
@@ -13,11 +13,11 @@ Read once on 13 Nov 2026 at 17:05 CET with `src/SE1/se1_read.py` (fbf9b260…; t
 |---|---|
 | 7.1 Target T: S3 ≤ 10%, R3 ≤ 10%, stored R3 ≤ 20%, OpenCV, development | **not met** (0 of 4 seeds); "reduced, not removed" also not met (0 of 4) |
 | Held-out engine sentence (FaceMorpher S3 and R3 ≤ 20%) | not met (0 of 4) |
-| 7.2 G1, two-person detection (seed means) | **met** (all five legs) |
-| 7.3 G2, storage (C2P rule, A of the same seed as control) | **"fails for Sb as well: no attribution"**. SE "inconclusive, no claim" (fm61 4 of 4 pass, amsl112 2 of 4); Sb identical (fm61 4 of 4, amsl112 2 of 4); A's control met on 4 of 4 at both sizes. H-new-1 falsified for SE and for Sb |
+| 7.2 G1, two-person detection (seed means) | **met** (all five legs). The R4 OpenCV leg is met at the margin, 0.048 against 0.05: SE misses 2–7% of development R4 where Sb misses none |
+| 7.3 G2, storage (C2P rule, A of the same seed as control) | **inconclusive, no claim for SE and for Sb alike**: fm61 4 of 4, amsl112 2 of 4, with the same seeds (409 and 411) failing; A's control met 4 of 4 at both sizes; H-new-1 falsified for both; no attribution. The reader prints "fails for Sb as well: no attribution" because it maps every non-pass to "fails". Under section 7.3 neither arm "fails": that needs ≤ 1 passing seed. The amsl112 misses come only from the \|Δm\| ≤ Δm(A)/3 leg (A's Δm 0.29 and 0.19). There, SE and Sb lie on the genuine side (Δm −0.12 and −0.07), with Δf ≤ +0.021 and the upper bound ≤ 0.041 on every seed |
 | 7.4 G3, camera photos | **inconclusive**: absolute legs met (4 of 4); FFHQ relative leg met; MS1 native relative leg inconclusive |
-| 7.5 Baseline (claim wording) | **met** (4 of 4): SE exceeds the 27-statistic baseline by ≥ 0.05 on R4 vs R3 and on S4 vs S3 (OpenCV) |
-| Section 8 outcome | "target not met: ablation row only; FINAL unchanged". Registered sentence: "Same-person blends as negatives did not change the same-person flags at this dose" (see the numbers below: the native same-person splice flags did not change, the same-person morph flags did) |
+| 7.5 Baseline (claim wording) | **met** (4 of 4): SE exceeds the 27-statistic baseline by ≥ 0.05 on R4 vs R3 and on S4 vs S3 (OpenCV). It governs no sentence because T was not met. Seed 410 clears the S4-vs-S3 margin by 0.0005 |
+| Section 8 outcome | Target not met (0 of 4). "Reduced, not removed" not met (0 of 4): S3 failed the half rule on every seed, while R3 met it on 4 of 4 (64 ≤ 90, 52 ≤ 86, 50 ≤ 88, 54 ≤ 83). Ablation row; FINAL unchanged. The registered sentence for this row, "Same-person blends as negatives did not change the same-person flags at this dose", is **not used as written**: the registered printed read contradicts it. This is a wording deviation and needs a lead note. Proposed instead: "Same-person blends as negatives did not lower same-person splice flags (S3, SE − Sb −0.010 [−0.063, +0.040]); they lowered, but did not remove, full-frame same-person morph flags (R3 0.83–0.90 → 0.25–0.32; −0.593 [−0.678, −0.502]), also on the held-out engine (0.88–0.92 → 0.34–0.44). Four seeds, the same 100 development hosts, development data." |
 
 ## Numbers (own rule, logit > 0; development persons; 100 hosts per ladder cell; per seed 408 / 409 / 410 / 411)
 
@@ -94,6 +94,25 @@ G1 seed-mean legs (SE − Sb, 95% bootstrap):
 Relative legs, seed means of SE − Sb (bar ≤ +0.02):
 - FFHQ: +0.013 [+0.003, +0.023], met.
 - MS1 native: +0.023 [−0.003, +0.050], inconclusive.
+
+## Post hoc descriptive readings (not registered; results-reviewer, recomputed from the tars)
+
+- **Operating point, not a better ranking.** Most of the R3 drop is a shift of the operating point within the ladder.
+  - R4-vs-R3 AUC rises only from 0.880–0.912 to 0.911–0.926.
+  - SE's R4 lower tail falls: 5th-percentile logit +3.21 (Sb) to +0.19 (SE).
+  - At a threshold that gives Sb SE's R4 miss, Sb flags R3 at 0.38 / 0.34 / 0.30 / 0.28, close to SE's 0.32 / 0.26 / 0.25 / 0.27.
+  - At a threshold matching the landmark_combined miss, Sb flags R3 at 0.82–0.94. So SE separates ladder same-person full-frame blends from FFHQ landmark morphs, but not better from ladder two-person morphs.
+- **Residual flags are a property of the host.**
+  - Development R3: 23 hosts are flagged on 4 of 4 seeds and 68 on 0 of 4.
+  - Host order is stable: Spearman SE vs Sb 0.83; OpenCV vs FaceMorpher 0.97; R3 vs S3 0.67.
+  - Training rows show the same pattern: 26 of 156 lad_R3 and 35 of 156 lad_S3 rows are flagged on all 4 seeds. Training flags (lad_S3 0.30–0.39, lad_R3 0.22–0.27) are close to development flags.
+  - So this is a fit limit or a label conflict on a stable subset, not a failure to generalise.
+- **Mirror route.**
+  - R3-vs-R3m AUC: SE 0.76–0.80, Sb 0.33–0.36.
+  - At the matched-R4 threshold, Sb still flags R3m at 0.45–0.65; SE flags 0.00–0.01.
+  - 674 of the 830 new negatives are mirror-symmetric. The R3m and self-morph numbers are not evidence about identity.
+- **G1 improved rather than failed.** The trade-off the strategist predicted was not tested, because the target was not reached. Do not read G1 as "identity learned at no cost".
+- **Storage claim on fresh seeds.** Sb's amsl112 storage pass does not replicate on these fresh A100 seeds (2 of 4, rule shape as above). AB1's H100 read also gives Sb "inconclusive, no claim" for C2P. The paper must state this when describing the freeze basis.
 
 ## Printed only
 
