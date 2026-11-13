@@ -253,3 +253,40 @@ Checked by file names, sizes, times and hashes only; no score file and no benchm
 Summary: everything is verified except the "GO" verdict. The saved review file says GO WITH FIXES, and the
 reviewer's GO re-check is recorded only in the README, with no review file. Nothing computed on benchmark rows by
 the frozen networks was found.
+
+---
+
+## Entry 5. `date`: Fri Nov 13 08:27:18 PM CET 2026. Data owner's partner-overlap audit
+
+I wrote my own check, `experiments/RECORDS_ledger/indep_overlap_check_20261113.py` (manifests and `pool.csv` only;
+no image or score opened). It does not import the audit script. It resolves persons from the AR1/AF0 manifests and
+`pool.csv`, and photos from file names.
+
+| Claim | Verdict | Evidence |
+|---|---|---|
+| commit 1b05940 | VERIFIED | 20:21:03, on origin; adds PARTNER_OVERLAP_AUDIT.md, both JSONs, REQUESTS.md, src/DATA/partner_overlap_audit.py |
+| commit 681715d belongs to this audit | WRONG (wrong commit cited) | 681715d (20:23:16, on origin) is the eye-distance / D5 / battery tables commit; it touches none of the three audit files |
+| PARTNER_OVERLAP_AUDIT.md sha256 196b76eee334f03e | VERIFIED | sha256sum |
+| partner_overlap_tables.json sha256 b6965ab3f459eeef | VERIFIED | sha256sum |
+| partner_overlap_dev_test.json sha256 a31b2ac0beaaac1e | VERIFIED | sha256sum |
+| cells with any training overlap = 0 (16 training lists × 4 evaluation sets) | VERIFIED, every cell | 16 lists × 4 sets; all 3,296 cells have any = 0; unresolved training and evaluation ids are empty |
+| read test hosts with a development partner = 99 | VERIFIED, re-derived | from pool.csv B_pid + ladder_split.csv roles: 99 of 191 read test hosts (split partner_B equals pool B_pid for all) |
+| development hosts that partner a read test host = 99 | VERIFIED, re-derived | 99 of 100 development hosts (51 development hosts have a test partner) |
+| test hosts touching development persons or photos = 111 of 191 | VERIFIED, re-derived | dev_test.json 111; my check gives 111 of 191 |
+| read test hosts sharing a component with a development host = 171 | VERIFIED (file) | dev_test.json test_read_hosts_sharing_a_component_with_a_dev_host = 171; not re-derived |
+| largest person component = 432 | VERIFIED (file) | tables.json components.largest = 432; not re-derived |
+| positive control: 2,718 of 7,258 test-host rows flagged | VERIFIED, re-derived; not in any committed file | the number is only in PARTNER_OVERLAP_AUDIT.md:31; the committed script has no positive-control code. My check gives 2,718 of 7,258 (ladder 4,393 + splice 2,865 rows, 0 unresolved) |
+| (a) Sb training list (FS1) shares no partner or source photo with pn1_eval ladder/splice rows | VERIFIED, re-derived, one condition | 637 persons and 839 photos in train_Sb (all ids resolved) against 10,458 ladder + splice rows of 291 hosts: 0 rows share a person, 0 share a photo. 81 FRGC frames without a raw name are covered by the person check only. Condition: this uses the builder's rung definitions (S4 = H + B, S3 and R2w = H + S, S0 = H, sm1h hA = H, hB = B). With a conservative rule (partner B counted on every splice and half row), 32 test persons appear through the training S3, S0 and half rows |
+
+**Could the audit script miss sharing through the second photo S?** Not through the person check. S is always a photo
+of the host, and the host is always counted. The partner's photo B is the partner's S in 536 of 536 pool rows, and
+the partner is counted in S4, R2w4 and hB rows. At the photo level the script includes S for S3 and R2w rows and maps
+B to the same raw id. Three gaps remain:
+- `photo()` gives unmapped frames a unique `unmapped:<path>` key, so two different paths to the same raw photo would
+  not match. The script does not report how many photos are unmapped.
+- AR1 rows take photos only from tem1/tem2, so the photo set rests on those two paths.
+- The clean result depends on the rung definitions above. If an S3 or S0 image actually contained material from the
+  partner's S, the partner would not be counted.
+
+Summary: every number is verified, and I re-derived (a), 99/99, 111 of 191 and the 2,718 positive control myself.
+681715d is not an audit commit. The positive control is not in any committed file.
