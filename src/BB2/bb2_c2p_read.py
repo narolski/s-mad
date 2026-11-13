@@ -100,8 +100,8 @@ def main():
     ap.add_argument("--out")
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--five", action="store_true", help="mock only: five seeds")
-    ap.add_argument("--clip-json", default=None, help="amendment 3: the CLIP C2P-R reading file, if C2P-R was "
-                    "registered and read before this BB2 read; otherwise the first C2P reading (uninformative) is used")
+    ap.add_argument("--clip-json", default=None, help="amendment 3: the CLIP reading file named in the committed "
+                    "experiments/BB2_second-backbone/clip_choice.json (required in real mode)")
     a = ap.parse_args()
     assert sha(HERE.parent / "PN1" / "c2p_read.py") == C2P_READ_SHA, "c2p_read.py changed"
     M = list(csv.DictReader(open(P.MS1M)))
@@ -111,6 +111,21 @@ def main():
     gate_ids = [r["id"] for r in F if r["fam"] in ("af0", "ffhq")]
     five = a.five
     SEEDS, MODE = ((BR.SEEDS5, "five") if five else (BR.SEEDS3, "three")) if a.mock else BR.frozen_mode(pathlib.Path(BB2R))
+    if not a.mock:      # amendment 3 fix 3: the CLIP file is fixed by a committed choice before the read; read once
+        if not a.clip_json:
+            sys.exit("refused: --clip-json is required (the file named in clip_choice.json)")
+        if a.out and pathlib.Path(a.out).exists():
+            sys.exit(f"refused: {a.out} exists (the BB2 C2P read happens once)")
+        ch = RES / "clip_choice.json"
+        if not ch.exists():
+            sys.exit("refused: clip_choice.json (committed before the read) does not exist")
+        import subprocess
+        if subprocess.run(["git", "-C", str(RES), "ls-files", "--error-unmatch", "clip_choice.json"], capture_output=True).returncode != 0 or \
+                subprocess.run(["git", "-C", str(RES), "diff", "--quiet", "HEAD", "--", "clip_choice.json"]).returncode != 0:
+            sys.exit("refused: clip_choice.json is not committed unchanged")
+        cc = json.load(open(ch))
+        if pathlib.Path(a.clip_json).resolve() != pathlib.Path(cc["file"]).resolve() or sha(a.clip_json) != cc["sha256"]:
+            sys.exit("refused: --clip-json is not the committed choice")
     if not a.mock:      # amendment 2 fix 3: the C2P tar must have scored exactly the frozen read set
         want = {f"BB2_{arm}_s{s}" for arm in ARMS for s in SEEDS}
         for c in a.c2p:
@@ -136,7 +151,8 @@ def main():
             acc[(arm, s)] = INF[arm]["train_acc_rule0"] or 0.0
             gp = pathlib.Path(BB2R) / "unpacked" / f"BB2_{arm}_s{s}" / "gpu.txt"
             g = gp.read_text().strip().splitlines()[-1].split(",")[2].strip() if gp.exists() else None
-            fit_gpu.add(g)
+            if g is not None:
+                fit_gpu.add(g)
             if g != "NVIDIA H100":      # amendment 3: fits must have run on the registered GPU model
                 readseed[s] = False
     for arm in ARMS:
@@ -207,10 +223,17 @@ def main():
     R["H_new_1"] = h1
     cj = pathlib.Path(a.clip_json) if a.clip_json else CLIP_C2P
     clip = json.load(open(cj)) if cj.exists() and not a.mock else None
+    if clip is not None:      # schema check (amendment 3 fix 3)
+        for X in ("B", "Sb"):
+            if "verdict" not in clip.get("contrast2prime", {}).get(X, {}) or "verdict" not in clip.get("H_new_1", {}).get(X, {}):
+                sys.exit(f"refused: {cj} has no contrast2prime/H_new_1 verdict for {X}")
     R["clip_c2p_json"] = str(cj) if clip is not None else None
     R["clip_c2p_json_sha256"] = sha(cj) if clip is not None else None
     if not a.mock:
         R["c2p_tar_checks"] = {c: check_c2p_tar(c, fit_gpu) for c in a.c2p}
+        bad = [c for c, v in R["c2p_tar_checks"].items() if not v["gpu_asserted"] or v["unexpected_members"]]
+        if bad:      # amendment 3 fix 2: the reader enforces the GPU assertion
+            sys.exit(f"refused: GPU not asserted or unexpected members in {bad}")
     R["clip_c2p"] = None if clip is None else dict(contrast2prime={X: clip["contrast2prime"][X]["verdict"] for X in ("B", "Sb")},
                                                     H_new_1={X: clip["H_new_1"][X]["verdict"] for X in ("B", "Sb")})
     sent = {}

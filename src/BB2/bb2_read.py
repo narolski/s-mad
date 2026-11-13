@@ -158,7 +158,10 @@ def main(mock=None, mock_clip=None):
             gp = rf / "unpacked" / f"BB2_{a}_s{s}" / "gpu.txt"
             gpus[a] = gp.read_text().strip().splitlines()[-1].split(",")[2].strip() if gp.exists() else ("mock" if mock else None)
         rec["fit_gpu"] = gpus
-        if not mock and not all(g == "NVIDIA H100" for g in gpus.values()):
+        if not mock and any(g is None for g in gpus.values()):
+            rec["read"] = False
+            rec["not_read_reason"] = "gpu.txt missing for a fit"
+        elif not mock and not all(g == "NVIDIA H100" for g in gpus.values()):
             rec["read"] = False
             rec["not_read_reason"] = "a fit did not run on NVIDIA H100"
         rec["adequate"] = bool(rec["read"] and all((INF[a]["train_acc_rule0"] or 0) >= ADEQ for a in ARMS))

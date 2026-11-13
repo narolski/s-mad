@@ -27,6 +27,7 @@ fail() { echo "BB2_C2P_FAIL $*"; exit 1; }
 (cd "$L/packs/MS1" && sha256sum -c pn1_pack_ms1.tar.sha256) && [ "$(cut -c1-64 $L/packs/MS1/pn1_pack_ms1.tar.sha256)" = c11b16bc7b76236bae80778f9e36cb67bb50de910f73a9dd200a706fc267fe7d ] || fail "MS1 pack"
 (cd "$P" && sha256sum -c bb2_overlay.tar.sha256 rescore.py.sha256 rescore_tf32.py.sha256 precision_probe.py.sha256) || fail "overlay, rescore.py, wrapper or probe"
 [ "$(cut -c1-64 $P/rescore_tf32.py.sha256)" = 0d0b6b6fb5ebc4d5bdbe15384fcd00e13c0756785ed22743893186e68245d8d5 ] || fail "wrapper pin"
+[ "$(cut -c1-64 $P/precision_probe.py.sha256)" = b49c1e704bc8957db76398abfd5ab54218ee152ac32ed9e061c634378148605e ] || fail "probe pin"
 [ "$(cut -c1-64 $P/rescore.py.sha256)" = 6f6eede71c6d9a895199dabc8bc90b882adb25f5f91cd2fcc676ebe7a380b51e ] || fail "rescore.py pin"
 TASKS=${BB2_TASKS:-"BB2_A_s403 BB2_B_s403 BB2_Sb_s403 BB2_A_s404 BB2_B_s404 BB2_Sb_s404 BB2_A_s405 BB2_B_s405 BB2_Sb_s405"}
 for T in $TASKS; do [ -f "$R/$T.tar" ] && (cd "$R" && sha256sum -c --quiet "$T.tar.sha256") || fail "$T tar"; done

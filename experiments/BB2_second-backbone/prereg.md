@@ -424,7 +424,7 @@ b166852c11e00ea70ab101e8519c4e2bc93649a55f77400620ff37b6ed4e78ae; `src/BB2/fetch
 3c4de47c374f61c89b8c712575305e7646ef7375fa327bf118e819db9be526c5; unchanged: run.sh 0eaa4dce…, bb2_fit.sbatch 84b21718…,
 rescore.py 6f6eede7…, rescore_tf32.py 0d0b6b6f…, c2p_read.py 45e72914…, fs_read.py c0d8dc19…, MS1 pack c11b16bc….
 
-## Amendment 3 (lead, 13 Nov about 09:40; written before any BB2 fit has started; no BB2 score exists)
+## Amendment 3 (lead, 13 Nov about 09:40; registered at the git commit that adds its "Pre-run check" paragraph below; written before any BB2 fit has started; no BB2 score exists)
 
 Why: CLIP's first C2P read was "uninformative" because its networks were rescored on another GPU model with another
 TF32 setting (`experiments/reviews/REVIEW_PN1_C2P_20261113.md`, Q5). BB2's design (same GPU type, TF32 wrapper) is
@@ -455,3 +455,21 @@ kept; three additions:
 
 Smoke: the queued C2P smoke (6310085) uses the script as submitted (without the probe); the dispatcher is asked to
 replace it with the amended script so that the production path is smoke-tested exactly.
+
+**Amendment 3 pre-run check** (`experiments/reviews/PRERUN_BB2_A3_20261113.md`, Opus, on 69b970d; GO WITH FIXES) and
+fixes, registered here (`date`: Fri Nov 13 09:4x CET 2026; lead's agreement 09:4x: fits stay queued, read-time GPU
+assertion from gpu.txt suffices, replace the C2P smoke):
+- Fix 1: a missing fit gpu.txt drops that seed instead of crashing the C2P reader.
+- Fix 2: the C2P reader refuses any C2P tar whose probe did not assert "NVIDIA H100" or that holds unexpected members.
+- Fix 3: the CLIP file is fixed before the read: `experiments/BB2_second-backbone/clip_choice.json` (file path and
+  sha256 of the CLIP reading to use: the first C2P reading `c2p_read.json`, or C2P-R's reading if C2P-R was read
+  first) is committed before the BB2 C2P read; the reader requires `--clip-json`, refuses unless it equals that
+  committed, unchanged choice, refuses if its output exists (one read), and checks the CLIP file's schema. The branch
+  uses CLIP's per-arm verdict: "passes" -> the repeat sentences of A1.2; any other verdict -> "No CLIP effect to repeat;
+  printed only".
+- Fix 4: the probe's sha256 is hard-coded in the C2P job; pins below.
+- Fix 5: a missing gpu.txt is logged as its own not-read reason in bb2_read.py.
+- Smoke: the replacement C2P smoke (output `BB2C2Psmoke2`) is the smoke of the production path; 6310085 (pre-amendment
+  script) is cancelled and never cited. The probe's failure path was tested on the DGX (`--expect-gpu "NVIDIA H100"` on
+  a GB10: exit 4; the job's `|| fail` stops before scoring).
+- Pins (sha256): `src/BB2/precision_probe.py` b49c1e704bc8957db76398abfd5ab54218ee152ac32ed9e061c634378148605e; `src/BB2/wcss/bb2_c2p.sbatch` e2185edeb0fd06478c259970da4cf15d518dda1c8d80d26324391307fd1a7da4; `src/BB2/bb2_read.py` b8d3f650b6ce977ef2ce5732507a6e7b536d8f7b9e0ab638f20263c15b20bb5f; `src/BB2/bb2_c2p_read.py` cad995d8dfd53e2664331ad75eed4eda3db6bc9a3779dfd3d0f35035fd46c9c6.
