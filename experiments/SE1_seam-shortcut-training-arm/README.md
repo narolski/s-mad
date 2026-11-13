@@ -2,7 +2,16 @@
 
 ## 1. Question and current answer
 
-13 Nov 2026. Can the protocol network be trained to depend on two-identity content rather than on a blend inside the face? Method: add same-person full-frame blends as negatives (ladder same-person morphs R3, mirror self-morphs R3m, and mirror self-morphs of every AF0 training person). Status: registration drafted and in pre-run review; images, manifests and overlay built; smoke queued on WCSS; no fit and no score yet.
+13 Nov 2026, 17:30. Can the protocol network be trained to depend on two-identity content rather than on a blend inside the face? The A100 block (seeds 408–411) was read once at 17:05 and reviewed. Registered verdicts:
+- Target: not met.
+  - Same-person splice flags unchanged: S3 0.34–0.41 against Sb 0.36–0.41.
+  - Full-frame same-person morph flags lowered but not removed: R3 0.25–0.32 against 0.83–0.90.
+- G1 met; G2 inconclusive for SE and Sb alike; G3 inconclusive; baseline met.
+- Ablation row; FINAL unchanged.
+
+Post hoc (reviewer): most of the R3 drop is an operating-point shift, and the mirror self-morph result is a symmetry route.
+
+Pending: the H100 block (amendment SE1-A1, WCSS array 6312894, deadline 14 Nov 18:00, read only after AB1's read). Also pending: the lead's note on the wording deviation for the section 8 sentence.
 
 ## 2. Timeline
 
@@ -56,7 +65,7 @@ None yet.
 
 - Pre-run review; registration commit; baseline computation; smoke result; fit submission.
 
-## 10. Handover state (13:50)
+## 10. Handover state (13:50; see section 1 for the 17:30 state)
 
 - Seeds 408, 409 and 410 are complete. Their nine fit tars are in /mnt/t7/smad_next/SE1/results, with second copies in /home/narolski/se1_results_copy. se1a, se1b and se1c are released (RELEASE written by the chains at 13:07, 13:37 and 13:31).
 - Seed 411 runs on se1d (185.130.165.20:26693, A100 PCIe; deviation SE1-D2 as amended, commit 3526a81). Fits started 13:25:01; expected end about 17:20.
