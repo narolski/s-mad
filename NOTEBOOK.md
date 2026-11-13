@@ -308,3 +308,12 @@ Awaiting the author: C2P-R yes or no (lock by 14:51); about 6 USD over the 50 ap
 - **Go for the single sealed read** of MAD22 (corrected) and FRLL-Morphs, with history-matched genuine photos, beside the released detectors. Read once.
 - **Choices the lead registers under this go, each recommended to the author several times today and by the strategist (STRATEGIST_EVENING_20261113.md), and listed to him before the read runs:** deciding measure = EER per history-matched cell, with AUC, the own rule and a development threshold from a pool not used in training printed beside it (reviewer finding F10; the training-source threshold is withdrawn as the decider); MAD22 and FRLL-Morphs labelled "seen during development"; confirmatory sets FEI and the morph side of MorDIFF and DiM, GAN and diffusion cells pre-stated as "not shown to be morph-specific"; the sealed sets VAL-X, FST and A12SP struck from the read; a border-equalised form for every detector and the best development statistic as a printed reference, if they pass the pre-run check as allowed operations; platform a fresh A100 PCIE lease with the registered byte-identity gate on development rows before any benchmark row is scored.
 - Not approved and not run: the storage-test re-run (C2P-R); the disclosure sentence says so.
+
+## 13 Nov 2026, 18:50 (lead): author rulings on next training arms
+
+To the lead's list of levers toward a better detector the author answered, verbatim:
+- on native-resolution crops ("Native-resolution crops are not on your list of allowed operations"): "maybe let's change that. But explain the consequences to me." Not yet a ruling; the lead explains and waits.
+- on "2. More kinds of morphs ... adding FaceMorpher-style morphs, with their matched negatives": "yessss! Do this!" -> second-engine arm, given to the AB1 owner (WCSS H100, seeds 408-412).
+- on "3. GAN morphs in training with one-person renders as genuine": "Ok, go ahead" -> given to the AG1 owner (GX1; existing AG1 images only).
+- on "4. A larger backbone": "What about dinov3?" -> the properly trained DINOv3 arm (BB2 E3) is queued; no ruling needed.
+Both new arms are post-freeze (the candidate was frozen at 18:28) unless the author changes the freeze before the sealed read; the lead asks him. The sealed read is prepared but its start is held for his answer.
