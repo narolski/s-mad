@@ -26,7 +26,11 @@ TRAIN = {"Sb": T7 / "PN1/manifests2/train_Sb.csv", "A": T7 / "PN1/manifests2/tra
          "AS": T7 / "AB1/manifests/train_AS.csv", "SbH": T7 / "AB1/manifests/train_SbH.csv",
          "SbR": T7 / "AB1/b2/manifests/train_SbR.csv", "SbnS0": T7 / "AB1/b2/manifests/train_SbnS0.csv",
          "SbH61": T7 / "AB1/b2/manifests/train_SbH61.csv", "SbnS3": T7 / "AB1/b2/manifests/train_SbnS3.csv",
-         "SbSp": T7 / "AB1/b2/manifests/train_SbSp.csv"}
+         "SbSp": T7 / "AB1/b2/manifests/train_SbSp.csv",
+         # amendment 6: AB1 amendment 7 batch C (06a2351), hashes checked against AB1 pins.sha256 at compute time
+         "SpV": T7 / "AB1/c/manifests/train_SpV.csv", "BN": T7 / "AB1/c/manifests/train_BN.csv"}
+TRAIN_SHA = {"SpV": "f6521d96de7d93ff62232c4eb8236d2560cf39f2e8ca6a56d676f3c0c39af759",
+             "BN": "c1b4497bb59343b7f5dd48149e300fb136533790724dfdf83aa395a703fe6af1"}
 ROOTS = [T7 / "PN1/fs_tree/pn1/data", T7 / "AB1/overlay_tree/pn1/data", T7 / "AB1/x/img/pn1/data",
          T7 / "AB1/x/img/pn1", T7 / "AB1/fm/img/pn1/data", T7 / "AB1/fm/img/pn1", T7 / "PR1/pr1_gd_tree/pr1g/data"]
 SPLIT = pathlib.Path("/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/split/ladder_split.csv")

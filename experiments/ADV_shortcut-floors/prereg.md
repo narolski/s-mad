@@ -409,3 +409,15 @@ Section 0 quotes "Sb's landmark_combined AUC 0.873-0.906 (seeds 408-412)": that 
 408-412 (AB1/result.md:82). The frozen candidate (seeds 403-407) is 0.814-0.885, mean 0.860 (PN1/result.md:294);
 frozen S4 vs S3 on test hosts 0.716-0.744 (PR1/result.md:21) and R4 vs R3 0.80-0.85 (PR1/result.md:117). Seed table:
 RECORDS ledger entry 6 (ca47f00). No rule or floor changes.
+
+## Amendment 6 (13 Nov, from 21:29 by the machine clock; registered before computing; lead's request for AB1 amendment 7, batch C, 06a2351)
+
+- The same-data shortcut learner (section 5.3, unchanged models) is fitted on `train_SpV.csv` (sha256 f6521d96…) and
+  `train_BN.csv` (c1b4497b…) of `/mnt/t7/smad_next/AB1/c/manifests/`. Before fitting, `src/adversary/amend6.py`
+  asserts that both files hash to these values and to the lines in AB1's `pins.sha256`; if the AB1 owner re-pins after
+  the pre-run check, the learner is recomputed on the new lists and the old files are kept and labelled superseded.
+- Outputs: `floors/transfer_SpV.json`, `floors/transfer_BN.json` (every development contrast and pool, as for the
+  other arms) and per-row scores `floors/transfer_<arm>_rows.csv` (set, id, rung, label, component, logreg, gbt) on
+  `sel360` (components of `ri_R4_vs_R3_heldout.csv`) and `splice80`: the native S4, S3 and S0 rows of the 80 test hosts
+  in `/mnt/t7/smad_next/DATA/overlap/test_hosts_clean_of_dev.csv` (components from their person keys); summary in
+  `floors/transfer_<arm>_rows_summary.json`. Pinned as stage 11. No network score is read.
