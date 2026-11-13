@@ -581,3 +581,11 @@ C2P job and SE1's SE fits. About 15 x 1.6 h ≈ 24 H100-hours.
 - Commands: E3 `cd /lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2 && /opt/slurm/current/bin/sbatch --extra=FORCE_RM_TMPDIR --time=0-03:03:00 --export=ALL,BB2_BS=256,BB2_ACCUM=1 bb2l_fit.sbatch`;
   E2 smoke `... sbatch --extra=FORCE_RM_TMPDIR --job-name=bb2-e2smoke --time=0-00:40:00 --export=ALL,BB2_E2_TARS="<one DINOv3 and one CLIP tar>",BB2_E2_LIMIT=8,BB2_E2_OUT=BB2E2smoke bb2_e2.sbatch`;
   E2 production (after the smoke passes) `... sbatch --extra=FORCE_RM_TMPDIR bb2_e2.sbatch`.
+
+- **Lead's additions (13 Nov about 16:05; before any E3 fit):** E3 skips a separate WCSS smoke (finding 11 accepted).
+  bb2l_fit.sbatch gains a first-step guard: a static check that run_lr.sh holds `BB2_LR=1.17e-05`, then the fit runs
+  in the background while the job watches its log; the optimiser-groups line that train.py prints before step 1 must
+  read `('1.17e-05', 0.05, 96), ('3.33e-05', 0.05, 2)`, otherwise the run is killed at once and the task exits 3
+  (tested locally with stand-in scripts: correct line -> rc 0; wrong LoRA lr -> killed, rc 3, after 7 s). E3 is queued
+  unthrottled (array %15). The E2 production job is queued beside its smoke and is valid only if the smoke passes (the
+  dispatcher cancels it otherwise). `src/BB2/wcss/bb2l_fit.sbatch` sha256 3fdec5a03b0bf3e6ad3a575be1b7014ed58200c062a112bec3fe1340b1f05a72 (replaces the pin above).
