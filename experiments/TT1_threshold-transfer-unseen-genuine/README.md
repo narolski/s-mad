@@ -166,6 +166,12 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
   /mnt/t7/smad_next/TT1/results/{TT1_A100_pn1fs_fs.tar, TT1_pn1fs_sp.tar} (two copies each); FS1/Sp/MS1 networks
   extracted for reading in /mnt/t7/smad_next/TT1/nets_fs and nets_ms1.
 
+- 13:38-13:52: MEDS extension (TT1-M). Pool built and aligned (`meds_counts.json`: 1,018 images of 446 persons; 865
+  aligned of 400 persons; 157 with two or more encounters; median eye distance 104.8 px, border none). Registered at
+  4ca7755; pre-run check GO WITH FIXES, fixes at f5389a3. Packs staged on se1d (/workspace/tt1m, verified 13:50:43).
+  Background chain `src/TT1/meds/chain_tt1_m.sh` (log /mnt/t7/smad_next/vast/se1d/tt1m/chain.out): waits for
+  SE1_DONE_411, starts (GPU-idle and single-job guards), pulls until TT1M_DONE. MEDS images never enter the repository.
+
 ### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
 
 The decoded image, the resized image and the input tensor are bit-identical between the DGX stack (torch 2.12.1,
@@ -294,7 +300,8 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-No process running. pn1fs: TT1 and TT1-X jobs done and verified (TT1_DONE, TT1X_DONE_sp); the lead releases the host.
+MEDS chain waiting on the DGX for se1d's SE1_DONE_411 (about 17:30); TT1-M job then runs on se1d (owner TT1). pn1fs:
+TT1 and TT1-X done and verified.
 Nothing queued on WCSS (uploaded files kept). Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
