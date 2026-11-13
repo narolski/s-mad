@@ -423,3 +423,35 @@ b166852c11e00ea70ab101e8519c4e2bc93649a55f77400620ff37b6ed4e78ae; `src/BB2/fetch
 385faad652b220e5a58cb6087745def30385b5b4ce6267c521770d0f6493f662; `src/BB2/wcss/bb2_c2p.sbatch`
 3c4de47c374f61c89b8c712575305e7646ef7375fa327bf118e819db9be526c5; unchanged: run.sh 0eaa4dce…, bb2_fit.sbatch 84b21718…,
 rescore.py 6f6eede7…, rescore_tf32.py 0d0b6b6f…, c2p_read.py 45e72914…, fs_read.py c0d8dc19…, MS1 pack c11b16bc….
+
+## Amendment 3 (lead, 13 Nov about 09:40; written before any BB2 fit has started; no BB2 score exists)
+
+Why: CLIP's first C2P read was "uninformative" because its networks were rescored on another GPU model with another
+TF32 setting (`experiments/reviews/REVIEW_PN1_C2P_20261113.md`, Q5). BB2's design (same GPU type, TF32 wrapper) is
+kept; three additions:
+
+1. **GPU name asserted.**
+   - C2P job: `src/BB2/precision_probe.py --expect-gpu "NVIDIA H100"` runs before any scoring; on another GPU name the
+     job stops (`BB2_C2P_FAIL`). The reader requires the probe's `gpu_ok` and GPU name "NVIDIA H100" in each C2P tar.
+   - Fits: the nine and six fits were already queued with the registered scripts (6310084, 6310092; run.sh is
+     hash-checked at run time, so it is not edited while they are queued). Their assertion is applied at read time:
+     run.sh writes the GPU name into every result tar (`gpu.txt`); a seed is read only if all three of its fits ran on
+     "NVIDIA H100" (both readers). The smoke ran on "NVIDIA H100" (95,830 MiB).
+2. **Effective precision logged.** The probe sets TF32 the way pn1_score.py and rescore_tf32.py do (legacy flags
+   `torch.backends.cuda.matmul.allow_tf32` and `torch.backends.cudnn.allow_tf32`), then prints the legacy flags,
+   `torch.get_float32_matmul_precision()`, the newer `fp32_precision` attributes where the build has them (matmul,
+   cuDNN conv), and the relative error of a 4096 x 4096 fp32 matmul and of a 3 x 3 convolution against fp64 (about
+   1e-7 for IEEE fp32, about 1e-4 to 1e-3 for TF32), in case the legacy flags are remapped in this build. The C2P job
+   runs it in the same interpreter and build as the fits (`~/dmenv`, torch 2.11.0+cu128), so it documents what the
+   fits' pn1_score.py flags meant there too. Printed only (beyond the GPU assertion). DGX check (torch 2.12.1, GB10):
+   matmul and conv fp32_precision "tf32", relative errors 2.9e-4 / 3.0e-4.
+3. **CLIP comparison branch for C2P.** BB2's "repeat of the CLIP effect" sentence for contrast 2-prime now reads "No
+   CLIP effect to repeat; printed only", because the first CLIP C2P read is "uninformative" (0cb89c5,
+   `c2p_read.json` 62ee0bf4…), unless the registered re-scoring of the CLIP networks (amendment C2P-R, awaiting the
+   author) is registered and read before the BB2 C2P read and "passes"; then its reading file is given to the reader
+   (`bb2_c2p_read.py --clip-json <C2P-R reading>`) and the registered sentences of A1.2 apply against it. Which file is
+   used is fixed by that order (C2P-R read before the BB2 C2P read, or not), never by a BB2 score. H-new-1 is printed
+   beside whichever CLIP reading applies.
+
+Smoke: the queued C2P smoke (6310085) uses the script as submitted (without the probe); the dispatcher is asked to
+replace it with the amended script so that the production path is smoke-tested exactly.

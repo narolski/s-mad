@@ -152,6 +152,15 @@ def main(mock=None, mock_clip=None):
         rec = {"gpu_queue": "WCSS H100, one job per fit",
                "read": all(v is not None for v in S.values()) and not any(i["train_log_nonfinite"] for i in INF.values())}
         # BB2 training-adequacy control (prereg section 6): every arm's own-rule training-row accuracy >= 0.75
+        # amendment 3: every fit of a read seed must have run on the registered GPU model (gpu.txt from run.sh)
+        gpus = {}
+        for a in ARMS:
+            gp = rf / "unpacked" / f"BB2_{a}_s{s}" / "gpu.txt"
+            gpus[a] = gp.read_text().strip().splitlines()[-1].split(",")[2].strip() if gp.exists() else ("mock" if mock else None)
+        rec["fit_gpu"] = gpus
+        if not mock and not all(g == "NVIDIA H100" for g in gpus.values()):
+            rec["read"] = False
+            rec["not_read_reason"] = "a fit did not run on NVIDIA H100"
         rec["adequate"] = bool(rec["read"] and all((INF[a]["train_acc_rule0"] or 0) >= ADEQ for a in ARMS))
         if rec["read"]:
             read.append(s)

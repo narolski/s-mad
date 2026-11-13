@@ -66,10 +66,17 @@ def check_c2p_tar(tar, fit_gpu):
         names = [m.name for m in t.getmembers() if m.isfile()]
         base = [n.split("/")[-1] for n in names]
         bad = [b for b in base if not ((b.startswith("C2P_BB2_") and b.endswith(("_af0.npz", "_ffhq.npz", "_ms1ffhq.npz")))
-                                       or b in ("env.txt", "gpu.txt", "rescore.log", "tasks.txt"))]
+                                       or b in ("env.txt", "gpu.txt", "rescore.log", "tasks.txt", "precision.txt"))]
+        pm = [m for m in t.getmembers() if m.name.endswith("precision.txt")]
+        prec = None
+        if pm:
+            line = [x for x in t.extractfile(pm[0]).read().decode().splitlines() if x.startswith("BB2_PRECISION")]
+            prec = json.loads(line[-1].split(" ", 1)[1]) if line else None
         env = t.extractfile([m for m in t.getmembers() if m.name.endswith("env.txt")][0]).read().decode()
         gpu = t.extractfile([m for m in t.getmembers() if m.name.endswith("gpu.txt")][0]).read().decode()
-    return dict(unexpected_members=bad, wrapper_pinned=("0d0b6b6fb5ebc4d5bdbe15384fcd00e13c0756785ed22743893186e68245d8d5" in env
+    return dict(unexpected_members=bad, precision=prec,
+                gpu_asserted=bool(prec and prec.get("gpu_ok") and prec.get("gpu") == "NVIDIA H100"),
+                tf32_effective=bool(prec and prec.get("matmul_rel_err_vs_fp64", 0) > 1e-5), wrapper_pinned=("0d0b6b6fb5ebc4d5bdbe15384fcd00e13c0756785ed22743893186e68245d8d5" in env
                                                         and "6f6eede71c6d9a895199dabc8bc90b882adb25f5f91cd2fcc676ebe7a380b51e" in env),
                 gpu=gpu.strip(), fit_gpu=sorted(fit_gpu), same_gpu_model=all(g in gpu for g in fit_gpu) if fit_gpu else None)
 
@@ -93,6 +100,8 @@ def main():
     ap.add_argument("--out")
     ap.add_argument("--mock", action="store_true")
     ap.add_argument("--five", action="store_true", help="mock only: five seeds")
+    ap.add_argument("--clip-json", default=None, help="amendment 3: the CLIP C2P-R reading file, if C2P-R was "
+                    "registered and read before this BB2 read; otherwise the first C2P reading (uninformative) is used")
     a = ap.parse_args()
     assert sha(HERE.parent / "PN1" / "c2p_read.py") == C2P_READ_SHA, "c2p_read.py changed"
     M = list(csv.DictReader(open(P.MS1M)))
@@ -126,8 +135,10 @@ def main():
         for arm in INF:
             acc[(arm, s)] = INF[arm]["train_acc_rule0"] or 0.0
             gp = pathlib.Path(BB2R) / "unpacked" / f"BB2_{arm}_s{s}" / "gpu.txt"
-            if gp.exists():
-                fit_gpu.add(gp.read_text().strip().splitlines()[-1].split(",")[2].strip())
+            g = gp.read_text().strip().splitlines()[-1].split(",")[2].strip() if gp.exists() else None
+            fit_gpu.add(g)
+            if g != "NVIDIA H100":      # amendment 3: fits must have run on the registered GPU model
+                readseed[s] = False
     for arm in ARMS:
         for s in SEEDS:
             T = f"BB2_{arm}_s{s}"
@@ -194,8 +205,10 @@ def main():
         h1[X] = dict(values=vals, verdict="not read (too few seeds)" if n_read < NMIN else
                      ("supported" if sup else ("falsified" if fal else "inconclusive")))
     R["H_new_1"] = h1
-    clip = json.load(open(CLIP_C2P)) if CLIP_C2P.exists() and not a.mock else None
-    R["clip_c2p_json_sha256"] = sha(CLIP_C2P) if clip is not None else None
+    cj = pathlib.Path(a.clip_json) if a.clip_json else CLIP_C2P
+    clip = json.load(open(cj)) if cj.exists() and not a.mock else None
+    R["clip_c2p_json"] = str(cj) if clip is not None else None
+    R["clip_c2p_json_sha256"] = sha(cj) if clip is not None else None
     if not a.mock:
         R["c2p_tar_checks"] = {c: check_c2p_tar(c, fit_gpu) for c in a.c2p}
     R["clip_c2p"] = None if clip is None else dict(contrast2prime={X: clip["contrast2prime"][X]["verdict"] for X in ("B", "Sb")},

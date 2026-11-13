@@ -25,7 +25,7 @@ P=$L/packs/BB2; R=${BB2_C2P_RESULTS:-$L/results/BB2}; OUTN=${BB2_C2P_OUT:-BB2C2P
 fail() { echo "BB2_C2P_FAIL $*"; exit 1; }
 [ -e "$R/$OUTN.tar" ] && fail "$OUTN.tar exists (never overwritten)"
 (cd "$L/packs/MS1" && sha256sum -c pn1_pack_ms1.tar.sha256) && [ "$(cut -c1-64 $L/packs/MS1/pn1_pack_ms1.tar.sha256)" = c11b16bc7b76236bae80778f9e36cb67bb50de910f73a9dd200a706fc267fe7d ] || fail "MS1 pack"
-(cd "$P" && sha256sum -c bb2_overlay.tar.sha256 rescore.py.sha256 rescore_tf32.py.sha256) || fail "overlay, rescore.py or wrapper"
+(cd "$P" && sha256sum -c bb2_overlay.tar.sha256 rescore.py.sha256 rescore_tf32.py.sha256 precision_probe.py.sha256) || fail "overlay, rescore.py, wrapper or probe"
 [ "$(cut -c1-64 $P/rescore_tf32.py.sha256)" = 0d0b6b6fb5ebc4d5bdbe15384fcd00e13c0756785ed22743893186e68245d8d5 ] || fail "wrapper pin"
 [ "$(cut -c1-64 $P/rescore.py.sha256)" = 6f6eede71c6d9a895199dabc8bc90b882adb25f5f91cd2fcc676ebe7a380b51e ] || fail "rescore.py pin"
 TASKS=${BB2_TASKS:-"BB2_A_s403 BB2_B_s403 BB2_Sb_s403 BB2_A_s404 BB2_B_s404 BB2_Sb_s404 BB2_A_s405 BB2_B_s405 BB2_Sb_s405"}
@@ -41,6 +41,8 @@ PY=$HOME/dmenv/bin/python
 $PY -c "import sys, torch, timm; torch.backends.cuda.matmul.allow_tf32 = True; torch.backends.cudnn.allow_tf32 = True; print('env', sys.version.split()[0], torch.__version__, timm.__version__, 'tf32 matmul', torch.backends.cuda.matmul.allow_tf32, 'cudnn', torch.backends.cudnn.allow_tf32, 'via rescore_tf32.py 0d0b6b6f')" > "$C/out/env.txt"
 (cd "$P" && sha256sum rescore_tf32.py rescore.py) >> "$C/out/env.txt"     # amendment 2 fix 5: the scorer actually run
 nvidia-smi --query-gpu=uuid,name --format=csv,noheader > "$C/out/gpu.txt" 2>&1 || true
+# amendment 3: GPU name asserted (the fits' model) and the effective fp32 precision under this build logged
+$PY -I "$P/precision_probe.py" --expect-gpu "NVIDIA H100" > "$C/out/precision.txt" 2>&1 || fail "GPU is not NVIDIA H100 or the precision probe failed: $(tail -1 $C/out/precision.txt)"
 n_fail=0
 for T in $TASKS; do
   tar -C "$C/nets" -xf "$R/$T.tar" "$T/meta.json" "$T/last_trainable.pt"
