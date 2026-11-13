@@ -364,3 +364,12 @@ Ledger entry 1 (experiments/RECORDS_ledger/LEDGER.md, 486d089). Acted on: correc
 - Lead ruling: phase correlation in small windows between two images already in memory, and autocorrelation/echo statistics of one image, are measurements (in-memory FFT statistics, like the ruling on FFT bands); no shifted, filtered or resampled image is stored or used for training.
 - Nuisance erasure (NE1): registered 9ef5884; Athena extraction 3550470 completed 19:53:52 (6:35, exit 0); heads not yet read.
 - DINOv3 at CLIP rates, storage test (BB2 part 2): contrast 2-prime uninformative (plain control fails 5 of 5), reviewed (REVIEW_BB2_PART2_20261113.md).
+
+## 13 Nov 20:28 — evening log (lead)
+
+- Layer misregistration echo (ME1): registered 7008986 after its pre-run check (PRERUN_ME1_20261113.md). Oracle part "not measured as registered" (5a6033d): the response-gated shift is non-finite for 267 and 264 of 291 pairs, and the calibration on one person's texture at two geometries for 142 of 291. Lead ruling: the oracle is closed as not measurable with this estimator; no new gate is designed after the fact. Reading allowed: window-level phase correlation does not find correlated structure between the two layers even for two sessions of one person, which speaks against a detectable doubled-structure echo; this is a property of the estimator, not a verdict on the mechanism. The single-image part stays registered and held for the adversary's S4-vs-S3 floors, with the prediction logged that its "sees a second layer" check fails.
+- Shortcut floors, stage 1a (bffacb5), reviewed (REVIEW_ADV_STAGE1A_20261113.md): FFHQ landmark_combined separable at 0.96-0.98 by statistics fitted on it, 0.79 from the surround alone (resampling history). Evening conclusions qualified (6f7c181). Matched-history re-read registered by AB1 (b241a52, pre-run check 3a5d712).
+- Partner-overlap audit (1b05940; ledger entry 5, e38a2f1): no training list shares a person or photo with any evaluation set; development and test ladder hosts share partners (99/99; 80 clean test hosts). Shape-only sharing through warp geometry still to be counted.
+- Nuisance erasure (NE1, 41df045; review 78f0ca1): border inconclusive, splices inconclusive, storage untestable as registered. NE1b drafted; pre-run check b8288e3.
+- Sealed MAD22 read: registered a7d7454; lead-ordered final check GO WITH FIXES (c7b2daa: three one-shot guards); not started.
+- Shared test battery rc1: pre-run check GO WITH FIXES (6fd4293); not released.
