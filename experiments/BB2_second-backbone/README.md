@@ -257,6 +257,12 @@ $ diff src/BB2/wcss/bb2_fit2.sbatch src/BB2/wcss/bb2l_fit.sbatch
 >   BB2_BS=$BB2_BS BB2_ACCUM=$BB2_ACCUM PN1_LOCAL=1 PN1_PY=$HOME/dmenv/bin/python PN1_WORKERS=7 bash "$P/run_lr.sh"
 ```
 
+- 16:00-16:10 amendments 4 (E3) and 5 (E2) registered (7d536a2) after the pre-run check (PRERUN_BB2_A45_20261113.md);
+  lead's additions (48fa7b9): no separate E3 smoke, first-step learning-rate guard in bb2l_fit.sbatch (tested locally),
+  E2 production gated on its smoke. Queued: E2 smoke 6313858 (submitted by the dispatcher), `wcss_bb2l_fits.cmd` (E3, 15
+  fits), `wcss_bb2_e2.cmd` (E2 production, valid only if 6313858 passes). C2P job 6313488 still pending. WCSS saturated
+  (forecasts tomorrow).
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
