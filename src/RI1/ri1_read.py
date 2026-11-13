@@ -278,6 +278,16 @@ def main():
             rec[tag] = dict(sb=a1, sb_plus_disp=a2, gain=a2 - a1)
         inc[str(s)] = rec
     out["increment_S4_vs_S3"] = inc
+    if not a.mock:                                      # lead 13 Nov: ADV floors printed beside (check.exceeds)
+        sys.path.insert(0, "/home/narolski/smad-next/src/PR1")
+        from adv_beside import adv_print
+        adv = {}
+        for c, pairs_ in (("ri_S4_vs_S3", (S4, S3)), ("ri_R4_vs_R3", (R4, R3)), ("ri_R4_vs_R0", (R4, R0))):
+            sc_ = {}
+            for dct in pairs_:
+                sc_.update({i: disp(i) for i in dct.values()})
+            adv[c] = adv_print(c, sc_)
+        out["adv"] = adv
     ninc = sum(1 for v in inc.values() if v["all"]["gain"] >= 0.03)
     # ---------------- outcome table (amendment 1b order: controls first)
     r43 = S["R4_vs_R3_within_D"]["auc"]

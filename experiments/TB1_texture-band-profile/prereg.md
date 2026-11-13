@@ -193,3 +193,10 @@ partners outside the host set as nodes gives 110 components, the review's count.
 The S part adds per-database prints, descriptive only: FRGC-only and colorFERET-only values of the S4-vs-S3 within-D
 AUC, the binding-gain components (baseline, plus r, gain) and the three binding controls. The binding rule is
 unchanged; it stays on all 291 hosts. Code: `src/TB1/tb1_read.py` (re-pinned).
+
+## Operations note (13 Nov, after the adversary floors were pinned at 35f25a7 / pins_stage3; before this part is read)
+
+The read prints the adversary's floors beside its own registered floor: the all-cue ADV floor, the non-F27/non-BLEND
+floor and the floor's within-BD1-D-quintile values, through `check.exceeds` on the pinned files
+(`src/PR1/adv_beside.py`). Contrasts: ri_S4_vs_S3, test_S4_vs_S3, dev_S4_vs_S3; for RI1 also ri_R4_vs_R3 and
+ri_R4_vs_R0. Printed only. No registered rule changes.

@@ -165,3 +165,10 @@ re-pinned in `src/ME1/SHA256SUMS` and tested on 4 hosts and on fully randomised 
 - **Logged prediction for the single-image part (held for the adversary's dev_S4_vs_S3 and test_S4_vs_S3 floors):** the
   "sees a second layer" check (S4 vs R2w4 and S3 vs R2w) fails, with both ≤ 0.55, because the layers share no
   window-level correlated structure.
+
+## Operations note (13 Nov, after the adversary floors were pinned at 35f25a7 / pins_stage3; before this part is read)
+
+The read prints the adversary's floors beside its own registered floor: the all-cue ADV floor, the non-F27/non-BLEND
+floor and the floor's within-BD1-D-quintile values, through `check.exceeds` on the pinned files
+(`src/PR1/adv_beside.py`). Contrasts: ri_S4_vs_S3, test_S4_vs_S3, dev_S4_vs_S3; for RI1 also ri_R4_vs_R3 and
+ri_R4_vs_R0. Printed only. No registered rule changes.

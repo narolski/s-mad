@@ -260,6 +260,15 @@ def main():
             inc[str(s)] = dict(all=cfgain(l4[:, None], l3[:, None], e4[:, None], e3[:, None], okS)[0],
                                test=cfgain(l4[:, None], l3[:, None], e4[:, None], e3[:, None], okS[role[okS] == "test"])[0])
         S["sb_increment"] = inc
+        if not a.mock:                                  # lead 13 Nov: ADV floors printed beside (check.exceeds)
+            sys.path.insert(0, "/home/narolski/smad-next/src/PR1")
+            from adv_beside import adv_print
+            if np.isfinite(e4).all() and np.isfinite(e3).all():
+                sc_ = {r["S4_id"]: float(v) for r, v in zip(R, e4)}
+                sc_.update({r["S3_id"]: float(v) for r, v in zip(R, e3)})
+                S["adv"] = {c: adv_print(c, sc_) for c in ("ri_S4_vs_S3", "test_S4_vs_S3", "dev_S4_vs_S3")}
+            else:
+                S["adv"] = "not computable (non-finite echo rows)"
         S["per_database"] = {d_: dict(S4_vs_S3_within_D=strat_db(e4, e3, D4, D3, np.where(db == d_)[0])) for d_ in ("frgc", "feret")}
         wd = S["S4_vs_S3"]["within_D"]
         pdw = S["paired_difference_within_D"]["auc"]

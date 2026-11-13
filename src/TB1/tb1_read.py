@@ -187,6 +187,12 @@ def main():
                 rec[tag] = dict(sb=a1, sb_plus_r=a2, gain=a2 - a1)
             inc[str(s)] = rec
         S["increment"] = inc
+        if not a.mock:                                  # lead 13 Nov: ADV floors printed beside (check.exceeds)
+            sys.path.insert(0, "/home/narolski/smad-next/src/PR1")
+            from adv_beside import adv_print
+            sc_ = {r["S4_id"]: float(v) for r, v in zip(R, s4)}
+            sc_.update({r["S3_id"]: float(v) for r, v in zip(R, s3)})
+            S["adv"] = {c: adv_print(c, sc_) for c in ("ri_S4_vs_S3", "test_S4_vs_S3", "dev_S4_vs_S3")}
         # amendment 3: per-database prints (descriptive; the binding rule stays on all hosts)
         dbs = np.array([r["db"] for r in R])
         per = {}
