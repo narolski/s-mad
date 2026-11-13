@@ -1,26 +1,40 @@
-"""XF1 registered reads (prereg.md section 5); development data only (FFHQ MS1 hold-out frames, DATA D12a and D1d).
-Inputs: /mnt/t7/smad_next/XF1/xf1_rows.csv (pinned) and the Athena result tar XF1_scores.tar (sha256 checked) with
-<net>__gate.json and, for gate-passed networks only, <net>__xf1.npz.
-Read 1 (blend at matched rendering): AUC of FM(H,B) against FM(H,H) per network; paired gains g_s = AUC(Sb_s) - AUC(X_s),
-  X in {B, A}; joint bootstrap over the 12 components of the host-partner pairing (2,000 draws, rng 20261203, the same
-  draws for every network); "present" if the seed-mean gain is >= +0.03 AND its lower 95% bound > 0 AND g_s > 0 on >= 4
-  of 5 seeds; "absent" if the upper bound < +0.03; otherwise "inconclusive"; fewer than 4 seeds with both networks
-  gate-passed: "not read".
-Read 2 (render reaction): AUC of FM(H,H) against H per network, seed-mean per arm with the same bootstrap; label
-  "no render reaction" if the 95% interval lies inside [0.40, 0.60], "render reaction" if the lower bound > 0.60,
-  "reversed render reaction" if the upper bound < 0.40, otherwise "unresolved". Own-rule (logit > 0) flag rates on H,
-  FM(H,H), FM(H,B) per network. FM(H,B) against H printed.
-Read 3: each network beside the adversary's floors on these rows (check.exceeds, all-cue and nuisance) for contrasts
-  xf1_FMHB_vs_FMHH and xf1_FMHH_vs_H when the adversary's pinned files exist; else "floor not delivered".
-  python -I xf1_read.py --out xf1_read.json [--mock]"""
+"""XF1 revision b registered reads (prereg.md "Revision b" and "Revision b2"); post-freeze development diagnostic,
+registered after the sealed read; development data only (FFHQ MS1 hold-out frames; DATA D12a, D12b; XF1 face-only copies).
+Inputs (all pinned): xf1b_rows.csv (1,495 rows: klass FMHB / WARP / H x form whole / face), xf1b_ring.csv (halo-ring share),
+the adversary's xf1b_rows_scores.csv (stage-14 pins; learners on each arm's training list and floors, per form), and the
+Athena result tar XF1_scores.tar (sha256 checked) with <net>__gate.json and, for gate-passed networks only, <net>__xf1.npz.
+Contrast: FM(H,B) (klass FMHB, 1) against W (klass WARP, 0), selected by klass and form. Decision form: face-only.
+Bootstrap: 64 cycle blocks (`block`), 2,000 draws, numpy default_rng(20261203), the same draws for every network, form
+and comparison source. Sensitivities printed: leave-one-component-out range, host bootstrap.
+Rules (face-only):
+  gains Sb - B (primary) and Sb - A (secondary; A has no warp-only negatives): g_s = AUC(Sb_s) - AUC(X_s); "present" if the
+  seed-mean >= +0.03 AND lower 95% bound > 0 AND g_s > 0 on >= 4 of 5 seeds; "absent" if the upper bound < +0.03; else
+  "inconclusive"; fewer than 4 seeds with both networks gate-passed: "not read". Precedence: "not read", then
+  "all arms at ceiling" (every gate-passed arm's lower bound >= 0.95), then "ceiling, not informative" (X's seed-mean
+  >= 0.97), then the gain rule.
+  floor: an arm whose 95% interval contains 0.50: "does not separate blend from warp".
+  licences per arm: (a) interval contains 0.50 or lies below it: "this blend is not what the networks flag"; (b) lower
+  bound > 0.50 and not (c): "consistent with blending and noise averaging; no evidence beyond low-level statistics";
+  (c) the network exceeds its own training list's same-data learner (gbt, the gate's model) on the block bootstrap
+  (2.5% bound of AUC_net - AUC_learner > 0) on >= 4 of 5 seeds: "beyond hand-made statistics trained on the same list".
+  No outcome licenses "detects identity mixing".
+Printed only: whole-frame form (surround-dominated), whole-minus-face per arm (blanking-shift control), terciles of
+exactly-one-black share, |IED gap|, halo-ring share and cos_HB, own-rule flag rates (logit > 0) on H, W, FM(H,B), every
+adversary source beside each network.
+  python -I xf1_read.py --out xf1_read.json [--mock random|ceiling|ceilB|sbgain|gatefail]"""
 import argparse, csv, hashlib, io, json, pathlib, sys, tarfile
 import numpy as np
 
 sys.path.insert(0, "/home/narolski/smad-next/src/adversary")
-ROWS = pathlib.Path("/mnt/t7/smad_next/XF1/xf1_rows.csv")
-ROWS_SHA = "ef4adf5ba22847f04ccf40d054fcda5b05b1546be08dde04b277dd2b5266e317"
-TAR = pathlib.Path("/mnt/t7/smad_next/XF1/results/XF1_scores.tar")
-ARMS, SEEDS = ("A", "B", "Sb"), tuple(range(403, 408))
+X1 = pathlib.Path("/mnt/t7/smad_next/XF1")
+ADVF = pathlib.Path("/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/xf1b_rows_scores.csv")
+PINS = {X1 / "xf1b_rows.csv": "4adcf914fba651f3b1b1ccfc5ea4b3e03155357aa5c84804180513da5925b271",
+        X1 / "xf1b_ring.csv": "23f51cf3e8f90543ed05042e70355228794fdc45b9829c775a08a71efe9d69a6",
+        ADVF: "86f61826d4ae9cf603780b69ae513e26de357a736c508f6838ddd00d2cd85d2a"}
+ADV_CHECK = {("learner_Sb_gbt", "face"): 0.8591179069585352, ("floor_all_cue_gbt", "face"): 0.9166004854531828,
+             ("floor_file_single", "face"): 0.6661670451113523}
+TAR = X1 / "results/XF1_scores.tar"
+ARMS, SEEDS, FORMS = ("A", "B", "Sb"), tuple(range(403, 408)), ("face", "whole")
 B = 2000
 
 
@@ -44,20 +58,44 @@ def auc(pos, neg):
     return float((r[y == 1].sum() - p * (p + 1) / 2) / (p * len(neg)))
 
 
+def ci(v):
+    return [float(np.percentile(v, 2.5)), float(np.percentile(v, 97.5))]
+
+
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--out", required=True); ap.add_argument("--mock", action="store_true")
+    ap = argparse.ArgumentParser(); ap.add_argument("--out", required=True)
+    ap.add_argument("--mock", choices=("random", "ceiling", "ceilB", "sbgain", "gatefail"), default=None)
     a = ap.parse_args()
-    assert sha(ROWS) == ROWS_SHA
-    rows = list(csv.DictReader(open(ROWS)))
-    hosts = sorted({r["host"] for r in rows}); comp = {r["host"]: int(r["cell"]) for r in rows}
-    rid = {(r["klass"], r["host"]): r["id"] for r in rows}
-    assert len(hosts) == 299 and len(rid) == 897
+    for p, h in PINS.items():
+        assert sha(p) == h, p
+    import check
+    assert check._pinned("xf1b_rows_scores.csv")          # committed stage pins (raises otherwise)
+    rows = list(csv.DictReader(open(X1 / "xf1b_rows.csv")))
+    rid = {(r["klass"], r["form"], r["host"]): r["id"] for r in rows}
+    hosts = sorted({r["host"] for r in rows}); assert len(hosts) == 299 and len(rid) == 1495
+    meta = {r["host"]: r for r in rows if r["klass"] == "FMHB" and r["form"] == "face"}
+    ring = {r["host"]: r for r in csv.DictReader(open(X1 / "xf1b_ring.csv"))}
+    block = {h: int(meta[h]["block"]) for h in hosts}; comp = {h: int(meta[h]["component"]) for h in hosts}
+    # adversary sources, per form, as {source: {id: score}}
+    src = {f: {} for f in FORMS}
+    for r in csv.DictReader(open(ADVF)):
+        if r["source"].startswith("learner_"):
+            src[r["form"]].setdefault(r["source"] + "_logreg", {})[r["id"]] = float(r["score"])
+            src[r["form"]].setdefault(r["source"] + "_gbt", {})[r["id"]] = float(r["score_gbt"])
+        else:
+            src[r["form"]].setdefault(r["source"], {})[r["id"]] = float(r["score"])
+    # networks
     L, gate = {}, {}
     if a.mock:
         for arm in ARMS:
             for s in SEEDS:
-                rr = np.random.default_rng(s * 7 + ARMS.index(arm))
-                n = f"PN1_{arm}_s{s}"; L[n] = {r["id"]: float(rr.normal()) for r in rows}; gate[n] = dict(byte_identical=True, mock=True)
+                n = f"PN1_{arm}_s{s}"; rr = np.random.default_rng(1000 * s + ARMS.index(arm))
+                fail = a.mock == "gatefail" and arm == "B" and s in (404, 405)
+                gate[n] = dict(byte_identical=not fail, mock=a.mock)
+                if fail:
+                    continue
+                shift = 6.0 if a.mock == "ceiling" or (a.mock == "ceilB" and arm == "B") else 0.5 if (a.mock == "sbgain" and arm == "Sb") else 0.0
+                L[n] = {r["id"]: float(rr.normal()) + (shift if r["klass"] == "FMHB" else 0.0) for r in rows}
     else:
         want = (TAR.parent / "XF1_scores.tar.sha256").read_text().split()[0]; assert sha(TAR) == want
         with tarfile.open(TAR) as tf:
@@ -69,78 +107,105 @@ def main():
                         z = np.load(io.BytesIO(tf.extractfile(f"XF1_scores/scores/{n}__xf1.npz").read()))
                         L[n] = dict(zip(z["id"].tolist(), z["logit"].astype(float).tolist()))
                         assert set(L[n]) == {r["id"] for r in rows}
-    ug = sorted(set(comp.values())); members = {k: [h for h in hosts if comp[h] == k] for k in ug}
+    ub = sorted(set(block.values())); mem = {k: [h for h in hosts if block[h] == k] for k in ub}
     rng = np.random.default_rng(20261203)
-    draws = [np.concatenate([members[k] for k in rng.choice(ug, len(ug), replace=True)]) for _ in range(B)]
+    draws = [[h for k in rng.choice(ub, len(ub), replace=True) for h in mem[k]] for _ in range(B)]
+    hrng = np.random.default_rng(20261204)
+    hdraws = [list(hrng.choice(hosts, len(hosts), replace=True)) for _ in range(B)]
+    uc = sorted(set(comp.values()))
 
-    def stat(n, pos, neg, hs):
-        return auc(np.array([L[n][rid[(pos, h)]] for h in hs]), np.array([L[n][rid[(neg, h)]] for h in hs]))
+    def stat(sc, form, hs):
+        return auc(np.array([sc[rid[("FMHB", form, h)]] for h in hs]), np.array([sc[rid[("WARP", form, h)]] for h in hs]))
 
-    out = dict(mock=a.mock, n_hosts=len(hosts), n_components=len(ug), component_sizes=sorted(len(v) for v in members.values()),
-               gate={n: gate[n] for n in sorted(gate)}, gate_passed=sorted(L))
+    out = dict(mock=a.mock, label="post-freeze development diagnostic, registered after the sealed read",
+               n_hosts=len(hosts), n_blocks=len(ub), n_components=len(uc), gate={n: gate[n] for n in sorted(gate)}, gate_passed=sorted(L))
+    # adversary source AUCs (check against the committed json values)
+    adv = {f: {k: stat(v, f, hosts) for k, v in src[f].items()} for f in FORMS}
+    for (k, f), v in ADV_CHECK.items():
+        assert abs(adv[f][k] - v) < 1e-9, (k, f, adv[f][k])
+    out["adversary_auc"] = adv
+    obs, boot, hb = {}, {}, {}
+    for n in L:
+        for f in FORMS:
+            obs[(n, f)] = stat(L[n], f, hosts)
+            boot[(n, f)] = np.array([stat(L[n], f, d) for d in draws])
+            hb[(n, f)] = np.array([stat(L[n], f, d) for d in hdraws])
+    sboot = {(k, f): np.array([stat(src[f][k], f, d) for d in draws]) for f in FORMS for k in src[f]}
     per = {}
     for n in sorted(L):
-        v = np.array([L[n][rid[(k, h)]] for k in ("H", "FMHH", "FMHB") for h in hosts]).reshape(3, -1)
-        per[n] = dict(FMHB_vs_FMHH=stat(n, "FMHB", "FMHH", hosts), FMHH_vs_H=stat(n, "FMHH", "H", hosts),
-                      FMHB_vs_H=stat(n, "FMHB", "H", hosts), flag_H=float((v[0] > 0).mean()), flag_FMHH=float((v[1] > 0).mean()),
-                      flag_FMHB=float((v[2] > 0).mean()), median_logit=dict(H=float(np.median(v[0])), FMHH=float(np.median(v[1])), FMHB=float(np.median(v[2]))))
+        v = {k: np.array([L[n][rid[k + (h,)]] for h in hosts]) for k in (("H", "whole"), ("WARP", "whole"), ("FMHB", "whole"), ("WARP", "face"), ("FMHB", "face"))}
+        own = f"learner_{n.split('_')[1]}_gbt"
+        per[n] = dict(auc={f: obs[(n, f)] for f in FORMS}, whole_minus_face=obs[(n, "whole")] - obs[(n, "face")],
+                      flags={"_".join(k): float((x > 0).mean()) for k, x in v.items()},
+                      median_logit={"_".join(k): float(np.median(x)) for k, x in v.items()},
+                      vs_adversary={f: {k: dict(diff=obs[(n, f)] - adv[f][k], ci=ci(boot[(n, f)] - sboot[(k, f)]),
+                                               exceeds=bool(ci(boot[(n, f)] - sboot[(k, f)])[0] > 0)) for k in src[f]} for f in FORMS},
+                      own_learner=own, exceeds_own_learner_face=bool(ci(boot[(n, "face")] - sboot[(own, "face")])[0] > 0))
     out["per_network"] = per
-    boot = {}   # (net, contrast) -> array over draws
-    for n in L:
-        for c, (p, q) in (("FMHB_vs_FMHH", ("FMHB", "FMHH")), ("FMHH_vs_H", ("FMHH", "H"))):
-            boot[(n, c)] = np.array([stat(n, p, q, d) for d in draws])
+    terc = {"excl_border": {h: int(meta[h]["excl_border_t"]) for h in hosts}, "ied_gap": {h: int(meta[h]["ied_gap_t"]) for h in hosts},
+            "ring_share": {h: int(ring[h]["ring_share_t"]) for h in hosts}}
+    cq = np.quantile([float(meta[h]["cos_HB"]) for h in hosts], [1 / 3, 2 / 3])
+    terc["cos_HB"] = {h: int(np.searchsorted(cq, float(meta[h]["cos_HB"]), side="right")) for h in hosts}
     arms = {}
     for arm in ARMS:
         ns = [f"PN1_{arm}_s{s}" for s in SEEDS if f"PN1_{arm}_s{s}" in L]
         if not ns:
-            arms[arm] = "not read (no gate-passed network)"; continue
+            arms[arm] = dict(n_seeds=0, status="not read (no gate-passed network)"); continue
         r = dict(n_seeds=len(ns))
-        for c in ("FMHB_vs_FMHH", "FMHH_vs_H"):
-            m = float(np.mean([per[n][c] for n in ns])); bb = np.mean([boot[(n, c)] for n in ns], axis=0)
-            r[c] = dict(seed_mean=m, ci=[float(np.percentile(bb, 2.5)), float(np.percentile(bb, 97.5))], per_seed={n[-4:]: per[n][c] for n in ns})
-        lo, hi = r["FMHH_vs_H"]["ci"]
-        r["render_label"] = ("no render reaction" if lo >= 0.40 and hi <= 0.60 else "render reaction" if lo > 0.60
-                             else "reversed render reaction" if hi < 0.40 else "unresolved")
-        for k in ("flag_H", "flag_FMHH", "flag_FMHB"):
-            r[k] = [float(min(per[n][k] for n in ns)), float(max(per[n][k] for n in ns))]
+        for f in FORMS:
+            bb = np.mean([boot[(n, f)] for n in ns], axis=0)
+            r[f] = dict(seed_mean=float(np.mean([obs[(n, f)] for n in ns])), ci=ci(bb),
+                        host_bootstrap_ci=ci(np.mean([hb[(n, f)] for n in ns], axis=0)),
+                        loco_range=[float(min(x)), float(max(x))] if (x := [np.mean([stat(L[n], f, [h for h in hosts if comp[h] != k]) for n in ns]) for k in uc]) else None,
+                        per_seed={n[-4:]: obs[(n, f)] for n in ns})
+        wmf = np.mean([boot[(n, "whole")] - boot[(n, "face")] for n in ns], axis=0)
+        r["whole_minus_face"] = dict(seed_mean=float(np.mean([per[n]["whole_minus_face"] for n in ns])), ci=ci(wmf))
+        lo, hi = r["face"]["ci"]
+        r["floor_rule"] = "does not separate blend from warp" if lo <= 0.50 <= hi else "below 0.50 (reversed)" if hi < 0.50 else "separates"
+        nex = sum(per[n]["exceeds_own_learner_face"] for n in ns)
+        r["exceeds_own_learner_seeds"] = f"{nex} of {len(ns)}"
+        if hi < 0.50 or lo <= 0.50 <= hi:
+            r["licence"] = "(a) this blend is not what the networks flag"
+        elif nex >= 4:
+            r["licence"] = "(c) beyond hand-made statistics trained on the same list"
+        else:
+            r["licence"] = "(b) consistent with blending and noise averaging; no evidence beyond low-level statistics"
+        r["strata_face"] = {t: {str(k): float(np.mean([stat(L[n], "face", [h for h in hosts if terc[t][h] == k]) for n in ns])) for k in (0, 1, 2)} for t in terc}
+        r["flags"] = {k: [float(min(per[n]["flags"][k] for n in ns)), float(max(per[n]["flags"][k] for n in ns))] for k in per[ns[0]]["flags"]}
         arms[arm] = r
     out["arms"] = arms
+    read = [arm for arm in ARMS if arms[arm]["n_seeds"]]
+    all_ceiling = bool(read) and all(arms[arm]["face"]["ci"][0] >= 0.95 for arm in read)
     gains = {}
-    for X in ("B", "A"):
+    for X, role in (("B", "primary"), ("A", "secondary (A has no warp-only negatives)")):
         ss = [s for s in SEEDS if f"PN1_Sb_s{s}" in L and f"PN1_{X}_s{s}" in L]
+        g = dict(role=role, n_seeds=len(ss))
         if len(ss) < 4:
-            gains[f"Sb_minus_{X}"] = dict(verdict="not read", n_seeds=len(ss)); continue
-        g = [per[f"PN1_Sb_s{s}"]["FMHB_vs_FMHH"] - per[f"PN1_{X}_s{s}"]["FMHB_vs_FMHH"] for s in ss]
-        gb = np.mean([boot[(f"PN1_Sb_s{s}", "FMHB_vs_FMHH")] - boot[(f"PN1_{X}_s{s}", "FMHB_vs_FMHH")] for s in ss], axis=0)
-        m, lo, hi = float(np.mean(g)), float(np.percentile(gb, 2.5)), float(np.percentile(gb, 97.5))
-        npos = int(sum(x > 0 for x in g))
-        v = "present" if (m >= 0.03 and lo > 0 and npos >= 4) else "absent" if hi < 0.03 else "inconclusive"
-        gains[f"Sb_minus_{X}"] = dict(verdict=v, seed_mean=m, ci=[lo, hi], per_seed={str(s): x for s, x in zip(ss, g)}, n_positive=npos, n_seeds=len(ss))
-    out["read1_gains"] = gains
-    adv = {}
-    try:
-        from check import exceeds
-        for c, (p, q) in (("xf1_FMHB_vs_FMHH", ("FMHB", "FMHH")), ("xf1_FMHH_vs_H", ("FMHH", "H"))):
-            if not (pathlib.Path("/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors") / f"{c}.json").exists():
-                adv[c] = "floor not delivered"; continue
-            adv[c] = {}
-            for n in sorted(L):
-                sc = {rid[(k, h)]: L[n][rid[(k, h)]] for k in (p, q) for h in hosts}
-                adv[c][n] = {}
-                for fl in ("all", "nuisance"):
-                    try:
-                        adv[c][n][fl] = exceeds(c, sc, floor=fl)
-                    except AssertionError as ex:
-                        adv[c][n][fl] = dict(error=str(ex))
-            for arm in ARMS:
-                ok = [adv[c][n]["all"].get("exceeds") for n in sorted(L) if n.startswith(f"PN1_{arm}_") and "exceeds" in adv[c][n]["all"]]
-                adv[c][f"{arm}_exceeds_all_cue_learner_seeds"] = f"{sum(bool(x) for x in ok)} of {len(ok)}"
-    except ImportError as ex:
-        adv["error"] = str(ex)
-    out["read3_adversary"] = adv
+            g["verdict"] = "not read"; gains[f"Sb_minus_{X}"] = g; continue
+        d = [obs[(f"PN1_Sb_s{s}", "face")] - obs[(f"PN1_{X}_s{s}", "face")] for s in ss]
+        gb = np.mean([boot[(f"PN1_Sb_s{s}", "face")] - boot[(f"PN1_{X}_s{s}", "face")] for s in ss], axis=0)
+        m, (lo, hi) = float(np.mean(d)), ci(gb)
+        npos = int(sum(x > 0 for x in d))
+        loco = [np.mean([stat(L[f"PN1_Sb_s{s}"], "face", hs) - stat(L[f"PN1_{X}_s{s}"], "face", hs) for s in ss])
+                for hs in ([h for h in hosts if comp[h] != k] for k in uc)]
+        g.update(seed_mean=m, ci=[lo, hi], per_seed={str(s): x for s, x in zip(ss, d)}, n_positive=npos,
+                 loco_range=[float(min(loco)), float(max(loco))],
+                 host_bootstrap_ci=ci(np.mean([hb[(f"PN1_Sb_s{s}", "face")] - hb[(f"PN1_{X}_s{s}", "face")] for s in ss], axis=0)))
+        if all_ceiling:
+            g["verdict"] = "all arms at ceiling"
+        elif arms[X]["face"]["seed_mean"] >= 0.97:
+            g["verdict"] = "ceiling, not informative"
+        else:
+            g["verdict"] = "present" if (m >= 0.03 and lo > 0 and npos >= 4) else "absent" if hi < 0.03 else "inconclusive"
+        gains[f"Sb_minus_{X}"] = g
+    out["gains_face"] = gains
+    out["all_arms_at_ceiling"] = all_ceiling
+    out["no_licence"] = "No outcome licenses 'detects identity mixing'."
     pathlib.Path(a.out).write_text(json.dumps(out, indent=1, default=float))
-    print(json.dumps(dict(gate_passed=len(L), gains=gains, arms={k: (v if isinstance(v, str) else {kk: vv for kk, vv in v.items() if kk != "per_seed"}) for k, v in arms.items()},
-                          adv={c: (v if isinstance(v, str) else {k: x for k, x in v.items() if k.endswith("seeds")}) for c, v in adv.items()}), default=float)[:4000])
+    print(json.dumps(dict(gate_passed=len(L), gains={k: {kk: vv for kk, vv in v.items() if kk != "per_seed"} for k, v in gains.items()},
+                          arms={k: {kk: (vv if kk not in FORMS else {x: y for x, y in vv.items() if x != "per_seed"}) for kk, vv in v.items()
+                                    if kk in FORMS + ("floor_rule", "licence", "exceeds_own_learner_seeds", "status", "whole_minus_face")} for k, v in arms.items()},
+                          all_arms_at_ceiling=all_ceiling), default=float)[:6000])
 
 
 if __name__ == "__main__":

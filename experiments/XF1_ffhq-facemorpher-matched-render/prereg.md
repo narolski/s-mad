@@ -136,3 +136,62 @@ This revision replaces sections 2 to 6 above. The original draft (sections 1 to 
 - **Shared mask, asserted per pair:** the FM(H,B) copy and the W copy are grey everywhere outside the same hull of 0.5·tem(H) + 0.5·tem(B).
 - **Manifest:** `blank/xf1b_face_manifest.csv` (fe5333e3…), with input, tem and output sha256 per row; `blank/SHA256SUMS` (b7d79c95…).
 - **Row list re-pinned with both forms:** `/mnt/t7/smad_next/XF1/xf1b_rows.csv`, 1,495 rows (whole 897 + face 598), sha256 **4adcf914fba651f3b1b1ccfc5ea4b3e03155357aa5c84804180513da5925b271**. The previous whole-frame file was renamed to `.bak-20261113222636`.
+
+## Revision b2 (DRAFT, not binding; `date`: Fri Nov 13 22:45 CET; fixes of the second pre-run check, `experiments/reviews/PRERUN_XF1_B_20261113.md` (44276e5), and the lead's answers)
+This revision supersedes the "Reads" and "Predictions" paragraphs of revision b. Nothing is uploaded or scored.
+
+**Label.** Post-freeze development diagnostic, registered after the sealed read. It cannot change the frozen Sb recipe, its seeds or any headline claim, and it is reported in diagnostics only.
+
+**Gate disclosure (fix 6).**
+- The gate was registered at dcb66a4 before computing and computed at 4781d01 (pinned stage 14).
+- Same-data learner (train_Sb list, face-only form): gbt 0.859 [0.836, 0.882], logreg 0.856 [0.833, 0.878]. Both upper bounds are below 0.90, so XF1 runs.
+- The learner on the A list gives gbt 0.885 [0.859, 0.910]; its upper bound crosses 0.90 (printed, does not decide).
+- The gate is final: it was not recomputed with other learners or features.
+- The face-only file-size floor is 0.666.
+
+**DATA caveat: the halo ring (fix 3; the lead's answer).**
+- About 7.6% of the face-only hull (per pair 6.8–9.0%; `/mnt/t7/smad_next/XF1/xf1b_ring.csv`, sha256 23f51cf3…, by `src/XF1/xf1b_ring.py`) is a ring outside the tool's eroded mask.
+- In that ring, FM(H,B) is the unwarped H/B average (ghost edges and the seam) and W is raw H. Both facts were verified on 299 of 299 pairs.
+- "Face-only" therefore means face plus the tool's halo. The lead accepts "face plus halo ring" as the deciding form, disclosed. Every read is also printed within ring-share terciles. There is no eroded-hull build now.
+
+**Training disclosure (fix 5).**
+- No arm trained on blanked copies, so the grey surround is equally unfamiliar to all three arms.
+- Only Sb trained on surround-matched splices (lad_S0, S3, S4: 156, 156 and 430 rows), which have the structure of this contrast. Sb's face-only advantage, if any, is partly the transfer its recipe was built for.
+- The whole-frame form is surround-dominated (surround floor 0.849, all-cue gbt 0.981), so it is printed only.
+- The whole-minus-face AUC per arm is printed as the blanking-shift control.
+
+**Rules (fix 4; decision form face-only; `src/XF1/xf1_read.py`).**
+- **Contrast:** FM(H,B) (klass FMHB, label 1) against W (klass WARP, label 0), selected by klass and form.
+- **Bootstrap:** 64 cycle blocks, 2,000 draws, rng 20261203; the same draws for all networks, forms and adversary sources. Leave-one-component-out ranges and a host bootstrap (rng 20261204) are printed as sensitivities.
+- **Gains:** Sb − B is the **primary** pair. Sb − A is **secondary**, because A's training list has no warp-only (lad_R2w) negatives while B and Sb have 156 each. Each pair uses the AB1 amendment-4 rule:
+  - **"present"** if the seed-mean is ≥ +0.03, the lower bound is > 0, and the gain is positive on ≥ 4 of 5 seeds;
+  - **"absent"** if the upper bound is < +0.03;
+  - otherwise **"inconclusive"**;
+  - **"not read"** if fewer than 4 seeds have both networks gate-passed.
+- **Precedence:** "not read", then **"all arms at ceiling"** (every arm's lower bound ≥ 0.95), then **"ceiling, not informative"** (X's seed-mean AUC ≥ 0.97, where a +0.03 gain is impossible), then the gain rule.
+- **Floor rule:** an arm whose 95% interval contains 0.50 **"does not separate blend from warp"**. An interval entirely below 0.50 is printed as "below 0.50 (reversed)".
+- **Licences per arm:**
+  - (a) Interval containing 0.50 or below it: "this blend is not what the networks flag".
+  - (b) Lower bound above 0.50 but not (c): "consistent with blending and noise averaging; no evidence beyond low-level statistics".
+  - (c) The network exceeds its own training list's same-data learner, using gbt (the gate's model). "Exceeds" means the block-bootstrap 2.5% bound of AUC_net − AUC_learner is > 0. It must hold on ≥ 4 of 5 seeds, and then the licence reads "beyond hand-made statistics trained on the same list".
+  - **No outcome licenses "detects identity mixing"**: there is no same-person blend control.
+- **Adversary comparisons:** made against `experiments/ADV_shortcut-floors/floors/xf1b_rows_scores.csv` (stage-14 pins) using `block`. `check.exceeds` has no xf1b contrast. The reader asserts the committed learner and floor AUCs (learner_Sb gbt face 0.8591, all-cue gbt face 0.9166, file single face 0.6662). Every source is printed beside each network in both forms.
+- **Printed strata:** terciles of the exactly-one-black share, |IED gap|, halo-ring share and cos_HB. Own-rule flags (logit > 0) on H, W and FM(H,B) are printed.
+
+**Predictions (revised; disclosed as written after the reviewers' and DATA's pixel statistics):**
+- Face-only arm AUCs: Sb 0.60–0.80, B 0.55–0.75, A 0.50–0.70.
+- Sb − B "inconclusive".
+- No arm reaches licence (c).
+
+**Pins (all new files; the revision-a pack and rows are kept, unused).**
+- Pack: `/mnt/t7/smad_next/XF1/xf1b_pack.tar` **cd57efbafc33603bf24429c257672de9185eeeeb2ec6af7436a647c0118a88a5** (1,495 xf1 rows + 3,417 gate rows; manifest xf1b_eval.csv 8f07ce77…).
+- Nets: `xf1b_nets.tar` **5a0a00befd23323e4757fb4c2b9b383f3762852afc4354972db54283114523e5** (same content as revision a).
+- Task folder `/mnt/t7/smad_next/XF1/tasks_XF1/`: SHA256SUMS e3c0599e…, holding rescore.py 6f6eede7…, xf1_gate.py 27b62b5a… and athena_xf1.sbatch 1105c787….
+- Code (`src/XF1/SHA256SUMS`): build_xf1_pack.py 46d9733a… (no rmtree; renames to .bak-<stamp>), build_xf1b_rows.py ee37a92a…, build_xf1b_face.py 5d58c6ff…, xf1b_ring.py 6d68ab09…, xf1_read.py 729d67ed….
+
+**Mock tests:** randomised logits only, with real adversary sources and rows. Every branch was exercised:
+- "random": floor rule and licence (a); Sb − B "inconclusive"; Sb − A "absent";
+- "ceiling": "all arms at ceiling";
+- "ceilB": "ceiling, not informative" for Sb − B;
+- "sbgain": "present" and licence (b);
+- "gatefail": B 404 and 405 fail, so Sb − B is "not read" and B is "below 0.50 (reversed)".
