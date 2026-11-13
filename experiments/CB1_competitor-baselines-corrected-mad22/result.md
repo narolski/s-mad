@@ -141,7 +141,7 @@ Label: "partial re-implementation; does not reach the published number"; never a
 | PW-MAD | as reported, not verified (no release; our pipeline re-implementation in the supplement) | M5 FRLL 17.41 vs 10.62 inconclusive (8 seeds: 16.58, inconclusive); no published MAD22 number |
 | MixFaceNet-MAD | released weights, our scoring (RS1) | release reproduces 9 of 9 FRLL + MAD22 cells through its own crop |
 | Inception-MAD | as reported, not verified (no release; our pipeline re-implementations in the supplement) | M1 MAD22 13.31 vs 10.53 inconclusive, FRLL 34.46; A45 32.20 / 44.50 |
-| OrthoMAD | as reported, not verified (no release; supplement) | M6 FRLL 61.26; published AMSL differs between sources (9.50 / 14.80), not yet checked in the OrthoMAD paper |
+| OrthoMAD | as reported, not verified (no release; supplement); **the manuscript's AMSL value is wrong** | The OrthoMAD paper (arXiv 2208.07841, Table II, local copy `/mnt/t7/smad_next/CB1/literature/orthomad.txt`) gives FRLL-AMSL EER 14.80 (BPCER@1 65.05, @20 10.89); 9.50 in the manuscript is the BPCER@APCER20 of OrthoMAD's WebMorph row (15.23 / 70.92 / 9.50). Correct OrthoMAD row: 14.80 / 0.98 / 0.73 / 6.54 / 15.23, mean 7.66 (manuscript 6.60). M6 FRLL 61.26 does not reproduce against either value |
 | MorphHRNet | as reported, not verified (no release; supplement) | M2 33.74, A45 W18 40.33 vs 9.42 |
 | MADation | released weights, our scoring (RS1) | ViT-B/16 reproduces 4 FRLL + 4 MAD22 cells |
 | SelfMAD | released weights, our scoring (RS1), FRLL only; no MAD22 row scored | RS1 run A |
