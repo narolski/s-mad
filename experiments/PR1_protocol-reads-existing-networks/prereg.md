@@ -451,3 +451,12 @@ cue code wrote gd1/gd2_limit8.npz at 12:09:33-35. The full GD1/GD2 cue computati
 score) started about 12:09 and finished at 12:11:03 (GD1) and 12:11:34 (GD2), after the commit. The reader ran once
 at 12:11:47 and the result was committed at 12:12:13. The network AUCs of these contrasts were known from part 2, so
 the contrasts and the rule were chosen with them in view (post hoc, as labelled).
+
+## Z5 operations note for the three-source arm (`date`: Fri Nov 13 about 14:45 CET; before computing)
+
+The MS1 read is committed and reviewed (`experiments/MS1_multi-source-training-set/result.md`,
+`REVIEW_MS1_20261113.md`). Z5 for SbM3 is read with `src/PR1/z5_read.py` (committed here), using the C2P helpers
+imported unchanged. Scores: each SbM3 fit's own `scores_eval.npz`, scored at fit time on its own L40S. No rescoring
+is done, so no cross-platform gate applies. A tar off its pin, or missing or non-finite hold-out rows, counts as not
+meeting the rule. The MS1 Sb fits are printed beside with no rule. AB1's storage-test read (8109cad) is not used for
+Z5; it will be cited beside Z5 once its review is applied.
