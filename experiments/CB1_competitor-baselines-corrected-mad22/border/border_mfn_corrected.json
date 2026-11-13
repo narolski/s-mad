@@ -1,0 +1,192 @@
+{
+ "amsl": {
+  "border_quartile_edges": [
+   0.0342,
+   0.0531,
+   0.0703
+  ],
+  "auc_by_border_quartile": [
+   0.25,
+   0.126,
+   0.018,
+   0.004
+  ],
+  "border_le_0p005": {
+   "auc": 0.462,
+   "ci95": [
+    0.295,
+    0.652
+   ],
+   "n_pos": 26,
+   "n_neg": 204,
+   "persons_pos": 13,
+   "resamples_dropped": 22
+  },
+  "border_exactly_0": {
+   "auc": 0.426,
+   "ci95": [
+    0.225,
+    0.627
+   ],
+   "n_pos": 2,
+   "n_neg": 204,
+   "persons_pos": 4,
+   "resamples_dropped": 686
+  },
+  "all": {
+   "auc": 0.1,
+   "ci95": [
+    0.058,
+    0.151
+   ],
+   "n_pos": 2175,
+   "n_neg": 204,
+   "persons_pos": 92,
+   "resamples_dropped": 0
+  }
+ },
+ "facemorpher": {
+  "border_quartile_edges": [
+   0.2343,
+   0.2597,
+   0.2872
+  ],
+  "auc_by_border_quartile": [
+   0.002,
+   0.002,
+   0.002,
+   0.001
+  ],
+  "border_le_0p005": null,
+  "border_exactly_0": null,
+  "all": {
+   "auc": 0.002,
+   "ci95": [
+    0.0,
+    0.006
+   ],
+   "n_pos": 1222,
+   "n_neg": 204,
+   "persons_pos": 102,
+   "resamples_dropped": 0
+  }
+ },
+ "opencv": {
+  "border_quartile_edges": [
+   0.1787,
+   0.1916,
+   0.2054
+  ],
+  "auc_by_border_quartile": [
+   0.006,
+   0.004,
+   0.001,
+   0.002
+  ],
+  "border_le_0p005": null,
+  "border_exactly_0": null,
+  "all": {
+   "auc": 0.003,
+   "ci95": [
+    0.0,
+    0.01
+   ],
+   "n_pos": 1221,
+   "n_neg": 204,
+   "persons_pos": 101,
+   "resamples_dropped": 0
+  }
+ },
+ "stylegan": {
+  "border_quartile_edges": [
+   0.0251,
+   0.0317,
+   0.0384
+  ],
+  "auc_by_border_quartile": [
+   0.893,
+   0.872,
+   0.795,
+   0.513
+  ],
+  "border_le_0p005": {
+   "auc": 0.908,
+   "ci95": [
+    0.706,
+    0.991
+   ],
+   "n_pos": 10,
+   "n_neg": 204,
+   "persons_pos": 10,
+   "resamples_dropped": 110
+  },
+  "border_exactly_0": {
+   "auc": 0.696,
+   "ci95": [
+    0.617,
+    0.775
+   ],
+   "n_pos": 1,
+   "n_neg": 204,
+   "persons_pos": 2,
+   "resamples_dropped": 1208
+  },
+  "all": {
+   "auc": 0.768,
+   "ci95": [
+    0.697,
+    0.83
+   ],
+   "n_pos": 1222,
+   "n_neg": 204,
+   "persons_pos": 102,
+   "resamples_dropped": 0
+  }
+ },
+ "webmorph": {
+  "border_quartile_edges": [
+   0.0299,
+   0.0507,
+   0.0721
+  ],
+  "auc_by_border_quartile": [
+   0.457,
+   0.179,
+   0.028,
+   0.005
+  ],
+  "border_le_0p005": {
+   "auc": 0.761,
+   "ci95": [
+    0.614,
+    0.881
+   ],
+   "n_pos": 74,
+   "n_neg": 204,
+   "persons_pos": 41,
+   "resamples_dropped": 0
+  },
+  "border_exactly_0": {
+   "auc": 0.914,
+   "ci95": [
+    0.817,
+    0.982
+   ],
+   "n_pos": 18,
+   "n_neg": 204,
+   "persons_pos": 22,
+   "resamples_dropped": 6
+  },
+  "all": {
+   "auc": 0.168,
+   "ci95": [
+    0.111,
+    0.229
+   ],
+   "n_pos": 1221,
+   "n_neg": 204,
+   "persons_pos": 101,
+   "resamples_dropped": 0
+  }
+ }
+}
