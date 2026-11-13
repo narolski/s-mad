@@ -167,6 +167,41 @@ Builders are the record's scripts in `/home/narolski/mambamorph-code/smadcvpr/` 
 | MIPGAN-II / StyleGAN2 training morphs of the record (3,000 PNG, A28) | not located | unknown | asset inventory C: "files not located" |
 | TT1-M MEDS pack | rented se1d `/workspace/tt1m` | no (master on `/mnt/t7`) | to be removed with the machine under the NIST terms |
 
+## 7a. Stored frame sizes of evaluation sets (13 Nov 2026, 23:30-23:41 machine clock)
+
+Answered from builder scripts, manifests and file headers only. Pixel dimensions come from the PNG IHDR or the PIL header
+(`Image.open().size`); no image content was viewed or scored. Sealed sets: names and the other scripts' references only.
+
+**Loader.** Every scorer of the protocol networks (`src/PN1/pn1_score.py`, via `smadcvpr/common.py` `ImageItems.load`,
+lines 609-615, sha256 ee71517a...) opens the stored frame and, only if its size differs from the network's `res`, calls
+`img.resize((res, res), Image.BILINEAR)`.
+- A 512 px input arm reads the 512 frames below with no resize.
+- A 224 px arm gets the loader's bilinear downsize.
+- A 224 px interior crop exists only in the RZ1 code: `src/RZ1/rz1_cpu.py` (sha256 e1519ce4..., commit 298e3ac), "the
+  224 interior window (crop:144:160)", written under the author's RZ1 ruling. It is a pixel crop of the 512 frame, not a
+  resize.
+
+| Set | Stored aligned frames used by our readers | Frame size | Written by | Native-size or raw copy |
+|---|---|---|---|---|
+| Corrected MAD22 (packed for the sealed read) | `smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z/{native,e7}/` (4,687 + 1,020); the same files in `FINAL/tree_FINAL_mad22/final/data/eval/mad22c/` (5,707) | 512 x 512 (all 5,707) | `prep_eval.align` (smadcvpr, sha256 374408ab...) through the corrected-MAD22 materialiser `.../MAD22_corrected_v1/inputs_v3/materialize.py` (sha256 239595ca...). **The materialiser exists only under `/tmp/opencode`** (OFF-T7, code) | raw author files: `mad22_incoming/.../original_sorted/` (BonaFide 1350 x 1350; MIPGAN 1024 x 1024; OpenCV 1351 x 1351, sampled headers); `native/` means not degraded, still aligned 512 |
+| Corrected MAD22, border-equalised copies | `FINAL/tree_FINAL_mad22/final/data/eval/be/<family>/` (4,223) + masks `data/masks/` | 512 x 512 | `src/FINAL/build_pack.py` (sha256 b80b4fcd..., commit a7d7454): constant (0,0,0) blanking of the family border mask on the 512 frames | as above |
+| FRLL-Morphs (+ FRLL photos, E7 resmatch genuine) | `mambamorph-code/smadcvpr_data/eval/frllm/` (amsl 3,975, facemorpher 3,022, frll_bona 2,448, opencv 3,021, stylegan 3,022, webmorph 3,021); the same frames in the AD4 / PN1 packs | 512 x 512 | `prep_eval.py` main (eval/frllm), sha256 374408ab... | raw: `Datasety/downloads/FRLL-Morphs/` (AMSL 413 x 531, OpenCV / FaceMorpher / WebMorph 431 x 513, StyleGAN 1024 x 1024); FRLL photos `frll_base` 1350 x 1350 |
+| FEI (gtest) | `smadcvpr_data/gtest/{neutral,smiling}/` (698 + 687) | 512 x 512 | `prep_gtest.py` (sha256 c7092909...) with `prep_eval.align` | raw `Datasety/downloads/FEI/` (640 x 480) |
+| MorDIFF | `smadcvpr_data/eval/mordiff/` (1,000 + 408 genuine) | 512 x 512 | `prep_eval.py` | raw crops `Datasety/downloads/MorDIFF/MorDIFF_crop/` (about 154 x 203, so the 512 frame is an enlargement of about 3x) |
+| DiM (six families) | `smadcvpr_data/eval/dim/` (500 per family; fast_dim_ode 499; 1,428 genuine) | 512 x 512 | `prep_eval.py` | raw `Datasety/downloads/DiM-FRLL-Morphs/` (256 x 256: enlargement 2x) |
+| H1 (Poisson landmark morphs) | `smad_heldout/h1_poisson/data/h1poisson/{morph,bona}/{orig,pp}/` (manifest 2,392 rows; 598 + 598 orig) | 512 x 512 | `h1_build.py` (sha256 85b944b7...) step 6: `prep_eval.align` unchanged | pre-alignment images stored losslessly in `h1_poisson/raw/` (112 x 112 CASIA crops: enlargement about 4.6x) |
+| VAL-X | not opened | unknown | builder file `smadcvpr/build_valx.py`: name only. The hard rule forbids opening files named valx, so I did not read it or compute its hash. `common.py` refers to "VAL-X B2, built by the valx task" from val10 stills | unknown |
+| FST | not opened | unknown | builder file `smadcvpr/build_fst_spec.py`: name only (same rule) | unknown |
+| A12SP | not opened | unknown | no builder found by file name in `smadcvpr/`; not searched further under the rule | unknown |
+
+Reading:
+- Every closed benchmark set our readers use exists as an aligned 512 x 512 frame written by `prep_eval.align` (or
+  `prep_gtest.py` with it). An arm with 512 px input can be read on them with no resize code.
+- A 224 px interior crop needs the RZ1 crop code (author-approved for RZ1) or new code.
+- For MorDIFF, DiM, H1 and the FRLL-Morphs landmark families, the 512 frame is an enlargement of a smaller raw source.
+- For the sealed sets the stored size is unknown without opening a sealed-named builder. An agent allowed to read them,
+  or the author, would have to answer.
+
 ## 7. Open checks (DATA, CPU only, no image operation)
 
 1. Done 13 Nov 19:04-19:06: R6 copied and verified (`volatile_backup_20261113`); SHA256SUMS for `volatile_backup_20261111`.
