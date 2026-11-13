@@ -101,3 +101,5 @@ after the commit; F2 Sb's rows kept unchanged and the FaceMorpher block balanced
 README section and pins file; F4 ceiling rule for H-fm2/H-fm3; F5 the strategist's Z3 gate and the seed choice stated;
 F6 wording ("unseen landmark tool", falsified wording); F7 noise disclosure and seed-mean print; F8 mock shifting test
 FaceMorpher R4. Improvement 3 (engine-prior diagnostic) printed.
+
+Note on times (`date`: Fri Nov 13 18:48 CET 2026; relayed correction of the lead's times; nothing else changes): the lead's instruction quoted as "18:50" arrived between 18:32 and 18:46 by the machine clock (the lead's times were about 45 minutes ahead); the header's "written from 18:55" is likewise not a machine-clock time: this registration was written in the minutes before its commit at 18:43 (git 9c0ed39). The freeze ruling (18:28) is right to the minute (about 18:27). In the disclosure, the loading-path test time "18:20" is an estimate; it ran before the pre-run check, and the scratch file was deleted at 18:42 by the machine clock.

@@ -122,3 +122,5 @@ Athena waiting time." Relayed by the lead through the dispatcher. The read time 
 replaced by: **read once when all fits of the batch have ended, latest 15 Nov 2026 18:00 CET; rows arriving later are
 labelled late.** Nothing else changes (arms, fits, reader 15406ab7, rules and pins as registered at 324b4fa); no B2
 score exists.
+
+Note on times (`date`: Fri Nov 13 18:48 CET 2026; relayed correction of the lead's times, NOTEBOOK "13 Nov 2026, 18:46 machine clock (lead): CORRECTION OF TIMES"; nothing else changes): the author's cut-off ruling quoted in amendment B2-A2 as "13 Nov 17:15" was committed at about 17:11 by the machine clock; amendment B2-A2 itself was committed at 17:14 (git baabd4e).

@@ -96,3 +96,5 @@ disclosed, "uninformative" likely; F3 job-path check binding (max |Δ| ≤ 0.01,
 suggested 1e-3 because batch composition alone moved scores by more than 1e-3 in TT1's gates); F4 wording ("no
 evaluation mask frame is a training mask frame"), MSU-MFSD named, TT1 embargo; F5 pins file; F6 border PNGs checked to
 load; F7 shifted mocks. Not taken: a McNemar print (optional).
+
+Note on times (`date`: Fri Nov 13 18:48 CET 2026; relayed correction of the lead's times; nothing else changes): the author's cut-off ruling quoted as "13 Nov 17:15" was committed at about 17:11 by the machine clock. The header's "written from 18:05" and "the lead's instruction (17:55)" were not machine-clock times: this registration was committed at 17:56 (git 7e4a974) and written in the half hour before; the lead's instruction arrived before that.
