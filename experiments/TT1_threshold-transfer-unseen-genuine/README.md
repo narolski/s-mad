@@ -121,6 +121,13 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
 - 01:06: lease tt1c (host 104.202.122.106:30099, A100-SXM4 80 GB, cap 2.5 USD, 2 h): upload, start, pull loop
   (`/mnt/t7/smad_next/vast/tt1c/tt1_drive.log`); result tar named TT1_A100_tt1c_full.tar.
 
+- 01:22:21 tt1c remote started; gate passed for the 11 networks (Bn_s401 repeated its tt1b miss exactly; FFHQ
+  byte-identical in all 12; tt1c gate numbers equal to tt1b's to every printed digit; `gate_a100_tt1c.json`); 11
+  networks scored on the 30,994 TT1 rows (about 1.5 min each); 01:46:28 result tar and logs verified, second copy
+  `/mnt/t7/smad_next/TT1/results/TT1_A100_tt1c_full.tar`, RELEASE.
+- 01:47:04-01:52: registered reader (`tt1_read.py --exclude PN1_Bn_s401`) -> `tt1_read.json`, tables
+  `tt1_read_tables.md`; verdicts in result.md. Sent for independent post-result review.
+
 ### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
 
 The decoded image, the resized image and the input tensor are bit-identical between the DGX stack (torch 2.12.1,
@@ -191,7 +198,10 @@ Measurements: lap_var = variance of the Laplacian (CV_64F) of the greyscale raw 
 mean channel difference < 1.0; enlarge = 132 / source IED; border_frac = share of exactly-black pixels in the 512 frame.
 No new image operation (no resize, blur, rotation or re-encode written by TT1 code).
 
-## 5. Results (pools only; no score)
+## 5. Results
+
+Scoring results: `result.md` (verdicts and key numbers) and `tt1_read_tables.md` (all tables), from
+`tt1_read.json`. Pool counts below.
 
 From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
@@ -246,8 +256,7 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-Lease tt1c running (driver in the background on the DGX). tt1a and tt1b: RELEASE (+ FAILED) written after
-verified copies. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+No process running. tt1a, tt1b, tt1c released after verified copies (tt1c: rc 0). Nothing queued on WCSS. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch
