@@ -97,7 +97,7 @@ one kind re-weights the others; check improvement 1):
   ab1b2_fit.sbatch to packs/AB1) → dispatcher's queue, unthrottled. No new smoke: run_b2.sh differs from the smoked and
   40-times-run run.sh v2 only in the overlay, its SUMS file name, the arm list and the results folder (diff in the
   README); the pre-run check may require one.
-- Read once when all 25 have ended (or at 14 Nov 12:00 with those present), two verified copies first.
+- Read once when all 25 have ended (or at 14 Nov 18:00 with those present; amendment B2-A1), two verified copies first.
 
 ## Pre-run check (`PRERUN_AB1B2_20261113.md`)
 
@@ -107,3 +107,10 @@ F2 B2-3 support also needs SbSp − SbS ≥ +0.01; F3 B2-1 wording names the re-
 SbR's volume rng named; F5 reader asserts the c2p_read and evaluation-manifest pins. Improvements taken: per-kind
 share table; B2-5b registered; multiplicity and post hoc labelling. Not taken: an arm holding the S3-negative share
 fixed while removing halves (new weighting code; author); replacing SbH61 by a larger weight change (overlaps SbS).
+
+## Amendment B2-A1 (`date`: Fri Nov 13 2026, evening; lead's instruction; no B2 tar or score exists at this commit)
+
+Reason: WCSS is full; Slurm forecasts array 6313020 to start at 14 Nov 11:20, which could end after the registered
+read time. The read time of batch B2 moves from "all 25 ended, or 14 Nov 12:00 with those present" to **"all 25
+ended, or 14 Nov 2026 18:00 CET (the end of the experiment stage) with those present"**, whichever comes first. Nothing
+else changes: arms, fits, reader (15406ab7), rules and pins are as registered at 324b4fa.
