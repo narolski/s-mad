@@ -72,7 +72,11 @@ For SA1 and RECORDS; the battery changes nothing in the table.
 ## 3. Gate test on the DGX CPU (TEST, never read)
 
 `--test-gate-key "NVIDIA A100-PCIE-40GB|torch 2.2.1|tf32 1/1"` runs the A100 gate on the DGX CPU, where it must fail (a
-different platform). Output `/mnt/t7/smad_next/BATTERY/test_gate_cpu/`. Result: added below when it ends.
+different platform). Output `/mnt/t7/smad_next/BATTERY/test_gate_cpu/` (19:17-19:55, 38 min on 2 CPU threads).
+Result, as designed: exit code 2, "BATTERY PLATFORM GATE FAILED", 2,496 of 2,496 reference logits differ (max |dlogit|
+0.0563, median 0.00038, own-rule flips 0; stored reference range -3.59 to +3.46, 369 rows between -2 and +2); no row
+scored; the temporary reference copy was removed. Same weights and images, other arithmetic: the byte-identity gate
+detects it although no decision flips.
 
 ## Commands
 
