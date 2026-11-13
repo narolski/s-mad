@@ -65,15 +65,13 @@ C2P-R score exists.
 
 - Queue name for pn1fs's hold list: `c2pr`; done marker `/mnt/t7/smad_next/vast/pn1fs/c2pr/C2PR_DONE` (+ `C2PR_FAILED`
   on a verified FATAL result); this driver never writes RELEASE.
-- Order: C2P-R takes `fs_queue.lock` after the Sp fits end (about 12:45), before the TT1 block, its extension and PR1's
-  job. TT1-FS waits for `/workspace/c2pr/DONE` (or `NO_C2PR`, or 13:30) before taking the lock (TT1 owner, restarted 09:47,
-  remote_tt1_fs.sh 2feaba74…, note 451c419); PR1 waits for TT1's DONE_FS.
-- Time: stage about 10 min (561 MB at about 1 MB/s; can run while Sp fits, as it touches only `/workspace/c2pr`), scoring
-  about 20-35 min. C2P-R must be started on the host (waiting on `fs_queue.lock`) before the Sp queue ends and before
-  13:30 CET (TT1-FS waits for `/workspace/c2pr/DONE` or `NO_C2PR` only until 13:30, then joins the flock, which is not
-  FIFO). If Sp is still running at 13:15, the lead decides whether to write `NO_C2PR`. If the author declines, write
-  `/workspace/c2pr/NO_C2PR` at once. The lock must be taken by 14:51 (the script's built-in margin). The lease deadline is 16:30
-  (moved by the lead on 13 Nov; cap unchanged); the read-by time stays 16:00.
+- Order (lead, 13 Nov 10:10): the Sp fits ended at about 10:02; `/workspace/c2pr/NO_C2PR` was written at 10:08:25 CET
+  on the lead's instruction, meaning only "the other jobs do not wait for C2P-R". The TT1 block, its extension and PR1's
+  job run first (about two hours). If the author approves, C2P-R is staged and started after those jobs and takes
+  `fs_queue.lock` when it is free.
+- Time: stage about 10 min (561 MB), scoring about 20-35 min. The remote script aborts if it gets the lock after 14:51
+  CET (its built-in margin); read-by 16:00 CET unchanged; lease deadline 16:30 (moved by the lead on 13 Nov; cap
+  unchanged).
 - Commands after the author's yes and the registration commit:
   ```
   cd /home/narolski/smad-next/src/PN1/c2pr
