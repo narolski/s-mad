@@ -563,6 +563,13 @@ halves and history copies do (genuine-class ρ −0.29 to −0.37 in d, e, f).
 
 ## First LoRA fits (A9; ViT-L/14 M3L recipe, arm a, seeds 401 and 402, Athena 3545823_0/1; `p3_lora_vitl.json`)
 
+Update 13 Nov 11:00: the third arm-a fit SM1L_a_s403 (Athena 3545823_2, 3:54 h, exit 0; tar sha256-verified) is added;
+`p3_lora_vitl.json` now holds seeds 401, 402, 403. 3-seed means (seeds): landmark-7 native EER 2.41 (2.28, 2.96, 2.00),
+landmark rise −0.30; diffusion-7 native EER 32.2 (36.0, 26.5, 34.2), diffusion rise −3.5 (−1.8, +0.3, −8.9); MorDIFF
+native EER 48.1 (51.5, 38.7, 54.0); GAN-3 20.2; history-matched pools flagged at the own rule 0.00 in every fit. The
+seed-403 fit confirms the two-seed reading: this ViT-L/14 head does not detect MorDIFF and shows no storage rise.
+Seeds 404, 405 (3545823_3/4) are running.
+
 Our frames, first-test data, arms fixed in advance; 2 of the 25 ViT-L/14 fits (the others wait on Athena). Means of
 2 seeds [person bootstrap]; frozen-head arm a in brackets: landmark-7 native EER 2.62 [1.91, 3.24] (7.34), landmark
 rise −0.29 (+2.59); diffusion-7 native EER 31.2 [28.8, 33.3] (20.7), diffusion rise −0.76 [−1.85, +0.44] (+11.32);
