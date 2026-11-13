@@ -263,3 +263,30 @@ FRLL-Morphs / MorDIFF orig row) against the stored A12REL MixFaceNet scores of t
 (`smadcvpr_runs/A12_scored/A12REL/mixfacenet_mad_smdd/scores_eval.npz`): median |logit difference| <= 0.05 and maximum
 <= 0.5; failing that, no new-score cell is read. Smoke (8 rows): logits within 0.02 of the stored GPU values.
 Everything is labelled "benchmark audit, our scoring, not reviewed" until a review.
+
+## Amendment 6 (13 Nov 2026, about 09:05 CET; pre-run check of amendment 5: GO WITH FIXES; before any new A43 / AG1 score exists or is read)
+
+Only the reproduction gate (212 eval rows) has been scored so far: median |logit difference| 0.0057, max 0.070: PASS.
+- 14-MFN: read on the AG1 pool mip1/primary (FERET + FRGC, as the existing 14-ViTB / ViTL / SelfMAD cells), mip1/frll
+  printed beside. Threshold: AG1's own "corrected-MAD22" EER threshold, FRLL R0 against the published MIPGAN-I files
+  inside the AG1 frames, through the AG1 reader's `eer_thr` (the reader `src/AG1/ag1_read.py` is imported unchanged with
+  only its release tuple set to the MixFaceNet release; its outputs go to a new folder; MixFaceNet is not added to the
+  other releases' Holm family). The 5,707 corrected-MAD22 frames are not scored (dropped).
+- Validity rule (binding, per reader): the release must rank the benchmark correctly on our frames: AG1 R0 > PUB AUC
+  above 0.5 with the 95% interval excluding 0.5; AD1 published MorDIFF (A) against the FRLL photos R0 above 0.5 with the
+  interval excluding 0.5. If it fails, the cell reads "not interpretable: release reversed on our frames" and only the
+  own-crop value (13: RS1 corrected crop B20 vs D20) is printed.
+- 16-MFN: the C1b row is printed with its caveat (EERs 75-98% on four FRLL-Morphs cells, reversed, descriptive), not
+  summarised as "change < 1.5 pts"; the own-crop neutral / smiling EERs from `RS1/rs1_expression.csv` are a separate,
+  labelled side value.
+- Score fields: `logit_noTTA` only (the flip-averaged `score` is not used). Checks before reading: list ids equal the
+  manifest ids in order, every row present, every value finite; AD1 consistency check binding: the A43 rows that are
+  eval.csv frames (FRLL photos R0) against the stored A12REL MixFaceNet eval scores, same rule as the gate. The scorer
+  bypasses `a12_released.py`'s own scope guards (registered-list and unlock checks); acceptable for released weights
+  under the early-unseal ruling, stated here.
+- 4-ViTL: labelled "own crop (RS1)", both crop variants with n (v1 1,934, v2 1,997 FFHQ photos) and the miss rate on
+  morphs at the same 0.5 rule.
+- 5-MFN(b) / 5-ViTL(b): median paired shift, person bootstrap B 2,000, seed 20261111 (EV1's seed); the black-border
+  fractions of both pools after the own crop (`RS1/rs1_border.csv`) printed beside, since the own crop re-detects the
+  face and may cut the border away.
+- 10-SelfMAD: labelled "SelfMAD's own preprocessing (dlib crop), not the SMDD crop script"; same five FRLL families.
