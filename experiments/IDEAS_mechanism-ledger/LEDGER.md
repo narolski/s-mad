@@ -1,0 +1,404 @@
+# Mechanism ledger, ideas and literature role (IDEAS)
+
+Version 1, started 13 Nov 2026 18:55 CET, written 19:00-19:40 CET (machine clock, `date`). Owner: the standing ideas
+and literature agent (IDEAS, OWNER_BRIEF "Five standing roles", item 1). **Proposals only.** Nothing here was run,
+scored, trained or computed on an image. No benchmark file, no `valx`, FST or A12SP file and no image was opened. The
+numbers quoted from our record come from committed result files named beside them; numbers quoted from papers come
+from pages I opened in this session unless marked otherwise.
+
+Read before writing: `OWNER_BRIEF.md`, `18_EVENING_CONCLUSIONS_20261113.md`, `experiments/SA1_shortcut-audit-table/result.md`,
+`experiments/reviews/STRATEGIST_EVENING_20261113.md`, `experiments/NEXT_method-selection-rule/prereg_draft.md`, the 13 Nov
+entries of `NOTEBOOK.md`, and, to avoid re-proposing what is already settled: `03_LITERATURE_AND_METHODS.md`,
+`ideas/CONSOLIDATED_v3.md`, `ideas/round3/physics_vetting.md`, `ideas/round3/mechanism_vetting.md`, the identity-shrinkage
+triage (ID0) result, the mirror-asymmetry test (AS0) result, the blend-difference attribution (BD1) result, the
+look-alike pair search plan (LA1), and part 3 of the reads of the existing networks (PR1).
+
+## The question every entry answers
+
+The candidate (arm Sb, CLIP ViT-B/16 + LoRA, frozen at seeds 403-407) detects blending inside the face but has no
+demonstrated second-identity signal (same-person morphs flagged 83-90%, same-person splices 31-48%), reacts to a
+blanked-in border (2.9-16.3% of camera photos), responds to rendering on GAN and diffusion images, and is not shown to
+beat the best single hand-made statistic (0.873-0.906 against 0.886). A mechanism is worth a training arm only if it
+gives a reason why **a morph of two people must carry the signal while a genuine photo, a same-person morph and a
+one-photo re-render must not**, and if a cheap test on development data can kill it.
+
+Allowed image operations used by the tests below (OWNER_BRIEF line 41): constant-colour region blanking, the approved
+warp script `h1_build.py`, the unchanged OpenCV and FaceMorpher morphers, existing E7 outputs, lossless PNG. Two
+measurement steps need the lead's confirmation that they count as measurements (precedent cited): blanking applied
+in memory to an aligned 112 px face-recognition crop (the registered glintr100 route of `src/AR1/fr.py`, used by AR1
+and BD1, already does an in-memory similarity crop); in-memory FFT band images (registered as an allowed measurement in
+the mirror-asymmetry test, AS0 `prereg.md` "Bands"). No image is written by any proposed test.
+
+## Ranking by expected information per GPU-hour
+
+"Information" here means: how much the outcome changes what we can claim or which arm we run, times the chance the
+test is decisive. GPU-hours are my estimates for a GB10 or one A100/H100, not measurements.
+
+| Rank | Mechanism (plain name) [proposed test ID] | Kills or licenses | GPU-h | CPU-h | Prior that the premise holds (my estimate) | Test design |
+|---|---|---|---|---|---|---|
+| 1 | **Regional identity disagreement**: face-recognition embeddings of different face regions of a two-person morph point to different people [RI1] | the only cheap, direct, single-image test of a second-identity mechanism; licenses or kills an identity-consistency arm (ICT-style) | 0.3 | 2 | 0.35 for full blends, 0.6 for splices | `TEST_regional-identity.md` |
+| 2 | **Nuisance directions in the candidate's own features**: is the border reaction (and the same-person-splice flag) a separable direction that erasure or group-balanced last-layer refitting can remove without losing detection? [NE1] | decides between adversarial debiasing / group DRO arms and "the features lack the signal" | 0.5-1.5 | 2 | 0.5 for the border, 0.2 for same-person splices | `TEST_nuisance-erasure.md` |
+| 3 | **Texture band profile of two people against one person**: the difference between two people's aligned skin and feature textures has a different frequency profile from the difference between two sessions of one person, at equal blend energy [TB1] | kills or licenses every texture / skin-statistics mechanism with an oracle premise check before any single-image statistic | 0 | 3 | 0.4 | `TEST_texture-band-profile.md` |
+| 4 | **Similarity-matched look-alike contrast**: two-person and same-person blends matched on face-recognition similarity [LA1, existing plan] | the decisive test of "second identity beyond FR similarity"; needs new morphs (author item) | 0.5 (calibration LA1-0) + build | 4 | n/a (it is a control, not a mechanism) | LA1 `plan.md`; my additions below |
+| 5 | Group-robust training of the candidate (group DRO, JTT) | only after NE1 shows the features can move along the trade-off | 6-12 | — | 0.2 | entry M7 |
+| 6 | Paired invariance losses (border equality, same-host S4 > S3 margin) | only after NE1; border-crossed data arm (Sbx) is already queued | 5-6 | — | 0.4 for the border, 0.15 for identity | entry M9 |
+| 7 | Landmark-geometry averaging and geometry-texture inconsistency | largely measured (ID0 shape 0.687 on exact landmarks; AS0 "weak"); adds a statistic at best | 0 | 1 | 0.3 | entry M4 |
+| 8 | Residual-noise (PRNU-like) mixing | reads "two captures averaged", which a same-person morph also is; zero-GPU kill read | 0 | 1 | 0.1 as a second-identity cue | entry M3 |
+| 9 | Image-space demorphing (recover both faces) | ill-posed from one image, hallucinates on genuine photos; costly | 20+ | — | 0.15 | entry M5 |
+| 10 | Self-blended training images (SBI / SelfMAD) | labels one-identity blends as attacks: the opposite of the target | n/a | — | n/a (anti-mechanism) | entry M11 |
+| 11 | Invariant risk minimisation / V-REx | few environments; known to fall back to ERM | 6+ | — | 0.1 | entry M8 |
+| 12 | Frequency traces of warping (resampling correlations) | a warp-only image carries them too; already a trained negative | 0 | 0 | ~0 as a second-identity cue | entry M6 |
+
+The top three cost about 1-2 GPU-hours together, and each needs no training. RI1 and TB1 test the two physical routes
+by which a second person can show in one image (identity features in face-recognition space; anatomy-level texture);
+NE1 tests whether the failures we already know are removable from the features we already have. If RI1 and TB1 both
+fail their premise checks, the honest consequence is the strategist's audit framing: on our data no single-image
+second-identity mechanism was found, and the arms of the next version should target the named shortcuts (border,
+rendering) rather than identity.
+
+---
+
+## M1. Regional identity disagreement (rank 1) [RI1]
+
+**(a) Why a two-person morph must carry it and the three negatives must not.**
+- *Splices* (our S4; also the common practice of pasting the blended inner face into one contributor's head): the
+  inner face is a blend of A and B, everything outside the hull is A. Two regions of one image therefore carry two
+  different identity estimates, and the gap grows with the dissimilarity of A and B. A genuine photo has one identity
+  everywhere. A same-person splice (S3) has blend(A, A') inside and A outside: one identity, small gap. A one-photo
+  re-render (GAN or diffusion) changes identity, if at all, coherently over the whole face.
+- *Full-frame blends* (R4, the OpenCV and FaceMorpher landmark morphs, latent morphs): every region is a mixture, so
+  inner against outer gives nothing. The physical reason here is weaker and is a hypothesis: each region of a morph
+  resembles A and B by different amounts, because which contributor dominates a feature (eye shape, brow, nose, mouth)
+  depends on the local contrast and geometry of the two sources. Occluding one region then shifts the face-recognition
+  embedding towards A or towards B, by different amounts for different regions. For a genuine photo or a same-person
+  morph occlusions shift the embedding along directions that do not point to two people. The premise is testable with
+  an oracle (we know A and B on the ladder) before any single-image statistic is read.
+- Re-renders could still fail this if the generator produces regionally inconsistent identity; that is a test row.
+
+**(b) Evidence.**
+- Dong et al., "Protecting Celebrities from DeepFake with Identity Consistency Transformer", CVPR 2022,
+  https://arxiv.org/abs/2203.01318 (abstract opened): detects face swaps by "identity inconsistency in inner and outer
+  face regions", learned with two identity tokens and a consistency loss; claims cross-dataset and degradation
+  robustness. A reference-assisted variant exists; the abstract does not confirm the reference-free numbers.
+- Gao et al., ICIAP 2023 workshops, inner/outer inconsistency for general deepfake detection,
+  https://iris.unica.it/handle/11584/389063: **not verified** (search listing only).
+- Our record: the ladder's FR oracle, with an independent photo of the host, separates two-person from same-person
+  morphs at 0.998 and 99% of morphs verify against both contributors (`experiments/AR1/gate_b.json`, key
+  `frgcferet.opencv`): the identity information is in the morph; the question is whether it is regionally unequal.
+  BD1 amendments 2-3 (`experiments/BD1_blend-difference-attribution/result.md`, H1 "supported"): within same-person
+  splices Sb's logit rises as the FR similarity of the host's two photos falls (partial ρ −0.15 to −0.26 given blend
+  energy and colour), "consistent with an identity-weighted appearance cue but does not show one".
+- Against: the earlier "identity-agreement slots" idea was dropped as MorDeephy-like and "failed twice in our record"
+  (`ideas/CONSOLIDATED_v3.md`, section 6); that was a learned two-slot head, not a regional measurement. ID0 found no
+  power for FR typicality (`experiments/ID0_identity-shrinkage-triage/result.md`, point 2), which is a different
+  statistic (closeness to the mean face, not disagreement between regions).
+- Partial-face recognition: ArcFace verification degrades when the lower face is masked (Damer et al., as summarised in
+  https://arxiv.org/abs/2207.06478; **not verified**, search snippet only). So region embeddings are noisy; the test has
+  a gate for this (G0 in the test design).
+
+**(c) Shortcuts that could imitate it.** (1) Blur or blending softness lowers FR confidence and could raise dispersion
+without identity: controlled by same-person morphs and splices (same softness) and by stored-small genuine photos.
+(2) The splice seam: controlled by the seam-only image S0 (seam, no second person). (3) Pose or session difference
+between the two source photos: controlled by stratifying on the host's same-person FR similarity (cos_HS) and on the
+geometry gap G (BD1 measures). (4) Border: controlled by border-blanked camera photos. (5) The blanking itself: applied
+identically to every row.
+
+**(d) Cheapest kill test.** `TEST_regional-identity.md`: glintr100 embeddings of each development image under eight
+constant-colour occlusion patterns, no training. Oracle premise first (does the A-versus-B leaning of the embedding vary
+across occlusions more for R4 than the session leaning does for R3?), then the single-image dispersion statistic with
+storage, border, warp and seam controls, then incremental value over Sb's logit.
+
+**(e) GPU-hours.** About 0.3 (about 40,000 crops through glintr100), 2 CPU-hours.
+
+**(f) Worth a training arm if** the oracle premise reaches ≥ 0.70 for R4 against R3, the single-image dispersion
+separates S4 from S3 at ≥ 0.65 within blend-energy quintiles and R4 from R3 at ≥ 0.65, every nuisance control stays
+≤ 0.60, and the statistic adds ≥ +0.03 AUC to Sb's logit on S4 against S3 (cross-fitted) on ≥ 4 of 5 seeds. The arm:
+an identity-consistency auxiliary head on the CLIP LoRA network (two or more region tokens distilled towards glintr100
+region embeddings of genuine images, with a disagreement penalty only on genuine and same-person rows), five seeds,
+about 6 H100-hours, scored with the battery and beside the adversary floor.
+
+## M2. Texture band profile, two people against one (rank 3) [TB1]
+
+**(a) Reason.** Landmark warping aligns about 70-100 landmarks; between them, person-specific structure at the scale
+of eyelid creases, brow hairs, nostril shape, lip outline, moles and skin texture does not coincide for two different
+people, while for two sessions of one person most of it is the same anatomy at nearly the same place. So the
+*difference* between the two warped halves should have relatively more energy at the mid frequencies where anatomy
+lives for A-B than for A-A', where the difference is dominated by low-frequency illumination and high-frequency sensor
+noise. A genuine photo has one texture layer; a re-render has one (generated) layer. This is the "layer-count" idea of
+round 3, but tested first with an oracle on the halves and stated as a band profile at equal blend energy, which BD1
+showed is the right control.
+
+**(b) Evidence.** Raghavendra, Raja and Busch, "Detecting morphed face images", BTAS 2016 (BSIF micro-texture with an
+SVM), https://www.christoph-busch.de/files/Raghavendra-FaceMorphingDetection-BTAS-2016.pdf: **not verified** (search
+listing; PDF not opened). Raghavendra and Li, IEEE Access 2022 (region-wise BSIF/LBP on eyes, nose, mouth), DOAJ
+listing https://doaj.org/article/d09b9741b4b14252a023eff619c19a91: **not verified**. Neither separates identity from
+blending; both use different storage for the classes. Our record: AS0 found the mirror-asymmetric texture share
+separates R4 from R3 at only 0.611 [0.573, 0.651] overall, best band 0.618 (`experiments/AS0_mirror-asymmetry/result.md`,
+"weak"), so a texture-level second-identity signal, if present, is small in that statistic. BD1: blend-difference
+energy D alone separates S4 from S3 at 0.636, and Sb keeps 0.70-0.73 within D quintiles: something beyond energy is
+read inside the hull.
+
+**(c) Shortcuts.** Colour and illumination differences between the two source photos (stronger across people and
+sessions): BD1's D_dc and D_lin are the controls. Pose difference (geometry gap G). Storage history changes band
+profiles: the single-image version uses the outer region of the same image as reference, which shares storage.
+
+**(d) Cheapest kill test.** `TEST_texture-band-profile.md`: zero GPU; oracle band profile of the half-difference
+(A_w − B_w against A_w − A'_w) within D, D_lin and G strata; then a within-image inside/outside band ratio as the
+single-image statistic, with stored-small and seam controls.
+
+**(e) GPU-hours.** 0; about 3 CPU-hours.
+
+**(f) Worth an arm if** the oracle profile separates two-person from same-person differences at ≥ 0.70 cross-fitted
+within D quintiles, and the single-image inside/outside ratio separates S4 from S3 at ≥ 0.65 within D with the storage
+control ≤ 0.58. Arm: same-person blends at matched D as negatives plus an auxiliary band-profile target, or a
+band-split input stream; about 6 H100-hours, five seeds.
+
+## M3. Residual-noise (PRNU-like) mixing (rank 8)
+
+**(a) Reason, and why it does not reach identity.** A blend of two captures averages two independent noise fields:
+the noise variance falls by α² + (1 − α)² (one half at α = 0.5), and each sensor fingerprint is displaced by a
+different warp. But a same-person morph is also a blend of two independent captures, so it carries exactly the same
+trace; a one-photo re-render replaces sensor noise wholesale, so a noise detector flags it as "not a camera photo".
+The mechanism therefore reads "two captures were averaged" or "not a camera image", never "two people". Storage
+history (shrink and enlarge) also removes sensor noise, so it collides head-on with the storage shortcut.
+
+**(b) Evidence.** Debiasi, Rathgeb, Scherhag, Uhl, Busch, "PRNU variance analysis for morphed face image detection",
+BTAS 2018, https://www.christoph-busch.de/files/Debiasi-PRNU-variance-MAD-BTAS-2018.pdf (opened, text extracted):
+961 bona fide FRGCv2 images against 2,414 landmark morphs at 320 x 320 px; D-EER 10.5% over all attacks; the
+post-processing (histogram equalisation, 50% and 75% shrink-and-enlarge, sharpening) is applied to **morphs only**, and
+the shrunk morphs become *easier* to detect (for the Ppos|Smean detector, D-EER 2.2-2.9% on unprocessed morphs against
+0.0-1.5% on SCL50 and SCL75 morphs, over 4, 8 and 10 cells; the other detectors vary from 1.0% to 42%) while bona fide
+images are never processed: the storage asymmetry is in the protocol. Debiasi et al., "PRNU-based detection of
+morphed face images", IWBF 2018, https://www.christoph-busch.de/files/Debiasi-PRNUMorphDetection-IWBF-2018.pdf: **not
+verified** (listing only). Zhang, Peng, Long, "Face morphing detection using Fourier spectrum of sensor pattern noise",
+ICME 2018: **not verified**. Our record: the best single hand-made statistic on landmark_combined is a noise statistic
+(noise_std_face, 0.886; 0.730 on the DiffAE mix against same-person mix, PR1 part 3, `experiments/PR1_protocol-reads-existing-networks/result.md`
+"Part B").
+
+**(c) Shortcuts.** Storage history, JPEG, rendering: all three imitate it.
+
+**(d) Kill read (zero GPU).** On existing cue tables, noise_std_face and the other noise statistics for S4 against
+S3 and R4 against R3 within D quintiles. Prediction: ≤ 0.58. If above 0.65 at equal D, the "two captures" argument is
+wrong and the entry moves up.
+
+**(e)** 0 GPU, about 1 CPU-hour. **(f)** No arm on this mechanism. It belongs to the adversary floor (ADVERSARY), where it
+already is.
+
+## M4. Landmark-geometry averaging and geometry-texture inconsistency (rank 7)
+
+**(a) Reason.** A two-person morph has the mean shape of A and B, which is more average than a real shape; a
+same-person mean shape hardly is. A splice adds a possible inconsistency between the averaged inner geometry and the
+outer contour of A. Genuine photos and re-renders have one real shape.
+
+**(b) Evidence.** Scherhag, Budhrani, Gomez-Barrero, Busch, "Detecting morphed face images using facial landmarks",
+ICISP 2018, https://www.christoph-busch.de/files/Scherhag-LandmarkMAD-ICISP-2018.pdf: differential (probe against
+document), distance- and angle-based features from dlib landmarks (search listing; **not verified**). Our record: from
+exact landmark files, two-person mean shape against real shape 0.725 [0.689, 0.758], same-person mean against
+two-person mean 0.687 [0.650, 0.720], photo against same-person mean 0.548 (ID0 result, points 4-5); detected
+landmarks are noisier, and AS0 gave "weak".
+
+**(c) Shortcuts.** Pose and expression dominate shape variance; the warp-only image toward the two-person mean shape
+(R2w4) has the same averaged geometry with one identity, so geometry alone cannot separate R4 from R2w4 at all: a
+geometry cue reads "was warped to a mean shape", which our protocol already trains as genuine.
+
+**(d) Kill read.** Already effectively read: the exact-landmark ceiling (0.687) is below Sb's own S4 against S3 on
+development hosts (0.78-0.82). The only open variant is the splice-boundary inconsistency, which S0 (seam with
+two-person outer geometry and no second person) already controls for Sb (0 of 100 seam-only images flagged).
+
+**(e)** 0 GPU. **(f)** No arm. Keep as an adversary-floor statistic (shape typicality from the aligner's own .tem).
+
+## M5. Demorphing (recover both contributors from one image) (rank 9)
+
+**(a) Reason.** If a single image can be decomposed into two faces whose FR embeddings differ, it holds two
+identities. A genuine photo should decompose into two copies of one person.
+
+**(b) Evidence.** Banerjee, Jaiswal, Ross, "Facial de-morphing: extracting component faces from a single morph",
+https://arxiv.org/abs/2209.02933 (abstract opened): GAN decomposition, no reference, landmark and generative morphs,
+"promising results"; no numbers in the abstract. Ferrara, Franco, Maltoni, "Face demorphing", IEEE TIFS 13(4)
+1008-1017, 2018: differential (needs the live capture), **not verified** (search listing). Shukla and Ross,
+diffDemorph, https://arxiv.org/abs/2505.14527: listed in `03_LITERATURE_AND_METHODS.md` as checked on 11 Nov, **not
+re-opened**. The 2026 MLLM-conditioned demorphing paper there states that earlier reference-free methods assume
+train-test identity overlap or a known morph method (same file, C2; not re-opened).
+
+**(c) Shortcuts.** A decomposer always outputs two faces; on genuine photos it can hallucinate a second identity whose
+distance tracks image quality or storage. The two outputs' FR distance may track blur.
+
+**(d) Cheapest kill test.** Not cheap: it needs a trained decomposer (tens of GPU-hours). A cheaper proxy is RI1's
+oracle premise: if regions of a morph do not lean towards different contributors, a decomposer has little to find
+beyond what a blend detector finds.
+
+**(e)** 20+ GPU-hours. **(f)** Only if RI1 passes strongly and the paper needs an identity-recovery figure.
+
+## M6. Frequency traces of warping (rank 12)
+
+**(a) Reason, and why it fails.** Warping resamples the image and leaves periodic interpolation correlations (Popescu
+and Farid, "Exposing digital forgeries by detecting traces of resampling", IEEE TSP 53(2) 758-767, 2005,
+https://farid.berkeley.edu/downloads/publications/sp05.pdf: **not verified**, bibliographic data from the DBLP listing).
+A warp-only image of one person carries the same trace, and a warp toward a two-person geometry is only larger than a
+same-person warp, not different in kind. Shrink-and-enlarge is itself resampling.
+
+**(b-d)** Our record already contains the kill: warp-only images are not flagged by any arm (SA1 row 6), and the
+networks exceed the simple-statistic floor only on one-photo render against camera photo (PR1 part 3).
+
+**(e)** 0. **(f)** No arm.
+
+## M7. Group-robust training: group DRO and JTT (rank 5)
+
+**(a) What it would do.** Minimise the worst loss over groups (label x nuisance: border, storage size, source, engine,
+render path, splice type), so that the network cannot buy average accuracy by failing a group such as same-person
+splices or border-blanked photos.
+
+**(b) Evidence.** Sagawa, Koh, Hashimoto, Liang, group DRO, https://arxiv.org/abs/1911.08731 (abstract opened; ICLR
+2020 per the paper, the page lists only arXiv): naive group DRO fails on over-parameterised networks; strong L2 or
+early stopping gives 10-40 point worst-group gains. Liu et al., JTT, ICML 2021, https://arxiv.org/abs/2107.09044
+(opened): closes 75% of the ERM-to-group-DRO worst-group gap without training group labels. Gulrajani and
+Lopez-Paz, "In search of lost domain generalization", https://arxiv.org/abs/2007.01434 (opened): carefully tuned ERM
+matches domain-generalisation algorithms.
+
+**(c) Why it may not help here.** Our failures are not under-weighted minority groups. Sb flags 26-37% of its own
+*training* same-person splices, the same hosts on every seed (PR1 part 1; SE1 F5): a label conflict at the host level,
+which reweighting does not resolve. AB1 measured a trade-off (r = 0.73) between fewer same-person-splice flags and lower
+landmark detection; DRO would most likely move along that trade-off. The border is absent from training, so there is
+no group to reweight.
+
+**(d) Cheapest kill test.** NE1, head H2: a group-balanced last-layer refit on Sb's frozen features. If its front of
+(same-person-splice flags at fixed two-person-splice recall) is within 0.03 of a threshold sweep of the original head,
+reweighting the same features cannot move the trade-off and a full DRO fit will not either.
+
+**(e)** Inside NE1 (no extra GPU); a full arm 6-12 H100-hours. **(f)** Arm only if H2 moves the front by ≥ 0.05 on ≥ 4
+of 5 seeds.
+
+## M8. Invariant risk minimisation and V-REx (rank 11)
+
+**(b) Evidence.** Rosenfeld, Ravikumar, Risteski, "The risks of invariant risk minimization", ICLR 2021,
+https://arxiv.org/abs/2010.05761 (opened): IRM often fails to recover the invariant predictor and can fail
+catastrophically in the non-linear case; it does not improve on ERM in their model. IRM (Arjovsky et al.,
+arXiv:1907.02893) and V-REx (Krueger et al., arXiv:2003.00688): **not re-opened**. **(c)** We have few environments
+(two databases, one engine in training), and the nuisance that hurts (border) is absent from training environments.
+**(f)** No arm unless a battery of at least four genuinely different environments exists; not before RI1, NE1, TB1.
+
+## M9. Paired (counterfactual) invariance losses (rank 6)
+
+**(a) What it would do.** We already train paired data (matched negatives). The next step is to tie the pairs in the
+loss: an equality term on logits for the same photo with and without a border (or native against stored), and a margin
+term that ranks each two-person splice above the same-person splice of the same host and geometry.
+
+**(b) Evidence.** Aligned datasets (Rajan et al., ICLR 2025, https://arxiv.org/abs/2410.11835), B-Free (Guillaro et al.,
+CVPR 2025, https://arxiv.org/abs/2412.17671), Dual Data Alignment (https://arxiv.org/abs/2505.14359): in
+generated-image detection, pairing each fake with a reconstruction of a real image is what removes format and size
+shortcuts. All three were marked "checked" in `03_LITERATURE_AND_METHODS.md` on 11 Nov; **not re-opened** in this session.
+Stay-Positive (Rajan and Lee, https://arxiv.org/abs/2502.07778, opened): constrain the detector to use only evidence for
+the fake class; claims less reliance on spurious "real" features and more robustness to post-processing.
+
+**(c)** The border equality term needs border rows in training, i.e. the same data as the queued border-crossed arm
+(Sbx); its additional value is only the loss. The identity margin term cannot create a signal the features do not hold
+(BD1: the residual at equal D is generalisation within one construction).
+
+**(d)** NE1 head H3 tests whether the border is a separable direction; if so, either the data arm (Sbx) or an equality
+loss will likely remove it, and the cheaper one (data) should be read first. **(e)** 5-6 H100-hours per arm.
+**(f)** Equality-loss arm only if Sbx leaves > 2% border flags and NE1 shows the direction is separable.
+
+## M10. Adversarial debiasing against a nuisance head, and concept erasure (inside rank 2) [NE1]
+
+**(a) What it would do.** Train the features so that a nuisance head (border present, storage size, source database,
+render path) cannot read the nuisance, via gradient reversal; or remove the nuisance direction in closed form.
+
+**(b) Evidence.** Ganin et al., "Domain-adversarial training of neural networks", JMLR 17, 2016,
+https://arxiv.org/abs/1505.07818 (opened): gradient reversal layer, features indiscriminate between domains. Kirichenko,
+Izmailov, Wilson, "Last layer re-training is sufficient for robustness to spurious correlations", ICLR 2023,
+https://arxiv.org/abs/2204.02937 (opened): the features often contain the core signal; refitting only the last layer
+on group-balanced data matches heavier methods. LEACE (Belrose et al., NeurIPS 2023, arXiv:2306.03819): **not
+re-opened**.
+
+**(c) Risk.** If the nuisance and the label share a direction (border and splice boundary are both "edges inside the
+frame"), erasure removes detection too: this is what NE1 measures.
+
+**(d)** `TEST_nuisance-erasure.md`. **(e)** 0.5-1.5 GPU-hours (feature extraction of the five frozen networks).
+**(f)** Arm (gradient-reversal border head, or an erasure layer before the head) if erasure removes ≥ 70% of the border
+flags with ≤ 0.01 landmark AUC loss on ≥ 4 of 5 seeds.
+
+## M11. Self-blended images (SBI, SelfMAD) (rank 10)
+
+**(a) Why it is an anti-mechanism for our target.** It labels a blend of an image with a transformed copy of itself
+as an attack. A one-identity blend is by our class definitions not an attack (`14_CLASS_DEFINITIONS.md`), so the method
+teaches exactly the blending reading that our candidate already has too much of.
+
+**(b) Evidence.** Shiohara and Yamasaki, "Detecting deepfakes with self-blended images", CVPR 2022,
+https://arxiv.org/abs/2204.08376 (opened): blends pseudo source and target from one pristine image; +4.90 and +11.78
+points on DFDC and DFDCP cross-dataset. SelfMAD (Ivanovska et al., FG 2025, https://arxiv.org/html/2504.05504, opened):
+trains on the 25,000 SMDD bona fide images only, blends with factors {0.5, 0.375, 0.25, 0.125} under full-face or
+part masks, adds FFT-magnitude patterns; mean EER 5.63% against 15.75% (SPL-MAD); no validation set described, and the
+HRNet-W18 backbone was chosen by "best overall performance on considered testing datasets". Our record: SelfMAD flags
+92-96% of same-person morphs and reacts to warp-only images (SA1 rows 6-7). Cheng et al., "Can we leave deepfake data
+behind in training deepfake detector?", https://arxiv.org/abs/2408.17052 (search listing; NeurIPS 2024 per the listing,
+**not verified**): blend-only training is the current deepfake practice and mixing in real fakes needs care.
+
+**(f)** No arm. Our SE1 already tested the inverse (same-person blends as genuine) and got a shifted decision point.
+
+## M12. Look-alikes and twins (rank 4, control rather than mechanism) [LA1]
+
+**(a) Role.** Any second-identity signal scales with the dissimilarity of A and B. Two-person blends of look-alikes
+and same-person blends of dissimilar sessions, matched on FR similarity, isolate "is it the same person" from "how
+different are the two inputs". Look-alike morphs belong in the attack class; their role is to remove the similarity
+confound, not to be negatives.
+
+**(b) Evidence.** Ramachandra, Venkatesh, Jaswal, Li, "Vulnerability of face morphing attacks: a case study on
+lookalike and identical twins", IWBF 2023, https://arxiv.org/abs/2303.14004 (abstract opened): 16 pairs of twins and
+look-alikes, landmark morphs; face recognition is more vulnerable to them; the abstract reports no MAD evaluation. Di
+Domenico, Borghi, Franco, Maltoni, "Dealing with subject similarity in differential morphing attack detection",
+https://arxiv.org/abs/2404.07667 (abstract opened): identity-based D-MAD becomes much less effective for look-alike
+subjects; proposes ACIdA. A kinship-morph dataset (BMVC 2025 workshop,
+https://bmva-archive.org.uk/bmvc/2025/assets/workshops/PFATCV/Paper_3/paper.pdf): **not verified**. No twins set is on
+disk (LA1 plan, table 1). Our record: BD1 amendment 4 shows least-similar same-person splices flagged 2.2-3.4 times as
+often as the most similar and ranked close to two-person splices (AUC 0.58-0.64 against 0.83-0.87): the candidate's
+"second identity" reading follows input dissimilarity.
+
+**(d)** LA1-0 (labelled tail calibration on 128 px CelebA, about 0.5 GPU-hour) as drafted. My additions to the LA1 read,
+when it exists: (1) report RI1's dispersion and TB1's statistic on the matched pairs as well as Sb's logit, so the
+mechanism tests get their decisive row; (2) print the oracle FR distance of each morph to both contributors, so that
+look-alike morphs that do not verify against both are not counted as attacks with a weak signal.
+
+**(e)** 0.5 GPU-h calibration; the morph build is an author item. **(f)** A matched training arm only if LA1 reaches
+its go count (≥ 100 disjoint pairs) and RI1 or TB1 passed: without a mechanism, a matched arm will most likely learn
+the same blending reading at lower margin.
+
+---
+
+## What the strongest recent S-MAD papers claim, and on what evidence
+
+All entries are single-image unless stated. "Controls" = any of: genuine photos stored like the morphs, same-person
+morphs, one-photo renders, look-alike pairs, a validation set separate from the test benchmarks.
+
+| Paper | Claim | Training / test | Controls reported | Opened |
+|---|---|---|---|---|
+| MADation, Caldeira et al., 2025, https://arxiv.org/html/2501.03800v3 | CLIP + LoRA; MAD22 + MorDIFF mean EER 11.89% (ViT-B) / 11.94% (ViT-L); FRLL-Morphs 0.74-24.96% per set | SMDD / MAD22, MorDIFF, FRLL-Morphs (all share the 204 FRLL bona fide photos) | none; checkpoint after 40 epochs, no validation split described; the ViT-L values of Table 1 and Table 2 appear to be assigned to different sets (read through a page summariser; re-check in the PDF) | yes (HTML) |
+| SelfMAD, Ivanovska et al., FG 2025, https://arxiv.org/html/2504.05504 | self-blends + FFT patterns; mean EER 5.63% | SMDD bona fide only / FRGC-, FERET-, FRLL-Morphs, Morph-PIPE, Greedy-DiM, MorCode | none; backbone chosen on test datasets | yes (HTML) |
+| FD-MAD, Paulo, Proença, Neves, Jan 2026, https://arxiv.org/abs/2601.20656 | residual frequency domain per region + MRF; FRLL-Morph mean EER 1.85%, MAD22 6.12% (second) | SMDD / FRLL-Morph, MAD22 | none in the abstract; spectral residuals are the feature most exposed to storage history | abstract |
+| R-FLoRA, Ramachandra, Apr 2026 (TIFS 2026 per the comments), https://arxiv.org/abs/2604.17321 | Laplacian-residual-gated LoRA on a frozen ViT; beats nine S-MAD methods | four ICAO-compliant sets, seven morph types | none in the abstract | abstract |
+| Emergent MAD in open MLLMs, Ivanovska and Štruc, Feb 2026, https://arxiv.org/abs/2602.15461 | zero-shot LLaVA 1.6-Mistral-7B beats task-specific baselines by ≥ 23% EER | none / several | none in the abstract; a zero-shot model cannot have learned "two identities" from morph labels | abstract |
+| LoRA ViT distilled from EfficientNet, Shekhawat et al., Nov 2025, https://arxiv.org/abs/2511.12602 | better than six S-MAD methods | a set built from three public face datasets, ten morph algorithms | no numbers in the abstract | abstract |
+| When morphs look better, Peng et al., Oct 2026, https://arxiv.org/abs/2611.00074 | training-free FIQA as MAD; best FRLL mean D-EER 11.42%; FEI best 39.75%; thresholds do not transfer; up to 11 of 17 FIQA methods rate diffusion morphs as higher quality | none / FRLL, FEI | score directions fixed in advance (a good practice) | abstract |
+| MADPromptS, Caldeira et al., 2025, https://arxiv.org/html/2508.08939v1 | zero-shot CLIP prompt ensembles | none / MAD22 etc. | — | **not verified** (search listing; summarised in `03_LITERATURE_AND_METHODS.md`) |
+| SRL-MAD, https://arxiv.org/abs/2603.15050 | one-class, ring-wise Fourier residual latents | bona fide only / FERET, FRLL morphs, MorDIFF | — | **not re-opened** (checked 11 Nov per `03_LITERATURE_AND_METHODS.md`) |
+| DifFoundMAD, Gonzalez-Soler et al., 2026 (differential) | foundation models + LoRA, D-EER 6.16% → 2.17% at high security | — | — | **not verified** (third-party review page only) |
+
+What they share, as far as the opened pages show: none reports genuine photos stored like the morphs, same-person
+morphs, one-photo renders or look-alike pairs; two (MADation, SelfMAD) give no separate validation set and SelfMAD
+picked its backbone on test sets; most evaluate on sets that share the 204 FRLL genuine photos. Our audit results
+(released detectors lose 13-20 EER points with history-matched genuine photos; networks that never saw a morph reach
+0.0% EER on MorDIFF) are exactly what these protocols cannot see. None claims a second-identity reading with evidence
+that would survive a same-person control. The 2024 D-MAD look-alike paper (Di Domenico et al.) is the only one that
+measures subject similarity, and it does so with a reference image.
+
+## Not verified, and limits of this version
+
+- Pages marked "not verified" were seen only as search listings. Every number that goes into `references.bib` or
+  the paper must be re-read from the PDF.
+- I did not open the full texts of ICT, R-FLoRA, FD-MAD or the MLLM paper; their reference-free performance and
+  training details are from abstracts.
+- Priors and GPU-hours are my estimates.
+- I did not check the queue or the dispatcher; the costs assume the DGX GB10 for the zero-training tests.
+
+## Change log
+
+- v1, 13 Nov 2026, 19:40 CET: first ranked ledger; three test designs (RI1, NE1, TB1).
