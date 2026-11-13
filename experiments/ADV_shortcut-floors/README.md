@@ -42,7 +42,7 @@ DiffAE FFHQ-Morphs) once `/mnt/t7/smad_next/ADV/feats/gd0.npz` is complete; GX1'
 Large outputs: `/mnt/t7/smad_next/ADV/feats/` (ab1x, train, gd12, gd0, missing, pngmeta),
 `/mnt/t7/smad_next/ADV/feats_regional/` (lcomb, ab1x), logs in `/mnt/t7/smad_next/ADV/logs/`.
 
-## Correction (13 Nov, about 21:20)
+## Correction (13 Nov, 21:14 by the machine clock)
 
 Network values quoted in FLOORS.md now carry their seeds: landmark_combined 0.873-0.906 is the recipe at seeds 408-412;
 the frozen candidate (403-407) is 0.814-0.885, mean 0.860; frozen S4 vs S3 0.716-0.744, R4 vs R3 0.80-0.85. The

@@ -2,7 +2,7 @@
 
 Registration: `prereg.md` with amendments 1, 2 and 3 (amendment 3 is post hoc). Every number here is copied from the committed JSON in `floors/`
 (`floors/<contrast>.json`; held-out scores `floors/<contrast>_heldout.csv`; frozen by `floors/pins_stage<k>.sha256`).
-Development data only. No network score was read to make this page. Network values quoted here come from reviewed result files, with their seeds stated (correction of 13 Nov, about 21:20, on the lead's note: an earlier text called the seeds-408-412 value 0.873-0.906 the frozen candidate's).
+Development data only. No network score was read to make this page. Network values quoted here come from reviewed result files, with their seeds stated (correction of 13 Nov, 21:14 by the machine clock, on the lead's note: an earlier text called the seeds-408-412 value 0.873-0.906 the frozen candidate's).
 
 How to read a line:
 - **ADV floor** = the best of three cross-fitted shortcut-only models (single statistic, logistic regression, boosted

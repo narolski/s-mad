@@ -403,7 +403,7 @@ GO WITH FIXES, no blockers. The owner-launched check that led to amendment 1 is 
 4. Tree hygiene: amendment 4's header time corrected (committed 20:42:49 by git); transfer files of all arms committed
    and pinned (735a65e, stage 8); pins.sha256 refreshed with this commit.
 
-## Note (13 Nov, about 21:20; text only)
+## Note (13 Nov, 21:14 by the machine clock; text only)
 
 Section 0 quotes "Sb's landmark_combined AUC 0.873-0.906 (seeds 408-412)": that is the candidate recipe at seeds
 408-412 (AB1/result.md:82). The frozen candidate (seeds 403-407) is 0.814-0.885, mean 0.860 (PN1/result.md:294);
