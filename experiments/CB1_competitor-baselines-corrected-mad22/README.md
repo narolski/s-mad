@@ -160,6 +160,14 @@ No CB1 score read yet.
   Readers: `sa1_existing.py`, `sa1_selfmad_croppath.py`, `sa1_a43_mfn.py`, `sa1_ag1_mfn.py` (AG1 reader imported
   unchanged, release tuple set to MixFaceNet).
 
+- 13:42-13:46. WCSS 6310090 (smoke) and 6310207 (production) FAILED after about 73 s: torch 2.0.1+cu117 from the AD5
+  wheel house has no sm_90 kernels. 14:06-14:10: torch 2.0.1+cu118 / torchvision 0.15.2+cu118 wheels downloaded into
+  `/mnt/t7/smad_next/CB1/idistill_build/wheels_cu118` (sha256 eb55f29d... / f2c6f5a1...), packed as
+  `packs/idistill_wheels_cu118.tar` (4cfdd6ae...); job script asserts the GPU arch is in the build; code pack v5
+  (ecad9328...); both uploaded and verified on Lustre; amendment 8 (cf99b57). Dispatcher submitted smoke3 = WCSS
+  6312775 and production2 = 6312778 (Nice 80; production valid only if smoke3 passes; owner CB1; production expected
+  run about 12 h after start, limit 16 h).
+
 ## 3. Data
 
 See `prereg.md` section 2. Corrected MAD22 aligned frames and E7 pools:
