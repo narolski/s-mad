@@ -142,3 +142,4 @@ None yet.
   About 31% of each hull, the jaw and cheek band, lies outside the crop.
 - Rescoring job (amendment 1) submitted by the dispatcher as WCSS 6316319 (afterok:6316283, Nice 9).
 - All RZ1 reads are held until ADVERSARY's stage-1 floor hash is announced by the lead.
+- Note 1 (ADV stage-1a floors): reader extended, mock (crop wave) rc 0 (`/mnt/t7/smad_next/RZ1/mock/mock_crop_adv.json`); pinned.

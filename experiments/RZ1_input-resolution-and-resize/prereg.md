@@ -463,3 +463,18 @@ at about 19:35 by the machine clock, before the job was submitted).
   it)".
 - The job is submitted with --dependency=afterok:6316283 (the RZ1 smoke) and placed behind wave 1 by --nice.
 - rz1_read.py excludes every network whose gate.json does not say "passed". It is pinned before the wave 1 read.
+
+## Note 1 (13 Nov 2026, about 20:15 by the machine clock): ADVERSARY stage-1a floors printed beside the RZ1 floor
+
+The lead relayed that ADVERSARY's stage-1a floors are committed (bffacb5; hash in the ADV README at de45f99). The hold on
+RZ1 wave-1 reads is lifted for the contrasts stage 1a covers. This changes no rule of sections 5, 12 or amendment 1. The
+reader was changed before any RZ1 tar exists or is fetched.
+- Every network prints `check.exceeds("lcomb", …)` against the all-cue floor and against the nuisance floor
+  (`src/adversary/check.py`, unchanged; floor files pinned by ADV).
+- Printed for each arm pair of the wave (wave 1: AM, AMR and AN against A0, SbM and SbMR against Sb0, Sb0 against A0;
+  crop: Ac against A0, Sbc against Sb0; 512: A512 against A0, Sb512 against Sb0, SbMR512 against Sb512): the
+  landmark_combined AUC difference within quintiles of the nuisance floor's held-out score.
+- RZ1 registered no test-ladder contrast (R4 vs R2w, R4 vs R3), so those stage-1a floors are not read here.
+- The storage, border, unseen-source and kernel reads wait for stage 1b, as the lead ruled. They are computed by the
+  same single read but not opened before the stage-1b hash is announced. If stage 1b is not posted by 15 Nov 18:00, the
+  lead decides.

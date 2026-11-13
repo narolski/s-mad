@@ -3,7 +3,7 @@ e1519ce4a8a73c4dce9e74da0b3cd76d5f113fd0ff1fce66eb50966fa8b27501  src/RZ1/rz1_cp
 deaf30a5f3f4d8f88ae8313146045873fe165c367347f328fbc472da5c40bb7c  src/RZ1/rz1_guard.py
 250fdfad014f05c09bb1a0485b111b75c72d305d4e7fdeacd2da22e284583257  src/RZ1/rz1_kernels.py
 aced1039ec885e3b1b856e6a1cd68b916a169a42340b96a4d1b7ee3ba1857e48  src/RZ1/rz1_patch.py
-bd0f8963b7f4d6604965f43049dbb65cdf5a612994b249f56b14e365a373aa5a  src/RZ1/rz1_read.py
+edeaf135fcc9fdefb7f9a528d43f0c7648f94bd9c241cf78c5fce3b0314f5870  src/RZ1/rz1_read.py
 02628562fb495cfedabd0e409db1b397fd0fb2d90ff4886ce4f865764b94bfd6  src/RZ1/rz1_rescore.py
 9b6784290c1eb129b48370ee272074788839f60badc22b65ed26b10532fed611  src/RZ1/rz1_score.py
 9ca1f85fffe0488c5ae07ccc542b40c83b0dc2395e4246c3cdad044cbf34c984  src/RZ1/rz1_train.py
@@ -24,4 +24,5 @@ f8e7780e71ea9dc4179c8d227e9e29b37d90d1037f4ca372fde11d5fe8b20cf0  /mnt/t7/smad_n
 9fa53cd6e296688e1a0ea75a361ffd425f1ff0da0620245d4b3ba7fef0382332  /mnt/t7/smad_next/RZ1/mock/mock_1_drop.json
 fffe24c18f1a44de1599697bef1154606d78f4037afc39d464c0e030699db735  /mnt/t7/smad_next/RZ1/mock/mock_1.json
 65422961f05ed7b6c764e595435a144173aca33faa14fe543c6cb01abd8de1df  /mnt/t7/smad_next/RZ1/mock/mock_512.json
+5b315f2ddb0d27fbc5f3763bd0c5999bd3b7fed0f4a467302d58a71dd540879a  /mnt/t7/smad_next/RZ1/mock/mock_crop_adv.json
 4e09edcbf69b88fc9a4ce83e45a0a7415b025309af68e8b4f98a5dbff688cbe2  /mnt/t7/smad_next/RZ1/mock/mock_crop.json

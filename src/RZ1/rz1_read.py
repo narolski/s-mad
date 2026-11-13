@@ -38,6 +38,7 @@ sys.path.insert(0, str(SRC / "TT1"))
 import tt1common as T  # noqa: E402
 import tt1_read as TR  # noqa: E402
 MR = _mod("tt1_read_meds", SRC / "TT1" / "meds" / "tt1_read_meds.py")
+ADV = _mod("adv_check", SRC / "adversary" / "check.py")      # ADVERSARY stage-1a floors (printed beside RZ1's floor)
 
 X_EVAL = pathlib.Path("/mnt/t7/smad_next/AB1/x/manifests/ab1x_eval.csv")
 X_EVAL_SHA = "5257fb63f321612c39f8da6613989976450a68cd97c0b55d51667b554995d35f"
@@ -322,6 +323,9 @@ def main():
             st["cross_c2p_dflag_fm61"] = {sp: float(np.mean([v[f"ab1x:{i}_fm61"] > 0 for i in pairs["fm61"]]) -
                                                     np.mean([v[f"ab1x:{i}"] > 0 for i in pairs["fm61"]])) for sp, v in d["cross"].items()}
             assert sh[prim_spec] == (float(np.mean([pc[i] > 0 for i in gen_ids])), float(np.mean([pc[i] > 0 for i in mor_ids])))
+        # ADVERSARY stage 1a (lead 13 Nov ~20:10): landmark_combined against the all-cue and nuisance floors, printed
+        st["adv_lcomb"] = {fl: {k: v for k, v in ADV.exceeds("lcomb", x, floor=fl).items() if k != "pinned_in"}
+                           for fl in ("all", "nuisance")}
         if d["tr"]:
             st["train_flag_by_kind"] = {k: float(np.mean(np.array(v) > 0)) for k, v in sorted(d["tr"].items())}
         return st
@@ -329,7 +333,7 @@ def main():
     R = dict(mock=a.mock, wave=a.wave, mock_drop=sorted(drop), floor_binding=floor_pt, floors_input_matched=fl_in,
              status={}, networks={})
     arms = WAVE[a.wave]
-    nets = {}
+    nets, SC = {}, {}
     for arm in arms + ["RZ1R_A", "RZ1R_Sb"]:
         for s in SEEDS:
             key = f"{arm}_s{s}"
@@ -348,6 +352,7 @@ def main():
                 continue
             R["status"][key] = why
             nets[(arm, s)] = st
+            SC[(arm, s)] = d["x"]
             R["networks"][key] = {k: v for k, v in st.items() if not k.startswith("_")}
 
     ok = lambda *ks: all(k in nets for k in ks)
@@ -533,6 +538,14 @@ def main():
         else:
             v = "inconclusive, no claim"
         V["H_512d"] = dict(c2p_vs_A512=c, lcomb_minus_Sb512=dg, Fbar_le_Sb512=fl, verdict=v)
+    # ADVERSARY stage 1a, printed: arm difference on landmark_combined within quintiles of the nuisance floor's score
+    pairs_q = {"1": (("AM", "A0"), ("AMR", "A0"), ("AN", "A0"), ("SbM", "Sb0"), ("SbMR", "Sb0"), ("Sb0", "A0")),
+               "crop": (("Ac", "A0"), ("Sbc", "Sb0")), "512": (("A512", "A0"), ("Sb512", "Sb0"), ("SbMR512", "Sb512"))}[a.wave]
+    V["printed_adv_quintiles_nuisance"] = {}
+    for X, B in pairs_q:
+        V["printed_adv_quintiles_nuisance"][f"{X}-{B}"] = {
+            s: ADV.diff_within_floor_quintiles("lcomb", SC[(X, s)], SC[(B, s)], floor="nuisance")["strata"]
+            for s in SEEDS if (X, s) in SC and (B, s) in SC}
     R["verdicts"] = V
     out = pathlib.Path(a.out)
     out.write_text(json.dumps(R, indent=1, default=lambda o: o.item() if hasattr(o, "item") else str(o)) + "\n")
