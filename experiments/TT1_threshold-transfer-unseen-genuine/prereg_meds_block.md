@@ -145,3 +145,22 @@ Pre-run check (experiment-reviewer, opus): GO WITH FIXES (F1, F2 majors; F3-F7 m
 - Operational fix (`date`: Fri Nov 13 05:05:44 PM CET 2026; before start, nothing scored): the driver's single-job guard `pgrep -f remote_tt1_m.sh`
   matched its own ssh command line, so `start` refused at 17:03:12 ("already running"; nothing was running). The guard
   now uses `pgrep -f [r]emote_tt1_m.sh`. drive_tt1_m.sh re-pinned `9006cc99d47db85503b0232ed71813eb7d8e6f0f3c2c064612ffb87ac1ca3e96`.
+
+## 7. Post hoc follow-ups S1, S2 (`date`: Fri Nov 13 05:21:04 PM CET 2026; registered at the git commit that adds this section, before computing; zero GPU; review of the MEDS reading)
+
+Both are written after the MEDS scores and the review's split were seen; labelled post hoc. Code `src/TT1/meds/meds_strata.py`.
+Scores: the gated MEDS scores (`TT1M_se1d.tar`, se1d) and the gated TT1 scores of the same networks (`TT1_A100_pn1fs_fs.tar`,
+`TT1_pn1fs_sp.tar`, pn1fs); both gates byte-identical against the same reference rows, so the two platforms give the same
+numbers for these networks.
+- **S1, stratified print (all 18 networks).** Primary MEDS pool split by native size group (240x240 against other) and
+  part (MEDS-I, MEDS-II): n, persons, own-rule flag share with a person bootstrap (2,000 draws, default_rng(20261126),
+  lower bound clipped at 0) and Clopper-Pearson; Spearman of logit with log Laplacian variance and with log enlargement
+  per stratum (printed when n ≥ 20). No rule.
+- **S2, MEDS-240 against the TT1 low-resolution families at matched enlargement (15 deciding networks + Sp printed).**
+  Enlargement bins (fixed now): [1.2, 1.6), [1.6, 2.0), [2.0, 2.5), [2.5, 3.0), [3.0, 3.5), [3.5, 4.0), [4.0, 6.0]. TT1 pool:
+  U_p frames of the seven families pooled (enlargement in the TT1 bands). For each network: MEDS-240 flag share; TT1 flag
+  share reweighted to the MEDS-240 enlargement-bin distribution (bins with no TT1 frame dropped from both, reported);
+  difference MEDS-240 minus reweighted TT1 with a bootstrap (MEDS persons and TT1 persons resampled, 2,000 draws,
+  default_rng(20261127)). Rule (descriptive): per network "consistent with enlargement" if |difference| ≤ 0.05; arm
+  sentence when at least 4 of 5 seeds agree, else "mixed". Not causal: MEDS-240 and the TT1 families also differ in
+  source, JPEG coding, crop and border (TT1 frames bordered, MEDS not).
