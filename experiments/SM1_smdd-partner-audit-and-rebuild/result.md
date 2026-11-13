@@ -568,7 +568,11 @@ Update 13 Nov 11:00: the third arm-a fit SM1L_a_s403 (Athena 3545823_2, 3:54 h, 
 landmark rise −0.30; diffusion-7 native EER 32.2 (36.0, 26.5, 34.2), diffusion rise −3.5 (−1.8, +0.3, −8.9); MorDIFF
 native EER 48.1 (51.5, 38.7, 54.0); GAN-3 20.2; history-matched pools flagged at the own rule 0.00 in every fit. The
 seed-403 fit confirms the two-seed reading: this ViT-L/14 head does not detect MorDIFF and shows no storage rise.
-Seeds 404, 405 (3545823_3/4) are running.
+Update 13 Nov 12:00: seeds 404, 405 (3545823_3/4, 3:37 h each, exit 0; tars sha256-verified) are added; the
+registered five-seed reading `p3_lora_vitl.json` (seeds 401 to 405) gives: landmark-7 native EER 2.30 [1.73, 2.83]
+(2.28, 2.96, 2.00, 1.33, 2.95), landmark rise −0.26; diffusion-7 native EER 30.6 (36.0, 26.5, 34.2, 27.2, 29.2),
+diffusion rise −3.9; MorDIFF native EER 50.6 (51.5, 38.7, 54.0, 59.3, 49.6), MorDIFF missed at the own rule in every
+fit (0.996 to 1.0); GAN-3 19.8. The five-seed reading confirms the two- and three-seed readings.
 
 Our frames, first-test data, arms fixed in advance; 2 of the 25 ViT-L/14 fits (the others wait on Athena). Means of
 2 seeds [person bootstrap]; frozen-head arm a in brackets: landmark-7 native EER 2.62 [1.91, 3.24] (7.34), landmark
