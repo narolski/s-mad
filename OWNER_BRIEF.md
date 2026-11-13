@@ -111,3 +111,9 @@ Rules from now on, for every cluster (WCSS, Athena) and every owner:
 - **The lead lists every queue at each check** (job, owner, workload, state) and cancels anything of ours that has no owner or no workload.
 - **If access to a cluster is lost,** the lead tells the author at once which of our jobs are queued there and what each will do if it starts unattended. Jobs that would waste time unattended are the reason for the first rule: there must be none.
 - `src/wcss/slot.sh` is retired and refuses to run.
+
+## Cluster dispatcher and the submission queue (13 Nov 2026, on the author's instruction)
+
+A persistent dispatcher agent checks WCSS, Athena, the DGX GPU and the rented machines every 10 minutes (brief: `src/dispatch/DISPATCHER_BRIEF.md`; state: `/mnt/t7/smad_next/dispatch/STATE.md`). It tells you when your job fails or ends and asks you for ready workloads when GPUs are free. Answer it briefly.
+
+If `sbatch` is refused because the Slurm controller does not answer, do not wait and do not loop: write the submission to `/mnt/t7/smad_next/dispatch/submit_queue/<cluster>_<owner>_<name>.cmd` (header lines with `#`: your agent ID, the registration commit, what the job is, expected run time; then one line with the exact login-node command, starting with `cd` and containing one `sbatch`, on WCSS with `--extra=FORCE_RM_TMPDIR`). The dispatcher submits it as soon as the controller answers and sends you the job ID. Only registered, pre-run-reviewed, smoke-tested workloads go in the queue (a smoke test itself may go in).
