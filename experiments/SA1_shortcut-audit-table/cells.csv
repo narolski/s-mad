@@ -3,7 +3,7 @@ row,shortcut,column,cell_id,status
 1,storage history of genuine photos,B,1-B,reviewed
 1,storage history of genuine photos,Sb,1-Sb,reviewed
 1,storage history of genuine photos,Sp,1-Sp,not measured (pending today)
-1,storage history of genuine photos,SbM3,1-SbM3,not measured (pending today)
+1,storage history of genuine photos,SbM3,1-SbM3,reviewed
 1,storage history of genuine photos,MADation_ViT-B16,1-MADation_ViT-B16,reviewed
 1,storage history of genuine photos,MADation_ViT-L14,1-MADation_ViT-L14,reviewed
 1,storage history of genuine photos,MixFaceNet-MAD,1-MixFaceNet-MAD,reviewed
@@ -30,7 +30,7 @@ row,shortcut,column,cell_id,status
 4,unseen camera source (source comparison),B,4-B,reviewed; two seeds only
 4,unseen camera source (source comparison),Sb,4-Sb,reviewed; two seeds only
 4,unseen camera source (source comparison),Sp,4-Sp,not measured
-4,unseen camera source (source comparison),SbM3,4-SbM3,not measured (pending today)
+4,unseen camera source (source comparison),SbM3,4-SbM3,reviewed
 4,unseen camera source (source comparison),MADation_ViT-B16,4-MADation_ViT-B16,reviewed
 4,unseen camera source (source comparison),MADation_ViT-L14,4-MADation_ViT-L14,not measured
 4,unseen camera source (source comparison),MixFaceNet-MAD,4-MixFaceNet-MAD,unreviewed
@@ -39,7 +39,7 @@ row,shortcut,column,cell_id,status
 5,image border or frame,B,5-B,reviewed; two seeds only
 5,image border or frame,Sb,5-Sb,reviewed; two seeds only
 5,image border or frame,Sp,5-Sp,not measured
-5,image border or frame,SbM3,5-SbM3,not measured
+5,image border or frame,SbM3,5-SbM3,reviewed
 5,image border or frame,MADation_ViT-B16,5-MADation_ViT-B16,unreviewed
 5,image border or frame,MADation_ViT-L14,5-MADation_ViT-L14,not measured
 5,image border or frame,MixFaceNet-MAD,5-MixFaceNet-MAD,not measured
@@ -48,7 +48,7 @@ row,shortcut,column,cell_id,status
 6,warp only (R2w),B,6-B,reviewed
 6,warp only (R2w),Sb,6-Sb,reviewed
 6,warp only (R2w),Sp,6-Sp,not measured
-6,warp only (R2w),SbM3,6-SbM3,not measured
+6,warp only (R2w),SbM3,6-SbM3,reviewed
 6,warp only (R2w),MADation_ViT-B16,6-MADation_ViT-B16,reviewed
 6,warp only (R2w),MADation_ViT-L14,6-MADation_ViT-L14,reviewed
 6,warp only (R2w),MixFaceNet-MAD,6-MixFaceNet-MAD,reviewed
@@ -66,7 +66,7 @@ row,shortcut,column,cell_id,status
 8,same-person face splice (S3),B,8-B,reviewed
 8,same-person face splice (S3),Sb,8-Sb,reviewed
 8,same-person face splice (S3),Sp,8-Sp,not measured (pending today)
-8,same-person face splice (S3),SbM3,8-SbM3,not measured
+8,same-person face splice (S3),SbM3,8-SbM3,reviewed
 8,same-person face splice (S3),MADation_ViT-B16,8-MADation_ViT-B16,unreviewed
 8,same-person face splice (S3),MADation_ViT-L14,8-MADation_ViT-L14,unreviewed
 8,same-person face splice (S3),MixFaceNet-MAD,8-MixFaceNet-MAD,unreviewed
@@ -75,7 +75,7 @@ row,shortcut,column,cell_id,status
 9,blending seam (S0),B,9-B,reviewed
 9,blending seam (S0),Sb,9-Sb,reviewed
 9,blending seam (S0),Sp,9-Sp,not measured (pending today)
-9,blending seam (S0),SbM3,9-SbM3,not measured
+9,blending seam (S0),SbM3,9-SbM3,reviewed
 9,blending seam (S0),MADation_ViT-B16,9-MADation_ViT-B16,reviewed
 9,blending seam (S0),MADation_ViT-L14,9-MADation_ViT-L14,reviewed
 9,blending seam (S0),MixFaceNet-MAD,9-MixFaceNet-MAD,reviewed
@@ -84,7 +84,7 @@ row,shortcut,column,cell_id,status
 10,alignment or crop path,B,10-B,reviewed; two seeds only
 10,alignment or crop path,Sb,10-Sb,reviewed; two seeds only
 10,alignment or crop path,Sp,10-Sp,not measured
-10,alignment or crop path,SbM3,10-SbM3,not measured
+10,alignment or crop path,SbM3,10-SbM3,reviewed
 10,alignment or crop path,MADation_ViT-B16,10-MADation_ViT-B16,reviewed
 10,alignment or crop path,MADation_ViT-L14,10-MADation_ViT-L14,reviewed
 10,alignment or crop path,MixFaceNet-MAD,10-MixFaceNet-MAD,reviewed
@@ -93,7 +93,7 @@ row,shortcut,column,cell_id,status
 11,data volume,B,11-B,reviewed; two seeds only
 11,data volume,Sb,11-Sb,reviewed; two seeds only
 11,data volume,Sp,11-Sp,n/a
-11,data volume,SbM3,11-SbM3,not measured (pending today)
+11,data volume,SbM3,11-SbM3,reviewed
 11,data volume,MADation_ViT-B16,11-MADation_ViT-B16,n/a
 11,data volume,MADation_ViT-L14,11-MADation_ViT-L14,n/a
 11,data volume,MixFaceNet-MAD,11-MixFaceNet-MAD,n/a
@@ -165,7 +165,7 @@ row,shortcut,column,cell_id,status
 19,operating point / bounded output scale,B,19-B,reviewed
 19,operating point / bounded output scale,Sb,19-Sb,reviewed
 19,operating point / bounded output scale,Sp,19-Sp,not measured
-19,operating point / bounded output scale,SbM3,19-SbM3,not measured
+19,operating point / bounded output scale,SbM3,19-SbM3,reviewed
 19,operating point / bounded output scale,MADation_ViT-B16,19-MADation_ViT-B16,reviewed
 19,operating point / bounded output scale,MADation_ViT-L14,19-MADation_ViT-L14,reviewed
 19,operating point / bounded output scale,MixFaceNet-MAD,19-MixFaceNet-MAD,not measured

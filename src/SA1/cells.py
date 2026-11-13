@@ -10,17 +10,17 @@ rows = {
  17:"softness / detail loss", 18:"processing cue in the surround of the development set", 19:"operating point / bounded output scale", 20:"morph engine of the training morphs"}
 R,R2,U,U2,NM,EX,PD,NA = "reviewed","reviewed; two seeds only","unreviewed","unreviewed; two seeds only","not measured","not measured (exposure only)","not measured (pending today)","n/a"
 S = {
- 1:[R,R,R,PD,PD,R,R,R,R],
+ 1:[R,R,R,PD,R,R,R,R,R],
  2:[PD,PD,R,NM,NM,NM,NM,NM,NM],
  3:[EX,EX,EX,NM,NM,U,R,U,U],
- 4:[R2,R2,R2,NM,PD,R,NM,U,R],
- 5:[R2,R2,R2,NM,NM,U,NM,NM,U],
- 6:[R,R,R,NM,NM,R,R,R,R],
+ 4:[R2,R2,R2,NM,R,R,NM,U,R],
+ 5:[R2,R2,R2,NM,R,U,NM,NM,U],
+ 6:[R,R,R,NM,R,R,R,R,R],
  7:[R,R,R,NM,NM,R,R,R,R],
- 8:[R,R,R,PD,NM,U,U,U,U],
- 9:[R,R,R,PD,NM,R,R,R,R],
- 10:[R2,R2,R2,NM,NM,R,R,R,NM],
- 11:[NA,R2,R2,NA,PD,NA,NA,NA,NA],
+ 8:[R,R,R,PD,R,U,U,U,U],
+ 9:[R,R,R,PD,R,R,R,R,R],
+ 10:[R2,R2,R2,NM,R,R,R,R,NM],
+ 11:[NA,R2,R2,NA,R,NA,NA,NA,NA],
  12:[U,R,R,NM,NM,R,R,R,R],
  13:[NM,NM,NM,NM,NM,R,R,NM,R],
  14:[NM,NM,NM,NM,NM,R,R,NM,R],
@@ -28,7 +28,7 @@ S = {
  16:[EX,EX,EX,EX,NM,R,R,NM,R],
  17:[U2,R2,R,NM,NM,R,R,R,R],
  18:[R,R,R,PD,NM,NA,NA,NA,NA],
- 19:[R,R,R,NM,NM,R,R,NM,R],
+ 19:[R,R,R,NM,R,R,R,NM,R],
  20:[R,R,R,NM,NM,NA,NA,NA,NA],
 }
 out = sys.argv[1]

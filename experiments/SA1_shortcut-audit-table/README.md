@@ -5,8 +5,8 @@
 The author asked for scientific evidence that the training protocol is shortcut-free: one row per known shortcut,
 one column per training arm or released detector, every cell from a paired control (the same images with and without
 the suspected cue), with seeds, intervals, source file and review status. Status 13 Nov 2026, about 09:45 CET:
-version 2 (reviewed) compiled from registered results only (no scoring). After the PR1 part-1 and C2P readings (13 Nov 09:50), of 180 cells (20 rows x 9 columns) 85 are reviewed (12 of
-them on two seeds only), 17 unreviewed, 63 empty, 15 not applicable. For our own arms, 51 of 100 cells are empty. The best-measured row
+version 2 (reviewed) compiled from registered results only (no scoring). After the PR1 part-1, C2P and MS1 readings (13 Nov about 10:00), of 180 cells (20 rows x 9 columns) 94 are reviewed
+(12 of them on two seeds only), 17 unreviewed, 54 empty, 15 not applicable. For our own arms, 42 of 100 cells are empty. The best-measured row
 (storage history of genuine photos, five fresh seeds) supports "reduced, not removed", not "removed". The table is
 `result.md`; the cell list is `cells.csv`. Waiting for today's readings (Sp ablation, SbM3 three-source training,
 contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cells.
@@ -36,6 +36,9 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
   reviews: rows 6-9 go to five seeds, row 19 gets the τ5 read, new row 20 (engine, ceiling read), rows 1 and 2 get the
   C2P wording (Sb evasion falsified on 4 of 4 read seeds; A and B not read; C2P-R pending). Also the SM1 A14/A23 partner
   trace (row 15, 15b).
+- about 10:00: MS1 read and reviewed (result 31ea7a4, REVIEW_MS1_20261113): SbM3 column and SbV control filled from
+  the files, with the review's F1 cost (landmark_combined own-rule miss 0.271 -> 0.585, AUC unchanged) beside the CFD
+  result and the review's cannot-claim lines.
 
 ## 3. Data
 
