@@ -32,7 +32,7 @@ row,shortcut,column,cell_id,status
 4,unseen camera source (source comparison),Sp,4-Sp,not measured
 4,unseen camera source (source comparison),SbM3,4-SbM3,reviewed
 4,unseen camera source (source comparison),MADation_ViT-B16,4-MADation_ViT-B16,reviewed
-4,unseen camera source (source comparison),MADation_ViT-L14,4-MADation_ViT-L14,not measured
+4,unseen camera source (source comparison),MADation_ViT-L14,4-MADation_ViT-L14,reviewed
 4,unseen camera source (source comparison),MixFaceNet-MAD,4-MixFaceNet-MAD,unreviewed
 4,unseen camera source (source comparison),SelfMAD,4-SelfMAD,reviewed
 5,image border or frame,A,5-A,reviewed; two seeds only
@@ -41,8 +41,8 @@ row,shortcut,column,cell_id,status
 5,image border or frame,Sp,5-Sp,not measured
 5,image border or frame,SbM3,5-SbM3,reviewed
 5,image border or frame,MADation_ViT-B16,5-MADation_ViT-B16,unreviewed
-5,image border or frame,MADation_ViT-L14,5-MADation_ViT-L14,not measured
-5,image border or frame,MixFaceNet-MAD,5-MixFaceNet-MAD,not measured
+5,image border or frame,MADation_ViT-L14,5-MADation_ViT-L14,reviewed
+5,image border or frame,MixFaceNet-MAD,5-MixFaceNet-MAD,reviewed
 5,image border or frame,SelfMAD,5-SelfMAD,unreviewed
 6,warp only (R2w),A,6-A,reviewed
 6,warp only (R2w),B,6-B,reviewed
@@ -88,7 +88,7 @@ row,shortcut,column,cell_id,status
 10,alignment or crop path,MADation_ViT-B16,10-MADation_ViT-B16,reviewed
 10,alignment or crop path,MADation_ViT-L14,10-MADation_ViT-L14,reviewed
 10,alignment or crop path,MixFaceNet-MAD,10-MixFaceNet-MAD,reviewed
-10,alignment or crop path,SelfMAD,10-SelfMAD,not measured
+10,alignment or crop path,SelfMAD,10-SelfMAD,reviewed
 11,data volume,A,11-A,n/a
 11,data volume,B,11-B,reviewed; two seeds only
 11,data volume,Sb,11-Sb,reviewed; two seeds only
@@ -114,7 +114,7 @@ row,shortcut,column,cell_id,status
 13,diffusion render path,SbM3,13-SbM3,not measured
 13,diffusion render path,MADation_ViT-B16,13-MADation_ViT-B16,reviewed
 13,diffusion render path,MADation_ViT-L14,13-MADation_ViT-L14,reviewed
-13,diffusion render path,MixFaceNet-MAD,13-MixFaceNet-MAD,not measured
+13,diffusion render path,MixFaceNet-MAD,13-MixFaceNet-MAD,reviewed
 13,diffusion render path,SelfMAD,13-SelfMAD,reviewed
 14,GAN one-person render (MIPGAN),A,14-A,not measured
 14,GAN one-person render (MIPGAN),B,14-B,not measured
@@ -123,7 +123,7 @@ row,shortcut,column,cell_id,status
 14,GAN one-person render (MIPGAN),SbM3,14-SbM3,not measured
 14,GAN one-person render (MIPGAN),MADation_ViT-B16,14-MADation_ViT-B16,reviewed
 14,GAN one-person render (MIPGAN),MADation_ViT-L14,14-MADation_ViT-L14,reviewed
-14,GAN one-person render (MIPGAN),MixFaceNet-MAD,14-MixFaceNet-MAD,not measured
+14,GAN one-person render (MIPGAN),MixFaceNet-MAD,14-MixFaceNet-MAD,reviewed
 14,GAN one-person render (MIPGAN),SelfMAD,14-SelfMAD,reviewed
 15,training-partner trace (SMDD),A,15-A,unreviewed
 15,training-partner trace (SMDD),B,15-B,unreviewed
@@ -141,7 +141,7 @@ row,shortcut,column,cell_id,status
 16,expression / capture detail (FRLL smiling half),SbM3,16-SbM3,not measured
 16,expression / capture detail (FRLL smiling half),MADation_ViT-B16,16-MADation_ViT-B16,reviewed
 16,expression / capture detail (FRLL smiling half),MADation_ViT-L14,16-MADation_ViT-L14,reviewed
-16,expression / capture detail (FRLL smiling half),MixFaceNet-MAD,16-MixFaceNet-MAD,not measured
+16,expression / capture detail (FRLL smiling half),MixFaceNet-MAD,16-MixFaceNet-MAD,reviewed
 16,expression / capture detail (FRLL smiling half),SelfMAD,16-SelfMAD,reviewed
 17,softness / detail loss,A,17-A,unreviewed; two seeds only
 17,softness / detail loss,B,17-B,reviewed; two seeds only
@@ -168,7 +168,7 @@ row,shortcut,column,cell_id,status
 19,operating point / bounded output scale,SbM3,19-SbM3,reviewed
 19,operating point / bounded output scale,MADation_ViT-B16,19-MADation_ViT-B16,reviewed
 19,operating point / bounded output scale,MADation_ViT-L14,19-MADation_ViT-L14,reviewed
-19,operating point / bounded output scale,MixFaceNet-MAD,19-MixFaceNet-MAD,not measured
+19,operating point / bounded output scale,MixFaceNet-MAD,19-MixFaceNet-MAD,reviewed
 19,operating point / bounded output scale,SelfMAD,19-SelfMAD,reviewed
 20,morph engine of the training morphs,A,20-A,reviewed
 20,morph engine of the training morphs,B,20-B,reviewed
