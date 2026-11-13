@@ -103,3 +103,35 @@ to differ; the 2b F6 expectation was wrong, see the erratum in prereg.md).
   identity and not a detector." No arm may be justified by a profile-shape premise. Any arm must report per database.
 - **Limit.** The earlier mock run may have written a W-only base value to an unviewed scratchpad file. Two matched-W
   medians from that mock were seen (amendment 2b F4).
+
+## Single-image part S (read once at 20:36 by the machine clock, after the adversary floors were pinned; results review pending)
+
+Reader `src/TB1/tb1_read.py --part s`. Output: `tb1_s.json`, `tb1_s_stdout.txt`. 291 hosts. The S4-vs-S3 fold models
+score every row out of fold.
+
+- S4 vs S3: AUC 0.654, **within D 0.657** (coverage 1.00).
+  - Printed: within G 0.664 (G is per host, see the premise review), within seam-tone quintiles 0.654, guard-band
+    version within D 0.625.
+- **Controls** (scored by the S4-vs-S3 models; band [0.42, 0.58]; refit ceilings in brackets): R0_61 vs R0 0.565
+  (0.657), R2w4 vs R2w 0.527 (0.527), S0 vs R2w4 0.472 (0.524). All in band. Printed: S0 vs R0 0.475, R2w4 vs R0 0.503.
+- **Binding shortcut gain** of r over [27 statistics + splice shortcut features]: **+0.006**. Base 0.779 (27-statistic
+  logistic alone 0.763), plus r 0.786. Best single statistic, cross-fitted: 0.657.
+- **Sb increment** (gain of r over Sb's logit): 403 +0.025, 404 +0.023, 405 +0.026, 406 +0.013, 407 +0.019. That is
+  ≥ +0.03 on 0 of 5 seeds. On test hosts alone: +0.013 to +0.025.
+- **Per database (descriptive):** FRGC within D 0.684, gain +0.002, controls 0.575 / 0.519 / 0.485. colorFERET within
+  D 0.583, gain +0.004, controls 0.526 / 0.558 / 0.428.
+- **Adversary floors** (check.exceeds on pinned files; printed): the AUC is S4 vs S3 of the out-of-fold r score.
+
+| Contrast | Arm AUC | All-cue ADV floor | Difference [95%] | Exceeds | Non-F27/non-BLEND floor | Floor within D (logreg) |
+|---|---|---|---|---|---|---|
+| ri_S4_vs_S3 | 0.654 | 0.773 | −0.118 [−0.151, −0.087] | no | 0.719 (difference −0.064, lower bound −0.100; no) | 0.757 (pure-D 0.572) |
+| test_S4_vs_S3 | 0.647 | 0.754 | −0.107 [−0.155, −0.055] | no | 0.676 (lower bound −0.084; no) | 0.744 |
+| dev_S4_vs_S3 | 0.670 | 0.820 | −0.150 [−0.211, −0.088] | no | 0.739 (lower bound −0.135; no) | 0.785 (coverage 0.60) |
+
+- **Registered outcome table, applied mechanically.**
+  - The controls are in band, P within D is 0.758 (≥ 0.70) and S within D is 0.657 (≥ 0.65).
+  - Row 1 therefore applies: "a two-person texture trace exists and one image shows it; arm condition not met"
+    (shortcut gain +0.006 < +0.03; Sb increment ≥ +0.03 on 0 of 5 seeds).
+  - The row's wording rests on the premise sentence. The premise review and amendment 2 withdrew that sentence: the
+    profile adds +0.010 over band energy and geometry, and the profile is not a texture trace of a second identity.
+  - **Logged prediction** (binding gain fails): confirmed.

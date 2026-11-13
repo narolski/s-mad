@@ -1,0 +1,177 @@
+/home/narolski/smad-next/src/ME1/me1_read.py:99: RuntimeWarning: divide by zero encountered in log
+  ech = {k: np.log(num(f"{k}_echo_ratio")) for k in rungs}
+/home/narolski/smad-next/src/BD1/bd1_read.py:38: RuntimeWarning: invalid value encountered in scalar divide
+  return float((r.sum() - len(p) * (len(p) + 1) / 2) / (len(p) * len(n)))
+/home/narolski/smad-next/src/ME1/me1_read.py:216: RuntimeWarning: invalid value encountered in subtract
+  d4_, d3_ = ech["S4"] - ech["R2w4"], ech["S3"] - ech["R2w"]
+{
+"mock": false,
+"part": "single",
+"n": 291,
+"n_components": 110,
+"by_db": {
+"frgc": 235,
+"feret": 56
+},
+"strata_vary_per_class": {
+"W": true,
+"E": true,
+"D": true
+},
+"licence_sentence": "A pass means that two-person blends show more between-landmark misregistration than same-person blends, at equal D. It does not separate this from FR dissimilarity or W (cos_HB <= 0.65 < 0.68 <= cos_HS). It holds for landmark morphs on one engine only, and it is not a detector. An oracle pass licenses nothing about one image.",
+"single": {
+"rungs_not_measured_over_5pct_missing": [
+"R2w4",
+"R2w",
+"R0_61"
+],
+"S4_vs_S3": {
+"auc": 0.599207203556186,
+"within_D": {
+"auc": 0.5963885306081953,
+"cover": 0.8075601374570447,
+"coverage_ok": true
+},
+"pure_D_reference": 0.5241800643086817
+},
+"S4_vs_S3_within_D_ci": [
+0.561274712744554,
+0.6326049943224125
+],
+"one_vs_two_layers": {
+"S4_vs_R2w4": NaN,
+"S3_vs_R2w": NaN
+},
+"paired_difference_within_D": {
+"auc": null,
+"cover": 0.0,
+"coverage_ok": false
+},
+"controls": {
+"R0_61_vs_R0": 0.09962345777920205,
+"R2w4_vs_R0m7": NaN,
+"S0_vs_R2w4": NaN,
+"R2w4_vs_R2w": NaN,
+"R2w4_vs_R0_mH_printed": NaN,
+"S0_vs_R0_printed": 0.45136059554348373,
+"border": "not controlled"
+},
+"controls_bad": [
+"R0_61_vs_R0",
+"R2w4_vs_R0m7",
+"S0_vs_R2w4",
+"R2w4_vs_R2w"
+],
+"shortcut_gain": {
+"gain": -0.00441990349666288,
+"base": 0.7960132217170501,
+"plus": 0.7915933182203873,
+"ci_95pct_percentile": [
+-0.013531001068871173,
+0.007048756660156449
+],
+"failed": 0,
+"rule": "no (gain < +0.02)"
+},
+"adversary_floors": {
+"dev_S4_vs_S3": {
+"n_pos": 100,
+"n_neg": 100,
+"n_components": 100,
+"n_folds": 5,
+"insample_best_single": 0.6749,
+"insample_best_single_stat": "F27:b2_.063-.125",
+"insample_best_single_f27": 0.6749,
+"insample_best_single_f27_stat": "F27:b2_.063-.125",
+"single": {
+"auc": 0.67345,
+"eer": 0.375,
+"ci": [
+0.6316975,
+0.71925875
+],
+"chosen_per_fold": [
+"-F27:b2_.063-.125",
+"-F27:b2_.063-.125",
+"-F27:b2_.063-.125",
+"-F27:b2_.063-.125",
+"-F27:b2_.063-.125"
+]
+},
+"logreg": {
+"auc": 0.82,
+"eer": 0.25,
+"ci": [
+0.7744924999999999,
+0.8655025000000001
+]
+},
+"gbt": {
+"auc": 0.7159,
+"eer": 0.31,
+"ci": [
+0.6509,
+0.7800025
+]
+},
+"logreg_f27": {
+"auc": 0.801,
+"ci": [
+0.7507975,
+0.84951
+]
+},
+"floor": {
+"model": "logreg",
+"auc": 0.82,
+"eer": 0.25,
+"ci": [
+0.7744924999999999,
+0.8655025000000001
+]
+},
+"family_alone": {
+"F27": {
+"gbt": 0.7025,
+"logreg": 0.801
+},
+"BORDER": {
+"gbt": 0.50845,
+"logreg": 0.49495
+},
+"RES": {
+"gbt": 0.66115,
+"logreg": 0.724
+},
+"STORE": {
+"gbt": 0.5018,
+"logreg": 0.5485
+},
+"RENDER": {
+"gbt": 0.5123,
+"logreg": 0.5494
+},
+"BLEND": {
+"gbt": 0.573,
+"logreg": 0.7178
+}
+},
+"carrying_family": "F27",
+"leave_family_out": {
+"F27": 0.7538,
+"BORDER": 0.8126,
+"RES": 0.8218,
+"STORE": 0.8175,
+"RENDER": 0.8081,
+"BLEND": 0.8182
+},
+"contrast": "dev_S4_vs_S3",
+"kind": "floor",
+"label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+"pixel_only_floor": {
+"model": "logreg",
+"auc": 0.814,
+"eer": 0.25,
+"ci": [
+0.76629,
+0.8598049999999999

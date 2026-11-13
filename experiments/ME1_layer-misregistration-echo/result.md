@@ -29,3 +29,20 @@ The only reading allowed: window-level phase correlation finds no above-null cor
 layers on about 91% of pairs. It fails even on the calibration (one person's texture at two geometries) for 142 of
 291 hosts. This is a property of the estimator and gives no verdict on the mechanism. No new gate is designed after
 seeing that the registered one fails.
+
+## Single-image part (read once at 20:38 by the machine clock, after the adversary floors were pinned; results review pending)
+
+Reader `src/ME1/me1_read.py --part single`. Output: `me1_single.json`, `me1_single_stdout.txt`.
+
+- **Registered verdict: "not measured (R2w4, R2w, R0_61 > 5% missing)".** The echo ratio (hull prominence over ring
+  prominence) is non-finite on more than 5% of rows for the warp-only rungs R2w4 and R2w and for the stored-small R0_61.
+  The ring median prominence is 0 there, so the ratio is undefined.
+  - As a result the "sees a second layer" check (S4 vs R2w4, S3 vs R2w), the paired difference and three binding
+    controls are not computable.
+  - The adversary floors could not be printed (non-finite echo rows).
+- Printed values on the rows that are finite (registered rules give no verdict from them):
+  - S4 vs S3 within D 0.596 (coverage 0.81; component interval [0.561, 0.633]), pure-D reference 0.524;
+  - R0_61 vs R0 0.100, on the finite subset only; S0 vs R0 0.451;
+  - shortcut gain −0.004 [−0.014, +0.007] ("no" by its rule); Sb increment +0.000 to +0.003 (all hosts);
+  - FRGC within D 0.596; colorFERET not computable (coverage 0).
+- **Logged prediction** ("sees a second layer" fails, both ≤ 0.55): not testable, because the check is not computable.

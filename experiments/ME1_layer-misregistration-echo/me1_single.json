@@ -1,0 +1,404 @@
+{
+ "mock": false,
+ "part": "single",
+ "n": 291,
+ "n_components": 110,
+ "by_db": {
+  "frgc": 235,
+  "feret": 56
+ },
+ "strata_vary_per_class": {
+  "W": true,
+  "E": true,
+  "D": true
+ },
+ "licence_sentence": "A pass means that two-person blends show more between-landmark misregistration than same-person blends, at equal D. It does not separate this from FR dissimilarity or W (cos_HB <= 0.65 < 0.68 <= cos_HS). It holds for landmark morphs on one engine only, and it is not a detector. An oracle pass licenses nothing about one image.",
+ "single": {
+  "rungs_not_measured_over_5pct_missing": [
+   "R2w4",
+   "R2w",
+   "R0_61"
+  ],
+  "S4_vs_S3": {
+   "auc": 0.599207203556186,
+   "within_D": {
+    "auc": 0.5963885306081953,
+    "cover": 0.8075601374570447,
+    "coverage_ok": true
+   },
+   "pure_D_reference": 0.5241800643086817
+  },
+  "S4_vs_S3_within_D_ci": [
+   0.561274712744554,
+   0.6326049943224125
+  ],
+  "one_vs_two_layers": {
+   "S4_vs_R2w4": NaN,
+   "S3_vs_R2w": NaN
+  },
+  "paired_difference_within_D": {
+   "auc": null,
+   "cover": 0.0,
+   "coverage_ok": false
+  },
+  "controls": {
+   "R0_61_vs_R0": 0.09962345777920205,
+   "R2w4_vs_R0m7": NaN,
+   "S0_vs_R2w4": NaN,
+   "R2w4_vs_R2w": NaN,
+   "R2w4_vs_R0_mH_printed": NaN,
+   "S0_vs_R0_printed": 0.45136059554348373,
+   "border": "not controlled"
+  },
+  "controls_bad": [
+   "R0_61_vs_R0",
+   "R2w4_vs_R0m7",
+   "S0_vs_R2w4",
+   "R2w4_vs_R2w"
+  ],
+  "shortcut_gain": {
+   "gain": -0.00441990349666288,
+   "base": 0.7960132217170501,
+   "plus": 0.7915933182203873,
+   "ci_95pct_percentile": [
+    -0.013531001068871173,
+    0.007048756660156449
+   ],
+   "failed": 0,
+   "rule": "no (gain < +0.02)"
+  },
+  "adversary_floors": {
+   "dev_S4_vs_S3": {
+    "n_pos": 100,
+    "n_neg": 100,
+    "n_components": 100,
+    "n_folds": 5,
+    "insample_best_single": 0.6749,
+    "insample_best_single_stat": "F27:b2_.063-.125",
+    "insample_best_single_f27": 0.6749,
+    "insample_best_single_f27_stat": "F27:b2_.063-.125",
+    "single": {
+     "auc": 0.67345,
+     "eer": 0.375,
+     "ci": [
+      0.6316975,
+      0.71925875
+     ],
+     "chosen_per_fold": [
+      "-F27:b2_.063-.125",
+      "-F27:b2_.063-.125",
+      "-F27:b2_.063-.125",
+      "-F27:b2_.063-.125",
+      "-F27:b2_.063-.125"
+     ]
+    },
+    "logreg": {
+     "auc": 0.82,
+     "eer": 0.25,
+     "ci": [
+      0.7744924999999999,
+      0.8655025000000001
+     ]
+    },
+    "gbt": {
+     "auc": 0.7159,
+     "eer": 0.31,
+     "ci": [
+      0.6509,
+      0.7800025
+     ]
+    },
+    "logreg_f27": {
+     "auc": 0.801,
+     "ci": [
+      0.7507975,
+      0.84951
+     ]
+    },
+    "floor": {
+     "model": "logreg",
+     "auc": 0.82,
+     "eer": 0.25,
+     "ci": [
+      0.7744924999999999,
+      0.8655025000000001
+     ]
+    },
+    "family_alone": {
+     "F27": {
+      "gbt": 0.7025,
+      "logreg": 0.801
+     },
+     "BORDER": {
+      "gbt": 0.50845,
+      "logreg": 0.49495
+     },
+     "RES": {
+      "gbt": 0.66115,
+      "logreg": 0.724
+     },
+     "STORE": {
+      "gbt": 0.5018,
+      "logreg": 0.5485
+     },
+     "RENDER": {
+      "gbt": 0.5123,
+      "logreg": 0.5494
+     },
+     "BLEND": {
+      "gbt": 0.573,
+      "logreg": 0.7178
+     }
+    },
+    "carrying_family": "F27",
+    "leave_family_out": {
+     "F27": 0.7538,
+     "BORDER": 0.8126,
+     "RES": 0.8218,
+     "STORE": 0.8175,
+     "RENDER": 0.8081,
+     "BLEND": 0.8182
+    },
+    "contrast": "dev_S4_vs_S3",
+    "kind": "floor",
+    "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+    "pixel_only_floor": {
+     "model": "logreg",
+     "auc": 0.814,
+     "eer": 0.25,
+     "ci": [
+      0.76629,
+      0.8598049999999999
+     ]
+    },
+    "nuisance_floor": {
+     "model": "logreg",
+     "auc": 0.7388,
+     "eer": 0.3,
+     "ci": [
+      0.6823825,
+      0.7951025
+     ],
+     "families": [
+      "BORDER:",
+      "RES:",
+      "STORE:",
+      "RENDER:"
+     ]
+    },
+    "within_D_quintiles": {
+     "n_rows": 200,
+     "D": "D",
+     "single": 0.6515025041736227,
+     "coverage": 0.6,
+     "logreg": 0.7854757929883138,
+     "gbt": 0.7003338898163606,
+     "pure_D_reference": 0.5659432387312187
+    },
+    "definition": {
+     "manifest": "AB1X",
+     "positive": {
+      "fam": "splice",
+      "role": "dev",
+      "rung": "S4"
+     },
+     "negative": {
+      "fam": "splice",
+      "role": "dev",
+      "rung": "S3"
+     },
+     "note": "SA1 row 8"
+    }
+   },
+   "test_S4_vs_S3": {
+    "n_pos": 191,
+    "n_neg": 191,
+    "n_components": 130,
+    "n_folds": 5,
+    "insample_best_single": 0.6435130615937064,
+    "insample_best_single_stat": "F27:b2_.063-.125",
+    "insample_best_single_f27": 0.6435130615937064,
+    "insample_best_single_f27_stat": "F27:b2_.063-.125",
+    "single": {
+     "auc": 0.642786656067542,
+     "eer": 0.4031413612565445,
+     "ci": [
+      0.6089786942449698,
+      0.680253539677782
+     ],
+     "chosen_per_fold": [
+      "-F27:b2_.063-.125",
+      "-F27:b2_.063-.125",
+      "-F27:b2_.063-.125",
+      "-F27:b2_.063-.125",
+      "-F27:b2_.063-.125"
+     ]
+    },
+    "logreg": {
+     "auc": 0.7535429401606316,
+     "eer": 0.3036649214659686,
+     "ci": [
+      0.7116343182539084,
+      0.798688867232803
+     ]
+    },
+    "gbt": {
+     "auc": 0.7430991475014391,
+     "eer": 0.2931937172774869,
+     "ci": [
+      0.6974725919957443,
+      0.7894118110812468
+     ]
+    },
+    "logreg_f27": {
+     "auc": 0.7392889449302377,
+     "ci": [
+      0.7016385837876006,
+      0.7823956632734579
+     ]
+    },
+    "floor": {
+     "model": "logreg",
+     "auc": 0.7535429401606316,
+     "eer": 0.3036649214659686,
+     "ci": [
+      0.7116343182539084,
+      0.798688867232803
+     ]
+    },
+    "family_alone": {
+     "F27": {
+      "gbt": 0.7138236342205532,
+      "logreg": 0.7392889449302377
+     },
+     "BORDER": {
+      "gbt": 0.5134179435870727,
+      "logreg": 0.5001644691757353
+     },
+     "RES": {
+      "gbt": 0.6160604150105534,
+      "logreg": 0.6651955812614786
+     },
+     "STORE": {
+      "gbt": 0.48962473616403057,
+      "logreg": 0.5552753488117103
+     },
+     "RENDER": {
+      "gbt": 0.6144842520764233,
+      "logreg": 0.5343603519640361
+     },
+     "BLEND": {
+      "gbt": 0.6546969655437077,
+      "logreg": 0.6773663002658918
+     }
+    },
+    "carrying_family": "F27",
+    "leave_family_out": {
+     "F27": 0.7035991337956745,
+     "BORDER": 0.7565307968531564,
+     "RES": 0.7491296839450673,
+     "STORE": 0.7586688961377155,
+     "RENDER": 0.7499520298237439,
+     "BLEND": 0.7456210081960473
+    },
+    "contrast": "test_S4_vs_S3",
+    "kind": "floor",
+    "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+    "pixel_only_floor": {
+     "model": "logreg",
+     "auc": 0.7545571667443327,
+     "eer": 0.29842931937172773,
+     "ci": [
+      0.7117926117749124,
+      0.798775169109038
+     ]
+    },
+    "nuisance_floor": {
+     "model": "gbt",
+     "auc": 0.6755571393328034,
+     "eer": 0.36649214659685864,
+     "ci": [
+      0.6257604886148607,
+      0.7240289896122157
+     ],
+     "families": [
+      "BORDER:",
+      "RES:",
+      "STORE:",
+      "RENDER:"
+     ]
+    },
+    "within_D_quintiles": {
+     "n_rows": 382,
+     "D": "D",
+     "single": 0.6521675238795004,
+     "coverage": 1.0,
+     "logreg": 0.744452608376194,
+     "gbt": 0.728434974283615,
+     "pure_D_reference": 0.5847171197648787
+    },
+    "definition": {
+     "manifest": "AB1X",
+     "positive": {
+      "fam": "splice",
+      "role": "test",
+      "rung": "S4"
+     },
+     "negative": {
+      "fam": "splice",
+      "role": "test",
+      "rung": "S3"
+     },
+     "note": "SA1 row 8 (test)"
+    }
+   }
+  },
+  "floor_27stat_best_single": 0.6625105166557342,
+  "sb_increment": {
+   "403": {
+    "all": 0.0032547713428148217,
+    "test": 0.012021502835538711
+   },
+   "404": {
+    "all": -7.598687959875505e-05,
+    "test": 0.00880198487712669
+   },
+   "405": {
+    "all": 0.002988817264219068,
+    "test": 0.013084829867674896
+   },
+   "406": {
+    "all": 0.002418915667228072,
+    "test": 0.01580222117202268
+   },
+   "407": {
+    "all": 0.003052139663884623,
+    "test": 0.008536153119092615
+   }
+  },
+  "adv": "not computable (non-finite echo rows)",
+  "per_database": {
+   "frgc": {
+    "S4_vs_S3_within_D": {
+     "auc": 0.5963885306081953,
+     "cover": 1.0,
+     "coverage_ok": true
+    }
+   },
+   "feret": {
+    "S4_vs_S3_within_D": {
+     "auc": null,
+     "cover": 0.0,
+     "coverage_ok": false
+    }
+   }
+  },
+  "verdict": "not measured (R2w4, R2w, R0_61 > 5% missing)",
+  "arm_condition": {
+   "sb_increment_seeds": 0,
+   "shortcut_gain_rule": "no (gain < +0.02)",
+   "note": "no arm before the look-alike set (LA1) exists"
+  }
+ },
+ "empty_folds": 0
+}
