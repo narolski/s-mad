@@ -276,3 +276,5 @@ Minor points: (a) the docstring seeds were fixed; (b) $PY is used in place of sy
 - Disk: 27 GB free; one fit needs about 20 GB (pack copy, extraction and overlay).
 - Seed 412 is not run. With seed 411 there are four read seeds, and section 7 then reads "met" only as 4 of 4.
 - Reading (lead, 12:40): one read, after seed 411's tars are in, or at the 19:00 deadline if that comes first.
+
+- SE1-D2 amendment (`date`: Fri Nov 13 13:13 CET 2026; before any seed-411 fit): seed 411 runs on a fresh A100 PCIe 40 GB lease **se1d** (instance 60495180, 185.130.165.20:26693, lease folder /mnt/t7/smad_next/vast/se1d) instead of pn1fs. Reason: pn1fs's uplink fell to about 0.2 MB/s with dropped connections, and the proxy route timed out (13:06–13:11). It is the same setup as se1a/b/c: the FS1 pack uploaded and sha256-checked, pip pins, a smoke with the per-lease check, then the 3 fits. It is a normal SE1 lease, so RELEASE is written after two verified copies (no SE1_NO_RELEASE). The partial files under /workspace/se1 on pn1fs are left as they are (lead: clean nothing there); nothing of seed 411 runs there.

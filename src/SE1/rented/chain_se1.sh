@@ -10,7 +10,7 @@ HOST=$1; PORT=$2; NAME=$3; SEED=$4
 D=$(cd "$(dirname "$0")" && pwd); LEASE=/mnt/t7/smad_next/vast/$NAME; P=/mnt/t7/smad_next/SE1; S=$P/rented_$NAME
 DR() { bash "$D/drive_se1.sh" "$HOST" "$PORT" "$NAME" none "$@"; }
 log() { echo "$(date +%T) chain $*" | tee -a "$S/drive.log"; }
-O=(-o BatchMode=yes -o ConnectTimeout=15 -o UserKnownHostsFile=$LEASE/known_hosts -i /home/narolski/.config/smad-next/vast_ssh_key -p "$PORT")
+O=(-o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=${SE1_KH:-$LEASE/known_hosts} -i /home/narolski/.config/smad-next/vast_ssh_key -p "$PORT")
 R() { ssh "${O[@]}" "root@$HOST" "$@" 2>/dev/null; }
 mkdir -p "$S"
 until grep -q SE1_SETUP_OK "$S/setup.log" 2>/dev/null; do sleep 30; done

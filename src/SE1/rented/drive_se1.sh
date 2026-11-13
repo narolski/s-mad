@@ -15,7 +15,7 @@ HOST=${1:?host}; PORT=${2:?port}; NAME=${3:?name}; WAITF=${4:?wait file}; STEP=$
 SRC=$(cd "$(dirname "$0")" && pwd)
 KEY=${SE1_SSH_KEY:-/home/narolski/.config/smad-next/vast_ssh_key}
 P=/mnt/t7/smad_next/SE1; S=$P/rented_$NAME; OUTD=$P/results; COPY=/home/narolski/se1_results_copy; B=/workspace/se1
-KH=/mnt/t7/smad_next/vast/$NAME/known_hosts; [ -f "$KH" ] || KH=$S/known_hosts
+KH=${SE1_KH:-/mnt/t7/smad_next/vast/$NAME/known_hosts}; [ -f "$KH" ] || KH=$S/known_hosts
 mkdir -p "$S" "$OUTD/logs_$NAME" "$COPY"
 O=(-o BatchMode=yes -o ConnectTimeout=15 -o ServerAliveInterval=30 -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile="$KH" -i "$KEY" -p "$PORT")
 R() { ssh "${O[@]}" "root@$HOST" "$@"; }
