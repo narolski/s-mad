@@ -872,24 +872,38 @@ find no evidence that it reads a second identity. Render-path detection is not s
   similarity. Its stronger response to noise-only mixes (0.92) than to semantic-only mixes (0.72) is consistent with,
   not against, a reading in which it tracks noise-map similarity.
 
-## A22 (registered 73bf220 before computing; DGX CPU; development data only; `a22_read.json`; last diffusion follow-up round before the freeze)
+## A22 (registered 73bf220 before computing; DGX CPU; development data only; `a22_read.json`; last diffusion follow-up round before the freeze; reviewed `REVIEW_SM1_A22_20261113.md`)
+
+Supportable paper sentence (A18 / A19 / A21 / A22, review): "On development data from one DiffAE generator, the
+detector's two-person signal does not exceed the source-pair similarity of the mixed component: noise-only mixes 0.92
+(pair similarity alone 0.99), semantic-only mixes 0.72 (semantic-code dissimilarity alone 0.87, post hoc). We find no
+evidence that it reads a second identity (partial ρ with render-to-partner similarity +0.02 [−0.19, +0.27], low power).
+Same-person diffusion edits are also scored morph-like (semantic-only over reconstruction 0.93, noise-only 0.82), so part
+of the response is to the diffusion re-rendering itself rather than to a second person; which render properties drive it
+is not identified." Not to be written: "render-path detection is shown", "beyond pair similarity".
 
 - **H-E (rung-matched floor; shard 6, 67 hosts; network = A19 CPU scores, ranks only): does not match.** With each
   feature group taken from the pair whose component was mixed (and the unmixed component set to the host's own pair),
   the floor gives NOISEX20 over NOISES20 0.994 (network 0.922; difference +0.072) and SEMX20 over SEMS20 **0.440**
-  (network **0.718**; difference −0.278). The semantic-only rung is where the pair-similarity account fails: the
-  floor's semantic-code cosine carries no X-vs-SAME information for semantic-only mixes, while the network separates
-  them at 0.72. So the network responds to semantic-only two-person mixing beyond the measured pair similarity; what
-  that response reads (second identity or other semantic render properties) is not identified. On the noise-only rung
+  (network **0.718**; difference −0.278). The registered rule gives 'does not match', but the semantic-rung gap is an artefact of the floor: fit on X20
+  vs SAME20, where both components are mixed together, the floor weights the semantic-code cosine positively once the
+  noise features are in (+1.16 standardised; marginal direction reversed, collinear with θ, r = −0.46). Applied to SEMX,
+  where the noise map is the host's own, that term alone ranks SEMX below SEMS (0.13). Post hoc (reviewer): the
+  semantic-code dissimilarity of the mixed pair alone separates SEMX20 from SEMS20 at 0.871 on the same 67 hosts, above
+  the network's 0.718. On both rungs the network stays below the source-pair similarity of the mixed component (0.922
+  vs 0.994; 0.718 vs 0.871). A22 does not show a response beyond pair similarity. (Registration notes: the semantic code
+  is linearly interpolated, `dg1_addon.py:209`, only the noise map is slerped; d is a pair feature, identical across
+  X20 / NOISEX20 / SEMX20 and across SAME20 / NOISES20 / SEMS20, not a rung-image statistic.) On the noise-only rung
   the floor overshoots the network by 0.07 (between the 0.05 and 0.10 marks).
 - **H-F (descriptive, 6 points): Spearman 0.27** between rung mean network logit (REC −3.56, NOISES −3.24, SEMS +0.23,
   FRESH1 +1.12, NOISEX +0.93, SEMX +1.98) and mean noise-map distance from the host's own map (0, 0.28, 0, 1.00, 0.29,
   0). Below the 0.4 mark: rung means are not ordered by noise-map departure; the semantic rungs (SEMS, SEMX) score high
-  with zero noise departure.
+  with zero noise departure. Three rungs tie at 0 by construction; adds nothing beyond SEMS20 over REC20 0.93.
 - **H-G (arm a; PNG-size deciles and nearest-neighbour matching): undecided.** Seed 401: deciles 0.408, nearest
   neighbour 0.360; seed 402: 0.503 / 0.474 (deciles still imbalanced, 6/102 to 103/5). Arm e (control): 0.281 / 0.250
-  and 0.298 / 0.258. Finer PNG matching moves arm a's ordering to about 0.45 on average without settling it; arm e's
-  ordering is not explained by file size.
+  and 0.298 / 0.258. Finer matching does not move arm a beyond the A21 quintile value (deciles 0.456 vs 0.443;
+  nearest neighbour across hosts 0.417). File size remains a partial, unsettled explanation for arm a. Arm e's ordering
+  is not explained by file size.
 
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 

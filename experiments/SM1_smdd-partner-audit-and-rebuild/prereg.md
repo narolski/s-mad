@@ -694,6 +694,9 @@ SEMX / SEMS = the slerped semantic code of the pair with the host's own noise ma
   one half). Prediction under the detail account: ≥ 0.50 on both seeds (both methods); falsified if both seeds stay ≤
   0.45 (both methods); otherwise undecided. Arm e reported as a control (expected ≤ 0.35), not decided.
 - Script `src/SM1/a22_read.py`; one results-reviewer pass after computing.
+- Correction note (13 Nov, after computing, from the review): the semantic code is linearly interpolated
+  (`dg1_addon.py:209`), only the noise map is slerped; d is a pair feature (same value across the X-type and across the
+  SAME-type rungs), not a statistic of the rung image. The rule and the computation are unchanged.
 
 ## DRAFT A20 (for the author's decision, not registered): protocol arm with render-matched diffusion controls
 
