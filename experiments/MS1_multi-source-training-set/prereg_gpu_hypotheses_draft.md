@@ -49,5 +49,7 @@ No fit on a fourth source without a registered **own-rule miss guard on an attac
 (e.g. FFHQ landmark_combined, or a pool built from a held-out source with a different engine), its own-rule miss rate
 for the comparator and for SbM4 on the same platform, and a fixed margin (proposal: median miss(SbM4) ≤ median
 miss(comparator) + 0.05, and not worse on ≥ 4 of 5 seeds by more than 0.10). A failing guard blocks any
-operating-point or transfer claim for SbM4. The CelebA-HQ preparation (alignment, persons, overlap) continues as
-preparation only.
+operating-point or transfer claim for SbM4. Printed guards beside it (lead, 13 Nov, after the part-3 review):
+sex-stratified CFD own-rule flags and within-sex ρ(CFD logit, Feminine) per arm; memorisation read as rank AUC (part 3b).
+Warning: CelebA-HQ (super-resolved, often heavy make-up) may teach "smooth means genuine" and raise misses on smooth
+morphs. The CelebA-HQ preparation (alignment, persons, overlap) continues as preparation only.

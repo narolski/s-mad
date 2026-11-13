@@ -443,3 +443,22 @@ network's CFD logit with the "Feminine" norming mean, per seed; group ρ = media
 otherwise "inconclusive". Printed: Masculine, Attractive, Babyfaced, AgeRated, LuminanceMedian; own-rule flag rates by
 group and self-reported gender (mean over seeds). Associational only; never a causal or demographic-bias claim
 beyond these development images.
+
+## Part 3b: printed-only amendment (registered at the git commit that adds it; `date` at writing: Fri Nov 13 10:14:01 AM CET 2026; not yet computed)
+
+Lead's decision after the part-3 review (`experiments/reviews/REVIEW_MS1_PART3_20261113.md`): register before computing,
+printed only (no decision rule), one reviewer pass. Disclosure: the reviewer already computed these quantities post hoc
+(rank AUC Sb 0.541-0.557 vs SbM3 0.514-0.535; within-sex ρ(Feminine) women Sb 0.248, SbM3 0.007); this amendment
+reproduces them with registered code. Reader `src/MS1/ms1_part3b.py` sha256 `e93bd4523d0a8113375d1f590fb21ea54129b3760a5a7bd250fb2048bebf4eb4` (mock-tested only), run once with
+thread caps.
+- (a) Rank-AUC memorisation per kind and network: P[training row scored more confidently than a held-out row of the
+  same kind] (ties half), same rows and held-out pools as part 3; A = mean over the 11 FRGC / colorFERET kinds; printed:
+  per kind, A per network, seeds with A(SbM3) < A(Sb) and A(SbV) < A(Sb).
+- (b) Within-sex reads on CFD (597 main-set models): Spearman ρ(CFD logit, Feminine) within each self-reported sex,
+  pooled over race groups and per race group × sex, per seed, median over seeds; own-rule flag rates and counts by race
+  group × sex per seed.
+- Adopted for any later arm (lead, 13 Nov): the memorisation statistic is the rank AUC of (a), not the mean-logit gap.
+- CelebA-HQ / fourth-source plan (written here and in `prereg_gpu_hypotheses_draft.md`): beside the own-rule miss guard
+  on an attack pool from an unseen pipeline, two printed guards: sex-stratified CFD own-rule flags and within-sex
+  ρ(CFD logit, Feminine), per arm. Warning recorded (reviewer): CelebA-HQ images are super-resolved and often heavily
+  made up, so this source may teach "smooth means genuine" and raise misses on smooth morphs.
