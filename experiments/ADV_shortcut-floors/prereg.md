@@ -377,3 +377,28 @@ GO WITH FIXES, no blockers. The owner-launched check that led to amendment 1 is 
   otherwise.
 - The already-computed `*_withinD.json` (R4 vs R3 held-out floor scores within D, amendment 3 item 6) and
   `*_regional.json` files are committed and pinned as computed.
+
+## Amendment 5 (13 Nov, about 21:00 by the machine clock; registered before computing; pre-run check of the selection rule `experiments/reviews/PRERUN_NEXT_SELECTION_RULE_V2_20261113.md`, 3d14793, findings 1, 2, 4, 10; code `src/adversary/amend5.py`)
+
+1. **Per-row scores of the same-data learner.** For the training lists `train_Sb` and `train_SbFM` (GX when its
+   manifest exists), the section-5.3 learner (logreg and gbt, unchanged) writes per-row scores to
+   `floors/transfer_<arm>_rows.csv` (set, id, label, component, logreg, gbt) on three row sets: the 3,000
+   landmark_combined rows (`lcomb`, components of `floors/lcomb_heldout.csv`), the 360 selection ladder rows
+   (`sel360`, below, components of `floors/ri_R4_vs_R3_heldout.csv`) and the surround-matched rows (`lcomb_smatch`,
+   below, components of `floors/lcomb_heldout.csv`), so that network minus learner can be bootstrapped in the same
+   person-component draws.
+2. **lcomb_smatch (a new, separately named product; not lcomb_bal, not for H-hb1).** 1:1 greedy matching of morphs to
+   genuine photos on the logit of `surround_gbt` (`floors/lcomb_regional_heldout.csv`), caliper 0.1 SD (SD over all
+   3,000 rows), morphs in numpy default_rng(20261117) permutation order, nearest genuine photo without replacement.
+   Published: `floors/lcomb_smatch_rows.csv` (id, label, pair) and `floors/lcomb_smatch_build.json` with balance
+   diagnostics refitted on the matched rows (surround, face-box, file and all-cue floors; single, logreg, gbt; ADV
+   folds). Known limit, stated with every use: **surround-balanced only** (the face-box floor stays high, so history
+   inside the face interior is not removed).
+3. **sel360 and its within-D simple-cue floor.** Rows: the OpenCV R4 and R3 rows of `floors/ri_R4_vs_R3_heldout.csv`
+   whose host is one of the 100 development hosts or one of the 80 test hosts of
+   `/mnt/t7/smad_next/DATA/overlap/test_hosts_clean_of_dev.csv` (sha256 814c4486…). The floor's committed held-out
+   scores (single, logreg, gbt) are read within D quintiles by BD1's rule with the quintile edges taken over these 360
+   rows (D of the host's S4 / S3 splice), coverage printed; 95% interval by 2,000 draws of the file's `component`
+   column (numpy default_rng(20261119)). Output `floors/sel360_withinD.json` and the row list `floors/sel360_rows.csv`.
+4. Tree hygiene: amendment 4's header time corrected (committed 20:42:49 by git); transfer files of all arms committed
+   and pinned (735a65e, stage 8); pins.sha256 refreshed with this commit.
