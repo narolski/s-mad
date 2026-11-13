@@ -155,7 +155,17 @@ computed here, so no extra look at the hold-out was taken.
 - **B:** "inconclusive" (C2P's verdict). Only seed 405 passed: Δm_att fm61 +0.060, amsl112 −0.0003.
 - **Sb:** "falsified" (C2P's verdict; no evasion). Four seeds passed: Δm_att fm61 +0.056, +0.105, +0.061, +0.071;
   amsl112 −0.024, +0.041, −0.012, +0.005.
-- **Three-source arm (SbM3):** waits for the MS1 owner's read.
+- **Three-source arm (SbM3):** read once at about 14:47, after the MS1 read was committed and reviewed (reader
+  `src/PR1/z5_read.py` committed at 1d2c359; output `z5_sbm3_read.json`). Scores are each MS1 fit's own stored
+  hold-out scores from its own L40S; nothing was rescored. 150 / 149 morph pairs, SD from 300 native photos.
+  Δm_att at fm61: +0.007, −0.009, +0.022, −0.001, +0.010; at amsl112: +0.009, +0.002, +0.025, −0.101, +0.009.
+  **Registered verdict: "falsified"** (no evasion; ≥ −0.10 on ≥ 4 of 5 seeds at both sizes; seed 406 at amsl112 is
+  −0.101). Misses on native / stored morphs: 0.7-1.3% / 0.7-2.0%. Stated: FFHQ is a training source of SbM3 (new
+  persons in the hold-out), so this is evasion on a trained source.
+  - Printed beside, MS1's own Sb refits (L40S, no rule): fm61 +0.056 to +0.103; amsl112 −0.024 to +0.041.
+- AB1 (ablation experiment, five new seeds on H100, commit 8109cad) has read the storage test for A, B and Sb. It is
+  not used here, because Z5 is defined on the fresh-seed networks. It will be cited beside Z5 once its review is
+  applied.
 
 ## Checks of the strategist's three facts (section 0 of the strategist report)
 
