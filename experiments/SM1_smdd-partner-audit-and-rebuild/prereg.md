@@ -661,6 +661,40 @@ After `experiments/reviews/REVIEW_SM1_A19_20261113.md` (commit f3b637d). DGX CPU
   host / partner source codes, so they do).
 - Script `src/SM1/a21_read.py`; readings sent to the results reviewer after computing.
 
+## Amendment A22: H-E, H-F, H-G after the A21 review (13 Nov; registered before any of them is computed; DGX CPU only; development data only; last round of diffusion follow-ups before the freeze)
+
+After `experiments/reviews/REVIEW_SM1_A21_20261113.md`. DG1 definitions (`src/DG1/dg1_addon.py:223-237`): NOISEX / NOISES
+= the semantic code of the host's photo H with the slerped noise map of the pair (H, B) or (H, H's second photo S);
+SEMX / SEMS = the slerped semantic code of the pair with the host's own noise map.
+- **H-E (rung-matched floor; the informative version of H-D).** The floor model of the A19 addendum (logistic regression
+  of X20 vs SAME20 on θ, face-box Laplacian, PNG bytes, asymmetry, d, band cosines c0–c3, low-pass cosine, semantic-code
+  cosine; fit on shards 0–5) is applied to the shard-6 rungs with rung-matched pair features: each feature group takes
+  the value of the pair whose component was mixed into the render, and a component that was not mixed takes the value of
+  the host's own same-person pair (H, S), so it carries no two-person information. NOISEX20: noise-map features from
+  (H, B), semantic-code cosine from (H, S); NOISES20: both from (H, S); SEMX20: noise-map features from (H, S),
+  semantic-code cosine from (H, B); SEMS20: both from (H, S). Image statistics and d from the rung images. Read: floor
+  AUC NOISEX20 over NOISES20 and SEMX20 over SEMS20 (67 shard-6 hosts) against the A18 network's AUCs on the same rows
+  (A19 CPU scores, ranks only, rank agreement 0.99999).
+  Already known before computing: the network's shard-6 AUCs 0.922 (NOISEX/NOISES) and 0.718 (SEMX/SEMS) (A21 H-D),
+  the unmatched floor's 0.992 / 0.996 (A21 H-D), the floor's X20-vs-SAME20 AUC on shard 6 0.995 (A19 addendum). Unknown:
+  the rung-matched floor's two AUCs.
+  Rule (both outcomes informative): **matches** if both |floor − network| ≤ 0.05 → the network's rung pattern is
+  reproduced by the source-pair similarity of the mixed component (consistent with a pair-similarity / noise-path
+  reading, nothing left over); **does not match** if either |floor − network| > 0.10 → the rung pattern is not
+  explained by pair similarity (the network responds to rung content beyond it; the pair-similarity account is
+  incomplete for that rung, and the sign of the difference says in which direction); otherwise undecided.
+- **H-F (between-rung departure; descriptive only, 6 points).** Spearman rank correlation, over the six rungs REC20,
+  NOISES20, SEMS20, FRESH1_20, NOISEX20, SEMX20 (shard-6 hosts), between the network's mean rung score (A19 CPU scores,
+  2-seed mean) and the rung's mean noise-map distance from the host's own inverted noise map (1 − cosine; slerp at 0.5
+  gives cos(θ/2) analytically for NOISES / NOISEX; 0 for REC20, SEMS20, SEMX20 (host's own noise map); FRESH1_20 from
+  the stored fresh draw). Ties are mid-ranked. Prediction ≥ 0.8; falsified if ≤ 0.4; with 6 points this is descriptive.
+- **H-G (finer detail matching; arm a only).** A16 scores of arm a (seeds 401, 402), FRESH1_20 over REC20 with (i) PNG-
+  size deciles (pooled, weights n x n) and (ii) nearest-neighbour matching on PNG size (each FRESH1_20 render paired with
+  the REC20 render of nearest PNG size, with replacement; AUC = share of pairs with the fresh render scored higher, ties
+  one half). Prediction under the detail account: ≥ 0.50 on both seeds (both methods); falsified if both seeds stay ≤
+  0.45 (both methods); otherwise undecided. Arm e reported as a control (expected ≤ 0.35), not decided.
+- Script `src/SM1/a22_read.py`; one results-reviewer pass after computing.
+
 ## DRAFT A20 (for the author's decision, not registered): protocol arm with render-matched diffusion controls
 
 Add DG1 shards 0–5 to the protocol training set (PN1's protocol recipe): X20 as attack, REC20 and SAME20 as genuine;
