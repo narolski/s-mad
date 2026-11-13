@@ -70,7 +70,7 @@ if [ $STAGE = ae ]; then
   EP=300; [ -n "$SM" ] && EP=2
   t1=$(date +%s)
   ( cd $C && $RUN train_autoencoder.py --data_dir $W/smdd/os25k_bf_t_cropped --dataset BonaFideImages --model UNetAutoencoder \
-      --emb_size 128 --batchsize 32 --imgsize 224 --epochs $EP --lr 1e-4 --results_dir $W/out/ae --num_workers 8 ) > $W/out/ae_train.log 2>&1
+      --emb_size 128 --batchsize 32 --imgsize 224 --epochs $EP --lr 1e-4 --results_dir $W/out/ae --num_workers 8 ${AE_RESUME:+--resume --checkpoint $AE_RESUME} )   # AE_RESUME: authors' resume from a copied *_best.pt > $W/out/ae_train.log 2>&1
   echo "autoencoder: $(( $(date +%s) - t1 )) s"; { grep -E "^Train Loss" $W/out/ae_train.log || true; } | tail -3
   CK=$(find $W/out/ae -name '*_best.pt' | head -1); echo "AE checkpoint $CK"
   ( cd $C && $RUN inference_autoencoder.py --data_dir $W/smdd/os25k_bf_t_cropped --data_dir $W/smdd/os25k_m_t_cropped \

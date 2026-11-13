@@ -37,8 +37,8 @@
 | A45_incepofc | last (primary) | native | 5 | 51.07 | 6.39 | 15.22 | 41.96 | 46.39 | 32.20 [29.12, 35.23] | 10.53 | does not reproduce (worse); delta +21.68 [+15.76, +27.60], M 3.16 |
 | FDMAD_f256 | model (primary) | e7 | 3 | 90.48 | 33.52 | 30.10 | 54.29 | 45.09 | 50.69 [48.05, 53.42] |  |  |
 | FDMAD_f256 | model (primary) | native | 3 | 100.00 | 41.50 | 39.54 | 54.29 | 45.09 | 56.08 [53.51, 58.77] | 6.12 | does not reproduce (worse); delta +49.96 [+48.82, +51.10], M 1.84 |
-| FDMAD_f512 | model (primary) | e7 | 2 | 51.26 | 39.45 | 59.80 | 20.15 | 31.08 | 40.35 [38.13, 42.15] |  |  |
-| FDMAD_f512 | model (primary) | native | 2 | 1.24 | 48.95 | 63.71 | 20.15 | 31.08 | 33.03 [30.73, 35.21] | 6.12 | does not reproduce (worse); delta +26.91 [+26.82, +27.00], M 1.84 |
+| FDMAD_f512 | model (primary) | e7 | 3 | 50.35 | 39.20 | 58.48 | 20.30 | 30.71 | 39.81 [37.68, 41.71] |  |  |
+| FDMAD_f512 | model (primary) | native | 3 | 1.34 | 49.30 | 63.40 | 20.30 | 30.71 | 33.01 [30.80, 35.16] | 6.12 | does not reproduce (worse); delta +26.89 [+26.83, +26.94], M 1.84 |
 | FDMAD_g256 | model (primary) | e7 | 3 | 95.76 | 33.52 | 30.10 | 54.27 | 45.09 | 51.75 [49.26, 54.34] |  |  |
 | FDMAD_g256 | model (primary) | native | 3 | 100.00 | 41.50 | 39.54 | 54.27 | 45.09 | 56.08 [53.51, 58.77] | 6.12 | does not reproduce (worse); delta +49.96 [+48.81, +51.11], M 1.84 |
 | FDMAD_g512 | model (primary) | e7 | 3 | 52.77 | 35.78 | 60.28 | 21.45 | 21.73 | 38.40 [35.68, 40.88] |  |  |
@@ -108,11 +108,11 @@
 | FDMAD_f256 | Webmorph | 87.58 | 76.31 | 67.97 | 57.68 |
 | FDMAD_f256 | MIPGAN_I | 100.00 | 99.67 | 96.57 | 88.56 |
 | FDMAD_f256 | MIPGAN_II | 99.51 | 95.10 | 87.09 | 79.90 |
-| FDMAD_f512 | FaceMorpher | 1.47 | 0.25 | 0.00 | 0.00 |
-| FDMAD_f512 | OpenCV | 86.52 | 76.23 | 69.12 | 59.80 |
-| FDMAD_f512 | Webmorph | 96.57 | 91.91 | 89.22 | 84.07 |
-| FDMAD_f512 | MIPGAN_I | 51.23 | 39.22 | 29.90 | 20.10 |
-| FDMAD_f512 | MIPGAN_II | 70.34 | 53.43 | 47.30 | 37.99 |
+| FDMAD_f512 | FaceMorpher | 1.63 | 0.33 | 0.00 | 0.00 |
+| FDMAD_f512 | OpenCV | 86.76 | 77.29 | 70.10 | 60.78 |
+| FDMAD_f512 | Webmorph | 96.41 | 91.99 | 89.05 | 83.66 |
+| FDMAD_f512 | MIPGAN_I | 51.96 | 39.38 | 29.74 | 20.42 |
+| FDMAD_f512 | MIPGAN_II | 70.42 | 53.92 | 48.04 | 38.40 |
 
 ### FRLL-Morphs: EER (%) per family, seed mean; MEAN5 with two-way person bootstrap 95% CI
 
@@ -152,8 +152,8 @@
 | A45_incepofc | last (primary) | native | 5 | 29.35 | 74.33 | 66.70 | 31.19 | 20.93 | 44.50 [41.45, 47.64] | 8.11 | does not reproduce (worse); delta +36.38 [+27.87, +44.90], M 2.43 |
 | FDMAD_f256 | model (primary) | e7 | 3 | 89.12 | 72.74 | 25.96 | 41.33 | 89.53 | 63.74 [61.16, 65.82] |  |  |
 | FDMAD_f256 | model (primary) | native | 3 | 97.68 | 97.03 | 81.88 | 41.33 | 97.21 | 83.02 [81.09, 84.93] | 1.85 | does not reproduce (worse); delta +81.17 [+80.58, +81.77], M 1.50 |
-| FDMAD_f512 | model (primary) | e7 | 2 | 4.41 | 5.64 | 45.99 | 25.00 | 4.07 | 17.02 [15.34, 18.88] |  |  |
-| FDMAD_f512 | model (primary) | native | 2 | 1.55 | 15.90 | 49.75 | 25.00 | 2.02 | 18.85 [16.87, 21.26] | 1.85 | does not reproduce (worse); delta +17.00 [+16.46, +17.53], M 1.50 |
+| FDMAD_f512 | model (primary) | e7 | 3 | 4.41 | 5.23 | 45.86 | 25.32 | 4.04 | 16.97 [15.28, 18.86] |  |  |
+| FDMAD_f512 | model (primary) | native | 3 | 1.86 | 16.00 | 49.99 | 25.32 | 2.02 | 19.04 [17.09, 21.47] | 1.85 | does not reproduce (worse); delta +17.19 [+16.61, +17.77], M 1.50 |
 | FDMAD_g256 | model (primary) | e7 | 3 | 89.09 | 72.74 | 25.96 | 41.33 | 89.53 | 63.73 [61.12, 65.81] |  |  |
 | FDMAD_g256 | model (primary) | native | 3 | 97.68 | 97.03 | 81.88 | 41.33 | 97.21 | 83.02 [81.08, 84.92] | 1.85 | does not reproduce (worse); delta +81.17 [+80.58, +81.77], M 1.50 |
 | FDMAD_g512 | model (primary) | e7 | 3 | 22.61 | 16.52 | 79.28 | 58.64 | 11.64 | 37.74 [35.43, 39.97] |  |  |
@@ -223,11 +223,11 @@
 | FDMAD_f256 | opencv | 100.00 | 99.35 | 97.55 | 96.41 |
 | FDMAD_f256 | stylegan | 97.22 | 88.89 | 79.74 | 68.79 |
 | FDMAD_f256 | webmorph | 100.00 | 100.00 | 100.00 | 100.00 |
-| FDMAD_f512 | amsl | 4.41 | 0.00 | 0.00 | 0.00 |
-| FDMAD_f512 | facemorpher | 40.44 | 27.21 | 18.38 | 13.97 |
-| FDMAD_f512 | opencv | 87.25 | 74.26 | 65.93 | 58.58 |
-| FDMAD_f512 | stylegan | 50.98 | 41.67 | 37.25 | 27.70 |
-| FDMAD_f512 | webmorph | 8.58 | 0.00 | 0.00 | 0.00 |
+| FDMAD_f512 | amsl | 5.23 | 0.00 | 0.00 | 0.00 |
+| FDMAD_f512 | facemorpher | 40.36 | 27.12 | 18.63 | 13.73 |
+| FDMAD_f512 | opencv | 87.25 | 75.16 | 67.97 | 60.13 |
+| FDMAD_f512 | stylegan | 51.31 | 41.99 | 36.93 | 27.78 |
+| FDMAD_f512 | webmorph | 8.66 | 0.00 | 0.00 | 0.00 |
 
 ### Networks excluded by the scorer gate C1
 

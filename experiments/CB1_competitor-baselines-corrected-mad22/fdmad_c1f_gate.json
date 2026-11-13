@@ -436,5 +436,11 @@
   "passed": true,
   "has_face_rows": 19171,
   "note": "local branch has no stored reference (never run in A45)"
+ },
+ "FDMAD_f512_s3_model": {
+  "global_part_max_abs_vs_gated_global": 0.0,
+  "passed": true,
+  "has_face_rows": 19171,
+  "note": "local branch has no stored reference (never run in A45)"
  }
 }

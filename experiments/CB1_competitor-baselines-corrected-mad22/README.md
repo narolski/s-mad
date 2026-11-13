@@ -104,6 +104,17 @@ No CB1 score read yet.
   checked by the script). A first attempt with a `--system-site-packages` venv failed (a venv of a venv does not see
   the parent's packages) and was removed. Amendment 3 committed (1ad2566). Code pack v3 sha256 07794689....
 
+- 02:20-03:35. last.pt pass: 224-px networks and M2, M1 scored; stopped by PID at 03:00 before M4 (descriptive arm,
+  secondary checkpoint) to free the GPU; A45 arms scored 03:00-03:35 (code root `code_a45_jobroot`). FD-MAD global 512
+  seeds 1-3 and fused 256 / 512 (seeds 1-2) read. C1: M5 last.pt fails on 6 of 8 seeds (withheld), M8O last seed 3
+  fails; all A45 pass.
+- 03:36-03:38. IDistill DGX smoke (`dgxrun/run_smoke.sh`, SMOKE=1): passed end to end (crop, 2 AE epochs, latents,
+  classifier 6 epochs, scoring of best / valbest / last). 03:38: production (`dgxrun/run_prod.sh`, PID 906453): AE stage
+  then classifier seed 401. Crops: 24,694 of 25,000 contributors; FRLL FaceMorpher 806 of 1,222 (the known script
+  failure), OpenCV 1,212 of 1,221, all others complete. AE step rate 3.0 it/s at batch 32 (GPU 94%): 259 s per epoch,
+  300 epochs about 21.5 h (end about 01:20 on 14 Nov); classifier estimated 2.5-7 h. Coordinator told at 03:50.
+- 03:55. Readings committed (b554c85): `result.md`, `tables_all.md`, `cnn_{es,last,a45}_*.csv/json`, FD-MAD files.
+
 ## 3. Data
 
 See `prereg.md` section 2. Corrected MAD22 aligned frames and E7 pools:
@@ -156,11 +167,15 @@ Copy A45 weights and stored scores from WCSS; run C1/C2; read; IDistill smoke an
 
 ## 10. Handover state
 
-- DGX PID 519094: CNN scoring loop (es then last); expected end about 03:00 on 13 Nov. If it dies: rerun the
-  command, finished networks are skipped.
-- DGX PID 603857: FD-MAD global re-score (six runs, about 6 min each).
-- WCSS 6308827 (IDistill smoke, owner CB1): pending; check at start + 60 min. The production jobs (STAGE=ae, then
-  STAGE=cls SEED=401..403) are submitted only after the smoke passes and the pre-run review is in.
+- DGX GPU: IDistill production, `/mnt/t7/smad_next/CB1/dgxrun/run_prod.sh` (PID 906453), logs
+  `dgxrun/prod_STAGE_ae.log`, `dgxrun/prod_STAGE_cls_SEED_401.log`, live training log in
+  `dgxrun/tmp_STAGE_ae/ids/out/ae_train.log`; checkpoints copied every 30 min to `dgxrun/results/CB1/idistill_ae_partial/`;
+  result tars to `dgxrun/results/CB1/`. Expected end 14 Nov 04:00-08:30. If it dies during the AE: the authors' `--resume`
+  from the copied `*_best.pt` (needs a resume patch of the job script; not prepared).
+- DGX CPU: FD-MAD fused 512 seed 3 (`src/CB1/run_fdmad_fused.sh`, PID 678580).
+- WCSS 6308827 (IDistill smoke, owner CB1, code pack v2): pending, Slurm forecast 15 Nov 01:00; kept queued on the
+  coordinator's instruction (carries its whole workload; runs about 30-60 min if it starts).
+- Not scored: M4 last.pt (descriptive). CNN scoring is complete otherwise.
 
 ## 11. Reproduce from scratch
 

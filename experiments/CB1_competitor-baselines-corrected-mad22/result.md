@@ -80,7 +80,7 @@ photos unchanged). Several FRLL-Morphs cells are above 50% (inverted ranking), a
 | Global branch, 256 (A45 primary) | 3 | 56.08 [53.51, 58.77] | 83.02 [81.08, 84.92] | does not reproduce (worse); ranking inverted on most landmark cells |
 | Fused (0.6 global + 0.4 local MRF), 256 | 3 | 56.08 [53.51, 58.77] | 83.02 [81.09, 84.93] | same as global: the local branch outputs P(bona) near 0 for every frame (median 7e-7), so fusion does not change the ranking |
 | Global branch, 512 (disclosed variant) | 3 | 28.13 [25.55, 30.79] | 14.90 [13.25, 16.59] (AMSL 0.02, FaceMorpher 0.98, OpenCV 14.83, StyleGAN2 58.64, WebMorph 0.00) | does not reproduce (worse) |
-| Fused, 512 (96-px windows as built) | 2 of 3 so far | 33.03 [30.73, 35.21] | 18.85 [16.87, 21.26] | does not reproduce (worse) |
+| Fused, 512 (96-px windows as built) | 3 | 33.01 | 19.04 | does not reproduce (worse) |
 
 The paper's global-only means are 16.62 (MAD22) and 2.08 (FRLL); neither is reached. This is a partial
 re-implementation on the 256-px SMDD copy with our frames, so the row label is "as reported, not verified"; our
