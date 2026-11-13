@@ -666,7 +666,7 @@ answer (the controller was flapping), and the job had in fact completed at 20:25
 - Reading (audit, 2 seeds): the MADation-recipe ViT-L/14 LoRA trained on the SMDD release files ranks morphs with SMDD's
   five training partners above morphs with SMDD's evaluation partners (AUC 0.76), as the ViT-B/16 fits do (0.76; b 0.82)
   (interval over keys only; per-key seed correlation 0.38; ViT-B/16 arms without SMDD's five give 0.53–0.59; no ViT-L/14
-  baseline arm). Reviewed (13 Nov, results-reviewer, registration order clean). Audit-table caption: "SMDD partner
+  baseline arm). Reviewed (13 Nov, results-reviewer, registration order clean; `experiments/reviews/REVIEW_SM1_A14_VITL_20261113.md`). Audit-table caption: "SMDD partner
   trace, MADation-recipe ViT-L/14 (LoRA) retrained on SMDD release files: within-key AUC, morphs with SMDD's five
   training partners over morphs with SMDD evaluation partners (same first contributor, 500 keys), 0.756 [0.746, 0.765],
   2 seeds (401: 0.755; 402: 0.756), key bootstrap B = 10,000 (seed variance not included); whole image, no TTA; audit
