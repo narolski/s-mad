@@ -101,3 +101,10 @@ share.
 - **Printed items (F8):** train-minus-held-out gaps per kind in `ms1_part3.json`; FS1 R1-R6 per arm and seed in
   `ms1_part3.json` (e.g. R1 stratified AUC Sb 0.823-0.887, SbM3 0.856-0.893, SbV 0.816-0.876; R6 AUC loss complete →
   combined Sb 0.110-0.176, SbM3 0.109-0.149); smoke gate: not producible (the WCSS smoke was cancelled before it ran).
+
+# Part 3b (printed-only amendment registered at 616a910; computed once at 10:14 on 13 Nov 2026; `ms1_part3b.json`)
+
+- Rank-AUC memorisation (mean over 11 FRGC / colorFERET kinds): A(SbM3) < A(Sb) on 5 of 5 seeds; A(SbV) < A(Sb) on 1 of
+  5. Values in `ms1_part3b.json` (reproduces the reviewer's post hoc 0.541-0.557 vs 0.514-0.535).
+- Within-sex ρ(CFD logit, Feminine), medians over seeds: women Sb 0.248, SbM3 0.007, SbV 0.257; men Sb 0.097, SbM3
+  −0.125, SbV 0.074. Per race group × sex and flag counts per seed in `ms1_part3b.json`. Printed only; associational.
