@@ -262,3 +262,9 @@ All are written after the TT1-FS scores were read; labels: Z1 post hoc, Z2-Z4 de
 - **Z4 (descriptive): B's FFHQ genuine flags against its TT1 flags.** Over B's seven seeds (401, 402 from tt1_read.json;
   403-407 from tt1_read_fs.json; two hosts, labelled): Spearman of R_ffhq own-rule flag share with F̄. "One seed-level
   instability consistent" if ρ ≥ 0.7; "not consistent" if ρ < 0.3; otherwise "weak".
+
+## 13. Registration TT1-M (`date`: Fri Nov 13 01:47:43 PM CET 2026; registered at the git commit that adds this section; no MEDS score on the scoring platform)
+
+- Text: `prereg_meds_block.md` (NIST SD32 MEDS frontal pool, 865 aligned images of 400 persons; 15 FS1 networks + 3 Sp
+  printed; per-network byte-identity gate on the 3,417 TT1 fam-gate rows against pn1fs, on se1d after SE1_DONE_411; reads
+  TT-M1 to TT-M4). Pre-run check by the experiment-reviewer follows.
