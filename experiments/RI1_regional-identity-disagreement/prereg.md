@@ -105,3 +105,10 @@ Any other combination is "inconclusive (no row of the outcome table)".
 - B_src and S_src are the very photos blended in. The bias is balanced between R4 and R3 and also printed with R.
 - The keypoints of morphs sit at the mean geometry; the same holds for R2w4, which is a control.
 - FR networks are robust to occlusion, so a small Δ may reflect robustness. G0 bounds this only partly.
+
+## Amendment 1a (13 Nov, before any embedding; pre-run check `experiments/reviews/PRERUN_RI1_TB1_20261113.md`, 3f9f136)
+
+- The embedding rows gain the OpenCV warp-only rung R2w (291 rows; pre-run R3). The rows are now 3,492.
+- The FFHQ reference part is dropped (lead's answer 3): it informs no number and comes from a held-out folder. Δ is
+  used unstandardised; every AUC is invariant to the z-score.
+- The embedding step may start now, by the lead's ruling. The reader does not run until amendment 1b is registered.

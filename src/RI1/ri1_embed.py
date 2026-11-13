@@ -30,7 +30,7 @@ GREY = 128
 BOXES = (("left_eye", (40, 64, 24, 54)), ("right_eye", (40, 64, 58, 88)), ("nose", (58, 84, 44, 68)),
          ("mouth", (82, 104, 34, 78)), ("upper", (0, 56, 0, 112)), ("lower", (56, 112, 0, 112)),
          ("left", (0, 112, 0, 56)), ("right", (0, 112, 56, 112)))
-LAD = ("R0", "R2w4", "R3", "R4")
+LAD = ("R0", "R2w", "R2w4", "R3", "R4")      # amendment 1 (pre-run R3): R2w added
 SPL = ("S0", "S3", "S4")
 
 
@@ -41,7 +41,7 @@ def rows(part):
             if r["role"] not in ("dev", "test"):
                 continue
             if r["fam"] == "ladder" and r["rung"] in LAD and (r["strength"] == "" or (r["rung"] == "R0" and r["strength"] == "61")) \
-                    and r["tool"] in ("opencv", "none", "facemorpher"):
+                    and r["tool"] in ("opencv", "none", "facemorpher") and not (r["rung"] == "R2w" and r["tool"] != "opencv"):
                 R.append((r["id"], str(EVAL / r["path"])))
             elif r["fam"] == "splice" and r["rung"] in SPL:
                 R.append((r["id"], str(EVAL / r["path"])))
