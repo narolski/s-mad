@@ -19,3 +19,4 @@ networks are not changed and the sealed read is not touched. Current answer: non
 - Pre-run check GO WITH FIXES (experiments/reviews/PRERUN_NE1_20261113.md, 653a766). Fixes F1-F8 applied: paired rank shift in the camera-photo pool as primary read, H0e/ceiling/null/morph-check erasers, H1d/H2d fitted on L development hosts with splice reads on L test hosts, narrowed wording, host assert, half-B splice prints for erased heads, TF32 sentence. Pack rebuilt (6456f550…).
 - Fri Nov 13 07:41:59 PM CET 2026: registered (commit that changes the prereg status line).
 - `date` Fri Nov 13 07:55:10 PM CET 2026: Athena job 3550470 done (19:47:17-19:53:52, exit 0); tar verified, gate byte-identical on 5/5; reader run once (07:55:10-07:56:44 PM); result.md written.
+- Post-result review: needs qualification (experiments/reviews/REVIEW_NE1_20261113.md); result.md corrected, reviewer's post hoc scripts kept in posthoc/.
