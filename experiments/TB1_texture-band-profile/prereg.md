@@ -80,3 +80,35 @@ printed separately.
   differ.
 - colorFERET sessions are further apart in time; the result is printed by database.
 - "Equal D" is one-dimensional; joint D × G strata are printed.
+
+## Amendment 1 (13 Nov, before any computation; pre-run check `PRERUN_RI1_TB1_20261113.md`, 3f9f136; lead's answers)
+
+All fixes T1-T5 are in code and registered here before anything is computed (`src/TB1/tb1_measure.py`,
+`src/TB1/tb1_read.py`, pins in `src/TB1/SHA256SUMS`; tested on 7 hosts and mock features).
+
+The read is split by `--part`:
+- **premise:** read after this amendment;
+- **s** (S4 vs S3, its controls, floor, gain and increment): waits for ADVERSARY's floor commit (lead's hold).
+
+The fixes:
+- **T1.** Controls are scored by the S4-vs-S3 fold models (trained on the S4/S3 rows of the other folds) and scored
+  out-of-fold by host. Each must lie in [0.42, 0.58]. Separately refitted control AUCs are printed as separability
+  ceilings.
+- **T2.**
+  - **Binding controls:** R0_61 vs R0 (both on H's hull), R2w4 vs R2w (both on the amendment-7b hull; R2w is now
+    measured on it), S0 vs R2w4 (same hull).
+  - **Printed:** S0 vs R0, R2w4 vs R0, and S4 vs S3 within G quintiles.
+- **T3.**
+  - P: d is centred by its hull mean before the FFT. E_k is summed over the hull (primary) and over the hull eroded by
+    16 px (printed; a mask operation only). P is also printed within D_dc quintiles.
+  - S: r_k is also printed with a 16 px guard band either side of the hull edge. S4 vs S3 is also printed within
+    quintiles of the seam tone step (|luma step|, `tone_splice.npz`).
+- **T4 (binding, lead's answer 2).** The arm row also requires a cross-fitted gain of r of ≥ +0.03 on S4 vs S3, over a
+  logistic of the 27 statistics plus the splice shortcut features (seam tone luma and R−G steps, log sharpness ratio).
+  The cross-fitted 27-statistic logistic baseline is printed beside it.
+- **T5.**
+  - Row 3 now reads: "no band-profile difference of the luminance half-difference in AS0's five octave bands at equal
+    D; other texture statistics are not tested". The old "BD1's residual is not texture" is withdrawn.
+  - The controls row is applied first.
+  - The Sb increment is printed on the 191 test hosts alone as well as on all 291 hosts.
+- **D:** BD1's D, not D_ac.

@@ -112,3 +112,46 @@ Any other combination is "inconclusive (no row of the outcome table)".
 - The FFHQ reference part is dropped (lead's answer 3): it informs no number and comes from a held-out folder. Δ is
   used unstandardised; every AUC is invariant to the z-score.
 - The embedding step may start now, by the lead's ruling. The reader does not run until amendment 1b is registered.
+
+## Amendment 1b (13 Nov, before any reader run; pre-run check `PRERUN_RI1_TB1_20261113.md`, 3f9f136; lead's answers)
+
+All fixes R1-R6 are registered before any RI1 number is read. The RI1 read waits for ADVERSARY's floor commit (lead's
+hold). Reader: `src/RI1/ri1_read.py` (pins in `src/RI1/SHA256SUMS`), tested on mock embeddings only. The mock reads no
+real embedding file.
+
+- **R1 (replaces §5 "Spread"; lead's answer 1).**
+  - u = (emb(H_src) − emb(X_src)) / ‖·‖, with X = B for R4 and S for R3. V = SD over the kept k of (e_k − e_0)·u, the
+    null-scale-free projection.
+  - **Validity gate:** on the camera photo R0 of the same hosts, AUC(V(R0; u_HB) vs V(R0; u_HS)) and
+    AUC(V(R2w4; u_HB) vs V(R0; u_HS)) must both lie in [0.40, 0.60]. Otherwise P1 is "invalid (projection carries
+    scale)" and the outcome is inconclusive.
+  - The draft's divided and undivided V are printed only and never change the reading.
+  - Pass and kill as in §5: ≥ 0.70 with lower bound > 0.62; ≤ 0.60.
+- **R2.** Printed:
+  - P1 within quintiles of G (BD1 `d_values.csv`, the host's S4 and S3 rows), and within cos_HS quintiles of R3
+    against all R4;
+  - Spearman ρ(V, cos_HB) over R4 and ρ(V, cos_HS) over R3.
+
+  Added to §9: on this ladder cos_HB and cos_HS do not overlap (max 0.65 against min 0.68). A pass cannot separate
+  "two identities" from "FR-dissimilar inputs"; only look-alike pairs (LA1) can.
+- **R3.**
+  - **Controls (two-sided, each within [0.40, 0.60]):** R0_61 vs R0, R2w4 vs R0, S0 vs R2w4 (seam, same base and
+    hull), R2w4 vs R2w (warp magnitude). S0 vs R0 and R3 vs R0 are printed.
+  - **Signal:** R4 vs R3 is read within quintiles of the host's S4 and S3 D, with the pure-D reference. The
+    outcome-table "R4/R3 ≥ 0.65" means this within-D value, as does "S4/S3".
+- **R4.**
+  - The code uses the registered pass rule, including the lower bound.
+  - New outcome row: P1 ≤ 0.60 and R4/R3 within D ≥ 0.65 → "Δ reads something other than regional identity leaning;
+    closed".
+  - Rule order: the controls row is applied first, then P1 validity, then the table.
+- **R5 (binding, lead's answer 2).** Row 1's "Next" also requires a cross-fitted gain of Δ (same 5 host folds) of
+  ≥ +0.03 on S4 vs S3, over a logistic of the 27 statistics plus the PN1 splice shortcut features. These are the seam
+  tone luma and R−G steps (`tone_splice.npz`) and the log inside/outside sharpness ratio (`ratio_splice.npz`). The Sb
+  increment is also printed on the 191 test hosts alone.
+- **R6.**
+  - The FFHQ part is dropped (amendment 1a).
+  - Counting rule: a contrast whose rung has < 95% of faces found is "not measured".
+  - Folds and bootstraps are host-disjoint but not person-disjoint: 215 of 291 partners are themselves hosts.
+  - The border control is not tested. No deployment claim is made.
+- **D:** BD1's D (prereg line 30 of BD1), not D_ac.
+- **Lead's ruling recorded in NOTEBOOK** (3f9f136).
