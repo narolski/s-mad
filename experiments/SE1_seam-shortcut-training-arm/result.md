@@ -140,3 +140,5 @@ Files:
 
 - **Wording deviation (lead, 13 Nov 17:25):** the section 8 sentence above replaces the registered sentence "Same-person blends as negatives did not change the same-person flags at this dose". The registered sentence would be false for same-person full-frame morphs. Verdicts are unchanged.
 - **Author's ruling (13 Nov 17:15):** cluster waits may go past the experiment-stage cut-off. The H100 block's read deadline (now 14 Nov 18:00) will be moved accordingly, by a dated amendment before any H100 SE tar exists, when the dispatcher asks.
+
+- Time correction (`date`: Fri Nov 13 18:48 CET 2026; nothing else changes): the lead's message gave times written from memory, about 45 min ahead (NOTEBOOK, "13 Nov 2026, 18:46 machine clock (lead): CORRECTION OF TIMES"). The wording approval cited above as "17:25" came before this file's commit 1b8b120, git time 13 Nov 17:14:04. The author's cut-off ruling cited as "17:15" is about 17:11 by the machine clock (the lead's message said 17:15). No rule, verdict or deadline changes.
