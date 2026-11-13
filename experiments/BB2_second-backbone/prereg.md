@@ -282,3 +282,65 @@ Pins at registration (sha256): `src/BB2/archs_a12.py` a2a68634edfe7f4315f14be180
 `src/BB2/wcss/bb2_smoke.sbatch` 2bf724869b8b52ad44be2ac0607fb7dc96b3a8d76f469ad216560efa201fc653;
 overlay 7c0a0b41f2e7bf656dc49db33c34a33ef62b10e8f0aaec24e247e684098d0bad; featref_cpu.npz
 89f3defe6a6f74ef1852f19ef6e9a2cc8b3867c8e55be895e9ae299425627b75; FS1 pack 96c31ae2….
+
+## Amendment 1 (DRAFT for pre-run review; registered at the git commit that adds its final version; written from Fri Nov 13 08:3x CET 2026; before any BB2 fit score is read and before any BB2 network is scored on the MS1 FFHQ hold-out)
+
+**Why.** Registration 4393990 predates today's CLIP results: FS1 read 13 Nov 06:38 (`experiments/PN1_protocol-network-
+first-tests/result.md`, review `experiments/reviews/REVIEW_PN1_FS1_20261113.md`): contrast 1 replicated 5 of 5, contrast
+2 uninformative (A's positive control failed), contrast 3 replicated. The author then adopted the replacement storage
+test C2P (PN1 prereg.md, 2715e48) and the amended freeze rule (FINAL prereg section 1, 6691adc). The lead (13 Nov
+08:45) asked that BB2 carry the same development reads as the first backbone: the storage flag-rate rise (C2P), the
+landmark_combined AUC (FS1 contrast 1) and the same-person splice flag rate (S3), development data only.
+
+**Disclosure.** Written after the FS1 reading and its review were read by the BB2 owner (CLIP values above; Sb's S3 own-
+rule flags 31-41%). No C2P score of any network was known to the BB2 owner at writing (`c2p_read.json` absent). No BB2
+fit exists (the fit submission under 4393990, unchanged, was refused twice by the WCSS controller at 08:30 and 08:35);
+this amendment changes no fit, no flag, no pack and no FS1-pack read of sections 5-7. The WCSS smoke values are
+operational only (loss at step 100, memory).
+
+**A1.1 Unchanged.** Arms A, B, Sb; seeds 403-405; recipe, packs and fit jobs; reads and counting of sections 5-7
+(contrasts 1-3, R1-R6, adequacy control) and their sentences. Contrast 2 (v4) is still computed and printed; since it
+was "uninformative" on CLIP, its BB2 sentence is "No CLIP effect to repeat" by section 7.
+
+**A1.2 New read: contrast 2-prime and H-new-1 on BB2 (registration C2P, unchanged statistics).**
+- Data: the MS1 FFHQ hold-out (fam `ms1ffhq`, 1,480 rows: 300 native photos, 291 fm61 / 290 amsl112 copies, 150 u50
+  morphs and their copies) of the MS1 pack `pn1_pack_ms1.tar` `c11b16bc…` (evaluation manifest `d1fab6ad…`), FFHQ =
+  development only. No BB2 network has scored it. No FRLL, MAD22, MorDIFF, DiM, H1, FEI, CASIA-WebFace or sealed row is
+  scored (the job scores only fams af0, ffhq, ms1ffhq).
+- Scoring: one WCSS H100 job (`src/BB2/wcss/bb2_c2p.sbatch`), submitted only after all nine fit tars exist and verify;
+  unchanged `src/PN1/rescore.py` (`6f6eede7…`, logit without flip) on the MS1 pack with the BB2 overlay unpacked over it
+  (the job asserts the pack's archs_a12.py is the pinned bedfeb86… before the overlay). Families af0 and ffhq for the
+  platform gate (C2P.2's thresholds, against each fit's stored pn1_score.py logits; same GPU type; rescore.py runs
+  without TF32), ms1ffhq for the read. Local check: rescore.py on the BB2 smoke network reproduces its WCSS fit logits
+  on the shared af0 rows within 5.2e-5 (DGX GPU against H100).
+- Statistics: C2P.3 and C2P.4 exactly, through `src/PN1/c2p_read.py` (`45e72914…`, imported unchanged; same pairs,
+  bootstrap draws rng 20261131, margins).
+- Three-seed counting (new): per size z, A's control as C2P.3. X ∈ {B, Sb} **passes** if it passes on ≥ 2 of 3 seeds at
+  fm61 AND at amsl112; **fails** if it passes on 0 seeds at a size where A's control is met on ≥ 2 seeds;
+  **uninformative** if A's control is met on ≤ 1 seed at either size; otherwise "inconclusive, no claim". Gate-failed or
+  lost seeds keep the denominator of 3. H-new-1: **supported** if Δm_att ≤ −0.20 on ≥ 2 of 3 seeds at either size;
+  **falsified** if Δm_att ≥ −0.10 on ≥ 2 of 3 seeds at both sizes; otherwise inconclusive; fewer than 2 read seeds: not
+  read. H-new-2 is not read for BB2.
+- Sentences (reader `src/BB2/bb2_c2p_read.py`): if CLIP's contrast 2-prime "passes" for X and BB2 passes: "The reduction
+  of the storage reaction (X ...) repeats on a second backbone (DINOv3 ViT-L/16, 2 of 3 seeds or more)"; if CLIP passes
+  and BB2 does not: "... did not repeat on a second backbone (<verdict>): not shown to be independent of the CLIP
+  backbone"; if BB2 is uninformative: "uninformative (the plain arm's control is not met on DINOv3)"; if CLIP does not
+  pass: "No CLIP effect to repeat; printed only". H-new-1 printed beside CLIP's, both verdicts. The caveats of section 7
+  apply (2 of 3 seeds; Sb chosen on a DINOv3 head; development only; CLIP learning rates; different platform).
+
+**A1.3 New printed read: same-person splice flags (S3).** From each fit's stored scores (FS1 pack, splice rows): own-
+rule flag share of S3 (development 100, test 191), of S0, S4 miss, AUC S3 vs S0 and S4 vs S3, per arm and seed. Printed
+only, no verdict; it describes whether the blending-seam reaction seen on CLIP (Sb 31-41% of development S3) is a
+property of the recipe on both backbones.
+
+**A1.4 Room for a seam-shortcut arm.** A training arm against the blending-seam shortcut (drafted by another owner
+today) can be added on BB2 later only by a registered amendment before its fits: its manifest enters as a further
+overlay file (the FS1 pack stays unchanged), `run.sh`'s arm list and the fit script's task table are extended by that
+amendment, seeds 403-405, the same recipe, scoring and reads (sections 5-7, A1.2, A1.3), compared with BB2 Sb of the
+same seed. No BB2 rule above changes when it is added.
+
+**A1.5 Freeze and sealed read.** BB2 never enters the freeze rule (FINAL section 1 as amended at 6691adc); its networks
+of the arm FINAL freezes are scored once in the sealed read as a robustness row (section 10 unchanged).
+
+**A1.6 Pins.** `src/BB2/bb2_c2p_read.py`, `src/BB2/wcss/bb2_c2p.sbatch`: sha256 at the commit that registers this
+amendment (README). `rescore.py` 6f6eede7…; `c2p_read.py` 45e72914…; MS1 pack c11b16bc….

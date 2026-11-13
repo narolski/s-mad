@@ -71,6 +71,14 @@ registration written; DGX smoke running; draft goes to the independent pre-run r
   wall time and cost for 1-3 machines, keep rule), `remote_bb2.sh`, `drive_bb2.sh` (HOST PORT LEASE placeholders);
   queue rerun logic tested with a stand-in run.sh.
 
+- 13 Nov 03:12-03:17 WCSS smoke job 6308946 ran on r18-11 (NVIDIA H100, 95,830 MiB, GPU-25f4d639…; torch 2.11.0+cu128,
+  timm 1.0.30): 256 x 1: rc 0, 100 steps at 1.12 it/s, loss 0.6881 at step 100, peak memory.used 69,225 MiB; feature
+  check max |diff| 6.8e-7 against the DGX CPU reference (tolerance 1e-3), rc 0; 128 x 2: rc 0, 1.18 it/s, peak 35,627
+  MiB. Outputs fetched to `/mnt/t7/smad_next/BB2/smoke_wcss/` (both tars sha256 OK; log, memory logs, features).
+- 08:30 **rules applied (prereg section 4 and 9):** memory rule -> batch 256 in one pass (69,225 ≤ 73,728 MiB);
+  projected fit time 6,250 / 1.12 it/s = 1.55 h + about 0.15 h pack copy and scoring = 1.7 h; time limit 1.5 x 1.7 h +
+  0.5 h = 3.05 h -> `--time=0-03:03:00`.
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
