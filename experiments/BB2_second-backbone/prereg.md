@@ -633,3 +633,27 @@ The lead's messages since about 17:00 gave author-ruling times about 45 minutes 
 machine clock (lead): CORRECTION OF TIMES"). By the machine clock: the cut-off ruling quoted in amendment 6 ("17:15")
 was about 17:11; the lead's "go" for amendment 7 ("20:00") and the other evening times (19:05-20:00, "18:50") fall
 between 18:32 and 18:46. The times in amendments 4 and 5 ("15:40", "16:05") came from the machine clock and stand.
+
+### Amendment 7a and the pre-run check of amendment 7 (`date`: Fri Nov 13 06:50:49 PM CET 2026; no E3 tar and no W2 output exists)
+
+- **7a, CLIP comparator in the same job (lead, about 18:58 machine clock):** AB1's five H100 Sb networks (seeds 408-412,
+  `results/AB1/AB1_Sb_s40{8..12}.tar`, sha256 a84b551f…, dd575673…, 40b47155…, 764a4e5e…, c1e0f081…, hard-coded in the
+  job) are scored in the same job, by the same scorer on the same platform, on every W2 family. Each is used only if its
+  own stored scores on the 6,339 gate rows (af0 + ffhq; present in its stored scores_eval.npz with the same ids)
+  reproduce bit for bit first; otherwise its other families are skipped and it is reported as refused.
+- **Pre-run check** (`experiments/reviews/PRERUN_BB2_W2_20261113.md`, Opus, on 2976f78; GO WITH FIXES), applied:
+  1. the smoke runs with `BB2_W2_TARS`, `BB2_W2_RESULTS=results/BB2_smoke`, `BB2_W2_OUT=BB2LW2smoke` (so it cannot block the
+     real job) and one comparator (`BB2_W2_CMP=AB1_Sb_s408`); a bug found by the smoke means cancelling and resubmitting
+     the queued job, never patching it on disk;
+  2. WCSS staging of pr1_gd.tar, tt1m_meds.tar and packs/TT1/tt1_pack.tar verified on the login node before submission;
+  3. the overlay is pinned in the job;
+  4. disclosure: CLIP's TT1 and MEDS numbers (TT1 owner) were scored without TF32 matmul; W2 scores with TF32 (the
+     numerics of every DINOv3 in-fit score); "beside CLIP" tables state the mixed precision; the AB1 comparator rows of
+     this job are TF32 like the DINOv3 rows, which is why they are added;
+  5. the W2 reader applies the gate before loading any non-gate file and prints dropped networks;
+  6. late E3 networks (a task re-run under a new job ID after W2 started) get a second W2 job (`BB2_W2_TARS`,
+     `BB2_W2_OUT=BB2LW2b`); each output's `tasks.txt` defines what it scored;
+  7. W2 outputs (which hold MEDS row ids) never enter git (`.gitignore`: BB2LW2*); `n_fail.txt` written into the output.
+- The dependency-chained submission (`--dependency=afterany:6313860`; its only later inputs are E3's tars) is the lead's
+  approved exception to OWNER_BRIEF.md "nothing a job needs may arrive after submission" (lead, 20:00 by his clock).
+- `src/BB2/wcss/bb2l_w2.sbatch` sha256 6bb5617987f6c7df038c336a8229c0e3c1407fb550f84e88b6726da7ee45ca85.
