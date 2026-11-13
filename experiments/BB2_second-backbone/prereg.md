@@ -706,3 +706,22 @@ E3's fits are running (6313860); no E3 tar exists locally and none has been open
   DINOv3 and one AB1 network): `BB2_W2_TARS=results/BB2/BB2_Sb_s403.tar`, `BB2_W2_CMP=AB1_Sb_s408`,
   `BB2_W2_RESULTS=results/BB2_smoke`, `BB2_W2_OUT=BB2LW2smoke2`. Then a short pre-run check of the diff, then the
   production job is resubmitted (afterok on the new smoke, afterany on E3, per the dispatcher).
+
+## Amendment 7d: fixes from the pre-run check of 7c (`experiments/reviews/PRERUN_BB2_A7C_20261114.md`, GO WITH FIXES; `date`: Sat Nov 14 12:33:42 AM CET 2026; reads held; no W2 production output exists)
+
+1. The job counts gate refusals (`n_refused.txt` beside `n_fail.txt`) and exits 4 after the copy-back if any network
+   was refused or any family failed (review fix a), so a refusal is never a clean exit.
+2. `rm -rf "$O/_net"` right after each gate call: no fit-time score file or weight file can enter the output tar.
+3. The 6,339 af0 + ffhq rows remain the gate rows of record (amendment 7a); the whole-manifest check of 7c (19,797 rows
+   for BB2/E3 networks, 21,277 for the AB1 comparators) is a strict superset of them.
+4. The wave-2 reader is committed before any read. Eligibility of each network comes only from its `gate_<T>.json`:
+   verdict "passed" with n = 19,797 (BB2/E3) or 21,277 (AB1); a missing gate file counts as refused; there is no
+   fallback to tolerance thresholds.
+5. Environment of the AB1 fits (review question): `ab1_fit.sbatch` (on WCSS packs/AB1) calls `run_v2.sh` (cfa4ed26…, now
+   committed as `src/AB1/run_v2.sh`) with `PN1_PY=$HOME/dmenv/bin/python` and no `PN1_SIF`, so its scorer ran in
+   `~/dmenv`, not in the SIF container (run_v2.sh line 24-25: apptainer only when PN1_SIF is set); each AB1 tar's
+   env.txt records python 3.12.15, torch 2.11.0+cu128, timm 1.0.30 (AB1_Sb_s408 checked). The gate runs in the same
+   environment, so a comparator failure is a reproduction failure, not an environment change.
+6. The re-smoke 6317545 runs the 7c script, which exits 0 on refusal: it is judged by its two gate JSON files
+   (BB2_Sb_s403 and AB1_Sb_s408 must each say "passed" with every row equal), not by its exit code.
+- `src/BB2/wcss/bb2l_w2.sbatch` sha256 b44834782a552ab87c66518fa90563ce804963f763b2c54d0b6642d3120db507.

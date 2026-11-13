@@ -92,7 +92,7 @@ PY=$HOME/dmenv/bin/python
 $PY -I "$P/precision_probe.py" --expect-gpu "NVIDIA H100" > "$O/precision.txt" 2>&1 || fail "GPU or probe: $(tail -1 $O/precision.txt)"
 (cd "$P" && sha256sum rescore_tf32.py rescore.py precision_probe.py) > "$O/scripts.sha256"
 nvidia-smi --query-gpu=uuid,name --format=csv,noheader > "$O/gpu.txt" 2>&1 || true
-n_fail=0; : > "$O/tasks.txt"
+n_fail=0; n_ref=0; : > "$O/tasks.txt"
 for t in $TARS $CTARS; do
   T=$(basename "$t" .tar); echo "$T" >> "$O/tasks.txt"
   tar -C "$C/nets" -xf "$t" "$T/meta.json" "$T/last_trainable.pt"
@@ -100,7 +100,9 @@ for t in $TARS $CTARS; do
   SMAD_DATA=$DFS HF_HOME=$C/fs/pn1/hf HF_HUB_OFFLINE=1 $PY -I "$P/bb2_gate.py" --tar "$t" --code "$C/fs/pn1/code" \
     --manifest "$GMAN" --out "$O" --workers 7 >> "$O/rescore.log" 2>&1
   grc=$?
+  rm -rf "$O/_net"     # amendment 7d: no fit-time score or weight file may enter the output tar
   if [ $grc -ne 0 ]; then
+    n_ref=$((n_ref+1))
     echo "$(date +%T) $T REFUSED by the bit-identity gate (rc $grc): $(grep BB2GATE "$O/rescore.log" | tail -1 | cut -c1-300)" | tee -a "$O/rescore.log"; continue
   fi
   echo "$(date +%T) $T gate passed (bit-identical on its whole fit manifest)" | tee -a "$O/rescore.log"
@@ -113,9 +115,10 @@ for t in $TARS $CTARS; do
   done
   echo "$(date +%T) $T done" | tee -a "$O/rescore.log"
 done
-echo "$n_fail" > "$O/n_fail.txt"
+echo "$n_fail" > "$O/n_fail.txt"; echo "$n_ref" > "$O/n_refused.txt"
 tar -C "$TMPDIR" -cf "$TMPDIR/$OUTN.tar" out && (cd "$TMPDIR" && sha256sum $OUTN.tar > $OUTN.tar.sha256)
 mkdir -p "$R"
 cp "$TMPDIR/$OUTN.tar" "$R/$OUTN.tar.part" && [ "$(sha256sum "$R/$OUTN.tar.part" | cut -c1-64)" = "$(cut -c1-64 "$TMPDIR/$OUTN.tar.sha256")" ] \
   && mv "$R/$OUTN.tar.part" "$R/$OUTN.tar" && cp "$TMPDIR/$OUTN.tar.sha256" "$R/" || fail "copy-back"
-echo "BB2L_W2_DONE failures $n_fail $(date -Is)"
+echo "BB2L_W2_DONE failures $n_fail refused $n_ref $(date -Is)"
+[ $n_ref -eq 0 ] && [ $n_fail -eq 0 ] || exit 4     # amendment 7d (review fix a): a refusal or a failed family is not a clean exit
