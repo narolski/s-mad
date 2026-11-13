@@ -33,7 +33,7 @@ if [ "$TEST" != 1 ]; then
   log "waiting for the FS1 queue lock"
   exec 9> "$P/fs_queue.lock"; flock 9
   log "lock taken"
-  [ "$(date +%s)" -le $((1794581505 - 2700)) ] || abort "under 45 min before the lease deadline"
+  [ "$(date +%s)" -le $((${PR1_DEADLINE:-1794583800} - 2700)) ] || abort "under 45 min before the lease deadline (16:30)"
 fi
 [ "$SKIP" = 1 ] || nvidia-smi --query-gpu=uuid --format=csv,noheader | grep -q "GPU-5bd20020-715e-e9fd-b9d3-f89ca57849ad" || abort "GPU UUID"
 [ "$(df --output=avail -B1G "$B" | tail -1 | tr -d ' ')" -ge 25 ] || abort "disk < 25 GB"

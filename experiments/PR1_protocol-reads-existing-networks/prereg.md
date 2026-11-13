@@ -407,3 +407,11 @@ From `REVIEW_PR1_PART1_20261113.md`. Part-1 values are known; these reads are po
   "inconclusive". Stated: R3 is a same-person morph (not a trained negative of any arm), so this contrast measures
   how the arm ranks a two-person over a one-person morph per engine; it is not a transfer test of detection alone.
 - Reader `src/PR1/z1b_read.py` (committed with this section), mock-free (stored scores only); run once.
+
+## GD operations note 2 (`date`: Fri Nov 13 about 09:45 CET; operations only; no GD row scored)
+
+- The lead extended the pn1fs deadline to 16:30. `remote_gd.sh` now checks for 45 min before 16:30 (epoch
+  1794583800), so the latest start is 15:45. The waiting job, which had not taken the lock, was stopped and restarted
+  with the new script (new sha256 in `src/PR1/SHA256SUMS`). Nothing else changed.
+- The C2P owner may run a re-scoring (C2P-R) on pn1fs before TT1's block. The waiter is unchanged: it waits for
+  DONE_FS, then DONE_sp or NO_SP, then the lock.
