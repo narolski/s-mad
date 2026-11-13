@@ -449,3 +449,10 @@ RECORDS ledger entry 6 (ca47f00). No rule or floor changes.
   scores `floors/xf1_transfer_<arm>_rows.csv` and summaries `floors/xf1_transfer_<arm>.json`.
 - Code `src/adversary/amend7.py`; pinned as stage 13. If the XF1 owner re-pins the row file after its pre-run check,
   everything is recomputed and the stage-13 files are labelled superseded. No network score is read.
+
+### Amendment 7, status (13 Nov, 22:21 by the machine clock)
+
+Superseded: XF1 is on hold and its rows will change (pre-run check `experiments/reviews/PRERUN_XF1_20261113.md`,
+a93ae2f: the one-photo render equals the plain photo to within one grey level, so the contrast is not matched). The
+stage-13 files (bc381d0) are kept as a description of the unmatched contrast only. Any new XF1 rows get a new
+amendment, with contrasts selected by the `klass` column and intervals by the file's block column.
