@@ -425,3 +425,32 @@ network score on any subset was computed or seen. Under the rule below a committ
   matched history is untested").
 - Never worded as held-out or test evidence.
 - Reader `src/AB1/ab1_hb_read.py` after these fixes: sha256 `2ff58b5b8201a273d33f9c73a656b394dd2e72add6f05538c2a340739cb35df6` (replaces de6e61ae… in the pins files); mock-tested (`ab1_hb_read_mock.json`).
+
+## Amendment 3c (`date`: Fri Nov 13 20:32 CET 2026; POST HOC; before any weights exist; lead's ruling): H-hb1 with inverse-probability weights
+
+**Disclosure.** Written after the owner had seen the size of the adversary's uncommitted 1:1 subset (125 morphs, 125
+genuine; amendment 3b) but no network score on it or on any subset. Lead's ruling: on that subset H-hb1 is "not read"
+(amendment 3b, item 2) and stays so; when the adversary commits it, `ab1_hb_read.py` is run once so that the
+"not read" status and the descriptive prints (covariate table, random-subset null, seed-mean with joint bootstrap) are
+on record, labelled descriptive, no verdict.
+
+**H-hb1w (weighted).** Same exclusive rule as amendment 3b item 1, with g_bal replaced by the paired weighted gain g_w =
+weighted AUC(Sb) − weighted AUC(B), using inverse-probability weights over all 3,000 landmark_combined rows that the
+adversary will publish (from the round-0 surround-only score plus pre_ied; stabilised and trimmed by the adversary;
+committed and pinned). Weighted AUC = Σ_i Σ_j w_i w_j ([s_i > s_j] + ½[s_i = s_j]) / (Σ w_pos Σ w_neg). g_full stays the
+unweighted 3,000-row gain. Sb − A secondary.
+- **Usable only if** the effective sample size (Σw)²/Σw² is ≥ 300 in each class AND the weighted AUC of the round-0
+  held-out surround-only scores (`lcomb_regional_heldout.csv`, surround_logreg and surround_gbt, folded) is ≤ 0.60 for
+  both models; otherwise "not read". Computed by the reader from the published weights.
+- **Guard:** if the weighted face-region floor (max of face_logreg and face_gbt, weighted, folded) is below 0.80, a
+  supported outcome reads "gain lost under weighting, not attributable to history alone".
+- **Printed:** weighted AUC per arm and seed with a weighted row bootstrap (2,000 draws of rows within class with
+  replacement, weights kept, rng 20261119, the same draws for all arms and seeds); paired weighted gain with its
+  interval; a null from 2,000 random re-assignments of the weights within class (rng 20261117) with the percentile of
+  each seed's g_w and of the seed mean; the probit-scale gain √2·Φ⁻¹(AUC), unweighted and weighted. Intervals are
+  conditional on the weights.
+- **What each outcome licenses:** as amendment 3b, with "under history weighting" in place of "on a history-balanced
+  subset". Never held-out or test evidence.
+- Reader `src/AB1/ab1hbw` = `src/AB1/ab1_hbw_read.py` (2cffd88b…); weighted AUC checked against brute force and,
+  with unit weights, against c2p_read.fauc; mock-tested (`ab1_hbw_read_mock.json`). Pre-run check: requested from the
+  lead. Read once when the adversary commits the weights.
