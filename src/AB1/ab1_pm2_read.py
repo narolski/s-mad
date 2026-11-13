@@ -6,11 +6,10 @@ bootstrap draws) for
               task_info steps 6250 limit 0, pack 96c31ae2).
 Host sets, D-stratified statistic, contrasts, component bootstrap (2,000 draws, rng 20261120, the same draws for all
 networks and seeds) and the present / absent / inconclusive rule are those of ab1_pm_read.py (amendments 4, 4b).
-Unreadable draws (registered here): a bootstrap draw is unreadable if any network's stratified AUC in it is not readable.
-The reader counts them and reports the share; if more than 10% of draws are unreadable, the decision uses the
-unstratified statistic throughout (seed mean, per-seed signs and the bootstrap interval of the unstratified seed-mean
-gain, which is computed for every draw); otherwise the stratified statistic decides, with the unstratified-agreement
-condition of amendment 4b. A seed with an unreadable stratified statistic on the full host set counts as not readable
+Deciding statistic (amendment 5b, fixed from the score-free draw counts): primary R4 vs R3 decides on the stratified
+statistic with 4b's unstratified-agreement condition; S4 vs S3 on the 80 clean hosts decides on the unstratified seed-mean
+gain and its bootstrap interval, and "present" also requires the stratified seed-mean gain on the full 80 hosts > 0. The
+unreadable-draw share is printed; 99.5% intervals are printed as a sensitivity check (10 verdicts in the family). A seed with an unreadable stratified statistic on the full host set counts as not readable
 (fewer than 4 readable seeds: "not read").
   python3 -I ab1_pm2_read.py --pair Sp|FS1 --out OUT.json
   python3 -I ab1_pm2_read.py --pair Sp|FS1 --mock --out MOCK.json"""
@@ -47,6 +46,10 @@ FS1_EVAL = pathlib.Path("/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/pn1_ev
 FS1_EVAL_SHA = "f0f29f2201bd3a1dc67f24772347960ba7a383a9e5c1fa8920d0cc1b854a5045"
 
 
+FSMAN = pathlib.Path("/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests")
+SP_MAN = pathlib.Path("/mnt/t7/smad_next/PN1/manifests_sp/train_Sp.csv")
+
+
 def load_fs1(arm, s):
     T = f"PN1_{arm}_s{s}"
     tar = FS1_RES / f"{T}.tar"
@@ -57,12 +60,25 @@ def load_fs1(arm, s):
         return None, "sha256 mismatch"
     with tarfile.open(tar) as t:
         z = np.load(io.BytesIO(t.extractfile(f"{T}/scores_eval.npz").read()))
+        zt = np.load(io.BytesIO(t.extractfile(f"{T}/scores_train.npz").read()))
         gpu = t.extractfile(f"{T}/gpu.txt").read().decode()
         ti = t.extractfile(f"{T}/task_info.txt").read().decode()
-    if "A100" not in gpu or "steps 6250 limit 0" not in ti or "pack_sha256 96c31ae2" not in ti:
+        log = t.extractfile(f"{T}/train.log").read().decode(errors="replace")
+        env = t.extractfile(f"{T}/task.env").read().decode()
+    pack_ok = ("pack_sha256 96c31ae2" in ti) or (arm == "Sp" and "pack_sha256 76528f16" in ti)
+    if "A100" not in gpu or "steps 6250 limit 0" not in ti or not pack_ok:
         return None, f"provenance off: {gpu.strip()} | {ti.strip()}"
     if str(z["manifest_sha256"]) != FS1_EVAL_SHA:
         return None, "eval manifest off"
+    man = SP_MAN if arm == "Sp" else FSMAN / f"train_{arm}.csv"            # check A5 F5
+    if str(zt["manifest_sha256"]) != hashlib.sha256(man.read_bytes()).hexdigest():
+        return None, "train manifest off"
+    if f"ARM={arm}" not in env:
+        return None, "task.env arm off"
+    import re as _re
+    losses = [float(v) for v in _re.findall(r"loss[ =:]+(-?(?:inf|nan)|[-+0-9.eE]+)", log, flags=_re.I)]
+    if not losses or not all(math.isfinite(v) for v in losses):
+        return None, "no finite loss"
     return dict(zip([str(i) for i in z["id"]], z["logit"].astype(float))), "read"
 
 
@@ -74,15 +90,22 @@ def main():
     a = ap.parse_args()
     assert A.sha(HERE / "ab1_pm_read.py") == PM_SHA
     seeds = (408, 409, 410, 411, 412) if a.pair == "Sp" else (403, 404, 405, 406, 407)
-    arms = ("Sb", "Sp") if a.pair == "Sp" else ("Sb", "B", "A")
-    others = ("Sp",) if a.pair == "Sp" else ("B", "A")
+    arms = ("Sb", "Sp", "B", "A") if a.pair == "Sp" else ("Sb", "B", "A", "Sp")
+    # (first, second, role): verdict-bearing pairs, then printed pairs
+    if a.pair == "Sp":
+        pairs = [("Sb", "Sp", "verdict"), ("Sp", "B", "printed (decomposition)"), ("Sb", "B", "printed (amendment-4 re-print)"),
+                 ("Sb", "A", "printed (amendment-4 re-print)")]
+    else:
+        pairs = [("Sb", "B", "verdict"), ("Sb", "A", "verdict"), ("Sb", "Sp", "printed, descriptive, not read (403-405 only)")]
     lad, _ = K.split_tables()
     dev = sorted(h for h, x in lad.items() if x["role"] == "dev")
     test = sorted(h for h, x in lad.items() if x["role"] == "test" and x["test_read"] == "1")
     clean = sorted(r["host"] for r in csv.DictReader(open(PM.CLEAN)))
+    assert len(dev) == 100 and len(test) == 191 and len(clean) == 80 and set(clean) <= set(test)   # check A5 F5
     assert hashlib.sha256(PM.CLEAN.read_bytes()).hexdigest() == "814c44861d706553bd827e5dd5634817ee289c0b12bc45a553c5d759b8362358"
     assert hashlib.sha256(PM.DVAL.read_bytes()).hexdigest() == "cf2ba3fa87f434f72d195a6c6e96df6ad9b99ee0b7f887ff44625b9712177725"
     linked = sorted({lad[h]["partner_B"] for h, x in lad.items() if x["role"] == "train" and lad[h]["partner_B"] in set(test)})
+    assert len(linked) == 32
     clean69 = [h for h in clean if h not in set(linked)]
     test159 = sorted(set(test) - set(linked))
     sets = {"dev+clean80": dev + clean, "dev": dev, "clean80": clean, "dev+clean69": dev + clean69, "test191": test, "test159": test159}
@@ -112,6 +135,8 @@ def main():
                 x, _, why = A.load(pathlib.Path("/mnt/t7/smad_next/AB1/results") / f"AB1_{arm}_s{s}.tar", "AB1", arm)
                 why = "read" if x is not None else why
             else:
+                if arm == "Sp" and s not in (403, 404, 405):
+                    continue
                 x, why = load_fs1(arm, s)
             R["status"][f"{arm}_s{s}"] = why
             if x is not None:
@@ -152,21 +177,22 @@ def main():
             for (arm, s), x in nets.items():
                 ps, pd, ns, nd = arrays(hosts, cname, x)
                 res["per_seed"][f"{arm}_s{s}"] = dict(strat=PM.strat_auc(ps, pd, ns, nd), unstrat=C2.fauc(ps, ns), n_pos=len(ps), n_neg=len(ns))
-            for o in others:
-                rd = [s for s in seeds if ("Sb", s) in nets and (o, s) in nets and res["per_seed"][f"Sb_s{s}"]["strat"] is not None
+            for first, o, role in pairs:
+                rd = [s for s in seeds if (first, s) in nets and (o, s) in nets and res["per_seed"][f"{first}_s{s}"]["strat"] is not None
                       and res["per_seed"][f"{o}_s{s}"]["strat"] is not None]
-                g = {s: res["per_seed"][f"Sb_s{s}"]["strat"] - res["per_seed"][f"{o}_s{s}"]["strat"] for s in rd}
-                gu = {s: res["per_seed"][f"Sb_s{s}"]["unstrat"] - res["per_seed"][f"{o}_s{s}"]["unstrat"] for s in rd}
-                out = dict(read_seeds=rd, gain=g, seed_mean=float(np.mean(list(g.values()))) if g else None,
+                g = {s: res["per_seed"][f"{first}_s{s}"]["strat"] - res["per_seed"][f"{o}_s{s}"]["strat"] for s in rd}
+                gu = {s: res["per_seed"][f"{first}_s{s}"]["unstrat"] - res["per_seed"][f"{o}_s{s}"]["unstrat"] for s in rd}
+                out = dict(role=role, read_seeds=rd, gain=g, seed_mean=float(np.mean(list(g.values()))) if g else None,
                            unstrat_gain=gu, unstrat_seed_mean=float(np.mean(list(gu.values()))) if gu else None)
-                if draws and len(rd) >= 4:
+                need = 4 if role == "verdict" else 3
+                if draws and len(rd) >= need:
                     bs, bu, n_unread = [], [], 0
                     for dr in draws:
                         hs = [h for k in dr for h in comps[k]]
                         vs, vu, ok = [], [], True
                         for s in rd:
                             st, un = [], []
-                            for arm in ("Sb", o):
+                            for arm in (first, o):
                                 ps, pd, ns, nd = arrays(hs, cname, nets[(arm, s)])
                                 st.append(PM.strat_auc(ps, pd, ns, nd))
                                 un.append(C2.fauc(ps, ns))
@@ -180,35 +206,41 @@ def main():
                             bs.append(np.mean(vs))
                         else:
                             n_unread += 1
-                    share = n_unread / len(draws)
-                    use_unstrat = share > 0.10
+                    use_unstrat = (cname == "S4_vs_S3")          # amendment 5b: fixed, not data-dependent
                     if use_unstrat:
-                        mean, gg, (lo, hi) = out["unstrat_seed_mean"], gu, (float(np.percentile(bu, 2.5)), float(np.percentile(bu, 97.5)))
-                        extra_ok = True
+                        mean, gg, arr = out["unstrat_seed_mean"], gu, bu
+                        extra_ok = out["seed_mean"] is not None and out["seed_mean"] > 0
                     else:
-                        mean, gg, (lo, hi) = out["seed_mean"], g, (float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5)))
+                        mean, gg, arr = out["seed_mean"], g, bs
                         extra_ok = out["unstrat_seed_mean"] > 0
+                    lo, hi = float(np.percentile(arr, 2.5)), float(np.percentile(arr, 97.5))
                     npos = sum(v > 0 for v in gg.values())
                     present = mean >= 0.03 and lo > 0 and ((len(rd) == 5 and npos >= 4) or (len(rd) == 4 and npos == 4)) and extra_ok
                     v = "present" if present else ("absent" if hi < 0.03 else "inconclusive")
-                    out.update(unreadable_draws=n_unread, unreadable_share=share, decided_on="unstratified" if use_unstrat else "stratified",
-                               decision_seed_mean=mean, ci=[lo, hi], ci_half_width=(hi - lo) / 2, n_positive=npos, verdict=v,
-                               unstrat_ci=[float(np.percentile(bu, 2.5)), float(np.percentile(bu, 97.5))])
+                    if role != "verdict":
+                        v = "printed only: " + v
+                    out.update(unreadable_draws=n_unread, unreadable_share=n_unread / len(draws),
+                               decided_on="unstratified" if use_unstrat else "stratified", decision_seed_mean=mean,
+                               ci=[lo, hi], ci995=[float(np.percentile(arr, 0.25)), float(np.percentile(arr, 99.75))],
+                               ci_half_width=(hi - lo) / 2, n_positive=npos, verdict=v,
+                               unstrat_ci=[float(np.percentile(bu, 2.5)), float(np.percentile(bu, 97.5))],
+                               strat_ci_readable_draws=[float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))] if bs else None)
                 elif draws:
-                    out["verdict"] = "not read (fewer than 4 readable seeds)"
-                res[f"Sb_minus_{o}"] = out
+                    out["verdict"] = "not read (too few readable seeds)"
+                res[f"{first}_minus_{o}"] = out
             R["contrasts"][f"{cname}|{sname}"] = res
-    for o in others:
-        prim = R["contrasts"]["R4_vs_R3_opencv|dev+clean80"][f"Sb_minus_{o}"]
-        md = R["contrasts"]["R4_vs_R3_opencv|dev"][f"Sb_minus_{o}"]["seed_mean"]
-        mc = R["contrasts"]["R4_vs_R3_opencv|clean80"][f"Sb_minus_{o}"]["seed_mean"]
+    for first, o, role in pairs:
+        prim = R["contrasts"]["R4_vs_R3_opencv|dev+clean80"][f"{first}_minus_{o}"]
+        md = R["contrasts"]["R4_vs_R3_opencv|dev"][f"{first}_minus_{o}"]["seed_mean"]
+        mc = R["contrasts"]["R4_vs_R3_opencv|clean80"][f"{first}_minus_{o}"]["seed_mean"]
         prim["dev_vs_clean80_seed_means"] = [md, mc]
-        if md is not None and mc is not None and (md > 0) != (mc > 0) and prim.get("verdict") in ("present", "absent"):
+        if md is not None and mc is not None and (md > 0) != (mc > 0) and str(prim.get("verdict", "")).endswith(("present", "absent")):
             prim["verdict_before_cap"] = prim["verdict"]
             prim["verdict"] = "inconclusive (sign disagreement between development and clean test hosts)"
-    R["verdicts"] = {f"Sb_minus_{o}": dict(primary_R4_vs_R3=R["contrasts"]["R4_vs_R3_opencv|dev+clean80"][f"Sb_minus_{o}"].get("verdict"),
-                                           secondary_S4_vs_S3_clean80=R["contrasts"]["S4_vs_S3|clean80"][f"Sb_minus_{o}"].get("verdict"))
-                     for o in others}
+    R["verdicts"] = {f"{first}_minus_{o}": dict(role=role,
+                                                primary_R4_vs_R3=R["contrasts"]["R4_vs_R3_opencv|dev+clean80"][f"{first}_minus_{o}"].get("verdict"),
+                                                secondary_S4_vs_S3_clean80=R["contrasts"]["S4_vs_S3|clean80"][f"{first}_minus_{o}"].get("verdict"))
+                     for first, o, role in pairs}
     if not a.mock:
         sys.path.insert(0, str(HERE.parent / "adversary"))
         import check

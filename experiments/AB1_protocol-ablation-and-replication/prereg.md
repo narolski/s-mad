@@ -587,3 +587,40 @@ score on R4, R3, S4 or S3 rows and has not checked whether other owners' FS1 rea
 
 - Reader `src/AB1/ab1_pm2_read.py` (sha256 in pins.sha256), mock-tested for both pairs (the mock exercised the >10%
   unreadable branch). Read once each after the lead's pre-run check; then the results-reviewer.
+
+## Amendment 5b (`date`: Fri Nov 13 21:11 CET 2026; before any score of these contrasts is opened for Sp or the FS1 networks; fixes of the pre-run check `experiments/reviews/PRERUN_AB1_A5_20261113.md`, c123f34, GO WITH FIXES)
+
+1. **FS1 disclosure corrected (F1).** Replaces the disclosure of amendment 5 part (2): "Known before this amendment and
+   not checked by the owner at registration: PR1 Z4 (result.md:117) printed unstratified R4 vs R3 on the 191 test hosts
+   for A, B and Sb at 403-407 (0.72-0.75 / 0.74-0.79 / 0.80-0.85); PR1 Z3b the engine gap; BD1 (result.md:25, 37)
+   D-stratified S4 vs S3 for Sb (0.697-0.729) and for A and B (0.513-0.560). The FS1 read is therefore a re-read of the
+   same networks on the development plus 80 clean test hosts with the amendment-4 statistic, not an independent or blind
+   replication; the predictions were made with these values public." Label: **"a second seed set and platform for the
+   recipe; a re-read of the same networks, not an independent or blind replication; not an independent test of the
+   frozen networks"**.
+2. **Deciding statistic fixed now (F2), replacing the 10% switch:** "Deciding statistic, fixed now from the score-free
+   draw counts (mock: 0 of 2,000 unreadable on the primary, 754 of 2,000 on S4 vs S3 clean80): primary R4 vs R3 decides
+   stratified with 4b's unstratified-agreement condition; S4 vs S3 clean80 decides on the unstratified seed-mean gain and
+   its bootstrap interval, and 'present' also requires the stratified seed-mean gain on the full 80 hosts to be > 0. The
+   unreadable share is printed. The amendment-4 S4-vs-S3 verdict stands as read; its unstratified interval is recomputed
+   and printed beside it." (Reader: the unstratified branch is used for S4 vs S3 always, with extra_ok = stratified
+   seed-mean > 0.)
+3. **What Sp lacks (F3), replacing amendment 5 part (1)'s attribution text:** "Sb − Sp tests the 312 matched S0 + S3
+   negatives (with their image count and class-mix shift; no volume control exists for Sp). If it is 'absent' or
+   'inconclusive' while Sb − B is 'present', the gain is attributed to what Sp keeps over B: the 124 S4 splice positives
+   (and their count). The S4-vs-S3 prediction is near-certain from H-sp3b (Sp − Sb development −0.057 to −0.095) and is not
+   a test." (Sp: 5,223 unique, 7,762 rows after balance; Sb 5,535 / 8,386; B 5,099 / 7,762; same steps.)
+4. **Printed (F4):** Sp − B at 408-412 with the same rule (descriptive), so that Sb − B = (Sb − Sp) + (Sp − B) is on one
+   page; the amendment-4 Sb − B and Sb − A re-printed from the same draws; Sb − Sp at 403-405 (A100, 3 seeds, the existing
+   Sp fits) as "descriptive, not read".
+5. **Loader checks (F5):** the FS1 loader also checks the training-manifest sha256 (FS1 train_{arm}.csv; Sp:
+   manifests_sp/train_Sp.csv), finite loss values in train.log, the arm in task.env, the Sp pack (76528f16…) for Sp; host
+   sets asserted (100 / 191 / 80 / 32).
+6. **Family and licences (F6):** the pipeline-matched family is 10 verdicts (amendment 4's four, Sb − Sp's two, FS1's four);
+   result.md reports all ten in one table with the registered 95% rule and 99.5% intervals (0.05/10) as a sensitivity
+   print, stating that the S4-vs-S3 verdicts are expected from training by design and only the five R4-vs-R3 verdicts
+   carry new information. Licence: "FS1 'present' licenses a statement about the frozen Sb networks 403-407 themselves on
+   development and clean test-host rows: post hoc, previously printed in direction (PR1, BD1), never benchmark or
+   held-out evidence, and no change to the frozen candidate follows from it. 'Inconclusive' on FS1 with 'present' at
+   408-412: the recipe effect is not shown to hold for the frozen networks."
+- Reader `src/AB1/ab1_pm2_read.py` after these fixes: sha256 `77ace4b3e98668adbb842b8a5aebac23c2bb19f0f8486911807bce9291395b1d` (replaces 5ef35155…); mock-tested for both pairs.
