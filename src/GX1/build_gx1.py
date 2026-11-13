@@ -133,6 +133,16 @@ def stage_shards():
                 shards.append({"shard": f"GX1_{gen}_{g}_{db}_{i // per:02d}", "gen": gen, "db": db, "group": g,
                                "persons": ps, "invert": inv, "jobs": JJ, "needs": [],
                                "est_minutes": int(np.ceil(1.3 * t / 60 + 12))})
+    # smoke shards (2 training persons and one of their R4; never data): every job type for both generators
+    r0 = next(r for r in pairs if r["group"] == "train" and r["cover"] == "0")
+    p1, q1 = r0["person"], r0["partner"]
+    for gen in ("mip1", "mip2"):
+        J = [job(f"gx1smoke_{gen}_R2_{p1}__s1", "R2", f"{p1}__s1", f"{p1}__s1", gen),
+             job(f"gx1smoke_{gen}_R3_{p1}", "R3", f"{p1}__s1", f"{p1}__s2", gen),
+             job(f"gx1smoke_{gen}_R4c0_{p1}", "R4", f"{p1}__s1", f"{q1}__s2", gen)]
+        inv = sorted({j["a"] for j in J} | {j["b"] for j in J})
+        shards.insert(0, {"shard": f"GX1_smoke_{gen}", "gen": gen, "db": r0["db"], "group": "train", "persons": [p1, q1],
+                          "invert": inv, "jobs": J, "needs": [], "smoke": True, "est_minutes": 15})
     (OUT / "shards").mkdir(exist_ok=True)
     for s in shards:
         json.dump(s, open(OUT / "shards" / f"{s['shard']}.json", "w"), indent=0)

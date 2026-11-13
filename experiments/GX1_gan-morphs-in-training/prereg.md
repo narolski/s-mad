@@ -1,8 +1,10 @@
 # GAN morphs in training with one-person renders as genuine (GX1): registration
 
 Written 13 Nov 2026 before any GX1 image is generated and before any GX1 network exists. Owner: AG1 owner (Opus agent).
-Author's go (13 Nov 18:50, verbatim): "Ok, go ahead" to "GAN morphs in training with one-person renders as genuine";
-lead's scope decision 19:35. Code `src/GX1/` (plus the unchanged `src/AG1/` generator wrapper and vendored code);
+Author's go (verbatim): "Ok, go ahead" to "GAN morphs in training with one-person renders as genuine"; lead's scope
+decision after it. Time note (13 Nov, added 18:55 by the machine clock): the lead's messages gave these as 18:50 and
+19:35; the machine clock and git are the record: both fall between about 18:32 and 18:46 machine clock (NOTEBOOK
+"CORRECTION OF TIMES"); the freeze ruling was at about 18:27. This registration was committed at 18:40:15 (git). Code `src/GX1/` (plus the unchanged `src/AG1/` generator wrapper and vendored code);
 large outputs `/mnt/t7/smad_next/GX1/`; WCSS results `$L/smad-next/results/GX1/`.
 
 **Status of this arm.** Development of the next method version. The author froze the current candidate (arm Sb, seeds
@@ -119,3 +121,50 @@ no change to Sb's recipe or rows.
   generator output, not morphing."
 - **Inconclusive:** no sentence beyond the descriptive numbers.
 - **GXp** shows what training on GAN morphs against camera photos alone does (expected: render detection).
+
+## Amendment 1 (13 Nov, about 18:55 machine clock; after the pre-run check `PRERUN_GX1_20261113.md` (GO WITH FIXES),
+## before any GX1 image is generated)
+
+- **F1, primary read replaced (before any data).** The question of section 1 is the identity step with rendering
+  matched, so the primary contrast is **R4 against R3** on the held-out development hosts, paired within seed against
+  Sb scored on the same images (Sb s408-412 rescore, F2). Cue floor F = the best of the AG1 simple statistics and of a
+  cross-fitted logistic on them (trained on the GX1 training R3 / R4 rows, tested on the held-out rows), computed on the
+  frames before any fit and committed. **Supported:** GX - Sb >= +0.10 on >= 4 of 5 seeds and GX >= F + 0.05 (median
+  over seeds). **Falsified:** GX - Sb <= +0.03 on >= 4 of 5 seeds, or GX <= 0.65 on >= 4 of 5 seeds. Otherwise
+  inconclusive. R4 vs R2 (former primary) and the R2 flag rate become secondary reads (descriptive; Sb already reaches
+  0.86-0.93 on R4 vs R2 on GD2). Every identity read is also printed within tertiles of the contributor cosine.
+  Section 7 sentences now refer to this contrast: supported = "trained with matched one-person renders, the network
+  separates two-person from same-person MIPGAN-style morphs on new persons beyond simple statistics"; falsified =
+  "even with matched one-person renders in training, no second-identity signal beyond Sb's appears at this resolution
+  and dose".
+- **F2, Sb on the same rows.** A registered rescore job scores the AB1 owner's WCSS H100 Sb fits AB1_Sb_s408-412
+  (`last_trainable.pt`, tars pinned in AB1 pins.sha256) on `gx1_eval.csv` with the unchanged `rescore.py` + TF32
+  wrapper (AB1X path), about 1 H100-h. Every GX / GXp comparison uses these Sb numbers; GD2 figures are context only.
+- **F3, code pins.** Generation code pinned now (GX1SUMS below). The training path (`src/GX1/run.sh`, manifest and
+  overlay builder, fit sbatch) is written after generation and pinned in amendment 2, which gets its own pre-run check
+  before the fit array. Known traps registered: GX rows carry `source=smdd, val=0, mixed=0` (else `train_rows` drops
+  them under `--regime d0`); the training smoke asserts 9,194 / 8,790 rows and the composition cells; the second
+  `pn1_score.py` call writes to its own out directory; GX frames come from `prep_eval.align` with `hist=native` like
+  the Sb rows; smoke images (`gx1smoke_*`) never enter any data.
+- **F4.** GXp's flag rates are printed also at a camera-photo-matched threshold (descriptive); its class prior
+  (4,597 / 4,193) is stated beside every GXp flag read.
+- **F5.** A missing or non-finite fit keeps the denominator at 5 and counts as not meeting a rule; infrastructure
+  failures are re-run unchanged; non-finite runs are never re-run; fewer than 5 fits at the read deadline (15 Nov
+  18:00) -> "partial: n of 5", no verdict.
+- **F6.** The generation arrays are submitted with `--dependency=afterok:<smoke job>`; the smoke's PNGs and log.csv are
+  checked against section 2 before the arrays' output is used. Shards are cut by job count, so some photos are
+  inverted in two shards; one shard boundary is checked for identical inversion latents (same stack, deterministic
+  cuDNN) and the result printed.
+- **F7.** Training contributor cosine quartiles per cover (cover 0 = R2-matched, cover 1 = R3-matched) are printed.
+- **F8.** The landmark_combined guard (-0.02 on >= 4 of 5 seeds) can fail through composition noise (AB1 SbZ - Sb ran
+  -0.001 to -0.025); it is reported, not a veto.
+- **Generation counts (built 18:37-18:47 machine clock):** 311 persons prepared, 0 photos dropped (training 202,
+  development 109). Pairs: training cover 0 = 202, cover 1 = 202, development 109. Contributor cosine quartiles
+  (min / 25% / median / 75% / max): training 0.023 / 0.135 / 0.170 / 0.211 / 0.705; development 0.005 / 0.106 / 0.145 /
+  0.186 / 0.339. Four training pairs exceed 0.4: frgc_04637 / frgc_04638 (0.705 and 0.611; consecutive subject ids,
+  possibly the same or twin persons) and frgc_04217 / frgc_04557 (0.460, 0.429); kept, flagged, visible in the
+  cosine-stratified reads.
+- **Generation pins (GX1SUMS, packs/GX1 on WCSS):** gx1_inputs.tar c56aa151..., gx1_code.tar 8504079b... (=
+  the AG1 Athena code tar: ag1_gen.py b2dc54eb... + vendored gan1 files), gx1_gen_task.sh eaf99f3b..., gx1_gen.sbatch
+  1e560f63..., gx1_gen_smoke.sbatch ae4ed31b..., gen_mip1.txt c671280d... (12 shards), gen_mip2.txt 19fd50d4... (8
+  shards); smoke shards GX1_smoke_mip1 / _mip2 (3 images each).
