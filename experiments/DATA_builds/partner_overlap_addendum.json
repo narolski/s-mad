@@ -1,0 +1,236 @@
+{
+ "positive_control": {
+  "definition": "ab1x_eval rows with role dev and fam ladder taken as a training list; test-host rows of ab1x_eval sharing a host / partner person or a source photo with them",
+  "dev_rows": 1700,
+  "test_rows": 7258,
+  "test_rows_flagged": 2718
+ },
+ "unmapped_photos_per_training_list": {
+  "Sb (FS1, seeds 403-407; frozen candidate)": 0,
+  "A (FS1)": 0,
+  "B (FS1)": 0,
+  "SbH61 (AB1/b2)": 0,
+  "SbR (AB1/b2)": 0,
+  "SbSp (AB1/b2)": 0,
+  "SbnS0 (AB1/b2)": 0,
+  "SbnS3 (AB1/b2)": 0,
+  "SbFM (AB1/fm)": 0,
+  "AS (AB1/overlay_tree/pn1/data)": 0,
+  "SbH (AB1/overlay_tree/pn1/data)": 0,
+  "SbS (AB1/overlay_tree/pn1/data)": 0,
+  "SbZ (AB1/overlay_tree/pn1/data)": 0,
+  "Sp (AB1/overlay_tree/pn1/data)": 0,
+  "Sbx (AB1/x)": 0,
+  "SE (SE1)": 0
+ },
+ "unmapped_photos_per_eval_set": {
+  "pn1_eval (FS1)": 0,
+  "ab1_eval": 0,
+  "ab1x_eval": 0,
+  "pr1_gd (GD ladder)": 0
+ },
+ "source_frame_scan": {
+  "AR1:feret:mapped": 325,
+  "AR1:frgc:mapped": 1281,
+  "AF0:feret:mapped": 652,
+  "AF0:frgc:mapped": 63
+ },
+ "unmapped_source_frames_used_by_any_audited_row": 0,
+ "geometry": {
+  "Sb (FS1, seeds 403-407; frozen candidate)": {
+   "training_rows": 8386,
+   "training_rows_geometry_uses_eval_person": 64,
+   "by_kind": {
+    "splice_S3": 32,
+    "splice_S0": 32
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  },
+  "A (FS1)": {
+   "training_rows": 1992,
+   "training_rows_geometry_uses_eval_person": 0,
+   "by_kind": {},
+   "eval_rows_geometry_uses_training_person": {}
+  },
+  "B (FS1)": {
+   "training_rows": 7762,
+   "training_rows_geometry_uses_eval_person": 0,
+   "by_kind": {},
+   "eval_rows_geometry_uses_training_person": {}
+  },
+  "SbH61 (AB1/b2)": {
+   "training_rows": 8548,
+   "training_rows_geometry_uses_eval_person": 69,
+   "by_kind": {
+    "splice_S3": 34,
+    "splice_S0": 35
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  },
+  "SbR (AB1/b2)": {
+   "training_rows": 8424,
+   "training_rows_geometry_uses_eval_person": 71,
+   "by_kind": {
+    "splice_S3": 35,
+    "splice_S0": 36
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1140,
+    "ab1_eval": 1140,
+    "ab1x_eval": 1140,
+    "pr1_gd (GD ladder)": 246
+   }
+  },
+  "SbSp (AB1/b2)": {
+   "training_rows": 8560,
+   "training_rows_geometry_uses_eval_person": 0,
+   "by_kind": {},
+   "eval_rows_geometry_uses_training_person": {}
+  },
+  "SbnS0 (AB1/b2)": {
+   "training_rows": 8074,
+   "training_rows_geometry_uses_eval_person": 32,
+   "by_kind": {
+    "splice_S3": 32
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  },
+  "SbnS3 (AB1/b2)": {
+   "training_rows": 8074,
+   "training_rows_geometry_uses_eval_person": 32,
+   "by_kind": {
+    "splice_S0": 32
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  },
+  "SbFM (AB1/fm)": {
+   "training_rows": 8946,
+   "training_rows_geometry_uses_eval_person": 64,
+   "by_kind": {
+    "splice_S3": 32,
+    "splice_S0": 32
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  },
+  "AS (AB1/overlay_tree/pn1/data)": {
+   "training_rows": 2850,
+   "training_rows_geometry_uses_eval_person": 0,
+   "by_kind": {},
+   "eval_rows_geometry_uses_training_person": {}
+  },
+  "SbH (AB1/overlay_tree/pn1/data)": {
+   "training_rows": 7200,
+   "training_rows_geometry_uses_eval_person": 90,
+   "by_kind": {
+    "splice_S3": 44,
+    "splice_S0": 46
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  },
+  "SbS (AB1/overlay_tree/pn1/data)": {
+   "training_rows": 8692,
+   "training_rows_geometry_uses_eval_person": 72,
+   "by_kind": {
+    "splice_S3": 36,
+    "splice_S0": 36
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  },
+  "SbZ (AB1/overlay_tree/pn1/data)": {
+   "training_rows": 7868,
+   "training_rows_geometry_uses_eval_person": 73,
+   "by_kind": {
+    "splice_S3": 36,
+    "splice_S0": 37
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  },
+  "Sp (AB1/overlay_tree/pn1/data)": {
+   "training_rows": 7762,
+   "training_rows_geometry_uses_eval_person": 0,
+   "by_kind": {},
+   "eval_rows_geometry_uses_training_person": {}
+  },
+  "Sbx (AB1/x)": {
+   "training_rows": 10484,
+   "training_rows_geometry_uses_eval_person": 75,
+   "by_kind": {
+    "splice_S3": 38,
+    "splice_S0": 37
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  },
+  "SE (SE1)": {
+   "training_rows": 10046,
+   "training_rows_geometry_uses_eval_person": 64,
+   "by_kind": {
+    "splice_S3": 32,
+    "splice_S0": 32
+   },
+   "eval_rows_geometry_uses_training_person": {
+    "pn1_eval (FS1)": 1216,
+    "ab1_eval": 1216,
+    "ab1x_eval": 1216,
+    "pr1_gd (GD ladder)": 265
+   }
+  }
+ },
+ "sb_rows_of_32_training_hosts_with_test_partner": {
+  "hosts": 32,
+  "rows_by_kind": {
+   "lad_R0|ar1_R0": 32,
+   "lad_R2w|ar1_R2w": 32,
+   "lad_S3|splice_S3": 32,
+   "lad_S0|splice_S0": 32
+  },
+  "rows_using_partner_landmarks": {
+   "lad_S3|splice_S3": 32,
+   "lad_S0|splice_S0": 32
+  }
+ }
+}

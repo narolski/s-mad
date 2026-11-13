@@ -43,6 +43,9 @@ How the training side stays closed:
 - Training partners are all training hosts (0 partner-only persons in every list).
 - 32 of the 156 training hosts have a test host as pool partner; none of their partner photos is in any training list
   (they carry no two-person training rows; Sb uses 124 hosts with a morph).
+- **Corrected by the addendum below:** these 32 hosts do have S3 and S0 splice rows in Sb, and those rows use the test
+  partner's landmarks (geometry only, no pixels). The "no overlap" statement holds for persons' pixels and photos, not
+  for face shape.
 
 **Within the evaluation sets the reviewer's finding holds:**
 - 99 of the 191 read test hosts have a development host as partner;
@@ -314,3 +317,79 @@ Training file `SE1/manifests/train_SE.csv` (sha256 c4e5aa474c87399d...): 637 hos
 - `/mnt/t7/smad_next/DATA/overlap/clean_eval_hosts.csv` (training list, evaluation set, host, role: every evaluation
   host, since all are clean of training).
 - `/mnt/t7/smad_next/DATA/overlap/test_hosts_clean_of_dev.csv` (80 test hosts).
+
+
+## Addendum (13 Nov 2026, 20:29-20:35 machine clock): record keeper's gaps
+
+Code `src/DATA/partner_overlap_addendum.py`; it re-runs the audit and adds the items below. Counts are in
+`partner_overlap_addendum.json`. Commit 681715d is not an audit commit (it carries the eye-distance measurement, the
+D5 lists and the battery tables). The audit commit is 1b05940.
+
+### (1) Positive control, now in code
+
+The development ladder rows of ab1x_eval (role dev, fam ladder: 1700 rows) were treated as a training list:
+2718 of the 7258 test-host rows share a host or partner person or a source photo with
+them.
+
+### (2) Unmapped photos
+
+- Unmapped photos (keyed by path): 0 in every training list and 0 in every evaluation set.
+- Every source frame on disk maps to a raw photo name: AR1 FERET 325, AR1 FRGC 1,281, AF0 FERET 652, AF0 FRGC 63, all
+  mapped. FRGC frames named `a*.png` map through `r6_train_sources.csv` (copy in `volatile_backup_20261113`); the r6
+  frames carry the still id in their name.
+- I found no frame without a raw photo name. If the record keeper's 81 FRGC frames are `a*.png` frames looked up
+  without `r6_train_sources.csv`, they are mapped here. They are not among unmapped photos, because there are none.
+- The case where one raw photo is reached by two paths is handled: identity is the raw photo name, not the path.
+
+### (3) Geometry sharing (shape without pixels)
+
+Definitions from the builders:
+- **7b splices** (`src/AR1/splice.py`, ARMS7B): every arm uses one hull drawn from the mean of the host's and the
+  partner B's landmarks.
+  - S4 = R4 pixels inside that hull on an R2w4 base;
+  - S3 = R3 pixels inside it on an R2w base;
+  - S0 = R2w pixels inside it on an R2w4 base, where R2w4 is the host warped to the host + partner mean shape.
+- So S3 carries the partner's landmarks as the outline of its mask. S0 and S4 carry them in the warp of their base,
+  and the blanked copies carry them in the mask.
+- AR1 R2w4 and R4, the SM1 halves, and the AF0 / MS1 fields and halves use both persons of their pair. GAN and
+  diffusion rows have no landmark geometry.
+
+| Training list | rows | training rows whose geometry uses an evaluation person | of which | evaluation rows whose geometry uses a training person (incl. geometry persons) |
+|---|---|---|---|---|
+| Sb (FS1, seeds 403-407; frozen candidate) | 8386 | 64 | splice_S3 32, splice_S0 32 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+| A (FS1) | 1992 | 0 | - | 0 |
+| B (FS1) | 7762 | 0 | - | 0 |
+| SbH61 (AB1/b2) | 8548 | 69 | splice_S3 34, splice_S0 35 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+| SbR (AB1/b2) | 8424 | 71 | splice_S3 35, splice_S0 36 | pn1_eval (FS1) 1140, ab1_eval 1140, ab1x_eval 1140, pr1_gd (GD ladder) 246 |
+| SbSp (AB1/b2) | 8560 | 0 | - | 0 |
+| SbnS0 (AB1/b2) | 8074 | 32 | splice_S3 32 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+| SbnS3 (AB1/b2) | 8074 | 32 | splice_S0 32 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+| SbFM (AB1/fm) | 8946 | 64 | splice_S3 32, splice_S0 32 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+| AS (AB1/overlay_tree/pn1/data) | 2850 | 0 | - | 0 |
+| SbH (AB1/overlay_tree/pn1/data) | 7200 | 90 | splice_S3 44, splice_S0 46 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+| SbS (AB1/overlay_tree/pn1/data) | 8692 | 72 | splice_S3 36, splice_S0 36 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+| SbZ (AB1/overlay_tree/pn1/data) | 7868 | 73 | splice_S3 36, splice_S0 37 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+| Sp (AB1/overlay_tree/pn1/data) | 7762 | 0 | - | 0 |
+| Sbx (AB1/x) | 10484 | 75 | splice_S3 38, splice_S0 37 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+| SE (SE1) | 10046 | 64 | splice_S3 32, splice_S0 32 | pn1_eval (FS1) 1216, ab1_eval 1216, ab1x_eval 1216, pr1_gd (GD ladder) 265 |
+
+**The 32 training hosts whose pool partner is a test host, in the Sb training list:**
+- Row kinds: lad_R0 32, lad_R2w 32, lad_S3 32, lad_S0 32. All are negatives (label 0); there is no R4 and no S4.
+- All 32 S3 and all 32 S0 rows use the partner's landmarks. The partners are 32 distinct test hosts, all of them read
+  test hosts. The lad_R0 and lad_R2w rows do not use them.
+- The same 32 links appear in every arm that keeps Sb's S3 and S0 rows: SbZ, SbS, SbH, SbH61, SbR, SbFM, Sbx and SE.
+  SbnS0 keeps only S3, SbnS3 keeps only S0.
+- Arms without these rows have 0: A, B, AS, Sp, SbSp.
+- The extra rows in some arms (for example SbH 90) are repeated rows of the same 32 hosts.
+- The reverse counts (1,216 evaluation rows; 265 GD rows) are the evaluation rows of these same 32 test persons, so
+  they are not a separate link.
+
+**What this means for the reads "on new persons":**
+- For the 32 read test hosts above, Sb (and the arms listed) saw their face shape during training: the landmark
+  geometry of the S0 base warp and the S3 / S0 hull outline. Sb never saw their pixels or photos.
+- This is a shape-only link, not an appearance link. It lives in negatives (label 0) of training hosts whose own
+  pixels fill the image.
+- A read that treats these 32 test hosts as fully new persons is, for those hosts, new in appearance but not in
+  landmark shape. The 159 other read test hosts and all development hosts have no such link.
+- No result is recomputed here. A sensitivity read without these 32 hosts would separate the two. That needs an owner
+  amendment.
