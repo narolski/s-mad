@@ -256,3 +256,47 @@ full resolution) with input-matched floors printed. The adversary does not dupli
 stored 512 frame, cross-fitted, with all six families; for the 512 arms it is the same input, for the 224 and crop arms
 it is the frame-level companion. It is printed beside RZ1's floors; RZ1's binding rule is unchanged. The same holds for
 BB2 (fs_read fmax 0.886 binding, adversary printed) and GX1 (its own F binding).
+
+## Amendment 2 (13 Nov, before any floor is computed): the lead-ordered pre-run check (`experiments/reviews/PRERUN_ADV_LEAD_20261113.md`, 112d50c)
+
+GO WITH FIXES, no blockers. The owner-launched check that led to amendment 1 is saved as
+`experiments/reviews/PRERUN_ADV_SELF_20261113.md`. Registered now (what amendment 1 already did is not repeated):
+
+- **F1, order.** Stage 1 is split: **stage 1a** = `lcomb` and the four test-ladder contrasts (`test_fm_R4_vs_R2w`,
+  `test_cv_R4_vs_R2w`, `test_fm_R4_vs_R3`, `test_cv_R4_vs_R3`), computed and committed first, with the commit hash
+  posted in README.md; the lead holds every SbFM, Sbx and RZ1 read until then. Then stage 1b (the rest of section 4's
+  stage-1 rows), then the RI1/TB1 rows (amendment 1 and F6 below), then stage 2 and the same-data learner.
+- **F2, frozen files.** Each stage commit adds `floors/pins_stage<k>.sha256` over its JSON and held-out CSV files
+  (`run_floors.py pins`). `check.exceeds` refuses a floor file whose sha256 is not listed in a pins file that is
+  tracked by git and unmodified.
+- **F3, name and regression gate.** The bar is called **the ADV floor** everywhere. An arm's own registered floor
+  (RZ1's 0.886, GX1's F, RI1's and TB1's 27-statistic floors, BB2's fs_read floor) remains the only floor in that arm's
+  verdict; the ADV floor is printed beside it and never replaces it. "Within the ADV floor" is internal-record wording
+  until the author decides on paper prose. **Regression gate:** on `lcomb` the in-sample best single statistic over F27
+  must reproduce 0.886 (noise_std_face) to 3 decimals; otherwise no floor is committed (asserted in `run_floors.py`).
+- **F4, nuisance floor.** The all-cue ADV floor contains blending statistics (BLEND, and blend-sensitive F27 values),
+  which are morph signal. Beside it every contrast gets the **nuisance floor**: the same three models on the BORDER,
+  RES, STORE and RENDER families only (no F27, no BLEND); its held-out scores are in the `nu_*` columns and
+  `check.exceeds(..., floor="nuisance")` applies the same rule. Reading (internal record): beyond the nuisance floor
+  but within the all-cue floor = "not beyond hand-made morph statistics; not explained by nuisance cues"; within the
+  nuisance floor = "not shown beyond nuisance cues".
+- **F5.** `train_lad_*` floors are context only; no exceeds rule for E3's in-sample gate; for E2's probe only if E2
+  uses the ADV components and fold seed (it does not: E2 uses random_state 0), so for E2 the floor is printed context.
+- **F6, RI1/TB1 rows.** On the 291 BD1 hosts (natives): `ri_S4_vs_S3` (all 291, the RI1 and TB1 S4-vs-S3 read, with
+  D-quintile strata), `ri_R4_vs_R3`, `ri_R4_vs_R0`, and the controls `ri_R0s61_vs_R0` (stored small vs camera photo),
+  `ri_S0_vs_R0`, `ri_R2w4_vs_R0` (separability ceilings: the arm should not separate them). **D** is BD1's D, defined in
+  `experiments/BD1_blend-difference-attribution/prereg.md` line 30 ("mean over hull pixels and the 3 channels of
+  |S − counterpart| on the stored 512 px PNGs"), values in `/mnt/t7/smad_next/BD1/d_values.csv` column `D` (the lead's
+  correction; amendment 1's `D_ac` of `d_feats.csv` is withdrawn). TB1's S4-vs-S3 read gets this floor too; both are
+  pending until committed.
+- **F7.** Arm differences are also printed as AUC difference within quintiles of the floor's held-out score
+  (`check.diff_within_floor_quintiles`), printed only.
+- **F8.** Stage-2 floors on the frozen candidate's audit rows are labelled post hoc (amendment 1 F5 label).
+- **F9.** `check.py` uses numpy ranks only; `feats.py` asserts the sha256 of `smadcvpr/cue_floor.py` (556e7aba…) and
+  `src/TT1/build_border_ref.py` (36605880…) besides `cues_all.py`.
+- **F10.** PNG container facts parsed from the file bytes join the STORE family: number of IDAT chunks and their mean
+  size, zlib level flag, number of ancillary chunks, colour type, share of each scanline filter type (0-4) — 10 values,
+  so 72 features in all. They are file-provenance cues (the bordered copies, for example, were written with zlib level 0
+  and filter 1 only); they are excluded from the pixel-only floor. The bootstrap holds the folds fixed (section 9).
+- **Feature code note.** The 62 cached image values were computed by `feats.py` at 4a0abb0 (34716797…); the edits after
+  it add the pins and `pngmeta` only and change no image value.

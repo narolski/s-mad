@@ -38,18 +38,24 @@ STAGE1 = ["lcomb", "test_fm_R4_vs_R2w", "test_cv_R4_vs_R2w", "test_fm_R4_vs_R3",
           "dev_fm_R4_vs_R3", "border_vs_cam", "border_ffhq_vs_ffhq", "test_S4bg_vs_S0bg", "train_lad_S4_vs_S3",
           "train_lad_S4_vs_S0", "store_photo_fm61_vs_native", "store_photo_amsl112_vs_native",
           "store_morph_vs_photo_fm61", "store_morph_vs_photo_amsl112", "gd2_R4_vs_R3", "gd2_R4_vs_R2", "gd2_R4_vs_R2s1"]
-CEILING = ("border_vs_cam", "border_ffhq_vs_ffhq", "store_photo_fm61_vs_native", "store_photo_amsl112_vs_native")
-FILE_SIZE = ("F27:png_bytes", "STORE:png_bytes_per_px")
+CEILING = ("border_vs_cam", "border_ffhq_vs_ffhq", "store_photo_fm61_vs_native", "store_photo_amsl112_vs_native",
+           "ri_R0s61_vs_R0", "ri_S0_vs_R0", "ri_R2w4_vs_R0")
+FILE_SIZE = ("F27:png_bytes", "STORE:png_bytes_per_px", "STORE:png_n_idat", "STORE:png_idat_mean_bytes",
+             "STORE:png_zlib_level", "STORE:png_ancillary", "STORE:png_colour_type",
+             "STORE:png_filter0_share", "STORE:png_filter1_share", "STORE:png_filter2_share",
+             "STORE:png_filter3_share", "STORE:png_filter4_share")
+NUISANCE = ("BORDER:", "RES:", "STORE:", "RENDER:")            # amendment 2 F4: no F27, no BLEND
+STAGE1A = ["lcomb", "test_fm_R4_vs_R2w", "test_cv_R4_vs_R2w", "test_fm_R4_vs_R3", "test_cv_R4_vs_R3"]
 AFTER_READ = ("dev_cv_R4_vs_R2w", "dev_cv_R4_vs_R2w4", "dev_cv_R4_vs_R3", "dev_cv_R4_vs_R3m", "dev_S4_vs_S3", "test_S4_vs_S3",
               "dev_S4_vs_S0", "dev_S4bg_vs_S0bg", "dev_R4face_vs_R2wface", "ms1_morph_vs_photo_native",
               "af0_dev_u50_vs_photo", "hn2_lcomplete_vs_bona", "gd1_X_vs_REC", "gd1_X_vs_SAME", "gd0_sgw_vs_resmatch",
               "gd0_sgwp_vs_resmatch", "gd0_diffae_vs_resmatch")
-AMEND1 = ["ri_R4_vs_R3", "ri_R4_vs_R0", "ri_S4_vs_S3"]
+AMEND1 = ["ri_R4_vs_R3", "ri_R4_vs_R0", "ri_S4_vs_S3", "ri_R0s61_vs_R0", "ri_S0_vs_R0", "ri_R2w4_vs_R0"]
 WITHIN_D = ("ri_S4_vs_S3", "dev_S4_vs_S3", "test_S4_vs_S3")
-DFEATS = pathlib.Path("/mnt/t7/smad_next/BD1/d_feats.csv")
+DFEATS = pathlib.Path("/mnt/t7/smad_next/BD1/d_values.csv")   # BD1 prereg line 30: D (lead, amendment 2)
 
 
-def within_d(ids, y, scores, col="D_ac"):
+def within_d(ids, y, scores, col="D"):
     """BD1's primary rule on held-out floor scores: quintile edges of log D over the pooled rows, AUC within each
     stratum, mean weighted by n_pos x n_neg over strata with >= 10 rows of each class."""
     D = {r["id"]: float(r[col]) for r in csv.DictReader(open(DFEATS))}
@@ -192,16 +198,43 @@ def featmap():
     return _FE
 
 
+_PM = {}
+
+
+def pngmeta(p):
+    import feats as F
+    if not _PM:
+        f = OUT / "feats" / "pngmeta.npz"
+        if f.exists():
+            z = np.load(f)
+            _PM.update({str(a): b for a, b in zip(z["paths"], z["X"])})
+        _PM["_dirty"] = False
+    if p not in _PM:
+        _PM[p] = np.array(F.pngmeta(p), float)
+        _PM["_dirty"] = True
+    return _PM[p]
+
+
+def save_pngmeta():
+    if _PM.get("_dirty"):
+        ks = [k for k in _PM if not k.startswith("_")]
+        np.savez(OUT / "feats" / "pngmeta.npz", paths=np.array(ks), X=np.stack([_PM[k] for k in ks]))
+        _PM["_dirty"] = False
+
+
 def X_of(rowlist):
+    import feats as F
     fm = featmap()
     missing = [p for _, p, _, _ in rowlist if p not in fm]
     assert not missing, (len(missing), missing[:3])
-    return np.stack([fm[p] for _, p, _, _ in rowlist]), fm["names"]
+    X = np.stack([np.r_[fm[p], pngmeta(p)] for _, p, _, _ in rowlist])
+    save_pngmeta()
+    return X, fm["names"] + F.PNGMETA
 
 
 def cmd_floors(a):
     FDIR.mkdir(parents=True, exist_ok=True)
-    names = a.only or {1: STAGE1, 2: STAGE2, 3: AMEND1}[a.stage]
+    names = a.only or {0: STAGE1A, 1: [n for n in STAGE1 if n not in STAGE1A], 2: STAGE2, 3: AMEND1}[a.stage]
     for n in names:
         rl = C.build_train(n) if n in C.TRAIN_CONTRASTS else C.build(n)
         X, nm = X_of(rl)
@@ -221,6 +254,15 @@ def cmd_floors(a):
         pix = [k for k, v in enumerate(nm) if v not in FILE_SIZE]
         rp, _, _ = FL.fit_contrast(X[:, pix], y, [p for *_, p in rl], [nm[k] for k in pix], detail=False)
         rep["pixel_only_floor"] = rp["floor"]
+        nu = [k for k, v in enumerate(nm) if v.startswith(NUISANCE)]
+        rn, scn, _ = FL.fit_contrast(X[:, nu], y, [p for *_, p in rl], [nm[k] for k in nu], detail=False)
+        rep["nuisance_floor"] = rn["floor"]
+        rep["nuisance_floor"]["families"] = list(NUISANCE)
+        if n == "lcomb":                                           # amendment 2 F3: regression gate
+            f27 = rep["insample_best_single_f27"]
+            rep["regression_gate"] = dict(value=f27, stat=rep["insample_best_single_f27_stat"],
+                                          passed=bool(round(f27, 3) == 0.886))
+            assert rep["regression_gate"]["passed"], ("regression gate failed", f27)
         if n in WITHIN_D:
             rep["within_D_quintiles"] = within_d([i for i, *_ in rl], y, sc)
         rep["definition"] = (C.TRAIN_CONTRASTS[n] if n in C.TRAIN_CONTRASTS else
@@ -228,13 +270,23 @@ def cmd_floors(a):
         (FDIR / f"{n}.json").write_text(json.dumps(rep, indent=1, default=str))
         with open(FDIR / f"{n}_heldout.csv", "w", newline="") as f:
             w = csv.writer(f)
-            w.writerow(["id", "label", "component", "single", "logreg", "gbt"])
+            w.writerow(["id", "label", "component", "single", "logreg", "gbt", "nu_single", "nu_logreg", "nu_gbt"])
             for k, (i, _, l, _) in enumerate(rl):
-                w.writerow([i, l, int(groups[k])] + [repr(float(sc[m][k])) for m in ("single", "logreg", "gbt")])
+                w.writerow([i, l, int(groups[k])] + [repr(float(sc[m][k])) for m in ("single", "logreg", "gbt")]
+                           + [repr(float(scn[m][k])) for m in ("single", "logreg", "gbt")])
         fl = rep["floor"]
-        print(f"{n}: floor {fl['auc']:.3f} [{fl['ci'][0]:.3f}, {fl['ci'][1]:.3f}] ({fl['model']}); "
+        print(f"{n}: nuisance floor {rep['nuisance_floor']['auc']:.3f}; ADV floor {fl['auc']:.3f} [{fl['ci'][0]:.3f}, {fl['ci'][1]:.3f}] ({fl['model']}); "
               f"carried by {rep.get('carrying_family')}; in-sample best single {rep['insample_best_single']:.3f} "
               f"({rep['insample_best_single_stat']})", flush=True)
+
+
+def cmd_pins(a):
+    import hashlib
+    fs = sorted(p for p in FDIR.glob("*") if p.suffix in (".json", ".csv") and not p.name.startswith("transfer_"))
+    lines = [f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}" for p in fs if p.stem.replace("_heldout", "")
+             in set(a.only or [])]
+    (FDIR / f"pins_stage{a.stage}.sha256").write_text("\n".join(lines) + "\n")
+    print(len(lines), "files pinned in", f"pins_stage{a.stage}.sha256")
 
 
 def cmd_transfer(a):
@@ -287,14 +339,14 @@ def cmd_table(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=("feats", "floors", "transfer", "table"))
+    ap.add_argument("cmd", choices=("feats", "floors", "transfer", "table", "pins"))
     ap.add_argument("--set", default="ab1x")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--stage", type=int, default=1)
     ap.add_argument("--only", nargs="*")
     a = ap.parse_args()
-    {"feats": cmd_feats, "floors": cmd_floors, "transfer": cmd_transfer, "table": cmd_table}[a.cmd](a)
+    {"feats": cmd_feats, "floors": cmd_floors, "transfer": cmd_transfer, "table": cmd_table, "pins": cmd_pins}[a.cmd](a)
 
 
 if __name__ == "__main__":

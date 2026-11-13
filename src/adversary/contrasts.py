@@ -254,6 +254,12 @@ def contrast_defs():
                         dict(L, role=("test", "dev"), rung="R3", tool="opencv", bd1_hosts=bd1_hosts()), "RI1 S1 signal"),
         "ri_R4_vs_R0": ("AB1X", dict(L, role=("test", "dev"), rung="R4", tool="opencv", bd1_hosts=bd1_hosts()),
                         dict(L, role=("test", "dev"), rung="R0", bd1_hosts=bd1_hosts()), "RI1 S1 signal"),
+        "ri_R0s61_vs_R0": ("AB1X", dict(fam="ladder", role=("test", "dev"), rung="R0", strength="61", bd1_hosts=bd1_hosts()),
+                           dict(L, role=("test", "dev"), rung="R0", bd1_hosts=bd1_hosts()), "RI1/TB1 storage control (ceiling)"),
+        "ri_S0_vs_R0": ("AB1X", dict(S, role=("test", "dev"), rung="S0"),
+                        dict(L, role=("test", "dev"), rung="R0", bd1_hosts=bd1_hosts()), "RI1/TB1 seam control"),
+        "ri_R2w4_vs_R0": ("AB1X", dict(L, role=("test", "dev"), rung="R2w4", tool="opencv", bd1_hosts=bd1_hosts()),
+                          dict(L, role=("test", "dev"), rung="R0", bd1_hosts=bd1_hosts()), "RI1/TB1 warp control"),
         "ri_S4_vs_S3": ("AB1X", dict(S, role=("test", "dev"), rung="S4"), dict(S, role=("test", "dev"), rung="S3"),
                         "RI1 S1 and TB1 S (within BD1 D quintiles printed)"),
     }

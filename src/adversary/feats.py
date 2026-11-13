@@ -33,6 +33,9 @@ SRC = pathlib.Path("/home/narolski/smad-next/src")
 CUES_ALL = SRC / "AF0" / "cues_all.py"
 CUES_ALL_SHA = "1ab50f3098e9eac6fcdfeb7a08cb6b02613d728f87aa24a4a396509f41cdcc9f"   # as src/PN1/cues27.py
 BORDER_REF = SRC / "TT1" / "build_border_ref.py"
+BORDER_REF_SHA = "366058805349dc322088cf98debd78598eaa9900294e2c7f7ec37d5f1293113c"   # amendment 2 F9
+CUE_FLOOR = pathlib.Path("/home/narolski/mambamorph-code/smadcvpr/cue_floor.py")
+CUE_FLOOR_SHA = "556e7aba7c52d9ffaeab315884ce834fbb2413548bd335aac2442828f5dd40ca"
 N = 512
 FY0, FY1, FX0, FX1 = 150, 430, 124, 388            # cue_floor's canonical face box
 EYES = ((190, 210), (322, 210))                     # (x, y) of the aligned frame (prep_eval.py docstring)
@@ -52,6 +55,8 @@ _M = {}
 def mods():
     if not _M:
         assert hashlib.sha256(CUES_ALL.read_bytes()).hexdigest() == CUES_ALL_SHA, "cues_all.py changed"
+        assert hashlib.sha256(CUE_FLOOR.read_bytes()).hexdigest() == CUE_FLOOR_SHA, "cue_floor.py changed"
+        assert hashlib.sha256(BORDER_REF.read_bytes()).hexdigest() == BORDER_REF_SHA, "build_border_ref.py changed"
         _M["cues"] = _load(CUES_ALL, "af0_cues_all")
         _M["bref"] = _load(BORDER_REF, "tt1_build_border_ref")
         import cue_floor as CF
@@ -227,3 +232,37 @@ def compute(paths, workers=2):
     from multiprocessing import Pool
     with Pool(workers) as p:
         return np.stack(p.map(one, list(paths), chunksize=8))
+
+
+# ---------------------------------------------------------------- amendment 2 (F10): PNG container metadata
+PNGMETA = ["STORE:png_n_idat", "STORE:png_idat_mean_bytes", "STORE:png_zlib_level", "STORE:png_ancillary",
+           "STORE:png_colour_type"] + [f"STORE:png_filter{k}_share" for k in range(5)]
+
+
+def pngmeta(path):
+    """Container facts parsed from the file bytes (no pixel is changed; decompression only to read filter bytes)."""
+    import struct
+    import zlib as _z
+    b = open(path, "rb").read()
+    assert b[:8] == b"\x89PNG\r\n\x1a\n", path
+    i, idat, anc, ctype, w, h = 8, [], 0, -1, 0, 0
+    while i < len(b):
+        n = struct.unpack(">I", b[i:i + 4])[0]
+        t = b[i + 4:i + 8]
+        d = b[i + 8:i + 8 + n]
+        if t == b"IHDR":
+            w, h = struct.unpack(">II", d[:8])
+            ctype = d[9]
+        elif t == b"IDAT":
+            idat.append(d)
+        elif t not in (b"IEND",):
+            anc += 1
+        i += 12 + n
+    z = b"".join(idat)
+    level = (z[1] >> 6) if len(z) > 1 else -1
+    raw = _z.decompress(z)
+    ch = {0: 1, 2: 3, 4: 2, 6: 4}.get(ctype, 3)
+    stride = w * ch + 1
+    ft = np.frombuffer(raw, np.uint8)[0::stride][:h]
+    share = [float(np.mean(ft == k)) for k in range(5)]
+    return [len(idat), float(np.mean([len(x) for x in idat])), float(level), float(anc), float(ctype)] + share
