@@ -1,0 +1,96 @@
+{
+"mock": false,
+"part": "premise",
+"n_hosts": 291,
+"by_db": {
+"frgc": 235,
+"feret": 56
+},
+"P": {
+"hull": {
+"auc": 0.7834579185413493,
+"within_D": {
+"auc": 0.757620578778135,
+"cover": 1.0,
+"pure_reference": 0.5241800643086817
+},
+"within_D_lin": {
+"auc": 0.7072734054457293,
+"cover": 1.0,
+"pure_reference": 0.5661320402834763
+},
+"within_D_dc": {
+"auc": 0.775554879902706,
+"cover": 1.0,
+"pure_reference": 0.5092733353602918
+},
+"within_G": {
+"auc": 0.7869162189289721,
+"cover": 1.0,
+"pure_reference": 0.5
+},
+"within_D_ci": [
+0.7177697928756605,
+0.7949926872322891
+],
+"auc_frgc": 0.8637392485287461,
+"auc_feret": 0.5538903061224489,
+"joint_DxG_strata": [
+{
+"n_pos": 40,
+"n_neg": 60,
+"auc": 0.8429166666666666
+},
+{
+"n_pos": 30,
+"n_neg": 64,
+"auc": 0.8229166666666666
+},
+{
+"n_pos": 43,
+"n_neg": 50,
+"auc": 0.8153488372093023
+},
+{
+"n_pos": 53,
+"n_neg": 48,
+"auc": 0.78812893081761
+},
+{
+"n_pos": 63,
+"n_neg": 36,
+"auc": 0.7151675485008818
+},
+{
+"n_pos": 62,
+"n_neg": 33,
+"auc": 0.6085043988269795
+}
+]
+},
+"hull_eroded16": {
+"auc": 0.8209515711907039,
+"within_D": {
+"auc": 0.8094533762057878,
+"cover": 1.0,
+"pure_reference": 0.5241800643086817
+},
+"within_D_lin": {
+"auc": 0.7726221559119731,
+"cover": 1.0,
+"pure_reference": 0.5661320402834763
+},
+"within_D_dc": {
+"auc": 0.820066889632107,
+"cover": 1.0,
+"pure_reference": 0.5092733353602918
+},
+"within_G": {
+"auc": 0.8234634232744878,
+"cover": 1.0,
+"pure_reference": 0.5
+}
+},
+"verdict": "premise holds (>= 0.70 within D)"
+}
+}
