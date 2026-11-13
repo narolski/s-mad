@@ -355,3 +355,30 @@ For A, AS and SbS at each seed and size (fm61, amsl112), on the FFHQ hold-out pa
 H-new-2 edge and file `c2p_holdout.npz` 4a9da201…; undefined if the net increase is ≤ 0); "enriched" if ≥ 0.50 on ≥ 4 of
 5 seeds at both sizes, "not enriched" if ≤ 0.35 on ≥ 4 of 5 at both sizes, otherwise "inconclusive"; per arm; code
 `src/AB1/ab1_sharp.py`, scores from the AB1 tars only.
+
+## Amendment 3 (`date`: Fri Nov 13 20:22 CET 2026; POST HOC; before the lcomb_bal row list exists; zero GPU): landmark_combined at matched history
+
+Lead's instruction after the review of the adversary's stage-1a floors (`experiments/reviews/REVIEW_ADV_STAGE1A_20261113.md`,
+6f7c181): FFHQ landmark_combined is separable at 0.96-0.98 by statistics fitted on it and at about 0.79 from the image
+surround alone (a resampling-history difference between morphs and genuine photos), so R2's gain (Sb − B +0.15 to
++0.21, Sb − A +0.12 to +0.14 at 408-412, known) is untested at matched history. The adversary is building
+`lcomb_bal` (matched on the surround-only score and pre-alignment eye distance, existing images only, published with
+pins in experiments/ADV_shortcut-floors/). **Disclosure:** registered after seeing every AB1 landmark_combined number on
+all 3,000 rows; no network's score on any history-balanced subset or surround stratum has been computed by anyone.
+
+- **H-hb1 (the review's H-new-2): "Sb's gain over B shrinks by at least half on the history-balanced subset."** Per seed
+  (408-412, AB1's H100 fit-job scores, the same rows for every network, paired): g_full = AUC(Sb) − AUC(B) on the 3,000
+  rows; g_bal = the same on lcomb_bal. **Supported** if g_bal ≤ ½ × g_full on ≥ 4 of 5 seeds. **Falsified** if g_bal ≥
+  +0.10 on ≥ 4 of 5 seeds. Otherwise "inconclusive, no claim"; ≤ 3 read seeds "not read". Sb − A by the same rule,
+  secondary. Unweighted read (any weight column is ignored); if the adversary publishes only weights and no 1:1
+  subset, this read is "not read" until a registered amendment says how to use them.
+- **Printed:** per-network AUC on lcomb_bal (A, B, Sb) with 95% intervals (2,000 bootstraps of images within class, rng
+  20261116); paired Sb − B and Sb − A on lcomb_bal with intervals from the same draws; the same three differences
+  within quintiles of the adversary's surround-only held-out score (edges over all 3,000 rows); Sb's AUC on lcomb_bal
+  beside the adversary's same-data shortcut learner on lcomb_bal (when published).
+- **Inputs, asserted by the reader:** the lcomb_bal list and the surround-score file must be committed in git, unmodified,
+  with the sha256 given in the adversary's commit; ids must be landmark_combined rows of ab1_eval.csv.
+- **Follow-up arms:** the SbFM and Sbx reads print the arm's AUC on lcomb_bal and arm − Sb there, beside
+  landmark_combined (`--arm` option of the same reader; printed only, their registered verdicts unchanged).
+- Reader `src/AB1/ab1_hb_read.py` (de6e61ae…), mock-tested (`ab1_hb_read_mock.json`); read once when the adversary
+  posts the lcomb_bal commit; then the results-reviewer. Pre-run check: requested from the lead.
