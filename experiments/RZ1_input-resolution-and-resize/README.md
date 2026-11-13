@@ -109,3 +109,14 @@ None yet.
 - Logs: /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/rz1-{smoke,w1,crop,512}-*.out.
 - Local test outputs: /mnt/t7/smad_next/RZ1/localtest/results/ (20-step and 3-step tars, code-path checks only, never
   read).
+
+### Amendment 1 (rescoring AB1's A and Sb), 13 Nov about 19:10-19:20 by the machine clock
+- Lead's yes to the reviewer's improvement 3, with the condition: write the amendment with a bit-identity gate, ask for
+  its pre-run check, then queue it behind wave 1.
+- Code: `rz1_rescore.py`, `run_rz1r.sh` (the input section of run_rz1.sh copied unchanged), `wcss/rz1-rescore.sbatch`.
+- Local code-path test on the DGX (AB1_Sb_s408, 64 rows, `/mnt/t7/smad_next/RZ1/localtest/run_r.log`): rc 0.
+  - The rebuild loads exactly the trainable keys.
+  - The gate fails, as expected on another GPU model and with a strided 64-row subset: max |Δ| 0.0134 against the
+    H100 logits, own-rule agreement 1.000.
+  - rz1_score.py outputs written. This is a code-path check only, never read.
+- Not submitted: waiting for the pre-run check (lead).

@@ -411,3 +411,42 @@ this file names an overlay hash, `pins.sha256` and section 12 take precedence.
   close to one it trained on; it is never called generalisation.
 - **Not taken up now:** rescoring AB1's kept A and Sb with rz1_score.py (about 2 H100-h: the refit-versus-original
   yardstick), and an arm mixing only antialiasing kernels (5 fits). Both are offered to the lead.
+
+## Amendment 1: rescoring AB1's kept A and Sb as the refit yardstick
+
+Written 13 Nov 2026 at about 19:20 by the machine clock, before any RZ1 network exists or any RZ1 or rescored score is
+read. The lead accepted the reviewer's improvement 3 and asked for this amendment.
+
+**What.** One WCSS H100 job (`src/RZ1/wcss/rz1-rescore.sbatch`, `src/RZ1/run_rz1r.sh`, `src/RZ1/rz1_rescore.py`) rescores
+AB1's kept networks A and Sb at seeds 408-412: ten networks, tars in `results/AB1`, each sha256-pinned in run_rz1r.sh.
+- It uses the RZ1 inputs and data root unchanged, with `~/dmenv` read-only (torch 2.11.0+cu128).
+- Each network is rebuilt from its meta.json and last_trainable.pt. The frozen tower comes from the pack weights. The
+  loaded keys must be exactly the trainable ones, and the missing keys exactly the frozen ones.
+
+**Gate (bit identity).** Before any RZ1 row of a network is used, its 21,277 ab1_eval.csv logits are recomputed exactly
+as pn1_score.py did in AB1's fit job: same loader, batch 64 in manifest order, TF32 on, logit without flip.
+- They are compared with the tar's stored scores_eval.npz. **"Passed" means every float32 logit is equal.**
+- A network whose gate fails is not used in any read of this amendment. It is reported as "gate failed", with the
+  number of differing rows, max |Δ| and own-rule agreement.
+- If more than 2 of the 5 networks of an arm fail, the yardstick for that arm is "not available".
+
+**Then** the unchanged rz1_score.py runs on the rebuilt network. It gives the outputs of an RZ1 A0 or Sb0 fit job:
+primary fixed:pil_bilinear on ab1x_eval, training rows, TT1, MEDS, and the 13-spec cross table.
+
+**Reads (descriptive; they enter no hypothesis of section 5).**
+- For every per-network read of section 4 and each seed: the refit difference δ(r, s) = r(A0_s) − r(AB1 A_s), and the
+  same for Sb0 against AB1 Sb.
+- Printed per read: each δ, the median of |δ| over seeds and the maximum of |δ| over seeds.
+- Plain-words use: a paired RZ1 difference smaller than the maximum same-arm, same-seed refit |δ| of that read is
+  written "within refit noise", whatever its verdict.
+
+**Change to the section 8 proposal.**
+- Criterion 2 also requires the median paired landmark_combined gain over Sb0 to exceed the maximum over seeds of the
+  Sb refit |δ| on landmark_combined.
+- If the yardstick is not available, criterion 2 is unchanged and the gap is stated.
+
+**Order and cost.** About 1-1.5 H100-h. Queued behind wave 1 and valid only if the RZ1 smoke passed. Read once with the
+wave 1 read, by rz1_read.py, which loads the RZ1R tars with their gate.json.
+
+**Pre-run check.** Requested from the lead. A local code-path test is in the README; on the DGX GPU the gate is
+expected to fail, because it is another GPU model.
