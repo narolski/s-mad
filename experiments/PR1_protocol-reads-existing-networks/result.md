@@ -143,7 +143,7 @@ Output `z2b_read.json`. The TT1-FS read is not yet reviewed by its own reviewer.
   facemorpher. Sb +0.029, +0.006, +0.011, +0.017, +0.011; B +0.012 to +0.028; A −0.001 to +0.018. Δ3m (mirror) −0.009
   to +0.014 for all arms. **Registered verdict: "inconclusive" for A, B, Sb** (Sb: 0 seeds ≥ 0.03, 1 seed ≤ 0.01).
 
-### Z5: storage evasion of morphs (copied from the C2P owner's committed read, `PN1 c2p_read.json`, commit 0cb89c5)
+### Z5: storage evasion of morphs (A, B, Sb copied from PN1 c2p_read.json, commit 0cb89c5, provisional pending C2P-R; SbM3 read here from the MS1 fits' own stored scores, not provisional)
 
 **Provisional.** The C2P post-result review (e2af82c) quarantines the hold-out scores of every gate-failed network
 until a re-scoring (C2P-R) is read. Z5 will be re-copied from the C2P-R read. No quarantined score was opened here.
@@ -159,10 +159,18 @@ computed here, so no extra look at the hold-out was taken.
   `src/PR1/z5_read.py` committed at 1d2c359; output `z5_sbm3_read.json`). Scores are each MS1 fit's own stored
   hold-out scores from its own L40S; nothing was rescored. 150 / 149 morph pairs, SD from 300 native photos.
   Δm_att at fm61: +0.007, −0.009, +0.022, −0.001, +0.010; at amsl112: +0.009, +0.002, +0.025, −0.101, +0.009.
-  **Registered verdict: "falsified"** (no evasion; ≥ −0.10 on ≥ 4 of 5 seeds at both sizes; seed 406 at amsl112 is
-  −0.101). Misses on native / stored morphs: 0.7-1.3% / 0.7-2.0%. Stated: FFHQ is a training source of SbM3 (new
-  persons in the hold-out), so this is evasion on a trained source.
-  - Printed beside, MS1's own Sb refits (L40S, no rule): fm61 +0.056 to +0.103; amsl112 −0.024 to +0.041.
+  **Registered verdict: "falsified"** (no evasion at the rule: ≥ −0.10 on 5 of 5 seeds at fm61 and 4 of 5 at
+  amsl112). Seed 406 at amsl112 is −0.101, driven by 2 of 149 morphs that flip from +3.0 / +1.2 to −1.7 / −3.1; that
+  seed's median is +0.010. Misses on native / stored morphs: 0.7-1.3% / 0.7-2.0%.
+  - Scope: FFHQ is a trained source of SbM3. Its training set holds 200 fm61 stored copies of FFHQ u50 morphs from the
+    same engine and the same shrink-and-enlarge operator (MS1 prereg 3.3), so the fm61 read is in-distribution except
+    for the persons. amsl112, an untrained size, is the informative half.
+  - Native misses are 0.7-1.3% (AUC ≥ 0.999), so the test can only detect large evasion. SbM3's smaller native-genuine
+    SD (0.43-0.65 against 0.84-1.19 for Sb) makes the standardised test stricter for it.
+  - This is a PR1 measurement, not the C2P.4 freeze requirement. Review `experiments/reviews/REVIEW_PR1_Z5_20261113.md`:
+    accept with corrections (all numbers recomputed and matched).
+  - Printed beside, MS1's own Sb refits (L40S, no rule; FFHQ untrained for Sb): fm61 +0.056 to +0.103; amsl112 −0.024
+    to +0.041.
 - AB1 (ablation experiment, five new seeds on H100, commit 8109cad) has read the storage test for A, B and Sb. It is
   not used here, because Z5 is defined on the fresh-seed networks. It will be cited beside Z5 once its review is
   applied.
@@ -188,7 +196,7 @@ evidence about a trade-off within a recipe.
 - Z3 and Z6 are read at the ceiling (all AUCs 1.000).
 - Z2a is in-source by design; the unseen-source line (Z2b-τ5) waits for TT1-FS.
 - Training-row logits are plain (no flip average stored).
-- Z5 waits for the C2P and MS1 owners' reads.
+- Z5 for A, B and Sb waits for the C2P-R read.
 
 ## Part 2: GD0, GD1, GD2 (new scoring on pn1fs; read once at about 11:45)
 
