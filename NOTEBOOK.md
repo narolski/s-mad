@@ -324,3 +324,9 @@ Both new arms are post-freeze (the candidate was frozen at 18:28) unless the aut
 - **Author, verbatim: "Please plan extensive experiments for Dinov3, ok? So that we evaluate it like we did with CLIP."** The second-backbone owner writes the DINOv3 programme plan (PLAN_DINOV3_PROGRAMME_20261113.md), in waves, with E3 and its fit gate as wave 1.
 - GAN arm (GX1): only 36 two-person MIPGAN-I morphs exist with both persons among the protocol network's training persons; the lead will not run an arm that small and asked the owner for the cost of building 300-500 with the unchanged AG1 pipeline.
 - Sealed read (FINAL): package being built for the frozen candidate; start held until the author chooses between reading now and lifting the freeze to improve first (asked at 18:55, unanswered).
+
+## 13 Nov 2026, 19:25 (lead): AUTHOR RULING, read now, MAD22
+
+- **Author, verbatim: "Go with A READ NOW, improve later for MAD22, we need to know where we stand on this eval set."** (Option A of the lead's question: read the frozen CLIP candidate now; the new arms are later work.)
+- **Scope set by the lead from his words:** the read tonight or tomorrow morning covers the corrected MAD22 only (standard, history-matched, border-equalised forms; own rule and a development threshold as secondary; released detectors and the best development statistic beside it). FRLL-Morphs, FEI, MorDIFF, the DiM families, H1 and the benign variants stay sealed and unscored, kept for the improved method. Unavoidable exposure, to be disclosed: MAD22's genuine side is the 204 FRLL photos, so the frozen networks' scores on those photos will exist. After this read, any later method's MAD22 numbers are "seen during development".
+- The frozen candidate stays as ruled at 18:28 (Sb, seeds 403-407). The arms ordered this evening (second engine, GAN with render-matched negatives, DINOv3 programme, input resolution and resize study, look-alike search) are development of the next method version.
