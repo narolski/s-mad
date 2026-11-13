@@ -257,3 +257,42 @@ Rows: R0 227, R2 238, R2s 119, R3 119, R3m 119, R4 74.
   MIPGAN renders.
 - R4 has only 74 rows; partners of many hosts are training persons and were excluded.
 
+
+## Part 3: amendment 4, GD control table and cue floors (post hoc; registered at 6b3af89; read once at about 12:40)
+
+Reader `src/PR1/gd_extra.py`; output `gd_extra.json`, `gd_extra_stdout.txt`. Cues: GD2 with `cues27.py` unchanged;
+GD1 through `cue_floor._cue_one` (the networks' loader view at 512 px) plus file size. The cue computation started
+about two minutes before the registration commit; no cue value had been looked at.
+
+### Part B: is each network contrast beyond the 27-statistic floor? (rule: network − F ≥ +0.05 on ≥ 4 of 5)
+
+F = max(best single statistic on the same images, s-lad, b-lad).
+
+| Contrast | F (component) | A | B | Sb |
+|---|---|---|---|---|
+| GD1 X vs REC | 0.705 (file size) | 0.53-0.66 → not beyond | 0.46-0.56 → not beyond | 0.53-0.60 → not beyond |
+| GD1 REC vs G | 0.996 (band power > .5) | 0.97-1.00 → not beyond | 0.92-0.99 → not beyond | 0.991-0.996 → not beyond |
+| GD1 X vs SAME | 0.730 (noise_std_face) | 0.64-0.74 → not beyond | 0.68-0.75 → inconclusive | 0.778, 0.821, 0.778, 0.846, 0.822 (F +0.048 to +0.116) → **inconclusive** (≥ +0.05 on 3 of 5) |
+| GD2 R2 vs R0 | 0.902 (s-lad) | 0.96-0.99 → **beyond** | 0.91-0.98 → **beyond** | 0.992-0.998 → **beyond** |
+| GD2 R4 vs R2 | 0.911 (b-lad) | 0.73-0.87 → not beyond | 0.81-0.91 → not beyond | 0.86-0.93 → not beyond |
+| GD2 R4 vs R3 | 0.702 (b-lad) | 0.53-0.63 → not beyond | 0.58-0.67 → not beyond | 0.62-0.69 → not beyond |
+
+- Printed, Sb, within quintiles of the best single statistic: GD1 X vs SAME 0.71-0.79; GD2 R4 vs R3 0.64-0.73; GD2 R2
+  vs R0 0.99-1.00; GD1 REC vs G 0.97-0.99.
+- In words: the only contrast where the networks exceed the simple-statistic floor is "one-photo MIPGAN render
+  against camera photo" (the render response). The identity contrasts (R4 vs R3, X vs SAME) and the
+  reconstruction contrasts do not exceed it, or are inconclusive for Sb's X vs SAME.
+
+### Part A: printed control table (no rule)
+
+- GD2 controls (Sb; A; B): R3 vs R2 0.79-0.83; 0.70-0.79; 0.74-0.82. R3m vs R2 0.74-0.81; 0.66-0.78; 0.70-0.80.
+  R3 vs R3m 0.51-0.56; 0.48-0.54; 0.47-0.54. R2s vs R0 0.99-1.00; 0.96-0.99; 0.90-0.98.
+- GD1 (Sb): X vs MIR 0.69-0.76; SAME vs REC 0.21-0.27; MIR vs REC 0.28-0.37.
+- Cross-set (different sources and generators; descriptive): FFHQ stylegan_wplus morphs against GD2 one-photo
+  MIPGAN renders R2: Sb 0.39-0.61, A 0.45-0.69, B 0.50-0.81. Against GD2 camera photos: 0.99-1.00 for every arm.
+  Median logits for Sb: wplus morphs +3.06 to +3.18, R2 renders +2.88 to +3.23, R4 +3.37 to +3.42, R0 −3.48 to −3.53.
+- Joint operating point per seed (Z2a usable AND Z2b-τ5 G_unseen ≤ 0.10):
+  - At τ5: Sb seeds 405 and 406 (2 of 5); A and B none.
+  - At the cut-off max(τ5, 0): Sb seeds 406 and 407 (2 of 5); A and B none. Sb's misses at the own rule are
+    0.256-0.468, and seed 404's unseen flags are 0.134.
+  - H-new-3 of the part-2 review (joint pass on ≥ 4 of 5 at max(τ5, 0)) is not met. Printed only.
