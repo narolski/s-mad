@@ -228,3 +228,98 @@ Rented A100 time:
 - tt1c about 0.9 USD (01:03 to the 01:46 release).
 
 DGX GPU about 25 min. WCSS: nothing queued (uploaded files kept).
+
+# Fresh-seed block TT1-FS (seeds 403-407) and extension TT1-X Part 1 (Sp): registered reading, not yet reviewed
+
+Registration TT1-FS: `prereg_fs1_block.md`. It was registered at a2fef5c, with the pre-run amendment at ab81b35 and
+the operational note at 451c419. Reader `tt1_read_fs.py` 87356fd7…, run once.
+
+Files:
+- `tt1_read_fs.json` (sha256 `434208c6…`) and the tables in `tt1_read_fs_tables.md`.
+- Scores: `/mnt/t7/smad_next/TT1/results/TT1_A100_pn1fs_fs.tar`.
+
+Platform:
+- Lease pn1fs: A100-PCIE-40GB, GPU-5bd20020…, driver 610.57.04, torch 2.2.1, CUDA 12.1, cuDNN 8902, timm 1.0.27,
+  numpy 1.26.4, Pillow 10.2.0.
+- The job took the fit lock at 10:08:28 CET.
+- **Gate: 15 of 15 networks byte-identical** on all 19,797 FS1 evaluation rows (TF32 on, batch 64, manifest order),
+  max |Δ| 0 for every network.
+- TF32 split on R_cam (this job's TF32-off logits against the stored TF32-on ones): max |Δ| 0.001-0.042 logit,
+  0 own-rule changes in any network.
+
+The F4 limits apply: false alarms only, on low-resolution black-bordered frames, development sources only. No arm,
+seed or threshold is chosen from TT1.
+
+## Registered verdicts (an arm verdict needs at least 4 of 5 seeds agreeing)
+
+| Hypothesis | A | B | Sb |
+|---|---|---|---|
+| TT-H1: does the own rule transfer? | **mixed**: 3 of 5 seeds "transfers"; s404 fails 2 families (lfw_calfw, agedb_30); s405 fails lfw_calfw | **transfers on 5 of 5 seeds**: every family's upper bound ≤ 10%, largest 3.3% | **transfers on 4 of 5 seeds**; s404 fails cfp_ff (13.4%) |
+| TT-H2: unseen photos above the training-source photos? | supported 5 of 5 | supported 5 of 5 | supported 5 of 5 |
+| TT-H3: is the border material? | inconclusive 5 of 5 | inconclusive 5 of 5 | inconclusive 5 of 5 |
+| TT-H4: softer photos score higher at fixed size? | **mixed**: "not as predicted" 3 of 5 | **falsified, 4 of 5 seeds**: ρ ≥ 0 in at least 3 of 4 packs; s407 "supported, \|ρ\| below A's" | **mixed**: \|ρ\| below A's on 3 of 5 seeds |
+| TT-H5: source matters beyond geometry? | "source matters beyond geometry" 5 of 5 | same, 5 of 5 | same, 5 of 5 |
+
+Per-seed numbers behind the verdicts:
+- **TT-H1, A:** largest family upper bounds per seed are 3.4%, 19.2%, 10.4%, 2.0% and 7.9%.
+- **TT-H1, B:** this matches its registered falsifier, "own rule transfers on these sources", now on five seeds.
+- **TT-H1, Sb:** under the registered rule the arm verdict is "transfers". The registered prediction was failure in at
+  least 2 families per seed; it held on 0 of 5 seeds.
+- **TT-H2:** AUC of every unseen source against R_cam is 0.989-1.000 for every network.
+- **TT-H4, A:** ρ(logit, log sharpness) in LFW is −0.28 to −0.54 on every seed. In AgeDB it is −0.29 to −0.40 on four
+  seeds and 0.00 on s406. In CALFW and CFP it is −0.18 to +0.12.
+- **TT-H4, B:** ρ is −0.13 to +0.22.
+
+### TT-H6 (descriptive; the −0.03 bar equals the size of the 401/402 B − A effect)
+
+| Pair | ΔF̄ per seed (403, 404, 405, 406, 407) | Mean ± SD over 5 seeds | Seeds negative | Registered sentence |
+|---|---|---|---|---|
+| B − A | −0.005, −0.041, −0.032, −0.003, −0.022 | −0.021 ± 0.016 | 5 / 5 | not distinguished |
+| Sb − A | | −0.003 ± 0.013 | 3 / 5 | not distinguished |
+| Sb − B | +0.013, +0.034, +0.011, +0.014, +0.017 | +0.018 ± 0.009 | 0 / 5 | not distinguished |
+| B − Sb | | | 5 / 5 | "not distinguished" (bar −0.03 reached on 1 of 5 seeds) |
+
+- B − A: every per-seed interval excludes 0, but only 2 of 5 seeds reach −0.03.
+- Sb − B: every per-seed interval lies above 0.
+
+Across-seed means (± SD):
+
+| Arm | F̄ | F_max |
+|---|---|---|
+| A | 0.023 ± 0.019 | 0.078 ± 0.068 |
+| B | 0.0024 ± 0.0028 | 0.0072 ± 0.0072 |
+| Sb | 0.020 ± 0.012 | 0.064 ± 0.041 |
+
+### Printed reads (no rule)
+
+- **Geometry-112 flag share (camera photos after the 112 px path):**
+  - A: 0.415, 0.504, 0.475, 0.185, 0.348;
+  - B: 0.012, 0.002, 0.002, 0.000, 0.005;
+  - Sb: 0.091, 0.065, 0.022, 0.029, 0.058.
+  - At 224 px the share is 0-1.2% for every network.
+- **R3(g) at 112 px, all four packs:**
+  - A: 0.23-0.50;
+  - B: 0.93-0.997;
+  - Sb: 0.81-0.95.
+  - At 224 px every network is at 0.92-1.00.
+- **FFHQ genuine own-rule flags:**
+  - A: 0.065-0.108;
+  - B: 0.025-0.108;
+  - Sb: 0.024-0.051.
+- **F̄ above −2 logit:**
+  - A: 0.010-0.072;
+  - B: 0.006-0.022;
+  - Sb: 0.215-0.393.
+
+## TT1-X Part 1: the Sp arm, seeds 403-405 (printed only; no rule)
+
+Reader `tt1_read_x.py` (f358128, pinned before any Sp score was opened). Output `tt1_read_x_sp.json` (`986c2573…`).
+Gate: 3 of 3 byte-identical.
+
+| Network | F̄ | F_max | Family with F_max | FFHQ genuine flag | Geometry-112 flag | R3(g) at 112 px | F̄ above −2 |
+|---|---|---|---|---|---|---|---|
+| Sp_s403 | 0.033 | 0.109 | cfp_ff | 0.085 | 0.084 | 0.86-0.87 | 0.20 |
+| Sp_s404 | 0.030 | 0.114 | cfp_ff | 0.154 | 0.041 | 0.92-0.93 | 0.12 |
+| Sp_s405 | 0.023 | 0.060 | casia_fasd | 0.116 | 0.024 | 0.94-0.95 | 0.26 |
+
+FS1 Sb at the same seeds, for reference: F̄ 0.015, 0.041, 0.013.
