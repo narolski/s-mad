@@ -581,3 +581,10 @@ splice share. Statistic: AUC of development S4 (100) against development S0 + S3
   changes. New sha256 `0e084217d5919b246fb4880d2101d49b30a5e014828a6594caf10247461f9c32` (was e0b19fcc…). The array file is queued beside the smoke and is valid only if the smoke
   passes (the dispatcher cancels it otherwise). The lead's answers: the G2 wording "truncation reproduces it" is
   acceptable; `~/dmenv` is frozen for today's batches; the dispatcher orders the queue (no --nice needed).
+
+## Part 4 amendment A1: fetch deadline (`date`: Fri Nov 13 03:45:30 PM CET 2026; registered at the commit that adds it)
+
+Lead's instruction: WCSS is saturated and the part-4 jobs (smoke 6312973, array 6312974) have no start forecast. The
+part-4 read deadline in 4.5 moves from "fits finished and fetched by 14 Nov 2026 15:00 CET" to **14 Nov 2026 18:00 CET**
+(end of the experiment stage); fewer than 4 read seeds at 18:00 is reported as "not read (deadline)". Nothing else
+changes. At this commit no part-4 tar, smoke result or score exists.
