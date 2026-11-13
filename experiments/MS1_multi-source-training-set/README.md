@@ -93,6 +93,14 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   held-out tar and 13 log files verified, second copies of all four tars verified in `/home/narolski/ms1_results_copy`,
   RELEASE written 06:09:49. Loops for ms1m1b and ms1m2 restarted at 06:10 on the corrected script (each round calls the
   script by path, `bash "$0" ... pull`, so later edits are picked up by the next round).
+- 13 Nov 06:53 (lead's decision, keeps the contrast 2-prime option open, registers and scores nothing):
+  `drive_ms1.sh` pull step checks `$L/HOLD` immediately before each RELEASE (after the keep step, so second copies are
+  still made): "HOLD present: RELEASE deferred". Tested with a local mock of the remote (the stand-in queue in
+  `/mnt/t7/smad_next/MS1/smoke/rtest`): HOLD present -> keep done, no RELEASE, both in the full and the partial
+  (FAILED) branch; HOLD absent -> RELEASE (+ FAILED) as before. drive_ms1.sh sha256 `6cfd40dd…`. Loops for ms1m1b and
+  ms1m2 stopped while sleeping and restarted 06:54. The lead creates `/mnt/t7/smad_next/vast/ms1m1b/HOLD`; without the
+  author's decision by 11:30 the lead removes it. ms1_read.py is not run before contrast 2-prime is registered or
+  declined (lead ruling).
 
 ## 3. Data
 

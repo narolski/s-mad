@@ -91,9 +91,11 @@ case "$STEP" in
         [ "$st" = FAILED ] || { log "$t: remote $st, not confirmed failed: retry next loop"; exit 0; }
         conf="$conf $t"; done
       keep || { log "keep step failed: retry next loop"; exit 0; }
+      [ -f "$L/HOLD" ] && { log "HOLD present: RELEASE deferred"; exit 0; }
       echo "failed (remote-confirmed: no tar, non-zero rc):$conf" > "$L/FAILED"; touch "$L/RELEASE"; log "RELEASE + FAILED ($conf)"
     else
       keep || { log "keep step failed: retry next loop"; exit 0; }
+      [ -f "$L/HOLD" ] && { log "HOLD present: RELEASE deferred"; exit 0; }
       touch "$L/RELEASE"; log "RELEASE written ($n of $NW fits + held-out tar verified)"
     fi
     ;;
