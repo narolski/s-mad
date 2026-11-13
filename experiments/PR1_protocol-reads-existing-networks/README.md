@@ -33,17 +33,19 @@ GD1 (DG1 diffusion ladder) and GD2 (AG1 MIPGAN controls) if their frames exist. 
 - `prereg.md` registration; `pr1_read_mock.json` mock test output; `z_read.json` the registered read (once).
 - Code: `src/PR1/` (pins in `src/PR1/SHA256SUMS`). Large outputs: `/mnt/t7/smad_next/PR1/`.
 
-## Handover state (13 Nov, about 09:50 CET)
-- Done and committed: part 1 (Z0-Z4, Z6; 6aa02f8, review applied at 90caa9e), amendment 3 (Z1b, Z3b; ea24c3d),
-  Z5 copied from C2P and marked provisional (aaa272a).
-- GD job: `remote_gd.sh` is waiting on pn1fs (PID 36238; log `/workspace/pr1/logs/run.log`). It waits for
-  `/workspace/tt1/DONE_FS`, then DONE_sp or NO_SP (at most 30 min), then the FS1 queue lock. It runs about 40 min and
-  will not start after 15:45. Check: `bash src/PR1/drive_gd.sh status`. When `/workspace/pr1/PR1_DONE` exists:
-  `bash src/PR1/drive_gd.sh pull` (two verified copies under `/mnt/t7/smad_next/PR1/results*`), then tell the lead
-  (who touches DONE_pr1), then run once:
-  `OMP_NUM_THREADS=2 nice -n 10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/PR1/gd_read.py --tar /mnt/t7/smad_next/PR1/results/PR1_GD_pn1fs.tar --out experiments/PR1_protocol-reads-existing-networks/gd_read.json`,
-  then result.md part 2 and the results review.
-- Waiting on other owners: Z2b and Z2b-τ5 (TT1-FS read, `tt1_read_fs.json`); the Z5 re-copy (C2P-R read); Z5 SbM3
-  (MS1 read). Each reader still has to be written and committed before its read (rules are registered).
-- Temporary, own: empty folders `/workspace/pr1/work_1794558587` and `work_1794559232` on pn1fs;
-  `/mnt/t7/smad_next/PR1/smoke_dgx/` (test tar only).
+## Handover state (13 Nov, about 12:10 CET)
+- Done, reviewed, corrections applied:
+  - part 1 (Z0-Z4, Z6; 6aa02f8, 90caa9e);
+  - amendment 3 (Z1b, Z3b; ea24c3d);
+  - Z2b / Z2b-τ5 (read 11:30 after TT1 commit b82163c);
+  - GD0-GD2: scored on pn1fs 11:01-11:15 CET, gate 15/15 byte-identical, tar bf560f53… with two verified copies in
+    `/mnt/t7/smad_next/PR1/results/` and `results_copy2/`; read once (5a10e33; review applied d6cf22c).
+- pn1fs: PR1 has nothing left there. `/workspace/pr1` holds packs, the result tar and the empty `work_*` folders. The
+  lead touches DONE_pr1 (two verified local copies exist).
+- Open:
+  - Z5 re-copy after the C2P-R read, and Z5 for SbM3 after the MS1 read. Rules are registered; a small reader
+    has to be committed before each read.
+  - Optional follow-ups proposed by the part-2 review:
+    - an amendment-4 printed table;
+    - 27-statistic cues on the GD1 and GD2 rows;
+    - MS1 SbM3/SbV on the GD pack (about 0.5 GPU-h).
