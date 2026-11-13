@@ -7,8 +7,9 @@ independent review `experiments/reviews/REVIEW_SM1_20261111.md`, registered befo
 Status 12 Nov 17:00: Part 1, T-A, T-B, T-C, Part 2, Part 3 frozen heads (14 arms x 5 seeds, incl. five random
 partners), A12 items 1 to 9, 11, 13, 2 ViT-L/14 LoRA fits (Athena), all 12 ViT-B/16 LoRA fits (rented RTX 6000 Ada;
 A13), A15 and A17 (development data) are read; corrections of the reviews `REVIEW_SM1_VITB_20261112.md` and
-`REVIEW_SM1_12FITS_A15_20261112.md` applied. Waiting: ViT-L/14 audit scoring (Athena 3547052, rank rule A14). The
-other 23 ViT-L/14 fits stay queued on Athena (forecast late December).
+`REVIEW_SM1_12FITS_A15_20261112.md` applied. Update 13 Nov 12:30: all 5 arm-a ViT-L/14 fits (seeds 401 to 405) are
+read and audit-scored (A14; five-seed review `REVIEW_SM1_VITL_5SEED_20261113.md` applied); no SM1 Athena job is left.
+The other 20 ViT-L/14 fits (arms other than a) are not run for this paper.
 
 **Development exposure (author's ruling, 12 Nov).** Every benchmark-cell number of the remedy arms c, d, d+, e and f
 (frozen heads, release-recipe heads, LoRA fits) is development exposure: no benchmark set may be used to develop a
@@ -567,23 +568,33 @@ Update 13 Nov 11:00: the third arm-a fit SM1L_a_s403 (Athena 3545823_2, 3:54 h, 
 `p3_lora_vitl.json` now holds seeds 401, 402, 403. 3-seed means (seeds): landmark-7 native EER 2.41 (2.28, 2.96, 2.00),
 landmark rise −0.30; diffusion-7 native EER 32.2 (36.0, 26.5, 34.2), diffusion rise −3.5 (−1.8, +0.3, −8.9); MorDIFF
 native EER 48.1 (51.5, 38.7, 54.0); GAN-3 20.2; history-matched pools flagged at the own rule 0.00 in every fit. The
-seed-403 fit confirms the two-seed reading: this ViT-L/14 head does not detect MorDIFF and shows no storage rise.
+seed-403 fit confirms the two-seed reading: this ViT-L/14 head does not detect MorDIFF and shows no rise on the landmark
+cells (−0.26) and no diffusion-7 rise (−3.9, seeds −8.9 to +0.3).
 Update 13 Nov 12:00: seeds 404, 405 (3545823_3/4, 3:37 h each, exit 0; tars sha256-verified) are added; the
-registered five-seed reading `p3_lora_vitl.json` (seeds 401 to 405) gives: landmark-7 native EER 2.30 [1.73, 2.83]
-(2.28, 2.96, 2.00, 1.33, 2.95), landmark rise −0.26; diffusion-7 native EER 30.6 (36.0, 26.5, 34.2, 27.2, 29.2),
-diffusion rise −3.9; MorDIFF native EER 50.6 (51.5, 38.7, 54.0, 59.3, 49.6), MorDIFF missed at the own rule in every
-fit (0.996 to 1.0); GAN-3 19.8. The five-seed reading confirms the two- and three-seed readings.
+registered five-seed reading `p3_lora_vitl.json` (seeds 401 to 405) gives, as mean ± SD over the 5 seeds (seeds in
+parentheses): landmark-7 native EER 2.30 ± 0.69% (2.28, 2.96, 2.00, 1.33, 2.95; person bootstrap [1.73, 2.83], seed
+variance not included), landmark change under storage history −0.26 ± 0.07 (every seed negative); diffusion-7 native
+EER 30.6 (36.0, 26.5, 34.2, 27.2, 29.2), diffusion-7 change −3.9 ± 3.7 (−1.8, +0.3, −8.9, −6.6, −2.5; seed t95
+[−8.5, +0.8] includes 0; the person interval [−4.86, −2.90] must not be cited as excluding 0), driven by DiM cells the
+head misses at its own rule; MorDIFF native EER 50.6 ± 7.6% (51.5, 38.7, 54.0, 59.3, 49.6), history-matched 54.7%,
+MorDIFF change +4.1 ± 1.9 (every seed positive) at chance and not interpretable, own-rule miss 0.996 to 1.0 in every
+fit; GAN-3 19.8. History-matched genuine photos flagged at the head's own threshold: 0.00 in all 16 pools x 5 seeds, a
+threshold at which the head also misses 99.6–100% of MorDIFF morphs; descriptive, not robustness. Camera threshold
+(floor-calibrated, descriptive): MorDIFF history pool 0.92 (1.00, 0.71, 0.91, 1.00, 0.97). The five-seed reading
+confirms the two- and three-seed readings. Train hours 3.48 to 3.50 per fit (wall 3:44 for 401/402, 3:54 for 403,
+3:37 for 404/405).
 
-Our frames, first-test data, arms fixed in advance; 2 of the 25 ViT-L/14 fits (the others wait on Athena). Means of
-2 seeds [person bootstrap]; frozen-head arm a in brackets: landmark-7 native EER 2.62 [1.91, 3.24] (7.34), landmark
+Original two-seed reading (12 Nov; superseded in numbers by the five-seed update above). Our frames, first-test data,
+arms fixed in advance; 2 of the 25 ViT-L/14 fits. Means of 2 seeds [person bootstrap; seed variance not included]; frozen-head arm a in brackets: landmark-7 native EER 2.62 [1.91, 3.24] (7.34), landmark
 rise −0.29 (+2.59); diffusion-7 native EER 31.2 [28.8, 33.3] (20.7), diffusion rise −0.76 [−1.85, +0.44] (+11.32);
 GAN-3 EER 21.3 (15.8). History-matched pools flagged at the own rule: 0.00 for every pool (frozen 0.27 MorDIFF).
 A11 validity (rule as written: more than 10% of some history-matched pool at either threshold): **met**, through the
-camera branch only (MorDIFF E7 0.85, seeds 1.00 / 0.71); the camera branch is uninformative on this bounded head
+camera branch only (MorDIFF E7 0.85, seeds 1.00 / 0.71; five seeds 0.92, 1.00 / 0.71 / 0.91 / 1.00 / 0.97); the camera branch is uninformative on this bounded head
 (‖w‖ 4.22, logits −4.2 to +3.9; camera threshold 0.07 / 0.13 logit above the camera-photo median), and the own-rule
 branch is not met (0.00 on every pool). Camera-threshold cells of these fits (untouched FRLL 0.31, JPEG-50 FRLL 0.83)
-are floor-calibrated; descriptive only. This head does not detect MorDIFF at all (native EER 51 / 39%, own-rule miss
-100%), so its absent MorDIFF rise is no robustness either. Train hours 3.50 per fit.
+are floor-calibrated; descriptive only. This head does not detect MorDIFF (five seeds: native EER 50.6%, history-matched 54.7%,
+own-rule miss 99.6–100%), so its MorDIFF change under storage history (+4.1, every seed positive) is a change at
+chance and carries no meaning, neither failure nor robustness. Train hours: see the five-seed update.
 
 ## ViT-B/16 LoRA fits on the rented machine (A13): first registered reading (8 fits: a, c, e, f x seeds 401, 402)
 
@@ -678,9 +689,12 @@ answer (the controller was flapping), and the job had in fact completed at 20:25
 - Seeds 404, 405 (13 Nov; Athena 3548749, 3548770, plgrid-now; reproduction checks 0.0; tars sha256-verified;
   converted by `src/SM1/audit_conv.py`, logit of `score_noTTA`, which reproduces the stored a_s401 to a_s403 exactly):
   within-key AUC 0.685 and 0.721. 5-seed mean 0.723 [0.715, 0.732] (seeds 0.755, 0.756, 0.699, 0.685, 0.721;
-  `a14_rank_vitl_5seed.json`; 4-seed 0.724 in `a14_rank_vitl_4seed.json`), trained − KE 0.041 [0.029, 0.056]. The
-  registered A14 decision (2 seeds, 0.756) is unchanged; the five-seed number for any table is 0.723, range 0.685 to
-  0.756.
+  `a14_rank_vitl_5seed.json`; 4-seed 0.724 in `a14_rank_vitl_4seed.json`), trained − KE 0.041 [0.029, 0.056]. Reviewed
+  (`experiments/reviews/REVIEW_SM1_VITL_5SEED_20261113.md`): 0.723 ± 0.032 (mean ± SD, 5 seeds, range 0.685–0.756;
+  seed t95 [0.684, 0.763]); the key bootstrap [0.715, 0.732] is within-network sampling, seed variance not included,
+  about 5x narrower than the seed spread. The registered A14 decision (2 seeds, 0.756) is unchanged. At five seeds
+  the AUC is 0.723 ± 0.032 (range 0.685–0.756); two seeds fall below the 0.70 prediction bar and none comes near the
+  0.60 falsification bar. The trace is consistent; its size is about 0.72, not 0.76.
 - **H-new-5 (registered 11 Nov): prediction not met** (trained − KE 0.045 [0.032, 0.061] < 1 logit); the registered
   decision (DiD against a ViT-L/14 arm c, interval above 0) cannot be computed, since no arm c fit exists before 22 Dec;
   H-new-5 stays untested for this paper. The 1-logit bar cannot be met when both morph kinds sit at the head ceiling.
@@ -691,7 +705,12 @@ answer (the controller was flapping), and the job had in fact completed at 20:25
   trace, MADation-recipe ViT-L/14 (LoRA) retrained on SMDD release files: within-key AUC, morphs with SMDD's five
   training partners over morphs with SMDD evaluation partners (same first contributor, 500 keys), 0.756 [0.746, 0.765],
   2 seeds (401: 0.755; 402: 0.756), key bootstrap B = 10,000 (seed variance not included); whole image, no TTA; audit
-  set, not a benchmark." Keep it apart from the released detector's logit gap (0.95 crop path; 0.45 whole file).
+  set, not a benchmark." Superseded by the five-seed cell (review 13 Nov): "Within-key AUC, morphs with SMDD's five
+  training partners over morphs with SMDD evaluation partners (same first contributor, 500 keys): 0.723 ± 0.032 (mean ±
+  SD, 5 seeds, range 0.685–0.756); key bootstrap within network [0.715, 0.732], seed variance not included. Registered
+  decision on seeds 401–402: 0.756, supported (A14). MADation-recipe ViT-L/14 LoRA retrained on SMDD release files;
+  whole image, no TTA; audit set, not a benchmark." Keep it apart from the released detector's logit gap (0.95 crop
+  path; 0.45 whole file).
 
 ## A23: within-key AUC of the released detectors (registered 80ba899 before computing; descriptive; `a23_rank_rel.json`)
 
@@ -709,16 +728,17 @@ TTA; audit set, not a benchmark.
 | FS ViT-B/16 (descriptive) | 0.537 [0.513, 0.562] | not scored | 1.56 |
 | FS ViT-L/14 (descriptive) | 0.894 [0.884, 0.903] | not scored | 6.90 |
 
-Like-for-like input path (whole image): released ViT-L/14 0.835, retrained 0.756 (2 seeds). On its own crop path the
-released network gives 0.768. Neither interval includes seed variance, and retrained ViT-B/16 seeds differ by up to
-0.06, so no difference between released and retrained is claimed. Without SMDD's five partners (ViT-B/16 arms c, b′,
+Like-for-like input path (whole image): retrained 0.723 ± 0.032 (5 seeds, 0.685–0.756) against released 0.835 (one
+network); every retrained seed lies below the released network, which is one draw of a possibly different recipe, so
+no recipe-level difference is claimed (13 Nov five-seed review; first written with the 2-seed 0.756). On its own crop
+path the released network gives 0.768. Without SMDD's five partners (ViT-B/16 arms c, b′,
 e, f): 0.53–0.59. The logit gap must not rank paths or networks (released ViT-L/14: larger gap on the crop path, larger
 AUC on whole files); MixFaceNet's large gap mostly reflects its score spread (different architecture and resolution;
 descriptive). FS ViT-B/16's interval only just excludes 0.5. Reviewed: `experiments/reviews/REVIEW_SM1_A23_20261113.md`.
 Audit-table cells (review): released MADation ViT-L/14 "released network, within-key AUC 0.768 [0.754, 0.780] on its own
 crop path (whole file 0.835 [0.825, 0.845]); one network, key bootstrap only; audit set, not a benchmark; no TTA";
-retrained "retrained, within-key AUC 0.756 [0.746, 0.765] on whole images; 2 seeds (0.755, 0.756), key bootstrap, seed
-variance not included; audit set, not a benchmark; no TTA".
+retrained: the five-seed cell in the ViT-L/14 LoRA audit section above (0.723 ± 0.032, 5 seeds, range 0.685–0.756;
+replaces the 2-seed 0.756 cell).
 
 ## ViT-B/16 LoRA, full registered set (A13: 12 fits, arms a, b, b′, c, e, f x seeds 401, 402; `p3_lora_vitb12.json`, `a12_rank_vitb12.json`, `a12_fixed_vitb12.json`)
 
