@@ -65,9 +65,13 @@ case "$STEP" in
       (cd "$OUTD" && sha256sum -c --quiet "MS1H_$Q.tar.sha256") || { log "held-out tar not verified"; return 1; }
       RS "root@$HOST:$B/logs/" "$OUTD/logs_$Q/" || return 1
       RS "root@$HOST:$B/rc" "root@$HOST:$B/queue_$Q.log" "$OUTD/logs_$Q/" || return 1
-      rem=$(R "cd $B/logs && sha256sum * | sort -k2; echo KEEP_LISTED" 2>/dev/null) || return 1
+      # one remote listing taken after ENDED: every log, every rc file and the queue log (all final once the queue has
+      # ended); both sides sorted under LC_ALL=C (fix of 13 Nov 06:10: the remote sorted in the C locale, the DGX in
+      # en_US, so equal files compared unequal by order only)
+      rem=$(R "cd $B/logs && sha256sum * && cd $B && sha256sum rc/* queue_$Q.log; echo KEEP_LISTED" 2>/dev/null) || return 1
       echo "$rem" | grep -q KEEP_LISTED || return 1
-      loc=$(cd "$OUTD/logs_$Q" && sha256sum $(echo "$rem" | grep -v KEEP_LISTED | awk '{print $2}') | sort -k2)
+      rem=$(echo "$rem" | grep -v KEEP_LISTED | LC_ALL=C sort -k2; echo KEEP_LISTED)
+      loc=$(cd "$OUTD/logs_$Q" && sha256sum $(echo "$rem" | grep -v KEEP_LISTED | awk '{print $2}') | LC_ALL=C sort -k2)
       [ "$loc" = "$(echo "$rem" | grep -v KEEP_LISTED)" ] || { log "log copy differs from the remote"; return 1; }
       for f in $(cd "$OUTD" && ls MS1_*.tar MS1H_$Q.tar 2>/dev/null); do
         case " $TASKS MS1H_$Q " in *" ${f%.tar} "*) ;; *) continue ;; esac

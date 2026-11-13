@@ -79,6 +79,20 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
 - 13 Nov 00:55:20 SETUP_OK ms1m2 (upload 3,049 s; GPU-214a6ac4…), queue m2 and loop 00:56:04; first fit 1.18 it/s.
   ms1m2 and ms1m3 are two GPUs of one host (118.163.199.123). Expected ends (fits about 1.55-1.7 h each, then the
   held-out step): m3 about 06:10, m1b about 09:50, m2 about 11:00 on 13 Nov.
+- 13 Nov 05:50: ms1m3 queue ENDED (fits rc 0 at 01:25, 02:51, 04:16; held-out tar written). From 05:52 every pull
+  verified the 3 fit tars and the held-out tar but its keep step failed with "log copy differs from the remote", so no
+  RELEASE and no second copies; the lease idled toward its 6 USD cap (lead's report, 4.998 USD at 06:07).
+  BUG (found 06:08): the files were byte-identical; the two sha256 listings differed only in ORDER, because the remote
+  sorted with `sort -k2` in the C locale and the DGX in en_US (case-insensitive: `MS1_SbM3` before `MS1_Sb_` in C,
+  after it in en_US). FIX (`drive_ms1.sh`): both listings sorted with `LC_ALL=C sort -k2`; the remote listing, taken
+  once after ENDED, now also covers every rc file and the queue log, besides every file in logs/ (task, held-out,
+  setup, pip, version, GPU and queue-driver logs: all final once the queue has ended); the remote end-marker is checked
+  before re-sorting. Nothing was skipped.
+- 13 Nov 06:09: the three loops were stopped while sleeping (no pull in progress; a running bash loop must not keep
+  reading a script file rewritten in place) and the corrected pull was run by hand on ms1m3: 3 of 3 fits verified,
+  held-out tar and 13 log files verified, second copies of all four tars verified in `/home/narolski/ms1_results_copy`,
+  RELEASE written 06:09:49. Loops for ms1m1b and ms1m2 restarted at 06:10 on the corrected script (each round calls the
+  script by path, `bash "$0" ... pull`, so later edits are picked up by the next round).
 
 ## 3. Data
 
