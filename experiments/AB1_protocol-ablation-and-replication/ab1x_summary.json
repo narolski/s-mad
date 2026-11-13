@@ -1,0 +1,117 @@
+{
+ "sb_unique": 5535,
+ "bordered": 1385,
+ "bordered_by_kind": {
+  "af0_half": 364,
+  "af0_half61": 91,
+  "af0_photo": 130,
+  "af0_photo61": 64,
+  "af0_u50": 182,
+  "af0_u5061": 92,
+  "af0_zero": 182,
+  "lad_R0": 39,
+  "lad_R2w": 39,
+  "lad_R4": 31,
+  "lad_S0": 39,
+  "lad_S3": 39,
+  "lad_S4": 31,
+  "lad_half": 62
+ },
+ "bordered_by_label": {
+  "0": 1049,
+  "1": 336
+ },
+ "rows_after_balance": 10484,
+ "rows_by_kind": {
+  "af0_half": 1456,
+  "af0_half61": 363,
+  "af0_half61_border": 91,
+  "af0_half_border": 364,
+  "af0_photo": 518,
+  "af0_photo61": 254,
+  "af0_photo61_border": 64,
+  "af0_photo_border": 130,
+  "af0_u50": 2720,
+  "af0_u5061": 617,
+  "af0_u5061_border": 155,
+  "af0_u50_border": 694,
+  "af0_zero": 730,
+  "af0_zero_border": 182,
+  "lad_R0": 156,
+  "lad_R0_border": 39,
+  "lad_R2w": 156,
+  "lad_R2w_border": 39,
+  "lad_R4": 430,
+  "lad_R4_border": 97,
+  "lad_S0": 156,
+  "lad_S0_border": 39,
+  "lad_S3": 156,
+  "lad_S3_border": 39,
+  "lad_S4": 426,
+  "lad_S4_border": 103,
+  "lad_half": 248,
+  "lad_half_border": 62
+ },
+ "strata": {
+  "feret|native": {
+   "unique_neg": 1602,
+   "unique_att": 372,
+   "rows": 3204
+  },
+  "feret|native_border": {
+   "unique_neg": 394,
+   "unique_att": 81,
+   "rows": 788
+  },
+  "feret|s61": {
+   "unique_neg": 392,
+   "unique_att": 166,
+   "rows": 784
+  },
+  "feret|s61_border": {
+   "unique_neg": 94,
+   "unique_att": 38,
+   "rows": 188
+  },
+  "frgc|native": {
+   "unique_neg": 1974,
+   "unique_att": 604,
+   "rows": 3948
+  },
+  "frgc|native_border": {
+   "unique_neg": 500,
+   "unique_att": 163,
+   "rows": 1000
+  },
+  "frgc|s61": {
+   "unique_neg": 225,
+   "unique_att": 200,
+   "rows": 450
+  },
+  "frgc|s61_border": {
+   "unique_neg": 61,
+   "unique_att": 54,
+   "rows": 122
+  }
+ },
+ "mask_pool": 17374,
+ "mask_families_train": {
+  "oulu_npu": 50,
+  "lfw_calfw": 738,
+  "agedb_30": 259,
+  "cfp_ff": 333,
+  "replay_attack": 1,
+  "casia_fasd": 4
+ },
+ "eval_rows": 24859,
+ "border_eval_rows": 3582,
+ "border_eval_by": {
+  "R_cam_border|dev": 1582,
+  "R_ffhq_border|hn2": 2000
+ },
+ "train_Sbx_sha256": "4e403717df11a49f5a0d1db8704f04a41c8084b9e9f5dcbfc94c686c27ef86e1",
+ "ab1x_eval_sha256": "5257fb63f321612c39f8da6613989976450a68cd97c0b55d51667b554995d35f",
+ "overlay_sha256": "e5886e72622b618cb260689820efea861b63b061749db561d256ad57116f819c",
+ "overlay_bytes": 1180651520,
+ "overlay_files": 4969
+}
