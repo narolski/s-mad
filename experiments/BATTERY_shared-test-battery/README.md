@@ -1,8 +1,9 @@
 # Shared test battery (BATTERY): record
 
 Owner: BATTERY role (Claude agent for the lead). Design: `DESIGN.md`. Audit rows without data: `MISSING_DATA.md`.
-Status: release candidate `1.0.0-rc1` (commit 761a3c7 and later), **not released**: it needs the pre-run check
-(experiment-reviewer, launched by the lead), the H100 smoke and the lead's word. Arms registered before the release keep
+Status: release candidate `1.0.0-rc2` (commit 6cd9b46), **not released**. The pre-run check of rc1 (verdict GO WITH FIXES,
+`experiments/reviews/PRERUN_BATTERY_RC1_20261113.md`) is applied in rc2 (section 4); release needs an H100 smoke of
+release code on a node other than r18-8 (or the comparator step) and the lead's word. Arms registered before the release keep
 their own readers. The audit table itself stays with SA1 (row definitions, review status); existing reviewed cells are not
 recomputed or replaced by battery output.
 
@@ -21,6 +22,35 @@ recomputed or replaced by battery output.
   Expected run 25-40 min after start. Check at its end with `python -m battery.smoke_check <tar> <out.json>`.
 - 19:4x-19:50 stored-logit records (38, `/mnt/t7/smad_next/BATTERY/stored/`), cell-level check (`cells_check_v1.json`),
   reader print (`read_stored_v1.txt`).
+
+## rc2 (13 Nov, after the pre-run check)
+
+- 20:03 node rule written into DESIGN.md and committed (8637f7e) before smoke 6316361 started (sacct at 20:30: PENDING).
+- 20:0x-20:2x F1-F8 applied (DESIGN.md sections 1, 2, 4, 7); CPU tests of the rc2 command line: 8 rows per set with the
+  per-image checksum check (all 67,748 set images match their pack checksum files), the network check (`--expect-eval`
+  refuses with exit 6 and renames `TEST_logits_dev.npz` to `*.bak-netcheck`), the seed check (exit 4). The meta-mismatch
+  refusal (exit 5) is not exercised on hardware (it needs a pinned platform).
+- 20:12-20:27 regression on rc2 code (`regression_v1rc2.json`): 189 of 189 comparisons exact, 28,527 leaves, 0 differ.
+- 20:12-20:29 stored-logit records rebuilt with rc2 (38, carrying code hash 15f36f62...; rc1 records kept in
+  `/mnt/t7/smad_next/BATTERY/stored_rc1/`), cell check again 80 of 82 (`cells_check_v1rc2.json`), reader print
+  `read_stored_v1rc2.txt`.
+- End-to-end check (F6, `e2e_v1rc2.json`): battery-format folders built from stored logits of PN1_A_s403 (dev, train, TT1,
+  MEDS, GD) and AB1_Sb_s408 (dev with hold-out, train), statistics through `run.compute_stats` and `rows.extract` as
+  `--stats-only` does: every numeric value equals the directly computed stored record; the only differences are texts
+  (11 and 18 row entries: the reason string of a block that is not computed; in the blocks, the rewritten TF32 label of
+  TT1 and PR1's `train_acc_rule0_info`, which `--stats-only` does not have). Every rows.py path resolves where its block
+  is computed (0 unresolved).
+- Reader tests: `--expect-seeds` refuses arms with missing seeds; an arm mixing rc1 and rc2 records is refused (2 code
+  hashes); platform and TF32 NOTEs print.
+- 20:30 code tar `battery_code_v1rc2.tar` 19bf00ae... built by `git archive` from 6cd9b46 (its code hash 15f36f62...
+  equals the records'); uploaded with `battery_nets.sbatch` (e4a18228...) to WCSS `packs/BATTERY/`.
+- 20:31 queue files: `wcss_battery_smoke2.cmd` (gated: only if 6316361 ran on r18-8; `--exclude=r18-8 --array=0-1`) and
+  `wcss_battery_ab1cmp.cmd` (registered comparator step, `prereg_ab1_comparators.md`, behind every experiment fit).
+- Smoke 6316361 runs rc1 code; it tests the H100 gate and scorer but not rc2. Suggestion for the lead: replace it by
+  `battery_nets.sbatch --array=0-1` (rc2), with `--exclude=r18-8`.
+- A100: unreleased. Proposal: a free A100 smoke on Athena plgrid-now (1 GPU, 1 hour), since Athena's A100-SXM4 in the
+  torch 2.2.1 container reproduced the rented A100 PCIe gate scores of Sb 403-407 byte for byte (NE1, Athena job 3550470);
+  the Athena key would be pinned as its own platform only after its gate run on PN1_Sb_s403 is byte-identical.
 
 ## 1. Regression test: the battery reproduces the reviewed numbers exactly
 

@@ -21,7 +21,7 @@ set -euo pipefail
 L=/lustre/pd03/hpc-narolski-1790461090/smad-next
 P=$L/packs
 CODE_TAR=$P/BATTERY/battery_code_v1rc2.tar
-CODE_SHA=__CODE_SHA__
+CODE_SHA=19bf00aeb0b6b1ade3a5b424087a7d00bf3f6ec13f4bf9a0a63fc84510c736f3
 NETS=(AB1_Sb_s408 AB1_A_s408 AB1_B_s408 AB1_A_s409 AB1_B_s409 AB1_Sb_s409 AB1_A_s410 AB1_B_s410 AB1_Sb_s410
       AB1_A_s411 AB1_B_s411 AB1_Sb_s411 AB1_A_s412 AB1_B_s412 AB1_Sb_s412)
 I=${SLURM_ARRAY_TASK_ID:?array task}
