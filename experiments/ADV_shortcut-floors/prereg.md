@@ -353,3 +353,27 @@ GO WITH FIXES, no blockers. The owner-launched check that led to amendment 1 is 
 9. **Frames that are not 512 px** (GD1 DiffAE, 256 px) are measured on the networks' own loader view at 512
    (`smadcvpr` `common.ImageItems` through cue_floor, unchanged), the PR1 amendment-4 precedent; the 26 statistics
    reproduce PR1's cached GD1 cues exactly (max difference 0.0 on 8 frames).
+
+## Amendment 4 (13 Nov, about 21:00; descriptive, post hoc; registered before the two reads below are computed; review `experiments/reviews/REVIEW_ADV_STAGE3_STRATEGY_20261113.md`, 93f4210)
+
+- **Naming.** The S4-vs-S3 and R4-vs-R3 floors (and their D-quintile reads) are **simple morph-cue floors**, not
+  shortcut floors: blending two different people leaves colour, illumination and ghosting mismatch, which is a
+  legitimate morph cue. "Shortcut" is kept for history, border and storage contrasts. `test_S4bg_vs_S0bg` is
+  "face-only blend vs warp-only" (a blending contrast, not a ceiling). Every number from the inverse-probability weights
+  (`lcomb_ipw`) is "uninterpretable (about 8 effective morphs)". lcomb_bal is "balanced to within detection power at
+  n = 250".
+- **Build disclosure, added.** The face-box floor on lcomb_bal was first printed by the third run, after convergence,
+  with no change to the rows after it (the third run reproduced the same 250 rows). The stop "fewer than 50 pairs" was
+  added after build 1 fell to 5 pairs.
+- **Same-data shortcut learner** extended to every arm's own training list (Sb, A, B, SbZ, SbS, Sp, AS, SbH, SbR,
+  SbnS0, SbH61, SbnS3, SbSp, SbFM, Sbx); unchanged models (section 5.3).
+- **H-new-1 (descriptive).** On lcomb_bal rows, the cross-fitted floor (single, logreg, gbt; ADV folds) on the F27
+  and BLEND families alone. The review's prediction: ≥ 0.90; falsified if ≤ 0.80.
+- **H-new-3 (descriptive).** On R4 vs R3 (`ri_R4_vs_R3` and `test_cv_R4_vs_R3` rows), cross-fitted floors on two
+  feature sets, read within BD1's D quintiles by the amendment-3 rule (host's S4 / S3 D): **chroma-only** =
+  FACE:chroma_cb, FACE:chroma_cr, FACE:resid_corr_rg, FACE:resid_corr_gb, F27:sat_face; **luma-only** =
+  FACE:noise_std_Y, FACE:lapvar, FACE:grad_energy, FACE:resid_kurt, FACE:mean_Y, FACE:std_Y, FACE:band0-3. The
+  review's prediction: chroma-only ≥ 0.70 and luma-only ≤ 0.62 within D (best of the three models); falsified
+  otherwise.
+- The already-computed `*_withinD.json` (R4 vs R3 held-out floor scores within D, amendment 3 item 6) and
+  `*_regional.json` files are committed and pinned as computed.

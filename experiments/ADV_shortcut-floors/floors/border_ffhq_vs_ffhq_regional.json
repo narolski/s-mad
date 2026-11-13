@@ -1,0 +1,42 @@
+{
+ "contrast": "border_ffhq_vs_ffhq",
+ "n_pos": 2000,
+ "n_neg": 2000,
+ "note": "amendment 3 (post hoc): SURR = cue_floor's border ring (top 64 rows, left and right 64 columns) without black pixels and a 2-px edge; FACE = cue_floor's canonical face box; file = PNG size and container values",
+ "surround_floor": {
+  "model": "single",
+  "auc": 0.999398625,
+  "eer": 0.005,
+  "ci": [
+   0.9987166281250001,
+   0.99983638125
+  ],
+  "single": 0.999398625,
+  "logreg": 0.999363,
+  "gbt": 0.99860775
+ },
+ "face_floor": {
+  "model": "single",
+  "auc": 0.878585625,
+  "eer": 0.18,
+  "ci": [
+   0.868321590625,
+   0.88856914375
+  ],
+  "single": 0.878585625,
+  "logreg": 0.871545625,
+  "gbt": 0.87692675
+ },
+ "file_floor": {
+  "model": "logreg",
+  "auc": 0.99837675,
+  "eer": 0.0065,
+  "ci": [
+   0.9967071750000001,
+   0.9996661250000001
+  ],
+  "single": 0.993872875,
+  "logreg": 0.99837675,
+  "gbt": 0.998006625
+ }
+}

@@ -19,7 +19,14 @@ T7 = pathlib.Path("/mnt/t7/smad_next")
 AB1X = T7 / "AB1/x/manifests/ab1x_eval.csv"
 GD = T7 / "PR1/pr1_gd_tree/pr1g/data/manifests/pr1_gd.csv"
 TRAIN = {"Sb": T7 / "PN1/manifests2/train_Sb.csv", "A": T7 / "PN1/manifests2/train_A.csv",
-         "Sbx": T7 / "AB1/x/manifests/train_Sbx.csv", "SbFM": T7 / "AB1/fm/manifests/train_SbFM.csv"}
+         "Sbx": T7 / "AB1/x/manifests/train_Sbx.csv", "SbFM": T7 / "AB1/fm/manifests/train_SbFM.csv",
+         # amendment 3 (lead's request): the other arms' training lists for the same-data shortcut learner
+         "B": T7 / "PN1/manifests2/train_B.csv", "SbZ": T7 / "AB1/manifests/train_SbZ.csv",
+         "SbS": T7 / "AB1/manifests/train_SbS.csv", "Sp": T7 / "AB1/manifests/train_Sp.csv",
+         "AS": T7 / "AB1/manifests/train_AS.csv", "SbH": T7 / "AB1/manifests/train_SbH.csv",
+         "SbR": T7 / "AB1/b2/manifests/train_SbR.csv", "SbnS0": T7 / "AB1/b2/manifests/train_SbnS0.csv",
+         "SbH61": T7 / "AB1/b2/manifests/train_SbH61.csv", "SbnS3": T7 / "AB1/b2/manifests/train_SbnS3.csv",
+         "SbSp": T7 / "AB1/b2/manifests/train_SbSp.csv"}
 ROOTS = [T7 / "PN1/fs_tree/pn1/data", T7 / "AB1/overlay_tree/pn1/data", T7 / "AB1/x/img/pn1/data",
          T7 / "AB1/x/img/pn1", T7 / "AB1/fm/img/pn1/data", T7 / "AB1/fm/img/pn1", T7 / "PR1/pr1_gd_tree/pr1g/data"]
 SPLIT = pathlib.Path("/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/split/ladder_split.csv")

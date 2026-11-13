@@ -271,6 +271,23 @@ def cmd_regionfloors(a):
         print(n, {k: round(rep[k + "_floor"]["auc"], 3) for k in sets}, flush=True)
 
 
+def cmd_withind(a):
+    """Amendment 3 item 6: committed floors' held-out scores read within BD1 D quintiles (R4 / R3 rows take their
+    host's S4 / S3 D). No refit. floors/<name>_withinD.json"""
+    for n in a.only:
+        R = list(csv.DictReader(open(FDIR / f"{n}_heldout.csv")))
+        ids = [x["id"] for x in R]
+        y = np.array([int(x["label"]) for x in R])
+        cols = [c for c in R[0] if c not in ("id", "label", "component")]
+        sc = {c: np.array([float(x[c]) for x in R]) for c in cols}
+        rep = dict(contrast=n, rule="BD1 primary rule on held-out floor scores; D of the host's S4 / S3 splice",
+                   all_cue=within_d(ids, y, {c: sc[c] for c in ("single", "logreg", "gbt")}, rows_d=True),
+                   non_f27_non_blend=within_d(ids, y, {c[3:]: sc[c] for c in ("nu_single", "nu_logreg", "nu_gbt")},
+                                              rows_d=True))
+        (FDIR / f"{n}_withinD.json").write_text(json.dumps(rep, indent=1))
+        print(n, json.dumps(rep), flush=True)
+
+
 def cmd_feats(a):
     import feats as F
     paths = feat_paths(a.set)
@@ -406,7 +423,8 @@ def cmd_pins(a):
 def cmd_transfer(a):
     FDIR.mkdir(parents=True, exist_ok=True)
     defs = C.contrast_defs()
-    for arm in C.TRAIN:
+    order = ["Sb", "A", "B", "SbZ", "SbS", "Sp", "AS", "SbH", "SbR", "SbnS0", "SbH61", "SbnS3", "SbSp", "SbFM", "Sbx"]
+    for arm in (a.only or order):
         T = C.train_rows(arm)
         rl = [(r["id"], C.resolve(r["path"]), int(r["label"]), C.train_persons(r)) for r in T]
         X, nm = X_of(rl)
@@ -453,7 +471,7 @@ def cmd_table(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=("feats", "floors", "transfer", "table", "pins", "regional", "regionfloors"))
+    ap.add_argument("cmd", choices=("feats", "floors", "transfer", "table", "pins", "regional", "regionfloors", "withind"))
     ap.add_argument("--set", default="ab1x")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=2)
@@ -461,7 +479,7 @@ def main():
     ap.add_argument("--only", nargs="*")
     a = ap.parse_args()
     {"feats": cmd_feats, "floors": cmd_floors, "transfer": cmd_transfer, "table": cmd_table, "pins": cmd_pins, "regional": cmd_regional,
-     "regionfloors": cmd_regionfloors}[a.cmd](a)
+     "regionfloors": cmd_regionfloors, "withind": cmd_withind}[a.cmd](a)
 
 
 if __name__ == "__main__":
