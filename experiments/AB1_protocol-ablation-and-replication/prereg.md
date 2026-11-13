@@ -331,3 +331,6 @@ all four, with Sp − Sb native FFHQ and camera-photo flag rates beside H-sp1 an
 - Correction to the reader's H-ab4 code, not to its rule (check F1): prediction 1 (S0 counts) and prediction 2 (AUC in
   exact half-pair units) are now compared as integers, so the registered margins are inclusive at full precision as
   section 5 states; with float sums an exact +0.10 or −0.05 could have been missed. The H-ab4 text is unchanged.
+  Date of the change: 13 Nov 2026, 10:50-10:55 CET, before any AB1 tar exists; kept on the lead's ruling (10:58).
+  Reader sha256 before (amendment 1): `aacb11cdab662bb147a228195cdf6955bfa9f3b65656e90ecf9f3179c447e9e2`; after (this
+  amendment, H-sp rules and the H-ab4 integer comparison): `fb990bb50c10181d15fed943520a856aa96ed2e0747f00709b9daed9aabe42fd`.
