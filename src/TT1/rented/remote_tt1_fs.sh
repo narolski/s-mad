@@ -23,7 +23,12 @@ finish() {
   date > "$B/DONE_FS"
 }
 abort() { log "FATAL $1"; finish "FATAL $1"; exit 1; }
-log "start (waiting for the FS1 queue lock)"
+log "start (waiting for C2P-R: /workspace/c2pr/DONE or NO_C2PR, at most until 13:30 CET)"
+# operational note (prereg_fs1_block.md section 8): C2P-R, if approved, runs first on this host; release on its DONE
+# (written also on FATAL), on NO_C2PR, or at 13:30 CET (epoch 1794573000); then the usual blocking lock
+until [ -f /workspace/c2pr/DONE ] || [ -f /workspace/c2pr/NO_C2PR ] || [ "$(date +%s)" -ge 1794573000 ]; do sleep 30; done
+log "C2P-R wait over: $(ls /workspace/c2pr/DONE /workspace/c2pr/NO_C2PR 2>/dev/null | tr '\n' ' ')$( [ "$(date +%s)" -ge 1794573000 ] && echo timeout)"
+log "waiting for the FS1 queue lock"
 exec 9> "$P/fs_queue.lock"; flock 9
 log "lock taken"
 # I4: deadline check (lease deadline 15:51 CET = epoch 1794581505): skip if under 60 min remain

@@ -162,3 +162,12 @@ Pre-run check by the experiment-reviewer (opus): GO WITH FIXES (one blocker, thr
   On a FATAL (crash) result the release is held for one unchanged re-run if time allows. Stale script comments fixed.
 - Re-pinned: `src/TT1/tt1_read_fs.py` 87356fd74746b08f621e3e0c4e38554c80f475fae7d0d1f5e7f8634cb144f227; `src/TT1/rented/remote_tt1_fs.sh` 4f22914c6c8cdafba69e9901b1eda4c3629a2dbcc4cfbe29f80a9a8c6a49e16f; `src/TT1/rented/drive_tt1_fs.sh`
   d764237b3a39d41583c6e06ea57b216a6e34244da81fa8b359a49b9775913ced; rescore_tf32.py and gate_check_fs.py unchanged. Mechanics re-tested on the DGX mock host (test mode).
+
+## 8. Operational note (`date`: Fri Nov 13 09:46:01 AM CET 2026; before any score; no rule, gate or read changes)
+
+On the lead's request (relayed by the C2P owner): if the author approves C2P-R (re-scoring of contrast 2-prime on
+pn1fs), it runs first when the Sp fits end. The TT1-FS job therefore waits, before taking the host lock, for
+`/workspace/c2pr/DONE` (written by C2P-R also on FATAL) or `/workspace/c2pr/NO_C2PR`, at most until 13:30 CET. The
+waiting job started at 07:35 (blocked on the lock, nothing computed) is stopped and restarted with this version.
+remote_tt1_fs.sh re-pinned: 2feaba747c604c0c67d65ec920cb9fe317a10afaadb3500cb493b61e6374e7c0 (only the pre-wait lines added). Expected order: C2P-R (if approved) about 12:45-13:15,
+TT1-FS about 13:15-14:00, TT1-X Sp about 14:00-14:15, PR1 after; all inside the 14:51 skip point.
