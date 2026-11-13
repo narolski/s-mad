@@ -91,8 +91,21 @@ None yet.
 
 ## 9. Open items
 
-Review fixes, WCSS upload, commit, queue files, the reader (before any fetch), the floors at 224.
+- rz1_read.py: own loader, TT1 wrapper, mock tests, pinned before the first tar is fetched (prereg section 12, m5).
+- Input-matched floors at 224 and for the crop, printed only (M3); crop hull coverage on CPU (m1).
+- 512 array: queued only after the WCSS smoke, with --time from its 512 step rate (M6).
+- Author's reading of "native resolution crops" (M7), through the lead.
 
 ## 10. Handover state
 
-No job submitted yet.
+- Registration commit 3c3470d. Files on WCSS `packs/RZ1/` verified against `pins.sha256`: run_rz1.sh dc5d0838…,
+  rz1_overlay.tar dccf37d2…, tt1m_meds.tar 3fb917b2…, and the four sbatch files.
+- In the dispatcher's queue (13 Nov, machine clock about 19:05):
+  - wcss_rz1_smoke.cmd: gates every RZ1 array; never read.
+  - wcss_rz1_w1.cmd: 35 fits, limit 2:00, results/RZ1.
+  - wcss_rz1_crop.cmd: 10 fits, limit 2:00.
+  - Submitted by the dispatcher: smoke 6316283, wave 1 array 6316284 (35 tasks), crop array 6316285 (10 tasks).
+  - Owner: RZ1 owner. Expected end: about 1-2 h after each array starts with up to 32 GPUs.
+- Logs: /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/rz1-{smoke,w1,crop,512}-*.out.
+- Local test outputs: /mnt/t7/smad_next/RZ1/localtest/results/ (20-step and 3-step tars, code-path checks only, never
+  read).
