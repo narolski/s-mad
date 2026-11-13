@@ -675,6 +675,12 @@ answer (the controller was flapping), and the job had in fact completed at 20:25
   that fit alone; 3-seed mean 0.737 [0.728, 0.746] (seeds 0.755, 0.756, 0.699; `a14_rank_vitl_3seed.json`), trained − KE
   0.039. The registered A14 decision (2 seeds 401, 402) is unchanged; the seed spread (0.70 to 0.76) is larger than
   either key-bootstrap interval, so any table cell should carry it.
+- Seeds 404, 405 (13 Nov; Athena 3548749, 3548770, plgrid-now; reproduction checks 0.0; tars sha256-verified;
+  converted by `src/SM1/audit_conv.py`, logit of `score_noTTA`, which reproduces the stored a_s401 to a_s403 exactly):
+  within-key AUC 0.685 and 0.721. 5-seed mean 0.723 [0.715, 0.732] (seeds 0.755, 0.756, 0.699, 0.685, 0.721;
+  `a14_rank_vitl_5seed.json`; 4-seed 0.724 in `a14_rank_vitl_4seed.json`), trained − KE 0.041 [0.029, 0.056]. The
+  registered A14 decision (2 seeds, 0.756) is unchanged; the five-seed number for any table is 0.723, range 0.685 to
+  0.756.
 - **H-new-5 (registered 11 Nov): prediction not met** (trained − KE 0.045 [0.032, 0.061] < 1 logit); the registered
   decision (DiD against a ViT-L/14 arm c, interval above 0) cannot be computed, since no arm c fit exists before 22 Dec;
   H-new-5 stays untested for this paper. The 1-logit bar cannot be met when both morph kinds sit at the head ceiling.

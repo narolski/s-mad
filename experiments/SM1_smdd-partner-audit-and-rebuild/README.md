@@ -358,6 +358,10 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
 - 13 Nov ~09:00 Athena 3547052 (ViT-L/14 audit scoring, a s401 / s402) had completed on 12 Nov 20:25 (my earlier
   "pending" reading was a stale Slurm answer; the dispatcher found it); a duplicate plgrid-now command was withdrawn.
   Tars fetched and verified; A14 rank read: AUC 0.756 (supported), trained − KE 0.045.
+- 13 Nov 10:54 to 11:34 Athena 3545823_2/3/4 (ViT-L/14 fits s403, s404, s405) completed; fetched, verified, read
+  (registered 5-seed reading in `p3_lora_vitl.json`). Audit scoring 3548707 (s403), 3548749 (s404), 3548770 (s405) on
+  plgrid-now, one at a time via the dispatcher; each tar verified, reproduction check 0.0. A14 5-seed AUC 0.723
+  [0.715, 0.732] (decision on 2 seeds unchanged).
 
 ## 3. Data
 
