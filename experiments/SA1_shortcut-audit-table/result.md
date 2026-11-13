@@ -390,23 +390,23 @@ Only 2 of the 75 filled cells for our arms rest on seeds 401/402 alone (row 11, 
    Development data only. No plain network passed the gate, so these reactions are not compared with the plain
    recipe, and the registered storage contrast is uninformative." A registered re-scoring on the training platform
    (C2P-R) awaits the author.
-6. **One-person images, five fresh seeds (PR1 Z4, test ladder).** Warp-only images are not flagged by A, B or Sb;
+2. **One-person images, five fresh seeds (PR1 Z4, test ladder).** Warp-only images are not flagged by A, B or Sb;
    same-person morphs and mirror self-morphs are "flagged like a morph" by all three (83.2–99.5%); seam-only images
    are not flagged by Sb (a trained negative). Engine and softness reads are at the ceiling and decide nothing
    (REVIEW_PR1_PART1 findings 1 and 4).
-2. **Storage history, unseen source (seeds 401/402).** "On 2,000 FFHQ persons (unseen source), shrinking to the
+3. **Storage history, unseen source (seeds 401/402).** "On 2,000 FFHQ persons (unseen source), shrinking to the
    morphs' 65 px eye distance and enlarging back raises the plain network's logit for 72–78% of persons (AUC
    0.67–0.68). It raises B, Bn and C for 30–44% (AUC 0.48–0.51). ... A small upper tail remains: own-rule flags rise by 5 to 8 points." (REVIEW_PN1_BATCH2 F2). The share statistic was later judged the wrong instrument for the plain arm's tail reaction (REVIEW_PN1_FS1:18). The volume control Bn
    behaves like B, so this is not data volume.
-3. **Unseen genuine sources (false alarms only).** "On about 21,000 genuine photos from eight development sources
+4. **Unseen genuine sources (false alarms only).** "On about 21,000 genuine photos from eight development sources
    unseen in training (small faces enlarged 1.7–3.5x, with a black border), the protocol-trained network kept its
    fixed decision rule: at most 4.9% of any family flagged, on two seeds, against up to 23.5% for the plain network.
    These photos are still clearly displaced from the training camera photos in score, so a threshold calibrated on
    camera photos does not transfer (99–100% flagged)." (REVIEW_TT1, Q6).
-4. **Face splice, Sb.** "Sb's face-splice gain is real across seeds, but it is level with simple statistics, not
+5. **Face splice, Sb.** "Sb's face-splice gain is real across seeds, but it is level with simple statistics, not
    beyond them." (REVIEW_PN1_FS1:21). "Spliced positives repair what protocol negatives cost, and add a margin on
    face-splice morphs." "Against the plain arm the gain is small: Sb − A = +0.019 on the test ladder, −0.010 on the development ladder." (REVIEW_PN1_FS1 F5, :79-82). The development set (FFHQ landmark_combined) carries a processing cue in the surround (noise_std_border 0.786, PN1/result.md:227).
-5. **Released detectors.** Storage history moves MADation ViT-B/16, MixFaceNet-MAD and SelfMAD strongly (rows 1-ViTB,
+6. **Released detectors.** Storage history moves MADation ViT-B/16, MixFaceNet-MAD and SelfMAD strongly (rows 1-ViTB,
    1-MFN, 1-SelfMAD, reviewed); ViT-L/14 changes by −1.0 to +2.0 points with saturated genuine scores ("small effects
    cannot be excluded"). On landmark morphs built without benchmark cues, "released detectors separate a two-person
    morph from a warp-only photo with the same geometry (0.89 to 0.99) ... This shows they detect blending traces, not
@@ -414,17 +414,17 @@ Only 2 of the 75 filled cells for our arms rest on seeds 401/402 alone (row 11, 
    releases do not rank diffusion morphs above one-photo reconstructions (0.40–0.49, REVIEW_AD1_AG5_C; post hoc, one
    genuine pool, released weights scored once).
 
-9. **Second seed block and leave-one-out arms (AB1, seeds 408–412, H100; REVIEW_AB1).** The storage test is
+7. **Second seed block and leave-one-out arms (AB1, seeds 408–412, H100; REVIEW_AB1).** The storage test is
    "inconclusive" for Sb: "at the decision rule Sb's storage reaction is at most +0.045 at the trained size and +0.021
    at 112.7 px on every seed, against A's +0.27 to +0.39 and +0.06 to +0.15"; the rule fails on two seeds only because
    Sb's scores move toward genuine. No storage evasion for Sb or B. "The storage reduction is spread across components
    rather than carried by one." Matched splice negatives "halve same-person splice flags and change their ranking,
    close to built in".
-7. **Ablation without matched splice negatives (Sp, 3 seeds; REVIEW_PN1_SP).** Registered verdict "falsified": "Sp did
+8. **Ablation without matched splice negatives (Sp, 3 seeds; REVIEW_PN1_SP).** Registered verdict "falsified": "Sp did
    not learn an S0-type seam cue. It does not say that the matched negatives are inert" (floor and ceiling). May say
    (descriptive): "Sp flags more S3, ranks S3 against S4 worse, flags more FFHQ genuine images, has higher
    landmark_combined AUC".
-8. **Three-source training (SbM3, MS1, five seeds, development data).** "With the three-source protocol, genuine flag
+9. **Three-source training (SbM3, MS1, five seeds, development data).** "With the three-source protocol, genuine flag
    rates at the network's own rule fall on a sharp unseen studio source (CFD), 5 seeds" (Sb median 3.5%, SbM3 0.0%);
    the result "is not evidence that the operating point transfers". Beside it (REVIEW_MS1 F1): on FFHQ landmark_combined
    morphs the own-rule miss rate rises from 0.271 (one source) to 0.585 (three sources) with AUC unchanged, "a threshold
