@@ -229,3 +229,27 @@ leaves out the 112.7 px size (down to −0.09), and Sb's morph shift goes beyond
 | reviewed (post-result) | not claimed | no post-result review file yet |
 
 Summary: all claims verified; order of review, registration, measurement and read is correct.
+
+---
+
+## Entry 4. `date`: Fri Nov 13 08:06:02 PM CET 2026. FINAL v3 registration (a7d7454) before the sealed MAD22 read
+
+Checked by file names, sizes, times and hashes only; no score file and no benchmark image was opened.
+
+| Claim | Verdict | Evidence |
+|---|---|---|
+| a7d7454 "FINAL v3 registered" at 20:03:18 | VERIFIED | commit, on origin, 20:03:18 |
+| contains registration, reader, mocks and the review file | VERIFIED, one note | prereg.md (+643/−260), README.md, final_thresholds.json, src/FINAL/final_read.py, mock_test.py, e2e_read_standin.py, final_pins.json and 13 more code files, experiments/reviews/PRERUN_FINAL_MAD22_20261113.md. The mock code is committed; the mock outputs (/mnt/t7/smad_next/FINAL/mock_full*/) are not |
+| review file time ≤ commit | VERIFIED | review file mtime 19:39:23; committed 20:03:18 |
+| review's final verdict is GO (after fixes) | NOT VERIFIED from the review file | the file says only "**Verdict: GO WITH FIXES.**" (line 7). The re-check "GO for the registration commit" (about 19:55) is recorded only in FINAL/README.md:108; the reviewer's GO is not saved as a review file |
+| scope is corrected MAD22 only | VERIFIED | prereg.md:32-34 ("FRLL-Morphs, FEI gtest, MorDIFF, the six DiM families, H1 and the FRLL benign variants are not scored") and :375-376 (VAL-X, FST, A12SP struck) |
+| no result file of Sb 403-407 on benchmark rows exists | VERIFIED by names and times | every score folder under /mnt/t7/smad_next/FINAL is a synthetic mock (mock_test8, mock_full, mock_full_c, mock_full2-5, names "FINAL_mad22_mock*") or an end-to-end stand-in run (e2e/remoteA, B, C: "FINAL_standinA/B/C"). make_standin.py:1-24 builds the stand-in "MAD22" from FFHQ development rows. Stand-in A used the real network tars (sha prefixes 8dec83b8...; gate failed, README:53). Stand-in C's "PN1_Sb_s40x" tars are stand-ins (other sha256, e.g. 1f220711...). experiments/FINAL_sealed-benchmark-read holds only prereg.md, README.md, final_thresholds.json |
+| FINAL_mad22_pack.tar sha256 5ec63472d9c489ae, 5,756,416,000 bytes | VERIFIED | sha256sum 5ec63472d9c489aea93b...; stat 5756416000 bytes; mtime 18:44:17 |
+| gate rows 6613 | VERIFIED | tree_FINAL_mad22/final/build_info.json gate.rows 6613 (of 19,797) |
+| benchmark rows 9930 | VERIFIED | build_info.json bench_rows 9930, limit_bench 0 |
+| frozen tar hashes in src/FINAL/final_pins.json equal the first-verified hashes | VERIFIED | full sha256 for Sb 403-407 equal /mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s40[3-7].tar.sha256, written at fetch 12 Nov 14:04 to 13 Nov 04:57. Their prefixes match the C2P registration (2715e48) and first appear in git in a6e274a (08:54:44) |
+| anything computed on benchmark rows before 20:03:18 other than released detectors' scores | none found by names and times | release_scores_existing.npz (18:40:06) copies released detectors' existing rows. final_thresholds.json (18:44:41) uses FFHQ development rows (README:23-24). test_subset (18:45) uses development rows. beststat_limit8.npz (19:01:30) was computed on the stand-in tree (README m8). SelfMAD: list only plus an 8-photo smoke run on FRLL photos (19:02) that RS1 had already scored (README:11); SelfMAD is a released detector |
+
+Summary: everything is verified except the "GO" verdict. The saved review file says GO WITH FIXES, and the
+reviewer's GO re-check is recorded only in the README, with no review file. Nothing computed on benchmark rows by
+the frozen networks was found.
