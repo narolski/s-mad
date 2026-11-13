@@ -378,7 +378,7 @@ GO WITH FIXES, no blockers. The owner-launched check that led to amendment 1 is 
 - The already-computed `*_withinD.json` (R4 vs R3 held-out floor scores within D, amendment 3 item 6) and
   `*_regional.json` files are committed and pinned as computed.
 
-## Amendment 5 (13 Nov, about 21:00 by the machine clock; registered before computing; pre-run check of the selection rule `experiments/reviews/PRERUN_NEXT_SELECTION_RULE_V2_20261113.md`, 3d14793, findings 1, 2, 4, 10; code `src/adversary/amend5.py`)
+## Amendment 5 (13 Nov, committed 20:56:34 by git (61c6466); registered before computing; pre-run check of the selection rule `experiments/reviews/PRERUN_NEXT_SELECTION_RULE_V2_20261113.md`, 3d14793, findings 1, 2, 4, 10; code `src/adversary/amend5.py`)
 
 1. **Per-row scores of the same-data learner.** For the training lists `train_Sb` and `train_SbFM` (GX when its
    manifest exists), the section-5.3 learner (logreg and gbt, unchanged) writes per-row scores to
@@ -402,3 +402,10 @@ GO WITH FIXES, no blockers. The owner-launched check that led to amendment 1 is 
    column (numpy default_rng(20261119)). Output `floors/sel360_withinD.json` and the row list `floors/sel360_rows.csv`.
 4. Tree hygiene: amendment 4's header time corrected (committed 20:42:49 by git); transfer files of all arms committed
    and pinned (735a65e, stage 8); pins.sha256 refreshed with this commit.
+
+## Note (13 Nov, about 21:20; text only)
+
+Section 0 quotes "Sb's landmark_combined AUC 0.873-0.906 (seeds 408-412)": that is the candidate recipe at seeds
+408-412 (AB1/result.md:82). The frozen candidate (seeds 403-407) is 0.814-0.885, mean 0.860 (PN1/result.md:294);
+frozen S4 vs S3 on test hosts 0.716-0.744 (PR1/result.md:21) and R4 vs R3 0.80-0.85 (PR1/result.md:117). Seed table:
+RECORDS ledger entry 6 (ca47f00). No rule or floor changes.

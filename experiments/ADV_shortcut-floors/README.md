@@ -41,3 +41,11 @@ DiffAE FFHQ-Morphs) once `/mnt/t7/smad_next/ADV/feats/gd0.npz` is complete; GX1'
 `gx1_eval.csv` are committed; region floors for the GD rows (region features computed for evaluation rows only).
 Large outputs: `/mnt/t7/smad_next/ADV/feats/` (ab1x, train, gd12, gd0, missing, pngmeta),
 `/mnt/t7/smad_next/ADV/feats_regional/` (lcomb, ab1x), logs in `/mnt/t7/smad_next/ADV/logs/`.
+
+## Correction (13 Nov, about 21:20)
+
+Network values quoted in FLOORS.md now carry their seeds: landmark_combined 0.873-0.906 is the recipe at seeds 408-412;
+the frozen candidate (403-407) is 0.814-0.885, mean 0.860; frozen S4 vs S3 0.716-0.744, R4 vs R3 0.80-0.85. The
+lcomb_smatch note adds that the selection rule draft v3's 0.504 is the boosted-tree surround balance; the linear refit
+reaches 0.662. Amendment 5's header now carries its git time (20:56:34). State: standby; remaining work is GX1's
+floors when its frames and gx1_eval.csv exist, and floors for any newly registered arm.

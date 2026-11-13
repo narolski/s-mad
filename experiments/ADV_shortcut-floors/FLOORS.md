@@ -2,7 +2,7 @@
 
 Registration: `prereg.md` with amendments 1, 2 and 3 (amendment 3 is post hoc). Every number here is copied from the committed JSON in `floors/`
 (`floors/<contrast>.json`; held-out scores `floors/<contrast>_heldout.csv`; frozen by `floors/pins_stage<k>.sha256`).
-Development data only. No network score was read to make this page.
+Development data only. No network score was read to make this page. Network values quoted here come from reviewed result files, with their seeds stated (correction of 13 Nov, about 21:20, on the lead's note: an earlier text called the seeds-408-412 value 0.873-0.906 the frozen candidate's).
 
 How to read a line:
 - **ADV floor** = the best of three cross-fitted shortcut-only models (single statistic, logistic regression, boosted
@@ -35,8 +35,9 @@ What these lines say, plainly:
 - **FFHQ landmark_combined (`lcomb`).** Shortcut-only statistics fitted on this set separate it at 0.98; about 0.79
   comes from the surround alone (a resampling-history difference documented by the dataset), the rest from
   face-region smoothness, which blending also produces. (Reviewer's wording, REVIEW_ADV_STAGE1A; the amendment-3
-  surround floor with 18 surround measures is 0.942, see below.) The frozen candidate's 0.873-0.906 (seeds 408-412,
-  reviewed) lies below these floors, but they are fitted in-distribution while the networks are zero-shot on this set;
+  surround floor with 18 surround measures is 0.942, see below.) The candidate recipe Sb's 0.873-0.906 (seeds 408-412, H100,
+  AB1/result.md:82, not the frozen networks) and the frozen candidate's 0.814-0.885, mean 0.860 (seeds 403-407,
+  PN1/result.md:294) lie below these floors, but they are fitted in-distribution while the networks are zero-shot on this set;
   the comparable learner is the same-data shortcut learner of prereg section 5.3. A second single statistic, a
   face-box noise-residual cross-channel correlation, reaches 0.889. **On `lcomb` the "exceeds" test is predetermined:
   the quick bar is 0.986, so "within the ADV floor" there carries no information and must not be read as evidence of
@@ -158,7 +159,7 @@ Own-rule flag shares of the same learner (logreg decision > 0 / gbt probability 
 | gd2_R2 | 238 | 0.588 | 0.210 |
 | gd2_R4 | 74 | 0.932 | 0.865 |
 
-Plainly (development data; no network score read here): trained on the frozen candidate's own training rows, a shortcut-only learner reaches 0.787 (logreg) / 0.665 (gbt) on landmark_combined, against the candidate's reviewed 0.873-0.906; by the review's H-new-2 bars (supported ≥ 0.85, falsified ≤ 0.75) this is between the bars. On the pipeline-matched R4 vs R3 rows it reaches 0.72-0.74, and it flags 44-48% of development same-person splices and 72-86% of OpenCV same-person morphs, close to the candidate's reviewed 31-48% and 83-88%.
+Plainly (development data; no network score read here): trained on the frozen candidate's own training rows, a shortcut-only learner reaches 0.787 (logreg) / 0.665 (gbt) on landmark_combined, against the frozen candidate's 0.814-0.885, mean 0.860 (Sb seeds 403-407, PN1/result.md:294; the recipe at seeds 408-412 reaches 0.873-0.906, AB1/result.md:82); by the review's H-new-2 bars (supported ≥ 0.85, falsified ≤ 0.75) this is between the bars. On the pipeline-matched R4 vs R3 rows it reaches 0.72-0.74 (frozen candidate, seeds 403-407: 0.80-0.85, PR1/result.md:117); on test S4 vs S3 0.681 / 0.640 (frozen candidate, seeds 403-407: 0.716-0.744, PR1/result.md:21). It flags 44-48% of development same-person splices and 72-86% of OpenCV same-person morphs, close to the frozen candidate's 31-48% and 83-88% (seeds 403-407, PR1/result.md:19, :117). Seed table: RECORDS ledger entry 6 (ca47f00).
 
 ### Same-data shortcut learner for every arm's training list (logreg / gbt)
 
@@ -189,7 +190,7 @@ Frozen by `floors/pins_stage7.sha256` (Sb) and `floors/pins_stage8.sha256` (the 
 
 ## Amendment 5 products (selection rule; frozen by `floors/pins_stage9.sha256`)
 
-- **lcomb_smatch** (1:1 greedy on logit(surround_gbt), caliper 0.1 SD, default_rng(20261117); `floors/lcomb_smatch_rows.csv`): 360 pairs. Refit balance on the matched rows (single / logreg / gbt): surround 0.542 / 0.662 / 0.463; file 0.557 / 0.549 / 0.515; face box 0.854 / 0.916 / 0.927; all-cue 0.838 / 0.952 / 0.945. **Known limit: surround-balanced only** — and only for the boosted-tree surround score it was matched on: the linear surround refit still reaches 0.662.
+- **lcomb_smatch** (1:1 greedy on logit(surround_gbt), caliper 0.1 SD, default_rng(20261117); `floors/lcomb_smatch_rows.csv`): 360 pairs. Refit balance on the matched rows (single / logreg / gbt): surround 0.542 / 0.662 / 0.463; file 0.557 / 0.549 / 0.515; face box 0.854 / 0.916 / 0.927; all-cue 0.838 / 0.952 / 0.945. **Known limit: surround-balanced only** — and only for the boosted-tree surround score it was matched on: the linear surround refit still reaches 0.662. (The selection rule draft v3 quotes 0.504 for its surround balance; that is the boosted-tree side, while the linear surround refit reaches 0.662.)
 - **sel360** (OpenCV R4 and R3 of the 100 development hosts and the 80 test hosts clean of development; `floors/sel360_rows.csv`; 360 rows, 110 components): within-D simple morph-cue floor (held-out scores of `ri_R4_vs_R3`, edges over these rows) single 0.690 [0.640, 0.736], logreg 0.794 [0.748, 0.836], gbt 0.774 [0.726, 0.821]; pure-D reference 0.560; coverage 1.00.
 - **Per-row same-data learner scores** `floors/transfer_Sb_rows.csv`, `floors/transfer_SbFM_rows.csv` (set, id, label, component, logreg, gbt) on lcomb, sel360 and lcomb_smatch. AUC logreg / gbt: train_Sb lcomb 0.787 / 0.665, sel360 0.739 / 0.750, lcomb_smatch 0.762 / 0.606; train_SbFM 0.777 / 0.648, 0.734 / 0.756, 0.752 / 0.590.
 
