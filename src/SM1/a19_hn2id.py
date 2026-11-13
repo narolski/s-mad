@@ -46,6 +46,10 @@ def partial(a, b, X, w=None):
 def main():
     if not sys.flags.isolated:
         sys.exit("run with python3 -I")
+    sys.path.insert(0, "/home/narolski/mambamorph-code")
+    import dmad.quads.gpuface as GF                       # deviation note (A19): run the onnx2torch nets on the CPU
+    _init = GF.TorchSession.__init__
+    GF.TorchSession.__init__ = lambda self, sess, path, device="cuda": _init(self, sess, path, "cpu")
     import fr
     pool = {p["pid"]: p for p in csv.DictReader(open("/home/narolski/smad-next/experiments/AR1/pool.csv"))}
     jobs = {}

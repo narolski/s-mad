@@ -812,6 +812,12 @@ reading smoothness as morph-like (partial explanation; A19 H-N4 below tests it).
 seed variance (NOISES over REC seeds 0.50 / 0.61). The mix-type contrasts (NOISEX over NOISES, SEMX over SEMS) sit at
 0.55–0.60 for every arm.
 
+## A19 follow-ups (registered 71a08f6 before computing; development data only; CPU)
+
+- **H-N4 (A16 smoothness; `a19_hn4.json`): falsified.** FRESH1_20 over REC20 stratified by face-box Laplacian quintiles,
+  2-seed means: e 0.248 [0.226, 0.268] (raw 0.241), a 0.357 (raw 0.337), f 0.299 (raw 0.289). Holding sharpness equal
+  barely moves the below-reconstruction ranking, so smoothness does not explain it.
+
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
 **Item 11, five random pool partners (H-new-1; arm d5, 5 seeds; `p3_full.json`, `p3_fz1.json`).** Landmark-7 native

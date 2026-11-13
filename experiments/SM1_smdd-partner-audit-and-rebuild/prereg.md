@@ -625,6 +625,10 @@ another owner until 14 Nov morning).
   code cosine; ranks residualised by least squares), partner-cycle bootstrap B = 10,000. Falsified if ρ ≤ 0.10 with
   the upper bound < 0.25; supported if ρ ≥ 0.25 with the lower bound > 0.10; otherwise undecided. Also on all 133 X20
   rows given F (descriptive).
+  Deviation note (13 Nov ~08:30, before any H-N2 number): the AR1 route's detector (prep_eval.kps → gpu_face_app) and
+  the glint recognition network run through onnx2torch on CUDA; the DGX GPU is occupied, so both are run on the CPU
+  (same weights and code, the TorchSession device forced to "cpu"); small numerical differences from GPU runs are
+  possible; the read uses ranks.
 - **H-N4 (A16 smoothness).** From the A16 scores: FRESH1_20 over REC20 for arm e, stratified by face-box Laplacian
   quintiles (pooled over FRESH1_20 + REC20, weights n x n), 2-seed mean, host bootstrap. Supported if ≥ 0.45;
   falsified if ≤ 0.40; otherwise undecided.
