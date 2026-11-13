@@ -258,3 +258,50 @@ from its splice positives or image count). All recipes still flag most same-pers
 evidence; no generalisation, benchmark or frozen-network claim. The S4-vs-S3 gain shows
 what Sb's splice training buys on new persons (asymmetric by design), and does not exceed the adversary's all-cue floor.
 Results review done 13 Nov (verdicts recomputed independently and reproduced to the third decimal; F1-F7 applied).
+
+## Pipeline-matched contrasts, second round (amendments 5 and 5b, post hoc): read once (Fri Nov 13 21:18 CET 2026)
+
+Reader `src/AB1/ab1_pm2_read.py` (77ace4b3…; imports ab1_pm_read.py ba6efdad… unchanged); outputs
+`ab1_pm2_read_Sp.json` (seeds 408-412, H100) and `ab1_pm2_read_FS1.json` (seeds 403-407, A100 PCIe; all 15 FS1 tars
+and the 3 Sp 403-405 tars passed the loader checks). Deciding statistic fixed in 5b: R4 vs R3 stratified (0 of 2,000
+draws unreadable); S4 vs S3 on the 80 clean test hosts unstratified (754 of 2,000 stratified draws unreadable, 37.7%),
+with the stratified seed-mean > 0 required.
+
+**The pipeline-matched family (10 verdicts; registered 95% rule; 99.5% intervals printed as a sensitivity check).** Only
+the five R4-vs-R3 verdicts carry new information; the S4-vs-S3 verdicts are expected from training by design.
+
+| # | Pair, seeds (platform) | Contrast (decides) | Seed-mean gain | 95% interval | 99.5% interval | Verdict |
+|---|---|---|---|---|---|---|
+| 1 | Sb − B, 408-412 (H100), amendment 4 | R4 vs R3, dev + clean80, stratified | +0.042 | [+0.019, +0.070] | [+0.008, +0.081] | present |
+| 2 | Sb − A, 408-412 (H100), amendment 4 | R4 vs R3 | +0.063 | [+0.037, +0.097] | [+0.025, +0.113] | present |
+| 3 | Sb − B, 408-412, amendment 4 | S4 vs S3, clean80 (read stratified in amendment 4; unstratified re-print +0.169) | +0.118 | [+0.069, +0.245] (unstratified [+0.136, +0.204]) | [+0.123, +0.221] (unstr.) | present (stands as read) |
+| 4 | Sb − A, 408-412, amendment 4 | S4 vs S3, clean80 (unstratified re-print +0.163) | +0.123 | [+0.077, +0.240] (unstratified [+0.130, +0.197]) | [+0.117, +0.209] (unstr.) | present (stands as read) |
+| 5 | Sb − Sp, 408-412 (H100) | R4 vs R3, stratified | +0.049 | [+0.028, +0.073] | [+0.019, +0.083] | **present** |
+| 6 | Sb − Sp, 408-412 | S4 vs S3, clean80, unstratified | +0.084 | [+0.056, +0.110] | [+0.041, +0.121] | present (near-certain by design) |
+| 7 | Sb − B, 403-407 (A100, FS1) | R4 vs R3, stratified | +0.051 | [+0.027, +0.080] | [+0.021, +0.097] | **present** |
+| 8 | Sb − A, 403-407 (FS1) | R4 vs R3, stratified | +0.081 | [+0.053, +0.118] | [+0.043, +0.136] | **present** |
+| 9 | Sb − B, 403-407 (FS1) | S4 vs S3, clean80, unstratified | +0.182 | [+0.143, +0.219] | [+0.128, +0.234] | present |
+| 10 | Sb − A, 403-407 (FS1) | S4 vs S3, clean80, unstratified | +0.174 | [+0.139, +0.207] | [+0.126, +0.222] | present |
+
+Per seed (R4 vs R3, stratified): Sb − Sp +0.060 +0.067 +0.052 +0.027 +0.041; FS1 Sb − B +0.054 +0.034 +0.055 +0.070 +0.042;
+FS1 Sb − A +0.085 +0.070 +0.072 +0.109 +0.069. Sign agreement between development and clean test hosts holds for rows 5,
+7 and 8 (Sb − Sp +0.049 / +0.069; FS1 Sb − B +0.047 / +0.089; FS1 Sb − A +0.083 / +0.128).
+
+**Decomposition at 408-412 (printed, descriptive):** Sp − B on R4 vs R3 (dev + clean80) is −0.008 [−0.033, +0.022] (per seed
+−0.006 −0.015 +0.003 −0.013 −0.006; development −0.025, clean80 +0.029: signs disagree → the rule would read
+"inconclusive"). So Sb − B (+0.042) ≈ (Sb − Sp, +0.049) + (Sp − B, −0.008): on this contrast the gain of Sb over B is carried
+by the 312 matched S0 + S3 negatives (with their count and class-mix shift; no volume control for Sp), not by the 124 S4
+splice positives. On S4 vs S3 clean80 (unstratified) both parts are positive (Sb − Sp +0.084, Sp − B +0.085), as expected
+by design. FaceMorpher R4 vs R3 (printed): Sb − Sp +0.067, Sp − B −0.023; FS1 Sb − B +0.056.
+Sb − Sp at 403-405 (A100, 3 seeds; descriptive, not read): R4 vs R3 +0.035 [+0.015, +0.062]; S4 vs S3 clean80 +0.091.
+
+**What this licenses (registered wording, post hoc, development plus clean test hosts, not held-out):**
+- 408-412 (recipe at replication seeds, H100): Sb's better ranking of two-person over same-person whole-frame morphs comes
+  from its matched same-person (and seam-only) splice negatives: removing them (Sp) loses it and Sp is not better than B.
+  Not separated between S0 and S3; no volume control for Sp.
+- 403-407 (FS1): "present" licenses a statement about the frozen Sb networks 403-407 themselves on development and clean
+  test-host rows: post hoc, previously printed in direction (PR1 Z4, BD1), a re-read of the same networks rather than an
+  independent or blind replication; never benchmark or held-out evidence; no change to the frozen candidate follows.
+- Ranking is not rejection (amendment-4 review F3): all recipes still flag most same-person morphs at their own rule.
+
+Results review pending.
