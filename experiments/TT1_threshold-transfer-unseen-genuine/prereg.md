@@ -214,3 +214,13 @@ Code: `src/TT1/hnew.py` (committed with the results).
   (A, C).
 - Read: Spearman ρ(x, y) over the 10 networks, with the exact permutation p-value printed.
 - Rule: falsified if ρ ≥ 0; "supported" if ρ ≤ −0.6; otherwise "weak (not decided)". Two seeds per arm; no arm claim.
+
+## 9. Amendment H-new-5 (`date`: Fri Nov 13 02:08:06 AM CET 2026; registered at the git commit that adds this section, before computing; a few minutes of DGX GPU; development rows only)
+
+- Statement: the GB10 discrepancy comes from attention or reduced-precision kernels, not from decode or resize.
+- Test (`src/TT1/diag_kernels.py`): A_s401 on the five diagnostic FFHQ genuine rows (fq016604, fq010376, fq008900,
+  fq008528, fq011276), using the A100 input tensors from `diag_a100.npz` (bit-identical to the DGX ones), under six
+  settings on the DGX stack: default; TF32 off (matmul and cuDNN); TF32 on; math-only SDPA attention; math-only + TF32
+  off; math-only + TF32 on. Compared with the A100 logits.
+- Rule: falsified if no setting brings max |Δ| over the five rows below 1e-3. Decides whether the DGX can ever be a
+  scoring fallback (if falsified: no).
