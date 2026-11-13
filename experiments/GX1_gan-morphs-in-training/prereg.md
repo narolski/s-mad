@@ -168,3 +168,16 @@ no change to Sb's recipe or rows.
   the AG1 Athena code tar: ag1_gen.py b2dc54eb... + vendored gan1 files), gx1_gen_task.sh eaf99f3b..., gx1_gen.sbatch
   1e560f63..., gx1_gen_smoke.sbatch ae4ed31b..., gen_mip1.txt c671280d... (12 shards), gen_mip2.txt 19fd50d4... (8
   shards); smoke shards GX1_smoke_mip1 / _mip2 (3 images each).
+
+## Amendment 1b (13 Nov, lead's answers to the pre-run reviewer's questions, received 18:52 machine clock; before any image)
+
+- FFHQ-Morphs (GD0) is the development comparison set by the author's ruling of 12 Nov ("Just use another dataset to
+  compare them, unless we do not plan to use FFHQ in benchmarks"); never reported as a benchmark; scoring it as a
+  transfer read is allowed.
+- Seeds 408-412 are accepted for GX1 (the seeds of today's H100 comparator arms; 403-407 belong to the frozen candidate).
+- `~/dmenv` lies in the WCSS home directory, not on the Lustre PD allocation; all job IO stays on `$TMPDIR`.
+- Sensitivity print (registered): every primary and identity read is also printed with the training pairs and
+  held-out pairs of contributor cosine > 0.4 left out (four training pairs at registration: frgc_04637 / frgc_04638 in
+  both directions, frgc_04217 / frgc_04557 in both directions; the training rows are left out by refitting nothing:
+  the print removes those hosts' held-out rows only if any; for training, a reading is flagged if it changes when the
+  four pairs' hosts are excluded from the held-out side). The 0.705 pair stays flagged.
