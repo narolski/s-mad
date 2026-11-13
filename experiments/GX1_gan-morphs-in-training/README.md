@@ -13,7 +13,7 @@ version (the current candidate was frozen by the author at 18:28; MAD22 is a see
 
 - Before 18:37 Lead's messages: new arm GX1 (author's go); first count (36 usable existing morphs, uninterpretable);
   feasibility (202 training, 109 development persons; 404 + 109 morphs; about 6.7 H100-h + 3.7 MIPGAN-II); go. Time
-  note (added about 18:55): the lead's messages gave 18:50 / 19:15 / 19:35; by the machine clock these fall between
+  note (added with amendment 1): the lead's messages gave 18:50 / 19:15 / 19:35; by the machine clock these fall between
   about 18:32 and 18:46 (NOTEBOOK "CORRECTION OF TIMES").
 - 18:37:16 `build_gx1.py select` (seed 20261113): 202 training, 109 development persons.
 - 18:37-18:47 `build_gx1.py prep` (AG1 input path unchanged, onnxruntime capped at 2 threads, nice 10): 311 persons,
@@ -22,7 +22,7 @@ version (the current candidate was frozen by the author at 18:28; MAD22 is a see
 - 18:40:15 Registration committed (b6d2dce). Pre-run check (experiment-reviewer, opus) started; returned about 18:47:
   GO WITH FIXES (`PRERUN_GX1_20261113.md`).
 - 18:40-18:41 Generation scripts written. 18:47:21 pairs; shard plans (22 shards incl. 2 smoke).
-- About 18:55 Amendment 1 (review fixes F1-F8, time note, generation pins).
+- 18:48:45 Amendment 1 committed (eabdcc4: review fixes F1-F8, time note, generation pins). 18:49 pack uploaded to WCSS packs/GX1 (GX1SUMS checked there; ~/dmenv torch 2.11.0+cu128); submission files in the dispatcher queue: wcss_gx1_gensmoke.cmd, wcss_gx1_gen_mip1.cmd and wcss_gx1_gen_mip2.cmd (both gated on the smoke).
 
 ## 3. Data
 

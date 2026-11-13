@@ -2,7 +2,7 @@
 
 Written 13 Nov 2026 before any GX1 image is generated and before any GX1 network exists. Owner: AG1 owner (Opus agent).
 Author's go (verbatim): "Ok, go ahead" to "GAN morphs in training with one-person renders as genuine"; lead's scope
-decision after it. Time note (13 Nov, added 18:55 by the machine clock): the lead's messages gave these as 18:50 and
+decision after it. Time note (13 Nov, added in amendment 1, 18:48 by git): the lead's messages gave these as 18:50 and
 19:35; the machine clock and git are the record: both fall between about 18:32 and 18:46 machine clock (NOTEBOOK
 "CORRECTION OF TIMES"); the freeze ruling was at about 18:27. This registration was committed at 18:40:15 (git). Code `src/GX1/` (plus the unchanged `src/AG1/` generator wrapper and vendored code);
 large outputs `/mnt/t7/smad_next/GX1/`; WCSS results `$L/smad-next/results/GX1/`.
@@ -122,7 +122,7 @@ no change to Sb's recipe or rows.
 - **Inconclusive:** no sentence beyond the descriptive numbers.
 - **GXp** shows what training on GAN morphs against camera photos alone does (expected: render detection).
 
-## Amendment 1 (13 Nov, about 18:55 machine clock; after the pre-run check `PRERUN_GX1_20261113.md` (GO WITH FIXES),
+## Amendment 1 (13 Nov, committed 18:48:45 by git (eabdcc4); after the pre-run check `PRERUN_GX1_20261113.md` (GO WITH FIXES),
 ## before any GX1 image is generated)
 
 - **F1, primary read replaced (before any data).** The question of section 1 is the identity step with rendering
