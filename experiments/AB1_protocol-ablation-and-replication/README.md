@@ -62,6 +62,13 @@ splice)? No answer yet. No arm is a method candidate.
   applied; H-ab4 code compares counts (inclusive margins), text unchanged. Reader fb990bb5…; mocks: full
   (ab1_read_mock.json) and one Sb seed missing (ab1_read_mock_drop1.json, n = 4 path); the older drop-two mock, which
   predated amendment 2, was replaced.
+- 11:48-11:50 smoke 6310091 ran on WCSS r18-1 (H100, GPU-b5bc6200…), exit 0, 2 min 23 s: all hash checks OK; pack and
+  overlay v1 unpacked; 100 training steps in 111 s (2.62 it/s; a full fit is about 40 min of training plus about 3 min
+  of pack copy and scoring); scoring and copy-back done; rescoring of FS1 Sb s403 on 6,339 gate rows and of the smoke
+  network on the 1,480 hold-out rows done (all finite). Fetched and verified to /mnt/t7/smad_next/AB1/smoke/.
+  Platform measurement (descriptive, decides nothing): FS1 Sb s403 A100 PCIe stored logits against H100 rescoring,
+  p99 |Δlogit| 0.0047, max 0.026, own-rule agreement 1.000 (`smoke_platform.json`). Smoke verdict: PASS, sent to the
+  dispatcher at 11:55; array 6310270 stays.
 
 ## 3. Data
 
