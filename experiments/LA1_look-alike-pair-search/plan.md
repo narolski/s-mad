@@ -225,3 +225,5 @@ These corrections take precedence over the sections above where they differ.
 Note on times (13 Nov, 18:48 by the machine clock): the freeze ruling was at about 18:27 by the machine clock (the
 lead's relay said 18:28). The lead's relay of the LA1 instruction was stamped "18:30" from memory; LA1's first commit is
 7121c76 at 18:36:59. Times are taken from `date` and git only (NOTEBOOK, "CORRECTION OF TIMES").
+
+Ownership (13 Nov 18:58 machine clock, lead via the dispatcher): DATA builds the look-alike pair set (search, manifests, checksums, catalogue entry) following this plan. The PR1 owner keeps the hypothesis, the registration and any read that uses the pairs. Nothing is built until the author answers the open decisions (mapping and attribute files, where it runs, the CASIA overlap guard, a twins set).
