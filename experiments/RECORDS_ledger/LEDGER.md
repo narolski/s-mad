@@ -290,3 +290,54 @@ B to the same raw id. Three gaps remain:
 
 Summary: every number is verified, and I re-derived (a), 99/99, 111 of 191 and the 2,718 positive control myself.
 681715d is not an audit commit. The positive control is not in any committed file.
+
+---
+
+## Entry 6. `date`: Fri Nov 13 08:46:43 PM CET 2026. (A) Adversary same-data shortcut learner on train_Sb; (B) PR1 amendment 5a
+
+### (A) Standing adversary (ADV)
+
+| Claim | Verdict | Evidence |
+|---|---|---|
+| 1067700 (amendment 4, stage 6 pins) | VERIFIED | 20:42:49, on origin; prereg.md amendment 4 (registers the learner on every arm's list, H-new-1, H-new-3), 25 floors files, pins_stage6.sha256, run_floors.py, contrasts.py |
+| amendment 4 header "13 Nov, about 21:00" | WRONG | committed at 20:42:49 |
+| 28cb468 (transfer_Sb, stage 7 pins) | VERIFIED | 20:44:04, on origin; transfer_Sb.json, hnew1/hnew3 JSONs, pins_stage7.sha256, FLOORS.md, src/adversary/hnew.py |
+| 1067700 precedes floors/transfer_*.json for train_Sb | VERIFIED | transfer_Sb.json mtime 20:43:22; hnew1 20:43:12, hnew3 20:43:19 and 20:43:26; all after 20:42:49 |
+| pins_stage6 and pins_stage7 verify | VERIFIED | `sha256sum -c` in floors/: 32 of 32 OK, 4 of 4 OK |
+| transfer_A/B/SbZ/SbS.json (20:43-20:44) and other floors files exist on disk | NOTE | not committed or pinned (untracked); prereg.md has uncommitted changes |
+| lcomb 0.787 / 0.665; lcomb_bal 0.811 / 0.644 | VERIFIED | transfer_Sb.json contrasts.lcomb 0.7873/0.6645; lcomb_bal 0.8106/0.6440 |
+| R4 vs R3 test OpenCV 0.719 / 0.704; 291 hosts 0.725 / 0.716 | VERIFIED | test_cv_R4_vs_R3 0.7188/0.7040; ri_R4_vs_R3 0.7247/0.7157 |
+| S4 vs S3 test 0.681 / 0.640 | VERIFIED | test_S4_vs_S3 0.6810/0.6398 |
+| test R4 vs R2w 0.975-0.996 | VERIFIED | test_cv 0.9749/0.9959; test_fm 0.9778/0.9756 |
+| own rule: development S3 0.48 / 0.44; OpenCV R3 0.72 / 0.86 | VERIFIED | pools.dev_S3; pools.dev_R3_cv |
+| bordered camera photos 0.344 / 0.000 | VERIFIED | pools.R_cam_border n 1582: 0.3439/0.0 |
+| lcomb morphs 0.851 / 0.097; genuine 0.459 / 0.048 | VERIFIED | pools.lcomb_morph 0.851/0.097; lcomb_genuine 0.4585/0.0475 |
+| H-new-1 0.888 / 0.929 / 0.914 | VERIFIED | hnew1_lcomb_bal.json auc single/logreg/gbt; reading "supported" |
+| H-new-3 chroma 0.540, luma 0.723 (291 hosts); 0.542, 0.723 (test hosts) | VERIFIED | hnew3_ri_R4_vs_R3.json within-D best 0.5396/0.7233; hnew3_test_cv_R4_vs_R3.json 0.5418/0.7227; reading "falsified" |
+| fit rows share no person with the rows they are applied to | VERIFIED for FRGC/colorFERET rows; FFHQ by construction | cmd_transfer (run_floors.py:423-455) does no person filtering. My check (`indep_transfer_persons_check_20261113.py`): 0 of 24,859 ab1x_eval rows share a person or photo with train_Sb. This includes the 1,582 bordered camera photos (AR1 R0 photos of development hosts). The 11,480 FFHQ rows hold no FRGC/colorFERET person, and train_Sb has no FFHQ row. GD rows: audit file entry 5 (pr1_gd, 0 in every cell) |
+
+Comparison values quoted for the frozen candidate:
+
+| Value | Where | Seeds | Verdict |
+|---|---|---|---|
+| landmark_combined 0.873-0.906 | AB1/result.md:82 (REVIEW_AB1) | **408-412 (H100), not frozen** | WRONG label if called the frozen candidate's. Frozen 403-407: 0.814-0.885 (mean 0.860), PN1/result.md:294 (REVIEW_PN1_FS1) |
+| S4 vs S3 test hosts 0.72-0.74 | PR1/result.md:21 (0.716-0.744; REVIEW_PR1_PART1) | 403-407 | VERIFIED |
+| Sb R4 vs R3 | PR1/result.md:117: 0.80-0.85 (REVIEW_PR1_PART1) | 403-407 | found; SE1/result.md gives 0.880-0.912 for Sb 408-411 (REVIEW_SE1_A100); GAN R4 vs R3 0.619-0.690 (PR1:266) |
+| S3 flags 0.31-0.48 | PR1/result.md:19 and :119 | 403-407 | VERIFIED |
+| R3 flags 0.83-0.88 | PR1/result.md:117 (83.2-88.5%) | 403-407 | VERIFIED (SE1's 0.83-0.90 is 408-411) |
+| bordered camera photos 0.029-0.163 | TT1/result.md:371-376 (Z3; "reviewed" in the section header, no separate file) | 403-407 | VERIFIED |
+
+### (B) PR1 amendment 5a
+
+| Claim | Verdict | Evidence |
+|---|---|---|
+| pre-run review 4b8496a precedes both | VERIFIED | 4b8496a 20:36:22 (file mtime 20:36:22), "Verdict: GO WITH FIXES" |
+| 8f72a08 registered at 20:42:04 | VERIFIED | on origin; prereg, shape_link_read.py, shape_link_tar_pins.txt |
+| read written 20:42:22, committed in 034c4d4 | VERIFIED | shape_link_read.json mtime 20:42:22; 034c4d4 20:42:51 on origin; mock = false |
+| order review → registration → read | VERIFIED | 20:36:22 < 20:42:04 < 20:42:22 < 20:42:51 |
+| reader hash at read time = pinned | VERIFIED | pinned 89be37e13b98a2bf (prereg in 8f72a08). The file at 8f72a08 and the current file hash the same; the file's mtime is 20:41:40, so it did not change before the read |
+| tar pins | VERIFIED | shape_link_tar_pins.txt sha256 4dea8c1f43c19443 as pinned; 10 tars, Sb 403-407 prefixes match the first-verified hashes |
+
+Summary: everything is verified, with three exceptions. The amendment-4 header time (21:00) is wrong. The
+landmark_combined 0.873-0.906 is from seeds 408-412, not the frozen 403-407 (0.814-0.885). The other arms' transfer
+files and prereg edits are not committed.
