@@ -280,3 +280,10 @@ gate the sealed final read. This replaces item 1 of amendment 3: there is no cut
 verdicts; "incomplete (k seeds)" while fewer than five seeds of a method have finished). The SelfMAD array is
 resubmitted after its test job passes; every array stays queued on both clusters, and a task's first verified copy
 (either cluster) is the one read; the twin task on the other cluster is then cancelled.
+
+## Amendment 6 (13 Nov 14:20, before any retrain score; no result read)
+
+CUDA build for H100. The MADation pin torch 2.0.1 / torchvision 0.15.2 is kept. On WCSS H100 the CUDA 11.8 builds
+(`+cu118`, download.pytorch.org) replace the PyPI CUDA 11.7 builds, which have no sm_90 code. Model code, hyper-parameters,
+seeds and data are unchanged. Applies to MADation ViT-B/16, ViT-L/14 and MixFaceNet-MAD on WCSS (all five seeds of each
+method on this one platform). The Athena A100 MixFaceNet-MAD seed 401 (cu117) stays a descriptive cross-platform check.

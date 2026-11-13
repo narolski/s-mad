@@ -351,6 +351,19 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
   about 1-1.5 h, mixX under 6.7 h, madL about 2-3 h, SelfMAD under 30 h; end times to be computed from the log step
   rates once each starts. Validity rule: an array's outputs are read only if its gate passed (smokeB2 6310087 for madB and
   madL, smokeX2 6310088 for mixX, SelfMAD test 6310089 for SelfMAD); a failed gate cancels that method's array.
+- 13 Nov 14:00-14:25. H100 fix (found by the dispatcher from CB1's failures 6310090 / 6310207 with the same wheel
+  pack): the PyPI torch 2.0.1 wheel in `ad5w_wheels39.tar` is the CUDA 11.7 build, whose architecture list ends at sm_86;
+  every MADation / MixFaceNet-MAD job would have failed on H100 (sm_90). The dispatcher held arrays 6310124-6310126.
+  Fix: same versions, CUDA 11.8 builds from download.pytorch.org/whl/cu118 (downloaded into an empty folder; pip checked
+  the index hashes): torch-2.0.1+cu118-cp39 (eb55f29d...), torchvision-0.15.2+cu118-cp39 (f2c6f5a1...). The torch
+  wheel's built architecture list contains sm_90 (the cu117 list does not). CUDA libraries are bundled, so the
+  nvidia-*-cu11 wheels were dropped. `src/AD5/env/madation_requirements.txt` pins the +cu118 builds. A dry-run
+  resolution of the new house for cp39 / x86_64 passed; importlib-metadata and zipp are present for the Python 3.9 markers.
+  New packs on Lustre, replacing the old ones in place after the hashes were checked there: `ad5w_wheels39.tar` 3bd18def...,
+  `ad5w_code.tar` 94964c36... (same tree, apart from the requirements file); old packs in `packs/old_cu117/`. Because the job script reads
+  the packs at run time, the queued smokes 6310087 / 6310088 and the held arrays pick up the fix without resubmission;
+  asked the dispatcher to release the arrays. SelfMAD is not affected: torch 2.3.1 cu121 supports sm_90. Registered as
+  prereg amendment 6. The Athena A100 runs (MixFaceNet-MAD 401, descriptive only) used the cu117 build.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.

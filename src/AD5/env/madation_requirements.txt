@@ -2,20 +2,13 @@
 # Pins taken from MADation requirements.txt (commit 0542cf86) for every package the training path imports, plus the
 # torch 2.0.1 dependency pins listed there. Deviations: Python 3.10 (Athena's only Python module; the README says 3.9),
 # opencv-python-headless instead of opencv-python (same version; no GUI libraries needed on compute nodes).
-torch==2.0.1
-torchvision==0.15.2
+# 13 Nov 14:10 (WCSS H100): the PyPI torch 2.0.1 wheel is the CUDA 11.7 build (sm_37..sm_86, no sm_90; CB1 jobs
+# 6310090 / 6310207 failed on H100 with it). Same torch and torchvision versions, CUDA 11.8 build from
+# download.pytorch.org/whl/cu118 (sm_90 in the arch list; CUDA libraries bundled, so no nvidia-*-cu11 wheels).
+# torch-2.0.1+cu118-cp39 sha256 eb55f29d..., torchvision-0.15.2+cu118-cp39 sha256 f2c6f5a1....
+torch==2.0.1+cu118
+torchvision==0.15.2+cu118
 triton==2.0.0
-nvidia-cublas-cu11==11.10.3.66
-nvidia-cuda-cupti-cu11==11.7.101
-nvidia-cuda-nvrtc-cu11==11.7.99
-nvidia-cuda-runtime-cu11==11.7.99
-nvidia-cudnn-cu11==8.5.0.96
-nvidia-cufft-cu11==10.9.0.58
-nvidia-curand-cu11==10.2.10.91
-nvidia-cusolver-cu11==11.4.0.1
-nvidia-cusparse-cu11==11.7.4.91
-nvidia-nccl-cu11==2.14.3
-nvidia-nvtx-cu11==11.7.91
 cmake==3.28.3
 lit==18.1.8
 filelock==3.14.0
