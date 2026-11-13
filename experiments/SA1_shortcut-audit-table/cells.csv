@@ -2,7 +2,7 @@ row,shortcut,column,cell_id,status
 1,storage history of genuine photos,A,1-A,reviewed
 1,storage history of genuine photos,B,1-B,reviewed
 1,storage history of genuine photos,Sb,1-Sb,reviewed
-1,storage history of genuine photos,Sp,1-Sp,not measured (pending today)
+1,storage history of genuine photos,Sp,1-Sp,reviewed
 1,storage history of genuine photos,SbM3,1-SbM3,reviewed
 1,storage history of genuine photos,MADation_ViT-B16,1-MADation_ViT-B16,reviewed
 1,storage history of genuine photos,MADation_ViT-L14,1-MADation_ViT-L14,reviewed
@@ -29,7 +29,7 @@ row,shortcut,column,cell_id,status
 4,unseen camera source (source comparison),A,4-A,reviewed; two seeds only
 4,unseen camera source (source comparison),B,4-B,reviewed; two seeds only
 4,unseen camera source (source comparison),Sb,4-Sb,reviewed; two seeds only
-4,unseen camera source (source comparison),Sp,4-Sp,not measured
+4,unseen camera source (source comparison),Sp,4-Sp,reviewed
 4,unseen camera source (source comparison),SbM3,4-SbM3,reviewed
 4,unseen camera source (source comparison),MADation_ViT-B16,4-MADation_ViT-B16,reviewed
 4,unseen camera source (source comparison),MADation_ViT-L14,4-MADation_ViT-L14,reviewed
@@ -65,7 +65,7 @@ row,shortcut,column,cell_id,status
 8,same-person face splice (S3),A,8-A,reviewed
 8,same-person face splice (S3),B,8-B,reviewed
 8,same-person face splice (S3),Sb,8-Sb,reviewed
-8,same-person face splice (S3),Sp,8-Sp,not measured (pending today)
+8,same-person face splice (S3),Sp,8-Sp,reviewed
 8,same-person face splice (S3),SbM3,8-SbM3,reviewed
 8,same-person face splice (S3),MADation_ViT-B16,8-MADation_ViT-B16,unreviewed
 8,same-person face splice (S3),MADation_ViT-L14,8-MADation_ViT-L14,unreviewed
@@ -74,7 +74,7 @@ row,shortcut,column,cell_id,status
 9,blending seam (S0),A,9-A,reviewed
 9,blending seam (S0),B,9-B,reviewed
 9,blending seam (S0),Sb,9-Sb,reviewed
-9,blending seam (S0),Sp,9-Sp,not measured (pending today)
+9,blending seam (S0),Sp,9-Sp,reviewed
 9,blending seam (S0),SbM3,9-SbM3,reviewed
 9,blending seam (S0),MADation_ViT-B16,9-MADation_ViT-B16,reviewed
 9,blending seam (S0),MADation_ViT-L14,9-MADation_ViT-L14,reviewed
@@ -101,8 +101,8 @@ row,shortcut,column,cell_id,status
 12,surround blend (whole-frame tools),A,12-A,unreviewed
 12,surround blend (whole-frame tools),B,12-B,reviewed
 12,surround blend (whole-frame tools),Sb,12-Sb,reviewed
-12,surround blend (whole-frame tools),Sp,12-Sp,not measured
-12,surround blend (whole-frame tools),SbM3,12-SbM3,not measured
+12,surround blend (whole-frame tools),Sp,12-Sp,reviewed
+12,surround blend (whole-frame tools),SbM3,12-SbM3,reviewed
 12,surround blend (whole-frame tools),MADation_ViT-B16,12-MADation_ViT-B16,reviewed
 12,surround blend (whole-frame tools),MADation_ViT-L14,12-MADation_ViT-L14,reviewed
 12,surround blend (whole-frame tools),MixFaceNet-MAD,12-MixFaceNet-MAD,reviewed
@@ -155,8 +155,8 @@ row,shortcut,column,cell_id,status
 18,processing cue in the surround of the development set,A,18-A,reviewed
 18,processing cue in the surround of the development set,B,18-B,reviewed
 18,processing cue in the surround of the development set,Sb,18-Sb,reviewed
-18,processing cue in the surround of the development set,Sp,18-Sp,not measured (pending today)
-18,processing cue in the surround of the development set,SbM3,18-SbM3,not measured
+18,processing cue in the surround of the development set,Sp,18-Sp,reviewed
+18,processing cue in the surround of the development set,SbM3,18-SbM3,reviewed
 18,processing cue in the surround of the development set,MADation_ViT-B16,18-MADation_ViT-B16,n/a
 18,processing cue in the surround of the development set,MADation_ViT-L14,18-MADation_ViT-L14,n/a
 18,processing cue in the surround of the development set,MixFaceNet-MAD,18-MixFaceNet-MAD,n/a
@@ -164,7 +164,7 @@ row,shortcut,column,cell_id,status
 19,operating point / bounded output scale,A,19-A,reviewed
 19,operating point / bounded output scale,B,19-B,reviewed
 19,operating point / bounded output scale,Sb,19-Sb,reviewed
-19,operating point / bounded output scale,Sp,19-Sp,not measured
+19,operating point / bounded output scale,Sp,19-Sp,reviewed
 19,operating point / bounded output scale,SbM3,19-SbM3,reviewed
 19,operating point / bounded output scale,MADation_ViT-B16,19-MADation_ViT-B16,reviewed
 19,operating point / bounded output scale,MADation_ViT-L14,19-MADation_ViT-L14,reviewed

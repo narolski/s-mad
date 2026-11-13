@@ -5,8 +5,8 @@
 The author asked for scientific evidence that the training protocol is shortcut-free: one row per known shortcut,
 one column per training arm or released detector, every cell from a paired control (the same images with and without
 the suspected cue), with seeds, intervals, source file and review status. Status 13 Nov 2026, about 09:45 CET:
-version 2 (reviewed) compiled from registered results only (no scoring). After the PR1 part-1, C2P and MS1 readings (13 Nov about 10:00), of 180 cells (20 rows x 9 columns) 102 are reviewed
-(12 of them on two seeds only), 17 unreviewed, 46 empty, 15 not applicable (after the CB1 released-detector cells, about 10:15). For our own arms, 42 of 100 cells are empty. The best-measured row
+version 2 (reviewed) compiled from registered results only (no scoring). After the PR1 part-1, C2P and MS1 readings (13 Nov about 10:00), of 180 cells (20 rows x 9 columns) 111 are reviewed
+(12 of them on two seeds only), 17 unreviewed, 37 empty, 15 not applicable (about 10:35, after the Sp ablation). For our own arms, 42 of 100 cells are empty. The best-measured row
 (storage history of genuine photos, five fresh seeds) supports "reduced, not removed", not "removed". The table is
 `result.md`; the cell list is `cells.csv`. Waiting for today's readings (Sp ablation, SbM3 three-source training,
 contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cells.
@@ -41,6 +41,9 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
   result and the review's cannot-claim lines.
 - about 10:15: CB1 released-detector gap cells (result section "SA1 gap item 10", review REVIEW_CB1_SA1CELLS_20261113,
   814c279) copied as given; the review's border caveat added to the table notes.
+- about 10:35: Sp ablation (PN1 result Sp section, ee61116; REVIEW_PN1_SP) entered as registered verdict plus printed
+  reads; released-detector storage cells relabelled "aligned-frame history (our aligner + history)" with the aligned-only
+  step beside them (CB1 "Black frame vs storage history", REVIEW_CB1_BORDER_HISTORY); MS1 parts 3/3b (REVIEW_MS1_PART3).
 
 ## 3. Data
 
