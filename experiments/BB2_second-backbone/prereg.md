@@ -657,3 +657,10 @@ between 18:32 and 18:46. The times in amendments 4 and 5 ("15:40", "16:05") came
 - The dependency-chained submission (`--dependency=afterany:6313860`; its only later inputs are E3's tars) is the lead's
   approved exception to OWNER_BRIEF.md "nothing a job needs may arrive after submission" (lead, 20:00 by his clock).
 - `src/BB2/wcss/bb2l_w2.sbatch` sha256 6bb5617987f6c7df038c336a8229c0e3c1407fb550f84e88b6726da7ee45ca85.
+
+## Note on names (`date`: see the commit; changes no rule)
+
+The two predictions logged at 6f36c0c as "H-new-2" (DINOv3 Sb reads a face-surround mismatch) and "H-new-3" (the
+storage shortcut needs adaptation) are renamed **H-bb2-mismatch** and **H-bb2-storage**: "H-new-2" also names C2P's
+sharpness hypothesis (A1.2, "H-new-2 is not read for BB2"), and "H-new-3" names the FS1 review's blend-processing
+hypothesis. Their texts and rules are unchanged.

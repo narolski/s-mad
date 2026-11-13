@@ -56,7 +56,8 @@ MAD22; development data only; ViT-L against ViT-B; CLIP learning rates used unch
 
 C2P (contrast 2-prime and H-new-1 on the MS1 FFHQ hold-out) and the printed S3 reads: rescoring job queued with the
 dispatcher (WCSS controller down since about 15:20); CLIP's comparison file follows `clip_choice.json` (amendment 3).
-Predictions H-new-2 (S3) and H-new-3 (C2P control) logged in prereg.md before those reads (6f36c0c).
+Predictions H-bb2-mismatch (S3) and H-bb2-storage (C2P control), logged in prereg.md before those reads (6f36c0c; logged
+there as "H-new-2" and "H-new-3", renamed to avoid the clash with C2P's own H-new-2, see prereg.md note).
 
 # Part 2: C2P (contrast 2-prime, H-new-1) and the printed same-person splice reads (S3) of the 15 CLIP-rate DINOv3 fits
 
@@ -69,12 +70,16 @@ not registered). Output `bb2_c2p.json` (sha256 c80249ba…). Five-seed rules (fr
   TF32 in effect, matmul error vs fp64 2.9e-4; wrapper and rescore.py at their pins).
 - **Contrast 2-prime: "uninformative" for B and for Sb.** The plain arm's positive control fails on 5 of 5 seeds at both
   sizes: A's own-rule flag rise on the 300 FFHQ hold-out persons is −0.003 to +0.003 (61.2 px) and −0.007 to +0.003
-  (112.7 px), mean shift −0.15 to −0.11 genuine SD (stored photos score slightly lower). CLIP's contrast 2-prime was
+  (112.7 px), mean shift −0.152 to −0.109 genuine SD at 61.2 px and −0.109 to −0.087 at 112.7 px (stored photos score
+  slightly lower; corrected after the record keeper's check, ledger entry 2). CLIP's contrast 2-prime was
   also uninformative, so the registered sentence is "No CLIP effect to repeat; printed only".
-- **H-new-1 (storage evasion): "falsified" for B and for Sb** (morph shift −0.01 to +0.01 genuine SD at both sizes on
-  5 of 5 seeds). CLIP: Sb falsified, B inconclusive (first C2P reading). Printed beside CLIP's.
-- **Logged predictions (6f36c0c):** H-new-3 (A's control fails at both sizes on ≥ 4 of 5 seeds): **met** (5 of 5).
-  H-new-2 (development S3 flags ≥ 50% on ≥ 4 of 5 seeds and S4-vs-S3 AUC ≤ 0.65): **met** (Sb S3 0.55-0.60, S4 vs S3
+- **H-new-1 (storage evasion): "falsified" for B and for Sb.** Morph shift (Δm_att, genuine SD): B within ±0.005 at
+  both sizes on 5 of 5 seeds; Sb within ±0.008 at 112.7 px on 5 of 5, and at 61.2 px −0.002 / +0.006 / +0.010 /
+  −0.013 / −0.002 for seeds 403-407 (8 of 10 reads within ±0.01; corrected after the record keeper's check). The
+  registered rule (C2P.4, five seeds) is "falsified if Δm_att ≥ −0.10 on ≥ 4 of 5 seeds at both sizes": every Sb value
+  is ≥ −0.10 (smallest −0.013), so the verdict follows unchanged. CLIP: Sb falsified, B inconclusive (first C2P reading). Printed beside CLIP's.
+- **Logged predictions (6f36c0c):** H-bb2-storage (logged as "H-new-3"; A's control fails at both sizes on ≥ 4 of 5
+  seeds): **met** (5 of 5). H-bb2-mismatch (logged as "H-new-2"; development S3 flags ≥ 50% on ≥ 4 of 5 seeds and S4-vs-S3 AUC ≤ 0.65): **met** (Sb S3 0.55-0.60, S4 vs S3
   0.567-0.574 on 5 of 5).
 - **Printed S3 reads (development ladder, own rule):** Sb flags 55-60% of same-person splices (test ladder 62-66%),
   7-8% of seam-only composites (S0), misses 23-26% of face-spliced morphs (S4); S3 vs S0 AUC 0.78-0.79; S4 vs S3 AUC
