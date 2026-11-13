@@ -106,6 +106,15 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
 - 00:35: lease tt1b (host 104.202.122.106:30463, A100-SXM4 80 GB, cap 2.5 USD, 2 h): upload, start and pull loop
   (`/mnt/t7/smad_next/vast/tt1b/tt1_drive.log`).
 
+- 00:50:11 upload done; 00:50:41 remote started; 00:58:41 (host 23:58:41 UTC) tt1b GATE FAILED on one criterion in
+  one network (`gate_a100_tt1b.json`): with the HN2 batching the FFHQ rows are byte-identical in all 12 networks (0 of
+  3,000 rows differ); R_cam: 0 flips, Kendall 0.996-0.998 in all 12; max |Δ| ≤ 0.0174 in 11 networks, but 0.035 in
+  Bn_s401 (row ar1_000377: stored -0.1326, new -0.1676, near the own-rule boundary; next largest 0.0117); |ΔAUC| ≤
+  2.6e-5. No TT1 row scored. 01:00:26 driver verified the result tar and logs (two copies) and wrote RELEASE + FAILED.
+  Kept: /mnt/t7/smad_next/TT1/results/TT1_A100_tt1b_full.tar (80053d0d…) and TT1_A100_tt1a_full.tar (d3c67c39…;
+  the driver's second copy of tt1a had been overwritten by tt1b's same-named tar in results/, restored from the lease
+  folder copy, sha256 checked; owner error, naming).
+
 ### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
 
 The decoded image, the resized image and the input tensor are bit-identical between the DGX stack (torch 2.12.1,
@@ -231,8 +240,7 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-Lease tt1b running (driver loop in the background on the DGX; log /mnt/t7/smad_next/vast/tt1b/tt1_drive.log). tt1a
-released. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+No process running. tt1a and tt1b: RELEASE (+ FAILED) written after verified copies. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch
