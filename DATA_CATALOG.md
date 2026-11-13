@@ -1,7 +1,7 @@
 # Data catalogue (data building, DATA)
 
 Owner: data-building owner (DATA), one of the five standing roles (OWNER_BRIEF.md). First version written 13 Nov 2026,
-18:55-19:30 by the machine clock (`date`), read-only and CPU only. Nothing was hashed, copied, moved, built or deleted
+18:55-19:03 by the machine clock (`date`), read-only and CPU only. Nothing was hashed, copied, moved, built or deleted
 for this catalogue. Sizes are `du --apparent-size` at 13 Nov about 19:00. Image counts are file counts
 (`find -type f` on png/jpg/jpeg/ppm/bmp) or the count stated in the named README or manifest. Licence terms are copied
 from a file on disk where one exists (marked "on disk"); otherwise they are the project's earlier notes or general
@@ -75,7 +75,7 @@ Builder for every row of this section: download or copy from the distributor ("d
 
 ## 3. Derived products on `/mnt/t7/smad_next` (this sprint)
 
-Commit = last commit touching the builder (git log, 13 Nov 19:20). Score files, feature caches, network tars and
+Commit = last commit touching the builder (git log, 13 Nov about 19:00). Score files, feature caches, network tars and
 job packs are not catalogued file by file; packs are named where they carry the only list of a training set.
 
 | Product | Path | Size | Checksum record | Builder (commit) | Images / persons | Status | Flags |
@@ -102,12 +102,12 @@ job packs are not catalogued file by file; packs are named where they carry the 
 | SM1 SMDD-recipe rebuild data (crops, landmarks, halves hn2) | `smad_next/SM1/` | 39 GB | `hn2/*.sha256`; others not checked | `src/SM1/` | not counted | training source (released recipe) | partly unchecked |
 | CB1 SMDD training crops pack | `smad_next/CB1/packs/smdd_train_cropped.tar` | (in CB1, 27 GB) | `.sha256` | `src/CB1/` | not counted | training source (baseline retrains) | none |
 | AD1b DiffAE pool and generation | `smad_next/AD1b/` | 502 MB | `pool_selection.csv`; no SUMS file found | `src/AD1b/` | not counted | development | NO-SUM (to confirm) |
-| FINAL MAD22 read pack | `smad_next/FINAL/FINAL_mad22_pack.tar` (+ test8), `tree_FINAL_mad22*/` | 25 GB | pack `.sha256`; `SHA256SUMS` in trees | FINAL owner; `src/FINAL` has no commit yet | MAD22 corrected cells | **closed benchmark** pack | NO-BLD (builder not committed at 19:20) |
+| FINAL MAD22 read pack | `smad_next/FINAL/FINAL_mad22_pack.tar` (+ test8), `tree_FINAL_mad22*/` | 25 GB | pack `.sha256`; `SHA256SUMS` in trees | FINAL owner; `src/FINAL` has no commit at 19:00 | MAD22 corrected cells | **closed benchmark** pack | NO-BLD (builder not committed at 19:00) |
 | Legacy RAM-disk landmark twins R8 (copy) | `smad_next/volatile_backup_20261111/{r8_cv,r8_fm}/` (+ GAN protocol, own-generation canonical256, A138, MAD22 raw manifest copy) | 2.9 GB | none in the backup (README.txt only) | record's `smadcvpr/build_arms.py` (mambamorph-code; commit not recorded here) | 2,500 per tool | training identities of old networks; development use only after a person check | NO-SUM |
 
 ## 4. In progress tonight (entered only; owners keep them)
 
-| Product | Owner | Where | State at 19:20 |
+| Product | Owner | Where | State at 19:00 |
 |---|---|---|---|
 | GAN morphs in training (GX1): new MIPGAN-I and MIPGAN-II two-person morphs and one-person renders of 311 FERET / FRGC persons (202 training, 109 development) | AG1 owner (GX1) | inputs `smad_next/GX1/inputs/`, pack `GX1/wcss_pack/` (GX1SUMS); outputs will come from WCSS 6315653 (smoke), 6315654_[0-11], 6315655_[0-7] | in progress, owner AG1/GX1; pending on WCSS |
 | Border rows / border-equalised form for the sealed MAD22 read | FINAL owner | `smad_next/FINAL/` | in progress, owner FINAL |

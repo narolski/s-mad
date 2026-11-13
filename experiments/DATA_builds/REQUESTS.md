@@ -1,6 +1,6 @@
 # Data build requests (data building, DATA): queue
 
-Owner: data-building owner (DATA). Written 13 Nov 2026 from about 19:20 by the machine clock. **Nothing in this file
+Owner: data-building owner (DATA). Written 13 Nov 2026 about 19:00-19:03 by the machine clock. **Nothing in this file
 is built yet.** Builds start only after the lead's go; items marked "author" also need the author's word. Every
 recipe uses only the allowed image operations of OWNER_BRIEF.md (the approved warp script `h1_build.py`, the
 unchanged OpenCV and FaceMorpher morphers, constant-colour region blanking, existing E7 outputs, lossless PNG) and the
