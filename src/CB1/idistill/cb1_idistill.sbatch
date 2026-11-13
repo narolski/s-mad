@@ -15,7 +15,7 @@
 set -euo pipefail
 L=${CB1_L:-/lustre/pd03/hpc-narolski-1790461090/smad-next}; P=$L/packs/CB1; R=$L/results/CB1; mkdir -p $R   # CB1_L: rented variant root
 STAGE=${STAGE:?ae|cls}; SM=${SMOKE:-}
-case $STAGE in ae) T=idistill_ae ;; cls) T=idistill_cls_s${SEED:?} ;; *) exit 2 ;; esac
+case $STAGE in ae) T=idistill_ae ;; cls) T=idistill_cls_s${SEED:?} ;; all) T=idistill_all ;; *) exit 2 ;; esac   # all: AE then seeds ${SEEDS:-401 402 403} in parallel on the same GPU
 [ -n "$SM" ] && T=${T}_smoke
 [ -f $R/$T.tar.sha256 ] && { echo "$T done already"; exit 0; }
 AE=$R/idistill_ae${SM:+_smoke}.tar
@@ -41,7 +41,7 @@ elif [ "${CB1_PIP:-}" = online ]; then
 else
   python3 -m venv $W/env; PY=$W/env/bin/python
   WH=$(find $W/wheels -name 'torch-2.0.1*.whl' -printf '%h' -quit)
-  $PY -m pip install -q --no-index --find-links $WH torch==2.0.1 torchvision==0.15.2 numpy pandas scikit-learn opencv-python-headless tqdm Pillow facenet-pytorch tensorboard
+  $PY -m pip install -q --no-index --find-links $WH --find-links $W/cb1/wheels_extra torch==2.0.1 torchvision==0.15.2 numpy pandas scikit-learn opencv-python-headless tqdm Pillow facenet-pytorch tensorboard
 fi
 $PY -m pip freeze > $W/out/pip_freeze.txt; [ -n "${CB1_EXTRA_SITE:-}" ] && ls $CB1_EXTRA_SITE >> $W/out/pip_freeze.txt; echo "env built in $(( $(date +%s) - t0 )) s"
 C=$W/cb1/code; ST=$W/cb1/stubs; RUN="$PY -I $W/cb1/run_code.py $C $ST"
@@ -55,7 +55,7 @@ crop() {  # SMDD release crop script, unchanged: image_preprocess.py --in_folder
   ( cd $W/cb1/smdd && $PY -I $W/cb1/run_code.py $W/cb1/smdd $ST image_preprocess.py --in_folder "$1" --out_folder "$2" ) > "$3" 2>&1
   echo "crop $(basename $1): $(ls $1 | wc -l) in, $(ls $2 | wc -l) out"
 }
-if [ $STAGE = ae ]; then
+if [ $STAGE = ae ] || [ $STAGE = all ]; then
   tar -xf $P/idistill_data.tar -C $W/data
   if [ -n "$SM" ]; then  # smoke subsets
     for d in $W/data/eval_raw/*; do ls $d | tail -n +17 | sed "s#^#$d/#" | xargs rm -f; done
@@ -70,7 +70,7 @@ if [ $STAGE = ae ]; then
   EP=300; [ -n "$SM" ] && EP=2
   t1=$(date +%s)
   ( cd $C && $RUN train_autoencoder.py --data_dir $W/smdd/os25k_bf_t_cropped --dataset BonaFideImages --model UNetAutoencoder \
-      --emb_size 128 --batchsize 32 --imgsize 224 --epochs $EP --lr 1e-4 --results_dir $W/out/ae --num_workers 8 ${AE_RESUME:+--resume --checkpoint $AE_RESUME} )   # AE_RESUME: authors' resume from a copied *_best.pt > $W/out/ae_train.log 2>&1
+      --emb_size 128 --batchsize 32 --imgsize 224 --epochs $EP --lr 1e-4 --results_dir $W/out/ae --num_workers 8 ${AE_RESUME:+--resume --checkpoint $AE_RESUME} ) > $W/out/ae_train.log 2>&1   # AE_RESUME: authors' resume from a copied *_best.pt
   echo "autoencoder: $(( $(date +%s) - t1 )) s"; { grep -E "^Train Loss" $W/out/ae_train.log || true; } | tail -3
   CK=$(find $W/out/ae -name '*_best.pt' | head -1); echo "AE checkpoint $CK"
   ( cd $C && $RUN inference_autoencoder.py --data_dir $W/smdd/os25k_bf_t_cropped --data_dir $W/smdd/os25k_m_t_cropped \
@@ -79,29 +79,35 @@ if [ $STAGE = ae ]; then
   tar -cf $W/out/lat.tar -C $W lat; tar -cf $W/out/crops.tar -C $W eval_crop -C $W/smdd os25k_m_t_cropped
   ( cd $W/out && find . -type f ! -name '*.tar' | LC_ALL=C sort | xargs sha256sum > OUT_SHA256SUMS )
 fi
-if [ $STAGE = cls ] || [ -n "$SM" ]; then
+if [ $STAGE = cls ] || [ $STAGE = all ] || [ -n "$SM" ]; then
   if [ $STAGE = cls ]; then
     tar -xf $AE -C $W/out; tar -xf $W/out/lat.tar -C $W; tar -xf $W/out/crops.tar -C $W
     mv $W/os25k_m_t_cropped $W/smdd/ 2>/dev/null || true
     [ -n "$SM" ] && { ls $W/smdd/os25k_bf_t_cropped | tail -n +257 | sed "s#^#$W/smdd/os25k_bf_t_cropped/#" | xargs rm -f; ls $W/smdd/m15k_t_cropped | tail -n +129 | sed "s#^#$W/smdd/m15k_t_cropped/#" | xargs rm -f; }
   fi
-  S=${SEED:-401}; EPC=250; [ -n "$SM" ] && EPC=6
-  $PY -I $W/cb1/make_csvs.py train $W/smdd $W/lat | tee $W/out/train_csv_s$S.log
-  mkdir -p $W/frll; $PY -I $W/cb1/make_csvs.py frll $W/eval_crop $W | tee -a $W/out/train_csv_s$S.log
-  t1=$(date +%s)
-  ( cd $C && IDS_LAT=$W/lat IDS_FRLL=$W IDS_SEED=$S $RUN train.py --train_csv_path $W/smdd/train.csv --test_csv_path $W/eval_all.csv \
-      --model_name resnet18_mult --output_dir $W/out/cls_s$S --model_path $W/out/cls_s$S/idistill_s$S.pt --is_train True --is_test False \
-      --max_epoch $EPC --batch_size 16 --latent_size 128 --lr 1e-4 --weight_loss 1 --loss_measure prefusion ) > $W/out/cls_s$S.log 2>&1
-  echo "classifier seed $S: $(( $(date +%s) - t1 )) s"; { grep -E "Lowest EER|Train process Stopped|^epoch" $W/out/cls_s$S.log || true; } | tail -3
-  for v in best valbest last; do
-    ck=$W/out/cls_s$S/idistill_s$S.pt; [ $v != best ] && ck=$ck.$v
-    ( cd $C && $RUN $W/cb1/score_idistill.py $W $ck $W/out/scores_s${S}_$v.csv 128 ) >> $W/out/score_s$S.log 2>&1
-  done
+  EPC=250; [ -n "$SM" ] && EPC=6
+  $PY -I $W/cb1/make_csvs.py train $W/smdd $W/lat | tee $W/out/train_csv.log
+  mkdir -p $W/frll; $PY -I $W/cb1/make_csvs.py frll $W/eval_crop $W | tee -a $W/out/train_csv.log
+  run_seed() {
+    local S=$1 t1=$(date +%s)
+    ( cd $C && IDS_LAT=$W/lat IDS_FRLL=$W IDS_SEED=$S $RUN train.py --train_csv_path $W/smdd/train.csv --test_csv_path $W/eval_all.csv \
+        --model_name resnet18_mult --output_dir $W/out/cls_s$S --model_path $W/out/cls_s$S/idistill_s$S.pt --is_train True --is_test False \
+        --max_epoch $EPC --batch_size 16 --latent_size 128 --lr 1e-4 --weight_loss 1 --loss_measure prefusion ) > $W/out/cls_s$S.log 2>&1
+    echo "classifier seed $S: $(( $(date +%s) - t1 )) s"; { grep -E "Lowest EER|Train process Stopped|^epoch" $W/out/cls_s$S.log || true; } | tail -3
+    for v in best valbest last; do
+      local ck=$W/out/cls_s$S/idistill_s$S.pt; [ $v != best ] && ck=$ck.$v
+      ( cd $C && $RUN $W/cb1/score_idistill.py $W $ck $W/out/scores_s${S}_$v.csv 128 ) >> $W/out/score_s$S.log 2>&1
+    done
+  }
+  case $STAGE in all) SL=${SEEDS:-401 402 403} ;; *) SL=${SEED:-401} ;; esac
+  for S in $SL; do run_seed $S & done; wait
+  for S in $SL; do [ -s $W/out/scores_s${S}_best.csv ] || { echo "seed $S produced no scores"; FAILED=1; }; done
   cp $W/eval_all.csv $W/eval_all_meta.csv $W/smdd/train.csv $W/out/ 2>/dev/null || true
   [ $STAGE = cls ] && rm -f $W/out/lat.tar $W/out/crops.tar $W/out/OUT_SHA256SUMS && rm -rf $W/out/ae
-  ( cd $W/out && find . -type f ! -name '*.tar' | LC_ALL=C sort | xargs sha256sum > OUT_SHA256SUMS_cls_s$S )
+  ( cd $W/out && find . -type f ! -name '*.tar' | LC_ALL=C sort | xargs sha256sum > OUT_SHA256SUMS_cls )
 fi
 kill $MP 2>/dev/null || true
 tar -cf $TMPDIR/$T.tar -C $W/out .
 cp $TMPDIR/$T.tar $R/$T.tar.part && mv $R/$T.tar.part $R/$T.tar && ( cd $R && sha256sum $T.tar > $T.tar.sha256 )
 echo "DONE $T $(cat $R/$T.tar.sha256) $(date)"
+[ -z "${FAILED:-}" ] || exit 4

@@ -123,6 +123,23 @@ No CB1 score read yet.
   14.80; the manuscript's 9.50 is a transcription error (OrthoMAD WebMorph BPCER@APCER20).
 - 04:03. `src/CB1/analyse_idistill.py` written and tested on the smoke tar (runs end to end).
 
+- 08:28. Lead: WCSS smoke 6308827 FAILED at 03:02 after 18 s. Log: all four pack hashes OK, then pip: "Could not find a
+  version that satisfies the requirement importlib-metadata>=4.4; python_version < '3.10' (from markdown)". The AD5
+  wheel house lacks importlib-metadata / zipp (needed by Markdown 3.7, a tensorboard dependency, on Python 3.9). Fix:
+  code pack v4 (`/mnt/t7/smad_next/CB1/packs/idistill_code_v4.tar`, sha256 3669936c...) ships
+  `wheels_extra/{importlib_metadata-8.5.0, zipp-3.20.2}` and the job script adds `--find-links $W/cb1/wheels_extra`.
+  Also fixed in the source script (not in the running DGX copy): the AE_RESUME edit had moved the log redirect into a
+  comment. New mode STAGE=all: autoencoder, then seeds 401-403 in parallel on the same GPU (24 CPUs), one job carrying
+  its whole workload (no dependent job).
+- 08:29. Mistake and repair: building v4 I removed `/mnt/t7/smad_next/CB1/packs/idistill_code.tar` (v3), which the DGX
+  run root links to and the DGX classifier stage would hash again. Rebuilt it from the DGX run's own extracted v3 copy
+  (`dgxrun/tmp_STAGE_ae/ids/cb1`, __pycache__ excluded) as `packs/idistill_code_v3_rebuilt.tar`, sha256 cffec538...,
+  and updated `dgxrun/packs/CB1/idistill_code.tar.sha256`; file list identical to v4 minus wheels_extra; the scorer is
+  byte-identical. The running DGX autoencoder is unaffected.
+- 08:30-08:31. v4 uploaded to WCSS (hash verified there). sbatch of the smoke (STAGE=all SMOKE=1, 1 H100, 24 CPUs,
+  1 h) refused twice: "Unable to contact slurm controller (connect failure)". Stopped after the one allowed retry and
+  reported.
+
 ## 3. Data
 
 See `prereg.md` section 2. Corrected MAD22 aligned frames and E7 pools:
