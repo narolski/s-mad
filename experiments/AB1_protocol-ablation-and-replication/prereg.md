@@ -343,4 +343,7 @@ training-score file). The crash came in the loading loop, before any statistic, 
 or shown; nothing was written. Fix (code only, rules unchanged): training flags per row kind are taken from the file's
 `kind` field; and, using the files' own `manifest_sha256` fields, the reader now also checks that each network was
 scored on ab1_eval.csv (93a5ba23…) and trained on its arm's manifest. Reader sha256 fb990bb5… → 74ecdf7a…. The read is
-then run once.
+then run once (14:29). Record gaps noted by the results review: the mock never loaded a scores_train.npz, which is why
+the crash was not caught; the fixed reader 74ecdf7a was pinned and committed with the result (8109cad, 14:31), after
+the run, not before it. The reviewer checked the diff (loading and provenance checks only) and recomputed every number
+independently with equal results.

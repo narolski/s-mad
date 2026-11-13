@@ -2,11 +2,16 @@
 
 ## 1. Question and current answer
 
-13 Nov 2026, 14:35. Status: all 40 fits done and read once as registered (result.md); results review pending.
-Two questions. (a) Do the replacement storage test (contrast 2-prime, C2P) and contrast 1 (Sb above B on landmark
-morphs) replicate on five new seeds (408-412) on WCSS H100? (b) Which part of the protocol (warp-only images, halves,
-stored-small copies, matched splice negatives) carries which reduction (warp, softness, storage, seam / same-person
-splice)? No answer yet. No arm is a method candidate.
+13 Nov 2026, 14:45. Status: finished; read once as registered and reviewed (`result.md`, `REVIEW_AB1_20261113.md`).
+Two questions, on 40 CLIP ViT-B/16 LoRA networks (8 arms × seeds 408-412, WCSS H100, development data only):
+(a) Replication: contrast 1 (Sb above B on FFHQ landmark morphs) replicates on 5 of 5 seeds, but Sb is not shown to
+exceed the best single statistic; the replacement storage test, read for the first time on these seeds, is inconclusive
+for Sb (passes at the trained size on 5 of 5, at 112.7 px on 3 of 5, failing only a two-sided mean bar while its flag
+rise is 0) and for B. (b) Mechanism: the storage reduction is spread across components (without stored-small copies Sb
+fails the bars at the trained size but keeps only 20-38% of the plain arm's reaction; stored copies alone do not
+suffice); the matched splice negatives keep same-person splices down (0.36-0.41 against 0.70-0.74 without them); the
+warp-only and seam-only reads sit at the floor; the native halves are not needed given their stored copies. No arm is a
+method candidate.
 
 ## 2. Timeline
 
@@ -75,7 +80,11 @@ splice)? No answer yet. No arm is a method candidate.
   failures). All 40 tars fetched and verified (T7 drive and Lustre).
 - 14:26 first read run crashed while loading training scores (KeyError 'id'; scores_train.npz has path/kind), before any
   statistic: deviation D1 in prereg; reader fixed (74ecdf7a…, also checks manifest hashes). 14:31 read once.
-  Verdicts and numbers in result.md. Results review next.
+  Verdicts and numbers in result.md.
+- 14:38 results review (Opus): every number and verdict reproduces; corrections F1-F9 applied to result.md (storage
+  spread across components; H-ab2 floor-limited, H-ab3 not; "not shown to exceed" the floor; S3 reduction is about the
+  training fit; H-sp1 shrinkage; SbH repeats confound; Δm toward genuine). Reviewer's scripts kept in src/AB1/review/,
+  output review_recompute.json; review text REVIEW_AB1_20261113.md.
 
 ## 3. Data
 

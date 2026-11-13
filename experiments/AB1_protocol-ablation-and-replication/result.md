@@ -3,7 +3,8 @@
 Read once on 13 Nov 2026 at 14:31 CET by the AB1 owner, as registered (prereg.md with amendments 1-2 and deviation D1;
 reader `src/AB1/ab1_read.py` 74ecdf7a…, `--branch R`). Development data only (FFHQ hold-out and landmark_combined, our
 FRGC / colorFERET development ladder and splices); no benchmark or sealed set; the 191-host test ladder was not read.
-No arm here is a method candidate. Results review: pending.
+No arm here is a method candidate. Results review done 13 Nov (`REVIEW_AB1_20261113.md`; every number and verdict
+recomputed independently; corrections F1-F9 applied below).
 
 ## What was run
 
@@ -27,11 +28,11 @@ No arm here is a method candidate. Results review: pending.
 | R1, Sb: C2P, first test at seeds 408-412 | **inconclusive, no claim** | passes 5 of 5 seeds at fm61, 3 of 5 at amsl112 (A's control met 5 of 5 at both). Fails at amsl112 on 409 and 411 only on the |Δm| bar: Sb's mean genuine logit moves toward genuine by 0.12 and 0.07 SD, more than a third of A's +0.28 / +0.19; Δf there is 0.000 |
 | R1, B | **inconclusive, no claim** | passes 2 of 5 at fm61 (Δf +0.021 to +0.100), 4 of 5 at amsl112 |
 | H-new-1 (storage evasion), Sb and B | **falsified** for both | Δm_att between −0.06 and +0.07 SD at both sizes (Sb −0.06 to +0.04; B −0.00 to +0.07) |
-| R2, contrast 1 | **replicated** (5 of 5) | Sb − B +0.15 to +0.21; Sb − A +0.12 to +0.14; floor not exceeded on every seed (Sb 0.873-0.906 against the best single statistic 0.886; 2.5% bound of Sb − floor −0.033 to +0.001) |
+| R2, contrast 1 | **replicated** (5 of 5) | Sb − B +0.15 to +0.21; Sb − A +0.12 to +0.14; not shown to exceed the best single statistic (Sb 0.873-0.906 against 0.886, point estimate above on 4 of 5; the registered 2.5% bound of Sb − floor is above 0 on 1 of 5 seeds: −0.011, −0.013, +0.001, −0.018, −0.033) |
 | H-ab1: stored-small copies carry the storage reduction | **falsified** | SbS Δf / A Δf: fm61 0.20-0.29, amsl112 0.20-0.37 (≤ 1/3 on 5 and 4 of 5) |
 | H-ab1s: stored-small copies alone suffice on the plain recipe | **falsified** | AS passes C2P on 0 of 5 at fm61 (Δf +0.065 to +0.144; A +0.265 to +0.385), 3 of 5 at amsl112 |
 | H-ab2: warp-only images carry the warp reduction | **falsified** (seed-mean rule) | SbZ − Sb warp-only placement mean −0.001 [−0.007, +0.005]; but see below: A places 0-0.5% too |
-| H-ab3: native halves carry the softness reduction | **falsified** | SbH − Sb development storage rise mean +0.000 [−0.001, +0.002] |
+| H-ab3: native halves carry the softness reduction | **falsified** | SbH − Sb development storage rise mean +0.000 [−0.001, +0.002], on a pool where A reacts (+0.044 to +0.088) |
 | H-ab3s: stored-small copies carry the development storage rise | **falsified** (seed-mean; per-seed rule inconclusive) | SbS − Sb mean +0.018 [+0.013, +0.023]; SbS 0.015-0.024 against A 0.044-0.088 |
 | H-ab4: registered Sp predictions | **falsified** (expected, floor and ceiling) | Sp S0 placed 0.01-0.04 (Sb 0.00); S0-vs-S4 AUC Sp 0.989-0.994, Sb 0.989-0.992 |
 | H-sp1: Sp − Sb landmark_combined ≥ +0.03 | **inconclusive, no claim** (2 of 5) | +0.028, +0.030, +0.010, +0.015, +0.044 |
@@ -41,25 +42,36 @@ No arm here is a method candidate. Results review: pending.
 | SbL | not run (condition not met) | |
 
 Plain words, within the registered limits (development data, 5 seeds, one GPU model):
-- Contrast 1 replicates on new seeds and a new platform: Sb ranks FFHQ landmark morphs above B and A by 0.12-0.21 AUC,
-  but not above the best single statistic.
+- Contrast 1 replicates on new seeds and a new platform (seed and GPU model change together): Sb ranks FFHQ landmark
+  morphs above B and A by 0.12-0.21 AUC, but is not shown to exceed the best single statistic (the registered bound is
+  above 0 on 1 of 5 seeds).
 - The replacement storage test, read for the first time on these seeds, is inconclusive for Sb: at the decision rule
   Sb's storage reaction is at most +0.045 at the trained size and +0.021 at 112.7 px on every seed, against A's +0.27
   to +0.39 and +0.06 to +0.15; the registered rule fails on two seeds at 112.7 px only because Sb's scores move toward
-  the genuine side by more than a third of A's (absolute) shift. No storage evasion (H-new-1 falsified).
-- None of the four removed components is, on its own, what keeps the storage reaction small: without the stored-small
-  copies, Sb's reaction is about a fifth to a third of A's (Δf +0.055 to +0.110 at the trained size); stored-small copies
-  added to the plain recipe cut A's reaction to about a quarter to two fifths but leave it above 5 points at the
-  trained size. (The secondary table marks the stored-small copies as the one omission that brings part of the
-  trained-size reaction back: +0.054 [+0.038, +0.070].)
-- The warp-only and softness hypotheses were falsified, but the development reads have no reaction to remove: even
-  the plain arm A places 0-0.5% of warp-only images and 0-0.3% of halves; only the storage rise on development photos
-  shows an A reaction (+0.04 to +0.09), and no omission arm brings back more than +0.024 of it.
+  the genuine side by more than a third of A's (absolute) shift. In Sb, stored copies of genuine photos score slightly
+  more genuine than the originals (median −0.07 to −0.14 SD at 112.7 px); that, not a flag rise, is why seeds 409 and
+  411 miss the two-sided mean bar (Sb's native genuine SD, 0.92-1.36, is also smaller than A's, 1.44-2.07, which enlarges
+  |Δm| in SD units). No storage evasion (H-new-1 falsified).
+- The storage reduction is spread across components rather than carried by one. Without the stored-small copies, Sb
+  no longer meets the storage-test bars at the trained size (SbS fails C2P: 0 of 5 seeds at fm61, Δf +0.055 to +0.110),
+  but it keeps only a fifth to just over a third of A's reaction (ρ 0.20-0.29 at fm61, 0.20-0.38 at 112.7 px). Stored-
+  small copies added to the plain recipe are not enough either (AS: 0 of 5 at fm61). Removing the matched splice
+  negatives adds a smaller rise (+0.024 [+0.017, +0.031], below the +0.05 bar). Removing the warp-only images or the
+  native halves adds none.
+- H-ab2 cannot be read on the development warp-only pool (A places 0-0.5%). H-ab3 is falsified on a pool where A
+  does react (+0.04 to +0.09): given their stored-small copies, the native halves are not needed for the development
+  storage rise (a narrow contrast, since SbH keeps af0_half61). For H-ab3s, "falsified" means only that a rise of +0.05
+  is excluded: the stored-small copies carry a small, consistent part of it (SbS − Sb +0.013 to +0.022 on every seed;
+  SbS 0.015-0.024 against A's 0.044-0.088).
 - The matched splice negatives (S0 and S3 together) are what keeps same-person splices down: without them Sp flags
   0.70-0.74 of same-person splices against Sb's 0.36-0.41, and ranks them closer to two-person splices (S3-vs-S4 AUC
   0.69-0.72 against 0.76-0.80). This is set after seeing seeds 403-405 and confirmed on 408-412; part of the rise is
-  built in (Sp never sees S3 negatives); no S0-against-S3 attribution. Sp's landmark_combined gain (+0.01 to +0.04) is
-  not established (H-sp1 inconclusive).
+  built in (Sp never sees S3 negatives); no S0-against-S3 attribution. Sb flags 29-35% of its own training same-person
+  splices on every seed, so the reduction is about the training fit carried over to held-out persons from the same
+  generator, not a demonstrated generalisation; the ranking change (H-sp3b) is the informative part. Sp's
+  landmark_combined gain is not established (H-sp1 inconclusive): the 403-405 gain (+0.039 to +0.065) roughly halved on
+  new seeds (+0.010 to +0.044, mean +0.026; shrinkage expected after a direction chosen from the data), positive on 5 of
+  5, below the +0.03 margin on 3.
 
 ## Per-network table
 
@@ -89,8 +101,9 @@ Per network, seeds 408 / 409 / 410 / 411 / 412 (WCSS H100; own rule logit > 0; d
 
 Floor (best single statistic on landmark_combined): 0.886; 27-statistic baseline 0.814.
 
-Training-row flags (printed): Sb flags 0.32 of its own training same-person splice negatives at seed 408 and misses
-6% of its training two-person splices; every other training row kind is fitted (0 or 1). Full table in
+Training-row flags (printed): Sb flags 0.29-0.35 of its own training same-person splice negatives (0.32 at seed 408)
+and misses about 6% of its training two-person splices at seed 408; every other training row kind is fitted (0 or 1).
+SbH fits its training S3 best (0.20-0.22 flagged). Full table in
 `ab1_read.json` (`train_flag_by_kind`).
 
 ## Secondary attribution table (seed-mean rule; no multiplicity correction)
@@ -126,6 +139,32 @@ Training-row flags (printed): Sb flags 0.32 of its own training same-person spli
   comparisons are not on one GPU. The A100-to-H100 difference on one FS1 network was small (p99 0.005, max 0.026
   logits) and enters nothing here.
 - Volume matching gives repeated rows extra weight; omission arms see each remaining image 1.2-1.4 times as often.
+  SbH's lower S3 placement (−0.080 [−0.102, −0.058]) and lower landmark_combined AUC (−0.032 [−0.044, −0.020]) cannot be
+  separated from its 1.44 passes per image (the random-drop control was not run).
 - The development warp-only, halves and camera-photo pools sit at the floor for every arm, so H-ab2 and H-ab3 cannot
   distinguish "the component is not needed" from "there is nothing to reduce on this pool".
 - Amendment-2 directions were set after seeing seeds 403-405 (disclosed); the margin-free tests are weak evidence.
+
+## Post hoc readings from the results review (descriptive, no pass mark; reviewer's code `src/AB1/review/`, output `review_recompute.json`)
+
+- Across Sb, SbZ, SbH and SbS (20 networks), S3 placement and landmark_combined AUC correlate within seed at r = 0.73
+  (p = 0.0003); Spearman over all 25 splice-trained networks 0.79: in these arms, whatever lowers same-person splice
+  flags also lowers landmark detection.
+- The FFHQ persons whose flag flips under fm61 storage in AS and SbS are mostly a subset of A's (A&AS 17-28 of 22-44
+  against chance 6-15; A&SbS 10-21 of 16-32 against chance 4-12).
+- FFHQ hold-out warp-only images (ms1ffhq "zero", not at the floor): excess placement over native photos A +0.06 to
+  +0.10, Sb +0.03 to +0.06; SbZ − Sb −0.027 to −0.007 (removing warp-only images does not raise it).
+- Mean Δm at amsl112 orders with the per-pass weight of stored-small genuine copies: SbH −0.11, SbZ −0.08, Sb −0.07,
+  Sp −0.03, SbS +0.04.
+
+Mechanism-table wording allowed by the review (development data, 5 seeds, H100, arms made by dropping rows; never
+"removes"; never "R1 passed for Sb"): stored-small copies are needed to meet the storage bars at the trained size, are
+not enough alone, and are not the only carrier; matched splice negatives (S0 + S3 together) halve same-person splice
+flags and change their ranking, close to built in, no S0/S3 split; warp-only images and seam-only splices are not
+testable on the development pools; native halves are not needed for the development storage rise given their stored
+copies.
+
+Follow-ups proposed by the review (each needs registration and the author; about 6-12 H100-hours each): a random-drop
+control repeated like SbH; Sb without af0_half61 only (reverse storage cue); Sb without both the stored copies and the
+matched negatives (additivity); SbL with the trade-off prediction added before it runs; S3-only against S0-only
+negative arms. Zero GPU: sharpness enrichment of flipped persons.
