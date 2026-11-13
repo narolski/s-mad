@@ -213,9 +213,11 @@ per-network AUCs, the probit gains, the decomposition AUCs, the within-quintile 
 
 Reader `src/AB1/ab1_pm_read.py` (ba6efdad…), AB1 H100 fit-job scores of A, B, Sb at 408-412 (all 15 read), output
 `ab1_pm_read.json`. Label: recipe at replication seeds 408-412, development plus clean test hosts, post hoc, not
-held-out; not a property of the frozen networks 403-407. R4 is a trained positive (OpenCV engine) in all three arms; R3
+held-out; the frozen networks' recipe at fresh seeds 408-412 on H100; the frozen networks 403-407 themselves were not
+read on this contrast. One of several AB1 post hoc reads (two contrasts × two comparators, no correction). R4 is a trained positive (OpenCV engine) in all three arms; R3
 is in no training list; Sb alone has same-person splice negatives, so an Sb − B gain on R4 vs R3 reads as transfer from
-those negatives to whole-frame same-person morphs.
+those negatives to whole-frame same-person morphs; Sb vs B does not separate this from Sb's face-spliced positives or
+its larger unique-image count (the Sb − Sp contrast, not yet read, would).
 
 | Contrast (decides) | Sb − B seed-mean [95% component bootstrap] | per seed | Sb − A seed-mean [95%] | Verdict (B / A) |
 |---|---|---|---|---|
@@ -225,22 +227,34 @@ those negatives to whole-frame same-person morphs.
 Checks of the rule: unstratified seed-mean gains agree in sign (R4 vs R3: +0.046 against B, +0.065 against A); the
 development and clean-test seed means agree in sign (Sb − B +0.024 on the 100 development hosts, +0.098 on the 80
 clean test hosts), so no cap applies; 151 components (largest 6); interval half-width 0.026 (B) and 0.030 (A).
+The sign agrees on both host sets (unstratified +0.036 development, +0.065 clean80); on the development hosts alone the
+gain is not distinguishable from zero (reviewer's bootstrap [−0.013, +0.066], seed 411 negative; descriptive), and on
+either subset alone the D strata hold only about 60% of rows. The S4-vs-S3 clean80 interval uses the 1,246 of 2,000
+draws in which every network's stratified AUC was readable (unregistered conditioning); on clean80 the strata hold 60% of
+rows; the unstratified seed-mean gain is +0.169 (reviewer's interval [+0.13, +0.20]).
+At its own rule Sb still flags 85% of same-person whole-frame morphs (B 92%, A 98%; development + clean80, seed means;
+reviewer's recomputation); every arm separates R3 from bona fide photos at 0.996-1.000; the gain is in ranking, not in
+rejecting same-person morphs.
 
 Printed (no verdict): R4 vs R3 Sb − B on dev+clean69 +0.036, test191 +0.070, test159 (not shape-linked) +0.064;
 FaceMorpher R4 vs R3 (the less-trained check) Sb − B +0.044 on dev + clean80, +0.072 on test191. S4 vs S3 Sb − B on
 dev+clean80 +0.175, on development hosts alone +0.212. Example levels at seed 408 (dev + clean80, D-stratified): R4 vs R3
 Sb 0.870, B 0.816, A 0.793; FaceMorpher Sb 0.857, B 0.803, A 0.777; S4 vs S3 on clean80 Sb 0.628, B 0.537, A 0.525.
 
-Adversary floors (printed, other row sets: ri = all 291 hosts, test = 191): on ri_R4_vs_R3 (all-cue floor 0.793,
+Adversary floors (printed; "exceeds" = lower 95% bound of the host-bootstrap AUC difference > 0, \`check.exceeds\`,
+unstratified, on the adversary's row sets — ri = all 291 hosts, test = 191 — not the deciding host set): on ri_R4_vs_R3 (all-cue floor 0.793,
 nuisance 0.705) Sb's AUC 0.849-0.866 exceeds the all-cue floor on 5 of 5 seeds, B (0.798-0.814) and A (0.772-0.802) on 0
 of 5; on test_cv_R4_vs_R3 (floor 0.774) Sb exceeds it on 4 of 5, B and A on 0; on test_fm_R4_vs_R3 (floor 0.796) none of
 the three exceeds it (Sb 0.799-0.835). On the splice contrasts (ri_S4_vs_S3 floor 0.773, dev_S4_vs_S3 0.82,
 test_S4_vs_S3 0.754) no network exceeds the all-cue floor (Sb 0.715-0.804); Sb exceeds the nuisance floor on 3 of 5
 (ri), 1 of 5 (dev) and 2 of 5 (test). The adversary's same-data transfer learner is not yet committed (not printed).
 
-What this licenses (registered wording): on development data and clean test hosts, Sb ranks two-person above
-same-person whole-frame morphs better than the protocol-only and plain recipes, on a contrast whose negative class (R3)
-no arm was trained on, beside the adversary's floor (beyond the all-cue floor on the pooled 291-host contrast for Sb
-only); read as transfer from Sb's same-person splice negatives; post hoc, not held-out evidence. The S4-vs-S3 gain shows
+What this licenses (registered wording, qualified by the results review \`REVIEW_AB1_A4_20261113.md\`): on development data
+and clean test hosts, Sb ranks two-person above same-person whole-frame morphs better than the protocol-only and plain
+recipes, on a contrast whose negative class (R3) no arm was trained on. Sb exceeds the all-cue floor on the pooled
+291-host contrast on 5 of 5 seeds and on test_cv on 4 of 5, not on test_fm; B and A never exceed it, i.e. B and A sit at
+what simple morph cues achieve. Read as consistent with transfer from Sb's same-person splice negatives (not separated
+from its splice positives or image count). All recipes still flag most same-person morphs. Post hoc, not held-out
+evidence; no generalisation, benchmark or frozen-network claim. The S4-vs-S3 gain shows
 what Sb's splice training buys on new persons (asymmetric by design), and does not exceed the adversary's all-cue floor.
-Results review pending.
+Results review done 13 Nov (verdicts recomputed independently and reproduced to the third decimal; F1-F7 applied).
