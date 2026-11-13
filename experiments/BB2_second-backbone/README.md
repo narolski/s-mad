@@ -147,6 +147,11 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   fit that reaches the limit is an infrastructure failure: rerun once with twice the time (prereg section 4).
   Forecast start 18:10 (unreliable).
 
+- 09:4x amendment 3 registered (fda35f4) after its pre-run check (`experiments/reviews/PRERUN_BB2_A3_20261113.md`);
+  probe and amended C2P job uploaded and hash-checked on WCSS; dispatcher asked to cancel 6310085 and submit the
+  replacement smoke `wcss_bb2_c2psmoke2.cmd`. Lead: fits stay queued; the CLIP branch stays as registered ("passes" ->
+  repeat sentences; any other verdict -> "No CLIP effect to repeat; printed only"); no further change.
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
