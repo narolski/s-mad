@@ -132,6 +132,9 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   FIXES F1-F8, all applied. 14:07 git incident (an old stash of another owner popped by my commit routine; three SA1
   files restored to HEAD; stash kept); from then on `git pull --rebase --autostash` only.
 - Fri Nov 13 02:30:37 PM CET 2026: part 4 registered (prereg.md part 4); smoke and array go to the dispatcher queue.
+- 13 Nov ~14:40: array throttle raised to 20 (note 08a1648); the dispatcher submitted the smoke as WCSS job 6312973
+  (ms1p4-smoke) and the array as 6312974_[0-19%20] (ms1p4-fit, limit 3:00), both Nice 50, behind SE1. The array counts
+  only if MS1P4_SMOKE_DONE appears in logs/ms1p4-smoke-6312973.out; the dispatcher cancels it otherwise.
 - 13 Nov 09:40, label fixed before the MS1 read (lead confirmed): two PRINTED-ONLY reads compare scores made with
   different TF32 settings on the same GPU model: (a) the CFD offset AUC printed beside P2 (CFD scored in the held-out
   step by rescore.py, TF32 off, against development camera photos scored in the fit job by pn1_score.py, TF32 on), and
