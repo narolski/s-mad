@@ -123,6 +123,9 @@ Within the calibration sources only. G_max leaves out the protocol-genuine one-p
 
 ### Z5: storage evasion of morphs (copied from the C2P owner's committed read, `PN1 c2p_read.json`, commit 0cb89c5)
 
+**Provisional.** The C2P post-result review (e2af82c) quarantines the hold-out scores of every gate-failed network
+until a re-scoring (C2P-R) is read. Z5 will be re-copied from the C2P-R read. No quarantined score was opened here.
+
 Formula and rule of C2P.4 (H-new-1). Only networks that passed the C2P gate count (denominator 5). No value was
 computed here, so no extra look at the hold-out was taken.
 - **A:** "not available". The C2P gate (L40S, TF32 off) failed for all five A networks on the max condition (max
