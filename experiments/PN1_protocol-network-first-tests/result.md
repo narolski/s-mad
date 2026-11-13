@@ -296,3 +296,37 @@ The experiment's owner agent was stopped by the author during the night of 12 to
 *Post hoc, descriptive, not a claim:* the plain recipe's storage reaction is present on every fresh seed but sits in the upper tail (own-rule flags rise from 6–11% to 21–31%). Protocol negatives reduce the rise to +2.5 to +5.5 points (B) and +0.5 to +2.7 points (Sb), and reverse the bulk shift. The reaction is reduced, not removed. Sb flags 31–41% of same-person face splices.
 
 Note on fs.json: the seed labels "m1 (GPU 0)" / "m2 (GPU 1)" are stale; under deviation D3 all fits ran on one GPU (GPU-5bd20020).
+
+## Ablation arm without matched splice negatives (Sp), seeds 403-405: registered reading, 13 Nov 2026 (10:08 CET)
+
+Read by the AB1 owner on the lead's instruction (the PN1 owner had been stopped), under the Sp registration
+(prereg.md "Registration Sp", 1b8fe48; pre-run check PRERUN_PN1_SP_20261112.md), development data only.
+- Checks before reading: the three tars verify against their .sha256 files and against `fs_kept/tars_sp_sha256.txt`
+  (403 40f8d765…, 404 05d0eb91…, 405 f78348f2…). Reader `src/PN1/sp_read.py` sha256 3ff01108… equals the registered pin
+  (commit c30ecdd). Every score used comes from each network's own fit job (`scores_eval.npz` written by pn1_score.py
+  737d6e35…, TF32 on, limit 0): Sp, Sb and B at 403-405 all name the same GPU (A100-PCIE-40GB, GPU-5bd20020…), the same
+  host (e8bf0b3abe77) and the same container image; steps 6,250. The Sp pack (76528f16…) is the FS1 pack plus an overlay
+  holding only train_Sp.csv and SHA256SUMS, so scorer and evaluation rows are FS1's. No rescoring, no row from another
+  machine.
+- Run once: `python3 -I src/PN1/sp_read.py` (output `tier_fs/sp.json`, stdout `/mnt/t7/smad_next/PN1/sp_read_stdout_20261113.txt`).
+
+| Seed | Dev S0 flagged, Sp / Sb / B | Dev S0-vs-S4 AUC, Sp / Sb | Pred. 1 | Pred. 2 | Dev S3 flagged, Sp / Sb / B | landmark_combined AUC, Sp / Sb | FFHQ storage share rising, Sp / Sb |
+|---|---|---|---|---|---|---|---|
+| 403 | 0.01 / 0.00 / 0.00 | 0.989 / 0.991 | no | no | 0.71 / 0.33 / 0.03 | 0.879 / 0.814 | 0.213 / 0.084 |
+| 404 | 0.01 / 0.00 / 0.01 | 0.992 / 0.992 | no | no | 0.73 / 0.31 / 0.02 | 0.917 / 0.874 | 0.342 / 0.156 |
+| 405 | 0.03 / 0.00 / 0.01 | 0.979 / 0.988 | no | no | 0.65 / 0.39 / 0.03 | 0.884 / 0.845 | 0.265 / 0.150 |
+
+**Registered verdict: falsified** (neither prediction holds on 3 of 3 read seeds). In the registration's terms: removing
+the seam-only and same-person splice negatives does not make the network flag seam-only composites (S0) and does not
+lower its seam-only against two-person splice separation.
+
+Printed only (registered as printed, no verdict): development same-person splices (S3) flagged 0.65-0.73 by Sp against
+0.31-0.39 by Sb at the same seed; landmark_combined AUC Sp − Sb +0.065, +0.043, +0.039; development S0-vs-S4 excess over
+the 3-statistic floor Sp 0.078-0.091, Sb 0.086-0.090; development face-only S0-vs-S4 AUC Sp 0.845-0.884, Sb 0.868-0.935;
+FFHQ storage share rising Sp 0.21-0.34, Sb 0.08-0.16 (this is the uncalibrated FS1 contrast-2 statistic, whose
+control failed; no mark applies). R1 floor-stratified AUC Sp 0.874 / 0.891 / 0.863, Sb 0.822 / 0.871 / 0.843; R3
+increment over the 27 statistics Sp 0.023-0.028, Sb 0.019-0.026; R4 floor-matched AUC Sp 0.859-0.891, Sb 0.804-0.857;
+R6 surround loss (complete minus combined AUC) Sp 0.073-0.114, Sb 0.119-0.177; R2 largest |ρ| about 0.20 for both.
+
+Label: development, n = 3 seeds; not about SBI or SelfMAD; no S0 against S3 attribution; no benchmark claim. Results
+review pending.

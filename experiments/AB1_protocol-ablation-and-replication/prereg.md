@@ -279,3 +279,10 @@ SbHS and the random-drop control (improvements 4-5; they need lead approval and 
   jobs or platforms. The smoke's rescoring of FS1 Sb s403 is a separate measurement and enters no AB1 read.
 - Reader `src/AB1/ab1_read.py` changed only in the R1 labels; new sha256
   `aacb11cdab662bb147a228195cdf6955bfa9f3b65656e90ecf9f3179c447e9e2` (replaces the line in `pins.sha256`).
+
+## Note (`date`: Fri Nov 13 10:10 CET 2026): the Sp 403-405 read was performed after this registration
+
+Section 11 states that the Sp 403-405 read did not exist at the registration commit (61f7994). On the lead's
+instruction the AB1 owner performed it afterwards, at 10:08, under its own earlier registration (PN1 "Registration Sp",
+1b8fe48; reader sp_read.py 3ff01108…), on A100 PCIe networks; result in PN1 `result.md`. H-ab4 of AB1 (the same
+predictions at seeds 408-412 on H100) is unchanged; its rules were fixed before that read.
