@@ -18,7 +18,7 @@ sys.path.insert(0, str(HERE))
 import bb2l_read as BR  # noqa: E402
 
 RF = pathlib.Path("/mnt/t7/smad_next/BB2/results_L")
-CUT = datetime.datetime(2026, 11, 14, 18, 0, 0)
+CUT = datetime.datetime(2026, 11, 15, 18, 0, 0)   # amendment 6 (author ruling 13 Nov 17:15)
 
 
 def main():

@@ -589,3 +589,19 @@ C2P job and SE1's SE fits. About 15 x 1.6 h ≈ 24 H100-hours.
   (tested locally with stand-in scripts: correct line -> rc 0; wrong LoRA lr -> killed, rc 3, after 7 s). E3 is queued
   unthrottled (array %15). The E2 production job is queued beside its smoke and is valid only if the smoke passes (the
   dispatcher cancels it otherwise). `src/BB2/wcss/bb2l_fit.sbatch` sha256 3fdec5a03b0bf3e6ad3a575be1b7014ed58200c062a112bec3fe1340b1f05a72 (replaces the pin above).
+
+## Amendment 6: reading deadline of the C2P job, E2 and E3 (`date` at writing: Fri Nov 13 05:14:58 PM CET 2026; before any tar of 6313488, 6313858, 6313861 or 6313860 exists)
+
+Author ruling, verbatim (NOTEBOOK, 13 Nov 17:15): "For now, assume that we can go over the cutoff date due to WCSS and
+Athena waiting time." Lead's rule, relayed by the dispatcher 17:15: "read once when all fits of the batch have ended,
+latest 15 Nov 18:00; rows arriving later are labelled late". This replaces, for these batches only:
+- **C2P job (6313488; A1.7):** "read by 14 Nov 2026 23:59 CET" -> read once when the job has ended, latest 15 Nov 2026
+  18:00 CET; nothing later is read, it is reported as late.
+- **E2 (6313858 smoke, 6313861 production; amendment 5):** read once when the production job has ended, latest
+  15 Nov 2026 18:00 CET; later output is labelled late and not read as registered.
+- **E3 (6313860; amendment 4):** the fetch deadline "14 Nov 2026 18:00 CET" becomes 15 Nov 2026 18:00 CET everywhere
+  (seed counting and reading). The seed mode is frozen (freeze_mode_L.py, unchanged rules) when all 15 E3 fits have
+  ended (each fetched and verified, or a remote-confirmed failure) or at 15 Nov 2026 18:00 CET, whichever is first;
+  five-seed rules if all six 406/407 fits are fetched and verified at the freeze, else three-seed rules; tars arriving
+  after the freeze are labelled late and never read. `src/BB2/freeze_mode_L.py` cut-off changed accordingly (sha256 c993e12adad7e25f01afd0ff5e3995f491495d8e44acb808ee5c02044fb7965b).
+Nothing else changes: the BB2 part-1 reading (frozen at 546d892, read 15:36) is untouched; the queue order stays as set.
