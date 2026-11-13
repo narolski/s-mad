@@ -1,0 +1,19 @@
+arm,ckpt,bench,n,mean,published,delta,lo,hi,M,reading
+A12BR_M1,es,mad22c,5,13.31,10.53,2.78,-0.23,5.8,3.16,inconclusive
+A12BR_M1,es,frllm,5,34.46,8.11,26.34,16.54,36.14,2.43,does not reproduce (worse)
+A12BR_M2,es,mad22c,5,33.74,9.42,24.32,13.1,35.54,2.83,does not reproduce (worse)
+A12BR_M2,es,frllm,5,71.48,,,,,,
+A12BR_M5,es,mad22c,8,21.31,,,,,,
+A12BR_M5,es,frllm,8,16.58,10.62,5.96,0.78,11.13,3.19,inconclusive
+A12BR_M6,es,mad22c,5,23.98,,,,,,
+A12BR_M6,es,frllm,5,61.26,6.6,54.67,49.11,60.22,1.98,does not reproduce (worse)
+A12BR_M8,es,mad22c,5,23.06,13.69,9.37,-0.32,19.05,4.11,inconclusive
+A12BR_M8,es,frllm,5,47.8,8.96,38.84,30.05,47.64,2.69,does not reproduce (worse)
+A12BR_M8O,es,mad22c,5,27.59,13.69,13.9,10.38,17.42,4.11,does not reproduce (worse)
+A12BR_M8O,es,frllm,5,61.66,8.96,52.7,44.42,60.98,2.69,does not reproduce (worse)
+A12BR_M4,es,mad22c,5,46.72,,,,,,
+A12BR_M4,es,frllm,5,76.11,,,,,,
+A45_incepofc,last,mad22c,5,32.2,10.53,21.68,15.76,27.6,3.16,does not reproduce (worse)
+A45_incepofc,last,frllm,5,44.5,8.11,36.38,27.87,44.9,2.43,does not reproduce (worse)
+A45_hrnetw18,last,mad22c,5,40.33,9.42,30.91,22.18,39.64,2.83,does not reproduce (worse)
+A45_hrnetw18,last,frllm,5,63.87,,,,,,

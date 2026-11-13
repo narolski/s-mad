@@ -218,3 +218,17 @@ after the CNN re-score and the A45 arms have finished, one GPU process at a time
   column. If the author funds the rented variant, the DGX run continues as a second, separately labelled run.
 - Stop rule: the step rate is measured in the first ten minutes; if the projected end is after 14 Nov 16:00 the
   coordinator is told before the run continues.
+
+## Amendment 4 (13 Nov 2026, 04:15 CET; after the results review, before any IDistill score exists)
+
+- IDistill gate and crop failures. The SMDD release crop script returns no crop for 416 of 1,222 FRLL FaceMorpher morphs
+  (and 9 of 1,221 OpenCV). The authors' pipeline evaluates only the crops their script writes (a failed file is simply
+  absent from their test CSV), so the binding gate of amendment 3 is computed on the written crops; the worst-case
+  analysis of amendment 1 F8 (a morph without a crop counts as accepted) is printed beside and is not binding.
+- FD-MAD wording (prereg section 8 applies): rows read "partial re-implementation; does not reach the published
+  number"; global-branch arms are compared with the published global-only means (MAD22 16.62, FRLL 2.08) as the
+  primary comparison, the fused numbers printed beside; fused at 256 gets no reading (local branch not functional:
+  s_local median about 1e-6).
+- The C1 actually used is the row-wise comparison with stored scores (amendment 1); the comparison with the A12 report
+  values in section 6 was not used, because those values are computed on the E7 genuine pool with the flip-averaged
+  score (results review F1). A table of A12-style versus CB1-style EERs is added (`review_addons/a12style_vs_cb1.csv`).
