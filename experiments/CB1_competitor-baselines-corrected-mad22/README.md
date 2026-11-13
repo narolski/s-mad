@@ -115,6 +115,14 @@ No CB1 score read yet.
   300 epochs about 21.5 h (end about 01:20 on 14 Nov); classifier estimated 2.5-7 h. Coordinator told at 03:50.
 - 03:55. Readings committed (b554c85): `result.md`, `tables_all.md`, `cnn_{es,last,a45}_*.csv/json`, FD-MAD files.
 
+- 03:55-04:30. Results review ("needs qualification"; F1-F8, H-new-1..3) applied: `src/CB1/review_addons.py` ->
+  `review_addons/{a12style_vs_cb1.csv,all_seed_readings.csv,auc_native.csv,c2_summary.json}`; result.md rewritten
+  (A12-style vs registered EER table; MixFaceNet release vs retrain decomposition; FD-MAD relabelled; paper labels without
+  "our retrain does not reproduce"); amendment 4 (IDistill gate on written crops, worst case beside; FD-MAD wording;
+  C1 deviation stated). OrthoMAD paper fetched (`/mnt/t7/smad_next/CB1/literature/orthomad.{pdf,txt}`): FRLL-AMSL EER
+  14.80; the manuscript's 9.50 is a transcription error (OrthoMAD WebMorph BPCER@APCER20).
+- 04:30. `src/CB1/analyse_idistill.py` written and tested on the smoke tar (runs end to end).
+
 ## 3. Data
 
 See `prereg.md` section 2. Corrected MAD22 aligned frames and E7 pools:
@@ -176,6 +184,15 @@ Copy A45 weights and stored scores from WCSS; run C1/C2; read; IDistill smoke an
 - WCSS 6308827 (IDistill smoke, owner CB1, code pack v2): pending, Slurm forecast 15 Nov 01:00; kept queued on the
   coordinator's instruction (carries its whole workload; runs about 30-60 min if it starts).
 - Not scored: M4 last.pt (descriptive). CNN scoring is complete otherwise.
+- When IDistill finishes (`dgxrun/prod_STAGE_cls_SEED_401.log` ends with "EXIT 0"): read with
+  `OMP_NUM_THREADS=2 nice -n 10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/CB1/analyse_idistill.py
+  /mnt/t7/smad_next/CB1/dgxrun/results/CB1/idistill_cls_s401.tar /mnt/t7/smad_next/CB1/analysis_idistill` -> gate JSON
+  (binding: test-selected checkpoint, FRLL native, written crops, mean within 1.5 of 2.90) and readings CSV (three
+  checkpoints, both benchmarks, native / aligned-native / E7 pools, BPCER at APCER, worst case for uncropped morphs).
+  Copy `idistill_cls_s401.tar` and `idistill_ae.tar` hashes into this folder; the weights are inside those tars (keep).
+  Unresolved review items for later: SelfMAD release on the corrected MAD22 (RS1 machinery, about 0.5 GPU-h after
+  IDistill); H-new-1 (retrain logits vs frame high-frequency energy; needs the author's view on spectral statistics);
+  H-new-2 (FD-MAD feature distances by resolution); H-new-3 (probability ties in A12 ledger EERs).
 
 ## 11. Reproduce from scratch
 
