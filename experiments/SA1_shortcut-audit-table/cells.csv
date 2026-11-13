@@ -29,7 +29,7 @@ row,shortcut,column,cell_id,status
 4,unseen camera source (source comparison),A,4-A,reviewed; two seeds only
 4,unseen camera source (source comparison),B,4-B,reviewed; two seeds only
 4,unseen camera source (source comparison),Sb,4-Sb,reviewed; two seeds only
-4,unseen camera source (source comparison),Sp,4-Sp,not measured (pending today)
+4,unseen camera source (source comparison),Sp,4-Sp,not measured
 4,unseen camera source (source comparison),SbM3,4-SbM3,not measured (pending today)
 4,unseen camera source (source comparison),MADation_ViT-B16,4-MADation_ViT-B16,reviewed
 4,unseen camera source (source comparison),MADation_ViT-L14,4-MADation_ViT-L14,not measured
@@ -88,7 +88,7 @@ row,shortcut,column,cell_id,status
 10,alignment or crop path,MADation_ViT-B16,10-MADation_ViT-B16,reviewed
 10,alignment or crop path,MADation_ViT-L14,10-MADation_ViT-L14,reviewed
 10,alignment or crop path,MixFaceNet-MAD,10-MixFaceNet-MAD,reviewed
-10,alignment or crop path,SelfMAD,10-SelfMAD,reviewed
+10,alignment or crop path,SelfMAD,10-SelfMAD,not measured
 11,data volume,A,11-A,n/a
 11,data volume,B,11-B,reviewed; two seeds only
 11,data volume,Sb,11-Sb,reviewed; two seeds only
@@ -99,7 +99,7 @@ row,shortcut,column,cell_id,status
 11,data volume,MixFaceNet-MAD,11-MixFaceNet-MAD,n/a
 11,data volume,SelfMAD,11-SelfMAD,n/a
 12,surround blend (whole-frame tools),A,12-A,unreviewed
-12,surround blend (whole-frame tools),B,12-B,reviewed; two seeds only
+12,surround blend (whole-frame tools),B,12-B,reviewed
 12,surround blend (whole-frame tools),Sb,12-Sb,reviewed
 12,surround blend (whole-frame tools),Sp,12-Sp,not measured
 12,surround blend (whole-frame tools),SbM3,12-SbM3,not measured
@@ -143,3 +143,30 @@ row,shortcut,column,cell_id,status
 16,expression / capture detail (FRLL smiling half),MADation_ViT-L14,16-MADation_ViT-L14,reviewed
 16,expression / capture detail (FRLL smiling half),MixFaceNet-MAD,16-MixFaceNet-MAD,not measured
 16,expression / capture detail (FRLL smiling half),SelfMAD,16-SelfMAD,reviewed
+17,softness / detail loss,A,17-A,unreviewed; two seeds only
+17,softness / detail loss,B,17-B,reviewed; two seeds only
+17,softness / detail loss,Sb,17-Sb,not measured
+17,softness / detail loss,Sp,17-Sp,not measured
+17,softness / detail loss,SbM3,17-SbM3,not measured
+17,softness / detail loss,MADation_ViT-B16,17-MADation_ViT-B16,reviewed
+17,softness / detail loss,MADation_ViT-L14,17-MADation_ViT-L14,reviewed
+17,softness / detail loss,MixFaceNet-MAD,17-MixFaceNet-MAD,reviewed
+17,softness / detail loss,SelfMAD,17-SelfMAD,reviewed
+18,processing cue in the surround of the development set,A,18-A,reviewed
+18,processing cue in the surround of the development set,B,18-B,reviewed
+18,processing cue in the surround of the development set,Sb,18-Sb,reviewed
+18,processing cue in the surround of the development set,Sp,18-Sp,not measured (pending today)
+18,processing cue in the surround of the development set,SbM3,18-SbM3,not measured
+18,processing cue in the surround of the development set,MADation_ViT-B16,18-MADation_ViT-B16,n/a
+18,processing cue in the surround of the development set,MADation_ViT-L14,18-MADation_ViT-L14,n/a
+18,processing cue in the surround of the development set,MixFaceNet-MAD,18-MixFaceNet-MAD,n/a
+18,processing cue in the surround of the development set,SelfMAD,18-SelfMAD,n/a
+19,operating point / bounded output scale,A,19-A,reviewed; two seeds only
+19,operating point / bounded output scale,B,19-B,reviewed; two seeds only
+19,operating point / bounded output scale,Sb,19-Sb,reviewed
+19,operating point / bounded output scale,Sp,19-Sp,not measured
+19,operating point / bounded output scale,SbM3,19-SbM3,not measured
+19,operating point / bounded output scale,MADation_ViT-B16,19-MADation_ViT-B16,reviewed
+19,operating point / bounded output scale,MADation_ViT-L14,19-MADation_ViT-L14,reviewed
+19,operating point / bounded output scale,MixFaceNet-MAD,19-MixFaceNet-MAD,not measured
+19,operating point / bounded output scale,SelfMAD,19-SelfMAD,reviewed

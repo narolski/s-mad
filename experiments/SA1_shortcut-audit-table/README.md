@@ -5,11 +5,12 @@
 The author asked for scientific evidence that the training protocol is shortcut-free: one row per known shortcut,
 one column per training arm or released detector, every cell from a paired control (the same images with and without
 the suspected cue), with seeds, intervals, source file and review status. Status 13 Nov 2026, about 09:45 CET:
-version 1 compiled from registered results only (no scoring). Of 144 cells, 66 are reviewed (20 of them on two seeds
-only), 12 unreviewed, 59 empty, 7 not applicable. For our own arms, 49 of 80 cells are empty. The best-measured row
+version 2 (reviewed) compiled from registered results only (no scoring). Of 171 cells (19 rows x 9 columns), 79 are
+reviewed (22 of them on two seeds only), 13 unreviewed, 68 empty, 11 not applicable. For our own arms, 56 of 95 cells
+are empty. The best-measured row
 (storage history of genuine photos, five fresh seeds) supports "reduced, not removed", not "removed". The table is
 `result.md`; the cell list is `cells.csv`. Waiting for today's readings (Sp ablation, SbM3 three-source training,
-contrast 2-prime storage test) to fill 8 pending cells.
+contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cells.
 
 ## 2. Timeline
 
@@ -18,7 +19,16 @@ contrast 2-prime storage test) to fill 8 pending cells.
   (`result.md`), MS1 (`README.md`), CB1 (`result.md`, `cb1_released_rs1_bpcer.csv`), SM1, AR1, AD4, AG1, EV1, RS1 and
   the review files in `experiments/reviews/`.
 - 13 Nov 09:30: `result.md` version 1 written; `src/SA1/cells.py` writes `cells.csv` and the status counts.
-- 13 Nov 09:45: sent to the results-reviewer agent (Opus) for a cell-by-cell check.
+- 13 Nov 09:45: version 1 committed (e96bf68) and sent to the results-reviewer agent (Opus) for a cell-by-cell check.
+- 13 Nov about 10:00: review returned "needs corrections" (20 items; all numbers matched except unverifiable tier1 JSON
+  values, which the reviewer did not open because those files also hold benchmark rows). Applied all 20: row 2
+  headlines changed from "not used" to "not evaluable / in training"; near-trained-size qualifier on 1-B and 1-Sb;
+  TT1-FS (registered, queued) added as pending; border headlines "inconclusive"; released warp-only cells "small" where
+  the interval excludes 0.5; FaceMorpher splice reads dropped; 10-SelfMAD set to not measured; 4-Sp set to not measured;
+  12-released in reviewed wording; fresh-seed R6 values added; citations fixed (9-Sb, amendment 9 lines, AD1 lines);
+  new rows 17 (softness), 18 (processing cue in the development set's surround), 19 (operating point); claim and
+  cannot-claim sections extended; ranked list fixed (C2P on L40S; JPEG pack is an author item; TT1-FS already queued).
+  Version 2.
 
 ## 3. Data
 
@@ -41,7 +51,8 @@ reviewers' wording, what cannot be claimed, ranked list of experiments to fill t
 ## 6. Checks
 
 - Every line reference was taken from the files at git `aead489` (working tree of 13 Nov about 09:00).
-- Independent check by the results-reviewer agent: pending at the time of writing (section 9).
+- Independent check by the results-reviewer agent (Opus), 13 Nov: needs corrections; all applied (section 2). The
+  per-seed tier1 JSON values (2-A, 6-A placement, 7-A, 7-B) were not verified by the reviewer and stay labelled unreviewed.
 - Not verified: CB1's results review (applied per CB1 README line 118, but no review file is in `experiments/reviews/`);
   the earlier-programme numbers taken from `08_CUE_MATRIX.md` (A36, A41) were not re-opened in their primary files.
 
@@ -62,7 +73,6 @@ reviewers' wording, what cannot be claimed, ranked list of experiments to fill t
 
 ## 9. Open items and next steps
 
-- Apply the results-reviewer's corrections; commit and push.
 - Update the table when the lead reports today's readings (Sp, SbM3 and SbV, C2P with H-new-1).
 - The ranked list of fill experiments goes to the lead; none is run by this owner.
 
