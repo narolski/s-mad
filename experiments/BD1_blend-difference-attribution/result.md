@@ -141,3 +141,21 @@ Seeds share the same hosts, so "4 of 5 seeds" is close to one draw.
   (an author item; new morphs from a much larger person pool needed) above a colour-matched rescore, which BD1's
   colour controls do not motivate. Before the freeze, at most a registered zero-GPU descriptive read of low-cos_HS
   same-person splices from the existing files.
+
+## Amendment 4: least- against most-similar same-person splices (descriptive, post hoc; registered at 1cd0304; read once)
+
+All 291 development and test S3 hosts were split into quintiles of cos_HS, with edges 0.834 and 0.903 (59 hosts
+each). Output: `bd1c_read.json`, `bd1c_read_stdout.txt`.
+
+| | Bottom quintile (least similar) | Top quintile (most similar) |
+|---|---|---|
+| Databases (FRGC / colorFERET) | 37 / 22 | 53 / 6 |
+| Median D / D_dc / D_lin | 13.0 / 10.2 / 6.5 | 6.4 / 4.3 / 4.4 |
+| Sb S3 flags, FS1 seeds 403-407 | 0.56-0.75 | 0.17-0.27 |
+| AUC(S4 vs these S3), FS1 | 0.58-0.64 | 0.84-0.87 |
+| Sb S3 flags, AB1 / SE1 | 0.64-0.73 / 0.68-0.71 | 0.22-0.31 / 0.25-0.31 |
+| AUC(S4 vs these S3), AB1 / SE1 | 0.60-0.64 / 0.59-0.64 | 0.83-0.87 / 0.83-0.87 |
+
+- Least-similar same-person splices are flagged about 2.5 times as often as the most similar, and are ranked close to
+  the two-person splices. The bottom quintile also has twice the D and D_dc and holds most of the colorFERET hosts, so
+  these factors are not separated here. This is descriptive only and decides nothing.
