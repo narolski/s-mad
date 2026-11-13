@@ -35,6 +35,16 @@ Owners (or the lead) put ready submissions in `/mnt/t7/smad_next/dispatch/submit
 
 In each tick, after observing: if a cluster's controller answered, submit that cluster's queued files, oldest first, each with one ssh command (WCSS always under `flock -w 600 /tmp/opencode/wcss-client.lock`, `-o BatchMode=yes`, `timeout 90`). Run the command exactly as written. If the output contains `Submitted batch job`, move the file to `submit_queue/done/` with the job ID appended, and tell the owner the job ID. If it is refused, leave the file, note the refusal, and try again next tick. Refuse (move to `submit_queue/rejected/` and tell the owner and the lead) any file whose command has no `--extra=FORCE_RM_TMPDIR` on WCSS, has more than one `sbatch`, contains `scancel`, `rm`, `mv` or a redirection, or has no registration commit in its header.
 
+Procedure notes (dispatcher, 13 Nov):
+
+- Submit with `src/dispatch/submit_one.sh <file>`: it applies the checks above, runs the command under the lock, and moves the file to `done/<name>.<jobid>.cmd`. It never retries by itself.
+- A file that only breaks a form rule (two `sbatch` in one line) may be split by the dispatcher into single-`sbatch` files, with each command unchanged and the original moved to `rejected/` with a note; tell the owner. A file that asks for a `scancel` goes to `rejected/`, and the dispatcher runs the cancel itself under its own authority.
+- A smoke test (never read as a result) may go in before the registration commit; its header says so.
+- Gated files (a header that says "after X passes") stay in the queue until the dispatcher has checked X in sacct and its log; STATE.md lists each gate.
+- One experiment, one GPU model (lead, 13 Nov): fits, scoring, smoke and reference check of one experiment all on H100 or all on A100 (or the rented model it is registered on). A twin of one workload on both clusters is allowed; the first to start wins and the other is cancelled at once.
+- Inside the WCSS observe command, wrap each Slurm call in `timeout 40`, so a hung controller does not use up the whole 90 s.
+- Athena, 13 Nov 08:40: all 48 a100 nodes sit in a reservation we cannot see (node state `+RESERVED`; `scontrol show res` is empty for us), so new plgrid-gpu-a100 jobs get forecast starts weeks away and wait on ReqNodeNotAvail. Check each tick with `sbatch --test-only -A plgmultivision-gpu-a100 -p plgrid-gpu-a100 --gres=gpu:1 -c 8 --mem=64G -t 00:30:00 --wrap=true`. Partition `plgrid-now` still starts at once (one running and one submitted job per user, 1 GPU, 16 CPUs, 125 GB, 1 h): add it to a pending 1-GPU job of 1 hour or less with `scontrol update JobId=<id> Partition=plgrid-gpu-a100,plgrid-now`.
+
 ## Step 1: read the state
 
 `/mnt/t7/smad_next/dispatch/STATE.md` (previous tick: job table, last time each owner was asked, open requests). If it does not exist, start fresh.
@@ -44,7 +54,7 @@ In each tick, after observing: if a cluster's controller answered, submit that c
 WCSS (the lock is mandatory):
 
 ```bash
-flock -w 600 /tmp/opencode/wcss-client.lock timeout 90 ssh -o BatchMode=yes -o ConnectTimeout=20 narolski@ui.wcss.pl 'S=/opt/slurm/current/bin; echo QUEUE; $S/squeue -u narolski -h -o "%i|%j|%T|%M|%S|%r"; echo NODES; $S/sinfo -p lem-gpu-short,lem-gpu-normal -h -o "%P %t %D"; echo RECENT; $S/sacct -u narolski -S $(date -d "-3 hours" +%FT%H:%M) -X -n --format=JobID%18,JobName%16,State%24,Elapsed,ExitCode | grep -v -E "RUNNING|PENDING" | tail -25'
+flock -w 600 /tmp/opencode/wcss-client.lock timeout 90 ssh -o BatchMode=yes -o ConnectTimeout=20 narolski@ui.wcss.pl 'S=/opt/slurm/current/bin; echo QUEUE; timeout 40 $S/squeue -u narolski -h -o "%i|%j|%T|%M|%S|%r"; echo NODES; timeout 30 $S/sinfo -p lem-gpu-short,lem-gpu-normal -h -o "%P %t %D"; echo RECENT; $S/sacct -u narolski -S $(date -d "-3 hours" +%FT%H:%M) -X -n --format=JobID%18,JobName%16,State%24,Elapsed,ExitCode | grep -v -E "RUNNING|PENDING" | tail -25'
 ```
 
 Athena:
@@ -85,6 +95,8 @@ Owners (job-name prefix, experiment in plain words, agent ID):
 | tt1 | unseen genuine sources (TT1) | a816d6792267a5ad3 |
 | se1 | seam-shortcut training arm (SE1) | a59fe3e811d8f0254 |
 | (no jobs) | shortcut audit table (SA1) | a672752ad0ef1e6b4 |
+| ab1 | protocol ablation and replication (AB1), seeds 408-412, WCSS H100; reuses SE1's A and Sb networks | a52f34a7253f2e605 |
+| pr1 | registered reads of the existing fresh-seed networks (PR1), mostly zero GPU | ab9bd8ba6f227ed86 |
 | mv30 | an older held job, not part of this sprint: report it, ask nobody |
 
 ## Step 5: write the state and report
