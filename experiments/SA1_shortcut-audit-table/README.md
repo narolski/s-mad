@@ -65,6 +65,8 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
   and cell sources (result.md, cells.csv, src/SA1/cells.py at c4cd8dc) as its regression target. After battery v1 is
   released, new cells enter the table from battery output and SA1 records them; existing reviewed cells are not
   recomputed or replaced.
+- 13 Nov: two rounding corrections found by BATTERY's cell check (cells_check_v1rc2.json) and verified against the JSON
+  files: 1-A upper FFHQ flag 10.7% -> 10.8% (0.1075); 7-B lower R4-vs-R3 AUC 0.75 -> 0.74 (0.7446). Values unchanged.
 
 ## 3. Data
 
