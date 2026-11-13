@@ -59,7 +59,7 @@ recomputed or replaced by battery output.
 - WCSS **6316737**: exit-5 meta-mismatch refusal on H100 (`battery_metacheck.sbatch` caf8ebf4..., AB1_A_s408 with lora_r
   4 instead of 2; the job exits 0 only if battery.run exits 5 with no logits written), `--exclude=r18-8`.
 - WCSS **6316724**_[0-14]: the registered comparator step, `afterok:6316723`, lowest priority of our WCSS jobs.
-- Athena A100 gate smoke: `athena_battery_a100gate.cmd` (`battery_a100_gate.sbatch` 4c4c4c3d..., plgrid-now, container
+- Athena A100 gate smoke: **Athena job 3551166** (submitted 20:45 by the dispatcher; pending, Slurm forecast 00:11, "nodes reserved"), `athena_battery_a100gate.cmd` (`battery_a100_gate.sbatch` 4c4c4c3d..., plgrid-now, container
   smad_torch221_cu121_v1.sif, `--test-gate-key` for the A100 PCIe key on PN1_Sb_s403; reads the existing
   `packs/SE1/` copies of the FS1 pack and PN1_Sb_s403; uploaded `packs/BATTERY/battery_code_v1rc2.tar` and
   `ab1_overlay_v2.tar`). An Athena platform key is pinned only if byte-gated, in a later version.
