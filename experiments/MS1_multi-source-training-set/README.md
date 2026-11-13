@@ -115,6 +115,15 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   (CASIA-WebFace embeddings from its packed 112 px crops, used only to exclude persons; threshold error on labelled
   CelebA; references FFHQ, CFD, KDEF, TT1, FRGC / colorFERET; connected-component persons at cos >= 0.40; overlapping
   persons dropped); not run yet.
+- 13 Nov 09:40, label fixed before the MS1 read (lead confirmed): two PRINTED-ONLY reads compare scores made with
+  different TF32 settings on the same GPU model: (a) the CFD offset AUC printed beside P2 (CFD scored in the held-out
+  step by rescore.py, TF32 off, against development camera photos scored in the fit job by pn1_score.py, TF32 on), and
+  (b) the TT1 border-reference reads (TT1 family photos, fit job, TF32 on, against R_cam_border and the other tt1ref
+  rows, held-out step, TF32 off). They are labelled "mixed TF32 setting (TF32 on vs off), same GPU" in the result.
+  Reason: the C2P post-result review (REVIEW_PN1_C2P_20261113.md) showed that TF32 on/off differences reach about
+  0.035 logits on floor rows within one A100 stack and more at mid-range logits. No deciding read mixes settings:
+  P1-T, P2, P3 and G1-G3 use fit-job scores only (TF32 on); P1-S uses held-out-step scores only (TF32 off) for both
+  arms. All MS1 scores come from L40S 48 GB (MS1-D2). No registered read is changed.
 
 ## 3. Data
 
