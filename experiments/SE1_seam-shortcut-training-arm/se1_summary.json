@@ -1,0 +1,76 @@
+{
+ "train_SE": {
+  "unique": 6365,
+  "rows": 10046,
+  "by_kind": {
+   "af0_photo": 518,
+   "lad_R0": 156,
+   "af0_zero": 730,
+   "af0_half": 1456,
+   "lad_R2w": 156,
+   "lad_half": 248,
+   "lad_S3": 156,
+   "lad_S0": 156,
+   "af0_u50": 728,
+   "lad_R4": 124,
+   "lad_S4": 124,
+   "af0_photo61": 254,
+   "af0_half61": 363,
+   "af0_u5061": 366,
+   "lad_R3": 156,
+   "lad_R3m": 156,
+   "af0_selfm": 518
+  },
+  "strata": {
+   "feret|native": {
+    "unique_neg": 2122,
+    "unique_att": 372,
+    "rows": 4244
+   },
+   "feret|s61": {
+    "unique_neg": 392,
+    "unique_att": 166,
+    "rows": 784
+   },
+   "frgc|native": {
+    "unique_neg": 2284,
+    "unique_att": 604,
+    "rows": 4568
+   },
+   "frgc|s61": {
+    "unique_neg": 225,
+    "unique_att": 200,
+    "rows": 450
+   }
+  },
+  "sha256": "c4e5aa474c87399d5e80af8afec3737a33b54afc35ae721b11385a5f5814525b",
+  "unique_by_label": {
+   "0": 5023,
+   "1": 1342
+  },
+  "draws_per_row_6250x256": 159.3
+ },
+ "se_eval": {
+  "rows": 21703,
+  "added": 1906,
+  "sha256": "6dcef964d8ca3024d353aaa1e568e42ba2f2454b1f1a36442311aa5f9b598f7c",
+  "added_by": {
+   "('ms1ffhq', 'photo', '', 'af0engine')": 300,
+   "('ms1ffhq', 'zero', '', 'af0engine')": 150,
+   "('ms1ffhq', 'u50', '', 'af0engine')": 150,
+   "('ms1ffhq', 'photo', 'amsl112', 'af0engine')": 290,
+   "('ms1ffhq', 'photo', 'fm61', 'af0engine')": 291,
+   "('ms1ffhq', 'u50', 'amsl112', 'af0engine')": 149,
+   "('ms1ffhq', 'u50', 'fm61', 'af0engine')": 150,
+   "('splice', 'S0', '', 'facemorpher')": 100,
+   "('splice', 'S3', '', 'facemorpher')": 100,
+   "('splice', 'S4', '', 'facemorpher')": 100,
+   "('af0', 'selfm', '', 'af0engine')": 126
+  }
+ },
+ "overlay": {
+  "files": 2738,
+  "sha256": "de26d6ce3facc90a439209d690b099fea351ace91808a5256ba5bdee5ba27a7c",
+  "bytes": 972605440
+ }
+}
