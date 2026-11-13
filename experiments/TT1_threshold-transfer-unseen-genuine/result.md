@@ -229,7 +229,7 @@ Rented A100 time:
 
 DGX GPU about 25 min. WCSS: nothing queued (uploaded files kept).
 
-# Fresh-seed block TT1-FS (seeds 403-407) and extension TT1-X Part 1 (Sp): registered reading, not yet reviewed
+# Fresh-seed block TT1-FS (seeds 403-407) and extension TT1-X Part 1 (Sp): registered reading; reviewed (REVIEW_TT1_FS_20261113.md, 59c08bb: needs qualification), corrections applied
 
 Registration TT1-FS: `prereg_fs1_block.md`. It was registered at a2fef5c, with the pre-run amendment at ab81b35 and
 the operational note at 451c419. Reader `tt1_read_fs.py` 87356fd7…, run once.
@@ -244,7 +244,7 @@ Platform:
 - The job took the fit lock at 10:08:28 CET.
 - **Gate: 15 of 15 networks byte-identical** on all 19,797 FS1 evaluation rows (TF32 on, batch 64, manifest order),
   max |Δ| 0 for every network.
-- TF32 split on R_cam (this job's TF32-off logits against the stored TF32-on ones): max |Δ| 0.001-0.042 logit,
+- TF32 split on R_cam (this job's logits (PyTorch defaults: matmul TF32 off, cuDNN TF32 on) against the stored TF32-on ones): max |Δ| 0.001-0.042 logit,
   0 own-rule changes in any network.
 
 The F4 limits apply: false alarms only, on low-resolution black-bordered frames, development sources only. No arm,
@@ -254,10 +254,10 @@ seed or threshold is chosen from TT1.
 
 | Hypothesis | A | B | Sb |
 |---|---|---|---|
-| TT-H1: does the own rule transfer? | **mixed**: 3 of 5 seeds "transfers"; s404 fails 2 families (lfw_calfw, agedb_30); s405 fails lfw_calfw | **transfers on 5 of 5 seeds**: every family's upper bound ≤ 10%, largest 3.3% | **transfers on 4 of 5 seeds**; s404 fails cfp_ff (13.4%) |
+| TT-H1: does the own rule transfer? | **mixed** (3 of 5 'transfers'); the prediction (at least 4 failing families) held on 0 of 5 seeds; s404 fails 2 families, s405 fails 1 | **transfers on 5 of 5 seeds**: every family's upper bound ≤ 10%, largest bootstrap bound 3.3% (exact Clopper-Pearson bound for zero-event MSU-MFSD 5.5% on every seed) | **transfers on 4 of 5 seeds**, so the prediction (at least 2 failing families) is falsified on fresh seeds (it held on 0 of 5). This reverses the narrow 401/402 'supported'. s404 fails 1 family (cfp_ff, 13.4%) |
 | TT-H2: unseen photos above the training-source photos? | supported 5 of 5 | supported 5 of 5 | supported 5 of 5 |
 | TT-H3: is the border material? | inconclusive 5 of 5 | inconclusive 5 of 5 | inconclusive 5 of 5 |
-| TT-H4: softer photos score higher at fixed size? | **mixed**: "not as predicted" 3 of 5 | **falsified, 4 of 5 seeds**: ρ ≥ 0 in at least 3 of 4 packs; s407 "supported, \|ρ\| below A's" | **mixed**: \|ρ\| below A's on 3 of 5 seeds |
+| TT-H4: softer photos score higher at fixed size? | **mixed**: "not as predicted" 3 of 5 | **'falsified' by the registered rule, 4 of 5** (ρ ≥ 0 in at least 3 packs): B shows no 'softer scores higher' effect. This agrees with B's own prediction; \|ρ\| is also below A's on 4 of 5 seeds. Not evidence against B | **mixed**: \|ρ\| below A's on 3 of 5 seeds; the mixed count comes from A being flat on s405/s406; Sb's \|ρ\| ≤ 0.154 everywhere |
 | TT-H5: source matters beyond geometry? | "source matters beyond geometry" 5 of 5 | same, 5 of 5 | same, 5 of 5 |
 
 Per-seed numbers behind the verdicts:
@@ -275,12 +275,15 @@ Per-seed numbers behind the verdicts:
 | Pair | ΔF̄ per seed (403, 404, 405, 406, 407) | Mean ± SD over 5 seeds | Seeds negative | Registered sentence |
 |---|---|---|---|---|
 | B − A | −0.005, −0.041, −0.032, −0.003, −0.022 | −0.021 ± 0.016 | 5 / 5 | not distinguished |
-| Sb − A | | −0.003 ± 0.013 | 3 / 5 | not distinguished |
+| Sb − A | +0.008, −0.007, −0.021, +0.010, −0.005 | −0.003 ± 0.013 | 3 / 5 | not distinguished |
 | Sb − B | +0.013, +0.034, +0.011, +0.014, +0.017 | +0.018 ± 0.009 | 0 / 5 | not distinguished |
-| B − Sb | | | 5 / 5 | "not distinguished" (bar −0.03 reached on 1 of 5 seeds) |
+| B − Sb | −0.013, −0.034, −0.011, −0.014, −0.017 | −0.018 ± 0.009 | 5 / 5 | "not distinguished" (bar −0.03 reached on 1 of 5 seeds) |
 
 - B − A: every per-seed interval excludes 0, but only 2 of 5 seeds reach −0.03.
 - Sb − B: every per-seed interval lies above 0.
+- Across all seven seeds, B − A is negative on 7 of 7 and meets −0.03 on 4 of 7; Sb − B is positive on 7 of 7. The
+  fresh-seed effect (−0.021) is about 60% of the 401/402 effect. The two blocks differ in training and scoring host
+  (pn1a/pn1b plus tt1c, against pn1fs), so the shrinkage is not attributed.
 
 Across-seed means (± SD):
 
@@ -297,6 +300,7 @@ Across-seed means (± SD):
   - B: 0.012, 0.002, 0.002, 0.000, 0.005;
   - Sb: 0.091, 0.065, 0.022, 0.029, 0.058.
   - At 224 px the share is 0-1.2% for every network.
+- A's TT-H5 'source matters' verdict rests on the 224 px anti-spoofing group only, as in 401/402.
 - **R3(g) at 112 px, all four packs:**
   - A: 0.23-0.50;
   - B: 0.93-0.997;
@@ -306,6 +310,8 @@ Across-seed means (± SD):
   - A: 0.065-0.108;
   - B: 0.025-0.108;
   - Sb: 0.024-0.051.
+- On FFHQ genuine photos, B is not clearly below A (paired −0.05 to 0; equal on s404), and B exceeds 10% on 2 of 7
+  seeds (s401, s404). B's low false-alarm rate is specific to the low-resolution bordered frames.
 - **F̄ above −2 logit:**
   - A: 0.010-0.072;
   - B: 0.006-0.022;
@@ -323,3 +329,19 @@ Gate: 3 of 3 byte-identical.
 | Sp_s405 | 0.023 | 0.060 | casia_fasd | 0.116 | 0.024 | 0.94-0.95 | 0.26 |
 
 FS1 Sb at the same seeds, for reference: F̄ 0.015, 0.041, 0.013.
+
+## What the paper may and may not say (review REVIEW_TT1_FS_20261113.md)
+
+May say: "On about 21,000 genuine photos from eight development sources not seen in training (small faces enlarged
+1.7-3.5x, with a black border), the protocol-trained network kept its fixed decision rule on all seven seeds: at most
+4.9% of any family flagged, mean F̄ 0.6%. The plain network exceeded the rule on 4 of 7 seeds (up to 23.5%). Both remain
+clearly displaced from the training camera photos, so a threshold calibrated on camera photos does not transfer." With
+the note: the seven seeds come from two training blocks on different hosts (pn1a/pn1b plus tt1c; pn1fs).
+
+May not say: that B is the better arm overall; that B transfers to sharp sources (FFHQ up to 17.8%); anything about
+misses or detection; that the B − A size is fixed; that the plain network "fails to transfer" in general (it passes on
+3 of 7 seeds); that splice positives (Sb) "cost" false alarms in general (Sb is higher on these frames but lowest on
+FFHQ).
+
+Sp (review F7): Sp F̄ 0.023-0.033 against Sb 0.013-0.041 at the same seeds, not separable; Sp flags more FFHQ genuine
+photos (8.5-15.4%) and is the only arm with nonzero R_cam flags (0.2-0.7%).
