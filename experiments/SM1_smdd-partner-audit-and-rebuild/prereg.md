@@ -546,7 +546,7 @@ per-file sha256 `dev16_files.sha256`). No benchmark cell. About 0.2 GPU-h (RTX 6
   HOST PORT LEASE dev16fresh > LEASE/sm1_dev16.log 2>&1 &` (uploads ad4_pack, test images, manifests v2 (about 22 GB),
   the 6 fit tars and the 0.24 GB of rungs; RELEASE only after 6 of 6 SM1E tars and the machine logs are back).
 
-## Amendment A18: H-n2, does the standard recipe add X-vs-SAME information beyond the measured traces? (registered 12 Nov ~23:45, after the pre-run review `experiments/reviews/PRERUN_SM1_A18_20261112.md`, GO WITH FIXES, all applied; no score exists)
+## Amendment A18: H-n2, does the standard recipe add X-vs-SAME information beyond the measured traces? (registered 12 Nov 23:06, commit d2a0b49, after the pre-run review `experiments/reviews/PRERUN_SM1_A18_20261112.md`, GO WITH FIXES, all applied; no score exists)
 
 Author's go (12 Nov about 22:55): SAME20 may be labelled genuine for this development experiment, and DG1 shards may
 be used for training. Lead's decision: θ is allowed as a floor covariate; the image-statistics-only floor is printed
@@ -598,7 +598,8 @@ the `smad_torch221_cu121_v1.def` pins), the platform the ViT-B/16 fits were trai
 reproduction check tolerance stays max |score diff| ≤ 2e-3 on 256 stored AR1 camera-photo rows per fit (exact
 agreement, 0.0, is expected, as on sm1dev). A18: three RS fits, recipe, lists, decision rule and reader unchanged; all
 A18 fits on this one platform. Order on the lease: A16 (`drive_v2.sh dev16fresh`), then the A18 smoke and the three
-fits (`hn2fresh`). Keep rule: scores, weights and logs fetched and verified before RELEASE; RELEASE plus FAILED on a
+fits (`hn2fresh`). (Executed in the reverse order after the upload slowed: A18 first, then A16; recorded in
+`README.md` 13 Nov 01:41; neither reads the other.) Keep rule: scores, weights and logs fetched and verified before RELEASE; RELEASE plus FAILED on a
 verified partial result. The rented copies are the registered ones; the WCSS jobs stay queued until those are
 verified, are then cancelled, and any WCSS output is never read.
 

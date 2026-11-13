@@ -41,6 +41,8 @@ def main():
     ap.add_argument("--check-npz", default="ad4eval/scores_eval.npz", help="stored scores for the reproduction check "
                     "(A15: ar1eval/scores_eval.npz, so no benchmark row is scored)")
     ap.add_argument("--check-manifest", default="ad4_eval.csv")
+    ap.add_argument("--continue-on-fail", action="store_true", help="A19 H-N1: score even if the check fails (the result "
+                    "is then marked platform not equivalent; ranks only); the check itself is unchanged")
     a = ap.parse_args()
     sys.path.insert(0, str(pathlib.Path(a.code) / "smadcvpr"))
     import torch
@@ -86,7 +88,13 @@ def main():
     json.dump(chk, open(out / "check.json", "w"), indent=1)
     print("SM1A check", json.dumps(chk), flush=True)
     if not chk["passed"]:
-        sys.exit("reproduction check failed")
+        if not a.continue_on_fail:
+            sys.exit("reproduction check failed")
+        st_one = st["score_noTTA"][:a.ncheck]
+        from scipy.stats import spearmanr
+        chk["rank_agreement_spearman"] = float(spearmanr(c_one, st_one)[0])
+        chk["platform"] = "not equivalent; ranks only"
+        np.savez(out / "check_scores.npz", ids=np.array([r["id"] for r in ev]), now_noTTA=c_one, stored_noTTA=st_one)
     rows = C.read_manifest(a.manifest)
     s_tta, s_one = score(rows)
     np.savez(out / "scores_audit.npz", id=np.array([r["id"] for r in rows]), score=s_tta, score_noTTA=s_one,

@@ -736,7 +736,7 @@ as morph-like against camera photos (0.99+). What the remedy removes is a mixing
 second-identity detection. Arm a's 0.745 is not face-box sharpness or file size (removing both from its score raises
 its AUC; review F2): a reads mixing in the latent path. The cleanest statement in A15: a = e on X vs SAME.
 
-## A18 parallel arm: frozen-feature probe on our own diffusion ladder (registered d2a0b49; `a18_probe.json`)
+## A18 parallel arm: frozen-feature probe on our own diffusion ladder (registered d2a0b49, 12 Nov 23:06; `a18_probe.json`)
 
 Development data only. Logistic probe on frozen CLIP (clip_mad) and DINOv2 features, trained on X20 vs SAME20 of DG1
 shards 0–5, scored on shards 6–7 (133 X20, 134 SAME20, 55 partner cycles); incremental read over the fixed floor
@@ -749,8 +749,8 @@ shards 0–5, scored on shards 6–7 (133 X20, 134 SAME20, 55 partner cycles); i
 | (unflagged rows) | 0.964 / 0.964 | 0.900 | 0.962 / 0.969 | +0.062 / +0.069 | 0.788 | +0.168 / +0.169 | falsified |
 
 Reading (FRGC test hosts, one generator, one render platform): frozen foundation features carry X-vs-SAME information
-beyond simple statistics and the noise-angle θ; unmeasured render traces are not excluded. The fine-tuned recipe's
-answer (A18 fits) is pending (WCSS 6308742).
+beyond simple statistics and the noise-angle θ; unmeasured render traces are not excluded. Post hoc: over the
+noise-map band floor, +0.001 (CLIP) / +0.003 (DINOv2) (review of 13 Nov).
 
 ## A16 (H-n1) and A18 (H-n2): registered readings (rented RTX 6000 Ada sm1dg, deviation D1; development data only)
 
@@ -775,9 +775,24 @@ read on unseen shards 6–7 (`hn2_read.json`).** Training-row AUC 0.994, 0.996, 
 **Registered reading: falsified (signal beyond measured traces).** Outcome sentence: "With this generator and this
 recipe (6,250 steps on 1,205 images, about 1,330 epochs, 2 seeds; FRGC, single render platform), the network adds
 X-vs-SAME information beyond the measured traces (θ, sharpness, size, asymmetry); unmeasured render traces are not
-excluded." Together with A15 (SMDD-trained fits: X vs SAME about 0.65, no arm above one sharpness statistic) and the
-frozen-feature probe (ΔAUC +0.06 / +0.07): a two-person signal is learnable on this generator when the training
-contrast asks for it, and the SMDD-trained recipes do not use it.
+excluded." Post hoc (review, shard 6 with saved noise maps, 133 rows): adding the band cosines and the low-pass cosine
+of the two inverted noise maps to the floor raises it to 0.986 (0.992 when fit on shards 2–5) and the network's
+increment to −0.006 [−0.018, +0.005]; the frozen probes' increments also vanish. So the network's X-vs-SAME signal is
+not shown to exceed the similarity of the two noise maps, which is itself caused by input similarity; no
+second-identity reading is shown. Training on SMDD and on this generator are not compared at equal data (arm R
+dropped). **WITHDRAWN (13 Nov): "a two-person signal is learnable on this generator when the training contrast asks for
+it, and the SMDD-trained recipes do not use it"** (review F1, F3). Supported version: the recipe trained on our ladder
+separates two-person from same-person mixes of unseen persons at 0.99, beyond the registered floor (+0.077); post hoc,
+nothing beyond the similarity of the two noise maps (floor 0.99); no second-identity reading shown; SMDD and this
+generator not compared at equal data (arm R dropped).
+
+**Post hoc addendum, recomputed by the owner (`a19_floor.json`; A19 note; shard 6, 66 X20 / 67 SAME20, 23 partner
+cycles).** Cross-fit on shard-6 cycles: floor F 0.879, F + network ΔAUC +0.088 (reproduces the full-test effect);
+F + band cosines + low-pass: floor 0.986, ΔAUC −0.006 [−0.018, +0.005] (3-seed −0.003); + semantic-code cosine: floor
+0.985, ΔAUC −0.005 [−0.015, +0.007]. Extended floor fit on training shards, applied to shard 6, then combined with the
+network logit (cross-fit on shard-6 cycles): shards 2–5 (535 rows) floor 0.992, ΔAUC −0.005 [−0.010, +0.000]; with the
+shard 0–1 codes fetched from Athena (803 rows) floor 0.995, ΔAUC −0.004 [−0.010, +0.004] (3-seed −0.002). Adding shards
+0–1 changes nothing material: the floor rises 0.992 → 0.995 and the increment stays at about zero.
 
 **A16 (H-n1): saved SMDD-trained ViT-B/16 a, e, f on the DG1 rungs (`a16_read.json`).** 2-seed means, host bootstrap.
 
@@ -790,9 +805,12 @@ contrast asks for it, and the SMDD-trained recipes do not use it.
 | MIR20 over REC20 (descriptive) | 0.675 | 0.442 | 0.497 |
 
 Registered reading (arm a): **undecided** (FRESH1 and NOISES over REC are not ≥ 0.70, nor both ≤ 0.55; SEMX over SEMS
-0.60 is not ≥ 0.70). Not predicted: every fit scores fresh-noise and noise-only renders of the same person *below* the
-one-person reconstruction (a 0.34, e 0.24), so the "latent not the photo's own" account does not hold as stated; the
-mix-type contrasts (NOISEX over NOISES, SEMX over SEMS) sit at 0.55–0.60 for every arm.
+0.60 is not ≥ 0.70). Not predicted: the fresh-noise renders score below the one-person reconstruction for every fit
+(a 0.34, e 0.24, f 0.29), as do e's and f's noise-only renders (0.31, 0.36; a 0.56, seeds 0.50 / 0.61). The
+reconstruction is the smoothest rung (median face-box Laplacian 87.5 against 103 and 128), consistent with the heads
+reading smoothness as morph-like (partial explanation; A19 H-N4 below tests it). The host-bootstrap intervals ignore
+seed variance (NOISES over REC seeds 0.50 / 0.61). The mix-type contrasts (NOISEX over NOISES, SEMX over SEMS) sit at
+0.55–0.60 for every arm.
 
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
