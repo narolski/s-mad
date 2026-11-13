@@ -33,7 +33,9 @@ TRAIN = {"Sb": T7 / "PN1/manifests2/train_Sb.csv", "A": T7 / "PN1/manifests2/tra
 TRAIN_SHA = {"SpV": "f6521d96de7d93ff62232c4eb8236d2560cf39f2e8ca6a56d676f3c0c39af759",
              "BN": "c1b4497bb59343b7f5dd48149e300fb136533790724dfdf83aa395a703fe6af1",
              "BV": "ee4e227b2cd6648d196b5d61300a9cf483c85f05a80afae0fd6e774153baf04f"}
-ROOTS = [T7 / "PN1/fs_tree/pn1/data", T7 / "AB1/overlay_tree/pn1/data", T7 / "AB1/x/img/pn1/data",
+XF1 = T7 / "XF1/xf1_rows.csv"                                  # amendment 7
+XF1_SHA = "ef4adf5ba22847f04ccf40d054fcda5b05b1546be08dde04b277dd2b5266e317"
+ROOTS = [T7 / "XF1/pack_tree/xf1/data", T7 / "PN1/fs_tree/pn1/data", T7 / "AB1/overlay_tree/pn1/data", T7 / "AB1/x/img/pn1/data",
          T7 / "AB1/x/img/pn1", T7 / "AB1/fm/img/pn1/data", T7 / "AB1/fm/img/pn1", T7 / "PR1/pr1_gd_tree/pr1g/data"]
 SPLIT = pathlib.Path("/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/split/ladder_split.csv")
 AF0MAN = T7 / "AF0/manifest.csv"
@@ -79,6 +81,9 @@ def persons(r):
     else:
         ps = [h] if h else [r["id"]]
     P = partner()
+    if fam == "xf1":                               # amendment 7: host, plus the partner for the two-person morph
+        ps = [h] + ([r["partner"]] if r.get("rung") == "FMHB" and r.get("partner") else [])
+        return tuple(sorted(set(ps)))
     if fam == "gd2":                               # pre-run check F2: true contributors from the AG1 manifest
         return tuple(sorted(set(P["ag1"][pathlib.Path(r["src"]).name])))
     if fam == "af0" or r["id"].startswith(("train_", "val_")):
@@ -262,6 +267,11 @@ def contrast_defs():
                                  dict(fam="gd0", rung="stylegan_wplus_resmatch"), "GX1 transfer read"),
         "gd0_diffae_vs_resmatch": ("GD", dict(fam="gd0", rung="diffae_orig"), dict(fam="gd0", rung="diffae_resmatch"),
                                    "SA1 row 13 context"),
+        # ---- amendment 7: XF1 matched FaceMorpher render on FFHQ hold-out hosts
+        "xf1_FMHB_vs_FMHH": ("XF1", dict(fam="xf1", rung="FMHB"), dict(fam="xf1", rung="FMHH"),
+                             "XF1: two-person FaceMorpher morph vs one-photo FaceMorpher render"),
+        "xf1_FMHH_vs_H": ("XF1", dict(fam="xf1", rung="FMHH"), dict(fam="xf1", rung="H"),
+                          "XF1: one-photo FaceMorpher render vs the plain photo"),
         # ---- amendment 3: history-balanced landmark_combined (row list built by balance.py, committed)
         "lcomb_bal": ("AB1X", dict(rowfile="/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/lcomb_bal_rows.csv"),
                       dict(), "lcomb matched on the surround score and pre_ied (amendment 3)"),
@@ -290,7 +300,10 @@ TRAIN_CONTRASTS = {
 
 
 def manifest(key):
-    return {"AB1X": AB1X, "GD": GD}[key]
+    if key == "XF1":
+        import hashlib
+        assert hashlib.sha256(open(XF1, "rb").read()).hexdigest() == XF1_SHA, "xf1_rows.csv changed"
+    return {"AB1X": AB1X, "GD": GD, "XF1": XF1}[key]
 
 
 def build(name):

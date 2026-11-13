@@ -428,3 +428,24 @@ RECORDS ledger entry 6 (ca47f00). No rule or floor changes.
   native negatives; sha256 ee4e227b2cd6648d…, full hash checked against AB1's `pins.sha256` by `amend6.py BV` before
   fitting). Outputs `floors/transfer_BV.json`, `floors/transfer_BV_rows.csv`, `floors/transfer_BV_rows_summary.json`,
   pinned as stage 12. The stage-11 files of SpV and BN are unchanged (their lists did not change).
+
+## Amendment 7 (13 Nov, from 22:15 by the machine clock; registered before computing; XF1 draft 3abd284, its pre-run check running)
+
+- Rows: `/mnt/t7/smad_next/XF1/xf1_rows.csv` (sha256 ef4adf5b…, asserted at every read; each image's sha256 checked
+  against the file's `sha256` column), 299 FFHQ hold-out hosts × {H, FM(H,H), FM(H,B)}, 512 px frames. Contrasts:
+  `xf1_FMHB_vs_FMHH` (label 1 = FM(H,B)) and `xf1_FMHH_vs_H` (label 1 = FM(H,H)).
+- Persons: host, plus the partner for FM(H,B). The person components of `xf1_FMHB_vs_FMHH` reproduce the file's 12
+  `cell` components exactly (checked before this registration by counting rows, no feature computed); for
+  `xf1_FMHH_vs_H` no partner is involved and each host is its own component (299).
+- **Binding bootstrap unit** (and the `component` column `check.exceeds` uses): the person components above, i.e. the
+  12 cells for FM(H,B) vs FM(H,H) and the 299 hosts for FM(H,H) vs H. Printed beside them
+  (`floors/xf1_bootstrap_units.json`): a host-level bootstrap for the first contrast and a cell-level one for the
+  second. With 12 components the folds and intervals for the first contrast are coarse; that is stated with it.
+- Floors: the registered all-cue ADV floor, the non-F27/non-BLEND floor, the pixel-only floor (`floors/<name>.json`,
+  `_heldout.csv`) and the region floors: **surround-only**, face-box and file (`floors/<name>_regional.json`,
+  `_regional_heldout.csv`), all as in amendments 2-3. The surround-only floor on FM(H,H) vs H says whether the render
+  differs from the photo outside the face (border, canvas, format).
+- Same-data learner (section 5.3) fitted on the training lists of Sb, A and B, applied to both contrasts, with per-row
+  scores `floors/xf1_transfer_<arm>_rows.csv` and summaries `floors/xf1_transfer_<arm>.json`.
+- Code `src/adversary/amend7.py`; pinned as stage 13. If the XF1 owner re-pins the row file after its pre-run check,
+  everything is recomputed and the stage-13 files are labelled superseded. No network score is read.
