@@ -89,3 +89,32 @@ It decides nothing. MS1's own registered comparisons are not revisited.
 | `src/TT1/rented/drive_tt1_x.sh` | c7291730270042a561fefc936482acdcee96e6475d351649858394bf1ab52867 |
 | `src/TT1/rescore_tf32.py` | 0d0b6b6f… (unchanged) |
 | `src/TT1/gate_check_fs.py` | 6d1962bf… (unchanged) |
+
+## Amendment after the pre-run check (`date`: Fri Nov 13 09:04:46 AM CET 2026; registered at the git commit that adds this section, before any start or read)
+
+Pre-run check (experiment-reviewer, opus): GO WITH FIXES (B1, M1-M3, m1-m3). Applied:
+- B1: `drive_tt1_x.sh start` is run only after `/mnt/t7/smad_next/vast/pn1fs/tt1/TT1_DONE` exists (main job verified,
+  two copies), so X never writes into /workspace/tt1/logs while the main job's log listing is open, and X cannot take
+  the lock before the main job. Expected X end about 13:55, before the 14:51 skip point. GD0/PR1 waits for DONE_sp or
+  NO_SP at most 30 min after DONE_FS and writes only under /workspace/pr1 (PR1 owner, 13 Nov); I tell the lead and the
+  PR1 owner if X is not started.
+- m1: exact start call (pinned): `TAG=sp TASKS="PN1_Sp_s403 PN1_Sp_s404 PN1_Sp_s405"
+  LOCAL_TARS=/mnt/t7/smad_next/PN1/results_fs GPU_UUID=GPU-5bd20020-715e-e9fd-b9d3-f89ca57849ad
+  DEADLINE_EPOCH=1794581505 GATE_PACK=/workspace/pn1/root/packs/PN1/pn1_pack_fs.tar
+  GATE_PACK_SHA=96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004 bash src/TT1/rented/drive_tt1_x.sh
+  149.248.21.7 30078 /mnt/t7/smad_next/vast/pn1fs start` (deadline epoch = 13 Nov 15:51:45 CET). If the Sp tars are
+  elsewhere, LOCAL_TARS is the folder holding their verified copies (recorded in the README).
+- m3: free disk on pn1fs is checked (df) right before `start`; the job itself aborts under 30 GB.
+- m2: DONE_sp is written on success and on FATAL; if the job dies before finish or is never started, I write NO_SP
+  remotely and tell the PR1 owner and the lead.
+- M1 (Part 2 limit (c) replaced): R_cam, R_ffhq and M_ffhq are taken from each MS1 fit's in-pack rows (TF32 on; ids
+  matched to tt1_score.csv fam gate, R_cam ids with the `rcam_` prefix removed). R3(a), R3(b) and u use only in-pack
+  TF32-on logits. R3(c), R3(g) mix TF32 on (U) with TF32 off (references) and are labelled so. R3(e), R3(f) use the
+  tt1ref R_cam (TF32 off) on both sides (not mixed). R3(d) uses R_ffhq^border (off) against in-pack R_ffhq (on),
+  labelled mixed. Printed per network: max and median |Δ| and own-rule changes between tt1ref R_cam (off) and in-pack
+  R_cam (on) on the L40S. Limit (a) corrected: the 0.035 figure was measured on PN1 networks on A100, not on the L40S.
+- M2: Part 2 reads MS1's Sb and SbV networks from the same tars, by the same reader, beside SbM3 per seed and machine.
+  The SA1 SbM3-vs-Sb contrast uses the L40S Sb only; the A100 FS1 Sb is printed as a reference. Label: seeds 403+406,
+  404+407 and 405 come from three L40S machines (seed and machine confounded across seeds, not within a seed).
+- M3: for SbM3, every read built on R_ffhq, R_ffhq^border, M_ffhq or u carries the label "trained source (FFHQ),
+  development persons excluded, other pipeline". The unseen-genuine SA1 cell uses the seven TT1 families only.
