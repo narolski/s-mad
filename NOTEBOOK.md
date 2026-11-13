@@ -373,3 +373,10 @@ Ledger entry 1 (experiments/RECORDS_ledger/LEDGER.md, 486d089). Acted on: correc
 - Nuisance erasure (NE1, 41df045; review 78f0ca1): border inconclusive, splices inconclusive, storage untestable as registered. NE1b drafted; pre-run check b8288e3.
 - Sealed MAD22 read: registered a7d7454; lead-ordered final check GO WITH FIXES (c7b2daa: three one-shot guards); not started.
 - Shared test battery rc1: pre-run check GO WITH FIXES (6fd4293); not released.
+
+## 13 Nov 20:56 — selection rule fixed before the MAD22 read; rental (lead)
+
+- Selection rule for the next method version: draft v3 committed at 5fb7f52 (checked on origin at 20:56:28). Its margins, challenger list and order are fixed at that commit, before anyone in the lead chain has seen any MAD22 number of the frozen candidate. As of this entry no MAD22 score of the frozen networks exists: the rented machine is still in upload and gate dry run, and the start word has not been given. v3 remains a DRAFT until the author's written yes. Pre-run checks: v1 (PRERUN_NEXT_SELECTION_RULE_20261113.md), v2 (PRERUN_NEXT_SELECTION_RULE_V2_20261113.md, 3d14793).
+- Reads of the challengers (second engine SbFM, GAN arm GX, all RZ1 arms, DINOv3 E3) are held until the rule binds or the author rules otherwise; fits and gate checks continue.
+- Rental for the sealed MAD22 read: lease final1 (instance 60539406) never left "loading" and was destroyed by the script at 20:50:12; lease final2 (instance 60540801, A100 PCIE 40 GB, about 0.82 USD/h, cap 2 USD) rented 20:51:46 under the author's "freeze the candidate and let's test it" and "go with a read now".
+- Same-data shortcut learner on the frozen candidate's training list (28cb468): landmark_combined 0.787 (logistic); frozen candidate 0.814-0.885 on seeds 403-407 (the 0.873-0.906 quoted earlier tonight is seeds 408-412; record keeper's ledger entry 6, ca47f00).
