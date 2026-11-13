@@ -142,3 +142,23 @@ Built after the registration commit 01557ce; no TT1, border or geo reference row
   differ by 0.061-0.088. The DGX gate failure lies in the network computation on GB10 / torch 2.12, not in decode or
   resize.
 - Lease tt1b: /mnt/t7/smad_next/vast/tt1b, A100-SXM4 80 GB, host 104.202.122.106 port 30463, cap 2.5 USD, 2 h.
+
+## 7. Deviation TT1-D3 (`date`: Fri Nov 13 01:06:07 AM CET 2026; registered at the git commit that adds this section, before any TT1 row is scored; WRITTEN AFTER SEEING THE tt1b GATE NUMBERS): per-network gate, Bn_s401 excluded
+
+- Written after the tt1b gate numbers were seen (commit e73ae50, `gate_a100_tt1b.json`). Lead's decision (option 1).
+- The gate is applied per network. A network that fails any criterion is not scored on TT1 rows, and every read that
+  needs it is printed "not available (failed platform gate)".
+- Bn_s401 failed on tt1b (one camera row, ar1_000377, |Δ| 0.035 against 0.02; the stored camera logits were produced
+  with TF32 on) and is excluded: it is gated and printed again on tt1c but never scored on TT1 rows. Bn is a
+  printed-only arm, so no decision rule loses an input. Bn_s402 is printed alone and labelled "one seed".
+- The eleven other networks passed every criterion on tt1b, with the FFHQ rows byte-identical.
+- No tolerance, threshold or hypothesis text changes.
+- The gate runs again in the same job on lease tt1c (same batching as tt1b: HN2 list alone, then the gate family). If
+  any of the eleven fails this time: stop with RELEASE + FAILED and report (run-to-run instability; the lead then
+  treats the camera criterion itself as unsound).
+- Each lease's result tar has its own name (TT1_A100_<lease>_full.tar).
+- Scripts: `src/TT1/rented/remote_tt1.sh` `528f81d37c95de2dbb927deca4ff7f52688eeced29cada1867152539e12b9058` (EXCL=PN1_Bn_s401; lease-named tar); `src/TT1/rented/drive_tt1.sh`
+  `c37c68d19802c6679cf441f1ca4314e7caaa18d66500af70f658f9b02323dd26`; `src/TT1/gate_check_a100.py` `e0c268e6cd894ab9ef319c7395c7ab2ff4d965bde7ab6b2a42dc9c503fa794ef` (`--exclude`: excluded networks printed, outside the pass decision).
+  Reader `src/TT1/tt1_read.py` gains `--exclude` (missing networks -> "not available (failed platform gate)" in
+  TT-H1, TT-H4, TT-H5; the other seed printed alone); re-pinned, after its mock test, before any score is read.
+- Lease tt1c: /mnt/t7/smad_next/vast/tt1c, A100-SXM4 80 GB, host 104.202.122.106 port 30099, cap 2.5 USD, 2 h.

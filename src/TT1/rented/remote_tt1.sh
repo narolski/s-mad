@@ -10,9 +10,10 @@
 #  6 TT1 rows (fam tt1) for all 12 networks; result tar with rc 0.
 # The result tar always carries: scores, gate.json, diag, versions, pip log, GPU, rc. Args: PACK_SHA NETS_SHA [test]
 set -u
-PSHA=${1:?}; NSHA=${2:?}; MODE=${3:-full}
+PSHA=${1:?}; NSHA=${2:?}; MODE=${3:-full}; LEASE=${4:-lease}
+EXCL="PN1_Bn_s401"     # deviation TT1-D3: failed the platform gate on tt1b; gated and printed, never scored on TT1 rows
 B=${TT1_REMOTE_BASE:-/workspace/tt1}; PY=${TT1_REMOTE_PY:-python}
-T=TT1_A100_s401402_$MODE; W=$B/work; R=$W/res/$T
+T=TT1_A100_${LEASE}_$MODE; W=$B/work; R=$W/res/$T
 mkdir -p "$B/results" "$B/logs" "$B/rc" "$R/scores"
 log() { echo "$(date +%FT%T) $*" | tee -a "$R/calls.log"; }
 finish() {
@@ -72,12 +73,13 @@ for n in $NETL; do
   log "gate scored $n"
 done
 if [ "$MODE" = test ]; then log "test done"; finish 0; exit 0; fi
-$PY "$B/bin/gate_check_a100.py" --require-hn2 --scores "$R/scores" --ref "$W/tt1nets/gate_ref" --manifest "$D/manifests/tt1_score.csv" \
+$PY "$B/bin/gate_check_a100.py" --require-hn2 --exclude $EXCL --scores "$R/scores" --ref "$W/tt1nets/gate_ref" --manifest "$D/manifests/tt1_score.csv" \
   --out "$R/gate.json" > "$R/gate.txt" 2>&1
 grc=$?
 log "gate rc $grc: $(head -c 300 "$R/gate.txt")"
 if [ "$grc" != 0 ]; then finish GATE_FAILED; exit 2; fi
 for n in $NETL; do
+  case " $EXCL " in *" $n "*) log "tt1 not scored $n (excluded, TT1-D3)"; continue ;; esac
   $PY "$W/tt1/bin/rescore.py" --resdir "$W/tt1nets/nets/$n" --code "$W/tt1/code" --manifest "$MAN" --fam tt1 \
     --out "$R/scores/${n}__tt1.npz" --workers 7 >> "$B/logs/score.log" 2>&1 || abort "tt1 score $n"
   log "tt1 scored $n"

@@ -8,6 +8,7 @@
 # FATAL* (verified) -> RELEASE + FAILED; unreadable or missing remote state -> no decision.
 set -euo pipefail
 HOST=${1:?host}; PORT=${2:?port}; L=${3:?lease folder}; STEP=${4:?step}; MODE=${5:-full}
+LEASE=$(basename "$L")
 SRC=$(cd "$(dirname "$0")" && pwd)
 KEY=${PN1_SSH_KEY:-/home/narolski/.config/smad-next/vast_ssh_key}
 O=/mnt/t7/smad_next/TT1; B=/workspace/tt1
@@ -31,12 +32,12 @@ case "$STEP" in
     RS "$O/tt1_nets_s401402.tar" "$O/tt1_nets_s401402.tar.sha256" "$O/tt1_hn2.tar" "$O/tt1_hn2.tar.sha256" "root@$HOST:$B/packs/"
     RS "$O/tt1_pack.tar" "$O/tt1_pack.tar.sha256" "root@$HOST:$B/packs/"
     log "uploaded"
-    msg=$(timeout 30 ssh "${SO[@]}" "root@$HOST" "cd $B && rm -f $B/DONE && nohup setsid bash $B/bin/remote_tt1.sh $PSHA $NSHA $MODE > $B/logs/remote.log 2>&1 < /dev/null & sleep 2; echo TT1_STARTED" || true)
+    msg=$(timeout 30 ssh "${SO[@]}" "root@$HOST" "cd $B && rm -f $B/DONE && nohup setsid bash $B/bin/remote_tt1.sh $PSHA $NSHA $MODE $LEASE > $B/logs/remote.log 2>&1 < /dev/null & sleep 2; echo TT1_STARTED" || true)
     echo "$msg" | grep -q TT1_STARTED || { log "TT1_STARTED not seen"; exit 1; }
     log "remote_tt1.sh ($MODE) started"
     ;;
   pull)
-    T=TT1_A100_s401402_$MODE
+    T=TT1_A100_${LEASE}_$MODE
     if ! R "test -f $B/DONE" 2>/dev/null; then
       log "not done (or remote unreadable): $(R "tail -1 $B/work/res/$T/calls.log" 2>/dev/null || echo unreadable)"; exit 0
     fi
