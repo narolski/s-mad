@@ -39,6 +39,15 @@ splice)? No answer yet. No arm is a method candidate.
   H100 and never reads SE1's networks. Array is now 40 tasks (`ab1_fit.sbatch` 186fd6bc…, limit 2:30).
 - 09:20 uploaded to WCSS packs/AB1: ab1_overlay_v2.tar, run_v2.sh (cfa4ed26…), ab1_fit.sbatch, ab1_long.sbatch (all
   sha256 checked there). The v1 files (run.sh 893e856a…, ab1_overlay.tar 4e3afaa1…) stay for the smoke.
+- 09:25 registration commit 61f7994 (pushed). Fit array file `wcss_ab1_fit.cmd` in the dispatcher's queue.
+- 09:30 lead: the twice-as-long Sb arm (SbL) stays unsubmitted. The PR1 owner's registered training-row reading (not
+  yet reviewed) is "same-person splices underfit with two-person splices fit (class weighting or identity); no
+  longer-training arm without an author decision"; the lead puts it to the author.
+- 09:34 dispatcher submitted the fit array as WCSS job 6310270_[0-39] (Nice 0). Forecasts at 09:34 (unreliable): smoke
+  6310091 start 17:20; array none. The array counts only if the smoke passes (dispatcher cancels it otherwise).
+- 09:35 dispatcher relayed the lead's rule: every network is scored on the GPU model and build it was trained on. AB1
+  does this by construction (pn1_score.py inside each fit job). The smoke's FS1 Sb s403 rescoring measures the A100 to
+  H100 difference and, as registered, decides nothing in AB1 (no AB1 number is compared with an A100 number).
 
 ## 3. Data
 
@@ -86,8 +95,10 @@ Pre-run review, fixes, registration commit with pins; fit array to the dispatche
 
 ## 10. Handover state
 
-- WCSS job 6310091 (smoke, owner AB1 owner, expected 20 min once started; Slurm forecast 18:30). Fit array: queue file
-  `/mnt/t7/smad_next/dispatch/submit_queue/wcss_ab1_fit.cmd` (40 tasks, 2:30 each). Compute used: about 0.1 DGX
+- WCSS job 6310091 (smoke, owner AB1 owner, about 20 min once started; forecast 17:20). WCSS job 6310270_[0-39] (40
+  fits, owner AB1 owner, about 1.2 h each, limit 2:30; expected end about 1.5-3 h after the array starts, depending on
+  how many GPUs it gets). Logs: /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/ab1-{smoke,fit}-*.out. If the smoke
+  fails: the dispatcher cancels 6310270, the owner fixes and re-queues. Fetch: `bash src/AB1/fetch_ab1.sh smoke|fits`. Compute used: about 0.1 DGX
   GPU-hours (local test). The local test work folder was deleted (owner's own file).
 
 ## 11. Reproduce from scratch
