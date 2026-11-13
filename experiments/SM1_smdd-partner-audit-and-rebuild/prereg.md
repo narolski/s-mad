@@ -698,6 +698,16 @@ SEMX / SEMS = the slerped semantic code of the pair with the host's own noise ma
   (`dg1_addon.py:209`), only the noise map is slerped; d is a pair feature (same value across the X-type and across the
   SAME-type rungs), not a statistic of the rung image. The rule and the computation are unchanged.
 
+## Amendment A23: within-key AUC for the released detectors (13 Nov; descriptive; registered before computing; zero GPU)
+
+So that released and retrained rows of the audit table share one metric. For each released detector already scored on
+the Part 2 audit set (`/mnt/t7/smad_next/SM1/p2scores/scores_rel_<det>.npz`, crop path = the releases' own
+preprocessing, primary; `p2scores/whole/`, whole files, secondary), logit without TTA: within-key AUC of the 5 trained-
+partner morphs (KP) over the 5 SMDD evaluation-partner morphs (KE) of the same key, 25 pairs per key, ties one half,
+mean over the 500 keys, 10,000 key-bootstrap draws (seed 20261111) — the A14 definition (`a12_rank.py`), one network
+per release, so no seed mean. Detectors: MADation ViT-B/16, ViT-L/14, FE ViT-B/16, FE ViT-L/14, MixFaceNet-MAD (FS pair
+descriptive). Descriptive only (no prediction, no decision). Script `src/SM1/a23_rank_rel.py`.
+
 ## DRAFT A20 (for the author's decision, not registered): protocol arm with render-matched diffusion controls
 
 Add DG1 shards 0–5 to the protocol training set (PN1's protocol recipe): X20 as attack, REC20 and SAME20 as genuine;
