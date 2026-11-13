@@ -33,8 +33,17 @@ GD1 (DG1 diffusion ladder) and GD2 (AG1 MIPGAN controls) if their frames exist. 
 - `prereg.md` registration; `pr1_read_mock.json` mock test output; `z_read.json` the registered read (once).
 - Code: `src/PR1/` (pins in `src/PR1/SHA256SUMS`). Large outputs: `/mnt/t7/smad_next/PR1/`.
 
-## Handover state
-Part 1 read and committed (6aa02f8); results review running. GD job: upload running, then bin re-upload, then
-`bash src/PR1/drive_gd.sh start` (the job waits on the host); `drive_gd.sh pull` when PR1_DONE exists; then
-`gd_read.py --tar /mnt/t7/smad_next/PR1/results/PR1_GD_pn1fs.tar --out gd_read.json` once. Temporary, own:
-`/mnt/t7/smad_next/PR1/smoke_dgx/` (about 9 GB of extracted FS pack, removable after the GD job).
+## Handover state (13 Nov, about 09:50 CET)
+- Done and committed: part 1 (Z0-Z4, Z6; 6aa02f8, review applied at 90caa9e), amendment 3 (Z1b, Z3b; ea24c3d),
+  Z5 copied from C2P and marked provisional (aaa272a).
+- GD job: `remote_gd.sh` is waiting on pn1fs (PID 36238; log `/workspace/pr1/logs/run.log`). It waits for
+  `/workspace/tt1/DONE_FS`, then DONE_sp or NO_SP (at most 30 min), then the FS1 queue lock. It runs about 40 min and
+  will not start after 15:45. Check: `bash src/PR1/drive_gd.sh status`. When `/workspace/pr1/PR1_DONE` exists:
+  `bash src/PR1/drive_gd.sh pull` (two verified copies under `/mnt/t7/smad_next/PR1/results*`), then tell the lead
+  (who touches DONE_pr1), then run once:
+  `OMP_NUM_THREADS=2 nice -n 10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/PR1/gd_read.py --tar /mnt/t7/smad_next/PR1/results/PR1_GD_pn1fs.tar --out experiments/PR1_protocol-reads-existing-networks/gd_read.json`,
+  then result.md part 2 and the results review.
+- Waiting on other owners: Z2b and Z2b-τ5 (TT1-FS read, `tt1_read_fs.json`); the Z5 re-copy (C2P-R read); Z5 SbM3
+  (MS1 read). Each reader still has to be written and committed before its read (rules are registered).
+- Temporary, own: empty folders `/workspace/pr1/work_1794558587` and `work_1794559232` on pn1fs;
+  `/mnt/t7/smad_next/PR1/smoke_dgx/` (test tar only).
