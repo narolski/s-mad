@@ -151,3 +151,35 @@ tested on mock features only. Zero GPU. It reads the registered feature file, BD
   to two-person pairs (nearest, without replacement). AUC and n printed.
 - **Not built:** the follow-up with new warps (same-person different-session halves from the NIST cross-encounter
   list, same-day two-person splices) is an author item.
+
+## Amendment 2b: pre-run fixes for amendment 2 (`PRERUN_TB1_A2_20261113.md`, b7d611c; registered before the read)
+
+- **F1, day gap.** Same-day pairs: n = 3 (FRGC) and 5 (colorFERET) two-person, and 0 same-person. The same-day
+  comparison is therefore not computable; the counts are printed and no session claim is made. Bins with < 5 of either
+  class print n only. Two-person same-day rows against all same-person rows of the database are printed as a labelled
+  anecdote (n ≤ 8, no claim).
+- **F2, matched W.** Pairs are matched 1:1, nearest on ln W, without replacement, with a caliper of 0.10 in ln W;
+  unmatched pairs are dropped and counted. Printed: n matched, n dropped, mean |Δ ln W|, medians.
+  - Descriptive only. With n ≈ 40 per side the AUC's SE is about 0.065, so the read can only say "consistent with
+    H-new-2" (AUC ≤ 0.60) or "against H-new-2" (AUC ≥ 0.70); otherwise "not resolved".
+  - No verdict on H-new-2 comes from (b).
+- **F3, scope.** The rule is applied to all 291 hosts. FRGC-only values (the gain and the E, W and E × W strata) and
+  joint E × W tertile cells (≥ 10 of each class) are printed as descriptive.
+- **F4, mock run (answered truthfully).**
+  - The mock used `/tmp/…/scratchpad/tb1_mockfeats2.csv`: synthetic features over the real 291 host ids and the real
+    S4 / S3 row ids.
+  - E was not real: P4_Etot and P3_Etot were set to 1, so log E was constant.
+  - D (BD1 `d_values.csv`) and W (the .tem files) were real. The mock's E_alone, W_alone and D_alone AUCs and its
+    [log E, log W] base AUC were written to the scratchpad JSON `tb1_a2_mock.json`. With E constant, that base was in
+    effect a W-only fit on real W.
+  - I did not open that JSON. The only printout I saw was the last four lines of stdout: the matched-W medians of the
+    mock matching (W_two 6.52 px, W_same 6.50 px), which come from real W.
+  - Since then, mock mode replaces E, D and W with random numbers.
+  - The read is labelled accordingly: the W-only base value may have been computed in a file I did not view, and two
+    matched-W medians were seen.
+- **F5, bootstrap.** Failed bootstrap draws are counted and printed. If more than 1% of the 2,000 draws fail, the
+  verdict is "inconclusive". The interval is a "95% percentile interval". The gain over five more fold seeds
+  (20261183-20261187) is printed as a sensitivity check and binds nothing.
+- **F6.** n_components differs from the review's 110, because partners outside the 291 hosts are graph nodes (shared B
+  photos).
+- **F7.** Within-strata AUCs are descriptive; coverage is printed; no rule uses them.
