@@ -382,3 +382,15 @@ Recipe (fixed before building):
   - the share of pixels where exactly one of H or B is black border (max over channels = 0 in the aligned frame);
   - |eye-distance gap| from `pairs.csv`.
 - Development data only; nothing scored by DATA.
+
+### D12b build record (13 Nov 2026, 22:21:57-22:22:17 machine clock)
+
+- Build: 299 of 299, 0 failures. Test on 8 pairs first. The variants.py and face_morpher hashes were checked before
+  the run.
+- Against D12a FM(H, B): same canvas (512 x 512 x 3), dtype and PNG format on 299 of 299.
+- Border treatment differs by construction, as in the AR1 ladder. Outside the mask the warp-only image keeps H, while
+  FM(H, B) averages H and B.
+- Share of pixels where exactly one of H or B is black border: median 0.020, p90 0.070, max 0.329; 233 pairs above
+  0.01.
+- |Eye-distance gap|: median 3.48 px, p90 12.71 px, max 27.45 px.
+- Per pair: `/mnt/t7/smad_next/DATA/D12b/pair_measures.csv` (FFHQ keys only).
