@@ -460,3 +460,28 @@ imported unchanged. Scores: each SbM3 fit's own `scores_eval.npz`, scored at fit
 is done, so no cross-platform gate applies. A tar off its pin, or missing or non-finite hold-out rows, counts as not
 meeting the rule. The MS1 Sb fits are printed beside with no rule. AB1's storage-test read (8109cad) is not used for
 Z5; it will be cited beside Z5 once its review is applied.
+
+## Amendment 5 (post hoc; lead's request 13 Nov; registered before computing, pre-run check requested): shape-linked test hosts
+
+Source: the DATA audit addendum (`experiments/DATA_builds/PARTNER_OVERLAP_AUDIT.md`, `partner_overlap_addendum.json`,
+b0eb018). 32 training hosts of the frozen candidate's list carry 64 negatives (32 S3, 32 S0) whose hull and warp
+geometry use the landmarks of their pool partner. Those 32 partners are read test hosts. The candidate never saw their
+pixels or photos, but it did see their landmark shape in training negatives. The other 159 read test hosts are clean.
+The PR1 part-1 test-host values are known, so this read is post hoc.
+
+- **Sets** (derived in code from the PN1 split and the AR1 pool; asserted 191 / 32; host ids stay on /mnt/t7):
+  (a) all 191 read test hosts, (b) the 159 clean hosts, (c) the 32 shape-linked hosts, (d) the 80 test hosts clean of
+  development persons (DATA list `test_hosts_clean_of_dev.csv`), printed.
+- **Reads per Sb seed:** S4 vs S3 AUC; paired margin (median S4 − S3 logit); R4 vs R3 AUC (OpenCV native); own-rule
+  flag rates on S3, S0, R3, R4.
+  - FS1 seeds 403-407 decide; AB1 seeds 408-412 are printed.
+  - Component-bootstrap intervals (host-partner person graph, 2,000 draws) for S4 vs S3 and the S3 flag rate.
+  - Paired difference (b) − (a).
+  - Null of (c) − (b) from random 32-of-191 splits (2,000 draws).
+- **Rule (FS1):**
+  - **"Shape link matters"** if on ≥ 4 of 5 seeds the S4-vs-S3 AUC on the 32 exceeds that on the 159 by ≥ 0.05, or the
+    S3 flag rate differs by ≥ 10 points.
+  - **"No visible effect"** if every seed's two differences lie inside the 95% interval of the random-split null.
+  - Otherwise "inconclusive".
+  - n = 32 is small.
+- Code: `src/PR1/shape_link_read.py` (pinned in `src/PR1/SHA256SUMS`), tested on mock scores only. Zero GPU, nice 19.
