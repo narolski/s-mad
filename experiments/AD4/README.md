@@ -1185,3 +1185,4 @@ dependency (DependencyNeverSatisfied): fix, re-test, resubmit both, and cancel 6
   --ref-res /mnt/t7/smad_next/AD4/results_wcss_m3 --tag _h100 --platform "WCSS H100" --flag "Reproduction gate: pass on the cluster stack."`
   (reader `31cc088a…`), then update result.md (follow-ups section) and send to review.
 - Nothing else of AD4 runs anywhere. Athena array 3546123 cancelled (12 Nov 23:03).
+- 19:08 13 Nov: the two reviews of 13 Nov saved verbatim (the record keeper found no saved file): `experiments/reviews/REVIEW_AD4_CLUSTER_20261113.md` (results review of both halves of the cluster-stack reading) and `experiments/reviews/PRERUN_AD4_FU_H100_20261113.md` (pre-run check of Amendment 6).
