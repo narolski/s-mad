@@ -12,14 +12,24 @@ ap = argparse.ArgumentParser(); ap.add_argument("--images"); ap.add_argument("--
 a = ap.parse_args(); out = pathlib.Path(a.out); (out / "compat").mkdir(parents=True, exist_ok=True)
 rows = list(csv.DictReader(open(a.images))); ids = np.array([r["id"] for r in rows])
 res, passed = {}, []
-for f in sorted(pathlib.Path(a.scores).glob("fdmad_*_r*_s*.npz")):
+for f in sorted(pathlib.Path(a.scores).glob("fdmad_*_r*_s*.npz"), key=lambda p: ("fused" in p.name, p.name)):
     br, r_, s_ = re.match(r"fdmad_(\w+)_r(\d+)_s(\d)", f.stem).groups()
     z = np.load(f); assert np.array_equal(z["id"], ids)
     net = f"FDMAD_{'g' if br == 'global' else 'f'}{r_}_s{s_}_model"
     np.savez(out / "compat" / f"{net}.npz", id=ids, score=z["score"], score_noTTA=z["score"], logit_noTTA=z["score"])
     st = pathlib.Path(f"/mnt/t7/smad_heldout/a45/fdmad/fdmad_{br}_r{r_}_s{s_}/scores_eval.npz")
-    if not st.exists():
-        res[net] = dict(stored=None, passed=None, note="no stored A45 score (fused branch never ran in A45)"); continue
+    if not st.exists():   # fused: never ran in A45; its global part must equal our gated global run (same res, seed)
+        gfile = pathlib.Path(a.scores) / f"fdmad_global_r{r_}_s{s_}.npz"
+        gp = res.get(f"FDMAD_g{r_}_s{s_}_model", {}).get("passed")
+        if gfile.exists() and gp:
+            dg = float(np.abs(np.load(gfile)["s_global"] - z["s_global"]).max())
+            p = dg <= 1e-6
+            res[net] = dict(global_part_max_abs_vs_gated_global=dg, passed=p, has_face_rows=int(z["has_face"].sum()),
+                            note="local branch has no stored reference (never run in A45)")
+            if p: passed.append(net)
+        else:
+            res[net] = dict(passed=None, note="global run of the same res/seed not yet gated")
+        continue
     sz = np.load(st); pos = {e: i for i, e in enumerate(sz["id"])}
     cells, meds, mx = [], [], 0.0
     for bench, fams in (("gate", GATEFAM), ("frllm", FAM["frllm"])):

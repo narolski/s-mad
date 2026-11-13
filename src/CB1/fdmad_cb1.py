@@ -59,7 +59,7 @@ def main():
         z = np.load(a.landmarks)
         K = {str(p): k for p, k in zip(z["path"], z["kps"])}
         def kps(paths):
-            k = np.array([K[p] for p in paths], np.float64) * a.res
+            k = np.array([K.get(p, np.full((5, 2), np.nan)) for p in paths], np.float64) * a.res   # absent = no face
             ok = ~np.isnan(k[:, 0, 0])
             k[~ok] = np.array([[0.35, 0.4], [0.65, 0.4], [0.5, 0.55], [0.38, 0.7], [0.62, 0.7]]) * a.res  # placeholder, masked
             return list(k), ok

@@ -1,0 +1,292 @@
+{
+ "FDMAD_g256_s1_model": {
+  "median_cell_medabs": 1.2815443010710803e-05,
+  "max_abs": 0.00013330124384347553,
+  "eer_cells_within_0p5": 10,
+  "passed": true,
+  "cells": [
+   {
+    "bench": "gate",
+    "family": "FaceMorpher",
+    "eer_mine": 100.0,
+    "eer_stored": 100.0
+   },
+   {
+    "bench": "gate",
+    "family": "OpenCV",
+    "eer_mine": 40.51773933663697,
+    "eer_stored": 40.51773933663697
+   },
+   {
+    "bench": "gate",
+    "family": "Webmorph",
+    "eer_mine": 39.329729729729735,
+    "eer_stored": 39.329729729729735
+   },
+   {
+    "bench": "gate",
+    "family": "MIPGAN_I",
+    "eer_mine": 55.65906688811717,
+    "eer_stored": 55.65906688811717
+   },
+   {
+    "bench": "gate",
+    "family": "MIPGAN_II",
+    "eer_mine": 46.44952127014908,
+    "eer_stored": 46.44952127014908
+   },
+   {
+    "bench": "frllm",
+    "family": "amsl",
+    "eer_mine": 97.48715348208249,
+    "eer_stored": 97.48715348208249
+   },
+   {
+    "bench": "frllm",
+    "family": "facemorpher",
+    "eer_mine": 97.05641667468952,
+    "eer_stored": 97.05641667468952
+   },
+   {
+    "bench": "frllm",
+    "family": "opencv",
+    "eer_mine": 82.3722117839765,
+    "eer_stored": 82.3722117839765
+   },
+   {
+    "bench": "frllm",
+    "family": "stylegan",
+    "eer_mine": 40.26988864285485,
+    "eer_stored": 40.26988864285485
+   },
+   {
+    "bench": "frllm",
+    "family": "webmorph",
+    "eer_mine": 97.05521029050442,
+    "eer_stored": 97.05521029050442
+   }
+  ]
+ },
+ "FDMAD_g256_s2_model": {
+  "median_cell_medabs": 0.0,
+  "max_abs": 0.0,
+  "eer_cells_within_0p5": 10,
+  "passed": true,
+  "cells": [
+   {
+    "bench": "gate",
+    "family": "FaceMorpher",
+    "eer_mine": 100.0,
+    "eer_stored": 100.0
+   },
+   {
+    "bench": "gate",
+    "family": "OpenCV",
+    "eer_mine": 41.620709573465476,
+    "eer_stored": 41.620709573465476
+   },
+   {
+    "bench": "gate",
+    "family": "Webmorph",
+    "eer_mine": 39.429729729729736,
+    "eer_stored": 39.429729729729736
+   },
+   {
+    "bench": "gate",
+    "family": "MIPGAN_I",
+    "eer_mine": 51.92359957723086,
+    "eer_stored": 51.92359957723086
+   },
+   {
+    "bench": "gate",
+    "family": "MIPGAN_II",
+    "eer_mine": 43.80893225063629,
+    "eer_stored": 43.80893225063629
+   },
+   {
+    "bench": "frllm",
+    "family": "amsl",
+    "eer_mine": 98.03110209601081,
+    "eer_stored": 98.03110209601081
+   },
+   {
+    "bench": "frllm",
+    "family": "facemorpher",
+    "eer_mine": 97.05641667468952,
+    "eer_stored": 97.05641667468952
+   },
+   {
+    "bench": "frllm",
+    "family": "opencv",
+    "eer_mine": 80.89981692922869,
+    "eer_stored": 80.89981692922869
+   },
+   {
+    "bench": "frllm",
+    "family": "stylegan",
+    "eer_mine": 43.62223612849395,
+    "eer_stored": 43.62223612849395
+   },
+   {
+    "bench": "frllm",
+    "family": "webmorph",
+    "eer_mine": 97.54600857542034,
+    "eer_stored": 97.54600857542034
+   }
+  ]
+ },
+ "FDMAD_g256_s3_model": {
+  "median_cell_medabs": 6.500418001098573e-08,
+  "max_abs": 8.980306853700881e-07,
+  "eer_cells_within_0p5": 10,
+  "passed": true,
+  "cells": [
+   {
+    "bench": "gate",
+    "family": "FaceMorpher",
+    "eer_mine": 100.0,
+    "eer_stored": 100.0
+   },
+   {
+    "bench": "gate",
+    "family": "OpenCV",
+    "eer_mine": 40.51773933663697,
+    "eer_stored": 40.51773933663697
+   },
+   {
+    "bench": "gate",
+    "family": "Webmorph",
+    "eer_mine": 39.429729729729736,
+    "eer_stored": 39.429729729729736
+   },
+   {
+    "bench": "gate",
+    "family": "MIPGAN_I",
+    "eer_mine": 55.65906688811717,
+    "eer_stored": 55.65906688811717
+   },
+   {
+    "bench": "gate",
+    "family": "MIPGAN_II",
+    "eer_mine": 45.955035753242036,
+    "eer_stored": 45.955035753242036
+   },
+   {
+    "bench": "frllm",
+    "family": "amsl",
+    "eer_mine": 97.51014198782961,
+    "eer_stored": 97.51014198782961
+   },
+   {
+    "bench": "frllm",
+    "family": "facemorpher",
+    "eer_mine": 96.97458361413305,
+    "eer_stored": 96.97458361413305
+   },
+   {
+    "bench": "frllm",
+    "family": "opencv",
+    "eer_mine": 82.3722117839765,
+    "eer_stored": 82.3722117839765
+   },
+   {
+    "bench": "frllm",
+    "family": "stylegan",
+    "eer_mine": 40.10622252174193,
+    "eer_stored": 40.10622252174193
+   },
+   {
+    "bench": "frllm",
+    "family": "webmorph",
+    "eer_mine": 97.01426024955437,
+    "eer_stored": 97.01426024955437
+   }
+  ]
+ },
+ "FDMAD_g512_s1_model": {
+  "median_cell_medabs": 4.976269007972434e-09,
+  "max_abs": 0.0025002069531504523,
+  "eer_cells_within_0p5": 10,
+  "passed": true,
+  "cells": [
+   {
+    "bench": "gate",
+    "family": "FaceMorpher",
+    "eer_mine": 22.167307284888473,
+    "eer_stored": 22.167307284888473
+   },
+   {
+    "bench": "gate",
+    "family": "OpenCV",
+    "eer_mine": 22.712431216368223,
+    "eer_stored": 22.712431216368223
+   },
+   {
+    "bench": "gate",
+    "family": "Webmorph",
+    "eer_mine": 51.84594594594595,
+    "eer_stored": 51.84594594594595
+   },
+   {
+    "bench": "gate",
+    "family": "MIPGAN_I",
+    "eer_mine": 21.09919975841764,
+    "eer_stored": 21.09919975841764
+   },
+   {
+    "bench": "gate",
+    "family": "MIPGAN_II",
+    "eer_mine": 22.235789601260457,
+    "eer_stored": 22.235789601260457
+   },
+   {
+    "bench": "frllm",
+    "family": "amsl",
+    "eer_mine": 0.0,
+    "eer_stored": 0.0
+   },
+   {
+    "bench": "frllm",
+    "family": "facemorpher",
+    "eer_mine": 0.981194441770163,
+    "eer_stored": 0.981194441770163
+   },
+   {
+    "bench": "frllm",
+    "family": "opencv",
+    "eer_mine": 15.5826949944597,
+    "eer_stored": 15.5826949944597
+   },
+   {
+    "bench": "frllm",
+    "family": "stylegan",
+    "eer_mine": 56.25501428067135,
+    "eer_stored": 56.25501428067135
+   },
+   {
+    "bench": "frllm",
+    "family": "webmorph",
+    "eer_mine": 0.0,
+    "eer_stored": 0.0
+   }
+  ]
+ },
+ "FDMAD_f256_s1_model": {
+  "global_part_max_abs_vs_gated_global": 0.0,
+  "passed": true,
+  "has_face_rows": 19171,
+  "note": "local branch has no stored reference (never run in A45)"
+ },
+ "FDMAD_f256_s2_model": {
+  "global_part_max_abs_vs_gated_global": 0.0,
+  "passed": true,
+  "has_face_rows": 19171,
+  "note": "local branch has no stored reference (never run in A45)"
+ },
+ "FDMAD_f256_s3_model": {
+  "global_part_max_abs_vs_gated_global": 0.0,
+  "passed": true,
+  "has_face_rows": 19171,
+  "note": "local branch has no stored reference (never run in A45)"
+ }
+}

@@ -80,6 +80,19 @@ No CB1 score read yet.
   without a face keep the global score; both counted). Landmark detection is not image code (no pixel is written).
 - 00:06. WCSS Slurm controller unreachable ("connect failure"); state of 6308827 unknown.
 
+- 00:20-00:31. FD-MAD C1-F (`src/CB1/fdmad_gate.py`): global 256 seeds 1-3 reproduce the stored A45 scores row by row
+  (max 1.3e-4 / 0 / 9e-7; 10 of 10 cells). Readings (`/mnt/t7/smad_next/CB1/analysis_fdmad/read_g256/`): inverted on our
+  frames (FRLL mean 83.02, MAD22 mean 56.08), as A45 found; `10_ASSET_INVENTORY.md`'s "reproduced on both global-only
+  means" is contradicted by `smadcvpr/results/A45/a45_read.md` (GATE FAIL).
+- 00:27. First 23 networks (224 px, es.pt) scored. C1: M6, M8, M8O pass every seed; M5 fails the max criterion on seeds
+  1, 2, 6 (platform). Amendment 2 registered and committed (9f171b8) before the readings were looked at.
+- 00:30. `src/CB1/rs1_bpcer.py`: BPCER at APCER for the released detectors from RS1's score files through RS1's own
+  analyse.py; EERs equal RS1's table (e.g. MADation ViT-B/16 AMSL 3.91); `cb1_released_rs1_bpcer.csv`.
+- 00:40. Five facial points written for 49,810 frames (`/mnt/t7/smad_next/CB1/manifests/fdmad_landmarks_5pt.npz`, no
+  frame without a face). Fused smoke passed; fused runs (256 then 512) via `src/CB1/run_fdmad_fused.sh` (PID 678580).
+  A first chain was killed and restarted to put the fast 256 runs first; the FD-MAD global 512 runs take about 1.5 h
+  per seed (training features 38 min).
+
 ## 3. Data
 
 See `prereg.md` section 2. Corrected MAD22 aligned frames and E7 pools:
@@ -101,7 +114,8 @@ the m15k_t file names are present).
 
 ## 5. Results
 
-None read yet.
+Readings as they arrive are in `result.md`. Tables: `/mnt/t7/smad_next/CB1/analysis_cnn/<pass>/{per_network,per_arm,
+c1_gate,c2_pipeline_shift}.csv`, `readings.json`, `c1_verdicts.json`; FD-MAD `/mnt/t7/smad_next/CB1/analysis_fdmad/`.
 
 ## 6. Checks
 

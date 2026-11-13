@@ -43,6 +43,8 @@ ARMS = {  # arm -> (method, primary checkpoint, label)
     "A45_hrnetw18": ("MorphHRNet", "last", "A45 hrnet_w18: MorphHRNet recipe at W18, 256, Adam 1e-3"),
     "FDMAD_g256": ("FD-MAD", "model", "FD-MAD re-implementation, global branch only, features at 256 (A45 primary)"),
     "FDMAD_g512": ("FD-MAD", "model", "FD-MAD re-implementation, global branch only, features at 512 (disclosed variant)"),
+    "FDMAD_f256": ("FD-MAD", "model", "FD-MAD re-implementation, fused 0.6 global + 0.4 local MRF, 256"),
+    "FDMAD_f512": ("FD-MAD", "model", "FD-MAD re-implementation, fused 0.6 global + 0.4 local MRF, 512 (windows 96 px as built)"),
 }
 APC = (0.01, 0.05, 0.10, 0.20)
 C1_EXTERNAL_PASS = set()   # nets whose C1 was checked by a separate script (FD-MAD: fdmad_gate.py), filled from --c1-pass
