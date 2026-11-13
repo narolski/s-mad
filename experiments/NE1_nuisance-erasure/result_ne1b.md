@@ -107,3 +107,38 @@ flags exactly).
 3. H-new-5 (a second-moment border eraser) together with H-new-4 (storage as spread).
 4. H-new-6: the E7 cost on the surround-balanced `lcomb_bal`.
 5. H-new-7: the splice probe within blend-softness D quintiles, with C ∈ {100, 1000} printed.
+
+## Closing (lead's ruling, 13 Nov 2026: the erasure line stops here for the sprint)
+
+**Established (NE1 and NE1b, development data, frozen Sb seeds 403-407).**
+- **The border cue is linearly decodable** from the penultimate features (probe AUC 0.991-0.996).
+- **Mean-based erasers cancel the mean border response but not the false alarms.**
+  - Rank-1 (NE1), rank-7 (E7) and LEACE erasers cancel the mean border response in logits, per mask for E7.
+  - They leave 28-74% of the excess flags at the 1% camera cut (E7), because bordered copies keep 2.5-4.7× the
+    photos' score spread (post hoc).
+- **The splice probe barely beats the frozen head.** A probe fitted on held-out development persons gains +0.003 to
+  +0.039 AUC over the frozen head (0.76-0.79). That is inside the simple-morph-cue floor of 0.773 and far below the
+  0.85 bottleneck bar.
+- **Storage was untestable in the registered unit** (NE1: the camera-pool rank saturates for FFHQ photos). Sb's storage
+  reaction rests on MS1 and FS1.
+
+**Not established.**
+- No cost to morph detection was shown. The registered in-domain cost check was saturated (R4 recall 1.000). The
+  FFHQ landmark_combined cost is specific to the border span, but that set has a surround shortcut.
+- **"Border and detection share features" may not be written.**
+- No debiasing arm and no splice-head arm is licensed.
+
+**Not run, available after the deadline (CPU only, on the saved features).**
+1. An amendment replacing the in-domain cost with R4 vs R3 and S4 vs S3.
+2. H-new-2 (an eraser orthogonal to the head) with that cost check.
+3. H-new-5 (a second-moment border eraser) together with H-new-4 (storage as spread).
+4. H-new-6 (the E7 cost on the surround-balanced lcomb_bal).
+5. H-new-7 (the splice probe within blend-softness D quintiles).
+
+The direct test of the border reaction is the border-crossed training arm (Sbx, queued on WCSS). The second-identity
+question goes through the pipeline-matched ladder reads and the look-alike set.
+
+**Saved features, kept for reuse.**
+- `/mnt/t7/smad_next/NE1/results/NE1_feats.tar` (`18d13b10…`) and its unpacked copy in `results/unpacked/`.
+- The Athena copy in `results/NE1`.
+- Manifests in `/mnt/t7/smad_next/NE1/`.

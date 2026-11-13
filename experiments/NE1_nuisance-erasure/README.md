@@ -22,3 +22,4 @@ networks are not changed and the sealed read is not touched. Current answer: non
 - Post-result review: needs qualification (experiments/reviews/REVIEW_NE1_20261113.md); result.md corrected, reviewer's post hoc scripts kept in posthoc/.
 - `date` Fri Nov 13 08:30:50-08:57:10 PM CET 2026: NE1b registered (22618b8) and read once; result_ne1b.md (A intermediate, B criteria unreachable; in-domain cost check saturated).
 - NE1b post-result review: needs qualification (experiments/reviews/REVIEW_NE1B_20261113.md); result_ne1b.md corrected; post hoc scripts in posthoc_ne1b/.
+- 13 Nov: lead's ruling: erasure line closed for the sprint; closing section added to result_ne1b.md; features kept.
