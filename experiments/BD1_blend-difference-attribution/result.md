@@ -144,6 +144,14 @@ Seeds share the same hosts, so "4 of 5 seeds" is close to one draw.
 
 ## Amendment 4: least- against most-similar same-person splices (descriptive, post hoc; registered at 1cd0304; read once)
 
+**Registered without pre-run check.** The read ran 17 seconds after the one-line registration (1cd0304); the lead's
+instruction asked for a one-line registration and one reviewer pass. Effect on the reading: none on the numbers or on
+any verdict, because the read is descriptive, has no rule and decides nothing. A pre-run check could have changed the
+design. The post-result review raised three points that such a check might have caught before the read: the database
+confound (22 of 56 colorFERET hosts in the bottom quintile), D moving together with cos_HS, and the reader loading all
+of pool.csv. These are stated above and leave the read unable to attribute the flag gap to similarity rather than to
+D. (Note added 13 Nov after the record keeper's ledger, 486d089.)
+
 All 291 development and test S3 hosts were split into quintiles of cos_HS, with edges 0.834 and 0.903 (59 hosts
 each). Output: `bd1c_read.json`, `bd1c_read_stdout.txt`.
 
