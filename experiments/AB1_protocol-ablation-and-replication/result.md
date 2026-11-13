@@ -174,3 +174,23 @@ Follow-ups proposed by the review (each needs registration and the author; about
 control repeated like SbH; Sb without af0_half61 only (reverse storage cue); Sb without both the stored copies and the
 matched negatives (additivity); SbL with the trade-off prediction added before it runs; S3-only against S0-only
 negative arms. Zero GPU: sharpness enrichment of flipped persons, done (Note 2): not enriched for A and SbS, inconclusive for AS.
+
+## landmark_combined at matched history (amendments 3-3d, post hoc): not read (Fri Nov 13 20:38 CET 2026)
+
+Both history routes were run once, in the registered order, and both are **not read** by rules fixed before the
+balancing products existed (amendments 3b and 3c/3d):
+- (a) 1:1 history-balanced subset (adversary's lcomb_bal, ADV amendment 3, 104ee36; rows 1b152ae5…, build c7311e7d…,
+  converged): **125 morphs and 125 genuine photos, below the registered minimum of 150 per class → H-hb1 not read**
+  (`ab1_hb_read.json`; reader 2ff58b5b…). The descriptive prints required by amendment 3b (covariate table, random-subset
+  null, seed-mean with joint bootstrap, AUC decomposition, probit gain) are on record in that file, labelled
+  descriptive, with no verdict; no conclusion about the gain is drawn from them.
+- (b) Inverse-probability weights over all 3,000 rows (adversary's lcomb_ipw, 35f25a7; weights 4513d214…, build
+  c5ba5eff…): **effective sample size 8.0 morphs (413.8 genuine), build report usable = false → H-hb1w not read**
+  (`ab1_hbw_read.json`; reader 78e0f2e4…).
+- By amendment 3d item 8, no further weighting, trimming, overlap or matching route is added for H-hb1.
+
+Statement: **FFHQ landmark_combined could not be history-balanced from existing images** (the adversary's surround-only
+floor is 0.942 on all 3,000 rows, `ADV floors/lcomb_regional.json`, surround_floor gbt), **so the candidate's gain on this
+contrast at matched history remains untested.** R2's "replicated" stands with the review's qualifier: "on a development
+set whose surround carries a kernel-history cue and which in-distribution shortcut models separate at 0.96-0.98;
+whether the gain holds at matched history is untested."
