@@ -1,0 +1,2029 @@
+{
+ "version": "1.0.0-rc1",
+ "started": "2026-11-13 19:11:58 CET",
+ "comparisons": [
+  {
+   "network": "A_s403",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "A_s403",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s403",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s403",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 446,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s403",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s403",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s403",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s403",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s403",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "B_s403",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s403",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s403",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 467,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s403",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s403",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s403",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s403",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s403",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "Sb_s403",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s403",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s403",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 480,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s403",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s403",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s403",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s403",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s403",
+   "block": "C2P",
+   "reference": "c2p_read.json per_network (L40S rescoring)",
+   "leaves": 32,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s404",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "A_s404",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s404",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s404",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 446,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s404",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s404",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s404",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s404",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s404",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "B_s404",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s404",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s404",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 467,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s404",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s404",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s404",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s404",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s404",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "Sb_s404",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s404",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s404",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 480,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s404",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s404",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s404",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s404",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s405",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "A_s405",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s405",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s405",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 446,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s405",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s405",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s405",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s405",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s405",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "B_s405",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s405",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s405",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 467,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s405",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s405",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s405",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s405",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s405",
+   "block": "C2P",
+   "reference": "c2p_read.json per_network (L40S rescoring)",
+   "leaves": 32,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s405",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "Sb_s405",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s405",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s405",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 480,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s405",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s405",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s405",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s405",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s405",
+   "block": "C2P",
+   "reference": "c2p_read.json per_network (L40S rescoring)",
+   "leaves": 32,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s406",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "A_s406",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s406",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s406",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 446,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s406",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s406",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s406",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s406",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s406",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "B_s406",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s406",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s406",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 467,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s406",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s406",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s406",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s406",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s406",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "Sb_s406",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s406",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s406",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 480,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s406",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s406",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s406",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s406",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s406",
+   "block": "C2P",
+   "reference": "c2p_read.json per_network (L40S rescoring)",
+   "leaves": 32,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s407",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "A_s407",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s407",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s407",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 446,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s407",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s407",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s407",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s407",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s407",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "B_s407",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s407",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s407",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 467,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s407",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s407",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s407",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s407",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s407",
+   "block": "FS1",
+   "reference": "fs.json seeds/<s>/<arm>",
+   "leaves": 18,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "share_ci replayed with fs_read.py's single stream (seed-major order)"
+  },
+  {
+   "network": "Sb_s407",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/<arm>",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s407",
+   "block": "FS1",
+   "reference": "fs.json printed_R1_R6/<s>/R3_base,R5",
+   "leaves": 4,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s407",
+   "block": "PR1",
+   "reference": "z_read.json per_net/<arm>_s<seed>",
+   "leaves": 480,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s407",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/FS1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s407",
+   "block": "GD",
+   "reference": "gd_read.json per_net (gd0, gd1, gd2)",
+   "leaves": 78,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s407",
+   "block": "TT1",
+   "reference": "tt1_read_fs.json nets/<net>",
+   "leaves": 867,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s407",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s407",
+   "block": "C2P",
+   "reference": "c2p_read.json per_network (L40S rescoring)",
+   "leaves": 32,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s403",
+   "block": "FS1",
+   "reference": "sp.json seeds/<s>/Sp/R1_R6",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s403",
+   "block": "FS1",
+   "reference": "sp.json seeds/<s>/Sp lcomb, storage share",
+   "leaves": 2,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "sp_read.py's lcomb and share by other code paths; compared to the FS1 block's values"
+  },
+  {
+   "network": "Sp_s403",
+   "block": "PR1",
+   "reference": "sp.json seeds/<s>/Sp dev S0/S3 flags, S0-vs-S4 AUC",
+   "leaves": 3,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "sp_read.py computes these with pn1lib/reads; the battery takes them from the PR1 block"
+  },
+  {
+   "network": "Sp_s403",
+   "block": "TT1",
+   "reference": "tt1_read_x_sp.json nets/<net>",
+   "leaves": 866,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s403",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s404",
+   "block": "FS1",
+   "reference": "sp.json seeds/<s>/Sp/R1_R6",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s404",
+   "block": "FS1",
+   "reference": "sp.json seeds/<s>/Sp lcomb, storage share",
+   "leaves": 2,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "sp_read.py's lcomb and share by other code paths; compared to the FS1 block's values"
+  },
+  {
+   "network": "Sp_s404",
+   "block": "PR1",
+   "reference": "sp.json seeds/<s>/Sp dev S0/S3 flags, S0-vs-S4 AUC",
+   "leaves": 3,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "sp_read.py computes these with pn1lib/reads; the battery takes them from the PR1 block"
+  },
+  {
+   "network": "Sp_s404",
+   "block": "TT1",
+   "reference": "tt1_read_x_sp.json nets/<net>",
+   "leaves": 866,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s404",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s405",
+   "block": "FS1",
+   "reference": "sp.json seeds/<s>/Sp/R1_R6",
+   "leaves": 19,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s405",
+   "block": "FS1",
+   "reference": "sp.json seeds/<s>/Sp lcomb, storage share",
+   "leaves": 2,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "sp_read.py's lcomb and share by other code paths; compared to the FS1 block's values"
+  },
+  {
+   "network": "Sp_s405",
+   "block": "PR1",
+   "reference": "sp.json seeds/<s>/Sp dev S0/S3 flags, S0-vs-S4 AUC",
+   "leaves": 3,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": "sp_read.py computes these with pn1lib/reads; the battery takes them from the PR1 block"
+  },
+  {
+   "network": "Sp_s405",
+   "block": "TT1",
+   "reference": "tt1_read_x_sp.json nets/<net>",
+   "leaves": 866,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s405",
+   "block": "MEDS",
+   "reference": "tt1_read_meds.json nets/<net>",
+   "leaves": 26,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s408",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 53,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s409",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 53,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s410",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 53,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s411",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 53,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "A_s412",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 53,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s408",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s409",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s410",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s411",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "B_s412",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s408",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 63,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s408",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/AB1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s409",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 63,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s409",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/AB1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s410",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 63,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s410",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/AB1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s411",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 63,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s411",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/AB1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s412",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 63,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sb_s412",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/AB1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s408",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s409",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s410",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s411",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "Sp_s412",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbZ_s408",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbZ_s409",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbZ_s410",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbZ_s411",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbZ_s412",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbH_s408",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbH_s409",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbH_s410",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbH_s411",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbH_s412",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 61,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbS_s408",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbS_s409",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbS_s410",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbS_s411",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SbS_s412",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 60,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "AS_s408",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 55,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "AS_s409",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 55,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "AS_s410",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 55,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "AS_s411",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 55,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "AS_s412",
+   "block": "AB1",
+   "reference": "ab1_read.json networks/<arm>_s<seed>",
+   "leaves": 55,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SE1 Sb_s408",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/SE1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SE1 Sb_s409",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/SE1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SE1 Sb_s410",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/SE1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  },
+  {
+   "network": "SE1 Sb_s411",
+   "block": "BD1",
+   "reference": "bd1_read.json blocks/SE1/per_net",
+   "leaves": 46,
+   "mismatches": 0,
+   "exact": true,
+   "details": [],
+   "note": ""
+  }
+ ],
+ "notes": [],
+ "reference_files": {
+  "fs1": {
+   "path": "/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/tier_fs/fs.json",
+   "sha256": "9425845df49f24209e691aa30ee8f4f4e05c4925be18946b00a35d8fae42d6b5"
+  },
+  "sp": {
+   "path": "/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/tier_fs/sp.json",
+   "sha256": "9fcdb50580c7258fe3f517fd143dc2f3089354dabc0a6f61f13eab57f90b920f"
+  },
+  "pr1": {
+   "path": "/home/narolski/smad-next/experiments/PR1_protocol-reads-existing-networks/z_read.json",
+   "sha256": "5ffc4bdd318139bd3114325150c81e75ac451b9754618667c6a1da4b2ff5d23e"
+  },
+  "gd": {
+   "path": "/home/narolski/smad-next/experiments/PR1_protocol-reads-existing-networks/gd_read.json",
+   "sha256": "981a573e6af43b78ca0e71e87ccf533d3c5da18675fcf290b0f4d24fb3aa2f0f"
+  },
+  "tt1": {
+   "path": "/home/narolski/smad-next/experiments/TT1_threshold-transfer-unseen-genuine/tt1_read_fs.json",
+   "sha256": "434208c651016213639ca2e5080fb88986f78c90f6edfe4cfc2f8b05f0547104"
+  },
+  "tt1sp": {
+   "path": "/home/narolski/smad-next/experiments/TT1_threshold-transfer-unseen-genuine/tt1_read_x_sp.json",
+   "sha256": "986c25730848c54c96ad71eba557f553a4ea908ed9fbdf9ae0340e86725c6f13"
+  },
+  "meds": {
+   "path": "/home/narolski/smad-next/experiments/TT1_threshold-transfer-unseen-genuine/tt1_read_meds.json",
+   "sha256": "dd65adb33cca1abedf078053ada1edbd43630b5dc1838e7aa327f13c311c50d8"
+  },
+  "c2p": {
+   "path": "/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/c2p_read.json",
+   "sha256": "62ee0bf430388be8094158f3f3aac429521612751a29c91c2290ae28ff4e5598"
+  },
+  "ab1": {
+   "path": "/home/narolski/smad-next/experiments/AB1_protocol-ablation-and-replication/ab1_read.json",
+   "sha256": "df5254b8e16e4284ed967ebe6f15b42613b875345f83e2d7cbc632709f53130a"
+  },
+  "bd1": {
+   "path": "/home/narolski/smad-next/experiments/BD1_blend-difference-attribution/bd1_read.json",
+   "sha256": "0756d47ed498fbffb8d39650c5b6d19c808d8088ef97c075f3018a29c80064dc"
+  }
+ },
+ "tars": {
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_A_s403.tar": "f9ec84a084f55c2ad51b67cea6f79ef8fc7f2c44ba95bb7b5eb29892bd7d7516",
+  "/mnt/t7/smad_next/PR1/results/PR1_GD_pn1fs.tar": "bf560f534aa951ed164f42dcba0b99ece0991495ffea8fef687647ac44186027",
+  "/mnt/t7/smad_next/TT1/results/TT1_A100_pn1fs_fs.tar": "d3b5711b4ae6962bc76e6953e8dc844841dd40844120a43644723106062f7fe3",
+  "/mnt/t7/smad_next/TT1/results/TT1M_se1d.tar": "2d0569592ca1044994b14f6df8010918f4ae71d13291ef4ad02e158efe868723",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_B_s403.tar": "a7cfdce24669813105bbfa3c3d1174e3a688a093d7a7da7a1799870b7417a26d",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s403.tar": "8dec83b880b7bac28db4b6217bc10b58eb78dc65d699734614cf57ae6b444fde",
+  "/mnt/t7/smad_next/MS1/c2p/C2P_m1.tar": "4e25fcc1ed845229420337021831b54ca107336eb91073d38e7c14b747f8d542",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_A_s404.tar": "f8c531353293be937bd4d45ed80865f03348bbbab2bcb5289d7e6c8dc39b1359",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_B_s404.tar": "a0b312578f00876b19b0b9edea0a93a36203875938ad3034abd10e002e46910f",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s404.tar": "de67068959bc277b3850c6d8e13f0e88d8fa1e273dccad53665abcfa4827752c",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_A_s405.tar": "6d46b366b3f7ad07896f15eb401b19557b3dfeb727c13b6c6e3c16120fe5e119",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_B_s405.tar": "a4ad75aeba82afde2be910680ded5ae79376ee6764006a064c022f999f10e0dc",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s405.tar": "3a3a53fd98bdd09eab9a15ec14fdd1ed46b2fc8f95f520e6bd4e4bab1e4265ea",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_A_s406.tar": "d2e7cde93d17f79c9dfdf5eddaa4b32dd9600b88c4bafcd0ba82767f67a2be66",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_B_s406.tar": "6610d3b4cd4f37792cf3246d412ee8bc4420303148faf6c4a3489de8fcc4c67c",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s406.tar": "d2cf5faa31330ce82dc9734760f08513640c0a908072fae02447109abc039291",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_A_s407.tar": "ce72e78380129312eccd66a789a217340d4f1c3be607b54f8c3a650a78943382",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_B_s407.tar": "9e1625d7f5985905a02abae6615d9f2770e3ce01888a8c0e06c27a876d6add62",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s407.tar": "865c04552df4367b3311dda007405ecb7dc8ee0f98d390d1b1baff51b24da595",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_Sp_s403.tar": "40f8d76519539ce94e304c2e28a02df2ebdc87c4494bff4ba4f7c4cfaa73aeee",
+  "/mnt/t7/smad_next/TT1/results/TT1_pn1fs_sp.tar": "b955cbb371731cb22d034668891d290de5438975dea6f169b6f91b5e6ef9e85b",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_Sp_s404.tar": "05d0eb91f680589efe88752dc128485feb961f03c3dfcc25f8c64bbf20eb65e5",
+  "/mnt/t7/smad_next/PN1/results_fs/PN1_Sp_s405.tar": "f78348f28d1d65cabed7b5dd04326f8aa50e8ae054f705a90e355ba6b3946a02",
+  "/mnt/t7/smad_next/AB1/results/AB1_A_s408.tar": "bb1a0e9c4fd49c322839ea552994836066668246cef7b3749729ef725cba30e2",
+  "/mnt/t7/smad_next/AB1/results/AB1_A_s409.tar": "d9a8c1b8ceb78f735e37fdf14b69eb0a957d8233d6523285fe9517d85c211f0d",
+  "/mnt/t7/smad_next/AB1/results/AB1_A_s410.tar": "78ef2e47b1c1feec3cb5bb59ed9c22206126d249bc6a47be4194d57845905b56",
+  "/mnt/t7/smad_next/AB1/results/AB1_A_s411.tar": "fd71be56dd4858b9d03ec94a74c9d4c5546fc0c22d8c66ef6e57e2b1ba9d293a",
+  "/mnt/t7/smad_next/AB1/results/AB1_A_s412.tar": "c0496a0f219e747f9d606b69c0392dec7f20edebce23fae2b1286068fac510a3",
+  "/mnt/t7/smad_next/AB1/results/AB1_B_s408.tar": "26ea0bdfa2c555af44dbc86d973da929844240757925643ce7c5cff88acf0f0d",
+  "/mnt/t7/smad_next/AB1/results/AB1_B_s409.tar": "2fa37cc852a48a655b934fe7f88bcd7ecd2034c314a66e3198672f7c61f2da3e",
+  "/mnt/t7/smad_next/AB1/results/AB1_B_s410.tar": "59537430a4b9c62110d2e1f7b19eba5f396aa713a6fafb66de2668723e3e8284",
+  "/mnt/t7/smad_next/AB1/results/AB1_B_s411.tar": "0b567a5b18b1db061f371615a79f793e2877fba74fc11021d197d63786a0cb54",
+  "/mnt/t7/smad_next/AB1/results/AB1_B_s412.tar": "16ee80d03169d0a4c42cac6adcbe494e6ea062f814bae3404a28d7c0cc540025",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sb_s409.tar": "dd575673e437b2ad34aa50e9f2785ee2c17a1b89b424b2324b4beb6ae5f32352",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sb_s410.tar": "40b47155a7a1ca1a13bc9ae101b135b3d0730d70d968af6e7ad235453ca96875",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sb_s411.tar": "764a4e5e6a5692cb974a15957cf55ac88d475a519381d8ef827f932791144aa6",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sb_s412.tar": "c1e0f081194ffb46395e896bd872f509a930967b8ed5da101823d95659070c84",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sp_s408.tar": "1278526ad40ea10c0ff7550fb513477f9211498107b14a5ebb40523386034a2f",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sp_s409.tar": "cd66a316003cca82a954a607f98eb023d6235de437090206d3fcbdc5d37a131e",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sp_s410.tar": "83baf610b613de463055308861c77a11e32e9510d252c467980e513751d03e1c",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sp_s411.tar": "d8196624163441635531227b15e68e9672e8e64eb229c0ced94978090636411a",
+  "/mnt/t7/smad_next/AB1/results/AB1_Sp_s412.tar": "95abd7775ee82a5ffda2f61f7eb5629b7e68abc1b677fa4309efad23d84fbbf9",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbZ_s408.tar": "22a374b3f36bd7b932efb0de48924cafd582ba800ecaca9a2d70853f957c91d1",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbZ_s409.tar": "8aa5477b65a2c448ff4f1f8fee9b5f123ed42acfef4edfb14a32a8443c3d7575",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbZ_s410.tar": "606a8564177fd2431f29c29ed963c7325e670a8ff7b329358a0f45183081e80a",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbZ_s411.tar": "d55e4d608d84840e0f4c1d3ba4327717189fd763a6fc1bd2005f5a6481b93468",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbZ_s412.tar": "4f3f298043ff5db8699d42a3655a62e7f2bdf697dacefba5f2cc735127727a79",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbH_s408.tar": "a5af11a4c515f087225506364497088e146266e70a08862cfc7f9fe9f35448fe",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbH_s409.tar": "a8de343082116ab8336caab5e508ac9fe28bca25deb5a6e5668a58af81e47956",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbH_s410.tar": "a64e37c5b7487702d67998f49210f9295e234d7863b7a0de3a26a0f1318b8062",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbH_s411.tar": "0af0c03c043ae74f70f2feadd470c654f045ec2c1d8bb4a51417e7d1279b3aea",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbH_s412.tar": "97779d473f5386e4a2bfc58af9cb9341825666c89bece95706ddd4067ec5a6b1",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbS_s408.tar": "e9332d58e78a2197628a973895ef4ad3d79f9227a99e5fb896aaf3ba6af26443",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbS_s409.tar": "03a97271eebf05bd00b502f63f394912a69e570192ad651deadc3ea4da47cfd9",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbS_s410.tar": "7c4be9d03c6c488d005ddc3963ed9d1eca53073c8408ab2a8622543e2bf336a5",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbS_s411.tar": "491e8bc004baac8b6c765deb48a0db6f1b7a3c3f6cc66963fbfba11b72457e8e",
+  "/mnt/t7/smad_next/AB1/results/AB1_SbS_s412.tar": "2a880737d6068c5f8b9194774158bbbaa6a34bf588f20b2437a37f5bda1f02c5",
+  "/mnt/t7/smad_next/AB1/results/AB1_AS_s408.tar": "e1dfeb6bd30e15a8d8151fbb377d2f5be4bd118dc597311efd736d936b6616cc",
+  "/mnt/t7/smad_next/AB1/results/AB1_AS_s409.tar": "d6178c29af48d92d14524ddc99c2c2ea8bf88e5a603aed986970cde1ca50bc1b",
+  "/mnt/t7/smad_next/AB1/results/AB1_AS_s410.tar": "e77622b78f3fead9ac380317b58367c9fe4386c9ef7e0f8a1512c6ef0dd6c079",
+  "/mnt/t7/smad_next/AB1/results/AB1_AS_s411.tar": "575724e0bde4ab10e8bd02116198818b55bfc8b492eafa3dedcde0151a8b8cb5",
+  "/mnt/t7/smad_next/AB1/results/AB1_AS_s412.tar": "c387619ab1d3eaf6ccc6c6e7f6251b76b3f159ff92ba4f4d7df1af153bb6a15d",
+  "/mnt/t7/smad_next/SE1/results/SE1_Sb_s408.tar": "edc9b97b53a21510e488a0deaca166343232c6c0a6983eeef36ac326306c3243",
+  "/mnt/t7/smad_next/SE1/results/SE1_Sb_s409.tar": "d19e90ddbce6868bf31f91fa01ae67820f5132bc6942825fc970962184090228",
+  "/mnt/t7/smad_next/SE1/results/SE1_Sb_s410.tar": "0193b03c12284e141494affeb62ce4d17d806a835ce2beabf4d29ae181ea2308",
+  "/mnt/t7/smad_next/SE1/results/SE1_Sb_s411.tar": "527c26aa7d1e39ffe598f4d10f313ff693a52c4cfcae1f647b9d96dfe9dc1b43"
+ },
+ "reader_files": {
+  "AB1/ab1_read.py": "74ecdf7a2ecb35812dcf4e5d5b9f5c3b1f095fc6846ae6f4813bfb28404d035b",
+  "BD1/bd1_read.py": "8f3ad9e1f31b334f2d1f17c8b12bcadca3457ab8cc2c108678f4283c44fbe9bb",
+  "PN1/c2p_read.py": "45e72914d960214131a5b4a11aefd2e301a2236e908d77d20d94136c1d7d5840",
+  "PN1/fs_read.py": "c0d8dc19cbf375aa2daf9dd434b7ab6cc1d7e5810c3da781730fe0cb159dcf21",
+  "PN1/pn1lib.py": "136f78543af3747811919fcaf06cfc0abaeb0d64692f2c196c9320bfe4841482",
+  "PN1/reads.py": "5169ac4267507e6d1a1ee1e75d13cdf805e100f9e9f211a5da1052b667c4fd69",
+  "PR1/gd_read.py": "8ff4e3b77a79ca7b0b086939b42e791f61e5adf5f048dcbc10a9efe34b8fea7e",
+  "PR1/pr1_read.py": "1970e8f2e1dce43f70ab3c214c77584e2fae34e47399ba5517e17fa501d98124",
+  "TT1/meds/tt1_read_meds.py": "0b5d86b154c2455f3279ded63ee9a606196140fa65b707d6a173212d0cb84b11",
+  "TT1/tt1_read.py": "4546f520f63b48c33e6d313673314b6c0f778ddc81da02b22d356f8c6a87fb8f",
+  "TT1/tt1_read_fs.py": "87356fd74746b08f621e3e0c4e38554c80f475fae7d0d1f5e7f8634cb144f227",
+  "TT1/tt1common.py": "1053022792e99ade577abc11490d169e0bec15c6a6dd761fc5aac3b92c52a1a3"
+ },
+ "summary": {
+  "comparisons": 189,
+  "exact": 189,
+  "leaves": 28527,
+  "mismatching_leaves": 0
+ },
+ "finished": "2026-11-13 19:28:38 CET"
+}
