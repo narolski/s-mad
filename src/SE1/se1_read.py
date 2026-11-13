@@ -84,8 +84,12 @@ def pools(M):
     return P
 
 
+BLOCK = {"a100": None}      # set in main: per-arm (results folder, task prefix)
+
+
 def load(arm, seed, M, mock):
-    T = f"SE1_{arm}_s{seed}"
+    res, pre = BLOCK["paths"][arm]
+    T = f"{pre}_{arm}_s{seed}"
     if mock:
         r = np.random.default_rng(seed * 7 + len(arm))
         L = {}
@@ -94,13 +98,15 @@ def load(arm, seed, M, mock):
             if row["rung"] in ("R3", "R3m", "S3", "selfm") and arm != "SE":
                 base = 0.5
             shift = (1.0 if arm == "A" else 0.05) if row["strength"] in ("fm61", "amsl112") and row["label"] == "0" else 0
+            if pre == "AB1" and (row["rung"] == "selfm" or (row["fam"] == "splice" and row["tool"] == "facemorpher")):
+                continue                              # AB1's ab1_eval.csv has no such rows
             L[row["id"]] = float(r.normal(base + shift, 1.2))
         return L, dict(task=T, mock=True, finite_loss=True)
-    tp = RES / f"{T}.tar"
+    tp = res / f"{T}.tar"
     if not tp.exists():
         return None, dict(task=T, missing=True)
     h = hashlib.sha256(tp.read_bytes()).hexdigest()
-    ok = (RES / f"{T}.tar.sha256").exists() and (RES / f"{T}.tar.sha256").read_text().split()[0] == h
+    ok = (res / f"{T}.tar.sha256").exists() and (res / f"{T}.tar.sha256").read_text().split()[0] == h
     with tarfile.open(tp) as t:
         z = np.load(io.BytesIO(t.extractfile(f"{T}/scores_eval.npz").read()))
         zt = np.load(io.BytesIO(t.extractfile(f"{T}/scores_train.npz").read()))
@@ -172,9 +178,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
     ap.add_argument("--mock", action="store_true")
+    ap.add_argument("--block", choices=("a100", "h100"), default="a100",
+                    help="a100: SE1's own A, Sb, SE (rented A100 PCIe); h100: amendment SE1-A1, SE from SE1 WCSS fits, "
+                         "A and Sb from AB1's WCSS H100 fits (ab1_eval.csv rows only)")
     ap.add_argument("--platformcheck", action="append", default=[], help="SE1_platformcheck_*.tar, one per lease (printed only)")
     a = ap.parse_args()
     assert hashlib.sha256(EVAL.read_bytes()).hexdigest() == EVAL_SHA
+    if a.block == "a100":
+        BLOCK["paths"] = {x: (RES, "SE1") for x in ARMS}
+    else:
+        ab1 = pathlib.Path("/mnt/t7/smad_next/AB1/results")
+        BLOCK["paths"] = {"A": (ab1, "AB1"), "Sb": (ab1, "AB1"), "SE": (pathlib.Path("/mnt/t7/smad_next/SE1/results_h100"), "SE1H")}
     M = list(csv.DictReader(open(EVAL)))
     P = pools(M)
     base = json.load(open(BASE)) if BASE.exists() else None
@@ -191,7 +205,12 @@ def main():
             info[f"{arm}_s{s}"] = inf
             if L is None or not inf.get("finite_loss") or (not a.mock and not (inf.get("sha_ok") and inf.get("full_run"))):
                 continue
-            missing = [i for i in M if i["id"] not in L]
+            if a.block == "h100" and arm != "SE":   # AB1's ab1_eval.csv lacks the FaceMorpher splices and AF0 self-morphs
+                need = {i for k, v in P.items() if k not in ("S3_fm", "S0_fm", "S4_fm", "selfm_af0") for i in v} | \
+                    {r["id"] for r in M if r["fam"] == "ms1ffhq"}
+                missing = [i for i in need if i not in L]
+            else:
+                missing = [i for i in M if i["id"] not in L]
             if missing:
                 inf["missing_rows"] = len(missing)
                 continue
@@ -199,15 +218,15 @@ def main():
             for k in ("G_devR0", "G_af0photo", "G_ffhq_bona", "G_ms1_native", "S3_cv", "S3_fm", "R3_cv", "R3_fm",
                       "R3_cv61", "R3_cv112", "R3m_cv", "R3m_fm", "selfm_af0", "S0_cv", "S0_fm", "R2w_cv", "R2w4_cv",
                       "zero_af0", "ffhq_lcomplete_resmatch_g", "lcomb_g"):
-                n[f"flag_{k}"] = flag(L, P[k])
+                n[f"flag_{k}"] = flag(L, P[k]) if all(i in L for i in P[k]) else None
             for k in ("R4_cv", "R4_fm", "R4_cv61", "R4_cv112", "S4_cv", "S4_fm", "u50_af0", "lcomb_m", "ffhq_lcomplete_m"):
-                n[f"miss_{k}"] = miss(L, P[k])
+                n[f"miss_{k}"] = miss(L, P[k]) if all(i in L for i in P[k]) else None
             n["auc_lcomb"] = auc(L, P["lcomb_m"], P["lcomb_g"])
             for t in ("cv", "fm"):
                 n[f"auc_R4_vs_R3_{t}"] = auc(L, P[f"R4_{t}"], P[f"R3_{t}"])
-                n[f"auc_S4_vs_S3_{t}"] = auc(L, P[f"S4_{t}"], P[f"S3_{t}"])
+                n[f"auc_S4_vs_S3_{t}"] = auc(L, P[f"S4_{t}"], P[f"S3_{t}"]) if all(i in L for i in P[f"S3_{t}"] + P[f"S4_{t}"]) else None
                 n[f"auc_R4_vs_R3m_{t}"] = auc(L, P[f"R4_{t}"], P[f"R3m_{t}"])
-                n[f"auc_S3_vs_S0_{t}"] = auc(L, P[f"S3_{t}"], P[f"S0_{t}"])
+                n[f"auc_S3_vs_S0_{t}"] = auc(L, P[f"S3_{t}"], P[f"S0_{t}"]) if all(i in L for i in P[f"S3_{t}"] + P[f"S0_{t}"]) else None
             n["storage"] = C2P.net_stats(L, natp, natm, pairs, mpairs, boot)
             if Ltr:                                          # printed (section 9): own-rule flags on training rows by kind
                 kinds = {}
@@ -218,7 +237,7 @@ def main():
             nets[(arm, s)] = n
             raw[(arm, s)] = L
     read = [s for s in SEEDS if all((x, s) in nets for x in ARMS)]
-    R = dict(mock=a.mock, info=info, read_seeds=read, n_read=len(read),
+    R = dict(block=a.block, mock=a.mock, info=info, read_seeds=read, n_read=len(read),
              per_network={f"{k[0]}_s{k[1]}": v for k, v in nets.items()}, baseline=base)
 
     def per(fn):
