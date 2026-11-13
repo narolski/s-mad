@@ -132,6 +132,10 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
 >   BB2_BS=$BB2_BS BB2_ACCUM=$BB2_ACCUM PN1_LOCAL=1 PN1_PY=$HOME/dmenv/bin/python PN1_WORKERS=7 bash "$P/run_s5.sh"
 ```
 
+- 08:56 queued for the dispatcher: `wcss_bb2_fits2.cmd` (six fits, amendment 2) beside `wcss_bb2_fits.cmd` and
+  `wcss_bb2_c2psmoke.cmd`. Lead 09:0x: no lower GPU cap; up to 15 H100s at once for BB2 is accepted (author's order to
+  fill idle nodes). WCSS controller still refusing commands; job IDs to follow from the dispatcher.
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
