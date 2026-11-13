@@ -147,6 +147,19 @@ No CB1 score read yet.
   no __pycache__; `dgxrun/packs/CB1/idistill_code.tar` links to it and its .sha256 holds this hash); v4 (WCSS)
   3669936cb95f819d7c499b6b8b071ef166bd437176325e1d3086d9d74de40c19.
 
+- 08:45-09:13. Dispatcher: WCSS smoke submitted as 6310090 (16 CPUs: lem-gpu-short allows at most 16 per H100),
+  Nice 20; production `wcss_cb1_idistill_all.cmd` written (STAGE=all, 16 CPUs, 96 GB, 16 h) and submitted as 6310207,
+  valid only if the smoke passes (the dispatcher cancels it otherwise). Athena: main partition reserved to 22 Dec,
+  only 1-h plgrid-now jobs, which cannot hold IDistill; no Athena version prepared.
+- 08:50-09:30. Lead's request (SA1 gap item 10): amendment 5 (c2b0e76) and, after the opus pre-run check (GO WITH
+  FIXES: pool mip1/primary, AG1's own threshold, validity rule for a release reversed on our frames, field and id
+  checks, labels), amendment 6 (d0d57bf). `src/CB1/score_mfn_rel.py` (MixFaceNet release, 'rel' mode, DGX CPU): gate
+  212 rows median 0.0057 max 0.070 (pass); A43 2,024 frames scored (consistency 608 rows median 0.025, max 0.100,
+  pass); AG1 7,229 frames scoring. A duplicate AG1 scorer was found at 09:14 (killing the first loop's parent shell
+  left its subshell running) and stopped; the corrected-MAD22 frames were not scored (dropped by amendment 6).
+  Readers: `sa1_existing.py`, `sa1_selfmad_croppath.py`, `sa1_a43_mfn.py`, `sa1_ag1_mfn.py` (AG1 reader imported
+  unchanged, release tuple set to MixFaceNet).
+
 ## 3. Data
 
 See `prereg.md` section 2. Corrected MAD22 aligned frames and E7 pools:

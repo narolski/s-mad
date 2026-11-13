@@ -1,0 +1,6 @@
+cell,R0>PUB,R0>R1,R0>R2,R0>R4,R1>R2,R2>PUB (AG2),R2>R3,"R2>R3m (mirror, own rung)",R2>R4,R2s>R4 (spread-matched one-person render),R3>R4,R3>RT (noise floor),"R3m>R4 (mirror, own rung)",bridge PUB vs BR,main_A,main_B,side_R3_R4
+mip1/frll/mixfacenet_mad_smdd__rel,0.548,0.5,0.275,0.67,0.275,0.672,0.65,0.766,0.79,0.778,0.677,0.51,0.518,0.421,reads morphing,reads morphing,mixed
+mip2/frll/mixfacenet_mad_smdd__rel,0.587,0.5,0.431,0.68,0.431,0.609,0.635,0.72,0.699,0.679,0.576,0.502,0.445,0.442,mixed,mixed,mixed
+mip1/primary/mixfacenet_mad_smdd__rel,,,0.605,0.793,,,0.657,0.64,0.722,0.726,0.575,0.503,0.598,,mixed,mixed,no identity reading
+mip1/feret/mixfacenet_mad_smdd__rel,,,0.611,0.793,,,0.657,0.658,0.721,0.735,0.589,0.53,0.577,,mixed,mixed,mixed
+mip1/frgc/mixfacenet_mad_smdd__rel,,,0.63,0.953,,,0.805,0.728,0.893,0.903,0.648,0.491,0.701,,reads morphing,reads morphing,mixed
