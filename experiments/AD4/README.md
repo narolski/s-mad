@@ -1165,3 +1165,10 @@ dependency (DependencyNeverSatisfied): fix, re-test, resubmit both, and cancel 6
   the dispatcher relayed a lead ruling dropping the item (networks "trained on other GPU models"); the networks of Amendment 6 are the WCSS
   H100 ones, so the lead is asked to confirm. Remaining before submission if confirmed: reader fixes F2 and F4 of the pre-run check, the
   pinned pack sha in the job script.
+- 09:00 to 09:10, lead: proceed (re-scoring the WCSS-trained networks on an H100 keeps one platform). Reader fixes of the pre-run check
+  applied: `fu_read.py` sha256 `31cc088a…` (new `--flag` option, gate refuses incomplete cells and `limit` ≠ 0 outside the smoke,
+  non-finite blanked score stops the reader, H-new-4 floor label and FRLL p5-p95 span columns, "not computable" instead of None);
+  re-tested on the synthetic folder (`readtest/*_t3*`). Job script `src/wcss/ad4_fu_h100.sbatch` sha256 `81df7e88…` (pack sha
+  `e4b60874…` and scorer sha `e0ab24b5…` pinned, network source checked), uploaded to WCSS `jobs_ad4/` (hash equal there).
+  Submission through the dispatcher queue: smoke `wcss_ad4_fu_h100_smoke.cmd`, production `wcss_ad4_fu_h100_prod.cmd` (submit only
+  after the smoke completed with exit 0). Owner: AD4 reading owner. Expected run: smoke about 5 min, production about 20 min, after start.

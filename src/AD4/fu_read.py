@@ -41,6 +41,8 @@ def main():
                     help="folder of the verified result tars holding the registered scores of these networks (gate)")
     ap.add_argument("--tag", default="", help="suffix of the output files (Amendment 6: _h100)")
     ap.add_argument("--platform", default="DGX", help="printed beside every network")
+    ap.add_argument("--flag", default="Flag on the networks: not reproduced on this stack.",
+                    help="reproduction-gate label of the networks (Amendment 6: 'Reproduction gate: pass on the cluster stack.')")
     a = ap.parse_args()
     res = pathlib.Path(a.res)
     out_dir = pathlib.Path(a.out_dir) if a.out_dir else (R.EXP if not a.test else res)
@@ -66,6 +68,8 @@ def main():
         cells, ok = {}, True
         for c, (m, b) in cl.items():
             ii = [i for i in list(m) + list(b) if np.isfinite(mine[i])]
+            if not a.test and len(ii) != len(m) + len(b):
+                raise SystemExit(f"fu_read: {d.name} {c}: {len(m) + len(b) - len(ii)} rows missing or non-finite (gate refused)")
             if len(ii) < 4 or not any(i in m for i in ii) or not any(i in b for i in ii):
                 continue
             x = mine[ii]
@@ -83,6 +87,8 @@ def main():
                         "min_tau": min([v["kendall_tau"] for v in cells.values()], default=float("nan")),
                         "device": str(z["device"]),
                         "limit": int(z["limit"])}
+    if not a.test and any(g["limit"] != 0 for g in gate.values()):
+        raise SystemExit("fu_read: a score file has limit != 0 outside the smoke")
     out["gate_unblanked"] = gate
     passed = [n for n, g in gate.items() if g["pass"]]
     print("gate (unblanked re-score vs registered):", {n: (g["pass"], round(g["max_abs_auc_diff"], 5),
@@ -113,6 +119,8 @@ def main():
         rows_b = sub
     else:
         rows_b = rows
+    if not a.test and not all(np.all(np.isfinite(n["score"])) for n in nets.values()):
+        raise SystemExit("fu_read: non-finite blanked score")
     if len({c for c in S.cells(rows_b)}) and all(np.all(np.isfinite(n["score"])) for n in nets.values()):
         res_b, cl_b = R.compute(nets, rows_b, D, a.test)
         cells = sorted(cl_b, key=R.cell_key)
@@ -130,7 +138,7 @@ def main():
                           "status": rd["status"]}
         md = (f"**H-new-3 (post hoc follow-up): {v3}.** Blanked MorDIFF history-matched, morph-free seed mean EER "
               f"{e:.1f}% over {k3} networks that passed the unblanked-score gate (per seed {', '.join(f'{x:.1f}' for x in mfm['eer'])}); rule: above 15% supported, at most 5% "
-              "falsified. Flag on the networks: not reproduced on this stack. The 'passable' and 'A1' columns apply the AD4 "
+              f"falsified. {a.flag} The 'passable' and 'A1' columns apply the AD4 "
               "rule to blanked images descriptively; they are not the registered AD4 verdicts.\n\n" + md)
         (out_dir / f"fu_blank_m3{a.tag}.md").write_text(md)
         json.dump(rd, open(out_dir / f"fu_blank_m3{a.tag}.json", "w"), indent=1, default=float)
@@ -153,7 +161,11 @@ def main():
             fr = unbl[n][ifr][np.isfinite(unbl[n][ifr])]
             if len(si) and len(fr):
                 h4[pool][n] = {"pool_median_logit": float(np.median(logit(si))), "frll_median_logit": float(np.median(logit(fr))),
-                               "diff": float(np.median(logit(si)) - np.median(logit(fr))), "n": int(len(si))}
+                               "diff": float(np.median(logit(si)) - np.median(logit(fr))), "n": int(len(si)),
+                               "frll_p5_p95_span": float(np.percentile(logit(fr), 95) - np.percentile(logit(fr), 5))}
+                v = h4[pool][n]
+                v["floor_label"] = ("indistinguishable at the trained floor" if abs(v["diff"]) < v["frll_p5_p95_span"]
+                                    else "")
     mfn = sorted([n for n in ex if arm(n) == "mf"], key=seed)
     mfm_ok = [n for n in mfn if n in h4["smdd_eval"]]
     below = sum(h4["smdd_eval"][n]["diff"] < 0 for n in mfm_ok)
@@ -195,12 +207,12 @@ def main():
         h5[tool]["_mf_gap_mean"] = float(np.mean(g)) if g else None
         h5[tool]["_mf_gap_mean_ci95"] = R.ci(np.mean(gaps_rep, 0)) if gaps_rep else None
     gm = [h5[t]["_mf_gap_mean"] for t in ("opencv", "facemorpher")]
-    v5 = (f"incomplete ({len(mfn)} of 5)" if len(mfn) < 5 else None if None in gm else
+    v5 = (f"incomplete ({len(mfn)} of 5)" if len(mfn) < 5 else "not computable" if None in gm else
           "supported" if all(x <= 0.1 for x in gm) else "falsified" if all(x > 0.1 for x in gm) else "mixed")
     out["H-new-5"] = {"by_tool": h5, "verdict": v5}
     json.dump(out, open(out_dir / ("fu_pools_m3_test.json" if a.test else f"fu_pools_m3{a.tag}.json"), "w"), indent=1, default=float)
     L = ["# Follow-ups (c): landmark-ladder morphs (H-new-5) and held-out generator renders (H-new-4), ViT-B/16 networks (AD4 "
-         "Amendment 4), post hoc follow-up", "", "Flag on the networks: not reproduced on this stack. The ladder images are the "
+         "Amendment 4), post hoc follow-up", "", f"{a.flag} The ladder images are the "
          "landmark ladder's (AR1) own 512 frames, not our benchmark frames. The networks were trained only to flag "
          "shrink-and-enlarge copies of synthetic faces.", "",
          "Unblanked re-score gate: " + ", ".join(f"{n} {'pass' if g['pass'] else 'MISS'} (max |dAUC| "
@@ -217,12 +229,13 @@ def main():
                      + " |")
     L += ["", f"## H-new-4: {out['H-new-4']['verdict']}. SMDD evaluation renders below the FRLL genuine median in {below} of "
               f"{len(mfn)} morph-free seeds.", "",
-          "| pool | network | n | pool median logit | FRLL genuine median logit | difference |", "|---|---|---|---|---|---|"]
+          "| pool | network | n | pool median logit | FRLL genuine median logit | difference | FRLL p5-p95 span | label |",
+          "|---|---|---|---|---|---|---|---|"]
     for pool, d in h4.items():
         for n in sorted(d, key=lambda x: (arm(x) != "mf", arm(x), seed(x))):
             v = d[n]
             L.append(f"| {pool} | `{n}` | {v['n']} | {v['pool_median_logit']:.2f} | {v['frll_median_logit']:.2f} | "
-                     f"{v['diff']:.2f} |")
+                     f"{v['diff']:.2f} | {v['frll_p5_p95_span']:.2f} | {v['floor_label']} |")
     (out_dir / ("fu_pools_m3_test.md" if a.test else f"fu_pools_m3{a.tag}.md")).write_text("\n".join(L) + "\n")
     print("\n".join(L))
 

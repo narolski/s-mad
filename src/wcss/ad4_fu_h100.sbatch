@@ -19,6 +19,7 @@ L=/lustre/pd03/hpc-narolski-1790461090
 B=$L/smad-next
 SIF=/lustre/software-data/container-images/pytorch_latest.sif
 PACK_SHA=1ad170be30af949c55536f5dd6fff8c8c62b60f39b3faaa8bc134cb68967bfde
+FU_SHA=e4b60874484eda7d444f550f7722824b9937610f6f569883ced88f8d52c44a83   # pinned (pre-run check F5)
 LIMIT=${FU_LIMIT:-0}
 TAG=fu_h100_${SLURM_JOB_ID}_limit${LIMIT}
 die() { echo "AD4FU FAIL: $*" >&2; exit 1; }
@@ -35,8 +36,10 @@ cp "$B/packs/AD4/ad4_pack.tar" "$W/ad4_pack.tar"
 tar -C "$W" -xf "$W/ad4_pack.tar" && rm -f "$W/ad4_pack.tar"
 (cd "$W/ad4" && sha256sum -c --quiet SHA256SUMS) || die "ad4 pack content"
 cp "$B/packs/AD4/fu_pack_wcss.tar" "$W/fu_pack.tar"
-[ "$(sha256sum "$W/fu_pack.tar" | cut -c1-64)" = "$(cut -c1-64 "$B/packs/AD4/fu_pack_wcss.tar.sha256")" ] || die "fu_pack sha256"
+[ "$(sha256sum "$W/fu_pack.tar" | cut -c1-64)" = "$FU_SHA" ] || die "fu_pack sha256"
 tar -C "$W" -xf "$W/fu_pack.tar" && rm -f "$W/fu_pack.tar"
+[ "$(sha256sum "$W/fu/src/fu_rescore.py" | cut -c1-64)" = e0ab24b59ec8e8bf8c6b2704d8b5f82bd2dac1fadca0e75948597b799a145939 ] || die "fu_rescore.py sha256"
+grep -q '"networks_from": "/mnt/t7/smad_next/AD4/results_wcss_m3"' "$W/fu/build_info.json" || die "fu pack networks are not the WCSS ones"
 for n in pylib pylib_a12; do
   cp "$L/smadcvpr/packs/$n.tar" "$W/$n.tar"
   [ "$(sha256sum "$W/$n.tar" | cut -c1-64)" = "$(awk 'NR==1{print $1}' "$L/smadcvpr/packs/$n.tar.sha256")" ] || die "$n.tar sha256"
