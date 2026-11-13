@@ -415,3 +415,31 @@ From `REVIEW_PR1_PART1_20261113.md`. Part-1 values are known; these reads are po
   with the new script (new sha256 in `src/PR1/SHA256SUMS`). Nothing else changed.
 - The C2P owner may run a re-scoring (C2P-R) on pn1fs before TT1's block. The waiter is unchanged: it waits for
   DONE_FS, then DONE_sp or NO_SP, then the lock.
+
+## Amendment 4: printed control table and cue floors for the GD pack (`date`: Fri Nov 13 about 12:25 CET; registered before computing; zero GPU; post hoc, labelled so)
+
+Lead's request (from the part-2 review items 1 and 2). The GD scores and the part-2 numbers are known; these reads are
+post hoc. Development data only. Code `src/PR1/gd_extra.py` and `src/PR1/cues_gd.py` (committed with this section).
+- **Part A, printed table (no rule).** Per network: GD2 AUC R3 vs R2, R3m vs R2, R2s vs R0, R4 vs R2s, R3 vs R3m; GD1
+  AUC X vs SAME, SAME vs REC, MIR vs REC, X vs MIR; cross-set AUC of the network's FFHQ stylegan_wplus and stylegan_w
+  morphs against its GD2 R2 renders and against GD2 R0 camera photos (different sources and generators; descriptive
+  only); per seed for A, B, Sb: Z2a usable (part 1) AND Z2b-τ5 G_unseen ≤ 0.10, and the same with the cut-off
+  max(τ5, 0) (H-new-3 of the part-2 review, printed only; the landmark_combined miss and G_max of Z2a and the unseen
+  flags are recomputed at that cut-off from the same stored scores).
+- **Part B, 27-statistic cue floors (rule per arm and contrast).**
+  - Cues: GD2 (512 px E7 frames, 896 rows) with `cues27.py` unchanged (via `cues_gd.py`). GD1 (256 px DiffAE frames,
+    1,146 rows): `cues27.py`'s function asserts 512 px input, so GD1 cues use the same statistics through
+    `cue_floor._cue_one` (sha256 `556e7aba…`, unchanged; the networks' own loader resizes 256 to 512, which is the
+    view the networks get; no new resampling code) plus the PNG file size. This path is labelled
+    "loader view".
+  - Contrasts C: GD1 X vs REC, REC vs G, X vs SAME; GD2 R2 vs R0, R4 vs R2, R4 vs R3.
+  - Floor F(C) = the largest of: the best single statistic by direction-free AUC on the same images (upper-biased),
+    and the two ladder-trained 27-statistic baselines of amendment 15 (s-lad, b-lad; fixed direction, first class
+    positive).
+  - **Rule per arm and contrast:** "beyond simple statistics" if network AUC − F(C) ≥ +0.05 on ≥ 4 of 5 seeds; "not
+    beyond simple statistics" if network AUC − F(C) ≤ 0 on ≥ 4 of 5; otherwise "inconclusive, no claim".
+  - Printed: the network AUC within quintile strata of the best single statistic (strata with ≥ 10 rows of each
+    class; weighted by n_pos × n_neg), and each floor component.
+- Disclosure (operations): the GD1/GD2 cue computation (pixel statistics only, no network score) was started about
+  two minutes before this commit; no cue value has been looked at. The reader `gd_extra.py` is committed here and run
+  once after the cues finish.
