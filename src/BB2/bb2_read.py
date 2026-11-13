@@ -68,6 +68,23 @@ def count3(meets, n):
     return "not repeated"
 
 
+MODE_FILE = HERE.parents[1] / "experiments" / "BB2_second-backbone" / "seed_mode.json"
+
+
+def frozen_mode(rf):
+    """Amendment 2 fix 1: the mode is frozen in seed_mode.json (written by freeze_mode.py and committed when every
+    fit has ended or at 14 Nov 2026 18:00 CET, whichever is first, before any reader runs on real tars). Real-mode
+    readers use only that file: its mode, its tar list, and every listed tar must match its recorded sha256."""
+    if not MODE_FILE.exists():
+        sys.exit(f"refused: {MODE_FILE} does not exist (amendment 2: freeze the seed mode first)")
+    m = json.load(open(MODE_FILE))
+    for name, h in m["tars"].items():
+        t = rf / name
+        if not t.exists() or F.sha(t) != h:
+            sys.exit(f"refused: {name} missing or not the frozen file")
+    return (SEEDS5, "five") if m["mode"] == "five" else (SEEDS3, "three")
+
+
 def seed_mode(rf):
     """Amendment 2: the five-seed reading applies only if all six fits of seeds 406 and 407 are present in the results
     folder with a verified sha256 (fetched by the 14 Nov 18:00 cut-off; later tars are never placed there); otherwise
@@ -89,7 +106,7 @@ def count_mode(meets, n):
 def main(mock=None, mock_clip=None):
     global SEEDS, MODE
     rf = pathlib.Path(mock) if mock else BB2 / "results"
-    SEEDS, MODE = seed_mode(rf)
+    SEEDS, MODE = seed_mode(rf) if mock else frozen_mode(rf)
     NMIN = 2 if MODE == "three" else 4
     assert F.sha(HERE.parent / "PN1" / "fs_read.py") == FS_READ_SHA, "fs_read.py changed"
     assert F.sha(F.EVAL) == F.EVAL_SHA
@@ -192,7 +209,7 @@ def main(mock=None, mock_clip=None):
         c1 = "uninformative (under-trained)"
     floor_all = bool(t1) and all(r["c1_floor_exceeded"] for r in t1)
     a_fail = sum(not r["c2"]["A"] for r in R)
-    control = len(R) >= NMIN and a_fail >= len(R) - 1 and a_fail >= NMIN
+    control = len(R) >= NMIN and a_fail >= len(R) - 1 and (a_fail >= NMIN if MODE == "three" else True)   # five: fs_read.py:242
     c2 = {a: ("not read (too few seeds)" if len(R) < NMIN else
               count_mode([r["c2"][a] for r in R], len(R)) if control else "uninformative on these seeds") for a in ("B", "Sb")}
     c3 = count_mode([r["c3_meets"] for r in RA], len(RA))

@@ -39,6 +39,7 @@ tar -C "$C" -xf "$P/bb2_overlay.tar" && (cd "$C/pn1" && sha256sum -c --quiet BB2
 D=$C/data; mkdir -p "$D/manifests"; ln -sfn "$C/pn1/data/eval" "$D/eval"; ln -sf "$C/pn1/data/manifests/pn1_eval.csv" "$D/manifests/pn1_eval.csv"
 PY=$HOME/dmenv/bin/python
 $PY -c "import sys, torch, timm; torch.backends.cuda.matmul.allow_tf32 = True; torch.backends.cudnn.allow_tf32 = True; print('env', sys.version.split()[0], torch.__version__, timm.__version__, 'tf32 matmul', torch.backends.cuda.matmul.allow_tf32, 'cudnn', torch.backends.cudnn.allow_tf32, 'via rescore_tf32.py 0d0b6b6f')" > "$C/out/env.txt"
+(cd "$P" && sha256sum rescore_tf32.py rescore.py) >> "$C/out/env.txt"     # amendment 2 fix 5: the scorer actually run
 nvidia-smi --query-gpu=uuid,name --format=csv,noheader > "$C/out/gpu.txt" 2>&1 || true
 n_fail=0
 for T in $TASKS; do

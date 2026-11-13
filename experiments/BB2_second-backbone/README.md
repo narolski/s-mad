@@ -89,6 +89,49 @@ registration written; DGX smoke running; draft goes to the independent pre-run r
   rescore.py on the BB2 smoke network matched its WCSS logits on shared af0 rows within 5.2e-5. Draft commit ddf8b0b;
   pre-run review (Opus) started.
 
+- 08:45-08:53 amendment 1 fixes applied (c092af5), amendment 2 drafted and checked (review
+  `experiments/reviews/PRERUN_BB2_A2_20261113.md`, GO WITH FIXES); fixes 1-6 applied; amendments 1 and 2 registered
+  (prereg sections "Amendment 2 pre-run check" and "Registration of amendments 1 and 2"). Diffs:
+
+```
+$ diff src/BB2/run.sh src/BB2/run_s5.sh
+1a2
+> # BB2 amendment 2: run.sh (0eaa4dce...) with seeds 406 and 407 added to the seed list; nothing else changed.
+42c43
+< case "$SEED" in 403|404|405) ;; *) die "seed $SEED" ;; esac
+---
+> case "$SEED" in 403|404|405|406|407) ;; *) die "seed $SEED" ;; esac                      # BB2 amendment 2: seeds 406, 407
+$ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
+3c3
+< #SBATCH -J bb2-fit
+---
+> #SBATCH -J bb2-fit2
+10,13c10,13
+< #SBATCH --array=0-8%5
+< #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/bb2-fit-%A_%a.out
+< # Second backbone (BB2), prereg sections 4 and 9: nine fits (arms A, B, Sb at seeds 403, 404, 405), one per array task,
+< # seed by seed, at most 5 GPUs at once; src/BB2/run.sh (sha256 in run.sh.sha256) on the FS1 pack + BB2 overlay (both
+---
+> #SBATCH --array=0-5%6
+> #SBATCH -o /lustre/pd03/hpc-narolski-1790461090/smad-next/logs/bb2-fit2-%A_%a.out
+> # Second backbone (BB2), amendment 2: six fits (arms A, B, Sb at seeds 406, 407), one per array task,
+> # seed by seed, at most 6 GPUs at once; src/BB2/run_s5.sh (sha256 in run_s5.sh.sha256) on the FS1 pack + BB2 overlay (both
+23,24c23,24
+< ARMS=(A B Sb A B Sb A B Sb)
+< SEEDS=(403 403 403 404 404 404 405 405 405)
+---
+> ARMS=(A B Sb A B Sb)
+> SEEDS=(406 406 406 407 407 407)
+28c28
+< (cd "$P" && sha256sum -c --quiet run.sh.sha256)
+---
+> (cd "$P" && sha256sum -c --quiet run_s5.sh.sha256)
+35c35
+<   BB2_BS=$BB2_BS BB2_ACCUM=$BB2_ACCUM PN1_LOCAL=1 PN1_PY=$HOME/dmenv/bin/python PN1_WORKERS=7 bash "$P/run.sh"
+---
+>   BB2_BS=$BB2_BS BB2_ACCUM=$BB2_ACCUM PN1_LOCAL=1 PN1_PY=$HOME/dmenv/bin/python PN1_WORKERS=7 bash "$P/run_s5.sh"
+```
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the

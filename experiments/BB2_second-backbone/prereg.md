@@ -370,7 +370,7 @@ images only (no new blur, blending or resize code) and its overlay is pinned by 
 **A1.6 Pins.** `src/BB2/bb2_c2p_read.py`, `src/BB2/wcss/bb2_c2p.sbatch`: sha256 at the commit that registers this
 amendment (README). `rescore.py` 6f6eede7…; `c2p_read.py` 45e72914…; MS1 pack c11b16bc….
 
-## Amendment 2 (registered at the same commit as amendment 1's final version; lead's go 13 Nov about 08:50: "go for amendment 2 (seeds 406 and 407, six more fits, counting rule fixed now ...)"; before any BB2 fit exists or any BB2 score is read)
+## Amendment 2 (registered, with amendment 1, at the git commit that adds the section "Registration of amendments 1 and 2" below; lead's go 13 Nov about 08:50: "go for amendment 2 (seeds 406 and 407, six more fits, counting rule fixed now ...)"; before any BB2 fit exists or any BB2 score is read)
 
 - **Fits.** Seeds 406 and 407, arms A, B, Sb: six more fits, the same recipe, packs, batch rule (256 x 1, from the WCSS
   smoke 6308946) and time limit (`--time=0-03:03:00`) on WCSS H100s, the platform of the smoke and the first nine
@@ -392,3 +392,34 @@ amendment (README). `rescore.py` 6f6eede7…; `c2p_read.py` 45e72914…; MS1 pac
   apply the matching counts. Mock-tested in both modes.
 - **Disclosure.** Added after amendment 1's review recommended it and with the CLIP FS1 values known; no BB2 score
   exists.
+
+### Amendment 2 pre-run check and fixes (review `experiments/reviews/PRERUN_BB2_A2_20261113.md`, Opus, on c092af5; GO WITH FIXES)
+
+- **Fix 1, the mode is frozen blind to scores.** `src/BB2/freeze_mode.py` writes `experiments/BB2_second-backbone/seed_mode.json`
+  (mode, the read set's tars with sha256, the fetch log's sha256 and last lines, time, reason). It may run only when all
+  15 fit tars are present and verified, or every missing fit is a remote-confirmed failure (no tar after its one
+  rerun), or at 14 Nov 2026 18:00 CET or later; mode = five if all six 406/407 tars are present and verified, else
+  three. The file is committed before any reader runs on real tars; both readers refuse real mode without it, take its
+  mode, and check every listed tar against its sha256. Rules: no reader runs on real tars before the freeze; every
+  fit is fetched as soon as it ends (`src/BB2/fetch_bb2.sh`, one line per verified tar in `results/fetch.log`).
+- **Fix 2:** five-seed contrast 2 control is exactly fs_read.py:242 (`n ≥ 4 and A fails on ≥ n − 1`); the three-seed
+  rule is unchanged.
+- **Fix 3:** the C2P reader refuses a C2P tar whose `tasks.txt` is not exactly the frozen read set.
+- **Fix 4:** pins below; diffs of run_s5.sh and bb2_fit2.sbatch in the README.
+- **Fix 5:** the C2P job writes the sha256 of the wrapper and rescore.py it ran into env.txt; the reader checks the
+  pins (field "wrapper_pinned"). TF32 is on by construction of the pinned wrapper.
+- **Fix 6, GPUs:** bb2_fit2.sbatch runs at most 6 at once; with the first array at throttle 9 BB2 may hold up to 15
+  H100s at once (operational deviation from section 9's "at most 5", on the lead's instruction to use the idle WCSS
+  nodes; every fit still runs alone on one GPU; no fit changes). If the lead sets a lower cap, the dispatcher applies it.
+- Disclosed difference from CLIP's counting: with fewer than 4 read seeds BB2 prints "not read (too few seeds)" where
+  fs_read prints "inconclusive"; the outcome (no claim) is the same.
+
+## Registration of amendments 1 and 2 (`date` at writing: Fri Nov 13 08:52:52 AM CET 2026; no BB2 fit exists; no BB2 score of any kind has been read)
+
+Pins (sha256): `src/BB2/bb2_read.py` 78aa516bd1d4b909d40303fcded24d3aa732c5dd6c99c170ce701d1d49777bcb (replaces e85783c5 of
+section 11); `src/BB2/bb2_c2p_read.py` 906c5b122b3f424ef0f459f6b62204f22f2411bf2dc1e821c642541fe354b9ee; `src/BB2/freeze_mode.py`
+b166852c11e00ea70ab101e8519c4e2bc93649a55f77400620ff37b6ed4e78ae; `src/BB2/fetch_bb2.sh` 062b713e28bc754ab53257c49cca700d725c6bc92d296f9e2f248dc1e8161cff;
+`src/BB2/run_s5.sh` 6e53a70dbe445f9d48c49a78950c59559a2a39b4fd7f8455bdedc7ef898b810a; `src/BB2/wcss/bb2_fit2.sbatch`
+385faad652b220e5a58cb6087745def30385b5b4ce6267c521770d0f6493f662; `src/BB2/wcss/bb2_c2p.sbatch`
+3c4de47c374f61c89b8c712575305e7646ef7375fa327bf118e819db9be526c5; unchanged: run.sh 0eaa4dce…, bb2_fit.sbatch 84b21718…,
+rescore.py 6f6eede7…, rescore_tf32.py 0d0b6b6f…, c2p_read.py 45e72914…, fs_read.py c0d8dc19…, MS1 pack c11b16bc….

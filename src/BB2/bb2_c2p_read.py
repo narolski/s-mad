@@ -69,7 +69,8 @@ def check_c2p_tar(tar, fit_gpu):
                                        or b in ("env.txt", "gpu.txt", "rescore.log", "tasks.txt"))]
         env = t.extractfile([m for m in t.getmembers() if m.name.endswith("env.txt")][0]).read().decode()
         gpu = t.extractfile([m for m in t.getmembers() if m.name.endswith("gpu.txt")][0]).read().decode()
-    return dict(unexpected_members=bad, tf32_on="tf32 matmul True" in env and "cudnn True" in env,
+    return dict(unexpected_members=bad, wrapper_pinned=("0d0b6b6fb5ebc4d5bdbe15384fcd00e13c0756785ed22743893186e68245d8d5" in env
+                                                        and "6f6eede71c6d9a895199dabc8bc90b882adb25f5f91cd2fcc676ebe7a380b51e" in env),
                 gpu=gpu.strip(), fit_gpu=sorted(fit_gpu), same_gpu_model=all(g in gpu for g in fit_gpu) if fit_gpu else None)
 
 
@@ -100,7 +101,14 @@ def main():
     assert sum(r["fam"] == "ms1ffhq" for r in M) == 1480, "hold-out row count"
     gate_ids = [r["id"] for r in F if r["fam"] in ("af0", "ffhq")]
     five = a.five
-    SEEDS, MODE = ((BR.SEEDS5, "five") if five else (BR.SEEDS3, "three")) if a.mock else BR.seed_mode(pathlib.Path(BB2R))
+    SEEDS, MODE = ((BR.SEEDS5, "five") if five else (BR.SEEDS3, "three")) if a.mock else BR.frozen_mode(pathlib.Path(BB2R))
+    if not a.mock:      # amendment 2 fix 3: the C2P tar must have scored exactly the frozen read set
+        want = {f"BB2_{arm}_s{s}" for arm in ARMS for s in SEEDS}
+        for c in a.c2p:
+            with tarfile.open(c) as t:
+                got = set(t.extractfile([m for m in t.getmembers() if m.name.endswith("tasks.txt")][0]).read().decode().split())
+            if got != want:
+                sys.exit(f"refused: {c} scored {sorted(got)}, the frozen read set is {sorted(want)}")
     NMIN = 2 if MODE == "three" else 4
     natp, natm, pairs, mpairs = P.holdout(M)
     rng = np.random.default_rng(P.RNG_G)
