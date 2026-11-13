@@ -101,6 +101,12 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   ms1m2 stopped while sleeping and restarted 06:54. The lead creates `/mnt/t7/smad_next/vast/ms1m1b/HOLD`; without the
   author's decision by 11:30 the lead removes it. ms1_read.py is not run before contrast 2-prime is registered or
   declined (lead ruling).
+- 13 Nov 07:03: the author approved contrast 2-prime; registered as C2P in the PN1 prereg (2715e48); FINAL section 1
+  amended (6691adc). 07:04: `src/MS1/c2p/drive_c2p.sh upload` (15 FS1 tars verified on ms1m1b) and `start` (the
+  remote run waits on the host lock until the MS1 queue and its held-out step end); a background loop pulls every 5 min
+  until "C2P kept (45 of 45"; HOLD stays until then. While C2P runs, the MS1 keep step on ms1m1b may report "log copy
+  differs" (the C2P logs in logs/ still grow); it passes once C2P ends. The hold on ms1_read.py is lifted (C2P
+  registered); the MS1 read runs once all 15 fits and the three held-out tars are in.
 
 ## 3. Data
 
