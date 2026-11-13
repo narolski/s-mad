@@ -173,6 +173,14 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   1,100-1,400 at 0.97-1.19 it/s; expected ends about 15:15-15:30; next fetch 15:35. Squeue refused (controller); logs
   read directly. No tar opened.
 
+- 14:10-14:12 C2P smoke 6310376 (Nice 0, limit 40 min, node r14-7, NVIDIA H100 GPU-c91bbdc6…) ran, exit 0, 1:54.
+  Fetched `/mnt/t7/smad_next/BB2/smoke_wcss/BB2C2Psmoke2.tar` (sha256 OK). PASS: probe gpu_ok "NVIDIA H100"; torch
+  2.11.0+cu128; matmul and cuDNN conv fp32_precision "tf32", matmul and conv relative error vs fp64 2.9e-4 / 3.0e-4 (TF32
+  in effect; legacy flags not remapped away); wrapper and rescore.py sha256 at their pins in env.txt; 6 of 6 family
+  files finite (af0 1,339, ffhq 5,000, ms1ffhq 1,480 per network); on the 21 rows also scored in the fits, the
+  rescored logits equal the fits' pn1_score.py logits bit for bit (max |Δ| 0.0). Smoke networks only; never read as a
+  result.
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
