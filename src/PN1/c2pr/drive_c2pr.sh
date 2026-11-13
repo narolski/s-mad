@@ -4,7 +4,7 @@
 #   bash drive_c2pr.sh HOST PORT LEASE stage   # upload c2pr_pack.tar (561 MB, resumable), check sha256 on the host
 #   bash drive_c2pr.sh HOST PORT LEASE start   # bin (remote_c2pr.sh, rescore.py, rescore_tf32.py, SHA256SUMS, nets_pins.txt); start
 #   bash drive_c2pr.sh HOST PORT LEASE pull    # fetch C2P_fs.tar + logs, verify; 45 of 45 npz; second copy; C2PR_DONE
-#   bash drive_c2pr.sh HOST PORT LEASE loop    # pull every 3 min (at most 3 h)
+#   bash drive_c2pr.sh HOST PORT LEASE loop    # pull every 3 min until C2PR_DONE or 16:00 CET
 set -euo pipefail
 HOST=${1:?}; PORT=${2:?}; L0=${3:?}; STEP=${4:?}
 SRC=$(cd "$(dirname "$0")" && pwd)
@@ -27,6 +27,12 @@ case "$STEP" in
     log "staged"
     ;;
   start)
+    PRE=/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/prereg.md
+    git -C /home/narolski/smad-next show HEAD:experiments/PN1_protocol-network-first-tests/prereg.md | grep -q "Amendment C2P-R" \
+      || { log "Amendment C2P-R is not registered at HEAD: refusing"; exit 1; }
+    git -C /home/narolski/smad-next show HEAD:experiments/PN1_protocol-network-first-tests/prereg.md | grep -q "$(sha256sum "$SRC/remote_c2pr.sh" | cut -c1-64)" \
+      || { log "remote_c2pr.sh differs from the registered sha256: refusing"; exit 1; }
+    R "test ! -e $B/results/C2P_fs.tar" || { log "result exists on the host; refusing"; exit 1; }
     BIN=$L/bin; rm -rf "$BIN"; mkdir -p "$BIN"
     cp "$SRC/remote_c2pr.sh" /home/narolski/smad-next/src/PN1/rescore.py /home/narolski/smad-next/src/TT1/rescore_tf32.py "$BIN/"
     (cd "$FSR" && for t in $TASKS; do sha256sum -c --quiet "$t.tar.sha256" || exit 1; cut -c1-64 "$t.tar.sha256" | sed "s/\$/  $t.tar/"; done) > "$BIN/nets_pins.txt" \
@@ -52,6 +58,6 @@ case "$STEP" in
     else log "rc '$rc', $n npz: no decision"; fi
     ;;
   loop)
-    for k in $(seq 1 60); do bash "$0" "$HOST" "$PORT" "$L0" pull || true; [ -f "$L/C2PR_DONE" ] && break; sleep 180; done
+    while [ "$(date +%s)" -lt 1794582000 ]; do bash "$0" "$HOST" "$PORT" "$L0" pull || true; [ -f "$L/C2PR_DONE" ] && break; sleep 180; done
     ;;
 esac
