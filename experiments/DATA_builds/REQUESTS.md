@@ -346,3 +346,39 @@ Aim:
 | DINOv3 | existing S3_bg / S4_bg, border-blanked camera photos, GD2 renders | none | none |
 | Sb 1 | look-alike two-person morphs against same-person morphs matched on D | as SbFM 2 | **author** |
 | Sb 2 / Sb 3 | grey and white borders; border-blanked morphs | as Sbx 1 / Sbx 2 | lead (allowed operation) |
+
+## D12b. FaceMorpher warp-only images of the D12a hosts toward the mean shape of H and its D12a partner B (registered before building)
+
+Lead's question (13 Nov, evening): which existing, already-used code made the FaceMorpher warp-only rung of the ladder,
+and can it make the same product for the D12a pairs, unchanged?
+
+**Answer: yes.**
+- The FaceMorpher R2w4 rung of the AR1 ladder (536 images, `AR1/img/frgcferet/facemorpher/R2w4/`, log
+  `AR1/r2w4_log.json` of 11 Nov 18:45) was made by `src/AR1/variants.py` stage `warp2`:
+  `warp(target="B", rung="R2w4")` → `one(("facemorpher", out, H, B))` → `warp_fm(h, lh, lb, warper, blender)`.
+  - `variants.py` sha256 76f4cd170ddb5e7b... (last commit 0fa3277, 11 Nov 18:49).
+  - It calls the vendored face_morpher library unchanged: `warper.py` sha256 76c0d1ac..., `blender.py` 7b98a8d5...,
+    both equal to the hashes in `r2w4_log.json`.
+- What `warp_fm` does: H is warped by `warper.warp_image` from its own points to the rounded mean of H's and B's
+  points, and composited with `blender.overlay_image` inside the mask of the mean points over H itself. There is no
+  blend with B.
+- The MS1 FFHQ ladder has only an OpenCV R2w4 (`variants.warp_cv`), so no FaceMorpher warp-only image exists on FFHQ
+  yet.
+- **D12b uses exactly `variants.one(("facemorpher", out, H, B))`, imported unchanged**, on new input pairs: D12a's
+  `pairs.csv` (b3c4bfc2...), with the existing MS1 FFHQ frames and their `.tem` files. No new image operation.
+
+Recipe (fixed before building):
+- Pair list = `/mnt/t7/smad_next/DATA/D12a/pairs.csv`, 299 pairs.
+- One image per pair: R2w4fm(H; B).
+- Outputs: `/mnt/t7/smad_next/DATA/D12b/facemorpher/R2w4/<H>__<B>.png` (PNG through `cv2.imwrite`, as D12a); a manifest
+  (host, partner, frame sha256s, output sha256, the D12a morph path and sha256, the D1d render path); `SHA256SUMS`;
+  failures; `build_log.json` with the library hashes.
+- Run with 2 workers, nice 19, one thread per process; an 8-pair test first.
+- Checks against FM(H, B), from the files:
+  - canvas size, channels, dtype and file format;
+  - border treatment. By construction, outside the mask `warp_fm` keeps H while `fm_morph` averages H and B, as in the
+    AR1 FaceMorpher R2w4 / R4 rows.
+- Per-pair measures from existing files:
+  - the share of pixels where exactly one of H or B is black border (max over channels = 0 in the aligned frame);
+  - |eye-distance gap| from `pairs.csv`.
+- Development data only; nothing scored by DATA.
