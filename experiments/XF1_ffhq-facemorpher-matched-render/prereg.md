@@ -81,3 +81,50 @@ Limitations, stated in every report:
 2. After GO and the fixes: register (commit), upload the two tars and the task folder to Athena under `smad-next/{packs,tasks}/XF1`, and put `athena_PR1_xf1.cmd` in the dispatcher's queue with the registration hash in its header.
 3. Fetch and verify the result tar, then read once (`xf1_read.py`, nice 19).
 4. One results review, then a report with a CLAIMS block.
+
+---
+
+## Revision b (DRAFT, not binding; `date`: Fri Nov 13 22:25 CET; lead's order after DATA built D12b)
+This revision replaces sections 2 to 6 above. The original draft (sections 1 to 7) is kept for the record; it is on hold per `experiments/reviews/PRERUN_XF1_20261113.md`, finding F1. Nothing is uploaded or scored.
+
+**Label (F5).** "Post-freeze development diagnostic, registered after the sealed read. It cannot change the frozen Sb recipe, its seeds or any headline claim, and it is reported in diagnostics only." The measure was proposed by the strategy review at 93f4210 (20:40:43), before the sealed read. It is registered after the MAD22 result exists, and `experiments/FINAL_sealed-benchmark-read/` has not been opened.
+
+**Contrast.** FM(H,B) (DATA D12a, R4) against W, the matched FaceMorpher warp-only image.
+- W comes from DATA D12b (21a25a2, f253a18; manifest 152a492b…). It is H warped toward the H-and-B mean shape with no blending, made by the unchanged AR1 call `variants.one(("facemorpher", …))`, on the same canvas and in the same format as FM(H,B).
+- The contrast is read in two forms:
+  - **whole frame**;
+  - **face-only**: the surround is blanked to constant grey (128, 128, 128) on both classes. The blanking uses the unchanged AR1 call `src/AR1/blank.py` `one()` (sha256 c8d8055f…). Its hull is the convex hull of the 106-point mean geometry 0.5·tem(H) + 0.5·tem(B), from the MS1 `.tem` files, which exist for all 299 pairs.
+- H is not a class in any contrast. It is kept only for the own-rule flag prints.
+
+**DATA caveats.**
+- Outside the face mask, W keeps H, while FM(H,B) averages H and B over the whole frame.
+- 233 of 299 morphs carry half-grey border regions (exactly-one-black share > 0.01).
+- The face-only form removes the first caveat outside the hull. It does not remove differences inside the hull.
+- On the superseded rows, the adversary's same-data learner reached 0.90-0.945 and the surround alone 0.849.
+
+**Gate before any network scoring (binding once registered).**
+- The adversary computes, on CPU, the same-data shortcut learner fitted on Sb's training list, applied to the **face-only** form of FM(H,B) vs W.
+- **If its AUC is ≥ 0.90**, XF1 is closed as "not run: the matched contrast is solved by hand-made statistics trained on the same data; a network read would be uninformative".
+- **If it is below 0.90**, XF1 goes to a second pre-run check with fixes F2-F8, and only then to registration, upload and the dispatcher's queue.
+- The learner's AUC on the whole-frame form is printed beside it and does not decide.
+
+**Fixes from the first pre-run check, carried into this draft.**
+- **F2: strata.** Read 1 per arm is printed within terciles of the exactly-one-black share and of |IED gap|, from D12b `pair_measures.csv` (29d4655a…); terciles are in the row list. Descriptive.
+- **F3: bootstrap.** Decided by a cycle-block bootstrap: blocks are runs of 5 consecutive hosts along each pairing cycle, giving 64 blocks; 2,000 draws, rng 20261203. A leave-one-component-out range and a host bootstrap are printed as sensitivities.
+  - Detectable gain, by the reviewer's Hanley-McNeil estimate (SE about 0.022 at AUC 0.65 with 299/299, not reduced by averaging seeds): "lower bound above 0" needs an observed gain of about +0.045; 80% power needs a true gain of about +0.06 to +0.07; "absent" needs an observed gain of about −0.015 or less. The predicted gains (−0.02 to +0.04) therefore almost guarantee "inconclusive".
+- **F4: limitation.** Random-identity pairs. glintr100 cosine H–B from the existing MS1 embeddings: min −0.148, median 0.000, max 0.292 (all pairs are dissimilar by MS1's construction). About half the pairs are likely cross-sex. They are not representative of attacker-chosen pairs.
+- **F5:** the label above. The predictions below were revised after the reviewer's and DATA's pixel statistics were seen, and are disclosed as such.
+- **F6: platform.** Athena plgrid-now with `smad_torch221_cu121_v1.sif` reproduced the stored scores byte for byte for Sb 403-407 (NE1 3550470) and Sb 403 (battery 3551166). **A and B have never been gated on Athena.** If they fail the in-job gate, the Sb − B and Sb − A reads are "not read".
+- **F7: no deletion.** The builders rename an existing output to `.bak-<stamp>` and never call rmtree. `build_xf1b_rows.py` does this already; the pack builder gets the same change before the second check.
+- **F8: adversary columns.** Contrasts are selected by `klass` (FMHB = 1, WARP = 0) and by `form`, never by label. `component` is the cross-fitting unit; one component holds 105 of 299 hosts. `block` is the bootstrap unit.
+
+**Row list (whole-frame form), pinned.** `/mnt/t7/smad_next/XF1/xf1b_rows.csv`, sha256 **e4df7801b0d589c580a561f3a422ee61b10af1269b4a01e63cb97f819eeb73f8**; built by `src/XF1/build_xf1b_rows.py`.
+- 897 rows: FMHB, WARP and H × 299 hosts.
+- Columns: id, path, label, klass, form, host, partner, component, block, excl_border(_t), ied_gap(_t), cos_HB, sha256, src.
+- The face-only rows (FMHB and WARP, form "face") are added once the blanking step is cleared; see the operations question to the lead.
+
+**Reads, if the gate is passed.** As in section 5, with "W" in place of "FM(H,H)" and both forms. The registered decision is on the face-only form. Read 2 is replaced by own-rule flag rates on H, W and FM(H,B), printed only. Read 3 is the adversary floors on both forms.
+
+**Predictions (revised after seeing the reviewer's and DATA's statistics):**
+- The face-only gate learner reaches about 0.80-0.92.
+- If the gate is passed: arm AUCs on the face-only form 0.50-0.65, and Sb − B and Sb − A "inconclusive".
