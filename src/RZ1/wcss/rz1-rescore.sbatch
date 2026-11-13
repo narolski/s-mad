@@ -16,7 +16,7 @@ set -euo pipefail
 : "${TMPDIR:?no TMPDIR}"
 L=/lustre/pd03/hpc-narolski-1790461090/smad-next
 P=$L/packs/RZ1
-[ "$(sha256sum "$P/run_rz1r.sh" | cut -c1-64)" = 51b2c1c80d1f75122a328ba709e61c57843f8e03c3c1bf52e4cb40b845829ddc ] || { echo "RZ1R FAIL run_rz1r.sh pin"; exit 1; }
+[ "$(sha256sum "$P/run_rz1r.sh" | cut -c1-64)" = f9340251d57b6eb91cfe18b53f11ed875f2ccddcc2d423ee6b00eff22d000c8d ] || { echo "RZ1R FAIL run_rz1r.sh pin"; exit 1; }
 W=$TMPDIR/w; mkdir -p "$W"
 nvidia-smi --query-gpu=name,uuid,memory.total --format=csv,noheader || true
 TASK_WORK=$W PN1_ROOT=$L PN1_PY=$HOME/dmenv/bin/python PN1_WORKERS=7 bash "$P/run_rz1r.sh"

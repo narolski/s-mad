@@ -33,7 +33,7 @@ echo "RZ1R rescoring host $(hostname) work $W $(date +%FT%T)"
 case "$W" in /lustre*|/net/pr2*|/net/tscratch*) die "TASK_WORK is on Lustre" ;; esac
 mkdir -p "$OUT"
 WORKERS=${PN1_WORKERS:-7}
-RS=${RZ1R_SCRIPT:-$G/packs/RZ1/rz1_rescore.py}; RS_SHA=f9eaa7d2f3c3c2731af4db5e9b16350a31139ed8294f3bf9ce9fa87ad10821ee
+RS=${RZ1R_SCRIPT:-$G/packs/RZ1/rz1_rescore.py}; RS_SHA=02628562fb495cfedabd0e409db1b397fd0fb2d90ff4886ce4f865764b94bfd6
 AB=${AB1_RESULTS:-$G/results/AB1}
 declare -A PIN=(
  [AB1_A_s408]=bb1a0e9c4fd49c322839ea552994836066668246cef7b3749729ef725cba30e2 [AB1_A_s409]=d9a8c1b8ceb78f735e37fdf14b69eb0a957d8233d6523285fe9517d85c211f0d

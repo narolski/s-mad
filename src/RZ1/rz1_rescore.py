@@ -9,7 +9,7 @@ Per AB1 tar:
      DataLoader bs 64 in manifest order, TF32 on, logit without flip). Compare with the tar's stored scores_eval.npz
      logits: gate "passed" iff every float32 logit is equal (np.array_equal, same id order). Otherwise "failed", with the
      number of differing rows, max |delta| and own-rule agreement.
-  3. run rz1_score.py (unchanged, from the RZ1 overlay) on the rebuilt run: primary fixed:pil_bilinear and the 13-spec
+  3. only if the gate passed (or in a --limit test): run rz1_score.py (unchanged, from the RZ1 overlay) on the rebuilt run: primary fixed:pil_bilinear and the 13-spec
      cross table, i.e. the outputs of an RZ1 A0 / Sb0 fit job.
   python rz1_rescore.py --tar AB1_A_s408.tar --code CODE --rz1 RZ1_SRC --train-manifest train_A.csv --out OUT --cross SPECS
 SMAD_DATA must point at the RZ1 data root (as run_rz1.sh builds it)."""
@@ -92,6 +92,10 @@ def main():
     lg = np.array(lg, np.float32)
     z = np.load(src / "scores_eval.npz")
     ids = [r["id"] for r in rows]
+    stored_ids = [str(i) for i in z["id"]]
+    if str(z["manifest_sha256"]) != sha256(C.data_root() / "manifests" / "ab1_eval.csv") or \
+            (not a.limit and stored_ids != ids) or (a.limit and not set(ids) <= set(stored_ids)):
+        sys.exit("RZ1R FAIL: ab1_eval rows or manifest differ from the fit job")
     st = dict(zip([str(i) for i in z["id"]], z["logit"].astype(np.float32)))
     ref = np.array([st[i] for i in ids], np.float32)
     same = bool(np.array_equal(lg, ref))
@@ -99,17 +103,26 @@ def main():
     gate = dict(tar=pathlib.Path(a.tar).name, tar_sha256=sha256(a.tar), n=len(ids), verdict="passed" if same else "failed",
                 n_differ=int((lg != ref).sum()), max_abs=float(d.max()), p99_abs=float(np.percentile(d, 99)),
                 own_rule_agree=float(((lg > 0) == (ref > 0)).mean()), seconds=round(time.time() - t0, 1),
-                device=torch.cuda.get_device_name(0) if dev == "cuda" else "cpu", limit=a.limit)
+                device=torch.cuda.get_device_name(0) if dev == "cuda" else "cpu", limit=a.limit,
+                driver=subprocess.run(["nvidia-smi", "--query-gpu=driver_version", "--format=csv,noheader"],
+                                      capture_output=True, text=True).stdout.strip())
     json.dump(gate, open(out / "gate.json", "w"), indent=1)
     np.savez(out / "gate_scores.npz", id=np.array(ids), logit=lg)
     print("RZ1R GATE", json.dumps(gate), flush=True)
+    import shutil
+    if not same and not a.limit:          # pre-run check A1 fix 3: a network whose gate failed is not scored further
+        (out / "last_pt.sha256").write_text((src / "last_pt.sha256").read_text())
+        shutil.copy2(src / "meta.json", out / "meta.json")
+        shutil.rmtree(work)
+        shutil.rmtree(run)
+        print("RZ1R_NET_DONE", T, "failed", flush=True)
+        return
     r = subprocess.run([sys.executable, str(pathlib.Path(a.rz1) / "rz1_score.py"), "--run", str(run), "--code", a.code,
                         "--primary", "fixed:pil_bilinear", "--cross", a.cross, "--out", str(out),
                         "--workers", str(a.workers), "--limit", str(a.limit)])
     if r.returncode:
         sys.exit(f"RZ1R FAIL: rz1_score rc {r.returncode}")
     (out / "last_pt.sha256").write_text((src / "last_pt.sha256").read_text())   # AB1's own hash of its last.pt
-    import shutil
     shutil.copy2(src / "meta.json", out / "meta.json")
     shutil.rmtree(work)
     shutil.rmtree(run)

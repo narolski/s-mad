@@ -450,3 +450,16 @@ wave 1 read, by rz1_read.py, which loads the RZ1R tars with their gate.json.
 
 **Pre-run check.** Requested from the lead. A local code-path test is in the README; on the DGX GPU the gate is
 expected to fail, because it is another GPU model.
+
+**Amendment 1, fixes from its pre-run check** (`experiments/reviews/PRERUN_RZ1_A1_20261113.md`, GO WITH FIXES; applied
+at about 19:35 by the machine clock, before the job was submitted).
+- Then, for a network whose gate passed, the unchanged rz1_score.py runs. A network whose gate fails is not scored
+  further.
+- The gate also fails ("RZ1R FAIL") unless the stored id list equals the current ids in order, and the stored
+  manifest_sha256 equals the sha256 of manifests/ab1_eval.csv.
+- gate.json records the driver version. Two AB1 Sb fits (s409, s410) ran on driver 595.91.07 and the other eight on
+  595.112.07. Bit identity across drivers is likely, not guaranteed.
+- Yardstick wording: "the maximum of |δ| over the seeds whose gate passed and whose RZ1 refit exists (n printed beside
+  it)".
+- The job is submitted with --dependency=afterok:6316283 (the RZ1 smoke) and placed behind wave 1 by --nice.
+- rz1_read.py excludes every network whose gate.json does not say "passed". It is pinned before the wave 1 read.
