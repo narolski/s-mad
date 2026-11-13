@@ -306,3 +306,13 @@ aligner-path step (raw genuine -> our aligned genuine frame without history) and
 every genuine and morph pool after the own crop from `RS1/rs1_border.csv`. If the black share of the history-matched
 genuine pool equals that of the aligned native pool, the black frame contributes nothing to the history step on that path.
 Statement of which existing files allow the split and what would need new scoring.
+
+## Amendment 8 (13 Nov 2026, 14:10 CET; WCSS build fix; before any WCSS IDistill result exists)
+
+WCSS jobs 6310090 (smoke) and 6310207 (production) failed after about 73 s: the AD5 wheel house's torch 2.0.1+cu117
+has no sm_90 kernels ("NVIDIA H100 ... not compatible ... supports sm_37 ... sm_86"). The WCSS IDistill run now uses
+torch 2.0.1+cu118 and torchvision 0.15.2+cu118 (download.pytorch.org, sha256 eb55f29d... / f2c6f5a1..., shipped as
+`idistill_wheels_cu118.tar` 4cfdd6ae...), the same versions with a CUDA 11.8 build; all other packages unchanged. The
+job asserts that the GPU's architecture is in the build and runs a CUDA matmul before any work. Fits and scoring of the
+WCSS seeds stay on this one stack (H100, cu118); the DGX one-seed run stays a separate, separately labelled run. Nothing
+from 6310090 / 6310207 is used.

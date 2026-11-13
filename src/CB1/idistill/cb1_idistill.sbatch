@@ -25,10 +25,10 @@ if [ $STAGE = cls ]; then
 fi
 : "${TMPDIR:?local scratch required}"; W=$TMPDIR/ids; mkdir -p $W/out
 hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; python3 --version; date
-PK="idistill_code idistill_data smdd_train_cropped"; case "${CB1_PIP:-}" in online|dgx) ;; *) PK="$PK ad5w_wheels39" ;; esac
+PK="idistill_code idistill_data smdd_train_cropped"; case "${CB1_PIP:-}" in online|dgx) ;; *) PK="$PK ad5w_wheels39 idistill_wheels_cu118" ;; esac
 for p in $PK; do ( cd $P && sha256sum -c $p.tar.sha256 ) || { echo "HASH MISMATCH $p"; exit 3; }; done
 tar -xf $P/idistill_code.tar -C $W; mkdir -p $W/wheels $W/smdd $W/data
-case "${CB1_PIP:-}" in online|dgx) ;; *) tar -xf $P/ad5w_wheels39.tar -C $W/wheels ;; esac
+case "${CB1_PIP:-}" in online|dgx) ;; *) tar -xf $P/ad5w_wheels39.tar -C $W/wheels; mkdir -p $W/wcu118; tar -xf $P/idistill_wheels_cu118.tar -C $W/wcu118 ;; esac   # 13 Nov: cu117 torch has no sm_90 (H100); cu118 build
 tar -xf $P/smdd_train_cropped.tar -C $W/smdd; mv $W/smdd/os25k_bf_t $W/smdd/os25k_bf_t_cropped; mv $W/smdd/m15k_t $W/smdd/m15k_t_cropped
 t0=$(date +%s)
 if [ "${CB1_PIP:-}" = dgx ]; then   # DGX variant (amendment 3): program venv (torch 2.12, ARM/GB10) + extra packages dir
@@ -41,11 +41,11 @@ elif [ "${CB1_PIP:-}" = online ]; then
 else
   python3 -m venv $W/env; PY=$W/env/bin/python
   WH=$(find $W/wheels -name 'torch-2.0.1*.whl' -printf '%h' -quit)
-  $PY -m pip install -q --no-index --find-links $WH --find-links $W/cb1/wheels_extra torch==2.0.1 torchvision==0.15.2 numpy pandas scikit-learn opencv-python-headless tqdm Pillow facenet-pytorch tensorboard
+  $PY -m pip install -q --no-index --find-links $W/wcu118 --find-links $WH --find-links $W/cb1/wheels_extra "torch==2.0.1+cu118" "torchvision==0.15.2+cu118" numpy pandas scikit-learn opencv-python-headless tqdm Pillow facenet-pytorch tensorboard
 fi
 $PY -m pip freeze > $W/out/pip_freeze.txt; [ -n "${CB1_EXTRA_SITE:-}" ] && ls $CB1_EXTRA_SITE >> $W/out/pip_freeze.txt; echo "env built in $(( $(date +%s) - t0 )) s"
 C=$W/cb1/code; ST=$W/cb1/stubs; RUN="$PY -I $W/cb1/run_code.py $C $ST"
-$PY -I -c "import os,sys; sys.path[:0]=[p for p in os.environ.get('CB1_EXTRA_SITE','').split(':') if p]; import torch, torchvision, cv2, sklearn, facenet_pytorch, tensorboard; print(torch.__version__, torch.cuda.get_device_name(0))"
+$PY -I -c "import os,sys; sys.path[:0]=[p for p in os.environ.get('CB1_EXTRA_SITE','').split(':') if p]; import torch, torchvision, cv2, sklearn, facenet_pytorch, tensorboard; print(torch.__version__, torch.version.cuda, torch.cuda.get_arch_list(), torch.cuda.get_device_name(0)); cap = torch.cuda.get_device_capability(0); assert f'sm_{cap[0]}{cap[1]}' in torch.cuda.get_arch_list(), 'GPU arch not in this torch build'; x = torch.randn(64, 64, device='cuda'); print('cuda matmul ok', float((x @ x).sum()))"
 ( n=0; while :; do nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader,nounits >> $W/out/gpu.csv; sleep 30; n=$((n+1))
     if [ $((n % 60)) = 0 ]; then mkdir -p $R/${T}_partial   # review F4: checkpoints and logs leave TMPDIR every 30 min
       find $W/out -maxdepth 4 \( -name '*_best.pt' -o -name '*.pt' -o -name '*.pt.valbest' -o -name '*.log' \) -exec cp {} $R/${T}_partial/ \; ; fi
