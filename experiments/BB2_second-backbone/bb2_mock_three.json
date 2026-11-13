@@ -6,6 +6,11 @@
   "403": {
    "gpu_queue": "WCSS H100, one job per fit",
    "read": true,
+   "fit_gpu": {
+    "A": "mock",
+    "B": "mock",
+    "Sb": "mock"
+   },
    "adequate": true,
    "A": {
     "lcomb_auc": 0.6445785,
@@ -130,6 +135,11 @@
   "404": {
    "gpu_queue": "WCSS H100, one job per fit",
    "read": true,
+   "fit_gpu": {
+    "A": "mock",
+    "B": "mock",
+    "Sb": "mock"
+   },
    "adequate": true,
    "A": {
     "lcomb_auc": 0.6459625,
@@ -254,6 +264,11 @@
   "405": {
    "gpu_queue": "WCSS H100, one job per fit",
    "read": true,
+   "fit_gpu": {
+    "A": "mock",
+    "B": "mock",
+    "Sb": "mock"
+   },
    "adequate": true,
    "A": {
     "lcomb_auc": 0.658118,
