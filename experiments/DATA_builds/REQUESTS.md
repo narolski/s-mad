@@ -221,3 +221,128 @@ Recipe (fixed here, before building):
   - It widened the eye-distance gap: median 3.48 px, max 27.45 px (source eye distance about 245-272 px, p10-p90).
 - **D12a is the set to use.** D12 is kept, labelled "contains duplicates".
 - Nothing was scored.
+
+## D13. Shape-matched same-person negatives (HN1) — recipe draft. **Needs the author's word; nothing built.**
+
+Source: mechanism ledger v3 `experiments/IDEAS_mechanism-ledger/LEDGER.md` (cd2f41f), Direction 1 "HN1"; lead's drafting
+request, 13 Nov evening.
+
+Aim:
+- For a host photo H, the same person's second photo S and the pool partner B, build a positive and a negative that
+  share the host photo, the target geometry (mean of H's and B's landmarks), the triangulation, the warp count, the
+  alpha, the code path and the storage.
+- The pair should differ only in whose texture fills the second layer: B's in the positive, S's in the negative.
+
+**A correction to the ledger's wording, for the author's decision.**
+- The ledger says the warp-only images R2w4 were made with "the approved warp (the `h1_build.py` path)". They were not.
+  R2w4 was built by `src/AR1/variants.py` `warp_cv` (lines 81-100): the geometry and `_warp_tri` of
+  `mambamorph-code/scripts/68_hires_morph.py` (lines 29-54), A side only. That is the same triangle warp the unchanged
+  OpenCV morpher (`scripts/78_tool_morph.py`, which loads `68_hires_morph.morph`) applies to each of its two inputs.
+- `h1_build.py` (`/mnt/t7/smad_heldout/h1_poisson/scripts/h1_build.py`, sha256 85b944b7f70c4819...) is the separate
+  MediaPipe-478 + Poisson script of the H1 set. Its `warp(img, L_dst, L_src, tri)` (lines 80-84) warps to given target
+  landmarks; its `morph` builds the complete morph M = 0.5 W_A + 0.5 W_B (lines 86-95) before the Poisson step.
+- Either path could serve as "the approved warp". The author should name which one is approved for this use.
+
+### Variant (a): direct composite (two warps to a given target, then averaging)
+
+- **Positive P_a(H, B)** = 0.5 · warp(H, lm_H → L) + 0.5 · warp(B, lm_B → L), where L = (lm_H + lm_B) / 2 plus the
+  frame corners, with one Delaunay triangulation of L.
+- **Negative N_a(H, S)** = 0.5 · warp(H, lm_H → L) + 0.5 · warp(S, lm_S → L), with the same L and the same
+  triangulation. The H layer is bit-identical to the positive's.
+- **Code called unchanged.** `variants.warp_cv(img, lm_img, lm_other)` warps `img` to (lm_img + lm_other) / 2.
+  - Positive H and B layers: `warp_cv(H, lm_H, lm_B)` and `warp_cv(B, lm_B, lm_H)`.
+  - Negative S layer: `warp_cv(S, lm_S, 2L - lm_S)`, so that its target is exactly L. The function is unchanged; only
+    its third argument is computed.
+  - Each layer gets one warp. The averaging is the arithmetic of `68_hires_morph.morph` line 54,
+    `np.clip(0.5*wA + 0.5*wB)`, applied to two warp_cv outputs. warp_cv rounds each layer to uint8 first, so P_a can
+    differ from the existing OpenCV R4 by at most one grey level. P_a is therefore built new, by the same composite,
+    and not taken from AR1.
+  - Alternative path: `h1_build.warp` twice plus the same 0.5 averaging.
+- **Is this the splice builder's code path?** No.
+  - The 7b splice builder (`src/AR1/splice.py`, `job7b`, lines 139-175) is a pure pixel copy of one existing image into
+    another inside the R4 hull (`sp[m] = src[m]`, line 159). It never averages two warps.
+  - The composite is also not a call of the unchanged morpher: the morpher always targets the mean of its own two
+    inputs' landmarks, so it cannot put S at H-and-B geometry.
+  - So (a) is a new composite and **needs the author's word**.
+- **Storage.** Stored-small copies of both members via the existing registered soften path (as for every protocol rung),
+  lossless PNG.
+
+### Variant (b): unchanged morpher plus the approved warp only
+
+- **Negative N_b** = morpher(H, S′), with S′ = warp(S, lm_S → lm_B) and S′'s landmarks written as lm_B.
+  - Built with `warp_cv(S, lm_S, 2·lm_B - lm_S)`, then the unchanged `78_tool_morph.py opencv` on (H, H.tem, S′, B.tem).
+  - The morpher's own target is then (lm_H + lm_B) / 2 = L.
+- **Positive P_b** = the existing unchanged-morpher R4(H, B) from AR1, or rebuilt identically.
+- **Warp counts.** The positive's second layer (B) is warped once. The negative's second layer (S) is warped twice
+  (to lm_B, then to L). The host layer is warped once on both sides. The negative therefore carries one extra
+  resampling of its second layer.
+- **Control rows needed for the warp-count difference:**
+  - C1 (genuine): S warped twice, S → lm_B → L, shown alone. It is the twice-warped analogue of a warp-only image.
+  - C2 (genuine): S warped once, S → L.
+  - The adversary's floor on C1 against C2 measures how far the extra warp alone is detectable.
+  - Optionally, a positive P_b2 whose B layer is also warped twice (B → lm_S → L, then the morpher). That evens the
+    warp count on both sides, at the cost of a different intermediate.
+- **Author's word.** The ledger and the author decide whether warp-then-morph counts as "the approved warp plus the
+  unchanged morpher". No new composite is written, but the morpher's input is a warped image whose .tem is the
+  partner's landmarks.
+- FaceMorpher form: the same with `96_facemorpher_tool.py` (D1d hash) in place of OpenCV, if wanted.
+
+### Expected counts and cost (one engine, OpenCV; both members plus one stored-small copy each)
+
+| Host set | Hosts | Pairs | Images, variant (a) | Images, variant (b) incl. C1, C2 |
+|---|---|---|---|---|
+| development + read test ladder hosts (floor test only) | 291 (100 + 191) | 291 | 1,164 | 2,328 |
+| training hosts (for an arm) | 124 of 156 (see constraints) | 124 | 496 | 992 |
+
+- **CPU.** The ledger estimates 4-6 CPU-hours for the evaluation build and 6-8 for the training build. warp_cv is a
+  Python triangle loop; D1d's FaceMorpher ran at about 600 images per minute on 2 workers. The 8-pair test measures
+  the real rate before any full run.
+- No GPU.
+- **Outputs.** `/mnt/t7/smad_next/DATA/D13/{a,b}/{eval,train}/{P,N,C1,C2}/<host>.png`; a pair manifest (pair id, host,
+  partner, second photo, role, label, variant, path, sha256, the photo raw names); SHA256SUMS; failures listed.
+
+### Floor test (run by the standing adversary, not by DATA; before any fit)
+
+- DATA hands over the pair manifest of the 291 evaluation hosts only.
+- The adversary fits its cross-fitted shortcut learner on positive against matched negative, within quintiles of the
+  blend-difference energy D (BD1 measure), with:
+  - all cues;
+  - luma alone;
+  - for (b), also C1 against C2.
+- Reading:
+  - all-cue floor ≤ 0.60 and luma ≤ 0.60: **go** to the arm;
+  - either ≥ 0.75: **the construction leaks**; fix it before any fit;
+  - in between: the arm may run, but its gain counts only beside this floor.
+- Bootstrap by person component (PARTNER_OVERLAP_AUDIT.md). Print the floors also on the 180-host and 169-host
+  selection lists (`DATA/overlap/selection_hosts_{180,169}.csv`).
+
+### Partner-sharing constraints (from the partner-overlap audit)
+
+- **Training build.** Only the 124 training hosts whose pool partner is a training host. The 32 training hosts whose
+  partner is a read test host are excluded: their L would carry that test person's landmarks, the same shape-only link
+  as Sb's S3 / S0 rows. B and S must both be training persons, and no evaluation person's photo or landmarks may enter.
+- **Evaluation build.** Development and test hosts only. 99 test hosts have a development partner, so their pairs carry
+  development persons. Use component bootstrap, or read on the 80 clean test hosts or the 169 / 180 lists.
+- **Never** mix an evaluation pair into training.
+- **Status: needs the author's word (variant a: new composite; variant b: warp-then-morph and which warp is approved).
+  Nothing built.**
+
+## Author decision list: attack sets proposed by the standing adversary (`experiments/ADV_shortcut-floors/FLOORS.md`, "Attack sets", e877ed3)
+
+| Arm | Attack set | Operation | Needs |
+|---|---|---|---|
+| SbFM 1 | FaceMorpher same-person morphs and warp-only images of development hosts, at the FaceMorpher R4 counts | unchanged morpher; R3 / R2w FaceMorpher rows already exist for all 536 AR1 hosts | lead (selection from existing rows; new hosts would need new persons) |
+| SbFM 2 | two-person FaceMorpher and OpenCV morphs of look-alike pairs beside random-pair morphs | unchanged morphers on LA1 pairs | **author** (LA1 decisions open; new generation for look-alikes) |
+| SbFM 3 | OpenCV self-morphs and warp-only images of FFHQ hold-out photos at landmark_combined's frame (1024 source) | unchanged morpher; a frame other than ours | **author** (re-framing at the FFHQ-Morphs frame is not our aligner); our frame is covered by D1d / D12a |
+| Sbx 1 | camera and FFHQ photos with grey-128 and white-255 borders, TT1 mask geometry | constant-colour region blanking | lead (allowed operation) |
+| Sbx 2 | border-blanked development R4, S4 and landmark_combined morphs, same masks | constant-colour region blanking | lead (allowed operation) |
+| Sbx 3 | partial-face blanking with the largest TT1 masks (fraction above 0.55) on camera photos and morphs | constant-colour region blanking | lead (allowed operation) |
+| GX 1 | look-alike two-person MIPGAN morphs (LA1 pairs, cosine above 0.30) against R3 | unchanged generator, new generation | **author** (LA1; new generation) |
+| GX 2 | GX1 held-out R4 / R3 binned by latent distance and contributor cosine | no new image | none (lists only) |
+| GX 3 | R3 from the largest FERET session gap against low-difference R4 | unchanged generator; selection from AG1 / GX1 rows if they exist, else new generation | lead (selection); **author** if new generation |
+| RZ1 1 | storage copies at eye distance about 80-95 px | existing E7 outputs if any at those sizes | **author** if not existing (new storage size) |
+| RZ1 2 | JPEG-history development genuine photos and morphs | JPEG re-encoding | **author** (same as D9) |
+| RZ1 3 | inverse splices (blend outside the hull, warp-only inside) with the PN1 splice code and swapped masks | existing pixel-copy splice code | lead ruling whether within the approved splice operation; **author** otherwise |
+| DINOv3 | existing S3_bg / S4_bg, border-blanked camera photos, GD2 renders | none | none |
+| Sb 1 | look-alike two-person morphs against same-person morphs matched on D | as SbFM 2 | **author** |
+| Sb 2 / Sb 3 | grey and white borders; border-blanked morphs | as Sbx 1 / Sbx 2 | lead (allowed operation) |
