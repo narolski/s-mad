@@ -1172,3 +1172,4 @@ dependency (DependencyNeverSatisfied): fix, re-test, resubmit both, and cancel 6
   `e4b60874…` and scorer sha `e0ab24b5…` pinned, network source checked), uploaded to WCSS `jobs_ad4/` (hash equal there).
   Submission through the dispatcher queue: smoke `wcss_ad4_fu_h100_smoke.cmd`, production `wcss_ad4_fu_h100_prod.cmd` (submit only
   after the smoke completed with exit 0). Owner: AD4 reading owner. Expected run: smoke about 5 min, production about 20 min, after start.
+- 09:02: smoke submitted by the dispatcher as **WCSS job 6310086** (ad4-fu-smoke). Production follows only after 6310086 completes with exit 0.
