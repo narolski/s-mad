@@ -153,6 +153,10 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
   DONE_FS). Background chain `src/TT1/rented/chain_x_sp.sh` (log /mnt/t7/smad_next/vast/pn1fs/tt1/chain_x_sp.out): waits
   for tt1/TT1_DONE and the three verified Sp tars, checks disk, runs the pinned start call and the pull loop.
 
+- 09:47: TT1-FS job restarted on pn1fs with a pre-wait for C2P-R (/workspace/c2pr/DONE or NO_C2PR, at most 13:30;
+  operational note 451c419). Lead: pn1fs deadline moved to 16:30 (cap unchanged); TT1's skip rule keeps 15:51 - 60 min
+  as the latest start (unchanged).
+
 ### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
 
 The decoded image, the resized image and the input tensor are bit-identical between the DGX stack (torch 2.12.1,
