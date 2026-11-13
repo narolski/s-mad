@@ -13,7 +13,7 @@ L=$L0/tt1; mkdir -p "$L/results"
 O=/mnt/t7/smad_next/TT1; FSR=/mnt/t7/smad_next/PN1/results_fs; B=/workspace/tt1
 PSHA=2109f742b0378c188f394a3b26c363ef2ffb0ea43eab78ecea7674884022c554
 FSHA=96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004
-TASKS="PN1_A_s403 PN1_B_s403 PN1_Sb_s403 PN1_A_s404 PN1_B_s404 PN1_Sb_s404 PN1_A_s405 PN1_B_s405 PN1_Sb_s405 PN1_A_s406 PN1_B_s406 PN1_Sb_s406 PN1_A_s407 PN1_B_s407 PN1_Sb_s407 PN1_A_s401"
+TASKS="PN1_A_s403 PN1_B_s403 PN1_Sb_s403 PN1_A_s404 PN1_B_s404 PN1_Sb_s404 PN1_A_s405 PN1_B_s405 PN1_Sb_s405 PN1_A_s406 PN1_B_s406 PN1_Sb_s406 PN1_A_s407 PN1_B_s407 PN1_Sb_s407"
 SO=(-o BatchMode=yes -o ConnectTimeout=15 -o ServerAliveInterval=30 -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile="$L0/known_hosts" -i "$KEY" -p "$PORT")
 R() { ssh "${SO[@]}" "root@$HOST" "$@"; }
 RS() { rsync -a --partial --timeout=180 -e "ssh ${SO[*]}" "$@"; }

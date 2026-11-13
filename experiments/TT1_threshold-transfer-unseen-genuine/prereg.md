@@ -224,3 +224,11 @@ Code: `src/TT1/hnew.py` (committed with the results).
   off; math-only + TF32 on. Compared with the A100 logits.
 - Rule: falsified if no setting brings max |Δ| over the five rows below 1e-3. Decides whether the DGX can ever be a
   scoring fallback (if falsified: no).
+
+## 10. Registration TT1-FS (`date`: Fri Nov 13 07:18:42 AM CET 2026; registered at the git commit that adds this section; before any FS1 network is scored on a TT1 row)
+
+- Text: `prereg_fs1_block.md` (15 FS1 networks A, B, Sb x 403-407 on the TT1 pools; per-network byte-identity gate on
+  the 19,797 FS1 development evaluation rows with TF32 on; TT1 rows with rescore.py unchanged; 4-of-5-seed rules; F4
+  limits; platform pins; no scoring beside the Sp fits: the job waits for the host's fit lock). Reader
+  `src/TT1/tt1_read_fs.py` fe9f97401f3633c2947b23af685be5587e741ed97163d64810e971469f5b4a62 (mock-tested with one network missing: `tt1_read_fs_mock.json`).
+- Pre-run check by the experiment-reviewer follows; fixes are registered as amendment lines before the job starts.
