@@ -339,3 +339,7 @@ python3 -I src/BB2/bb2_read.py --mock /mnt/t7/smad_next/BB2/mock
 /opt/slurm/current/bin/sbatch --extra=FORCE_RM_TMPDIR bb2_smoke.sbatch ; ... bb2_fit.sbatch
 python3 -I src/BB2/bb2_read.py
 ```
+
+- Note (Fri Nov 13 06:47:59 PM CET 2026): author-ruling times quoted from the lead's messages after about 17:00 were about 45 min ahead
+  (NOTEBOOK 18:46 correction); machine clock: cut-off ruling about 17:11; freeze about 18:27; "read now" ruling about
+  18:36; the lead's 19:05-20:00 and "18:50" between 18:32 and 18:46. Nothing else changes.

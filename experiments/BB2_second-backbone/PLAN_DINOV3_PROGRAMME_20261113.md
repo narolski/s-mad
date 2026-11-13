@@ -1,7 +1,9 @@
 # DINOv3 evaluated like CLIP: programme plan (BB2 owner, 13 Nov 2026; version 2 after the pre-run check; DRAFT for the lead and the author)
 
-Times: the DGX machine clock runs about 25-40 minutes behind the lead's clock today; event times quoted from NOTEBOOK.md
-are the lead's. Pre-run check: `experiments/reviews/PRERUN_BB2_PLAN_20261113.md` (GO WITH FIXES; F1-F9 applied below).
+Times (note added after the lead's 18:46 correction): the author-ruling times quoted below from the lead's messages were
+about 45 minutes ahead of the machine clock. By the machine clock: cut-off ruling ("17:15") about 17:11; freeze
+("18:28") about 18:27; "read now" ("19:25") about 18:36; the lead's "19:00", "19:20" and "18:50" between 18:32 and 18:46.
+The rulings themselves are unchanged. Pre-run check: `experiments/reviews/PRERUN_BB2_PLAN_20261113.md` (GO WITH FIXES; F1-F9 applied below).
 
 Author's instruction (13 Nov, relayed 19:00), verbatim: "Please plan extensive experiments for Dinov3, ok? So that we
 evaluate it like we did with CLIP." Meaning (lead): every reviewed read the CLIP candidate has had since 12 Nov, repeated

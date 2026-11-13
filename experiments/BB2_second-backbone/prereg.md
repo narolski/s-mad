@@ -626,3 +626,10 @@ Nothing else changes: the BB2 part-1 reading (frozen at 546d892, read 15:36) is 
 - **Smoke:** the job on one BB2 part-1 network (`BB2_W2_TARS=<BB2_Sb_s403.tar>`, results/BB2_smoke, output
   BB2LW2smoke); checks only completeness, finiteness, gate and probe; its scores are never read as results.
 - Read deadline (amendment 6): once all of the batch has ended, latest 15 Nov 2026 18:00 CET.
+
+## Note on quoted times (`date`: Fri Nov 13 06:47:59 PM CET 2026; changes no rule and no deadline)
+
+The lead's messages since about 17:00 gave author-ruling times about 45 minutes ahead (NOTEBOOK, "13 Nov 2026, 18:46
+machine clock (lead): CORRECTION OF TIMES"). By the machine clock: the cut-off ruling quoted in amendment 6 ("17:15")
+was about 17:11; the lead's "go" for amendment 7 ("20:00") and the other evening times (19:05-20:00, "18:50") fall
+between 18:32 and 18:46. The times in amendments 4 and 5 ("15:40", "16:05") came from the machine clock and stand.
