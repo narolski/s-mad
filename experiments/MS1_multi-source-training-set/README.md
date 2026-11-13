@@ -74,6 +74,11 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   `/mnt/t7/smad_next/vast/ms1m1b`, cap 10 USD, 13 h), which takes queue m1 (seeds 403+406) as registered. The setup
   and after_setup processes for the old host were stopped (no fit had started there). 00:09: setup started on ms1m1b
   (about 16 MB/s); `after_setup.sh` now takes the lease folder as an optional second argument.
+- 13 Nov 00:32:07 SETUP_OK ms1m1b (upload 1,282 s; GPU-c1ff3444…), queue m1 and loop 00:32:39; first fit 1.23-1.27 it/s.
+- 13 Nov 00:54:58 SETUP_OK ms1m3 (upload 3,028 s; GPU-b1d985cf…), queue m3 and loop 00:55:34; first fit 1.15 it/s.
+- 13 Nov 00:55:20 SETUP_OK ms1m2 (upload 3,049 s; GPU-214a6ac4…), queue m2 and loop 00:56:04; first fit 1.18 it/s.
+  ms1m2 and ms1m3 are two GPUs of one host (118.163.199.123). Expected ends (fits about 1.55-1.7 h each, then the
+  held-out step): m3 about 06:10, m1b about 09:50, m2 about 11:00 on 13 Nov.
 
 ## 3. Data
 
