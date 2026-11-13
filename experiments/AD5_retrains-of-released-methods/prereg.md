@@ -287,3 +287,17 @@ CUDA build for H100. The MADation pin torch 2.0.1 / torchvision 0.15.2 is kept. 
 (`+cu118`, download.pytorch.org) replace the PyPI CUDA 11.7 builds, which have no sm_90 code. Model code, hyper-parameters,
 seeds and data are unchanged. Applies to MADation ViT-B/16, ViT-L/14 and MixFaceNet-MAD on WCSS (all five seeds of each
 method on this one platform). The Athena A100 MixFaceNet-MAD seed 401 (cu117) stays a descriptive cross-platform check.
+
+## Amendment 7 (13 Nov 2026, 17:25 CET; the author's ruling in NOTEBOOK 13 Nov 17:15, relayed by the lead through the dispatcher; before any WCSS AD5 result tar exists and before any retrain score)
+
+Author, verbatim: "For now, assume that we can go over the cutoff date due to WCSS and Athena waiting time."
+This replaces every cut-off or fetch deadline for the WCSS jobs of this experiment: smokes 6310087 and 6310088, SelfMAD
+test 6310089, and arrays 6310124 (MADation ViT-B/16), 6310125 (MixFaceNet-MAD), 6310126 (MADation ViT-L/14) and 6310127
+(SelfMAD). The reading time is: "read once when all fits of the batch have ended, latest 15 Nov 18:00; rows arriving later
+are labelled late". So the main read happens once, when every task of these arrays has ended, or at 15 Nov 18:00 if that
+is earlier. Retrain rows that finish later are labelled late and read exactly as registered, as in amendment 5 (same
+gate, readings, agreement rule and verdicts; "incomplete (k seeds)" while fewer than five seeds of a method are in).
+Nothing else changes: the gating smoke or test must pass before any array output is read; the queue order stays as set;
+the pending Athena tasks stay queued, and the first verified copy of a task is read, with its twin then cancelled.
+The Athena A100 MixFaceNet-MAD seed 401 (3545870_401) stays a descriptive check outside the verdict.
+
