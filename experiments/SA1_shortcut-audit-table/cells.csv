@@ -26,18 +26,18 @@ row,shortcut,column,cell_id,status
 3,JPEG history,MADation_ViT-L14,3-MADation_ViT-L14,reviewed
 3,JPEG history,MixFaceNet-MAD,3-MixFaceNet-MAD,unreviewed
 3,JPEG history,SelfMAD,3-SelfMAD,unreviewed
-4,unseen camera source (source comparison),A,4-A,reviewed; two seeds only
-4,unseen camera source (source comparison),B,4-B,reviewed; two seeds only
-4,unseen camera source (source comparison),Sb,4-Sb,reviewed; two seeds only
+4,unseen camera source (source comparison),A,4-A,reviewed
+4,unseen camera source (source comparison),B,4-B,reviewed
+4,unseen camera source (source comparison),Sb,4-Sb,reviewed
 4,unseen camera source (source comparison),Sp,4-Sp,reviewed
 4,unseen camera source (source comparison),SbM3,4-SbM3,reviewed
 4,unseen camera source (source comparison),MADation_ViT-B16,4-MADation_ViT-B16,reviewed
 4,unseen camera source (source comparison),MADation_ViT-L14,4-MADation_ViT-L14,reviewed
 4,unseen camera source (source comparison),MixFaceNet-MAD,4-MixFaceNet-MAD,unreviewed
 4,unseen camera source (source comparison),SelfMAD,4-SelfMAD,reviewed
-5,image border or frame,A,5-A,reviewed; two seeds only
-5,image border or frame,B,5-B,reviewed; two seeds only
-5,image border or frame,Sb,5-Sb,reviewed; two seeds only
+5,image border or frame,A,5-A,reviewed
+5,image border or frame,B,5-B,reviewed
+5,image border or frame,Sb,5-Sb,reviewed
 5,image border or frame,Sp,5-Sp,not measured
 5,image border or frame,SbM3,5-SbM3,reviewed
 5,image border or frame,MADation_ViT-B16,5-MADation_ViT-B16,unreviewed
@@ -80,10 +80,10 @@ row,shortcut,column,cell_id,status
 9,blending seam (S0),MADation_ViT-L14,9-MADation_ViT-L14,reviewed
 9,blending seam (S0),MixFaceNet-MAD,9-MixFaceNet-MAD,reviewed
 9,blending seam (S0),SelfMAD,9-SelfMAD,reviewed
-10,alignment or crop path,A,10-A,reviewed; two seeds only
-10,alignment or crop path,B,10-B,reviewed; two seeds only
-10,alignment or crop path,Sb,10-Sb,reviewed; two seeds only
-10,alignment or crop path,Sp,10-Sp,not measured
+10,alignment or crop path,A,10-A,reviewed
+10,alignment or crop path,B,10-B,reviewed
+10,alignment or crop path,Sb,10-Sb,reviewed
+10,alignment or crop path,Sp,10-Sp,reviewed
 10,alignment or crop path,SbM3,10-SbM3,reviewed
 10,alignment or crop path,MADation_ViT-B16,10-MADation_ViT-B16,reviewed
 10,alignment or crop path,MADation_ViT-L14,10-MADation_ViT-L14,reviewed
@@ -107,18 +107,18 @@ row,shortcut,column,cell_id,status
 12,surround blend (whole-frame tools),MADation_ViT-L14,12-MADation_ViT-L14,reviewed
 12,surround blend (whole-frame tools),MixFaceNet-MAD,12-MixFaceNet-MAD,reviewed
 12,surround blend (whole-frame tools),SelfMAD,12-SelfMAD,reviewed
-13,diffusion render path,A,13-A,not measured
-13,diffusion render path,B,13-B,not measured
-13,diffusion render path,Sb,13-Sb,not measured
+13,diffusion render path,A,13-A,reviewed
+13,diffusion render path,B,13-B,reviewed
+13,diffusion render path,Sb,13-Sb,reviewed
 13,diffusion render path,Sp,13-Sp,not measured
 13,diffusion render path,SbM3,13-SbM3,not measured
 13,diffusion render path,MADation_ViT-B16,13-MADation_ViT-B16,reviewed
 13,diffusion render path,MADation_ViT-L14,13-MADation_ViT-L14,reviewed
 13,diffusion render path,MixFaceNet-MAD,13-MixFaceNet-MAD,reviewed
 13,diffusion render path,SelfMAD,13-SelfMAD,reviewed
-14,GAN one-person render (MIPGAN),A,14-A,not measured
-14,GAN one-person render (MIPGAN),B,14-B,not measured
-14,GAN one-person render (MIPGAN),Sb,14-Sb,not measured
+14,GAN one-person render (MIPGAN),A,14-A,reviewed
+14,GAN one-person render (MIPGAN),B,14-B,reviewed
+14,GAN one-person render (MIPGAN),Sb,14-Sb,reviewed
 14,GAN one-person render (MIPGAN),Sp,14-Sp,not measured
 14,GAN one-person render (MIPGAN),SbM3,14-SbM3,not measured
 14,GAN one-person render (MIPGAN),MADation_ViT-B16,14-MADation_ViT-B16,reviewed
@@ -143,8 +143,8 @@ row,shortcut,column,cell_id,status
 16,expression / capture detail (FRLL smiling half),MADation_ViT-L14,16-MADation_ViT-L14,reviewed
 16,expression / capture detail (FRLL smiling half),MixFaceNet-MAD,16-MixFaceNet-MAD,reviewed
 16,expression / capture detail (FRLL smiling half),SelfMAD,16-SelfMAD,reviewed
-17,softness / detail loss,A,17-A,unreviewed; two seeds only
-17,softness / detail loss,B,17-B,reviewed; two seeds only
+17,softness / detail loss,A,17-A,reviewed
+17,softness / detail loss,B,17-B,reviewed
 17,softness / detail loss,Sb,17-Sb,reviewed
 17,softness / detail loss,Sp,17-Sp,not measured
 17,softness / detail loss,SbM3,17-SbM3,not measured
