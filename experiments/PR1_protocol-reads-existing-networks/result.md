@@ -337,3 +337,26 @@ re-synthesis rather than of a second identity, and we do not claim them as morph
 GAN/diffusion morphs".
 
 Correction of record (`date`: Fri Nov 13 20:42 CET): row 7 of the arm table printed the arm-B range of R4 vs R3 as "0.75-0.79"; the smallest value is 0.7446 (B_s403, `z_read.json` per_net/B_s403/auc/R4_vs_R3_opencv_test), so the range is 0.74-0.79. Only the printed text changes; the JSON is unchanged. Found by the BATTERY cell check (`experiments/BATTERY_shared-test-battery/cells_check_v1rc2.json`).
+
+## Amendment 5a: shape-linked test hosts (post hoc; FS1 Sb 403-407 decides; `shape_link_read.json`, 034c4d4; reader 89be37e1…, pins 4dea8c1f…; reviewed in `experiments/reviews/REVIEW_PR1_A5A_20261113.md`, ACCEPT WITH EDITS)
+
+Verdict: **no effect detectable at n = 32.**
+- The five-seed mean logit over S3, S0 and S4 was 0.035 higher for the 32 linked hosts than for the 159 clean hosts. Stratified joint null 95% [-0.420, +0.470]; the smallest detectable shift is 0.64 logit, about 43% of the median S4−S3 margin.
+- The S4-vs-S3 AUC difference was -0.002 (null [-0.084, +0.129]; smallest detectable 0.148).
+- The S3 flag difference was +1.7 points and the S4 miss difference +1.7 points (smallest detectable 23 and 19 points).
+- The read rules out only large effects. A shift of a few tenths of a logit, the size the mechanism suggests, cannot be excluded.
+- All 191 vs clean 159 (five-seed means): S4 vs S3 AUC 0.732 vs 0.732; mean logit -0.926 vs -0.932; S4 miss 0.261 vs 0.258.
+
+Mechanism: the evaluation hull of a linked test host is not the training hull of its partner (0 of 32 pairs equal). The link is partial landmark shape (half an outline), not a duplicated item.
+
+Printed, not deciding:
+- AB1 Sb 408-412 gives the same verdict. These are five further network seeds on the same hosts, not an independent sample of hosts, and not a replication.
+- R4 vs R3 (the low-link control, no hull) differs by +0.047 (null [-0.090, +0.081]).
+- The linked hosts' median S3 logit is higher, not lower (-0.787 vs -1.336).
+- Both of the last two are within noise and, if real, point to host heterogeneity rather than to the shape link.
+- Within the 80 hosts clean of development (11 linked vs 69 clean; printed, no interval, do not cite): mean logit +0.079, S4 vs S3 AUC +0.07.
+- The S0 flag null is degenerate (S0 sits at the floor), so it carries no information.
+
+Not allowed in the paper: "no shape leakage", "the shape link has no effect", "replicated on a second seed block", or any reading of the linked hosts as harder or easier. Whether the headline switches to the 159 clean hosts is an open question for the author.
+
+Correction of record (`date`: Fri Nov 13 20:46 CET): `src/PR1/SHA256SUMS` listed the amendment-5 reader (c2e8fdd5…). The read used 89be37e1…, as registered in prereg.md amendment 5a. SHA256SUMS now pins 89be37e1….
