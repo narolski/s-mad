@@ -107,6 +107,20 @@ Within the calibration sources only. G_max leaves out the protocol-genuine one-p
 - Printed: within-class ρ(logit, log lapvar_face) for Sb s403: R0 −0.31, R2w −0.31, R3 +0.03, R4 +0.24, S0 −0.19,
   S3 −0.06, S4 +0.07. Stratified S4 vs S3 for Sb s403: 0.739 (lapvar_face alone 0.503).
 
+### Amendment 3 reads (post hoc, registered at 90caa9e before computing; `z1b_read.json`, reader `src/PR1/z1b_read.py`)
+
+- **Z1b-1, host memorisation (Sb):** the training S3 rows flagged (40-57 of 156 per seed) are largely the same rows
+  on every seed. Jaccard overlap / chance, mean per seed: 4.05, 4.31, 4.00, 3.65, 4.21. **Registered verdict:
+  "supported"** (≥ 3.0 on 5 of 5). Median S4-minus-S3 logit margin on the same host: training 3.96-4.94, test hosts
+  1.08-1.79.
+- **Z1b-2, ranking, not weighting (Sb):** at the cut-off flagging 5% of training S3, training S4 misses are 0.758,
+  0.774, 0.766, 0.734, 0.726. **Registered verdict: "supported"** (≥ 0.30 on 5 of 5).
+- **Z1b-3, development against test S4 vs S3 (Sb):** development minus test +0.044 to +0.072. The 95% host-bootstrap
+  interval holds 0 on 4 of 5 seeds (seed 406: +0.009 to +0.139). **Registered label: "sampling-compatible".**
+- **Z3b, engine contrast on R4 vs same-person morph (test ladder, 191 hosts):** Δ3 = AUC(R4 vs R3) opencv minus
+  facemorpher. Sb +0.029, +0.006, +0.011, +0.017, +0.011; B +0.012 to +0.028; A −0.001 to +0.018. Δ3m (mirror) −0.009
+  to +0.014 for all arms. **Registered verdict: "inconclusive" for A, B, Sb** (Sb: 0 seeds ≥ 0.03, 1 seed ≤ 0.01).
+
 ## Checks of the strategist's three facts (section 0 of the strategist report)
 
 1. "Sb flags 0 of 100 seam-only images": cited from seeds 401/402. It **holds on the fresh seeds** (0 of 100 on all
