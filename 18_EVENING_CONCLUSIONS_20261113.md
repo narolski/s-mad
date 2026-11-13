@@ -61,3 +61,4 @@ About 48.5 USD of rentals today against the 50 approved.
 - **Storage-test re-run (C2P-R).** Its pre-run check is written inside the draft only; no separate review file exists.
 - **Times.** This document was committed at 17:38, not written at 17:45; the author's ruling cited as 17:15 was recorded at 17:13.
 - **Update 19:08.** The review covering the ViT-L/14 half of the morph-free networks reading existed and is now saved verbatim (`experiments/reviews/REVIEW_AD4_CLUSTER_20261113.md`, 6d11728; verdict "the conclusions hold but need qualifying"). The "unreviewed" label on that half is lifted. The NIST mugshot block stays unreviewed until its file is saved.
+- **Update 19:10.** The review of the NIST mugshot block existed and is now saved verbatim (`experiments/reviews/REVIEW_TT1_MEDS_20261113.md`, 2aef2ce; verdict "needs qualification", corrections applied in c4c2233). The "unreviewed" label on that block is lifted.
