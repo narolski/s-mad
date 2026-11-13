@@ -1173,3 +1173,4 @@ dependency (DependencyNeverSatisfied): fix, re-test, resubmit both, and cancel 6
   Submission through the dispatcher queue: smoke `wcss_ad4_fu_h100_smoke.cmd`, production `wcss_ad4_fu_h100_prod.cmd` (submit only
   after the smoke completed with exit 0). Owner: AD4 reading owner. Expected run: smoke about 5 min, production about 20 min, after start.
 - 09:02: smoke submitted by the dispatcher as **WCSS job 6310086** (ad4-fu-smoke). Production follows only after 6310086 completes with exit 0.
+- 09:07, dispatcher on the lead's order: production submitted as **WCSS job 6310123** (ad4-fu-prod) alongside the smoke, Nice=30 for both. Its output is read only if smoke 6310086 completes with exit 0; if the smoke fails, the dispatcher cancels 6310123.
