@@ -522,3 +522,32 @@ needed.
 - Reader `src/AB1/ab1_pm_read.py` (sha256 in pins.sha256), mock-tested; read once after the lead's pre-run check;
   then the results-reviewer.
 - Pinned at this commit: reader `9ff52c1bce9deca4…`; inputs test_hosts_clean_of_dev.csv 814c4486…, BD1 d_values.csv cf2ba3fa… (asserted by the reader).
+
+## Amendment 4b (`date`: Fri Nov 13 20:53 CET 2026; before any score of these contrasts is opened; fixes of the pre-run check `experiments/reviews/PRERUN_AB1_A4_20261113.md`, 7d702cb, GO WITH FIXES; lead's answers)
+
+1. **Withdrawn and replaced (F1):** the sentence "R4 vs R3 (whole-frame two-person against same-person morph) is trained by
+   none of the three arms" is false. Replacement: "R3 (same-person whole-frame morph) is in no training list. R4 is a
+   training positive in all three arms (A 132, B 443, Sb 435 rows on training hosts). B and Sb also have R2w and half
+   negatives. Sb alone also has S3 and S0 same-person splice negatives, the nearest trained analogue of R3. An R4-vs-R3
+   gain of Sb over B therefore reads as transfer from Sb's same-person splice negatives to whole-frame same-person
+   morphs. It does not show a contrast that no arm was trained toward." The licence for "present" on R4 vs R3 reads "on
+   a contrast whose negative class (R3) no arm was trained on". **Engine of the training R4 rows:** OpenCV-style (PN1
+   mkmanifests selects lad_R4 with tool = opencv; the manifests' tool column "smdd" is the regime label). OpenCV R4 is
+   therefore a trained positive in every arm; **FaceMorpher R4 vs R3 is the less-trained check** (printed).
+2. **Host sets (F2):** printed also on the 80 clean test hosts alone and on development + the 69 clean test hosts that
+   are not shape-linked (11 of the 80 are among the 32 shape-linked hosts). **If the seed-mean gain on the 100
+   development hosts and on the 80 clean test hosts differ in sign, the primary verdict is at most "inconclusive".**
+   **The secondary S4-vs-S3 read is decided on the 80 clean test hosts only** (lead's answer: the Sb recipe was chosen
+   on development-host splice reads); its bootstrap uses the components of those 80 hosts.
+3. **D (F3):** for R4/R3 rows D is a host-level covariate (the D of that host's S4 or S3 splice), not the morph's own D; it
+   differs by class by construction; D alone gives AUC 0.57-0.58 on these contrasts. **"present" also requires the
+   unstratified seed-mean gain to be > 0.** The within-D floors (`ri_R4_vs_R3_withinD.json`, `test_cv_R4_vs_R3_withinD.json`;
+   other row sets, context only) are printed beside the stratified AUCs.
+4. **Bootstrap (F4):** within dev+clean80 each person is the partner of at most one host; the host–partner graph has 151
+   components, the largest of 6; the component bootstrap is valid.
+5. **Power (F5):** "absent" is nearly unreachable: it in practice means Sb is not better (seed-mean about ≤ −0.02); a true
+   gain of +0.01 to +0.05 will read "inconclusive". The interval half-width is printed.
+6. **Mock (F6):** the mock seed now differs between A and B; re-run.
+7. **Verdict line (F7):** "recipe at replication seeds 408-412, development plus clean test hosts, post hoc, not
+   held-out; not a property of the frozen networks 403-407".
+- Reader `src/AB1/ab1_pm_read.py` after these fixes: sha256 `ba6efdada789c2a42ef47fa1fa39e707012f66641be40b6346ce9b45b067ed5e` (replaces 9ff52c1b…).
