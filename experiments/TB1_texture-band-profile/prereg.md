@@ -112,3 +112,42 @@ The fixes:
   - The controls row is applied first.
   - The Sb increment is printed on the 191 test hosts alone as well as on all 291 hosts.
 - **D:** BD1's D, not D_ac.
+
+## Logged before the single-image (S) part is read (13 Nov, from `REVIEW_TB1_PREMISE_20261113.md`, e7e57ed)
+
+- **Reviewer's prediction for S:** in one image, the fine-band drop inside a 50% blend is mostly noise averaging, which
+  an identity-free same-person blend has too. The binding gain of +0.03 over the splice shortcut features (including
+  the inside/outside sharpness ratio) is the deciding row, and is expected to **fail**.
+- **H-new-1** (the TB1 signal is the extra structured energy between two people diluting a fine-scale floor shared by
+  both classes). Prediction: on FRGC, the profile within band-energy and W strata is ≤ 0.62. **Falsified** if the gain
+  over [log E, log W] is ≥ +0.03 with a component-bootstrap lower bound above 0.
+- **H-new-2** (TB1 measures face-shape mismatch, identity geometry, not skin texture). Prediction: same-person pairs at
+  matched W score like two-person pairs (amendment 2 read (b); the clean test needs new warps, an author item).
+
+## Amendment 2 (post hoc; labelled so; registered before reading, pre-run check requested from the lead)
+
+Source: `REVIEW_TB1_PREMISE_20261113.md` (e7e57ed), lead's order of 13 Nov. The premise values and the reviewer's post
+hoc numbers are known; every read below is post hoc. Code: `src/TB1/tb1_amend2.py` (pinned in `src/TB1/SHA256SUMS`),
+tested on mock features only. Zero GPU. It reads the registered feature file, BD1's D, the AR1 pool and the .tem files.
+
+- **E** = band-limited energy of the half-difference (P4_Etot / P3_Etot: B1-B5, hull). **W** = mean landmark
+  displacement over the 106 points between the two source photos (H to B for two-person, H to S for same-person).
+- **Folds and bootstrap** by connected components of the person graph (host-partner edges).
+- **Reads:**
+  - the profile (cross-fitted logistic on ln p_1..p_5) within E quintiles, within W quintiles, and within joint
+    D × W tertile cells (cells with ≥ 10 of each class);
+  - the gain of the profile over [log D, log E, log W] and over [log E, log W];
+  - the component bootstrap of the second gain (2,000 draws, `default_rng(20261182)`).
+- **Rule:**
+  - **Falsified** ("the profile adds < +0.02 over band energy and geometry") if the gain over [log E, log W] is
+    < +0.02.
+  - **Supported** if ≥ +0.03 with a component-bootstrap lower bound > 0. Otherwise "inconclusive".
+  - H-new-1 is falsified only in the supported case.
+- **Descriptive (a): capture-day gap.** Gaps from the pool's session dates (host H_session; the partner photo B is the
+  partner's S photo, S_session), so no sigset read is needed. Two-person rows are binned by host-partner day gap (0
+  [same day], 1-30, 31-180, > 180) against same-person rows in the same bins, per database. AUC where both bins hold
+  ≥ 5 rows.
+- **Descriptive (b): matched W.** Same-person pairs with W at or above the two-person 10th percentile, matched 1:1 on W
+  to two-person pairs (nearest, without replacement). AUC and n printed.
+- **Not built:** the follow-up with new warps (same-person different-session halves from the NIST cross-encounter
+  list, same-day two-person splices) is an author item.

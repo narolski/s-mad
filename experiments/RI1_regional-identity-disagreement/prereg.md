@@ -155,3 +155,12 @@ real embedding file.
   - The border control is not tested. No deployment claim is made.
 - **D:** BD1's D (prereg line 30 of BD1), not D_ac.
 - **Lead's ruling recorded in NOTEBOOK** (3f9f136).
+
+## Amendment 1c (13 Nov, before any read; lead's note after the TB1 premise review)
+
+- G (BD1's geometry gap) is one value per host, so it cannot stratify a class contrast. The printed "P1 within G" of
+  amendment 1b R2 is replaced by **P1 within W quintiles**: W is the per-class mean landmark displacement between the
+  two source photos (H-B for R4, H-S for R3), from the .tem files. P1 within D is also printed.
+- The reader asserts and prints that both stratifiers vary per class (`strata_vary_per_class`). The within-D strata of
+  the S1 signal (R4 vs R3, S4 vs S3) use the S4 row's D for the two-person class and the S3 row's D for the same-person
+  class, which also vary per class.

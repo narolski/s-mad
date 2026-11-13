@@ -188,9 +188,19 @@ def main():
     cosHS = np.array([float(pool[h]["cos_HS"]) for h in hp1])
     P["rho_V_cosHB_R4"] = float(spearmanr(v4, cosHB).correlation)
     P["rho_V_cosHS_R3"] = float(spearmanr(v3, cosHS).correlation)
-    G4 = np.array([float(D[S4[h]]["G"]) for h in hp1]) if all(h in S4 for h in hp1) else None
-    G3 = np.array([float(D[S3[h]]["G"]) for h in hp1]) if all(h in S3 for h in hp1) else None
-    P["within_G"] = strat_auc(v4, v3, G4 + 1e-9, G3 + 1e-9)[0] if G4 is not None and G3 is not None else None
+    # amendment 1c: G is one value per host (no per-class variation); the per-class geometry is W, the mean landmark
+    # displacement over the 106 points between the two source photos (H-B for R4, H-S for R3), from the .tem files
+    def tem(p):
+        ls = open(p[:-4] + ".tem").read().splitlines()
+        return np.array([list(map(float, ls[i].split())) for i in range(1, int(ls[0]) + 1)])
+    W4 = np.array([np.linalg.norm(tem(pool[h]["H"]) - tem(pool[h]["B"]), axis=1).mean() for h in hp1])
+    W3 = np.array([np.linalg.norm(tem(pool[h]["H"]) - tem(pool[h]["S"]), axis=1).mean() for h in hp1])
+    sw = strat_auc(v4, v3, W4, W3)
+    P["within_W"] = dict(auc=sw[0], cover=sw[1])
+    d4p = np.array([float(D[S4[h]]["D"]) for h in hp1]) if all(h in S4 for h in hp1) else None
+    d3p = np.array([float(D[S3[h]]["D"]) for h in hp1]) if all(h in S3 for h in hp1) else None
+    P["within_D"] = strat_auc(v4, v3, d4p, d3p)[0] if d4p is not None else None
+    P["strata_vary_per_class"] = dict(W=bool(not np.allclose(W4, W3)), D=bool(d4p is not None and not np.allclose(d4p, d3p)))
     qs = np.quantile(cosHS, np.linspace(0, 1, 6))
     P["within_cosHS_quintiles_R3_vs_all_R4"] = [auc(v4, v3[(cosHS >= lo) & (cosHS <= hi)]) for lo, hi in zip(qs[:-1], qs[1:])]
     if not valid:
