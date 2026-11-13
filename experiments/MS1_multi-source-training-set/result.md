@@ -79,3 +79,20 @@ share.
 - Registered printed items not produced: training-row minus held-out logit per kind; FS1 R1-R6 per arm; the smoke gate
   (WCSS smoke cancelled by the lead, 13 Nov 00:00).
 - Reviewed: `experiments/reviews/REVIEW_MS1_20261113.md` (verdicts follow; interpretation qualified as above).
+
+# Part 3 (registered at cff1ada; read once at 10:06 on 13 Nov 2026; `ms1_part3.json`; owner's numbers, not reviewed)
+
+- **H-mem (memorisation / dilution): supported** (M(SbM3) < M(Sb) on 5 of 5 seeds). M (mean gap over 11
+  FRGC/colorFERET kinds, logits): Sb 0.153, 0.134, 0.130, 0.143, 0.112; SbM3 0.110, 0.085, 0.097, 0.090, 0.088; SbV
+  0.163, 0.135, 0.144, 0.150, 0.123. Per-kind medians (Sb / SbM3 / SbV): zero 0.170 / 0.097 / 0.168; halves 0.172 /
+  0.096 / 0.171; S3 0.285 / 0.182 / 0.273; S4 0.731 / 0.444 / 0.776; photo 0.010 / −0.001 / 0.009; R0 0.011 / 0.019 /
+  0.010; R2w 0.022 / 0.043 / 0.023; S0 0.017 / 0.042 / 0.016. The smaller gap comes from zero, halves, S3 and S4; on R0,
+  R2w and S0 SbM3's gap is larger. Consistent with dilution; does not separate dilution from diversity (H-new-2 needs a
+  step-matched arm).
+- **H-new-4 (Feminine rating and CFD logits): inconclusive** (ρ(Sb) > 0.2 in 1 of 4 groups; |ρ(SbM3)| < 0.1 in 2 of 4).
+  Group medians ρ(Feminine) A / B / L / W: Sb 0.421 / −0.068 / 0.038 / 0.170; SbM3 0.023 / −0.289 / −0.173 / −0.000; SbV
+  0.459 / −0.048 / 0.016 / 0.192. Own-rule flag rates by group and gender (mean over seeds), Sb: AF 0.102, AM 0.004, BF
+  0.033, BM 0.013, LF 0.050, LM 0.035, WF 0.073, WM 0.045; SbM3 all ≤ 0.004. Associational, development images only.
+- **Printed items (F8):** train-minus-held-out gaps per kind in `ms1_part3.json`; FS1 R1-R6 per arm and seed in
+  `ms1_part3.json` (e.g. R1 stratified AUC Sb 0.823-0.887, SbM3 0.856-0.893, SbV 0.816-0.876; R6 AUC loss complete →
+  combined Sb 0.110-0.176, SbM3 0.109-0.149); smoke gate: not producible (the WCSS smoke was cancelled before it ran).
