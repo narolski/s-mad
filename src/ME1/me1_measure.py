@@ -12,6 +12,13 @@ autocorrelation by FFT; echo = max over lags with 2 <= max(|dx|, |dy|) <= 8, exc
 non-zero multiple of 8 (JPEG block period), of AC(lag) / AC(0). Statistic: median echo over hull windows (hull
 eroded by 4 px) divided by the median over windows fully inside an outer ring of at least the hull's area; the hull
 median alone is printed.
+Amendment 1 (pre-run check c23f7e0): O1 response gate: null r* per pair = 95th percentile of the responses of
+phaseCorrelate(H_w window, H_w window 48 px lower), both inside the eroded hull; statistic = median shift over windows
+with response > r* (>= 10 windows, else NaN) and the fraction above r*; the ungated median is printed only.
+O2 positive calibration: the same gated shift between R2w4 and R2w (one texture, two geometries).
+S1 echo = median over windows of the largest PROMINENCE (a local maximum among its 8 neighbours, minus the median
+autocorrelation at the same radius) after dividing out the Hann window's own autocorrelation; the old maximum is kept as
+echo_raw (printed only). S5: R0 is also measured on the amendment-7b hull (R0_m7). S4: one row per rung per host.
 Out: /mnt/t7/smad_next/ME1/me1_feats.csv (+ .sha256).   nice -n 19 python3 -I me1_measure.py [--limit 6]"""
 import argparse
 import csv
@@ -53,9 +60,11 @@ def windows(mask):
 HANN = np.outer(np.hanning(WIN), np.hanning(WIN))
 LAGS = [(dy, dx) for dy in range(-8, 9) for dx in range(-8, 9)
         if 2 <= max(abs(dy), abs(dx)) <= 8 and not (dx != 0 and dx % 8 == 0) and not (dy != 0 and dy % 8 == 0)]
+WAC = np.fft.ifft2(np.abs(np.fft.fft2(HANN, s=(2 * WIN, 2 * WIN))) ** 2).real
+RAD = np.array([int(round(np.hypot(dy, dx))) for dy, dx in LAGS])
 
 
-def echo(gm, wins):
+def echo_raw(gm, wins):
     if not wins:
         return np.nan
     W = np.stack([gm[y:y + WIN, x:x + WIN] for y, x in wins])
@@ -67,15 +76,43 @@ def echo(gm, wins):
     return float(np.median(vals.max(1) / a0))
 
 
-def phase_shift(a, b, wins):
+def echo(gm, wins):
+    """pre-run S1: prominence of the strongest secondary autocorrelation peak (verbatim from the review)"""
+    if not wins:
+        return np.nan
+    W = np.stack([gm[y:y + WIN, x:x + WIN] for y, x in wins])
+    W = (W - W.mean(axis=(1, 2), keepdims=True)) * HANN
+    ac = np.fft.ifft2(np.abs(np.fft.fft2(W, s=(2 * WIN, 2 * WIN))) ** 2).real / WAC
+    acn = ac / (ac[:, :1, :1] + 1e-12)
+    g = lambda dy, dx: acn[:, dy % (2 * WIN), dx % (2 * WIN)]          # noqa: E731
+    vals = np.stack([g(dy, dx) for dy, dx in LAGS], 1)
+    ref = np.stack([np.median(vals[:, RAD == r], 1) for r in RAD], 1)
+    nbr = np.stack([np.max(np.stack([g(dy + a, dx + b) for a in (-1, 0, 1) for b in (-1, 0, 1) if a or b], 1), 1)
+                    for dy, dx in LAGS], 1)
+    prom = np.where(vals >= nbr, vals - ref, 0.0)
+    return float(np.median(prom.max(1)))
+
+
+def phase_shift(a, b, wins, mask):
+    """O1: gated by a within-image null r* from a vs a shifted 48 px down (both windows inside mask)"""
     import cv2
-    sh, rs = [], []
     hann = cv2.createHanningWindow((WIN, WIN), cv2.CV_64F)
+    nul = []
+    for y, x in wins:
+        if y + 48 + WIN <= a.shape[0] and mask[y + 48:y + 48 + WIN, x:x + WIN].all():
+            nul.append(cv2.phaseCorrelate(a[y:y + WIN, x:x + WIN], a[y + 48:y + 48 + WIN, x:x + WIN], hann)[1])
+    rnull = float(np.percentile(nul, 95)) if len(nul) >= 5 else np.nan
+    sh, rs = [], []
     for y, x in wins:
         (dx, dy), r = cv2.phaseCorrelate(a[y:y + WIN, x:x + WIN], b[y:y + WIN, x:x + WIN], hann)
         sh.append(np.hypot(dx, dy))
         rs.append(r)
-    return (float(np.median(sh)), float(np.median(rs))) if sh else (np.nan, np.nan)
+    sh, rs = np.array(sh), np.array(rs)
+    if not len(sh):
+        return dict(gated=np.nan, frac=np.nan, ungated=np.nan, resp=np.nan, rnull=rnull, nwin=0)
+    keep = rs > rnull if np.isfinite(rnull) else np.zeros(len(rs), bool)
+    return dict(gated=float(np.median(sh[keep])) if keep.sum() >= 10 else np.nan, frac=float(keep.mean()),
+                ungated=float(np.median(sh)), resp=float(np.median(rs)), rnull=rnull, nwin=int(len(sh)))
 
 
 def main():
@@ -93,6 +130,7 @@ def main():
         elif r["fam"] == "ladder" and r["tool"] in ("opencv", "none") and r["rung"] in ("R2w4", "R2w", "R4", "R3", "R0"):
             key = r["rung"] + ("_" + r["strength"] if r["strength"] else "")
             if r["strength"] in ("", "61") and (r["rung"] == "R0" or r["strength"] == ""):
+                assert key not in by.get(r["host"], {}), ("two rows for one rung", r["host"], key)   # S4
                 by.setdefault(r["host"], {})[key] = r
     hosts = sorted(h for h, d in by.items() if all(k in d for k in NAMES))[: a.limit or None]
     out = []
@@ -102,21 +140,27 @@ def main():
         mH = ARS.hull(P["H"][:-4] + ".tem", P["H"][:-4] + ".tem", (512, 512))
         rec = dict(host=h, db=P["db"], role=d["S4"]["role"])
         Yi = {n: Y(EVAL / d[n]["path"]) for n in NAMES}
-        wo = windows(erode(m7, 12))
+        m7e = erode(m7, 12)
+        wo = windows(m7e)
         for tag, sp, cp in (("O4", "S4", "R2w4"), ("O3", "S3", "R2w")):
             assert np.abs(Yi[sp] - Yi[cp])[~m7].max() < 1e-9, (h, sp)
             hw = Yi[cp]
             xw = np.clip(2 * Yi[sp] - Yi[cp], 0, 255)
-            rec[f"{tag}_shift"], rec[f"{tag}_resp"] = phase_shift(hw, xw, wo)
-            rec[f"{tag}_nwin"] = len(wo)
-        for n in NAMES:
-            m = mH if n.startswith("R0") else m7
-            gm = np.hypot(cv2.Sobel(Yi[n], cv2.CV_64F, 1, 0, ksize=3), cv2.Sobel(Yi[n], cv2.CV_64F, 0, 1, ksize=3))
-            ein = echo(gm, windows(erode(m, 4)))
-            eout = echo(gm, windows(ring_of(m, dilate(m, 4))))
+            for k, v in phase_shift(hw, xw, wo, m7e).items():
+                rec[f"{tag}_{k}"] = v
+        for k, v in phase_shift(Yi["R2w4"], Yi["R2w"], wo, m7e).items():        # O2 calibration
+            rec[f"C_{k}"] = v
+        for n in NAMES + ("R0_m7",):
+            src = "R0" if n == "R0_m7" else n
+            m = m7 if n in ("R0_m7",) or not n.startswith("R0") else mH
+            gm = np.hypot(cv2.Sobel(Yi[src], cv2.CV_64F, 1, 0, ksize=3), cv2.Sobel(Yi[src], cv2.CV_64F, 0, 1, ksize=3))
+            wi, wr = windows(erode(m, 4)), windows(ring_of(m, dilate(m, 4)))
+            ein, eout = echo(gm, wi), echo(gm, wr)
             rec[f"{n}_echo_in"], rec[f"{n}_echo_out"] = ein, eout
-            rec[f"{n}_echo_ratio"] = ein / eout if eout and np.isfinite(eout) else np.nan
-            rec[f"{n}_id"] = d[n]["id"]
+            rec[f"{n}_echo_ratio"] = ein / eout if (np.isfinite(eout) and eout > 0) else np.nan
+            ri, ro = echo_raw(gm, wi), echo_raw(gm, wr)
+            rec[f"{n}_echo_raw_ratio"] = ri / ro if (np.isfinite(ro) and ro > 0) else np.nan
+            rec[f"{n}_id"] = d[src]["id"]
         out.append(rec)
     tag = f"me1_feats_limit{a.limit}" if a.limit else "me1_feats"
     f = OUT / f"{tag}.csv"
