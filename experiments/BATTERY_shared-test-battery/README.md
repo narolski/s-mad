@@ -52,6 +52,23 @@ recomputed or replaced by battery output.
   torch 2.2.1 container reproduced the rented A100 PCIe gate scores of Sb 403-407 byte for byte (NE1, Athena job 3550470);
   the Athena key would be pinned as its own platform only after its gate run on PN1_Sb_s403 is byte-identical.
 
+## Lead's decisions of 13 Nov (after the rc2 report) and the jobs (all smokes, never read as results)
+
+- WCSS 6316361 (rc1 smoke) cancelled by the dispatcher before it started.
+- WCSS **6316723**_[0-1]: rc2 smoke pair (battery_nets.sbatch, AB1_Sb_s408 and AB1_A_s408, `--exclude=r18-8`).
+- WCSS **6316737**: exit-5 meta-mismatch refusal on H100 (`battery_metacheck.sbatch` caf8ebf4..., AB1_A_s408 with lora_r
+  4 instead of 2; the job exits 0 only if battery.run exits 5 with no logits written), `--exclude=r18-8`.
+- WCSS **6316724**_[0-14]: the registered comparator step, `afterok:6316723`, lowest priority of our WCSS jobs.
+- Athena A100 gate smoke: `athena_battery_a100gate.cmd` (`battery_a100_gate.sbatch` 4c4c4c3d..., plgrid-now, container
+  smad_torch221_cu121_v1.sif, `--test-gate-key` for the A100 PCIe key on PN1_Sb_s403; reads the existing
+  `packs/SE1/` copies of the FS1 pack and PN1_Sb_s403; uploaded `packs/BATTERY/battery_code_v1rc2.tar` and
+  `ab1_overlay_v2.tar`). An Athena platform key is pinned only if byte-gated, in a later version.
+- Rounding corrections 1-A (10.8%) and 7-B (0.74) relayed to SA1 by the dispatcher (SA1 applied them at ad70142, by the
+  dispatcher's report) and the 7-B text to PR1.
+- Release conditions (lead): the rc2 H100 smoke passes on a node other than r18-8 with its gate class recorded; the exit-5
+  refusal is exercised there; a short re-check of the rc1 -> rc2 diff by the experiment-reviewer. Until then no owner uses
+  the battery.
+
 ## 1. Regression test: the battery reproduces the reviewed numbers exactly
 
 Every leaf of the reviewed per-network records, compared by exact equality with the battery's value (floats ==):
