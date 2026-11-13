@@ -137,6 +137,20 @@ Owner: FINAL owner (agent), for the lead. Registration: `prereg.md` (v3). Code: 
     - Pin addendum, prereg §13: the sealed outputs and the changed pinned files (drive_final.sh, final_read.py,
       make_pins.py). final_pins.json was regenerated.
 
+## The read (13 Nov 2026, machine clock)
+
+- **Lease** final2, instance 60540801 (A100-PCIE-40GB, offer 54026813), rented by the lead. The first lease, final1,
+  never left "loading" and was destroyed by the lead.
+- **Timeline:**
+  - stage 20:54-20:58;
+  - gate dry run 20:58:50-21:01:02, 5 of 5 byte-identical;
+  - the lead's start word, then the start at 21:02:37;
+  - FINAL_DONE 21:06:50, rc 0, two copies verified (c5205a58…).
+- **F4:** the lead wrote RELEASE. The provider showed no instance at 21:08:29, so instance 60540801 is destroyed.
+  About 0.30 USD was spent in all. This is recorded in NOTEBOOK by the lead.
+- **Reader** run once, default pins and marker. The result is in `result.md`, with `final_read.json` and
+  `final_tables.md`. The results review is pending.
+
 ## Ready: what the lead does (F4) and the commands
 
 - **Offer filters:** 1 × A100 PCIe 40 GB. The GPU name must be exactly "NVIDIA A100-PCIE-40GB" (the job aborts on
