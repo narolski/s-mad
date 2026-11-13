@@ -224,6 +224,27 @@ Same-data learner (logreg / gbt AUC; own-rule flag share of the positive / negat
 
 Status: these floors describe the unmatched contrast of xf1_rows.csv ef4adf5b… and are kept as a record only; `check.exceeds` must not be applied to them for an XF1 read. The rows were selected by the `rung` column, whose values equal the `klass` column (H / FMHH / FMHB) on every row. Plainly: **the one-photo FaceMorpher render is pixel-identical to the plain photo in the surround ring** (all 18 surround measures equal row for row; surround floor exactly 0.500 for all three models), and the whole shortcut set separates the render from the photo only at 0.587 [0.560, 0.615] (face box 0.58, file 0.57). So a network's "render reaction" on FM(H,H) vs H cannot be a border, canvas or format read; whatever it reacts to is inside the face. The two-person morph against the render is separated at 0.989 by shortcut-only cues (face box 0.964, surround 0.849): FaceMorpher two-person morphs carry a strong blend signature, including outside the face box; the first contrast has only 12 person components, so its folds and intervals are coarse.
 
+## XF1 revision b: the gate and floors (amendment 8; frozen by `floors/pins_stage14.sha256`)
+
+**Gate (train_Sb same-data learner on the face-only form, FM(H,B) vs W; larger of logreg and gbt): 0.859 (gbt) — below 0.90, so XF1 is not closed by the gate.**
+
+Same-data learner, AUC logreg [block 95%] / gbt [block 95%]:
+
+| List | face-only form | whole form |
+|---|---|---|
+| train_Sb | 0.856 [0.833, 0.878] / 0.859 [0.836, 0.882] | 0.836 [0.810, 0.864] / 0.909 [0.890, 0.929] |
+| train_A | 0.867 [0.845, 0.889] / 0.885 [0.859, 0.910] | 0.844 [0.817, 0.870] / 0.713 [0.683, 0.743] |
+| train_B | 0.856 [0.834, 0.879] / 0.833 [0.802, 0.862] | 0.864 [0.836, 0.892] / 0.858 [0.828, 0.885] |
+
+In-distribution floors (cross-fitted by component; block bootstrap), single / logreg / gbt:
+
+| Form | all-cue | surround ring | face box | file |
+|---|---|---|---|---|
+| face | 0.878 / 0.925 / 0.917 | 0.500 / 0.500 / 0.500 | 0.869 / 0.909 / 0.917 | 0.666 / 0.665 / 0.611 |
+| whole | 0.849 / 0.970 / 0.981 | 0.775 / 0.839 / 0.849 | 0.859 / 0.892 / 0.941 | 0.654 / 0.638 / 0.620 |
+
+Checks: on the face-only form the surround floor is exactly 0.500 for all three models (the grey blanking leaves no surround information, as intended). On the face-only form the train_Sb learner ranks well but flags nothing at its own rule (logreg flags 0% of both sides: the grey surround moves every image to the genuine side). The rows were selected by klass and form; per-row scores in `floors/xf1b_rows_scores.csv` (source, form, id, klass, label, component, block, score, score_gbt).
+
 ## Attack sets (requests to the DATA role through the lead; nothing built by the adversary)
 
 Only allowed operations: the approved warp `h1_build.py`, the unchanged OpenCV and FaceMorpher morphers, constant-colour
