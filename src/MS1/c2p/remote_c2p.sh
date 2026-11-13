@@ -1,5 +1,5 @@
 #!/bin/bash
-# DRAFT, not run (contrast 2-prime, prereg_contrast2prime_draft.md): on the MS1 rented host after its queue ended,
+# Registration C2P (PN1, prereg.md): on the MS1 rented host after its queue ended,
 # under the host lock: score the 15 FS1 checkpoints (A, B, Sb x seeds 403-407; meta.json + last_trainable.pt from
 # their result tars) with the unchanged src/PN1/rescore.py on (a) the platform-gate rows of the FS1 manifest
 # (fam af0, 1,339; fam ffhq, 5,000; both already scored by these networks on the A100) and (b) the MS1 FFHQ hold-out
@@ -13,6 +13,7 @@ cd "$B/root/packs/MS1" && [ "$(cut -c1-64 pn1_pack_ms1.tar.sha256)" = "$PIN" ] |
 C=$B/c2p; mkdir -p "$C/out" "$C/nets"
 [ -d "$C/pn1" ] || { tar -C "$C" -xf pn1_pack_ms1.tar && (cd "$C/pn1" && sha256sum -c --quiet SHA256SUMS) || { echo "pack bad"; exit 1; }; }
 (cd "$B/fs1" && sha256sum -c --quiet fs1_tars.sha256) || { echo "FS1 tars bad"; exit 1; }
+[ "$(sha256sum $B/held/pn1/src/rescore.py | cut -c1-64)" = 6f6eede71c6d9a895199dabc8bc90b882adb25f5f91cd2fcc676ebe7a380b51e ] || { echo "rescore.py off its pin"; exit 1; }
 D=$C/data; mkdir -p "$D/manifests"; ln -sfn "$C/pn1/data/eval" "$D/eval"; ln -sf "$C/pn1/data/manifests/pn1_eval.csv" "$D/manifests/pn1_eval.csv"
 python -c "import sys, torch, timm; print('env', sys.version.split()[0], torch.__version__, timm.__version__, 'tf32', torch.backends.cuda.matmul.allow_tf32)" > "$C/out/env.txt"
 nvidia-smi --query-gpu=uuid,name --format=csv,noheader > "$C/out/gpu.txt" 2>&1 || true

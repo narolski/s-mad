@@ -776,3 +776,114 @@ development or benchmark image. Code `src/PN1/pairs_check.py`.
   queue on the Sp pack.
 
 - Sp reader (`date`: Thu Nov 12 11:06:59 PM CET 2026; before any Sp tar exists): `src/PN1/sp_read.py` sha256 `3ff011086c9953ad2f06f3cc2dff161d4060a118135df3cfd86e505ee323f5cf`; implements the registered predictions, printed reads and reading rules; tested in `--test401` mode only (Bv standing in for Sp against Sb 401/402 on already-read tars; reproduces Sb development S0 flags 0/100 and S0-vs-S4 AUC 0.9875 / 0.9927).
+
+## Registration C2P: contrast 2-prime, a replacement storage test of the fresh-seed checkpoints on unseen FFHQ persons (registered at the git commit that adds this section; `date` at writing: Fri Nov 13 07:03:11 AM CET 2026; no score of any FS1 checkpoint on the hold-out exists)
+
+**Approval.** The author, 13 Nov 2026 (relayed by the lead), to the question "adopt the replacement storage test and the
+amended freeze rule, yes or no?": "Yes". Lead decision recorded with it: H-new-1 must be "falsified" (not merely "not
+supported") for a freeze. The confirmatory-endpoint change of FINAL (review F10) is NOT approved yet and is not part of
+this registration.
+
+**Disclosure.** This test was written after FS1 contrast 2 (v4, ac585b7) was read "uninformative" because the plain
+arm's positive control failed (read 13 Nov 06:38; review `REVIEW_PN1_FS1_20261113.md`). Its margins, the +5-point
+control and the two sizes were set knowing the FS1 effect sizes on OTHER FFHQ persons (ffhqm HN2: own-rule flag rise A
++14.7 to +21.8 points, B +2.5 to +5.5, Sb +0.5 to +2.7; mean shifts A +0.61 to +0.79 genuine SD, B +0.07, Sb −0.09).
+FS1's history-matched FFHQ copies (ffhqm `landmark_complete` resmatch) were shrunk to the family's median native eye
+distance, about 64.6 px (median pre-alignment IED of the 2,000 copies 64.68 px, median scale 0.250), i.e. close to the
+trained 61.2 px size: **fm61 replicates FS1 on new persons; the evidential weight is carried by amsl112 (112.7 px, a
+size no network was trained on).** Pre-run check `experiments/reviews/PRERUN_PN1_CONTRAST2PRIME_20261113.md` (GO WITH
+FIXES; M1-M3 and minors applied below; draft history in `prereg_contrast2prime_draft.md`, 4591b9f, 3ed11cf).
+
+### C2P.1 Data and non-exposure
+
+The MS1 FFHQ hold-out, rows `fam = ms1ffhq` of `/mnt/t7/smad_next/MS1/pack_tree/pn1/data/manifests/pn1_eval.csv`
+(sha256 `d1fab6ad4b20f0ec9dd426374ccd56e96368bf7b658b48e3ef31867e1fe470c5`), images inside
+`pn1_pack_ms1.tar` (`c11b16bc7b76236bae80778f9e36cb67bb50de910f73a9dd200a706fc267fe7d`): native photo 300; fm61 copies
+291; amsl112 copies 290; u50 morphs 150 with 150 fm61 and 149 amsl112 copies; zero 150 (not read). Non-exposure as in
+the draft section 1, verified independently by the pre-run check: 0 shared ids, paths, image sha256 and persons with
+the 19,797 FS1-scored rows; FS1 training sets FRGC / colorFERET only; only the MS1 fits have scored the hold-out, none
+read. 239 of the 300 genuine persons are also morph contributors, so the genuine and morph bootstraps are not
+independent (stated; no joint test is made).
+
+### C2P.2 Networks, scoring, platform gate
+
+- The 15 FS1 checkpoints A, B, Sb at seeds 403-407, last checkpoint, from their result tars (meta.json +
+  last_trainable.pt); tar sha256:
+  A 403 `f9ec84a0…`, 404 `f8c53135…`, 405 `6d46b366…`, 406 `d2e7cde9…`, 407 `ce72e783…`;
+  B 403 `a7cfdce2…`, 404 `a0b31257…`, 405 `a4ad75ae…`, 406 `6610d3b4…`, 407 `9e1625d7…`;
+  Sb 403 `8dec83b8…`, 404 `de670689…`, 405 `3a3a53fd…`, 406 `d2cf5faa…`, 407 `865c0455…`
+  (full values in `/mnt/t7/smad_next/PN1/results_fs/*.tar.sha256`, checked by the driver before upload and on the host).
+- Scoring: logit without flip from the unchanged `src/PN1/rescore.py` (`6f6eede71c6d9a895199dabc8bc90b882adb25f5f91cd2fcc676ebe7a380b51e`, pinned in
+  the remote script) on the rented MS1 host ms1m1b (NVIDIA L40S 48 GB, GPU-c1ff3444-2b67-80c8-b31d-2c9ad1528acc,
+  torch 2.2.1 / CUDA 12.1, timm 1.0.27), after its MS1 queue ended, under the host lock, before RELEASE (HOLD in the
+  lease folder, created by the lead at 06:55; drive_ms1.sh `6cfd40dd…` defers RELEASE while HOLD exists). Fallback, the
+  same scripts on ms1m2 (same GPU model) if ms1m1b fails before scoring; never two GPU models.
+- Families scored per network: FS1 `af0` (1,339) and `ffhq` (5,000) for the gate; `ms1ffhq` (1,480).
+- **Gate (per network, fixed now):** against its stored A100 logits on the 6,339 gate rows: 99th percentile |Δlogit| ≤
+  0.05 AND maximum |Δlogit| ≤ 0.10 AND own-rule decisions agree on ≥ 99.5% of rows. The gate measures GPU model and
+  precision together (pn1_score.py enabled TF32 on the A100; rescore.py does not enable it). A network that fails the
+  gate, or whose hold-out scores are incomplete or non-finite, is not read: for contrast 2-prime its seed counts as not
+  passing (A failing: the control is not met on that seed); for H-new-1 its seed is missing from the count.
+- Scripts: `src/MS1/c2p/remote_c2p.sh` `263d764a2d0532625b400dd7b66989032faa05fe8d5bd613bc125654182e03aa`, `src/MS1/c2p/drive_c2p.sh`
+  `8b23d9aa9a141da208f2bfb280aaeff74c8208fd69105f8b306f09c37c842e74` (pull keeps HOLD unless all 45 outputs are present and the
+  tar and its second copy verify: "partial: HOLD kept"; rehearsed with a local mock: 3 of 45 kept HOLD, 45 of 45
+  removed it).
+- Reader `src/PN1/c2p_read.py` `45e72914d960214131a5b4a11aefd2e301a2236e908d77d20d94136c1d7d5840`, tested on mock scores only
+  (`c2p_read_mock.json`) and on the gate function with FS1 stored scores against themselves; run once.
+- Sharpness for H-new-2, computed before any score: `/mnt/t7/smad_next/PN1/cues/c2p_holdout.npz`
+  `4a9da201fe84a226cc21a31f90bdaae3b838cd585b87f90c6cf5c12ecb922159` (cues27.py, unchanged; 300 native photos).
+
+### C2P.3 Contrast 2-prime
+
+Per network n and size z ∈ {fm61, amsl112}, on the paired genuine photos (291 / 290):
+Δf(n, z) = share(stored logit > 0) − share(native logit > 0); Δm(n, z) = mean(stored − native logit) / SD(native genuine
+logits of n over the 300 native photos).
+- Control, per seed s and size z: Δf(A_s, z) ≥ +0.05 AND Δm(A_s, z) > 0; otherwise "control failed" there, and every X
+  counts as not passing at (s, z).
+- X ∈ {B, Sb} passes (s, z) if Δf(X_s, z) ≤ Δf(A_s, z) / 3 AND |Δm(X_s, z)| ≤ Δm(A_s, z) / 3 AND Δf(X_s, z) ≤ +0.05
+  (absolute) AND the upper 95% bootstrap bound of Δf(X_s, z) ≤ +0.08 (2,000 person draws, the same draws for every
+  network, `numpy.random.default_rng(20261131)`). Margins inclusive at full float precision.
+- **X passes** contrast 2-prime if it passes on ≥ 4 of 5 seeds at fm61 AND on ≥ 4 of 5 seeds at amsl112. **X fails** if
+  it passes on ≤ 1 seed at either size while A's control is met on ≥ 4 seeds at that size. **Uninformative** if A's
+  control is met on ≤ 3 seeds at either size. Otherwise "inconclusive, no claim". Lost or gate-failed seeds keep the
+  denominator of 5.
+- Printed only: Δf with person-bootstrap intervals, Δm, Δf(X)/Δf(A), the exact one-sided sign test across seeds of
+  {Δf(X_s) < Δf(A_s)/3}, native and stored flag rates; own rule only (no τ_cam or τ_dev print: those pools were not
+  rescored on this platform).
+- Claim if passed: "At the decision rule, Sb's [B's] storage reaction on 300 unseen persons was at most one third of the
+  plain recipe's and at most 5 points, at the trained size and at an untrained storage size, 5 seeds" — never
+  "removed", never "shortcut-free".
+
+### C2P.4 H-new-1 (storage evasion), required "falsified" for a freeze
+
+Δm_att(n, z) = mean over morphs of (stored − native logit) / SD(native genuine logits of n) (150 fm61 pairs, 149
+amsl112 pairs). **Supported** if Δm_att(Sb_s, z) ≤ −0.20 on ≥ 4 of 5 seeds at either size. **Falsified** if
+Δm_att(Sb_s, z) ≥ −0.10 on ≥ 4 of 5 seeds at both sizes. Otherwise "inconclusive". B by the same rule (freeze step 2).
+Printed only: misses (logit ≤ 0) on native and stored morphs, AUC of stored morphs against stored genuine photos beside
+the native-against-native AUC, for A, B, Sb.
+
+### C2P.5 H-new-2 (plain reaction tied to sharpness; measurement only)
+
+Top quartile of lapvar_face over the 300 native photos (edge fixed from the file above). For each A network and size:
+share of A's net flag increase (persons ≤ 0 → > 0 minus > 0 → ≤ 0) from the top quartile (undefined if the net increase
+is ≤ 0). Supported if ≥ 0.50 on ≥ 4 of 5 seeds at both sizes; falsified if ≤ 0.35 on ≥ 4 of 5 seeds at both sizes;
+otherwise "inconclusive". Decides nothing.
+
+### C2P.6 Freeze rule (FINAL section 1, amended with the same text and date)
+
+Sb is frozen if FS1 contrast 1 is "replicated" (it is: 5 of 5 seeds, read 13 Nov 06:38) AND contrast 2-prime "passes"
+for Sb with A's positive control met AND H-new-1 is "falsified" for Sb. Otherwise B is frozen if contrast 2-prime
+"passes" for B with A's control met AND H-new-1 is "falsified" for B (contrast 1 not required). Otherwise no method is
+frozen. The original FS1 contrast 2 result ("uninformative") is reported beside contrast 2-prime. The MS1 clause of
+FINAL is unchanged.
+
+### C2P.7 Commands (run by the owner after this commit)
+
+```
+cd /home/narolski/smad-next/src/MS1/c2p
+bash drive_c2p.sh 147.124.211.53 9630 /mnt/t7/smad_next/vast/ms1m1b m1 upload
+bash drive_c2p.sh 147.124.211.53 9630 /mnt/t7/smad_next/vast/ms1m1b m1 start     # waits for ALL_DONE_m1 under the lock
+bash drive_c2p.sh 147.124.211.53 9630 /mnt/t7/smad_next/vast/ms1m1b m1 pull      # until "C2P kept"; then HOLD removed
+python3 -I /home/narolski/smad-next/src/PN1/c2p_read.py --c2p /mnt/t7/smad_next/MS1/c2p/C2P_m1.tar \
+  --out /home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/c2p_read.json      # once
+```

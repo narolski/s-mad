@@ -1,5 +1,5 @@
 #!/bin/bash
-# DRAFT, not run (contrast 2-prime). DGX side, one MS1 lease whose queue has ended and whose lease folder holds HOLD.
+# Registration C2P (PN1). DGX side, one MS1 lease whose queue has ended and whose lease folder holds HOLD.
 #   bash drive_c2p.sh HOST PORT LEASE Q upload   # the 15 FS1 result tars (about 65 MB) + sha256 list + remote_c2p.sh
 #   bash drive_c2p.sh HOST PORT LEASE Q start    # detached remote run under the host lock
 #   bash drive_c2p.sh HOST PORT LEASE Q pull     # fetch C2P_<Q>.tar, verify, second copy; then remove LEASE/HOLD so the
@@ -33,10 +33,11 @@ case "$STEP" in
   pull)
     st=$(R "[ -f $B/C2P_DONE_$Q ] && echo DONE || echo RUNNING" 2>/dev/null || echo UNKNOWN)
     [ "$st" = DONE ] || { log "remote $st"; exit 0; }
-    RS "root@$HOST:$B/root/results/C2P_$Q.tar" "root@$HOST:$B/root/results/C2P_$Q.tar.sha256" "root@$HOST:$B/logs/c2p_$Q.log" "$OUTD/"
+    RS --checksum "root@$HOST:$B/root/results/C2P_$Q.tar" "root@$HOST:$B/root/results/C2P_$Q.tar.sha256" "root@$HOST:$B/logs/c2p_$Q.log" "$OUTD/"
     (cd "$OUTD" && sha256sum -c --quiet "C2P_$Q.tar.sha256") || { log "C2P tar not verified"; exit 0; }
-    n=$(tar tf "$OUTD/C2P_$Q.tar" | grep -c '\.npz$'); [ "$n" -eq 45 ] || log "C2P tar holds $n of 45 npz (failures in c2p_$Q.log)"
-    cp "$OUTD/C2P_$Q.tar" "$OUTD/C2P_$Q.tar.sha256" "$COPY/" && (cd "$COPY" && sha256sum -c --quiet "C2P_$Q.tar.sha256")
-    rm -f "$L/HOLD"; log "C2P kept ($n npz); HOLD removed: the MS1 loop may now write RELEASE"
+    n=$(tar tf "$OUTD/C2P_$Q.tar" | grep -c '\.npz$' || true)
+    cp "$OUTD/C2P_$Q.tar" "$OUTD/C2P_$Q.tar.sha256" "$COPY/" && (cd "$COPY" && sha256sum -c --quiet "C2P_$Q.tar.sha256") || { log "second copy not verified: HOLD kept"; exit 0; }
+    [ "$n" -eq 45 ] || { log "partial: HOLD kept ($n of 45 npz; failures in c2p_$Q.log)"; exit 0; }
+    rm -f "$L/HOLD"; log "C2P kept (45 of 45 npz, second copy verified); HOLD removed: the MS1 loop may now write RELEASE"
     ;;
 esac

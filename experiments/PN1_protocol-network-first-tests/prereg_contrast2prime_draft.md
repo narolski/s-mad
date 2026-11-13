@@ -1,5 +1,7 @@
 # DRAFT: contrast 2-prime, a new confirmatory storage test of the fresh-seed protocol networks (FS1 checkpoints)
 
+**Superseded: registered as "Registration C2P" in prereg.md (see the commit that adds it); this draft is kept for the record.**
+
 DRAFT for the author. Nothing in this file is registered and nothing it describes has been run or scored. Written by
 the MS1 owner at the lead's request (13 Nov 2026, after the FS1 read at 06:38 and its review
 `experiments/reviews/REVIEW_PN1_FS1_20261113.md`, option (b) and H-new-1 / H-new-2). Registration needs: the author's
