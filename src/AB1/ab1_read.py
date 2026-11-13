@@ -92,8 +92,16 @@ def load(tar, origin, arm):
     losses = [float(x) for x in re.findall(r"loss[ =:]+(-?(?:inf|nan)|[-+0-9.eE]+)", log, flags=re.I)]
     if not losses or not all(math.isfinite(v) for v in losses):
         return None, None, "no finite loss in train.log"
+    if str(z["manifest_sha256"]) != EVAL_SHA:
+        return None, None, f"eval manifest off: {z['manifest_sha256']}"
+    want = sha(FSMAN / "train_Sb.csv") if arm == "SbL" else sha((FSMAN if arm in ("A", "B", "Sb") else MANDIR) / f"train_{arm}.csv")
+    if str(zt["manifest_sha256"]) != want:
+        return None, None, f"train manifest off: {zt['manifest_sha256']}"
     sc = dict(zip([str(i) for i in z["id"]], z["logit"].astype(float)))
-    tr = dict(zip([str(i) for i in zt["id"]], zt["logit"].astype(float)))
+    # scores_train.npz holds path, logit, label, kind, manifest_sha256 (pn1_score.py); training flags per kind
+    tr = {}
+    for k, v in zip([str(i) for i in zt["kind"]], zt["logit"].astype(float)):
+        tr.setdefault(k, []).append(v)
     return sc, tr, gpu.strip()
 
 
@@ -207,9 +215,7 @@ def main():
                 ffhq_native_photo_flag=share(x, natp))
             st["dsoft"] = st["soft"] - st["camera"]          # "development storage rise" (review F2 wording)
             if xtr:
-                kinds = {r["id"]: r["kind"] for r in manifest_rows(arm)}
-                st["train_flag_by_kind"] = {k: float(np.mean([xtr[i] > 0 for i in xtr if kinds.get(i) == k]))
-                                            for k in sorted(set(kinds.values())) if any(kinds.get(i) == k for i in xtr)}
+                st["train_flag_by_kind"] = {k: float(np.mean(np.array(v) > 0)) for k, v in sorted(xtr.items())}
             st["c2p"] = C2.net_stats(x, natp, natm, pairs, mpairs, boot)
             nets[(arm, s)] = st
             R["networks"][key] = st

@@ -2,8 +2,7 @@
 
 ## 1. Question and current answer
 
-13 Nov 2026, 09:25. Status: registered (this commit); smoke job 6310091 pending on WCSS; 40-fit array going into the
-dispatcher's queue; no fit run, nothing read.
+13 Nov 2026, 14:35. Status: all 40 fits done and read once as registered (result.md); results review pending.
 Two questions. (a) Do the replacement storage test (contrast 2-prime, C2P) and contrast 1 (Sb above B on landmark
 morphs) replicate on five new seeds (408-412) on WCSS H100? (b) Which part of the protocol (warp-only images, halves,
 stored-small copies, matched splice negatives) carries which reduction (warp, softness, storage, seam / same-person
@@ -72,6 +71,11 @@ splice)? No answer yet. No arm is a method candidate.
 - 12:00 dispatcher lowered the array's limit from 2:30 to 1:15 (expected 43-45 min per fit; about 1.7x margin).
 - 12:29-12:34 tasks 6310270_[0-8] started (seed 408 all eight arms, seed 409 arm A); _[9-39] pending, forecast 13:06.
   First ends expected about 13:15.
+- 13:14-14:22 all 40 fits COMPLETED, exit 0 (35-36 min; A and AS 45-55 min; WCSS outage about 13:30-13:55 without
+  failures). All 40 tars fetched and verified (T7 drive and Lustre).
+- 14:26 first read run crashed while loading training scores (KeyError 'id'; scores_train.npz has path/kind), before any
+  statistic: deviation D1 in prereg; reader fixed (74ecdf7a…, also checks manifest hashes). 14:31 read once.
+  Verdicts and numbers in result.md. Results review next.
 
 ## 3. Data
 

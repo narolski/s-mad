@@ -334,3 +334,13 @@ all four, with Sp − Sb native FFHQ and camera-photo flag rates beside H-sp1 an
   Date of the change: 13 Nov 2026, 10:50-10:55 CET, before any AB1 tar exists; kept on the lead's ruling (10:58).
   Reader sha256 before (amendment 1): `aacb11cdab662bb147a228195cdf6955bfa9f3b65656e90ecf9f3179c447e9e2`; after (this
   amendment, H-sp rules and the H-ab4 integer comparison): `fb990bb50c10181d15fed943520a856aa96ed2e0747f00709b9daed9aabe42fd`.
+
+## Deviation D1 (`date`: Fri Nov 13 14:30 CET 2026): reader crash on the first run, fixed before any statistic was computed
+
+The first run of `ab1_read.py --branch R` (fb990bb5, 14:26) stopped with a KeyError while loading the first tar's
+training scores: `scores_train.npz` holds `path, logit, label, kind, manifest_sha256`, not `id` (the mock never loaded a
+training-score file). The crash came in the loading loop, before any statistic, verdict or printed value was computed
+or shown; nothing was written. Fix (code only, rules unchanged): training flags per row kind are taken from the file's
+`kind` field; and, using the files' own `manifest_sha256` fields, the reader now also checks that each network was
+scored on ab1_eval.csv (93a5ba23…) and trained on its arm's manifest. Reader sha256 fb990bb5… → 74ecdf7a…. The read is
+then run once.
