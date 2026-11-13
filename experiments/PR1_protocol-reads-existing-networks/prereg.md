@@ -301,3 +301,30 @@ here are descriptive development reads. FFHQ is the development comparison set.
 
 To be run by the experiment-reviewer agent (Opus) on this registration as a whole; fixes of blockers and majors are
 added below as a dated amendment before any read.
+
+## GD operations note (`date`: Fri Nov 13 about 09:05 CET; operations only; before any GD row is scored)
+
+- Pack `/mnt/t7/smad_next/PR1/pr1_gd.tar` sha256 `40aa95d2b48719025bc3b80ebf9fa997bb1adf6c69da894120716a6e962b7329`,
+  list `pr1_gd.csv` sha256 `3577a91351131b104457424054c29ca3c6f3fc59666e9204598e45e608e15157`, built by
+  `src/PR1/build_gd_pack.py`: 11,042 rows. GD0 9,000 (as registered). GD1 1,146 (G 382, REC, MIR, SAME, X 191 each).
+  GD2 896: R0 227, R2 238, R2s 119, R3 119, R3m 119, R4 74 (R0 is 227, not the 238 counted earlier, because 11
+  camera rows carry `aligned` False and are dropped by the registered filter). Test pack `pr1_gd_limit8.tar`
+  `daff078c…` (2 rows per family and rung, 34 rows).
+- GD1 contributor check: the host must be a test host with test_read 1 and is_val 0; its partner must be outside the
+  PN1 training and validation persons (section 6a wording). The partner may be a development or excluded host. The
+  "GD rows fixed" note had said "hosts and partners: role test"; partners of test hosts are often development hosts,
+  so the builder applies the section 6a rule. No score is involved.
+- Job on pn1fs: `src/PR1/remote_gd.sh` (lead's go and hold, 13 Nov about 09:00, QUEUES "all sp tt1 pr1"). Order
+  agreed with the TT1 owner: wait for `/workspace/tt1/DONE_FS`, then for `DONE_sp` or `NO_SP` (at most 30 min), then
+  the FS1 queue lock. It does not start if under 45 min remain before the lease deadline. The script writes under
+  `/workspace/pr1` only and never writes RELEASE or DONE_*. Driver: `src/PR1/drive_gd.sh` (upload, test, start,
+  pull; pull keeps two verified local copies). Gate check `src/PR1/gate_gd.py`; rescorer `rescore.py` (byte copy,
+  `6f6eede7…`) run through `rescore_tf32.py` (`0d0b6b6f…`); network pins `nets_pins.txt` (equal to the 15
+  `.tar.sha256` files).
+- Smoke test before the real job: `PR1_TEST=1` (2 networks, the first 64 gate rows, the 34-row pack, no waits and no
+  lock; a few hundred MB of GPU memory beside the running fit). Its scores are a code check only and are never read.
+- Reader `src/PR1/gd_read.py`, mock-tested (`gd_read_mock.json`). It rebuilds the amendment-15 baselines without
+  `pn1lib.catalog()` and asserts that they equal `tier1_a14/baseline27.json` (training counts 124/312 and 248/624;
+  landmark_combined AUC 0.8138695 and 0.8144465, reproduced exactly). GD0 cues are computed by `src/PR1/cues_gd.py`
+  (runs `cues27.py` unchanged, output in `/mnt/t7/smad_next/PR1/cues/gd0.npz`).
+- Code pins: `src/PR1/SHA256SUMS`.
