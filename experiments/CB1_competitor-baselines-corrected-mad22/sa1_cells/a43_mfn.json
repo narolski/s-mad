@@ -8,52 +8,52 @@
  "validity: published MorDIFF (A) vs FRLL photos R0": {
   "auc": 0.8,
   "ci95": [
-   0.732,
-   0.865
+   0.735,
+   0.862
   ],
   "n_pos": 200,
   "n_neg": 204,
-  "boot": 2000
+  "boot": 10000
  },
  "valid": true,
  "R4 (B20) vs R2 (D20) [AD1 main]": {
   "auc": 0.589,
   "ci95": [
    0.527,
-   0.656
+   0.654
   ],
   "n_pos": 200,
   "n_neg": 204,
-  "boot": 2000
+  "boot": 10000
  },
  "R3 (C20) vs R2 (D20)": {
   "auc": 0.428,
   "ci95": [
-   0.393,
+   0.392,
    0.463
   ],
   "n_pos": 102,
   "n_neg": 204,
-  "boot": 2000
+  "boot": 10000
  },
  "R4 (B20) vs R3 (C20)": {
   "auc": 0.671,
   "ci95": [
-   0.598,
+   0.599,
    0.743
   ],
   "n_pos": 200,
   "n_neg": 102,
-  "boot": 2000
+  "boot": 10000
  },
  "published (A) vs B20 [bridge]": {
   "auc": 0.464,
   "ci95": [
-   0.408,
-   0.512
+   0.409,
+   0.511
   ],
   "n_pos": 200,
   "n_neg": 200,
-  "boot": 2000
+  "boot": 10000
  }
 }

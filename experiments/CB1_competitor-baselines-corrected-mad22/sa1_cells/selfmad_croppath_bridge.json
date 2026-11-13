@@ -1,0 +1,23 @@
+{
+ "n_aligned_genuine": 204,
+ "raw genuine (A41 x7 logit)": {
+  "per_family": {
+   "amsl": 2.44,
+   "facemorpher": 0.98,
+   "opencv": 0.37,
+   "stylegan": 16.6,
+   "webmorph": 7.36
+  },
+  "mean5": 5.55
+ },
+ "aligned genuine (A43 own logit)": {
+  "per_family": {
+   "amsl": 4.91,
+   "facemorpher": 1.51,
+   "opencv": 0.49,
+   "stylegan": 28.5,
+   "webmorph": 15.79
+  },
+  "mean5": 10.24
+ }
+}
