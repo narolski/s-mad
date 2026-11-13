@@ -160,6 +160,11 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   running from 11:54:22, _[2-5] pending (forecast 13:01); C2P smoke 6310376 pending. Expected ends about 13:30-13:35
   (1.65 h), limit 14:06-14:09.
 
+- 12:12 step-rate check (logs on WCSS): 12 fits running (6310084_[0-8], 6310092_[0-2]); steps 900-1300 of 6,250;
+  rates 0.97-1.19 it/s (the slowest at 0.97-1.01: 6310084_0, _3, _6, 6310092_0; 6,250 steps at 0.97 it/s = 1.79 h +
+  about 0.1 h copy and scoring = 1.9 h, inside the 2:15 limit with about 20 min to spare). Expected ends 13:30-13:50
+  for the nine; fetch planned at 13:55.
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
