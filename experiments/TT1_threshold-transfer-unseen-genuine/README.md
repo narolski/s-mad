@@ -128,6 +128,13 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
 - 01:47:04-01:52: registered reader (`tt1_read.py --exclude PN1_Bn_s401`) -> `tt1_read.json`, tables
   `tt1_read_tables.md`; verdicts in result.md. Sent for independent post-result review.
 
+- 13 Nov 02:00-02:09: review REVIEW_TT1_20261113.md (21ed1d1) applied: result.md corrections (3ae12a9), post hoc
+  recomputations `posthoc_review.json` (`src/TT1/posthoc_review.py`; reproduces the review's F2/F3/F7 numbers; reader
+  clip correction leaves every TT-H1 verdict unchanged); amendments H-new-1/2/4 (5954c12) and H-new-5 (a714c17)
+  registered, then computed (`hnew.json` via `src/TT1/hnew.py`; `diag_kernels.json` via `src/TT1/diag_kernels.py`, a
+  few seconds of DGX GPU); results in result.md. Platform pins for the final read:
+  `PLATFORM_PINS_FOR_FINAL_READ.md`. FS1 block prepared (`prereg_fs1_block_draft.md`), not run.
+
 ### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
 
 The decoded image, the resized image and the input tensor are bit-identical between the DGX stack (torch 2.12.1,

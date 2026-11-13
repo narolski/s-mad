@@ -159,6 +159,35 @@ Own-rule flag shares, primary pool, person-bootstrap 95% interval (inflated for 
 - The seed-to-seed spread of the same arm is as large as most arm differences.
 - Seed = machine (seed 401 on pn1a, seed 402 on pn1b). Every arm sentence is a two-seed lead.
 
+## Post-result amendments H-new-1, 2, 4, 5 (registered before computing: 5954c12, a714c17; `hnew.json`, `diag_kernels.json`)
+
+All are post hoc to the TT1 reading; development data only.
+
+- **H-new-2, onset of A's storage cue: FALSIFIED.** On the development ladder R0 and AF0 development photos (226 pairs),
+  the stored 61.2 px copies (2.16x enlargement) shift A by a paired median +0.09 / +0.26 logit (B: 0.00 / −0.00), with
+  12% / 19% of A's copies flagged (B 0.9% / 0.5%). The registered rule (A's 61 px shift > B's + 0.1 on both seeds)
+  fails on seed 401. At 112.7 px (1.17x) every arm shifts by ≤ 0.01.
+  - Together with TT1's geometry reference (3.5x: A +2.85 / +5.37, 46-57% flagged), A's large shift appears only
+    beyond 2.16x on these data, or needs the crop geometry as well. The onset is not located.
+  - The PN1 tier-1 test-ladder figure (+1.73 / +2.64) was a mean raw shift on other hosts.
+- **H-new-1, missing high frequency: not falsified.**
+  - Median face-box Laplacian variance: geometry-matched 112 px camera photos 7.3, pack photos 10.7. The geometry
+    references are softer.
+  - A scores them 2.26 / 4.91 logits above the packs.
+  - Pooled OLS slope of A's logit on log face-box variance: −0.88 / −0.88.
+  - Consistent with A reading missing high frequency. Measurement only; not causal.
+- **H-new-4, trade between genuine flags and misses: "supported" by the registered rule, but driven by one arm.**
+  Spearman ρ(F̄, development miss) = −0.63 over 10 networks (permutation p = 0.027). Development attack pools: ladder
+  R4 582, AF0 u50 180, splice S4 291.
+  - The ladder R4 and AF0 u50 misses are at the floor (0-0.6%) for every network. The miss mean is driven by the
+    splice pool: Sb misses 25-26% of splices against 93-97% for A, B, C, Bv.
+  - So the negative ρ is "Sb flags more genuine photos and misses fewer splices". It is not a B-against-A trade:
+    B's development misses equal A's within 1 point (0.322-0.324 against 0.312-0.315).
+- **H-new-5, GB10 kernels: FALSIFIED.** None of six settings brings the DGX within 1e-3 of the A100 on the five
+  diagnostic rows (best 0.088): TF32 off/on and math-only attention, alone and combined. The DGX (GB10 / torch 2.12)
+  cannot be a scoring fallback for comparisons with A100 scores. The source of the difference is not located; other
+  network ops or library versions remain.
+
 ## Review findings and where they are applied
 
 F1 AUC meaning (TT-H2 text); F2 storage result (TT-H5 text, post hoc); F3 border wording (TT-H3 text); F4 limits of
