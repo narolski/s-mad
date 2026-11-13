@@ -36,6 +36,9 @@ version (the current candidate was frozen by the author at 18:28; MAD22 is a see
   accepted; priority 672); no shard task can start before the smoke completes successfully; the dispatcher cancels both
   arrays if it fails. Five standing roles (OWNER_BRIEF, 6e42c86): reports end with a CLAIMS block; ADVERSARY publishes a
   shortcut-only floor before the read (no read while it is pending).
+- Read hold (lead, via the dispatcher): GX contrast numbers stay closed until the lead announces that the next-version
+  selection rule (experiments/NEXT_method-selection-rule/prereg_draft_v2.md, 3c2b9d5) binds or the author rules
+  otherwise; generation, fits, fetching, verification and gates continue.
 
 ## 3. Data
 
