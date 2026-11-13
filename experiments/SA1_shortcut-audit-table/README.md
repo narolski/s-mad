@@ -60,6 +60,11 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
   sentence; aggregates only, no MEDS image, file name or person identifier; matrix counts unchanged.
 - about 19:00: BD1 (corrections 92d8e05, 49ce9e3; REVIEW_BD1, REVIEW_BD1_AMEND2) added to row 8 (Sb) with the reviews'
   wording; "reads a second identity" added to cannot-claim; matrix counts unchanged.
+- 13 Nov (lead, via the dispatcher): ownership split. SA1 owns the table (row definitions, review status of each cell,
+  result.md). BATTERY (`src/battery/`) owns the code that computes rows for new networks and uses SA1's row definitions
+  and cell sources (result.md, cells.csv, src/SA1/cells.py at c4cd8dc) as its regression target. After battery v1 is
+  released, new cells enter the table from battery output and SA1 records them; existing reviewed cells are not
+  recomputed or replaced.
 
 ## 3. Data
 
