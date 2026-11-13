@@ -277,4 +277,80 @@ registered verdicts stand, and no method choice follows.
   | 407 | 0.81 | 5.20 |
   | Mean of the frozen seeds | 2.26 | 10.39 |
 
-- **H-new-1 to H-new-4** are registered for the record in `posthoc_prereg_mad22_informed.md` and have not been run.
+- **H-new-1 to H-new-4** are registered in `posthoc_prereg_mad22_informed.md`; they are reported in the next section.
+
+## H-new-1 to H-new-4: run once each on the lead's word ("MAD22-informed, post-read, descriptive; no method choice follows")
+
+Source: `posthoc_hnew_mad22_informed.json`, made by `src/FINAL/posthoc_hnew.py`. Existing score files only.
+- The script states its readings of the registered rules at its top. The owner states they were fixed before
+  computing; the script was committed after the run, so the order cannot be checked from git.
+- Review: `experiments/reviews/REVIEW_FINAL_HNEW_20261113.md`. Its corrections are applied below.
+
+**H-new-1 (smiling genuine photos are flagged more often), history-matched form.** BPCER on _08 photos / BPCER on _03 photos, at each seed's EER-point
+threshold, in % (102 photos each, so 1 photo ≈ 1%):
+
+| Seed | OpenCV | Webmorph |
+|---|---|---|
+| 403 | 3.9 / 2.0 (ratio 2.0) | 6.9 / 6.9 (ratio 1.0) |
+| 404 | 2.9 / 2.0 (ratio 1.5) | 22.5 / 8.8 (ratio 2.56) |
+| 405 | 4.9 / 1.0 (ratio 5.0) | 18.6 / 3.9 (ratio 4.75) |
+| 406 | 2.9 / 1.0 (ratio 3.0) | 22.5 / 3.9 (ratio 5.75) |
+| 407 | 2.0 / 0.0 (ratio inf) | 8.8 / 2.0 (ratio 4.5) |
+
+- Ratio ≥ 2 on 4 of 5 seeds in each family.
+- Per-family verdicts: OpenCV "supported", Webmorph "supported". **Overall: "supported".**
+- The OpenCV counts are small, 0-5 photos per cell.
+  - Its "supported" rests on s403 at exactly 2.0 (4 vs 2 photos) and on s407 counted as inf (2 vs 0).
+  - If inf were read as undefined, OpenCV and the overall verdict would be "inconclusive".
+  - By subject over the five seeds: OpenCV 6 vs 3 (sign test p = 0.51), Webmorph 31 vs 5 (p < 0.001) (reviewer's
+    recomputation).
+- The hypothesis was formed from these same scores (earlier review: Webmorph neutral-only EER 10.4 → 7.6), so this
+  read is a description, not a test.
+- At the own-rule threshold, Webmorph errors are mostly missed morphs (APCER 24-58%, BPCER ≤ 2.5%).
+- The _08 and _03 photos differ in more than expression, and nothing was manipulated: "flagged more often", not
+  "drives the errors".
+
+**H-new-2 (the border-equalised rise on FaceMorpher sits on the genuine side), standard form.**
+
+| Seed | BE_S − S rise (points) | Share |
+|---|---|---|
+| 403 | 3.70 | 1.72 |
+| 404 | 5.03 | 1.52 |
+| 405 | 0.14 | not read (rise ≤ 0.5) |
+| 406 | 0.00 | not read (rise ≤ 0.5) |
+| 407 | 1.51 | 2.05 |
+
+- The share is the rise when only the genuine side is border-equalised, as a fraction of the full rise.
+- 3 seeds are read, and all have a share ≥ 0.70. The rule needs ≥ 4 of 5, so the verdict is **"inconclusive"**.
+- A share above 1 means that S morphs scored against border-equalised genuine photos give a higher EER than the full
+  border-equalised cell.
+- Not registered, same label (reviewer's recomputation): border-equalised morphs scored against S genuine photos lower
+  the EER below S on all 5 seeds, by 0.3-1.0 points.
+  - Border-equalising pushes both classes toward "morph": the rise comes from the genuine side, and the morph side
+    partly offsets it.
+  - Scoring only the genuine photos in border-equalised form raises the EER on all 5 seeds, by +1.1 to +7.6 points.
+  - These mixed cells give the two classes different processing and are diagnostics only.
+- With 2 seeds not read, "supported" was impossible under the literal ≥ 4 of 5 rule. That is a limit of the rule.
+
+**H-new-3 (blend energy):** **"not read"**.
+- No landmark files exist for the aligned MAD22 frames, the _08 photos or the morphs, which is the registered
+  condition.
+- FRLL ships .tem files for the 102 neutral originals only, and the pack's masks are per family.
+- The AF0 canonical mean hull is not a per-frame file.
+
+**H-new-4 (development AUC predicts the MAD22 rank).**
+
+| Seed | Development landmark_combined AUC | MAD22 mean2 EER, H form (%) |
+|---|---|---|
+| 401 | 0.887 | 5.07 |
+| 402 | 0.909 | 9.67 |
+| 403 | 0.814 | 4.90 |
+| 404 | 0.874 | 9.03 |
+| 405 | 0.845 | 7.11 |
+| 406 | 0.884 | 7.57 |
+| 407 | 0.885 | 3.01 |
+
+- Spearman ρ = +0.286, so the verdict is **"falsified"** (ρ ≥ 0).
+- n = 7, low power; seeds 401/402 come from another block.
+- Over the 5 frozen seeds alone ρ = −0.10, which would read "inconclusive".
+- So the finding is "no negative relation was seen", not "development AUC does not predict".
