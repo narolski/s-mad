@@ -485,3 +485,21 @@ The PR1 part-1 test-host values are known, so this read is post hoc.
   - Otherwise "inconclusive".
   - n = 32 is small.
 - Code: `src/PR1/shape_link_read.py` (pinned in `src/PR1/SHA256SUMS`), tested on mock scores only. Zero GPU, nice 19.
+
+## Amendment 5a (post hoc; `date`: Fri Nov 13 20:41 CET; registered before any real read; replaces the decision rule of amendment 5 per `experiments/reviews/PRERUN_PR1_A5_20261113.md`, GO WITH FIXES, fixes 1-6)
+
+Mechanism (fix 1, reviewer's wording, replacing the amendment-5 text): the evaluation hull of a linked test host is not the training hull of its partner (0 of 32 pairs equal). The training hull uses the test person's S-photo landmarks for half its points; the test person's own evaluation hull uses its H photo and a different partner. The link is partial landmark shape, not a duplicated item.
+
+Decision rule (fixes 2-3; the lead's original rule is withdrawn; the reviewer's replacement rule is used exactly):
+- Primary statistic: linked-minus-clean difference (32 vs 159 test hosts) in each host's mean logit over S3, S0 and S4, averaged over the five FS1 Sb seeds 403-407.
+- Joint null: 2,000 random 32-host splits (rng 20261202), the same splits for all seeds, stratified by database x (partner is a development host) with the linked hosts' make-up (frgc/dev 20, frgc/non-dev 8, feret/dev 1, feret/non-dev 3); per split the statistic is averaged over the five seeds.
+- "shape link visible" if the five-seed mean lies outside the 95% null in the predicted direction (lower logit for linked hosts).
+- "no effect detectable at n = 32" if the primary statistic and the two-sided S4-vs-S3 AUC difference both lie inside their 95% nulls; the smallest detectable sizes ((1.96 + 0.84) x null SD) are printed with it.
+- Otherwise "inconclusive".
+- n = 32 wording (fix 4): any null outcome is reported as "no effect detectable at n = 32", never as "no effect".
+
+Printed, not deciding (fix 5): the S4 miss rate and median logit per rung (S4, S3, S0, R4, R3); R4 vs R3 as the low-link control; flags on S3, S0, R3, R4; covariates (FRGC share, development-partner share, median cos_HB and cos_HS) for linked, clean and all; the n = 11 linked-vs-clean comparison within the 80 clean-of-development hosts. The 159-host value is always reported beside the 191-host value, whatever the outcome. AB1 Sb 408-412 printed with the same splits, not deciding.
+
+Pinned tars (fix 6), asserted by the reader before loading (`src/PR1/shape_link_tar_pins.txt`, sha256 4dea8c1f43c19443…): the ten Sb tars PN1_Sb_s403-407 and AB1_Sb_s408-412 with their full sha256 values in that file.
+
+Reader: `src/PR1/shape_link_read.py` (sha256 89be37e13b98a2bf…), run once at nice 19 with `--out experiments/PR1_protocol-reads-existing-networks/shape_link_read.json`. Mock run with random logits only; the mock printed the real covariates and strata counts (no score of any network).
