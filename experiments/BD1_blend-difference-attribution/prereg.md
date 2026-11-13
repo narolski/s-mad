@@ -120,3 +120,81 @@ rows of D (`d_values_limit8.csv`, `d_values_limit9.csv`); they were not looked a
 - **F7, wording:** all blocks use the same 382 test rows, and AB1 and SE1 share seeds 408-411. "Replicates" means over
   fits and platforms, not over hosts. A pass is worded "accounts for most of", never "explains".
 - Not adopted now: an ArcFace identity-similarity covariate (a new model inference; needs the lead's approval).
+
+## Amendment 2: three zero-GPU follow-ups (lead's go, 13 Nov 18:10; registered before computing)
+
+Source: `REVIEW_BD1_20261113.md`. Blocks as before: FS1 Sb 403-407 decides; AB1 (H100, 408-412) and SE1 (A100,
+408-411; 4 of 4) replicate. They are read separately, never pooled, and "replicates" means over fits and platforms.
+Known before this commit:
+- the BD1 test-host results and the reviewer's post hoc test-host numbers;
+- facts without scores, printed by the mock: the median H-to-S session gap is FRGC 49 days and colorFERET 274 days;
+  ρ(gap, cos_HS) is FRGC −0.32 and colorFERET −0.15;
+- the 9-row feature code test (`d_feats_limit9.csv`), not looked at.
+
+No development-host logit of S3, S4 or the blanked rows has been computed by this owner for these reads.
+
+New features (`src/BD1/bd1b_feat.py`; statistics only, nothing is written as an image), inside the amendment-7b hull,
+with d = S − counterpart per channel:
+- D_dc: mean colour shift;
+- D_ac: the difference with that mean removed;
+- D_lin: the residual after a per-channel least-squares gain and offset;
+- D_grad: finite-difference energy of d.
+
+Reader: `src/BD1/bd1b_read.py`.
+
+### Part 1, BD1b: face-recognition similarity and colour on the 100 development hosts (S3 and S4 of the same hosts)
+
+- **H1, FR similarity.** Partial Spearman ρ(S3 logit, cos_HS | D, D_lin, D_dc): ranks, with the covariates removed by
+  linear regression on ranks. cos_HS is the existing glintr100 cosine of the host's two photos (`AR1/pool.csv`).
+  - **Supported** if ≤ −0.10 on ≥ 4 seeds; **falsified** if > −0.05 on ≥ 3 seeds; otherwise "weak".
+  - Printed: the raw ρ.
+  - With n = 100, the standard error of one ρ is about 0.10. This is stated.
+- **H2, colour strata.** For D_dc and D_lin separately: Sb's AUC(S4 vs S3) within quintiles of the statistic,
+  minus that statistic's own pure reference, on the same rows and the same functions. A seed is readable if the
+  strata hold ≥ 50% of the rows.
+  - **"Residual beyond this colour statistic"** if ≥ +0.10 on ≥ 4 seeds; **"accounted for"** if ≤ +0.03 on ≥ 4;
+    otherwise "inconclusive".
+- **H4, Sb adds to simple statistics.** A propensity is fitted on 7 statistics (D, D_Y, D_int, D_band, D_dc, D_lin,
+  D_grad), with logistic regression cross-fitted in 5 host-grouped folds (`default_rng(20261152)`). Its out-of-fold
+  AUC is compared with the same model plus Sb's logit.
+  - **Supported** if the gain is ≥ +0.03 on ≥ 4 seeds; **falsified** if < +0.01 on ≥ 4; otherwise "weak".
+  - These statistics use the counterpart image: oracle diagnostics, not competing detectors.
+- **What each outcome means for a later arm matched on FR similarity:**
+  - H1 supported and H2 "residual beyond colour": the same-person flags follow appearance and FR dissimilarity at
+    equal blend energy and colour. Matching on FR similarity is the right control for such an arm. Its training
+    pairs must overlap in FR similarity, which needs new look-alike morphs (see below).
+  - H1 falsified, or H2 "accounted for by colour": the test-host FR reading does not generalise to new hosts, or
+    colour carries it. An FR-matched arm would then be matching on a variable the network does not use; a
+    colour-matched control is the priority (an author item).
+  - H4 falsified: Sb adds nothing beyond simple difference statistics on this contrast, so any arm should be judged
+    first against that propensity.
+
+### Part 2: session gap (S3 rows of all 291 development and test hosts, per database)
+
+- gap = |S_session − H_session| in days (FERET yymmdd, FRGC ISO dates, from `pool.csv`). The S3 test logits are known,
+  but the gap has not been related to any score.
+- Per seed and database: ρ(S3 logit, gap). Printed: the same partial on cos_HS. Sizes: FRGC 235, colorFERET 56.
+  - **Supported** if ρ > 0.15 in both databases on ≥ 4 seeds; **falsified** if ρ ≤ 0.05 in both on ≥ 4; otherwise
+    "inconclusive".
+- **Meaning for an FR-matched arm:** if supported, the time between sessions (ageing, capture change) drives
+  same-person flags beyond FR similarity, and an arm must also match on session gap. If falsified, session gap
+  needs no matching.
+
+### Part 3: blanked-row addendum (development hosts decide; test hosts printed and labelled "seen post hoc")
+
+- Inside only: AUC(S4_bg vs S3_bg), background blanked to grey 128 outside the hull. Outside only:
+  AUC(S4_face vs S3_face), face blanked. These are the existing blanked rows, scored in every block's tar.
+  - **"Residual inside the hull"** if inside ≥ 0.65 on ≥ 4 seeds AND outside ≤ 0.55 on ≥ 4.
+  - **"Outside contributes"** if outside ≥ 0.60 on ≥ 4. Otherwise "inconclusive".
+- **Meaning for an FR-matched arm:** if inside, the arm's matching and its controls can be restricted to the face
+  region (the outside warp history is not the cue). If outside contributes, the arm must also match the outside
+  warp (R2w4 against R2w).
+
+### Look-alike pairs in the existing pools (fact, embeddings only, no score; `AR1/pool_src_emb.npz`)
+
+- Among the 536 ladder persons (FRGC 427, colorFERET 109), cross-person cosines between one person's H photo and
+  another's S photo exceed 0.6 for **2 pairs** (FRGC; 0 in colorFERET). They exceed 0.4 for only 4 pairs, with a
+  maximum of 0.686.
+- The same-person range is 0.70-0.94 (5-95%). Look-alike two-person morphs overlapping it cannot be built from these
+  pools. They need a much larger person pool (thousands of identities, for example a development face set searched
+  by FR similarity) or generated look-alikes, and then new morphs (warping: an author item).
