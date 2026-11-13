@@ -1,4 +1,4 @@
-# Draft registrations for the DINOv3 programme (BB2 owner, 13 Nov 2026 19:2x; DRAFT, nothing registered, nothing submitted)
+# Draft registrations for the DINOv3 programme (BB2 owner, 13 Nov 2026 18:36; DRAFT, nothing registered, nothing submitted)
 
 Plan: `PLAN_DINOV3_PROGRAMME_20261113.md`. Common to all drafts: development data only (FS1 pack rows, MS1 FFHQ hold-out,
 TT1 development pools, NIST MEDS aggregates; no FRLL, MAD22, MorDIFF, DiM, H1, FEI, CASIA-WebFace or sealed row);
@@ -24,7 +24,7 @@ copy (PR1's registered GD reads and sentences: StyleGAN morph vs camera photo, m
 photo renders flagged, diffusion render path). About 1.5 H100-h.
 
 ## D-W2c: C2P (contrast 2-prime, H-new-1) on E3's networks
-`bb2_c2p.sbatch` unchanged with `BB2_TASKS` = the 15 BB2L tasks, `BB2_C2P_RESULTS=results/BB2L`, `BB2_C2P_OUT=BB2LC2P`;
+`bb2_c2p.sbatch` unchanged with `BB2_TASKS` = the 15 BB2L tasks, `BB2_C2P_RESULTS=/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BB2L`, `BB2_C2P_OUT=BB2LC2P`;
 reader `bb2l_c2p_read.py` = `bb2_c2p_read.py` with BB2L names, mode file `seed_mode_L.json` and the clip choice
 `clip_choice_L.json` committed before the read (amendment 3 rule). About 0.5 H100-h.
 
@@ -34,9 +34,11 @@ never leave the pack; only aggregate shares and stratum sizes are written) resco
 `tt1_read_fs.py` / `tt1_read_meds.py` copies with E3 names; TT1's registered hypotheses TT-H1 (transfer), TT-H3 (border),
 TT-H4 (softness), TT-M1 (MEDS transfer) with their rules. About 2.3 H100-h.
 
-## D-W2e: blend-difference attribution (BD1) on E3's Sb networks
-`bd1b_feat.py` in one H100 job (features of the 191 test hosts' S3/S4 pairs for E3 Sb), `bd1b_read.py` / `bd1c_read.py`
-copies; BD1's registered reads. About 0.5 H100-h.
+## D-W2e: blend-difference attribution (BD1) on E3's Sb networks (zero GPU)
+Existing image statistics `/mnt/t7/smad_next/BD1/d_feats.csv` and the S3/S4 rows of each E3 fit's `scores_eval.npz`;
+`bd1b_read.py` / `bd1c_read.py` copies with E3's names; BD1's registered reads.
+
+## D-W2-merged: C2P, GD, TT1 and MEDS rescoring of E3's networks in one H100 job (about 4.5 h; pre-submitted with --dependency=afterany:6313860 on the lead's go; pre-run check first; MEDS needs a new WCSS sbatch)
 
 ## D-W2f (only if E3's splice-fit gate fails on more than one seed of the read set): learning-rate selection on training rows
 Arm Sb, seed 403, LoRA learning rates 3.33e-5 and 1e-4 (2 fits, 6,250 steps, everything else as E3). Chosen value: the
@@ -54,4 +56,4 @@ margins (H-sp3, H-ab2/ab4, the SE target and guards). CLIP ViT-L/14 size control
 rate guard and seed-mode freeze as E3. About 48 H100-h. If E3's gate fails, all DINOv3 arms of this wave are read as
 "under-fitted" and not interpreted.
 
-## D-sel: selection rule (only if the author lifts the freeze; plan section 7), committed before any W2/W3 read
+## D-sel: DINOv3 part of the next-version selection rule (plan section 7), to be committed before E3's read, inside one programme-level rule fixed by the lead or the author across DINOv3, SbFM, GX1 and RZ1
