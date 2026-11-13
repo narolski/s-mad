@@ -52,7 +52,7 @@ What these lines say, plainly:
 
 
 
-## Stage 3: same-person splice and RI1 / TB1 rows (pending reads of RI1, TB1, ME1)
+## Stage 3: same-person splice and RI1 / TB1 rows: simple morph-cue floors (amendment 4 naming; not shortcut floors)
 
 | Contrast | Arm read | Rows (pos / neg; components) | ADV floor [95%] (model) | Non-F27/non-BLEND floor [95%] | Within BD1 D quintiles (single / logreg / gbt; pure-D reference; coverage) | Must exceed (quick bar) |
 |---|---|---|---|---|---|---|
@@ -70,6 +70,67 @@ Frozen by `floors/pins_stage3.sha256`. Within-D: BD1's rule (quintile edges of l
 - **lcomb_bal** (1:1 matching on the boosted-tree surround score and pre_ied; `floors/lcomb_bal_rows.csv`): converged True with **125 morphs and 125 genuine photos (below 150 per class)**; final surround floor single / logreg / gbt 0.474 / 0.565 / 0.524; file 0.444 / 0.466 / 0.460; **face box 0.876 / 0.941 / 0.936**; all-cue ADV floor 0.949 [0.917, 0.973]. Build timing: the rule was fixed after two builds ran (prereg amendment 3, item 3).
 - **lcomb_ipw** (stabilised inverse-probability weights on the logreg surround score and pre_ied, trimmed at the 1st / 99th percentile; `floors/lcomb_ipw_weights.csv`): effective sample size **8.0 morphs** and 413.8 genuine; weighted surround floor single / logreg / gbt 0.701 / 0.485 / 0.404; file 0.642 / 0.543 (logreg / gbt); face box 0.629 / 0.745. **Not usable** (registered bar: effective sample size at least 300 per class): the surround score separates the classes so well that a handful of morphs carry the weight.
 - Reading (post hoc, H-new-1 of the review): where the surround is balanced (lcomb_bal), the face box still separates morphs from genuine photos at about 0.94, so landmark_combined carries a face-region difference besides the surround history; the subset is small (125 per class) and selected on a score, so this is descriptive.
+
+
+## Same-data shortcut learner (prereg section 5.3; the fair comparator for networks that never saw the evaluation rows)
+
+Fitted on the unique training rows of the arm's own training list (labels from the list), all 72 features, applied to the development rows; no fit on any evaluation row. Frozen candidate's list (`train_Sb`, 5,535 images, 1,342 attacks) first; the other arms follow in `floors/transfer_<arm>.json`. Frozen by `floors/pins_stage7.sha256` (and later stage files).
+
+| Contrast | logreg AUC | gbt AUC |
+|---|---|---|
+| `lcomb` | 0.787 | 0.665 |
+| `lcomb_bal` | 0.811 | 0.644 |
+| `test_fm_R4_vs_R2w` | 0.978 | 0.976 |
+| `test_cv_R4_vs_R2w` | 0.975 | 0.996 |
+| `test_fm_R4_vs_R3` | 0.662 | 0.704 |
+| `test_cv_R4_vs_R3` | 0.719 | 0.704 |
+| `ri_R4_vs_R3` | 0.725 | 0.716 |
+| `ri_S4_vs_S3` | 0.678 | 0.650 |
+| `dev_S4_vs_S3` | 0.675 | 0.670 |
+| `test_S4_vs_S3` | 0.681 | 0.640 |
+| `dev_S4_vs_S0` | 0.898 | 0.956 |
+| `test_S4bg_vs_S0bg` | 0.820 | 0.908 |
+| `dev_cv_R4_vs_R3m` | 0.606 | 0.769 |
+| `store_morph_vs_photo_fm61` | 0.764 | 0.806 |
+| `store_morph_vs_photo_amsl112` | 0.758 | 0.914 |
+| `hn2_lcomplete_vs_bona` | 0.892 | 0.749 |
+| `gd2_R4_vs_R2s1` | 0.755 | 0.900 |
+| `gd2_R4_vs_R3` | 0.579 | 0.708 |
+| `gd1_X_vs_REC` | 0.430 | 0.495 |
+| `gd1_X_vs_SAME` | 0.664 | 0.691 |
+
+Own-rule flag shares of the same learner (logreg decision > 0 / gbt probability > 0.5):
+
+| Pool | n | logreg | gbt |
+|---|---|---|---|
+| dev_R0 | 100 | 0.000 | 0.010 |
+| af0_dev_photo | 378 | 0.156 | 0.040 |
+| ffhq_bona_orig | 2000 | 0.202 | 0.005 |
+| R_cam_border_originals | 226 | 0.031 | 0.004 |
+| R_cam_border | 1582 | 0.344 | 0.000 |
+| R_ffhq_border | 2000 | 0.327 | 0.001 |
+| ms1_photo_native | 300 | 0.127 | 0.000 |
+| ms1_photo_fm61 | 291 | 0.581 | 0.045 |
+| ms1_photo_amsl112 | 290 | 0.507 | 0.021 |
+| dev_S0 | 100 | 0.160 | 0.030 |
+| dev_S3 | 100 | 0.480 | 0.440 |
+| dev_S4 | 100 | 0.770 | 0.710 |
+| dev_R3_cv | 100 | 0.720 | 0.860 |
+| dev_R3_fm | 100 | 0.560 | 0.480 |
+| dev_R2w_fm | 100 | 0.040 | 0.020 |
+| dev_R4_cv | 100 | 0.960 | 0.970 |
+| dev_R4_fm | 100 | 0.860 | 0.750 |
+| lcomb_morph | 1000 | 0.851 | 0.097 |
+| lcomb_genuine | 2000 | 0.459 | 0.048 |
+| gd2_R2 | 238 | 0.588 | 0.210 |
+| gd2_R4 | 74 | 0.932 | 0.865 |
+
+Plainly (development data; no network score read here): trained on the frozen candidate's own training rows, a shortcut-only learner reaches 0.787 (logreg) / 0.665 (gbt) on landmark_combined, against the candidate's reviewed 0.873-0.906; by the review's H-new-2 bars (supported ≥ 0.85, falsified ≤ 0.75) this is between the bars. On the pipeline-matched R4 vs R3 rows it reaches 0.72-0.74, and it flags 44-48% of development same-person splices and 72-86% of OpenCV same-person morphs, close to the candidate's reviewed 31-48% and 83-88%.
+
+## Descriptive reads of amendment 4 (registered at 1067700 before computing)
+
+- **H-new-1** (F27 + BLEND alone on lcomb_bal, 250 rows): single / logreg / gbt 0.888 / 0.929 / 0.914: **supported** (bar ≥ 0.90). Where the surround history is balanced to within detection power, the remaining separation is carried by blend-texture statistics.
+- **H-new-3** (chroma-only vs luma-only face statistics, R4 vs R3 within BD1 D quintiles): all 291 hosts chroma 0.540, luma 0.723; test hosts chroma 0.542, luma 0.723: **falsified**. At equal D the two-person excess sits in luma texture statistics (noise, Laplacian, gradient, band powers), not in colour mismatch.
 
 ## Attack sets (requests to the DATA role through the lead; nothing built by the adversary)
 
