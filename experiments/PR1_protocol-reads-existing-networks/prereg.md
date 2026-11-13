@@ -258,6 +258,30 @@ fixed here.
 - Same platform, gate and scorer as GD0 (section 6). If GD1 or GD2 frames do not exist in the input format, the part
   is "not read (no frames in the networks' format)" and no new image operation is made.
 
+### GD rows fixed (`date`: Fri Nov 13 about 09:30 CET; before any pack is built or any GD row scored; file facts only)
+
+- **GD1 frames are not in the networks' E7 512 format.** Only the 256 px DiffAE-aligned outputs exist
+  (`/mnt/t7/smad_next/DG1/gen/setB_s*/...`); FZ2 and SM1 fed them unaligned to their loaders. No alignment is added
+  here (no new image operation). GD1 is therefore read on PN1's existing list `/mnt/t7/smad_next/PN1/lists/dg1_test.csv`
+  (1,146 rows: camera photo G 382 (H and S of each host, DiffAE-aligned), reconstruction REC 191, mirror mix MIR 191,
+  same-person mix SAME 191, two-person mix X 191; test hosts with test_read 1 only; the networks' loader resizes to
+  224 as for every row). Because every GD1 image is in a frame the networks never saw, absolute own-rule flags are
+  confounded by the frame, and the GD1 rule is replaced, before any score, by a frame-free form: **"render path not
+  used"** if AUC(X vs REC) ≥ 0.75 AND AUC(REC vs G) ≤ 0.60 on ≥ 4 of 5 seeds; **"render path used"** if
+  AUC(REC vs G) ≥ 0.75 on ≥ 4 of 5 seeds, or AUC(X vs REC) ≤ 0.60 on ≥ 4 of 5 seeds; otherwise "inconclusive, no
+  claim". Printed: AUC(SAME vs REC), AUC(X vs SAME), AUC(MIR vs REC), own-rule flags of every rung (labelled
+  "frame-confounded"). Hosts and partners are checked against `ladder_split.csv` by the pack builder (role test,
+  test_read 1, is_val 0, not a training host).
+- **GD2 frames exist** as 512 px E7 frames (`prep_eval.align`, INTER_AREA to 512) in `/mnt/t7/smad_next/AG1/data/frames/`,
+  manifest `/mnt/t7/smad_next/AG1/data/manifests/ag1.csv`. Rows: databases FRGC and colorFERET only (the `mad22`
+  bridge folder and every FRLL or published row are excluded by the builder), `aligned` True, rungs R0 camera photo,
+  R2 MIPGAN render of one photo (A = B), R2s spread-matched one-person render, R3 same-person MIPGAN morph, R3m photo
+  with its mirror, R4 two-person MIPGAN morph; every person (pa, pb) outside the PN1 training and validation persons:
+  not a ladder host with role train or is_val 1 in `ladder_split.csv`, and not pn1_use train or is_val 1 in
+  `af0_split.csv`. Expected (file count, not scores): R0 238, R2 238, R2s 119, R3 119, R3m 119, R4 74. "One-person
+  render" in the GD2 rule is R2; R2s printed beside it. Added to the GD2 rule, before any score: the "flagged like
+  a morph" branch also requires AUC(R4 vs R2) ≤ 0.65 on the same seeds. Interval unit: person pa.
+
 ## 7. What may not be claimed
 
 No benchmark claim; no "removes", "shortcut-free", "reads identity" or "reads the seam". Z verdicts are on our own
