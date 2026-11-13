@@ -36,13 +36,13 @@
 | A45_incepofc | last (primary) | e7 | 5 | 85.08 | 6.95 | 16.35 | 41.96 | 46.39 | 39.34 [36.64, 42.07] |  |  |
 | A45_incepofc | last (primary) | native | 5 | 51.07 | 6.39 | 15.22 | 41.96 | 46.39 | 32.20 [29.12, 35.23] | 10.53 | does not reproduce (worse); delta +21.68 [+15.76, +27.60], M 3.16 |
 | FDMAD_f256 | model (primary) | e7 | 3 | 90.48 | 33.52 | 30.10 | 54.29 | 45.09 | 50.69 [48.05, 53.42] |  |  |
-| FDMAD_f256 | model (primary) | native | 3 | 100.00 | 41.50 | 39.54 | 54.29 | 45.09 | 56.08 [53.51, 58.77] | 6.12 | does not reproduce (worse); delta +49.96 [+48.82, +51.10], M 1.84 |
+| FDMAD_f256 | model (primary) | native | 3 | 100.00 | 41.50 | 39.54 | 54.29 | 45.09 | 56.08 [53.51, 58.77] | 6.12 | no reading (local branch not functional); partial re-implementation, does not reach the published fused number; delta +49.96 [+48.82, +51.10], M 1.84 |
 | FDMAD_f512 | model (primary) | e7 | 3 | 50.35 | 39.20 | 58.48 | 20.30 | 30.71 | 39.81 [37.68, 41.71] |  |  |
-| FDMAD_f512 | model (primary) | native | 3 | 1.34 | 49.30 | 63.40 | 20.30 | 30.71 | 33.01 [30.80, 35.16] | 6.12 | does not reproduce (worse); delta +26.89 [+26.83, +26.94], M 1.84 |
+| FDMAD_f512 | model (primary) | native | 3 | 1.34 | 49.30 | 63.40 | 20.30 | 30.71 | 33.01 [30.80, 35.16] | 6.12 | partial re-implementation, does not reach the published fused number; delta +26.89 [+26.83, +26.94], M 1.84 |
 | FDMAD_g256 | model (primary) | e7 | 3 | 95.76 | 33.52 | 30.10 | 54.27 | 45.09 | 51.75 [49.26, 54.34] |  |  |
-| FDMAD_g256 | model (primary) | native | 3 | 100.00 | 41.50 | 39.54 | 54.27 | 45.09 | 56.08 [53.51, 58.77] | 6.12 | does not reproduce (worse); delta +49.96 [+48.81, +51.11], M 1.84 |
+| FDMAD_g256 | model (primary) | native | 3 | 100.00 | 41.50 | 39.54 | 54.27 | 45.09 | 56.08 [53.51, 58.77] | 6.12 | partial re-implementation, does not reach the published fused number; delta +49.96 [+48.81, +51.11], M 1.84 |
 | FDMAD_g512 | model (primary) | e7 | 3 | 52.77 | 35.78 | 60.28 | 21.45 | 21.73 | 38.40 [35.68, 40.88] |  |  |
-| FDMAD_g512 | model (primary) | native | 3 | 22.94 | 23.39 | 51.14 | 21.45 | 21.73 | 28.13 [25.55, 30.79] | 6.12 | does not reproduce (worse); delta +22.01 [+21.44, +22.58], M 1.84 |
+| FDMAD_g512 | model (primary) | native | 3 | 22.94 | 23.39 | 51.14 | 21.45 | 21.73 | 28.13 [25.55, 30.79] | 6.12 | partial re-implementation, does not reach the published fused number; delta +22.01 [+21.44, +22.58], M 1.84 |
 
 ### Corrected MAD22 (204 genuine + 4,483 morphs): BPCER (%) at APCER 1 / 5 / 10 / 20 %, native genuine pool, primary checkpoint, seed mean
 
@@ -151,13 +151,13 @@
 | A45_incepofc | last (primary) | e7 | 5 | 42.51 | 81.28 | 77.37 | 31.19 | 31.93 | 52.86 [49.66, 55.97] |  |  |
 | A45_incepofc | last (primary) | native | 5 | 29.35 | 74.33 | 66.70 | 31.19 | 20.93 | 44.50 [41.45, 47.64] | 8.11 | does not reproduce (worse); delta +36.38 [+27.87, +44.90], M 2.43 |
 | FDMAD_f256 | model (primary) | e7 | 3 | 89.12 | 72.74 | 25.96 | 41.33 | 89.53 | 63.74 [61.16, 65.82] |  |  |
-| FDMAD_f256 | model (primary) | native | 3 | 97.68 | 97.03 | 81.88 | 41.33 | 97.21 | 83.02 [81.09, 84.93] | 1.85 | does not reproduce (worse); delta +81.17 [+80.58, +81.77], M 1.50 |
+| FDMAD_f256 | model (primary) | native | 3 | 97.68 | 97.03 | 81.88 | 41.33 | 97.21 | 83.02 [81.09, 84.93] | 1.85 | no reading (local branch not functional); partial re-implementation, does not reach the published fused number; delta +81.17 [+80.58, +81.77], M 1.50 |
 | FDMAD_f512 | model (primary) | e7 | 3 | 4.41 | 5.23 | 45.86 | 25.32 | 4.04 | 16.97 [15.28, 18.86] |  |  |
-| FDMAD_f512 | model (primary) | native | 3 | 1.86 | 16.00 | 49.99 | 25.32 | 2.02 | 19.04 [17.09, 21.47] | 1.85 | does not reproduce (worse); delta +17.19 [+16.61, +17.77], M 1.50 |
+| FDMAD_f512 | model (primary) | native | 3 | 1.86 | 16.00 | 49.99 | 25.32 | 2.02 | 19.04 [17.09, 21.47] | 1.85 | partial re-implementation, does not reach the published fused number; delta +17.19 [+16.61, +17.77], M 1.50 |
 | FDMAD_g256 | model (primary) | e7 | 3 | 89.09 | 72.74 | 25.96 | 41.33 | 89.53 | 63.73 [61.12, 65.81] |  |  |
-| FDMAD_g256 | model (primary) | native | 3 | 97.68 | 97.03 | 81.88 | 41.33 | 97.21 | 83.02 [81.08, 84.92] | 1.85 | does not reproduce (worse); delta +81.17 [+80.58, +81.77], M 1.50 |
+| FDMAD_g256 | model (primary) | native | 3 | 97.68 | 97.03 | 81.88 | 41.33 | 97.21 | 83.02 [81.08, 84.92] | 1.85 | partial re-implementation, does not reach the published fused number; delta +81.17 [+80.58, +81.77], M 1.50 |
 | FDMAD_g512 | model (primary) | e7 | 3 | 22.61 | 16.52 | 79.28 | 58.64 | 11.64 | 37.74 [35.43, 39.97] |  |  |
-| FDMAD_g512 | model (primary) | native | 3 | 0.02 | 0.98 | 14.83 | 58.64 | 0.00 | 14.90 [13.25, 16.59] | 1.85 | does not reproduce (worse); delta +13.05 [+12.56, +13.53], M 1.50 |
+| FDMAD_g512 | model (primary) | native | 3 | 0.02 | 0.98 | 14.83 | 58.64 | 0.00 | 14.90 [13.25, 16.59] | 1.85 | partial re-implementation, does not reach the published fused number; delta +13.05 [+12.56, +13.53], M 1.50 |
 
 ### FRLL-Morphs: BPCER (%) at APCER 1 / 5 / 10 / 20 %, native genuine pool, primary checkpoint, seed mean
 

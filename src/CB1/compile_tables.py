@@ -23,6 +23,10 @@ for bench, title in (("mad22c", "Corrected MAD22 (204 genuine + 4,483 morphs)"),
             continue
         prim = " (primary)" if m["primary"] == "True" else ""
         rd = m.get("reading", "") or ""
+        if arm.startswith("FDMAD") and rd:   # prereg section 8 / amendment 4 wording
+            rd = rd.replace("does not reproduce (worse)", "partial re-implementation, does not reach the published fused number")
+        if arm == "FDMAD_f256" and rd:
+            rd = "no reading (local branch not functional); " + rd
         if rd:
             rd = f"{rd}; delta {float(m['delta']):+.2f} [{float(m['delta90_lo']):+.2f}, {float(m['delta90_hi']):+.2f}], M {float(m['margin']):.2f}"
         L.append(f"| {arm} | {ck}{prim} | {pool} | {m['n_seeds']} | " + " | ".join(f(sel[x]['eer_mean']) if x in sel else "" for x in FAMS[bench])
