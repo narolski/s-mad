@@ -35,9 +35,13 @@ for k in $(seq 1 60); do
   done
   pc=$(ls "$P/smoke_$NAME"/SE1_platformcheck_*.tar 2>/dev/null | head -1)
   [ -n "$pc" ] && (cd "$(dirname "$pc")" && sha256sum -c --quiet "$(basename "$pc").sha256") && cp -n "$pc" "$pc.sha256" /home/narolski/se1_results_copy/ || { log "platform tar missing"; ok=0; }
-  if [ $ok = 1 ]; then touch "$LEASE/RELEASE"; log "RELEASE written: seed $SEED fetched and verified in two copies"; exit 0; fi
+  if [ $ok = 1 ]; then
+    if [ "${SE1_NO_RELEASE:-0}" = 1 ]; then log "seed $SEED fetched and verified in two copies; NO RELEASE (lease held by the lead): tell the lead"; exit 0; fi
+    touch "$LEASE/RELEASE"; log "RELEASE written: seed $SEED fetched and verified in two copies"; exit 0; fi
   failed=1; for a in A Sb SE; do t=SE1_${a}_s$SEED; [ -f "$P/results/$t.tar" ] && continue
     r=$(R "cat /workspace/se1/rc/$t 2>/dev/null"); [ -n "$r" ] && [ "$r" != 0 ] || failed=0; done
-  if [ $failed = 1 ]; then echo "remote-confirmed failures, see logs" > "$LEASE/FAILED"; touch "$LEASE/RELEASE"; log "RELEASE + FAILED"; exit 0; fi
+  if [ $failed = 1 ]; then
+    if [ "${SE1_NO_RELEASE:-0}" = 1 ]; then log "remote-confirmed failures; NO RELEASE (lease held by the lead): tell the lead"; exit 0; fi
+    echo "remote-confirmed failures, see logs" > "$LEASE/FAILED"; touch "$LEASE/RELEASE"; log "RELEASE + FAILED"; exit 0; fi
 done
 log "loop ended without RELEASE"

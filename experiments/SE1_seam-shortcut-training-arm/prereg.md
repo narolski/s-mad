@@ -265,3 +265,14 @@ Minor points: (a) the docstring seeds were fixed; (b) $PY is used in place of sy
 - Caps and deadlines of the leases are the lead's (guard running). RELEASE is written by chain_se1.sh only after the seed's three fit tars and the lease's platform-check tar are verified in two copies (`/mnt/t7/smad_next/SE1/results`, `/home/narolski/se1_results_copy`) and the logs are fetched.
 
 - SE1-D1 addendum (`date`: Fri Nov 13 09:38 CET 2026; fits running since 09:35; no score opened): following REVIEW_PN1_C2P_20261113 Q5/F6 (lead), the per-lease reproduction check is labelled **"precision and GPU together"**. rescore.py runs with TF32 off, while the stored FS1 A100 logits were made with TF32 on, so a miss is not a platform failure of the lease. It never gated the fits: the chain gates only on the smoke's "smoke rc 0". Reader change, print labels only and one tar per lease accepted: se1_read.py `794bed6e7257c2c69ec7a0ceb18b0942559dabceed3349b6ce5f3fee603534da`. Pass rules and every verdict are unchanged. Platform record: the fits started at 09:35:51 (se1a, seed 408) and 09:35:52 (se1b, seed 409). The WCSS jobs 6310083 and 6310122 were cancelled at 09:37 without having started. AB1 is registered at 61f7994, so the reading condition of section 4 is met.
+
+## Deviation SE1-D2 (`date`: Fri Nov 13 12:39 CET 2026; before any seed-411 fit; no SE1 score file opened): fourth seed on a fourth A100 PCIe lease
+
+- The lead (12:40, within the author's rental approval): seed 411 runs on pn1fs (149.248.21.7:30078). That is an A100 PCIe 40 GB, the same GPU model and image as se1a/b/c, and the machine that trained the FS1 networks.
+- Pack: the FS1 pack already on that machine (`/workspace/pn1/root/packs/PN1/pn1_pack_fs.tar`, its sha256 file reads 96c31ae2…). It is read in place through a symlink and sha256-checked by remote_se1.sh and run.sh before use. Only the overlay and small files are uploaded. SE1 writes only under /workspace/se1.
+- The same smoke and per-lease check (labelled "precision and GPU together") run first. The fits start only if the smoke passes.
+- pip setup is not run on this host, so the shared environment is untouched. The check step asserts the pinned versions (torch 2.2.1, timm 1.0.27, numpy 1.26.4, pillow 10.2.0; already verified at 12:39).
+- The lease is held by the lead. The chain writes no RELEASE there (`SE1_NO_RELEASE=1`; chain_se1.sh `9dc4e74873186e23091d85164473f91a9a1683d5aa15f39967e2f102c70fc17f`) and reports to the lead once seed 411 is verified in two copies.
+- Disk: 27 GB free; one fit needs about 20 GB (pack copy, extraction and overlay).
+- Seed 412 is not run. With seed 411 there are four read seeds, and section 7 then reads "met" only as 4 of 4.
+- Reading (lead, 12:40): one read, after seed 411's tars are in, or at the 19:00 deadline if that comes first.
