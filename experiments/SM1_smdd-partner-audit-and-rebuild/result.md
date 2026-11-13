@@ -672,6 +672,26 @@ answer (the controller was flapping), and the job had in fact completed at 20:25
   2 seeds (401: 0.755; 402: 0.756), key bootstrap B = 10,000 (seed variance not included); whole image, no TTA; audit
   set, not a benchmark." Keep it apart from the released detector's logit gap (0.95 crop path; 0.45 whole file).
 
+## A23: within-key AUC of the released detectors (registered 80ba899 before computing; descriptive; `a23_rank_rel.json`)
+
+Same metric as the retrained rows (A14): per key, AUC of its 5 trained-partner morphs over its 5 SMDD evaluation-
+partner morphs, mean over 500 keys, key bootstrap B = 10,000; one network per release (no seed variance); logit without
+TTA; audit set, not a benchmark.
+
+| Released detector | crop path (own preprocessing; primary) | whole file | trained − KE, crop (logit, for reference) |
+|---|---|---|---|
+| MADation ViT-B/16 | 0.716 [0.702, 0.729] | 0.702 [0.688, 0.716] | 0.43 |
+| MADation ViT-L/14 | 0.768 [0.754, 0.780] | 0.835 [0.825, 0.845] | 0.95 |
+| MADation FE ViT-B/16 | 0.796 [0.786, 0.807] | 0.769 [0.759, 0.779] | 3.87 |
+| MADation FE ViT-L/14 | 0.712 [0.700, 0.723] | 0.684 [0.673, 0.695] | 3.76 |
+| MixFaceNet-MAD | 0.909 [0.901, 0.917] | 0.808 [0.799, 0.816] | 13.36 |
+| FS ViT-B/16 (descriptive) | 0.537 [0.513, 0.562] | – | 1.56 |
+| FS ViT-L/14 (descriptive) | 0.894 [0.884, 0.903] | – | 6.90 |
+
+Retrained rows on the same metric (whole image, no TTA, 2 seeds): MADation-recipe ViT-L/14 LoRA 0.756 [0.746, 0.765];
+ViT-B/16 arm a 0.757, arm b 0.817; without SMDD's five 0.53–0.59. Released MADation ViT-L/14: 0.768 (crop) / 0.835
+(whole file); the retrained ViT-L/14 (0.756) is on whole images.
+
 ## ViT-B/16 LoRA, full registered set (A13: 12 fits, arms a, b, b′, c, e, f x seeds 401, 402; `p3_lora_vitb12.json`, `a12_rank_vitb12.json`, `a12_fixed_vitb12.json`)
 
 One rented RTX 6000 Ada; all 12 tars sha256-verified (`/mnt/t7/smad_next/SM1/results_rented/`). Our frames, first-test
