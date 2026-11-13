@@ -192,3 +192,4 @@ See prereg section 10.
   15 fits on WCSS H100; builder src/AB1/mk_ab1c.py, overlay /mnt/t7/smad_next/AB1/c/ab1c_overlay.tar (also WCSS packs/AB1),
   run_c.sh, wcss/ab1c_fit.sbatch, reader src/AB1/ab1_pm3_read.py; H-c1 Sb − SpV, H-c2 BN − BV on R4 vs R3. Pre-run check
   PRERUN_AB1_A6_A7_20261113.md (218dd02), fixes in 6b / 7b.
+- Fri Nov 13 21:39 CET 2026: batch C submitted by the dispatcher as WCSS array 6316845_[0-14] (limit 1:15, Nice 0, priority 679; behind the challengers and MS1, ahead of CB1, AD4, AD5). Owner: AB1 owner; about 36 min per fit; read with ab1_pm3_read.py --pair C when all 15 end, latest 15 Nov 18:00.
