@@ -157,3 +157,14 @@ Pre-run review, fixes, registration commit with pins; fit array to the dispatche
 ## 11. Reproduce from scratch
 
 See prereg section 10.
+
+### Border-crossed arm Sbx (13 Nov evening)
+- 17:55 lead's instruction (strategist evening synthesis, item 5). Built with src/AB1/mk_ab1x.py: 1,385 border-blanked
+  training copies (25% of every kind; masks from TT1 U_p frames not used by any TT1 border reference), 3,582 border
+  evaluation rows (development persons, FFHQ HN2); overlay /mnt/t7/smad_next/AB1/x/ab1x_overlay.tar e5886e72… (also on
+  WCSS packs/AB1). Local 20-step test passed (10,484 items). Pre-run check GO WITH FIXES (PRERUN_AB1X_20261113.md),
+  fixes applied; registration prereg_x.md at 7e4a974; pins in pins_x.sha256.
+- Submitted by the dispatcher: wcss_ab1x_fit.6314811.cmd / wcss_ab1x_rescore.6314812.cmd
+  (fit array: 5 fits, limit 1:15, results/AB1X; rescore job: Sb/B on border rows, results/AB1X/AB1Xrescore.tar).
+  Read with src/AB1/ab1x_read.py when both have ended, latest 15 Nov 18:00. Local test folder
+  /mnt/t7/smad_next/AB1/localtest_x holds only the 20-step test tar and log.
