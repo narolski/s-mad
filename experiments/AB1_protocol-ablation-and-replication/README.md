@@ -182,3 +182,4 @@ See prereg section 10.
 - Pre-run check GO WITH FIXES (PRERUN_AB1FM_20261113.md), fixes applied; registration prereg_fm.md; pins pins_fm.sha256.
 - Submitted by the dispatcher as WCSS job 6315597_[0-4] (limit 1:15, results/AB1FM); read with src/AB1/ab1fm_read.py when the 5 fits end, latest 15 Nov 18:00.
 - Note on times (Fri Nov 13 18:48 CET 2026): the lead's message times quoted above as "17:55" (Sbx instruction) and "18:50" (SbFM instruction) are not machine-clock times (lead's correction, NOTEBOOK 18:46): SbFM's instruction arrived between 18:32 and 18:46; the author's cut-off ruling ("17:15") was committed at about 17:11. Git commit times are the record.
+- Hold (Fri Nov 13 19:23 CET 2026): reads of SbFM and Sbx wait until ADVERSARY posts its stage-1 floor commit hash in experiments/ADV_shortcut-floors/README.md (lead via dispatcher; review 112d50c F1). Fits, fetch and verification proceed; no contrast number is opened before the hash exists.
