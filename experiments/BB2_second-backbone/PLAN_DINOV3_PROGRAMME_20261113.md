@@ -60,9 +60,25 @@ BB2 C2P job (6313488). Draft registrations: `prereg_programme_draft.md` (this fo
     256 in one pass probably does not fit in 80 GB (memory rule of section 4 applies, from its own smoke); the fit
     time is unmeasured (estimate 1.6-2.5 h). At CLIP-B's learning rate it may under-fit the same way, so it carries
     E3's splice-fit gate and a printed relative LoRA update. Patch 14 against 16 remains a confound.
-  - **DINOv3 ViT-B/16** holds the size fixed and changes pretraining: the better control for "is it the backbone",
-    but it needs a download (author) and an `archs_a12.py` entry (same class, new name). After the deadline unless
-    approved tonight.
+  - **DINOv3 ViT-B/16** holds the size fixed and changes pretraining: the better control for "is it the backbone".
+    Weights: the official Meta release is on disk since 18:50 (author's login; `/mnt/t7/smad_next/weights/
+    dinov3_vitb16_official/`, Hugging Face transformers format: separate q/k/v projections, q and v biases present but
+    all zero, 4 register tokens, layer-scale, RoPE theta 100). **How it loads (rule, fixed before any fit):** the same
+    model code path as ViT-L/16 (timm `Eva`, `vit_base_patch16_dinov3`, CLS after the final norm, fused `attn.qkv` so
+    the same LoRAQKV q/v wiring applies, qkv bias off because the official q/v biases are zero), through a small
+    key-for-key conversion of the official state dict into timm's names (q, k, v concatenated into qkv; o_proj -> proj;
+    up/down -> fc1/fc2; layer_scale -> gamma; embeddings and register tokens; no value changed). Loading the official
+    weights through transformers' own `DINOv3ViTModel` instead would change the attention module (separate q/v
+    projections), so the LoRA placement would not be the recipe's. **Verification:** (i) the converter is first run on
+    the official ViT-L/16 release already on disk (`facebook/dinov3-vitl16-pretrain-lvd1689m`, A49) and must reproduce
+    the timm ViT-L/16 file that E3 uses tensor for tensor (if not, the conversion is wrong and nothing is trained); (ii)
+    the converted ViT-B/16 in timm, and the official ViT-B/16 in transformers 5.12 (DGX), give the CLS feature of the 8
+    featcheck images with max |difference| ≤ 1e-3 after truncating timm's RoPE periods to bfloat16 as the timm model
+    card describes (the official model keeps them as a bfloat16 buffer); (iii) the WCSS featcheck against a DGX CPU
+    reference, as for ViT-L/16. **Would the timm conversion be more consistent?** Its provenance equals the ViT-L/16
+    file's (timm's own conversion), which is the most consistent; check (i) makes our conversion of the official file
+    equivalent to it by construction, so the official weights are used and the timm file is not needed. Needs an
+    `archs_a12.py` entry (same class, new name, dim 768) and its own registration; later wave.
 
 ## 2. The existing-network battery (PR1) on DINOv3 (item 2)
 
