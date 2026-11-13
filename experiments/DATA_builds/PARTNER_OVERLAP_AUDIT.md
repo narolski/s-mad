@@ -319,7 +319,7 @@ Training file `SE1/manifests/train_SE.csv` (sha256 c4e5aa474c87399d...): 637 hos
 - `/mnt/t7/smad_next/DATA/overlap/test_hosts_clean_of_dev.csv` (80 test hosts).
 
 
-## Addendum (13 Nov 2026, 20:29-20:35 machine clock): record keeper's gaps
+## Addendum (13 Nov 2026, 20:29-20:30 machine clock): record keeper's gaps
 
 Code `src/DATA/partner_overlap_addendum.py`; it re-runs the audit and adds the items below. Counts are in
 `partner_overlap_addendum.json`. Commit 681715d is not an audit commit (it carries the eye-distance measurement, the
