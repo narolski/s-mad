@@ -115,3 +115,27 @@ Upload (no GPU) now → after `SE1_DONE_411`: start → pull loop → read once 
 
 No re-run after scores are seen, except one unchanged re-run after an infrastructure failure. Cost is about 0.3
 A100-hours inside the lead's se1d lease.
+
+## 6. Amendment after the pre-run check (`date`: Fri Nov 13 01:53:56 PM CET 2026; registered at the git commit that adds this section, before start and before any score)
+
+Pre-run check (experiment-reviewer, opus): GO WITH FIXES (F1, F2 majors; F3-F7 minors). Applied:
+- F1: the remote job aborts if any compute process is on the GPU (another owner), and the driver refuses to start if
+  the GPU is busy or a TT1-M job is already running on the host (`start` only after SE1_DONE_411, as before).
+- F2: `src/TT1/meds/gate_check_m.py` sha256 `1a62c58bbf834d73de1e71b1ff61c4480c762afd88e40e8a8ef0894b26778597`
+  is part of the registration. The gate certifies the platform on batch 64 (53 full batches and a last batch of 25);
+  the final MEDS batch (58 rows) has no cross-host reference, and MEDS scores have no pn1fs counterpart. Deviation
+  disclosed: the DGX mechanics-test output for A_s403 (my own test files) was deleted unread, so that no non-gated MEDS
+  score exists on disk.
+- F3 (checked on hashes and filenames only): MEDS-I has 712 files, 710 distinct contents (2 internal duplicates); 500
+  MEDS-I files have content equal to a MEDS-II file, all 500 with the same subject id (498 with the same filename), so the
+  subject numbering is shared and persons are merged correctly as meds:S<id>. The 163 added MEDS-I images are MEDS-I-only
+  contents with POS F.
+- F4: the venv asserts torch 2.2.1, CUDA 12.1 and cuDNN 8902 (pn1fs values) besides timm, numpy and Pillow.
+- F5: the reader asserts the manifest (`3698bcb4…`) and `tt1_score.csv` (`c0055b51…`) pins, the MEDS id order
+  (1,018) in every MEDS score file and 3,417 rows in every gate file.
+- F6: TT-M1 'neither' or 'mixed' = prediction not confirmed and not falsified.
+- F7 (question to the lead): MEDS packs and aligned frames remain on se1d under /workspace/tt1m after the run; whether to
+  remove them before the instance is released (NIST terms against the never-delete rule) is the lead's or author's call.
+- Re-pinned: remote_tt1_m.sh `70028d9b9deccb296daf801482df40de5e2dce2a89067af4a811733a0d6ae690`; drive_tt1_m.sh
+  `8b1b544e999507f718c18a6bc423b4bc01af0e78d395c64eef09fb3fb05f9b9c`; tt1_read_meds.py
+  `0b5d86b154c2455f3279ded63ee9a606196140fa65b707d6a173212d0cb84b11`. Packs staged and verified on se1d at 13:50:43.

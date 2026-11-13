@@ -24,13 +24,14 @@ log "start"
 [ "$(sha256sum < "$B/packs/tt1m_nets.tar" | cut -c1-64)" = "$NSHA" ] || abort "nets pin"
 [ "$(df --output=avail -B1G "$B" | tail -1 | tr -d ' ')" -ge 20 ] || abort "disk"
 [ "${TT1M_TEST:-0}" = 1 ] || nvidia-smi --query-gpu=name --format=csv,noheader | grep -q "A100-PCIE" || abort "GPU model"
+[ "${TT1M_TEST:-0}" = 1 ] || [ -z "$(nvidia-smi --query-compute-apps=pid --format=csv,noheader)" ] || abort "GPU busy (another owner)"
 if [ "${TT1M_SKIP_VENV:-0}" != 1 ]; then
   [ -x "$B/venv/bin/python" ] || python -m venv --system-site-packages "$B/venv" || abort venv
   PY=$B/venv/bin/python
   $PY -c "import torch, torchvision; print('torch==' + torch.__version__.split('+')[0]); print('torchvision==' + torchvision.__version__.split('+')[0])" > "$B/constraints.txt" || abort torch
   $PY -m pip install --no-cache-dir -c "$B/constraints.txt" timm==1.0.27 huggingface_hub==0.36.2 safetensors==0.8.0 \
     numpy==1.26.4 pyyaml==6.0.3 pillow==10.2.0 > "$B/logs/pip.log" 2>&1 || abort pip
-  $PY -c "import torch, timm, numpy, PIL; assert torch.__version__.startswith('2.2.1') and timm.__version__ == '1.0.27' and numpy.__version__ == '1.26.4' and PIL.__version__ == '10.2.0'" || abort versions
+  $PY -c "import torch, timm, numpy, PIL; assert torch.__version__.startswith('2.2.1') and torch.version.cuda == '12.1' and torch.backends.cudnn.version() == 8902 and timm.__version__ == '1.0.27' and numpy.__version__ == '1.26.4' and PIL.__version__ == '10.2.0'" || abort versions
 else
   PY=${TT1M_PY:?}
 fi

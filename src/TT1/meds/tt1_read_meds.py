@@ -49,6 +49,8 @@ def main():
         ap.add_argument("--" + k, required=True)
     ap.add_argument("--mock", action="store_true")
     a = ap.parse_args()
+    assert T.sha(MEDS) == "3698bcb4ff9e694219a0d1675920621724303eee034692f9374f70400fec6c8d", "meds manifest not at its pin"
+    assert T.sha(T.OUT / "tt1_score.csv") == "c0055b51467cf8d001d56cbc4689706d68f0bf35c64066b1ba49fada5cb45761", "tt1_score.csv pin"
     meds = list(csv.DictReader(open(MEDS)))
     prim = [r for r in meds if r["aligned"] == "1"]
     sec = [r for r in meds if r["aligned"] != "1"]
@@ -73,6 +75,10 @@ def main():
             L = {}
             for fam in ("gate", "meds"):
                 z = np.load(pathlib.Path(a.scores) / f"{n}__{fam}.npz")
+                if fam == "meds":
+                    assert z["id"].tolist() == [r["id"] for r in meds], n
+                else:
+                    assert len(z["id"]) == 3417, n
                 L.update(zip(z["id"].tolist(), z["logit"].astype(float).tolist()))
         xm = np.array([L[r["id"]] for r in prim]); xc = np.array([L[r["id"]] for r in cam]); xf = np.array([L[r["id"]] for r in ffq])
         xmf = np.array([L[r["id"]] for r in mfq])

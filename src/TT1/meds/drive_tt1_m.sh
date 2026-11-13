@@ -26,6 +26,9 @@ case "$STEP" in
     ;;
   start)
     [ -f "$L0/SE1_DONE_411" ] || { log "SE1_DONE_411 missing: not starting"; exit 1; }
+    R "pgrep -f remote_tt1_m.sh >/dev/null" && { log "a TT1-M job is already running on the host: not starting a second"; exit 1; }
+    busy=$(R "nvidia-smi --query-compute-apps=pid --format=csv,noheader" 2>/dev/null | grep -v -i "welcome\|fun" || true)
+    [ -z "$busy" ] || { log "GPU busy (another owner's process): not starting"; exit 1; }
     BIN=$L/bin; rm -rf "$BIN"; mkdir -p "$BIN"; cp "$SRC/remote_tt1_m.sh" "$SRC/gate_check_m.py" "$BIN/"
     (cd "$BIN" && sha256sum remote_tt1_m.sh gate_check_m.py > SHA256SUMS)
     RS "$BIN/" "root@$HOST:$B/bin/"
