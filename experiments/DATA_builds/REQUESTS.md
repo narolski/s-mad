@@ -240,7 +240,7 @@ Aim:
   OpenCV morpher (`scripts/78_tool_morph.py`, which loads `68_hires_morph.morph`) applies to each of its two inputs.
 - `h1_build.py` (`/mnt/t7/smad_heldout/h1_poisson/scripts/h1_build.py`, sha256 85b944b7f70c4819...) is the separate
   MediaPipe-478 + Poisson script of the H1 set. Its `warp(img, L_dst, L_src, tri)` (lines 80-84) warps to given target
-  landmarks; its `morph` builds the complete morph M = 0.5 W_A + 0.5 W_B (lines 86-95) before the Poisson step.
+  landmarks; its `morph` builds the complete morph M = 0.5 W_A + 0.5 W_B (lines 86-93, the average at line 93) before the Poisson step.
 - Either path could serve as "the approved warp". The author should name which one is approved for this use.
 
 ### Variant (a): direct composite (two warps to a given target, then averaging)
@@ -249,7 +249,7 @@ Aim:
   frame corners, with one Delaunay triangulation of L.
 - **Negative N_a(H, S)** = 0.5 · warp(H, lm_H → L) + 0.5 · warp(S, lm_S → L), with the same L and the same
   triangulation. The H layer is bit-identical to the positive's.
-- **Code called unchanged.** `variants.warp_cv(img, lm_img, lm_other)` warps `img` to (lm_img + lm_other) / 2.
+- **Code called unchanged.** `variants.warp_cv(img, lm_img, lm_other, hm)` (hm = the loaded `68_hires_morph` module) warps `img` to (lm_img + lm_other) / 2.
   - Positive H and B layers: `warp_cv(H, lm_H, lm_B)` and `warp_cv(B, lm_B, lm_H)`.
   - Negative S layer: `warp_cv(S, lm_S, 2L - lm_S)`, so that its target is exactly L. The function is unchanged; only
     its third argument is computed.
@@ -260,7 +260,7 @@ Aim:
   - Alternative path: `h1_build.warp` twice plus the same 0.5 averaging.
 - **Is this the splice builder's code path?** No.
   - The 7b splice builder (`src/AR1/splice.py`, `job7b`, lines 139-175) is a pure pixel copy of one existing image into
-    another inside the R4 hull (`sp[m] = src[m]`, line 159). It never averages two warps.
+    another inside the R4 hull (`sp[m] = src[m]`, line 154). It never averages two warps.
   - The composite is also not a call of the unchanged morpher: the morpher always targets the mean of its own two
     inputs' landmarks, so it cannot put S at H-and-B geometry.
   - So (a) is a new composite and **needs the author's word**.
