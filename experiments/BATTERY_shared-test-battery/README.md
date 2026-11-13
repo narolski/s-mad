@@ -71,7 +71,9 @@ recomputed or replaced by battery output.
   against the pack checksums; meta keys equal to the reference. TEST run (`--test-gate-key`), nothing else scored, never
   read. Consequence, as decided in advance: the key `NVIDIA A100-SXM4-40GB|torch 2.2.1|tf32 1/1` may be pinned as its own
   platform (reference PN1_Sb_s403) in the next battery version; that is a code change (new VERSION, regression rerun),
-  not made in rc2.
+  not made in rc2. **Lead's decision (13 Nov, after f13e135):** the Athena key is pinned after the release, in the next
+  version with its own regression rerun; rc2 stays unchanged so that the pending H100 smokes and the reviewer's rc1 -> rc2
+  re-check cover exactly the released code. This gate result is kept as the evidence for that pin.
 - Rounding corrections 1-A (10.8%) and 7-B (0.74) relayed to SA1 by the dispatcher (SA1 applied them at ad70142, by the
   dispatcher's report) and the 7-B text to PR1.
 - Release conditions (lead): the rc2 H100 smoke passes on a node other than r18-8 with its gate class recorded; the exit-5
