@@ -189,8 +189,22 @@ balancing products existed (amendments 3b and 3c/3d):
   (`ab1_hbw_read.json`; reader 78e0f2e4…).
 - By amendment 3d item 8, no further weighting, trimming, overlap or matching route is added for H-hb1.
 
-Statement: **FFHQ landmark_combined could not be history-balanced from existing images** (the adversary's surround-only
-floor is 0.942 on all 3,000 rows, `ADV floors/lcomb_regional.json`, surround_floor gbt), **so the candidate's gain on this
-contrast at matched history remains untested.** R2's "replicated" stands with the review's qualifier: "on a development
-set whose surround carries a kernel-history cue and which in-distribution shortcut models separate at 0.96-0.98;
-whether the gain holds at matched history is untested."
+Statement (wording corrected by the results review, `REVIEW_AB1_A3_20261113.md` in this folder): **FFHQ landmark_combined
+could not be balanced on resampling history at the registered size from existing images**: matching on the round-0
+surround score and pre-alignment eye distance converged only at 125 morphs and 125 genuine photos (registered minimum
+150 per class), and inverse-probability weights left an effective sample size of 8.0 morphs (minimum 300; one morph
+weight of about 1,039, the top 1% of morphs carrying about 72% of the morph weight). The classes do not overlap in the
+recorded `scale` column of `ffhqm_meta.csv` (every morph 1.0, every genuine photo 0.25; read as the alignment resize
+factor, a data fact, not verified further), and the surround alone separates them at 0.79 (one statistic) to 0.94
+(gbt) on all 3,000 rows (`ADV floors/lcomb_regional.json`). On the 125/125 subset the adversary's face-region and
+pixel-only floors stay at 0.94-0.95 (`lcomb_bal.json`). **The candidate's gain on this contrast at matched history
+therefore remains untested.** R2's "replicated" stands with the qualifier: "on a development set whose surround
+carries a resampling-history cue (0.79 single statistic, 0.94 gbt) and which in-distribution shortcut models separate
+at 0.96-0.98; whether the gain holds at matched history is untested." All changes made after the subset size or the
+effective sample size were known could only prevent a verdict, not produce one.
+
+**Descriptive prints, not evidence, not for the paper:** in `ab1_hb_read.json` and `ab1_hbw_read.json`, the `verdicts`
+blocks' per-seed counts (k_shrinks, k_stays: these are the counts behind the verdict the gate blocked and must never be
+reported as a result), every g_bal and g_w value with its intervals, the null percentiles, the balanced and weighted
+per-network AUCs, the probit gains, the decomposition AUCs, the within-quintile differences, and the covariate table
+(citable only for the data facts above, never about the networks).
