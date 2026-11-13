@@ -1,0 +1,2509 @@
+{
+ "source_table": "experiments/SA1_shortcut-audit-table/result.md",
+ "n": 82,
+ "matched": 80,
+ "cells": [
+  {
+   "cell": "1-A",
+   "table_text": "FFHQ own-rule flags native 6.4-10.7%",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "FS1",
+   "paths": [
+    "record/flags_own/ffhq_bona_orig"
+   ],
+   "kind": "range",
+   "table": [
+    6.4,
+    10.7
+   ],
+   "battery": [
+    6.4,
+    10.8
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": false
+  },
+  {
+   "cell": "1-A",
+   "table_text": "paired share rising [0.527, 0.626]",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "FS1",
+   "paths": [
+    "record/share_rising"
+   ],
+   "kind": "range",
+   "table": [
+    0.527,
+    0.626
+   ],
+   "battery": [
+    0.527,
+    0.626
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "1-B",
+   "table_text": "share rising [0.180, 0.326]",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "FS1",
+   "paths": [
+    "record/share_rising"
+   ],
+   "kind": "range",
+   "table": [
+    0.18,
+    0.326
+   ],
+   "battery": [
+    0.18,
+    0.326
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "1-Sb",
+   "table_text": "share rising [0.084, 0.175]",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "FS1",
+   "paths": [
+    "record/share_rising"
+   ],
+   "kind": "range",
+   "table": [
+    0.084,
+    0.175
+   ],
+   "battery": [
+    0.084,
+    0.175
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "1-Sb (C2P)",
+   "table_text": "+1.0 to +3.8 points at 61.2 px (4 gate-passed seeds)",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "C2P",
+   "paths": [
+    "fm61/d_flag"
+   ],
+   "kind": "range",
+   "table": [
+    1.0,
+    3.8
+   ],
+   "battery": [
+    1.0,
+    3.8
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 4,
+   "match": true
+  },
+  {
+   "cell": "1-Sb (C2P)",
+   "table_text": "-0.3 to +3.4 points at 112.7 px",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "C2P",
+   "paths": [
+    "amsl112/d_flag"
+   ],
+   "kind": "range",
+   "table": [
+    -0.3,
+    3.4
+   ],
+   "battery": [
+    -0.3,
+    3.4
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 4,
+   "match": true
+  },
+  {
+   "cell": "2-Sb",
+   "table_text": "morph shift +0.06 to +0.11 SD at 61.2 px",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "C2P",
+   "paths": [
+    "fm61/d_mean_att_sd"
+   ],
+   "kind": "range",
+   "table": [
+    0.06,
+    0.11
+   ],
+   "battery": [
+    0.06,
+    0.11
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 4,
+   "match": true
+  },
+  {
+   "cell": "2-Sb",
+   "table_text": "morph shift -0.02 to +0.04 SD at 112.7 px",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "C2P",
+   "paths": [
+    "amsl112/d_mean_att_sd"
+   ],
+   "kind": "range",
+   "table": [
+    -0.02,
+    0.04
+   ],
+   "battery": [
+    -0.02,
+    0.04
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 4,
+   "match": true
+  },
+  {
+   "cell": "4-A (MEDS)",
+   "table_text": "flag shares A 0.013-0.051",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "MEDS",
+   "paths": [
+    "flag"
+   ],
+   "kind": "range",
+   "table": [
+    0.013,
+    0.051
+   ],
+   "battery": [
+    0.013,
+    0.051
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "4-B (MEDS)",
+   "table_text": "B 0.001-0.029",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "MEDS",
+   "paths": [
+    "flag"
+   ],
+   "kind": "range",
+   "table": [
+    0.001,
+    0.029
+   ],
+   "battery": [
+    0.001,
+    0.029
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "4-Sb (MEDS)",
+   "table_text": "Sb 0.001-0.005",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "MEDS",
+   "paths": [
+    "flag"
+   ],
+   "kind": "range",
+   "table": [
+    0.001,
+    0.005
+   ],
+   "battery": [
+    0.001,
+    0.005
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "4-Sp (MEDS)",
+   "table_text": "Sp 0.003-0.013 (printed)",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "FS1block",
+   "block": "MEDS",
+   "paths": [
+    "flag"
+   ],
+   "kind": "range",
+   "table": [
+    0.003,
+    0.013
+   ],
+   "battery": [
+    0.003,
+    0.013
+   ],
+   "seeds": [
+    "Sp_s403",
+    "Sp_s404",
+    "Sp_s405"
+   ],
+   "n_values": 3,
+   "match": true
+  },
+  {
+   "cell": "4-A",
+   "table_text": "F-bar 0.023 +- 0.019",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "r5/Fbar"
+   ],
+   "kind": "mean_sd",
+   "table": [
+    0.023,
+    0.019
+   ],
+   "battery": [
+    0.023,
+    0.019
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "4-Sb",
+   "table_text": "F-bar 0.020 +- 0.012",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "r5/Fbar"
+   ],
+   "kind": "mean_sd",
+   "table": [
+    0.02,
+    0.012
+   ],
+   "battery": [
+    0.02,
+    0.012
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "4-Sp",
+   "table_text": "F-bar 0.023 / 0.030 / 0.033",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "r5/Fbar"
+   ],
+   "kind": "range",
+   "table": [
+    0.023,
+    0.033
+   ],
+   "battery": [
+    0.023,
+    0.033
+   ],
+   "seeds": [
+    "Sp_s403",
+    "Sp_s404",
+    "Sp_s405"
+   ],
+   "n_values": 3,
+   "match": true
+  },
+  {
+   "cell": "4-Sp",
+   "table_text": "F_max 0.060-0.114",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "r5/Fmax"
+   ],
+   "kind": "range",
+   "table": [
+    0.06,
+    0.114
+   ],
+   "battery": [
+    0.06,
+    0.114
+   ],
+   "seeds": [
+    "Sp_s403",
+    "Sp_s404",
+    "Sp_s405"
+   ],
+   "n_values": 3,
+   "match": true
+  },
+  {
+   "cell": "5-Sb (Z3)",
+   "table_text": "CFP-FF-shaped border blanked in: Sb 0.029-0.163",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "printed/border_flag/cfp_ff"
+   ],
+   "kind": "range",
+   "table": [
+    0.029,
+    0.163
+   ],
+   "battery": [
+    0.029,
+    0.163
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "5-B (Z3)",
+   "table_text": "B 0.000-0.019",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "printed/border_flag/cfp_ff"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.019
+   ],
+   "battery": [
+    0.0,
+    0.019
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "6-A",
+   "table_text": "R2w flagged 0%",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/lad_R2w_opencv_test_nat/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.0
+   ],
+   "battery": [
+    0.0,
+    0.0
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "6-A, 6-B, 6-Sb",
+   "table_text": "R4 vs R2w 1.000",
+   "arms": [
+    "A",
+    "B",
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "auc/R4_vs_R2w_opencv_test"
+   ],
+   "kind": "range",
+   "table": [
+    1.0,
+    1.0
+   ],
+   "battery": [
+    1.0,
+    1.0
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407",
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407",
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 15,
+   "match": true
+  },
+  {
+   "cell": "6-Sb",
+   "table_text": "R2w flagged 0-0.5%",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/lad_R2w_opencv_test_nat/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.5
+   ],
+   "battery": [
+    0.0,
+    0.5
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "7-A",
+   "table_text": "R3 flagged 94.8-99.5%",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/lad_R3_opencv_test_nat/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    94.8,
+    99.5
+   ],
+   "battery": [
+    94.8,
+    99.5
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "7-A",
+   "table_text": "R4 vs R3 0.72-0.75",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "auc/R4_vs_R3_opencv_test"
+   ],
+   "kind": "range",
+   "table": [
+    0.72,
+    0.75
+   ],
+   "battery": [
+    0.72,
+    0.75
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "7-A",
+   "table_text": "R3m 97.9-99.5%",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/lad_R3m_opencv_test_nat/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    97.9,
+    99.5
+   ],
+   "battery": [
+    97.9,
+    99.5
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "7-A",
+   "table_text": "R4 vs R3m 0.77-0.79",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "auc/R4_vs_R3m_opencv_test"
+   ],
+   "kind": "range",
+   "table": [
+    0.77,
+    0.79
+   ],
+   "battery": [
+    0.77,
+    0.79
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "7-B",
+   "table_text": "R3 90.6-95.3%",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/lad_R3_opencv_test_nat/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    90.6,
+    95.3
+   ],
+   "battery": [
+    90.6,
+    95.3
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "7-B",
+   "table_text": "R4 vs R3 0.75-0.79",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "auc/R4_vs_R3_opencv_test"
+   ],
+   "kind": "range",
+   "table": [
+    0.75,
+    0.79
+   ],
+   "battery": [
+    0.74,
+    0.79
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": false
+  },
+  {
+   "cell": "7-B",
+   "table_text": "R3m 94.8-97.4%",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/lad_R3m_opencv_test_nat/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    94.8,
+    97.4
+   ],
+   "battery": [
+    94.8,
+    97.4
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "7-Sb",
+   "table_text": "R3 83.2-88.5%",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/lad_R3_opencv_test_nat/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    83.2,
+    88.5
+   ],
+   "battery": [
+    83.2,
+    88.5
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "7-Sb",
+   "table_text": "R4 vs R3 0.80-0.85",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "auc/R4_vs_R3_opencv_test"
+   ],
+   "kind": "range",
+   "table": [
+    0.8,
+    0.85
+   ],
+   "battery": [
+    0.8,
+    0.85
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "7-Sb",
+   "table_text": "R3m 95.8-96.9%",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/lad_R3m_opencv_test_nat/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    95.8,
+    96.9
+   ],
+   "battery": [
+    95.8,
+    96.9
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "8-A",
+   "table_text": "test S3 flagged 2.1-5.8%",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/spl_S3_test/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    2.1,
+    5.8
+   ],
+   "battery": [
+    2.1,
+    5.8
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "8-B",
+   "table_text": "test S3 flagged 0.5-3.7%",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/spl_S3_test/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    0.5,
+    3.7
+   ],
+   "battery": [
+    0.5,
+    3.7
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "8-Sb",
+   "table_text": "test S3 flagged 37.2-48.2%",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/spl_S3_test/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    37.2,
+    48.2
+   ],
+   "battery": [
+    37.2,
+    48.2
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "8-Sb",
+   "table_text": "S4 vs S3 0.72-0.74",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "auc/S4_vs_S3_test"
+   ],
+   "kind": "range",
+   "table": [
+    0.72,
+    0.74
+   ],
+   "battery": [
+    0.72,
+    0.74
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "8-Sb (BD1)",
+   "table_text": "S4 vs S3 within D quintiles 0.697-0.729 (FS1)",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "BD1",
+   "paths": [
+    "primary"
+   ],
+   "kind": "range",
+   "table": [
+    0.697,
+    0.729
+   ],
+   "battery": [
+    0.697,
+    0.729
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "8-Sb (BD1)",
+   "table_text": "pure-D reference 0.557",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "BD1",
+   "paths": [
+    "reference"
+   ],
+   "kind": "range",
+   "table": [
+    0.557,
+    0.557
+   ],
+   "battery": [
+    0.557,
+    0.557
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "8-Sp",
+   "table_text": "development S3 flagged 0.65-0.73",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/spl_S3_dev/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    0.65,
+    0.73
+   ],
+   "battery": [
+    0.65,
+    0.73
+   ],
+   "seeds": [
+    "Sp_s403",
+    "Sp_s404",
+    "Sp_s405"
+   ],
+   "n_values": 3,
+   "match": true
+  },
+  {
+   "cell": "9-A",
+   "table_text": "S0 flagged 0-0.5%",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/spl_S0_test/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.5
+   ],
+   "battery": [
+    0.0,
+    0.5
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "9-A",
+   "table_text": "S4 vs S0 0.75-0.83",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "auc/S4_vs_S0_test"
+   ],
+   "kind": "range",
+   "table": [
+    0.75,
+    0.83
+   ],
+   "battery": [
+    0.75,
+    0.83
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "9-B",
+   "table_text": "S0 flagged 0%",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/spl_S0_test/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.0
+   ],
+   "battery": [
+    0.0,
+    0.0
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "9-B",
+   "table_text": "S4 vs S0 0.68-0.78",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "auc/S4_vs_S0_test"
+   ],
+   "kind": "range",
+   "table": [
+    0.68,
+    0.78
+   ],
+   "battery": [
+    0.68,
+    0.78
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "9-Sb",
+   "table_text": "S4 vs S0 0.985-0.994",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "auc/S4_vs_S0_test"
+   ],
+   "kind": "range",
+   "table": [
+    0.985,
+    0.994
+   ],
+   "battery": [
+    0.985,
+    0.994
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "9-Sb",
+   "table_text": "development S0 0 of 100 on all five",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/spl_S0_dev/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    0,
+    0
+   ],
+   "battery": [
+    0.0,
+    0.0
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "9-Sp",
+   "table_text": "dev S0 flagged Sp 0.01-0.03",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/spl_S0_dev/above_own"
+   ],
+   "kind": "range",
+   "table": [
+    0.01,
+    0.03
+   ],
+   "battery": [
+    0.01,
+    0.03
+   ],
+   "seeds": [
+    "Sp_s403",
+    "Sp_s404",
+    "Sp_s405"
+   ],
+   "n_values": 3,
+   "match": true
+  },
+  {
+   "cell": "10-A, B, Sb",
+   "table_text": "224 px camera-photo flags 0-1.2% for every network",
+   "arms": [
+    "A",
+    "B",
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "printed/geo_flag/g224"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    1.2
+   ],
+   "battery": [
+    0.0,
+    1.2
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407",
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407",
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 15,
+   "match": true
+  },
+  {
+   "cell": "10-A",
+   "table_text": "112 px path A 0.185-0.504",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "printed/geo_flag/g112"
+   ],
+   "kind": "range",
+   "table": [
+    0.185,
+    0.504
+   ],
+   "battery": [
+    0.185,
+    0.504
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "10-B",
+   "table_text": "112 px path B 0.000-0.012",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "printed/geo_flag/g112"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.012
+   ],
+   "battery": [
+    0.0,
+    0.012
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "10-Sb",
+   "table_text": "112 px path Sb 0.022-0.091",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "printed/geo_flag/g112"
+   ],
+   "kind": "range",
+   "table": [
+    0.022,
+    0.091
+   ],
+   "battery": [
+    0.022,
+    0.091
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "10-Sp",
+   "table_text": "geometry-112 flag 0.024-0.084",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "printed/geo_flag/g112"
+   ],
+   "kind": "range",
+   "table": [
+    0.024,
+    0.084
+   ],
+   "battery": [
+    0.024,
+    0.084
+   ],
+   "seeds": [
+    "Sp_s403",
+    "Sp_s404",
+    "Sp_s405"
+   ],
+   "n_values": 3,
+   "match": true
+  },
+  {
+   "cell": "12-Sb",
+   "table_text": "R6 AUC loss 0.11-0.18",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "FS1",
+   "paths": [
+    "printed_R1_R6/R6/auc_loss"
+   ],
+   "kind": "range",
+   "table": [
+    0.11,
+    0.18
+   ],
+   "battery": [
+    0.11,
+    0.18
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "12-Sp",
+   "table_text": "R6 surround loss Sp 0.073-0.114",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "FS1block",
+   "block": "FS1",
+   "paths": [
+    "printed_R1_R6/R6/auc_loss"
+   ],
+   "kind": "range",
+   "table": [
+    0.073,
+    0.114
+   ],
+   "battery": [
+    0.073,
+    0.114
+   ],
+   "seeds": [
+    "Sp_s403",
+    "Sp_s404",
+    "Sp_s405"
+   ],
+   "n_values": 3,
+   "match": true
+  },
+  {
+   "cell": "13-A",
+   "table_text": "two-person mix vs reconstruction A 0.526-0.659",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "GD",
+   "paths": [
+    "gd1/X_vs_REC/auc"
+   ],
+   "kind": "range",
+   "table": [
+    0.526,
+    0.659
+   ],
+   "battery": [
+    0.526,
+    0.659
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "13-B",
+   "table_text": "B 0.459-0.558",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "GD",
+   "paths": [
+    "gd1/X_vs_REC/auc"
+   ],
+   "kind": "range",
+   "table": [
+    0.459,
+    0.558
+   ],
+   "battery": [
+    0.459,
+    0.558
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "13-Sb",
+   "table_text": "Sb 0.529-0.595",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "GD",
+   "paths": [
+    "gd1/X_vs_REC/auc"
+   ],
+   "kind": "range",
+   "table": [
+    0.529,
+    0.595
+   ],
+   "battery": [
+    0.529,
+    0.595
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "13-A, B, Sb",
+   "table_text": "reconstruction vs camera photo in the same frame 0.924-0.996",
+   "arms": [
+    "A",
+    "B",
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "GD",
+   "paths": [
+    "gd1/REC_vs_G/auc"
+   ],
+   "kind": "range",
+   "table": [
+    0.924,
+    0.996
+   ],
+   "battery": [
+    0.924,
+    0.996
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407",
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407",
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 15,
+   "match": true
+  },
+  {
+   "cell": "14-A",
+   "table_text": "one-photo MIPGAN render flagged A 57-72%",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "GD",
+   "paths": [
+    "gd2/flags_own/R2"
+   ],
+   "kind": "range",
+   "table": [
+    57,
+    72
+   ],
+   "battery": [
+    57.0,
+    72.0
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "14-B",
+   "table_text": "B 30-67%",
+   "arms": [
+    "B"
+   ],
+   "block_set": "FS1block",
+   "block": "GD",
+   "paths": [
+    "gd2/flags_own/R2"
+   ],
+   "kind": "range",
+   "table": [
+    30,
+    67
+   ],
+   "battery": [
+    30.0,
+    67.0
+   ],
+   "seeds": [
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "14-Sb",
+   "table_text": "Sb 78-90%",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "GD",
+   "paths": [
+    "gd2/flags_own/R2"
+   ],
+   "kind": "range",
+   "table": [
+    78,
+    90
+   ],
+   "battery": [
+    78.0,
+    90.0
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "17-A",
+   "table_text": "rho(logit, log sharpness) in LFW -0.28 to -0.54",
+   "arms": [
+    "A"
+   ],
+   "block_set": "FS1block",
+   "block": "TT1",
+   "paths": [
+    "r4/lfw/rho"
+   ],
+   "kind": "range",
+   "table": [
+    -0.54,
+    -0.28
+   ],
+   "battery": [
+    -0.54,
+    -0.28
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "17-Sb (Z6)",
+   "table_text": "S4 vs S3 within lapvar strata 0.71-0.75",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "z6/strat_auc_S4_vs_S3"
+   ],
+   "kind": "range",
+   "table": [
+    0.71,
+    0.75
+   ],
+   "battery": [
+    0.71,
+    0.75
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "18-Sb",
+   "table_text": "Sb 0.860 +- 0.030",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "FS1",
+   "paths": [
+    "record/lcomb_auc"
+   ],
+   "kind": "mean_sd",
+   "table": [
+    0.86,
+    0.03
+   ],
+   "battery": [
+    0.86,
+    0.03
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "18-Sp",
+   "table_text": "landmark_combined AUC Sp 0.879 / 0.917 / 0.884",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "FS1block",
+   "block": "FS1",
+   "paths": [
+    "record/lcomb_auc"
+   ],
+   "kind": "range",
+   "table": [
+    0.879,
+    0.917
+   ],
+   "battery": [
+    0.879,
+    0.917
+   ],
+   "seeds": [
+    "Sp_s403",
+    "Sp_s404",
+    "Sp_s405"
+   ],
+   "n_values": 3,
+   "match": true
+  },
+  {
+   "cell": "18-Sp",
+   "table_text": "R1 floor-stratified Sp 0.863-0.891",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "FS1block",
+   "block": "FS1",
+   "paths": [
+    "printed_R1_R6/R1_strat_auc"
+   ],
+   "kind": "range",
+   "table": [
+    0.863,
+    0.891
+   ],
+   "battery": [
+    0.863,
+    0.891
+   ],
+   "seeds": [
+    "Sp_s403",
+    "Sp_s404",
+    "Sp_s405"
+   ],
+   "n_values": 3,
+   "match": true
+  },
+  {
+   "cell": "19-Sb (Z2a)",
+   "table_text": "Sb flags 32-43% of dev S3 at tau5",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "pools/spl_S3_dev/above_t5"
+   ],
+   "kind": "range",
+   "table": [
+    32,
+    43
+   ],
+   "battery": [
+    32.0,
+    43.0
+   ],
+   "seeds": [
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "20-A, B, Sb",
+   "table_text": "AUC(R4 vs R2w) 1.0000 for both engines",
+   "arms": [
+    "A",
+    "B",
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "z3/test/auc_cv",
+    "z3/test/auc_fm"
+   ],
+   "kind": "range",
+   "table": [
+    1.0,
+    1.0
+   ],
+   "battery": [
+    1.0,
+    1.0
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407",
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407",
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 30,
+   "match": true
+  },
+  {
+   "cell": "20-A, B, Sb",
+   "table_text": "misses 0-0.5%",
+   "arms": [
+    "A",
+    "B",
+    "Sb"
+   ],
+   "block_set": "FS1block",
+   "block": "PR1",
+   "paths": [
+    "z3/test/miss_own_cv",
+    "z3/test/miss_own_fm"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.5
+   ],
+   "battery": [
+    0.0,
+    0.5
+   ],
+   "seeds": [
+    "A_s403",
+    "A_s404",
+    "A_s405",
+    "A_s406",
+    "A_s407",
+    "B_s403",
+    "B_s404",
+    "B_s405",
+    "B_s406",
+    "B_s407",
+    "Sb_s403",
+    "Sb_s404",
+    "Sb_s405",
+    "Sb_s406",
+    "Sb_s407"
+   ],
+   "n_values": 30,
+   "match": true
+  },
+  {
+   "cell": "1-A (AB1)",
+   "table_text": "A's control: delta-f fm61 +0.265 to +0.385",
+   "arms": [
+    "A"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "c2p/fm61/d_flag"
+   ],
+   "kind": "range",
+   "table": [
+    0.265,
+    0.385
+   ],
+   "battery": [
+    0.265,
+    0.385
+   ],
+   "seeds": [
+    "A_s408",
+    "A_s409",
+    "A_s410",
+    "A_s411",
+    "A_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "1-A (AB1)",
+   "table_text": "amsl112 +0.055 to +0.152",
+   "arms": [
+    "A"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "c2p/amsl112/d_flag"
+   ],
+   "kind": "range",
+   "table": [
+    0.055,
+    0.152
+   ],
+   "battery": [
+    0.055,
+    0.152
+   ],
+   "seeds": [
+    "A_s408",
+    "A_s409",
+    "A_s410",
+    "A_s411",
+    "A_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "1-Sb (AB1)",
+   "table_text": "Sb at most +0.045 at the trained size",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "c2p/fm61/d_flag"
+   ],
+   "kind": "max",
+   "table": [
+    null,
+    0.045
+   ],
+   "battery": [
+    null,
+    0.045
+   ],
+   "seeds": [
+    "Sb_s408",
+    "Sb_s409",
+    "Sb_s410",
+    "Sb_s411",
+    "Sb_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "1-Sb (AB1)",
+   "table_text": "at most +0.021 at 112.7 px",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "c2p/amsl112/d_flag"
+   ],
+   "kind": "max",
+   "table": [
+    null,
+    0.021
+   ],
+   "battery": [
+    null,
+    0.021
+   ],
+   "seeds": [
+    "Sb_s408",
+    "Sb_s409",
+    "Sb_s410",
+    "Sb_s411",
+    "Sb_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "2-B (AB1)",
+   "table_text": "delta-m_att between -0.00 and +0.07 SD at both sizes",
+   "arms": [
+    "B"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "c2p/fm61/d_mean_att_sd",
+    "c2p/amsl112/d_mean_att_sd"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.07
+   ],
+   "battery": [
+    -0.0,
+    0.07
+   ],
+   "seeds": [
+    "B_s408",
+    "B_s409",
+    "B_s410",
+    "B_s411",
+    "B_s412"
+   ],
+   "n_values": 10,
+   "match": true
+  },
+  {
+   "cell": "2-Sb (AB1)",
+   "table_text": "falsified again for Sb (delta-m_att -0.06 to +0.04 SD)",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "c2p/fm61/d_mean_att_sd",
+    "c2p/amsl112/d_mean_att_sd"
+   ],
+   "kind": "range",
+   "table": [
+    -0.06,
+    0.04
+   ],
+   "battery": [
+    -0.06,
+    0.04
+   ],
+   "seeds": [
+    "Sb_s408",
+    "Sb_s409",
+    "Sb_s410",
+    "Sb_s411",
+    "Sb_s412"
+   ],
+   "n_values": 10,
+   "match": true
+  },
+  {
+   "cell": "6-Sp (AB1)",
+   "table_text": "development warp-only placed 0.016-0.040",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "warp"
+   ],
+   "kind": "range",
+   "table": [
+    0.016,
+    0.04
+   ],
+   "battery": [
+    0.016,
+    0.04
+   ],
+   "seeds": [
+    "Sp_s408",
+    "Sp_s409",
+    "Sp_s410",
+    "Sp_s411",
+    "Sp_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "6-Sp (AB1)",
+   "table_text": "(Sb 0.000-0.022",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "warp"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.022
+   ],
+   "battery": [
+    0.0,
+    0.022
+   ],
+   "seeds": [
+    "Sb_s408",
+    "Sb_s409",
+    "Sb_s410",
+    "Sb_s411",
+    "Sb_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "6-Sp (AB1)",
+   "table_text": "A 0.000-0.005)",
+   "arms": [
+    "A"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "warp"
+   ],
+   "kind": "range",
+   "table": [
+    0.0,
+    0.005
+   ],
+   "battery": [
+    0.0,
+    0.005
+   ],
+   "seeds": [
+    "A_s408",
+    "A_s409",
+    "A_s410",
+    "A_s411",
+    "A_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "8-Sb (AB1)",
+   "table_text": "dev S3 placed Sb 0.36-0.41",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "S3"
+   ],
+   "kind": "range",
+   "table": [
+    0.36,
+    0.41
+   ],
+   "battery": [
+    0.36,
+    0.41
+   ],
+   "seeds": [
+    "Sb_s408",
+    "Sb_s409",
+    "Sb_s410",
+    "Sb_s411",
+    "Sb_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "8-Sp (AB1)",
+   "table_text": "Sp 0.70-0.74",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "S3"
+   ],
+   "kind": "range",
+   "table": [
+    0.7,
+    0.74
+   ],
+   "battery": [
+    0.7,
+    0.74
+   ],
+   "seeds": [
+    "Sp_s408",
+    "Sp_s409",
+    "Sp_s410",
+    "Sp_s411",
+    "Sp_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "9-Sp (AB1)",
+   "table_text": "Sp S0 placed 0.01-0.04",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "S0"
+   ],
+   "kind": "range",
+   "table": [
+    0.01,
+    0.04
+   ],
+   "battery": [
+    0.01,
+    0.04
+   ],
+   "seeds": [
+    "Sp_s408",
+    "Sp_s409",
+    "Sp_s410",
+    "Sp_s411",
+    "Sp_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "9-Sp (AB1)",
+   "table_text": "S0-vs-S4 AUC Sp 0.989-0.994",
+   "arms": [
+    "Sp"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "S0_vs_S4_auc"
+   ],
+   "kind": "range",
+   "table": [
+    0.989,
+    0.994
+   ],
+   "battery": [
+    0.989,
+    0.994
+   ],
+   "seeds": [
+    "Sp_s408",
+    "Sp_s409",
+    "Sp_s410",
+    "Sp_s411",
+    "Sp_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "9-Sp (AB1)",
+   "table_text": "Sb 0.989-0.992",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "S0_vs_S4_auc"
+   ],
+   "kind": "range",
+   "table": [
+    0.989,
+    0.992
+   ],
+   "battery": [
+    0.989,
+    0.992
+   ],
+   "seeds": [
+    "Sb_s408",
+    "Sb_s409",
+    "Sb_s410",
+    "Sb_s411",
+    "Sb_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  },
+  {
+   "cell": "18-Sb (AB1)",
+   "table_text": "Sb 0.873-0.906",
+   "arms": [
+    "Sb"
+   ],
+   "block_set": "AB1block",
+   "block": "AB1",
+   "paths": [
+    "lcomb_auc"
+   ],
+   "kind": "range",
+   "table": [
+    0.873,
+    0.906
+   ],
+   "battery": [
+    0.873,
+    0.906
+   ],
+   "seeds": [
+    "Sb_s408",
+    "Sb_s409",
+    "Sb_s410",
+    "Sb_s411",
+    "Sb_s412"
+   ],
+   "n_values": 5,
+   "match": true
+  }
+ ]
+}

@@ -8,7 +8,9 @@ Gate (before any battery row is scored): a pinned reference network, stored logi
 by the fit-job scorer (src/PN1/pn1_score.py: TF32 on, float32, batch 64, manifest order), is scored again by the battery's
 own loader and scorer on GATE_ROWS, which are 39 whole batches of the stored run (batch k for k = 0, 8, ..., 304 of the
 FS1 evaluation order, i.e. rows 64k .. 64k+63), so batch composition equals the stored run's. Criterion fixed in advance:
-byte identity, every one of the 2,496 float32 logits equal to the stored one (max |dlogit| = 0). The rows span the logit
+byte identity, every one of the 2,496 float32 logits equal to the stored one (max |dlogit| = 0): "byte-gated". Node
+rule (fixed before any GPU gate was read): otherwise max |dlogit| <= 1e-4 with 0 own-rule flips is "tolerance-gated",
+labelled and never pooled with byte-gated records; anything else fails. The rows span the logit
 range: camera photos at the floor, FFHQ genuine and morphs, splices (stored reference logits -3.6 to +3.5, about 370-500 of
 them between -2 and +2). A platform with no pinned reference is refused (the DGX GB10 among them: TT1 H-new-5)."""
 import json
@@ -20,6 +22,10 @@ import sys
 import time
 
 GATE_BATCH_EVERY, GATE_N_BATCHES, BS = 8, 39, 64
+TOL_MAX_ABS = 1e-4          # node rule (DESIGN.md section 1, step 3): tolerance-gated records are never pooled with byte-gated
+# inference settings that must equal the gate reference's for the gate to cover the scored network (review F3);
+# arch_extra is left out (it holds a job path)
+META_KEYS = ("arch", "res", "ft", "lora_r", "lora_targets", "lora_alpha", "lora_rs", "lora_train_norms")
 GATE_BATCHES = [8 * j for j in range(GATE_N_BATCHES)]          # 0 .. 304; all inside the 309 full FS1 batches
 
 # platform key -> pinned reference (network files inside its verified result tar; stored logits = scores_eval.npz)
@@ -107,10 +113,16 @@ def compare(new, stored_ids, stored_logits):
     a = np.array([v for _, v in new], np.float32)
     b = np.array([m[i] for i in ids], np.float32)
     d = np.abs(a.astype(np.float64) - b.astype(np.float64))
-    return dict(n=len(ids), n_differ=int((a != b).sum()), max_abs=float(d.max()), median_abs=float(np.median(d)),
-                own_rule_flips=int(((a > 0) != (b > 0)).sum()), stored_range=[float(b.min()), float(b.max())],
-                stored_between_m2_p2=int(((b > -2) & (b < 2)).sum()), byte_identical=bool((a == b).all()),
-                criterion="byte identity of all float32 logits (fixed in advance)")
+    byte = bool((a == b).all())
+    flips = int(((a > 0) != (b > 0)).sum())
+    mx = float(d.max())
+    cls = "byte-gated" if byte else ("tolerance-gated" if (mx <= TOL_MAX_ABS and flips == 0) else "failed")
+    return dict(n=len(ids), n_differ=int((a != b).sum()), max_abs=mx, median_abs=float(np.median(d)),
+                own_rule_flips=flips, stored_range=[float(b.min()), float(b.max())],
+                stored_between_m2_p2=int(((b > -2) & (b < 2)).sum()), byte_identical=byte, gate_class=cls,
+                passed=cls != "failed",
+                criterion=f"byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= {TOL_MAX_ABS} with 0 "
+                          "own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed")
 
 
 def dump(obj, p):

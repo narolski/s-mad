@@ -51,10 +51,14 @@ def load(name, netdir, code, device, hf_home=None):
         if got != want:
             raise RuntimeError(f"BATTERY: {code / rel} off its pin ({got[:16]} != {want[:16]})")
     prov["smadcvpr/archs_a12.py"] = sha(code / "smadcvpr" / "archs_a12.py") if (code / "smadcvpr" / "archs_a12.py").exists() else None
-    if hf_home and spec.get("base_weights"):
+    if spec.get("base_weights"):                      # mandatory (review F8): the base weights build_run_model reads
+        if not hf_home:
+            raise RuntimeError("BATTERY: --hf-home (or HF_HOME) is required: the base weights are checked against their pin")
         bw = pathlib.Path(hf_home) / spec["base_weights"]
-        prov["base_weights_sha256"] = sha(bw) if bw.exists() else "missing"
-        if bw.exists() and prov["base_weights_sha256"] != spec["base_weights_sha256"]:
+        if not bw.exists():
+            raise RuntimeError(f"BATTERY: base weights {bw} missing")
+        prov["base_weights_sha256"] = sha(bw)
+        if prov["base_weights_sha256"] != spec["base_weights_sha256"]:
             raise RuntimeError(f"BATTERY: base weights {bw} off their pin")
     d = str(code / "smadcvpr")
     if d not in sys.path:

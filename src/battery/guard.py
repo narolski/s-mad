@@ -17,7 +17,7 @@ import sys
 
 # whole tokens (path split at non-alphanumerics, lower case)
 DENY_TOKENS = {"frll", "frllm", "mad22", "mordiff", "dim", "fastdim", "greedydim", "h1", "fei", "webface", "fst",
-               "a12sp", "valx"}
+               "a12sp", "valx", "gtest"}
 # substrings anywhere in the lower-case path
 DENY_SUB = ("frll", "mad22", "mordiff", "casia-webface", "casia_webface", "casiawebface", "webface", "a12sp", "a12-sp",
             "a12_sp", "fast-dim", "fast_dim", "greedy-dim", "greedy_dim", "/dim_", "/dim-", "/dim/", "fst")
@@ -32,11 +32,8 @@ class DeniedPath(PermissionError):
     pass
 
 
-def reason(p):
-    """None if the path is allowed, else the rule that denies it."""
-    s = os.fspath(p).lower() if not isinstance(p, int) else ""
-    if not s:
-        return None
+def _reason_str(s):
+    """the rules on one lower-case path string (allow check included)."""
     if os.path.basename(s) in ALLOW_EXACT_NAMES:
         return None
     toks = [t for t in _TOK.split(s) if t]
@@ -50,6 +47,29 @@ def reason(p):
         for i in range(len(toks) - 1):
             if toks[i] == a and toks[i + 1] == b:
                 return f"token pair '{a} {b}'"
+    return None
+
+
+def reason(p):
+    """None if the path is allowed, else the rule that denies it. The path string AND its resolved real path (symlinks
+    followed) are both checked (pre-run review F5); realpath raises no "open" audit event, so the hook cannot recurse."""
+    if isinstance(p, int):
+        return None
+    s = os.fspath(p)
+    s = s.decode(errors="replace") if isinstance(s, bytes) else s
+    if not s:
+        return None
+    r = _reason_str(s.lower())
+    if r:
+        return r
+    try:
+        rp = os.path.realpath(s)
+    except (OSError, ValueError):
+        return None
+    if rp != s:
+        r = _reason_str(rp.lower())
+        if r:
+            return f"resolved {rp!r}: {r}"
     return None
 
 
@@ -68,16 +88,16 @@ def check_rows(rows, key="path", what="manifest row"):
     return rows
 
 
-_LIB = tuple({os.path.realpath(x) for x in (sys.prefix, sys.base_prefix, sys.exec_prefix)})
+_LIB = tuple(sorted({os.path.realpath(x).rstrip("/") + "/" for x in (sys.prefix, sys.base_prefix, sys.exec_prefix)}))
 
 
 def _is_library(p):
-    """files of the Python installation (interpreter, site-packages): library code, not data."""
+    """files under the Python installation roots (sys.prefix, base_prefix, exec_prefix) only: library code, not data."""
     try:
         rp = os.path.realpath(p)
     except (TypeError, ValueError):
         return False
-    return rp.startswith(_LIB) or "/site-packages/" in rp or "/dist-packages/" in rp
+    return rp.startswith(_LIB)
 
 
 def _hook(event, args):
@@ -115,6 +135,18 @@ def self_test():
              "eval/tt1ref/ar1_000000.png", "/mnt/t7/smad_next/AF0/cues/ar1.npz", "manifests/valx_a.csv",
              "/mnt/t7/smad_next/TT1/meds/meds_manifest.csv", "eval/gd/x.png", "feret:00002", "eval/tt1g/bgeo_g112_val.png",
              "/mnt/t7/smad_next/BD1/d_values.csv"]
+    deny += ["/d/smadcvpr/prep_gtest.py", "/d/gtest/x.png"]
     bad = [p for p in deny if reason(p) is None] + [p for p in allow if reason(p) is not None]
+    # symlink case: an innocent name pointing into a denied folder must be denied (review F5)
+    import tempfile
+    with tempfile.TemporaryDirectory(prefix="battery_guard_") as td:
+        link = os.path.join(td, "ok.png")
+        os.symlink("/x/FRLL/img.png", link)
+        if reason(link) is None:
+            bad.append("symlink ok.png -> /x/FRLL/img.png")
+        link2 = os.path.join(td, "valx_a.csv")
+        os.symlink("/x/manifests/valx.csv", link2)
+        if reason(link2) is None:
+            bad.append("symlink valx_a.csv -> valx.csv")
     assert not bad, f"deny-list self-test failed on {bad}"
-    return dict(denied=len(deny), allowed=len(allow))
+    return dict(denied=len(deny) + 2, allowed=len(allow))

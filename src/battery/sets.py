@@ -41,9 +41,29 @@ def sha(p):
     return _s(p)
 
 
-def load(name, roots):
-    """-> (rows with an absolute 'abspath', manifest path, sha256). Refuses a manifest off its pin, any denied path, any
-    missing image."""
+SUMS = ("SHA256SUMS", "AB1SUMS")
+
+
+def pack_sums(roots):
+    """{normalised absolute path: sha256} from the pack checksum files beside each data root (<root>/../SHA256SUMS,
+    AB1SUMS), and {sums file: its sha256}."""
+    m, files = {}, {}
+    for r in roots:
+        base = pathlib.Path(r).parent
+        for n in SUMS:
+            f = base / n
+            if f.exists():
+                files[str(f)] = sha(f)
+                for line in open(f):
+                    h, rel = line.rstrip("\n").split(None, 1)
+                    m[os.path.normpath(str(base / rel.strip()))] = h
+    return m, files
+
+
+def load(name, roots, verify=True):
+    """-> (rows with an absolute 'abspath', manifest path, sha256, verification record). Refuses a manifest off its pin,
+    any denied path, any missing image, and (verify=True, review F8) any image that is not listed in its pack's checksum
+    file or whose sha256 differs from it."""
     spec = SETS[name]
     roots = [pathlib.Path(r) for r in roots]
     man = None
@@ -73,4 +93,18 @@ def load(name, roots):
             missing.append(r["path"])
     if missing:
         raise FileNotFoundError(f"BATTERY: {len(missing)} images of set {name} missing (first {missing[:3]})")
-    return rows, str(man), got
+    ver = dict(verified=False)
+    if verify:
+        m, files = pack_sums(roots)
+        bad, unlisted = [], []
+        for r in rows:
+            k = os.path.normpath(r["abspath"])
+            if k not in m:
+                unlisted.append(r["path"])
+            elif sha(r["abspath"]) != m[k]:
+                bad.append(r["path"])
+        if unlisted or bad:
+            raise RuntimeError(f"BATTERY: set {name}: {len(unlisted)} images not in the pack checksum files, {len(bad)} off "
+                               f"their checksum (first {(unlisted + bad)[:3]})")
+        ver = dict(verified=True, n=len(rows), sums_files=files)
+    return rows, str(man), got, ver

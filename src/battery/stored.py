@@ -25,7 +25,10 @@ SRC_AB1 = "AB1 fit job (pn1_score.py, TF32 on), WCSS NVIDIA H100, torch 2.11.0+c
 def write(out, arm, seed, block_name, blocks, sources):
     d = pathlib.Path(out) / f"{arm}_s{seed}_{block_name}"
     d.mkdir(parents=True, exist_ok=True)
-    rec = dict(battery_version=VERSION, arm=arm, seed=seed, source="stored", block_set=block_name, sources=sources,
+    from .run import code_hash
+    files, ch = code_hash()
+    rec = dict(battery_version=VERSION, battery_code=files, battery_code_sha256=ch, arm=arm, seed=seed, source="stored",
+               block_set=block_name, sources=sources,
                created=time.strftime("%Y-%m-%d %H:%M:%S %Z"), platform=dict(key="stored: " + "; ".join(sorted(set(sources.values())))),
                gate=dict(stored_logits=True, note="logits of the registered run; no battery scoring, no battery gate"),
                sets={}, blocks=blocks, rows=rows.extract(blocks), reader_files=legacy.loaded_files())
