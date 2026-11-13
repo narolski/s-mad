@@ -605,3 +605,24 @@ latest 15 Nov 18:00; rows arriving later are labelled late". This replaces, for 
   five-seed rules if all six 406/407 fits are fetched and verified at the freeze, else three-seed rules; tars arriving
   after the freeze are labelled late and never read. `src/BB2/freeze_mode_L.py` cut-off changed accordingly (sha256 c993e12adad7e25f01afd0ff5e3995f491495d8e44acb808ee5c02044fb7965b).
 Nothing else changes: the BB2 part-1 reading (frozen at 546d892, read 15:36) is untouched; the queue order stays as set.
+
+## Amendment 7: wave 2 of the DINOv3 programme, merged rescoring job (DRAFT for its pre-run check; lead's go 13 Nov 20:00; `date` at writing: Fri Nov 13 06:45:54 PM CET 2026; no E3 tar exists)
+
+- **Job** `src/BB2/wcss/bb2l_w2.sbatch`: one WCSS H100 job, submitted with `--dependency=afterany:6313860` (E3's
+  array); every E3 tar present with a matching .sha256 at its start is rescored (unchanged rescore.py via
+  rescore_tf32.py, TF32 on; GPU asserted, precision logged) on: (a) af0 + ffhq gate rows and the MS1 FFHQ hold-out
+  (MS1 pack c11b16bc…), (b) PR1's GAN and diffusion families gd0, gd1, gd2 (pr1_gd.tar 40aa95d2…), (c) TT1's
+  unseen-source pools fam tt1 incl. border and geometry references (tt1_pack.tar 2109f742…), (d) NIST MEDS fam meds
+  (tt1m_meds.tar 3fb917b2…; aggregate reads only; no MEDS image or identifier in any artifact beyond the pack's own
+  row ids inside the job's score files, which stay on /mnt/t7 and WCSS and are never committed). Code: the MS1 pack's
+  tree (archs_a12.py asserted at bedfeb86 before the overlay) with the BB2 overlay. Output results/BB2L/BB2LW2.tar.
+  Time limit 4:00 (estimate about 0.5-1 h for 15 networks x 51,000 images; the lead's earlier 4.5 h estimate bounds it).
+- **Platform gate:** per network, the af0 + ffhq rows against the network's own in-fit logits, C2P.2's thresholds; a
+  gate-failed network's W2 scores are not read.
+- **Reads (each with its own reader, committed before the read, which happens only after E3's seed mode is frozen):**
+  C2P (contrast 2-prime, H-new-1) with C2P's rules (five-seed) or BB2's three-seed rules by the frozen mode; PR1 GD reads
+  with PR1's registered rules; TT1 TT-H1/TT-H3/TT-H4 and TT-M1 with TT1's registered rules; each printed beside CLIP's
+  values at the same seeds. Zero-GPU reads (PR1 Z1-Z6 and BD1 from E3's in-fit scores) likewise.
+- **Smoke:** the job on one BB2 part-1 network (`BB2_W2_TARS=<BB2_Sb_s403.tar>`, results/BB2_smoke, output
+  BB2LW2smoke); checks only completeness, finiteness, gate and probe; its scores are never read as results.
+- Read deadline (amendment 6): once all of the batch has ended, latest 15 Nov 2026 18:00 CET.
