@@ -126,3 +126,11 @@ Clopper-Pearson; TF32-split print; no rule). Disclosure: written after the Sp re
 (`TT1_pn1fs_sp.tar`, gate 3 of 3 passed, byte identity) had been fetched and verified, but before any Sp TT1 score was
 opened (the registration said "before any Sp TT1 score exists"; the job finished earlier than planned). Mock-tested on
 random scores only. FS1 Sb 403-405 reference values are copied from `tt1_read_fs.json`.
+
+## Reader pin, Part 2 (`date`: Fri Nov 13 11:27:35 AM CET 2026; MS1's registered read is committed and reviewed (lead, 11:08); before any MS1 score is read by TT1)
+
+`src/TT1/tt1_read_ms1.py` 142c8c4ff5b0988535a805ff9609ade3168653931cac79af32ccfba854deb5de, mock-tested on random scores (`tt1_read_ms1_mock.json`). Ids of one tt1ref file were
+checked against tt1_score.csv beforehand (6,170 of 6,170 matched; ids only). Networks: MS1 Sb, SbM3, SbV at seeds
+403-407 (15). Implements the amendment's source rules (in-pack TF32-on R_cam / R_ffhq / M_ffhq / U; tt1ref TF32-off
+references; R3(e), R3(f) and geometry flags on tt1ref R_cam; mixed reads labelled; SbM3 FFHQ reads labelled trained
+source; U pools restricted to aligned frames, U_p unchanged; bootstrap over the restricted pools). Printed only.
