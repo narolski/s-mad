@@ -286,3 +286,48 @@ Section 11 states that the Sp 403-405 read did not exist at the registration com
 instruction the AB1 owner performed it afterwards, at 10:08, under its own earlier registration (PN1 "Registration Sp",
 1b8fe48; reader sp_read.py 3ff01108…), on A100 PCIe networks; result in PN1 `result.md`. H-ab4 of AB1 (the same
 predictions at seeds 408-412 on H100) is unchanged; its rules were fixed before that read.
+
+## Amendment 2 (`date`: Fri Nov 13 10:40 CET 2026; before any AB1 tar exists or is read; lead's instruction after the results review of the Sp 403-405 read, `experiments/PN1_protocol-network-first-tests/REVIEW_PN1_SP_20261113.md`)
+
+**Disclosure.** All directions below were **set after seeing seeds 403-405** of Sp, Sb and B (A100 PCIe, PN1 result.md
+"Ablation arm without matched splice negatives (Sp), seeds 403-405"). Seeds 408-412 on WCSS H100 are new networks on
+another platform; these are confirmatory tests of those directions on them. Arms, fits and every earlier rule are
+unchanged.
+
+Seed counting as section 5 (Sp and Sb at the same seed both read; n = 5: 4 of 5; n = 4: 4 of 4; n ≤ 3: "not read
+(too few seeds)"). For each test: **supported** if the direction holds on ≥ 4 of 5 seeds (4 of 4 when n = 4);
+**falsified** if it holds on ≤ 1 seed (≤ 1 of 4 when n = 4, as R2 contrast 1); otherwise "inconclusive, no claim".
+Development data only, labelled post hoc in origin. Four post hoc tests plus H-ab4, no multiplicity correction. The two
+tests without a margin (H-sp2, H-sp3b) reach "supported", and equally "falsified", with probability 6/32 = 0.19 under a
+coin-flip null: weak evidence; the margin tests (H-sp1, H-sp3) are stricter. Per-seed Sp − Sb values are printed for
+all four, with Sp − Sb native FFHQ and camera-photo flag rates beside H-sp1 and H-sp3.
+
+- **H-sp1 (cost of fitting same-person against two-person splices).** Sp − Sb landmark_combined AUC ≥ +0.03.
+  Supported: removing the matched splice negatives buys landmark_combined detection on new seeds; the Sb recipe trades
+  detection for the matched-negative constraint, and that trade is reported (development landmark_combined only; Sp's
+  native-genuine flag rate is printed beside it). Falsified: a gain of +0.03 did not recur at 408-412 (H100); the
+  403-405 gains are not confirmed (seed noise and platform cannot be separated).
+- **H-sp2 (matched splice negatives and the storage reaction).** Sp's C2P Δf at amsl112 (112.7 px, FFHQ hold-out) above
+  Sb's (strictly greater). "Uninformative" if A's C2P control at amsl112 is met on ≤ 3 seeds. Supported: Sb's Δf at
+  amsl112 is below Sp's on ≥ 4 of 5 seeds (direction only, no size claimed), consistent with the S0 + S3 negatives
+  together reducing the storage reaction at an untrained size. Falsified: no reduction by the S0 + S3 negatives was
+  detected at amsl112.
+- **H-sp3 (same-person splices).** Sp's development S3 placement ≥ Sb's + 0.20. **H-sp3b, threshold-free companion (the
+  review's qualification):** Sp's development S3-vs-S4 AUC below Sb's (S4 100 against S3 100). Supported (both): Sb's
+  lower S3 flagging is more than a threshold shift; the matched negatives change how same-person splices are ranked
+  against two-person splices. H-sp3 supported with H-sp3b falsified: the difference is mainly operating point (Sp also
+  flags more genuine photos). H-sp3b supported with H-sp3 not supported: ranking changes without a 0.20 flag rise;
+  reported as is. H-sp3b inconclusive: undetermined. H-sp3 falsified: no S3 rise of 0.20 on new seeds. The H-sp3b
+  statistic was first computed by the results reviewer on 403-405. Margins on 100-image pools are compared as integer
+  counts (inclusive, as section 5 requires). Part of any S3 rise is built
+  in (Sp never sees S3 negatives); S0 and S3 were removed together, so no S0-against-S3 attribution is possible.
+- **H-ab4 is unchanged.** The review's note is recorded: it is expected to be falsified for floor and ceiling reasons
+  (S0 at the floor in every arm including B, S0-vs-S4 AUC near the ceiling, a 3-statistic floor at 0.90 on these hosts);
+  if so, it says only that Sp did not learn an S0-type seam cue.
+- Not registered (need the author): arms separating seam-only (S0) from same-person (S3) negatives.
+- Reader: `src/AB1/ab1_read.py` adds `S3_vs_S4_auc` per network and the four rules (`H_sp1_lcomb`,
+  `H_sp2_storage_amsl112`, `H_sp3_S3_flags`, `H_sp3b_S3_vs_S4_auc`); sha256 in `pins.sha256` at this commit; mock-tested.
+- Pre-run check: `PRERUN_AB1_AMEND2_20261113.md` beside this file (GO WITH FIXES; F1-F6 applied).
+- Correction to the reader's H-ab4 code, not to its rule (check F1): prediction 1 (S0 counts) and prediction 2 (AUC in
+  exact half-pair units) are now compared as integers, so the registered margins are inclusive at full precision as
+  section 5 states; with float sums an exact +0.10 or −0.05 could have been missed. The H-ab4 text is unchanged.

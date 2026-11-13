@@ -200,6 +200,7 @@ def main():
                 lcomb_minus_floor_lo=float(np.percentile(sd - fdraw, 2.5)),
                 S3=share(x, P["S3"]), S0=share(x, P["S0"]),
                 S0_vs_S4_auc=C2.fauc([x[i] for i in P["S4"]], [x[i] for i in P["S0"]]),
+                S3_vs_S4_auc=C2.fauc([x[i] for i in P["S4"]], [x[i] for i in P["S3"]]),
                 warp=share(x, P["warp"]), warp_R2w=share(x, P["R2w"]), warp_R2w4=share(x, P["R2w4"]), warp_zero=share(x, P["zero"]),
                 halves=share(x, P["halves"]), camera=share(x, P["camera"]),
                 soft=share(x, P["soft"]), soft61=share(x, P["soft61"]), soft112=share(x, P["soft112"]),
@@ -314,10 +315,39 @@ def main():
     for s in SEEDS:
         if ok(("Sp", s), ("Sb", s)):
             sp, sb = nets[("Sp", s)], nets[("Sb", s)]
-            p[s] = dict(pred1=bool(sp["S0"] >= max(2 * sb["S0"], sb["S0"] + 0.10)),
-                        pred2=bool(sp["S0_vs_S4_auc"] <= sb["S0_vs_S4_auc"] - 0.05), S3_rise=sp["S3"] - sb["S3"])
+            k_sp, k_sb = round(100 * sp["S0"]), round(100 * sb["S0"])  # counts of 100: inclusive margin (amendment 2 check F1)
+            p[s] = dict(pred1=bool(k_sp >= max(2 * k_sb, k_sb + 10)),
+                        pred2=bool(round(20000 * sp["S0_vs_S4_auc"]) <= round(20000 * sb["S0_vs_S4_auc"]) - 1000),  # half-pair units
+                        S3_rise=sp["S3"] - sb["S3"])
     V["H_ab4"] = dict(per_seed=p, verdict=verdict(sum(v["pred1"] and v["pred2"] for v in p.values()),
                                                    sum((not v["pred1"]) and (not v["pred2"]) for v in p.values()), len(p)))
+    # amendment 2 (13 Nov, set after seeing Sp seeds 403-405): confirmatory directions for Sp against Sb at 408-412
+    def dir_rule(test, value=None):
+        per = {s: bool(test(nets[("Sp", s)], nets[("Sb", s)])) for s in SEEDS if ok(("Sp", s), ("Sb", s))}
+        vals = {s: value(nets[("Sp", s)], nets[("Sb", s)]) for s in per} if value else {}
+        n, k = len(per), sum(per.values())
+        if n <= 3:
+            v = "not read (too few seeds)"
+        elif (n == 5 and k >= 4) or (n == 4 and k == 4):
+            v = "supported"
+        elif k <= 1:
+            v = "falsified"
+        else:
+            v = "inconclusive, no claim"
+        return dict(per_seed=per, sp_minus_sb=vals, n=n, k=k, verdict=v)
+    flagdiff = lambda sp, sb: dict(ffhq_native_photo_flag=sp["ffhq_native_photo_flag"] - sb["ffhq_native_photo_flag"],
+                                   camera=sp["camera"] - sb["camera"])
+    V["H_sp1_lcomb"] = dir_rule(lambda sp, sb: sp["lcomb_auc"] - sb["lcomb_auc"] >= 0.03,
+                                lambda sp, sb: dict(lcomb=sp["lcomb_auc"] - sb["lcomb_auc"], **flagdiff(sp, sb)))
+    V["H_sp2_storage_amsl112"] = dir_rule(lambda sp, sb: sp["c2p"]["amsl112"]["d_flag"] > sb["c2p"]["amsl112"]["d_flag"],
+                                          lambda sp, sb: sp["c2p"]["amsl112"]["d_flag"] - sb["c2p"]["amsl112"]["d_flag"])
+    if sum(ctrl["amsl112"].values()) <= 3:                      # amendment 2 check F2: no storage reaction to reduce
+        V["H_sp2_storage_amsl112"]["verdict"] = "uninformative"
+    # amendment 2 check F1: integer counts (each S3 pool is exactly 100 images), inclusive margin
+    V["H_sp3_S3_flags"] = dir_rule(lambda sp, sb: round(100 * sp["S3"]) - round(100 * sb["S3"]) >= 20,
+                                   lambda sp, sb: dict(S3=sp["S3"] - sb["S3"], **flagdiff(sp, sb)))
+    V["H_sp3b_S3_vs_S4_auc"] = dir_rule(lambda sp, sb: sp["S3_vs_S4_auc"] < sb["S3_vs_S4_auc"],
+                                        lambda sp, sb: sp["S3_vs_S4_auc"] - sb["S3_vs_S4_auc"])
     # attribution table (secondary)
     reads = dict(c2p_fm61=lambda t: t["c2p"]["fm61"]["d_flag"], c2p_amsl112=lambda t: t["c2p"]["amsl112"]["d_flag"],
                  warp=lambda t: t["warp"], dsoft=lambda t: t["dsoft"], S3=lambda t: t["S3"], S0=lambda t: t["S0"])

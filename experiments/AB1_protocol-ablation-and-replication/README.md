@@ -32,7 +32,7 @@ splice)? No answer yet. No arm is a method candidate.
 - 09:15 pre-run review GO WITH FIXES (`PRERUN_AB1_20261113.md`, saved by the owner; the reviewer could not write).
   Fixes: SbH rebuilt keeping af0_half61 (overlay v2 171fdb21…, SbH b8e17cd2…, 3,831 unique, 7,200 rows); reader seed
   counting, seed-mean decider, provenance checks, training-row flags; pins hard-coded in the job files; disclosures.
-  Mock reads: full (`ab1_read_mock.json`) and with two Sb seeds missing (`ab1_read_mock_drop2.json`, gives "not read").
+  Mock reads: full (`ab1_read_mock.json`) and with two Sb seeds missing (`ab1_read_mock_drop2.json`, gives "not read"; later replaced, see 10:40).
   The first vectorised-AUC edit of the reader was lost because a `pkill -f` matched its own shell; the reader keeps
   c2p_read's AUC (a mock read takes about 2 min).
 - 09:15 lead's decision (via dispatcher): SE1 moves to rented A100 PCIe machines; AB1 fits its own A and Sb on WCSS
@@ -55,6 +55,13 @@ splice)? No answer yet. No arm is a method candidate.
   comes from its one scores_eval.npz, so no C2P statistic mixes scores from two jobs or platforms.
 - 09:38 dispatcher: SE1's rented A100 fits started 09:35 and its WCSS jobs were cancelled; AB1's A and Sb are its own
   (array 6310270, WCSS H100), as registered. AB1's smoke 6310091 and array 6310270 are first in our WCSS order.
+- 10:08 on the lead's instruction, read the PN1 Sp arm at 403-405 once under its own registration (verdict falsified;
+  PN1 result.md, review REVIEW_PN1_SP_20261113.md applied); dated note in this prereg.
+- 10:40-10:55 amendment 2 (lead's instruction): H-sp1, H-sp2, H-sp3 (+ threshold-free H-sp3b) for Sp against Sb at
+  408-412, disclosed as set after seeing 403-405; pre-run check GO WITH FIXES (PRERUN_AB1_AMEND2_20261113.md), fixes
+  applied; H-ab4 code compares counts (inclusive margins), text unchanged. Reader fb990bb5…; mocks: full
+  (ab1_read_mock.json) and one Sb seed missing (ab1_read_mock_drop1.json, n = 4 path); the older drop-two mock, which
+  predated amendment 2, was replaced.
 
 ## 3. Data
 

@@ -2,8 +2,7 @@
  "mock": true,
  "branch": null,
  "mock_drop": [
-  "Sb_s408",
-  "Sb_s409"
+  "Sb_s408"
  ],
  "floor_best_auc": 0.8855815,
  "baseline27_s_lad": 0.814,
@@ -18,6 +17,7 @@
    "S3": 0.12,
    "S0": 0.08,
    "S0_vs_S4_auc": 0.9139,
+   "S3_vs_S4_auc": 0.9082,
    "warp": 0.1078167115902965,
    "warp_R2w": 0.12,
    "warp_R2w4": 0.1,
@@ -80,6 +80,7 @@
    "S3": 0.08,
    "S0": 0.12,
    "S0_vs_S4_auc": 0.8621,
+   "S3_vs_S4_auc": 0.8932,
    "warp": 0.0862533692722372,
    "warp_R2w": 0.1,
    "warp_R2w4": 0.09,
@@ -142,6 +143,7 @@
    "S3": 0.09,
    "S0": 0.08,
    "S0_vs_S4_auc": 0.9258,
+   "S3_vs_S4_auc": 0.9269,
    "warp": 0.07816711590296496,
    "warp_R2w": 0.11,
    "warp_R2w4": 0.05,
@@ -204,6 +206,7 @@
    "S3": 0.11,
    "S0": 0.09,
    "S0_vs_S4_auc": 0.925,
+   "S3_vs_S4_auc": 0.9126,
    "warp": 0.07816711590296496,
    "warp_R2w": 0.09,
    "warp_R2w4": 0.07,
@@ -266,6 +269,7 @@
    "S3": 0.08,
    "S0": 0.08,
    "S0_vs_S4_auc": 0.9401,
+   "S3_vs_S4_auc": 0.9271,
    "warp": 0.12129380053908356,
    "warp_R2w": 0.07,
    "warp_R2w4": 0.11,
@@ -318,6 +322,69 @@
     }
    }
   },
+  "Sb_s409": {
+   "lcomb_auc": 0.9186535,
+   "lcomb_ci": [
+    0.9086292125000001,
+    0.9280068375
+   ],
+   "lcomb_minus_floor_lo": 0.01637816250000003,
+   "S3": 0.11,
+   "S0": 0.09,
+   "S0_vs_S4_auc": 0.907,
+   "S3_vs_S4_auc": 0.9091,
+   "warp": 0.08086253369272237,
+   "warp_R2w": 0.09,
+   "warp_R2w4": 0.08,
+   "warp_zero": 0.07602339181286549,
+   "halves": 0.10327868852459017,
+   "camera": 0.06637168141592921,
+   "soft": 0.06637168141592921,
+   "soft61": 0.048672566371681415,
+   "soft112": 0.084070796460177,
+   "ffhq_native_photo_flag": 0.08666666666666667,
+   "dsoft": 0.0,
+   "c2p": {
+    "native_flag": 0.08666666666666667,
+    "sd_native": 1.5337927153977784,
+    "miss_native": 0.20666666666666667,
+    "auc_native_u50_vs_photo": 0.9314,
+    "fm61": {
+     "n_pairs": 291,
+     "d_flag": -0.027491408934707903,
+     "d_flag_ci": [
+      -0.06872852233676977,
+      0.013745704467353959
+     ],
+     "d_flag_upper95": 0.013745704467353959,
+     "d_mean_sd": -0.0003501879128545923,
+     "up": 16,
+     "down": 24,
+     "n_morph_pairs": 150,
+     "d_mean_att_sd": -0.20332828551298537,
+     "miss_stored": 0.30666666666666664,
+     "miss_native_paired": 0.20666666666666667,
+     "auc_stored_u50_vs_stored_photo": 0.9062084765177548
+    },
+    "amsl112": {
+     "n_pairs": 290,
+     "d_flag": 0.020689655172413793,
+     "d_flag_ci": [
+      -0.024137931034482765,
+      0.06896551724137932
+     ],
+     "d_flag_upper95": 0.06896551724137932,
+     "d_mean_sd": 0.05129956374187827,
+     "up": 29,
+     "down": 23,
+     "n_morph_pairs": 149,
+     "d_mean_att_sd": -0.05836127119879355,
+     "miss_stored": 0.2550335570469799,
+     "miss_native_paired": 0.2080536912751678,
+     "auc_stored_u50_vs_stored_photo": 0.908562832677621
+    }
+   }
+  },
   "Sb_s410": {
    "lcomb_auc": 0.918868,
    "lcomb_ci": [
@@ -328,6 +395,7 @@
    "S3": 0.13,
    "S0": 0.09,
    "S0_vs_S4_auc": 0.9347,
+   "S3_vs_S4_auc": 0.9196,
    "warp": 0.11859838274932614,
    "warp_R2w": 0.13,
    "warp_R2w4": 0.15,
@@ -390,6 +458,7 @@
    "S3": 0.05,
    "S0": 0.1,
    "S0_vs_S4_auc": 0.9074,
+   "S3_vs_S4_auc": 0.9459,
    "warp": 0.08355795148247978,
    "warp_R2w": 0.07,
    "warp_R2w4": 0.06,
@@ -452,6 +521,7 @@
    "S3": 0.09,
    "S0": 0.04,
    "S0_vs_S4_auc": 0.9495,
+   "S3_vs_S4_auc": 0.925,
    "warp": 0.09973045822102426,
    "warp_R2w": 0.09,
    "warp_R2w4": 0.08,
@@ -514,6 +584,7 @@
    "S3": 0.11,
    "S0": 0.08,
    "S0_vs_S4_auc": 0.9207,
+   "S3_vs_S4_auc": 0.9243,
    "warp": 0.09973045822102426,
    "warp_R2w": 0.08,
    "warp_R2w4": 0.13,
@@ -576,6 +647,7 @@
    "S3": 0.13,
    "S0": 0.07,
    "S0_vs_S4_auc": 0.9332,
+   "S3_vs_S4_auc": 0.8918,
    "warp": 0.09164420485175202,
    "warp_R2w": 0.1,
    "warp_R2w4": 0.07,
@@ -638,6 +710,7 @@
    "S3": 0.09,
    "S0": 0.07,
    "S0_vs_S4_auc": 0.8923,
+   "S3_vs_S4_auc": 0.8966,
    "warp": 0.09703504043126684,
    "warp_R2w": 0.09,
    "warp_R2w4": 0.11,
@@ -700,6 +773,7 @@
    "S3": 0.05,
    "S0": 0.15,
    "S0_vs_S4_auc": 0.8796,
+   "S3_vs_S4_auc": 0.9175,
    "warp": 0.07547169811320754,
    "warp_R2w": 0.06,
    "warp_R2w4": 0.08,
@@ -762,6 +836,7 @@
    "S3": 0.18,
    "S0": 0.08,
    "S0_vs_S4_auc": 0.9418,
+   "S3_vs_S4_auc": 0.9043,
    "warp": 0.08086253369272237,
    "warp_R2w": 0.09,
    "warp_R2w4": 0.04,
@@ -824,6 +899,7 @@
    "S3": 0.09,
    "S0": 0.11,
    "S0_vs_S4_auc": 0.9333,
+   "S3_vs_S4_auc": 0.9271,
    "warp": 0.08355795148247978,
    "warp_R2w": 0.07,
    "warp_R2w4": 0.09,
@@ -886,6 +962,7 @@
    "S3": 0.03,
    "S0": 0.08,
    "S0_vs_S4_auc": 0.9282,
+   "S3_vs_S4_auc": 0.947,
    "warp": 0.08355795148247978,
    "warp_R2w": 0.08,
    "warp_R2w4": 0.13,
@@ -948,6 +1025,7 @@
    "S3": 0.11,
    "S0": 0.12,
    "S0_vs_S4_auc": 0.9264,
+   "S3_vs_S4_auc": 0.9232,
    "warp": 0.10242587601078167,
    "warp_R2w": 0.1,
    "warp_R2w4": 0.13,
@@ -1010,6 +1088,7 @@
    "S3": 0.06,
    "S0": 0.14,
    "S0_vs_S4_auc": 0.8718,
+   "S3_vs_S4_auc": 0.9122,
    "warp": 0.0673854447439353,
    "warp_R2w": 0.06,
    "warp_R2w4": 0.1,
@@ -1072,6 +1151,7 @@
    "S3": 0.11,
    "S0": 0.06,
    "S0_vs_S4_auc": 0.9275,
+   "S3_vs_S4_auc": 0.9073,
    "warp": 0.1105121293800539,
    "warp_R2w": 0.12,
    "warp_R2w4": 0.13,
@@ -1134,6 +1214,7 @@
    "S3": 0.11,
    "S0": 0.08,
    "S0_vs_S4_auc": 0.9278,
+   "S3_vs_S4_auc": 0.9231,
    "warp": 0.09433962264150944,
    "warp_R2w": 0.1,
    "warp_R2w4": 0.11,
@@ -1196,6 +1277,7 @@
    "S3": 0.09,
    "S0": 0.1,
    "S0_vs_S4_auc": 0.9312,
+   "S3_vs_S4_auc": 0.9244,
    "warp": 0.08355795148247978,
    "warp_R2w": 0.1,
    "warp_R2w4": 0.06,
@@ -1258,6 +1340,7 @@
    "S3": 0.09,
    "S0": 0.11,
    "S0_vs_S4_auc": 0.9266,
+   "S3_vs_S4_auc": 0.9338,
    "warp": 0.0889487870619946,
    "warp_R2w": 0.11,
    "warp_R2w4": 0.08,
@@ -1320,6 +1403,7 @@
    "S3": 0.1,
    "S0": 0.11,
    "S0_vs_S4_auc": 0.9262,
+   "S3_vs_S4_auc": 0.9246,
    "warp": 0.09164420485175202,
    "warp_R2w": 0.07,
    "warp_R2w4": 0.09,
@@ -1382,6 +1466,7 @@
    "S3": 0.08,
    "S0": 0.11,
    "S0_vs_S4_auc": 0.9157,
+   "S3_vs_S4_auc": 0.922,
    "warp": 0.09164420485175202,
    "warp_R2w": 0.09,
    "warp_R2w4": 0.09,
@@ -1444,6 +1529,7 @@
    "S3": 0.12,
    "S0": 0.1,
    "S0_vs_S4_auc": 0.895,
+   "S3_vs_S4_auc": 0.9033,
    "warp": 0.09433962264150944,
    "warp_R2w": 0.1,
    "warp_R2w4": 0.1,
@@ -1506,6 +1592,7 @@
    "S3": 0.05,
    "S0": 0.13,
    "S0_vs_S4_auc": 0.9321,
+   "S3_vs_S4_auc": 0.9471,
    "warp": 0.09973045822102426,
    "warp_R2w": 0.11,
    "warp_R2w4": 0.08,
@@ -1568,6 +1655,7 @@
    "S3": 0.08,
    "S0": 0.06,
    "S0_vs_S4_auc": 0.9084,
+   "S3_vs_S4_auc": 0.9116,
    "warp": 0.09433962264150944,
    "warp_R2w": 0.09,
    "warp_R2w4": 0.1,
@@ -1630,6 +1718,7 @@
    "S3": 0.04,
    "S0": 0.12,
    "S0_vs_S4_auc": 0.9239,
+   "S3_vs_S4_auc": 0.9594,
    "warp": 0.10242587601078167,
    "warp_R2w": 0.08,
    "warp_R2w4": 0.11,
@@ -1692,6 +1781,7 @@
    "S3": 0.08,
    "S0": 0.07,
    "S0_vs_S4_auc": 0.9326,
+   "S3_vs_S4_auc": 0.9248,
    "warp": 0.08355795148247978,
    "warp_R2w": 0.13,
    "warp_R2w4": 0.05,
@@ -1754,6 +1844,7 @@
    "S3": 0.08,
    "S0": 0.11,
    "S0_vs_S4_auc": 0.9068,
+   "S3_vs_S4_auc": 0.916,
    "warp": 0.0673854447439353,
    "warp_R2w": 0.03,
    "warp_R2w4": 0.08,
@@ -1816,6 +1907,7 @@
    "S3": 0.08,
    "S0": 0.12,
    "S0_vs_S4_auc": 0.8933,
+   "S3_vs_S4_auc": 0.9199,
    "warp": 0.07008086253369272,
    "warp_R2w": 0.08,
    "warp_R2w4": 0.05,
@@ -1878,6 +1970,7 @@
    "S3": 0.08,
    "S0": 0.1,
    "S0_vs_S4_auc": 0.9211,
+   "S3_vs_S4_auc": 0.9433,
    "warp": 0.07816711590296496,
    "warp_R2w": 0.08,
    "warp_R2w4": 0.09,
@@ -1940,6 +2033,7 @@
    "S3": 0.09,
    "S0": 0.09,
    "S0_vs_S4_auc": 0.886,
+   "S3_vs_S4_auc": 0.8908,
    "warp": 0.08086253369272237,
    "warp_R2w": 0.05,
    "warp_R2w4": 0.11,
@@ -2002,6 +2096,7 @@
    "S3": 0.09,
    "S0": 0.04,
    "S0_vs_S4_auc": 0.9397,
+   "S3_vs_S4_auc": 0.9381,
    "warp": 0.1078167115902965,
    "warp_R2w": 0.13,
    "warp_R2w4": 0.11,
@@ -2064,6 +2159,7 @@
    "S3": 0.07,
    "S0": 0.09,
    "S0_vs_S4_auc": 0.9312,
+   "S3_vs_S4_auc": 0.9345,
    "warp": 0.1078167115902965,
    "warp_R2w": 0.13,
    "warp_R2w4": 0.12,
@@ -2126,6 +2222,7 @@
    "S3": 0.1,
    "S0": 0.14,
    "S0_vs_S4_auc": 0.9242,
+   "S3_vs_S4_auc": 0.9186,
    "warp": 0.1105121293800539,
    "warp_R2w": 0.12,
    "warp_R2w4": 0.09,
@@ -2188,6 +2285,7 @@
    "S3": 0.09,
    "S0": 0.08,
    "S0_vs_S4_auc": 0.9316,
+   "S3_vs_S4_auc": 0.9381,
    "warp": 0.10512129380053908,
    "warp_R2w": 0.07,
    "warp_R2w4": 0.15,
@@ -2250,6 +2348,7 @@
    "S3": 0.09,
    "S0": 0.13,
    "S0_vs_S4_auc": 0.887,
+   "S3_vs_S4_auc": 0.9199,
    "warp": 0.0646900269541779,
    "warp_R2w": 0.07,
    "warp_R2w4": 0.06,
@@ -2312,6 +2411,7 @@
    "S3": 0.07,
    "S0": 0.11,
    "S0_vs_S4_auc": 0.9043,
+   "S3_vs_S4_auc": 0.9089,
    "warp": 0.0862533692722372,
    "warp_R2w": 0.15,
    "warp_R2w4": 0.05,
@@ -2372,7 +2472,7 @@
   "A_s411": "read (mock)",
   "A_s412": "read (mock)",
   "Sb_s408": "mock: dropped",
-  "Sb_s409": "mock: dropped",
+  "Sb_s409": "read (mock)",
   "Sb_s410": "read (mock)",
   "Sb_s411": "read (mock)",
   "Sb_s412": "read (mock)",
@@ -2434,49 +2534,51 @@
     "per_seed": {
      "fm61": {
       "408": false,
-      "409": false,
+      "409": true,
       "410": true,
       "411": false,
       "412": true
      },
      "amsl112": {
       "408": false,
-      "409": false,
+      "409": true,
       "410": true,
       "411": true,
       "412": true
      }
     },
     "n_pass": {
-     "fm61": 2,
-     "amsl112": 3
+     "fm61": 3,
+     "amsl112": 4
     },
     "n_control": {
      "fm61": 5,
      "amsl112": 5
     },
     "n_read": {
-     "fm61": 3,
-     "amsl112": 3
+     "fm61": 4,
+     "amsl112": 4
     },
-    "verdict": "not read (too few seeds)"
+    "verdict": "inconclusive, no claim"
    },
-   "verdict": "not read (too few seeds)"
+   "verdict": "inconclusive, no claim"
   },
   "H_new_1_Sb": {
    "values": {
     "fm61": {
+     "409": -0.20332828551298537,
      "410": -0.17320592763515474,
      "411": -0.02527099223180408,
      "412": 0.0694045745980014
     },
     "amsl112": {
+     "409": -0.05836127119879355,
      "410": -0.08352418422185325,
      "411": -0.12065680879973169,
      "412": 0.24018708480235484
     }
    },
-   "verdict": "not read (too few seeds)"
+   "verdict": "inconclusive"
   },
   "R1_B": {
    "c2p": {
@@ -2510,7 +2612,7 @@
     },
     "verdict": "fails"
    },
-   "verdict": "not replicated"
+   "verdict": "first test at seeds 408-412: not passed"
   },
   "H_new_1_B": {
    "values": {
@@ -2533,21 +2635,24 @@
   },
   "R2_contrast1": {
    "read_seeds": [
+    409,
     410,
     411,
     412
    ],
    "testable": [
+    409,
     410,
     411,
     412
    ],
    "meets": {
+    "409": false,
     "410": false,
     "411": false,
     "412": false
    },
-   "verdict": "not read (too few seeds)",
+   "verdict": "not replicated",
    "floor_exceeded_all": true
   },
   "H_ab1": {
@@ -2643,36 +2748,59 @@
   },
   "H_ab2": {
    "rise": {
+    "409": 0.0026954177897574177,
     "410": -0.02964959568733154,
     "411": 0.00808625336927224,
     "412": -0.00808625336927224
    },
-   "n": 3,
-   "per_seed_verdict": "not read (too few seeds)",
-   "verdict": "not read (too few seeds)"
+   "n": 4,
+   "per_seed_verdict": "falsified",
+   "mean": -0.0067385444743935305,
+   "ci": [
+    -0.03329349352146174,
+    0.019816404572674685
+   ],
+   "verdict": "falsified"
   },
   "H_ab3": {
    "rise": {
+    "409": 0.02212389380530974,
     "410": -0.002212389380530963,
     "411": -0.02654867256637168,
     "412": -0.002212389380530977
    },
-   "n": 3,
-   "per_seed_verdict": "not read (too few seeds)",
-   "verdict": "not read (too few seeds)"
+   "n": 4,
+   "per_seed_verdict": "inconclusive, no claim",
+   "mean": -0.00221238938053097,
+   "ci": [
+    -0.033830776327165295,
+    0.029405997566103355
+   ],
+   "verdict": "falsified"
   },
   "H_ab3s": {
    "rise": {
+    "409": -0.017699115044247787,
     "410": 0.0,
     "411": -0.024336283185840704,
     "412": -0.024336283185840704
    },
-   "n": 3,
-   "per_seed_verdict": "not read (too few seeds)",
-   "verdict": "not read (too few seeds)"
+   "n": 4,
+   "per_seed_verdict": "falsified",
+   "mean": -0.0165929203539823,
+   "ci": [
+    -0.034885482388646666,
+    0.0016996416806820715
+   ],
+   "verdict": "falsified"
   },
   "H_ab4": {
    "per_seed": {
+    "409": {
+     "pred1": false,
+     "pred2": false,
+     "S3_rise": -0.08
+    },
     "410": {
      "pred1": false,
      "pred2": false,
@@ -2689,296 +2817,545 @@
      "S3_rise": 0.020000000000000004
     }
    },
-   "verdict": "not read (too few seeds)"
+   "verdict": "falsified"
+  },
+  "H_sp1_lcomb": {
+   "per_seed": {
+    "409": false,
+    "410": false,
+    "411": false,
+    "412": false
+   },
+   "sp_minus_sb": {
+    "409": {
+     "lcomb": 0.009717499999999935,
+     "ffhq_native_photo_flag": -0.010000000000000009,
+     "camera": 0.008849557522123894
+    },
+    "410": {
+     "lcomb": -0.0005895000000000206,
+     "ffhq_native_photo_flag": -0.010000000000000009,
+     "camera": -0.02654867256637168
+    },
+    "411": {
+     "lcomb": -0.0004370000000000207,
+     "ffhq_native_photo_flag": -0.013333333333333336,
+     "camera": 0.013274336283185847
+    },
+    "412": {
+     "lcomb": -0.00433349999999999,
+     "ffhq_native_photo_flag": 0.0,
+     "camera": -0.00442477876106194
+    }
+   },
+   "n": 4,
+   "k": 0,
+   "verdict": "falsified"
+  },
+  "H_sp2_storage_amsl112": {
+   "per_seed": {
+    "409": false,
+    "410": true,
+    "411": true,
+    "412": true
+   },
+   "sp_minus_sb": {
+    "409": -0.0034482758620689724,
+    "410": 0.017241379310344834,
+    "411": 0.006896551724137931,
+    "412": 0.006896551724137945
+   },
+   "n": 4,
+   "k": 3,
+   "verdict": "inconclusive, no claim"
+  },
+  "H_sp3_S3_flags": {
+   "per_seed": {
+    "409": false,
+    "410": false,
+    "411": false,
+    "412": false
+   },
+   "sp_minus_sb": {
+    "409": {
+     "S3": -0.08,
+     "ffhq_native_photo_flag": -0.010000000000000009,
+     "camera": 0.008849557522123894
+    },
+    "410": {
+     "S3": -0.020000000000000004,
+     "ffhq_native_photo_flag": -0.010000000000000009,
+     "camera": -0.02654867256637168
+    },
+    "411": {
+     "S3": 0.009999999999999995,
+     "ffhq_native_photo_flag": -0.013333333333333336,
+     "camera": 0.013274336283185847
+    },
+    "412": {
+     "S3": 0.020000000000000004,
+     "ffhq_native_photo_flag": 0.0,
+     "camera": -0.00442477876106194
+    }
+   },
+   "n": 4,
+   "k": 0,
+   "verdict": "falsified"
+  },
+  "H_sp3b_S3_vs_S4_auc": {
+   "per_seed": {
+    "409": false,
+    "410": false,
+    "411": true,
+    "412": true
+   },
+   "sp_minus_sb": {
+    "409": 0.037899999999999934,
+    "410": 0.0036000000000000476,
+    "411": -0.03369999999999995,
+    "412": -0.01770000000000005
+   },
+   "n": 4,
+   "k": 2,
+   "verdict": "inconclusive, no claim"
   },
   "attribution_table_secondary": {
    "SbZ|c2p_fm61": {
     "rise": {
+     "409": 0.04467353951890034,
      "410": 0.05841924398625428,
      "411": -0.0034364261168384758,
      "412": -0.010309278350515469
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.02233676975945017,
+    "ci": [
+     -0.03225322681550376,
+     0.0769267663344041
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "SbZ|c2p_amsl112": {
     "rise": {
+     "409": 0.006896551724137931,
      "410": 0.034482758620689655,
      "411": -0.01034482758620689,
      "412": -0.02758620689655171
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.0008620689655172466,
+    "ci": [
+     -0.04125442155994223,
+     0.04297855949097673
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "SbZ|warp": {
     "rise": {
+     "409": 0.0026954177897574177,
      "410": -0.02964959568733154,
      "411": 0.00808625336927224,
      "412": -0.00808625336927224
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "falsified",
+    "mean": -0.0067385444743935305,
+    "ci": [
+     -0.03329349352146174,
+     0.019816404572674685
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "SbZ|dsoft": {
     "rise": {
+     "409": 0.028761061946902658,
      "410": 0.03761061946902655,
      "411": -0.024336283185840704,
      "412": 0.01991150442477875
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.015486725663716814,
+    "ci": [
+     -0.028294812692460657,
+     0.05926826401989428
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "SbZ|S3": {
     "rise": {
+     "409": -0.020000000000000004,
      "410": -0.04000000000000001,
      "411": 0.05,
      "412": -0.009999999999999995
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": -0.005000000000000001,
+    "ci": [
+     -0.06662780770282639,
+     0.05662780770282638
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "SbZ|S0": {
     "rise": {
+     "409": 0.010000000000000009,
      "410": 0.020000000000000004,
      "411": 0.009999999999999995,
      "412": 0.07
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.027500000000000004,
+    "ci": [
+     -0.018204405424872346,
+     0.07320440542487236
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "SbH|c2p_fm61": {
     "rise": {
+     "409": 0.03436426116838487,
      "410": 0.010309278350515455,
      "411": -0.0240549828178694,
      "412": 0.030927835051546393
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.01288659793814433,
+    "ci": [
+     -0.029791609080214793,
+     0.055564804956503455
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "SbH|c2p_amsl112": {
     "rise": {
+     "409": -0.010344827586206903,
      "410": 0.006896551724137945,
      "411": 0.013793103448275862,
      "412": 0.017241379310344834
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.006896551724137934,
+    "ci": [
+     -0.012631740364602302,
+     0.02642484381287817
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "SbH|warp": {
     "rise": {
+     "409": 0.018867924528301896,
      "410": -0.024258760107816704,
      "411": 0.018867924528301883,
      "412": -0.01617250673854448
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": -0.000673854447439351,
+    "ci": [
+     -0.036961863274423905,
+     0.0356141543795452
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "SbH|dsoft": {
     "rise": {
+     "409": 0.02212389380530974,
      "410": -0.002212389380530963,
      "411": -0.02654867256637168,
      "412": -0.002212389380530977
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": -0.00221238938053097,
+    "ci": [
+     -0.033830776327165295,
+     0.029405997566103355
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "SbH|S3": {
     "rise": {
+     "409": -0.06,
      "410": -0.05,
      "411": -0.010000000000000002,
      "412": -0.009999999999999995
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "falsified",
+    "mean": -0.0325,
+    "ci": [
+     -0.07434846304275126,
+     0.009348463042751262
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "SbH|S0": {
     "rise": {
+     "409": 0.04000000000000001,
      "410": -0.03,
      "411": 0.01999999999999999,
      "412": 0.030000000000000006
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.015000000000000001,
+    "ci": [
+     -0.03447313834248055,
+     0.06447313834248056
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "SbS|c2p_fm61": {
     "rise": {
+     "409": 0.16838487972508592,
      "410": 0.15463917525773194,
      "411": 0.14432989690721648,
      "412": 0.12714776632302405
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "supported",
+    "mean": 0.14862542955326458,
+    "ci": [
+     0.12096769112622857,
+     0.17628316798030058
+    ],
+    "verdict": "supported",
+    "label": "removing it brings the reaction back"
    },
    "SbS|c2p_amsl112": {
     "rise": {
+     "409": 0.1344827586206897,
      "410": 0.14482758620689656,
      "411": 0.13793103448275865,
      "412": 0.11379310344827588
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "supported",
+    "mean": 0.1327586206896552,
+    "ci": [
+     0.11150765251626678,
+     0.15400958886304358
+    ],
+    "verdict": "supported",
+    "label": "removing it brings the reaction back"
    },
    "SbS|warp": {
     "rise": {
+     "409": -0.010781671159029643,
      "410": -0.04043126684636118,
      "411": -0.0026954177897574177,
      "412": 0.00808625336927224
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "falsified",
+    "mean": -0.011455525606469001,
+    "ci": [
+     -0.04456250644816309,
+     0.02165145523522509
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "SbS|dsoft": {
     "rise": {
+     "409": -0.017699115044247787,
      "410": 0.0,
      "411": -0.024336283185840704,
      "412": -0.024336283185840704
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "falsified",
+    "mean": -0.0165929203539823,
+    "ci": [
+     -0.034885482388646666,
+     0.0016996416806820715
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "SbS|S3": {
     "rise": {
+     "409": -0.03,
      "410": -0.05,
      "411": 0.039999999999999994,
      "412": 0.0
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": -0.010000000000000002,
+    "ci": [
+     -0.07230879862673242,
+     0.05230879862673242
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "SbS|S0": {
     "rise": {
+     "409": 0.03,
      "410": 0.010000000000000009,
      "411": -0.010000000000000009,
      "412": 0.0
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.0075,
+    "ci": [
+     -0.019675308837964898,
+     0.034675308837964894
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "Sp|c2p_fm61": {
     "rise": {
+     "409": 0.03436426116838488,
      "410": 0.03436426116838487,
      "411": -0.01374570446735393,
      "412": 0.010309278350515455
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.01632302405498282,
+    "ci": [
+     -0.02032426551822523,
+     0.052970313628190865
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "Sp|c2p_amsl112": {
     "rise": {
+     "409": -0.0034482758620689724,
      "410": 0.017241379310344834,
      "411": 0.006896551724137931,
      "412": 0.006896551724137945
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.006896551724137934,
+    "ci": [
+     -0.006543740658193152,
+     0.02033684410646902
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "Sp|warp": {
     "rise": {
+     "409": 0.0026954177897574177,
      "410": -0.01617250673854448,
      "411": -0.01617250673854448,
      "412": 0.010781671159029643
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": -0.004716981132075474,
+    "ci": [
+     -0.026410786744656273,
+     0.016976824480505324
+    ],
+    "verdict": "falsified",
+    "label": "not needed for it, given the others"
    },
    "Sp|dsoft": {
     "rise": {
+     "409": 0.006637168141592917,
      "410": 0.06415929203539823,
      "411": 0.013274336283185834,
      "412": 0.026548672566371667
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.027654867256637163,
+    "ci": [
+     -0.013248544935504245,
+     0.06855827944877857
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "Sp|S3": {
     "rise": {
+     "409": -0.08,
      "410": -0.020000000000000004,
      "411": 0.009999999999999995,
      "412": 0.020000000000000004
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": -0.0175,
+    "ci": [
+     -0.08910504186889592,
+     0.05410504186889592
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    },
    "Sp|S0": {
     "rise": {
+     "409": -0.009999999999999995,
      "410": 0.03,
      "411": 0.04000000000000001,
      "412": 0.019999999999999997
     },
-    "n": 3,
-    "per_seed_verdict": "not read (too few seeds)",
-    "verdict": "not read (too few seeds)",
-    "label": "not read (too few seeds)"
+    "n": 4,
+    "per_seed_verdict": "inconclusive, no claim",
+    "mean": 0.020000000000000004,
+    "ci": [
+     -0.014374348818589074,
+     0.05437434881858908
+    ],
+    "verdict": "inconclusive, no claim",
+    "label": "inconclusive, no claim"
    }
   },
   "cost_lcomb_minus_Sb": {
    "B": {
+    "409": 0.0010789999999999411,
     "410": -0.00048800000000004395,
     "411": -0.0020580000000000043,
     "412": -0.009483499999999978
    },
    "Sp": {
+    "409": 0.009717499999999935,
     "410": -0.0005895000000000206,
     "411": -0.0004370000000000207,
     "412": -0.00433349999999999
    },
    "SbZ": {
+    "409": 0.006657499999999983,
     "410": -0.0006355000000000111,
     "411": 0.007802000000000087,
     "412": -0.006861000000000006
    },
    "SbH": {
+    "409": 0.0025180000000000202,
     "410": -0.0076745000000000285,
     "411": -0.00022650000000001835,
     "412": -0.007618999999999931
    },
    "SbS": {
+    "409": 0.013223499999999944,
     "410": 0.0022259999999999502,
     "411": -0.010097499999999981,
     "412": -0.006340499999999971
