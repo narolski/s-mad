@@ -56,3 +56,28 @@ number in this section is **post hoc** (reviewer, from the registered feature fi
   at equal band-limited energy it falls to 0.62. It is not separated from the larger landmark displacement between two
   people (0.71 within W, coverage 0.60). An oracle reading on one engine. Not a texture trace of a second identity,
   and not a detector."
+
+## Amendment 2 (post hoc; registered at cbbcdae with pre-run fixes 2b at 3f65cf9; read once at 19:51 machine clock)
+
+Reader: `src/TB1/tb1_amend2.py`. Output: `tb1_amend2.json`, `tb1_amend2_stdout.txt`. 291 hosts. Folds and bootstrap
+by connected components of the person graph: 110 components (the same count as the review; the 2b note expected it
+to differ).
+
+- **Binding rule.** The profile's gain over [log E, log W] is **+0.010**: base 0.888, plus profile 0.898, 95%
+  percentile interval over components [−0.006, +0.021], 0 of 2,000 draws failed. Five other fold seeds give
+  +0.009 to +0.012. **Registered verdict: "falsified: the profile adds < +0.02 over band energy and geometry".**
+  H-new-1 is "not falsified".
+- Gain over [log D, log E, log W]: +0.011 (base 0.888).
+- Alone (direction-free): E 0.805, W 0.869, D 0.651. Profile 0.785.
+- Profile within strata (descriptive): E 0.625 (coverage 0.80); W 0.709 (0.60); D 0.761; D × W 0.727 (0.69);
+  E × W 0.593 (0.54).
+- FRGC only (descriptive): gain over [log E, log W] +0.018; within E 0.715, within W 0.842, within E × W 0.750.
+- **(a) Capture-day gap (descriptive):**
+  - Same-day pairs: FRGC 3 and colorFERET 5 two-person, 0 same-person, so not computable and no session claim.
+  - FRGC bins: 1-30 days 0.858 (43 / 92), 31-180 days 0.855 (92 / 94), > 180 days 0.855 (97 / 49).
+  - colorFERET bins: 0.397 (6 / 13), 0.542 (6 / 8), 0.597 (39 / 35).
+  - Same-day anecdote (n ≤ 8, no claim): FRGC 0.942 (n = 3), colorFERET 0.536 (n = 5).
+- **(b) Matched W (descriptive):** 100 pairs matched within the caliper, 10 dropped, mean |Δ ln W| 0.024, medians 6.78
+  / 6.78 px. AUC **0.672**, "not resolved". No verdict on H-new-2.
+- **Limit.** The earlier mock run may have written a W-only base value to an unviewed scratchpad file. Two matched-W
+  medians from that mock were seen (amendment 2b F4).

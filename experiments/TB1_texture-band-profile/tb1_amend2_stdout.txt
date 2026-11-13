@@ -1,0 +1,238 @@
+{
+"mock": false,
+"n": 291,
+"n_components": 110,
+"profile_auc": 0.7849340465984105,
+"profile_within_E": {
+"auc": 0.6251850481125093,
+"cover": 0.7989690721649485,
+"strata": [
+0.7892857142857143,
+0.6856516976998904,
+0.6878472222222223,
+0.6119698771304003,
+0.5078769692423106
+]
+},
+"E_alone_auc": 0.8047732076853131,
+"profile_within_W": {
+"auc": 0.7093413173652695,
+"cover": 0.5979381443298969,
+"strata": [
+0.7961038961038961,
+0.7495045580657946,
+0.7630092179601546,
+0.5949675324675324,
+0.42386831275720166
+]
+},
+"W_alone_auc": 0.8692859082911161,
+"profile_within_D": {
+"auc": 0.7612218649517685,
+"cover": 1.0,
+"strata": [
+0.8510971786833855,
+0.7705357142857143,
+0.8260481712756468,
+0.6790346907993967,
+0.691554054054054
+]
+},
+"D_alone_auc": 0.6513149348732301,
+"profile_within_DxW": {
+"auc": 0.726745390511705,
+"cells": [
+{
+"a": 0,
+"b": 0,
+"n_pos": 11,
+"n_neg": 76,
+"auc": 0.8480861244019139
+},
+{
+"a": 0,
+"b": 1,
+"n_pos": 23,
+"n_neg": 43,
+"auc": 0.7532861476238625
+},
+{
+"a": 1,
+"b": 1,
+"n_pos": 29,
+"n_neg": 30,
+"auc": 0.7597701149425288
+},
+{
+"a": 1,
+"b": 2,
+"n_pos": 62,
+"n_neg": 11,
+"auc": 0.5835777126099707
+},
+{
+"a": 2,
+"b": 0,
+"n_pos": 10,
+"n_neg": 35,
+"auc": 0.7057142857142857
+},
+{
+"a": 2,
+"b": 1,
+"n_pos": 44,
+"n_neg": 25,
+"auc": 0.68
+}
+],
+"cover": 0.6855670103092784
+},
+"profile_within_ExW": {
+"auc": 0.5927152317880795,
+"cells": [
+{
+"a": 0,
+"b": 1,
+"n_pos": 10,
+"n_neg": 53,
+"auc": 0.8320754716981132
+},
+{
+"a": 1,
+"b": 0,
+"n_pos": 14,
+"n_neg": 32,
+"auc": 0.6830357142857143
+},
+{
+"a": 1,
+"b": 1,
+"n_pos": 50,
+"n_neg": 23,
+"auc": 0.6017391304347826
+},
+{
+"a": 1,
+"b": 2,
+"n_pos": 64,
+"n_neg": 11,
+"auc": 0.3934659090909091
+},
+{
+"a": 2,
+"b": 1,
+"n_pos": 36,
+"n_neg": 22,
+"auc": 0.5454545454545454
+}
+],
+"cover": 0.5412371134020618
+},
+"note_strata": "within-strata AUCs are descriptive; coverage is printed; no rule uses them (pre-run F7)",
+"gain_over_logD_logE_logW": {
+"gain": 0.010521840790732373,
+"base": 0.8880268301035651,
+"plus_profile": 0.8985486708942975
+},
+"gain_over_logE_logW": {
+"gain": 0.009884153470081869,
+"base": 0.8882748196171514,
+"plus_profile": 0.8981589730872332,
+"component_95pct_percentile_interval": [
+-0.005913999874732176,
+0.021310059577275314
+],
+"bootstrap_draws": 2000,
+"bootstrap_failed": 0,
+"sensitivity_other_fold_seeds": {
+"20261183": 0.011006010793448318,
+"20261184": 0.011997968847793472,
+"20261185": 0.010663549084210078,
+"20261186": 0.00938817444290918,
+"20261187": 0.010014052739103274
+}
+},
+"frgc_only": {
+"gain_over_logE_logW": 0.018397464916251716,
+"within_E": 0.7151979565772669,
+"within_W": 0.8417744916820702,
+"within_ExW": 0.7496671105193076
+},
+"note_components": "n_components differs from the review's 110 because partners outside the 291 hosts are graph nodes (shared B photos) (pre-run F6)",
+"verdict": "falsified: the profile adds < +0.02 over band energy and geometry",
+"H_new_1": "not falsified",
+"descriptive_day_gap": {
+"frgc": [
+{
+"bin": "0-0",
+"n_two": 3,
+"n_same": 0,
+"auc": "n only (< 5 of a class)"
+},
+{
+"bin": "1-30",
+"n_two": 43,
+"n_same": 92,
+"auc": 0.8576845298281092
+},
+{
+"bin": "31-180",
+"n_two": 92,
+"n_same": 94,
+"auc": 0.8548797409805735
+},
+{
+"bin": "181-100000",
+"n_two": 97,
+"n_same": 49,
+"auc": 0.8548285293498843
+},
+{
+"anecdote": "two-person same-day rows against all same-person rows of this database (n <= 8; no claim)",
+"n_two": 3,
+"auc": 0.9418439716312057
+}
+],
+"feret": [
+{
+"bin": "0-0",
+"n_two": 5,
+"n_same": 0,
+"auc": "n only (< 5 of a class)"
+},
+{
+"bin": "1-30",
+"n_two": 6,
+"n_same": 13,
+"auc": 0.3974358974358974
+},
+{
+"bin": "31-180",
+"n_two": 6,
+"n_same": 8,
+"auc": 0.5416666666666666
+},
+{
+"bin": "181-100000",
+"n_two": 39,
+"n_same": 35,
+"auc": 0.5970695970695971
+},
+{
+"anecdote": "two-person same-day rows against all same-person rows of this database (n <= 8; no claim)",
+"n_two": 5,
+"auc": 0.5357142857142857
+}
+]
+},
+"descriptive_matched_W": {
+"n_matched": 100,
+"n_dropped": 10,
+"auc": 0.6725,
+"mean_abs_dlnW": 0.024089014977094966,
+"W_two_median": 6.7763295563033745,
+"W_same_median": 6.7777336581732515,
+"reading": "not resolved",
+"note": "descriptive only; no verdict on H-new-2 from this read"
+}
+}
