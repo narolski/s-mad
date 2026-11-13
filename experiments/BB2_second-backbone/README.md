@@ -343,3 +343,9 @@ python3 -I src/BB2/bb2_read.py
 - Note (Fri Nov 13 06:47:59 PM CET 2026): author-ruling times quoted from the lead's messages after about 17:00 were about 45 min ahead
   (NOTEBOOK 18:46 correction); machine clock: cut-off ruling about 17:11; freeze about 18:27; "read now" ruling about
   18:36; the lead's 19:05-20:00 and "18:50" between 18:32 and 18:46. Nothing else changes.
+
+- 13 Nov evening (machine clock about 18:5x-19:0x): wave-2 job registered (amendment 7/7a, d7018f8); dispatcher
+  submitted **6315675** bb2l-w2smoke (one BB2 + one AB1 network, results/BB2_smoke/BB2LW2smoke.tar) and **6315676**
+  bb2l-w2 (afterany:6313860; valid only if 6315675 passes; output results/BB2L/BB2LW2.tar). Queue: E3 6313860
+  (priority 844), then 6315675/6315676 (679), C2P 6313488, E2 6313858/6313861. DINOv3 ViT-B/16 official weights on disk
+  (lead, author's login): loading and verification rule in the plan, section 1 (27ab727); no arm registered yet.
