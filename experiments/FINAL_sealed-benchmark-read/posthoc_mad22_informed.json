@@ -1,0 +1,129 @@
+{
+ "label": "post hoc, descriptive, MAD22-informed; the registered verdicts stand; no method choice follows",
+ "registered_check": {
+  "p_noninferior": 0.02498750624687656,
+  "p_exceeded": 0.12193903048475763,
+  "ci": [
+   -0.03513612052519097,
+   0.009753177829649398
+  ],
+  "n_beyond_margin": 49
+ },
+ "R20000_registered_seed": {
+  "p_noninferior": 0.02359882005899705,
+  "p_exceeded": 0.12689365531723415,
+  "ci": [
+   -0.03483468404445856,
+   0.009675092576260733
+  ],
+  "n_beyond_margin": 471
+ },
+ "alt_seeds_R2000": {
+  "n": 200,
+  "median": 0.02348825587206397,
+  "q25": 0.02148925537231384,
+  "q75": 0.025987006496751622,
+  "share_le_0025": 0.685
+ },
+ "selfmad_crop_flags": {
+  "E7aln22_FaceMorpher": {
+   "n": 204,
+   "cropped_true": 204,
+   "cropped_false": 0
+  },
+  "E7aln22_MIPGAN_I": {
+   "n": 204,
+   "cropped_true": 204,
+   "cropped_false": 0
+  },
+  "E7aln22_MIPGAN_II": {
+   "n": 204,
+   "cropped_true": 204,
+   "cropped_false": 0
+  },
+  "E7aln22_OpenCV": {
+   "n": 204,
+   "cropped_true": 204,
+   "cropped_false": 0
+  },
+  "E7aln22_Webmorph": {
+   "n": 204,
+   "cropped_true": 204,
+   "cropped_false": 0
+  },
+  "G22_aln": {
+   "n": 204,
+   "cropped_true": 204,
+   "cropped_false": 0
+  },
+  "G22_raw": {
+   "n": 204,
+   "cropped_true": 204,
+   "cropped_false": 0
+  },
+  "M22_FaceMorpher": {
+   "n": 1000,
+   "cropped_true": 1000,
+   "cropped_false": 0
+  },
+  "M22_MIPGAN_I": {
+   "n": 1000,
+   "cropped_true": 1000,
+   "cropped_false": 0
+  },
+  "M22_MIPGAN_II": {
+   "n": 999,
+   "cropped_true": 999,
+   "cropped_false": 0
+  },
+  "M22_OpenCV": {
+   "n": 984,
+   "cropped_true": 984,
+   "cropped_false": 0
+  },
+  "M22_Webmorph": {
+   "n": 500,
+   "cropped_true": 500,
+   "cropped_false": 0
+  }
+ },
+ "dev_vs_frozen_mad22_e7_eer_pct_opencv_webmorph": {
+  "development": {
+   "s401": [
+    1.9308943089430894,
+    8.200000000000001
+   ],
+   "s402": [
+    2.941176470588236,
+    16.400000000000002
+   ]
+  },
+  "frozen": {
+   "PN1_Sb_s403": [
+    2.941176470588235,
+    6.862745098039216
+   ],
+   "PN1_Sb_s404": [
+    2.450980392156863,
+    15.600000000000003
+   ],
+   "PN1_Sb_s405": [
+    2.941176470588235,
+    11.27450980392157
+   ],
+   "PN1_Sb_s406": [
+    2.1341463414634165,
+    13.0
+   ],
+   "PN1_Sb_s407": [
+    0.8130081300813052,
+    5.200000000000005
+   ]
+  },
+  "frozen_mean": [
+   2.2560975609756113,
+   10.387450980392158
+  ],
+  "note": "development seeds: PN1 tier-1 Sb read (sb_read.json, key mad22_e7_eer = [OpenCV, Webmorph]); same aligned MAD22 frames"
+ }
+}

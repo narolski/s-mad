@@ -247,3 +247,34 @@ Per seed 403-407, in %: own rule APCER / BPCER; then τ_FFHQ APCER / BPCER; then
 - Result tar `/mnt/t7/smad_next/FINAL/results/FINAL_mad22_final2.tar`, with a second copy in
   `/mnt/t7/smad_next/vast/final2/final/results/`.
 - Dry-run tar `FINAL_mad22_final2_dryrun.tar` (the same two places).
+
+## Post hoc, descriptive, MAD22-informed reads (lead's decisions after the read)
+
+Source: `posthoc_mad22_informed.json`, made by `src/FINAL/posthoc_read.py` from the existing score files only. The
+registered verdicts stand, and no method choice follows.
+
+- **Fragility of the primary verdict.** At the registered seed and R = 2,000, the result is reproduced exactly:
+  p(d ≥ +1.0) = 0.02499 (49 replicates beyond the margin), interval [−3.51, +0.98].
+
+  | Bootstrap | p(d ≥ +1.0) | Other values |
+  |---|---|---|
+  | Registered seed, R = 20,000 | 0.0236 | 471 of 20,000 beyond the margin; p(d ≥ 0) = 0.127; interval [−3.48, +0.97] |
+  | 200 other seeds, R = 2,000 | median 0.0235 (IQR 0.0215-0.0260) | 68.5% of seeds give p ≤ 0.025 |
+
+  The reviewer's own scratch recomputation, with other seeds, gave 74%.
+- **SelfMAD's crop flags.** The face crop succeeded (`cropped` = True) on every row: 5,911 of 5,911, in every pool
+  (M22 ×5, G22_raw, G22_aln, E7aln22 ×5).
+- **Development seeds against frozen seeds**, MAD22 E7 EER %, OpenCV / Webmorph, on the same aligned frames:
+
+  | Seeds | OpenCV | Webmorph |
+  |---|---|---|
+  | 401 (development) | 1.93 | 8.20 |
+  | 402 (development) | 2.94 | 16.40 |
+  | 403 | 2.94 | 6.86 |
+  | 404 | 2.45 | 15.60 |
+  | 405 | 2.94 | 11.27 |
+  | 406 | 2.13 | 13.00 |
+  | 407 | 0.81 | 5.20 |
+  | Mean of the frozen seeds | 2.26 | 10.39 |
+
+- **H-new-1 to H-new-4** are registered for the record in `posthoc_prereg_mad22_informed.md` and have not been run.
