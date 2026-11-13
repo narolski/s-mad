@@ -1,0 +1,126 @@
+{
+ "config": {
+  "_doc": "Sealed MAD22 read (FINAL). The ONLY place that names the networks, their pins and the gate source. Under a different frozen set only this file changes (networks, gate.source_pack, gate.source_manifest_sha256); build_pack.py, remote_final.sh, drive_final.sh and final_read.py read it.",
+  "read_id": "FINAL_mad22",
+  "networks": [
+   {
+    "name": "PN1_Sb_s403",
+    "tar": "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s403.tar",
+    "sha256": "8dec83b880b7bac28db4b6217bc10b58eb78dc65d699734614cf57ae6b444fde",
+    "seed": 403
+   },
+   {
+    "name": "PN1_Sb_s404",
+    "tar": "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s404.tar",
+    "sha256": "de67068959bc277b3850c6d8e13f0e88d8fa1e273dccad53665abcfa4827752c",
+    "seed": 404
+   },
+   {
+    "name": "PN1_Sb_s405",
+    "tar": "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s405.tar",
+    "sha256": "3a3a53fd98bdd09eab9a15ec14fdd1ed46b2fc8f95f520e6bd4e4bab1e4265ea",
+    "seed": 405
+   },
+   {
+    "name": "PN1_Sb_s406",
+    "tar": "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s406.tar",
+    "sha256": "d2cf5faa31330ce82dc9734760f08513640c0a908072fae02447109abc039291",
+    "seed": 406
+   },
+   {
+    "name": "PN1_Sb_s407",
+    "tar": "/mnt/t7/smad_next/PN1/results_fs/PN1_Sb_s407.tar",
+    "sha256": "865c04552df4367b3311dda007405ecb7dc8ee0f98d390d1b1baff51b24da595",
+    "seed": 407
+   }
+  ],
+  "gate": {
+   "source_tree": "/mnt/t7/smad_next/FINAL/src_fs/pn1",
+   "source_pack": "/mnt/t7/smad_next/PN1/pn1_pack_fs.tar",
+   "source_pack_sha256": "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004",
+   "source_manifest": "data/manifests/pn1_eval.csv",
+   "source_manifest_sha256": "f0f29f2201bd3a1dc67f24772347960ba7a383a9e5c1fa8920d0cc1b854a5045",
+   "reference": "scores_eval.npz inside each network tar (fit-time scores, pn1_score.py, TF32 on, batch 64, manifest order)",
+   "batch": 64,
+   "keep_every_kth_batch": 3,
+   "criterion": "byte identity (float32) of every gate row's logit, every network; any failure stops the job before any benchmark row"
+  },
+  "ffhq_threshold_rows": {
+   "fam": "ffhq",
+   "rung": "ffhq_bona_orig",
+   "label": "0",
+   "alpha": 0.05
+  },
+  "scorer": {
+   "rescore.py": "6f6eede71c6d9a895199dabc8bc90b882adb25f5f91cd2fcc676ebe7a380b51e",
+   "rescore_tf32.py": "0d0b6b6fb5ebc4d5bdbe15384fcd00e13c0756785ed22743893186e68245d8d5",
+   "base_weights_vit_base_patch16_clip_224.openai.safetensors": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+   "tf32": true,
+   "batch": 64,
+   "workers": 7
+  },
+  "mad22": {
+   "root": "/mnt/t7/smad_heldout/mad22_canonical_E7_inputs_v3_20261109T113746Z",
+   "sums": "PROCESSED_SHA256SUMS",
+   "families": [
+    "FaceMorpher",
+    "MIPGAN_I",
+    "MIPGAN_II",
+    "OpenCV",
+    "Webmorph"
+   ],
+   "n_files": 5707
+  },
+  "platform": {
+   "gpu_name_contains": "A100-PCIE",
+   "torch": "2.2.1",
+   "cuda": "12.1",
+   "cudnn": 8902,
+   "timm": "1.0.27",
+   "numpy": "1.26.4",
+   "pillow": "10.2.0",
+   "image": "pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime"
+  }
+ },
+ "pack": "5ec63472d9c489aea93bfdcdd0929b4651ef9c5a27e9c90801d7c54c3eee43c1",
+ "release_existing": "dba3acdad6cea543fde2b323a2118a2eb6a32b6d15cc2f0de1d0f304749e963b",
+ "thresholds": "0293c3adad2487114fded4555fd235a6ad9946c993381ea1e3f702e6851983d4",
+ "files": {
+  "pack": "5ec63472d9c489aea93bfdcdd0929b4651ef9c5a27e9c90801d7c54c3eee43c1",
+  "pack SHA256SUMS (inside the pack)": "bf48c489e99f35bde4f765db75a0744f15178d7312325c1a643d9593f609323f",
+  "gate manifest (inside the pack)": "2799d2f99dcd8b122a92f110c38954932f6c1d1989bc3aece0b92aa34dce6663",
+  "benchmark manifest (inside the pack)": "48335f869046d23251c46d000d4a35bd5b7e6d18cc8d858bd8d7eac56cdccbd0",
+  "FS1 evaluation manifest (gate source)": "f0f29f2201bd3a1dc67f24772347960ba7a383a9e5c1fa8920d0cc1b854a5045",
+  "fresh-seed pack (gate source)": "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004",
+  "MAD22 PROCESSED_SHA256SUMS": "73ff92fd29a49a9d4b7d1a1bc7aa8b0e43919100ab7ca5873f3f66f228c493c2",
+  "network PN1_Sb_s403": "8dec83b880b7bac28db4b6217bc10b58eb78dc65d699734614cf57ae6b444fde",
+  "network PN1_Sb_s404": "de67068959bc277b3850c6d8e13f0e88d8fa1e273dccad53665abcfa4827752c",
+  "network PN1_Sb_s405": "3a3a53fd98bdd09eab9a15ec14fdd1ed46b2fc8f95f520e6bd4e4bab1e4265ea",
+  "network PN1_Sb_s406": "d2cf5faa31330ce82dc9734760f08513640c0a908072fae02447109abc039291",
+  "network PN1_Sb_s407": "865c04552df4367b3311dda007405ecb7dc8ee0f98d390d1b1baff51b24da595",
+  "scorer rescore.py": "6f6eede71c6d9a895199dabc8bc90b882adb25f5f91cd2fcc676ebe7a380b51e",
+  "scorer rescore_tf32.py": "0d0b6b6fb5ebc4d5bdbe15384fcd00e13c0756785ed22743893186e68245d8d5",
+  "scorer base_weights_vit_base_patch16_clip_224.openai.safetensors": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+  "src/FINAL/final_config.json": "79bd4e3e446232133a4265254b519d1430a3774e6b8aca266202c7ac406817af",
+  "src/FINAL/build_pack.py": "b80b4fcdec7bc1368561b5f74c5cf2bb175c2fd9879a01578025e66b78e1fcec",
+  "src/FINAL/remote_final.sh": "54925f22f8856fd7e5101d5487b69bd8480becdde1b809afef97045dc506384d",
+  "src/FINAL/drive_final.sh": "8fb39b8a085e1464927c5e2996554f184b7a9a644da0bf88894892fb4b4f432f",
+  "src/FINAL/gate_check_final.py": "ac2e5f578faf9622b784558b0a280856c2c8d3654c2e3c2d661707731ec7ef24",
+  "src/FINAL/final_metrics.py": "9c202f9749e5c1d5f7b7fa856d6cb589511f1415ee1a554044bba39b537a5370",
+  "src/FINAL/final_read.py": "f8ab8e55217a400396a7611bfe1432fdaa4408c6d51d60808ae3fa408a049df2",
+  "src/FINAL/mock_test.py": "7648a3632e8f6f89441b256dcc5cf67c2482f57ed86af9448cd9926cf1026a6e",
+  "src/FINAL/make_standin.py": "f91e7503974fbb9cc7038320e61e85443fd0185f840e5f15ef85a15eb87baf24",
+  "src/FINAL/thresholds.py": "36d0474ca3512e26f860c92e729f06c747b11e1d67d98d35b8f0fa34260470d6",
+  "src/FINAL/extract_release_scores.py": "9e2c9de985e722357fb8ce113ca0be2e6085371b4aa976bea25b413881862c99",
+  "src/FINAL/selfmad_mad22.py": "696d1a7aaf92dea0f20084d86e94b208963db62e721e861bc3f8084c749477c2",
+  "src/FINAL/beststat_mad22.py": "094eed87e478cff7440294ae5397aabbab35ad5ecba14104251286d0632b015d",
+  "src/FINAL/make_pins.py": "fca462b1c41c6f99a923b89cf0c372fbc7d44a9f65dcd1c7f9432862a940e556",
+  "thresholds (committed)": "0293c3adad2487114fded4555fd235a6ad9946c993381ea1e3f702e6851983d4",
+  "released detectors, existing rows": "dba3acdad6cea543fde2b323a2118a2eb6a32b6d15cc2f0de1d0f304749e963b",
+  "AF0 cues_all.py (reference statistic)": "1ab50f3098e9eac6fcdfeb7a08cb6b02613d728f87aa24a4a396509f41cdcc9f",
+  "RS1 score.py (SelfMAD scorer)": "56bb124444980f630d676758d25aaefe5b3485874c8aea174e0bd74d3c597cc8",
+  "RS1 athena_manifest.csv (SelfMAD inputs)": "11cef1c5b285fba6d50f7828a2d2fb8fe11e0b653facbbe631409572949f1b7e",
+  "rs1_border.csv (release crop border)": "0b3bad62e83a04515ab9fe6a315e706b72f58734c0da666edebd328710905fa5"
+ },
+ "bytes_pack": 5756416000
+}

@@ -1,0 +1,70 @@
+{
+ "rule": "smallest c with share(FFHQ genuine > c) <= alpha",
+ "alpha": 0.05,
+ "n_ffhq_rows": 2000,
+ "nets": {
+  "PN1_Sb_s403": {
+   "tau_ffhq": -0.9736316800117493,
+   "share_above": 0.05,
+   "n": 2000
+  },
+  "PN1_Sb_s404": {
+   "tau_ffhq": -0.16013842821121216,
+   "share_above": 0.05,
+   "n": 2000
+  },
+  "PN1_Sb_s405": {
+   "tau_ffhq": -0.1863296926021576,
+   "share_above": 0.05,
+   "n": 2000
+  },
+  "PN1_Sb_s406": {
+   "tau_ffhq": 0.0613480806350708,
+   "share_above": 0.05,
+   "n": 2000
+  },
+  "PN1_Sb_s407": {
+   "tau_ffhq": -0.8872343301773071,
+   "share_above": 0.05,
+   "n": 2000
+  }
+ },
+ "releases": {
+  "madation_vitb16/v1": {
+   "tau_ffhq": -11.77739143371582,
+   "share_above": 0.04963805584281282,
+   "n": 1934
+  },
+  "madation_vitb16/v2": {
+   "tau_ffhq": -11.794591903686523,
+   "share_above": 0.04957436154231347,
+   "n": 1997
+  },
+  "madation_vitl14/v1": {
+   "tau_ffhq": -12.655466079711914,
+   "share_above": 0.04963805584281282,
+   "n": 1934
+  },
+  "madation_vitl14/v2": {
+   "tau_ffhq": -12.672856330871582,
+   "share_above": 0.04957436154231347,
+   "n": 1997
+  },
+  "mixfacenet_mad_smdd/v1": {
+   "tau_ffhq": -9.897283554077148,
+   "share_above": 0.04963805584281282,
+   "n": 1934
+  },
+  "mixfacenet_mad_smdd/v2": {
+   "tau_ffhq": -10.582962036132812,
+   "share_above": 0.04957436154231347,
+   "n": 1997
+  },
+  "selfmad_hrnet_w18/own_dgx": {
+   "tau_ffhq": 2.9991884231567383,
+   "share_above": 0.05,
+   "n": 2000
+  }
+ },
+ "release_scores_sha256": "dba3acdad6cea543fde2b323a2118a2eb6a32b6d15cc2f0de1d0f304749e963b"
+}
