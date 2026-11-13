@@ -21,10 +21,23 @@ held-out score CSV per contrast), `FLOORS.md` (one line per contrast, attack set
 - **Stage 1a commit: bffacb5** (20:05; posted to the
   lead in the report; the lead holds SbFM, Sbx and RZ1 reads until it is posted).
 
+- 20:06-20:30 Stage 1b evaluation rows; post-result review of stage 1a (6f7c181) -> amendment 3 (104ee36, post hoc):
+  region floors, lcomb_bal (two builds before the rule was committed; disclosed), lcomb_ipw registered then computed
+  (not usable, ESS 8 morphs, 35f25a7). Dead end: build 1 of lcomb_bal (logreg surround score) did not converge.
+- 20:26-20:35 Stage 3 S4-vs-S3 and RI1 floors (35f25a7). A chained job waited forever on its own pgrep match and
+  was killed; the same-data learner was then run directly.
+- 20:42 Amendment 4 (1067700): naming, H-new-1 / H-new-3 registered; reads and transfer_Sb at 28cb468; all 15 arms
+  at 735a65e. 20:56 amendment 5 (61c6466); products at bf96003. Stage 1c/2 floors at 9e496bb.
+- The GD feature job failed once on 256-px DiffAE frames; fixed by the loader view (amendment 3 item 9) and resumed.
+
 ## Commands
 
 See `prereg.md` section 10.
 
 ## Handover state
 
-Stage 1a committed. Next: stage 1b (rest of stage 1), RI1/TB1 rows (pending for their owners), stage 2, same-data learner.
+Stages 0-9 committed and pinned (see `floors/pins_stage*.sha256` and FLOORS.md). Pending: GD0 floors (StyleGAN /
+DiffAE FFHQ-Morphs) once `/mnt/t7/smad_next/ADV/feats/gd0.npz` is complete; GX1's own rows when its frames and
+`gx1_eval.csv` are committed; region floors for the GD rows (region features computed for evaluation rows only).
+Large outputs: `/mnt/t7/smad_next/ADV/feats/` (ab1x, train, gd12, gd0, missing, pngmeta),
+`/mnt/t7/smad_next/ADV/feats_regional/` (lcomb, ab1x), logs in `/mnt/t7/smad_next/ADV/logs/`.

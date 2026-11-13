@@ -1,0 +1,131 @@
+{
+ "n_pos": 1000,
+ "n_neg": 2000,
+ "n_components": 3000,
+ "n_folds": 5,
+ "insample_best_single": 0.8231835000000001,
+ "insample_best_single_stat": "RENDER:resid_corr_rg",
+ "insample_best_single_f27": 0.7546795,
+ "insample_best_single_f27_stat": "F27:noise_std",
+ "single": {
+  "auc": 0.823036,
+  "eer": 0.2535,
+  "ci": [
+   0.8070333124950408,
+   0.8377621449890943
+  ],
+  "chosen_per_fold": [
+   "-RENDER:resid_corr_rg",
+   "-RENDER:resid_corr_rg",
+   "-RENDER:resid_corr_rg",
+   "-RENDER:resid_corr_rg",
+   "-RENDER:resid_corr_rg"
+  ]
+ },
+ "logreg": {
+  "auc": 0.965652,
+  "eer": 0.0965,
+  "ci": [
+   0.959905000723515,
+   0.9714017136779557
+  ]
+ },
+ "gbt": {
+  "auc": 0.9562525,
+  "eer": 0.106,
+  "ci": [
+   0.9489344149956108,
+   0.9632280387910209
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.91603,
+  "ci": [
+   0.9057996260950866,
+   0.9257860505809405
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.965652,
+  "eer": 0.0965,
+  "ci": [
+   0.959905000723515,
+   0.9714017136779557
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.9133675,
+   "logreg": 0.91603
+  },
+  "BORDER": {
+   "gbt": 0.651407,
+   "logreg": 0.61300075
+  },
+  "RES": {
+   "gbt": 0.7520935,
+   "logreg": 0.747243
+  },
+  "STORE": {
+   "gbt": 0.6793355,
+   "logreg": 0.6695415
+  },
+  "RENDER": {
+   "gbt": 0.898075,
+   "logreg": 0.895366
+  },
+  "BLEND": {
+   "gbt": 0.7379345,
+   "logreg": 0.722499
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.928003,
+  "BORDER": 0.9625165,
+  "RES": 0.964622,
+  "STORE": 0.965161,
+  "RENDER": 0.937854,
+  "BLEND": 0.9626565
+ },
+ "contrast": "gd0_diffae_vs_resmatch",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.9628185,
+  "eer": 0.1015,
+  "ci": [
+   0.95668105924565,
+   0.9689293267142949
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.927355,
+  "eer": 0.151,
+  "ci": [
+   0.9172833449843287,
+   0.9369437064466501
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "GD",
+  "positive": {
+   "fam": "gd0",
+   "rung": "diffae_orig"
+  },
+  "negative": {
+   "fam": "gd0",
+   "rung": "diffae_resmatch"
+  },
+  "note": "SA1 row 13 context"
+ }
+}

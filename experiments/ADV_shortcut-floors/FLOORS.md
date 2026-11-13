@@ -193,6 +193,14 @@ Frozen by `floors/pins_stage7.sha256` (Sb) and `floors/pins_stage8.sha256` (the 
 - **sel360** (OpenCV R4 and R3 of the 100 development hosts and the 80 test hosts clean of development; `floors/sel360_rows.csv`; 360 rows, 110 components): within-D simple morph-cue floor (held-out scores of `ri_R4_vs_R3`, edges over these rows) single 0.690 [0.640, 0.736], logreg 0.794 [0.748, 0.836], gbt 0.774 [0.726, 0.821]; pure-D reference 0.560; coverage 1.00.
 - **Per-row same-data learner scores** `floors/transfer_Sb_rows.csv`, `floors/transfer_SbFM_rows.csv` (set, id, label, component, logreg, gbt) on lcomb, sel360 and lcomb_smatch. AUC logreg / gbt: train_Sb lcomb 0.787 / 0.665, sel360 0.739 / 0.750, lcomb_smatch 0.762 / 0.606; train_SbFM 0.777 / 0.648, 0.734 / 0.756, 0.752 / 0.590.
 
+## GD0 (FFHQ-Morphs StyleGAN and DiffAE families; GX1 transfer reads, SA1 row 13 context; frozen by `floors/pins_stage10.sha256`; post hoc for Sb)
+
+| Contrast | Rows (pos / neg) | ADV floor [95%] (model) | Non-F27/non-BLEND floor | In-sample best single (all) |
+|---|---|---|---|---|
+| `gd0_sgw_vs_resmatch` | 1000 / 2000 | 0.990 [0.988, 0.992] (gbt) | 0.973 | 0.910 (F27:b3_.125-.25) |
+| `gd0_sgwp_vs_resmatch` | 1000 / 2000 | 0.980 [0.976, 0.983] (gbt) | 0.955 | 0.876 (F27:b3_.125-.25) |
+| `gd0_diffae_vs_resmatch` | 1000 / 2000 | 0.966 [0.960, 0.971] (logreg) | 0.927 | 0.823 (RENDER:resid_corr_rg) |
+
 ## Attack sets (requests to the DATA role through the lead; nothing built by the adversary)
 
 Only allowed operations: the approved warp `h1_build.py`, the unchanged OpenCV and FaceMorpher morphers, constant-colour
