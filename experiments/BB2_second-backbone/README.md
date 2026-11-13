@@ -181,6 +181,12 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   rescored logits equal the fits' pn1_score.py logits bit for bit (max |Δ| 0.0). Smoke networks only; never read as a
   result.
 
+- 15:35 third fetch: 15 of 15 tars verified (fetch.log, kept_tars_sha256.txt, fit_logs_sha256.txt). 15:35:50 seed mode
+  frozen "five" (`freeze_mode.py`; commit 546d892) before any tar was opened. 15:36 C2P production file queued
+  (`wcss_bb2_c2p.cmd`, 15 tasks); refused at about 15:36 (controller down since about 15:20); stays queued.
+- 15:36 registered read of the fits (`bb2_read.py`, once; `bb2.json`, log `bb2_read.log`): contrast 1 not repeated,
+  contrast 2 uninformative, contrast 3 repeated (details in `result.md`).
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
@@ -208,7 +214,7 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
 
 ## 5. Results
 
-None yet.
+Part 1 (fits, registered read 15:36): `result.md`, `bb2.json`. C2P part pending.
 
 ## 6. Checks
 

@@ -1,0 +1,6 @@
+read seeds [403, 404, 405, 406, 407] | c1 not repeated floor False | c2 {'B': 'uninformative on these seeds', 'Sb': 'uninformative on these seeds'} control False | c3 repeated
+contrast1 : The gain of spliced positives on FFHQ landmark_combined did not repeat on a second backbone (DINOv3 ViT-L/16): it is not shown to be independent of the CLIP backbone.
+contrast2_B : Second backbone, B: storage mark uninformative (A's positive control not met on DINOv3).
+contrast2_Sb : Second backbone, Sb: storage mark uninformative (A's positive control not met on DINOv3).
+contrast3 : The face-only ladder gain of Sb over B repeats on a second backbone (DINOv3 ViT-L/16).
+counting_caveat : Counting: FS1's own rule (4 of 5 seeds).
