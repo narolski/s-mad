@@ -198,3 +198,51 @@ Reader: `src/BD1/bd1b_read.py`.
 - The same-person range is 0.70-0.94 (5-95%). Look-alike two-person morphs overlapping it cannot be built from these
   pools. They need a much larger person pool (thousands of identities, for example a development face set searched
   by FR similarity) or generated look-alikes, and then new morphs (warping: an author item).
+
+## Amendment 3: pre-run fixes for amendment 2 (`experiments/reviews/PRERUN_BD1_AMEND2_20261113.md`, GO WITH FIXES; registered before computing)
+
+**Times corrected.** The amendment-2 commit is 7697fbf at 18:07:01. The BD1 read commit 83daa17 is at 17:57:18; the
+"about 18:10" in result.md is wrong. The same-person cos_HS range (5-95%) is 0.77-0.93, not 0.70-0.94.
+
+**Known before this commit, added.**
+- Development-host flag rates on the blanked rows for AB1 Sb 408-412 (`AB1 review_recompute.json`; for example
+  Sb_408: S3_bg 0.93, S4_bg 0.99, S3_face 0.01, S4_face 0.01).
+- The reviewer's blanked AUCs quoted in BD1 result.md.
+- The development S4-vs-S3 AUCs, printed in PR1 Z1b-3 and BD1 (`auc_dev`, `strat_auc_dev`).
+- The test-host link between S3 logit and cos_HS (reviewer, post hoc). Since ρ(D_dc, D) is 0.86, the H2 development
+  values are partly predictable.
+
+**Part 3 relabelled.** It formalises values already seen (post hoc); it is not a test. New rule for the outside read:
+if both face-blanked classes are flagged ≤ 5% on ≥ 4 seeds, the outside read is "non-diagnostic", and the verdict is
+"inside-only signal; outside-only read non-diagnostic". Printed: flag rates and logit SDs of all four blanked kinds.
+Meaning, reworded: "no outside-only signal", never "the outside is not the cue". The inside-only contrast still carries
+S3's hull/geometry mismatch (pre-run F3).
+
+**Part 2 (session gap), primary changed.**
+- Primary: a database-stratified partial correlation over all 291 hosts: ranks within database of the S3 logit and of
+  the gap, with ranked-within-database cos_HS, D and D_dc and a database indicator removed.
+- Supported if > 0.15 on ≥ 4 seeds; falsified if ≤ 0.05 on ≥ 4.
+- Printed: per-database raw and partial values with host-bootstrap 95% intervals (2,000 draws). colorFERET (n = 56)
+  is descriptive only.
+- Seeds share the same hosts, so "4 of 5 seeds" is close to one draw; this is stated.
+
+**Part 1.**
+- H1's partial adds a database indicator and prints a host-bootstrap 95% interval. Its "falsified" outcome is worded
+  "not replicated at n = 100" unless the interval excludes the test-host value.
+- H4 averages the gain over 20 fold splits (`default_rng(20261152 + j)`, j = 0-19) and prints its SD.
+
+**Robustness.** A missing row counts the seed as not meeting (assert inside the try). D_dc > 0 and D_lin > 0 are
+asserted.
+
+**Action for a later arm matched on face-recognition (FR) similarity, by outcome (replaces the meaning sentences of
+amendment 2).**
+
+| H1 (FR partial) | H2 (colour strata) | Action |
+|---|---|---|
+| supported | residual beyond colour | FR similarity is a candidate control (it also tracks pose, illumination, age). An arm needs pairs overlapping in FR similarity, which means new look-alike morphs (author item). |
+| supported | accounted for / inconclusive | Colour and FR similarity are not separated. A colour-matched rescore (author item) comes before any FR-matched arm. |
+| falsified ("not replicated at n = 100") or weak | any | There is no basis for an FR-matched arm from this read. A larger development set, or the colour route, comes first. |
+
+- H4: if falsified, any arm is judged first against the 7-statistic propensity.
+- Session gap: if supported, an arm matches on session gap as well; if falsified or inconclusive, it needs no gap
+  matching on this evidence.
