@@ -481,3 +481,44 @@ or on any subset has been computed or seen.
    outputs are reported. If 3c is not read, no further weighting, trimming, overlap or matching route is added for H-hb1,
    and the 3b licence text for 'not read' applies. The weights are not re-tuned (ADV prereg 341)."
 - Reader `src/AB1/ab1_hbw_read.py` after these fixes: sha256 `78e0f2e4e7c5ae38d12706b49080cf5b869d761e0a56f2d99bc52924688c8d94` (replaces 2cffd88b…); mock-tested.
+
+## Amendment 4 (`date`: Fri Nov 13 20:45 CET 2026; POST HOC; before any score of these contrasts is opened for A, B or Sb at 408-412): pipeline-matched contrasts
+
+Lead's instruction after the results review of amendments 3-3d (step 2). Development data only.
+
+**What is asymmetric (stated up front).** Sb is trained on face splices with S4 as positives and S3 as negatives; B and A
+are not. The S4-vs-S3 gain therefore shows what that training buys on new persons, not a property B could have. R4 vs R3
+(whole-frame two-person against same-person morph) is trained by none of the three arms.
+
+**Disclosure.** Known before this amendment: BD1's FS1/AB1/SE1 Sb results on test S4 vs S3 (BD1 result.md, Sb only;
+e.g. unstratified 0.716-0.744 on FS1), the adversary's floors on these contrasts (`ri_R4_vs_R3` floor 0.79, surround 0.62;
+`ri_S4_vs_S3` 0.77 / 0.59; `dev_S4_vs_S3` 0.82 / 0.60) and the reviewer's printed counts. No A or B score on R4, R3, S4
+or S3 rows at 408-412 has been opened by the owner; the AB1 reader did not compute these contrasts. The owner checked
+by row ids only (no logits) that all 15 AB1 tars hold the 1,746 R4/R3/S4/S3 rows of both engines, so no rescoring job is
+needed.
+
+- **Host set (decides):** the 100 development-ladder hosts + the 80 test hosts clean of development persons
+  (`/mnt/t7/smad_next/DATA/overlap/test_hosts_clean_of_dev.csv`, sha256 in pins.sha256's comment line below). Printed
+  beside: the 191 read test hosts, and the 159 of them that are not shape-linked (the 32 test hosts that are pool
+  partners of training hosts and whose landmarks enter Sb's training S3/S0 rows; derived from the PN1 split).
+- **Primary:** two-person against same-person morph R4 vs R3 (OpenCV-style engine; FaceMorpher printed), D-stratified
+  AUC = BD1's primary statistic unchanged (quintile edges of log D over the pooled rows; D of the host's S4 splice for
+  R4 rows and of its S3 splice for R3 rows, `/mnt/t7/smad_next/BD1/d_values.csv`; AUC within strata; weights n_pos ×
+  n_neg over strata with ≥ 10 of each class; readable if those strata hold ≥ 50% of the rows).
+- **Secondary:** S4 vs S3, same statistic and host set; printed also on the 100 development hosts alone and on the
+  291-host set's test parts (191, 159).
+- **Rule (each contrast, X ∈ {B, A}):** paired gain g_s = stat(Sb_s) − stat(X_s). Joint person-component bootstrap (components
+  of the host–partner graph within the host set; 2,000 draws, rng 20261120, the same draws for all networks and seeds)
+  of the seed-mean gain. **"present"** if the seed-mean is ≥ +0.03 AND the lower 95% bound is above 0 AND g_s > 0 on ≥ 4
+  of 5 seeds; **"absent"** if the upper 95% bound is below +0.03; otherwise **"inconclusive"**; fewer than 4 readable
+  seeds: "not read".
+- **Printed:** unstratified AUCs; the adversary's simple-morph-cue floors (`check.exceeds`, all-cue and nuisance) for
+  ri_R4_vs_R3, ri_S4_vs_S3, dev_S4_vs_S3, test_cv_R4_vs_R3, test_fm_R4_vs_R3 and test_S4_vs_S3 per network; the
+  adversary's same-data transfer learner per arm when it is committed.
+- **What each outcome licenses:** "present" on R4 vs R3: on development data and clean test hosts, Sb ranks two-person
+  above same-person whole-frame morphs better than the protocol-only (or plain) recipe, on a contrast no arm was trained
+  on, beside the adversary's floor (post hoc; not held-out evidence). "present" on S4 vs S3: what Sb's splice training
+  buys on new persons (asymmetric by design). "absent"/"inconclusive": as worded, no claim.
+- Reader `src/AB1/ab1_pm_read.py` (sha256 in pins.sha256), mock-tested; read once after the lead's pre-run check;
+  then the results-reviewer.
+- Pinned at this commit: reader `9ff52c1bce9deca4…`; inputs test_hosts_clean_of_dev.csv 814c4486…, BD1 d_values.csv cf2ba3fa… (asserted by the reader).
