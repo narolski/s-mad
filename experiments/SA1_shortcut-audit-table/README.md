@@ -6,8 +6,8 @@ The author asked for scientific evidence that the training protocol is shortcut-
 one column per training arm or released detector, every cell from a paired control (the same images with and without
 the suspected cue), with seeds, intervals, source file and review status. Status 13 Nov 2026, about 09:45 CET:
 version 2 (reviewed) compiled from registered results only (no scoring). Of 171 cells (19 rows x 9 columns), 79 are
-reviewed (22 of them on two seeds only), 13 unreviewed, 68 empty, 11 not applicable. For our own arms, 56 of 95 cells
-are empty. The best-measured row
+reviewed (22 of them on two seeds only), 18 unreviewed, 63 empty, 11 not applicable. For our own arms, 51 of 95 cells
+are empty (after G9 filled row 15 for our arms). The best-measured row
 (storage history of genuine photos, five fresh seeds) supports "reduced, not removed", not "removed". The table is
 `result.md`; the cell list is `cells.csv`. Waiting for today's readings (Sp ablation, SbM3 three-source training,
 contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cells.
@@ -18,9 +18,9 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
   in the task: PN1 (`result.md`, `BENCHMARK_EXPOSURE.md`, `tier1/*.json`, `tier_fs/fs.json`, `tier1_sb/`), TT1
   (`result.md`), MS1 (`README.md`), CB1 (`result.md`, `cb1_released_rs1_bpcer.csv`), SM1, AR1, AD4, AG1, EV1, RS1 and
   the review files in `experiments/reviews/`.
-- 13 Nov 09:30: `result.md` version 1 written; `src/SA1/cells.py` writes `cells.csv` and the status counts.
-- 13 Nov 09:45: version 1 committed (e96bf68) and sent to the results-reviewer agent (Opus) for a cell-by-cell check.
-- 13 Nov about 10:00: review returned "needs corrections" (20 items; all numbers matched except unverifiable tier1 JSON
+- 13 Nov (stamps below corrected to the machine clock; earlier drafts said 09:30 to 10:10 by estimate) 08:40: `result.md` version 1 committed (e96bf68); `src/SA1/cells.py` writes `cells.csv` and the status counts.
+- 13 Nov 08:40: sent to the results-reviewer agent (Opus) for a cell-by-cell check.
+- 13 Nov 08:4x: review returned "needs corrections" (20 items; all numbers matched except unverifiable tier1 JSON
   values, which the reviewer did not open because those files also hold benchmark rows). Applied all 20: row 2
   headlines changed from "not used" to "not evaluable / in training"; near-trained-size qualifier on 1-B and 1-Sb;
   TT1-FS (registered, queued) added as pending; border headlines "inconclusive"; released warp-only cells "small" where
@@ -28,7 +28,9 @@ contrast 2-prime storage test, TT1-FS fresh-seed block) to fill the pending cell
   12-released in reviewed wording; fresh-seed R6 values added; citations fixed (9-Sb, amendment 9 lines, AD1 lines);
   new rows 17 (softness), 18 (processing cue in the development set's surround), 19 (operating point); claim and
   cannot-claim sections extended; ranked list fixed (C2P on L40S; JPEG pack is an author item; TT1-FS already queued).
-  Version 2.
+  Version 2 committed 08:48:58 (347e8be).
+- 08:50: lead's instruction: save the review verbatim (`experiments/reviews/REVIEW_SA1_20261113.md`); do gap items 9 and 11; registered G9 and G11 in `prereg.md` (3a0065e) before computing.
+- 08:52-08:56: G9 (`src/SA1/g9_partners.py` -> `g9_partners.json`): "partner structure present" by the registered 1% rule (largest share 1.6-3.1%, AF0 FRGC persons in up to 25 morphs); far weaker than SMDD's 5 partners. G11 (`src/SA1/g11_expression_pool.py` -> `g11_expression_pool.json`): "a paired expression pool exists" (CFD 158, KDEF 70 persons). Note: the G11 code also accepts a combined count of 100; CFD alone meets the registered rule, so the reading is the same.
 
 ## 3. Data
 

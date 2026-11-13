@@ -125,11 +125,11 @@ row,shortcut,column,cell_id,status
 14,GAN one-person render (MIPGAN),MADation_ViT-L14,14-MADation_ViT-L14,reviewed
 14,GAN one-person render (MIPGAN),MixFaceNet-MAD,14-MixFaceNet-MAD,not measured
 14,GAN one-person render (MIPGAN),SelfMAD,14-SelfMAD,reviewed
-15,training-partner trace (SMDD),A,15-A,not measured
-15,training-partner trace (SMDD),B,15-B,not measured
-15,training-partner trace (SMDD),Sb,15-Sb,not measured
-15,training-partner trace (SMDD),Sp,15-Sp,not measured
-15,training-partner trace (SMDD),SbM3,15-SbM3,not measured
+15,training-partner trace (SMDD),A,15-A,unreviewed
+15,training-partner trace (SMDD),B,15-B,unreviewed
+15,training-partner trace (SMDD),Sb,15-Sb,unreviewed
+15,training-partner trace (SMDD),Sp,15-Sp,unreviewed
+15,training-partner trace (SMDD),SbM3,15-SbM3,unreviewed
 15,training-partner trace (SMDD),MADation_ViT-B16,15-MADation_ViT-B16,reviewed
 15,training-partner trace (SMDD),MADation_ViT-L14,15-MADation_ViT-L14,reviewed
 15,training-partner trace (SMDD),MixFaceNet-MAD,15-MixFaceNet-MAD,reviewed

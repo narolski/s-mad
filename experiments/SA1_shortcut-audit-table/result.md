@@ -1,6 +1,6 @@
 # Shortcut audit table (SA1): result, version 2 (13 Nov 2026, reviewed; before today's readings)
 
-Status 13 Nov 2026, about 10:10 CET. Version 2 applies the independent review (results-reviewer, Opus, 13 Nov; 20 corrections, summarised in `README.md` section 2). Compiled from registered, committed results only. **Nothing was scored, computed
+Status 13 Nov 2026, 08:49 CET (machine clock; earlier "09:30" and "10:10" stamps in these files were estimates and wrong). Update 08:58: G9 and G11 added. Version 2 applies the independent review (results-reviewer, Opus, 13 Nov; 20 corrections, summarised in `README.md` section 2). Compiled from registered, committed results only. **Nothing was scored, computed
 on images or run for this page.** No file whose name contains `fst`, `valx` or `A12SP` was opened. Numbers that come
 from the 12 Nov benchmark exposure of candidate networks (FRLL, MAD22, H1 reads of the protocol networks;
 `experiments/PN1_protocol-network-first-tests/BENCHMARK_EXPOSURE.md`) are **not** used: those cells say
@@ -58,13 +58,15 @@ when the lead says the readings are in.
 | 12 | Surround blend (whole-frame tools; a real blend, not an artefact) | relies on it | relies on it | reduced in degree, not removed | not measured | not measured | relies on it | relies on it | relies on it | reads the face too |
 | 13 | Diffusion render path (one-photo reconstruction) | not measured | not measured | not measured | not measured | not measured | **used**: morph vs reconstruction 0.48 | **used**: 0.49 | not measured | **used**: 0.40 |
 | 14 | GAN one-person render (MIPGAN) | not measured | not measured | not measured | not measured | not measured | **mostly second photo**: same-person flagged 95.5% | 87.0% | not measured | 100% |
-| 15 | Training-partner trace (SMDD five partners) | not measured | not measured | not measured | not measured | not measured | 0.43 logit | 0.95 logit | 13.36 logit | n/a (not SMDD) |
+| 15 | Training-partner trace (SMDD five partners) | mild structure (one person in ≤ 2.9% of morphs; use untested) | same (≤ 2.9%) | same (≤ 2.6%) | same (≤ 2.6%) | same (≤ 1.6%) | 0.43 logit | 0.95 logit | 13.36 logit | n/a (not SMDD) |
 | 16 | Expression / capture detail of the FRLL smiling half | not measured (exposure only) | not measured (exposure only) | not measured (exposure only) | not measured (exposure only) | not measured | change < 1.5 pts | **+4.5 pts** with neutral-only genuine | not measured | change < 1.5 pts |
 | 17 | Softness / detail loss | reads missing high frequency (TT1 H-new-1, unreviewed) | mostly softness on R2w vs R4 (2 seeds) | not measured | not measured | not measured | mixed (AR1 softened copies) | more than detail loss (not separated from ghosting) | **detail loss explains** at 61 px | more than detail loss |
 | 18 | Processing cue in the surround of the development set (FFHQ landmark_combined) | below floor | below floor | level with floor; R2 fails on noise_std_border (5 seeds) | pending today (printed R1–R6) | not measured | n/a | n/a | n/a | n/a |
 | 19 | Operating point / bounded output scale | τ_cam degenerate (saturated) | τ_cam and τ_dev degenerate | τ_dev degenerate (96–98% of FFHQ flagged) | not measured | not measured | own 0.5 rule catches 4% of AMSL | saturated genuine scores | not measured | own rule usable (0% unprocessed) |
 
-Columns still to come: the seam-shortcut training arm (SE1) and the second backbone (BB2), when they are read.
+Columns pending (not yet in the matrix): SE1 (same-person blend arm), BB2 (second backbone), AB1 (protocol ablation and replication, seeds 408–412, leave-one-component-out arms that say which component removes which shortcut).
+
+Routing of the fill experiments (lead, 13 Nov): ranks 2, 5, 6, 7, 8 to the owner of registered reads of the existing fresh-seed networks (PR1); rank 4 to the TT1 owner; rank 10 to the CB1 owner; rank 3 (JPEG pack) waits for the author; ranks 9 and 11 done here (G9, G11).
 
 Bold words mark a cue that moved the column in the direction the shortcut predicts.
 
@@ -230,7 +232,7 @@ attacks.
 
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
-| 15-A, B, Sb, Sp, SbM3 | — (partner structure of our own manifests not audited) | — | — | — | — | not measured |
+| 15-A, B, Sb, Sp, SbM3 | Manifest audit G9 (registered, `prereg.md`; `g9_partners.json`, `src/SA1/g9_partners.py`): registered reading "partner structure present" (rule: no contributor in more than 1% of unique morphs). Largest share of unique training morphs that contain one person: A, B, C 2.9% (25 of 852), Bn 3.1% (21 of 674), Sb, Sp, SbV 2.6% (25 of 976), SbM3 1.6% (25 of 1,526); 388 distinct second contributors (SbM3 799); the most repeated persons are AF0 FRGC persons in af0_u50 morphs. For scale, SMDD: 5 second contributors for 15,000 morphs. Whether any arm uses this structure is not tested | — | development (manifests only) | g9_partners.json | — | unreviewed (manifest audit; use not tested) |
 | 15-ViTB | Training partner minus SMDD evaluation partner 0.43 [0.34, 0.53] logit; "near their score ceiling"; "benchmarks contain no training partner, so the trace has no direct effect on them" | one network | development (SMDD audit set) | rev/REVIEW_SM1_20261111.md:27, :106 | REVIEW_SM1 | reviewed |
 | 15-ViTL | 0.95 [0.78, 1.12] logit | one network | development | as above | REVIEW_SM1 | reviewed |
 | 15-MFN | 13.36 logit | one network | development | as above | REVIEW_SM1 | reviewed |
@@ -240,7 +242,7 @@ attacks.
 
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
-| 16-A, B, Sb, Sp | Only FRLL neutral-only reads exist (benchmark, 12 Nov exposure) | — | — | PN1/tier1/*.json (`FRLL_bona_native_neutral`); PN1/BENCHMARK_EXPOSURE.md:23 | — | not measured (exposure only) |
+| 16-A, B, Sb, Sp | Only FRLL neutral-only reads exist (benchmark, 12 Nov exposure). G11 (registered): a paired pool exists in held-out development sources: CFD 158 persons with neutral and happy images (all in the main CFD subset; MS1 holds their neutral images aligned), KDEF 70 persons with front neutral and happy images of the same session (`g11_expression_pool.json`). Not scored | — | — | PN1/tier1/*.json (`FRLL_bona_native_neutral`); PN1/BENCHMARK_EXPOSURE.md:23 | — | not measured (exposure only) |
 | 16-SbM3 | — | — | — | — | — | not measured |
 | 16-ViTL | Neutral-only genuine class raises the error by 4.5 points on average over 11 cells (95% interval 3.4 to 5.8; AMSL 17.7 to 24.5); for this release the cause is mainly capture detail of the smiling files, not expression (C1c) | one network | benchmark audit | rev/REVIEW_C1b_20261111.md:10-12; CM:16-17 | REVIEW_C1b (+4.5); the C1c capture-detail attribution is not in a review file | reviewed (C1b); C1c attribution unreviewed |
 | 16-ViTB, 16-SelfMAD | "The fine-tuned ViT-B/16 release and SelfMAD change by under 1.5" | one network each | benchmark audit | rev/REVIEW_C1b_20261111.md:12-13 | REVIEW_C1b | reviewed |
@@ -286,13 +288,13 @@ once per column. See `cells.csv` for the cell-by-cell list (written by `src/SA1/
 | Status | Our arms (A, B, Sb, Sp, SbM3; 95 cells) | Released detectors (76 cells) | All 171 |
 |---|---|---|---|
 | reviewed | 34 (22 of them two seeds only) | 45 | 79 |
-| unreviewed | 3 (2 two seeds only) | 10 | 13 |
-| not measured | 41 | 12 | 53 |
+| unreviewed | 8 (2 two seeds only) | 10 | 18 |
+| not measured | 36 | 12 | 48 |
 | not measured (exposure only) | 7 | 0 | 7 |
 | not measured (pending today) | 8 | 0 | 8 |
 | n/a | 2 | 9 | 11 |
 
-Empty cells in total: 68 (53 + 7 + 8). For our arms, 56 of 95 cells are empty; of the 37 filled ones, 24 rest on two
+Empty cells in total: 63 (48 + 7 + 8). For our arms, 51 of 95 cells are empty; of the 42 filled ones, 24 rest on two
 seeds that are confounded with machine. Five fresh seeds exist for rows 1, 8, 18, 19 and the fresh-seed parts of 4
 (FFHQ), 6-Sb and 12.
 
@@ -374,8 +376,8 @@ the per-image scores of the registered evaluation list. Nothing below was run.
 | 6 | 13-A, 13-B, 13-Sb, 13-Sp, 13-SbM3 | Diffusion render path: score the DG1 diffusion ladder (reconstruction, same-person mix, two-person mix; FRGC/colorFERET hosts, restricted to PN1 test hosts so that no training host enters) with the 15 fresh-seed checkpoints; read morph vs reconstruction AUC and reconstruction flags | DG1 sets on the DGX (`experiments/DG1_diffusion-generation-athena/`), host filter by `PN1/split/ladder_split.csv` | about 0.3 A100-hour | The released detectors fail this row; showing our arms on it is needed before any diffusion claim |
 | 7 | 14-A, 14-B, 14-Sb | GAN one-person render: score the AG1 MIPGAN controls (one photo, same-person, two-person) on hosts outside PN1 training | AG1 images on Athena (11 rented originals lost; Athena copies verified per `experiments/AG1/athena_backup_verify.txt`) | about 0.3 A100-hour plus transfer | Same reason for the GAN family |
 | 8 | 17-Sb, 17-Sp, 17-SbM3 | Softness: the TT1 H-new-1 Laplacian-variance read for Sb and for the fresh seeds, from existing scores (registered first) | existing scores | 0 GPU | Separates softness from blend reading for our arms |
-| 9 | 15-A, 15-B, 15-Sb | Partner audit of our own training manifests (how many morphs share a second contributor), then the SM1 trained-against-unused partner contrast if any partner repeats | manifests only | 0 GPU (CPU minutes) | Probably empty by construction (one partner per host); cheap to confirm |
+| 9 (done, G9) | 15-A, 15-B, 15-Sb | Partner audit of our own training manifests (how many morphs share a second contributor), then the SM1 trained-against-unused partner contrast if any partner repeats | manifests only | 0 GPU (CPU minutes) | Probably empty by construction (one partner per host); cheap to confirm |
 | 10 | 5-ViTL, 5-MFN, 13-MFN, 14-MFN, 16-MFN, 4-ViTL, 10-SelfMAD, 19-MFN | Released-detector audits with the RS1 machinery: border-matched pairing (EV1 amendment 2 style) for ViT-L/14 and MixFaceNet; MixFaceNet on the AD1 and AG1 ladders; MixFaceNet neutral-only column | RS1 crops and scorer on an A100 | about 0.5–1 A100-hour | Completes the comparison columns; does not bear on the protocol claim |
-| 11 | 16-A, 16-B, 16-Sb | Expression on development data: neutral against smiling genuine photos of the same persons where a development pool has both (to be checked; FRGC sessions), paired by person | to be built | unknown; first a zero-GPU check that such a pool exists | Expression is a benchmark cue only for FRLL; low priority for the protocol claim |
+| 11 (pool check done, G11: CFD 158 + KDEF 70 persons) | 16-A, 16-B, 16-Sb | Expression on development data, paired neutral against happy on CFD and KDEF (held-out MS1 sources; needs alignment of the happy images with the unchanged aligner, a registration and the lead's approval): neutral against smiling genuine photos of the same persons where a development pool has both (to be checked; FRGC sessions), paired by person | to be built | unknown; first a zero-GPU check that such a pool exists | Expression is a benchmark cue only for FRLL; low priority for the protocol claim |
 </content>
 </invoke>

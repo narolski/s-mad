@@ -24,7 +24,7 @@ S = {
  12:[U,R,R,NM,NM,R,R,R,R],
  13:[NM,NM,NM,NM,NM,R,R,NM,R],
  14:[NM,NM,NM,NM,NM,R,R,NM,R],
- 15:[NM,NM,NM,NM,NM,R,R,R,NA],
+ 15:[U,U,U,U,U,R,R,R,NA],
  16:[EX,EX,EX,EX,NM,R,R,NM,R],
  17:[U2,R2,NM,NM,NM,R,R,R,R],
  18:[R,R,R,PD,NM,NA,NA,NA,NA],
