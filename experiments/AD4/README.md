@@ -1174,3 +1174,14 @@ dependency (DependencyNeverSatisfied): fix, re-test, resubmit both, and cancel 6
   after the smoke completed with exit 0). Owner: AD4 reading owner. Expected run: smoke about 5 min, production about 20 min, after start.
 - 09:02: smoke submitted by the dispatcher as **WCSS job 6310086** (ad4-fu-smoke). Production follows only after 6310086 completes with exit 0.
 - 09:07, dispatcher on the lead's order: production submitted as **WCSS job 6310123** (ad4-fu-prod) alongside the smoke, Nice=30 for both. Its output is read only if smoke 6310086 completes with exit 0; if the smoke fails, the dispatcher cancels 6310123.
+
+### Handover state, 13 Nov 14:41 (reading owner)
+
+- WCSS 6310086 (smoke) and 6310123 (production), H100 follow-up re-score (Amendment 6), both PENDING on priority (Nice=30) at 14:40; the
+  dispatcher watches them and cancels 6310123 if the smoke fails. Production results: `smad-next/results/AD4_fu/fu_h100_6310123_limit0.tar`.
+- When 6310086 completes with exit 0 and 6310123 is done: copy the tar and `.sha256` under the WCSS lock to
+  `/mnt/t7/smad_next/AD4/fu/h100/`, `sha256sum -c`, extract, then
+  `cd /home/narolski/smad-next/src/AD4 && CUDA_VISIBLE_DEVICES= OMP_NUM_THREADS=2 nice -n 10 $P fu_read.py --res <extracted>/fu_h100_6310123_limit0
+  --ref-res /mnt/t7/smad_next/AD4/results_wcss_m3 --tag _h100 --platform "WCSS H100" --flag "Reproduction gate: pass on the cluster stack."`
+  (reader `31cc088a…`), then update result.md (follow-ups section) and send to review.
+- Nothing else of AD4 runs anywhere. Athena array 3546123 cancelled (12 Nov 23:03).
