@@ -330,3 +330,13 @@ Both new arms are post-freeze (the candidate was frozen at 18:28) unless the aut
 - **Author, verbatim: "Go with A READ NOW, improve later for MAD22, we need to know where we stand on this eval set."** (Option A of the lead's question: read the frozen CLIP candidate now; the new arms are later work.)
 - **Scope set by the lead from his words:** the read tonight or tomorrow morning covers the corrected MAD22 only (standard, history-matched, border-equalised forms; own rule and a development threshold as secondary; released detectors and the best development statistic beside it). FRLL-Morphs, FEI, MorDIFF, the DiM families, H1 and the benign variants stay sealed and unscored, kept for the improved method. Unavoidable exposure, to be disclosed: MAD22's genuine side is the 204 FRLL photos, so the frozen networks' scores on those photos will exist. After this read, any later method's MAD22 numbers are "seen during development".
 - The frozen candidate stays as ruled at 18:28 (Sb, seeds 403-407). The arms ordered this evening (second engine, GAN with render-matched negatives, DINOv3 programme, input resolution and resize study, look-alike search) are development of the next method version.
+
+## 13 Nov 2026, 18:46 machine clock (lead): CORRECTION OF TIMES in this evening's entries
+
+The lead wrote clock times into this evening's entries and messages from memory instead of from the machine clock, and they ran ahead. The commit times (machine clock, `git log`) are the record:
+- The author's freeze ruling ("Ok, freeze the candidate and let's test it"): entry committed at 18:27:42; the ruling arrived a minute or two before. The stated "18:28" is right to the minute.
+- The entry headed "18:50" (rulings on next arms) was committed at 18:32:28.
+- The entry headed "19:20" (512 input and resize methods; DINOv3 programme) was committed at 18:35:39.
+- The entry headed "19:25" (the author's "Go with A READ NOW, improve later for MAD22 ...") was committed at 18:36:07; **that ruling was given at about 18:36, not 19:25.** Messages of the lead to owners that cite "the 19:25 ruling", and the times 19:05, 19:15, 19:35, 19:50 and 20:00 in the lead's messages, are all between 18:36 and 18:46 by the machine clock.
+- The earlier entry headed "17:15" (cut-off ruling) was committed at about 17:11 by the machine clock; the SE1 wording approval cited as "17:25" likewise carries a time written from memory.
+The order of events is unaffected: every ruling was recorded before the actions that rely on it. Owners correct any registration text that quotes one of these times to "13 Nov, about 18:36 by the machine clock (lead's messages said 19:25)", by a dated note, without changing anything else. From now on the lead takes every time from `date`.
