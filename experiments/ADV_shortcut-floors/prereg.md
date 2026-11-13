@@ -354,7 +354,7 @@ GO WITH FIXES, no blockers. The owner-launched check that led to amendment 1 is 
    (`smadcvpr` `common.ImageItems` through cue_floor, unchanged), the PR1 amendment-4 precedent; the 26 statistics
    reproduce PR1's cached GD1 cues exactly (max difference 0.0 on 8 frames).
 
-## Amendment 4 (13 Nov, about 21:00; descriptive, post hoc; registered before the two reads below are computed; review `experiments/reviews/REVIEW_ADV_STAGE3_STRATEGY_20261113.md`, 93f4210)
+## Amendment 4 (13 Nov, about 20:40 by the machine clock, committed in 1067700; descriptive, post hoc; registered before the two reads below are computed; review `experiments/reviews/REVIEW_ADV_STAGE3_STRATEGY_20261113.md`, 93f4210)
 
 - **Naming.** The S4-vs-S3 and R4-vs-R3 floors (and their D-quintile reads) are **simple morph-cue floors**, not
   shortcut floors: blending two different people leaves colour, illumination and ghosting mismatch, which is a

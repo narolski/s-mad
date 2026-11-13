@@ -127,6 +127,28 @@ Own-rule flag shares of the same learner (logreg decision > 0 / gbt probability 
 
 Plainly (development data; no network score read here): trained on the frozen candidate's own training rows, a shortcut-only learner reaches 0.787 (logreg) / 0.665 (gbt) on landmark_combined, against the candidate's reviewed 0.873-0.906; by the review's H-new-2 bars (supported ≥ 0.85, falsified ≤ 0.75) this is between the bars. On the pipeline-matched R4 vs R3 rows it reaches 0.72-0.74, and it flags 44-48% of development same-person splices and 72-86% of OpenCV same-person morphs, close to the candidate's reviewed 31-48% and 83-88%.
 
+### Same-data shortcut learner for every arm's training list (logreg / gbt)
+
+| Arm list | n train | lcomb | lcomb_bal | test OpenCV R4 vs R3 | test FM R4 vs R3 | test S4 vs S3 | dev S3 flag | dev R3 (OpenCV) flag | bordered camera flag | FFHQ hold-out photo flag native → fm61 → amsl112 (logreg) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Sb | 5535 | 0.787 / 0.665 | 0.811 / 0.644 | 0.719 / 0.704 | 0.662 / 0.704 | 0.681 / 0.640 | 0.48 / 0.44 | 0.72 / 0.86 | 0.34 / 0.00 | 0.13 → 0.58 → 0.51 |
+| A | 1526 | 0.798 / 0.434 | 0.697 / 0.388 | 0.619 / 0.618 | 0.601 / 0.503 | 0.610 / 0.552 | 0.93 / 0.85 | 0.99 / 0.98 | 0.08 / 0.01 | 0.13 → 0.02 → 0.43 |
+| B | 5099 | 0.822 / 0.619 | 0.825 / 0.567 | 0.686 / 0.656 | 0.579 / 0.610 | 0.605 / 0.494 | 0.37 / 0.32 | 0.79 / 0.90 | 0.34 / 0.00 | 0.03 → 0.41 → 0.33 |
+| SbZ | 4649 | 0.803 / 0.665 | 0.826 / 0.625 | 0.720 / 0.705 | 0.660 / 0.707 | 0.682 / 0.653 | 0.47 / 0.42 | 0.72 / 0.86 | 0.31 / 0.00 | 0.11 → 0.52 → 0.49 |
+| SbS | 4552 | 0.776 / 0.583 | 0.759 / 0.558 | 0.712 / 0.699 | 0.665 / 0.714 | 0.684 / 0.660 | 0.49 / 0.40 | 0.77 / 0.86 | 0.05 / 0.01 | 0.06 → 0.20 → 0.14 |
+| Sp | 5223 | 0.777 / 0.620 | 0.783 / 0.572 | 0.705 / 0.696 | 0.684 / 0.693 | 0.671 / 0.601 | 0.66 / 0.71 | 0.75 / 0.89 | 0.47 / 0.00 | 0.18 → 0.52 → 0.44 |
+| AS | 2146 | 0.808 / 0.609 | 0.766 / 0.577 | 0.623 / 0.618 | 0.587 / 0.541 | 0.584 / 0.539 | 0.93 / 0.88 | 0.99 / 0.98 | 0.37 / 0.00 | 0.14 → 0.33 → 0.77 |
+| SbH | 3831 | 0.815 / 0.633 | 0.838 / 0.606 | 0.720 / 0.718 | 0.658 / 0.705 | 0.680 / 0.651 | 0.49 / 0.38 | 0.75 / 0.86 | 0.21 / 0.00 | 0.11 → 0.37 → 0.51 |
+| SbR | 3831 | 0.772 / 0.652 | 0.789 / 0.609 | 0.721 / 0.707 | 0.668 / 0.704 | 0.674 / 0.620 | 0.50 / 0.45 | 0.71 / 0.85 | 0.45 / 0.00 | 0.12 → 0.58 → 0.51 |
+| SbnS0 | 5379 | 0.789 / 0.654 | 0.802 / 0.617 | 0.719 / 0.711 | 0.668 / 0.703 | 0.688 / 0.644 | 0.50 / 0.46 | 0.70 / 0.85 | 0.34 / 0.00 | 0.17 → 0.57 → 0.49 |
+| SbH61 | 5172 | 0.708 / 0.670 | 0.735 / 0.640 | 0.713 / 0.710 | 0.661 / 0.708 | 0.677 / 0.651 | 0.47 / 0.44 | 0.73 / 0.86 | 0.57 / 0.00 | 0.23 → 0.83 → 0.69 |
+| SbnS3 | 5379 | 0.782 / 0.621 | 0.805 / 0.616 | 0.702 / 0.705 | 0.670 / 0.695 | 0.666 / 0.587 | 0.56 / 0.70 | 0.76 / 0.93 | 0.40 / 0.00 | 0.10 → 0.53 → 0.47 |
+| SbSp | 4240 | 0.749 / 0.536 | 0.706 / 0.493 | 0.698 / 0.692 | 0.688 / 0.693 | 0.670 / 0.597 | 0.64 / 0.70 | 0.73 / 0.90 | 0.05 / 0.01 | 0.18 → 0.16 → 0.12 |
+| SbFM | 5939 | 0.777 / 0.648 | 0.800 / 0.627 | 0.716 / 0.720 | 0.697 / 0.736 | 0.679 / 0.664 | 0.54 / 0.46 | 0.70 / 0.86 | 0.42 / 0.00 | 0.16 → 0.59 → 0.53 |
+| Sbx | 6920 | 0.800 / 0.691 | 0.841 / 0.682 | 0.699 / 0.728 | 0.673 / 0.723 | 0.693 / 0.655 | 0.49 / 0.44 | 0.70 / 0.84 | 0.10 / 0.02 | 0.10 → 0.10 → 0.13 |
+
+Frozen by `floors/pins_stage7.sha256` (Sb) and `floors/pins_stage8.sha256` (the other lists). Printed only (no verdict attaches; prereg section 5.3). An arm's network that does not exceed its own list's same-data learner on a contrast has not shown anything that shortcut-only learning on the same training rows does not also produce.
+
 ## Descriptive reads of amendment 4 (registered at 1067700 before computing)
 
 - **H-new-1** (F27 + BLEND alone on lcomb_bal, 250 rows): single / logreg / gbt 0.888 / 0.929 / 0.914: **supported** (bar ≥ 0.90). Where the surround history is balanced to within detection power, the remaining separation is carried by blend-texture statistics.
