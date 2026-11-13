@@ -671,3 +671,46 @@ with lower bound > 0 and ≥ 4 of 5 seeds positive; "absent" upper bound < +0.03
 - Reader `src/AB1/ab1_pm3_read.py` (copy of ab1_pm2_read.py with --pair C; sha256 in pins.sha256), mock-tested. Read once
   when the 10 fits have ended, latest 15 Nov 18:00; later rows labelled late. Placement in the queue: behind the
   selection-rule challengers, ahead of the retrains (lead). The S0-only versus S3-only split waits until these are read.
+
+## Amendment 6b (`date`: Fri Nov 13 21:37 CET 2026; before the amendment-6 read; fixes A6-1 to A6-3 of `experiments/reviews/PRERUN_AB1_A6_A7_20261113.md`, 218dd02)
+
+- Interpreter (A6-1): scipy is dropped; Spearman uses numpy average ranks (checked equal to scipy on test data). Registered
+  command: `/home/narolski/mambamorph-code/.venv-spark/bin/python -I src/AB1/ab1_desc_read.py --out experiments/AB1_protocol-ablation-and-replication/ab1_desc_read.json`.
+- Sp label (A6-2): "Sp at 403-405: 3 seeds, A100 PCIe, pack 76528f16; the Sb − Sp and Sp − B means in the 403-407 block are
+  over these 3 seeds only."
+- Labels (A6-3): the pooled Spearman is printed as "pooled_includes_class_separation" (read the within-class values only);
+  "no direction is tested" replaces the H-new-1 direction; cells with fewer than 20 rows of either class print None; cells
+  under about 30 rows per class are noise-dominated, and the per-cell seed SD is printed.
+- Reader `src/AB1/ab1_desc_read.py` now `8fb683a1a0301ce9c7ed2f1b3fbfa4c569eea517908bb07c74eea8b006a19d66` (replaces c762d4d3…); mock re-run.
+
+## Amendment 7b (`date`: Fri Nov 13 21:37 CET 2026; before any batch-C fit; fixes F1-F5 of the same pre-run check; lead's answer: BV added)
+
+**Timing statement.** Amendments 6 and 7 were registered before the owner or the lead had seen any MAD22 number of the frozen
+candidate. Amendment 7b is written after the lead saw the MAD22 result (about 21:09; the owner has not seen it); it changes
+only the control arm the reviewer asked for and the wording below.
+
+1. **Control arm BV (F1).** BV = B plus 312 repeated native negatives of B, database-matched to the 312 S0/S3 rows (260 FRGC,
+   52 colorFERET), drawn by the SpV rule (rng 20261172); train_BV.csv `ee4e227b2cd6648d196b5d61300a9cf483c85f05a80afae0fd6e774153baf04f` (5,099 unique,
+   8,386 rows); BN and BV have identical positive rows (multiplicity equal, checked). **H-c2 becomes: BN − BV on R4 vs R3**
+   (the negatives' content without the S4 positives, positives byte-identical). BN − B is printed with the note that BN
+   repeats positives more (lad_R4 499 against 443 rows); BV − B printed; the interaction (Sb − SpV) − (BN − BV) printed per
+   seed. Batch C is now 15 fits (SpV, BN, BV × 408-412), about 10 H100-hours.
+2. **SpV described exactly (F2):** "SpV: Sp with Sb's row counts (positive rows identical to Sb's; 312 fewer unique images; the
+   312 repeated negatives are 139 af0_half, 68 af0_zero, 35 lad_half, 26 lad_R2w, 25 af0_photo, 19 lad_R0)". H-c1 wording: "the
+   S0 + S3 content and the 312 extra unique images it brings (inseparable), not the row count or positive repetition". The
+   builder's docstring is corrected (Sb's unique counts 1,342 positives / 4,193 negatives). train_SpV.csv and train_BN.csv
+   are unchanged by the rebuild (f6521d96…, c1b4497b…).
+3. **Not tests (F3):** "S4 vs S3 for BN − BV (and BN − B) and for Sb − SpV is near-certain by design and is not a test; only
+   the two R4-vs-R3 verdicts carry new information."
+4. **Multiplicity (F4):** "99.5% intervals kept at the amendment-5b level for comparability; Bonferroni for the 16-verdict
+   family (amendment 5b's ten, plus Sb − SpV and BN − BV on two contrasts each, plus the BN − BV pair replacing BN − B) would be
+   about 99.69%, whose tail rests on fewer than 4 of 2,000 draws."
+5. **Shape link (F5):** "dev + clean69 (printed) is the shape-link sensitivity row for H-c1 and H-c2" (BN keeps and SpV drops
+   the S0/S3 rows that carry the test partners' landmarks of the 32 shape-linked hosts; no new or evaluation person enters
+   either list).
+6. **Power:** "inconclusive" means a content effect up to about half of Sb − Sp (+0.049) is not excluded.
+7. **Local test:** the DGX GPU is busy (IDistill fit), so no 20-step GPU test of run_c.sh was run; instead synthetic
+   throwaway tars for SpV, BN and BV (random logits; correct metadata) were loaded through the patched provenance path of
+   the reader: all three loaded (21,277 rows each); no real tar was used. run_c.sh differs from the 40-times-run run.sh v2
+   lineage only in overlay, SUMS name, arm list and results folder.
+- Pins: overlay `ab1c_overlay.tar` `bf276e548c5dc5a3c8d590d0500754c1d49ec87ad2e7b30237f05db94ffcafa7`; `run_c.sh` `219ae9b00fadeaf85c361e7aa8ba7c89755b2dc83a2260d7518bee4cbb53df65`; `ab1c_fit.sbatch` `1376e0d0604eec02582b15c316446d0d51774de9d1530b3974211c62f2ac3e37` (15 tasks); reader `ab1_pm3_read.py` `d21180d7e51b1126cf7fc605d6853603263397e62e9a63ccdfa0dfbffeb1576c`; builder `mk_ab1c.py` `10fc7f28e5ea1c1e79e86980ae0922cc86efcd8ec28d9d6336348fdca60f2788`. The dispatcher's sbatch command line also carries --extra=FORCE_RM_TMPDIR.

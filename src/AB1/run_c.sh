@@ -8,7 +8,7 @@
 # Reads $TASK_DIR/task.env (TASK ARM SEED). IO: pack tars in (sha256-checked), all work in $TASK_WORK (local disk), one
 # tar out. Test knobs: PN1_STEPS, PN1_LIMIT, PN1_WORKERS, AB1_RESULTS.
 # Batch C copy (13 Nov): run_b2.sh (5e8df7d2) with only the overlay (ab1c_overlay.tar), its SUMS file (AB1CSUMS),
-# the arm list (SpV|BN) and the results folder (results/AB1C) changed.
+# the arm list (SpV|BN|BV) and the results folder (results/AB1C) changed.
 set -euo pipefail
 : "${TASK_DIR:?}" "${TASK_WORK:?}"
 source "$TASK_DIR/task.env"
@@ -17,7 +17,7 @@ G=${PN1_ROOT:-/lustre/pd03/hpc-narolski-1790461090/smad-next}
 PACK=${PN1_PACK:-$G/packs/BB2/pn1_pack_fs.tar}
 PACK_SHA=96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004                 # pinned, not read from a file
 OVERLAY=${AB1_OVERLAY:-$G/packs/AB1/ab1c_overlay.tar}                                     # AB1 batch C
-OVERLAY_SHA=62712bb9d5066443d5737c84da852d055ab248930d5f38fc8b77ba0074a34c68           # AB1: pinned, not read from a file
+OVERLAY_SHA=bf276e548c5dc5a3c8d590d0500754c1d49ec87ad2e7b30237f05db94ffcafa7           # AB1: pinned, not read from a file
 ARCH=a12_clip_vitb16_madation                                                           # the FS1 arch
 OUT=${AB1_RESULTS:-$G/results/AB1C}                                                       # AB1
 W=$(cd -P "$TASK_WORK" && pwd)
@@ -36,7 +36,7 @@ if [ -e "$OUT/$TASK.tar" ]; then
   die "$OUT/$TASK.tar exists without a matching .sha256 (never overwritten)"
 fi
 STEPS=${PN1_STEPS:-6250}
-case "$ARM" in SpV|BN) MAN=train_$ARM.csv ;;                                              # AB1 batch C
+case "$ARM" in SpV|BN|BV) MAN=train_$ARM.csv ;;                                           # AB1 batch C (BV: amendment 7b)
   *) die "arm $ARM" ;; esac
 case "$SEED" in 408|409|410|411|412) ;; *) die "seed $SEED" ;; esac                     # AB1
 WORKERS=${PN1_WORKERS:-7}

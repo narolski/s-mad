@@ -184,3 +184,11 @@ See prereg section 10.
 - Note on times (Fri Nov 13 18:48 CET 2026): the lead's message times quoted above as "17:55" (Sbx instruction) and "18:50" (SbFM instruction) are not machine-clock times (lead's correction, NOTEBOOK 18:46): SbFM's instruction arrived between 18:32 and 18:46; the author's cut-off ruling ("17:15") was committed at about 17:11. Git commit times are the record.
 - Hold (Fri Nov 13 19:23 CET 2026): reads of SbFM and Sbx wait until ADVERSARY posts its stage-1 floor commit hash in experiments/ADV_shortcut-floors/README.md (lead via dispatcher; review 112d50c F1). Fits, fetch and verification proceed; no contrast number is opened before the hash exists.
 - Hold (Fri Nov 13 20:47 CET 2026): SbFM contrast numbers held until the lead announces that the NEXT selection rule v2 binds or the author rules otherwise (replaces the 20:07 release). Not held: Sbx and batch B2. Fits, fetching and verification unaffected.
+
+### Amendment 6 (descriptive reads) and batch C (amendments 7, 7b) — Fri Nov 13 21:37 CET 2026
+- Amendment 6/6b: zero-GPU descriptive reads (D cue, development vs clean-host breakdown, own-rule flags) on existing scores
+  of A, B, Sb, Sp (408-412, 403-407 / Sp 403-405); reader src/AB1/ab1_desc_read.py; read once after the pre-run check.
+- Batch C: post-freeze ablation rows SpV (volume-matched Sp), BN (B + S0/S3 negatives) and BV (control for BN), seeds 408-412,
+  15 fits on WCSS H100; builder src/AB1/mk_ab1c.py, overlay /mnt/t7/smad_next/AB1/c/ab1c_overlay.tar (also WCSS packs/AB1),
+  run_c.sh, wcss/ab1c_fit.sbatch, reader src/AB1/ab1_pm3_read.py; H-c1 Sb − SpV, H-c2 BN − BV on R4 vs R3. Pre-run check
+  PRERUN_AB1_A6_A7_20261113.md (218dd02), fixes in 6b / 7b.

@@ -11,8 +11,10 @@ statistic with 4b's unstratified-agreement condition; S4 vs S3 on the 80 clean h
 gain and its bootstrap interval, and "present" also requires the stratified seed-mean gain on the full 80 hosts > 0. The
 unreadable-draw share is printed; 99.5% intervals are printed as a sensitivity check (10 verdicts in the family). A seed with an unreadable stratified statistic on the full host set counts as not readable
 (fewer than 4 readable seeds: "not read").
-  python3 -I ab1_pm2_read.py --pair Sp|FS1 --out OUT.json
-  python3 -I ab1_pm2_read.py --pair Sp|FS1 --mock --out MOCK.json"""
+  python3 -I ab1_pm3_read.py --pair C --out OUT.json          (batch C, amendments 7 and 7b)
+  python3 -I ab1_pm3_read.py --pair C --mock --out MOCK.json
+99.5% intervals kept at the amendment-5b level for comparability (Bonferroni for the 16-verdict family would be 99.69%,
+whose tail rests on fewer than 4 of 2,000 draws)."""
 import argparse
 import csv
 import hashlib
@@ -92,11 +94,13 @@ def main():
     a = ap.parse_args()
     assert A.sha(HERE / "ab1_pm_read.py") == PM_SHA
     seeds = (408, 409, 410, 411, 412) if a.pair in ("Sp", "C") else (403, 404, 405, 406, 407)
-    arms = {"Sp": ("Sb", "Sp", "B", "A"), "FS1": ("Sb", "B", "A", "Sp"), "C": ("Sb", "B", "Sp", "SpV", "BN")}[a.pair]
+    arms = {"Sp": ("Sb", "Sp", "B", "A"), "FS1": ("Sb", "B", "A", "Sp"), "C": ("Sb", "B", "Sp", "SpV", "BN", "BV")}[a.pair]
     # (first, second, role): verdict-bearing pairs, then printed pairs
     if a.pair == "C":
-        pairs = [("Sb", "SpV", "verdict"), ("BN", "B", "verdict"), ("Sb", "BN", "printed (interaction)"),
-                 ("SpV", "Sp", "printed (volume)"), ("Sb", "Sp", "printed (amendment-5 re-print)"), ("Sb", "B", "printed (amendment-4 re-print)")]
+        pairs = [("Sb", "SpV", "verdict"), ("BN", "BV", "verdict"),
+                 ("BN", "B", "printed (BN repeats positives more: lad_R4 499 vs 443 rows)"), ("BV", "B", "printed (repeats only)"),
+                 ("Sb", "BN", "printed"), ("SpV", "Sp", "printed (volume)"), ("Sb", "Sp", "printed (amendment-5 re-print)"),
+                 ("Sb", "B", "printed (amendment-4 re-print)")]
     elif a.pair == "Sp":
         pairs = [("Sb", "Sp", "verdict"), ("Sp", "B", "printed (decomposition)"), ("Sb", "B", "printed (amendment-4 re-print)"),
                  ("Sb", "A", "printed (amendment-4 re-print)")]
@@ -134,10 +138,10 @@ def main():
     for arm in arms:
         for s in seeds:
             if a.mock:
-                r = np.random.default_rng(s * 10 + {"A": 1, "B": 2, "Sb": 3, "Sp": 4, "SpV": 5, "BN": 6}[arm])
+                r = np.random.default_rng(s * 10 + {"A": 1, "B": 2, "Sb": 3, "Sp": 4, "SpV": 5, "BN": 6, "BV": 7}[arm])
                 x = {i: float(r.normal((1.0 if arm == "Sb" else 0.5) if rk[0] in ("R4", "S4") else 0.0, 1.0)) for rk, i in row.items()}
                 why = "read"
-            elif a.pair == "C" and arm in ("SpV", "BN"):
+            elif a.pair == "C" and arm in ("SpV", "BN", "BV"):
                 sv = (A.OVERLAY["AB1"], A.MANDIR)
                 A.OVERLAY["AB1"], A.MANDIR = C_OVERLAY, C_MANDIR
                 try:
@@ -255,6 +259,14 @@ def main():
                                                 primary_R4_vs_R3=R["contrasts"]["R4_vs_R3_opencv|dev+clean80"][f"{first}_minus_{o}"].get("verdict"),
                                                 secondary_S4_vs_S3_clean80=R["contrasts"]["S4_vs_S3|clean80"][f"{first}_minus_{o}"].get("verdict"))
                      for first, o, role in pairs}
+    if a.pair == "C":                                      # amendment 7b: printed interaction (Sb - SpV) - (BN - BV), per seed
+        R["printed_interaction"] = {}
+        for c in ("R4_vs_R3_opencv|dev+clean80", "S4_vs_S3|clean80"):
+            x1 = R["contrasts"][c]["Sb_minus_SpV"]; x2 = R["contrasts"][c]["BN_minus_BV"]
+            key = "gain" if c.startswith("R4") else "unstrat_gain"
+            ss = [s for s in x1[key] if s in x2[key]]
+            vals = {s: x1[key][s] - x2[key][s] for s in ss}
+            R["printed_interaction"][c] = dict(per_seed=vals, mean=float(np.mean(list(vals.values()))) if vals else None)
     if not a.mock:
         sys.path.insert(0, str(HERE.parent / "adversary"))
         import check

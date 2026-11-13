@@ -6,7 +6,8 @@ parts. D = BD1's d_values (S4 splice D for R4/S4 rows, S3 splice D for R3/S3 row
      each class separately, per network.
   2. Breakdown of the development versus clean-host difference: unstratified R4-vs-R3 (OpenCV) AUC per network and the
      paired differences Sb - B, Sb - Sp, Sp - B, in cells part (dev, clean80) x database (frgc, feret) and part x D tercile
-     (tercile edges of log D over the pooled R4 + R3 rows of both parts); a cell with < 10 rows of either class prints None.
+     (tercile edges of log D over the pooled R4 + R3 rows of both parts); a cell with < 20 rows of either class prints None.
+  Run with /home/narolski/mambamorph-code/.venv-spark/bin/python -I (numpy only; no scipy needed).
   3. Own-rule (logit > 0) flag rates on R3 (OpenCV, FaceMorpher), R4 (OpenCV, FaceMorpher), S3, S0, S4 per part.
   python3 -I ab1_desc_read.py --out OUT.json
   python3 -I ab1_desc_read.py --mock --out MOCK.json"""
@@ -33,9 +34,23 @@ PM, A, C2, K = P2.PM, P2.A, P2.C2, P2.K
 P2_SHA = "77ace4b3e98668adbb842b8a5aebac23c2bb19f0f8486911807bce9291395b1d"
 
 
+def _rank(v):
+    v = np.asarray(v, float)
+    o = np.argsort(v, kind="mergesort")
+    r = np.empty(len(v))
+    i = 0
+    while i < len(v):
+        j = i
+        while j + 1 < len(v) and v[o[j + 1]] == v[o[i]]:
+            j += 1
+        r[o[i:j + 1]] = (i + j) / 2 + 1
+        i = j + 1
+    return r
+
+
 def spearman(x, y):
-    from scipy.stats import spearmanr
-    return float(spearmanr(x, y).correlation)
+    """Spearman with average ranks for ties (numpy only; amendment 6b A6-1)."""
+    return float(np.corrcoef(_rank(x), _rank(y))[0, 1])
 
 
 def main():
@@ -89,7 +104,7 @@ def main():
             pl = [(x[rows[(pr, tool, h)]], D[("S4", h)]) for h in hs if (pr, tool, h) in rows and ("S4", h) in D]
             nl = [(x[rows[(nr, tool, h)]], D[("S3", h)]) for h in hs if (nr, tool, h) in rows and ("S3", h) in D]
             allp = pl + nl
-            rec[name] = dict(pooled=spearman([v for v, _ in allp], np.log([d for _, d in allp])),
+            rec[name] = dict(pooled_includes_class_separation=spearman([v for v, _ in allp], np.log([d for _, d in allp])),
                              positive_class=spearman([v for v, _ in pl], np.log([d for _, d in pl])),
                              negative_class=spearman([v for v, _ in nl], np.log([d for _, d in nl])))
         out["d_cue"][key] = rec
@@ -104,7 +119,7 @@ def main():
     def cell_auc(x, hosts):
         p = [x[rows[("R4", "opencv", h)]] for h in hosts if ("R4", "opencv", h) in rows]
         n = [x[rows[("R3", "opencv", h)]] for h in hosts if ("R3", "opencv", h) in rows]
-        return (C2.fauc(p, n), len(p), len(n)) if len(p) >= 10 and len(n) >= 10 else (None, len(p), len(n))
+        return (C2.fauc(p, n), len(p), len(n)) if len(p) >= 20 and len(n) >= 20 else (None, len(p), len(n))
     cells = {}
     for pname, ph in parts.items():
         for d in ("frgc", "feret"):
@@ -119,7 +134,7 @@ def main():
                 ph, t = spec
                 p = [x[rows[("R4", "opencv", h)]] for h in ph if ("R4", "opencv", h) in rows and ("S4", h) in D and tof(D[("S4", h)]) == t]
                 n = [x[rows[("R3", "opencv", h)]] for h in ph if ("R3", "opencv", h) in rows and ("S3", h) in D and tof(D[("S3", h)]) == t]
-                auc = (C2.fauc(p, n) if len(p) >= 10 and len(n) >= 10 else None, len(p), len(n))
+                auc = (C2.fauc(p, n) if len(p) >= 20 and len(n) >= 20 else None, len(p), len(n))
             else:
                 auc = cell_auc(x, spec)
             res[f"{arm}_s{s}"] = dict(auc=auc[0], n_pos=auc[1], n_neg=auc[2])
@@ -128,10 +143,14 @@ def main():
             for block, ss in (("408-412", (408, 409, 410, 411, 412)), ("403-407", (403, 404, 405, 406, 407))):
                 vals = [res[f"{f}_s{s}"]["auc"] - res[f"{o}_s{s}"]["auc"] for s in ss
                         if f"{f}_s{s}" in res and f"{o}_s{s}" in res and res[f"{f}_s{s}"]["auc"] is not None and res[f"{o}_s{s}"]["auc"] is not None]
-                diffs[f"{f}-{o}|{block}"] = dict(per_seed=vals, mean=float(np.mean(vals)) if vals else None)
+                diffs[f"{f}-{o}|{block}"] = dict(per_seed=vals, mean=float(np.mean(vals)) if vals else None,
+                                                 seed_sd=float(np.std(vals, ddof=1)) if len(vals) > 1 else None, n_seeds=len(vals))
         out["breakdown"][cname] = dict(per_network=res, paired=diffs)
     out["d_tercile_edges_logD"] = terc.tolist()
-    out["label"] = "descriptive, post hoc, no verdict; development plus clean test hosts; not held-out"
+    out["label"] = ("descriptive, post hoc, no verdict, no direction tested; development plus clean test hosts; not held-out. "
+                    "Pooled Spearman includes class separation: read the within-class values only. Cells with fewer than 20 rows "
+                    "of either class print None; cells under about 30 rows per class are noise-dominated (seed SD printed). "
+                    "Sp at 403-405: 3 seeds, A100 PCIe, pack 76528f16; Sb - Sp and Sp - B means in the 403-407 block are over these 3 seeds only.")
     json.dump(out, open(a.out, "w"), indent=1, default=lambda o: o.item() if isinstance(o, np.generic) else str(o))
     print("written", a.out, len(out["networks"]), "networks")
 

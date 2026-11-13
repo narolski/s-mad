@@ -6,8 +6,10 @@ every image is already in the FS1 pack), the evaluation manifest ab1_eval.csv (F
 Arms of batch C (post-freeze ablation rows; existing images only; manifests made from FS1 train_Sb / train_B rows):
   SpV  volume-matched Sp: Sb without lad_S0 and lad_S3 (as Sp), plus 312 repeated rows, one per dropped row, drawn from
        the remaining unique NEGATIVE rows of the same database with history native (seeded), so that the rows before
-       the balance equal Sb's 5,535 with Sb's class mix (2,339 positives / 3,196 negatives as unique counts of Sb)
+       the balance equal Sb's 5,535 with Sb's class mix (1,342 positives / 4,193 negatives as unique counts of Sb)
   BN   B plus the 312 matched negatives lad_S0 and lad_S3 of Sb (no lad_S4 positives); not volume-matched
+  BV   control for BN (amendment 7b): B plus 312 repeated native negatives of B drawn by the SpV rule, database-matched to
+       the 312 S0/S3 rows (260 FRGC, 52 colorFERET; rng 20261172), so that BN and BV have identical positive rows
 Then the unchanged amendment-4 balance. Evaluation manifest ab1_eval.csv and the hold-out images as before.
   python3 -I mk_ab1c.py -> /mnt/t7/smad_next/AB1/c/{manifests/*.csv, ab1c_overlay.tar, ab1c_summary.json}"""
 import collections
@@ -32,6 +34,7 @@ PIN = dict(eval="f0f29f2201bd3a1dc67f24772347960ba7a383a9e5c1fa8920d0cc1b854a504
            ms1eval="d1fab6ad4b20f0ec9dd426374ccd56e96368bf7b658b48e3ef31867e1fe470c5",
            A="af070a60529db3e8", B="bd53dc3252a76767", Sb="2cf3fda3affc8dd3", Sp="cf386dc7")
 SPV_SEED = 20261171
+BV_SEED = 20261172
 
 
 def sha(p):
@@ -75,6 +78,11 @@ def main():
     # BN: B plus Sb's lad_S0 and lad_S3 rows
     bn = b + [dict(r) for r in dropped]
     arms["BN"] = (bn, bn)
+    # BV: B plus one db-matched native negative repeat (from B's unique rows) per S0/S3 row
+    rng_b = np.random.default_rng(BV_SEED)
+    pool_b = {db: [r for r in b if r["label"] == "0" and r["hist"] == "native" and r["db"] == db] for db in ("frgc", "feret")}
+    reps_b = [dict(pool_b[r["db"]][int(rng_b.integers(len(pool_b[r["db"]])))]) for r in sorted(dropped, key=lambda r: r["id"])]
+    arms["BV"] = (b, b + reps_b)
     fs_train = {r["id"] for k in ("A", "B", "Sb") for r in uniq(M / f"train_{k}.csv")}
     closed_tr = ("frll", "mad22", "mordiff", "dim", "h1", "fei", "casia", "ffhq", "valx", "fst", "a12sp")
     for name, (u, rows) in arms.items():
@@ -115,7 +123,7 @@ def main():
         shutil.rmtree(tree)
     (tree / "pn1" / "data" / "manifests").mkdir(parents=True)
     files = []
-    for n in ("SpV", "BN"):
+    for n in ("SpV", "BN", "BV"):
         shutil.copy2(man / f"train_{n}.csv", tree / "pn1" / "data" / "manifests" / f"train_{n}.csv")
         files.append(f"data/manifests/train_{n}.csv")
     shutil.copy2(man / "ab1_eval.csv", tree / "pn1" / "data" / "manifests" / "ab1_eval.csv")
