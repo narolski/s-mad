@@ -1,6 +1,6 @@
 # Blend-difference attribution (BD1): result
 
-Read once on 13 Nov 2026, about 18:10 CET. D for 873 splices was computed with `src/BD1/bd1_d.py`; the output is
+Read once on 13 Nov 2026 (read commit 83daa17, 17:57 CET). D for 873 splices was computed with `src/BD1/bd1_d.py`; the output is
 `/mnt/t7/smad_next/BD1/d_values.csv`, sha256 `cf2ba3fa…`, and every splice equals its counterpart outside the hull
 (asserted). The reader `src/BD1/bd1_read.py` (pins in `src/BD1/SHA256SUMS`, commit 9562302) wrote `bd1_read.json` and
 `bd1_read_stdout.txt`. Registration: `prereg.md` (33bdee6) and amendment 1 (9562302), after the pre-run review
@@ -82,3 +82,38 @@ corrections. D was recomputed for all 573 test rows (max |Δ| 0) and every AUC m
   existing pool has no overlap in FR cosine (S4 0.14-0.35, S3 0.77-0.93), so matching on identity needs new
   look-alike morphs (an author item). A "dissimilar-session S3" selection (low cos_HS) can be built from existing
   files. The arm stays post-freeze and ablation-only.
+
+## Amendments 2-3: development-host follow-ups (registered at 7697fbf and 23266fb; read once at about 18:25 CET)
+
+Features: `/mnt/t7/smad_next/BD1/d_feats.csv`, sha256 `7391328e…`. Reader: `src/BD1/bd1b_read.py`. Output:
+`bd1b_read.json` and `bd1b_read_stdout.txt`. Development data only. Development hosts: 100 (81 FRGC, 19 colorFERET).
+Seeds share the same hosts, so "4 of 5 seeds" is close to one draw.
+
+| Read | FS1 (Sb 403-407; decides) | AB1 (H100, 408-412) | SE1 (A100, 408-411) |
+|---|---|---|---|
+| H1: partial ρ(S3 logit, cos_HS ∣ D, D_lin, D_dc, database) | −0.183, −0.259, −0.149, −0.248, −0.259 → **supported** | −0.17 to −0.22 → supported | −0.16 to −0.22 → supported |
+| H2: S4 vs S3 within D_dc quintiles, minus own reference (0.496) | +0.25 to +0.29 → **residual beyond this colour statistic** | +0.23 to +0.28 → same | +0.23 to +0.27 → same |
+| H2: within D_lin quintiles, minus own reference (0.584) | +0.13 to +0.20 → **residual beyond this colour statistic** | +0.12 to +0.17 → same | +0.12 to +0.17 → same |
+| H4: gain of Sb's logit over the 7-statistic propensity (0.741, SD over 20 splits 0.00x) | +0.059 to +0.066 → **supported** | +0.034 to +0.089 → supported | +0.033 to +0.089 → supported |
+| Session gap: stratified partial ρ (∣ cos_HS, D, D_dc, database), 291 hosts | −0.022 to +0.036 → **falsified** | −0.034 to +0.003 → falsified | −0.035 to +0.003 → falsified |
+| Blanked rows (post hoc formalisation): inside / outside only | 0.651-0.761 / 0.482-0.518 → **inside-only signal; outside read non-diagnostic** | 0.713-0.760 / 0.483-0.495 → same | 0.713-0.762 / 0.483-0.495 → same |
+
+- H1 intervals (FS1, host bootstrap): seed 403 [−0.39, +0.04], 404 [−0.45, −0.05], 405 [−0.37, +0.07],
+  406 [−0.44, −0.04], 407 [−0.46, −0.03]. The raw ρ is −0.30 to −0.39. This is consistent with the post hoc
+  test-host values (−0.31 to −0.38 raw; −0.17 to −0.25 partial).
+- Development S4 vs S3 for Sb, unstratified: 0.781-0.816. Within D_dc quintiles: 0.74-0.79. Within D_lin: 0.72-0.78.
+- Session gap per database (descriptive): FRGC partial +0.004 to +0.067; colorFERET −0.10 to +0.04 (n = 56, wide
+  intervals). The raw FRGC ρ is +0.10 to +0.16, as expected through cos_HS alone.
+- Blanked rows:
+  - Face-blanked rows (outside only) are flagged 0-5% in both classes, with logit SD 0.45-0.92. Inside-only rows are
+    flagged 88-100% in both classes.
+  - So the outside-only read is non-diagnostic ("no outside-only signal"), and the inside-only rows are above the own
+    rule for both classes. The ranking still separates them (0.65-0.76).
+  - The inside-only contrast still carries S3's hull/geometry mismatch.
+- **Outcome-table action (amendment 3), H1 supported and H2 "residual beyond colour":** FR similarity of the host's
+  two photos is a candidate control at equal blend energy and colour; it also tracks pose, illumination and age.
+  - A later arm matched on FR similarity needs two-person and same-person pairs that overlap in FR similarity. The
+    existing pools cannot supply them: 2 cross-person pairs above 0.6 among 536 persons, against a same-person range
+    of 0.77-0.93. New look-alike morphs from a much larger person pool are an author item.
+  - H4 supported: Sb carries about +0.06 AUC beyond the oracle 7-statistic propensity.
+  - Session gap falsified: no gap matching is needed on this evidence.
