@@ -11,11 +11,11 @@ rows = {
 R,R2,U,U2,NM,EX,PD,NA = "reviewed","reviewed; two seeds only","unreviewed","unreviewed; two seeds only","not measured","not measured (exposure only)","not measured (pending today)","n/a"
 S = {
  1:[R,R,R,R,R,R,R,R,R],
- 2:[PD,PD,R,NM,NM,NM,NM,NM,NM],
+ 2:[PD,R,R,R,NM,NM,NM,NM,NM],
  3:[EX,EX,EX,NM,NM,U,R,U,U],
  4:[R,R,R,R,R,R,R,U,R],
  5:[R,R,R,NM,R,U,R,R,U],
- 6:[R,R,R,NM,R,R,R,R,R],
+ 6:[R,R,R,R,R,R,R,R,R],
  7:[R,R,R,NM,NM,R,R,R,R],
  8:[R,R,R,R,R,U,U,U,U],
  9:[R,R,R,R,R,R,R,R,R],

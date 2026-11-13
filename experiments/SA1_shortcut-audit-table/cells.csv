@@ -9,9 +9,9 @@ row,shortcut,column,cell_id,status
 1,storage history of genuine photos,MixFaceNet-MAD,1-MixFaceNet-MAD,reviewed
 1,storage history of genuine photos,SelfMAD,1-SelfMAD,reviewed
 2,storage history of morphs (evasion),A,2-A,not measured (pending today)
-2,storage history of morphs (evasion),B,2-B,not measured (pending today)
+2,storage history of morphs (evasion),B,2-B,reviewed
 2,storage history of morphs (evasion),Sb,2-Sb,reviewed
-2,storage history of morphs (evasion),Sp,2-Sp,not measured
+2,storage history of morphs (evasion),Sp,2-Sp,reviewed
 2,storage history of morphs (evasion),SbM3,2-SbM3,not measured
 2,storage history of morphs (evasion),MADation_ViT-B16,2-MADation_ViT-B16,not measured
 2,storage history of morphs (evasion),MADation_ViT-L14,2-MADation_ViT-L14,not measured
@@ -47,7 +47,7 @@ row,shortcut,column,cell_id,status
 6,warp only (R2w),A,6-A,reviewed
 6,warp only (R2w),B,6-B,reviewed
 6,warp only (R2w),Sb,6-Sb,reviewed
-6,warp only (R2w),Sp,6-Sp,not measured
+6,warp only (R2w),Sp,6-Sp,reviewed
 6,warp only (R2w),SbM3,6-SbM3,reviewed
 6,warp only (R2w),MADation_ViT-B16,6-MADation_ViT-B16,reviewed
 6,warp only (R2w),MADation_ViT-L14,6-MADation_ViT-L14,reviewed
