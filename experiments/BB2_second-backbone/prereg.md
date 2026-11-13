@@ -473,3 +473,12 @@ assertion from gpu.txt suffices, replace the C2P smoke):
   script) is cancelled and never cited. The probe's failure path was tested on the DGX (`--expect-gpu "NVIDIA H100"` on
   a GB10: exit 4; the job's `|| fail` stops before scoring).
 - Pins (sha256): `src/BB2/precision_probe.py` b49c1e704bc8957db76398abfd5ab54218ee152ac32ed9e061c634378148605e; `src/BB2/wcss/bb2_c2p.sbatch` e2185edeb0fd06478c259970da4cf15d518dda1c8d80d26324391307fd1a7da4; `src/BB2/bb2_read.py` b8d3f650b6ce977ef2ce5732507a6e7b536d8f7b9e0ab638f20263c15b20bb5f; `src/BB2/bb2_c2p_read.py` cad995d8dfd53e2664331ad75eed4eda3db6bc9a3779dfd3d0f35035fd46c9c6.
+
+## Predictions logged before the C2P and S3 reads (from the post-result review of part 1, `experiments/reviews/REVIEW_BB2_PART1_20261113.md`; `date` at writing: see the commit; no C2P score of any BB2 network exists, and the S3 printed read has not been computed)
+
+Printed beside the registered reads; they change no registered rule.
+- H-new-2 (DINOv3 Sb reads a face-surround mismatch): on the development ladder, DINOv3 Sb flags at least 50% of S3 at
+  its own rule on at least 4 of 5 seeds and its S4-vs-S3 AUC is at most 0.65; falsified if S3 flags are at most 41% and
+  the AUC is at least 0.75 (on at least 4 of 5 seeds); otherwise inconclusive.
+- H-new-3 (the storage shortcut needs adaptation): in C2P, A's positive control fails on DINOv3 at both sizes on at
+  least 4 of 5 seeds (contrast 2-prime "uninformative").
