@@ -121,6 +121,17 @@ Within the calibration sources only. G_max leaves out the protocol-genuine one-p
   facemorpher. Sb +0.029, +0.006, +0.011, +0.017, +0.011; B +0.012 to +0.028; A −0.001 to +0.018. Δ3m (mirror) −0.009
   to +0.014 for all arms. **Registered verdict: "inconclusive" for A, B, Sb** (Sb: 0 seeds ≥ 0.03, 1 seed ≤ 0.01).
 
+### Z5: storage evasion of morphs (copied from the C2P owner's committed read, `PN1 c2p_read.json`, commit 0cb89c5)
+
+Formula and rule of C2P.4 (H-new-1). Only networks that passed the C2P gate count (denominator 5). No value was
+computed here, so no extra look at the hold-out was taken.
+- **A:** "not available". The C2P gate (L40S, TF32 off) failed for all five A networks on the max condition (max
+  |Δlogit| 0.119-0.249 > 0.10).
+- **B:** "inconclusive" (C2P's verdict). Only seed 405 passed: Δm_att fm61 +0.060, amsl112 −0.0003.
+- **Sb:** "falsified" (C2P's verdict; no evasion). Four seeds passed: Δm_att fm61 +0.056, +0.105, +0.061, +0.071;
+  amsl112 −0.024, +0.041, −0.012, +0.005.
+- **Three-source arm (SbM3):** waits for the MS1 owner's read.
+
 ## Checks of the strategist's three facts (section 0 of the strategist report)
 
 1. "Sb flags 0 of 100 seam-only images": cited from seeds 401/402. It **holds on the fresh seeds** (0 of 100 on all
