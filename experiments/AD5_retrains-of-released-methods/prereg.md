@@ -301,3 +301,9 @@ Nothing else changes: the gating smoke or test must pass before any array output
 the pending Athena tasks stay queued, and the first verified copy of a task is read, with its twin then cancelled.
 The Athena A100 MixFaceNet-MAD seed 401 (3545870_401) stays a descriptive check outside the verdict.
 
+Note on amendment 7 (13 Nov 2026, 18:48 CET by the machine clock; nothing else changes, no rule and no deadline):
+two times in amendment 7's heading were wrong. The author's ruling was committed to NOTEBOOK at about 17:11 by the
+machine clock; the lead's message said 17:15 (NOTEBOOK, "13 Nov 2026, 18:46 machine clock (lead): CORRECTION OF TIMES").
+Amendment 7 itself was committed at 17:14:35 (git, 3a0f4b1), not 17:25 as its heading says. From now on, times in this
+record are taken from `date` and git only.
+
