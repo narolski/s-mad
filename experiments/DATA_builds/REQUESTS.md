@@ -152,3 +152,15 @@ development hosts, unchanged code, PNG, plus the coverage of D1a. Cost about 2-4
   photos against 24.42 on aligned-frame E7, `cb1_released_rs1_bpcer.csv` lines 2 and 4).
 - Recipe: not drafted (needs storage code applied to raw FRLL files; FRLL is a closed benchmark).
 - Status: **needs the author's word**; on his decision list. No build.
+
+## D7-D11. Requests from the shared test battery (BATTERY), relayed by the lead 13 Nov about 19:50
+
+Source: `experiments/BATTERY_shared-test-battery/MISSING_DATA.md` (commits 761a3c7, 317adba, 364f624).
+
+| Request | What | Needs | State |
+|---|---|---|---|
+| D7 person and source table per battery set (dev, tt1, meds, gd) | from the four pinned battery manifests: per family and rung, rows, distinct persons, person sources; person lists on /mnt/t7 (MEDS ids never in git) | nothing (lists only) | lead's go; runs after the eye-distance measurement, CPU, low priority |
+| D8 GD host overlap with training persons | the persons of every GD row (host, plus partner of two-person rows) against every arm's training persons, resolved from row ids through the builders' lists; GX1's selected training persons as a planned arm | nothing (lists only) | as D7 |
+| D9 development JPEG pack (audit row 3) | the same genuine photos native and re-saved as JPEG 90/70/50 with the registered `degrade()` branch, paired manifest | **needs the author's word, no build** (JPEG re-encoding of development evaluation images is on his decision list) | held |
+| D10 aligned CFD / KDEF neutral-against-happy pool (audit row 16) | alignment of the happy images with the unchanged aligner, pairing by person (G11: CFD 158, KDEF 70 persons) | **needs the author's word, no build** (aligning those photos is on his decision list) | held |
+| D11 AB1 border rows and FaceMorpher rows as battery sets | not missing data; catalogue entry only (`AB1/x/manifests/ab1x_eval.csv`, already in the catalogue) | battery owner and reviewed reader pins | catalogue only |
