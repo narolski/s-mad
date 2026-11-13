@@ -162,3 +162,7 @@ Built after the registration commit 01557ce; no TT1, border or geo reference row
   Reader `src/TT1/tt1_read.py` gains `--exclude` (missing networks -> "not available (failed platform gate)" in
   TT-H1, TT-H4, TT-H5; the other seed printed alone); re-pinned, after its mock test, before any score is read.
 - Lease tt1c: /mnt/t7/smad_next/vast/tt1c, A100-SXM4 80 GB, host 104.202.122.106 port 30099, cap 2.5 USD, 2 h.
+- Reader re-pin under TT1-D3 (`date`: Fri Nov 13 01:06:37 AM CET 2026; before any TT1 score exists locally or is read): `src/TT1/tt1_read.py`
+  `4546f520f63b48c33e6d313673314b6c0f778ddc81da02b22d356f8c6a87fb8f` (only change: `--exclude` handling; tested on mock scores with `--exclude PN1_Bn_s401`); table script
+  `src/TT1/summarize_read.py` `61409b534b6fd7ccc0429deba145df7caf57aa778b108244edeffd9b21a50d5d` (formats the reader's JSON; no statistic). Run:
+  `python -I tt1_read.py --scores <result>/scores --nets /mnt/t7/smad_next/TT1/nets_tree_s401402/tt1nets/nets --exclude PN1_Bn_s401 --out tt1_read.json`.

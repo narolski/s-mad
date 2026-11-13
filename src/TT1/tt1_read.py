@@ -312,7 +312,10 @@ def r5(out, P, W, L):
 # ---------------------------------------------------------------- hypotheses
 def verdicts(R):
     V = {}
-    arms = ["A", "B", "Bn", "C", "Sb", "Bv"]
+    arms_all = ["A", "B", "Bn", "C", "Sb", "Bv"]
+    arms = [a for a in arms_all if all(f"PN1_{a}_s{s}" in R for s in (401, 402))]
+    missing = {a: [s for s in (401, 402) if f"PN1_{a}_s{s}" not in R] for a in arms_all if a not in arms}
+    NA = "not available (failed platform gate)"
 
     def net(a, s):
         return R[f"PN1_{a}_s{s}"]
@@ -338,6 +341,8 @@ def verdicts(R):
         if per[401]["uninformative"] or per[402]["uninformative"]:
             v += " [uninformative: R_cam share > 5% on a seed]"
         h1[a] = dict(seeds=per, verdict=v)
+    for a, ms in missing.items():
+        h1[a] = dict(verdict=f"{NA}: " + ", ".join(f"PN1_{a}_s{x}" for x in ms) + "; the other seed is printed alone (one seed)")
     V["TT-H1"] = h1
     # TT-H2
     h2 = {}
@@ -384,6 +389,8 @@ def verdicts(R):
         else:
             v = "printed"
         h4[a] = dict(seeds=per, verdict=v)
+    for a, ms in missing.items():
+        h4[a] = dict(verdict=f"{NA}: " + ", ".join(f"PN1_{a}_s{x}" for x in ms) + "; the other seed is printed alone (one seed)")
     V["TT-H4"] = h4
     # TT-H5
     h5 = {}
@@ -401,6 +408,8 @@ def verdicts(R):
         if per[401]["weak_geo"] or per[402]["weak_geo"]:
             v += " [geo reference weak]"
         h5[a] = dict(seeds=per, verdict=v)
+    for a, ms in missing.items():
+        h5[a] = dict(verdict=f"{NA}: " + ", ".join(f"PN1_{a}_s{x}" for x in ms) + "; the other seed is printed alone (one seed)")
     V["TT-H5"] = h5
     # TT-H6 (descriptive)
     h6 = {}
@@ -440,12 +449,13 @@ def main():
     ap.add_argument("--nets", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--mock", action="store_true")
+    ap.add_argument("--exclude", nargs="*", default=[], help="networks that failed the platform gate (TT1-D3)")
     a = ap.parse_args()
     P, tt = load_pools()
     rng = np.random.default_rng(SEED)
     W = boot_weights(P, rng)
     R = {}
-    for n in NETS:
+    for n in [x for x in NETS if x not in a.exclude]:
         if a.mock:
             ids = [i for v in P.values() for i, _ in v]
             mr = np.random.default_rng(abs(hash(n)) % 2**32)
@@ -468,7 +478,8 @@ def main():
     V = verdicts(R)
     for r in R.values():
         r["r5"].pop("_draws", None)
-    res = dict(registration="TT1-S (prereg_scoring.md, commit 01557ce; pins ccd6319)", mock=a.mock, nets=R, verdicts=V,
+    res = dict(registration="TT1-S (prereg_scoring.md, commit 01557ce; pins ccd6319; deviations TT1-D1, D2, D3)", mock=a.mock,
+               excluded_failed_platform_gate=a.exclude, nets=R, verdicts=V,
                counts={k: len(v) for k, v in P.items()})
     pathlib.Path(a.out).write_text(json.dumps(res, indent=1, default=float))
     print(json.dumps(V, indent=1, default=float)[:3000])
