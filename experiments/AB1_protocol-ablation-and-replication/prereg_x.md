@@ -98,3 +98,16 @@ evaluation mask frame is a training mask frame"), MSU-MFSD named, TT1 embargo; F
 load; F7 shifted mocks. Not taken: a McNemar print (optional).
 
 Note on times (`date`: Fri Nov 13 18:48 CET 2026; relayed correction of the lead's times; nothing else changes): the author's cut-off ruling quoted as "13 Nov 17:15" was committed at about 17:11 by the machine clock. The header's "written from 18:05" and "the lead's instruction (17:55)" were not machine-clock times: this registration was committed at 17:56 (git 7e4a974) and written in the half hour before; the lead's instruction arrived before that.
+
+## Addendum ADV-1 (`date`: Fri Nov 13 20:09 CET 2026; before any arm tar exists; printed only, registered verdicts unchanged)
+
+On the lead's instruction (relayed by the dispatcher), the ADVERSARY stage-1a floors (committed and pinned at bffacb5;
+hash posted in experiments/ADV_shortcut-floors/README.md at de45f99) are printed beside this arm's registered reads for
+the contrasts stage 1a covers: landmark_combined and the test-ladder R4 vs R2w and R4 vs R3 for both engines. For the arm
+and its AB1 comparators (Sb, A, B) at each seed: `src/adversary/check.exceeds` against the all-cue ADV floor and
+against the nuisance floor (2.5% bound of network − floor AUC above 0, person-component bootstrap, rng 20261115), and
+the arm − Sb AUC within quintiles of the nuisance floor's held-out score (`diff_within_floor_quintiles`). Script
+`src/AB1/ab1_advfloor.py` (adba4c97…), self-tested on random scores (`ab1_advfloor_selftest.json`); run once with
+the arm's read. The ADV floor never replaces the registered floor. Contrasts outside stage 1a (border rows, storage)
+wait for stage 1b and are not opened before it. Wording if within the all-cue floor but beyond the nuisance floor:
+"not beyond hand-made morph statistics; not explained by nuisance cues".
