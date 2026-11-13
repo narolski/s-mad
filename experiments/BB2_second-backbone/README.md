@@ -156,6 +156,10 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   output `results/BB2_smoke/BB2C2Psmoke2.tar`, about 15-20 min once started). Fits 6310084 / 6310092 pending,
   forecast 17:10 (unreliable).
 
+- 11:51-11:54 fits started (dispatcher): 6310084_[0-8] all nine running from 11:51:20 to 11:54:22; 6310092_0 and _1
+  running from 11:54:22, _[2-5] pending (forecast 13:01); C2P smoke 6310376 pending. Expected ends about 13:30-13:35
+  (1.65 h), limit 14:06-14:09.
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
