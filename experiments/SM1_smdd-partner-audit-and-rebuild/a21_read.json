@@ -1,0 +1,134 @@
+{
+ "H-A": {
+  "a": {
+   "png": {
+    "auc": 0.4429,
+    "seeds": [
+     0.3975,
+     0.4883
+    ],
+    "ci": [
+     0.4133,
+     0.4722
+    ]
+   },
+   "hf": {
+    "auc": 0.3438,
+    "seeds": [
+     0.3278,
+     0.3598
+    ],
+    "ci": [
+     0.3236,
+     0.3623
+    ]
+   }
+  },
+  "e": {
+   "png": {
+    "auc": 0.281,
+    "seeds": [
+     0.2718,
+     0.2903
+    ],
+    "ci": [
+     0.2506,
+     0.313
+    ]
+   },
+   "hf": {
+    "auc": 0.2509,
+    "seeds": [
+     0.2407,
+     0.2611
+    ],
+    "ci": [
+     0.2285,
+     0.2725
+    ]
+   }
+  },
+  "f": {
+   "png": {
+    "auc": 0.332,
+    "seeds": [
+     0.3194,
+     0.3445
+    ],
+    "ci": [
+     0.3003,
+     0.3647
+    ]
+   },
+   "hf": {
+    "auc": 0.3037,
+    "seeds": [
+     0.2964,
+     0.311
+    ],
+    "ci": [
+     0.2808,
+     0.3256
+    ]
+   }
+  },
+  "verdict_e": "falsified"
+ },
+ "H-B": {
+  "all_given_F": {
+   "rho": 0.1196,
+   "ci": [
+    -0.0738,
+    0.3154
+   ],
+   "n": 133
+  },
+  "raw_spearman": 0.1017,
+  "shard6_given_F_c0c3": {
+   "rho": -0.0544,
+   "ci": [
+    -0.3025,
+    0.207
+   ],
+   "n": 66
+  },
+  "verdict": "undecided",
+  "label": "confirmation test (raw \u03c1 \u22120.10 known post hoc)"
+ },
+ "H-C": {
+  "SEMS20": {
+   "rho": 0.0746,
+   "ci": [
+    -0.0835,
+    0.2535
+   ],
+   "n": 134
+  },
+  "NOISES20": {
+   "rho": -0.0148,
+   "ci": [
+    -0.1964,
+    0.1715
+   ],
+   "n": 134
+  },
+  "verdict": "falsified",
+  "label": "A19 CPU scores: platform not equivalent, ranks only (rank agreement 0.99999)"
+ },
+ "H-D": {
+  "NOISEX20_over_NOISES20": {
+   "floor": 0.9922,
+   "network": 0.9223,
+   "diff": 0.0699,
+   "n_hosts": 67
+  },
+  "SEMX20_over_SEMS20": {
+   "floor": 0.9955,
+   "network": 0.7175,
+   "diff": 0.278,
+   "n_hosts": 67
+  },
+  "verdict": "falsified",
+  "label": "network: A19 CPU scores (ranks only); shard 6"
+ }
+}
