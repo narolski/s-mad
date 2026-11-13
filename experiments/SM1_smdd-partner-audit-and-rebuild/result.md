@@ -817,6 +817,19 @@ seed variance (NOISES over REC seeds 0.50 / 0.61). The mix-type contrasts (NOISE
 - **H-N4 (A16 smoothness; `a19_hn4.json`): falsified.** FRESH1_20 over REC20 stratified by face-box Laplacian quintiles,
   2-seed means: e 0.248 [0.226, 0.268] (raw 0.241), a 0.357 (raw 0.337), f 0.299 (raw 0.289). Holding sharpness equal
   barely moves the below-reconstruction ranking, so smoothness does not explain it.
+- **H-N1 (noise path; `a19_rungs.json`): no registered verdict — platform not equivalent, ranks only.** On the DGX CPU
+  (torch 2.12) the three A18 fits miss the registered reproduction check on their 401 stored test rows (max diff 0.012,
+  0.008, 0.012 > 2e-3), as anticipated; rank agreement with the stored rows 0.99999 for every fit. Descriptive AUCs
+  (2-seed mean, host bootstrap; seeds 401 / 402 / 403): NOISEX20 over NOISES20 0.920 [0.883, 0.952] (0.919 / 0.921 /
+  0.946); SEMX20 over SEMS20 0.738 [0.686, 0.790] (0.752 / 0.724 / 0.748); FRESH1_20 over REC20 0.986; NOISES20 over
+  REC20 0.816; SEMS20 over REC20 0.930. These descriptive numbers sit in neither registered branch (supported needs
+  SEMX over SEMS ≤ 0.70); the registered reading waits for the RTX 6000 Ada (same script, about 0.1 GPU-h).
+- **H-N2 (identity in the output; `a19_hn2id.json`; detector and glint on CPU, deviation note): undecided.** glintr100
+  cosine of each test X20 render to its partner's photo median 0.606 (to its host's photo 0.608; faces found 133 of
+  133). Partial Spearman ρ of the A18 logit (2-seed mean) with render-to-partner cosine given the extended floor
+  (shard 6, 66 rows): +0.021 [−0.191, +0.272] — at the falsified side of the point threshold (≤ 0.10) but the upper bound
+  (0.27) is not below 0.25. On all 133 X20 rows given the registered floor F: −0.147 [−0.312, +0.031]. No sign that the
+  network's score rises with how much of the partner the render carries.
 
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
