@@ -271,3 +271,12 @@ GPUs at once across the sprint). Changes, all fixed now:
    images) is reused unchanged.
 4. **Everything else** (patches, seeds 401-405, last epoch, readings, gate, verdicts, amendments 1-3) is unchanged.
    Athena tasks stay queued until a WCSS copy of the same task is verified, then that Athena task is cancelled.
+
+## Amendment 5 (13 Nov 2026, 08:35 CET; the author's ruling of 08:30, relayed by the lead; before any retrain score)
+
+The retrains stay on WCSS and Athena and "arrive when they arrive"; no machine is rented for them and they no longer
+gate the sealed final read. This replaces item 1 of amendment 3: there is no cut-off. Retrain rows that arrive after
+14 Nov 18:00 are reported as late additions and read exactly as registered (same gate, readings, agreement rule and
+verdicts; "incomplete (k seeds)" while fewer than five seeds of a method have finished). The SelfMAD array is
+resubmitted after its test job passes; every array stays queued on both clusters, and a task's first verified copy
+(either cluster) is the one read; the twin task on the other cluster is then cancelled.

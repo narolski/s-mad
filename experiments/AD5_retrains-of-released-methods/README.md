@@ -297,6 +297,28 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
   3 + 2 GPUs, then 2 + 4: never more than 6). Slurm forecast for the smokes: start 15 Nov 01:00 (after the stage
   ends); production starts after them. Not polled further. The realistic route for the final read is the rented
   ViT-B/16 variant (author's budget decision at 09:00).
+- 13 Nov 07:46-07:52 (Athena). All five SelfMAD tasks (3545933_401-404, 3545936_405) FAILED 1-4 min after start:
+  `train__.py` line 96 `os.mkdir(save_path)` -> FileNotFoundError, because its parent `-s $S/run` did not exist (the
+  smoke used `-s $S/out`, which the job creates). Quota is not the cause (`hpc-fs`: group store 7.94 of 9.77 TiB).
+  Logs: `logs/AD5-selfmad-3545933_<seed>.out`, `logs/AD5_keep/3548411_401` etc. Cost: about 0.2 GPU-hours.
+  Fix in `athena/ad5_selfmad_train.sbatch` (now in `packs/AD5/code_v5/`, CODE_SHA256SUMS sha256 d406f4ff...):
+  `mkdir -p $S/run`; plus `TEST=1` = the real code path on the first 160 renders for 5 epochs (passes the failing
+  line, the epoch-5 save, the final save and the tar). Test job **3548459** submitted 08:15.
+  Same cause elsewhere? No: MixFaceNet-MAD writes into `$S/out` (created) and its epochs folder is made with
+  `makedirs`; MADation's logger creates its output path with `os.makedirs` (smoke B used a fresh path); the WCSS
+  script likewise.
+- 13 Nov 08:10. MixFaceNet-MAD seed 401 (3545870_401, running since 07:52:49 on Athena): epoch files at 07:59:41,
+  08:03:41, 08:07:42, i.e. 240 s per epoch, so epoch 100 at about 14:35 and the result tar about 14:40 on 13 Nov.
+- 13 Nov 08:35. Prereg amendment 5 (author's ruling 08:30): no cut-off; retrain rows arriving after 14 Nov 18:00
+  are late additions read exactly as registered; SelfMAD to be resubmitted after its test job passes.
+- 13 Nov 08:45-09:00. WCSS smokes 6308828 / 6308829 FAILED at 03:11 after 29 s (r18-11, H100 95,830 MiB, driver
+  595.112.07): `pip install` could not find `importlib-metadata>=4.4; python_version < "3.10"` (needed by Markdown,
+  a tensorboard dependency). My offline resolution check ran under the DGX's Python 3.12, so it never evaluated that
+  marker. A scan of every wheel's METADATA for Python-version markers finds no other gap. Fix:
+  `importlib-metadata==8.4.0` and `zipp==3.20.0` (the authors' pins) added to `env/madation_requirements.txt` and to
+  the wheel house; new `ad5w_wheels39.tar` (sha256 d9329afc...) and `ad5w_code.tar` (508c41ae...) uploaded and
+  hash-checked on Lustre. The arrays chained behind the smokes (6308948, 6308949, 6308950) can never start; cancelling
+  them and submitting two new smokes failed at 09:00 because the controller did not answer; to be retried.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.

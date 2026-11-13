@@ -20,20 +20,28 @@
 set -eo pipefail
 module load Python/3.10.4
 set -u
-source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code_v3/src/AD5/athena/ad5_common.sh
-SEED=$SLURM_ARRAY_TASK_ID; T=selfmad_S_s${SEED}
+source /net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AD5/code_v5/src/AD5/athena/ad5_common.sh
+SEED=$SLURM_ARRAY_TASK_ID; T=selfmad_S_s${SEED}; [ -n "${TEST:-}" ] && T=${T}_test
 [ -f $RS/$T.tar.sha256 ] && { echo "$T done already"; exit 0; }
 hostname; nvidia-smi --query-gpu=name,memory.total --format=csv,noheader; date
-C=$PK/code_v3; SRC=$C/build/selfmad_src; RUN=$C/src/AD5/checks/run_with_site.py; PY=$EN/selfmad/bin/python
+C=$PK/code_v5; SRC=$C/build/selfmad_src; RUN=$C/src/AD5/checks/run_with_site.py; PY=$EN/selfmad/bin/python
 [ -f $EN/selfmad/AD5_ENV_OK ] || { echo "env missing"; exit 1; }
 export HF_HUB_CACHE=$C/hf_cache
-S=$SCRATCH_LOCAL/$T; mkdir -p $S/SMDD $S/out
+S=$SCRATCH_LOCAL/$T; mkdir -p $S/SMDD $S/out $S/run   # v5: train__.py's os.mkdir needs the -s folder (tasks of 3545933 / 3545936 failed on it)
 untar_checked $PK/smdd_train_raw.tar $S/raw SMDD_release_train/os25k_bf_t; mv $S/raw/SMDD_release_train/os25k_bf_t $S/SMDD/os25k_bf_t; rm -rf $S/raw
 untar_checked $PK/selfmad_landmarks.tar $S
 ( cd $PK && sha256sum -c selfmad_labels.tar.gz.sha256 ) && tar -xzf $PK/selfmad_labels.tar.gz -C $S
+DATA=$S/SMDD; N=24982; ED=$RS/${T}_epochs
+if [ -n "${TEST:-}" ]; then   # TEST=1: the real code path on the first 160 renders for 5 epochs (epoch-5 save included)
+  U=$S/sub; mkdir -p $U/SMDD/os25k_bf_t $U/SMDD_landmarks/os25k_bf_t $U/SMDD_labels/os25k_bf_t
+  for f in $(ls $S/SMDD/os25k_bf_t | sort | head -160); do b=${f%.png}
+    ln -s $S/SMDD/os25k_bf_t/$f $U/SMDD/os25k_bf_t/$f; ln -s $S/SMDD_labels/os25k_bf_t/$b.npy $U/SMDD_labels/os25k_bf_t/$b.npy
+    [ -f $S/SMDD_landmarks/os25k_bf_t/$b.npy ] && ln -s $S/SMDD_landmarks/os25k_bf_t/$b.npy $U/SMDD_landmarks/os25k_bf_t/$b.npy; done
+  DATA=$U/SMDD; N=$(ls $U/SMDD_landmarks/os25k_bf_t | wc -l); EPOCHS=5; ED=$S/out/epochs
+fi
 M=$S/out/gpumem.csv; MP=$(gpu_monitor $M); t0=$(date +%s); rc=0
-( cd $SRC && AD5_SEED=$SEED AD5_EXPECT_N=24982 AD5_EPOCH_DIR=$RS/${T}_epochs $PY -I $RUN $SRC $SRC/train__.py -n ad5_s$SEED -m hrnet_w18 -b 32 -e ${EPOCHS:-100} -lr 5e-4 \
-    -t SMDD -v last -SMDD_path $S/SMDD -s $S/run ) > $S/out/train_stdout.log 2>&1 || rc=$?
+( cd $SRC && AD5_SEED=$SEED AD5_EXPECT_N=$N AD5_EPOCH_DIR=$ED $PY -I $RUN $SRC $SRC/train__.py -n ad5_s$SEED -m hrnet_w18 -b 32 -e ${EPOCHS:-100} -lr 5e-4 \
+    -t SMDD -v last -SMDD_path $DATA -s $S/run ) > $S/out/train_stdout.log 2>&1 || rc=$?
 kill $MP || true
 SEC=$(( $(date +%s) - t0 )); echo "rc $rc seconds $SEC peak_MiB $(peak_mib $M)"
 W=$(ls $S/run/*/weights/epoch_${EPOCHS:-100}.tar 2>/dev/null || true)
