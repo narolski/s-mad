@@ -385,9 +385,9 @@ photos (8.5-15.4%) and is the only arm with nonzero R_cam flags (0.2-0.7%).
   - This is an association over 7 seeds from two hosts. Seeds 401/402 were trained on pn1a/pn1b and scored on tt1c;
     seed 401 is the extreme on both axes. On seeds 403-407 alone, ρ = 0.90.
 
-## TT1-X Part 2: MS1 Sb, SbM3, SbV, seeds 403-407 (printed only; no rule; not yet reviewed)
+## TT1-X Part 2: MS1 Sb, SbM3, SbV, seeds 403-407 (printed only; no rule; reviewed (post-result, 13 Nov), corrections applied)
 
-Source: MS1's own L40S scores. Reader `tt1_read_ms1.py` (fdc41e2), run once. Output `tt1_read_ms1.json` (sha256
+Source: MS1's own L40S scores. Reader `tt1_read_ms1.py` (sha256 `142c8c4f…`, pinned at fdc41e2), run once. Output `tt1_read_ms1.json` (sha256
 `f5787f57…`); tables in `tt1_read_fs_tables.md`.
 
 Labels:
@@ -395,8 +395,11 @@ Labels:
   Seed and machine are confounded across seeds, not within a seed.
 - U and the in-pack references were scored with TF32 on; tt1ref references with TF32 off. The TF32 split on R_cam is
   max |Δ| 0.002-0.022 logit, with 0 decision changes.
-- For SbM3, every FFHQ read is from a trained source (development persons excluded, other pipeline).
-- U pools are aligned frames only; U_p is unchanged.
+- For SbM3, every FFHQ read (R_ffhq, R_ffhq^border, M_ffhq, u, R3(b), R3(d)) is on a trained source. The TT1 FFHQ
+  images and persons were excluded from SbM3's training by key, file and identity (MS1 exclusion proof), and SbM3's
+  FFHQ training images were made by a different pipeline.
+- U_all pools are cut to aligned frames (4,152 non-aligned rows absent); U_p (21,035) is complete.
+- Column sources: F̄ and F_max are in-pack, TF32 on; the Geo-112 and CFP-border flags are tt1ref, TF32 off.
 
 | Seed | F̄ Sb | F̄ SbM3 | F̄ SbV | F_max Sb | F_max SbM3 | F_max SbV | Geo-112 flag Sb | Geo-112 flag SbM3 | Geo-112 flag SbV | CFP-border flag Sb | CFP-border flag SbM3 | CFP-border flag SbV |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -407,12 +410,18 @@ Labels:
 | 407 | 0.017 | 0.002 | 0.016 | 0.062 | 0.007 | 0.055 | 0.058 | 0.014 | 0.038 | 0.163 | 0.082 | 0.115 |
 
 What the table shows:
-- **SbM3 against Sb.** SbM3's F̄ is below L40S Sb's on 5 of 5 seeds (difference −0.004 to −0.039). Printed only; MS1's
-  registered comparison decides this, not TT1.
-- **FFHQ genuine flags.** Sb 0.024-0.050; SbM3 0.002-0.007 (trained source); SbV 0.026-0.043.
+- **SbM3 against Sb.** SbM3's F̄ is below L40S Sb's on 5 of 5 seeds (difference −0.0045 to −0.0388). MS1's registered
+  read of this statistic (P1-T) is 'untestable at the own rule (floor)'; no claim. TT1 adds none. The rank reads do not
+  show better source separation: SbM3's R3(f) is lower than Sb's on 5/5 seeds (g224 0.725-0.771 vs 0.757-0.868; g112
+  0.846-0.903 vs 0.901-0.953), and R3(c) on cfp_ff is 0.49-0.79 vs 0.63-0.86 (mixed TF32). F̄ at −2 is 0.008-0.024 vs
+  0.21-0.41: SbM3 moves the whole genuine distribution lower, consistent with MS1's P2 and its printed miss cost on
+  FFHQ morphs.
+- **FFHQ genuine flags (R_ffhq, 2,000 images, in-pack, TF32 on).** Sb 0.024-0.050; SbM3 0.0015-0.0075 (trained
+  source); SbV 0.027-0.044.
 - **Camera photos (R_cam).** Flagged 0-0.5% by every network.
 - **Geometry-224 flags.** 0-1.2% for every network.
-- **R3(g) at 112 px over the four packs.** Sb 0.81-0.95, SbM3 0.83-0.95, SbV 0.83-0.97.
-- **Platform reference, not a comparison.** L40S Sb F̄ (0.0141, 0.0414, 0.0132, 0.0132, 0.0172) is within 0.002 of FS1
-  A100 Sb at the same seeds (0.015, 0.041, 0.013, 0.014, 0.018). Different machines and TF32 settings for U; printed
-  only.
+- **R3(g), 112-px group (lfw, calfw, cfp_ff, agedb_30; mixed TF32).** Sb 0.81-0.95, SbM3 0.83-0.95, SbV 0.83-0.97.
+- **Retraining reference, not a comparison.** L40S MS1 Sb F̄ (0.0141, 0.0414, 0.0132, 0.0132, 0.0172) is within 0.0008
+  of FS1 A100 Sb at the same seeds (0.0145, 0.0411, 0.0129, 0.0140, 0.0175). Same manifest and seed, independently
+  trained on different GPUs, with different TF32 settings for U. Printed only. MS1's registered F_T values
+  (ms1_read.json) differ from these in the 4th decimal and are the registered ones.
