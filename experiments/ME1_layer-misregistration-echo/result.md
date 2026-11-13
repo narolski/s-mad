@@ -57,3 +57,19 @@ Erratum to the explanation above: it is the hull median prominence that is exact
 Read as the registration's text says (post hoc), the verdict is "invalid (control)": R2w4 vs R0_m7 0.002 and S0 vs R2w4 0.991. The statistic records resampling history (zero after one warp or one downscale), not a second layer. S4 vs S3 within D 0.596 [0.561, 0.633] is printed only and is not a kill. Lead's ruling on which verdict string the record carries: [pending].
 
 What the paper may say: "An autocorrelation echo statistic was dominated by resampling history and gave no usable reading."
+
+## Closing (lead's ruling, 13 Nov 2026: ME1 is closed for the sprint)
+
+**Verdict of record for the single-image part: "invalid (control)".** This is the verdict the registered text gives (R2w4 vs R0 on the 7b hull 0.002; S0 vs R2w4 0.991). The reviewer derived it from the numbers already computed; there was no second read.
+- The code's printed string, "not measured (R2w4, R2w, R0_61 > 5% missing)", stays in `me1_single.json` as printed.
+- That string comes from a reader fault: a log of a zero hull median made 287 of 291 warp-only rows non-finite. Truly missing rows are 1.4% (R2w4, R2w) and 5.5% (R0_61). The reader is not re-run.
+
+**Established.**
+- The oracle is not measurable with the registered estimator: the gated statistic is non-finite for most pairs.
+- The single-image part is invalid by its controls. The echo statistic records resampling history (zero after one warp or one downscale), not a second layer.
+
+**May not be written.** Neither string licenses anything: no kill, no arm and no mechanism claim. S4 vs S3 within D (0.596) is printed only.
+
+**Not run, available after the deadline.** A finite-safe echo estimator (no log of a zero median) that is insensitive to resampling history, registered fresh.
+
+**Saved features, kept for reuse.** `/mnt/t7/smad_next/ME1/me1_feats.csv` (`9cdd6b94…`).

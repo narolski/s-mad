@@ -146,3 +146,20 @@ Registered outcome (row 1, applied mechanically): "a two-person texture trace ex
 - Sb gains +0.013 to +0.026 from it (5 seeds sharing one feature set). That is information the hand cues already carry.
 
 What the paper may say: "Band energy statistics inside the blended region separate two-person from same-person splices no better than known low-level cues; no texture trace of a second identity was found."
+
+## Closing (lead's ruling, 13 Nov 2026: TB1 is closed for the sprint)
+
+**Established (development data; FS1 Sb seeds 403-407).**
+- **The band profile adds +0.010 [−0.006, +0.021]** over band energy and landmark displacement in the oracle read (amendment 2). The registered verdict is "falsified: the profile adds < +0.02 over band energy and geometry".
+- **One image reaches 0.654** on S4 vs S3, against a simple-cue floor of 0.773 (all-cue; nuisance 0.719; within-D logistic 0.757). It exceeds no floor; within D it is 0.657, and the shortcut gain is +0.006.
+- **The Sb increment is +0.013 to +0.026.** The five seeds share one feature set, and the hand cues already carry this information. The arm condition is not met.
+
+**May not be written.**
+- **The row-1 label "a two-person texture trace exists and one image shows it" may not be written as prose.** Its margin over the bar is 0.007, with host folds and no interval; the guard-band version gives 0.625.
+- No texture arm is licensed.
+
+**Not run, available after the deadline (CPU only, on the saved features).**
+1. TB1 S within D with component folds and a component-bootstrap interval.
+2. Sb logit plus the adversary all-cue floor features, cross-fitted on S4 vs S3 (stored development scores).
+
+**Saved features, kept for reuse.** `/mnt/t7/smad_next/TB1/tb1_feats.csv` (`a79980a3…`).

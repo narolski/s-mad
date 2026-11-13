@@ -360,3 +360,11 @@ Printed, not deciding:
 Not allowed in the paper: "no shape leakage", "the shape link has no effect", "replicated on a second seed block", or any reading of the linked hosts as harder or easier. Whether the headline switches to the 159 clean hosts is an open question for the author.
 
 Correction of record (`date`: Fri Nov 13 20:46 CET): `src/PR1/SHA256SUMS` listed the amendment-5 reader (c2e8fdd5…). The read used 89be37e1…, as registered in prereg.md amendment 5a. SHA256SUMS now pins 89be37e1….
+
+## Closing note for amendment 5a (lead's ruling, 13 Nov 2026)
+
+- **May not be written:** "no shape leakage", "the shape link has no effect", or "replicated" (AB1 uses the same hosts).
+- **For the paper:** PR1 test-host numbers are reported for the 159 clean hosts beside the 191. Which set is primary is the author's choice, still pending.
+- **Not registered now, available after the deadline:**
+  1. Sb − Sp per-host logit difference, linked vs clean.
+  2. Dose-response over all 191 hosts on a continuous training-hull shape overlap.

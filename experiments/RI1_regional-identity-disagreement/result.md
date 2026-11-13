@@ -15,3 +15,18 @@ Registered reading: **"inconclusive: P1 invalid (projection carries scale)"**.
 - M1 is not closed by this read.
 
 What the paper may say: "Occluded face-recognition embeddings did not reveal a second identity in single images."
+
+## Closing (lead's ruling, 13 Nov 2026: RI1 is closed for the sprint)
+
+**Established (development data).**
+- **The premise is invalid by its own validity check.** The check gave 0.934 and 0.873 against the required [0.40, 0.60]; P1 is 0.702 and is not a pass.
+- **Single-image contrasts are 0.54-0.60, against floors of 0.77-0.79.** S4 vs S3 is 0.540 and R4 vs R3 is 0.595. Neither exceeds any floor.
+- **The shortcut gain is −0.0002**, and the Sb increment is −0.003 to −0.004.
+
+**May not be written.** "Regional identity disagreement exists" or "P1 passes". M1 is not closed.
+
+**Not run, available after the deadline.**
+1. A projection direction that is scale-free by construction (one that passes the validity check on genuine photos), registered fresh.
+2. The same read on the look-alike set (LA1) once it exists.
+
+**Saved embeddings, kept for reuse.** `/mnt/t7/smad_next/RI1/emb_rows_{0,1}of2.npz` and `emb_sources_{0,1}of2.npz`.
