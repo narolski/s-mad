@@ -115,6 +115,12 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
   the driver's second copy of tt1a had been overwritten by tt1b's same-named tar in results/, restored from the lease
   folder copy, sha256 checked; owner error, naming).
 
+- Lead: option 1 as a per-network gate. Commit 38999cc (`date` Fri Nov 13 01:06:09 AM CET 2026): deviation TT1-D3,
+  written after seeing the tt1b gate (Bn_s401 excluded; Bn_s402 printed alone, "one seed"; no tolerance changed).
+  Reader re-pinned (52e64f6) after a mock test with the exclusion.
+- 01:06: lease tt1c (host 104.202.122.106:30099, A100-SXM4 80 GB, cap 2.5 USD, 2 h): upload, start, pull loop
+  (`/mnt/t7/smad_next/vast/tt1c/tt1_drive.log`); result tar named TT1_A100_tt1c_full.tar.
+
 ### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
 
 The decoded image, the resized image and the input tensor are bit-identical between the DGX stack (torch 2.12.1,
@@ -240,7 +246,8 @@ From `pools_summary.md` (aligned-only columns: IED, enlargement, border):
 
 ## 10. Handover state
 
-No process running. tt1a and tt1b: RELEASE (+ FAILED) written after verified copies. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
+Lease tt1c running (driver in the background on the DGX). tt1a and tt1b: RELEASE (+ FAILED) written after
+verified copies. Nothing queued on WCSS (uploaded files kept there). Nothing queued on WCSS. Test files: `/mnt/t7/smad_next/TT1/dgxtest/` (8-row gate test, symlink to the HN2
 tree, small). Compute: DGX GB10 about 11 minutes of detection (shared GPU), 0 USD.
 
 ## 11. Reproduce from scratch
