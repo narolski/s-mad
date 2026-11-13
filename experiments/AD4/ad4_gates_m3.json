@@ -1,6 +1,6 @@
 {
  "reader_sha256": "8fd182b49aa75268d44b5c220dd6d7a8c745cf99cdab1d58d5c3574357e3056b",
- "results": "/mnt/t7/smad_next/AD4/results_vast",
+ "results": "/mnt/t7/smad_next/AD4/results_wcss_m3",
  "present_tars": {
   "mf": [
    401,
@@ -20,84 +20,84 @@
  "refused": {},
  "checks": {
   "AD4_m3mf_s401": {
-   "tar_sha256": "345b0a848075ac21818df7205fafac755f1a10eadeb6f258c0c70adc1ec2ccad",
+   "tar_sha256": "30e689cc683ed51cf549081345e6096f48729ed18033adb89e65ee3401c4ae4f",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA A100-SXM4-40GB",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 0.8719861990875668
+   "train_hours": 0.5206088322401047
   },
   "AD4_m3mf_s402": {
-   "tar_sha256": "391ec1a959ba294189bdbd5cedd50814a396f92c4885598102cccef1b8d46904",
+   "tar_sha256": "22a7ec8253c83799b62ee1c72a69420f006a3c5df28af92cf2007ec11ffbcebe",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA A100-SXM4-40GB",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 0.8721523830625746
+   "train_hours": 0.5188676049311955
   },
   "AD4_m3mf_s403": {
-   "tar_sha256": "304944a502a6d341501b11786770b4d9cb571c0214ec2d32beaf372eb5bd745f",
+   "tar_sha256": "8d6bb54b414da0bb80c38773cd300933bf65d21818716c30fdafa941d15c12ac",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA A100-SXM4-40GB",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 0.8679078467686971
+   "train_hours": 0.5196988765398661
   },
   "AD4_m3mf_s404": {
-   "tar_sha256": "e99cc2b309f06019320e5803222e02942df3c2ecb1e6a75bc7685426306b51bd",
+   "tar_sha256": "811247bbead4b468c1b814b2fa12462be210beca861dac8c4ade80b331ccbc85",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA A100-SXM4-40GB",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 0.8676792309019301
+   "train_hours": 0.5194040908416112
   },
   "AD4_m3mf_s405": {
-   "tar_sha256": "e3a57a4ce0a6cfd75e6c9ddbb019ffdecc508f69c471d186717f71881fcb5cfa",
+   "tar_sha256": "d07f3126fbf3ec489246de58959cc3bbb2a5176f18f1d9c4971537be131bb3be",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA A100-SXM4-40GB",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 0.8696686667866177
+   "train_hours": 0.5195104009575314
   },
   "AD4_m3perm_s401": {
-   "tar_sha256": "168638b25cc9d0633fc47da579a4a755badccf0592682946f5f1d8389bc3b1a8",
+   "tar_sha256": "34e17e1e8b45a97ac70806bac4068e08753458024a2b01792af39606a859e3f9",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA RTX 6000 Ada Generation",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 1.2499128421147665
+   "train_hours": 0.5192203282647663
   },
   "AD4_m3perm_s402": {
-   "tar_sha256": "b90ae7ffcdb589a6617093e71e543415b4afec92681e21e5d611ccfb5c9f81a4",
+   "tar_sha256": "138a18c5d24168e66bb251cc23a465fef30328b792b9cd786fd105288f1ecfb1",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA RTX 6000 Ada Generation",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 1.264921070403523
+   "train_hours": 0.5186984881427553
   },
   "AD4_m3perm_s403": {
-   "tar_sha256": "45a3c74732f6a3d0d76976878cf00998a8dfceffaf83919a62d3449a048cf4c9",
+   "tar_sha256": "200f8ff5866fcd34cf2c8a1d6a781d3a7265e67e9d0505194d169c158d227557",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA RTX 6000 Ada Generation",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 1.2374028712511063
+   "train_hours": 0.5192206018500858
   },
   "AD4_m3perm_s404": {
-   "tar_sha256": "7e024fe88e32d6b26d5b2cc87fc5cc815429fa20ba5f3aaee1f77b5539fc58f6",
+   "tar_sha256": "be3d86c3013ba1626fc306ce2cba1914ff23f135edfee54a683fac04b08a7cc8",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA RTX 6000 Ada Generation",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 1.249528352684445
+   "train_hours": 0.5188637433449427
   },
   "AD4_m3perm_s405": {
-   "tar_sha256": "6a0b4ade8464d23064b041a17a2befbd3d8e51db720eec0328726951481a0661",
+   "tar_sha256": "3473ac8728d84ae03fbc7cae07e7d152159f2e4914bdcefc9ed6e6a81e35af30",
    "meta_seed_ok": true,
    "meta_arch_ok": true,
-   "device": "NVIDIA RTX 6000 Ada Generation",
+   "device": "NVIDIA H100",
    "torch": "2.2.1",
-   "train_hours": 1.2391860406266317
+   "train_hours": 0.5197417490349876
   }
  },
  "order": {
@@ -493,7 +493,7 @@
   }
  },
  "reproduction": {
-  "status": "MISS: not reproduced on this stack",
+  "status": "pass",
   "cells": {
    "mordiff/mordiff/native": {
     "mean_eer": 0.0,
@@ -511,13 +511,13 @@
     "pass": true
    },
    "dim/dim_a/native": {
-    "mean_eer": 0.841176470588235,
+    "mean_eer": 0.9701960784313719,
     "per_seed": [
-     1.4352941176470562,
-     1.8803921568627473,
      0.4450980392156854,
+     3.4156862745098033,
+     0.1,
      0.0,
-     0.4450980392156854
+     0.8901960784313708
     ],
     "bound": [
      null,
@@ -541,13 +541,13 @@
     "pass": true
    },
    "dim/fast_dim/native": {
-    "mean_eer": 1.7223529411764709,
+    "mean_eer": 1.9203921568627451,
     "per_seed": [
-     2.8705882352941177,
      1.8803921568627473,
-     0.9901960784313709,
+     3.860784313725489,
      0.4450980392156854,
-     2.4254901960784325
+     0.0,
+     3.4156862745098033
     ],
     "bound": [
      null,
@@ -556,26 +556,26 @@
     "pass": true
    },
    "dim/fast_dim_ode/native": {
-    "mean_eer": 4.013811937600692,
+    "mean_eer": 2.68625486266651,
     "per_seed": [
-     8.720381940351292,
-     1.8821957640771763,
+     1.9823961648787791,
      3.964792329757553,
-     0.1002004008016032,
-     5.401489253015837
+     1.9823961648787791,
+     0.0,
+     5.50168965381744
     ],
     "bound": [
      null,
      3.0
     ],
-    "pass": false
+    "pass": true
    },
    "dim/greedy_dim/native": {
-    "mean_eer": 2.4254901960784307,
+    "mean_eer": 0.21803921568627418,
     "per_seed": [
-     11.237254901960785,
+     0.5450980392156854,
      0.0,
-     0.4450980392156854,
+     0.1,
      0.0,
      0.4450980392156854
     ],
@@ -586,11 +586,11 @@
     "pass": true
    },
    "dim/greedy_dim_s/native": {
-    "mean_eer": 1.010196078431372,
+    "mean_eer": 0.7921568627450979,
     "per_seed": [
-     2.9705882352941178,
-     0.1,
+     1.9803921568627474,
      0.4450980392156854,
+     0.0,
      0.1,
      1.4352941176470562
     ],
@@ -601,13 +601,13 @@
     "pass": true
    },
    "frllm/facemorpher/native": {
-    "mean_eer": 4.11283334937903,
+    "mean_eer": 2.4529861044254027,
     "per_seed": [
-     12.264930522127019,
+     5.887166650620969,
      3.924777767080644,
-     2.4529861044254044,
      0.49059722088507984,
-     1.430875132377007
+     0.49059722088507984,
+     1.4717916626552394
     ],
     "bound": [
      null,
@@ -616,11 +616,11 @@
     "pass": true
    },
    "frllm/webmorph/native": {
-    "mean_eer": 0.9897865780218715,
+    "mean_eer": 0.6953076070723128,
     "per_seed": [
-     2.944789709495592,
-     0.981596569831862,
      0.9406465288818212,
+     1.9631931396637299,
+     0.490798284915931,
      0.0,
      0.08190008190008191
     ],
@@ -631,11 +631,11 @@
     "pass": true
    },
    "frllm/amsl/native": {
-    "mean_eer": 1.0955375253549688,
+    "mean_eer": 0.5791751183231914,
     "per_seed": [
-     3.9148073022312357,
-     1.0419202163624053,
-     0.49797160243407623,
+     0.5209601081812026,
+     1.9688979039891839,
+     0.383029073698444,
      0.0,
      0.022988505747126436
     ],
@@ -646,13 +646,13 @@
     "pass": true
    },
    "frllm/opencv/native": {
-    "mean_eer": 19.705521029050445,
+    "mean_eer": 17.71775786481669,
     "per_seed": [
-     40.204509322156376,
-     23.517367635014697,
-     11.738208797032328,
-     7.852772558654913,
-     15.214746832393894
+     34.23302982126511,
+     25.480560774678416,
+     6.8711759888230475,
+     6.339427662957074,
+     15.664595076359783
     ],
     "bound": [
      8.8,

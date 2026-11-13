@@ -1,0 +1,62 @@
+{
+ "a": "WCSS H100",
+ "b": "rented A100 / RTX 6000 Ada",
+ "n_pairs": 340,
+ "networks": [
+  "AD4_m3mf_s401",
+  "AD4_m3mf_s402",
+  "AD4_m3mf_s403",
+  "AD4_m3mf_s404",
+  "AD4_m3mf_s405",
+  "AD4_m3perm_s401",
+  "AD4_m3perm_s402",
+  "AD4_m3perm_s403",
+  "AD4_m3perm_s404",
+  "AD4_m3perm_s405"
+ ],
+ "max_abs_eer_diff": 21.139000000000003,
+ "max_abs_auc_diff": 0.26824000000000003,
+ "median_abs_eer_diff": 0.345,
+ "per_network": {
+  "AD4_m3mf_s401": {
+   "max_abs_eer_diff": 14.852999999999994,
+   "max_abs_auc_diff": 0.20472
+  },
+  "AD4_m3mf_s402": {
+   "max_abs_eer_diff": 8.334000000000003,
+   "max_abs_auc_diff": 0.09179000000000004
+  },
+  "AD4_m3mf_s403": {
+   "max_abs_eer_diff": 21.139000000000003,
+   "max_abs_auc_diff": 0.26824000000000003
+  },
+  "AD4_m3mf_s404": {
+   "max_abs_eer_diff": 3.8019999999999996,
+   "max_abs_auc_diff": 0.05205000000000004
+  },
+  "AD4_m3mf_s405": {
+   "max_abs_eer_diff": 0.9910000000000001,
+   "max_abs_auc_diff": 0.012380000000000002
+  },
+  "AD4_m3perm_s401": {
+   "max_abs_eer_diff": 0.6450000000000031,
+   "max_abs_auc_diff": 0.002650000000000041
+  },
+  "AD4_m3perm_s402": {
+   "max_abs_eer_diff": 0.49499999999999744,
+   "max_abs_auc_diff": 0.0040999999999999925
+  },
+  "AD4_m3perm_s403": {
+   "max_abs_eer_diff": 0.7910000000000039,
+   "max_abs_auc_diff": 0.0037800000000000056
+  },
+  "AD4_m3perm_s404": {
+   "max_abs_eer_diff": 0.9399999999999977,
+   "max_abs_auc_diff": 0.005500000000000005
+  },
+  "AD4_m3perm_s405": {
+   "max_abs_eer_diff": 0.5449999999999946,
+   "max_abs_auc_diff": 0.0024399999999999977
+  }
+ }
+}

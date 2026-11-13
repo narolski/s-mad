@@ -1,0 +1,62 @@
+{
+ "a": "WCSS H100",
+ "b": "Athena A100 (registered)",
+ "n_pairs": 340,
+ "networks": [
+  "AD4_m3lmf_s401",
+  "AD4_m3lmf_s402",
+  "AD4_m3lmf_s403",
+  "AD4_m3lmf_s404",
+  "AD4_m3lmf_s405",
+  "AD4_m3lperm_s401",
+  "AD4_m3lperm_s402",
+  "AD4_m3lperm_s403",
+  "AD4_m3lperm_s404",
+  "AD4_m3lperm_s405"
+ ],
+ "max_abs_eer_diff": 6.298000000000002,
+ "max_abs_auc_diff": 0.07243,
+ "median_abs_eer_diff": 0.0,
+ "per_network": {
+  "AD4_m3lmf_s401": {
+   "max_abs_eer_diff": 1.2669999999999995,
+   "max_abs_auc_diff": 0.007830000000000004
+  },
+  "AD4_m3lmf_s402": {
+   "max_abs_eer_diff": 6.298000000000002,
+   "max_abs_auc_diff": 0.07243
+  },
+  "AD4_m3lmf_s403": {
+   "max_abs_eer_diff": 0.0,
+   "max_abs_auc_diff": 0.0
+  },
+  "AD4_m3lmf_s404": {
+   "max_abs_eer_diff": 0.0,
+   "max_abs_auc_diff": 0.0
+  },
+  "AD4_m3lmf_s405": {
+   "max_abs_eer_diff": 0.0,
+   "max_abs_auc_diff": 0.0
+  },
+  "AD4_m3lperm_s401": {
+   "max_abs_eer_diff": 0.49799999999999756,
+   "max_abs_auc_diff": 0.005160000000000053
+  },
+  "AD4_m3lperm_s402": {
+   "max_abs_eer_diff": 0.5450000000000017,
+   "max_abs_auc_diff": 0.0023300000000000542
+  },
+  "AD4_m3lperm_s403": {
+   "max_abs_eer_diff": 0.4989999999999988,
+   "max_abs_auc_diff": 0.0009500000000000064
+  },
+  "AD4_m3lperm_s404": {
+   "max_abs_eer_diff": 0.5949999999999989,
+   "max_abs_auc_diff": 0.003770000000000051
+  },
+  "AD4_m3lperm_s405": {
+   "max_abs_eer_diff": 0.990000000000002,
+   "max_abs_auc_diff": 0.0038000000000000256
+  }
+ }
+}

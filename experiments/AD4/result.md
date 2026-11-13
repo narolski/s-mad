@@ -1,96 +1,105 @@
 # Morph-free networks (AD4): result
 
-Status 11 Nov 2026, 23:50 CET. ViT-B/16 recipe: read; flagged "not reproduced on this stack"; descriptive until the WCSS
-cluster rerun decides. ViT-L/14 recipe: 7 of 10 networks back; read descriptively as "incomplete (2 of 5)". Every statement below is
-**in our preprocessing** (our alignment of every benchmark, "our frames"). Full tables: `ad4_reading_m3.md`, post hoc
-addendum `posthoc_m3.md` (prereg Amendment 3); record: `README.md`. Wording follows the independent review
-`experiments/reviews/REVIEW_AD4_VITB_20261111.md`.
+Status 13 Nov 2026, about 09:30 CET: **both recipes read as registered.** Every statement is **in our preprocessing** (our alignment
+of every benchmark, "our frames"). Platforms are facts of each number: ViT-B/16 registered arm on WCSS H100 (cluster stack, Amendment 5);
+ViT-L/14 registered arm on Athena A100 40 GB (morph-free 401, 402, label-permuted 401 to 405) and WCSS H100 (morph-free 403 to 405).
+Tables: `ad4_reading_m3.md`, `ad4_reading_m3l.md`, post hoc readings `posthoc_m3.md`, `posthoc_m3l.md`; record `README.md`. Wording
+follows `experiments/reviews/REVIEW_AD4_VITB_20261111.md`.
 
 ## What the networks are
 
-CLIP ViT-B/16 with LoRA, five seeds (401 to 405), last checkpoint, **trained only to flag shrink-and-enlarge copies of
-synthetic SMDD faces (no morph, no blending)**: label 0 = SMDD renders, label 1 = their copies shrunk to 31% and enlarged
-again. Training saturates: natives at a logit of about -3.65, copies at about +3.62 (5th to 95th percentile within 0.03;
-posthoc_m3 A). References: five networks trained on the same images with shuffled labels and the untrained network.
+CLIP with LoRA, five seeds (401 to 405), last checkpoint, **trained only to flag shrink-and-enlarge copies of synthetic SMDD faces (no
+morph, no blending)**: label 0 = SMDD renders, label 1 = their copies shrunk to 31% and enlarged again. Training saturates: ViT-B/16
+natives at a logit of about -3.65 and copies at about +3.62; ViT-L/14 -4.07 and +4.02 (5th to 95th percentile within 0.03).
+References per recipe: five networks trained on the same images with shuffled labels and the untrained network. The label-permuted
+networks partly learned the true task (true-label accuracy 0.40 to 0.69 for ViT-B/16, 0.36 to 0.68 for ViT-L/14), so they are
+conservative references.
+
 **Bounded head (affects every threshold read in this experiment).** The head is a linear layer on L2-normalised CLIP features
-(`archs_a12.py` line 277), so a logit cannot exceed the head's weight norm plus its bias. Measured on the trained tensors: ViT-B/16
-morph-free ||w|| 3.72 to 3.76, bias -0.035 to 0.013 (logits bounded at about ±3.8; natives sit at -3.65, copies at +3.62);
-ViT-L/14 morph-free ||w|| 4.16 (bound about ±4.17; natives -4.07, copies +4.02); label-permuted ViT-B/16 ||w|| 0.61 to 0.65 (bound
-about ±0.65, hence their logits near 0). Every genuine photo of a training-like source therefore sits on a floor about 0.03 logits
-wide, and the FRLL-5% threshold lies a few hundredths of a logit above it: flag rates at FRLL-5% (for example 50.7% of MorDIFF's own
-genuine photos) read a cosine band about 0.03 wide, not a large score difference. The same mechanism is documented for the protocol
-network's fits in `experiments/reviews/REVIEW_PN1_TIER1_20261112.md` (finding 1: ||w|| 3.84 to 3.86, logits within about ±3.87).
+(`archs_a12.py` line 277), so a logit cannot exceed the head's weight norm plus its bias. Measured on the rented-arm tensors: ViT-B/16
+morph-free ||w|| 3.72 to 3.76, bias -0.035 to 0.013 (logits bounded at about ±3.8); ViT-L/14 morph-free ||w|| 4.16 (bound about
+±4.17); label-permuted ViT-B/16 ||w|| 0.61 to 0.65 (bound about ±0.65, hence their logits near 0). Every genuine photo of a
+training-like source therefore sits on a floor about 0.03 logits wide, and the FRLL-5% threshold lies a few hundredths of a logit
+above it: flag rates at FRLL-5% read a cosine band about 0.03 wide, not a large score difference. The same mechanism is documented
+for the protocol network's fits in `experiments/reviews/REVIEW_PN1_TIER1_20261112.md` (finding 1: ||w|| 3.84 to 3.86, logits
+within about ±3.87).
 
-The label-permuted networks partly learned the true task (true-label accuracy 0.399 to 0.686), so they are conservative
-references; they show the effect needs the true labels, not which feature carries it.
+## Gates
 
-## ViT-B/16 recipe, in our preprocessing (flag: not reproduced on this stack)
+- Scorer equivalence on the H100 stack (Amendment 5 (c)): the A47 I-3 seed-1 network re-scored with `ad4_score.py` in the WCSS
+  container (job 6308825) equals its registered scores in all 24 shared cells (|AUC difference| 0.0, Kendall tau 1.0).
+  `gate_scorer_equivalence_h100.json`. The DGX scorer gate (11 Nov) also passed.
+- Sample-order gate: 10 of 10 WCSS ViT-B/16 networks, 10 of 10 registered ViT-L/14 networks, 10 of 10 WCSS ViT-L/14 repeats, 10 of
+  10 rented ViT-B/16 networks: all pass (200 of 200 batches). No network refused.
+- **Reproduction gate, ViT-B/16 cluster rerun: pass, "reproduced on the cluster stack"** (11 of 11 cells; morph-free seed means
+  MorDIFF 0.00, DiM-A 0.97, DiM-C 0.00, Fast-DiM 1.92, Fast-DiM-ODE 2.69, Greedy-DiM 0.22, Greedy-DiM-S 0.79, FRLL FaceMorpher 2.45,
+  Webmorph 0.70, AMSL 0.58, OpenCV 17.72 against the bounds 3.0 / 5.6 / 8.8 to 26.0). The rented arm's miss (Fast-DiM-ODE 4.01) stays
+  on the rented arm, which is now a cross-platform repeat.
 
-- **Flag.** Reproduction gate missed on 1 of 11 cells: Fast-DiM-ODE native, morph-free seed mean 4.01% against a bound of
-  3.0 (per seed 8.72, 1.88, 3.96, 0.10, 5.40). The other ten cells are inside their bounds. The original morph-free run
-  (A47 I-3, three other seeds, WCSS H100) gave MorDIFF 0.00 and DiM 0.00 to 1.17%. So: seen on two stacks; the
-  registered cluster rerun is pending (queued on WCSS, which refuses connections tonight).
-- **Registered cells.** MorDIFF native (primary): EER 0.0% in all five seeds [95% CI 0.0, 0.0]; references 37.3 to 60.8%
-  (untrained 53.9%). Six DiM natives (secondary): 0.0 to 4.0% (DiM-A 0.8, DiM-C 0.0, Fast-DiM 1.7, Fast-DiM-ODE 4.0,
-  Greedy-DiM 2.4, Greedy-DiM-S 1.0); references 37.2 to 63.3%. By the registered rule each of the seven is "passable
-  without morphs" (5 of 5 seeds meet the 10-point margin; native margins -33 to -41 points) and A1 is not falsified on
-  any. A network that never sees a morph or a blended image, trained only to detect resampling of synthetic faces,
-  reaches these numbers; low error on these cells therefore cannot by itself be read as evidence of morph detection.
-- **Descriptive cells.** FRLL AMSL 1.1%, FaceMorpher 4.1%, Webmorph 1.0% (each at least 10 points below every label-free
-  reference, lowest 24.0 to 27.4%; not "above chance": the untrained network reaches AUC up to 0.72 there); FRLL OpenCV
-  19.7% (per seed 7.9 to 40.2; not passable); FRLL StyleGAN 32.9%. Corrected MAD22 FaceMorpher 0.0%; OpenCV 34.3%;
-  Webmorph 27.2% (meets the margin in 3 of 5 seeds, above 15% in 5 of 5; borderline, not a headline). Corrected MAD22
-  MIPGAN-I and MIPGAN-II reversed in all five seeds (AUC 0.017 to 0.438; no seed mean).
-- **Resolution-history matching (E7)** removes or overshoots the cue on DiM-A, Fast-DiM and Fast-DiM-ODE (AUC 0.02 to 0.52;
-  DiM-A and Fast-DiM-ODE reversed in all five seeds). The history-matched genuine photos there are softer than the morphs
-  (file-size null AUC 0.10 to 0.44). It does **not** remove the cue on MorDIFF (2.9%, per seed 0.4 to 5.4, AUC 0.990 to
-  1.000), DiM-C (21.7%, AUC 0.72 to 0.93), corrected MAD22 FaceMorpher (0.1%) or the FRLL landmark cells (AMSL 8.2,
-  Webmorph 7.8, FaceMorpher 11.1%; OpenCV split). Greedy-DiM and Greedy-DiM-S split by seed (AUC 0.014 to 0.987 and
-  0.185 to 0.877; no seed mean). What carries the remaining cue on MorDIFF, MAD22 FaceMorpher and the FRLL landmark cells
-  is not identified here; candidates are the surround, border, watermark and blending softness (untested).
-- **Fixed thresholds, flag and miss rates together.** Every genuine photo sits near the trained floor. At the 0.5 rule the
-  morph-free networks flag 0.0% of unprocessed genuine photos and miss 64.5% of MorDIFF morphs (per seed 4.1 to 98.4),
-  86 to 100% of DiM morphs and 100% of every FRLL family; they miss 4.3% of corrected MAD22 FaceMorpher morphs while
-  flagging 0.0% of its unprocessed genuine photos. The FRLL-5% threshold lies at p = 0.027 to 0.036, just above the floor:
-  there MorDIFF morphs are missed 0.0% while **50.7% of MorDIFF's own unprocessed genuine photos are flagged** (per seed
-  1.0, 70.1, 54.9, 87.7, 39.7%); DiM morphs are missed 0.0 to 4.1% with 4.9% of DiM genuine photos flagged. That 100% of
-  history-matched genuine photos are flagged at FRLL-5% in the MorDIFF, DiM and MAD22 FaceMorpher E7 cells follows from the
-  training task (E7 is the same kind of operation as the training positives) and adds nothing about the benchmarks.
-- **File size alone** (smaller PNG = morph) separates the native cells of our frames at AUC 0.72 to 1.00 for the diffusion,
-  FRLL landmark and MAD22 FaceMorpher cells (Greedy-DiM 0.72, Fast-DiM-ODE 0.86, the others 0.95 to 1.00; MorDIFF 0.999,
-  MAD22 FaceMorpher 1.000), and inside each cell the network score
-  rises with smaller file size (Spearman 0.14 to 0.89 in native cells). Our aligner's border around smaller morph files
-  lowers file size, so softness and border are confounded in our frames (posthoc_m3 C).
+## ViT-B/16 recipe, registered (WCSS H100, jobs 6308830_0 to _9, 13 Nov 03:44 to 06:46), in our preprocessing
 
-## ViT-L/14 recipe, in our preprocessing: incomplete (2 of 5 morph-free networks), descriptive only
+- **Registered cells.** MorDIFF native (primary): EER 0.0% in all five seeds [95% CI 0.0, 0.0]; references 37.3 to 60.8% (untrained
+  53.9%). Six DiM natives (secondary): DiM-A 1.0, DiM-C 0.0, Fast-DiM 1.9, Fast-DiM-ODE 2.7, Greedy-DiM 0.2, Greedy-DiM-S 0.8%;
+  references 37.3 to 63.8%. Each of the seven is "passable without morphs" (5 of 5 seeds meet the 10-point margin; margins -34.6 to
+  -42.5 points) and A1 is not falsified on any. A network that never sees a morph or a blended image, trained only to detect
+  resampling of synthetic faces, reaches these numbers; low error on these cells therefore cannot by itself be read as evidence of
+  morph detection.
+- **Descriptive cells.** FRLL AMSL 0.6, FaceMorpher 2.5, Webmorph 0.7% (each at least 10 points below every label-free reference; the
+  untrained network reaches AUC up to 0.72 there, so not "above chance"); FRLL OpenCV 17.7% (per seed 6.3 to 34.2; not passable);
+  FRLL StyleGAN 33.1%. Corrected MAD22 FaceMorpher 0.0% native and 0.0% history-matched; OpenCV 37.0; Webmorph 26.7 (borderline:
+  margin met in 3 of 5 seeds, above 15% in 5 of 5); MIPGAN-I and MIPGAN-II reversed in all five seeds (no seed mean).
+- **Resolution-history matching (E7)** removes or overshoots the cue on DiM-A (59.7%), Fast-DiM (56.4%) and Fast-DiM-ODE (reversed in
+  all seeds). It does not remove it on MorDIFF (2.4%, per seed 0.1 to 5.5), DiM-C (19.4%), corrected MAD22 FaceMorpher (0.0%) or the
+  FRLL landmark cells (AMSL 4.8, FaceMorpher 7.0, Webmorph 4.5%). Greedy-DiM and Greedy-DiM-S history-matched cells split by seed
+  (EER 3.0 to 84.4 and 17.2 to 72.0; no seed mean).
+- **Fixed thresholds, flag and miss rates together.** At the 0.5 rule: 0.0% of unprocessed genuine photos flagged; 71.1% of MorDIFF
+  morphs missed (per seed 5.0 to 98.7), 90.3 to 100% of DiM morphs (DiM-C per seed 51.4 to 100) and 100% of FRLL morphs missed, 7.2% of corrected MAD22
+  FaceMorpher morphs missed. At FRLL-5% (on the floor, see above): 0.0% of MorDIFF and DiM-C morphs missed while 60.9% of MorDIFF's
+  own genuine photos are flagged (per seed 30.4 to 92.6) and 4.9% of DiM genuine photos.
+- **Cross-platform repeat (the rented arm, same tasks and seeds, A100 / RTX 6000 Ada, torch 2.2.1).** 340 network-cell pairs: median
+  |EER difference| 0.34 points; largest 21.1 points (morph-free seed 403), largest |AUC difference| 0.27. Label-permuted networks
+  agree within 0.9 points; morph-free seeds 401, 402, 403 differ by up to 14.9, 8.3, 21.1 points in some cells. The registered
+  verdicts are the same on both stacks for all seven registered cells. `xplat_m3_wcss_vs_rented.md`.
 
-Athena A100; 7 of 10 networks (morph-free 401 and 402, all five label-permuted); morph-free 403 to 405 rerun once unchanged after slow
-nodes (array 3546123, pending). No refusal; sample-order gate 7 of 7. Same training task (only shrink-and-enlarge copies of synthetic
-faces; natives at logit -4.07, copies +4.02). No verdict until five morph-free networks exist. Tables `ad4_reading_m3l.md`,
-`posthoc_m3l.md`.
-- MorDIFF native 0.0 and 0.0% (references 41.2 to 52.0%); the morph-trained ViT-L/14 recipe (A12BR, 5 seeds, same files) reaches 48.7%.
-- DiM natives 0.0 to 6.9% per seed; the morph-trained recipe 10.2 to 29.7%.
-- Resolution-history matching reverses the DiM cells in both seeds (AUC 0.02 to 0.27); it does not remove the cue on MorDIFF (2.0, 8.9%),
-  FRLL AMSL (8.3, 17.6%) or Webmorph (6.5, 14.2%).
-- 0.5 rule: 0.0% of genuine photos flagged, with 12.7 and 98.9% of MorDIFF and 99.8 to 100% of DiM and FRLL morphs missed. FRLL-5%:
-  0.0% of MorDIFF morphs missed with 25.5% of MorDIFF's own genuine photos flagged.
+## ViT-L/14 recipe, registered (Athena A100 and WCSS H100, Amendment 5), in our preprocessing
 
-## Follow-ups of the review (post hoc, Amendment 4)
+- MorDIFF native (primary): 0.0% in all five seeds; references 41.2 to 52.0%; passable; A1 not falsified. The morph-trained ViT-L/14
+  recipe (A12BR R × d0, five seeds, same files) reaches 48.7% (34.8 to 56.9) on this cell.
+- DiM natives (secondary): DiM-A 3.6, DiM-C 1.6, Fast-DiM 9.1, Greedy-DiM 9.5, Greedy-DiM-S 4.4%: passable, A1 not falsified (the
+  morph-trained recipe reaches 10.2 to 29.7%). **Fast-DiM-ODE 11.8% (per seed 0.4, 5.9, 18.6, 17.6, 16.2): not passable and A1
+  falsified (above 15% in 3 of 5 seeds); it does not reach 15%; the morph-trained recipe reaches 13.7%.**
+- Seed 403 (WCSS) is the weakest seed in most cells (for example Fast-DiM 24.6, DiM-A 11.8%).
+- Resolution-history matching reverses every DiM cell (reversed or split in all seeds). It does not remove the cue on MorDIFF (4.0%),
+  FRLL AMSL (15.6%) or Webmorph (11.1%). FRLL FaceMorpher native 20.6% and OpenCV 34.3% (the morph-trained recipe reaches 0.1 and
+  0.5%); StyleGAN and both MIPGAN cells reversed; corrected MAD22 FaceMorpher 0.0% native, 37.7% history-matched (no twin on MAD22).
+- 0.5 rule: 0.0% of genuine photos flagged; 63.1% of MorDIFF morphs missed (per seed 8.4 to 100), 100% of DiM-A morphs. FRLL-5%: 0.0%
+  of MorDIFF morphs missed while 21.0% of MorDIFF's own genuine photos are flagged.
+- **Cross-platform repeat** (the ten WCSS H100 results; Amendment 1c): for the seven tasks that also ran on Athena (238 network-cell
+  pairs), median |EER difference| 0.1 and largest 6.3 points (morph-free seed 402), largest |AUC difference| 0.072. The all-WCSS arm gives the same
+  registered verdicts (Fast-DiM-ODE 11.5%, A1 falsified; the other six passable). `xplat_m3l_wcss_vs_athena.md`,
+  `ad4_reading_m3l_wcssrepeat.md`.
 
-- Face-only softness (ViT-B/16, our frames): a statistic of high-frequency power in a fixed face box separates morphs from genuine photos
-  at AUC 1.000 in all 8 native cells the networks pass at AUC >= 0.99; the networks' scores follow it with Spearman >= 0.7 in 4 of the 8
-  (H-new-1: mixed). Across the 7 diffusion history-matched cells the networks' AUC follows how much softer the morphs are than the
+## Post hoc follow-ups (Amendment 4; on the rented ViT-B/16 networks, before the cluster rerun)
+
+- Face-only softness: a statistic of high-frequency power in a fixed face box separates morphs from genuine photos at AUC 1.000 in all
+  8 native cells the rented networks pass at AUC ≥ 0.99; the networks' scores follow it with Spearman ≥ 0.7 in 4 of the 8 (H-new-1:
+  mixed). Across the 7 diffusion history-matched cells the networks' AUC follows how much softer the morphs are than the
   history-matched photos (Spearman 0.86; H-new-2: consistent with overshoot). `fu_sharpness_m3.md`.
 - Border-blanked re-score (H-new-3), ladder morphs (H-new-5), held-out generator renders (H-new-4): scored on the DGX (Amendment 4b).
   The DGX re-score of the unblanked images misses the registered agreement gate for 3 of 5 morph-free networks (Kendall tau 0.987 to
-  0.989 against 0.99; |AUC difference| at most 0.0012; probably ties at the saturation floor, not rescued), so these rows are "incomplete (2 of 5)", seeds 402 and 403 only. Blanking
-  everything outside the face: MorDIFF history-matched 2.9 and 13.2% EER, corrected MAD22 FaceMorpher 0.0 native; the cue is not
-  removed on those cells in these two networks. Landmark ladder (its own frames): same-person blends are scored like two-person morphs
-  (gap OpenCV 0.009, FaceMorpher -0.006; R4 vs R3 AUC 0.47 to 0.52). Held-out SMDD renders and FRLL genuine photos are
-  indistinguishable: both at the trained floor (differences of -0.03 and -0.05 logits inside a floor whose 5th to 95th percentile
-  spans about 0.03; no interval). `fu_blank_m3.md`, `fu_pools_m3.md`.
+  0.989 against 0.99; |AUC difference| at most 0.0012; probably ties at the saturation floor, not rescued), so these rows are
+  "incomplete (2 of 5)", seeds 402 and 403 only. Blanking everything outside the face: MorDIFF history-matched 2.9 and 13.2% EER,
+  corrected MAD22 FaceMorpher 0.0 native; the cue is not removed on those cells in these two networks. Landmark ladder (its own
+  frames): same-person blends are scored like two-person morphs (gap OpenCV 0.009, FaceMorpher -0.006; R4 vs R3 AUC 0.47 to 0.52).
+  Held-out SMDD renders and FRLL genuine photos are indistinguishable: both at the trained floor (differences of -0.03 and -0.05
+  logits inside a floor whose 5th to 95th percentile spans about 0.03; no interval). `fu_blank_m3.md`, `fu_pools_m3.md`. An H100
+  re-score of these follow-ups is approved by the lead, to be registered.
 
 ## Withdrawn
+
+- WITHDRAWN (13 Nov; the 11 to 12 Nov status lines "ViT-B/16 recipe: read; flagged 'not reproduced on this stack'" and "ViT-L/14:
+  incomplete (2 of 5)"): superseded by the registered cluster-stack readings above (Amendment 5). The rented ViT-B/16 numbers stay
+  valid as a cross-platform repeat with their flag; the 23:59 ViT-L/14 interim is kept on T7 (`read/incomplete2_*`).
 
 - WITHDRAWN (my reading section of 23:36, "E7 cells: MorDIFF 2.9; DiM 21.7 to 75.9 (AUC 0.18 to 0.85)"): as a summary of
   the history-matched control it hid that the control does not remove the cue on MorDIFF, DiM-C and the landmark cells and

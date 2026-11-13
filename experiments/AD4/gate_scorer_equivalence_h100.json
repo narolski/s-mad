@@ -1,0 +1,222 @@
+{
+ "cells": {
+  "dim/dim_a/native": {
+   "auc_ours": 1.0,
+   "auc_registered": 1.0,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 0.0,
+   "eer_registered": 0.0,
+   "pass": true
+  },
+  "dim/dim_a/e7": {
+   "auc_ours": 0.67303,
+   "auc_registered": 0.67303,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 38.763,
+   "eer_registered": 38.763,
+   "pass": true
+  },
+  "dim/dim_c/native": {
+   "auc_ours": 1.0,
+   "auc_registered": 1.0,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 0.0,
+   "eer_registered": 0.0,
+   "pass": true
+  },
+  "dim/dim_c/e7": {
+   "auc_ours": 0.81,
+   "auc_registered": 0.81,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 26.88,
+   "eer_registered": 26.88,
+   "pass": true
+  },
+  "dim/fast_dim/native": {
+   "auc_ours": 0.99954,
+   "auc_registered": 0.99954,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 0.99,
+   "eer_registered": 0.99,
+   "pass": true
+  },
+  "dim/fast_dim/e7": {
+   "auc_ours": 0.53506,
+   "auc_registered": 0.53506,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 49.01,
+   "eer_registered": 49.01,
+   "pass": true
+  },
+  "dim/fast_dim_ode/native": {
+   "auc_ours": 0.99893,
+   "auc_registered": 0.99893,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 1.437,
+   "eer_registered": 1.437,
+   "pass": true
+  },
+  "dim/fast_dim_ode/e7": {
+   "auc_ours": 0.43583,
+   "auc_registered": 0.43583,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 53.469,
+   "eer_registered": 53.469,
+   "pass": true
+  },
+  "dim/greedy_dim/native": {
+   "auc_ours": 0.99983,
+   "auc_registered": 0.99983,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 0.545,
+   "eer_registered": 0.545,
+   "pass": true
+  },
+  "dim/greedy_dim/e7": {
+   "auc_ours": 0.65279,
+   "auc_registered": 0.65279,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 39.753,
+   "eer_registered": 39.753,
+   "pass": true
+  },
+  "dim/greedy_dim_s/native": {
+   "auc_ours": 0.99722,
+   "auc_registered": 0.99722,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 1.435,
+   "eer_registered": 1.435,
+   "pass": true
+  },
+  "dim/greedy_dim_s/e7": {
+   "auc_ours": 0.45306,
+   "auc_registered": 0.45306,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 53.316,
+   "eer_registered": 53.316,
+   "pass": true
+  },
+  "frllm/amsl/native": {
+   "auc_ours": 1.0,
+   "auc_registered": 1.0,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 0.0,
+   "eer_registered": 0.0,
+   "pass": true
+  },
+  "frllm/amsl/e7": {
+   "auc_ours": 0.99881,
+   "auc_registered": 0.99881,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 0.973,
+   "eer_registered": 0.973,
+   "pass": true
+  },
+  "frllm/facemorpher/native": {
+   "auc_ours": 0.99653,
+   "auc_registered": 0.99653,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 1.472,
+   "eer_registered": 1.472,
+   "pass": true
+  },
+  "frllm/facemorpher/e7": {
+   "auc_ours": 0.98861,
+   "auc_registered": 0.98861,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 4.456,
+   "eer_registered": 4.456,
+   "pass": true
+  },
+  "frllm/opencv/native": {
+   "auc_ours": 0.84731,
+   "auc_registered": 0.84731,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 23.027,
+   "eer_registered": 23.027,
+   "pass": true
+  },
+  "frllm/opencv/e7": {
+   "auc_ours": 0.63193,
+   "auc_registered": 0.63193,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 43.231,
+   "eer_registered": 43.231,
+   "pass": true
+  },
+  "frllm/stylegan/native": {
+   "auc_ours": 0.69854,
+   "auc_registered": 0.69854,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 38.226,
+   "eer_registered": 38.226,
+   "pass": true
+  },
+  "frllm/stylegan/e7": {
+   "auc_ours": 0.69854,
+   "auc_registered": 0.69854,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 38.226,
+   "eer_registered": 38.226,
+   "pass": true
+  },
+  "frllm/webmorph/native": {
+   "auc_ours": 1.0,
+   "auc_registered": 1.0,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 0.0,
+   "eer_registered": 0.0,
+   "pass": true
+  },
+  "frllm/webmorph/e7": {
+   "auc_ours": 0.99944,
+   "auc_registered": 0.99944,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 0.941,
+   "eer_registered": 0.941,
+   "pass": true
+  },
+  "mordiff/mordiff/native": {
+   "auc_ours": 1.0,
+   "auc_registered": 1.0,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 0.0,
+   "eer_registered": 0.0,
+   "pass": true
+  },
+  "mordiff/mordiff/e7": {
+   "auc_ours": 0.95744,
+   "auc_registered": 0.95744,
+   "abs_diff": 0.0,
+   "kendall_tau": 1.0,
+   "eer_ours": 11.782,
+   "eer_registered": 11.782,
+   "pass": true
+  }
+ },
+ "n_cells": 24,
+ "gate_pass": true
+}

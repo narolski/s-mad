@@ -1,0 +1,669 @@
+{
+ "reader_sha256": "8fd182b49aa75268d44b5c220dd6d7a8c745cf99cdab1d58d5c3574357e3056b",
+ "results": "/mnt/t7/smad_next/AD4/results_vast",
+ "present_tars": {
+  "mf": [
+   401,
+   402,
+   403,
+   404,
+   405
+  ],
+  "perm": [
+   401,
+   402,
+   403,
+   404,
+   405
+  ]
+ },
+ "refused": {},
+ "checks": {
+  "AD4_m3mf_s401": {
+   "tar_sha256": "345b0a848075ac21818df7205fafac755f1a10eadeb6f258c0c70adc1ec2ccad",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1",
+   "train_hours": 0.8719861990875668
+  },
+  "AD4_m3mf_s402": {
+   "tar_sha256": "391ec1a959ba294189bdbd5cedd50814a396f92c4885598102cccef1b8d46904",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1",
+   "train_hours": 0.8721523830625746
+  },
+  "AD4_m3mf_s403": {
+   "tar_sha256": "304944a502a6d341501b11786770b4d9cb571c0214ec2d32beaf372eb5bd745f",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1",
+   "train_hours": 0.8679078467686971
+  },
+  "AD4_m3mf_s404": {
+   "tar_sha256": "e99cc2b309f06019320e5803222e02942df3c2ecb1e6a75bc7685426306b51bd",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1",
+   "train_hours": 0.8676792309019301
+  },
+  "AD4_m3mf_s405": {
+   "tar_sha256": "e3a57a4ce0a6cfd75e6c9ddbb019ffdecc508f69c471d186717f71881fcb5cfa",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA A100-SXM4-40GB",
+   "torch": "2.2.1",
+   "train_hours": 0.8696686667866177
+  },
+  "AD4_m3perm_s401": {
+   "tar_sha256": "168638b25cc9d0633fc47da579a4a755badccf0592682946f5f1d8389bc3b1a8",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA RTX 6000 Ada Generation",
+   "torch": "2.2.1",
+   "train_hours": 1.2499128421147665
+  },
+  "AD4_m3perm_s402": {
+   "tar_sha256": "b90ae7ffcdb589a6617093e71e543415b4afec92681e21e5d611ccfb5c9f81a4",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA RTX 6000 Ada Generation",
+   "torch": "2.2.1",
+   "train_hours": 1.264921070403523
+  },
+  "AD4_m3perm_s403": {
+   "tar_sha256": "45a3c74732f6a3d0d76976878cf00998a8dfceffaf83919a62d3449a048cf4c9",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA RTX 6000 Ada Generation",
+   "torch": "2.2.1",
+   "train_hours": 1.2374028712511063
+  },
+  "AD4_m3perm_s404": {
+   "tar_sha256": "7e024fe88e32d6b26d5b2cc87fc5cc815429fa20ba5f3aaee1f77b5539fc58f6",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA RTX 6000 Ada Generation",
+   "torch": "2.2.1",
+   "train_hours": 1.249528352684445
+  },
+  "AD4_m3perm_s405": {
+   "tar_sha256": "6a0b4ade8464d23064b041a17a2befbd3d8e51db720eec0328726951481a0661",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA RTX 6000 Ada Generation",
+   "torch": "2.2.1",
+   "train_hours": 1.2391860406266317
+  }
+ },
+ "order": {
+  "AD4_m3mf_s401": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     139,
+     117,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     124,
+     132,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     139,
+     117,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     124,
+     132,
+     0
+    ]
+   ]
+  },
+  "AD4_m3mf_s402": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     120,
+     136,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     129,
+     127,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     120,
+     136,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     129,
+     127,
+     0
+    ]
+   ]
+  },
+  "AD4_m3mf_s403": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     138,
+     118,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     124,
+     132,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     138,
+     118,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     124,
+     132,
+     0
+    ]
+   ]
+  },
+  "AD4_m3mf_s404": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     122,
+     134,
+     0
+    ],
+    [
+     123,
+     133,
+     0
+    ],
+    [
+     109,
+     147,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     122,
+     134,
+     0
+    ],
+    [
+     123,
+     133,
+     0
+    ],
+    [
+     109,
+     147,
+     0
+    ]
+   ]
+  },
+  "AD4_m3mf_s405": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     134,
+     122,
+     0
+    ],
+    [
+     127,
+     129,
+     0
+    ],
+    [
+     129,
+     127,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     134,
+     122,
+     0
+    ],
+    [
+     127,
+     129,
+     0
+    ],
+    [
+     129,
+     127,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s401": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     129,
+     127,
+     0
+    ],
+    [
+     141,
+     115,
+     0
+    ],
+    [
+     121,
+     135,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     129,
+     127,
+     0
+    ],
+    [
+     141,
+     115,
+     0
+    ],
+    [
+     121,
+     135,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s402": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     131,
+     125,
+     0
+    ],
+    [
+     134,
+     122,
+     0
+    ],
+    [
+     122,
+     134,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     131,
+     125,
+     0
+    ],
+    [
+     134,
+     122,
+     0
+    ],
+    [
+     122,
+     134,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s403": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     127,
+     129,
+     0
+    ],
+    [
+     131,
+     125,
+     0
+    ],
+    [
+     120,
+     136,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     127,
+     129,
+     0
+    ],
+    [
+     131,
+     125,
+     0
+    ],
+    [
+     120,
+     136,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s404": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     130,
+     126,
+     0
+    ],
+    [
+     141,
+     115,
+     0
+    ],
+    [
+     126,
+     130,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     130,
+     126,
+     0
+    ],
+    [
+     141,
+     115,
+     0
+    ],
+    [
+     126,
+     130,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s405": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     137,
+     119,
+     0
+    ],
+    [
+     142,
+     114,
+     0
+    ],
+    [
+     132,
+     124,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     137,
+     119,
+     0
+    ],
+    [
+     142,
+     114,
+     0
+    ],
+    [
+     132,
+     124,
+     0
+    ]
+   ]
+  }
+ },
+ "reproduction": {
+  "status": "MISS: not reproduced on this stack",
+  "cells": {
+   "mordiff/mordiff/native": {
+    "mean_eer": 0.0,
+    "per_seed": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/dim_a/native": {
+    "mean_eer": 0.841176470588235,
+    "per_seed": [
+     1.4352941176470562,
+     1.8803921568627473,
+     0.4450980392156854,
+     0.0,
+     0.4450980392156854
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/dim_c/native": {
+    "mean_eer": 0.0,
+    "per_seed": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/fast_dim/native": {
+    "mean_eer": 1.7223529411764709,
+    "per_seed": [
+     2.8705882352941177,
+     1.8803921568627473,
+     0.9901960784313709,
+     0.4450980392156854,
+     2.4254901960784325
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/fast_dim_ode/native": {
+    "mean_eer": 4.013811937600692,
+    "per_seed": [
+     8.720381940351292,
+     1.8821957640771763,
+     3.964792329757553,
+     0.1002004008016032,
+     5.401489253015837
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": false
+   },
+   "dim/greedy_dim/native": {
+    "mean_eer": 2.4254901960784307,
+    "per_seed": [
+     11.237254901960785,
+     0.0,
+     0.4450980392156854,
+     0.0,
+     0.4450980392156854
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/greedy_dim_s/native": {
+    "mean_eer": 1.010196078431372,
+    "per_seed": [
+     2.9705882352941178,
+     0.1,
+     0.4450980392156854,
+     0.1,
+     1.4352941176470562
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "frllm/facemorpher/native": {
+    "mean_eer": 4.11283334937903,
+    "per_seed": [
+     12.264930522127019,
+     3.924777767080644,
+     2.4529861044254044,
+     0.49059722088507984,
+     1.430875132377007
+    ],
+    "bound": [
+     null,
+     5.6
+    ],
+    "pass": true
+   },
+   "frllm/webmorph/native": {
+    "mean_eer": 0.9897865780218715,
+    "per_seed": [
+     2.944789709495592,
+     0.981596569831862,
+     0.9406465288818212,
+     0.0,
+     0.08190008190008191
+    ],
+    "bound": [
+     null,
+     5.6
+    ],
+    "pass": true
+   },
+   "frllm/amsl/native": {
+    "mean_eer": 1.0955375253549688,
+    "per_seed": [
+     3.9148073022312357,
+     1.0419202163624053,
+     0.49797160243407623,
+     0.0,
+     0.022988505747126436
+    ],
+    "bound": [
+     null,
+     5.6
+    ],
+    "pass": true
+   },
+   "frllm/opencv/native": {
+    "mean_eer": 19.705521029050445,
+    "per_seed": [
+     40.204509322156376,
+     23.517367635014697,
+     11.738208797032328,
+     7.852772558654913,
+     15.214746832393894
+    ],
+    "bound": [
+     8.8,
+     26.0
+    ],
+    "pass": true
+   }
+  }
+ },
+ "scorer_equivalence": {
+  "file": "/home/narolski/smad-next/experiments/AD4/gate_scorer_equivalence.json",
+  "gate_pass": true
+ }
+}

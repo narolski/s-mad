@@ -1125,3 +1125,23 @@ Check plan (no polling loop): at the 6308825 forecast start plus 40 min (13 Nov 
 `results/AD4_equiv/equiv_h100_6308825.tar` + `.sha256` and run `gates.py equiv` against the registered A47 `scores_eval_last.npz`;
 then compute the array's ETA from the first task's step rate and check at that time. If 6308825 fails, 6308830 stays pending on its
 dependency (DependencyNeverSatisfied): fix, re-test, resubmit both, and cancel 6308830.
+
+### Cluster-stack readings (13 Nov 08:28 to about 09:30)
+
+- 6308825 (smoke + H100 equivalence) and 6308830_0 to _9 (ten ViT-B/16 tasks) COMPLETED on WCSS (lead: 03:44 to 06:46, about 33 min each;
+  smoke done 03:02, equivalence 03:02:30, 19,827 images scored in 21 s). Fetched with rsync under the WCSS lock to
+  `/mnt/t7/smad_next/AD4/results_wcss_m3/` (10 tars, all `sha256sum -c` OK), `/mnt/t7/smad_next/AD4/equiv_h100/` (tar OK) and the job
+  logs to `/mnt/t7/smad_next/AD4/wcss_logs/`. The originals stay on WCSS (second copy); nothing on the cluster side was touched.
+- H100 scorer-equivalence gate (`gates.py equiv` against the registered A47 `scores_eval_last.npz`): pass, 24 cells, |dAUC| 0.0, tau 1.0
+  (`gate_scorer_equivalence_h100.json`).
+- ViT-B/16 cluster arm (registered, Amendment 5 (b)): no refusal; sample-order 10/10; **reproduction gate pass, 11/11** (Fast-DiM-ODE
+  2.69 against 3.0). Reading with the frozen reader `8fd182b4…`: `ad4_reading_m3.md`, `ad4_cells_m3.csv`, `ad4_train_m3.csv`,
+  `ad4_gates_m3.json`, `posthoc_m3.md` (logs `read/gates_m3_wcss.log`, `read_m3_wcss.log`, `posthoc_m3_wcss.log`). The rented-arm files of
+  11 Nov were kept as `*_rented.*` before the reader overwrote the standard names. Cross-platform repeat: `src/AD4/xplat.py` (new, per
+  network and cell EER and AUC differences) → `xplat_m3_wcss_vs_rented.md`.
+- ViT-L/14: all-WCSS repeat read first and renamed `*_m3l_wcssrepeat.*`; then the registered arm
+  (`/mnt/t7/smad_next/AD4/results_m3l_registered/`) read under the standard names `ad4_reading_m3l.*`, `posthoc_m3l.*`;
+  `xplat_m3l_wcss_vs_athena.md`. Logs `read/read_m3l_wcssrepeat.log`, `read_m3l_registered.log`, `posthoc_m3l_registered.log`.
+- Headline numbers are in `result.md` (rewritten top; previous version `/mnt/t7/smad_next/AD4/read/result_md_before_cluster_20261113.md`).
+  Registered outcome in words: on both recipes MorDIFF native is 0.0% in every seed and passable; all six DiM natives are passable for
+  ViT-B/16; for ViT-L/14 five are passable and Fast-DiM-ODE falsifies A1 (11.8%, above 15% in 3 of 5 seeds; morph-trained recipe 13.7%).
