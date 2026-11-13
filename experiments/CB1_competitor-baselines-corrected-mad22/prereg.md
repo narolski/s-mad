@@ -325,3 +325,7 @@ cutoff or fetch deadline for the WCSS IDistill batch (smoke3 6312775, production
 all its fits have ended, latest 15 Nov 18:00; rows arriving later are labelled late. The fallback wording ("IDistill:
 as reported, not verified; the authors' code selects its checkpoint on the FRLL-Morphs test sets") applies only if no
 fit has ended by 15 Nov 18:00. Nothing else changes; the DGX one-seed run is unaffected.
+
+Note to amendment 9 (13 Nov 2026, 18:49 CET by `date`): the ruling quoted as "NOTEBOOK, 13 Nov 17:15" was made at about
+17:11 by the machine clock (the lead's message said 17:15; NOTEBOOK "13 Nov 2026, 18:46 machine clock (lead): CORRECTION
+OF TIMES"). Nothing else changes.
