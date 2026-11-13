@@ -347,3 +347,11 @@ then run once (14:29). Record gaps noted by the results review: the mock never l
 the crash was not caught; the fixed reader 74ecdf7a was pinned and committed with the result (8109cad, 14:31), after
 the run, not before it. The reviewer checked the diff (loading and provenance checks only) and recomputed every number
 independently with equal results.
+
+## Note 2 (`date`: Fri Nov 13 15:00 CET 2026; registered before computing; zero GPU, post hoc, decides nothing): sharpness of persons whose flag flips under storage
+
+For A, AS and SbS at each seed and size (fm61, amsl112), on the FFHQ hold-out pairs: share of the net flag increase
+(persons ≤ 0 → > 0 minus > 0 → ≤ 0) coming from the top quartile of lapvar_face over the 300 native photos (the C2P
+H-new-2 edge and file `c2p_holdout.npz` 4a9da201…; undefined if the net increase is ≤ 0); "enriched" if ≥ 0.50 on ≥ 4 of
+5 seeds at both sizes, "not enriched" if ≤ 0.35 on ≥ 4 of 5 at both sizes, otherwise "inconclusive"; per arm; code
+`src/AB1/ab1_sharp.py`, scores from the AB1 tars only.
