@@ -53,6 +53,8 @@ splice)? No answer yet. No arm is a method candidate.
   the 1,480 hold-out rows (ms1ffhq) are scored inside each fit job by pn1_score.py (all 21,277 rows of ab1_eval.csv,
   limit 0) with TF32 on (pn1_score.py lines 45-46), on the same H100 and build as the fit; every statistic of a network
   comes from its one scores_eval.npz, so no C2P statistic mixes scores from two jobs or platforms.
+- 09:38 dispatcher: SE1's rented A100 fits started 09:35 and its WCSS jobs were cancelled; AB1's A and Sb are its own
+  (array 6310270, WCSS H100), as registered. AB1's smoke 6310091 and array 6310270 are first in our WCSS order.
 
 ## 3. Data
 
