@@ -187,7 +187,7 @@ _FE = {}
 def featmap():
     if not _FE:
         for f in sorted((OUT / "feats").glob("*.npz")):
-            if "_limit" in f.name:
+            if "_limit" in f.name or f.name == "pngmeta.npz":
                 continue
             z = np.load(f, allow_pickle=False)
             names = [str(n) for n in z["names"]]

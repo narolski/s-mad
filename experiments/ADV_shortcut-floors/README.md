@@ -14,10 +14,17 @@ held-out score CSV per contrast), `FLOORS.md` (one line per contrast, attack set
   a floor-level score).
 - About 19:12 Registration committed (see git log for `experiments/ADV_shortcut-floors/prereg.md`).
 
+- 19:12-19:20 Owner-launched pre-run check (GO WITH FIXES) -> amendment 1 (032e8ae). Lead's message: RI1/TB1 rows.
+- 19:26 Lead-ordered pre-run check (GO WITH FIXES, 112d50c) -> amendment 2 (eef59b3); go for stage 1a.
+- 19:12-20:00 Features of the 19,208 evaluation frames (`/mnt/t7/smad_next/ADV/feats/ab1x.npz`), 2 worker processes.
+- 19:56-20:05 Stage 1a floors (lcomb and the four test-ladder contrasts); regression gate passed (0.8856).
+- **Stage 1a commit: see `git log -- experiments/ADV_shortcut-floors/floors/pins_stage0.sha256`** (hash posted to the
+  lead in the report; the lead holds SbFM, Sbx and RZ1 reads until it is posted).
+
 ## Commands
 
 See `prereg.md` section 10.
 
 ## Handover state
 
-Registration committed; pre-run check requested; features to be computed; no floor computed.
+Stage 1a committed. Next: stage 1b (rest of stage 1), RI1/TB1 rows (pending for their owners), stage 2, same-data learner.

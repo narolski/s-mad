@@ -175,8 +175,9 @@ def fit_contrast(X, y, persons, names, families=("F27", "BORDER", "RES", "STORE"
                n_folds=len(fl))
     rep["insample_best_single"], rep["insample_best_single_stat"] = insample_single(X, y, names)
     f27 = [i for i, n in enumerate(names) if n.startswith("F27:")]
-    rep["insample_best_single_f27"], rep["insample_best_single_f27_stat"] = insample_single(X[:, f27], y,
-                                                                                            [names[i] for i in f27])
+    if f27:
+        rep["insample_best_single_f27"], rep["insample_best_single_f27_stat"] = insample_single(X[:, f27], y,
+                                                                                                [names[i] for i in f27])
     scores = {}
     for kind in ("single", "logreg", "gbt"):
         s, ch = crossfit(X, y, groups, kind, fl, names)
@@ -185,8 +186,9 @@ def fit_contrast(X, y, persons, names, families=("F27", "BORDER", "RES", "STORE"
         if ch:
             rep[kind]["chosen_per_fold"] = ch
     # the 27 statistics alone (continuity with the reviewed floors)
-    s, _ = crossfit(X[:, f27], y, groups, "logreg", fl)
-    rep["logreg_f27"] = dict(auc=auc(s, y), ci=boot(s, y, groups))
+    if f27:
+        s, _ = crossfit(X[:, f27], y, groups, "logreg", fl)
+        rep["logreg_f27"] = dict(auc=auc(s, y), ci=boot(s, y, groups))
     best = max(("single", "logreg", "gbt"), key=lambda k: rep[k]["auc"])
     rep["floor"] = dict(model=best, auc=rep[best]["auc"], eer=rep[best]["eer"], ci=rep[best]["ci"])
     if detail:
