@@ -139,6 +139,13 @@ No CB1 score read yet.
 - 08:30-08:31. v4 uploaded to WCSS (hash verified there). sbatch of the smoke (STAGE=all SMOKE=1, 1 H100, 24 CPUs,
   1 h) refused twice: "Unable to contact slurm controller (connect failure)". Stopped after the one allowed retry and
   reported.
+- 08:32. On the lead's instruction one more sbatch attempt of the same smoke: refused again ("Unable to contact slurm
+  controller (connect failure)"). Not retried. Nothing of CB1 is queued on WCSS (6308827 failed).
+- Code pack hashes, for the DGX classifier stage's hash check: original v3 `idistill_code.tar` sha256
+  07794689c13d204909bee58f4f1378ac09a2c6f5b19f64c867f1e521a44a44a0 (deleted 08:29 by mistake); rebuilt v3
+  `idistill_code_v3_rebuilt.tar` sha256 cffec538397a9533dae9edff7569ae4b1c0f007951f1ae73bd35afff37efdef9 (same file list,
+  no __pycache__; `dgxrun/packs/CB1/idistill_code.tar` links to it and its .sha256 holds this hash); v4 (WCSS)
+  3669936cb95f819d7c499b6b8b071ef166bd437176325e1d3086d9d74de40c19.
 
 ## 3. Data
 
