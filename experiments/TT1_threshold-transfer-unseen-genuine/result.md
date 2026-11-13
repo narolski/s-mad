@@ -425,3 +425,68 @@ What the table shows:
   of FS1 A100 Sb at the same seeds (0.0145, 0.0411, 0.0129, 0.0140, 0.0175). Same manifest and seed, independently
   trained on different GPUs, with different TF32 settings for U. Printed only. MS1's registered F_T values
   (ms1_read.json) differ from these in the 4th decimal and are the registered ones.
+
+# MEDS extension TT1-M (NIST SD32 mugshots; registered reading, not yet reviewed)
+
+Setup:
+- Registration: `prereg_meds_block.md` (4ca7755; pre-run fixes f5389a3; driver guard fix 41803d6).
+- Reader: `tt1_read_meds.py` (0b5d86b1…), run once.
+- Output: `tt1_read_meds.json` (sha256 `dd65adb3…`).
+- Scores: `/mnt/t7/smad_next/TT1/results/TT1M_se1d.tar` (two copies).
+- No MEDS image is in this repository. The MEDS pack and frames were removed from se1d after verification
+  (17:14:56, the lead's instruction).
+
+Platform: se1d, A100-PCIE-40GB, GPU-92f69f4c…, driver 570.211.01, torch 2.2.1, CUDA 12.1, cuDNN 8902, venv pins.
+This is a different host and driver from pn1fs. **Gate: 18 of 18 networks byte-identical** on the 3,417 TT1 reference
+rows against pn1fs (max |Δ| 0).
+
+Pool: MEDS primary pool, 865 aligned frontal images of 400 persons. MEDS is its own family, not pooled.
+
+## Per network
+
+| Network | Own-rule flag [person bootstrap] | Clopper-Pearson | AUC vs R_cam | AUC vs R_ffhq | Median shift from R_cam (logit) |
+|---|---|---|---|---|---|
+| A_s403 | 0.013 [0.004, 0.024] | [0.006, 0.023] | 0.990 | 0.357 | 0.18 |
+| A_s404 | 0.051 [0.032, 0.072] | [0.037, 0.068] | 0.990 | 0.418 | 0.18 |
+| A_s405 | 0.020 [0.008, 0.033] | [0.011, 0.031] | 0.989 | 0.340 | 0.16 |
+| A_s406 | 0.040 [0.024, 0.060] | [0.028, 0.056] | 0.994 | 0.616 | 0.32 |
+| A_s407 | 0.023 [0.011, 0.037] | [0.014, 0.035] | 0.983 | 0.425 | 0.21 |
+| B_s403 | 0.003 [0.000, 0.010] | | 0.994 | 0.339 | 0.24 |
+| B_s404 | 0.029 [0.015, 0.046] | | 0.989 | 0.300 | 0.18 |
+| B_s405 | 0.006 [0.000, 0.014] | | 0.989 | 0.274 | 0.18 |
+| B_s406 | 0.010 [0.002, 0.022] | | 0.999 | 0.562 | 0.42 |
+| B_s407 | 0.001 [0.000, 0.004] | | 0.987 | 0.427 | 0.31 |
+| Sb_s403 | 0.003 | | 0.988 | 0.263 | 0.51 |
+| Sb_s404 | 0.003 | | 0.987 | 0.177 | 0.35 |
+| Sb_s405 | 0.005 | | 0.979 | 0.195 | 0.37 |
+| Sb_s406 | 0.005 | | 0.983 | 0.136 | 0.42 |
+| Sb_s407 | 0.001 | | 0.994 | 0.219 | 0.52 |
+| Sp_s403 (printed only) | 0.003 | | 0.979 | 0.26 | |
+| Sp_s404 (printed only) | 0.010 | | 0.977 | 0.22 | |
+| Sp_s405 (printed only) | 0.013 | | 0.979 | 0.21 | |
+
+## Registered verdicts (4 of 5 seeds)
+
+- **TT-M1, own rule on MEDS: "transfers" for A, B and Sb, on 5 of 5 seeds each.** Every upper bound is ≤ 10%; the
+  largest is A_s404 at 7.2%.
+  - The predictions for B and Sb are confirmed.
+  - No prediction was made for A; A also meets the bar.
+- **TT-M2: "displaced" for all arms, 5 of 5.** AUC against R_cam is 0.977-0.999.
+- **TT-M3 (descriptive), all "not distinguished".**
+
+| Pair | Mean ± SD | Seeds negative |
+|---|---|---|
+| B − A | −0.019 ± 0.008 | 5 / 5 |
+| Sb − A | −0.026 ± 0.016 | 5 / 5 |
+| Sb − B | −0.006 ± 0.011 | 3 / 5 |
+
+## Printed reads (no rule)
+
+- **AUC against R_ffhq is 0.14-0.62.** MEDS scores at or below the FFHQ genuine photos for most networks. It is
+  displaced from the training-source camera photos but less than FFHQ.
+- **TT-M4.** Inside MEDS, Spearman of logit with log Laplacian variance is +0.37 to +0.50 for every network, and with
+  log enlargement +0.21 to +0.46. Sharper and more enlarged MEDS photos score higher. This is the opposite sign to A's
+  packs in TT1, and it is confounded with native size and source part.
+- **By source part.** MEDS-I-only images are flagged more than MEDS-II (A: 0.040-0.159 against 0.008-0.032).
+- **240x240 images.** 156 in total, 0.000-0.391 flagged; A is the highest arm.
+- **Secondary pool.** 153 non-aligned frames: 0-1.3% flagged.
