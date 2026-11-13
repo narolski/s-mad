@@ -334,6 +334,15 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
   Results to `/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SM1A16/` and `.../SM1A18/` (tar + sha256 per fit,
   per-fit logs); job logs `.../logs/sm1-a16-<id>.out`, `sm1-a18-<id>.out`.
 
+- 13 Nov 00:08 D1 chain started on lease sm1dg (89.221.67.144:16307; `drive_v2.sh a16a18`). The machine's upload
+  rate fell to about 1.25 MB/s (lead's check 01:40: sm1gpu_img_test.tar at 2.0 of 10.7 GB, GPU idle). Reorder on the
+  lead's order, recorded `Fri Nov 13 01:41:16 AM CET 2026`: the two driver shells of this owner were stopped (their
+  running upload rsync left to finish), and `rented/drive_v3.sh` started: A18 on the GPU at 01:43:56 (smoke, RS 401,
+  402, 403), the A16 inputs staged in the background, A16 scored on the machine only after A18
+  (`remote_a18_then_a16.sh`: one GPU user at a time). RELEASE waits for both (3 A18 tars, 6 A16 tars, logs); FAILED +
+  RELEASE on a verified partial result or at 09:30 (lease deadline 10:00, cap 6.5 USD). Order is not a registered
+  quantity; neither experiment reads the other.
+
 ## 3. Data
 
 Inputs (read only):
