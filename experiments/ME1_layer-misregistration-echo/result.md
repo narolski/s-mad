@@ -46,3 +46,14 @@ Reader `src/ME1/me1_read.py --part single`. Output: `me1_single.json`, `me1_sing
   - shortcut gain −0.004 [−0.014, +0.007] ("no" by its rule); Sb increment +0.000 to +0.003 (all hosts);
   - FRGC within D 0.596; colorFERET not computable (coverage 0).
 - **Logged prediction** ("sees a second layer" fails, both ≤ 0.55): not testable, because the check is not computable.
+
+### Erratum and results review of the single-image part (`experiments/reviews/REVIEW_TB1S_ME1_RI1_20261113.md`, ACCEPT WITH EDITS; added `date`: Fri Nov 13 21:44 CET)
+Registered (code) verdict: "not measured (R2w4, R2w, R0_61 > 5% missing)".
+
+Erratum to the explanation above: it is the hull median prominence that is exactly 0 on 287 of 291 warp-only R2w4 and R2w rows, not the ring.
+- The ratio is therefore 0, a finite value; the reader's log turned it into −inf.
+- Truly missing rows: 1.4% (R2w4, R2w) and 5.5% (R0_61).
+
+Read as the registration's text says (post hoc), the verdict is "invalid (control)": R2w4 vs R0_m7 0.002 and S0 vs R2w4 0.991. The statistic records resampling history (zero after one warp or one downscale), not a second layer. S4 vs S3 within D 0.596 [0.561, 0.633] is printed only and is not a kill. Lead's ruling on which verdict string the record carries: [pending].
+
+What the paper may say: "An autocorrelation echo statistic was dominated by resampling history and gave no usable reading."

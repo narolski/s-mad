@@ -135,3 +135,14 @@ score every row out of fold.
   - The row's wording rests on the premise sentence. The premise review and amendment 2 withdrew that sentence: the
     profile adds +0.010 over band energy and geometry, and the profile is not a texture trace of a second identity.
   - **Logged prediction** (binding gain fails): confirmed.
+
+### Results review of the S part (`experiments/reviews/REVIEW_TB1S_ME1_RI1_20261113.md`, ACCEPT WITH EDITS; added `date`: Fri Nov 13 21:44 CET)
+Registered outcome (row 1, applied mechanically): "a two-person texture trace exists and one image shows it; arm condition not met". This label does not hold as a description:
+- The premise review withdrew its premise sentence, and amendment 2 falsified the band profile (+0.010 over band energy and geometry).
+- The single-image band statistic reaches 0.657 within D, 0.007 above the bar, with host folds and no interval (guard-band version 0.625; colorFERET 0.583).
+- It is below every adversary floor: all-cue 0.773, difference −0.118 [−0.151, −0.087]; nuisance 0.719, difference −0.064 [−0.100, −0.032]; within-D logistic 0.757.
+- It equals the best single hand cue (0.657) and adds +0.006 over the hand and splice cues.
+- It is as sensitive to storage history as to the class (refit ceiling of the R0_61 control 0.657).
+- Sb gains +0.013 to +0.026 from it (5 seeds sharing one feature set). That is information the hand cues already carry.
+
+What the paper may say: "Band energy statistics inside the blended region separate two-person from same-person splices no better than known low-level cues; no texture trace of a second identity was found."
