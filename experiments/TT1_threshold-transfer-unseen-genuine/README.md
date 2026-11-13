@@ -135,6 +135,12 @@ families); scoring registered (TT1-S, 01557ce) after the pre-run review (GO WITH
   few seconds of DGX GPU); results in result.md. Platform pins for the final read:
   `PLATFORM_PINS_FOR_FINAL_READ.md`. FS1 block prepared (`prereg_fs1_block_draft.md`), not run.
 
+- 13 Nov 06:44: lead staged tt1_pack.tar on pn1fs (STAGE_OK). 07:10-07:20: FS1 block registration TT1-FS
+  (`prereg_fs1_block.md`, a2fef5c): 15 networks (A, B, Sb x 403-407; replicate dropped), reader `tt1_read_fs.py`
+  mock-tested; FS1 networks extracted locally to /mnt/t7/smad_next/TT1/nets_fs/ (meta, last_trainable, scores_eval of
+  the 15 verified tars); decision: no scoring beside the Sp fits (job waits for the host fit lock). Pre-run check by
+  the experiment-reviewer (opus) running.
+
 ### Platform fact for the final read (from the zero-GPU-budget diagnostic, not a registered read)
 
 The decoded image, the resized image and the input tensor are bit-identical between the DGX stack (torch 2.12.1,

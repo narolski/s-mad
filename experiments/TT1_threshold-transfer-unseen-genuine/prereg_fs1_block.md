@@ -132,3 +132,33 @@ local copy. The FS1 driver or the lead holds the release until then.
 | `src/TT1/rescore_tf32.py` | 0d0b6b6fb5ebc4d5bdbe15384fcd00e13c0756785ed22743893186e68245d8d5 |
 | `src/TT1/gate_check_fs.py` | 6d1962bf6a0811b250bbdf81e18adce27838f4388794cc5ae6d73a772b823f55 |
 | `src/TT1/tt1_read_fs.py` | fe9f97401f3633c2947b23af685be5587e741ed97163d64810e971469f5b4a62 |
+
+## 7. Amendment after the pre-run check (`date`: Fri Nov 13 07:34:47 AM CET 2026; registered at the git commit that adds this section, before the job starts and before any score)
+
+Pre-run check by the experiment-reviewer (opus): GO WITH FIXES (one blocker, three majors, six minors). Applied:
+- B1 (blocker): the FS1 driver would have released pn1fs when the Sp queue ended. The lead wrote "all sp tt1" to
+  `/mnt/t7/smad_next/vast/pn1fs/QUEUES` (07:35); the lead touches DONE_tt1 only after this driver writes
+  `tt1/TT1_DONE` (two verified copies). The job writes nothing under /workspace/pn1 except taking the lock.
+- I2 (lead agreed, 07:35): if all 15 networks fail the byte-identity gate, the outcome is recorded as a platform
+  finding and the block is "not available"; no fallback tolerance gate. (The untested element: pn1_score.py loaded the
+  full last.pt, rescore.py rebuilds base weights + last_trainable.pt.)
+- M1: TT-H6 gains the pair B − Sb (sentence "B has lower genuine flag rates than Sb on seeds 403-407", same rule), so
+  "Sb above B" can be confirmed.
+- M2: printed per arm (F̄, F_max, S_F, Ā) and per pair (ΔF̄): mean ± SD over passing seeds and the sign count. Stated:
+  the −0.03 bar equals the size of the 401/402 B − A effect, so "not distinguished" is likely even at that effect.
+- M3: TT-H4 for B and Sb needs A of the same seed; a seed whose A failed counts as unavailable for B and Sb, so an arm
+  with fewer than 4 such seeds reads "not available". Mock re-run with A missing on two seeds and Sb on one
+  (`tt1_read_fs_mock2.json`): A, and B/Sb TT-H4, read "not available"; others read normally.
+- m1: agreement is counted on the bare per-seed verdict; labels ("geo reference weak", "uninformative") are appended if
+  any seed carries them. m2: TT-H1 "uninformative" label restored (R_cam share > 5% on a seed). m3: printed family
+  intervals clipped at 0, Clopper-Pearson printed beside zero-event families.
+- I3: printed per network: max and median |Δ| and decision changes between the job's TF32-off R_cam logits and the
+  stored TF32-on scores. τ_cam labelled "from the stored TF32-on scores, applied to TF32-off logits (printed only)".
+- m5: the job asserts GPU UUID GPU-5bd20020-715e-e9fd-b9d3-f89ca57849ad and records cudnn.benchmark,
+  cudnn.deterministic, TF32 flags and SDPA backend flags in versions.txt. I4: skip if under 60 min remain before the
+  15:51 deadline (epoch check after the lock). m4: the pull loop starts at about 12:40 (it stops after 3 h).
+- m6: deviation from TT1-S §9 declared: §9 planned a tolerance gate, 16 networks and one network tar; this block uses
+  byte identity on the FS1 evaluation rows (TF32 matched), 15 deciding networks (replicate not scored) and per-tar pins.
+  On a FATAL (crash) result the release is held for one unchanged re-run if time allows. Stale script comments fixed.
+- Re-pinned: `src/TT1/tt1_read_fs.py` 87356fd74746b08f621e3e0c4e38554c80f475fae7d0d1f5e7f8634cb144f227; `src/TT1/rented/remote_tt1_fs.sh` 4f22914c6c8cdafba69e9901b1eda4c3629a2dbcc4cfbe29f80a9a8c6a49e16f; `src/TT1/rented/drive_tt1_fs.sh`
+  d764237b3a39d41583c6e06ea57b216a6e34244da81fa8b359a49b9775913ced; rescore_tf32.py and gate_check_fs.py unchanged. Mechanics re-tested on the DGX mock host (test mode).

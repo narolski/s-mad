@@ -2,7 +2,7 @@
 # TT1 FS1 block, DGX-side driver for the fresh-seed host pn1fs (lease owned by the PN1/FS1 driver; this script never
 # writes RELEASE into that lease folder: it keeps its own folder LEASE/tt1 and writes TT1_DONE / TT1_FAILED there).
 #   bash drive_tt1_fs.sh HOST PORT LEASE stage   # rsync --partial --bwlimit of tt1_pack.tar to /workspace/tt1/packs (resumable)
-#   bash drive_tt1_fs.sh HOST PORT LEASE start   # bin + nets_pins (16 FS1 tasks, from the verified local copies) ; start
+#   bash drive_tt1_fs.sh HOST PORT LEASE start   # bin + nets_pins (15 FS1 tasks, from the verified local copies) ; start
 #   bash drive_tt1_fs.sh HOST PORT LEASE pull    # fetch result tar + logs, verify, second local copy; TT1_DONE / TT1_FAILED
 #   bash drive_tt1_fs.sh HOST PORT LEASE loop    # pull every 3 min (at most 3 h)
 set -euo pipefail

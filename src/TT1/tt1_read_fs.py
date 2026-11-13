@@ -47,15 +47,20 @@ def extra_reads(L, P):
                 unseen_family_median_minus_cam={f: float(np.median(fu[f]) - np.median(cam)) for f in T.FAMILIES})
 
 
-def arm_rule(per_seed, value_fn):
-    """per_seed: {seed: per-network result or None (failed gate)}; value_fn -> per-seed verdict string."""
+def arm_rule(per_seed, value_fn, label_fn=None):
+    """per_seed: {seed: per-network result or None (failed gate or required partner failed)}; value_fn -> bare
+    per-seed verdict; agreement is counted on the bare verdict; label_fn(s, r) -> label appended if any seed has it."""
     ok = {s: r for s, r in per_seed.items() if r is not None}
     if len(ok) < 4:
-        return dict(verdict=NA + f" ({5 - len(ok)} of 5 seeds failed)", seeds={})
+        return dict(verdict=NA + f" ({5 - len(ok)} of 5 seeds unavailable)", seeds={})
     vs = {s: value_fn(s, r) for s, r in ok.items()}
     best = max(set(vs.values()), key=lambda v: list(vs.values()).count(v))
     n = list(vs.values()).count(best)
-    return dict(verdict=best if n >= 4 else f"mixed ({n} of {len(ok)} seeds '{best}')", seeds=vs, n_passing=len(ok))
+    v = best if n >= 4 else f"mixed ({n} of {len(ok)} seeds '{best}')"
+    labels = sorted({label_fn(s, r) for s, r in ok.items() if label_fn and label_fn(s, r)})
+    if labels:
+        v += " [" + "; ".join(labels) + "]"
+    return dict(verdict=v, seeds=vs, n_passing=len(ok))
 
 
 def verdicts(R):
@@ -70,7 +75,8 @@ def verdicts(R):
             if all(r["fam_flag_ci"][x][1] <= 0.10 for x in T.FAMILIES):
                 return "transfers (all upper <= 10%)"
             return "fails as predicted" if len(fails) >= need else "not as predicted"
-        return arm_rule({s: net(a, s) for s in SEEDS}, f)
+        lab = lambda s, r: "uninformative: R_cam share > 5% on a seed" if r["pools"]["R_cam"]["flag"] > 0.05 else None
+        return arm_rule({s: net(a, s) for s in SEEDS}, f, lab)
     V["TT-H1"] = {a: h1(a) for a in ARMS}
 
     def h2(s, r):
@@ -103,25 +109,22 @@ def verdicts(R):
             if a == "A":
                 return "supported" if sum(r["r4"][p]["rho"] <= -0.15 for p in ok) >= 3 else "not as predicted"
             ra = net("A", s)
-            if ra is None:
-                return NA
             return "supported (|rho| below A's)" if sum(abs(r["r4"][p]["rho"]) < abs(ra["r4"][p]["rho"]) for p in packs) >= 3 else "not as predicted"
-        return arm_rule({s: net(a, s) for s in SEEDS}, f)
+        need_a = a != "A"
+        return arm_rule({s: (net(a, s) if (not need_a or net("A", s) is not None) else None) for s in SEEDS}, f)
     V["TT-H4"] = {a: h4(a) for a in ARMS}
 
     def h5(s, r):
         g = {x: r["auc"][x]["g"] for x in T.SOURCES}
-        weak = any(r["auc"]["f_geo"][gg]["auc"] <= 0.55 for gg in ("g224", "g112"))
         if sum(g[x]["auc"] >= 0.75 and g[x]["ci"][0] > 0.65 for x in T.SOURCES) >= 2:
-            v = "source matters beyond geometry"
-        elif sum(0.40 <= g[x]["auc"] <= 0.60 for x in T.SOURCES) >= 6:
-            v = "geometry explains"
-        else:
-            v = "inconclusive"
-        return v + (" [geo reference weak]" if weak else "")
-    V["TT-H5"] = {a: arm_rule({s: net(a, s) for s in SEEDS}, h5) for a in ARMS}
+            return "source matters beyond geometry"
+        if sum(0.40 <= g[x]["auc"] <= 0.60 for x in T.SOURCES) >= 6:
+            return "geometry explains"
+        return "inconclusive"
+    weak = lambda s, r: "geo reference weak" if any(r["auc"]["f_geo"][gg]["auc"] <= 0.55 for gg in ("g224", "g112")) else None
+    V["TT-H5"] = {a: arm_rule({s: net(a, s) for s in SEEDS}, h5, weak) for a in ARMS}
     h6 = {}
-    for x, y in (("B", "A"), ("Sb", "A"), ("Sb", "B")):
+    for x, y in (("B", "A"), ("Sb", "A"), ("Sb", "B"), ("B", "Sb")):
         per = {}
         for s in SEEDS:
             rx, ry = net(x, s), net(y, s)
@@ -137,8 +140,20 @@ def verdicts(R):
         else:
             sent = (f"{x} has lower genuine flag rates than {y} on seeds 403-407" if sum(v["lower"] for v in ok.values()) >= 4
                     else "not distinguished on seeds 403-407")
-        h6[f"{x}-{y}"] = dict(seeds={str(k): v for k, v in per.items()}, sentence=sent)
-    V["TT-H6"] = dict(pairs=h6, label="descriptive; intervals capture image sampling only; no arm, seed or threshold is chosen from TT1")
+        dv = [v["dFbar"] for v in ok.values()]
+        h6[f"{x}-{y}"] = dict(seeds={str(k): v for k, v in per.items()}, sentence=sent,
+                              across_seeds=dict(n=len(dv), mean=float(np.mean(dv)) if dv else None,
+                                                sd=float(np.std(dv, ddof=1)) if len(dv) > 1 else None,
+                                                n_negative=int(sum(d < 0 for d in dv))))
+    V["TT-H6"] = dict(pairs=h6, label="descriptive; intervals capture image sampling only; no arm, seed or threshold is chosen "
+                                      "from TT1; the -0.03 bar equals the size of the 401/402 B-A effect")
+    summ = {}
+    for x in ARMS:
+        rs = [net(x, s) for s in SEEDS if net(x, s) is not None]
+        summ[x] = {k: dict(n=len(rs), mean=float(np.mean([r["r5"][k] for r in rs])) if rs else None,
+                           sd=float(np.std([r["r5"][k] for r in rs], ddof=1)) if len(rs) > 1 else None)
+                   for k in ("Fbar", "Fmax", "S_F", "Abar")}
+    V["across_seed_summary"] = summ
     return V
 
 
@@ -152,7 +167,8 @@ def main():
     a = ap.parse_args()
     P, tt = TR.load_pools()
     W = TR.boot_weights(P, np.random.default_rng(TR.SEED))
-    passed = set(json.load(open(a.gate))["passed"]) if not a.mock else {f"PN1_{x}_s{s}" for x in ARMS for s in SEEDS} - {"PN1_Sb_s405"}
+    ap_mock_drop = {"PN1_Sb_s405", "PN1_A_s404", "PN1_A_s406"}     # mock: A missing on 2 seeds, Sb on 1
+    passed = set(json.load(open(a.gate))["passed"]) if not a.mock else {f"PN1_{x}_s{s}" for x in ARMS for s in SEEDS} - ap_mock_drop
     R = {}
     for x in ARMS:
         for s in SEEDS:
@@ -176,6 +192,20 @@ def main():
             r = TR.read_net(L, P, W, tt, floor, tc)
             TR.family_ci(r, P, W, L)
             r["printed"] = extra_reads(L, P)
+            corr = {}
+            for f_ in T.FAMILIES:
+                srcs = [f_] if f_ != "lfw_calfw" else ["lfw", "calfw"]
+                xx = np.concatenate([np.array([L[i] for i, _ in P[f"U:{q}"]]) > 0 for q in srcs])
+                lo, hi = r["fam_flag_ci"][f_]
+                corr[f_] = dict(boot_ci_clipped=[max(0.0, lo), hi], cp=TR.cp(int(xx.sum()), len(xx)), zero_event=bool(xx.sum() == 0))
+            r["family_flag_corrected"] = corr
+            if not a.mock:
+                zs = np.load(pathlib.Path(a.nets) / n / "scores_eval.npz")
+                ms = dict(zip(zs["id"].tolist(), zs["logit"].astype(float).tolist()))
+                dd = np.array([L[i] - ms[i] for i, _ in P["R_cam"]])
+                r["tf32_split_R_cam"] = dict(max_abs=float(np.abs(dd).max()), median_abs=float(np.median(np.abs(dd))),
+                                             flips=int(sum((L[i] > 0) != (ms[i] > 0) for i, _ in P["R_cam"])))
+            r["tau_cam_label"] = "saturated band; from the stored TF32-on scores, applied to TF32-off logits (printed only)"
             R[n] = r
             print("read", n, flush=True)
     V = verdicts(R)

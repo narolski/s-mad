@@ -1,5 +1,5 @@
 #!/bin/bash
-# TT1 FS1 block (draft prereg_fs1_block_draft.md), run ON THE FRESH-SEED HOST pn1fs (A100 PCIe 40 GB, image
+# TT1 FS1 block (registration prereg_fs1_block.md, TT1-FS), run ON THE FRESH-SEED HOST pn1fs (A100 PCIe 40 GB, image
 # pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime, pip pins of remote_setup.sh already installed by the FS1 setup).
 # Inputs on the host: /workspace/tt1/packs/tt1_pack.tar (staged), /workspace/pn1/root/packs/PN1/pn1_pack_fs.tar and the
 # FS1 result tars /workspace/pn1/root/results/PN1/PN1_<arm>_s<seed>.tar (+ .sha256) (made there by the FS1 queue);
@@ -26,12 +26,16 @@ abort() { log "FATAL $1"; finish "FATAL $1"; exit 1; }
 log "start (waiting for the FS1 queue lock)"
 exec 9> "$P/fs_queue.lock"; flock 9
 log "lock taken"
+# I4: deadline check (lease deadline 15:51 CET = epoch 1794581505): skip if under 60 min remain
+[ "$(date +%s)" -le $((1794581505 - 3600)) ] || abort "under 60 min before the lease deadline"
+# m5: pinned GPU (the GPU that stored the FS1 scores)
+[ "${TT1_FS_SKIP_VERSIONS:-0}" = 1 ] || nvidia-smi --query-gpu=uuid --format=csv,noheader | grep -q "GPU-5bd20020-715e-e9fd-b9d3-f89ca57849ad" || abort "GPU UUID"
 [ "$(df --output=avail -B1G "$B" | tail -1 | tr -d ' ')" -ge 30 ] || abort "disk < 30 GB"
 (cd "$B/bin" && sha256sum -c --quiet SHA256SUMS) || abort "bin pins"
 [ "$(sha256sum < "$B/packs/tt1_pack.tar" | cut -c1-64)" = "$PSHA" ] || abort "tt1 pack pin"
 [ "$(sha256sum < "$P/root/packs/PN1/pn1_pack_fs.tar" | cut -c1-64)" = "$FSHA" ] || abort "fs pack pin"
 [ "${TT1_FS_SKIP_VERSIONS:-0}" = 1 ] || $PY -c "import torch, timm, numpy, PIL; assert torch.__version__.startswith('2.2.1') and timm.__version__ == '1.0.27' and numpy.__version__ == '1.26.4' and PIL.__version__ == '10.2.0'" || abort versions
-$PY -c "import sys, torch, timm, numpy, PIL; print(sys.version.split()[0], torch.__version__, torch.version.cuda, torch.backends.cudnn.version(), timm.__version__, numpy.__version__, PIL.__version__, torch.cuda.get_device_name(0))" > "$R/versions.txt"
+$PY -c "import sys, torch, timm, numpy, PIL; print(sys.version.split()[0], torch.__version__, torch.version.cuda, torch.backends.cudnn.version(), timm.__version__, numpy.__version__, PIL.__version__, torch.cuda.get_device_name(0)); print('cudnn.benchmark', torch.backends.cudnn.benchmark, 'cudnn.deterministic', torch.backends.cudnn.deterministic, 'matmul.allow_tf32', torch.backends.cuda.matmul.allow_tf32, 'cudnn.allow_tf32', torch.backends.cudnn.allow_tf32, 'sdp flash', torch.backends.cuda.flash_sdp_enabled(), 'mem_efficient', torch.backends.cuda.mem_efficient_sdp_enabled(), 'math', torch.backends.cuda.math_sdp_enabled())" > "$R/versions.txt"
 rm -rf "$W/tt1" "$W/fs" "$W/nets"; mkdir -p "$W/fs" "$W/nets"
 tar -C "$W" -xf "$B/packs/tt1_pack.tar" 2>/dev/null && (cd "$W/tt1" && sha256sum -c --quiet SHA256SUMS) || abort "tt1 pack sums"
 tar -C "$W/fs" -xf "$P/root/packs/PN1/pn1_pack_fs.tar" pn1/data/eval pn1/data/manifests/pn1_eval.csv 2>/dev/null || abort "fs extract"
