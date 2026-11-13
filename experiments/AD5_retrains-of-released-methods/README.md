@@ -367,6 +367,12 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
 - 13 Nov 14:17. The dispatcher released arrays 6310124, 6310125 and 6310126 (a release resets queue age, so they sort
   behind the smokes). AD5 is last in the lead's order (SE1, BB2, MS1, CB1, AD4, AD5), at Nice 400-700. Expected start:
   unknown. The smokes 6310087 / 6310088 and the SelfMAD test 6310089 stay queued and build the cu118 environment at start.
+- 13 Nov 14:39. Athena 3545870_401 (MixFaceNet-MAD seed 401, A100, t0017) COMPLETED, exit 0, 6:46:29 wall,
+  training 24,382 s, peak 5,505 MiB. 100 epochs (log "Epoch 99/99", zero-based), last-epoch train loss 0.000275, train
+  acc 0.99982. Result tar fetched to `/mnt/t7/smad_next/AD5/results/mixfacenet_X_s401.tar` (11 MB, sha OK; inner
+  SHA256SUMS OK); per-epoch weights stay on Athena in `results/AD5/mixfacenet_X_s401_epochs/`. Descriptive
+  cross-platform check only (cu117 build on A100); not one of the five H100 seeds and not in the verdict. Not scored yet:
+  it is scored with the H100 set through the same path.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.

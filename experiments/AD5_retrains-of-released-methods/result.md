@@ -12,7 +12,8 @@ Status 12 Nov 2026, 03:05 CET: all production tasks queued, none started (Athena
 | 3544217 | smoke B: MADation ViT-L/14 and ViT-B/16 DDP, MixFaceNet-MAD speed | 2 | 0.2 | COMPLETED |
 | 3544218 | SelfMAD smoke: environment, face labels (missing package; failed after the labels) | 1 | 0.59 | FAILED |
 | 3545815_[401-405] | MixFaceNet-MAD retrains, first submission (cancelled after the pre-run review) | 1 | 0.19 | CANCELLED |
-| 3545870_[401-405] | MixFaceNet-MAD retrains v2 (per-epoch weights) | 1 per seed | about 34 planned | submitted |
+| 3545870_401 | MixFaceNet-MAD retrain seed 401 on A100 (cu117; descriptive cross-platform check, not in the H100 method set) | 1 | 6.77 | COMPLETED 14:39, result tar sha OK |
+| 3545870_[402-405] | MixFaceNet-MAD retrains on A100 | 1 per seed | 0 | pending; cancelled by the dispatcher once WCSS 6310125 starts |
 | 3545882 | SelfMAD smoke v3: 1.45 it/s, 30 GPU-h per seed estimated | 1 | 0.57 | COMPLETED |
 | 3545933_[401-404] | SelfMAD retrains | 1 per seed | about 120 planned | submitted |
 | 3545948, 3545960, 3546004 | scoring smoke (two failed: missing setuptools; slow shared-FS start-up), third passed | 1 | 0.01 + 0.58 + 0.04 | done |
