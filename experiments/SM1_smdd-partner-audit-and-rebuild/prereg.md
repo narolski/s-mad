@@ -602,6 +602,45 @@ fits (`hn2fresh`). Keep rule: scores, weights and logs fetched and verified befo
 verified partial result. The rented copies are the registered ones; the WCSS jobs stay queued until those are
 verified, are then cancelled, and any WCSS output is never read.
 
+## Amendment A19: follow-ups of the A16 / A18 review (13 Nov ~08:00; registered before computing; development data only)
+
+After `experiments/reviews/REVIEW_SM1_A16_A18_20261113.md`. CPU only on the DGX (OMP 2, nice 10; its GPU is used by
+another owner until 14 Nov morning).
+- **H-N1 (noise path; the key one).** The three saved A18 fits (HN2_RS_s401/402/403; rebuilt from `meta.json` +
+  `hn2test/last_trainable.pt`) score the existing DG1 rungs NOISEX20, NOISES20, SEMX20, SEMS20, FRESH1_20 and REC20 of
+  the test shards 6–7 (134 hosts; `src/SM1/a19_rungs.py`). Reproduction check first: the 401 stored test scores of
+  each fit (`hn2test/scores_eval.npz`) must be reproduced within max |score diff| ≤ 2e-3. On the DGX CPU stack (torch
+  2.12) this check is expected to FAIL (the stack changes ViT logits by up to 0.09). If it fails, the run is reported
+  as "platform not equivalent, ranks only": Spearman rank agreement with the stored rows and the rung AUCs as
+  descriptive numbers, no registered verdict; the registered reading then waits for a rented RTX 6000 Ada (the A18
+  platform) with the same script. The check is not relaxed. Prediction (2-seed mean 401, 402; host bootstrap):
+  NOISEX20 over NOISES20 ≥ 0.90 and SEMX20 over SEMS20 ≤ 0.70 (supported: noise path); falsified (semantic or identity
+  path) if SEMX20 over SEMS20 ≥ 0.85 and above NOISEX20 over NOISES20; otherwise undecided. FRESH1_20 over REC20
+  descriptive.
+- **H-N2 (identity in the output).** glintr100 (AR1 `fr.py` route: prep_eval.kps → norm_crop → a2f glint) cosine of
+  each test X20 render to its partner's source photo (AR1 pool `H` of the partner pid) and to the host's photo. Within
+  X20 on shard 6 (the shard with saved noise maps; 66 rows), partial Spearman ρ of the A18 network logit (2-seed mean)
+  with the render-to-partner cosine, given the extended floor (F + band cosines c0–c3 + 8x8 low-pass cosine + semantic-
+  code cosine; ranks residualised by least squares), partner-cycle bootstrap B = 10,000. Falsified if ρ ≤ 0.10 with
+  the upper bound < 0.25; supported if ρ ≥ 0.25 with the lower bound > 0.10; otherwise undecided. Also on all 133 X20
+  rows given F (descriptive).
+- **H-N4 (A16 smoothness).** From the A16 scores: FRESH1_20 over REC20 for arm e, stratified by face-box Laplacian
+  quintiles (pooled over FRESH1_20 + REC20, weights n x n), 2-seed mean, host bootstrap. Supported if ≥ 0.45;
+  falsified if ≤ 0.40; otherwise undecided.
+- Post hoc addendum (not registered, labelled so): the reviewer's extended-floor read of A18, recomputed on shard 6
+  (cross-fit on shard-6 partner cycles), and a variant whose extended floor is fit on the training shards 0–5 (codes
+  of shards 0–1 fetched from Athena) and combined with the network logit cross-fit on shard 6.
+
+## DRAFT A20 (for the author's decision, not registered): protocol arm with render-matched diffusion controls
+
+Add DG1 shards 0–5 to the protocol training set (PN1's protocol recipe): X20 as attack, REC20 and SAME20 as genuine;
+2 arms (protocol with and without the DG1 controls) x 2 seeds, about 6–8 GPU-h (Athena packs exist; or rented). Read
+on shards 6–7 (REC20 flag rate at the camera threshold, X20 detection) and on the FFHQ development families. Could
+claim: fewer false alarms on diffusion-processed genuine photos, development data, this generator. Could not claim:
+second-identity detection, other generators, any benchmark. MorDIFF is built on the same diffusion autoencoder, so a
+later benchmark gain would be partly same-family; any frozen benchmark read must state this. Needs: the author's go,
+a pre-run review, a registration.
+
 Questions passed to the lead (not acted on): is a half (A's texture on the A–B mean shape) a genuine image under
 ruling 1; may the 256-px landmarks be scaled to the 80-px `a47` copies (would enable arm e)?
 
