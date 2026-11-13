@@ -98,7 +98,10 @@ case "$STEP" in
       rem=$(R "cd $B/logs && sha256sum * 2>/dev/null | sort -k2; echo KEEP_LISTED" 2>/dev/null) || return 1
       for x in $excl; do rem=$(echo "$rem" | awk -v x="$x" '$2 != x'); done
       echo "$rem" | grep -q KEEP_LISTED || return 1
-      loc=$(cd "$OUTD/logs_$M" && sha256sum $(echo "$rem" | grep -v KEEP_LISTED | awk '{print $2}') 2>/dev/null | sort -k2)
+      # both sides sorted under LC_ALL=C (lead, 13 Nov: the remote sorted in the C locale, the DGX in the user's locale,
+      # so the comparison below never matched; same fix as drive_ms1.sh, 06c8e57)
+      rem=$(echo "$rem" | grep -v KEEP_LISTED | LC_ALL=C sort -k2; echo KEEP_LISTED)
+      loc=$(cd "$OUTD/logs_$M" && sha256sum $(echo "$rem" | grep -v KEEP_LISTED | awk '{print $2}') 2>/dev/null | LC_ALL=C sort -k2)
       [ "$loc" = "$(echo "$rem" | grep -v KEEP_LISTED)" ] || { log "log copy differs from the remote: retry"; return 1; }
       E=/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/fs_kept
       mkdir -p "$E"
