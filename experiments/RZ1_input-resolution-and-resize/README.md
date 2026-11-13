@@ -120,3 +120,25 @@ None yet.
     H100 logits, own-rule agreement 1.000.
   - rz1_score.py outputs written. This is a code-path check only, never read.
 - Not submitted: waiting for the pre-run check (lead).
+
+### Reader, floors, hull coverage (13 Nov about 19:20-19:45 by the machine clock)
+- `src/RZ1/rz1_read.py` written. It has its own RZ1 tar loader with every provenance check of prereg section 7; the
+  RZ1R loader requires gate.json "passed" with n = 21,277. It uses TT1's pools and draws and the MEDS person
+  bootstrap, and implements the rules of sections 5 and 12 and amendment 1.
+- Mock tests, all rc 0 (code path only; random scores; files in `/mnt/t7/smad_next/RZ1/mock/`, hashes in pins.sha256):
+  - wave 1;
+  - crop;
+  - 512;
+  - wave 1 with AM_s409 and three RZ1R Sb networks dropped: the n = 4 path works, and the Sb yardstick reads "not
+    available".
+- Input-matched floors (printed only; `floors_input_matched.json`; files `/mnt/t7/smad_next/RZ1/floors/`). The best
+  of the 27 statistics on FFHQ landmark_combined:
+  - 224 bilinear 0.869;
+  - 224 nearest 0.878;
+  - interior crop 0.900;
+  - against the frame-level binding 0.886.
+- Splice-hull coverage of the interior window (`hull_coverage.json`; OpenCV S4 splices, R4 geometry): median share
+  of the hull inside the window 0.690 on 156 training hosts and 0.688 on 100 development hosts (range 0.57-0.80).
+  About 31% of each hull, the jaw and cheek band, lies outside the crop.
+- Rescoring job (amendment 1) submitted by the dispatcher as WCSS 6316319 (afterok:6316283, Nice 9).
+- All RZ1 reads are held until ADVERSARY's stage-1 floor hash is announced by the lead.

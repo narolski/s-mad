@@ -1,4 +1,5 @@
 71d9253137ed24c3bb89aac9b263a313a32915c14165bcec231b55baec437baa  src/RZ1/mk_rz1.py
+e1519ce4a8a73c4dce9e74da0b3cd76d5f113fd0ff1fce66eb50966fa8b27501  src/RZ1/rz1_cpu.py
 deaf30a5f3f4d8f88ae8313146045873fe165c367347f328fbc472da5c40bb7c  src/RZ1/rz1_guard.py
 250fdfad014f05c09bb1a0485b111b75c72d305d4e7fdeacd2da22e284583257  src/RZ1/rz1_kernels.py
 aced1039ec885e3b1b856e6a1cd68b916a169a42340b96a4d1b7ee3ba1857e48  src/RZ1/rz1_patch.py
@@ -17,3 +18,10 @@ ce10f3bee91d07a1d3d1e03b61f239cafdc7aac992197974df89c3229dc9a3bd  src/RZ1/wcss/r
 dccf37d20ca0074780a15d99012c3302f52e4ad5a7773b66981b5d316276d383  /mnt/t7/smad_next/RZ1/rz1_overlay.tar
 2f41e6d4c99eb31ff3916c537b4fa631acbbf7a4532748d08143e31ca1bafcef  /mnt/t7/smad_next/RZ1/overlay_tree/rz1/manifests/rz1_cross.csv
 3fb917b226c6d31fab176a4d8fdd5d6e6b22b8274cc091591f444e623a87ab61  /mnt/t7/smad_next/TT1/meds/tt1m_meds.tar
+f8e7780e71ea9dc4179c8d227e9e29b37d90d1037f4ca372fde11d5fe8b20cf0  /mnt/t7/smad_next/RZ1/floors/floor_crop.npz
+0caae94b6b6bafa04542051bce8138e3ea82ca80ade64c006395d7d0b17dcc4f  /mnt/t7/smad_next/RZ1/floors/floor_pil_bilinear.npz
+20938d305f3c485dbf5f377b8a38c48423df1d404e7ef190e015aa6bca37efb5  /mnt/t7/smad_next/RZ1/floors/floor_pil_nearest.npz
+9fa53cd6e296688e1a0ea75a361ffd425f1ff0da0620245d4b3ba7fef0382332  /mnt/t7/smad_next/RZ1/mock/mock_1_drop.json
+fffe24c18f1a44de1599697bef1154606d78f4037afc39d464c0e030699db735  /mnt/t7/smad_next/RZ1/mock/mock_1.json
+65422961f05ed7b6c764e595435a144173aca33faa14fe543c6cb01abd8de1df  /mnt/t7/smad_next/RZ1/mock/mock_512.json
+4e09edcbf69b88fc9a4ce83e45a0a7415b025309af68e8b4f98a5dbff688cbe2  /mnt/t7/smad_next/RZ1/mock/mock_crop.json

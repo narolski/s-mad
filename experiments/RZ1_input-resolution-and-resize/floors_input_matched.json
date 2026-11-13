@@ -1,0 +1,18 @@
+{
+ "note": "input-matched landmark_combined floors (best of the 27 statistics, direction-free AUC; 224 input enlarged to 512 by PIL bilinear for the 512-frame statistics), printed only; binding floor 0.886 (frame level, AB1); src/RZ1/rz1_cpu.py floors",
+ "frame_level_binding": 0.8855815,
+ "input_matched": {
+  "pil_bilinear": {
+   "sha256": "0caae94b6b6bafa04542051bce8138e3ea82ca80ade64c006395d7d0b17dcc4f",
+   "best": 0.868712
+  },
+  "pil_nearest": {
+   "sha256": "20938d305f3c485dbf5f377b8a38c48423df1d404e7ef190e015aa6bca37efb5",
+   "best": 0.8776555
+  },
+  "crop": {
+   "sha256": "f8e7780e71ea9dc4179c8d227e9e29b37d90d1037f4ca372fde11d5fe8b20cf0",
+   "best": 0.8998595
+  }
+ }
+}
