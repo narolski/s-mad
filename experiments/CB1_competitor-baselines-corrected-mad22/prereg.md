@@ -316,3 +316,12 @@ torch 2.0.1+cu118 and torchvision 0.15.2+cu118 (download.pytorch.org, sha256 eb5
 job asserts that the GPU's architecture is in the build and runs a CUDA matmul before any work. Fits and scoring of the
 WCSS seeds stay on this one stack (H100, cu118); the DGX one-seed run stays a separate, separately labelled run. Nothing
 from 6310090 / 6310207 is used.
+
+## Amendment 9 (13 Nov 2026, 17:14 CET; WCSS IDistill read deadline; before any tar of 6312775 / 6312778 exists)
+
+Author ruling (NOTEBOOK, 13 Nov 17:15), verbatim: "For now, assume that we can go over the cutoff date due to WCSS and
+Athena waiting time." This replaces the retrain cut-off of 14 Nov 18:00 (amendment 1 fallback wording) and every other
+cutoff or fetch deadline for the WCSS IDistill batch (smoke3 6312775, production2 6312778): the batch is read once when
+all its fits have ended, latest 15 Nov 18:00; rows arriving later are labelled late. The fallback wording ("IDistill:
+as reported, not verified; the authors' code selects its checkpoint on the FRLL-Morphs test sets") applies only if no
+fit has ended by 15 Nov 18:00. Nothing else changes; the DGX one-seed run is unaffected.
