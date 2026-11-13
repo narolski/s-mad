@@ -1,0 +1,129 @@
+{
+ "n_pos": 1582,
+ "n_neg": 226,
+ "n_components": 215,
+ "n_folds": 5,
+ "insample_best_single": 0.9974883367083226,
+ "insample_best_single_stat": "BORDER:black_bottom",
+ "insample_best_single_f27": 0.9960758757258091,
+ "insample_best_single_f27_stat": "F27:zero_frac",
+ "single": {
+  "auc": 0.9939921461575467,
+  "eer": 0.01327433628318584,
+  "ci": [
+   0.9855783990937528,
+   0.9990775268125268
+  ],
+  "chosen_per_fold": [
+   "+BORDER:black_bottom",
+   "+BORDER:black_bottom",
+   "+BORDER:edge_black_frac",
+   "+BORDER:black_bottom",
+   "+BORDER:black_bottom"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9969597126970453,
+  "eer": 0.0041087231352718075,
+  "ci": [
+   0.9907242201274633,
+   1.0
+  ]
+ },
+ "gbt": {
+  "auc": 0.9961933477283152,
+  "eer": 0.008849557522123894,
+  "ci": [
+   0.9903652975671443,
+   1.0
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9970520121275858,
+  "ci": [
+   0.9910294725100898,
+   1.0
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.9969597126970453,
+  "eer": 0.0041087231352718075,
+  "ci": [
+   0.9907242201274633,
+   1.0
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.9989231733103611,
+   "logreg": 0.9970520121275858
+  },
+  "BORDER": {
+   "gbt": 0.9957738048622221,
+   "logreg": 0.9967555351688799
+  },
+  "RES": {
+   "gbt": 0.9981162525312419,
+   "logreg": 0.995782195719544
+  },
+  "STORE": {
+   "gbt": 0.9954787263797367,
+   "logreg": 0.995840931720797
+  },
+  "RENDER": {
+   "gbt": 0.8435930210442701,
+   "logreg": 0.7660349283420784
+  },
+  "BLEND": {
+   "gbt": 0.8583217725965787,
+   "logreg": 0.7169470145329648
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.9965765302126802,
+  "BORDER": 0.9970520121275858,
+  "RES": 0.9969373370775203,
+  "STORE": 0.9974296007070695,
+  "RENDER": 0.9968114742176925,
+  "BLEND": 0.9970212456507389
+ },
+ "contrast": "border_vs_cam",
+ "kind": "separability ceiling (both sides genuine; no exceeds rule)",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.9967807077408456,
+  "eer": 0.0041087231352718075,
+  "ci": [
+   0.9902029717303333,
+   1.0
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 0.9966324692614926,
+  "eer": 0.005372945638432364,
+  "ci": [
+   0.9897648529447848,
+   1.0
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "border",
+   "rung": "R_cam_border"
+  },
+  "negative": {
+   "border_originals": true
+  },
+  "note": "H-x1 context; SA1 row 5 (226 unbordered originals)"
+ }
+}

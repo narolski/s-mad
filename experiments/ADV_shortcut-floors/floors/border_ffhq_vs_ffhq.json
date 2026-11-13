@@ -1,0 +1,130 @@
+{
+ "n_pos": 2000,
+ "n_neg": 2000,
+ "n_components": 2000,
+ "n_folds": 5,
+ "insample_best_single": 0.998860375,
+ "insample_best_single_stat": "BORDER:black_right",
+ "insample_best_single_f27": 0.99851175,
+ "insample_best_single_f27_stat": "F27:zero_frac",
+ "single": {
+  "auc": 0.997723125,
+  "eer": 0.004999999999999999,
+  "ci": [
+   0.9955658437499999,
+   0.9993986968749999
+  ],
+  "chosen_per_fold": [
+   "+BORDER:black_right",
+   "+BORDER:black_left",
+   "+BORDER:black_right",
+   "+BORDER:black_right",
+   "+BORDER:black_left"
+  ]
+ },
+ "logreg": {
+  "auc": 0.99872575,
+  "eer": 0.0045,
+  "ci": [
+   0.9971377125,
+   0.99986500625
+  ]
+ },
+ "gbt": {
+  "auc": 0.9998785,
+  "eer": 0.0035,
+  "ci": [
+   0.9997179875,
+   0.99997475
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9984205,
+  "ci": [
+   0.9968138875,
+   0.99968093125
+  ]
+ },
+ "floor": {
+  "model": "gbt",
+  "auc": 0.9998785,
+  "eer": 0.0035,
+  "ci": [
+   0.9997179875,
+   0.99997475
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.99896925,
+   "logreg": 0.9984205
+  },
+  "BORDER": {
+   "gbt": 0.999807625,
+   "logreg": 0.9988575
+  },
+  "RES": {
+   "gbt": 0.998658625,
+   "logreg": 0.998835
+  },
+  "STORE": {
+   "gbt": 0.9987655,
+   "logreg": 0.99841475
+  },
+  "RENDER": {
+   "gbt": 0.740514125,
+   "logreg": 0.689504
+  },
+  "BLEND": {
+   "gbt": 0.872141,
+   "logreg": 0.855883
+  }
+ },
+ "carrying_family": "BORDER",
+ "leave_family_out": {
+  "F27": 0.99990525,
+  "BORDER": 0.999441125,
+  "RES": 0.999865,
+  "STORE": 0.9998475,
+  "RENDER": 0.999893,
+  "BLEND": 0.99990525
+ },
+ "contrast": "border_ffhq_vs_ffhq",
+ "kind": "separability ceiling (both sides genuine; no exceeds rule)",
+ "pixel_only_floor": {
+  "model": "gbt",
+  "auc": 0.999740375,
+  "eer": 0.0035,
+  "ci": [
+   0.99930645625,
+   0.99997125
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.99990625,
+  "eer": 0.004,
+  "ci": [
+   0.99982023125,
+   0.99996925
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "border",
+   "rung": "R_ffhq_border"
+  },
+  "negative": {
+   "fam": "ffhq",
+   "rung": "ffhq_bona_orig"
+  },
+  "note": "Sbx printed; SA1 row 5"
+ }
+}

@@ -300,3 +300,56 @@ GO WITH FIXES, no blockers. The owner-launched check that led to amendment 1 is 
   and filter 1 only); they are excluded from the pixel-only floor. The bootstrap holds the folds fixed (section 9).
 - **Feature code note.** The 62 cached image values were computed by `feats.py` at 4a0abb0 (34716797…); the edits after
   it add the pins and `pngmeta` only and change no image value.
+
+## Amendment 3 (13 Nov, from about 20:10; POST HOC: after the stage-1a floors and their post-result review `experiments/reviews/REVIEW_ADV_STAGE1A_20261113.md`, 6f7c181; no arm score opened)
+
+1. **Name.** The amendment-2 "nuisance floor" (BORDER, RES, STORE, RENDER) is renamed **non-F27/non-BLEND floor
+   (contains face-box texture)**: RES cut-offs and RENDER residual statistics are partly measured on the face box,
+   which blending changes (proof: test R4 vs R2w, same pipeline and photos, reaches 0.986-0.996 on it). Its files keep
+   the key `nuisance_floor` and columns `nu_*`; `check.exceeds(floor="nuisance")` keeps working under the new name.
+2. **Region floors** (`feats.regional`, `run_floors.py regionfloors`): 18 measures (noise residual std of luma and of
+   each channel, residual cross-channel correlations, chroma noise, Laplacian variance, gradient energy, residual
+   kurtosis, mean and std of luma, black fraction, four spectral band powers) computed separately on the **surround**
+   (cue_floor's border ring: top 64 rows, left and right 64 columns, without black pixels and a 2-px edge; bands from
+   the top strip) and on the **face box** (cue_floor's canonical box); plus the **file floor** (PNG size and container
+   values). Same three models, folds and bootstrap. Written to separate files `floors/<name>_regional.json` and
+   `_regional_heldout.csv` (columns `surround_*`, `face_*`, `file_*`); the pinned stage files are not rewritten.
+   Computed for every stage-1 contrast as the region features become available.
+3. **lcomb_bal (history-balanced 1:1 subset; `src/adversary/balance.py`).** Disclosure of timing: the build rule was
+   **not** committed before the builds ran. Two builds ran between about 20:17 and 20:24 (machine clock), both before
+   this amendment. Build 1 matched on the logit of the cross-fitted **logreg** surround score plus pre_ied (greedy 1:1,
+   caliper 0.2 SD, × 0.7 per round, stop when the refit surround and file floors are ≤ 0.60 for single, logreg and gbt,
+   at most 12 rounds): it did not converge (gbt surround floor 0.80 → 0.76 → 0.73 while pairs fell 335 → 167 → 61 →
+   5; it crashed at 5 pairs). Build 2 changed one thing, the matching score, to the **gbt** cross-fitted surround score
+   (the logreg score cannot balance what the boosted trees see), and added the stop "fewer than 50 pairs": it
+   converged in two rounds with **125 morphs and 125 genuine photos** (round 0: 256 pairs, surround floor single /
+   logreg / gbt 0.534 / 0.592 / 0.631; round 1, caliper 0.14: 125 pairs, surround 0.474 / 0.565 / 0.524, file 0.444 /
+   0.466 / 0.460). A third run only added the pair column and the face floor to the outputs (same rows). The rule is
+   now fixed as build 2 (balance.py eb2d237d…) and is not changed to reach 150 per class: it is **below 150 per
+   class**, so a consumer with that bar reads "not read". Face-box floor on lcomb_bal: single 0.876, logreg 0.941, gbt
+   0.936 (≥ 0.80). The round-0 score is computed inside balance.py with the same folds as
+   `floors/lcomb_regional_heldout.csv` (identical by construction; gbt column there `surround_gbt`).
+   Outputs: `floors/lcomb_bal_rows.csv` (id, label, pair), `floors/lcomb_bal_build.json`, and the full floor report
+   `floors/lcomb_bal.json` (contrast `lcomb_bal`) with its region floors `floors/lcomb_bal_regional.json`.
+4. **lcomb_ipw (weights over all 3,000 rows; `src/adversary/ipw.py` 5d15fa61…), registered here before it is
+   computed (lead's specification).** Propensity: unpenalised logistic regression of the label on [logit of round-0
+   `surround_logreg` from `floors/lcomb_regional_heldout.csv`, pre_ied, pre_ied²] (standardised, all rows).
+   Stabilised weights P(class) / p(class | x), propensity clipped at its own 1st and 99th percentiles. Reported:
+   weighted cross-fitted surround, file, face-box and all-cue floors (single, logreg, gbt; trained with the weights,
+   weighted AUC on held-out rows), effective sample size per class. **Usable** only if the effective sample size is
+   ≥ 300 per class and the weighted surround floor is ≤ 0.60 for both logreg and gbt; otherwise published as
+   "not usable". Outputs `floors/lcomb_ipw_weights.csv` (id, label, weight), `floors/lcomb_ipw_build.json`, pinned.
+   Not re-tuned after it is seen.
+5. **Same-data shortcut learner (section 5.3) brought forward**: computed now, before stage 2 (it is the fair
+   comparator for networks that never saw landmark_combined).
+6. **R4 vs R3 within BD1's D quintiles.** R4 and R3 rows take the D of their host's S4 and S3 splice (inside the hull
+   S4 equals R4 and S3 equals R3; BD1 prereg line 30; `d_values.csv` column D); the floors' held-out scores are read
+   within D quintiles by BD1's rule. OpenCV only: FaceMorpher has no splices and so no D (not computable).
+7. **Matched subsets replace the quintile print**: `check.diff_on_matched` (1:1 greedy matching of positives to
+   negatives on the floor's held-out score, caliper 0.1 SD, default_rng(20261117); AUC difference of two networks on
+   the matched rows with a person bootstrap). `diff_within_floor_quintiles` is withdrawn (degenerate on lcomb).
+8. **Wording** in FLOORS.md as the review's section 5 gives it; "exceeds" on lcomb is predetermined and carries no
+   information.
+9. **Frames that are not 512 px** (GD1 DiffAE, 256 px) are measured on the networks' own loader view at 512
+   (`smadcvpr` `common.ImageItems` through cue_floor, unchanged), the PR1 amendment-4 precedent; the 26 statistics
+   reproduce PR1's cached GD1 cues exactly (max difference 0.0 on 8 frames).

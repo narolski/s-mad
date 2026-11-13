@@ -222,9 +222,16 @@ def extra(rgb, path):
 def one(path):
     """Full feature vector of one stored frame (len(names()))."""
     m = mods()
-    f27 = m["cues"].one(path)                       # 26 cue_floor stats + PNG bytes, the reviewed function
     rgb = cv2.imread(path)[:, :, ::-1]
-    assert rgb.shape == (N, N, 3), (path, rgb.shape)
+    if rgb.shape != (N, N, 3):
+        # amendment 3: frames that are not 512 px (GD1 DiffAE, 256 px) are measured on the networks' own loader view
+        # at 512 (smadcvpr common.ImageItems through cue_floor's own path, unchanged; the PR1 amendment-4 precedent)
+        CF = m["CF"]
+        x, _ = CF.C.ImageItems([(path, 0)], 512)[0]
+        rgb = (x.permute(1, 2, 0).numpy() * 255.0).round().astype(np.uint8)
+        f27 = np.r_[CF.stats(rgb), os.path.getsize(path)]
+    else:
+        f27 = m["cues"].one(path)                   # 26 cue_floor stats + PNG bytes, the reviewed function
     return np.r_[f27, np.array(extra(np.ascontiguousarray(rgb), path), np.float64)]
 
 
@@ -266,3 +273,83 @@ def pngmeta(path):
     ft = np.frombuffer(raw, np.uint8)[0::stride][:h]
     share = [float(np.mean(ft == k)) for k in range(5)]
     return [len(idat), float(np.mean([len(x) for x in idat])), float(level), float(anc), float(ctype)] + share
+
+
+# ---------------------------------------------------------------- amendment 3 (post hoc): region-restricted measures
+REGIONS = ("SURR", "FACE")
+_RSTATS = ("noise_std_Y", "noise_std_R", "noise_std_G", "noise_std_B", "resid_corr_rg", "resid_corr_gb", "chroma_cb",
+           "chroma_cr", "lapvar", "grad_energy", "resid_kurt", "mean_Y", "std_Y", "black_frac",
+           "band0", "band1", "band2", "band3")
+REGION_NAMES = [f"{r}:{s}" for r in REGIONS for s in _RSTATS]
+
+
+def _region_masks():
+    surr = np.zeros((N, N), bool)
+    surr[:64, :] = True
+    surr[:, :64] = True
+    surr[:, N - 64:] = True                     # cue_floor's border ring (outside the canonical face box)
+    face = np.zeros((N, N), bool)
+    face[FY0:FY1, FX0:FX1] = True               # cue_floor's canonical face box
+    return {"SURR": surr, "FACE": face}
+
+
+def _bands(P2, h, w):
+    fy = np.fft.fftfreq(h)[:, None]
+    fx = np.fft.fftfreq(w)[None, :]
+    R = np.hypot(fy, fx)
+    out = []
+    for lo, hi in ((1 / 64, 1 / 16), (1 / 16, 1 / 8), (1 / 8, 1 / 4), (1 / 4, 0.5)):
+        m = (R >= lo) & (R < hi)
+        out.append(float(np.log10(P2[m].mean() + 1e-12)))
+    return out
+
+
+def regional(path):
+    """Region-restricted measures (surround ring and face box) on the same frame view as one()."""
+    m = mods()
+    rgb = cv2.imread(path)[:, :, ::-1]
+    if rgb.shape != (N, N, 3):
+        CF = m["CF"]
+        x, _ = CF.C.ImageItems([(path, 0)], 512)[0]
+        rgb = (x.permute(1, 2, 0).numpy() * 255.0).round().astype(np.uint8)
+    f = rgb.astype(np.float32)
+    Y = 0.299 * f[..., 0] + 0.587 * f[..., 1] + 0.114 * f[..., 2]
+    Cb = -0.168736 * f[..., 0] - 0.331264 * f[..., 1] + 0.5 * f[..., 2]
+    Cr = 0.5 * f[..., 0] - 0.418688 * f[..., 1] - 0.081312 * f[..., 2]
+    sY, sc = _srm(Y), [_srm(f[..., k]) for k in range(3)]
+    scb, scr = _srm(Cb), _srm(Cr)
+    L = cv2.Laplacian(Y, cv2.CV_32F, ksize=1)
+    G = np.hypot(cv2.Sobel(Y, cv2.CV_32F, 1, 0), cv2.Sobel(Y, cv2.CV_32F, 0, 1))
+    dark = rgb.max(2) <= 2
+    inner = cv2.erode((~dark).astype(np.uint8), np.ones((5, 5), np.uint8)).astype(bool)   # away from black edges
+
+    def corr(a, b):
+        sa, sb = a.std(), b.std()
+        return float(((a - a.mean()) * (b - b.mean())).mean() / (sa * sb)) if sa > 1e-6 and sb > 1e-6 else 0.0
+    out = []
+    for name, M in _region_masks().items():
+        k = M & inner
+        bf = float(dark[M].mean())
+        if k.sum() < 200:
+            out += [np.nan] * (len(_RSTATS) - 5) + [bf] + [np.nan] * 4
+            continue
+        ry = sY[k]
+        vals = [float(ry.std())] + [float(s[k].std()) for s in sc] + [corr(sc[0][k], sc[1][k]), corr(sc[1][k], sc[2][k]),
+                float(scb[k].std()), float(scr[k].std()), float(L[k].var()), float((G[k] ** 2).mean()),
+                float(((ry - ry.mean()) ** 4).mean() / (ry.var() ** 2 + 1e-9)), float(Y[k].mean()), float(Y[k].std()), bf]
+        if name == "SURR":
+            strip = Y[:64, 64:N - 64]                       # top strip inside the ring, spectrum of its luma
+            sd = dark[:64, 64:N - 64]
+            Z = np.where(sd, strip[~sd].mean() if (~sd).any() else 0, strip)
+        else:
+            Z = Y[FY0:FY1, FX0:FX1]
+        Z = (Z - Z.mean()) * np.outer(np.hanning(Z.shape[0]), np.hanning(Z.shape[1]))
+        vals += _bands(np.abs(np.fft.fft2(Z)) ** 2, *Z.shape)
+        out += vals
+    return np.array(out, np.float64)
+
+
+def compute_regional(paths, workers=2):
+    from multiprocessing import Pool
+    with Pool(workers) as p:
+        return np.stack(p.map(regional, list(paths), chunksize=8))

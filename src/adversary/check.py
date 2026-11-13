@@ -2,10 +2,10 @@
 (experiments/ADV_shortcut-floors/prereg.md section 6 and amendment 2). For arm owners' readers; reads only committed,
 pinned floor files. numpy only (no scipy needed on the cluster).
 
-  from check import exceeds, diff_within_floor_quintiles
+  from check import exceeds, diff_on_matched
   r = exceeds("lcomb", {row_id: logit, ...})                  # the all-cue ADV floor
   r = exceeds("lcomb", {...}, floor="nuisance")               # the nuisance floor (border, resolution, storage, render)
-  q = diff_within_floor_quintiles("lcomb", scores_a, scores_b) # arm difference within floor-score quintiles (printed)
+  q = diff_on_matched("lcomb", scores_a, scores_b)            # arm difference on floor-matched rows (printed)
 
 Rule: the floor model's held-out scores and the network's scores on the same rows; 2,000 draws of person components
 with replacement (numpy default_rng(20261115)); the network exceeds the floor if the 2.5% bound of (network AUC -
@@ -96,16 +96,44 @@ def exceeds(contrast, scores, floor="all", n_boot=2000, seed=20261115):
                 diff_hi=hi, exceeds=bool(lo > 0), pinned_in=pins)
 
 
-def diff_within_floor_quintiles(contrast, scores_a, scores_b, floor="all"):
-    """Printed only (amendment 2 F7): AUC(a) - AUC(b) within quintiles of the floor's held-out score."""
+def matched_rows(contrast, floor="all", caliper=0.1, seed=20261117):
+    """Amendment 3 (replaces the quintile print, which was degenerate on lcomb): 1:1 greedy nearest-neighbour matching
+    of positives to negatives on the logit of the floor's held-out score, without replacement, caliper 0.1 SD,
+    positives in numpy default_rng(20261117) order. Returns the matched row ids (the floor is ~0.5 on them by
+    construction)."""
     rep, key, model, ids, y, g, f, pins = _load(contrast, floor)
-    a, b = _scores(ids, scores_a, contrast), _scores(ids, scores_b, contrast)
-    q = np.searchsorted(np.quantile(f, [0.2, 0.4, 0.6, 0.8]), f, side="right")
-    out = []
-    for k in range(5):
-        w = q == k
-        if 0 < y[w].sum() < w.sum():
-            out.append(dict(quintile=k, n=int(w.sum()), n_pos=int(y[w].sum()), diff=_auc(a[w], y[w]) - _auc(b[w], y[w])))
-        else:
-            out.append(dict(quintile=k, n=int(w.sum()), n_pos=int(y[w].sum()), diff=None))
-    return dict(contrast=contrast, floor=floor, strata=out, pinned_in=pins)
+    z = np.log(np.clip(f, 1e-6, 1 - 1e-6) / (1 - np.clip(f, 1e-6, 1 - 1e-6))) if f.min() >= 0 and f.max() <= 1 else f
+    sd = z.std() + 1e-12
+    pos, neg = np.where(y == 1)[0], set(np.where(y == 0)[0].tolist())
+    rng = np.random.default_rng(seed)
+    keep = []
+    for i in rng.permutation(pos):
+        if not neg:
+            break
+        cand = np.array(sorted(neg))
+        d = np.abs(z[cand] - z[i]) / sd
+        j = int(np.argmin(d))
+        if d[j] <= caliper:
+            keep += [int(i), int(cand[j])]
+            neg.discard(int(cand[j]))
+    return [ids[k] for k in sorted(keep)], pins
+
+
+def diff_on_matched(contrast, scores_a, scores_b, floor="all", n_boot=2000, seed=20261118):
+    """Printed only: AUC(a) - AUC(b) on the floor-matched rows, person-component bootstrap interval."""
+    rep, key, model, ids, y, g, f, pins = _load(contrast, floor)
+    keep, _ = matched_rows(contrast, floor)
+    ix = np.array([ids.index(i) for i in keep])
+    a, b = _scores(keep, scores_a, contrast), _scores(keep, scores_b, contrast)
+    yy, gg = y[ix], g[ix]
+    rng = np.random.default_rng(seed)
+    ug = np.unique(gg)
+    idx = {k: np.where(gg == k)[0] for k in ug}
+    d = []
+    for _ in range(n_boot):
+        ii = np.concatenate([idx[k] for k in rng.choice(ug, len(ug), replace=True)])
+        if 0 < yy[ii].sum() < len(ii):
+            d.append(_auc(a[ii], yy[ii]) - _auc(b[ii], yy[ii]))
+    return dict(contrast=contrast, floor=floor, n_matched=len(keep), n_pos=int(yy.sum()),
+                diff=_auc(a, yy) - _auc(b, yy), lo=float(np.percentile(d, 2.5)), hi=float(np.percentile(d, 97.5)),
+                pinned_in=pins)

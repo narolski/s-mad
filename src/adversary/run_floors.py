@@ -55,10 +55,28 @@ WITHIN_D = ("ri_S4_vs_S3", "dev_S4_vs_S3", "test_S4_vs_S3")
 DFEATS = pathlib.Path("/mnt/t7/smad_next/BD1/d_values.csv")   # BD1 prereg line 30: D (lead, amendment 2)
 
 
-def within_d(ids, y, scores, col="D"):
+WITHIN_D_R = {"ri_R4_vs_R3": True, "test_cv_R4_vs_R3": True}
+
+
+def _d_for_rows(ids):
+    """R4 / R3 rows take the D of their host's S4 / S3 splice (inside the hull S4 = R4, S3 = R3; BD1 prereg line 30)."""
+    man = {r["id"]: r for r in C.rows(C.AB1X)}
+    D = {}
+    for r in csv.DictReader(open(DFEATS)):
+        D[(r["host"], r["rung"])] = float(r["D"])
+    out = {}
+    for i in ids:
+        m = man[i]
+        k = (m["host"], {"R4": "S4", "R3": "S3"}.get(m["rung"], m["rung"]))
+        if k in D:
+            out[i] = D[k]
+    return out
+
+
+def within_d(ids, y, scores, col="D", rows_d=None):
     """BD1's primary rule on held-out floor scores: quintile edges of log D over the pooled rows, AUC within each
     stratum, mean weighted by n_pos x n_neg over strata with >= 10 rows of each class."""
-    D = {r["id"]: float(r[col]) for r in csv.DictReader(open(DFEATS))}
+    D = _d_for_rows(ids) if rows_d else {r["id"]: float(r[col]) for r in csv.DictReader(open(DFEATS))}
     keep = np.array([i in D for i in ids])
     if keep.sum() < 20:
         return None
@@ -131,10 +149,10 @@ def feat_paths(setname):
     if setname == "ab1x":
         P = set()
         for n, (key, *_ ) in C.contrast_defs().items():
-            if key == "AB1X":
+            if key == "AB1X" and n != "lcomb_bal":
                 P |= {p for _, p, _, _ in C.build(n)}
         for k, (key, s) in POOLS.items():
-            if key == "AB1X":
+            if key == "AB1X" and n != "lcomb_bal":
                 P |= {p for _, p, _, _ in pool(k)}
         return sorted(P)
     if setname == "train":
@@ -142,6 +160,13 @@ def feat_paths(setname):
         for a in C.TRAIN:
             P |= {C.resolve(r["path"]) for r in C.train_rows(a)}
         return sorted(P)
+    if setname == "missing":                      # rows of registered AB1X contrasts not yet in the cache
+        P = set()
+        for n, (key, *_ ) in C.contrast_defs().items():
+            if key == "AB1X" and n != "lcomb_bal":
+                P |= {p for _, p, _, _ in C.build(n)}
+        have = set(featmap())
+        return sorted(P - have)
     fams = {"gd12": ("gd1", "gd2"), "gd0": ("gd0",)}[setname]
     return sorted({C.resolve(r["path"]) for r in C.rows(C.GD) if r["fam"] in fams})
 
@@ -155,6 +180,95 @@ def pool(k):
     else:
         P = C.sel(R, **s)
     return [(r["id"], C.resolve(r["path"]), int(r["label"]), C.persons(r)) for r in P]
+
+
+def regional_paths(setname):
+    if setname == "lcomb":
+        return sorted({p for _, p, _, _ in C.build("lcomb")})
+    P = set()
+    for n, (key, *_ ) in C.contrast_defs().items():
+        if key == "AB1X":
+            P |= {p for _, p, _, _ in C.build(n)}
+    return sorted(P)
+
+
+def cmd_regional(a):
+    """Amendment 3: region-restricted measures, cache /mnt/t7/smad_next/ADV/feats_regional/<set>.npz."""
+    import feats as F
+    d = OUT / "feats_regional"
+    d.mkdir(parents=True, exist_ok=True)
+    have = set()
+    for f in d.glob("*.npz"):
+        have |= set(map(str, np.load(f)["paths"]))
+    paths = [p for p in regional_paths(a.set) if p not in have]
+    out = d / f"{a.set}.npz"
+    done_p, done_X = ([], [])
+    if out.exists():
+        z = np.load(out)
+        done_p, done_X = list(map(str, z["paths"])), list(z["X"])
+    print(a.set, "todo", len(paths), flush=True)
+    for i in range(0, len(paths), 1000):
+        ch = paths[i:i + 1000]
+        X = F.compute_regional(ch, workers=a.workers)
+        done_p += ch
+        done_X += list(X)
+        np.savez(out, paths=np.array(done_p), X=np.array(done_X), names=np.array(F.REGION_NAMES))
+        print(a.set, len(done_p), flush=True)
+    print("DONE", out, flush=True)
+
+
+_RG = {}
+
+
+def regmap():
+    if not _RG:
+        for f in sorted((OUT / "feats_regional").glob("*.npz")):
+            z = np.load(f)
+            for p, x in zip(z["paths"], z["X"]):
+                _RG[str(p)] = x
+    return _RG
+
+
+def cmd_regionfloors(a):
+    """Amendment 3: surround-ring, face-box and file floors beside the registered floors (separate files; the pinned
+    stage files are not rewritten). floors/<name>_regional.json and <name>_regional_heldout.csv."""
+    import feats as F
+    rg = regmap()
+    for n in a.only:
+        rl = C.build_train(n) if n in C.TRAIN_CONTRASTS else C.build(n)
+        miss = [p for _, p, _, _ in rl if p not in rg]
+        assert not miss, (n, len(miss))
+        R = np.stack([rg[p] for _, p, _, _ in rl])
+        X, nm = X_of(rl)
+        y = np.array([l for _, _, l, _ in rl])
+        pers = [p for *_, p in rl]
+        sets = {"surround": R[:, [i for i, v in enumerate(F.REGION_NAMES) if v.startswith("SURR:")]],
+                "face": R[:, [i for i, v in enumerate(F.REGION_NAMES) if v.startswith("FACE:")]],
+                "file": X[:, [i for i, v in enumerate(nm) if v in FILE_SIZE]]}
+        rep = dict(contrast=n, n_pos=int(y.sum()), n_neg=int(len(y) - y.sum()),
+                   note=("amendment 3 (post hoc): SURR = cue_floor's border ring (top 64 rows, left and right 64 "
+                         "columns) without black pixels and a 2-px edge; FACE = cue_floor's canonical face box; "
+                         "file = PNG size and container values"))
+        cols = {}
+        for k, Xs in sets.items():
+            names_k = [f"{k}:{i}" for i in range(Xs.shape[1])]
+            rr, sc, groups = FL.fit_contrast(Xs, y, pers, names_k, detail=False)
+            rep[k + "_floor"] = dict(rr["floor"], single=rr["single"]["auc"], logreg=rr["logreg"]["auc"],
+                                     gbt=rr["gbt"]["auc"])
+            for m in ("single", "logreg", "gbt"):
+                cols[f"{k}_{m}"] = sc[m]
+        if n in WITHIN_D or n in WITHIN_D_R:
+            rep["within_D_quintiles"] = {k: within_d([i for i, *_ in rl], y,
+                                                     {m: cols[f"{k}_{m}"] for m in ("single", "logreg", "gbt")},
+                                                     rows_d=WITHIN_D_R.get(n))
+                                         for k in sets}
+        (FDIR / f"{n}_regional.json").write_text(json.dumps(rep, indent=1, default=str))
+        with open(FDIR / f"{n}_regional_heldout.csv", "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["id", "label", "component"] + list(cols))
+            for k2, (i, _, l, _) in enumerate(rl):
+                w.writerow([i, l, int(groups[k2])] + [repr(float(cols[c][k2])) for c in cols])
+        print(n, {k: round(rep[k + "_floor"]["auc"], 3) for k in sets}, flush=True)
 
 
 def cmd_feats(a):
@@ -339,14 +453,15 @@ def cmd_table(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=("feats", "floors", "transfer", "table", "pins"))
+    ap.add_argument("cmd", choices=("feats", "floors", "transfer", "table", "pins", "regional", "regionfloors"))
     ap.add_argument("--set", default="ab1x")
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--stage", type=int, default=1)
     ap.add_argument("--only", nargs="*")
     a = ap.parse_args()
-    {"feats": cmd_feats, "floors": cmd_floors, "transfer": cmd_transfer, "table": cmd_table, "pins": cmd_pins}[a.cmd](a)
+    {"feats": cmd_feats, "floors": cmd_floors, "transfer": cmd_transfer, "table": cmd_table, "pins": cmd_pins, "regional": cmd_regional,
+     "regionfloors": cmd_regionfloors}[a.cmd](a)
 
 
 if __name__ == "__main__":

@@ -1,13 +1,16 @@
 # ADV floors: one line per contrast (standing adversary)
 
-Registration: `prereg.md` with amendments 1 and 2. Every number here is copied from the committed JSON in `floors/`
+Registration: `prereg.md` with amendments 1, 2 and 3 (amendment 3 is post hoc). Every number here is copied from the committed JSON in `floors/`
 (`floors/<contrast>.json`; held-out scores `floors/<contrast>_heldout.csv`; frozen by `floors/pins_stage<k>.sha256`).
 Development data only. No network score was read to make this page.
 
 How to read a line:
 - **ADV floor** = the best of three cross-fitted shortcut-only models (single statistic, logistic regression, boosted
-  trees) on all 72 features, persons kept apart; 95% person-cluster interval. **Nuisance floor** = the same on border,
-  resolution, storage and rendering features only (no 27 statistics, no blend features).
+  trees) on all 72 features, persons kept apart; 95% person-cluster interval. **Non-F27/non-BLEND floor (contains
+  face-box texture)** = the same on the BORDER, RES, STORE and RENDER families (registered in amendment 2 as the
+  "nuisance floor"; renamed in amendment 3 because RES and RENDER are partly measured on the face box, which blending
+  changes, so this floor is partly a blend detector). The **surround floor** (amendment 3) uses only the surround ring
+  outside the face box; the **face-box floor** only the face box; the **file floor** only PNG size and container values.
 - **Must exceed** = the arm's network must exceed the floor by the registered rule (`src/adversary/check.py`
   `exceeds()`: 2.5% bound of network AUC minus floor AUC, same person draws, above 0). Quick bar: the floor's upper
   bound; a network AUC below it cannot pass.
@@ -16,30 +19,35 @@ How to read a line:
 
 ## Stage 1a (lcomb and the test ladder)
 
-| Contrast | Arm read | Rows (pos / neg; components) | ADV floor [95%] (model) | Carried by | Nuisance floor [95%] | Pixel-only floor | In-sample best single (27 stats; all) | Must exceed (quick bar) |
+| Contrast | Arm read | Rows (pos / neg; components) | ADV floor [95%] (model) | Carried by | Non-F27/non-BLEND floor [95%] | Pixel-only floor | In-sample best single (27 stats; all) | Must exceed (quick bar) |
 |---|---|---|---|---|---|---|---|---|
-| `lcomb` | Second engine H-fm1; Sbx, GX1, RZ1 guards; E3 contrast 1; SA1 row 18 | 1000 / 2000; 3000 | 0.982 [0.978, 0.986] (logreg) | F27 (alone 0.952) | 0.964 [0.958, 0.970] (gbt) | 0.982 | 0.886 (noise_std_face); 0.889 (RENDER:resid_corr_gb) | > 0.986 (ADV), > 0.970 (nuisance) |
-| `test_fm_R4_vs_R2w` | Second engine H-fm2 | 191 / 191; 130 | 0.993 [0.987, 0.998] (gbt) | RENDER (alone 0.973) | 0.996 [0.992, 0.999] (gbt) | 0.993 | 0.880 (b3_.125-.25); 0.880 (F27:b3_.125-.25) | > 0.998 (ADV), > 0.999 (nuisance) |
-| `test_cv_R4_vs_R2w` | Second engine H-fm3 (guard) | 191 / 191; 130 | 0.990 [0.981, 0.997] (gbt) | RENDER (alone 0.975) | 0.986 [0.974, 0.994] (gbt) | 0.990 | 0.876 (b3_.125-.25); 0.876 (F27:b3_.125-.25) | > 0.997 (ADV), > 0.994 (nuisance) |
-| `test_fm_R4_vs_R3` | Second engine, printed engine table | 191 / 191; 130 | 0.796 [0.762, 0.832] (logreg) | F27 (alone 0.737) | 0.725 [0.683, 0.769] (logreg) | 0.799 | 0.653 (b2_.063-.125); 0.653 (F27:b2_.063-.125) | > 0.832 (ADV), > 0.769 (nuisance) |
-| `test_cv_R4_vs_R3` | Second engine, printed engine table | 191 / 191; 130 | 0.774 [0.737, 0.813] (logreg) | F27 (alone 0.775) | 0.692 [0.646, 0.736] (gbt) | 0.769 | 0.670 (b2_.063-.125); 0.670 (F27:b2_.063-.125) | > 0.813 (ADV), > 0.736 (nuisance) |
+| `lcomb` | Second engine H-fm1; Sbx, GX1, RZ1 guards; E3 contrast 1; SA1 row 18 | 1000 / 2000; 3000 | 0.982 [0.978, 0.986] (logreg) | F27 (alone 0.952) | 0.964 [0.958, 0.970] (gbt) | 0.982 | 0.886 (noise_std_face); 0.889 (RENDER:resid_corr_gb, a face-box noise-residual cross-channel correlation) | > 0.986 (ADV), > 0.970 (non-F27/non-BLEND) |
+| `test_fm_R4_vs_R2w` | Second engine H-fm2 | 191 / 191; 130 | 0.993 [0.987, 0.998] (gbt) | RENDER (alone 0.973) | 0.996 [0.992, 0.999] (gbt) | 0.993 | 0.880 (b3_.125-.25); 0.880 (F27:b3_.125-.25) | > 0.998 (ADV), > 0.999 (non-F27/non-BLEND) |
+| `test_cv_R4_vs_R2w` | Second engine H-fm3 (guard) | 191 / 191; 130 | 0.990 [0.981, 0.997] (gbt) | RENDER (alone 0.975) | 0.986 [0.974, 0.994] (gbt) | 0.990 | 0.876 (b3_.125-.25); 0.876 (F27:b3_.125-.25) | > 0.997 (ADV), > 0.994 (non-F27/non-BLEND) |
+| `test_fm_R4_vs_R3` | Second engine, printed engine table | 191 / 191; 130 | 0.796 [0.762, 0.832] (logreg) | F27 (alone 0.737) | 0.725 [0.683, 0.769] (logreg) | 0.799 | 0.653 (b2_.063-.125); 0.653 (F27:b2_.063-.125) | > 0.832 (ADV), > 0.769 (non-F27/non-BLEND) |
+| `test_cv_R4_vs_R3` | Second engine, printed engine table | 191 / 191; 130 | 0.774 [0.737, 0.813] (logreg) | F27 (alone 0.775) | 0.692 [0.646, 0.736] (gbt) | 0.769 | 0.670 (b2_.063-.125); 0.670 (F27:b2_.063-.125) | > 0.813 (ADV), > 0.736 (non-F27/non-BLEND) |
 
 Regression gate (amendment 2 F3): on `lcomb` the in-sample best of the 27 statistics is noise_std_face 0.8856, which
 reproduces the reviewed 0.886 (gate passed; `floors/lcomb.json` `regression_gate`). Frozen by `floors/pins_stage0.sha256`.
 These floors were computed before any read of SbFM, Sbx, RZ1 or E3 (none of their results has been opened).
 
 What these lines say, plainly:
-- **FFHQ landmark_combined (`lcomb`).** Shortcut cues alone separate these morphs from their resolution-matched
-  genuine photos at 0.982 when fitted on other persons of the same rows; border, resolution, storage and rendering cues
-  alone (no blend statistics, no 27 statistics) reach 0.964. The frozen candidate's 0.873-0.906 (seeds 408-412,
-  reviewed) lies far below both. A second single statistic, the cross-channel noise-residual correlation, already
-  reaches 0.889. A network has to exceed 0.986 (ADV) or 0.970 (nuisance) for a gain on this set to count beyond
-  shortcuts. This set is dominated by a rendering/processing difference between the two sides.
-- **Test-ladder R4 against warp-only R2w, both engines.** Shortcut cues reach 0.99 and nuisance cues alone 0.986-0.996:
+- **FFHQ landmark_combined (`lcomb`).** Shortcut-only statistics fitted on this set separate it at 0.98; about 0.79
+  comes from the surround alone (a resampling-history difference documented by the dataset), the rest from
+  face-region smoothness, which blending also produces. (Reviewer's wording, REVIEW_ADV_STAGE1A; the amendment-3
+  surround floor with 18 surround measures is 0.942, see below.) The frozen candidate's 0.873-0.906 (seeds 408-412,
+  reviewed) lies below these floors, but they are fitted in-distribution while the networks are zero-shot on this set;
+  the comparable learner is the same-data shortcut learner of prereg section 5.3. A second single statistic, a
+  face-box noise-residual cross-channel correlation, reaches 0.889. **On `lcomb` the "exceeds" test is predetermined:
+  the quick bar is 0.986, so "within the ADV floor" there carries no information and must not be read as evidence of
+  shortcut use.** This adds the surround / face split to PN1's earlier 0.948 (27 statistics) and 0.786
+  (noise_std_border); it is a quantification, not a new discovery.
+- **Test-ladder R4 against warp-only R2w, both engines.** Shortcut cues reach 0.99 and the non-F27/non-BLEND cues 0.986-0.996:
   the two-person morph and its warp-only image differ in rendering and resolution statistics (blending softens), so a
-  high network AUC here is not evidence of a second identity.
-- **Test-ladder R4 against same-person morph R3.** With blending on both sides the floor falls to 0.774-0.796 (nuisance
-  0.692-0.725); this is the most informative of the five: a network above 0.81-0.83 on these rows shows something the
+  high network AUC here is not evidence of a second identity. This is a pure blending contrast (same pipeline, same
+  photos); a floor near 0.99 shows the control works, not a construction confound.
+- **Test-ladder R4 against same-person morph R3.** With blending on both sides the floor falls to 0.774-0.796
+  (non-F27/non-BLEND 0.692-0.725; the reviewer finds it is likely the blend difference D: two-person blends are softer); this is the most informative of the five: a network above 0.81-0.83 on these rows shows something the
   listed cues do not.
 
 

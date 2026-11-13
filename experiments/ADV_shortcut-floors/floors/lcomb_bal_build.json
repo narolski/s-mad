@@ -1,0 +1,53 @@
+{
+ "converged": true,
+ "n_morph": 125,
+ "n_genuine": 125,
+ "rounds": [
+  {
+   "round": 0,
+   "caliper": 0.2,
+   "n_pairs": 256,
+   "surround_floor": {
+    "single": 0.5341262817382812,
+    "logreg": 0.5919952392578125,
+    "gbt": 0.63104248046875
+   },
+   "file_floor": {
+    "single": 0.5434417724609375,
+    "logreg": 0.5132293701171875,
+    "gbt": 0.4776611328125
+   }
+  },
+  {
+   "round": 1,
+   "caliper": 0.13999999999999999,
+   "n_pairs": 125,
+   "surround_floor": {
+    "single": 0.47424,
+    "logreg": 0.564672,
+    "gbt": 0.524352
+   },
+   "file_floor": {
+    "single": 0.44368,
+    "logreg": 0.46592,
+    "gbt": 0.460128
+   }
+  }
+ ],
+ "final_surround_floor": {
+  "single": 0.47424,
+  "logreg": 0.564672,
+  "gbt": 0.524352
+ },
+ "final_file_floor": {
+  "single": 0.44368,
+  "logreg": 0.46592,
+  "gbt": 0.460128
+ },
+ "final_face_floor": {
+  "single": 0.875904,
+  "logreg": 0.941184,
+  "gbt": 0.93568
+ },
+ "below_150_per_class": true
+}

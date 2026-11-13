@@ -1,0 +1,132 @@
+{
+ "n_pos": 291,
+ "n_neg": 300,
+ "n_components": 300,
+ "n_folds": 5,
+ "insample_best_single": 1.0,
+ "insample_best_single_stat": "F27:b5_.375-.5",
+ "insample_best_single_f27": 1.0,
+ "insample_best_single_f27_stat": "F27:b5_.375-.5",
+ "single": {
+  "auc": 0.9999885452462772,
+  "eer": 0.0016666666666666668,
+  "ci": [
+   0.9999429174708532,
+   1.0
+  ],
+  "chosen_per_fold": [
+   "-F27:b5_.375-.5",
+   "-F27:b5_.375-.5",
+   "-F27:b5_.375-.5",
+   "-F27:b5_.375-.5",
+   "-F27:b5_.375-.5"
+  ]
+ },
+ "logreg": {
+  "auc": 1.0,
+  "eer": 0.0,
+  "ci": [
+   1.0,
+   1.0
+  ]
+ },
+ "gbt": {
+  "auc": 0.9958762886597938,
+  "eer": 0.003436426116838488,
+  "ci": [
+   0.989476410153183,
+   1.0
+  ]
+ },
+ "logreg_f27": {
+  "auc": 1.0,
+  "ci": [
+   1.0,
+   1.0
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 1.0,
+  "eer": 0.0,
+  "ci": [
+   1.0,
+   1.0
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.9958762886597938,
+   "logreg": 1.0
+  },
+  "BORDER": {
+   "gbt": 0.9877548682703322,
+   "logreg": 0.9752004581901489
+  },
+  "RES": {
+   "gbt": 0.9973883161512027,
+   "logreg": 0.9999770904925545
+  },
+  "STORE": {
+   "gbt": 0.9771134020618557,
+   "logreg": 0.9819358533791523
+  },
+  "RENDER": {
+   "gbt": 0.9958762886597938,
+   "logreg": 1.0
+  },
+  "BLEND": {
+   "gbt": 0.9999198167239405,
+   "logreg": 0.9995418098510882
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 1.0,
+  "BORDER": 1.0,
+  "RES": 1.0,
+  "STORE": 1.0,
+  "RENDER": 1.0,
+  "BLEND": 1.0
+ },
+ "contrast": "store_photo_fm61_vs_native",
+ "kind": "separability ceiling (both sides genuine; no exceeds rule)",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 1.0,
+  "eer": 0.0,
+  "ci": [
+   1.0,
+   1.0
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 1.0,
+  "eer": 0.0,
+  "ci": [
+   1.0,
+   1.0
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "ms1ffhq",
+   "rung": "photo",
+   "id_suffix": "_fm61"
+  },
+  "negative": {
+   "fam": "ms1ffhq",
+   "rung": "photo",
+   "id_plain": true
+  },
+  "note": "SA1 row 1"
+ }
+}

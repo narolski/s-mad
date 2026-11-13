@@ -249,6 +249,9 @@ def contrast_defs():
                                  dict(fam="gd0", rung="stylegan_wplus_resmatch"), "GX1 transfer read"),
         "gd0_diffae_vs_resmatch": ("GD", dict(fam="gd0", rung="diffae_orig"), dict(fam="gd0", rung="diffae_resmatch"),
                                    "SA1 row 13 context"),
+        # ---- amendment 3: history-balanced landmark_combined (row list built by balance.py, committed)
+        "lcomb_bal": ("AB1X", dict(rowfile="/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/lcomb_bal_rows.csv"),
+                      dict(), "lcomb matched on the surround score and pre_ied (amendment 3)"),
         # ---- amendment 1: regional identity (RI1) and texture band profile (TB1), the 291 BD1 hosts (test + dev)
         "ri_R4_vs_R3": ("AB1X", dict(L, role=("test", "dev"), rung="R4", tool="opencv", bd1_hosts=bd1_hosts()),
                         dict(L, role=("test", "dev"), rung="R3", tool="opencv", bd1_hosts=bd1_hosts()), "RI1 S1 signal"),
@@ -282,6 +285,12 @@ def build(name):
     D = contrast_defs()
     key, pos, neg, _ = D[name]
     R = rows(manifest(key))
+    if pos.get("rowfile"):                         # amendment 3: a committed row list (lcomb_bal)
+        want = {r["id"]: int(r["label"]) for r in csv.DictReader(open(pos["rowfile"]))}
+        X = [r for r in R if r["id"] in want]
+        assert len(X) == len(want), name
+        return [(r["id"], resolve(r["path"]), want[r["id"]], persons(r)) for r in X if want[r["id"]] == 1] + \
+               [(r["id"], resolve(r["path"]), want[r["id"]], persons(r)) for r in X if want[r["id"]] == 0]
     P = sel(R, **pos)
     if neg.get("border_originals"):
         want = {r["id"][5:].split("__")[0] for r in P}
@@ -306,6 +315,8 @@ def build_train(name, arm="Sb"):
 if __name__ == "__main__":
     import collections
     for n in contrast_defs():
+        if n == "lcomb_bal" and not os.path.exists(contrast_defs()[n][1]["rowfile"]):
+            continue
         x = build(n)
         c = collections.Counter(l for _, _, l, _ in x)
         print(n, c[1], c[0], os.path.basename(x[0][1]))
