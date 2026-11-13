@@ -456,3 +456,18 @@ Superseded: XF1 is on hold and its rows will change (pre-run check `experiments/
 a93ae2f: the one-photo render equals the plain photo to within one grey level, so the contrast is not matched). The
 stage-13 files (bc381d0) are kept as a description of the unmatched contrast only. Any new XF1 rows get a new
 amendment, with contrasts selected by the `klass` column and intervals by the file's block column.
+
+## Amendment 8 (13 Nov, from 22:28 by the machine clock; registered before computing; XF1 revision b, draft 7d4863e)
+
+- Rows `/mnt/t7/smad_next/XF1/xf1b_rows.csv` (sha256 4adcf914…, asserted; each image's sha256 checked against its
+  row; image path = the `src` column, since the pack-relative path is not unpacked here). Contrast: klass FMHB (1)
+  against klass WARP (0), separately for form "face" (face-only copies, grey outside one shared hull per pair) and form
+  "whole"; rows are selected by klass and form, never by label. Cross-fitting unit `component` (12); bootstrap unit
+  `block` (64), 2,000 draws, numpy default_rng(20261120).
+- **(1) The gate, as fixed in XF1's draft:** the same-data learner (section 5.3, unchanged models) fitted on train_Sb,
+  applied to the face-only form; logreg and gbt AUC with block-bootstrap intervals; **gate value = the larger of the
+  two; ≥ 0.90 closes XF1 as "not run"**. (2) The same for the whole form and for the train_A and train_B lists.
+  (3) In-distribution floors on both forms (all-cue 72 features, surround ring, face box, file; single, logreg, gbt;
+  cross-fitted by component); on the face-only form the surround floor is a check of the blanking (expected near 0.5).
+  (4) Per-row scores `floors/xf1b_rows_scores.csv`; summary `floors/xf1b_gate_and_floors.json`; pinned as stage 14.
+  Code `src/adversary/xf1b.py`. No network score is read.
