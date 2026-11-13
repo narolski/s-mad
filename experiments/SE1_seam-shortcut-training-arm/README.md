@@ -58,7 +58,7 @@ None yet.
 
 ## 10. Handover state
 
-- WCSS smoke: queued via the dispatcher, not yet submitted (controller down at 08:4x). No fit queued.
+- WCSS smoke: job 6310083 (submitted by the dispatcher 09:02, lem-gpu-short; expected end about 09:40; owner checks the log logs/se1-smoke-6310083.out). Athena smoke not submitted (dispatcher: WCSS took it; Athena A100 reserved to about 22 Dec), so the platform is WCSS H100. Fits (wcss_se1_fits.cmd, array of 15) are submitted by the dispatcher once the smoke log shows PN1_TASK_DONE and SE1_SMOKE_RC 0.
 - Compute spent: 0 GPU-hours.
 
 ## 11. Reproduce
