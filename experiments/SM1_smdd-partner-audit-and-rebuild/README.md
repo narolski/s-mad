@@ -343,6 +343,12 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
   RELEASE on a verified partial result or at 09:30 (lease deadline 10:00, cap 6.5 USD). Order is not a registered
   quantity; neither experiment reads the other.
 
+- 13 Nov 06:16 sm1dg: A18 3 of 3 and A16 6 of 6 verified with logs; RELEASE written by `drive_v3.sh`. Smoke 1.20 it/s.
+  A18 falsified (ΔAUC +0.077 [0.040, 0.114]); A16 undecided. WCSS: 6308742 (A18) cancelled while pending; 6308741 (A16)
+  had already run on WCSS before the cancel (its folder `results/SM1A16/` holds tars and one `*_check_FAILED.json` for
+  a s401, i.e. the H100 / torch 2.11 platform missed the 2e-3 tolerance on that fit). Per D1 that copy is not the
+  registered one and its scores are never read (only file names were listed).
+
 ## 3. Data
 
 Inputs (read only):

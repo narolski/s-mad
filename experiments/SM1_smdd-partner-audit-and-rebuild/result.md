@@ -752,6 +752,48 @@ Reading (FRGC test hosts, one generator, one render platform): frozen foundation
 beyond simple statistics and the noise-angle θ; unmeasured render traces are not excluded. The fine-tuned recipe's
 answer (A18 fits) is pending (WCSS 6308742).
 
+## A16 (H-n1) and A18 (H-n2): registered readings (rented RTX 6000 Ada sm1dg, deviation D1; development data only)
+
+Run 13 Nov 01:44 to 06:16 on lease sm1dg (A18 first, then A16; one GPU user at a time). All 3 A18 tars and all 6 A16
+tars sha256-verified with the machine logs before RELEASE (06:16). A16 reproduction check: max diff 0.0 on 6 of 6.
+No benchmark row scored.
+
+**A18 (H-n2): the standard ViT-B/16 recipe trained on our own ladder (arm RS: X20 vs REC20 + SAME20, shards 0–5),
+read on unseen shards 6–7 (`hn2_read.json`).** Training-row AUC 0.994, 0.996, 0.996 (about 1,330 epochs).
+
+| Read (2-seed mean 401, 402) | all rows | without flagged rows |
+|---|---|---|
+| network AUC X20 over SAME20 | 0.989 [0.980, 0.997] | 0.989 |
+| floor F (θ, Laplacian, PNG bytes, asymmetry, d), cross-fit | 0.901 | 0.900 |
+| F + network logit, cross-fit | 0.978 | 0.977 |
+| **ΔAUC over F (primary)** | **+0.077 [0.040, 0.114]** | +0.077 [0.040, 0.116] |
+| ΔAUC over the image-statistics floor F_img (0.778) | +0.191 [0.137, 0.246] | +0.180 |
+| 3-seed mean ΔAUC (stability) | +0.077 [0.041, 0.113] (seeds 0.081, 0.073, 0.079) | +0.079 |
+| secondary: Laplacian- / θ-stratified X20 over SAME20 | 0.987 / 0.961 (s401); 0.982 / 0.972 (s402); 0.986 / 0.967 (s403) | |
+| secondary: X20 over REC20 / SAME20 over REC20 | 1.000 / 0.88, 0.77, 0.88 | |
+
+**Registered reading: falsified (signal beyond measured traces).** Outcome sentence: "With this generator and this
+recipe (6,250 steps on 1,205 images, about 1,330 epochs, 2 seeds; FRGC, single render platform), the network adds
+X-vs-SAME information beyond the measured traces (θ, sharpness, size, asymmetry); unmeasured render traces are not
+excluded." Together with A15 (SMDD-trained fits: X vs SAME about 0.65, no arm above one sharpness statistic) and the
+frozen-feature probe (ΔAUC +0.06 / +0.07): a two-person signal is learnable on this generator when the training
+contrast asks for it, and the SMDD-trained recipes do not use it.
+
+**A16 (H-n1): saved SMDD-trained ViT-B/16 a, e, f on the DG1 rungs (`a16_read.json`).** 2-seed means, host bootstrap.
+
+| AUC | a | e | f |
+|---|---|---|---|
+| FRESH1_20 over REC20 | 0.337 [0.319, 0.354] | 0.241 | 0.289 |
+| NOISES20 over REC20 | 0.556 [0.539, 0.573] | 0.311 | 0.365 |
+| NOISEX20 over NOISES20 | 0.572 [0.555, 0.589] | 0.595 | 0.585 |
+| SEMX20 over SEMS20 | 0.598 [0.576, 0.620] | 0.548 | 0.557 |
+| MIR20 over REC20 (descriptive) | 0.675 | 0.442 | 0.497 |
+
+Registered reading (arm a): **undecided** (FRESH1 and NOISES over REC are not ≥ 0.70, nor both ≤ 0.55; SEMX over SEMS
+0.60 is not ≥ 0.70). Not predicted: every fit scores fresh-noise and noise-only renders of the same person *below* the
+one-person reconstruction (a 0.34, e 0.24), so the "latent not the photo's own" account does not hold as stated; the
+mix-type contrasts (NOISEX over NOISES, SEMX over SEMS) sit at 0.55–0.60 for every arm.
+
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 
 **Item 11, five random pool partners (H-new-1; arm d5, 5 seeds; `p3_full.json`, `p3_fz1.json`).** Landmark-7 native
