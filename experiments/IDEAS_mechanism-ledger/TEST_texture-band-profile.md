@@ -2,6 +2,11 @@
 
 Draft by the ideas and literature role (IDEAS), 13 Nov 2026, about 19:05 CET (machine clock; committed in 6db5154 at 19:07). **Not registered; nothing run.** Ledger entry M2.
 
+**Status (19:58 CET, 13 Nov): taken up as `experiments/TB1_texture-band-profile/`; premise held (0.758 within D) but the
+profile's gain over band energy and landmark displacement was +0.010 [−0.006, +0.021], registered verdict "falsified"
+(amendment 2; REVIEW_TB1_PREMISE, REVIEW_TB1_A2). The mid-band prediction of this draft was contradicted. Kept as the
+record of the proposal.**
+
 ## Question
 
 At equal blend energy, is the difference between two people's warped faces distributed over spatial frequency

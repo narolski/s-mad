@@ -19,6 +19,10 @@ opens no image data, edits no other owner's folder.
   is not kept in the repository.
 - No registration is implied. An owner who takes a test writes its `prereg.md` and gets the pre-run check.
 
+- 13 Nov 2026, 19:55-19:58 CET: version 2 on the lead's request (TB1 outcome, W, FR-similarity non-overlap). Read
+  `experiments/TB1_texture-band-profile/result.md`, `experiments/reviews/REVIEW_TB1_PREMISE_20261113.md`,
+  `experiments/reviews/REVIEW_TB1_A2_20261113.md`, `experiments/reviews/PRERUN_RI1_TB1_20261113.md`. No web search.
+
 ## Handover state
 
-Version 1 committed. Next update: when RI1, NE1 or TB1 is registered or read, or when the lead asks for a re-rank.
+Version 2 committed (TB1 closed; look-alike contrast rank 1; new M13). Next update: when RI1, NE1 or TB1 is registered or read, or when the lead asks for a re-rank.

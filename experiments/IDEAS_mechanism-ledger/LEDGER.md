@@ -29,7 +29,64 @@ in memory to an aligned 112 px face-recognition crop (the registered glintr100 r
 and BD1, already does an in-memory similarity crop); in-memory FFT band images (registered as an allowed measurement in
 the mirror-asymmetry test, AS0 `prereg.md` "Bands"). No image is written by any proposed test.
 
-## Ranking by expected information per GPU-hour
+## Version 2 (13 Nov 2026, 19:55-19:58 CET by the machine clock): what the first test outcome changed
+
+**Texture band profile (TB1, entry M2): closed as a texture mechanism.** Sources: `experiments/TB1_texture-band-profile/result.md`
+(premise read at 19:37; amendment 2 read at 19:51, commit caa9404; review applied in f6bb559), the post-result review of
+the premise `experiments/reviews/REVIEW_TB1_PREMISE_20261113.md` (needs qualification) and the review of amendment 2
+`experiments/reviews/REVIEW_TB1_A2_20261113.md` (accept with corrections).
+- The registered premise verdict "holds" stands: the cross-fitted band profile of the oracle half-difference separates
+  two-person from same-person pairs at 0.758 within D quintiles (component-bootstrap interval [0.701, 0.801]).
+- But the binding post hoc amendment 2 rule gives the profile a gain of only **+0.010 [−0.006, +0.021]** over
+  [log band-limited energy E, log landmark displacement W] (base 0.888): registered verdict **"falsified"** (bar +0.02).
+  By database: FRGC +0.018 (reviewer's interval about [+0.003, +0.030]), colorFERET −0.016 (n = 56).
+- **My M2 prediction is contradicted.** I predicted relatively more mid-band energy for two people. The review finds the
+  signal is a *smaller finest-band share* (B5 median 0.087 against 0.129; B5 share alone 0.708 within D), most simply
+  read as extra structured energy diluting a fine-scale noise floor that both classes share (review H-new-1, not
+  falsified). The FRGC / colorFERET split (0.864 against 0.554) looks like a source-detail effect.
+- Combined licensed sentence (TB1 result, amendment 2): "two-person pairs differ from same-person pairs mainly through
+  larger band-limited energy and larger landmark displacement ... not a texture trace of a second identity and not a
+  detector." No arm may rest on a profile-shape premise.
+- Consequence for the ledger: M2 moves to the closed list. What remains of it is not texture but **geometry** (W) and
+  **energy** (E), both oracle quantities; the geometry part becomes the new entry M13.
+
+**Two further facts of tonight, folded in.**
+1. Landmark displacement W between the two source photos separates two-person from same-person pairs at **0.869** as
+   an oracle (REVIEW_TB1_PREMISE F3; TB1 amendment 2 "Alone ... W 0.869"). Within same-person pairs the TB1 profile score
+   rises with W (ρ 0.36) and falls with FR similarity (ρ −0.50) (same review, F3). New entry **M13** asks whether a single image can
+   estimate "geometry averaged from two shapes" by a route that is not the landmark-shape statistic of M4.
+2. The pre-run review of RI1 (`experiments/reviews/PRERUN_RI1_TB1_20261113.md`, line 25 and line 34): on our ladder FR
+   similarity of two people (cos_HB, maximum 0.65) and of two sessions of one person (cos_HS, minimum 0.68) **do not
+   overlap**. So every second-identity read on the current ladder (Sb, BD1, TB1, RI1 when it is read) is confounded with
+   "FR-dissimilar inputs". The same holds for W, which tracks dissimilarity. **The look-alike contrast is therefore
+   raised to rank 1**: it is the necessary condition for any "two identities" sentence, whatever RI1 or M13 show. Its
+   smallest decisive size is given in M12.
+
+## Ranking by expected information per GPU-hour, version 2 (supersedes version 1 below)
+
+| Rank | Mechanism or control [ID] | Status at 19:58 | Why this rank | GPU-h | CPU-h | Prior (my estimate) |
+|---|---|---|---|---|---|---|
+| 1 | **Look-alike matched contrast**: two-person and same-person blends matched on FR similarity and on landmark displacement W [LA1; entry M12] | LA1 plan and LA1-0 drafted; morph build is an author item | without it no result on our ladder can say "two identities" rather than "dissimilar inputs" (cos_HB ≤ 0.65 < 0.68 ≤ cos_HS) | 0.5 (LA1-0) + FR embeddings of the build | 4-8 (build with unchanged engines) | n/a (control) |
+| 2 | **Regional identity disagreement** [RI1; M1] | registered by the PR1/BD1 owner (`experiments/RI1_regional-identity-disagreement/`), W control added (amendment 1c); not read | still the only cheap single-image test of an identity route; a pass licenses only "regional leaning tracks input dissimilarity" until rank 1 exists | 0.3 | 2 | 0.35 full blends, 0.6 splices |
+| 3 | **Nuisance directions in the candidate's features** [NE1; M10, M7, M9] | draft | unaffected by TB1; decides the border remedy and closes or opens group DRO | 0.5-1.5 | 2 | 0.5 border, 0.2 same-person splices |
+| 4 | **Layer misregistration echo**: a single-image estimate of two superimposed shapes from doubled sub-landmark structure [new; M13] | proposal | the only route I see from TB1's W to one image that is not landmark-shape typicality; zero GPU; its premise check is cheap | 0 | 3 | 0.3 |
+| 5 | Group DRO / JTT [M7] | only after NE1 | unchanged | 6-12 | — | 0.2 |
+| 6 | Paired invariance losses [M9] | only after NE1 and Sbx | unchanged | 5-6 | — | 0.4 border, 0.15 identity |
+| 7 | Landmark-geometry averaging (shape typicality) [M4] | measured (ID0, AS0) | W's 0.869 is an oracle *difference between two photos*; M4's single-image shape statistic reached 0.687 even on exact landmarks | 0 | 1 | 0.3 |
+| 8 | Residual-noise mixing [M3] | proposal (kill read) | TB1's finest-band reading strengthens the "shared noise floor" view: noise reads capture count, not persons | 0 | 1 | 0.1 |
+| 9 | Image-space demorphing [M5] | — | unchanged | 20+ | — | 0.15 |
+| 10 | Self-blended images (SBI / SelfMAD) [M11] | — | anti-mechanism | n/a | — | n/a |
+| 11 | IRM / V-REx [M8] | — | unchanged | 6+ | — | 0.1 |
+| 12 | Frequency traces of warping [M6] | closed by design | unchanged | 0 | 0 | ~0 |
+| closed | **Texture band profile** [TB1; M2] | **falsified** (gain +0.010 over energy and geometry, bar +0.02) | contradicted prediction; no arm | — | — | — |
+
+Reading of version 2: the second-identity question is now a data question before it is a mechanism question. The
+cheapest decisive next step is LA1-0 (labelled tail calibration, about 0.5 GPU-hour), because it says whether a
+decisive look-alike set can exist at all. RI1 should still be read (it is registered and costs almost nothing), but its
+outcome table should carry the sentence of the RI1 pre-run review: a pass cannot separate "two identities" from
+"FR-dissimilar inputs".
+
+## Ranking by expected information per GPU-hour, version 1 (13 Nov 19:07; kept for the record, superseded)
 
 "Information" here means: how much the outcome changes what we can claim or which arm we run, times the chance the
 test is decisive. GPU-hours are my estimates for a GB10 or one A100/H100, not measurements.
@@ -75,6 +132,10 @@ rendering) rather than identity.
   an oracle (we know A and B on the ladder) before any single-image statistic is read.
 - Re-renders could still fail this if the generator produces regionally inconsistent identity; that is a test row.
 
+**Version 2 note.** RI1 is registered by the PR1/BD1 owner with W added as a control (amendment 1c). Its pre-run
+review's sentence applies: because cos_HB and cos_HS do not overlap on our ladder, a pass reads "regional leaning tracks
+input dissimilarity" until the look-alike set (M12) is read.
+
 **(b) Evidence.**
 - Dong et al., "Protecting Celebrities from DeepFake with Identity Consistency Transformer", CVPR 2022,
   https://arxiv.org/abs/2203.01318 (abstract opened): detects face swaps by "identity inconsistency in inner and outer
@@ -117,7 +178,12 @@ an identity-consistency auxiliary head on the CLIP LoRA network (two or more reg
 region embeddings of genuine images, with a disagreement penalty only on genuine and same-person rows), five seeds,
 about 6 H100-hours, scored with the battery and beside the adversary floor.
 
-## M2. Texture band profile, two people against one (rank 3) [TB1]
+## M2. Texture band profile, two people against one (version 1 rank 3; **closed in version 2**) [TB1]
+
+**Outcome (version 2).** Premise "holds" at 0.758 within D, but the profile adds +0.010 [−0.006, +0.021] over band
+energy and landmark displacement: registered verdict "falsified" (TB1 `result.md`, amendment 2; REVIEW_TB1_A2). The
+prediction in (a) below, relatively more mid-band energy for two people, is contradicted: the signal is a smaller
+finest-band share (REVIEW_TB1_PREMISE F2). The text below is version 1, kept unchanged for the record.
 
 **(a) Reason.** Landmark warping aligns about 70-100 landmarks; between them, person-specific structure at the scale
 of eyelid creases, brow hairs, nostril shape, lip outline, moles and skin texture does not coincide for two different
@@ -362,6 +428,95 @@ look-alike morphs that do not verify against both are not counted as attacks wit
 its go count (≥ 100 disjoint pairs) and RI1 or TB1 passed: without a mechanism, a matched arm will most likely learn
 the same blending reading at lower margin.
 
+**Version 2: raised to rank 1, and the smallest decisive set.**
+- Why raised: on our ladder cos_HB ≤ 0.65 and cos_HS ≥ 0.68 do not overlap (PRERUN_RI1_TB1, lines 25 and 34), and the
+  oracle W separates the two pair types at 0.869 (REVIEW_TB1_PREMISE F3). Any "second identity" reading of any
+  detector or statistic is therefore indistinguishable, on existing data, from "the two inputs were dissimilar in FR
+  space or in shape". Only pairs where two people are as similar as two sessions of one person break this. This is
+  now the binding constraint on the claim, more than any mechanism.
+- What must be matched (all from LA1's own-source rule: one source for both classes):
+  1. FR similarity: each look-alike pair (two persons, glintr100 cosine in the overlap band, realistically 0.60-0.77)
+     matched to one same-person pair of a third identity within ±0.03 cosine, without replacement.
+  2. Landmark displacement W: the matched pairs fall in the same W quintile (W computed from the unchanged aligner's
+     .tem files, as in TB1). Without this, a look-alike result could still be shape disparity.
+  3. Pose (|Δyaw| ≤ 15°), inter-eye distance, sex, as in the LA1 plan.
+- Images per matched pair: the two-person splice S4 and morph R4, the same-person splice S3 and morph R3, and the
+  warped halves, with the unchanged OpenCV-style engine and the approved warp; lossless PNG. One engine is enough for
+  the decisive read; a second engine is descriptive.
+- **Smallest decisive size: 100 disjoint look-alike pairs with 100 matched same-person pairs** (one identity used once).
+  By the Hanley-McNeil approximation the 95% half-width of an AUC near 0.65 is about ±0.076 at 100 per class, ±0.062 at
+  150 and ±0.053 at 200 (my computation; a host bootstrap will be somewhat wider). With 100 per class the read is
+  decisive when the true AUC is at least about 0.70 (lower bound above 0.62) or at most about 0.60 (upper bound below
+  0.68). A true value between 0.62 and 0.68 needs about 200 per class. Fewer than 50 per class (±0.11) cannot separate
+  a pass from a kill and should be an evaluation-only descriptive row, as LA1's no-go rule already says.
+- Decisive reads on that set, fixed before the build: Sb's logit S4 vs S3 and R4 vs R3; RI1's dispersion Δ; M13's echo
+  statistic if it passes its own premise; the oracle W and E, printed. Kill of "second identity" for a statistic: AUC
+  ≤ 0.60 on the matched set with its upper bound below 0.68. Licence: ≥ 0.70 with the lower bound above 0.62, on both
+  FRGC-like and CelebA-HQ-like sources if both exist, reported per source.
+- Cost: LA1-0 about 0.5 GPU-hour; the build 4-8 CPU-hours; embeddings of the build under 0.1 GPU-hour. The yield of
+  overlap-band pairs is the unknown: LA1 expects tens to a few hundred identity pairs at cosine ≥ 0.60 in CelebA-HQ
+  before filters and about half after them, so 100 disjoint matched pairs is plausible, 200 is uncertain.
+
+## M13. Layer misregistration echo: a single-image estimate of "geometry averaged from two shapes" (version 2, rank 4)
+
+**(a) Reason.** A landmark morph warps both photos to the mean of their landmark sets with a piecewise-affine warp.
+At the landmarks the two layers coincide; between landmarks they do not, because each person's sub-landmark
+structure (eyelid crease, iris and limbus inside the eye opening, nostril rim, philtrum, lip outline, eyebrow hair
+direction, ear and jaw shading) sits at a person-specific position that an affine map per triangle cannot bring into
+register. The blend therefore contains each such edge twice, offset by the residual warp field: an "echo" at a few
+pixels. The residual grows with the shape difference between the two sources (TB1's W, 0.869 as an oracle), so its
+magnitude estimates "two different shapes were averaged" from the morph alone.
+- A genuine photo: one layer, no echo (except natural double structures, see c).
+- A warp-only image (R2w, R2w4): one layer warped, no echo. This separates M13 from M4: M4 reads where the landmarks
+  are (mean shape, which R2w4 also has); M13 reads whether two layers disagree between landmarks, which R2w4 does not.
+- A one-photo re-render: one generated layer, no echo.
+- A same-person morph: an echo only from pose, expression and session differences, so smaller on average, but not
+  zero. This is why M13, like W, reads "two shapes", and only the look-alike set (M12) can say whether those shapes
+  belong to two people.
+- Splices: the echo exists inside the hull only; the outer ring is a clean reference in the same image.
+- Latent (GAN, diffusion) morphs decode one coherent layer, so M13 does not cover them; it is a landmark-family
+  mechanism and should be stated as such.
+
+**(b) Evidence.** Ghosting in the eye, nose and mouth regions of landmark morphs as a detection cue: Singh, Venkatesh,
+Ramachandra, https://arxiv.org/abs/2305.03264 (search listing only, **not verified**). Echo detection by the cepstrum
+(a superposition of a signal with a shifted copy gives a cepstral peak at the shift): Bogert, Healy and Tukey, 1963
+(**not verified**, from memory). Our record: TB1's W 0.869 (oracle) and the finding that within same-person pairs the
+TB1 score rises with W (REVIEW_TB1_PREMISE F3); BD1's D separates S4 from S3 at only 0.636, so energy alone is a weak
+proxy for misregistration. I found no morph-detection paper that measures the residual displacement between the two
+layers as such (one search; not exhaustive).
+
+**(c) Shortcuts that could imitate it.** Natural double structures (spectacle frames and their reflections, double
+eyelid creases, hair strands, motion blur from a moving subject); JPEG block grids (8 px periodicity, so offsets that
+are multiples of 8 are excluded and PNG sources only); the splice seam (S0 control); blur from storage, which hides
+echoes (toward genuine: it cannot flag stored genuine photos but can hide stored morphs, as with AS0); the border
+(control rows). Expression difference in same-person pairs inflates their echo: that is a real "two shapes" effect,
+not an artefact, and is why the decisive read is on the look-alike set.
+
+**(d) Cheapest kill test (zero GPU, about 3 CPU-hours), in two steps.**
+1. **Oracle premise.** On the 291 BD1 hosts, the residual misregistration between the two warped halves inside the hull
+   (H_w against B_w for two-person, H_w against S_w for same-person), estimated by phase correlation in small windows
+   (for example 24 px, in memory, no image written; whether dense flow or phase correlation counts as a measurement is
+   the lead's call). Statistic: median residual shift magnitude. Read: two-person vs same-person AUC overall, within
+   W quintiles, within E quintiles, per database. **Kill** if the AUC is ≤ 0.65 overall (the warp already removes the
+   shape difference between landmarks) or ≤ 0.55 within W quintiles while W itself does the work (then M13 adds
+   nothing a landmark reading would not give, and an image-only estimate has nothing to find beyond W).
+2. **Single image.** Local echo strength inside the hull: in small windows of the luminance gradient, the ratio of the
+   strongest secondary autocorrelation or cepstral peak at offsets 2-8 px to the zero-offset peak, aggregated over the
+   eye and mouth windows, divided by the same quantity in the outer ring of the same image. Read: S4 vs S3 within D
+   quintiles; R4 vs R3; controls R0_61 vs R0, R2w4 vs R0, S0 vs R0, border rows vs R0 (all must be ≤ 0.58); a
+   spectacles stratum if the ladder carries such a label (otherwise stated as not controlled). **Kill** if S4 vs S3
+   within D ≤ 0.60, or any control > 0.58. Beside the ADVERSARY floor (the splice shortcut features including the
+   inside/outside sharpness ratio) and Sb's logit.
+
+**(e) GPU-hours.** 0; about 3 CPU-hours for both steps.
+
+**(f) Worth a training arm if** the premise reaches ≥ 0.75 and keeps ≥ 0.60 within W quintiles on FRGC, the single-image
+echo separates S4 from S3 at ≥ 0.65 within D with every control ≤ 0.58, adds ≥ +0.03 over Sb's logit (cross-fitted) on
+≥ 4 of 5 seeds, **and** holds at ≥ 0.65 on the matched look-alike set (M12). Before the look-alike set exists, a pass
+licenses only "the detector can read two superimposed shapes", which is still a statement about construction. The arm:
+an auxiliary residual-displacement target (the oracle residual field, available for every training morph) on the CLIP
+LoRA network, five seeds, about 6 H100-hours.
+
 ---
 
 ## What the strongest recent S-MAD papers claim, and on what evidence
@@ -403,3 +558,6 @@ measures subject similarity, and it does so with a reference image.
 
 - v1, 13 Nov 2026, 19:07 CET (6db5154): first ranked ledger; three test designs (RI1, NE1, TB1).
 - v1.1, 13 Nov 2026, 19:07 CET: clock times corrected; v1 stamps (19:40) were written from an estimate, not from `date`.
+- v2, 13 Nov 2026, 19:58 CET: texture band profile (TB1) closed as falsified and my M2 prediction recorded as contradicted;
+  look-alike matched contrast raised to rank 1 with its smallest decisive size; new entry M13 (layer misregistration
+  echo); RI1 note on the FR-similarity non-overlap.
