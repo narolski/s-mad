@@ -442,3 +442,10 @@ Pre-run check (experiment-reviewer): GO WITH FIXES. Rules added now:
   `--dependency=afterok:<smoke>`. The follow-up pack sha256 `e4b60874…` is pinned in the job script.
 - Status: **on hold.** The dispatcher relayed a lead ruling that drops the item, on the reading that the networks were trained on other GPU
   models. The networks registered here are the WCSS H100 ones (job 6308830). The lead is asked to confirm. Nothing is submitted until then.
+
+## Amendment 6b: reading time of the H100 follow-up re-score (13 Nov 2026, 17:14 CET; before any of its tars exists)
+
+Author ruling (NOTEBOOK, 13 Nov 17:15, verbatim): "For now, assume that we can go over the cutoff date due to WCSS and Athena waiting
+time." Amendment 6 set no cutoff or fetch deadline; none is replaced. Added: the follow-up re-score (WCSS smoke 6310086, production
+6310123) is **read once when all its jobs have ended, latest 15 Nov 18:00; rows arriving later are labelled late**. Checked at 17:14: both
+jobs PENDING, no result folder `results/AD4_fu/` on WCSS. Nothing else changes.
