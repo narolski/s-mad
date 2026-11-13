@@ -21,3 +21,4 @@ networks are not changed and the sealed read is not touched. Current answer: non
 - `date` Fri Nov 13 07:55:10 PM CET 2026: Athena job 3550470 done (19:47:17-19:53:52, exit 0); tar verified, gate byte-identical on 5/5; reader run once (07:55:10-07:56:44 PM); result.md written.
 - Post-result review: needs qualification (experiments/reviews/REVIEW_NE1_20261113.md); result.md corrected, reviewer's post hoc scripts kept in posthoc/.
 - `date` Fri Nov 13 08:30:50-08:57:10 PM CET 2026: NE1b registered (22618b8) and read once; result_ne1b.md (A intermediate, B criteria unreachable; in-domain cost check saturated).
+- NE1b post-result review: needs qualification (experiments/reviews/REVIEW_NE1B_20261113.md); result_ne1b.md corrected; post hoc scripts in posthoc_ne1b/.
