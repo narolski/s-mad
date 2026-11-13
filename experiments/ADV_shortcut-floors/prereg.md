@@ -208,3 +208,51 @@ floors --stage 1 ; floors --stage 2 ; transfer ; table
 
 Requested from the lead before the first floor is computed (task instruction). Result and fixes are recorded below as
 an amendment before any floor is committed.
+
+## Amendment 1 (13 Nov, before any floor is computed): pre-run check fixes, RI1/TB1 floors, relation to RZ1's floor
+
+Pre-run check: experiment-reviewer (Opus), GO WITH FIXES, on 4a0abb0 (findings F1-F10; the lead was told). Applied:
+
+- **F1 (blocker), ladder rows.** `ab1x_eval.csv` holds every ladder rung three times (native, `strength` 61, 112). The
+  ladder selectors now require `strength = ""`, as the arms' readers do (`ab1fm_read.py` asserts 191 test / 100
+  development rows per rung). Corrected counts in section 4: test R4 vs R2w and R4 vs R3, both engines, 191 / 191;
+  development R4 vs R2w, R2w4, R3, R3m, both engines, 100 / 100. The ladder pools of section 5.3 take natives only.
+- **F2 (blocker), GD2 persons.** GD2 (AG1 MIPGAN) rows take their persons from `AG1/data/manifests/ag1.csv`
+  (`pa`, `pb`, matched by the source file name), not from the ladder partner table: 57 person components, as the
+  reviewer counted. GD1's partners match the ladder table (0 mismatches) and are unchanged.
+- **F3, both sides genuine.** `border_vs_cam`, `border_ffhq_vs_ffhq`, `store_photo_fm61_vs_native`,
+  `store_photo_amsl112_vs_native` are **separability ceilings** (how visible the nuisance is to shortcut features),
+  with no "exceeds" rule (`check.py` refuses them). For flag-rate reads (H-x1, RZ1 storage) the comparison is the
+  section 5.3 same-data learner's flag share. Every contrast also prints a **pixel-only floor** without the two
+  file-size values (`F27:png_bytes`, `STORE:png_bytes_per_px`), because the PNG encoder differs between some sides
+  (bordered copies were written by another script); the registered floor stays the full one, the pixel-only one is
+  printed beside it.
+- **F4, E3 gate.** `train_lad_S4_vs_S3` / `_S0` bind only for E2's out-of-fold linear probe. Beside E3's splice-fit
+  gate (an in-sample training AUC) an in-sample gbt AUC on the same rows is printed as context; no rule.
+- **F5, labels.** Every stage-2 floor for the frozen candidate (Sb, already read) is labelled "after the frozen
+  candidate's read; features designed with Sb's landmark_combined value known". The stage-1 arms (SbFM, Sbx, GX1, RZ1,
+  E3, E2) are unread at this amendment.
+- **F6, F7.** Held-out scores written at full precision; `check.exceeds` asserts that the held-out file reproduces the
+  committed floor, rejects non-finite network scores and returns the git blob hashes of the floor files it read.
+- **F8 (limitation, not changed).** The DCT comb statistic uses blocks offset by one pixel from the blockiness grid
+  it follows; this can only weaken the floor. Features are not recomputed.
+- **F9.** A fold with no usable column or one class returns 0.5 instead of failing.
+- **F10.** R2w4 rows (warped toward the partner's geometry) link the partner. `af0_dev_u50_vs_photo` has 26
+  components: context only. E3's fetch deadline is 15 Nov 18:00 (BB2 amendment), not 14 Nov. GX1's secondary analogue is
+  `gd2_R4_vs_R2s1` (R2 on s1 only, 74 / 119); `gd2_R4_vs_R2` (s1 and s2) is printed.
+
+**Added contrasts (lead's message of about 19:20): regional identity (RI1, d4ebfd9) and texture band profile (TB1).**
+On the 291 BD1 hosts (191 test + 100 development, native rows), the same models and rules:
+`ri_R4_vs_R3` (OpenCV R4 vs R3, 291 / 291), `ri_R4_vs_R0` (OpenCV R4 vs camera photo R0, 291 / 291),
+`ri_S4_vs_S3` (291 / 291) with **within-D quintiles** printed by BD1's primary rule (quintile edges of log D over the
+pooled rows; AUC per stratum on the floor's held-out scores; mean weighted by n_pos × n_neg over strata with ≥ 10 of
+each class; D = `D_ac` of `/mnt/t7/smad_next/BD1/d_feats.csv`, with the pure-D reference beside it). The same within-D
+print is added to `dev_S4_vs_S3` and `test_S4_vs_S3`. TB1's premise P is read on half-differences (not images any
+network sees) and gets no adversary floor. These floors are announced to the lead as **pending**; RI1 and TB1 keep
+their own registered 27-statistic floors as binding; the adversary floor is printed beside them (section 6).
+
+**Relation to RZ1's floor (RZ1 3c3470d, M3).** RZ1's binding floor is 0.886 (the in-sample best single statistic at
+full resolution) with input-matched floors printed. The adversary does not duplicate those: its `lcomb` floor is on the
+stored 512 frame, cross-fitted, with all six families; for the 512 arms it is the same input, for the 224 and crop arms
+it is the frame-level companion. It is printed beside RZ1's floors; RZ1's binding rule is unchanged. The same holds for
+BB2 (fs_read fmax 0.886 binding, adversary printed) and GX1 (its own F binding).

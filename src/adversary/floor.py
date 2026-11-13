@@ -126,6 +126,10 @@ def crossfit(X, y, groups, kind, fl=None, names=None):
     chosen = []
     for tr, te in fl:
         Xtr, Xte, keep = _clean(X[tr], X[te])
+        if Xtr.shape[1] == 0 or len(np.unique(y[tr])) < 2:        # pre-run check F9: nothing to fit on
+            s[te] = 0.5
+            chosen.append("none")
+            continue
         if kind == "single":
             s[te], j, sgn = _single(Xtr, y[tr], Xte)
             nm = np.array(names)[keep][j] if names is not None else int(j)

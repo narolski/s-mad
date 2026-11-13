@@ -37,6 +37,8 @@ def exceeds(contrast, scores, n_boot=2000, seed=20261115):
     g = np.array([int(r["component"]) for r in R])
     f = np.array([float(r[model]) for r in R])
     a = np.array([float(scores[i]) for i in ids])
+    assert np.isfinite(a).all(), "non-finite network scores"                       # pre-run check F7
+    assert rep.get("kind", "floor") == "floor", f"{contrast} is a separability ceiling: no exceeds rule"
     rng = np.random.default_rng(seed)
     ug = np.unique(g)
     idx = {k: np.where(g == k)[0] for k in ug}
@@ -46,6 +48,10 @@ def exceeds(contrast, scores, n_boot=2000, seed=20261115):
         if 0 < y[ii].sum() < len(ii):
             d.append(_auc(a[ii], y[ii]) - _auc(f[ii], y[ii]))
     A, F = _auc(a, y), _auc(f, y)
+    assert abs(F - rep["floor"]["auc"]) < 1e-9, "held-out file does not reproduce the committed floor"   # F6
+    import subprocess
+    blob = {p: subprocess.run(["git", "-C", str(FDIR), "hash-object", str(FDIR / p)], capture_output=True,
+                              text=True).stdout.strip() for p in (f"{contrast}.json", f"{contrast}_heldout.csv")}
     lo, hi = float(np.percentile(d, 2.5)), float(np.percentile(d, 97.5))
     return dict(contrast=contrast, floor_model=model, arm_auc=A, floor_auc=F, diff=A - F, diff_lo=lo, diff_hi=hi,
-                exceeds=bool(lo > 0))
+                exceeds=bool(lo > 0), floor_file_blobs=blob)

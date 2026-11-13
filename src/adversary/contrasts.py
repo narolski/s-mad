@@ -24,6 +24,7 @@ ROOTS = [T7 / "PN1/fs_tree/pn1/data", T7 / "AB1/overlay_tree/pn1/data", T7 / "AB
          T7 / "AB1/x/img/pn1", T7 / "AB1/fm/img/pn1/data", T7 / "AB1/fm/img/pn1", T7 / "PR1/pr1_gd_tree/pr1g/data"]
 SPLIT = pathlib.Path("/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/split/ladder_split.csv")
 AF0MAN = T7 / "AF0/manifest.csv"
+AG1MAN = T7 / "AG1/data/manifests/ag1.csv"
 FORBID = ("fst", "valx", "a12sp", "a12-sp", "frll", "mad22", "mordiff", "/dim", "h1_", "casia_web", "fei")
 
 
@@ -47,10 +48,12 @@ def partner():
     if not _P:
         _P["lad"] = {r["pid"]: r["partner_B"] for r in csv.DictReader(open(SPLIT))}
         _P["af0"] = {r["id"]: (r["pid_A"], r["pid_B"]) for r in csv.DictReader(open(AF0MAN)) if r["kind"] == "morph"}
+        _P["ag1"] = {pathlib.Path(r["path"]).name: tuple(x.replace("_", ":", 1) for x in (r["pa"], r["pb"]))
+                     for r in csv.DictReader(open(AG1MAN))}
     return _P
 
 
-TWO = ("R4", "S4", "R4_face", "R4_bg", "S4_face", "S4_bg", "X", "u50", "zero", "halfA", "halfB")
+TWO = ("R4", "S4", "R2w4", "R2w4_bg", "R2w4_face", "R4_face", "R4_bg", "S4_face", "S4_bg", "X", "u50", "zero", "halfA", "halfB")
 
 
 def persons(r):
@@ -63,6 +66,8 @@ def persons(r):
     else:
         ps = [h] if h else [r["id"]]
     P = partner()
+    if fam == "gd2":                               # pre-run check F2: true contributors from the AG1 manifest
+        return tuple(sorted(set(P["ag1"][pathlib.Path(r["src"]).name])))
     if fam == "af0" or r["id"].startswith(("train_", "val_")):
         mid = r["id"].split("_half")[0].split("_fm61")[0].split("_amsl112")[0].split("_s61")[0]
         if mid in P["af0"]:
@@ -148,6 +153,8 @@ def sel(R, **kw):
         for k, v in kw.items():
             if k == "id_suffix":
                 ok = ok and r["id"].endswith(v)
+            elif k == "bd1_hosts":
+                ok = ok and r.get("host") in v
             elif k == "id_plain":
                 ok = ok and not r["id"].endswith(("_fm61", "_amsl112"))
             elif isinstance(v, (tuple, list)):
@@ -159,9 +166,20 @@ def sel(R, **kw):
     return out
 
 
+_B = {}
+
+
+def bd1_hosts():
+    """The 291 BD1 hosts (development + test splice hosts of the AB1 evaluation rows)."""
+    if "bd1" not in _B:
+        _B["bd1"] = frozenset(r["host"] for r in csv.DictReader(open(AB1X))
+                              if r["fam"] == "splice" and r["role"] in ("dev", "test"))
+    return _B["bd1"]
+
+
 def contrast_defs():
     """name -> (manifest key, positive selector, negative selector, note). Selectors are dicts for sel()."""
-    L = dict(fam="ladder")
+    L = dict(fam="ladder", strength="")              # native rows; stored copies carry strength 61 / 112
     S = dict(fam="splice")
     D = {
         # ---- shared: FFHQ landmark_combined (SbFM H-fm1, Sbx guard, GX1 guard, RZ1 detection, BB2/E3 contrast 1, SA1 row 18)
@@ -221,7 +239,9 @@ def contrast_defs():
         # ---- GAN / diffusion development families (SA1 rows 13, 14; GX1 transfer reads)
         "gd1_X_vs_REC": ("GD", dict(fam="gd1", rung="X"), dict(fam="gd1", rung="REC"), "SA1 row 13"),
         "gd1_X_vs_SAME": ("GD", dict(fam="gd1", rung="X"), dict(fam="gd1", rung="SAME"), "SA1 row 13"),
-        "gd2_R4_vs_R2": ("GD", dict(fam="gd2", rung="R4"), dict(fam="gd2", rung="R2"), "SA1 row 14; GX1 secondary"),
+        "gd2_R4_vs_R2": ("GD", dict(fam="gd2", rung="R4"), dict(fam="gd2", rung="R2"), "SA1 row 14 (R2 on s1 and s2)"),
+        "gd2_R4_vs_R2s1": ("GD", dict(fam="gd2", rung="R4"), dict(fam="gd2", rung="R2", id_suffix="__s1"),
+                           "GX1 secondary analogue (R2 on s1)"),
         "gd2_R4_vs_R3": ("GD", dict(fam="gd2", rung="R4"), dict(fam="gd2", rung="R3"), "SA1 row 14; GX1 primary analogue"),
         "gd0_sgw_vs_resmatch": ("GD", dict(fam="gd0", rung="stylegan_w_orig"), dict(fam="gd0", rung="stylegan_w_resmatch"),
                                 "GX1 transfer read"),
@@ -229,6 +249,13 @@ def contrast_defs():
                                  dict(fam="gd0", rung="stylegan_wplus_resmatch"), "GX1 transfer read"),
         "gd0_diffae_vs_resmatch": ("GD", dict(fam="gd0", rung="diffae_orig"), dict(fam="gd0", rung="diffae_resmatch"),
                                    "SA1 row 13 context"),
+        # ---- amendment 1: regional identity (RI1) and texture band profile (TB1), the 291 BD1 hosts (test + dev)
+        "ri_R4_vs_R3": ("AB1X", dict(L, role=("test", "dev"), rung="R4", tool="opencv", bd1_hosts=bd1_hosts()),
+                        dict(L, role=("test", "dev"), rung="R3", tool="opencv", bd1_hosts=bd1_hosts()), "RI1 S1 signal"),
+        "ri_R4_vs_R0": ("AB1X", dict(L, role=("test", "dev"), rung="R4", tool="opencv", bd1_hosts=bd1_hosts()),
+                        dict(L, role=("test", "dev"), rung="R0", bd1_hosts=bd1_hosts()), "RI1 S1 signal"),
+        "ri_S4_vs_S3": ("AB1X", dict(S, role=("test", "dev"), rung="S4"), dict(S, role=("test", "dev"), rung="S3"),
+                        "RI1 S1 and TB1 S (within BD1 D quintiles printed)"),
     }
     return D
 
