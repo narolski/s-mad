@@ -1,6 +1,6 @@
 # Shortcut audit table (SA1): result, version 2 (13 Nov 2026, reviewed; before today's readings)
 
-Status 13 Nov 2026, 08:49 CET (machine clock; earlier "09:30" and "10:10" stamps in these files were estimates and wrong). Update 08:58: G9 and G11 added. Version 2 applies the independent review (results-reviewer, Opus, 13 Nov; 20 corrections, summarised in `README.md` section 2). Compiled from registered, committed results only. **Nothing was scored, computed
+Status 13 Nov 2026, 08:49 CET (machine clock; earlier "09:30" and "10:10" stamps in these files were estimates and wrong). Update 08:58: G9 and G11 added. Update about 09:05: row 15b (retrained ViT-L/14 partner trace, SM1 A14) and AD4 cluster-stack wording. Version 2 applies the independent review (results-reviewer, Opus, 13 Nov; 20 corrections, summarised in `README.md` section 2). Compiled from registered, committed results only. **Nothing was scored, computed
 on images or run for this page.** No file whose name contains `fst`, `valx` or `A12SP` was opened. Numbers that come
 from the 12 Nov benchmark exposure of candidate networks (FRLL, MAD22, H1 reads of the protocol networks;
 `experiments/PN1_protocol-network-first-tests/BENCHMARK_EXPOSURE.md`) are **not** used: those cells say
@@ -58,7 +58,7 @@ when the lead says the readings are in.
 | 12 | Surround blend (whole-frame tools; a real blend, not an artefact) | relies on it | relies on it | reduced in degree, not removed | not measured | not measured | relies on it | relies on it | relies on it | reads the face too |
 | 13 | Diffusion render path (one-photo reconstruction) | not measured | not measured | not measured | not measured | not measured | **used**: morph vs reconstruction 0.48 | **used**: 0.49 | not measured | **used**: 0.40 |
 | 14 | GAN one-person render (MIPGAN) | not measured | not measured | not measured | not measured | not measured | **mostly second photo**: same-person flagged 95.5% | 87.0% | not measured | 100% |
-| 15 | Training-partner trace (SMDD five partners) | mild structure (one person in ≤ 2.9% of morphs; use untested) | same (≤ 2.9%) | same (≤ 2.6%) | same (≤ 2.6%) | same (≤ 1.6%) | 0.43 logit | 0.95 logit | 13.36 logit | n/a (not SMDD) |
+| 15 | Training-partner trace (SMDD five partners) | mild structure (one person in ≤ 2.9% of morphs; use untested) | same (≤ 2.9%) | same (≤ 2.6%) | same (≤ 2.6%) | same (≤ 1.6%) | released net, logit gap 0.43 | released net, logit gap 0.95 (crop) / 0.45 (whole file) | released net, logit gap 13.36 | n/a (not SMDD) |
 | 16 | Expression / capture detail of the FRLL smiling half | not measured (exposure only) | not measured (exposure only) | not measured (exposure only) | not measured (exposure only) | not measured | change < 1.5 pts | **+4.5 pts** with neutral-only genuine | not measured | change < 1.5 pts |
 | 17 | Softness / detail loss | reads missing high frequency (TT1 H-new-1, unreviewed) | mostly softness on R2w vs R4 (2 seeds) | not measured | not measured | not measured | mixed (AR1 softened copies) | more than detail loss (not separated from ghosting) | **detail loss explains** at 61 px | more than detail loss |
 | 18 | Processing cue in the surround of the development set (FFHQ landmark_combined) | below floor | below floor | level with floor; R2 fails on noise_std_border (5 seeds) | pending today (printed R1–R6) | not measured | n/a | n/a | n/a | n/a |
@@ -139,7 +139,7 @@ Path shorthand: **PN1/** = `experiments/PN1_protocol-network-first-tests/`; **TT
 
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
-| 6-A | R2w vs R4 1.000 (both engines) in all 8 tier-1 fits; R2w placed above the own rule 0 of 191 on both seeds (R2w is not in A's training). Caveat (review Q4): "Mostly softness. AD4's morph-free networks, which never saw a blend, reach R4 vs R2w 0.84 to 0.86 on the ladder. One band-power statistic gives 0.888." Stored at 61 px, R2w is placed at 29.8% (s401), which is row 1, not row 6 | 401/402 | development (test ladder) | rev/REVIEW_PN1_TIER1_20261112.md:25, :96-104; PN1/tier1/A_s401.json, A_s402.json (`fixed.own.T_R2w_opencv`) | REVIEW_PN1_TIER1 (AUC); placement unreviewed | reviewed; two seeds only |
+| 6-A | R2w vs R4 1.000 (both engines) in all 8 tier-1 fits; R2w placed above the own rule 0 of 191 on both seeds (R2w is not in A's training). Caveat (review Q4): "Mostly softness. AD4's morph-free networks, which never saw a blend, reach R4 vs R2w 0.84 to 0.86 on the ladder. One band-power statistic gives 0.888." [AD4 wording since 13 Nov: "trained only to flag shrink-and-enlarge copies" replaces "never saw a morph" alone, experiments/AD4/result.md:132] Stored at 61 px, R2w is placed at 29.8% (s401), which is row 1, not row 6 | 401/402 | development (test ladder) | rev/REVIEW_PN1_TIER1_20261112.md:25, :96-104; PN1/tier1/A_s401.json, A_s402.json (`fixed.own.T_R2w_opencv`) | REVIEW_PN1_TIER1 (AUC); placement unreviewed | reviewed; two seeds only |
 | 6-B | R2w is a training negative type of B (in distribution, not a held-out test); R2w vs R4 1.000; placed 0% | 401/402 | development | as 6-A; PN1/prereg.md:36-41 | REVIEW_PN1_TIER1 | reviewed; two seeds only |
 | 6-Sb | R2w is a training negative type; face-blanked R2w vs R4 dev / test 0.991 / 0.995 (401), 0.999 / 0.999 (402); fresh seeds face-blanked test 0.987–1.000 | 401/402; 403–407 | development | PN1/result.md:126-131; PN1/tier_fs/fs.json (`faceblanked_test`) | REVIEW_PN1_BATCH2 (F1, :24-35) for 401/402 | reviewed (401/402); fresh seeds unreviewed |
 | 6-Sp, 6-SbM3 | — | — | — | — | — | not measured |
@@ -233,10 +233,17 @@ attacks.
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
 | 15-A, B, Sb, Sp, SbM3 | Manifest audit G9 (registered, `prereg.md`; `g9_partners.json`, `src/SA1/g9_partners.py`): registered reading "partner structure present" (rule: no contributor in more than 1% of unique morphs). Largest share of unique training morphs that contain one person: A, B, C 2.9% (25 of 852), Bn 3.1% (21 of 674), Sb, Sp, SbV 2.6% (25 of 976), SbM3 1.6% (25 of 1,526); 388 distinct second contributors (SbM3 799); the most repeated persons are AF0 FRGC persons in af0_u50 morphs. For scale, SMDD: 5 second contributors for 15,000 morphs. Whether any arm uses this structure is not tested | — | development (manifests only) | g9_partners.json | — | unreviewed (manifest audit; use not tested) |
-| 15-ViTB | Training partner minus SMDD evaluation partner 0.43 [0.34, 0.53] logit; "near their score ceiling"; "benchmarks contain no training partner, so the trace has no direct effect on them" | one network | development (SMDD audit set) | rev/REVIEW_SM1_20261111.md:27, :106 | REVIEW_SM1 | reviewed |
-| 15-ViTL | 0.95 [0.78, 1.12] logit | one network | development | as above | REVIEW_SM1 | reviewed |
+| 15-ViTB | Released network, logit gap (one network): training partner minus SMDD evaluation partner 0.43 [0.34, 0.53] logit on the crop path (whole file 0.44 [0.37, 0.52], SM1/result.md:214); "near their score ceiling"; "benchmarks contain no training partner, so the trace has no direct effect on them" | one network | development (SMDD audit set) | rev/REVIEW_SM1_20261111.md:27, :106 | REVIEW_SM1 | reviewed |
+| 15-ViTL | Released network, logit gap (one network): 0.95 [0.78, 1.12] logit on the crop path; 0.45 [0.37, 0.55] on whole files (experiments/SM1_smdd-partner-audit-and-rebuild/result.md:215). A within-key AUC for the released networks is being computed by the SM1 owner (pending) | one network | development | as above | REVIEW_SM1 | reviewed |
 | 15-MFN | 13.36 logit | one network | development | as above | REVIEW_SM1 | reviewed |
 | 15-SelfMAD | SelfMAD is not trained on SMDD | — | — | — | — | n/a |
+
+**Row 15b, kept apart from the released networks (reviewer's rule: separate columns, a retrained AUC is never printed beside a released network's logit gap).**
+
+| Network | Retrained, 2 seeds, within-key AUC | Released network, logit gap |
+|---|---|---|
+| MADation-recipe ViT-L/14 (LoRA) retrained on the SMDD release files (SM1 arm a, A14) | "within-key AUC, morphs with SMDD's five training partners over morphs with SMDD evaluation partners (same first contributor, 500 keys), 0.756 [0.746, 0.765], 2 seeds (401: 0.755; 402: 0.756), key bootstrap B = 10,000 (seed variance not included); whole image, no TTA; audit set, not a benchmark." Source: experiments/SM1_smdd-partner-audit-and-rebuild/result.md:654-674 (registration b4cb17b; review applied in 49dbf12; SM1 result.md records "Reviewed (13 Nov, results-reviewer)", but no separate review file for this read is in `experiments/reviews/`) | see 15-ViTL (a different network) |
+| MADation-recipe ViT-B/16 (LoRA) retrained on SMDD (SM1 A13, arm a) | 0.7566 (arm b 0.8168, arm b′ 0.5667), rev/REVIEW_SM1_12FITS_A15_20261112.md:17 | see 15-ViTB (a different network) |
 
 ### Row 16. Expression and capture detail of the FRLL smiling half (genuine class with and without the smiling photos)
 
@@ -253,10 +260,10 @@ attacks.
 | Cell | Number [interval] | Seeds | Data | Source | Review | Status |
 |---|---|---|---|---|---|---|
 | 17-A | Consistent with reading missing high frequency: geometry-matched 112 px camera photos (face-box Laplacian variance 7.3) score 2.26 / 4.91 logits above pack photos (10.7); OLS slope of logit on log variance −0.88 (measurement only, not causal) | 401/402 | development | TT1/result.md:173-178 | — (post-result amendment) | unreviewed; two seeds only |
-| 17-B | "Mostly softness. AD4's morph-free networks, which never saw a blend, reach R4 vs R2w 0.84 to 0.86 on the ladder. One band-power statistic gives 0.888." (said of all 8 tier-1 fits) | 401/402 | development | rev/REVIEW_PN1_TIER1_20261112.md:102 | REVIEW_PN1_TIER1 | reviewed; two seeds only |
+| 17-B | "Mostly softness. AD4's morph-free networks, which never saw a blend, reach R4 vs R2w 0.84 to 0.86 on the ladder. One band-power statistic gives 0.888." [AD4 wording since 13 Nov: "trained only to flag shrink-and-enlarge copies" replaces "never saw a morph" alone, experiments/AD4/result.md:132] (said of all 8 tier-1 fits) | 401/402 | development | rev/REVIEW_PN1_TIER1_20261112.md:102 | REVIEW_PN1_TIER1 | reviewed; two seeds only |
 | 17-Sb, Sp, SbM3 | — | — | — | — | — | not measured |
 | 17-released | Softened warp-only against native two-person morph: MixFaceNet 0.58 / 0.78 ("detail loss explains" at 61 px); ViT-B/16 0.79 / 0.96 ("mixed"); SelfMAD 0.98 / 0.90 and ViT-L/14 0.97 / 0.99 ("more than detail loss"); ViT-L/14's "more than detail loss" "is not separated from ghosting" | one network each | development | experiments/AR1/result.md:30-35; rev/REVIEW_SPLICE_20261111.md:30, :100 | REVIEW_SPLICE | reviewed |
-| 17-note | Morph-free networks trained only on shrink-and-enlarge copies reach 0.0% EER on MorDIFF (AD4): softness alone suffices on some benchmark cells | — | benchmark audit | CM:11; rev/REVIEW_AD4_VITB_20261111.md | REVIEW_AD4_VITB | — |
+| 17-note | Networks trained only to flag shrink-and-enlarge copies of synthetic faces (AD4) reach 0.0% EER on MorDIFF native in all five seeds [0.0, 0.0] (references 37.3 to 60.8%): low error there is not by itself evidence of morph detection. Matching resolution history does not remove the cue on MorDIFF (2.4%) | 5 seeds | benchmark audit | experiments/AD4/result.md:43, :54 (cluster-stack readings, review corrections applied in ad792a0); rev/REVIEW_AD4_VITB_20261111.md | REVIEW_AD4_VITB and the AD4 cluster-stack review (applied ad792a0) | — |
 
 ### Row 18. Processing cue in the surround of the development set (FFHQ landmark_combined)
 
