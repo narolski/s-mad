@@ -263,3 +263,19 @@ its overlap stated. F3 seed counting in the reader. F4 seed-mean decider. F5 sin
 read. F6 volume wording. F7 provenance checks. F8 pins hard-coded in the job files. F9 training-row assertions. F10
 disclosures (section 11); the stale run.sh pin in SE1's README is SE1's to fix (told via the dispatcher). Not taken up:
 SbHS and the random-drop control (improvements 4-5; they need lead approval and about 6 H100-hours each).
+
+## Amendment 1 (`date`: Fri Nov 13 09:36 CET 2026; before any AB1 tar exists or is read; lead's instruction after review `experiments/reviews/REVIEW_PN1_C2P_20261113.md`, findings F7 and Q5)
+
+- The fresh-seed storage test (C2P on seeds 403-407) came out "uninformative" at its platform gate (scored on an L40S,
+  trained on an A100 PCIe), so there is no earlier pass to replicate. R1's labels change from "replicated / not
+  replicated" to **"first test at seeds 408-412: passed / not passed / uninformative"** (C2P "passes" / "fails" /
+  "uninformative"; "inconclusive, no claim" and "not read (too few seeds)" unchanged). The rule itself is unchanged.
+  Question 1 of section 1 reads accordingly: "does contrast 2-prime pass on seeds 408-412 (first test), and does
+  contrast 1 replicate?" R2 (contrast 1) keeps its labels: FS1 contrast 1 was read "replicated" on 5 of 5 seeds.
+- Scoring, confirmed: every AB1 network is scored on all 21,277 rows of `ab1_eval.csv`, including the 1,480 hold-out
+  rows (fam ms1ffhq), by the unchanged `pn1_score.py` inside its own fit job (`run.sh` step after training,
+  `--limit 0`), with TF32 on (`pn1_score.py` lines 45-46), on the H100 and software build of that fit. The reader takes
+  every statistic of a network from that network's single `scores_eval.npz`; no C2P statistic mixes scores from two
+  jobs or platforms. The smoke's rescoring of FS1 Sb s403 is a separate measurement and enters no AB1 read.
+- Reader `src/AB1/ab1_read.py` changed only in the R1 labels; new sha256
+  `aacb11cdab662bb147a228195cdf6955bfa9f3b65656e90ecf9f3179c447e9e2` (replaces the line in `pins.sha256`).

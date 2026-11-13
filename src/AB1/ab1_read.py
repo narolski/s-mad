@@ -248,7 +248,10 @@ def main():
     V["A_control"] = ctrl
     for X in ("Sb", "B"):
         c = c2p_verdict(X)
-        V[f"R1_{X}"] = dict(c2p=c, verdict={"passes": "replicated", "fails": "not replicated"}.get(c["verdict"], c["verdict"]))
+        # amendment 1 (13 Nov, review REVIEW_PN1_C2P_20261113.md F7/Q5): no earlier C2P pass exists, so R1 is a first test
+        V[f"R1_{X}"] = dict(c2p=c, verdict={"passes": "first test at seeds 408-412: passed",
+                                            "fails": "first test at seeds 408-412: not passed",
+                                            "uninformative": "first test at seeds 408-412: uninformative"}.get(c["verdict"], c["verdict"]))
         vals = {zz: {s: nets[(X, s)]["c2p"][zz]["d_mean_att_sd"] for s in SEEDS if ok((X, s))} for zz in SIZES}
         sup = any(sum(1 for v in vals[zz].values() if v <= -0.20) >= 4 for zz in SIZES)
         fal = all(sum(1 for v in vals[zz].values() if v >= -0.10) >= 4 for zz in SIZES)

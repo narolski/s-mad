@@ -48,6 +48,11 @@ splice)? No answer yet. No arm is a method candidate.
 - 09:35 dispatcher relayed the lead's rule: every network is scored on the GPU model and build it was trained on. AB1
   does this by construction (pn1_score.py inside each fit job). The smoke's FS1 Sb s403 rescoring measures the A100 to
   H100 difference and, as registered, decides nothing in AB1 (no AB1 number is compared with an A100 number).
+- 09:36 amendment 1 (prereg): R1 relabelled "first test at seeds 408-412: passed / not passed / uninformative" (the
+  FS1 C2P read was uninformative, review REVIEW_PN1_C2P_20261113.md F7/Q5); reader aacb11cd…. Confirmed for the lead:
+  the 1,480 hold-out rows (ms1ffhq) are scored inside each fit job by pn1_score.py (all 21,277 rows of ab1_eval.csv,
+  limit 0) with TF32 on (pn1_score.py lines 45-46), on the same H100 and build as the fit; every statistic of a network
+  comes from its one scores_eval.npz, so no C2P statistic mixes scores from two jobs or platforms.
 
 ## 3. Data
 
