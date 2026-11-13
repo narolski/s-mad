@@ -290,3 +290,19 @@ Only the reproduction gate (212 eval rows) has been scored so far: median |logit
   fractions of both pools after the own crop (`RS1/rs1_border.csv`) printed beside, since the own crop re-detects the
   face and may cut the border away.
 - 10-SelfMAD: labelled "SelfMAD's own preprocessing (dlib crop), not the SMDD crop script"; same five FRLL families.
+
+## Amendment 7 (13 Nov 2026, about 10:15 CET; POST HOC, after the SA1-cell review; zero GPU)
+
+Lead's request after review H-new-1. Post hoc, descriptive; no verdict word.
+(A) MixFaceNet-MAD release, our frames ('rel', stored A12REL eval scores): per-image black-border share of the 512-px
+eval frames (share of pixels with all three channels 0; a pixel read, nothing written), for FRLL-Morphs orig morphs,
+the 204 FRLL photos (orig) and the E7 (resmatch) pools. Readings: Spearman correlation of logit with border share inside
+each morph family; AUC per family on all morphs and on border-matched morphs (border share <= 0.005, the genuine photos'
+range), with the person bootstrap of the earlier cells (B 2,000, seed 20261111).
+(B) For the released detectors on their own crop path (MADation ViT-B/16, ViT-L/14, MixFaceNet-MAD, both crop
+variants; SelfMAD own preprocessing where pools exist): split of the native -> history-matched EER rise into an
+aligner-path step (raw genuine -> our aligned genuine frame without history) and a storage-history step (aligned native
+-> aligned E7), from the existing pools in `cb1_released_rs1_bpcer.csv` and the SelfMAD pools; the black-frame share of
+every genuine and morph pool after the own crop from `RS1/rs1_border.csv`. If the black share of the history-matched
+genuine pool equals that of the aligned native pool, the black frame contributes nothing to the history step on that path.
+Statement of which existing files allow the split and what would need new scoring.
