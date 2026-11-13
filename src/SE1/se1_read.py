@@ -115,7 +115,9 @@ def load(arm, seed, M, mock):
         ti = t.extractfile(f"{T}/task_info.txt").read().decode(errors="replace")
         env = t.extractfile(f"{T}/env.txt").read().decode(errors="replace").strip()
     L = dict(zip([str(i) for i in z["id"]], z["logit"].astype(float)))
-    Ltr = dict(zip([str(i) for i in zt["id"]], zt["logit"].astype(float)))
+    Ltr = {}                                          # scores_train.npz is keyed by path and carries the row kind
+    for k, v in zip([str(x) for x in zt["kind"]], zt["logit"].astype(float)):
+        Ltr.setdefault(k, []).append(v)
     losses = [float(x) for x in re.findall(r"loss[ =:]+(-?(?:inf|nan)|[-+0-9.eE]+)", log, flags=re.I)]
     fin = bool(losses) and all(math.isfinite(v) for v in losses) and all(math.isfinite(v) for v in L.values())
     full = " steps 6250 limit 0" in " " + ti.replace("\n", " ")
@@ -240,11 +242,7 @@ def main():
                 n[f"auc_S3_vs_S0_{t}"] = auc(L, P[f"S3_{t}"], P[f"S0_{t}"]) if all(i in L for i in P[f"S3_{t}"] + P[f"S0_{t}"]) else None
             n["storage"] = C2P.net_stats(L, natp, natm, pairs, mpairs, boot)
             if Ltr:                                          # printed (section 9): own-rule flags on training rows by kind
-                kinds = {}
-                for r in csv.DictReader(open("/mnt/t7/smad_next/SE1/manifests/train_SE.csv")):
-                    kinds.setdefault(r["kind"], set()).add(r["id"])
-                n["train_rows_flag"] = {k: float(np.mean([Ltr[i] > 0 for i in v if i in Ltr]))
-                                        for k, v in kinds.items() if any(i in Ltr for i in v)}
+                n["train_rows_flag"] = {k: float(np.mean(np.array(v) > 0)) for k, v in Ltr.items()}
             nets[(arm, s)] = n
             raw[(arm, s)] = L
     read = [s for s in SEEDS if all((x, s) in nets for x in ARMS)]
