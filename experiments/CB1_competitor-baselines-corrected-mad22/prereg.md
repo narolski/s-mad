@@ -219,7 +219,7 @@ after the CNN re-score and the A45 arms have finished, one GPU process at a time
 - Stop rule: the step rate is measured in the first ten minutes; if the projected end is after 14 Nov 16:00 the
   coordinator is told before the run continues.
 
-## Amendment 4 (13 Nov 2026, 04:15 CET; after the results review, before any IDistill score exists)
+## Amendment 4 (13 Nov 2026, about 03:58 CET; after the results review, before any IDistill score exists)
 
 - IDistill gate and crop failures. The SMDD release crop script returns no crop for 416 of 1,222 FRLL FaceMorpher morphs
   (and 9 of 1,221 OpenCV). The authors' pipeline evaluates only the crops their script writes (a failed file is simply

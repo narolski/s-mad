@@ -115,13 +115,13 @@ No CB1 score read yet.
   300 epochs about 21.5 h (end about 01:20 on 14 Nov); classifier estimated 2.5-7 h. Coordinator told at 03:50.
 - 03:55. Readings committed (b554c85): `result.md`, `tables_all.md`, `cnn_{es,last,a45}_*.csv/json`, FD-MAD files.
 
-- 03:55-04:30. Results review ("needs qualification"; F1-F8, H-new-1..3) applied: `src/CB1/review_addons.py` ->
+- 03:55-04:03. Results review ("needs qualification"; F1-F8, H-new-1..3) applied: `src/CB1/review_addons.py` ->
   `review_addons/{a12style_vs_cb1.csv,all_seed_readings.csv,auc_native.csv,c2_summary.json}`; result.md rewritten
   (A12-style vs registered EER table; MixFaceNet release vs retrain decomposition; FD-MAD relabelled; paper labels without
   "our retrain does not reproduce"); amendment 4 (IDistill gate on written crops, worst case beside; FD-MAD wording;
   C1 deviation stated). OrthoMAD paper fetched (`/mnt/t7/smad_next/CB1/literature/orthomad.{pdf,txt}`): FRLL-AMSL EER
   14.80; the manuscript's 9.50 is a transcription error (OrthoMAD WebMorph BPCER@APCER20).
-- 04:30. `src/CB1/analyse_idistill.py` written and tested on the smoke tar (runs end to end).
+- 04:03. `src/CB1/analyse_idistill.py` written and tested on the smoke tar (runs end to end).
 
 ## 3. Data
 
