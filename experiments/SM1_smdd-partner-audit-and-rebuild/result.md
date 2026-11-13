@@ -651,6 +651,20 @@ H-new-B, ρ part (Spearman of the flag rate with threshold − source median ove
 cells; −0.719 over 101 cells without the duplicated FRLL photo sources); prediction |ρ| ≥ 0.8: not met, but flag rates
 at the camera threshold are largely set by where the threshold sits on the floor.
 
+## ViT-L/14 LoRA audit (A12 item 10 / H-new-5; rank read A14 registered b4cb17b before the scores were opened; `a14_rank_vitl.json`, `a12_partner_ref_vitl.json`)
+
+Athena job 3547052 (12 Nov 20:19–20:25, A100) scored the 10,055 audit images with SM1L_a_s401 and SM1L_a_s402 (the
+two finished ViT-L/14 fits, arm a); reproduction check max diff 0.0 on 256 stored rows for both; tars sha256-verified
+(fetched 13 Nov). Both fits' logits are bounded (head ‖w‖ about 4.2).
+- **A14 H-new-D (registered decision): supported.** Within-key AUC trained-partner over KE 0.756 [0.746, 0.765] (seeds
+  0.755, 0.756) ≥ 0.70, while trained − KE is 0.045 [0.032, 0.061] logit < 0.2. Own-rule miss with every partner kind
+  ≤ 0.44%.
+- **H-new-5 (registered on 11 Nov): its 1-logit threshold is not reached (0.045)**; its DiD part (against a ViT-L/14 arm
+  c fit) cannot be computed, because no ViT-L/14 arm c fit exists (Athena tasks for c, d, e, f will not start before
+  22 Dec). As A14 states, the threshold cannot be reached on a head bounded near ±4.
+- Reading (audit, 2 seeds): the standard ViT-L/14 recipe trained on the SMDD release files ranks morphs with SMDD's five
+  training partners above morphs with SMDD's evaluation partners (AUC 0.76), as the ViT-B/16 fits do (0.76; b 0.82).
+
 ## ViT-B/16 LoRA, full registered set (A13: 12 fits, arms a, b, b′, c, e, f x seeds 401, 402; `p3_lora_vitb12.json`, `a12_rank_vitb12.json`, `a12_fixed_vitb12.json`)
 
 One rented RTX 6000 Ada; all 12 tars sha256-verified (`/mnt/t7/smad_next/SM1/results_rented/`). Our frames, first-test

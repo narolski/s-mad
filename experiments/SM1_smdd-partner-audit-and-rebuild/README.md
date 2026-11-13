@@ -355,6 +355,10 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
   135bb03, 07:31:32). Extended-floor addendum (`a19_floor.json`). Reviewed (`REVIEW_SM1_A19_20261113.md`, sound with
   qualifications; rewrites applied). No rental for H-N1 (lead).
 
+- 13 Nov ~09:00 Athena 3547052 (ViT-L/14 audit scoring, a s401 / s402) had completed on 12 Nov 20:25 (my earlier
+  "pending" reading was a stale Slurm answer; the dispatcher found it); a duplicate plgrid-now command was withdrawn.
+  Tars fetched and verified; A14 rank read: AUC 0.756 (supported), trained − KE 0.045.
+
 ## 3. Data
 
 Inputs (read only):
