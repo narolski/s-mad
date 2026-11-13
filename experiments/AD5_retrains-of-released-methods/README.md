@@ -364,6 +364,9 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
   the packs at run time, the queued smokes 6310087 / 6310088 and the held arrays pick up the fix without resubmission;
   asked the dispatcher to release the arrays. SelfMAD is not affected: torch 2.3.1 cu121 supports sm_90. Registered as
   prereg amendment 6. The Athena A100 runs (MixFaceNet-MAD 401, descriptive only) used the cu117 build.
+- 13 Nov 14:17. The dispatcher released arrays 6310124, 6310125 and 6310126 (a release resets queue age, so they sort
+  behind the smokes). AD5 is last in the lead's order (SE1, BB2, MS1, CB1, AD4, AD5), at Nice 400-700. Expected start:
+  unknown. The smokes 6310087 / 6310088 and the SelfMAD test 6310089 stay queued and build the cu118 environment at start.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
