@@ -1,0 +1,229 @@
+{
+ "SbZ": {
+  "unique": 4649,
+  "rows_before_balance": 5535,
+  "rows": 7868,
+  "repeated_for_volume": 886,
+  "unique_by_kind": {
+   "af0_half": 1456,
+   "af0_half61": 363,
+   "af0_photo": 518,
+   "af0_photo61": 254,
+   "af0_u50": 728,
+   "af0_u5061": 366,
+   "lad_R0": 156,
+   "lad_R4": 124,
+   "lad_S0": 156,
+   "lad_S3": 156,
+   "lad_S4": 124,
+   "lad_half": 248
+  },
+  "rows_by_kind": {
+   "af0_half": 1720,
+   "af0_half61": 438,
+   "af0_photo": 622,
+   "af0_photo61": 299,
+   "af0_u50": 2430,
+   "af0_u5061": 737,
+   "lad_R0": 186,
+   "lad_R4": 375,
+   "lad_S0": 185,
+   "lad_S3": 185,
+   "lad_S4": 392,
+   "lad_half": 299
+  },
+  "strata": {
+   "feret|native": {
+    "unique_neg": 1483,
+    "unique_att": 445,
+    "rows": 2966
+   },
+   "feret|s61": {
+    "unique_neg": 461,
+    "unique_att": 194,
+    "rows": 922
+   },
+   "frgc|native": {
+    "unique_neg": 1714,
+    "unique_att": 718,
+    "rows": 3428
+   },
+   "frgc|s61": {
+    "unique_neg": 276,
+    "unique_att": 244,
+    "rows": 552
+   }
+  },
+  "sha256": "9b4295546cf90bfb66678d3feb1020f74507343e7a996dff9a7165b4466164a9"
+ },
+ "SbH": {
+  "unique": 3831,
+  "rows_before_balance": 5535,
+  "rows": 7200,
+  "repeated_for_volume": 1704,
+  "unique_by_kind": {
+   "af0_half61": 363,
+   "af0_photo": 518,
+   "af0_photo61": 254,
+   "af0_u50": 728,
+   "af0_u5061": 366,
+   "af0_zero": 730,
+   "lad_R0": 156,
+   "lad_R2w": 156,
+   "lad_R4": 124,
+   "lad_S0": 156,
+   "lad_S3": 156,
+   "lad_S4": 124
+  },
+  "rows_by_kind": {
+   "af0_half61": 535,
+   "af0_photo": 744,
+   "af0_photo61": 373,
+   "af0_u50": 2060,
+   "af0_u5061": 908,
+   "af0_zero": 1050,
+   "lad_R0": 223,
+   "lad_R2w": 234,
+   "lad_R4": 321,
+   "lad_S0": 222,
+   "lad_S3": 219,
+   "lad_S4": 311
+  },
+  "strata": {
+   "feret|native": {
+    "unique_neg": 1305,
+    "unique_att": 537,
+    "rows": 2610
+   },
+   "feret|s61": {
+    "unique_neg": 578,
+    "unique_att": 239,
+    "rows": 1156
+   },
+   "frgc|native": {
+    "unique_neg": 1387,
+    "unique_att": 869,
+    "rows": 2774
+   },
+   "frgc|s61": {
+    "unique_neg": 330,
+    "unique_att": 290,
+    "rows": 660
+   }
+  },
+  "sha256": "b8e17cd283510c66c13444d704cf59e8d8c1725b742ccf2b8b8b0563984bdcc7"
+ },
+ "SbS": {
+  "unique": 4552,
+  "rows_before_balance": 5535,
+  "rows": 8692,
+  "repeated_for_volume": 983,
+  "unique_by_kind": {
+   "af0_half": 1456,
+   "af0_photo": 518,
+   "af0_u50": 728,
+   "af0_zero": 730,
+   "lad_R0": 156,
+   "lad_R2w": 156,
+   "lad_R4": 124,
+   "lad_S0": 156,
+   "lad_S3": 156,
+   "lad_S4": 124,
+   "lad_half": 248
+  },
+  "rows_by_kind": {
+   "af0_half": 1771,
+   "af0_photo": 641,
+   "af0_u50": 3303,
+   "af0_zero": 880,
+   "lad_R0": 191,
+   "lad_R2w": 189,
+   "lad_R4": 540,
+   "lad_S0": 182,
+   "lad_S3": 187,
+   "lad_S4": 503,
+   "lad_half": 305
+  },
+  "strata": {
+   "feret|native": {
+    "unique_neg": 1956,
+    "unique_att": 455,
+    "rows": 3912
+   },
+   "frgc|native": {
+    "unique_neg": 2390,
+    "unique_att": 734,
+    "rows": 4780
+   }
+  },
+  "sha256": "9c7e43ff30988897c1ba7f853aa533a6c6e4985173c567908720a6df268ac963"
+ },
+ "AS": {
+  "unique": 2146,
+  "rows_before_balance": 2146,
+  "rows": 2850,
+  "repeated_for_volume": 0,
+  "unique_by_kind": {
+   "af0_photo": 518,
+   "af0_photo61": 254,
+   "af0_u50": 728,
+   "af0_u5061": 366,
+   "lad_R0": 156,
+   "lad_R4": 124
+  },
+  "rows_by_kind": {
+   "af0_photo": 607,
+   "af0_photo61": 429,
+   "af0_u50": 864,
+   "af0_u5061": 429,
+   "lad_R0": 389,
+   "lad_R4": 132
+  },
+  "strata": {
+   "feret|native": {
+    "unique_neg": 494,
+    "unique_att": 350,
+    "rows": 988
+   },
+   "feret|s61": {
+    "unique_neg": 229,
+    "unique_att": 166,
+    "rows": 458
+   },
+   "frgc|native": {
+    "unique_neg": 180,
+    "unique_att": 502,
+    "rows": 1004
+   },
+   "frgc|s61": {
+    "unique_neg": 25,
+    "unique_att": 200,
+    "rows": 400
+   }
+  },
+  "sha256": "b7e9f3a33bcc547fcaef32ae6fb54ec97d8c9528e00c15660464a298026a83cd"
+ },
+ "Sp": {
+  "copied_from": "/mnt/t7/smad_next/PN1/manifests_sp/train_Sp.csv",
+  "sha256": "cf386dc7aaaee5723e64010cadd742c21fed0236d34e52e65daabba33a5e6848"
+ },
+ "eval": {
+  "rows": 21277,
+  "fs1_rows": 19797,
+  "ms1ffhq_rows": 1480,
+  "by_fam": {
+   "af0": 1339,
+   "ladder": 6093,
+   "splice": 4365,
+   "ffhq": 5000,
+   "ffhq_lcomb": 3000,
+   "ms1ffhq": 1480
+  },
+  "sha256": "93a5ba234f91e57951829c5536fabbe0f792ee4ad0a293f074aaca72f7465bd5"
+ },
+ "overlay": {
+  "sha256": "171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149",
+  "bytes": 563363840,
+  "files": 1486
+ }
+}
