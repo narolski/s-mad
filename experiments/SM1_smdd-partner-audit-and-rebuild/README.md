@@ -349,6 +349,12 @@ the AR1 ladder and halves (FRGC / colorFERET / FRLL-derived, our development mat
   a s401, i.e. the H100 / torch 2.11 platform missed the 2e-3 tolerance on that fit). Per D1 that copy is not the
   registered one and its scores are never read (only file names were listed).
 
+- 13 Nov 06:34:59 A19 registered (71a08f6): H-N4 falsified (e 0.248 Laplacian-stratified); H-N1 ranks only on the
+  DGX CPU (check missed: 0.012 / 0.008 / 0.012; rank agreement 0.99999; registered reading not performed, foreseeably
+  undecided after the reviewer's platform-sensitivity check); H-N2 undecided (+0.021 [−0.191, +0.272]; CPU deviation
+  135bb03, 07:31:32). Extended-floor addendum (`a19_floor.json`). Reviewed (`REVIEW_SM1_A19_20261113.md`, sound with
+  qualifications; rewrites applied). No rental for H-N1 (lead).
+
 ## 3. Data
 
 Inputs (read only):

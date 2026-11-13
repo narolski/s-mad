@@ -790,9 +790,10 @@ generator not compared at equal data (arm R dropped).
 cycles).** Cross-fit on shard-6 cycles: floor F 0.879, F + network ΔAUC +0.088 (reproduces the full-test effect);
 F + band cosines + low-pass: floor 0.986, ΔAUC −0.006 [−0.018, +0.005] (3-seed −0.003); + semantic-code cosine: floor
 0.985, ΔAUC −0.005 [−0.015, +0.007]. Extended floor fit on training shards, applied to shard 6, then combined with the
-network logit (cross-fit on shard-6 cycles): shards 2–5 (535 rows) floor 0.992, ΔAUC −0.005 [−0.010, +0.000]; with the
+network logit (cross-fit on shard-6 cycles): shards 2–5 (535 rows) floor 0.992, ΔAUC −0.005 [−0.010, +0.0004]; with the
 shard 0–1 codes fetched from Athena (803 rows) floor 0.995, ΔAUC −0.004 [−0.010, +0.004] (3-seed −0.002). Adding shards
-0–1 changes nothing material: the floor rises 0.992 → 0.995 and the increment stays at about zero.
+0–1 changes nothing material: the floor rises 0.992 → 0.995 and the increment stays at about zero. The noise-map
+floor alone scores X vs SAME better than the network (0.995 against 0.983); floor plus network gives 0.988.
 
 **A16 (H-n1): saved SMDD-trained ViT-B/16 a, e, f on the DG1 rungs (`a16_read.json`).** 2-seed means, host bootstrap.
 
@@ -807,29 +808,39 @@ shard 0–1 codes fetched from Athena (803 rows) floor 0.995, ΔAUC −0.004 [�
 Registered reading (arm a): **undecided** (FRESH1 and NOISES over REC are not ≥ 0.70, nor both ≤ 0.55; SEMX over SEMS
 0.60 is not ≥ 0.70). Not predicted: the fresh-noise renders score below the one-person reconstruction for every fit
 (a 0.34, e 0.24, f 0.29), as do e's and f's noise-only renders (0.31, 0.36; a 0.56, seeds 0.50 / 0.61). The
-reconstruction is the smoothest rung (median face-box Laplacian 87.5 against 103 and 128), consistent with the heads
-reading smoothness as morph-like (partial explanation; A19 H-N4 below tests it). The host-bootstrap intervals ignore
+reconstruction is the smoothest rung (median face-box Laplacian 87.5 against 103 and 128), but holding that sharpness
+equal does not remove the ordering (A19 H-N4, falsified); the cause is open. The host-bootstrap intervals ignore
 seed variance (NOISES over REC seeds 0.50 / 0.61). The mix-type contrasts (NOISEX over NOISES, SEMX over SEMS) sit at
 0.55–0.60 for every arm.
 
-## A19 follow-ups (registered 71a08f6 before computing; development data only; CPU)
+## A19 follow-ups (registered 71a08f6, 13 Nov 06:34:59, before computing; development data only; CPU)
 
 - **H-N4 (A16 smoothness; `a19_hn4.json`): falsified.** FRESH1_20 over REC20 stratified by face-box Laplacian quintiles,
-  2-seed means: e 0.248 [0.226, 0.268] (raw 0.241), a 0.357 (raw 0.337), f 0.299 (raw 0.289). Holding sharpness equal
-  barely moves the below-reconstruction ranking, so smoothness does not explain it.
+  2-seed means: e 0.248 [0.226, 0.268] (raw 0.241), a 0.357 (raw 0.337), f 0.299 (raw 0.289). Holding face-box Laplacian
+  sharpness equal (quintiles) barely moves the ranking (e 0.241 → 0.248), so this sharpness statistic does not explain
+  why the reconstruction scores above the fresh-noise renders; other detail measures (PNG size, high-frequency energy)
+  are not tested.
 - **H-N1 (noise path; `a19_rungs.json`): no registered verdict — platform not equivalent, ranks only.** On the DGX CPU
   (torch 2.12) the three A18 fits miss the registered reproduction check on their 401 stored test rows (max diff 0.012,
   0.008, 0.012 > 2e-3), as anticipated; rank agreement with the stored rows 0.99999 for every fit. Descriptive AUCs
   (2-seed mean, host bootstrap; seeds 401 / 402 / 403): NOISEX20 over NOISES20 0.920 [0.883, 0.952] (0.919 / 0.921 /
   0.946); SEMX20 over SEMS20 0.738 [0.686, 0.790] (0.752 / 0.724 / 0.748); FRESH1_20 over REC20 0.986; NOISES20 over
   REC20 0.816; SEMS20 over REC20 0.930. These descriptive numbers sit in neither registered branch (supported needs
-  SEMX over SEMS ≤ 0.70); the registered reading waits for the RTX 6000 Ada (same script, about 0.1 GPU-h).
+  SEMX over SEMS ≤ 0.70). Post hoc, platform sensitivity (reviewer): on the 401 check rows the test AUCs agree to 1e-4,
+  and perturbing the rung scores by the observed differences moves SEMX over SEMS by at most 0.008, so the registered
+  branch cannot be reached by the platform change (needs −0.038 or +0.11). **Registered H-N1 reading not performed;
+  foreseeably undecided.** The host bootstrap ignores seed variance (NOISES over REC seeds 0.885 / 0.747 / 0.885
+  against the interval [0.774, 0.854]). Descriptively, noise-only mixes separate better than semantic-only mixes (0.92
+  against 0.74) although semantic-only mixes move further from the host's identity (host cosine 0.578 against 0.744,
+  DG1 README), which argues against an identity-dilution reading; the semantic path still carries some signal.
 - **H-N2 (identity in the output; `a19_hn2id.json`; detector and glint on CPU, deviation note): undecided.** glintr100
   cosine of each test X20 render to its partner's photo median 0.606 (to its host's photo 0.608; faces found 133 of
   133). Partial Spearman ρ of the A18 logit (2-seed mean) with render-to-partner cosine given the extended floor
   (shard 6, 66 rows): +0.021 [−0.191, +0.272] — at the falsified side of the point threshold (≤ 0.10) but the upper bound
-  (0.27) is not below 0.25. On all 133 X20 rows given the registered floor F: −0.147 [−0.312, +0.031]. No sign that the
-  network's score rises with how much of the partner the render carries.
+  (0.27) is not below 0.25. On all 133 X20 rows given the registered floor F: −0.147 [−0.312, +0.031]. No sign that the score rises
+  with render-to-partner similarity; the test had little power (66 rows, interval width 0.46), its floor contains the
+  noise-map similarity that in DiffAE also carries identity, and with look-alike partners the expected sign is not
+  fixed. The bootstrap keeps ranks and residuals fixed, so its interval is conditional.
 
 ## A12 items 11 and 13 (post hoc; Athena features 3546033; our frames, first-test data, arms fixed in advance)
 

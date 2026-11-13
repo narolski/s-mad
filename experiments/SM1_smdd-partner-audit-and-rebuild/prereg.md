@@ -603,7 +603,7 @@ fits (`hn2fresh`). (Executed in the reverse order after the upload slowed: A18 f
 verified partial result. The rented copies are the registered ones; the WCSS jobs stay queued until those are
 verified, are then cancelled, and any WCSS output is never read.
 
-## Amendment A19: follow-ups of the A16 / A18 review (13 Nov ~08:00; registered before computing; development data only)
+## Amendment A19: follow-ups of the A16 / A18 review (13 Nov 06:34:59, commit 71a08f6; registered before computing; development data only)
 
 After `experiments/reviews/REVIEW_SM1_A16_A18_20261113.md`. CPU only on the DGX (OMP 2, nice 10; its GPU is used by
 another owner until 14 Nov morning).
@@ -625,7 +625,7 @@ another owner until 14 Nov morning).
   code cosine; ranks residualised by least squares), partner-cycle bootstrap B = 10,000. Falsified if ρ ≤ 0.10 with
   the upper bound < 0.25; supported if ρ ≥ 0.25 with the lower bound > 0.10; otherwise undecided. Also on all 133 X20
   rows given F (descriptive).
-  Deviation note (13 Nov ~08:30, before any H-N2 number): the AR1 route's detector (prep_eval.kps → gpu_face_app) and
+  Deviation note (13 Nov 07:31:32, commit 135bb03, before any H-N2 number): the AR1 route's detector (prep_eval.kps → gpu_face_app) and
   the glint recognition network run through onnx2torch on CUDA; the DGX GPU is occupied, so both are run on the CPU
   (same weights and code, the TorchSession device forced to "cpu"); small numerical differences from GPU runs are
   possible; the read uses ranks.
@@ -635,6 +635,31 @@ another owner until 14 Nov morning).
 - Post hoc addendum (not registered, labelled so): the reviewer's extended-floor read of A18, recomputed on shard 6
   (cross-fit on shard-6 partner cycles), and a variant whose extended floor is fit on the training shards 0–5 (codes
   of shards 0–1 fetched from Athena) and combined with the network logit cross-fit on shard 6.
+
+## Amendment A21: H-A, H-B, H-C, H-D after the A19 review (13 Nov; registered before any of them is computed; zero GPU; development data only)
+
+After `experiments/reviews/REVIEW_SM1_A19_20261113.md` (commit f3b637d). DGX CPU (OMP 2, nice 10). Face box = FZ2's
+`BOX` (rows 70–220, columns 64–192 of the 256-px render). Bootstrap units as stated; seeds 401, 402 (2-seed means).
+- **H-A (detail account of A16).** From the A16 scores of arm e: FRESH1_20 over REC20 stratified by quintiles of (i) PNG
+  size (`png_bytes`) and (ii) face-box high-frequency energy (share of the grey face box's FFT power at radius > 0.5
+  Nyquist), pooled over FRESH1_20 + REC20, weights n x n, host bootstrap. Supported if ≥ 0.45 under either; falsified if
+  ≤ 0.40 under both; otherwise undecided. Arms a and f reported.
+- **H-B (pair-dissimilarity sign; confirmation test — the raw ρ −0.10 is already known post hoc).** Within the 133 test
+  X20 rows, partial Spearman ρ of the A18 logit (2-seed mean, stored rented scores) with contributor dissimilarity
+  (1 − cos_HB of the AR1 pool), given the registered floor F; partner-cycle bootstrap B = 10,000. Two-identity reading
+  predicts ρ ≥ +0.20; falsified (no identity reading) if ρ ≤ 0.05 with the upper bound < 0.20; otherwise undecided. On
+  shard 6 also given F + c0–c3 (noise-path reading predicts |ρ| < 0.10), descriptive.
+- **H-C (departure from the reconstruction).** Within the test SEMS20 rows and, separately, the test NOISES20 rows, partial
+  Spearman ρ of the A18 score (the A19 CPU scores; ranks only, platform not equivalent, rank agreement 0.99999) with the
+  face-box mean squared pixel difference from the same host's REC20, given the image statistics (face-box Laplacian, PNG
+  size, asymmetry, d); host bootstrap. Supported if ρ ≥ 0.30 in both; falsified if ≤ 0.10 in both; otherwise undecided.
+- **H-D (floor reproduces the rung ranking).** The extended floor fit on shards 0–5 X20 vs SAME20 (A19 addendum: F +
+  band cosines + low-pass + semantic-code cosine) applied to the shard-6 rungs (pair features of the same source pair;
+  image statistics of the rung image) gives NOISEX20 over NOISES20 and SEMX20 over SEMS20; compared with the A18
+  network's AUCs on the same shard-6 rows (A19 CPU scores, ranks only). Supported if both differ by ≤ 0.05; falsified if
+  either differs by > 0.10; otherwise undecided. Runs only if the rung pairs' noise codes exist for shard 6 (they are the
+  host / partner source codes, so they do).
+- Script `src/SM1/a21_read.py`; readings sent to the results reviewer after computing.
 
 ## DRAFT A20 (for the author's decision, not registered): protocol arm with render-matched diffusion controls
 
