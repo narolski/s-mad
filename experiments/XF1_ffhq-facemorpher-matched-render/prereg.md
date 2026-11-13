@@ -84,7 +84,7 @@ Limitations, stated in every report:
 
 ---
 
-## Revision b (DRAFT, not binding; `date`: Fri Nov 13 22:25 CET; lead's order after DATA built D12b)
+## Revision b (binding as amended by revision b2; drafted `date`: Fri Nov 13 22:25 CET; lead's order after DATA built D12b)
 This revision replaces sections 2 to 6 above. The original draft (sections 1 to 7) is kept for the record; it is on hold per `experiments/reviews/PRERUN_XF1_20261113.md`, finding F1. Nothing is uploaded or scored.
 
 **Label (F5).** "Post-freeze development diagnostic, registered after the sealed read. It cannot change the frozen Sb recipe, its seeds or any headline claim, and it is reported in diagnostics only." The measure was proposed by the strategy review at 93f4210 (20:40:43), before the sealed read. It is registered after the MAD22 result exists, and `experiments/FINAL_sealed-benchmark-read/` has not been opened.
@@ -137,7 +137,7 @@ This revision replaces sections 2 to 6 above. The original draft (sections 1 to 
 - **Manifest:** `blank/xf1b_face_manifest.csv` (fe5333e3…), with input, tem and output sha256 per row; `blank/SHA256SUMS` (b7d79c95…).
 - **Row list re-pinned with both forms:** `/mnt/t7/smad_next/XF1/xf1b_rows.csv`, 1,495 rows (whole 897 + face 598), sha256 **4adcf914fba651f3b1b1ccfc5ea4b3e03155357aa5c84804180513da5925b271**. The previous whole-frame file was renamed to `.bak-20261113222636`.
 
-## Revision b2 (DRAFT, not binding; `date`: Fri Nov 13 22:45 CET; fixes of the second pre-run check, `experiments/reviews/PRERUN_XF1_B_20261113.md` (44276e5), and the lead's answers)
+## Revision b2 (BINDING from this commit; drafted `date`: Fri Nov 13 22:45 CET; fixes of the second pre-run check, `experiments/reviews/PRERUN_XF1_B_20261113.md` (44276e5), and the lead's answers)
 This revision supersedes the "Reads" and "Predictions" paragraphs of revision b. Nothing is uploaded or scored.
 
 **Label.** Post-freeze development diagnostic, registered after the sealed read. It cannot change the frozen Sb recipe, its seeds or any headline claim, and it is reported in diagnostics only.
@@ -173,7 +173,7 @@ This revision supersedes the "Reads" and "Predictions" paragraphs of revision b.
 - **Licences per arm:**
   - (a) Interval containing 0.50 or below it: "this blend is not what the networks flag".
   - (b) Lower bound above 0.50 but not (c): "consistent with blending and noise averaging; no evidence beyond low-level statistics".
-  - (c) The network exceeds its own training list's same-data learner, using gbt (the gate's model). "Exceeds" means the block-bootstrap 2.5% bound of AUC_net − AUC_learner is > 0. It must hold on ≥ 4 of 5 seeds, and then the licence reads "beyond hand-made statistics trained on the same list".
+  - (c) The network exceeds its own training list's same-data learners, against both its logreg and gbt learners (the gate's rule); both are printed. "Exceeds" means the block-bootstrap 2.5% bound of AUC_net − AUC_learner is > 0. It must hold on ≥ 4 of 5 seeds, and then the licence reads "beyond hand-made statistics trained on the same list".
   - **No outcome licenses "detects identity mixing"**: there is no same-person blend control.
 - **Adversary comparisons:** made against `experiments/ADV_shortcut-floors/floors/xf1b_rows_scores.csv` (stage-14 pins) using `block`. `check.exceeds` has no xf1b contrast. The reader asserts the committed learner and floor AUCs (learner_Sb gbt face 0.8591, all-cue gbt face 0.9166, file single face 0.6662). Every source is printed beside each network in both forms.
 - **Printed strata:** terciles of the exactly-one-black share, |IED gap|, halo-ring share and cos_HB. Own-rule flags (logit > 0) on H, W and FM(H,B) are printed.
@@ -195,3 +195,11 @@ This revision supersedes the "Reads" and "Predictions" paragraphs of revision b.
 - "ceilB": "ceiling, not informative" for Sb − B;
 - "sbgain": "present" and licence (b);
 - "gatefail": B 404 and 405 fail, so Sb − B is "not read" and B is "below 0.50 (reversed)".
+
+**Code re-check fixes** (`experiments/reviews/PRERUN_XF1_B2_CODE_20261113.md`, verdict GO; `date`: Fri Nov 13 22:55 CET):
+1. **Licence (c)** requires beating both the logreg and the gbt learner of the arm's own list (lead's decision). The reader prints both (`exceeds_own_learners_face_each`). xf1_read.py is now **ab130331d187ead5…**.
+2. **Real-path test.** The reader was run once on a synthetic `XF1_scores.tar` in rescore format, through the real loading branch via `--tar`: 15 networks, A s404 and B s406 failing the gate.
+   - Result: 13 networks gate-passed; Sb − B and Sb − A read on 4 seeds; A and B on 4 seeds each.
+   - The synthetic files were deleted afterwards.
+   - Licence (c) is covered by the "ceiling" mock: both learners beaten on every network.
+3. **Binding.** Revision b as amended by b2 is binding from this commit. Its hash goes in the queue file header.

@@ -15,8 +15,8 @@ Rules (face-only):
   floor: an arm whose 95% interval contains 0.50: "does not separate blend from warp".
   licences per arm: (a) interval contains 0.50 or lies below it: "this blend is not what the networks flag"; (b) lower
   bound > 0.50 and not (c): "consistent with blending and noise averaging; no evidence beyond low-level statistics";
-  (c) the network exceeds its own training list's same-data learner (gbt, the gate's model) on the block bootstrap
-  (2.5% bound of AUC_net - AUC_learner > 0) on >= 4 of 5 seeds: "beyond hand-made statistics trained on the same list".
+  (c) the network exceeds BOTH same-data learners of its own training list (logreg and gbt, the gate's rule) on the
+  block bootstrap (2.5% bound of AUC_net - AUC_learner > 0 for each) on >= 4 of 5 seeds: "beyond hand-made statistics trained on the same list".
   No outcome licenses "detects identity mixing".
 Printed only: whole-frame form (surround-dominated), whole-minus-face per arm (blanking-shift control), terciles of
 exactly-one-black share, |IED gap|, halo-ring share and cos_HB, own-rule flag rates (logit > 0) on H, W, FM(H,B), every
@@ -64,6 +64,7 @@ def ci(v):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--out", required=True)
+    ap.add_argument("--tar", default=None, help="synthetic tar for the real-path test only")
     ap.add_argument("--mock", choices=("random", "ceiling", "ceilB", "sbgain", "gatefail"), default=None)
     a = ap.parse_args()
     for p, h in PINS.items():
@@ -97,8 +98,9 @@ def main():
                 shift = 6.0 if a.mock == "ceiling" or (a.mock == "ceilB" and arm == "B") else 0.5 if (a.mock == "sbgain" and arm == "Sb") else 0.0
                 L[n] = {r["id"]: float(rr.normal()) + (shift if r["klass"] == "FMHB" else 0.0) for r in rows}
     else:
-        want = (TAR.parent / "XF1_scores.tar.sha256").read_text().split()[0]; assert sha(TAR) == want
-        with tarfile.open(TAR) as tf:
+        tarp = pathlib.Path(a.tar) if a.tar else TAR
+        want = (tarp.parent / "XF1_scores.tar.sha256").read_text().split()[0]; assert sha(tarp) == want
+        with tarfile.open(tarp) as tf:
             for arm in ARMS:
                 for s in SEEDS:
                     n = f"PN1_{arm}_s{s}"
@@ -117,7 +119,7 @@ def main():
     def stat(sc, form, hs):
         return auc(np.array([sc[rid[("FMHB", form, h)]] for h in hs]), np.array([sc[rid[("WARP", form, h)]] for h in hs]))
 
-    out = dict(mock=a.mock, label="post-freeze development diagnostic, registered after the sealed read",
+    out = dict(mock=a.mock, tar=None if a.mock else (a.tar or str(TAR)), label="post-freeze development diagnostic, registered after the sealed read",
                n_hosts=len(hosts), n_blocks=len(ub), n_components=len(uc), gate={n: gate[n] for n in sorted(gate)}, gate_passed=sorted(L))
     # adversary source AUCs (check against the committed json values)
     adv = {f: {k: stat(v, f, hosts) for k, v in src[f].items()} for f in FORMS}
@@ -134,13 +136,15 @@ def main():
     per = {}
     for n in sorted(L):
         v = {k: np.array([L[n][rid[k + (h,)]] for h in hosts]) for k in (("H", "whole"), ("WARP", "whole"), ("FMHB", "whole"), ("WARP", "face"), ("FMHB", "face"))}
-        own = f"learner_{n.split('_')[1]}_gbt"
+        arm_ = n.split('_')[1]
+        own = {m: f"learner_{arm_}_{m}" for m in ("logreg", "gbt")}
+        own_ex = {m: bool(ci(boot[(n, "face")] - sboot[(k, "face")])[0] > 0) for m, k in own.items()}
         per[n] = dict(auc={f: obs[(n, f)] for f in FORMS}, whole_minus_face=obs[(n, "whole")] - obs[(n, "face")],
                       flags={"_".join(k): float((x > 0).mean()) for k, x in v.items()},
                       median_logit={"_".join(k): float(np.median(x)) for k, x in v.items()},
                       vs_adversary={f: {k: dict(diff=obs[(n, f)] - adv[f][k], ci=ci(boot[(n, f)] - sboot[(k, f)]),
                                                exceeds=bool(ci(boot[(n, f)] - sboot[(k, f)])[0] > 0)) for k in src[f]} for f in FORMS},
-                      own_learner=own, exceeds_own_learner_face=bool(ci(boot[(n, "face")] - sboot[(own, "face")])[0] > 0))
+                      own_learners=own, exceeds_own_learners_face_each=own_ex, exceeds_own_learner_face=all(own_ex.values()))
     out["per_network"] = per
     terc = {"excl_border": {h: int(meta[h]["excl_border_t"]) for h in hosts}, "ied_gap": {h: int(meta[h]["ied_gap_t"]) for h in hosts},
             "ring_share": {h: int(ring[h]["ring_share_t"]) for h in hosts}}
