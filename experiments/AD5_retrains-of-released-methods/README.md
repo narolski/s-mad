@@ -333,6 +333,12 @@ the AD5 path on the DGX (not read). No retrain and no retrain score exist yet.
   Job script `src/AD5/wcss/ad5w_selfmad.sbatch` (TEST=1 mode; d8aa2bc).
   Athena: the lead's dispatcher moved test job 3548459 to partition plgrid-now (1 h, 1 GPU) at 08:41; running. All 48
   Athena A100 nodes are in a hidden reservation; new plgrid-gpu-a100 jobs are forecast for 22 Dec.
+- 13 Nov 08:41-08:44. SelfMAD fix test (Athena 3548459_401, plgrid-now, t0020, code_v5) PASSED: exit 0, 160 renders,
+  5 epochs, training 81 s, peak 14,955 MiB; the `-s` folder fix (`mkdir -p $S/run`) works and the epoch-5 weights were
+  saved. Result `results/AD5/selfmad_S_s401_test.tar` (sha256 ad57eede...; test only, never scored). No Athena SelfMAD
+  array resubmitted: the main A100 partition is reserved until about 22 Dec, so all five SelfMAD seeds go to WCSS H100
+  (`wcss_ad5_selfmad_test.cmd`, then `wcss_ad5_selfmad.cmd`); no seed runs on both clusters. WCSS controller still down at
+  08:47; nothing submitted there yet.
 - 11 Nov 18:40. SelfMAD scoring path checked on the DGX: `score/convert_selfmad.py` (epoch tar -> the release's
   safetensors layout; 1,956 tensors, keys and shapes equal to the release) and `score/ad5_score_dgx.py` (RS1's
   score.py `--mode own`) scored 8 raw images (4 FRLL photos, 4 MorDIFF morphs) with the 8-image checkpoint.
