@@ -136,6 +136,12 @@ $ diff src/BB2/wcss/bb2_fit.sbatch src/BB2/wcss/bb2_fit2.sbatch
   `wcss_bb2_c2psmoke.cmd`. Lead 09:0x: no lower GPU cap; up to 15 H100s at once for BB2 is accepted (author's order to
   fill idle nodes). WCSS controller still refusing commands; job IDs to follow from the dispatcher.
 
+- 09:03 submitted by the dispatcher (owner: BB2 owner): **6310084** bb2-fit (nine fits, array 0-8, throttle 9),
+  **6310092** bb2-fit2 (six fits, seeds 406/407, array 0-5%6), **6310085** bb2-c2psmoke (C2P job smoke). All PENDING
+  (Priority); Slurm forecast start of 6310084: 13 Nov 16:14; expected end of each fit 1.7 h after its start (about
+  18:00 for the first wave if the forecast holds; limit 3:03). GPU-hours: 15 fits x 1.7 h ≈ 25.5 H100-h + smoke 0.3 +
+  C2P job ≈ 0.5. Next check at the forecast start (16:15), then at start + 1.7 h; fetch with `src/BB2/fetch_bb2.sh`.
+
 ## 3. Data
 
 - FS1 development pack `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar` sha256 `96c31ae2…` (unchanged; arms' manifests and the
@@ -186,18 +192,17 @@ None yet.
 
 DGX smoke result; pre-run review; registration commit; WCSS smoke; fit submission; fetch; read; post-result review.
 
-## 10. Handover state (13 Nov 00:16)
+## 10. Handover state (13 Nov 09:05)
 
-- WCSS job 6308946 (bb2-smoke) PENDING since 00:47 (submitted by the lead); check once at about 09:00. If it has run:
-  apply the memory and time rules from its log and submit the fits. If the author chooses the rented variant: commit
-  the platform deviation, cancel 6308946 first, then `src/BB2/rented/RUNBOOK.md`.
-- Ready on WCSS `/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/` (hash-checked 00:07): complete workload of
-  the smoke and the fits. Next: `cd .../packs/BB2 && /opt/slurm/current/bin/sbatch --extra=FORCE_RM_TMPDIR
-  bb2_smoke.sbatch` when the controller answers (lead's go after the retry rule); then apply the memory and time
-  rules from its log (BB2_PEAK_MIB, step rate from "step 100/100 ... it/s", BB2_FEATCHECK_RC 0), record them here, and
-  submit the registered fit command (prereg section 9).
-- DGX files: `/mnt/t7/smad_next/BB2/` (overlay, test outputs, smoke tar, local test trees, staging copy for WCSS).
-- Compute so far: DGX only (smoke 8 min, CPU tests); WCSS 0.
+- WCSS jobs (owner BB2 owner): 6310084 (9 fits), 6310092 (6 fits), 6310085 (C2P smoke); all PENDING; forecast start
+  16:14; logs `/lustre/pd03/hpc-narolski-1790461090/smad-next/logs/bb2-fit-6310084_<i>.out`, `bb2-fit2-6310092_<i>.out`,
+  `bb2-c2psmoke` -> `bb2-c2p-6310085.out`; results `.../results/BB2/` and `.../results/BB2_smoke/BB2C2Psmoke.tar`.
+- After the fits: `bash src/BB2/fetch_bb2.sh` at each end; then `python3 -I src/BB2/freeze_mode.py` and commit
+  `seed_mode.json`; then queue the C2P job with `BB2_TASKS` = the frozen read set (15 or 9 tasks) and the default
+  output; then run `bb2_read.py` and `bb2_c2p_read.py --c2p .../BB2C2P.tar` once each; results-reviewer.
+- If a fit fails: non-finite -> never rerun; out of memory or time limit -> rerun once at 128 x 2 with twice the time
+  (`BB2_TASKS="<index>"`, array `0-0`), labelled; other infrastructure failure -> rerun once unchanged.
+- Nothing runs on the DGX for BB2.
 
 ## 11. Reproduce from scratch
 
