@@ -268,7 +268,12 @@ draws unreadable); S4 vs S3 on the 80 clean test hosts unstratified (754 of 2,00
 with the stratified seed-mean > 0 required.
 
 **The pipeline-matched family (10 verdicts; registered 95% rule; 99.5% intervals printed as a sensitivity check).** Only
-the five R4-vs-R3 verdicts carry new information; the S4-vs-S3 verdicts are expected from training by design.
+the five R4-vs-R3 verdicts carry new information; the S4-vs-S3 verdicts are expected from training by design. Intervals
+are host-resampling bootstraps, conditional on the five trained networks; each 99.5% tail rests on 5 of 2,000 draws
+(approximate); the rows share networks, so a Bonferroni reading is conservative; the family covers registered verdicts
+only (the printed subsets, FaceMorpher rows and earlier AB1 reads are further looks). Seed-level t intervals (n = 5,
+results review) also exclude zero: row 1 [+0.020, +0.064], row 5 [+0.030, +0.069], row 7 [+0.033, +0.068], row 8
+[+0.060, +0.102].
 
 | # | Pair, seeds (platform) | Contrast (decides) | Seed-mean gain | 95% interval | 99.5% interval | Verdict |
 |---|---|---|---|---|---|---|
@@ -287,21 +292,38 @@ Per seed (R4 vs R3, stratified): Sb − Sp +0.060 +0.067 +0.052 +0.027 +0.041; F
 FS1 Sb − A +0.085 +0.070 +0.072 +0.109 +0.069. Sign agreement between development and clean test hosts holds for rows 5,
 7 and 8 (Sb − Sp +0.049 / +0.069; FS1 Sb − B +0.047 / +0.089; FS1 Sb − A +0.083 / +0.128).
 
-**Decomposition at 408-412 (printed, descriptive):** Sp − B on R4 vs R3 (dev + clean80) is −0.008 [−0.033, +0.022] (per seed
-−0.006 −0.015 +0.003 −0.013 −0.006; development −0.025, clean80 +0.029: signs disagree → the rule would read
-"inconclusive"). So Sb − B (+0.042) ≈ (Sb − Sp, +0.049) + (Sp − B, −0.008): on this contrast the gain of Sb over B is carried
-by the 312 matched S0 + S3 negatives (with their count and class-mix shift; no volume control for Sp), not by the 124 S4
-splice positives. On S4 vs S3 clean80 (unstratified) both parts are positive (Sb − Sp +0.084, Sp − B +0.085), as expected
-by design. FaceMorpher R4 vs R3 (printed): Sb − Sp +0.067, Sp − B −0.023; FS1 Sb − B +0.056.
+**Decomposition at 408-412 (printed, descriptive; wording of the results review `REVIEW_AB1_A5_20261113.md`):** Sb − B
+(+0.042) splits exactly into Sb − Sp (+0.049 [+0.028, +0.073], 5 of 5 seeds) and Sp − B (−0.008 [−0.033, +0.022]). Under
+the rule Sp − B reads "absent" before the cap and "inconclusive" after it (development −0.025, clean test +0.029). On
+the pooled hosts, the S4 positives without the matched negatives add no detectable R4-vs-R3 gain (upper bound +0.022).
+With the positives present, removing the 312 matched S0 + S3 negatives, and with them 624 training rows and the
+class-mix shift, removes Sb's gain. On the 80 clean test hosts alone, Sp − B is +0.029 (4 of 5 seeds positive; interval
+includes 0), so a share of up to about a third from the positives is not excluded there. Whether the negatives would
+work without the S4 positives is untested.
+On S4 vs S3 (clean test hosts), Sp − B is +0.085 unstratified but −0.002 D-stratified (strata hold about 60% of rows;
+37.7% of draws unreadable). Sb − Sp is +0.084 unstratified and +0.120 stratified. Within D strata, the gain over B comes
+from the matched negatives, not the positives (descriptive). FaceMorpher R4 vs R3 (printed; the less-trained engine,
+where Sb is not above the adversary floor): Sb − Sp +0.067, Sp − B −0.023; FS1 Sb − B +0.056. Clean-host-only subsets are
+reported unstratified only (stratified intervals there are fragile, e.g. FS1 Sb − B [−0.009, +0.141] with 627 of 1,000
+draws readable).
 Sb − Sp at 403-405 (A100, 3 seeds; descriptive, not read): R4 vs R3 +0.035 [+0.015, +0.062]; S4 vs S3 clean80 +0.091.
 
 **What this licenses (registered wording, post hoc, development plus clean test hosts, not held-out):**
-- 408-412 (recipe at replication seeds, H100): Sb's better ranking of two-person over same-person whole-frame morphs comes
-  from its matched same-person (and seam-only) splice negatives: removing them (Sp) loses it and Sp is not better than B.
-  Not separated between S0 and S3; no volume control for Sp.
-- 403-407 (FS1): "present" licenses a statement about the frozen Sb networks 403-407 themselves on development and clean
-  test-host rows: post hoc, previously printed in direction (PR1 Z4, BD1), a re-read of the same networks rather than an
-  independent or blind replication; never benchmark or held-out evidence; no change to the frozen candidate follows.
+- 408-412 (recipe at replication seeds, H100): removing the matched same-person and seam-only splice negatives (Sp: −312
+  negatives, −624 rows at equal steps) loses Sb's better ranking of two-person over same-person whole-frame morphs; Sp is
+  not better than B on the pooled hosts. Count and class-mix are not controlled; the interaction with the positives is
+  untested; S0 and S3 are not separated.
+- 403-407 (FS1): a re-read of the frozen networks 403-407 with the amendment-4 statistic on development + clean test
+  hosts; direction previously printed (PR1 Z4 unstratified, test191; BD1 S4 vs S3); adds the D-stratified statistic and
+  the clean-host restriction only; not independent, not blind, not held-out. "present" licenses a statement about the
+  frozen Sb networks themselves on these development rows; no change to the frozen candidate follows; rows 9-10 add
+  nothing beyond BD1. This read must not be cited as corroborating the sealed MAD22 read.
 - Ranking is not rejection (amendment-4 review F3): all recipes still flag most same-person morphs at their own rule.
 
-Results review pending.
+Paper wording allowed (post hoc, development data, not held-out): "In a development-data ablation, removing Sb's matched
+same-person and seam-only splice negatives removed its advantage in ranking two-person above same-person whole-frame
+morphs (−0.049 AUC, 5 of 5 seeds). Splice positives alone gave no detectable advantage (−0.008 [−0.033, +0.022]). The
+frozen networks show the same direction (+0.051 over B, 5 of 5 seeds)." Not allowed: generalisation, benchmark
+performance, a volume-controlled effect, an S0-versus-S3 split, or rejection of same-person morphs.
+Results review done 13 Nov (all ten verdicts recomputed independently; F1-F7 applied; reviewer's script
+`src/AB1/review/a5_recompute.py`, outputs `review_a5_recompute_{sp,fs1}.txt`).
