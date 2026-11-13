@@ -128,3 +128,11 @@ This revision replaces sections 2 to 6 above. The original draft (sections 1 to 
 **Predictions (revised after seeing the reviewer's and DATA's statistics):**
 - The face-only gate learner reaches about 0.80-0.92.
 - If the gate is passed: arm AUCs on the face-only form 0.50-0.65, and Sb − B and Sb − A "inconclusive".
+
+**Face-only form built** (`date`: Fri Nov 13 22:26 CET; lead's option (a)).
+- **Builder:** `src/XF1/build_xf1b_face.py`.
+- **Blanking call:** the unchanged `src/AR1/blank.py` `one()` (sha256 c8d8055f…, asserted), with its output root set at run time to /mnt/t7/smad_next/XF1.
+- **Output:** 598 face-only copies in `/mnt/t7/smad_next/XF1/blank/bg/`. The face-blanked copies it also writes stay in `blank/face/`, unused.
+- **Shared mask, asserted per pair:** the FM(H,B) copy and the W copy are grey everywhere outside the same hull of 0.5·tem(H) + 0.5·tem(B).
+- **Manifest:** `blank/xf1b_face_manifest.csv` (fe5333e3…), with input, tem and output sha256 per row; `blank/SHA256SUMS` (b7d79c95…).
+- **Row list re-pinned with both forms:** `/mnt/t7/smad_next/XF1/xf1b_rows.csv`, 1,495 rows (whole 897 + face 598), sha256 **4adcf914fba651f3b1b1ccfc5ea4b3e03155357aa5c84804180513da5925b271**. The previous whole-frame file was renamed to `.bak-20261113222636`.
