@@ -143,9 +143,13 @@ def main():
          "Descriptive readings asked for by the independent review after the numbers were seen; no verdict changes. In our "
          "preprocessing. The networks were trained only to flag shrink-and-enlarge copies of synthetic faces (no morph, no "
          "blending). 95% intervals: the registered person bootstrap.", ""]
-    if a.recipe == "m3":
-        L += ["Flag: not reproduced on this stack (reproduction gate, Fast-DiM-ODE native 4.01% against 3.0; per seed 8.72, "
-              "1.88, 3.96, 0.10, 5.40).", ""]
+    gj = out_dir / f"ad4_gates_{a.recipe}.json"
+    rg = json.load(open(gj)).get("reproduction", {}) if gj.is_file() else {}
+    if str(rg.get("status", "")).startswith("MISS"):
+        L += ["Flag: not reproduced on this stack (reproduction gate: " + "; ".join(
+            f"{c} {v['mean_eer']:.2f}% against {v['bound'][1]}" for c, v in rg["cells"].items() if not v["pass"]) + ").", ""]
+    elif rg.get("status") == "pass":
+        L += ["Reproduction gate: pass on this stack.", ""]
     L += ["## A. Floor logits", "", "| network | training natives: p5 / median / p95 | training copies: p5 / median / p95 | "
           "FRLL-5% threshold (p; logit) |", "|---|---|---|---|"]
     for t, v in fl.items():

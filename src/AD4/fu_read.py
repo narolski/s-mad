@@ -37,6 +37,10 @@ def main():
     ap.add_argument("--res", required=True)
     ap.add_argument("--out-dir", default=None)
     ap.add_argument("--test", action="store_true")
+    ap.add_argument("--ref-res", default="/mnt/t7/smad_next/AD4/results_vast",
+                    help="folder of the verified result tars holding the registered scores of these networks (gate)")
+    ap.add_argument("--tag", default="", help="suffix of the output files (Amendment 6: _h100)")
+    ap.add_argument("--platform", default="DGX", help="printed beside every network")
     a = ap.parse_args()
     res = pathlib.Path(a.res)
     out_dir = pathlib.Path(a.out_dir) if a.out_dir else (R.EXP if not a.test else res)
@@ -56,7 +60,7 @@ def main():
         if d.name.startswith("AD4_m3zero"):
             ref = np.load("/mnt/t7/smad_next/AD4/zero_step/m3/scores_eval.npz")
         else:
-            with tarfile.open(f"/mnt/t7/smad_next/AD4/results_vast/{d.name}.tar") as tf:
+            with tarfile.open(f"{a.ref_res}/{d.name}.tar") as tf:
                 ref = np.load(io.BytesIO(tf.extractfile(f"{d.name}/scores_eval.npz").read()))
         refs = dict(zip(ref["id"].tolist(), ref["score"].astype(np.float64)))
         cells, ok = {}, True
@@ -100,7 +104,7 @@ def main():
             continue
         s, z = aligned(d / "scores_ad4_eval_blank.npz", ids)
         nets[d.name] = dict(arm=arm(d.name), seed=seed(d.name), score=s, train=None, meta=None, info={},
-                            platform=f"DGX, {z['device']}, blanked (Amendment 4b)")
+                            platform=f"{a.platform}, {z['device']}, blanked")
     if a.test:
         keep = [i for i in range(len(rows)) if all(np.isfinite(n["score"][i]) for n in nets.values())]
         sub = [rows[i] for i in keep]
@@ -128,8 +132,8 @@ def main():
               f"{e:.1f}% over {k3} networks that passed the unblanked-score gate (per seed {', '.join(f'{x:.1f}' for x in mfm['eer'])}); rule: above 15% supported, at most 5% "
               "falsified. Flag on the networks: not reproduced on this stack. The 'passable' and 'A1' columns apply the AD4 "
               "rule to blanked images descriptively; they are not the registered AD4 verdicts.\n\n" + md)
-        (out_dir / "fu_blank_m3.md").write_text(md)
-        json.dump(rd, open(out_dir / "fu_blank_m3.json", "w"), indent=1, default=float)
+        (out_dir / f"fu_blank_m3{a.tag}.md").write_text(md)
+        json.dump(rd, open(out_dir / f"fu_blank_m3{a.tag}.json", "w"), indent=1, default=float)
 
     # extra pools: scores per network
     ex = {}
@@ -194,7 +198,7 @@ def main():
     v5 = (f"incomplete ({len(mfn)} of 5)" if len(mfn) < 5 else None if None in gm else
           "supported" if all(x <= 0.1 for x in gm) else "falsified" if all(x > 0.1 for x in gm) else "mixed")
     out["H-new-5"] = {"by_tool": h5, "verdict": v5}
-    json.dump(out, open(out_dir / ("fu_pools_m3_test.json" if a.test else "fu_pools_m3.json"), "w"), indent=1, default=float)
+    json.dump(out, open(out_dir / ("fu_pools_m3_test.json" if a.test else f"fu_pools_m3{a.tag}.json"), "w"), indent=1, default=float)
     L = ["# Follow-ups (c): landmark-ladder morphs (H-new-5) and held-out generator renders (H-new-4), ViT-B/16 networks (AD4 "
          "Amendment 4), post hoc follow-up", "", "Flag on the networks: not reproduced on this stack. The ladder images are the "
          "landmark ladder's (AR1) own 512 frames, not our benchmark frames. The networks were trained only to flag "
@@ -219,7 +223,7 @@ def main():
             v = d[n]
             L.append(f"| {pool} | `{n}` | {v['n']} | {v['pool_median_logit']:.2f} | {v['frll_median_logit']:.2f} | "
                      f"{v['diff']:.2f} |")
-    (out_dir / ("fu_pools_m3_test.md" if a.test else "fu_pools_m3.md")).write_text("\n".join(L) + "\n")
+    (out_dir / ("fu_pools_m3_test.md" if a.test else f"fu_pools_m3{a.tag}.md")).write_text("\n".join(L) + "\n")
     print("\n".join(L))
 
 

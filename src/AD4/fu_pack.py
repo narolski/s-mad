@@ -35,7 +35,9 @@ def sha(p):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", required=True)
+    ap.add_argument("--res", default=str(RES), help="folder of the verified result tars the networks come from")
     a = ap.parse_args()
+    res = pathlib.Path(a.res)
     st = pathlib.Path(a.stage)
     if st.exists():
         raise SystemExit(f"{st} exists (never overwritten)")
@@ -45,8 +47,8 @@ def main():
     for arm in ("mf", "perm"):
         for s in (401, 402, 403, 404, 405):
             t = f"AD4_m3{arm}_s{s}"
-            tar = RES / f"{t}.tar"
-            assert (RES / f"{t}.tar.sha256").read_text().split()[0] == sha(tar)
+            tar = res / f"{t}.tar"
+            assert (res / f"{t}.tar.sha256").read_text().split()[0] == sha(tar)
             d = st / "fu/nets" / t
             d.mkdir(parents=True)
             with tarfile.open(tar) as tf:
@@ -88,7 +90,7 @@ def main():
         w = csv.DictWriter(f, fieldnames=FIELDS)
         w.writeheader()
         w.writerows(rows)
-    info = {"n_rows": len(rows), "by_set": {}, "fu_rescore_sha256": sha(HERE / "fu_rescore.py"),
+    info = {"networks_from": str(res), "n_rows": len(rows), "by_set": {}, "fu_rescore_sha256": sha(HERE / "fu_rescore.py"),
             "fu_extra_csv_sha256": sha(st / "fu/data/manifests/fu_extra.csv")}
     for r in rows:
         info["by_set"][r["set"]] = info["by_set"].get(r["set"], 0) + 1

@@ -1105,7 +1105,7 @@ Applied on the lead's instruction:
 |---|---|---|
 | 23:00 | Lead: WCSS reachable since about 23:00; finish the ViT-L/14 seeds 403 to 405 and the ViT-B/16 cluster rerun on WCSS. Local pack `/mnt/t7/smad_next/AD4/ad4_pack.tar` still present, sha256 `1ad170be…` OK; reader working copy re-extracted to `/mnt/t7/smad_next/AD4/test/work/task_AD4_m3mf_s401/` (pack `SHA256SUMS` OK; `data/` symlinks as `run.sh` makes them). | |
 | 23:01 | WCSS listing: pack, library packs, the ten ViT-B/16 task folders in `staging/AD4` (`run.sh` sha256 `5aae2ef9…` in all ten) and **all ten ViT-L/14 result tars** in `results/AD4/`, written 12 Nov 12:50 to 15:54 by the generic queue slots (`queue/done/` lists the ten tasks; `task_info.txt`: `local 0`, pack `1ad170be…`, steps 6250, limit 0, wall about 7,200 s, nodes r18-*). All ten `.sha256` OK on WCSS. No score opened. | ssh listing |
-| 23:02 | **Amendment 5** registered and committed (ba88926, 23:03:06), before any WCSS result was opened: WCSS results are the registered networks for ViT-L/14 morph-free seeds 403 to 405; the other seven WCSS ViT-L/14 results are cross-platform repeats; the WCSS ViT-B/16 ten-network rerun is the registered ViT-B/16 arm whatever its outcome; H100 gates before reading. | `prereg.md` |
+| 23:02 | **Amendment 5** registered and committed (082f945, 23:03:05; corrected 13 Nov: ba88926 is an SM1 commit), before any WCSS result was opened: WCSS results are the registered networks for ViT-L/14 morph-free seeds 403 to 405; the other seven WCSS ViT-L/14 results are cross-platform repeats; the WCSS ViT-B/16 ten-network rerun is the registered ViT-B/16 arm whatever its outcome; H100 gates before reading. | `prereg.md` |
 | 23:03 | Ten WCSS ViT-L/14 tars copied to `/mnt/t7/smad_next/AD4/results_wcss/` (rsync under the WCSS lock), all ten `sha256sum -c` OK. Athena array 3546123_[2-4] cancelled (never started). Registered ViT-L/14 folder `/mnt/t7/smad_next/AD4/results_m3l_registered/` (symlinks: Athena morph-free 401, 402 and label-permuted 401 to 405; WCSS morph-free 403 to 405). | |
 | 23:14, 23:18 | First two `sbatch` attempts of the smoke + equivalence job failed: "Unable to contact slurm controller (connect failure)" (ssh login fine). Nothing submitted. Retry every 15 min. | |
 | 23:20 | Sample-order gate: **20 of 20 pass** (registered ViT-L/14 arm and the ten WCSS repeats); no refusal; meta seed and arch correct; cards: Athena A100-SXM4-40GB, WCSS H100. Files `ad4_gates_m3l.json` (registered arm), `ad4_gates_m3l_results_m3l_registered.json`, `ad4_gates_m3l_results_wcss.json`; logs `read/gates_m3l_results_*.log`. | |
@@ -1126,7 +1126,7 @@ Check plan (no polling loop): at the 6308825 forecast start plus 40 min (13 Nov 
 then compute the array's ETA from the first task's step rate and check at that time. If 6308825 fails, 6308830 stays pending on its
 dependency (DependencyNeverSatisfied): fix, re-test, resubmit both, and cancel 6308830.
 
-### Cluster-stack readings (13 Nov 08:28 to about 09:30)
+### Cluster-stack readings (13 Nov 08:28 to 08:45)
 
 - 6308825 (smoke + H100 equivalence) and 6308830_0 to _9 (ten ViT-B/16 tasks) COMPLETED on WCSS (lead: 03:44 to 06:46, about 33 min each;
   smoke done 03:02, equivalence 03:02:30, 19,827 images scored in 21 s). Fetched with rsync under the WCSS lock to
@@ -1145,3 +1145,23 @@ dependency (DependencyNeverSatisfied): fix, re-test, resubmit both, and cancel 6
 - Headline numbers are in `result.md` (rewritten top; previous version `/mnt/t7/smad_next/AD4/read/result_md_before_cluster_20261113.md`).
   Registered outcome in words: on both recipes MorDIFF native is 0.0% in every seed and passable; all six DiM natives are passable for
   ViT-B/16; for ViT-L/14 five are passable and Fast-DiM-ODE falsifies A1 (11.8%, above 15% in 3 of 5 seeds; morph-trained recipe 13.7%).
+
+### Reviews of 13 Nov and the H100 follow-up (Amendment 6)
+
+- **Results review of the cluster-stack readings** (results-reviewer, Opus, 13 Nov about 08:50): "conclusions hold but need qualifying".
+  Applied to result.md (copy of the previous version: `/mnt/t7/smad_next/AD4/read/result_md_before_cluster_20261113.md`): F1 Fast-DiM-ODE
+  wording (three single-run WCSS seeds 1.2 to 3.6 points above 15%; "not passable" rests on label-permuted seed 403 at 18.2%, which
+  did not learn its training task, true-label AUC 0.47; next reference 32.4%; twin 1 of 5 seeds above 15%); F2 bounded-head note on the
+  ViT-L/14 DiM verdicts (morphs 0.04 to 0.38 logits above the genuine floor); F3 same-seed cross-platform differences as large as seed
+  differences (registered-cell maximum 10.7 points; the reproduction pass is stack-specific); F4 seed 403 sentence corrected; F5
+  `posthoc_m3.md` line 5 corrected and `posthoc_m3.py` now takes the flag from `ad4_gates_m3.json`; F6 the follow-ups describe the rented
+  networks; F7 per-seed ranges on wide cells, DiM-C reduced not removed, Greedy-DiM borderline, reader seed means on reversed/split cells
+  flagged; F8 Amendment 5 commit is 082f945 (not ba88926, an SM1 commit); F9 stale "not verified" item, ViT-L/14 tensor source, H100 gate
+  is a same-stack check (score sha256 `97eae24c…` and `2c3fba3e…`), twin defined. Reviewer hypotheses (random-head shared axis,
+  floor-band instability, Fast-DiM-ODE run-level rate on fresh seeds, run-to-run determinism) are listed for the lead; none registered.
+- **Amendment 6** (08:48) and additions after the **pre-run check** (experiment-reviewer, Opus: GO WITH FIXES; additions 08:56): H100
+  re-score of follow-ups (b), (c) on the registered WCSS networks. Prepared: staging `/mnt/t7/smad_next/AD4/fu/stage_wcss`; pack on WCSS
+  `packs/AD4/fu_pack_wcss.tar` (1,680,128,000 bytes, sha256 `e4b60874…`, checked there); job `jobs_ad4/ad4_fu_h100.sbatch`. Not submitted:
+  the dispatcher relayed a lead ruling dropping the item (networks "trained on other GPU models"); the networks of Amendment 6 are the WCSS
+  H100 ones, so the lead is asked to confirm. Remaining before submission if confirmed: reader fixes F2 and F4 of the pre-run check, the
+  pinned pack sha in the job script.

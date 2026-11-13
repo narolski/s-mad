@@ -2,7 +2,7 @@
 
 Descriptive readings asked for by the independent review after the numbers were seen; no verdict changes. In our preprocessing. The networks were trained only to flag shrink-and-enlarge copies of synthetic faces (no morph, no blending). 95% intervals: the registered person bootstrap.
 
-Flag: not reproduced on this stack (reproduction gate, Fast-DiM-ODE native 4.01% against 3.0; per seed 8.72, 1.88, 3.96, 0.10, 5.40).
+Reproduction gate: pass on this stack (WCSS H100; line corrected 13 Nov after the results review, F5; the 11 Nov version printed the rented arm's flag).
 
 ## A. Floor logits
 

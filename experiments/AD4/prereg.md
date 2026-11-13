@@ -408,3 +408,37 @@ tau ≥ 0.99 (the Amendment 1 tolerance). If (ii) misses, no WCSS number is read
 **(d) Jobs** (OWNER_BRIEF "no placeholders" rule): every job carries its full workload (pack, task folders and scripts already on WCSS),
 `--extra=FORCE_RM_TMPDIR`, all IO in `$TMPDIR`; at most 6 of our GPUs at once (ViT-B/16 array throttled to 5, plus the 1-GPU equivalence
 job). A short smoke first: one ViT-B/16 task with 50 steps and 8 scored images into a separate smoke root, not read.
+
+## Amendment 6: follow-ups (b) and (c) repeated on the registered ViT-B/16 networks, WCSS H100 (13 Nov 2026, 08:48 CET; before any of these scores exists)
+
+Approved by the lead (13 Nov). Amendment 4b ran (b) and (c) on the DGX on the rented ViT-B/16 networks. Three of the five morph-free
+networks missed the unblanked-score gate there (tau 0.987 to 0.989), so those rows are "incomplete (2 of 5)". The registered ViT-B/16 arm is now
+the WCSS H100 one (Amendment 5 (b)). Fixed here:
+- **Networks:** the ten registered WCSS ViT-B/16 networks (`results_wcss_m3/`, `meta.json` and `last_trainable.pt` from the verified tars)
+  and the untrained network (seed 401, built in the job). Rebuilt with `common.build_run_model` plus the pack weights plus their trained
+  tensors (`fu_rescore.py`, unchanged except that the image root is the job's).
+- **Platform:** WCSS, one H100, the WCSS container (`pytorch_latest.sif`, torch 2.2.1) plus `pylib.tar` and `pylib_a12.tar` (the stack of
+  the registered networks). Every row of these follow-ups comes from this one job.
+- **Workload, statistics, rules:** unchanged from Amendment 4 and 4b: unblanked evaluation images (gate), the same images with the grey
+  fill outside the fixed face ellipse applied in memory (H-new-3), the `fu_extra.csv` pools (H-new-4, H-new-5); the reader
+  `src/AD4/fu_read.py` (sha256 recorded in the README before reading), with the reference scores of the gate taken from the
+  registered WCSS tars (and for the untrained network from `zero_step/m3`, scored on the DGX; a miss there is reported, and only the
+  reference row is lost).
+- **Gate:** per network and cell |AUC difference| ≤ 0.005 and Kendall tau ≥ 0.99 against the registered scores; a network that misses
+  is reported and not read.
+- **Precedence:** these rows supersede the Amendment 4b DGX rows as the follow-up reading of AD4. The DGX rows stay in the record as a
+  repeat on other networks.
+- **Smoke:** the same job script with `FU_LIMIT=8`, never read.
+
+### Amendment 6, additions after the pre-run check (13 Nov 2026, 08:56 CET; before any of these scores exists)
+
+Pre-run check (experiment-reviewer): GO WITH FIXES. Rules added now:
+- H-new-4: the registered count rule stays; in addition, any pool-minus-FRLL median difference smaller than that network's 5th to
+  95th percentile logit span of the FRLL genuine photos is printed "indistinguishable at the trained floor".
+- Precedence holds whatever the gate outcome (the DGX rows never return as the follow-up reading). A network that misses the gate stays
+  unread, with no rerun.
+- The gate requires every row of every cell present and `limit` 0 outside the smoke; a non-finite score stops the reader.
+- Smoke passes if the log shows `FU_DONE`, 11 x 3 score files exist, the device is an H100 and `limit` is 8. Production is submitted with
+  `--dependency=afterok:<smoke>`. The follow-up pack sha256 `e4b60874…` is pinned in the job script.
+- Status: **on hold.** The dispatcher relayed a lead ruling that drops the item, on the reading that the networks were trained on other GPU
+  models. The networks registered here are the WCSS H100 ones (job 6308830). The lead is asked to confirm. Nothing is submitted until then.
