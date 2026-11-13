@@ -23,7 +23,7 @@ unchanged aligner and morph engine; rows `fam = ms1ffhq` of the MS1 evaluation m
 | stored morph, 112.7 px | u50, amsl112 | 149 | attack |
 | warp-only image | zero, "" | 150 | single-subject (placement only) |
 
-**Proof of non-exposure (computed 13 Nov 2026 ~06:55 from the manifests; script lines in the MS1 README):**
+**Proof of non-exposure (computed 13 Nov 2026 before the commit that adds this draft (4591b9f, 06:52:42), from the manifests):**
 - None of the 1,480 hold-out rows is among the 19,797 rows the FS1 networks scored (FS1 manifest `f0f29f22…`): 0 shared
   ids and 0 shared image sha256 (FS1 pack SHA256SUMS against MS1 pack SHA256SUMS). The FS1 checkpoints' stored score
   files (`scores_eval.npz`, checked on PN1_Sb_s403) hold 19,797 ids, none starting with `hold_`.
@@ -34,7 +34,7 @@ unchanged aligner and morph engine; rows `fam = ms1ffhq` of the MS1 evaluation m
 - FS1 training sets share no person with the hold-out: train_A, train_B and train_Sb hold FRGC and colorFERET images only
   (db counts A frgc 1,004 / feret 988; B 3,878 / 3,884; Sb 4,398 / 3,988 rows); FFHQ is not in them.
 - Networks that HAVE scored the hold-out: only the MS1 fits (arms Sb, SbM3, SbV at seeds 403-407, trained on rented
-  L40S 48 GB under MS1-D2; the hold-out rows are in their fit-pack evaluation list), 11 of 15 tars local at 06:55
+  L40S 48 GB under MS1-D2; the hold-out rows are in their fit-pack evaluation list), 11 of 15 tars local at that time
   (MS1_Sb_s403-406, SbM3_s403-405, SbV_s403-405), none opened by any reader. The 20-step DGX smoke scored only the
   first 64 manifest rows (FS1 rows). Not scored by: the 15 FS1 checkpoints A, B, Sb at seeds 403-407; the replicate A
   seed 401; seeds 401/402; the Sp fits (their manifest is byte-equal to FS1's); any amendment-14, HN2 or TT1 job.
