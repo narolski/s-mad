@@ -421,3 +421,10 @@ RECORDS ledger entry 6 (ca47f00). No rule or floor changes.
   `sel360` (components of `ri_R4_vs_R3_heldout.csv`) and `splice80`: the native S4, S3 and S0 rows of the 80 test hosts
   in `/mnt/t7/smad_next/DATA/overlap/test_hosts_clean_of_dev.csv` (components from their person keys); summary in
   `floors/transfer_<arm>_rows_summary.json`. Pinned as stage 11. No network score is read.
+
+### Amendment 6, addendum (13 Nov, 21:39 by the machine clock; registered before computing; AB1 amendment 7b, 35c8a9f)
+
+- The same learner and outputs are added for the control list `train_BV.csv` (B plus 312 database-matched repeated
+  native negatives; sha256 ee4e227b2cd6648d…, full hash checked against AB1's `pins.sha256` by `amend6.py BV` before
+  fitting). Outputs `floors/transfer_BV.json`, `floors/transfer_BV_rows.csv`, `floors/transfer_BV_rows_summary.json`,
+  pinned as stage 12. The stage-11 files of SpV and BN are unchanged (their lists did not change).

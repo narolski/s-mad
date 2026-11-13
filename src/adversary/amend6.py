@@ -19,18 +19,21 @@ AB1PINS = "/home/narolski/smad-next/experiments/AB1_protocol-ablation-and-replic
 CLEAN = "/mnt/t7/smad_next/DATA/overlap/test_hosts_clean_of_dev.csv"
 
 
+ARMS = tuple(sys.argv[1:]) or ("SpV", "BN")       # addendum: python3 -I amend6.py BV
+
+
 def check_hashes():
     pinned = {line.split()[1]: line.split()[0] for line in open(AB1PINS) if line.strip()}
-    for arm in ("SpV", "BN"):
+    for arm in ARMS:
         p = str(C.TRAIN[arm])
         h = hashlib.sha256(open(p, "rb").read()).hexdigest()
         assert h == C.TRAIN_SHA[arm] == pinned.get(p), (arm, h[:16], pinned.get(p, "")[:16])
-    return {a: C.TRAIN_SHA[a] for a in ("SpV", "BN")}
+    return {a: C.TRAIN_SHA[a] for a in ARMS}
 
 
 def main():
     hs = check_hashes()
-    RF.cmd_transfer(types.SimpleNamespace(only=["SpV", "BN"]))
+    RF.cmd_transfer(types.SimpleNamespace(only=list(ARMS)))
     clean = {r["host"] for r in csv.DictReader(open(CLEAN))}
     sel = {r["id"] for r in csv.DictReader(open(RF.FDIR / "sel360_rows.csv"))}
     ri = {r["id"]: int(r["component"]) for r in csv.DictReader(open(RF.FDIR / "ri_R4_vs_R3_heldout.csv"))}
@@ -42,7 +45,7 @@ def main():
     rung = {r["id"]: r["rung"] for r in spl}
     sets = {"sel360": ([r for r in C.build("ri_R4_vs_R3") if r[0] in sel], None),
             "splice80": (spl_rows, {i: int(c) for (i, *_), c in zip(spl_rows, spl_comp)})}
-    for arm in ("SpV", "BN"):
+    for arm in ARMS:
         T = C.train_rows(arm)
         rl = [(r["id"], C.resolve(r["path"]), int(r["label"]), C.train_persons(r)) for r in T]
         X, nm = RF.X_of(rl)
