@@ -317,3 +317,10 @@ To the lead's list of levers toward a better detector the author answered, verba
 - on "3. GAN morphs in training with one-person renders as genuine": "Ok, go ahead" -> given to the AG1 owner (GX1; existing AG1 images only).
 - on "4. A larger backbone": "What about dinov3?" -> the properly trained DINOv3 arm (BB2 E3) is queued; no ruling needed.
 Both new arms are post-freeze (the candidate was frozen at 18:28) unless the author changes the freeze before the sealed read; the lead asks him. The sealed read is prepared but its start is held for his answer.
+
+## 13 Nov 2026, 19:20 (lead): author rulings on input resolution and DINOv3
+
+- **Author, verbatim: "For native resolution crops, yes, plan experiments on that with input size 512, and see if any particular resize method (or a mix of resizes in training) has an impact on shortcut learning alleviation".** For this experiment (RZ1, new owner) the input may be 512 px and resampling code that varies the resize method may be written; nothing else on the list of allowed image operations changes.
+- **Author, verbatim: "Please plan extensive experiments for Dinov3, ok? So that we evaluate it like we did with CLIP."** The second-backbone owner writes the DINOv3 programme plan (PLAN_DINOV3_PROGRAMME_20261113.md), in waves, with E3 and its fit gate as wave 1.
+- GAN arm (GX1): only 36 two-person MIPGAN-I morphs exist with both persons among the protocol network's training persons; the lead will not run an arm that small and asked the owner for the cost of building 300-500 with the unchanged AG1 pipeline.
+- Sealed read (FINAL): package being built for the frozen candidate; start held until the author chooses between reading now and lifting the freeze to improve first (asked at 18:55, unanswered).
