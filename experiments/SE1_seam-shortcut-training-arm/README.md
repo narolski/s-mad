@@ -56,20 +56,18 @@ None yet.
 
 - Pre-run review; registration commit; baseline computation; smoke result; fit submission.
 
-## 10. Handover state
+## 10. Handover state (13:50)
 
-- Platform: rented A100 PCIe 40 GB (deviation SE1-D1, commit 4ef86cb). One seed per lease:
-  - se1a 185.130.165.20:24704, seed 408, fits started 09:35:51;
-  - se1b 80.188.223.200:31153, seed 409, started 09:35:52;
-  - se1c 213.5.72.248:17756, seed 410, starting after its smoke (smoke rc 0 at 09:36).
-  - Lease folders: /mnt/t7/smad_next/vast/se1{a,b,c}; caps set by the lead (4.5 / 4.1 / 3.9 USD).
-- Smokes passed on all three leases: 100 steps at 1.4–1.6 it/s, so one fit is about 65–75 min plus scoring. Platform-check tars are in /workspace/se1/results_smoke on each lease, and are fetched by the chain into /mnt/t7/smad_next/SE1/smoke_<lease>/.
-- Expected end of the three seeds: about 13:30–14:00.
-- Seeds 411 and 412 wait for the author's budget word. Latest start: 14:15.
-- Driver per lease: `src/SE1/rented/chain_se1.sh` (detached on the DGX; log /mnt/t7/smad_next/SE1/chain_<lease>.log; state /mnt/t7/smad_next/SE1/rented_<lease>/drive.log). It pulls every 10 min, keeps second copies in /home/narolski/se1_results_copy, and writes RELEASE after the seed's 3 fit tars and the platform tar are verified twice.
-- WCSS jobs 6310083 and 6310122 were cancelled at 09:37 and never ran. The L40S staging on the MS1 hosts was removed.
-- Reading allowed: AB1 is registered at 61f7994.
-- Temporary local files: /mnt/t7/smad_next/SE1/chunks (4 × 2.2 GB pack chunks; mine, to be removed after the last upload).
+- Seeds 408, 409 and 410 are complete. Their nine fit tars are in /mnt/t7/smad_next/SE1/results, with second copies in /home/narolski/se1_results_copy. se1a, se1b and se1c are released (RELEASE written by the chains at 13:07, 13:37 and 13:31).
+- Seed 411 runs on se1d (185.130.165.20:26693, A100 PCIe; deviation SE1-D2 as amended, commit 3526a81). Fits started 13:25:01; expected end about 17:20.
+  - The chain writes /mnt/t7/smad_next/vast/se1d/SE1_DONE_411 instead of RELEASE, because the lead holds se1d for TT1 afterwards. Then tell the lead and the TT1 owner (a816d6792267a5ad3).
+  - Chain log: /mnt/t7/smad_next/SE1/chain_se1d.log and rented_se1d/drive.log.
+- pn1fs was dropped for seed 411: its uplink fell to 0.2 MB/s with dropped connections. Partial files under /workspace/se1 there are left in place (lead).
+- Seed 412 is not run. The read will have four seeds ("met" means 4 of 4).
+- Platform-check tars, one per lease: /mnt/t7/smad_next/SE1/smoke_se1{a,b,c,d}/SE1_platformcheck_*.tar.
+- The read, once, after seed 411 is in (or at 19:00):
+  `PY=/home/narolski/mambamorph-code/.venv-spark/bin/python; $PY -I src/SE1/se1_read.py --platformcheck <each smoke_se1*/SE1_platformcheck_*.tar> --out experiments/SE1_seam-shortcut-training-arm/se1_read.json`
+- Compute so far: about 3 × 4.2 h of A100 PCIe for seeds 408–410, plus seed 411 running, plus smokes.
 
 ## 11. Reproduce
 
