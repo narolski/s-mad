@@ -114,7 +114,7 @@ Output `z2b_read.json`. The TT1-FS read is not yet reviewed by its own reviewer.
 | Row (SA1) | A | B | Sb |
 |---|---|---|---|
 | 6: warp-only R2w flagged | 0% (5 seeds); R4 vs R2w 1.000 → **not flagged** | 0%; 1.000 → **not flagged** (trained negative) | 0-0.5%; 1.000 → **not flagged** (trained negative) |
-| 7: same-person morph R3 flagged | 94.8-99.5%; R4 vs R3 0.72-0.75 → **flagged like a morph** | 90.6-95.3%; 0.75-0.79 → **flagged like a morph** | 83.2-88.5%; 0.80-0.85 → **flagged like a morph** |
+| 7: same-person morph R3 flagged | 94.8-99.5%; R4 vs R3 0.72-0.75 → **flagged like a morph** | 90.6-95.3%; 0.74-0.79 → **flagged like a morph** | 83.2-88.5%; 0.80-0.85 → **flagged like a morph** |
 | 7: mirror self-morph R3m flagged | 97.9-99.5%; R4 vs R3m 0.77-0.79 → **flagged like a morph** | 94.8-97.4%; 0.79-0.83 → **flagged like a morph** | 95.8-96.9%; 0.80-0.84 → **flagged like a morph** |
 | 8: same-person splice S3 flagged | 2.1-5.8% → **not flagged** | 0.5-3.7% → **not flagged** | 37.2-48.2%; S4 vs S3 0.72-0.74 → **inconclusive** (trained negative) |
 | 9: seam-only S0 flagged | 0-0.5%; S4 vs S0 0.75-0.83 → **inconclusive** (0-0.5% seam-only flags; weak S4 detection) | 0%; 0.68-0.78 → **inconclusive** (0% seam-only flags; the inconclusive verdict comes from weak S4 detection: 91-98% of S4 missed) | 0-0.5%; S4 vs S0 0.985-0.994 → **seam-only not flagged** (trained negative) |
@@ -335,3 +335,5 @@ same-person MIPGAN renders, or MIPGAN morphs from one-photo renders, beyond that
 from reconstructions. Scores on GAN- or diffusion-based benchmark cells may therefore reflect detection of
 re-synthesis rather than of a second identity, and we do not claim them as morph-specific." Not to be written: "detects
 GAN/diffusion morphs".
+
+Correction of record (`date`: Fri Nov 13 20:42 CET): row 7 of the arm table printed the arm-B range of R4 vs R3 as "0.75-0.79"; the smallest value is 0.7446 (B_s403, `z_read.json` per_net/B_s403/auc/R4_vs_R3_opencv_test), so the range is 0.74-0.79. Only the printed text changes; the JSON is unchanged. Found by the BATTERY cell check (`experiments/BATTERY_shared-test-battery/cells_check_v1rc2.json`).
