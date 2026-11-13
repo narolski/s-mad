@@ -667,6 +667,10 @@ answer (the controller was flapping), and the job had in fact completed at 20:25
 - **A14 H-new-D (registered decision): supported.** Within-key AUC trained-partner over KE 0.756 [0.746, 0.765] (2 seeds;
   seeds 0.755, 0.756) ≥ 0.70, while trained − KE is 0.045 [0.032, 0.061] logit < 0.2. Own-rule miss with every partner kind
   ≤ 0.44%.
+- Seed 403 (13 Nov; Athena 3548707, plgrid-now; reproduction check 0.0; tar sha256-verified): within-key AUC 0.699 for
+  that fit alone; 3-seed mean 0.737 [0.728, 0.746] (seeds 0.755, 0.756, 0.699; `a14_rank_vitl_3seed.json`), trained − KE
+  0.039. The registered A14 decision (2 seeds 401, 402) is unchanged; the seed spread (0.70 to 0.76) is larger than
+  either key-bootstrap interval, so any table cell should carry it.
 - **H-new-5 (registered 11 Nov): prediction not met** (trained − KE 0.045 [0.032, 0.061] < 1 logit); the registered
   decision (DiD against a ViT-L/14 arm c, interval above 0) cannot be computed, since no arm c fit exists before 22 Dec;
   H-new-5 stays untested for this paper. The 1-logit bar cannot be met when both morph kinds sit at the head ceiling.
