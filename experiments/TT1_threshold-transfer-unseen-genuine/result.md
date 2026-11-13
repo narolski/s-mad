@@ -516,7 +516,7 @@ Next (review): a registered post hoc stratified print (size group × part) for a
 flags against TT1 families at matched enlargement (zero GPU); a downsampling test of the larger MEDS images to about
 46 px eye distance (author item: resampling code); morph pairs from the 157 multi-encounter persons later.
 
-## MEDS post hoc follow-ups S1, S2 (registered at 104edc3 before computing; `meds_strata.json`, sha256 `b4c5da33…`; zero GPU; not yet reviewed)
+## MEDS post hoc follow-ups S1, S2 (registered at 104edc3 before computing; `meds_strata.json`, sha256 `b4c5da33…`; zero GPU; reviewed (needs qualification), corrections applied)
 
 - **S1, flags by size and part (all 18 networks).**
   - **Other sizes (755 images, 353 persons):** 0 or 1 flags in every network.
@@ -530,23 +530,32 @@ flags against TT1 families at matched enlargement (zero GPU); a downsampling tes
 | Sp (403-405) | 2, 8, 10 |
 
   - **Inside the 240 group, part does not matter.** A_s404 flags 20 of 51 MEDS-I and 23 of 59 MEDS-II images; B_s404
-    flags 12 of 51 and 13 of 59. So the MEDS-I excess is the size effect.
+    flags 12 of 51 and 13 of 59. So the MEDS-I excess is explained by composition: 51 of 126 MEDS-I images are 240x240,
+    against 59 of 739 in MEDS-II.
   - **Inside the 240 group (A_s404, B_s404):**
-    - ρ(logit, log Laplacian variance) is −0.22 / −0.24: softer scores higher, the TT1 sign.
-    - ρ with log enlargement is +0.51 / +0.29.
-  - **Among the other sizes:** ρ with enlargement is about 0, and ρ with log Laplacian variance is +0.21 to +0.38
-    (size-confounded, as the review noted).
+    - ρ(logit, log Laplacian variance) is −0.22 / −0.24 for A_s404 / B_s404, but its sign is not consistent across
+      seeds (A: +0.12, −0.22, +0.05, −0.10, −0.12; B: +0.10, −0.24, +0.01, −0.06, −0.07); no sign is read.
+    - ρ with log enlargement is positive in every A seed (+0.44 to +0.60) and every B seed (+0.09 to +0.37), and about 0
+      for Sb and Sp.
+  - **Among the other sizes:** ρ with enlargement is about 0 for A and B (+0.13 to +0.21 for Sb and Sp), and ρ with log
+    Laplacian variance is +0.20 to +0.34 (size-confounded, as the review noted).
 - **S2, MEDS-240 against the TT1 low-resolution families at matched enlargement.**
   - **Method:** bins of 1.6-6.0x; TT1 reweighted to the MEDS-240 bin mix.
-  - **Bin coverage is uneven.** TT1 has 1,377 frames at 1.6-2.0x (the anti-spoofing frames), only 4 at 2.0-2.5x and
-    13 at 2.5-3.0x, and about 9,700 each at 3.0-3.5x and 3.5-4.0x. MEDS-240 has 31 and 23 images in the two sparse
-    bins, so the reweighted TT1 rate leans on 17 frames there and its intervals are wide.
+  - **Bin coverage is uneven.** TT1 has 1,377 frames at 1.6–2.0x (the anti-spoofing frames), 4 at 2.0–2.5x (all
+    casia_fasd, 4 persons), 13 at 2.5–3.0x, about 9,700 each at 3.0–3.5x and 3.5–4.0x, and 127 at 4.0–6.0x; 23 TT1 frames
+    at 1.2–1.6x are dropped (no MEDS-240 image there). MEDS-240 has 31 and 23 images in the two sparse bins (weights 0.28
+    and 0.21), so one flagged casia frame moves the reweighted TT1 rate by 0.07, more than the 0.05 margin. The bootstrap
+    sets a bin rate to 0 when a draw contains none of its persons (about 2% of draws for the 4-person bin), and the
+    intervals are coarse, near-discrete steps.
   - **Arm sentences (at least 4 of 5 seeds; |MEDS-240 − TT1 reweighted| ≤ 0.05 = "consistent with enlargement"):**
     - **A: "differs".** MEDS-240 higher on every seed: +0.073, +0.185, +0.011, +0.230, +0.063. Intervals exclude 0 on
-      s403 and s406.
+      s403 and s406. B_s406 [0.017, 0.154] also excludes 0.
     - **B: "mixed"**, 3 of 5 consistent: +0.017, +0.147, +0.035, +0.073, +0.008.
     - **Sb: "consistent with enlargement"**, 4 of 5: +0.010, −0.145, −0.049, +0.019, −0.010.
     - **Sp (printed only):** −0.070, −0.085, −0.057.
-  - **Reading (descriptive, not causal).** For A, and partly B, the small MEDS mugshots are flagged more than TT1
+    - **Sensitivity (not registered):** dropping the two sparse bins, A differs on 5 of 5 seeds (+0.14 to +0.48), B stays
+      mixed (+0.02 to +0.29), Sb is consistent on 5 of 5 (|diff| ≤ 0.024) and Sp is +0.00 to +0.06. The Sb_s404 '−0.145'
+      and all the negative Sp differences come from 1–2 flagged casia frames in the 2.0–2.5x bin.
+  - **Reading (descriptive, not causal).** For A on every seed, and for B on some seeds, the small MEDS mugshots are flagged more than TT1
     frames at the same enlargement. They differ from TT1 in source, JPEG coding, crop and border (TT1 frames carry a
     black border, MEDS none), so the excess is not attributed.
