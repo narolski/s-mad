@@ -1,0 +1,35 @@
+{
+ "n_morph": 1000,
+ "n_genuine": 2000,
+ "trim_percentiles": [
+  1,
+  99
+ ],
+ "propensity_clip": [
+  0.00032094672225454357,
+  0.98301705591882
+ ],
+ "ess_morph": 8.019953453221964,
+ "ess_genuine": 413.83060606737234,
+ "weighted_surround_floor": {
+  "single": 0.7007923265722868,
+  "logreg": 0.48515513619829276,
+  "gbt": 0.404288047464543
+ },
+ "weighted_file_floor": {
+  "single": 0.6525217637209265,
+  "logreg": 0.6415493430028733,
+  "gbt": 0.5430518627192177
+ },
+ "weighted_face_floor": {
+  "single": 0.5757447585113399,
+  "logreg": 0.6294742135529261,
+  "gbt": 0.7450583314180989
+ },
+ "weighted_all_cue_floor": {
+  "single": 0.5652806959154077,
+  "logreg": 0.6651341675816529,
+  "gbt": 0.6796293415151049
+ },
+ "usable": false
+}

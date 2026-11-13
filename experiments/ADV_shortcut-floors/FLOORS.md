@@ -51,6 +51,26 @@ What these lines say, plainly:
   listed cues do not.
 
 
+
+## Stage 3: same-person splice and RI1 / TB1 rows (pending reads of RI1, TB1, ME1)
+
+| Contrast | Arm read | Rows (pos / neg; components) | ADV floor [95%] (model) | Non-F27/non-BLEND floor [95%] | Within BD1 D quintiles (single / logreg / gbt; pure-D reference; coverage) | Must exceed (quick bar) |
+|---|---|---|---|---|---|---|
+| `dev_S4_vs_S3` | ME1/RI1/TB1 S4 vs S3 (development hosts); SA1 row 8 | 100 / 100; 100 | 0.820 [0.774, 0.866] (logreg) | 0.739 [0.682, 0.795] | 0.652 / 0.785 / 0.700; 0.566; 0.60 | > 0.866 |
+| `test_S4_vs_S3` | S4 vs S3 (test hosts; BD1 primary rows); SA1 row 8 | 191 / 191; 130 | 0.754 [0.712, 0.799] (logreg) | 0.676 [0.626, 0.724] | 0.652 / 0.744 / 0.728; 0.585; 1.00 | > 0.799 |
+| `ri_S4_vs_S3` | RI1 S1 and TB1 S, all 291 BD1 hosts | 291 / 291; 110 | 0.773 [0.742, 0.805] (logreg) | 0.719 [0.687, 0.752] | 0.655 / 0.757 / 0.730; 0.572; 1.00 | > 0.805 |
+| `ri_R4_vs_R3` | RI1 S1 signal R4 vs R3 (291 hosts) | 291 / 291; 110 | 0.793 [0.765, 0.821] (logreg) | 0.705 [0.677, 0.734] | n/a | > 0.821 |
+| `ri_R4_vs_R0` | RI1 S1 signal R4 vs R0 (291 hosts) | 291 / 291; 110 | 1.000 [1.000, 1.000] (gbt) | 1.000 [0.999, 1.000] | n/a | > 1.000 |
+
+Frozen by `floors/pins_stage3.sha256`. Within-D: BD1's rule (quintile edges of log D over the pooled rows, strata with at least 10 of each class, weighted by n_pos x n_neg) applied to the floor's held-out scores.
+
+## landmark_combined: region floors and history balancing (amendment 3, post hoc)
+
+- Region floors on all of `lcomb` (3,000 rows): surround 0.942 (gbt), face box 0.965, file 0.652.
+- **lcomb_bal** (1:1 matching on the boosted-tree surround score and pre_ied; `floors/lcomb_bal_rows.csv`): converged True with **125 morphs and 125 genuine photos (below 150 per class)**; final surround floor single / logreg / gbt 0.474 / 0.565 / 0.524; file 0.444 / 0.466 / 0.460; **face box 0.876 / 0.941 / 0.936**; all-cue ADV floor 0.949 [0.917, 0.973]. Build timing: the rule was fixed after two builds ran (prereg amendment 3, item 3).
+- **lcomb_ipw** (stabilised inverse-probability weights on the logreg surround score and pre_ied, trimmed at the 1st / 99th percentile; `floors/lcomb_ipw_weights.csv`): effective sample size **8.0 morphs** and 413.8 genuine; weighted surround floor single / logreg / gbt 0.701 / 0.485 / 0.404; file 0.642 / 0.543 (logreg / gbt); face box 0.629 / 0.745. **Not usable** (registered bar: effective sample size at least 300 per class): the surround score separates the classes so well that a handful of morphs carry the weight.
+- Reading (post hoc, H-new-1 of the review): where the surround is balanced (lcomb_bal), the face box still separates morphs from genuine photos at about 0.94, so landmark_combined carries a face-region difference besides the surround history; the subset is small (125 per class) and selected on a score, so this is descriptive.
+
 ## Attack sets (requests to the DATA role through the lead; nothing built by the adversary)
 
 Only allowed operations: the approved warp `h1_build.py`, the unchanged OpenCV and FaceMorpher morphers, constant-colour

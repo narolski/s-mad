@@ -1,0 +1,143 @@
+{
+ "n_pos": 291,
+ "n_neg": 291,
+ "n_components": 110,
+ "n_folds": 5,
+ "insample_best_single": 0.9288506276496499,
+ "insample_best_single_stat": "F27:b3_.125-.25",
+ "insample_best_single_f27": 0.9288506276496499,
+ "insample_best_single_f27_stat": "F27:b3_.125-.25",
+ "single": {
+  "auc": 0.9175730092937022,
+  "eer": 0.13058419243986255,
+  "ci": [
+   0.8847112952561177,
+   0.9470160985079253
+  ],
+  "chosen_per_fold": [
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:haar_LHHL",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9997874375597832,
+  "eer": 0.010309278350515464,
+  "ci": [
+   0.9993971111837987,
+   1.0
+  ]
+ },
+ "gbt": {
+  "auc": 0.9999291458532611,
+  "eer": 0.003436426116838488,
+  "ci": [
+   0.999723347912604,
+   1.0
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9913085580000236,
+  "ci": [
+   0.9838073135117676,
+   0.9971381659275288
+  ]
+ },
+ "floor": {
+  "model": "gbt",
+  "auc": 0.9999291458532611,
+  "eer": 0.003436426116838488,
+  "ci": [
+   0.999723347912604,
+   1.0
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.9921824258098039,
+   "logreg": 0.9913085580000236
+  },
+  "BORDER": {
+   "gbt": 0.572377510893825,
+   "logreg": 0.5384501836303303
+  },
+  "RES": {
+   "gbt": 0.9790744086631004,
+   "logreg": 0.9612900178316269
+  },
+  "STORE": {
+   "gbt": 0.968068397869652,
+   "logreg": 0.946894817019166
+  },
+  "RENDER": {
+   "gbt": 0.999374121703806,
+   "logreg": 0.992017099467413
+  },
+  "BLEND": {
+   "gbt": 0.9893482599402463,
+   "logreg": 0.9761103435245214
+  }
+ },
+ "carrying_family": "RENDER",
+ "leave_family_out": {
+  "F27": 0.9997520104864137,
+  "BORDER": 0.9999291458532611,
+  "RES": 0.999952763902174,
+  "STORE": 0.9999409548777175,
+  "RENDER": 0.9970359348614211,
+  "BLEND": 0.9999291458532611
+ },
+ "contrast": "ri_R4_vs_R0",
+ "kind": "floor",
+ "pixel_only_floor": {
+  "model": "gbt",
+  "auc": 0.9999291458532611,
+  "eer": 0.003436426116838488,
+  "ci": [
+   0.999723347912604,
+   1.0
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.9997874375597832,
+  "eer": 0.003436426116838488,
+  "ci": [
+   0.999222988328854,
+   1.0
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "ladder",
+   "strength": "",
+   "role": [
+    "test",
+    "dev"
+   ],
+   "rung": "R4",
+   "tool": "opencv",
+   "bd1_hosts": "frozenset({'frgc:04831', 'frgc:04819', 'frgc:04824', 'feret:00713', 'frgc:04925', 'frgc:04309', 'frgc:04604', 'frgc:04676', 'frgc:04336', 'frgc:04239', 'frgc:04461', 'frgc:04839', 'frgc:04768', 'frgc:04867', 'frgc:04883', 'frgc:04832', 'frgc:04610', 'feret:00469', 'feret:00543', 'frgc:04493', 'feret:00732', 'feret:00766', 'feret:00717', 'frgc:04423', 'frgc:04344', 'frgc:04385', 'frgc:04916', 'frgc:04647', 'frgc:04233', 'frgc:04488', 'frgc:04735', 'frgc:04868', 'feret:00744', 'frgc:04747', 'feret:00750', 'feret:00772', 'frgc:04376', 'feret:00773', 'frgc:04322', 'frgc:04339', 'frgc:04512', 'frgc:04475', 'frgc:04767', 'feret:00816', 'frgc:04693', 'frgc:04924', 'feret:00707', 'frgc:04261', 'feret:00383', 'feret:00780', 'frgc:04409', 'frgc:04932', 'feret:00710', 'feret:00026', 'frgc:04400', 'frgc:04751', 'frgc:04642', 'frgc:04884', 'frgc:04903', 'frgc:04407', 'feret:00071', 'frgc:04274', 'frgc:04513', 'frgc:04282', 'frgc:04471', 'frgc:04631', 'frgc:04711', 'frgc:04755', 'feret:00081', 'frgc:04298', 'frgc:04535', 'frgc:04406', 'frgc:04508', 'frgc:04273', 'frgc:04444', 'feret:00185', 'frgc:04503', 'frgc:04731', 'frgc:04885', 'frgc:04917', 'feret:00630', 'feret:00162', 'frgc:04873', 'frgc:04851', 'frgc:04299', 'frgc:04504', 'frgc:04756', 'frgc:04573', 'frgc:04434', 'frgc:04431', 'frgc:04514', 'frgc:04624', 'frgc:04559', 'frgc:04806', 'frgc:04836', 'frgc:04878', 'frgc:04477', 'frgc:04598', 'frgc:04429', 'frgc:04772', 'frgc:04412', 'frgc:04609', 'frgc:04657', 'frgc:04243', 'frgc:04700', 'frgc:04705', 'frgc:04816', 'frgc:04923', 'frgc:04934', 'frgc:04225', 'frgc:04887', 'feret:00594', 'feret:00762', 'frgc:04392', 'feret:00146', 'frgc:04600', 'frgc:04201', 'frgc:04454', 'frgc:04437', 'frgc:04788', 'frgc:04316', 'frgc:04288', 'feret:00107', 'frgc:04472', 'frgc:04418', 'frgc:04410', 'frgc:04898', 'frgc:04911', 'frgc:04473', 'frgc:04719', 'frgc:04725', 'feret:00774', 'feret:00038', 'feret:00789', 'feret:00588', 'frgc:04313', 'frgc:04495', 'feret:00533', 'feret:00283', 'frgc:04576', 'frgc:04481', 'frgc:04593', 'frgc:04656', 'frgc:04539', 'frgc:04813', 'frgc:04470', 'frgc:04818', 'frgc:04727', 'frgc:04926', 'frgc:04810', 'frgc:04305', 'frgc:04703', 'frgc:04592', 'feret:00003', 'frgc:04707', 'feret:00024', 'frgc:04564', 'frgc:04386', 'frgc:04284', 'feret:00268', 'frgc:04709', 'frgc:04792', 'frgc:04572', 'frgc:04287', 'frgc:04584', 'frgc:04895', 'frgc:04795', 'feret:00781', 'feret:00002', 'frgc:04922', 'frgc:04379', 'feret:00703', 'frgc:04743', 'frgc:04744', 'frgc:04799', 'frgc:04698', 'frgc:04808', 'frgc:04650', 'frgc:04595', 'frgc:04347', 'frgc:04716', 'feret:00093', 'feret:00669', 'frgc:04856', 'frgc:04692', 'feret:00751', 'feret:00070', 'frgc:04525', 'frgc:04823', 'frgc:04928', 'frgc:04762', 'feret:00095', 'frgc:04910', 'frgc:04349', 'feret:00724', 'frgc:04695', 'frgc:04608', 'frgc:04213', 'frgc:04641', 'frgc:04516', 'frgc:04221', 'frgc:04529', 'frgc:04451', 'frgc:04754', 'frgc:04587', 'frgc:04334', 'frgc:04654', 'frgc:04718', 'frgc:04540', 'frgc:04699', 'frgc:04726', 'frgc:04329', 'frgc:04404', 'frgc:04428', 'frgc:04476', 'frgc:04686', 'frgc:04720', 'frgc:04524', 'frgc:04728', 'frgc:04580', 'frgc:04778', 'frgc:04350', 'frgc:04487', 'frgc:04341', 'frgc:04738', 'frgc:04582', 'feret:00804', 'frgc:04203', 'feret:00622', 'feret:00810', 'frgc:04628', 'frgc:04773', 'feret:00767', 'frgc:04482', 'frgc:04578', 'feret:00763', 'frgc:04446', 'frgc:04373', 'frgc:04618', 'frgc:04855', 'frgc:04352', 'frgc:04733', 'frgc:04577', 'frgc:04750', 'frgc:04901', 'feret:00108', 'frgc:04351', 'frgc:04821', 'frgc:04568', 'frgc:04427', 'frgc:04212', 'feret:00876', 'feret:00907', 'frgc:04717', 'frgc:04734', 'frgc:04667', 'feret:00519', 'frgc:04740', 'frgc:04761', 'frgc:04812', 'frgc:04730', 'frgc:04889', 'frgc:04811', 'frgc:04494', 'feret:00472', 'frgc:04599', 'frgc:04622', 'frgc:04712', 'frgc:04881', 'frgc:04929', 'frgc:04533', 'frgc:04652', 'frgc:04669', 'frgc:04463', 'frgc:04764', 'feret:00704', 'feret:00761', 'frgc:04531', 'frgc:04661', 'frgc:04809', 'frgc:04921', 'frgc:04323', 'frgc:04414', 'frgc:04763', 'frgc:04893', 'frgc:04320', 'feret:00770', 'frgc:04509', 'frgc:04300', 'frgc:04825', 'frgc:04430'})"
+  },
+  "negative": {
+   "fam": "ladder",
+   "strength": "",
+   "role": [
+    "test",
+    "dev"
+   ],
+   "rung": "R0",
+   "bd1_hosts": "frozenset({'frgc:04831', 'frgc:04819', 'frgc:04824', 'feret:00713', 'frgc:04925', 'frgc:04309', 'frgc:04604', 'frgc:04676', 'frgc:04336', 'frgc:04239', 'frgc:04461', 'frgc:04839', 'frgc:04768', 'frgc:04867', 'frgc:04883', 'frgc:04832', 'frgc:04610', 'feret:00469', 'feret:00543', 'frgc:04493', 'feret:00732', 'feret:00766', 'feret:00717', 'frgc:04423', 'frgc:04344', 'frgc:04385', 'frgc:04916', 'frgc:04647', 'frgc:04233', 'frgc:04488', 'frgc:04735', 'frgc:04868', 'feret:00744', 'frgc:04747', 'feret:00750', 'feret:00772', 'frgc:04376', 'feret:00773', 'frgc:04322', 'frgc:04339', 'frgc:04512', 'frgc:04475', 'frgc:04767', 'feret:00816', 'frgc:04693', 'frgc:04924', 'feret:00707', 'frgc:04261', 'feret:00383', 'feret:00780', 'frgc:04409', 'frgc:04932', 'feret:00710', 'feret:00026', 'frgc:04400', 'frgc:04751', 'frgc:04642', 'frgc:04884', 'frgc:04903', 'frgc:04407', 'feret:00071', 'frgc:04274', 'frgc:04513', 'frgc:04282', 'frgc:04471', 'frgc:04631', 'frgc:04711', 'frgc:04755', 'feret:00081', 'frgc:04298', 'frgc:04535', 'frgc:04406', 'frgc:04508', 'frgc:04273', 'frgc:04444', 'feret:00185', 'frgc:04503', 'frgc:04731', 'frgc:04885', 'frgc:04917', 'feret:00630', 'feret:00162', 'frgc:04873', 'frgc:04851', 'frgc:04299', 'frgc:04504', 'frgc:04756', 'frgc:04573', 'frgc:04434', 'frgc:04431', 'frgc:04514', 'frgc:04624', 'frgc:04559', 'frgc:04806', 'frgc:04836', 'frgc:04878', 'frgc:04477', 'frgc:04598', 'frgc:04429', 'frgc:04772', 'frgc:04412', 'frgc:04609', 'frgc:04657', 'frgc:04243', 'frgc:04700', 'frgc:04705', 'frgc:04816', 'frgc:04923', 'frgc:04934', 'frgc:04225', 'frgc:04887', 'feret:00594', 'feret:00762', 'frgc:04392', 'feret:00146', 'frgc:04600', 'frgc:04201', 'frgc:04454', 'frgc:04437', 'frgc:04788', 'frgc:04316', 'frgc:04288', 'feret:00107', 'frgc:04472', 'frgc:04418', 'frgc:04410', 'frgc:04898', 'frgc:04911', 'frgc:04473', 'frgc:04719', 'frgc:04725', 'feret:00774', 'feret:00038', 'feret:00789', 'feret:00588', 'frgc:04313', 'frgc:04495', 'feret:00533', 'feret:00283', 'frgc:04576', 'frgc:04481', 'frgc:04593', 'frgc:04656', 'frgc:04539', 'frgc:04813', 'frgc:04470', 'frgc:04818', 'frgc:04727', 'frgc:04926', 'frgc:04810', 'frgc:04305', 'frgc:04703', 'frgc:04592', 'feret:00003', 'frgc:04707', 'feret:00024', 'frgc:04564', 'frgc:04386', 'frgc:04284', 'feret:00268', 'frgc:04709', 'frgc:04792', 'frgc:04572', 'frgc:04287', 'frgc:04584', 'frgc:04895', 'frgc:04795', 'feret:00781', 'feret:00002', 'frgc:04922', 'frgc:04379', 'feret:00703', 'frgc:04743', 'frgc:04744', 'frgc:04799', 'frgc:04698', 'frgc:04808', 'frgc:04650', 'frgc:04595', 'frgc:04347', 'frgc:04716', 'feret:00093', 'feret:00669', 'frgc:04856', 'frgc:04692', 'feret:00751', 'feret:00070', 'frgc:04525', 'frgc:04823', 'frgc:04928', 'frgc:04762', 'feret:00095', 'frgc:04910', 'frgc:04349', 'feret:00724', 'frgc:04695', 'frgc:04608', 'frgc:04213', 'frgc:04641', 'frgc:04516', 'frgc:04221', 'frgc:04529', 'frgc:04451', 'frgc:04754', 'frgc:04587', 'frgc:04334', 'frgc:04654', 'frgc:04718', 'frgc:04540', 'frgc:04699', 'frgc:04726', 'frgc:04329', 'frgc:04404', 'frgc:04428', 'frgc:04476', 'frgc:04686', 'frgc:04720', 'frgc:04524', 'frgc:04728', 'frgc:04580', 'frgc:04778', 'frgc:04350', 'frgc:04487', 'frgc:04341', 'frgc:04738', 'frgc:04582', 'feret:00804', 'frgc:04203', 'feret:00622', 'feret:00810', 'frgc:04628', 'frgc:04773', 'feret:00767', 'frgc:04482', 'frgc:04578', 'feret:00763', 'frgc:04446', 'frgc:04373', 'frgc:04618', 'frgc:04855', 'frgc:04352', 'frgc:04733', 'frgc:04577', 'frgc:04750', 'frgc:04901', 'feret:00108', 'frgc:04351', 'frgc:04821', 'frgc:04568', 'frgc:04427', 'frgc:04212', 'feret:00876', 'feret:00907', 'frgc:04717', 'frgc:04734', 'frgc:04667', 'feret:00519', 'frgc:04740', 'frgc:04761', 'frgc:04812', 'frgc:04730', 'frgc:04889', 'frgc:04811', 'frgc:04494', 'feret:00472', 'frgc:04599', 'frgc:04622', 'frgc:04712', 'frgc:04881', 'frgc:04929', 'frgc:04533', 'frgc:04652', 'frgc:04669', 'frgc:04463', 'frgc:04764', 'feret:00704', 'feret:00761', 'frgc:04531', 'frgc:04661', 'frgc:04809', 'frgc:04921', 'frgc:04323', 'frgc:04414', 'frgc:04763', 'frgc:04893', 'frgc:04320', 'feret:00770', 'frgc:04509', 'frgc:04300', 'frgc:04825', 'frgc:04430'})"
+  },
+  "note": "RI1 S1 signal"
+ }
+}
