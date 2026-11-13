@@ -166,3 +166,51 @@ Built after the registration commit 01557ce; no TT1, border or geo reference row
   `4546f520f63b48c33e6d313673314b6c0f778ddc81da02b22d356f8c6a87fb8f` (only change: `--exclude` handling; tested on mock scores with `--exclude PN1_Bn_s401`); table script
   `src/TT1/summarize_read.py` `61409b534b6fd7ccc0429deba145df7caf57aa778b108244edeffd9b21a50d5d` (formats the reader's JSON; no statistic). Run:
   `python -I tt1_read.py --scores <result>/scores --nets /mnt/t7/smad_next/TT1/nets_tree_s401402/tt1nets/nets --exclude PN1_Bn_s401 --out tt1_read.json`.
+
+## 8. Amendments H-new-1, H-new-2, H-new-4 (`date`: Fri Nov 13 02:05:34 AM CET 2026; registered at the git commit that adds this section, BEFORE any of them is computed; zero GPU; development data only; from review REVIEW_TT1_20261113.md)
+
+Post-result amendments: the TT1 scores and the review's numbers are known; each test is labelled post hoc in result.md.
+Code: `src/TT1/hnew.py` (committed with the results).
+
+### H-new-2: onset of A's storage cue (existing PN1 scores, no new score)
+- Statement: A's storage cue switches on with enlargement; protocol B removes it.
+- Data: each network's stored `scores_eval.npz` (12 networks of seeds 401/402, Bn_s401 included: these are stored
+  PN1 scores, not TT1 scores). Pools (FS1 `pn1_eval.csv` rows, development only): development ladder R0 native (100)
+  with its stored copies at 61.2 px and 112.7 px inter-eye distance (rows R0 strength 61 / 112, same hosts), and AF0
+  development photos native (126) with their 61 / 112 copies. Enlargement to 132 px: 61.2 px = 2.16x, 112.7 px =
+  1.17x (TT1: 1.7x and 3.5x).
+- Read: paired median shift (copy minus native, same image) per network, pools pooled (226 pairs per strength); own-rule
+  flag share of the copies.
+- Disclosure: PN1 tier 1 already printed A's raw R0 -> R0_61 shift on the TEST ladder (+1.73 / +2.64); this
+  amendment reads the development ladder and AF0 development photos, values not seen.
+- Rule: falsified if, on either seed, A's paired median shift at 61 px ≤ B's + 0.1 logit. Printed: the 112 px shifts.
+
+### H-new-1: missing high frequency (measurement only)
+- Statement: A's 112 px response is a "missing high-frequency" cue; JPEG and capture noise in the packs partly mask
+  it, which is why the packs score below the geometry-matched camera photos.
+- Measurement (no image operation): variance of cv2.Laplacian (CV_64F) of the greyscale aligned 512 frame inside the
+  fixed canonical face box rows 170:400, columns 170:342 (eyes at (190,210), (322,210)), for the 417 R_cam^geo112
+  frames and the U_p frames of the four packs (19,631).
+- Reads: median face-box Laplacian variance of geo112 and of the packs; per A seed, median A logit of geo112 minus
+  median A logit of the packs (TT1 tt1c scores); OLS slope of A's logit on log face-box variance over packs + geo112
+  pooled (printed).
+- Rule: falsified if the geo112 median face-box variance ≥ the pack median AND geo112 scores more than 2 logits
+  higher than the packs (median difference) on both A seeds. Otherwise "not falsified".
+
+### H-new-4: trade between genuine flags and misses on development attack pools
+- Statement: B's low TT1 flag rate trades against misses.
+- Networks: the 10 networks with both seeds scored on TT1 (A, B, Sb, C, Bv x 401, 402).
+- x = TT1 F̄ (registered R5, `tt1_read.json`).
+- y = mean over three development attack pools of the own-rule miss share (logit ≤ 0), equal pool weights:
+  (1) our landmark ladder R4 native morphs, development and test hosts, OpenCV-style and FaceMorpher (582 rows, fam
+  ladder, rung R4, strength empty); (2) AF0 development u50 morphs (180 rows, fam af0, rung u50); (3) the OpenCV-style
+  face splices S4 of the development splice rungs, development and test hosts (291 rows, fam splice, rung S4).
+- Proof none is a benchmark: all three are our own builds from FRGC / colorFERET ladder hosts (`/mnt/t7/smad_next/AR1`,
+  `/mnt/t7/smad_next/AF0`, PN1 splice builds), paths `eval/pn1/*` of the FS1 development pack (`pn1_eval.csv`
+  `f0f29f22…`, whose builder asserts no benchmark row); the code asserts fam ∈ {ladder, af0, splice} and path prefix
+  `eval/pn1/`. No FRLL, MAD22, MorDIFF, DiM, H1, FEI or sealed row.
+- Score sources (stored, development): ladder and AF0 rows from each network's `scores_eval.npz`; splice rows from
+  `scores_eval.npz` (Sb, Bv), `PN1_Brescore_s<seed>/scores_splice.npz` (B), amendment-14 `PN1_<arm>_s<seed>__splice.npz`
+  (A, C).
+- Read: Spearman ρ(x, y) over the 10 networks, with the exact permutation p-value printed.
+- Rule: falsified if ρ ≥ 0; "supported" if ρ ≤ −0.6; otherwise "weak (not decided)". Two seeds per arm; no arm claim.
