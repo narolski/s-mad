@@ -124,6 +124,14 @@ Pack being built; part 2 (training comparison) to be drafted and reviewed. No fi
   (`celebahq_persons_summary.json`): 5,664 connected components at cos ≥ 0.40 (largest 137: chaining), 2,444 persons /
   12,908 images dropped for overlap (image hits: CASIA 10,988, TT1 1,287, FFHQ 101, FRGC/colorFERET 4, CFD 0, KDEF 0);
   kept 9,898 images of 3,220 persons, 1,814 persons with 2 or more images.
+- 13 Nov 14:10: lead: the two drafted training experiments go to WCSS H100 (all fits and scoring in the fit jobs; own
+  comparators). Part 4 drafted (G2: Sb, Sb63 = train_Sb at 3,938 steps, SbM3; G3: Sb, SbM3, SbM3S = SbM3 with the
+  splice share matched to Sb's 0.1026; 20 fits), manifest train_SbM3S (eaefef80…), pack pn1_pack_ms2.tar (79c2a7b8…,
+  adds CFD and KDEF to the evaluation manifest and train_SbM3S), run_p4.sh, sbatch files, reader ms1_read_p4.py
+  (mock-tested on every G3 branch), DGX smoke of run_p4.sh passed. Pre-run check (experiment-reviewer, opus): GO WITH
+  FIXES F1-F8, all applied. 14:07 git incident (an old stash of another owner popped by my commit routine; three SA1
+  files restored to HEAD; stash kept); from then on `git pull --rebase --autostash` only.
+- Fri Nov 13 02:30:37 PM CET 2026: part 4 registered (prereg.md part 4); smoke and array go to the dispatcher queue.
 - 13 Nov 09:40, label fixed before the MS1 read (lead confirmed): two PRINTED-ONLY reads compare scores made with
   different TF32 settings on the same GPU model: (a) the CFD offset AUC printed beside P2 (CFD scored in the held-out
   step by rescore.py, TF32 off, against development camera photos scored in the fit job by pn1_score.py, TF32 on), and

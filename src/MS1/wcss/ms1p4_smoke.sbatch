@@ -17,7 +17,7 @@ L=/lustre/pd03/hpc-narolski-1790461090/smad-next
 P=$L/packs/MS1
 hostname; nvidia-smi -L; date -Is
 (cd "$P" && sha256sum -c pn1_pack_ms2.tar.sha256 && sha256sum -c run_p4.sh.sha256)
-$HOME/dmenv/bin/python -c "import torch, timm; print('env', torch.__version__, torch.version.cuda, timm.__version__, torch.cuda.get_device_name(0), torch.cuda.get_arch_list())"
+$HOME/dmenv/bin/python -c "import torch, timm; print('env', torch.__version__, torch.version.cuda, timm.__version__, torch.cuda.get_device_name(0), torch.cuda.get_arch_list()); assert torch.__version__ == '2.11.0+cu128' and timm.__version__ == '1.0.30'; assert 'sm_90' in torch.cuda.get_arch_list()"
 for ARM in Sb63 SbM3S; do
   TD=$TMPDIR/td_$ARM; W=$TMPDIR/w_$ARM; mkdir -p "$TD" "$W"
   printf 'TASK=MS1P4smoke_%s_s403\nARM=%s\nSEED=403\n' "$ARM" "$ARM" > "$TD/task.env"

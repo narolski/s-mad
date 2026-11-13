@@ -21,6 +21,7 @@ ARMS=(Sb Sb63 SbM3 SbM3S Sb Sb63 SbM3 SbM3S Sb Sb63 SbM3 SbM3S Sb Sb63 SbM3 SbM3
 SEEDS=(403 403 403 403 404 404 404 404 405 405 405 405 406 406 406 406 407 407 407 407)
 ARM=${ARMS[$SLURM_ARRAY_TASK_ID]}; SEED=${SEEDS[$SLURM_ARRAY_TASK_ID]}
 (cd "$P" && sha256sum -c --quiet run_p4.sh.sha256)
+$HOME/dmenv/bin/python -c "import torch, timm; assert torch.__version__ == '2.11.0+cu128' and timm.__version__ == '1.0.30', (torch.__version__, timm.__version__); assert 'sm_90' in torch.cuda.get_arch_list()"
 TD=$TMPDIR/td; W=$TMPDIR/w; mkdir -p "$TD" "$W"
 printf 'TASK=MS1P4_%s_s%s\nARM=%s\nSEED=%s\n' "$ARM" "$SEED" "$ARM" "$SEED" > "$TD/task.env"
 echo "MS1P4 fit $ARM $SEED job $SLURM_ARRAY_JOB_ID/$SLURM_ARRAY_TASK_ID host $(hostname) $(date -Is)"

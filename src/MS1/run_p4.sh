@@ -66,6 +66,7 @@ mkdir -p "$R"
 py "$W/pn1/src/pn1_score.py" --run "$RUN" --code "$W/pn1/code" --eval-manifest pn1_eval.csv \
   --train-manifest train.csv --out "$R" --workers "$WORKERS" --limit "${PN1_LIMIT:-0}"
 cp "$RUN/meta.json" "$W/train.log" "$TASK_DIR/task.env" "$R/"
+echo "train.csv = $MAN sha256 $(sha256sum "$D/manifests/train.csv" | cut -c1-64)" > "$R/manifest.txt"
 py -c "import sys, torch, timm, numpy, PIL; print('python', sys.version.split()[0], 'torch', torch.__version__, 'cuda', torch.version.cuda, 'timm', timm.__version__, 'numpy', numpy.__version__, 'pillow', PIL.__version__)" > "$R/env.txt" 2>&1 || true
 echo "sif $SIF local ${PN1_LOCAL:-0} pack_sha256 $PACK_SHA wall_s $((SECONDS - T0)) host $(hostname) steps $STEPS limit ${PN1_LIMIT:-0}" > "$R/task_info.txt"
 { echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"; nvidia-smi -i "${CUDA_VISIBLE_DEVICES:-0}" --query-gpu=index,uuid,name,driver_version --format=csv,noheader; } > "$R/gpu.txt" 2>&1 || true
