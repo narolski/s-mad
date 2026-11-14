@@ -1,0 +1,26 @@
+{
+  "status": "PASS_RESULT_ARITHMETIC_CHAIN_PRIMARY_PRESERVATION",
+  "result_sha256": "f6090b2f833a9ea2d4a33154a03308baf5f38bca786e6e26146eaeee30f49f37",
+  "release_sha256": "95cc9655096a661bb59e9e8a63049524658f13f013eb07c9b14e6abf4b4ded9f",
+  "claim_sha256": "d2f974cd2d3ff5eba5886b5f5cd8702b13b4d90afbd1a38e7beabc61ed09c476",
+  "terminal_sha256": "048cc48bfd6b49d0d14d2c81acd5fc86c9d6fffa49b0a7664d0d8dabe0a3d913",
+  "execution_sha256": "228bbea171c1b6946686a4770647ac011b1debb201f4f7c535e96ecf752b0aab",
+  "source_sha256": "692b0cde2e47fc62133fca3f58a4f4d4ff6c7357d0096d6e93b2ee4b6f30054a",
+  "binding_sha256": "4b5861f8b506c68b73cef8bf4d95b4093a9822971a8d85728fe370c9d36c5ae4",
+  "cases": 16,
+  "candidates": 15,
+  "primary_all_pins_unchanged": true,
+  "raw_payload_read": false,
+  "tau": {
+    "value": 2.002179622650146,
+    "float64_hex": "0x1.00476bfffffffp+1",
+    "float64_little_endian_bits": "ffffffbf76040040",
+    "rule": "single originalSb408 same70positive logits; nextafter(sorted[7],-inf), strict>",
+    "numerator_detected_calibration": 63,
+    "denominator_calibration": 70,
+    "achieved_calibration_sensitivity": 0.9,
+    "TRAIN_ONLY_anchor_used": false,
+    "recalculated_for_candidates": false,
+    "resampled": false
+  }
+}
