@@ -19,3 +19,11 @@ Question/hypotheses: registered, unchanged. Design/confounds: frozen CLIP tower,
 None required for these already approved 512 px fits. Supplementary selection inputs and the interior-crop interpretation remain separate from this training go.
 
 Sources: `experiments/RZ1_input-resolution-and-resize/ADMISSION_512_20261114.md`; `prereg.md` section 12 M5–M7; `src/RZ1/wcss/rz1-512.sbatch`; `src/RZ1/wcss/rz1-smoke.sbatch`; `src/RZ1/run_rz1.sh`; `/mnt/t7/smad_next/coordination_20261114/RZ1_512_ADMISSION_EVIDENCE.json`; `/mnt/t7/smad_next/coordination_20261114/INITIAL_WCSS_STATE.json`.
+
+## Addendum after the controller rejected the aged smoke dependency
+
+**Verdict: GO with explicit evidence of the passed smoke replacing the unavailable scheduler dependency.** The durable `RZ1_512_SUBMISSION_RECEIPT.json` records the first sbatch attempt returning rc 1, empty scheduler stdout, and `Job dependency problem`; it did not confirm a submission. Preserve this failed attempt.
+
+The exact command may omit `--dependency=afterok:6316283` only after the lead captures that this old job is no longer available to the live controller while accounting still identifies the exact smoke as COMPLETED with ExitCode `0:0`, and verifies the committed technical smoke evidence, exact archive identities, finite arrays and both guards already reviewed above. Unknown accounting/gates are a stop. This replaces only the obsolete dependency expression; the passed-smoke requirement, script/runner/overlay hashes, workload, seeds and six-hour limit remain unchanged.
+
+Commit the operational amendment and this review before submitting. In the same locked submission operation, recheck active/recent jobs and durable intent/response receipts for a duplicate, verify all pins, then submit once with the unchanged command except for omission of that dependency argument. Save the new intent, response and native scheduler identity; never retry an unknown response blindly. No extra scientific read, image operation or scope change is approved.
