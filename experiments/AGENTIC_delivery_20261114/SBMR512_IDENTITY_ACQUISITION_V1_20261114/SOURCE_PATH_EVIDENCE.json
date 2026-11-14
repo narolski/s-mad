@@ -1,0 +1,14 @@
+{
+  "pins": {
+    "src/RZ1/wcss/rz1-512.sbatch": "e35afefc71f2a0ecb3565f4148bba5fe2cba0b28a6698a8e75afdbc115256d25",
+    "src/RZ1/run_rz1.sh": "dc5d0838277721df004f46950fe29ee79495892c3dcc8e1b7f78a188cc01abdc",
+    "safeio_original_probe_v1r1": "34c5f9d691714835ea164e5ae87eaf11ceaf5b166a7ce7e37cf1bd7d2402f4de"
+  },
+  "registered_interpreter_expression": "$HOME/dmenv/bin/python",
+  "requested_current_path": "/home/narolski/dmenv/bin/python",
+  "venv": "/home/narolski/dmenv",
+  "historical_code_root": "$TASK_WORK/pn1/code (ephemeral)",
+  "pack_sha256": "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004",
+  "actual_current_identity": "UNKNOWN_NOT_ACQUIRED",
+  "runtime_torch_typed_fact": "2.11.0+cu128; not a current environment observation"
+}
