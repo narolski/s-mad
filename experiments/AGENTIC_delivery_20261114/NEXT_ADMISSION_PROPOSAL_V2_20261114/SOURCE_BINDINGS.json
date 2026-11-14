@@ -1,0 +1,88 @@
+{
+  "head": "4e7bac356d15f114b1e4ded7f0607d3a69532f46",
+  "sources": {
+    "/home/narolski/smad-next/experiments/NEXT_method-selection-rule/OPENCODE_ADMISSION_READINESS_20261114.json": {
+      "sha256": "ba07b09d2779d8d8c426d9d1a6c8a12837b30feca38efc5c506d8ab876ac8c69"
+    },
+    "/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json": {
+      "sha256": "da918e251af1c26529ba37aacce50e99b42917cb52f921d0254fcef46bf79372"
+    },
+    "/mnt/t7/smad_next/coordination_20261114/next_final_output_collection_20261114T185258Z/COLLECTION_VERIFIED.json": {
+      "sha256": "e211ff8c24d213c423be88736227c58b0482489f26dd78227f6364877178d639"
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbfm_collection_20261114T160056Z/COLLECTION_VERIFIED.json": {
+      "sha256": "c9a42704ea348b0f4f6275f0edaa9e35025ec99631f1910011ede398cef7511f"
+    },
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_RZ1_FIFTEEN_OPAQUE_ARRIVAL_VERIFIED_20261114.json": {
+      "sha256": "e8baeeec16009f464eb85b81e81145058e9c560bda64f654fc793153eed375ba"
+    },
+    "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/COLLECTION_VERIFIED.json": {
+      "sha256": "a8945a19f8dd201778ee7e938e31a85484f532671015e3f65e8bf6913f13ab14"
+    },
+    "/mnt/t7/smad_next/coordination_20261114/new_completion_collection_20261114T164056Z/COLLECTION_VERIFIED.json": {
+      "sha256": "baa6fa6448dce549d762b394cd2fe77b44fc2ff761c96f3c8e8df30b4864aa1b"
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/COLLECTION_VERIFIED.json": {
+      "sha256": "ebfe827636af62ce6384e395dc78074f4a0823438976bdcd22c13a72e3f4e38b"
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/COLLECTION_VERIFIED.json": {
+      "sha256": "9bf5baa28cedfc5f6d24e5dc8e62061bb16ad20f6b3e04fb1a0faf0a43549ae0"
+    },
+    "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/COLLECTION_VERIFIED.json": {
+      "sha256": "fca961c6171ce536036f6ded958db44210cc964040a76cdbad70b458a2c4fcea"
+    },
+    "/home/narolski/smad-next/src/NEXT/read_selection.py": {
+      "sha256": "f20f42578275aa3d92b8c695ab86827a526b7f62016b98ec242bf17c0b390830"
+    },
+    "/home/narolski/smad-next/src/NEXT/native_adapters.py": {
+      "sha256": "ebb40edda27a08034a6087a737109509e65c3c5ad76c748767cd19a49f2ff17c"
+    },
+    "/home/narolski/smad-next/experiments/NEXT_method-selection-rule/prereg_draft_v3.md": {
+      "sha256": "5188ad9a696d86c935191a4fd45bee0f0762186c199a5bbd7d8368e87bf62667"
+    },
+    "/home/narolski/smad-next/experiments/reviews/PRERUN_NEXT_NATIVE_OPENCODE_20261114.md": {
+      "sha256": "085a2a2b6ed371c6d244b9f3085e53940a539bec42aa3ca706667d4a510a8f73"
+    },
+    "/home/narolski/smad-next/experiments/BB2_second-backbone/seed_mode_L.json": {
+      "sha256": "a46b407a7815a54f7609a666c5d5568df09dfe7f2229e8366a3f39ee14c344f2"
+    },
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/prereg.md": {
+      "sha256": "8e4d249f06ec2f1bb99dcd8a4b14361e004dff5a47ffee004593d3e6389050d8"
+    },
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_AB1_TEN_COMPARATOR_OPAQUE_VERIFIED_20261114.json": {
+      "sha256": "755a8122e65a36348b9ee0dedb1a449e2a595aadee4efcd669795ab9fc753a71"
+    },
+    "/home/narolski/smad-next/experiments/NEXT_method-selection-rule/inputs/support/support_v3.json": {
+      "sha256": "5ac8d319dbec42044d9812e9deaccb25096c5ba945aaf6e5011eaaf815eacc7a"
+    },
+    "/home/narolski/smad-next/experiments/NEXT_method-selection-rule/inputs/support/pins.sha256": {
+      "sha256": "5e8d39f02345b39755ffbcd13def8af26a1be057e15f7499d7d5649784c2b02a"
+    },
+    "/home/narolski/smad-next/src/NEXT/prepare_inputs.py": {
+      "sha256": "5376204a55217cc282ab86bacb5c2d48a13ca69d0fb9c0aacd13b21ee9a3d298"
+    },
+    "/home/narolski/smad-next/src/NEXT/prepare_support.py": {
+      "sha256": "e85c79356adbff6fc7b46dd42e4fa5595f0638db93f9a119c9f24c0dc1c49972"
+    },
+    "/home/narolski/smad-next/src/RZ1/rz1_read.py": {
+      "sha256": "edeaf135fcc9fdefb7f9a528d43f0c7648f94bd9c241cf78c5fce3b0314f5870"
+    },
+    "/home/narolski/smad-next/src/TT1/tt1common.py": {
+      "sha256": "1053022792e99ade577abc11490d169e0bec15c6a6dd761fc5aac3b92c52a1a3"
+    }
+  },
+  "producer_priors": {
+    "sbfm_supplement": [
+      "src/recovery_20261114/sbfm_supplement/run_supplement.py",
+      "2dd5535b64901691176f0268130fecc48f34145709d7081bde8f9f9cbb41474b"
+    ],
+    "dinov3_w2": [
+      "src/BB2/wcss/bb2l_w2.sbatch",
+      "b44834782a552ab87c66518fa90563ce804963f763b2c54d0b6642d3120db507"
+    ]
+  },
+  "production_code_imported": false,
+  "archive_members_opened": false,
+  "scientific_read": false,
+  "parent_package_sha256": "8a51074a7f174a5ac14c70238dab6927d11b0765a3411d90ab6a7d71083c3d7a"
+}
