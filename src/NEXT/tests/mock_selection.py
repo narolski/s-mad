@@ -192,7 +192,7 @@ class AdmissionTests(unittest.TestCase):
     def test_unsupported_eligible_arm_is_global_blocker(self):
         with tempfile.TemporaryDirectory() as t:
             root = pathlib.Path(t); a, path = self.fixture(root)
-            a['arms']['SbFM'] = {'status': 'read'}
+            a['arms']['GX'] = {'status': 'read'}
             path.write_text(json.dumps(a, indent=2))
             (root / 'review.md').write_text('NEXT_ADMISSION_GO ' + S.digest(path) + '\n')
             files = [root / S.RULE, root / 'support.json', root / 'receipts.json', root / 'excluded.md', path, root / 'review.md', CODE]
