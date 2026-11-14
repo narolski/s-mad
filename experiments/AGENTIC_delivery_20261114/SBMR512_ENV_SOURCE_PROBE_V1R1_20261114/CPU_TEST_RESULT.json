@@ -1,0 +1,8 @@
+{
+  "scope": "GENERATED_TEMPORARY_FILES_ONLY_NO_PROBE_MAIN",
+  "tests": 19,
+  "passed": 19,
+  "command": "OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 CUDA_VISIBLE_DEVICES= nice -n 10 /usr/bin/python3 -I -S -B experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/test_probe.py",
+  "elapsed_seconds_reported": 0.03,
+  "actual_environment_collected": false
+}
