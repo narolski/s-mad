@@ -1,0 +1,8 @@
+{
+  "original_trainer_sha256": "e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d",
+  "patched_trainer_sha256": "199f2433a1242d91cc319ddf9f5ddc6d75e33092a2b3136d74a88be89088abfb",
+  "optimizer_constructors": "ASTbyte-structureidentical",
+  "onefullbackward_and_bothoriginalupdates": "mockedcontrolflowPASS",
+  "stop_before_poststep_callbacks": "mockedcontrolflowPASS",
+  "source_only_preparation": true
+}

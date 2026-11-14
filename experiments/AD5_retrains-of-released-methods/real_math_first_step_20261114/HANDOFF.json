@@ -1,0 +1,30 @@
+{
+  "status": "FROZEN_SOURCE_ONLY_REQUIRES_OTHER_INDEPENDENT_PREREVIEW",
+  "source_path": "/home/narolski/smad-next/src/recovery_20261114/ad5_real_math_step_v1",
+  "source_manifest_sha256": "40e6cb24e6a97b87020f61d47f786024b7472d651a2dfd97620a5999fdc9c9f4",
+  "prereg_sha256": "e1c3bf3a5f575a928d46f9390e57165cf7bc33b843cdc5b525fa2551f497adbd",
+  "trainer_delta_sha256": "9b078b8de3303103dc37f909effbdf68f5c62c35461029480cfdc9455bfcd481",
+  "launcher_delta_sha256": "be49a4fad93f40f800a34a7a5a9ac455684ec7563ff1d03fec7e6729713687ff",
+  "patch_proof": {
+    "original_trainer_sha256": "e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d",
+    "patched_trainer_sha256": "199f2433a1242d91cc319ddf9f5ddc6d75e33092a2b3136d74a88be89088abfb",
+    "optimizer_constructors": "ASTbyte-structureidentical",
+    "onefullbackward_and_bothoriginalupdates": "mockedcontrolflowPASS",
+    "stop_before_poststep_callbacks": "mockedcontrolflowPASS",
+    "source_only_preparation": true
+  },
+  "cpu_tests": 12,
+  "cpu_test_receipt_sha256": "2c6e0ce1d0bfc8ec80ab416c3b045dc96c885d50fa5f43605e254cef366ebe22",
+  "expected_vision_LoRA_tensors": 48,
+  "expected_header_tensors": 2,
+  "individual_A_zero_gradient_allowed": true,
+  "allzero_or_allunchanged_group_pass": false,
+  "original_optimizer_construction_unchanged": true,
+  "original3311_global256_B401_float32_packages_preserved": true,
+  "prior_synthetic_review_sha256": "d3ecb92faeacbc262483481eba6137bfed67315d896d53d98cb346dead5b8abe",
+  "actual_model_weights_dataset_GPU_opened": false,
+  "WCSS_query_stage_submit_cancel": false,
+  "old_jobs_action": "NONE",
+  "root_release": "HOLD",
+  "scientific_read": "HOLD"
+}

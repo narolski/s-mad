@@ -1,0 +1,22 @@
+{
+  "sidecars": {
+    "ad5w_code.tar.sha256": {
+      "path": "/mnt/t7/smad_next/AD5/wcss/ad5w_code.tar.sha256",
+      "sha256": "a946c59a9617b41fe257b3ed5fbd3545d8df7ecee0399e033821692144c064ad",
+      "text": "94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee  ad5w_code.tar"
+    },
+    "ad5w_wheels39.tar.sha256": {
+      "path": "/mnt/t7/smad_next/AD5/wcss/ad5w_wheels39.tar.sha256",
+      "sha256": "fbc56de255c5ccac1f74d3d5852d3ca1e70d52f8fd88d78e692641d72b01c706",
+      "text": "3bd18def4da9cbec2766896fa160c34c0364de464ca3abd02d675c72620cf13c  ad5w_wheels39.tar"
+    },
+    "smdd_train_cropped.tar.sha256": {
+      "path": "/mnt/t7/smad_next/AD5/wcss/smdd_train_cropped.tar.sha256",
+      "sha256": "a3dae3ee754bcd784691758354ed5ede650591a41ffd2e61f2a62d4bbb8af2fb",
+      "text": "3189e52af12e2853b06c86993b1b8b5cfef891fda749395778492e3445924900  smdd_train_cropped.tar"
+    }
+  },
+  "weight_or_dataset_bodies_read": false,
+  "runtime_pack_verification_before_extraction": true,
+  "individual_weight_hash": "notindependentlyread; exactcodepackpinbindsweight, actualhashrecordedonlyinrootreleasedworker"
+}
