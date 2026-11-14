@@ -1,0 +1,31 @@
+# Identity breadth versus capture/orientation variants [SPRINT5-4]: real bounded fit pilot
+
+Prospective14November2026, MAD22-informed newcycle outsideNEXT. No candidateoutputs areknown; existingassets arelabelledhistoricaltraining data. This pilot asks whether allocating a FIXED32image splice-supervision budget acrossmoreidentities or morecapture/orientation variants changesheldoutS4/S3ranking. It is not a purepersoncount effect, externalbenchmark result or fullMAD training comparison. No commonbackgrounddata are included, so actualTOTALtrainingidentities differ16vs32 withouta hiddensharedidentitypool.
+
+## Data fixed before fitting
+
+Historicaltraining graph has30reciprocaltrainingidentitypairunits (9colorFERET,21FRGC), identitiesdisjointbetweenunits. Bothdirections areS4/S3existingnativeOpenCVsplices; eachunitcontains4uniqueimages, twohostorientations withoneS4 andoneS3each. OriginalH/Sdonorcaptures differwhenhostorientation changes: nameeffect breadth-versus-capture/orientationallocation, not independentidentityeffect. Pinnedinventory`/mnt/t7/smad_next/SPRINT5_4/existing_pair_inventory_v1/inventory.json` verifies120sourceassets and fiveallocations. NoHQmappingornewimagegenerationdependency.
+
+Per source chooseK=4units for narrowarm and2K=8units for broadarm withthenarrowunitsnestedinbroad. Narrowuses2hostorientations/unit; broaduses1orientation/unit. Randomunitandorientationorders fixedfromeachseed511–515. Eacharm32uniqueimages,16S4+16S3,16rows/source,nativestorage,allsplicefamilies. Narrowactualidentities16,broad32. ExactactualcontributorIDs areS3hostonly,S4host+partner; unit_person_ids holdbothunitIDsseparately. Actualperpersonexposurehistograms arereported. Do notcountbothpeopleasS3pixelcontributors. AssetSHA256s andexactFS1conversionreceipts `FIT_MANIFESTS.json`; trainmanifestsincludeoriginalrowmetadata and newunit/contributorcolumns.
+
+## Network and bounded computation
+
+ExactFS1CLIPViT-B/16LoRA q/v rank2alpha4rsLoRA dropout.4,normsfrozen,lr3.33e-6,headlr3.33e-5,AdamWwd.05,constantLR,posweight1,labelsmoothing0,pureflip,clipgrad5,lastcheckpoint. Originalpinnedtrainer/common/model/weightsunchanged exceptVALIDATIONassertions andanexposurereceipt; BCEandprior-shuffleloaderunchanged. Batch32 equalsalltrainingrows,drop_lastTrue yields1fullbatch/cycle;100updates givesEXACT100exposures/uniqueimage,3200imageforwardsperfit. Fivepairedseeds511–515 allocatejointsubset/optimizer/dropoutvariability. Nohyperparametersearch,earlystop,checkpointselection orseedreplacement.
+
+100updates isaprospective smallfeasibilitybudget, not a claim ofconvergence oradequatefinaltraining. It avoidsblindlyrepeating6250steps on32images. The100exposures/image maystilloverfit; reporttrainingfitandheldoutbehaviorwithoutincreasingstepsbasedonoutcomes. Unequalperidentityrevisitsareinherentinthefixedrowbreadth-versus-variantsallocationestimand. Noensembleorpooledseednetwork.
+
+## Smoke, execution and endpoints
+
+First two-stepGPUsmoke runsbotharms at511,full32rowsandexistingopaqueAB1development scoring+fullfour-setbattery, exactrc2checksumroot$W/pn1/data, strictreferencebytegateandall21277ownfitdevlogitsbytecheck. Finiteloss,32rowreceipt2exposures/image,actualH100software/GPUrecord,durablearchivehashesrequired. Actualpermittedexistingdevelopmentrowallowlists identicaltoSPRINT5-1 v3; historical191ladderrowsonlyopaqueplatform/pathvalidationandpreservedoutput, no191scientificread. Still-sealedexternalbenchmarksuntouched. d0val10rowsassertextraempty. Two-stepweightsarenotscientificpilotresults.
+
+Afterindependentreviewandtwo-armH100smoke, execute10pilotfits (2arms×5seeds),100updateslastcheckpoint; runnerreceiptbindsreviewer/source/freshseeds/smokehashes. Onefitperarraytask,1hourallocationproposedlargelyforpacks+fullbattery; puretraininglikelyminutesbutnotyetmeasured. Resultsandpartialfailurearchives retained, nooverwrite/reuse. Noresultreaduntilall10complete, exactinput/component/D/calibration/floorpinsandonce-onlyreaderindependentlyadmitted. No newbenchmarkreadislicensed.
+
+Primary descriptiveendpoint: broadminusnarrowseed-mean S4vsS3D-stratifiedAUC onexact100developmenthosts (same200nativeS4/S3rowmetadataasSPRINT5-1). Dedges fixedbeforecandidateaccess; source/componentbootstrap10000draws numpydefault_rng2026111404; jointlyresamplepersoncomponentsandpairedseedtriplets. Reportperseed effects,sourcecells,ordinaryunstratifiedAUC,allfailures and95%CI. ThereisNO binaryadoption/superioritygatefor this tinydatafeasibilitypilot. Fixed-BPCERgenuinefalsealarms andS4sensitivity canbe reportedonlyafterdisjointcalibrationpartition/uncertaintyrulesareboundbeforecandidateaccess. Missingprecision ornonpositiveeffect remainsvalidpilotoutcome; noresettingK,V,steps,seedsorcalibration.
+
+Interpretationlimit: possibleeffectreflectsnumberofpeople,capture/orientationdiversity andwhichsubsetwasdrawn underfixedsmallsplicebudget. ItcannotshowfullMAD improvement,independentidentitymain effect,shortcutfreedom orfreshbenchmarkgeneralization. It does provideactualcontrolledbudgettrainingwork, notgenericmoredata.
+
+## Dispatch package
+
+Code `src/SPRINT5/breadth_fit/`; `worker.sh smoke` then `pilot.sbatch` afterreceipt. Sourcepacksstaged`$G/packs/SPRINT5_4_v1/source`, outputs`$G/results/SPRINT5_4/{smoke_v1,pilot_v1,logs}`. G=`/lustre/pd03/hpc-narolski-1790461090/smad-next`. Smoke usesrealPTYsruninteractive1H1008CPU64G200Glocal2h,--extra=FORCE_RM_TMPDIR. Pilotarray0–9%1 normalshort1H1008CPU64G100Glocal1h. Leadersoleclusterexecutor; nointeractive sbatch, failedloginretry orpaidH100.
+
+ReceiptJSONSMOKE_RELEASE/PILOT_RELEASE bindsidSPRINT5_4,decisionGO_SMOKE/GO_PILOT,seeds511–515,fresh_seed_allocation_pass,source_sums_sha256,distinctreviewer/author,independent_review_path+SHA256. Pilotaddsh100_smoke_pass,byte_gate_pass,twoSHA-verifiedsmokearchiveswitharm. Read/flooradmissionremainsseparate. Currentstatus: source/manifestCPUvalidationbeingfinalized,independentreviewandrealGPUsmokePENDING.

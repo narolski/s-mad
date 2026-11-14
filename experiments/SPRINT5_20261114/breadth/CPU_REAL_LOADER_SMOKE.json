@@ -1,0 +1,92 @@
+[
+  {
+    "seed": 511,
+    "arm": "narrow_more_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  },
+  {
+    "seed": 511,
+    "arm": "broad_fewer_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  },
+  {
+    "seed": 512,
+    "arm": "narrow_more_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  },
+  {
+    "seed": 512,
+    "arm": "broad_fewer_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  },
+  {
+    "seed": 513,
+    "arm": "narrow_more_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  },
+  {
+    "seed": 513,
+    "arm": "broad_fewer_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  },
+  {
+    "seed": 514,
+    "arm": "narrow_more_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  },
+  {
+    "seed": 514,
+    "arm": "broad_fewer_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  },
+  {
+    "seed": 515,
+    "arm": "narrow_more_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  },
+  {
+    "seed": 515,
+    "arm": "broad_fewer_variants",
+    "rows": 32,
+    "epochs": 2,
+    "actual_images_loaded": 64,
+    "all_row_indices_twice": true,
+    "val10": 0
+  }
+]
