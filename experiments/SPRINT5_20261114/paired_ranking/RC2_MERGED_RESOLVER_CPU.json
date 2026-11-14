@@ -1,0 +1,11 @@
+{
+  "scope": "actualrc2 pack_sums on simulatedsinglemerged stagingroot; no scoring",
+  "realroot": "$W/pn1/data",
+  "covered": 21277,
+  "missing": 0,
+  "sumfiles": {
+    "/mnt/t7/smad_next/SPRINT5_1/merged_resolver_metadata/pn1/SHA256SUMS": "156da96c4ae652eb939d849d610658c6c2d4d209d0fe52b6d2303569baa38052",
+    "/mnt/t7/smad_next/SPRINT5_1/merged_resolver_metadata/pn1/AB1SUMS": "dd0d9cc0827c691f3fe23c5540f9dc98c5c790c6ed3c59055e45415f44bb60e8"
+  },
+  "synthetic_wrongroot_map_entries": 0
+}

@@ -1,0 +1,38 @@
+{
+  "id": "SPRINT5_1",
+  "label": "MAD22-informed separate cycle; not NEXT",
+  "arms": [
+    "bce",
+    "paired_bce",
+    "paired_rank"
+  ],
+  "seeds": [
+    501,
+    502,
+    503,
+    504,
+    505
+  ],
+  "reserved_next_confirmation": [
+    413,
+    414,
+    415,
+    416,
+    417
+  ],
+  "steps": 6250,
+  "batch_size": 256,
+  "rank_lambda": 0.1,
+  "rank_margin": 1.0,
+  "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+  "eval_manifest_sha256": "93a5ba234f91e57951829c5536fabbe0f792ee4ad0a293f074aaca72f7465bd5",
+  "platform": "WCSS NVIDIA H100 torch2.11.0+cu128; independent byte gate required",
+  "checkpoint": "last",
+  "independent_review": "PENDING",
+  "gpu_smoke": "PENDING",
+  "source_version": "v3",
+  "first_smoke_job": "6320883",
+  "first_smoke_disposition": "infrastructure failure: rc1 CLI rejected --expect-eval before battery scoring; BCE checkpoint retained; paired arms not run",
+  "second_smoke_job": "6320908",
+  "second_smoke_disposition": "infrastructure failure: rc2 checksum resolver syntheticdata parent lacked checksumfiles; noimagewasoffchecksum; BCE retained, pairedarmsnotrun"
+}

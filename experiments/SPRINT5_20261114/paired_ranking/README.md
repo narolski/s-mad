@@ -1,3 +1,7 @@
+# CURRENT STATUS — infrastructure repairs14November2026
+
+Do not relaunch v1 orv2. Smoke6320883 failedCLI compatibility:rc1rejects --expect-eval;6320908 failedchecksumroot resolution:$W/data lacksparentchecksumfiles. Bothfailures retained, BCEcheckpoint/ordinaryscore preserved; neitherwas valid3armH100smoke. No scientificscoreinterpreted. The currentreviewpacket isv3, minimaldevrootfix to$W/pn1/data, withrc2CLI+actual67748imagechecksumresolverCPUvalidation andstrictbytegate. Source src/SPRINT5/paired_ranking_v3; pack /mnt/t7/smad_next/SPRINT5_1/source_v3.tar. Independentrootreview requiredbeforeretry; resource200Gscratch,2h,actualPTY. Sourcesv1/v2 belowarehistoricalreproducibilityonly. Production/readremainHOLD.
+
 # Paired splice ranking [SPRINT5-1]: handoff
 
 Status: CPU smoke PASS; independent bounded GPU-smoke review pending final signature. No GPU job submitted by this owner. Production and candidate read HOLD. New MAD22-informed cycle outside NEXT; seeds413–417 untouched.
