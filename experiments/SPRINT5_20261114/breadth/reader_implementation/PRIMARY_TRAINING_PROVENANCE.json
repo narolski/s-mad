@@ -1,0 +1,138 @@
+{
+  "status": "PASS_PRIMARY_ONLY",
+  "cases": [
+    {
+      "seed": 511,
+      "arm": "narrow_more_variants",
+      "training_rows": 32,
+      "actual_persons": 16,
+      "source_photos_with_geometry": 32,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    },
+    {
+      "seed": 511,
+      "arm": "broad_fewer_variants",
+      "training_rows": 32,
+      "actual_persons": 32,
+      "source_photos_with_geometry": 48,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    },
+    {
+      "seed": 512,
+      "arm": "narrow_more_variants",
+      "training_rows": 32,
+      "actual_persons": 16,
+      "source_photos_with_geometry": 32,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    },
+    {
+      "seed": 512,
+      "arm": "broad_fewer_variants",
+      "training_rows": 32,
+      "actual_persons": 32,
+      "source_photos_with_geometry": 48,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    },
+    {
+      "seed": 513,
+      "arm": "narrow_more_variants",
+      "training_rows": 32,
+      "actual_persons": 16,
+      "source_photos_with_geometry": 32,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    },
+    {
+      "seed": 513,
+      "arm": "broad_fewer_variants",
+      "training_rows": 32,
+      "actual_persons": 32,
+      "source_photos_with_geometry": 48,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    },
+    {
+      "seed": 514,
+      "arm": "narrow_more_variants",
+      "training_rows": 32,
+      "actual_persons": 16,
+      "source_photos_with_geometry": 32,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    },
+    {
+      "seed": 514,
+      "arm": "broad_fewer_variants",
+      "training_rows": 32,
+      "actual_persons": 32,
+      "source_photos_with_geometry": 48,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    },
+    {
+      "seed": 515,
+      "arm": "narrow_more_variants",
+      "training_rows": 32,
+      "actual_persons": 16,
+      "source_photos_with_geometry": 32,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    },
+    {
+      "seed": 515,
+      "arm": "broad_fewer_variants",
+      "training_rows": 32,
+      "actual_persons": 32,
+      "source_photos_with_geometry": 48,
+      "primary_overlap": {
+        "person_geometry": [],
+        "source_photo": [],
+        "full_component": []
+      },
+      "provenance": "Pixel contributors and H/B target/hull suppliers included; S3 is not falsely counted as two pixel identities."
+    }
+  ],
+  "errors": [],
+  "scope": "Primary source-person/photo/geometry and full-component metadata audit only. Camera/auxiliary provenance NOT authorized or established here.",
+  "limits": "Metadata identity/source provenance, not a biometric duplicate guarantee; no candidate archive/score/checkpoint read."
+}

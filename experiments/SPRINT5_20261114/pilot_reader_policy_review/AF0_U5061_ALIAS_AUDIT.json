@@ -1,0 +1,27 @@
+{
+  "scope": "all4admittedmanifest metadata + sourceonly; no candidatepayload",
+  "direct_AF0_positive_rows": 180,
+  "direct_AF0_s61_positive_rows": 0,
+  "direct_AF0_s61_matches": [],
+  "other_soft_positive_rows": 250,
+  "other_soft_family_counts": {
+    "('dev', 'ladder', 'R4', '61')": 100,
+    "('dev', 'ms1ffhq', 'u50', 'fm61')": 150
+  },
+  "source_pins": {
+    "/home/narolski/smad-next/src/PN1/tier1.py": "4b1c7b96b4d0311b3ec147be9072573b6e97560cce6f5c5b6b66542b6f26c605",
+    "/home/narolski/smad-next/src/PN1/soften_dev.py": "7b192c6442aca8a91f2332c70ac3cd8e27a12b31a6780b36a08791c54efa9598",
+    "/home/narolski/smad-next/src/PN1/mkmanifests.py": "37ff64596deeefb2664df2dca983e5baf1dc5a02314a44fc826c0b4cb7b78967",
+    "/home/narolski/smad-next/src/PN1/pairs_check.py": "07ea6eeae926ccdabf6a6f13d6d78695bb2470537999cda14931b7ed1c75f4c1"
+  },
+  "manifest_pins": {
+    "/mnt/t7/smad_next/AB1/overlay_tree/pn1/data/manifests/ab1_eval.csv": "93a5ba234f91e57951829c5536fabbe0f792ee4ad0a293f074aaca72f7465bd5",
+    "/mnt/t7/smad_next/TT1/pack_tree/tt1/data/manifests/tt1_score.csv": "c0055b51467cf8d001d56cbc4689706d68f0bf35c64066b1ba49fada5cb45761",
+    "/mnt/t7/smad_next/TT1/meds/pack_tree/tt1m/data/manifests/meds_score.csv": "9093d5d5425e1d031f5f940e15321a6371cb0fe6a5d2014aabc404ba4543415a",
+    "/mnt/t7/smad_next/PR1/pr1_gd_tree/pr1g/data/manifests/pr1_gd.csv": "3577a91351131b104457424054c29ca3c6f3fc59666e9204598e45e608e15157"
+  },
+  "historical_proxy": "src/PN1/tier1.py:gaps maps af0_u5061 to D_R4_opencv_61 for train-vs-heldout logit gap. It is a ladder/OpenCV/s61 proxy, not AF0 morph lineage. No silent family-equivalence assumption.",
+  "source_evidence": "mkmanifests.py creates af0_u5061 from kept trainingu50 images; soften_dev.py adds AF0 heldout photo copies, not AF0 positiveu50 copies.",
+  "decision": "DIRECT_AF0_U5061_FAMILY_ABSENT; historicalproxyavailableonlyifexplicitlyseparatelyinterpreted",
+  "script_sha256": "3704fdb28dc6b4eebee6447f0be9dac3f435557c40a51e4d14f7cfe4d211d4a6"
+}

@@ -1,0 +1,161 @@
+{
+  "scope": "source metadata only; no candidate or image payload",
+  "training_people": 669,
+  "training_photos": 862,
+  "primary_people": 200,
+  "positive_groups": [
+    {
+      "family": [
+        "af0",
+        "u50",
+        "af0engine",
+        ""
+      ],
+      "rows": 180,
+      "train_clean_rows": 180,
+      "train_clean_components": 19,
+      "also_primary_disjoint_rows": 180,
+      "also_primary_disjoint_components": 19
+    },
+    {
+      "family": [
+        "ladder",
+        "R4",
+        "facemorpher",
+        ""
+      ],
+      "rows": 100,
+      "train_clean_rows": 35,
+      "train_clean_components": 34,
+      "also_primary_disjoint_rows": 0,
+      "also_primary_disjoint_components": 0
+    },
+    {
+      "family": [
+        "ladder",
+        "R4",
+        "opencv",
+        ""
+      ],
+      "rows": 100,
+      "train_clean_rows": 35,
+      "train_clean_components": 34,
+      "also_primary_disjoint_rows": 0,
+      "also_primary_disjoint_components": 0
+    },
+    {
+      "family": [
+        "ladder",
+        "R4",
+        "opencv",
+        "112"
+      ],
+      "rows": 100,
+      "train_clean_rows": 35,
+      "train_clean_components": 34,
+      "also_primary_disjoint_rows": 0,
+      "also_primary_disjoint_components": 0
+    },
+    {
+      "family": [
+        "ladder",
+        "R4",
+        "opencv",
+        "61"
+      ],
+      "rows": 100,
+      "train_clean_rows": 35,
+      "train_clean_components": 34,
+      "also_primary_disjoint_rows": 0,
+      "also_primary_disjoint_components": 0
+    },
+    {
+      "family": [
+        "splice",
+        "R4_bg",
+        "opencv",
+        ""
+      ],
+      "rows": 100,
+      "train_clean_rows": 35,
+      "train_clean_components": 34,
+      "also_primary_disjoint_rows": 0,
+      "also_primary_disjoint_components": 0
+    },
+    {
+      "family": [
+        "splice",
+        "R4_face",
+        "opencv",
+        ""
+      ],
+      "rows": 100,
+      "train_clean_rows": 35,
+      "train_clean_components": 34,
+      "also_primary_disjoint_rows": 0,
+      "also_primary_disjoint_components": 0
+    },
+    {
+      "family": [
+        "splice",
+        "S4",
+        "opencv",
+        ""
+      ],
+      "rows": 100,
+      "train_clean_rows": 35,
+      "train_clean_components": 34,
+      "also_primary_disjoint_rows": 0,
+      "also_primary_disjoint_components": 0
+    },
+    {
+      "family": [
+        "splice",
+        "S4_bg",
+        "opencv",
+        ""
+      ],
+      "rows": 100,
+      "train_clean_rows": 35,
+      "train_clean_components": 34,
+      "also_primary_disjoint_rows": 0,
+      "also_primary_disjoint_components": 0
+    },
+    {
+      "family": [
+        "splice",
+        "S4_face",
+        "opencv",
+        ""
+      ],
+      "rows": 100,
+      "train_clean_rows": 35,
+      "train_clean_components": 34,
+      "also_primary_disjoint_rows": 0,
+      "also_primary_disjoint_components": 0
+    }
+  ],
+  "unresolved_selected_ids": [],
+  "metadata_pins": {
+    "/home/narolski/mambamorph-code/dmad/data/maps/feret_map.csv": "fc4b32aeb5b6f5af25347b1edccb6e2f15ed3736415e752f3fdbe7584c3e1b2f",
+    "/mnt/t7/smad_next/volatile_backup_20261113/r6_train_sources.csv": "6b3b4fc8b7edbe8fd7b4852668946608f2000bc1c7c4aeb69d170659608b8c49",
+    "/mnt/t7/smad_next/AR1/pool.csv": "861019781e79159fe7904eb60e8cda6a57e978023722615dd46023db2f299352",
+    "/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/split/ladder_split.csv": "2299ac2b1f3a8a4798fe1730ab8722780933ba956d4b38080fdeeb730b391ec3",
+    "/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/split/af0_split.csv": "091712ef4d68fe40943961cdfd5111b6a457cabfdf3b9058b490015c2f04a23a",
+    "/mnt/t7/smad_next/AR1/manifest.csv": "364c2ee48f0536980e16c325a5dae29346a4e539e64b3a65defe4ea2213d7a62",
+    "/mnt/t7/smad_next/AR1/manifest_extra.csv": "26da4450e196d3fc044a0623fbc712cd5470dc35036ec53703d5c4411d53139b",
+    "/mnt/t7/smad_next/AR1/manifest_extra2.csv": "71fa80e529ddacebcad27686a91c8edc7b65673be6033c3ea93fcc76bc86dd16",
+    "/mnt/t7/smad_next/AF0/manifest.csv": "43becaca9a955028f1ce6b174aeeba82356cdc375cd6ab99da862b91319b765b",
+    "/mnt/t7/smad_next/MS1/ffhq/lists/af0_pairs.csv": "5eb38f6506c9839bb252b4d84463c6343e446a866419eb552456f817d81d44e7",
+    "/mnt/t7/smad_next/MS1/ffhq/lists/soft.csv": "819698f499d3c874d914bd1d4568c519032bbd06b90a5b6d5c69ddcf5f957c60",
+    "/mnt/t7/smad_next/MS1/ffhq/lists/ladder.csv": "6403d2d1ce858dba1188aa27474949faaa13a74241126eef01030ad825d145ea",
+    "/home/narolski/smad-next/experiments/DG1_diffusion-generation-athena/validity/setB_manifest.csv": "263478b82205fcf9a657de380024978e99028f4872b8a52604ff485b7258d384",
+    "/mnt/t7/smad_next/AG1/data/manifests/ag1.csv": "5892c91890c59eb0b7b47825c9f168a615b10f15dbe9eff5ac6fcd1ceb8b7246",
+    "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/train_Sb.csv": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "/mnt/t7/smad_next/AB1/overlay_tree/pn1/data/manifests/ab1_eval.csv": "93a5ba234f91e57951829c5536fabbe0f792ee4ad0a293f074aaca72f7465bd5"
+  },
+  "resolver_sha256": "3b09d38360e09b19d63ed294646294ee04fb277da7b8b50c5043303627e88a12",
+  "script_sha256": "2a678dc60f5aebab83fcb40436cbcdf103486b1df3363cf582814cf14e3e5ca8",
+  "camera_rows": 678,
+  "train_clean_camera_rows": 483
+}
