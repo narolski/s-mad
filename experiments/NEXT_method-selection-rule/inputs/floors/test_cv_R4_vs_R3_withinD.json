@@ -1,0 +1,22 @@
+{
+ "contrast": "test_cv_R4_vs_R3",
+ "rule": "BD1 primary rule on held-out floor scores; D of the host's S4 / S3 splice",
+ "all_cue": {
+  "n_rows": 382,
+  "D": "D",
+  "single": 0.6700955180014695,
+  "coverage": 1.0,
+  "logreg": 0.7670830271858927,
+  "gbt": 0.7403379867744305,
+  "pure_D_reference": 0.5847171197648787
+ },
+ "non_f27_non_blend": {
+  "n_rows": 382,
+  "D": "D",
+  "single": 0.6092578986039676,
+  "coverage": 1.0,
+  "logreg": 0.6822924320352682,
+  "gbt": 0.6886113152094049,
+  "pure_D_reference": 0.5847171197648787
+ }
+}
