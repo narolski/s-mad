@@ -1,0 +1,40 @@
+{
+  "unchanged": {
+    "runtime.py": {
+      "v1": "70b7d4ab46bcee430f9ca122888e20d04c6fa095547ceae58d1dba54b5ac97c5",
+      "v1r1": "70b7d4ab46bcee430f9ca122888e20d04c6fa095547ceae58d1dba54b5ac97c5",
+      "identical": true
+    },
+    "base_runtime.py": {
+      "v1": "b4ea532215832877532494cceee32e5643e237ef35b035759de0beb6538fae13",
+      "v1r1": "b4ea532215832877532494cceee32e5643e237ef35b035759de0beb6538fae13",
+      "identical": true
+    },
+    "contract.py": {
+      "v1": "c4fc14ec916d75fa0e5959df0096b24d38ac859b5441c37c1711d9749ecd9e26",
+      "v1r1": "c4fc14ec916d75fa0e5959df0096b24d38ac859b5441c37c1711d9749ecd9e26",
+      "identical": true
+    },
+    "patch.py": {
+      "v1": "734cf8db843a052538220b166d6d157b797f19689477cb45191f25bfd9b3744f",
+      "v1r1": "734cf8db843a052538220b166d6d157b797f19689477cb45191f25bfd9b3744f",
+      "identical": true
+    },
+    "PATCH_PROOF.json": {
+      "v1": "569b65fba2e5af87e5eb4b6aaf70f3b715910eb0a9db30005126b8c3b33c58df",
+      "v1r1": "569b65fba2e5af87e5eb4b6aaf70f3b715910eb0a9db30005126b8c3b33c58df",
+      "identical": true
+    },
+    "EXACT_TRAINER_DELTA.patch": {
+      "v1": "06118ea67bd65b100f1ed581a54c319f47d45008900648b7c21407349b7c8ff4",
+      "v1r1": "06118ea67bd65b100f1ed581a54c319f47d45008900648b7c21407349b7c8ff4",
+      "identical": true
+    }
+  },
+  "old_manifest": "bb95f255cbe61bb9b2175951f7a90255c498968739f163ef79a37c34af13b52b",
+  "old_members_rehashed": 35,
+  "old_all_verified": true,
+  "qualified_review": "/home/narolski/smad-next/experiments/AD5_retrains-of-released-methods/real_math_multi_20261114/AD5_MULTI_INDEPENDENT_PRERUN_REVIEW_20261114.md",
+  "qualified_review_sha256": "f8694bd3b8093411cc32d3e0299de2fa8e18feb0b29c2ad02198f58f8864363f",
+  "r1_model_or_gpu_access": false
+}

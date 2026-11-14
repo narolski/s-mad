@@ -1,0 +1,1 @@
+R1 durability-only immutable revision. Qualified computation files byteidentical to v1. Direct durable fsynced observer receipts,live fsyncedstdout,incremental allowlisted artifact snapshots and allocation-relative720s TERM/KILL supervision. Execution HOLD pending independentdelta-review/rootnewrelease. See PREREG.md and R1_DURABILITY_DELTA.patch.
