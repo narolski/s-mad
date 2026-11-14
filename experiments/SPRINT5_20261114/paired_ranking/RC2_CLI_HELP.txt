@@ -1,0 +1,44 @@
+usage: run.py [-h] [--ckpt CKPT] [--arm ARM] [--seed SEED] [--out OUT]
+              [--backbone {clip_vitb16_lora,dinov3_vitl16_lora}] [--code CODE]
+              [--hf-home HF_HOME] [--ref REF] [--data [DATA ...]]
+              [--sets [SETS ...]] [--train-manifest TRAIN_MANIFEST]
+              [--expect-eval EXPECT_EVAL] [--no-verify-images]
+              [--workers WORKERS] [--device DEVICE] [--stats {auto,yes,no}]
+              [--stats-only STATS_ONLY] [--test-limit TEST_LIMIT]
+              [--test-gate-key TEST_GATE_KEY]
+
+options:
+  -h, --help            show this help message and exit
+  --ckpt CKPT
+  --arm ARM
+  --seed SEED
+  --out OUT
+  --backbone {clip_vitb16_lora,dinov3_vitl16_lora}
+  --code CODE
+  --hf-home HF_HOME
+  --ref REF             reference network tar of this platform
+                        (gate.REFERENCES)
+  --data [DATA ...]     set=ROOT[,ROOT2] (default: the DGX copies)
+  --sets [SETS ...]
+  --train-manifest TRAIN_MANIFEST
+                        the network's training manifest (unique rows scored,
+                        as pn1_score.py)
+  --expect-eval EXPECT_EVAL
+                        the same fit job's pn1_score.py scores_eval.npz: dev
+                        logits must equal it byte for byte on every stored id
+                        (at least 19797); else exit 6
+  --no-verify-images    skip the per-image sha256 check against the pack
+                        checksum files
+  --workers WORKERS
+  --device DEVICE
+  --stats {auto,yes,no}
+  --stats-only STATS_ONLY
+                        OUTDIR of an earlier run: compute the statistics from
+                        its saved logits
+  --test-limit TEST_LIMIT
+                        TEST ONLY: first N rows per set, no gate, output
+                        marked TEST
+  --test-gate-key TEST_GATE_KEY
+                        TEST ONLY: run the gate of this pinned platform on the
+                        present device (expected to fail off that platform)
+                        and stop; output marked TEST

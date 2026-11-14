@@ -1,0 +1,9 @@
+# Independent execution repair review — 14 November 2026
+
+Reviewer: MAIN/root, independent of Sol implementation. Decision: GO_SMOKE only for v2 source tar SHA256 0c77ea93ac35ac7478c73f5812f1de27e979de4008bf1f60f1783d714f3cb787, SHA256SUMS digest8961f58e8e1e1a5955ebcea28fae2ff03abbafe3fad84175c210306b53c302e1. Full production remains HOLD under original prerequisites.
+
+Observed original job6320883 FAILED2:0 after2:57. BCE2step checkpoint and own-scorer output archived, battery.log shows argparse unrecognized --expect-eval; no paired arm ran. Original artifact retained. This is an infrastructure integration failure, not candidate performance. Recompute all three smoke arms with same seed501 and recipe, new smoke_v2 namespace; no checkpoint selection or scientific score inspection.
+
+Independently reviewed v1/v2 diff: unchanged training patch, paired loss/schedule/recipe; pinned rc2 replaces incompatible rc1. Root verified actual rc2 tar SHA and exact run.py/gate.py equality with inspected source, including supported --expect-eval and native H100/torch2.11.0+cu128 reference. This is a bounded smoke of unreleased battery code; it does not declare the shared battery generally released. Additional sprint checker enforces byte-gated true, n_differ0/max_abs0, own-fit21277 exact logits and four finite sets. Root synthetic subprocess tests independently verified valid acceptance, rejection of tolerance-gated, incomplete own-fit count and nonfinite GD. No scientific outcomes read. RC2 tolerance fallback cannot pass sprint acceptance.
+
+Two hours, one H100,8CPU64GiBRAM,200GiB local scratch permitted via real srun --pty on lem-gpu-interactive with FORCE_RM_TMPDIR, common WCSS lock for launch, durable tmux/logs/status and copy-back hashes.200GiB accounts for sequential3arm retained work trees. No node exclusion. All failures retained; no automatic production launch.
