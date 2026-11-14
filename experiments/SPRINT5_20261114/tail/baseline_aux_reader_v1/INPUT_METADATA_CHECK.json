@@ -1,0 +1,26 @@
+{
+  "status": "PASS_AUXILIARY_INPUT_METADATA_ONLY",
+  "input_pins": 604,
+  "baseline_calibration_ids": 70,
+  "evaluation_ids": 468,
+  "candidate_models": 15,
+  "genuine_denominators": [
+    70,
+    70,
+    70,
+    26,
+    26,
+    26
+  ],
+  "positive_denominators": [
+    146,
+    0,
+    17,
+    17
+  ],
+  "after_primary_results_seen": true,
+  "new_primary_claim": false,
+  "arrays_decoded": false,
+  "technical_member_access": "HOLD",
+  "scientific_auxiliary_read": "HOLD"
+}

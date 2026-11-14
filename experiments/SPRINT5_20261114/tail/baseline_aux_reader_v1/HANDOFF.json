@@ -1,0 +1,19 @@
+{
+  "status": "FROZEN_FOR_INDEPENDENT_PRERUN_CODE_AND_INPUT_REVIEW",
+  "source_sums_sha256": "692b0cde2e47fc62133fca3f58a4f4d4ff6c7357d0096d6e93b2ee4b6f30054a",
+  "binding_sha256": "4b5861f8b506c68b73cef8bf4d95b4093a9822971a8d85728fe370c9d36c5ae4",
+  "policy_adoption_sha256": "a227479a3f28e7012ab6a41e4dc54cb478a8f769d683d379676a53c3ca5b3ca2",
+  "synthetic_tests": 20,
+  "tests_sha256": "d25b1799cbab4c945e251abf72404bed5f74b20196f5a273b05d8b634f8c3b49",
+  "input_metadata_check_sha256": "429c7bde939bbf7d469e7019d75f79a1c88e0a598ef1aac3cc8a8d30a4282897",
+  "input_pins": 604,
+  "baseline_calibration_ids": 70,
+  "evaluation_ids": 468,
+  "candidate_models": 15,
+  "original_primary_preserved": true,
+  "auxiliary_claim_created": false,
+  "actual_archive_member_NPZ_checkpoint_access": false,
+  "technical_member_access": "HOLD",
+  "scientific_auxiliary_read": "HOLD",
+  "independent_review": "PENDING"
+}

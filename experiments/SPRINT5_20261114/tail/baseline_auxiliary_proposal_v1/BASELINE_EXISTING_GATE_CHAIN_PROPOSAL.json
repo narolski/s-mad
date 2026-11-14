@@ -1,0 +1,13 @@
+{
+  "status": "SOURCE_AND_EXISTING_ROOT_GATE_METADATA_CHAIN_ONLY",
+  "original_baseline_archive_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+  "training_baseline_release_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/TRAIN_BASELINE_RELEASE.json",
+  "training_baseline_release_sha256": "4d6cec6bedbc538342859c53e602ef9e3831b847f51bc0f3ccaff756c9329969",
+  "training_reference_root_admission_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/BASELINE_ADMISSION_ROOT.json",
+  "training_reference_root_admission_sha256": "90e5a49bda1383d73a053d9c66869976d3a291f4a35dc6c86d970a54199ec2ea",
+  "source_prereg_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/prereg_baseline.md",
+  "source_prereg_sha256": "60c9a824ac5a472c385205ac6ba852930723b5c0de2d8ed8679cdaaa6e9a363f",
+  "existing_gate_statement": "root admission reports strictreference and21277ownfit bytegatePASS; exactsamebaseline linkage must be independently reviewed, not treated as new auxiliary score admission",
+  "baseline_archive_or_checkpoint_or_member_read_now": false,
+  "fresh_aux_member_schema_finite_ID_alignment": "HOLD_UNDER_SEPARATE_SCIENTIFIC_AUXILIARY_CLAIM"
+}

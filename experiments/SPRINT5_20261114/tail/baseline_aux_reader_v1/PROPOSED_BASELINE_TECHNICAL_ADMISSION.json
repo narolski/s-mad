@@ -1,0 +1,14 @@
+{
+  "decision": "PROPOSED_GO_BASELINE_AUXILIARY_TECHNICAL_INPUTS_ONLY",
+  "required_root_decision": "GO_BASELINE_AUXILIARY_TECHNICAL_INPUTS_ONLY",
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "technical_receipt_path": "/mnt/t7/smad_next/SPRINT5_3/baseline_aux_technical_v1/RECEIPT.json",
+  "technical_receipt_sha256": null,
+  "runtime_and_bytegate_status": "UNKNOWN_UNTIL_INDEPENDENT_TECHNICAL_REVIEW",
+  "same_baseline_existing_gate_reuse_authorized": null,
+  "baseline_gate_chain_sha256": "db2c3b714bff37908f494013f0ab9ceeb804682a5a2cd77b764e6240eee723a8",
+  "independent_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/baseline_aux_reader_v1/INDEPENDENT_BASELINE_TECHNICAL_ADMISSION_REVIEW.md",
+  "independent_review_sha256": null,
+  "scientific_auxiliary_read": "HOLD"
+}

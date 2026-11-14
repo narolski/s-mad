@@ -1,0 +1,15 @@
+# Frozen baseline auxiliary implementation handoff
+
+Source: `src/SPRINT5/tail_baseline_aux_reader_v1/`. Input/review packet: `experiments/SPRINT5_20261114/tail/baseline_aux_reader_v1/`. Status: CODE_AND_INPUT_METADATA_READY_FOR_INDEPENDENT_PRERUN_REVIEW. No actual archive member, NPZ, checkpoint, collector, scientific reader or claim was accessed/executed. No GPU, scheduler, new fit or primary-table change occurred.
+
+Implements adopted a227479a… policy with explicit after-primary-results timing, one common original Sb408 threshold, baseline plus all 15 candidates, exact counts/denominators, four positive slots including absent/null AF0-s61, both paired contrasts and copy-only own-calibrated/NI/interval companion. Uncertainty is explicitly not estimated; no RNG/primary calls or winner redesign.
+
+Technical collector and auxiliary reader have separate strict release scopes. Technical collection permits only bounded unique regular headers, fixed metadata and opaque member hashing, without NumPy decoding. Runtime/source evidence is checked; unknown is HOLD. A separate independent technical admission must authorize reuse of the bound existing same-baseline byte-gate chain. No fresh gate or checkpoint rehash is invented.
+
+The auxiliary reader verifies original COMPLETE artifacts and all fixed pins before its new permanent auxiliary claim. Full 21,277-row serialization/schema/order/finiteness checks occur only after that claim, with numerical returns restricted to baseline 538/candidate 468. Old primary artifacts and frozen proposal bytes remain unchanged; no second primary claim or alternate journal exists. Primary summaries are decoded/copied only after auxiliary claim; no original primary function is invoked. Atomic result, permanent FAILED/COMPLETE terminal and no overwrite/reentry enforce one use.
+
+Input-only preparation/check: 604 exact source/image/metadata pins, 70 baseline calibration IDs, 468 evaluation IDs, 15 fixed candidate cases. Six genuine denominators 70/70/70/26/26/26 and positive denominators 146/0/17/17. Original result only hashed, not decoded. Actual score-member digest/NPZ alignment/finiteness remain UNKNOWN until their separately authorized stages.
+
+Twenty generated-only fixtures PASS. Coverage includes strict 70/index7 ties, all cases/paired differences/counts/null JSON, preserved own summaries/no RNG/no primary imports, postclaim full-container nonfinite/order/duplicate/length/hash rejection, technical body hashing without array decode and runtime unknown HOLD, scoped independent releases, actual dirty/untracked binding Git rejection, missing/replacement cohort rejection, preclaim refusal, permanent failure/reentry, successful atomic output and unchanged primary fixture bytes.
+
+Proposed release skeletons and exact later commands are provided without guessed review or technical hashes. Independent source/input/technical-collector review, root input adoption, technical release, actual technical admission, separate scientific auxiliary release and independent postresult review remain mandatory. No live GO is authored by this handoff. Camera and benchmark scopes remain HOLD.

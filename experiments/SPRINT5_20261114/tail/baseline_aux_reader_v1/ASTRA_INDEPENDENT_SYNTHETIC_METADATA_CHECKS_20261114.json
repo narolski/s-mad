@@ -1,0 +1,28 @@
+{
+  "source_sha256": "692b0cde2e47fc62133fca3f58a4f4d4ff6c7357d0096d6e93b2ee4b6f30054a",
+  "handoff_sha256": "50cbf00a96ca114f8f21b84e5433b79709c3495ec7ff8bb30c211b93feab0a37",
+  "binding_sha256": "4b5861f8b506c68b73cef8bf4d95b4093a9822971a8d85728fe370c9d36c5ae4",
+  "tests": {
+    "test_synthetic.py": {
+      "returncode": 0,
+      "stdout": "AUXILIARY_METADATA_ONLY_ADMITTED_NO_CLAIM_OR_PAYLOAD\nAUXILIARY_POINT_RESULT_COMPLETE_REQUIRES_POSTREVIEW /tmp/tmpudji0ney/result e11424d4559cc5af1fe54bd905e161e00525690a69f19b65933fbd917976709b\n",
+      "stderr": "....................\n----------------------------------------------------------------------\nRan 20 tests in 0.071s\n\nOK\n"
+    },
+    "metadata_only_check.py": {
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"PASS_AUXILIARY_INPUT_METADATA_ONLY\",\n  \"input_pins\": 604,\n  \"baseline_calibration_ids\": 70,\n  \"evaluation_ids\": 468,\n  \"candidate_models\": 15,\n  \"genuine_denominators\": [\n    70,\n    70,\n    70,\n    26,\n    26,\n    26\n  ],\n  \"positive_denominators\": [\n    146,\n    0,\n    17,\n    17\n  ],\n  \"after_primary_results_seen\": true,\n  \"new_primary_claim\": false,\n  \"arrays_decoded\": false,\n  \"technical_member_access\": \"HOLD\",\n  \"scientific_auxiliary_read\": \"HOLD\"\n}\n",
+      "stderr": ""
+    }
+  },
+  "unsigned_release_rejections": {
+    "PROPOSED_TECHNICAL_RELEASE.json": "wrong auxiliary phase/scope",
+    "PROPOSED_AUXILIARY_READ_RELEASE.json": "wrong auxiliary phase/scope"
+  },
+  "unique_owned_repo_paths": 58,
+  "all_tracked": false,
+  "owned_status": "?? experiments/SPRINT5_20261114/tail/TAIL_POSTRESULT_INDEPENDENT_REVIEW_20261114.md\n?? experiments/SPRINT5_20261114/tail/baseline_aux_reader_v1/BASELINE_GATE_REUSE_CHAIN.json\n?? experiments/SPRINT5_20261114/tail/baseline_aux_reader_v1/INPUT_BINDING.json\n?? experiments/SPRINT5_20261114/tail/baseline_auxiliary_proposal_v1/BASELINE_EXISTING_GATE_CHAIN_PROPOSAL.json\n?? experiments/SPRINT5_20261114/tail/baseline_auxiliary_proposal_v1/BASELINE_RUN_SOURCE_LINK_PROPOSAL.json\n?? experiments/SPRINT5_20261114/tail/baseline_auxiliary_proposal_v1/EXACT_15_CANDIDATE_AUX_MEMBER_PROPOSAL.json\n?? experiments/SPRINT5_20261114/tail/baseline_auxiliary_proposal_v1/EXACT_538_ID_IMAGE_MAPPING.json\n?? experiments/SPRINT5_20261114/tail/baseline_auxiliary_proposal_v1/INPUT_BINDING_PROPOSAL.json\n?? src/SPRINT5/tail_baseline_aux_proposal_v1/SHA256SUMS\n?? src/SPRINT5/tail_baseline_aux_proposal_v1/prepare_metadata.py\n?? src/SPRINT5/tail_baseline_aux_proposal_v1/shared.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/IMPLEMENTATION_REPORT.md\n?? src/SPRINT5/tail_baseline_aux_reader_v1/README.md\n?? src/SPRINT5/tail_baseline_aux_reader_v1/SHA256SUMS\n?? src/SPRINT5/tail_baseline_aux_reader_v1/admission.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/bridge.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/metadata.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/metadata_only_check.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/payload.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/point_report.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/policy.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/prepare_inputs.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/read.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/technical_collector.py\n?? src/SPRINT5/tail_baseline_aux_reader_v1/test_synthetic.py\n",
+  "technical_namespace_exists": false,
+  "auxiliary_once_exists": false,
+  "auxiliary_output_exists": false,
+  "actual_collector_reader_or_payload_access": false
+}
