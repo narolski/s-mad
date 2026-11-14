@@ -1,0 +1,98 @@
+--- render_v1/render_measured.py
++++ render_v1r1/render_measured.py
+@@ -6,6 +6,7 @@
+ import importlib.metadata
+ import json
+ import math
++import os
+ from pathlib import Path
+ import sys
+ 
+@@ -18,6 +19,24 @@
+ MAP_X=(12,100)
+ MAP_Y=(116,201)
+ MIN_FONT=8.2
++_ACTIVE_OUTPUT=None
++
++
++def write(path,obj):
++    """Durable create-only JSON; serialization failure cannot leave an empty claim."""
++    path=Path(path)
++    payload=(json.dumps(obj,indent=2,allow_nan=False)+'\n').encode('utf-8')
++    with path.open('xb') as f:
++        f.write(payload);f.flush();os.fsync(f.fileno())
++    fd=os.open(str(path.parent),os.O_RDONLY|getattr(os,'O_DIRECTORY',0))
++    try:os.fsync(fd)
++    finally:os.close(fd)
++
++
++def set_overlay_fill(c,ColorClass,rgb,alpha):
++    """ReportLab Color resets its alpha; explicit opacity MUST be applied afterwards."""
++    c.setFillColor(ColorClass(*rgb))
++    c.setFillAlpha(alpha)
+ 
+ 
+ def need(ok,message):
+@@ -134,7 +153,8 @@
+     return cfg,grant
+ 
+ 
+-def main():
++def _main():
++    global _ACTIVE_OUTPUT
+     ap=argparse.ArgumentParser()
+     ap.add_argument('--config',required=True,type=Path)
+     ap.add_argument('--release',required=True,type=Path)
+@@ -156,6 +176,7 @@
+         input_paths[id]=p
+     need(set(input_paths)==set(IDS),'four faces required')
+     args.out_root.mkdir(parents=True,exist_ok=False)
++    _ACTIVE_OUTPUT=args.out_root
+     from reportlab.pdfgen import canvas
+     from reportlab.pdfbase import pdfmetrics
+     from reportlab.pdfbase.ttfonts import TTFont
+@@ -189,7 +210,7 @@
+                     s=base64.b64encode(image_bytes[id]).decode()
+                     sv.append(f'<image x="{x*MM}" y="{y*MM}" width="{EDGE_MM*MM}" height="{EDGE_MM*MM}" href="data:image/png;base64,{s}"/>')
+                 def rectangle(x,y,w,h,rgb,alpha=1):
+-                    c.saveState();c.setFillAlpha(alpha);c.setFillColor(Color(*rgb));c.rect(x*MM,height-(y+h)*MM,w*MM,h*MM,fill=1,stroke=0);c.restoreState()
++                    c.saveState();set_overlay_fill(c,Color,rgb,alpha);c.rect(x*MM,height-(y+h)*MM,w*MM,h*MM,fill=1,stroke=0);c.restoreState()
+                     col='rgb('+','.join(str(round(t*255)) for t in rgb)+')'
+                     sv.append(f'<rect x="{x*MM}" y="{y*MM}" width="{w*MM}" height="{h*MM}" fill="{col}" opacity="{alpha}"/>')
+                 def hatch(x,y,tag):
+@@ -251,6 +272,7 @@
+              'Image source credits/URLs/licences and exact changed histories are in manifest. Private grant only; publication/likeness/consent remain unresolved.')
+     manifest={'scope':'PRIVATE_MEASURED_RENDER_ONLY','release_sha256':sha(args.release),'config_sha256':sha(args.config),
+               'result_pins':result_pins,'source_inputs':cfg['inputs'],'source_credits':cfg['source_credits'],
++              'history_facts':cfg['history_facts'],
+               'caption_en':caption,'page_mm':[WIDTH_MM,HEIGHT_MM],'minimum_font_pt':MIN_FONT,
+               'map_scale_policy':'Shared per model ALL4inputs×2fills×64; no clipping/interpolation/smoothing; exact L0handledwithoutboost',
+               'pages':summary,'source00010_pixels':False,'new_inference':False,'render_mode':cfg['render_mode'],
+@@ -258,7 +280,27 @@
+               'publication':'HOLD','files':{p.name:sha(p) for p in files}}
+     write(args.out_root/'MANIFEST.json',manifest);write(args.out_root/'TEXT_LAYOUT_RECORD.json',texts)
+     (args.out_root/'caption_en.txt').write_text(caption+'\n')
++    need(len(files)==15 and len(summary)==12,'complete artifact/edition count required')
++    write(args.out_root/'COMPLETE.json',{'status':'COMPLETE','manifest_sha256':sha(args.out_root/'MANIFEST.json'),
++                                      'pdf_files':2,'svg_files':12,'cell_records':len(cell_records),
++                                      'scope':'Private measured render only; actual print/caption review still required'})
+     print('VIS2_ACTUAL_MEASURED_PRIVATE_RENDER_COMPLETE; independent print/caption review still required')
+ 
+ 
++def main():
++    global _ACTIVE_OUTPUT
++    _ACTIVE_OUTPUT=None
++    try:return _main()
++    except BaseException as exc:
++        if _ACTIVE_OUTPUT is not None:
++            try:
++                write(_ACTIVE_OUTPUT/'FAILED.json',{'status':'FAILED','error_type':type(exc).__name__,'error':str(exc),
++                     'partial_artifacts_may_contain_private_source_pixels':True,'partial_files':sorted(p.name for p in _ACTIVE_OUTPUT.iterdir()),
++                     'complete_render_claim':False,'failure_policy':'Keep partial private artifacts; no overwrite or automatic retry'})
++            except BaseException as receipt_error:
++                print('FAILED_RENDER_AND_FAILURE_RECEIPT',type(receipt_error).__name__,str(receipt_error),file=sys.stderr)
++        raise
++    finally:_ACTIVE_OUTPUT=None
++
++
+ if __name__=='__main__':main()
