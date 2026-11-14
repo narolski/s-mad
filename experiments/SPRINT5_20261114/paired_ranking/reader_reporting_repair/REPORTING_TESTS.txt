@@ -1,0 +1,10 @@
+test_all_networks_denominators_cells_and_differences (__main__.Reporting.test_all_networks_denominators_cells_and_differences) ... ok
+test_existing_statistics_exactly_unchanged_and_report_deterministic (__main__.Reporting.test_existing_statistics_exactly_unchanged_and_report_deterministic) ... ok
+test_historical_or_wrong_population_rejected_and_no_extra_rows (__main__.Reporting.test_historical_or_wrong_population_rejected_and_no_extra_rows) ... ok
+test_strict_threshold_ties_and_shift_behavior (__main__.Reporting.test_strict_threshold_ties_and_shift_behavior) ... ok
+test_versioned_imports_cannot_resolve_to_frozen_modules (__main__.Reporting.test_versioned_imports_cannot_resolve_to_frozen_modules) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.771s
+
+OK
