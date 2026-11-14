@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-14T20:10:32.321375+00:00",
+  "decision": "PASS_TECHNICAL_COLLECTION_ONLY",
+  "output": "/mnt/t7/smad_next/NEXT/technical_metadata_v2r1_collection_20261114/TECHNICAL_METADATA.json",
+  "output_sha256": "26e4c677da313ce39583a4a9cb9877089fbec325f0bfc319362fc2861dbc602b",
+  "independent_review_path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/NEXT_TECHNICAL_COLLECTOR_V2R1_20261114/ACTUAL_TECHNICAL_POSTREVIEW_20261114.md",
+  "independent_review_sha256": "edecba0c4e75befb1b4ba9b225e88d969150dc81d8fb57c96380b5dca77337d2",
+  "retained_records": 77,
+  "native_predicate_counts": {
+    "PASS": 1882,
+    "UNKNOWN": 775,
+    "FAIL": 0
+  },
+  "RZ1R_prospective_manifest_strict_failures": {
+    "count": 5,
+    "disposition": "Not an original native requirement; retain strict failure history without converting to native failure. Mandatory later NPZ manifest/ID checks unchanged."
+  },
+  "scientific_admission": false,
+  "selection_preflight_or_claim_authorized": false,
+  "remaining_actual_technical_work": [
+    "15BB2L actual bs/accum match",
+    "5SbMR512 trainable checkpoint opaque descriptor/hash",
+    "scorer runtime/exposure/other registered requirements"
+  ]
+}
