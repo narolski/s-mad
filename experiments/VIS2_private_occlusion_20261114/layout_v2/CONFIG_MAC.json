@@ -1,0 +1,136 @@
+{
+  "at": "2026-11-14T22:11:17.646134+00:00",
+  "stage": "SOURCE_ONLY; no actualRESULT/sourceimage/model/GPU/render accessed",
+  "frozen_layout_source": {
+    "path": "/home/narolski/smad-next/experiments/VIS2_private_occlusion_20261114/v1/PRINT_LAYOUT_SPEC.json",
+    "sha256": "54ec8f81b5144f8ca78fa9fb8ffd4abafb490c554e535abdfbedaf15522c00a0"
+  },
+  "numeric_inventory_sha256": "11316da9452632614dd85ae8cd659c7e363467a6f66590a8dc6b21125b1dfcf9",
+  "models": [
+    "selfmad_hrnet_w18",
+    "A",
+    "B"
+  ],
+  "inputs_ids": [
+    "00042_native",
+    "00042_history",
+    "00056_native",
+    "00056_history"
+  ],
+  "inputs": [
+    {
+      "id": "00042_native",
+      "replica_name": "00042_native.png",
+      "canonical_source": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_orig.png",
+      "sha256": "dbd11bb9c9545524c01eafd4d0f4e1478faa5aa9c9ca04d8f4643124f92592d1"
+    },
+    {
+      "id": "00042_history",
+      "replica_name": "00042_history.png",
+      "canonical_source": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_resmatch_landmark_complete.png",
+      "sha256": "a1e4c13cc32bba5450e3a9b36fa19a6e1fffa130907f0f62b18d2e0002207a97"
+    },
+    {
+      "id": "00056_native",
+      "replica_name": "00056_native.png",
+      "canonical_source": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_orig.png",
+      "sha256": "c07df69f9421404b37f76d05d23242d0b5c25b9584dee273cf5973d467cf22fa"
+    },
+    {
+      "id": "00056_history",
+      "replica_name": "00056_history.png",
+      "canonical_source": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_resmatch_landmark_complete.png",
+      "sha256": "04629c855318c47c764bb6d5f84b5a41306203ba636bcdd511e298e77576fe16"
+    }
+  ],
+  "canonical_full_results": {
+    "selfmad_hrnet_w18": "/mnt/t7/smad_next/VIS2/20261114/v1/full/selfmad_hrnet_w18/RESULT.json",
+    "A": "/mnt/t7/smad_next/VIS2/20261114/v1/full/A/RESULT.json",
+    "B": "/mnt/t7/smad_next/VIS2/20261114/v1/full/B/RESULT.json"
+  },
+  "baseline_anchors": {
+    "selfmad_hrnet_w18": {
+      "00042_native": 0.32592952251434326,
+      "00042_history": 4.2132368087768555,
+      "00056_native": -1.5349633693695068,
+      "00056_history": -0.4208979606628418
+    },
+    "A": {
+      "00042_native": -3.381847381591797,
+      "00042_history": -3.5183634757995605,
+      "00056_native": -3.431549549102783,
+      "00056_history": -3.467275381088257
+    },
+    "B": {
+      "00042_native": -3.099207878112793,
+      "00042_history": -3.3830161094665527,
+      "00056_native": -3.3750040531158447,
+      "00056_history": -3.4658310413360596
+    }
+  },
+  "labels": {
+    "selfmad_hrnet_w18": "SelfMAD",
+    "A": "Kontrola A (403)",
+    "B": "Kontrola B (403)"
+  },
+  "credits_short": {
+    "00042": "FFHQ 00042 / Rebecca Brown / CC BY-NC 2.0 (adres źródła w podpisie).",
+    "00056": "FFHQ 00056 / RAFFI YOUREDJIAN / CC BY-NC 2.0 (adres źródła w podpisie)."
+  },
+  "source_credits": {
+    "00042": {
+      "role": "bona_fide",
+      "pair_key": "",
+      "ffhq_key": "00042",
+      "author": "Rebecca Brown",
+      "license": "Attribution-NonCommercial License",
+      "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+      "photo_url": "https://www.flickr.com/photos/rebeccacbrown13/2168341402/",
+      "photo_title": "Shirtless, bearded Josh."
+    },
+    "00056": {
+      "role": "bona_fide",
+      "pair_key": "",
+      "ffhq_key": "00056",
+      "author": "RAFFI YOUREDJIAN",
+      "license": "Attribution-NonCommercial License",
+      "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+      "photo_url": "https://www.flickr.com/photos/62487011@N08/28696918755/",
+      "photo_title": "MANGAGAN-7"
+    }
+  },
+  "history_facts": {
+    "00042": "Existing1024→265px→alignment512",
+    "00056": "Existing1024→249px→alignment512"
+  },
+  "render_mode": "source_overlay",
+  "overlay_alpha": 0.45,
+  "map_interpolation": "none",
+  "pages_per_edition": 6,
+  "page_width_mm": 180,
+  "page_height_mm": 279.4,
+  "minimum_font_pt": 8.2,
+  "normalization": "One exact L=maxabs ALL512fullresponsecells/model across4inputs,2fills,64cells. No clipped extrema, no per-panel normalization or epsiloncontrast; truezeroLtransparentoverlay plus explicitzero message.",
+  "grayscale": "Absolute magnitude, sameL; negative values independentlyhatched; originalRGBphotographs unchanged above eachmapset. Actualgrayscaleprintproof deferred.",
+  "execution_and_render": "HOLD_NEW_PRIVATE_RENDER_GRANT_AND_OTHER_CODE_NUMERIC_POSTREVIEW_REQUIRED",
+  "no00010pixels": true,
+  "publication": "HOLD",
+  "fonts": {
+    "regular": "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "regular_sha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9",
+    "bold": "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+    "bold_sha256": "d72db21f9242aedd6b917d8549ad5921766b24d5f8d0becfda2ff4c620b3c2e0"
+  },
+  "render_runtime": {
+    "host": "Mac user workspace CPU only",
+    "python": "/Users/narolski/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "reportlab": "4.4.9",
+    "pillow": "13.0.0",
+    "poppler": "/opt/homebrew/bin/pdftoppm",
+    "GX_venv_reportlab": "MISSING, not installed in source-only stage"
+  },
+  "photo_map_edge_mm": 58,
+  "layout_version": "layout_v2_standard_print",
+  "baseline_display": "Measured raw morph-oriented logit z; larger z=stronger morph indication, not probability",
+  "direction_legend": "Red: hiding patch raises morph score z; blue: hiding patch lowers z"
+}

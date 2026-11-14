@@ -1,0 +1,35 @@
+{
+  "scope": "Staticgeneratedtextmetrics,noPDF/RGB/results",
+  "records": [
+    {
+      "text": "Wynik morph (z): +123.456",
+      "width_mm": 41.739605577256945,
+      "available_width_mm": 58,
+      "font_pt": 9.4
+    },
+    {
+      "text": "Czerwony: zasłonięcie podnosi wynik morph. Niebieski: obniża.",
+      "width_mm": 81.03591498480903,
+      "available_width_mm": 165,
+      "font_pt": 8.2
+    },
+    {
+      "text": "Δz = z po zasłonięciu − z oryginalne. Większe z = silniejsze wskazanie morph.",
+      "width_mm": 100.09039360894096,
+      "available_width_mm": 165,
+      "font_pt": 8.2
+    },
+    {
+      "text": "Nie jest to prawdopodobieństwo. Maska tworzy artefakt; brak wniosku o przyczynie.",
+      "width_mm": 106.91977864583332,
+      "available_width_mm": 165,
+      "font_pt": 8.2
+    },
+    {
+      "text": "Kadry różnią się wyrównaniem. Nie ma szwu; pozycje nie są dopasowane anatomicznie.",
+      "width_mm": 113.19405544704858,
+      "available_width_mm": 165,
+      "font_pt": 8.2
+    }
+  ]
+}
