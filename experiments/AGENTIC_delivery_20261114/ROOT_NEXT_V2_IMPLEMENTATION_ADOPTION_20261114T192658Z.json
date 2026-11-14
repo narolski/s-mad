@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-14T19:38:26.159485+00:00",
+  "decision": "GO_BOUNDED_TECHNICAL_V2_SOURCE_IMPLEMENTATION_ONLY",
+  "plan_sha256": "a5aaa50688cd10c9a468e88c69701fd91655c26cf0e0a02278c0d93819bea9e1",
+  "independent_source_review_sha256": "a447905be5511887ad9b2fc455146a336bf855887cdc5bf7d1d5c52ef5b1e265",
+  "author": "astra_compute_unblock_plan",
+  "reviewer": "root",
+  "exact_original_whole_log_loss_predicate_authorization": {
+    "scope": "Future independently reviewed and separately released technical collector only; exact original unanchored regex over whole train.log incl stderr",
+    "permitted_outputs": [
+      "presence boolean",
+      "match count",
+      "all-finite boolean",
+      "fixed conversion-error reason"
+    ],
+    "numeric_values_captures_lines_labels_export": "FORBIDDEN",
+    "regex_or_conversion_semantics_changes": "FORBIDDEN",
+    "scientific_fit_eligibility_inferred": "FORBIDDEN",
+    "real_log_access_now": false
+  },
+  "real_collection": "HOLD_PENDING_EXACT_IMPLEMENTATION_REVIEW_AND_ROOT_RELEASE",
+  "SbMR512_kernel_supplement": "SEPARATE_PROSPECTIVE_ADOPTION_REQUIRED",
+  "Sbc_author_ruling": "PENDING",
+  "canonical_NEXT_unchanged": true
+}
