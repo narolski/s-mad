@@ -1,0 +1,11 @@
+# Breadth reader implementation report
+
+Code-only implementation completed in `src/SPRINT5/breadth_reader/`; evidence lives in `experiments/SPRINT5_20261114/breadth/reader_implementation/`. The adopted binding remains bf5c55bc6d6663f57be70503c68c939f6b0e0f579513548973e423cdc118e808. Its pinned preparation/statistics/shared/policy bytes have not changed since root adoption. The frozen ranking reader02c740… remains unchanged.
+
+The new adapter has its own ten-fit policy, metadata collector, strict admission, primary-only payload boundary, journal and95%descriptive analysis. Its exact registered RNG2026111404 order and conditional-readable policy are bound prospectively. Camera remains HOLD and no camera payload path is opened. It imports no ranking success/adoption criteria.
+
+Actual input checks: ten32-image manifests and their assets/source metadata match, all ten source-person/photo/geometry/full-component audits pass for the200primary rows, and the10000-draw metadata-only assessment exactly reproduces9849readable/151undefined draws. Existing15nuisance input vectors are schema/order/finite-checked without candidate access. All210input pins remain unchanged; no actual candidate output or roster was opened.
+
+Eighteen generated-fixture tests pass with the real frozen utility layer, including collector invalid-payload sentinels and the loader's extreme historical/camera sentinels. A development harness initially imported the frozen `read.py` by a shared basename and stopped at a nonexistent GENERATED release, before any archive/claim/payload. The harness now loads the breadth entry explicitly by file path; no pinned helper or input binding needed modification. No actual scientific invocation occurred.
+
+Remaining release gates: independent review of this adapter and tests; root source/input adoption plus committed clean paths; separate source-bound metadata collection release for the exact ten opaque final outputs; independent eligibility/envelope review; immutable roster/read release; permanent claim before first actual candidate NPZ access. The prepared metadata binding and GO_INPUT_BINDING_ONLY do not grant these permissions. Unknown or failed fits hold the complete ten-fit read. There is no automatic read, camera-admission inference, successor adoption, external benchmark or NEXT release.
