@@ -147,3 +147,10 @@ None yet.
   the lead announces that the next-method selection rule (experiments/NEXT_method-selection-rule/prereg_draft_v2.md,
   3c2b9d5) binds, or the author rules otherwise. This replaces the release of the landmark_combined read. Jobs,
   fetching, tar verification and gates are not affected.
+
+
+## Codex continuation, 14 November 2026
+
+Recorded 2026-11-14T10:39:31.261636+01:00. Author approved next-method selection rule version 3; binding commit dbeb940. Independent continuation and refit recovery reviews are committed in 899854e. Job 6319490 submits the fifteen registered 512 px fits with the measured M6 six-hour limit; job 6319491 is the first infrastructure retry of comparator rescoring after 6316319 failed on scratch symlink replacement. Completed A408 output is preserved and skipped only after its SHA256 verifies. The old smoke had aged out of Slurm controller memory; a rejected dependency submission created no job, and the successful submissions used the reviewed explicit passed-smoke accounting/finite/guard gate. All receipts are under `/mnt/t7/smad_next/coordination_20261114/`.
+
+At 10:32:07 CET both new jobs were pending. All 35 wave-1 and 10 crop fits completed, but their scientific outputs remain closed. The 44 common pins committed at 076a5f9 and 20 additional support pins committed at 8d00996 passed clean-worktree strict verification; this alone is not selection admission. Full selector review and arm gates remain required. Target 512 px frames are documented in DATA_CATALOG section 7; the author's 224 px interior-crop interpretation is still pending. No RZ1 production contrast was read by the Codex team.

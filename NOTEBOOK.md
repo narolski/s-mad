@@ -403,3 +403,16 @@ The sealed read of corrected MAD22 for the frozen candidate ran on lease final2 
 - Sealed MAD22 read, post-read descriptive (0821c96): smiling genuine photos flagged more often on Webmorph (4.5-5.75 times on 4 of 5 seeds); development AUC did not rank seeds by MAD22 error. MAD22-informed; no method choice follows.
 - External FFHQ FaceMorpher read (XF1): the first design was the lead's error (the one-photo FaceMorpher output equals the photo); redesigned as two-person morph against the warp-only image, face-only form deciding, adversary gate 0.859 below 0.90. Registered 01283b0, Athena 3553044 (all 15 networks byte-identical on the gate), read once 04e1417, reviewed 3c75c53: A 0.864, B 0.879, Sb 0.889; Sb − B +0.011 [−0.010, +0.031] "inconclusive"; Sb − A +0.025 "inconclusive"; licence (b) for every arm, (c) not reached; all-cue floors 0.925 / 0.917 not reached by any network.
 - Mechanism ledger v3.1 (d2c3ba1): shape-matched same-person negatives proposed (DATA recipe D13, two variants, needs the author's word; nothing built).
+
+
+## Codex continuation recorded 2026-11-14T10:46:10.805385+01:00
+
+The author approved selection-rule v3 explicitly (binding dbeb940), then asked to proceed and divide delivery into subagents. Three workers cover inputs/floors, eligibility/reader, and baseline recovery; the lead alone stages/commits and contacts clusters. Delivery record: experiments/RECORDS_ledger/CODEX_DELIVERY_20261114.md.
+
+The 44 common input pins (076a5f9) and 20 support pins (8d00996) passed independent review and strict verification from a clean detached worktree. This verifies inputs, not selection admission. All challenger contrasts remain closed while the full selector and arm gates are reviewed. No new scientific conclusion has been read.
+
+Submitted at 10:27:59 CET: 6319490, 15 registered 512 px fits with the M6 six-hour limit; 6319491, the first infrastructure retry of refit-yardstick rescoring after 6316319 failed on scratch symlink replacement (completed A408 output preserved). Submitted at 10:29:52: 6319494, IDistill fixed-wait diagnostic smoke; 6319495, MADation synchronous CUDA diagnostic smoke. Registered/reviewed commits 899854e and dc07fd7. Submission/intent/identity receipts: /mnt/t7/smad_next/coordination_20261114/. A rejected first 512 dependency attempt created no job; the reviewed explicit archived-smoke gate replaces an aged-out controller dependency.
+
+All 15 AB1C tasks 6316845 completed by 10:26:14. Sixteen additional archives (15 AB1C plus RZ1R A408) were copied and SHA256/sidecar-verified without opening payloads. IDistill 6312778 remains active and preserved; original smoke 6312775 remains TIMEOUT. New smokes do not retroactively validate production. DINOv3 rescoring 6319264 is not resubmitted. At the last target capture at 10:37 all new jobs and DINOv3 rescoring were pending.
+
+Remaining critical path: independent full reader review and native adapters, second-engine supplementary scoring (prepared), verified result arrivals, once-only selection, and fresh 413–417 confirmation. All 20 GX generation shards completed; generation metadata is not image/identity admission, and no training manifest exists yet. The author's 224 px interior-crop interpretation is asked and pending; 512 work is independent. No persistent monitor was started or old Claude agent/timer replayed.
