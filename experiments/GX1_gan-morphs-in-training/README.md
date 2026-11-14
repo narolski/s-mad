@@ -39,6 +39,13 @@ version (the current candidate was frozen by the author at 18:28; MAD22 is a see
 - Read hold (lead, via the dispatcher): GX contrast numbers stay closed until the lead announces that the next-version
   selection rule (experiments/NEXT_method-selection-rule/prereg_draft_v2.md, 3c2b9d5) binds or the author rules
   otherwise; generation, fits, fetching, verification and gates continue.
+- 14 Nov 00:57:19-00:59:52 (dispatcher) smoke 6315653 on WCSS H100, exit 0, GX1_SMOKE_OK; arrays' afterok fulfilled,
+  pending on priority. Fetched to `/mnt/t7/smad_next/GX1/smoke/`: both tars match their .sha256; 3 / 3 images per
+  generator, every PNG sha256 equal to its log line, 1024 x 1024 RGB; NVIDIA H100, torch 2.11.0+cu128 (~/dmenv); peak
+  GPU memory 1.9 GB (MIPGAN-I) / 6.3 GB (MIPGAN-II). Per image: MIPGAN-I 24.7-27.4 s including one 500-step inversion
+  (so about 5 s per MIPGAN run, 20 s per inversion); MIPGAN-II about 18 s (twice the A28 estimate; shards of 260 jobs
+  about 80 min, inside the 3 h limit). Final loss MIPGAN-I R2 0.780, R3 3.360, R4 5.736; MIPGAN-II 1.207, 3.581, 6.018.
+  e4e loads under forced weights_only on torch 2.11.
 
 ## 3. Data
 
