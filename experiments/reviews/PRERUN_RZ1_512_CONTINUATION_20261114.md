@@ -1,0 +1,21 @@
+# Pre-run review of the 512 px continuation
+
+**Verdict: GO for the exact registered 15-fit continuation and admission command.** This permits training and technical collection, not a scientific read or automatic selection eligibility. Reviewed independently by the eligibility agent on 14 November 2026, using the experiment-reviewer checklist and the latest author-approved RZ1 scope.
+
+## Findings
+
+1. **No blocker: registered timing rule is applied correctly.** RZ1 prereg section 12 M6 specifies smoke seconds per update × 6,250 + 0.5 hours, then a 1.3 multiplier and ceiling to whole hours, capped at 12. Independent recomputation from the 30-update smoke gives `4.3976589424742585` hours and a **6-hour** limit. The projection is below 7 hours, so keeping A512, Sb512 and SbMR512 is consistent with the cost rule. The earlier 9-hour directive is overridden by the exact admission command's `--time=06:00:00`; the script remains immutable.
+2. **No blocker: smoke evidence and workload identity.** `RZ1_512_ADMISSION_EVIDENCE.json` records both passing pre/post guards and finite numeric arrays for both designated smokes. `INITIAL_WCSS_STATE.json` records smoke 6316283 COMPLETED with exit 0 and `RZ1_SMOKE_DONE`. The 512 smoke uses batch 64 × accumulation 4, resolution 512 and 30 optimiser updates. Its 40,143 MiB peak is below both the observed 95,830 MiB H100 capacity and an 80 GB H100. The 512 smoke's limited scoring skips TT1/MEDS by the registered knob; the full shared TT1/MEDS path was exercised at 224. These are technical checks, not evidence of performance.
+3. **No blocker: fixed arm/seed allocation and platform.** Array 0–14 cycles A512, Sb512 and SbMR512 at seeds 408–412, exactly 15 fits. H100-only requests, existing `~/dmenv`, pinned input runner/overlay, local scratch I/O, `--extra=FORCE_RM_TMPDIR`, no requeue and smoke dependency remain intact. Shell syntax passes. Local script SHA256 is `e35afefc71f2a0ecb3565f4148bba5fe2cba0b28a6698a8e75afdbc115256d25`; the scheduler capture reports the same remote value. The main runner's guards and pin checks are unchanged.
+4. **Operational condition already in the admission: avoid duplicate submission.** Commit admission/review, recheck live/accounting identities and existing intent/receipt, and verify remote hashes in the locked submission operation before submitting once. Record native scheduler identity and six-hour limit afterwards. A lost SSH response is unknown submission state, not a failed submission to repeat.
+5. **Scientific limitation, not a training blocker.** SbMR512's `CROSS=""` means it cannot qualify under selection-rule version 3 without its specified kernel test registered before the read. No new kernel implementation or interior-crop ruling is authorised by this review. All production outputs remain closed until common pins/reviews and arm gates permit the single read. Five seeds, missing/failed-run rules, fresh-seed confirmation and deadline disclosures apply unchanged. Aligned 512 px frames for the target benchmarks are already documented in DATA_CATALOG section 7a; no sealed frames were inspected here.
+
+## Checklist
+
+Question/hypotheses: registered, unchanged. Design/confounds: frozen CLIP tower, 224-tuned learning rates and enlarged source frames remain disclosed; both controls are present. Selection/leakage: no benchmark read, no score-driven arm changes. Shortcuts: registered storage, unseen-source, geometry and border guards retained. Statistics: five registered seeds, no ensemble/seed choice; registered margins unchanged. Operations: measured limit, staged immutable inputs and exact command checked. Reporting: admission identifies owner, ETA, receipt and read hold. Improvements: prioritise collecting comparator-yardstick rescoring and common floors while these fits run; those are separate workloads.
+
+## Author questions
+
+None required for these already approved 512 px fits. Supplementary selection inputs and the interior-crop interpretation remain separate from this training go.
+
+Sources: `experiments/RZ1_input-resolution-and-resize/ADMISSION_512_20261114.md`; `prereg.md` section 12 M5–M7; `src/RZ1/wcss/rz1-512.sbatch`; `src/RZ1/wcss/rz1-smoke.sbatch`; `src/RZ1/run_rz1.sh`; `/mnt/t7/smad_next/coordination_20261114/RZ1_512_ADMISSION_EVIDENCE.json`; `/mnt/t7/smad_next/coordination_20261114/INITIAL_WCSS_STATE.json`.

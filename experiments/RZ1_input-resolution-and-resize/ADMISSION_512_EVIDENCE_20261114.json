@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-14T10:21:40.336039+01:00",
+  "scope": "technical smoke validation only; no production archive opened",
+  "smokes": {
+    "SbMR": {
+      "sha256": "1bf723d3bf0cb6cec96c4d7a725e4c672fcea40472532191ec298127017b104d",
+      "numeric_arrays": {
+        "scores_eval.npz": {
+          "logit": true,
+          "score_noTTA": true,
+          "score_TTA": true
+        },
+        "scores_train.npz": {
+          "logit": true,
+          "label": true
+        },
+        "scores_tt1.npz": {
+          "logit": true
+        },
+        "scores_meds.npz": {
+          "logit": true
+        },
+        "scores_cross.npz": {
+          "logit": true
+        }
+      },
+      "guards": {
+        "pre": true,
+        "post": true
+      },
+      "training": {
+        "steps": 100,
+        "train_hours": 0.009893238478236728,
+        "res": 224,
+        "bs": 256,
+        "accum": 1
+      }
+    },
+    "Sb512": {
+      "sha256": "bd1f9c5071708067424df443bbb51a6c50f058de876805711fab0a66ae2c9b50",
+      "numeric_arrays": {
+        "scores_eval.npz": {
+          "logit": true,
+          "score_noTTA": true,
+          "score_TTA": true
+        },
+        "scores_train.npz": {
+          "logit": true,
+          "label": true
+        },
+        "scores_tt1.npz": {
+          "logit": true
+        },
+        "scores_meds.npz": {
+          "logit": true
+        },
+        "scores_cross.npz": {
+          "id": true,
+          "logit": true,
+          "specs": true
+        }
+      },
+      "guards": {
+        "pre": true,
+        "post": true
+      },
+      "training": {
+        "steps": 30,
+        "train_hours": 0.018708762923876444,
+        "res": 512,
+        "bs": 64,
+        "accum": 4
+      }
+    }
+  },
+  "M6": {
+    "train_hours_for_30_updates": 0.018708762923876444,
+    "training_updates": 6250,
+    "scoring_and_io_allowance_hours": 0.5,
+    "projection_hours": 4.3976589424742585,
+    "limit_hours": 6,
+    "drop_SbMR512": false,
+    "requires_lead_over_10h": false,
+    "fit_count": 15
+  }
+}
