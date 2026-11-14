@@ -1,0 +1,32 @@
+{
+  "id": "SPRINT5_4",
+  "decision": "GO_PILOT",
+  "seeds": [
+    511,
+    512,
+    513,
+    514,
+    515
+  ],
+  "fresh_seed_allocation_pass": true,
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "source_sums_sha256": "debbea9496cdcd553cf2b18671f0868452cfdc9cc16fa7ee66b0e81b97361a04",
+  "independent_review_path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/SPRINT5_4_v1/PILOT_REVIEW_ROOT.md",
+  "independent_review_sha256": "f8276216892ca381e3f28ed2a1e9b6fde756d126175f04ceb0c9eb8646ea34a4",
+  "h100_smoke_pass": true,
+  "byte_gate_pass": true,
+  "smoke_archives": [
+    {
+      "arm": "narrow_more_variants",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SPRINT5_4/smoke_v1/SPRINT5_4_smoke_v1_narrow_more_variants_s511.tar",
+      "sha256": "541774e3ba72827308a593cb2f81b6256ad8cd658b05a75de0f428accb762e28"
+    },
+    {
+      "arm": "broad_fewer_variants",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SPRINT5_4/smoke_v1/SPRINT5_4_smoke_v1_broad_fewer_variants_s511.tar",
+      "sha256": "aa2f43c24c2da2a5b51a57f8daf1814cf83b6a93be4700193108fbc4c562f9fa"
+    }
+  ],
+  "scientific_read": "HOLD"
+}
