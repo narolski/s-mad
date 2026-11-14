@@ -38,3 +38,8 @@ Output is `results/AB1FMSUPP/AB1FMSUPP_20261114.tar` plus SHA256. Never overwrit
 After each completed family and each completed or refused model, the job creates a separately named, SHA256-verified durable diagnostic partial under `results/AB1FMSUPP/diagnostic_partials/AB1FMSUPP_20261114_job<jobid>/`. Each has an explicit `PARTIAL_STATUS.json` with `partial: true` and `final_admission: false`; it never overwrites an earlier checkpoint or a final output. A timeout or early failure therefore retains prior completed work despite local-scratch cleanup. These partials are preservation receipts only and cannot satisfy final admission or be substituted for missing seeds/families. The final archive excludes the scratch partial-status file.
 
 Admission after completion requires scheduler COMPLETED/exit zero, all ten exact gates, twenty finite/complete family outputs, the successful scratch-only eight-row plumbing check, and a durable archive with matching SHA256. Failure or missing families remain failures/partial; no silent seed exclusion. Collection and technical gate inspection do not constitute selection or a benchmark result. Full selection reader, own registration guards and separate eligibility review still govern interpretation.
+
+
+## Submission
+
+The lead committed registration, code and independent review at `8f446a0`, then staged and hash-verified every source/configuration, the immutable clean-input receipt and support JSON. All ten opaque model tar hashes matched before submission. WCSS accepted job **6319579** at **10:50:03 CET, 14 November 2026**; initial state PENDING, limit two hours. Local and remote intent/response/native identity receipts are durable. No scientific read is released by this submission.

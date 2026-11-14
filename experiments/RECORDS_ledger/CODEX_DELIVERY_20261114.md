@@ -48,3 +48,12 @@ The author has been asked whether the existing 224 px interior crop is covered b
 
 
 The latest opaque collection copied and SHA256/sidecar-verified 16 archives: all 15 AB1C outputs plus the completed RZ1R A408 output. Payloads remain unopened. Receipt: `codex_20261114/NEW_COLLECTION_VERIFIED.json`. The parent record contains no new scientific result.
+
+
+## Reviewed software and supplementary scoring handoff
+
+The initial selection reader, its 19 synthetic tests and independent review are committed at `8a7ad85`. Review approves the current implementation for commit; it does not release a scientific read. Native RZ1 fit/refit formats are covered. SbFM, GX, DINOv3 and fresh confirmation source adapters remain explicit global admission blockers where applicable; an implementation gap cannot count as a scientific failure or justify defaulting to Sb. No admission manifest or once-only selection journal was created.
+
+Second-engine supplementary TT1/MEDS/border scoring was independently reviewed, committed at `8f446a0`, staged with verified exact sources and clean-input receipt, and submitted once as job **6319579** at 10:50:03 CET. Its two-hour limit covers ten existing networks; no fit or image transformation is introduced. Runtime preserves verified partial outputs after each family/model, with explicit non-admission markers. Receipt: `codex_20261114/SBFM_SUPPLEMENT_SUBMISSION_RECEIPT.json`.
+
+The GX readiness audit confirms all 20 generation tasks completed and each generator logged 1,446 planned images. It does not establish image/identity admission. Its existing training manifest, floor and training implementation remain to be completed and independently reviewed. `src/GX1/gx1_admission.py` is a draft that has not been reviewed or run; no PNG, latent, identity embedding or model was opened during its preparation. See `experiments/GX1_gan-morphs-in-training/READINESS_20261114.md`.
