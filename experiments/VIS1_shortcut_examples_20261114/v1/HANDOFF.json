@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-14T17:20:14.049584+00:00",
+  "status": "RESOURCE_READY_LOCAL_SCORE_ONLY_PACKAGE_REQUIRES_INDEPENDENT_REVIEW_AND_ROOT_GO",
+  "source_manifest_sha256": "a16aa9e87e634bdd635c635cb109fa10f3fe464c77be2b9e453cffb8179518aa",
+  "inventory_v2_sha256": "061924577bf7762f76d3c5672c70d1017bfdc0c8c5dbbd3365c13f189f38a31b",
+  "prereg_sha256": "bd77d7ebd55ba3b94fc41c6c83ee189867f8a5b1bf82da657e29b69f055fd2eb",
+  "commands_sha256": "90edcc31e82cdb27aa35027b3d95d66abeae7d761341e5c7cb9d7d86ddbf5453",
+  "input_audit_sha256": "673c8cf7a90c58793260da2b92605746871380bd2c978aba27049ad6c9d1105e",
+  "development_addendum_sha256": "103f2eeb0a10ac4cafab326a0109c48ffc789ccabc82dbc1a35a9b4bbbd1f3c5",
+  "source_dir": "/home/narolski/smad-next/src/VIS1/v1",
+  "evidence_dir": "/home/narolski/smad-next/experiments/VIS1_shortcut_examples_20261114/v1",
+  "fixed_inputs": 5,
+  "models": [
+    "selfmad_hrnet_w18",
+    "A",
+    "B"
+  ],
+  "threshold": null,
+  "root_release": "ABSENT_REQUIRED",
+  "new_inference": false,
+  "tests": 7,
+  "blockers": [
+    "independentpre-review",
+    "rootinput/sourceadoption+exactexecutionGO",
+    "freshoutput/process/GPUcontention/storagechecks"
+  ],
+  "limitations": [
+    "manualadult-appearing,noagecertificate",
+    "person/component/trainingbyteoverlapunknown",
+    "publicationrightspending",
+    "compoundresize+alignmenthistory,notJPEG-only"
+  ]
+}

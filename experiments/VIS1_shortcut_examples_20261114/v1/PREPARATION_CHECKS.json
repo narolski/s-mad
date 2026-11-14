@@ -1,0 +1,8 @@
+{
+  "metadata_only": "PASS exact currentinventory_v2 andallsource/input/checkpoint opaquehashes; no modelimports/GPU",
+  "synthetic_tests": 7,
+  "grounding_skill": "read; archive lookup andmechanicalchecker failedmissingarchive; actualpinnedsourceinspection usedinstead",
+  "python_source_compile": "PASS",
+  "execution": "NOT_RUN",
+  "scientific_results": "NOT_READ_NEW"
+}
