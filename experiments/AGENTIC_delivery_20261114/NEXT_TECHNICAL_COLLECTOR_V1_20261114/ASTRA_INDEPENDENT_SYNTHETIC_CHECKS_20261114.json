@@ -1,0 +1,12 @@
+{
+  "collector_sha256": "52f5d02bf58c8c962b0d691491667d7e3b27e851887e0fc16ac1e7650fe927a7",
+  "package_sha256": "eba68c0789bf7660f75843961ae876d8500718a99af8002a352b8e43a83ec384",
+  "scope_sha256": "62ee3356bb4f83c6f438d9515783d09e8662d575b9ee368e60b2bf74a61bd50b",
+  "scope_exactly_matches_v2_allowlist": true,
+  "archive_records": 77,
+  "unit_stdout": "",
+  "unit_stderr": "test_caps (test_technical_collector_v1.CollectorTests.test_caps) ... ok\ntest_duplicates_unknown_nested (test_technical_collector_v1.CollectorTests.test_duplicates_unknown_nested) ... ok\ntest_hash_missing_and_truncated (test_technical_collector_v1.CollectorTests.test_hash_missing_and_truncated) ... ok\ntest_json_type_encoding_and_syntax (test_technical_collector_v1.CollectorTests.test_json_type_encoding_and_syntax) ... ok\ntest_loss_nonfinite_and_ambiguous (test_technical_collector_v1.CollectorTests.test_loss_nonfinite_and_ambiguous) ... ok\ntest_mixed_txt_canaries (test_technical_collector_v1.CollectorTests.test_mixed_txt_canaries) ... ok\ntest_no_npz_access (test_technical_collector_v1.CollectorTests.test_no_npz_access) ... ok\ntest_release_required_before_archive_access (test_technical_collector_v1.CollectorTests.test_release_required_before_archive_access) ... ok\ntest_sanitized_failures (test_technical_collector_v1.CollectorTests.test_sanitized_failures) ... ok\ntest_selective_canaries (test_technical_collector_v1.CollectorTests.test_selective_canaries) ... ok\ntest_source_import_boundary (test_technical_collector_v1.CollectorTests.test_source_import_boundary) ... ok\ntest_status_failures_retained (test_technical_collector_v1.CollectorTests.test_status_failures_retained) ... ok\ntest_tar_safety (test_technical_collector_v1.CollectorTests.test_tar_safety) ... ok\ntest_unselected_scalar_not_decoded (test_technical_collector_v1.CollectorTests.test_unselected_scalar_not_decoded) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.024s\n\nOK\n",
+  "coverage_stdout": "{\"synthetic_archive_records\": 77, \"canary_variants_per_record\": 2, \"all_checks_passed\": true, \"real_archive_access\": false}\n",
+  "coverage_stderr": "",
+  "real_archives_opened": false
+}
