@@ -1,0 +1,44 @@
+{
+  "decision": "GO_SBMR512_FIXED_IDENTITY_DIAGNOSTIC_V3",
+  "root_authorized": true,
+  "author": "astra_sprint_plan_review",
+  "reviewer": "sol_sbm512_bii_probe",
+  "venv": "/home/narolski/dmenv",
+  "output": "/lustre/pd03/hpc-narolski-1790461090/smad-next/coordination_20261114/sbmr512_identity_diagnostic_v3",
+  "automatic_retry": false,
+  "scope": "FIXED_CURRENT_SOURCE_INSTALL_METADATA_ONLY",
+  "scientific_read": "HOLD",
+  "independent_review_path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/coordination_20261114/sbmr512_identity_diagnostic_source_v3/REVIEW.md",
+  "independent_review_sha256": "3069780e72c408e505aebc3a9b7af7f2584c64a4cb2eee55f38f8fe5e90d48bb",
+  "source_sha256": {
+    "acquire.py": "6bcb4186a2120c2a54e10db077683495875565a30c0c8c784677003b970e267d",
+    "safeio.py": "34c5f9d691714835ea164e5ae87eaf11ceaf5b166a7ce7e37cf1bd7d2402f4de"
+  },
+  "bootstrap_interpreter": "/usr/bin/python3.9",
+  "bootstrap_interpreter_sha256": "1143733d3cbc738039e938d5875bb694641cf898f4f39f22c956e5b4d974c278",
+  "repeat_metadata_read_for_diagnostic_authorized": true,
+  "parent_failure_review_sha256": "54dd026d34345eb9b30d3726d984fad82f2eeeb05f66b9b6be8250a14e40879e",
+  "parent_release_sha256": "f8c358e06b62fbc41c81bcb6ae8ce897534aa26529901119bab284aa629cb974",
+  "exact_two_alias_and_canonical_interpreter_scope_authorized": true,
+  "exact_alias_mapping": {
+    "primary_path": "/home/narolski/dmenv/bin/python",
+    "primary_target": "/home/narolski/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/bin/python3.12",
+    "uv_alias": "/home/narolski/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu",
+    "uv_target": "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu",
+    "canonical_file": "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/bin/python3.12"
+  },
+  "source_commit": "a8ff8c251ed89ff314afbab07f66673e1c9324b0",
+  "at": "2026-11-14T23:05:15.366630+00:00",
+  "external_bootstrap_evidence": "/mnt/t7/smad_next/coordination_20261114/sbmr512_bootstrap_identity_20261114T222135Z",
+  "trusted_bootstrap_stdlib": "root-managed RHELpython3/python3-libs3.9.25-7.el9_8.6 verifiednativeRPMownership/owner/mode; isolated-no-site startup; not targetdmenv",
+  "bash_sha256": "ec6d007d48ef11bc47ad3f372b4b20ff2f0d4e63867e7e4cc0f1b17b19fa88b2",
+  "timeout_sha256": "91c9f7e0cd55fe23863c68b5aeff2c111ea22da91149a617de29f4359ff5ba39",
+  "expanded_argv": [
+    "/usr/bin/bash",
+    "/lustre/pd03/hpc-narolski-1790461090/smad-next/coordination_20261114/sbmr512_identity_diagnostic_source_v3/run_cpu.sh",
+    "/usr/bin/python3.9",
+    "/lustre/pd03/hpc-narolski-1790461090/smad-next/coordination_20261114/sbmr512_identity_diagnostic_source_v3/ROOT_GRANT.json"
+  ],
+  "scope_addition": "OneexactcanonicalUVinterpreterbodyhashaftertwoexactpointermetadata snapshots; no targetexecution/broadUVgrant. Sameboundedpackage/sourceclasses; previousclaims/failures preserved; ONEnewregisteredtechnicalread only",
+  "v2_failure_review_sha256": "189a02a76da16bd80e20fa20d7ef4e3c13ef4302532f3e0904227fcb9dbb85ce"
+}
