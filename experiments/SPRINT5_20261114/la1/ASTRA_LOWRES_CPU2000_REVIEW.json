@@ -1,0 +1,71 @@
+{
+  "decision": "PASS_VARIABLE_RESOLUTION_SOURCE_CALIBRATION_DIAGNOSTIC_ONLY",
+  "reviewer": "astra_sprint_plan_review",
+  "author": "sol_sprint_experiments",
+  "result_sha256": "de55c718f689767eccca68eaeac796c980f7035b218c45514f38585a16ce7bfc",
+  "embeddings_sha256": "d21a6ad1ef6f816aaeba3e85f4401983f72efeb689ed8b51193cdb472095c1ef",
+  "selection_sha256": "2ba96c20a3b214be6cacfd951937077e98160d1b57c857a5c7948e5dc6054e52",
+  "audit_script_sha256": "7fcc9548054a4bbf1dd9d08ecac03ee345176d7bcd60bb0c89c10df9edb982dd",
+  "embedding_shape": [
+    2000,
+    512
+  ],
+  "norm_range": [
+    0.9999998807907104,
+    1.0000001192092896
+  ],
+  "selected_person_partitions": [
+    500,
+    500
+  ],
+  "person_overlap": 0,
+  "dimensions": {
+    "n": 2000,
+    "width_range": [
+      66,
+      147
+    ],
+    "height_range": [
+      79,
+      169
+    ],
+    "exact128square": 19
+  },
+  "recomputed": {
+    "found_images": 1999,
+    "complete_pair_images": 1998,
+    "calibration_persons": 500,
+    "validation_persons": 499,
+    "fixed_own_genuine_cosine_p01": -0.06043765757232904,
+    "clean_validation_flag_rate": 0.16032064128256512,
+    "injected_labels": 99,
+    "injected_noise_detection_rate": 1.0,
+    "uninjected_false_flag_rate_after_noise": 0.26807563959955505,
+    "raw_cosine_tails": {
+      "0.6": {
+        "raw_image_pairs": 1,
+        "unique_identity_edges": 1
+      },
+      "0.7": {
+        "raw_image_pairs": 0,
+        "unique_identity_edges": 0
+      },
+      "0.77": {
+        "raw_image_pairs": 0,
+        "unique_identity_edges": 0
+      }
+    }
+  },
+  "clean_flag_count": 160,
+  "injected_detected_count": 99,
+  "uninjected_flag_count": 241,
+  "noise_created_singleton_images": 70,
+  "seconds_reported": 598.396398789715,
+  "limits": [
+    "HQ mapping remains BLOCKED. No LA1 training admission.",
+    "Wrong-label reassignment is not a count-preserving permutation; singleton ambiguity remains.",
+    "Raw cross-identity edges lack pose/W/sex/disjoint-triplet eligibility.",
+    "No candidate detector outputs opened; no model rerun or new images.",
+    "CPU8 and failed v1 history left unchanged."
+  ]
+}
