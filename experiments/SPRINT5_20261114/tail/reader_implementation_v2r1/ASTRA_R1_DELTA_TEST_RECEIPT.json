@@ -1,0 +1,42 @@
+{
+  "source_manifest_sha256": "943d47ef9ac0638c46dc1fdaf65782cabbd43d93405ce80305c4bac58c1fce5b",
+  "binding_sha256": "ff2aa74853658d1d318725e42eedbdd2ac16cde8d7da57971c04e4447626c6a2",
+  "exact_diff_sha256": "37e4894613ab6855f6c8fbd76efb7f7bd569dfdb0690e7a411252aefb7c53e56",
+  "all_source_pins_pass": true,
+  "actual_diff_matches_delivered": true,
+  "changed_source_files": [
+    "IMPLEMENTATION_REPORT.md",
+    "README.md",
+    "admission.py",
+    "policy.py",
+    "prepare_inputs.py",
+    "read.py",
+    "test_synthetic.py"
+  ],
+  "changed_binding_fields": [
+    "expected_plans_path",
+    "draw_metadata_path",
+    "exact_input_pins"
+  ],
+  "binding_first_git_tracked_path": true,
+  "binding_in_git_status_paths": true,
+  "git_tracked_path_checks": 109,
+  "same_once_output_all_three": true,
+  "unchanged_critical_files": {
+    "tail_stats.py": true,
+    "diagnostics.py": true,
+    "collector.py": true,
+    "payload.py": true,
+    "shared.py": true,
+    "tail_inputs.py": true
+  },
+  "tests_independently_run": 28,
+  "tests_pass": true,
+  "metadata_check_pass": true,
+  "metadata_draw_hash": "54ffe7325dfbd9d1821bafbdf916f8ed5cef24aed5388a66f5295e65749d5db4",
+  "git_capture_uses_mock_subprocesses": true,
+  "real_git_clean_dirty_untracked_regression_run_in_generated_temp_repo": true,
+  "scientific_read": "HOLD",
+  "actual_collector_reader_called": false,
+  "candidate_access": false
+}

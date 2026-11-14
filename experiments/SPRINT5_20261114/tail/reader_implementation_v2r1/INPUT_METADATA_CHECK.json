@@ -1,0 +1,75 @@
+{
+  "status": "PASS_INPUT_METADATA_ONLY",
+  "calibration_rows": 70,
+  "calibration_components": 26,
+  "positive_evaluation_rows": 180,
+  "genuine_evaluation_rows": 288,
+  "fit_plans": 15,
+  "positive_guards": [
+    {
+      "family": "af0_u50",
+      "rows": 146,
+      "components": 10
+    },
+    {
+      "family": "af0_u5061",
+      "rows": 0,
+      "components": 0
+    },
+    {
+      "family": "lad_R4",
+      "rows": 17,
+      "components": 17
+    },
+    {
+      "family": "lad_S4",
+      "rows": 17,
+      "components": 17
+    }
+  ],
+  "bootstrap": {
+    "attempts": 10000,
+    "rng": 2026111403,
+    "redraws": 0,
+    "seed_indices_shared_across_all_models_and_contrasts": true,
+    "draw_order": "evaluation full components within sources; independent calibration full components within sources; jointfivepairedseedindices",
+    "design_sha256": "54ffe7325dfbd9d1821bafbdf916f8ed5cef24aed5388a66f5295e65749d5db4",
+    "empty_sparse_or_absent_guard_draws": {
+      "af0_u50": 0,
+      "af0_u5061": 10000,
+      "lad_R4": 0,
+      "lad_S4": 0
+    },
+    "required_genuine_and_calibration_empty_draws": 0,
+    "condition": "No rejection/filtering; fixed10000attempts"
+  },
+  "candidate_payload_accessed": false,
+  "scientific_read": "HOLD",
+  "diagnostic_panels": "ADOPTED_POINT_ONLY_NOT_ESTIMATED",
+  "diagnostic_positive_pools": [
+    {
+      "source": "feret",
+      "processing": "native_positive_mixture",
+      "rows": 54,
+      "components": 13,
+      "family_composition": {
+        "af0_u50": 46,
+        "lad_R4": 4,
+        "lad_S4": 4
+      }
+    },
+    {
+      "source": "frgc",
+      "processing": "native_positive_mixture",
+      "rows": 126,
+      "components": 14,
+      "family_composition": {
+        "af0_u50": 100,
+        "lad_R4": 13,
+        "lad_S4": 13
+      }
+    }
+  ],
+  "camera_auxiliary": "HOLD",
+  "baseline_threshold_auxiliary": "HOLD"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "FROZEN_PRIMARY_NI_CODE_ONLY_REQUIRES_INDEPENDENT_REVIEW",
+  "source_manifest_sha256": "d2912f78818bc32ef7164eb9bd3327fc579453b2a216347c3e5405deb536dd30",
+  "input_binding_sha256": "f91984a65b46578b57486a8b101b3181e698f6df212d2b6a31c23059d488082f",
+  "synthetic_tests": 19,
+  "tests_sha256": "0121889eda40616f017ce7ea7d80a0a619b679d81bfdf6f39437cf4d2b95f5e9",
+  "metadata_check_sha256": "a2608a18798ef1fd0a70c33386eb2df132123a8345a510acfae33dc8e2a95029",
+  "candidate_payload_accessed": false,
+  "collector_or_reader_actual_invocation": false,
+  "scientific_read": "HOLD",
+  "diagnostic_panels": "HOLD_NOT_IMPLEMENTED_IN_THIS_VERSION",
+  "baseline_threshold_auxiliary": "HOLD",
+  "camera_auxiliary": "HOLD"
+}

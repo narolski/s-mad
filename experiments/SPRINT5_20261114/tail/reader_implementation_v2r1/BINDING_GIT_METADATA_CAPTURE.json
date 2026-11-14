@@ -1,0 +1,10 @@
+{
+  "status": "PASS_METADATA_ONLY_CAPTURE",
+  "binding_in_tracked_checks": true,
+  "binding_in_status_checks": true,
+  "binding_path": "experiments/SPRINT5_20261114/tail/reader_implementation_v2r1/PILOT_READER_BINDING.json",
+  "git_tracking_calls": 109,
+  "git_status_paths": 109,
+  "mock_scope": "Git and shared-verifier subprocess only; all input metadata/draw validation real; no collector/reader/payload",
+  "candidate_payload_accessed": false
+}

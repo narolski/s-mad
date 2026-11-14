@@ -1,0 +1,53 @@
+{
+  "old_source_sums_sha256": "5ae5f48e8b5525ae53a3603f24444a0efef833c567bc52caa308fb9119fba195",
+  "new_source_sums_sha256": "943d47ef9ac0638c46dc1fdaf65782cabbd43d93405ce80305c4bac58c1fce5b",
+  "changed": [
+    {
+      "file": "IMPLEMENTATION_REPORT.md",
+      "old_sha256": "b5eabb8374d1bdd082a6b6a5478cbd681b316bb3d9d1a16e289707b19459a34a",
+      "new_sha256": "261b78e6251acd188d1293d9cfaa016833c94920a0eef6638de0a0102ac2c6dc"
+    },
+    {
+      "file": "README.md",
+      "old_sha256": "239e534905139fab1bc59ac343af41d2cb1228b96f3eaed01bebbd908f95497c",
+      "new_sha256": "81f592895b7c355d8ca1b8c77aa4c521674eccfccb0e64c55b8654bf396fbf74"
+    },
+    {
+      "file": "admission.py",
+      "old_sha256": "d7572a0cbed9419d915463a4d7e7da481d578ed29fce4c04125866a4740de03d",
+      "new_sha256": "ed61dab74035e27e1cfc4006f82049f91d702e377cf2622e63bd3275f6c0900f"
+    },
+    {
+      "file": "policy.py",
+      "old_sha256": "9892211619c66bb82df0e57526a6ec306b20e47ebe0aded2661201f0cb0815d7",
+      "new_sha256": "e6c39025d9f9a9499459515525ffda5cef4fefcda739d37296c076b5d3cccaf4"
+    },
+    {
+      "file": "prepare_inputs.py",
+      "old_sha256": "d8b87cf636e78c27241abb10b40c4cda89f49b9609489d4de97f9e1b159f8d1c",
+      "new_sha256": "df5c50ceafe0371aa4e1f6e6578923ca4b25f7df507a78f511478893e11e5406"
+    },
+    {
+      "file": "read.py",
+      "old_sha256": "b8bbfaaacf79d4957cb0e7baa75cf018e0d45254fd8da82e0e8433af62347fae",
+      "new_sha256": "f088c60a28aa8a66b2e53adaae1935d85fa15ef76950e96549970929e16b5551"
+    },
+    {
+      "file": "test_synthetic.py",
+      "old_sha256": "a707479c5adb885b5b4e8247ac5f33b5cfab22a3aa15467a5c73078e336e7b05",
+      "new_sha256": "65a7d08fc38905629c0725ef719b28f4fa2132f783312f442080bfb71c8f8bb3"
+    }
+  ],
+  "unchanged": [
+    "collector.py",
+    "diagnostics.py",
+    "metadata_only_check.py",
+    "payload.py",
+    "shared.py",
+    "tail_inputs.py",
+    "tail_stats.py"
+  ],
+  "exact_delta_sha256": "37e4894613ab6855f6c8fbd76efb7f7bd569dfdb0690e7a411252aefb7c53e56",
+  "same_journal_output": true,
+  "scientific_read": "HOLD"
+}

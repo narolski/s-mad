@@ -1,0 +1,18 @@
+{
+  "status": "FROZEN_V2R1_DELTA_READY_FOR_INDEPENDENT_REVIEW",
+  "source_manifest_sha256": "943d47ef9ac0638c46dc1fdaf65782cabbd43d93405ce80305c4bac58c1fce5b",
+  "input_binding_sha256": "ff2aa74853658d1d318725e42eedbdd2ac16cde8d7da57971c04e4447626c6a2",
+  "synthetic_tests": 28,
+  "tests_sha256": "19e4e402698072dcd2bee9f8e59b1467e37f45f8cd8d04a9463852a72567cbc9",
+  "metadata_check_sha256": "6db8a950d64848d7b58969c0959375e4a783a9417bc7c565bd342ccbdd1281cf",
+  "git_binding_capture_sha256": "a205419fd6b33e2657b0721ec46cbc896031690bc90d7943da5b7581a6b2ce76",
+  "delta_manifest_sha256": "e6db3e375a43d2f414db7f104476c3b238662bd706aaacbcd6cff2e70da451f7",
+  "exact_delta_sha256": "37e4894613ab6855f6c8fbd76efb7f7bd569dfdb0690e7a411252aefb7c53e56",
+  "primary_and_diagnostics_byteidentical_v2": true,
+  "shared_once_journal_and_output": true,
+  "candidate_payload_accessed": false,
+  "collector_or_reader_actual_invocation": false,
+  "scientific_read": "HOLD",
+  "baseline_threshold_auxiliary": "REQUIRED_BUT_HOLD_PENDING_SEPARATE_BINDING_AND_ADMISSION",
+  "camera_auxiliary": "HOLD"
+}

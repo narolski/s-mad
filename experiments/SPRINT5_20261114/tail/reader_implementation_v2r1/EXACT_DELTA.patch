@@ -1,0 +1,180 @@
+--- tail_reader_v2/IMPLEMENTATION_REPORT.md
++++ tail_reader_v2r1/IMPLEMENTATION_REPORT.md
+@@ -1,3 +1,17 @@
++# Tail v2r1 admission repair handoff
++
++R1 fixes the exact independent review blocker from `reader_implementation_v2/ASTRA_TAIL_V2_IMPLEMENTATION_REVIEW.md`, SHA `2286e62c29415f8dfb5e84657a9ea0aefbb72dde5f3d4f7e83e78e73a31add64`. Frozen v2 source `5ae5f48e8b5525ae53a3603f24444a0efef833c567bc52caa308fb9119fba195` and binding `36866c220c1df69b57ca69fb271121c9704ad417e2f93358eac4398cc8e8fdfa` remain preserved. New source is `src/SPRINT5/tail_reader_v2r1/`; new evidence/binding is `tail/reader_implementation_v2r1/`.
++
++`validate_binding` now resolves the input argument once as `binding_path`, keeps input iteration in `pin_path`, and passes the actual binding to explicit committed-path selection and Git validation helpers. Real temporary-Git regressions pass for clean tracked binding and reject tracked-but-dirty and untracked bindings with all other pins clean. A production-wiring regression ensures the original binding path reaches that gate. Matching a new digest cannot bypass the separate Git requirement.
++
++All 26 existing fixtures plus two regressions PASS (28 total). Full input-only metadata/design checks are repeated. Primary `tail_stats.py`, `diagnostics.py`, collector, payload and shared utilities remain byte-identical to frozen v2. Only admission repair, binding/evidence version pointers, tests/docs and the result-facing required-baseline annotation change. No statistical definition, RNG, journal, output, candidate scope or actual release changes. The same once journal/output remain shared across all revisions. No actual candidate payload, collector/reader, checkpoint, GPU or scheduler access occurred.
++
++Exact diffs and an immutable delta manifest accompany this handoff. Independent delta review and root adoption of the new binding remain pending; scientific, collector, baseline and camera releases remain HOLD.
++
++---
++
++Preserved v2 implementation context follows; its source/input pins identify the historical v2 snapshot rather than this new revision:
++
+ # Tail v2 implementation handoff
+ 
+ Status: CODE_ONLY_READY_FOR_INDEPENDENT_REVIEW. Source: `/home/narolski/smad-next/src/SPRINT5/tail_reader_v2/`. Evidence: `experiments/SPRINT5_20261114/tail/reader_implementation_v2/`. No actual candidate archive, logits, score member, checkpoint, model weights, collector or reader invocation occurred. No GPU or scheduler operations occurred.
+--- tail_reader_v2/README.md
++++ tail_reader_v2r1/README.md
+@@ -1,4 +1,4 @@
+-# Tail pilot reader v2: primary, NI and point-only diagnostics
++# Tail pilot reader v2r1: primary, NI and point-only diagnostics
+ 
+ This separate v2 adapter imports only the exact paired reader utility manifest `02c74015…`. Paired, breadth and HN sources are untouched. Method inputs come from the root-adopted policy packet `4268acf…7fbc9b`, proposal `007a6f…d414`, commit `f18f8d1`. This package grants no collection or scientific read release.
+ 
+@@ -57,10 +57,16 @@
+ From `/home/narolski/smad-next`:
+ 
+ ```sh
+-OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 CUDA_VISIBLE_DEVICES="" nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/SPRINT5/tail_reader_v2/test_synthetic.py
+-OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 CUDA_VISIBLE_DEVICES="" nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/SPRINT5/tail_reader_v2/metadata_only_check.py
++OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 CUDA_VISIBLE_DEVICES="" nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/SPRINT5/tail_reader_v2r1/test_synthetic.py
++OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 CUDA_VISIBLE_DEVICES="" nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/SPRINT5/tail_reader_v2r1/metadata_only_check.py
+ ```
+ 
+ These use generated fixtures or admitted input metadata only. Passing them does not establish eligibility of actual fits or a scientific result.
+ 
+ V1 source/input bytes remain preserved. V2 uses the exact SAME once journal/output, tested against v1 constants; there is no alternate reader path permitting another actual read. This version’s binding/evidence lives under `tail/reader_implementation_v2/`. Independent v2 review and root adoption are still required before any real collection/read release.
++
++## R1 admission repair
++
++Frozen v2 remains preserved with source manifest `5ae5f48e…ba195` and binding `36866c22…8fdfa`. Its independent review found that the input-pin loop shadowed the binding argument, omitting the actual binding from Git checks. This revision retains an immutable `binding_path`, uses `pin_path` in the loop, and explicitly includes the binding in both tracked and clean checks. Generated temporary-Git fixtures accept a clean tracked binding and reject dirty or untracked bindings, independently of matching new content hashes. Production wiring is also checked.
++
++Revision evidence is under `tail/reader_implementation_v2r1/`. Primary statistics and diagnostics remain byte-identical to v2; the journal and output paths are unchanged across v1, v2 and v2r1. A result-facing annotation explicitly preserves `REQUIRED_BUT_HOLD_PENDING_SEPARATE_BINDING_AND_ADMISSION` for baseline reporting without altering frozen statistics. Independent delta review, root input adoption and all live releases remain required.
+--- tail_reader_v2/admission.py
++++ tail_reader_v2r1/admission.py
+@@ -22,15 +22,30 @@
+     return {(r['arm'],r['seed']):r for r in rr}
+ 
+ 
++def committed_paths(binding_path,binding,repo,code):
++    """Keep the actual binding first, independently of iteration over input pins."""
++    own=[pathlib.Path(binding_path).relative_to(repo)]
++    own.extend(pathlib.Path(pin_path).relative_to(repo) for pin_path in binding['exact_input_pins'] if pathlib.Path(pin_path).is_relative_to(repo))
++    own.extend((code/name).relative_to(repo) for name in ['SHA256SUMS',*[line.split('  ',1)[1] for line in (code/'SHA256SUMS').read_text().splitlines()]])
++    return own
++
++
++def require_clean_committed(repo,paths):
++    for tracked_path in paths:
++        subprocess.run(['git','ls-files','--error-unmatch',str(tracked_path)],cwd=repo,check=True,capture_output=True)
++    need(not subprocess.check_output(['git','status','--porcelain','--',*[str(tracked_path) for tracked_path in paths]],cwd=repo,text=True),'reader/input paths must be clean committed')
++
++
+ def validate_binding(path,require_committed=False):
+-    b=obj(path);S=shared.load()
++    binding_path=pathlib.Path(path).resolve()
++    b=obj(binding_path);S=shared.load()
+     need(b['experiment_id']==P.EXPERIMENT and b['scope']==P.SCOPE,'wrong scope')
+     need(b['arms']==list(P.ARMS) and b['seeds']==list(P.SEEDS) and b['expected_fit_count']==15,'wrong roster')
+     need((b['steps'],b['batch_size'],b['forwards'],b['checkpoint'])==(100,256,25600,'last'),'wrong budget')
+     need(b['training_source_sums_sha256']==P.TRAIN_SOURCE and b['shared_reader_sums_sha256']==shared.SUMS_SHA,'source changed')
+     need(b['shared_input_binding_sha256']==shared.BINDING_SHA and shared.sha(b['shared_input_binding'])==shared.BINDING_SHA,'shared inputs changed')
+     need(b['camera_auxiliary']=='HOLD' and b['baseline_threshold_auxiliary']=='HOLD' and b['diagnostic_panels']=='ADOPTED_POINT_ONLY_NOT_ESTIMATED','auxiliary scope changed')
+-    for path,h in b['exact_input_pins'].items():need(shared.sha(path)==h,'input pin changed '+path)
++    for pin_path,h in b['exact_input_pins'].items():need(shared.sha(pin_path)==h,'input pin changed '+pin_path)
+     need(shared.sha(b['policy_binding_path'])==P.POLICY_BINDING_SHA and shared.sha(b['policy_packet_manifest_path'])==P.PACKET_SHA,'policy packet changed')
+     adopted=obj(b['policy_input_admission_path'])
+     need(adopted['decision']=='GO_POLICY_INPUTS_ONLY' and adopted['binding_sha256']==P.POLICY_BINDING_SHA and adopted['packet_manifest_sha256']==P.PACKET_SHA,'policy not adopted')
+@@ -51,10 +66,8 @@
+     c=cases(b);need(set(c)=={(a,s) for a in P.ARMS for s in P.SEEDS},'plans incomplete')
+     if require_committed:
+         repo=pathlib.Path(P.ROOT);code=pathlib.Path(__file__).resolve().parent
+-        own=[pathlib.Path(path).relative_to(repo)]+[pathlib.Path(k).relative_to(repo) for k in b['exact_input_pins'] if pathlib.Path(k).is_relative_to(repo)]
+-        own.extend((code/n).relative_to(repo) for n in ['SHA256SUMS',*[line.split('  ',1)[1] for line in (code/'SHA256SUMS').read_text().splitlines()]])
+-        for p in own:subprocess.run(['git','ls-files','--error-unmatch',str(p)],cwd=repo,check=True,capture_output=True)
+-        need(not subprocess.check_output(['git','status','--porcelain','--',*[str(p) for p in own]],cwd=repo,text=True),'reader/input paths must be clean committed')
++        own=committed_paths(binding_path,b,repo,code)
++        require_clean_committed(repo,own)
+         sb=obj(b['shared_input_binding']);v=repo/'src/SPRINT5/paired_ranking_prefit/verify_prefit.py'
+         need(shared.sha(v)==sb['pins'][str(v)],'shared verifier changed')
+         subprocess.run([sys.executable,'-I',str(v),'--binding',b['shared_input_binding'],'--require-committed'],check=True,capture_output=True)
+--- tail_reader_v2/policy.py
++++ tail_reader_v2r1/policy.py
+@@ -20,7 +20,7 @@
+ ONCE='/mnt/t7/smad_next/SPRINT5_3/reader_once_primary_ni_v1'
+ OUTPUT='/mnt/t7/smad_next/SPRINT5_3/reader_output_primary_ni_v1/RESULT.json'
+ ROOT='/home/narolski/smad-next'
+-BINDING=ROOT+'/experiments/SPRINT5_20261114/tail/reader_implementation_v2/PILOT_READER_BINDING.json'
++BINDING=ROOT+'/experiments/SPRINT5_20261114/tail/reader_implementation_v2r1/PILOT_READER_BINDING.json'
+ POLICY_ROOT=ROOT+'/experiments/SPRINT5_20261114/pilot_reader_policy_review'
+ SCOPE='TAIL_POSITIVE_CALIBRATED_PRIMARY_NI_DIAGNOSTICS_V2'
+ DIAGNOSTIC_ADOPTION_SHA='3c679d59e513ab3fd405f73ee164229c7914bac80cd1afc650ed824942102f17'
+--- tail_reader_v2/prepare_inputs.py
++++ tail_reader_v2r1/prepare_inputs.py
+@@ -17,7 +17,7 @@
+ 
+ def main():
+     assert len(sys.argv)==1,'candidate arguments forbidden'
+-    repo=pathlib.Path(P.ROOT);out=repo/'experiments/SPRINT5_20261114/tail/reader_implementation_v2'
++    repo=pathlib.Path(P.ROOT);out=repo/'experiments/SPRINT5_20261114/tail/reader_implementation_v2r1'
+     out.mkdir(parents=True,exist_ok=True);assert not(out/'PILOT_READER_BINDING.json').exists(),'never overwrite binding'
+     bp=repo/'experiments/SPRINT5_20261114/paired_ranking/prefit_binding_v1/BINDING.json';assert shared.sha(bp)==shared.BINDING_SHA
+     S=shared.load();sb=json.loads(bp.read_text());common=S.data.metadata(sb);pins=dict(sb['pins']);pins[str(bp)]=shared.BINDING_SHA
+--- tail_reader_v2/read.py
++++ tail_reader_v2r1/read.py
+@@ -43,6 +43,7 @@
+         result=tail_stats.analyze(meta,C,Z,draws=10000)
+         result['diagnostic_panels']=diagnostics.analyze(meta,Z,result['calibration']['per_network_thresholds'])
+         result['diagnostic_adoption_sha256']=P.DIAGNOSTIC_ADOPTION_SHA
++        result['baseline_threshold_auxiliary']='REQUIRED_BUT_HOLD_PENDING_SEPARATE_BINDING_AND_ADMISSION'
+         result.update(binding_sha256=claim['binding_sha256'],reader_sums_sha256=claim['reader_sums_sha256'],
+                       archive_sha256=claim['archive_sha256'],
+                       policy_binding_sha256=P.POLICY_BINDING_SHA)
+--- tail_reader_v2/test_synthetic.py
++++ tail_reader_v2r1/test_synthetic.py
+@@ -9,6 +9,7 @@
+ import sys
+ import tarfile
+ import tempfile
++import subprocess
+ import unittest
+ from unittest import mock
+ sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+@@ -104,6 +105,42 @@
+                 with self.assertRaises(ValueError):A.validate_release(bad,binding,roster,root,'GO_READER_READ')
+             code.write_text('changed')
+             with self.assertRaises(ValueError):A.validate_release(r,binding,roster,root,'GO_READER_READ')
++
++
++class BindingGitRegression(unittest.TestCase):
++    def test_actual_binding_path_tracked_dirty_untracked_with_real_git(self):
++        with tempfile.TemporaryDirectory() as temp:
++            repo=pathlib.Path(temp);code=repo/'code';code.mkdir();binding=repo/'PILOT_READER_BINDING.json'
++            pin=repo/'diagnostics.py';pin.write_text('# generated LAST PIN')
++            dependency=code/'dependency.py';dependency.write_text('# generated')
++            (code/'SHA256SUMS').write_text(shared.sha(dependency)+'  dependency.py\n')
++            binding.write_text('{"generated":1}');b={'exact_input_pins':{str(pin):shared.sha(pin)}}
++            subprocess.run(['git','init','-q'],cwd=repo,check=True,capture_output=True)
++            subprocess.run(['git','add','.'],cwd=repo,check=True,capture_output=True)
++            subprocess.run(['git','-c','user.name=Generated Fixture','-c','user.email=fixture@example.invalid','commit','-qm','generated'],cwd=repo,check=True,capture_output=True)
++            paths=A.committed_paths(binding,b,repo,code)
++            self.assertEqual(paths[0],binding.relative_to(repo));self.assertIn(pin.relative_to(repo),paths)
++            A.require_clean_committed(repo,paths) # Clean tracked binding passes.
++            binding.write_text('{"generated":2}')
++            updated_release_hash=shared.sha(binding)
++            self.assertEqual(updated_release_hash,shared.sha(binding)) # Matching new bytes cannot bypass Git.
++            with self.assertRaises(ValueError):A.require_clean_committed(repo,paths)
++            binding.write_text('{"generated":1}')
++            A.require_clean_committed(repo,paths)
++            subprocess.run(['git','rm','--cached','--',binding.name],cwd=repo,check=True,capture_output=True)
++            with self.assertRaises(subprocess.CalledProcessError):A.require_clean_committed(repo,paths)
++    def test_validate_binding_retains_dedicated_path_and_uses_it_for_commit_gate(self):
++        # Inspect production wiring in addition to exercising its real Git helpers
++        # above. This fails for the reviewed shadowed implementation without
++        # requiring candidate or production input metadata in the fixture.
++        source=pathlib.Path(A.__file__).read_text();tree=ast.parse(source)
++        fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='validate_binding')
++        first=fn.body[0]
++        self.assertIsInstance(first,ast.Assign);self.assertEqual(first.targets[0].id,'binding_path')
++        loops=[n for n in ast.walk(fn) if isinstance(n,ast.For)]
++        self.assertFalse(any(isinstance(n.target,ast.Tuple) and any(isinstance(x,ast.Name) and x.id in ('path','binding_path') for x in n.target.elts) for n in loops))
++        call=next(n for n in ast.walk(fn) if isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='committed_paths')
++        self.assertEqual(call.args[0].id,'binding_path')
+ 
+ 
+ class CalibrationBootstrap(unittest.TestCase):
