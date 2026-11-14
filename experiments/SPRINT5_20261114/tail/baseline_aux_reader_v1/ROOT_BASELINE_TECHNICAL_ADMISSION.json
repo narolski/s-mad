@@ -1,0 +1,15 @@
+{
+  "decision": "GO_BASELINE_AUXILIARY_TECHNICAL_INPUTS_ONLY",
+  "required_root_decision": "GO_BASELINE_AUXILIARY_TECHNICAL_INPUTS_ONLY",
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "technical_receipt_path": "/mnt/t7/smad_next/SPRINT5_3/baseline_aux_technical_v1/RECEIPT.json",
+  "technical_receipt_sha256": "619b555568d131d7c4681bfeb2d50f5225e241b1edeab3737b07e28973e3f4ae",
+  "runtime_and_bytegate_status": "PASS_SAME_BASELINE_ADMITTED_METADATA",
+  "same_baseline_existing_gate_reuse_authorized": true,
+  "baseline_gate_chain_sha256": "db2c3b714bff37908f494013f0ab9ceeb804682a5a2cd77b764e6240eee723a8",
+  "independent_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/baseline_aux_reader_v1/INDEPENDENT_BASELINE_TECHNICAL_ADMISSION_REVIEW.md",
+  "independent_review_sha256": "7d4a2a318063efba606a849f59043a5d7caaa371dd88c7a3b8a8ae369e6376bf",
+  "scientific_auxiliary_read": "HOLD",
+  "adopted_at": "2026-11-14T19:23:02.888549+00:00"
+}
