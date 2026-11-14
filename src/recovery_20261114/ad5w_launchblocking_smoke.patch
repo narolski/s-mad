@@ -1,0 +1,17 @@
+--- src/AD5/wcss/ad5w_train.sbatch
++++ src/recovery_20261114/ad5w_launchblocking_smoke.sbatch
+@@ -16,11 +16,14 @@
+ # the shipped wheels (MADation README: Python 3.9), one result tar + .sha256 back to Lustre. No placeholder: the job
+ # carries its whole workload and exits non-zero on any failure.
+ set -euo pipefail
++: "${SMOKE:?Recovery diagnostic is smoke-only; production is not authorised by this script}"
++export CUDA_LAUNCH_BLOCKING=1 TORCH_SHOW_CPP_STACKTRACES=1 PYTHONFAULTHANDLER=1
+ L=${AD5_L:-/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5}   # AD5_L / AD5_PYTHON: rented-machine runs (src/AD5/rented)
+ PYBIN=${AD5_PYTHON:-python3}
+ SEED=${SLURM_ARRAY_TASK_ID:?array task = seed}; ARM=${ARM:?ARM=B|L|X}
+ case $ARM in B|L) T=madation_${ARM}_s${SEED} ;; X) T=mixfacenet_X_s${SEED} ;; *) echo "bad ARM"; exit 2 ;; esac
+ [ -n "${SMOKE:-}" ] && T=${T}_smoke
++T=${T}_diag_launchblocking_20261114
+ [ -f $L/results/$T.tar.sha256 ] && { echo "$T done already"; exit 0; }
+ : "${TMPDIR:?local scratch required}"; S=$TMPDIR/ad5; mkdir -p $S/out
+ keep() { mkdir -p $L/logs/keep/$T; cp "$@" $L/logs/keep/$T/ 2>/dev/null || true; }

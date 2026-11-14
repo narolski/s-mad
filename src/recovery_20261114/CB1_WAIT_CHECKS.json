@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-14T10:22:32.741002+01:00",
+  "script_sha256": "24304001f933259ffdb82f50695719f1ad82233b65def8e50c876ba871c4b541",
+  "checks": [
+    {
+      "case": "all_workers_success",
+      "rc": 0,
+      "stdout": "worker 401 exit 0\nworker 402 exit 0\nworker 403 exit 0\nCHECK_PASS"
+    },
+    {
+      "case": "worker_failure",
+      "rc": 0,
+      "stdout": "worker 401 exit 0\nworker 402 failed with exit 17\nworker 403 exit 0\nseed 402 produced no best score file\nseed 402 produced no valbest score file\nseed 402 produced no last score file\nCHECK_PASS"
+    }
+  ],
+  "scope": "Real worker-wait and cleanup code extracted from proposed script; synthetic workers/files only; no datasets, GPUs or scores read.",
+  "note": "Recovery-tag naming added after worker code test; worker/cleanup blocks unchanged; bash -n rechecked."
+}
