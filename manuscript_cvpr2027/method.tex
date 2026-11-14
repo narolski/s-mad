@@ -1,0 +1,69 @@
+\section{Controlled Evaluation of Morph Detection}
+\label{sec:controls}
+
+We ask which transformations activate a detector, and whether discrimination persists when negatives undergo comparable construction. A \emph{control} removes a proposed explanation from a comparison; it need not be an unmodified bona fide photograph.
+
+\subsection{Image processing and identity mixing}
+Let $x_i$ denote a photograph of person $i$, and let $x'_i$ be a different photograph of the same person. Write $M_e(x_i,x_j)$ for an image produced by morphing engine $e$, and $P_h(x)$ for an image with processing history $h$. A conventional comparison separates $M_e(x_i,x_j)$, $i\ne j$, from $x_i$. Its class difference includes identity mixing, geometric warping, blending, rendering, storage and potentially the background. A high area under the ROC curve (AUC) on this comparison does not identify which of these differences the detector exploits.
+
+We introduce controls that retain different parts of this construction. A warp-only control undergoes geometric transformation without combining two images. A same-person morph $M_e(x_i,x'_i)$ combines two photographs but not two identities. A one-photo reconstruction passes a single input through a generative rendering path. These comparisons narrow the interpretation of a score; none automatically isolates an identity mechanism. In particular, two photographs of one person still differ in expression, pose, illumination and texture, while blending can change local variance and noise independently of identity.
+
+% Sources: PR1/result.md, GD1/GD2; XF1/result.md; AB1/prereg.md amendment 4.
+
+
+\subsection{Matched constructions and regional controls}
+Our landmark construction ladder includes camera photographs, warp-only images, same-person whole-frame morphs and two-person whole-frame morphs. The splice construction places a manipulated face region into a host frame. Its positive is a two-person face splice; its negatives include a seam-only construction and a same-person splice. These negatives retain parts of the insertion procedure while removing the intended two-person change. These examples make the mere presence of an insertion seam insufficient to reproduce the training labels; residual seam or blending differences remain possible cues.
+
+We evaluate whole-frame and region-restricted forms separately. Removing the surround can reveal a dependence on background processing, but blanking is itself a distribution shift. In the matched FaceMorpher diagnostic, the retained region includes the face and the tool's halo ring; it is not an anatomically pure face interior. We therefore interpret its AUC as a ranking diagnostic and separately report the fixed-threshold response to the blanked controls. A score change under blanking cannot, by itself, locate the original decision mechanism.
+
+% Sources: AB1/prereg.md amendment 4; XF1/result.md, Scope and Face-only form.
+The whole-frame two-person versus same-person analysis also stratifies by a splice-derived change proxy $D$. For a splice $S$, its outside-image counterpart $C$, and shared face hull $H$, define
+\begin{equation}
+D(S,C)=\frac{1}{3|H|}\sum_{p\in H}\sum_{c=1}^{3}|S_{pc}-C_{pc}|.
+\end{equation}
+The proxy uses stored 512-pixel RGB values in $[0,255]$. Splices copy morph pixels into corresponding warp-only frames within the convex hull of averaged host/partner 106-point landmarks (integer coordinates), without added blur or resampling; outside pixels are unchanged. Seam-only controls insert same-person warp pixels into the two-person warp counterpart. Whole-frame morphs inherit their host's respective splice $D$: this is a proxy adjustment, not direct whole-frame blend-energy matching. Within each eligible stratum $q$, we compute an AUC $a_q$ and aggregate it as
+\begin{equation}
+ a_D=\frac{\sum_q n_q^+n_q^- a_q}{\sum_q n_q^+n_q^-},
+\end{equation}
+where $n_q^+$ and $n_q^-$ count the two construction classes. The registered analysis uses quintiles of $\log D$, requires at least ten examples of each class per retained stratum, and requires retained strata to cover at least half of the rows. This reduces a measured blend-strength imbalance; it does not match every low-level image property. We report simple image-statistic references alongside network performance rather than interpreting controlled ranking as direct proof of identity recognition.
+
+\subsection{Processing-only and statistic-based references}
+% Sources: reviews/REVIEW_AD4_CLUSTER_20261113.md; XF1/result.md; PR1/result.md.
+Morph-free shrink-and-enlarge supervision tests processing-cue sufficiency without morph or blending examples; benchmark success does not identify every detector's mechanism. Statistic learners fitted on the detector's training list and transferred to evaluation are distinguished from cross-fitted references trained within the evaluation distribution. The latter can establish predictive low-level differences but are not matched generalization competitors.
+
+\section{Training with Matched Controls}
+\label{sec:training}
+
+Our intervention changes the training examples while retaining a fixed detector and optimization recipe. The detector is a CLIP ViT-B/16 image encoder adapted through low-rank attention updates and a classification head. It processes a single image at inference. No image-resolution rule, source classifier, ensemble or score fusion is added to the decision path.
+
+\subsection{Training sets}
+% Sources: PN1/prereg.md section 4 and amendment 10; AB1/prereg.md sections 0--3.
+We compare four central training sets. \textbf{A}, the plain baseline, contains photographs and two-person whole-frame morphs. \textbf{B} augments A with protocol controls: warp-only images, the morphs' individual warped input halves, and existing small-storage copies. Small-storage examples occur on both sides of the classification problem: photographs and individual halves are negatives, while two-person morph copies remain positives. This crossing prevents storage history from being exclusively associated with the attack label within those construction strata.
+
+\textbf{Sb}, our full protocol, adds two-person face-spliced positives to B together with their seam-only and same-person splice negatives. \textbf{Sp} removes those matched splice negatives from Sb while retaining the splice positives. The splice addition comprises 124 two-person positives and 156 examples of each matched-negative construction before balancing. The resulting Sb list has 5,535 unique images and 8,386 balanced rows; A and B contain 1,526 and 5,099 unique images, respectively. Training sources are FRGC~\cite{phillips2005frgc} and colorFERET~\cite{nistColorFeret} constructions; FFHQ~\cite{karras2019stylegan} controls are development evaluations, not a benchmark. FRLL people do not enter these training manifests. FaceMorpher images are excluded from the original Sb training recipe; later second-engine candidates are separate experiments and are not substituted into the results reported here.
+
+The original Sb--Sp removal ablation removes 312 unique images and 624 training rows, changing class composition and exposure. A count-balanced follow-up compares Sb with \textbf{SpV}, which substitutes repeated native negatives for matched splice negatives, and \textbf{BN} with \textbf{BV}, the analogous pair without splice positives. All four have 8,386 balanced rows; their unique-image counts are 5,535/5,223/5,411/5,099, respectively. Positive multisets, including repetition, match within each pair, not across all four arms. Thus row count and class balance are controlled, but matched-negative content remains confounded with 312 additional unique images per pair. Same-person and seam-only contributions are not separated.
+% Source: experiments/reviews/REVIEW_AB1_BATCHC_OPENCODE_20261114.md, Direct effects, interaction and training limitations.
+
+\subsection{Fixed optimization and inference}
+% Sources: PN1/prereg.md section 4; AB1/run.sh and AB1/prereg.md section 3.
+% Recovered original FS1 source identification (not full execution/dependency verification):
+% OPENCODE_PREPROCESSING_INDEPENDENT_REVIEW_20261114.md, section 4;
+% A47 ffcbc7f1d814d7482e9bba6a0b547fe9318c46f3:smadcvpr/{train.py,common.py},
+% matching extracted AD4 code/smadcvpr/ and PN1 FS1 code/smadcvpr/ links.
+% train.py SHA256 cbb2cbd1b9a3eb59ab080a540a98aab0f6ead51ea69364d2debe06a984b8c1c5.
+% common.py SHA256 b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8.
+% Original FS1 runner: de30e7f96604035f6c98598d106619d8cc73e750:src/PN1/run.sh,
+% SHA256 04998a7c274229b861b840e2b5a793854a712a7fb031fb572e34e1c791a4c87e;
+% recorded FS1 pack SHA256 96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004.
+% Source recovery supersedes the earlier missing-pin finding, not the open
+% loss/head/dependency audit; no new implementation claims are inferred here.
+All primary replication arms use 224-pixel inputs and the same registered training implementation: 6,250 updates, batch size 256, AdamW with weight decay 0.05, constant learning rates of $3.33\times10^{-6}$ for the adapted backbone and $3.33\times10^{-5}$ for the head, and horizontal-flip augmentation. Query and value attention projections receive rank-two, rank-stabilized LoRA~\cite{kalajdzievski2023rslora} updates with alpha four and dropout 0.4; normalization parameters are not trained. Label smoothing and stochastic depth are disabled, the positive-class weight is one, and gradient clipping is five. The final checkpoint is used without validation-based checkpoint selection. Training-list balancing repeats the minority-class rows within source-database and storage strata; repeated examples are not counted as independent images.
+
+Each arm is trained at seeds 408--412 on H100 hardware for the primary ablation. The earlier frozen candidate uses seeds 403--407 and is reported separately. At inference we retain the original score orientation and use a positive logit as the detector's own decision rule. AUC and equal error rate (EER) summarize ranking, whereas genuine false-alarm rates and attack miss rates describe fixed-threshold behavior. EER thresholds are not presented as deployed operating points.
+
+\subsection{Evaluation and uncertainty}
+% Sources: AB1/prereg.md amendment 4; AB1/result.md amendments 4--5; FINAL/result.md.
+The matched whole-frame analysis pools 100 development hosts with 80 test hosts screened for development-person overlap. This screening does not imply complete construction independence: 11 of the 80 hosts retain shape links through landmarks used in training controls. A registered sensitivity subset excludes these links, retaining 69 test hosts; it is not substituted for the primary population after observing outcomes. Shared hosts and partners create dependence, so its 2,000 bootstrap draws resample person components of the host--partner graph, using common draws for all compared networks. We average per-network statistics rather than logits. These component intervals condition on the fitted networks. The original ablation also reports seed-level intervals; the count-balanced follow-up does not resample seeds or quantify arbitrary retraining uncertainty. The FaceMorpher diagnostic has its own host-block bootstrap and is labeled accordingly rather than assigned the same uncertainty interpretation.
+
+The component-based contrasts were registered as post-hoc development analyses, with prior exposures documented. They are not untouched external confirmation. Likewise, although the five frozen Sb networks had not been scored on benchmarks before their MAD22 read, earlier seeds on MAD22 influenced recipe choice. Its genuine pool contains 204 FRLL photographs. We report that exposure explicitly and do not treat MAD22 and FRLL identity coverage as independent. These distinctions are necessary to separate a useful controlled training effect from claims of benchmark superiority or generalization.
