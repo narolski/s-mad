@@ -1,0 +1,36 @@
+{
+  "pins": {
+    "SBMR512_RUNTIME_METADATA_PHASE1_V1R1_SOURCE_20261115/SOURCE_SHA256SUMS": {
+      "sha256": "8b6481b46d4448fb8fe530453fa94ef6f8b54d984fcc9adc6e3048627652757b",
+      "count": 9,
+      "all_match": true
+    },
+    "SBMR512_RUNTIME_METADATA_PHASE1_V1R1_SOURCE_20261115/PACKAGE_SHA256SUMS": {
+      "sha256": "ec3b73c5455e0d7f6e1a79b57cb36fc3798d4b8f5c283e7123b46c4278a5f3c6",
+      "count": 18,
+      "all_match": true
+    },
+    "SBMR512_RUNTIME_METADATA_PHASE1_SOURCE_20261115/SOURCE_SHA256SUMS": {
+      "sha256": "910f05bf4e8a5c341aaec1f270b0a6a82164a630a164ceca7242ab5fbdb6525e",
+      "count": 6,
+      "all_match": true
+    },
+    "SBMR512_RUNTIME_METADATA_PHASE1_SOURCE_20261115/PACKAGE_SHA256SUMS": {
+      "sha256": "2331bd103e55c3234449058c8a31ff67705d42d581ec0fc3e2a72a9580d33b35",
+      "count": 14,
+      "all_match": true
+    }
+  },
+  "supplied_tests": {
+    "passed": 14,
+    "seconds": 0.025
+  },
+  "independent_generated_checks": [
+    "ancestor escape rejected",
+    "dotdot escape rejected",
+    "mapped inode mismatch rejected"
+  ],
+  "AST": "PASS",
+  "Bash": "PASS",
+  "actual_target_access": false
+}

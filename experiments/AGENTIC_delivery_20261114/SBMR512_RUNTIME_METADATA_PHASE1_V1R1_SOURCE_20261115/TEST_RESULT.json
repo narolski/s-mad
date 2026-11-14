@@ -1,0 +1,12 @@
+{
+  "status": "PASS_SOURCE_GENERATED_ONLY",
+  "test_methods": 14,
+  "test_output": "test_generated_elf_body_metadata_and_no_follow (test_generated.Generated.test_generated_elf_body_metadata_and_no_follow) ... ok\ntest_maps_fixed_class (test_generated.Generated.test_maps_fixed_class) ... ok\ntest_phase_contract_independent_of_model_inputs (test_generated.Generated.test_phase_contract_independent_of_model_inputs) ... ok\ntest_source_control_order_and_no_model_ops (test_generated.Generated.test_source_control_order_and_no_model_ops) ... ok\ntest_ancestor_replaced_after_open_uses_confined_descriptor (test_read_boundaries.Boundaries.test_ancestor_replaced_after_open_uses_confined_descriptor) ... ok\ntest_ancestor_replaced_before_walk_is_rejected (test_read_boundaries.Boundaries.test_ancestor_replaced_before_walk_is_rejected) ... ok\ntest_device_inode_mismatch_and_replacement (test_read_boundaries.Boundaries.test_device_inode_mismatch_and_replacement) ... ok\ntest_exact_literal_alias_only (test_read_boundaries.Boundaries.test_exact_literal_alias_only) ... ok\ntest_reproduced_outside_ancestor_and_parent_traversal (test_read_boundaries.Boundaries.test_reproduced_outside_ancestor_and_parent_traversal) ... ok\ntest_snapshot_growth_read_bound_and_size_cap (test_read_boundaries.Boundaries.test_snapshot_growth_read_bound_and_size_cap) ... ok\ntest_all_parsed_authorities_use_snapshot_helper (test_authority_tool.AuthorityTool.test_all_parsed_authorities_use_snapshot_helper) ... ok\ntest_config_and_grant_snapshots_never_reopen (test_authority_tool.AuthorityTool.test_config_and_grant_snapshots_never_reopen) ... ok\ntest_driver_trust_and_numeric_grammar_rejections (test_authority_tool.AuthorityTool.test_driver_trust_and_numeric_grammar_rejections) ... ok\ntest_fixed_root_os_tool_identity_modes_same_descriptor_query (test_authority_tool.AuthorityTool.test_fixed_root_os_tool_identity_modes_same_descriptor_query) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.008s\n\nOK\n",
+  "AST": "PASS",
+  "bash": "PASS",
+  "actual_target_imports": false,
+  "actual_native_library_reads": false,
+  "actual_tool_execution": false,
+  "actual_gpu_execution": false,
+  "actual_payload_reads": false
+}
