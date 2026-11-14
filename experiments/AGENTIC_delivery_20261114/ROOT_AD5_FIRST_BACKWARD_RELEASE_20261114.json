@@ -1,0 +1,35 @@
+{
+  "decision": "GO_EXACT_DIAGNOSTIC_AFTER_STAGING_DUPLICATE_AND_INPUT_CHECKS",
+  "source_pins": {
+    "src/recovery_20261114/ad5_backward_instrument.py": "04668b872d83171bf7a2ae909a7955f266fd44b51237805e0b629e955b309f0f",
+    "src/recovery_20261114/ad5w_firstbackward_diagnostic.sbatch": "e090bd45f69cbc30b58ac1faa5c711cde672a75d842e944e5882a1c0eb4e7f92",
+    "experiments/AGENTIC_delivery_20261114/ASTRA_AD5_FIRST_BACKWARD_PREREG_20261114.md": "ebb4e12d76cab4b872aee9ab3b9fcd390d6f6463116fee9709aed1c5d48d0a7b",
+    "experiments/AGENTIC_delivery_20261114/SOL_AD5_FIRST_BACKWARD_INDEPENDENT_REVIEW_20261114.md": "da355e252d4fec464e57ec9ef58fc8ed8b0182f247df8c22173953896018c8bc"
+  },
+  "pack_pins": {
+    "ad5w_code": {
+      "tar_sha256": "94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee",
+      "sidecar_sha256": "a946c59a9617b41fe257b3ed5fbd3545d8df7ecee0399e033821692144c064ad"
+    },
+    "ad5w_wheels39": {
+      "tar_sha256": "3bd18def4da9cbec2766896fa160c34c0364de464ca3abd02d675c72620cf13c",
+      "sidecar_sha256": "fbc56de255c5ccac1f74d3d5852d3ca1e70d52f8fd88d78e692641d72b01c706"
+    },
+    "smdd_train_cropped": {
+      "tar_sha256": "3189e52af12e2853b06c86993b1b8b5cfef891fda749395778492e3445924900",
+      "sidecar_sha256": "a3dae3ee754bcd784691758354ed5ede650591a41ffd2e61f2a62d4bbb8af2fb"
+    }
+  },
+  "root_review": "Exact source and independent review inspected; no optimizer update/save/score; first backward only. Original failures retained. Time limit override 15 minutes mandatory; sanitized submission environment, one H100; collection and independent technical interpretation follow. Not a complete smoke or production/scientific release.",
+  "resources": {
+    "partition": "lem-gpu-short",
+    "gpus": 1,
+    "gpu_type": "hopper",
+    "time": "00:15:00",
+    "cpus": 8,
+    "mem": "120G",
+    "local_storage": "150G",
+    "array": "401"
+  },
+  "scientific_read_authorized": false
+}
