@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scope": "training versus fixed primary identity/source-byte/geometry-byte exclusion only; no detector scores",
+  "train_hosts": 124,
+  "train_people": 143,
+  "dev_hosts": 100,
+  "dev_people": 200,
+  "train_input_files": 534,
+  "dev_input_files": 600,
+  "identity_intersection": [],
+  "path_intersection": [],
+  "input_bytehash_intersection": [],
+  "metadata_pins": {
+    "/mnt/t7/smad_next/AR1/pool.csv": "861019781e79159fe7904eb60e8cda6a57e978023722615dd46023db2f299352",
+    "/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/split/ladder_split.csv": "2299ac2b1f3a8a4798fe1730ab8722780933ba956d4b38080fdeeb730b391ec3",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/primary_rows.json": "66539d51a588dd4ab921aa060a82acc43b9fcdd2c201c4bb5e49db99e47d13e3",
+    "/mnt/t7/smad_next/SPRINT5_2/transfer_control124_v1/records.json": "85d66eb17061c66a2193e73e4ae018b546699bc8fda060474449b425e8a51fbf"
+  },
+  "script_sha256": "f5b8a5cc8dea1019ca8c31568e0435d7ef01e0c47cddc9aedd0afe451e69fdd9"
+}
