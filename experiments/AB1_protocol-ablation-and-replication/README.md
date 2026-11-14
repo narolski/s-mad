@@ -197,3 +197,4 @@ See prereg section 10.
 - Sat Nov 14 01:02 CET 2026: infrastructure fault and fix (amendment 8): SbFM 6315597_0 failed at scoring (MS1 hold-out images missing from the
   SbFM and Sbx overlays); _1-_4 cancelled, Sbx fits 6314811 held; overlays rebuilt with the hold-out images (v2 names),
   pre-flight added to every job; static pre-flight of all AB1 configurations passes. New queue files written.
+- Sat Nov 14 01:04 CET 2026: re-runs submitted by the dispatcher: SbFM v2 6317610_[0-4], Sbx v2 6317611_[0-4] (both pin the v2 overlays and run preflight.py; priority 680); held Sbx 6314811 cancelled; Sbx rescore 6314812 unchanged; B2 6313020 and batch C 6316845 stay queued, their v2 files parked pending the lead.
