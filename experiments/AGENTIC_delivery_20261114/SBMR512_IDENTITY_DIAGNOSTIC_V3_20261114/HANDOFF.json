@@ -1,0 +1,15 @@
+{
+  "status": "SOURCE_ONLY_OTHER_REVIEW_AND_EXACT_NEW_ROOT_SCOPE_REQUIRED",
+  "author": "astra_sprint_plan_review",
+  "source_sha256": "6bcb4186a2120c2a54e10db077683495875565a30c0c8c784677003b970e267d",
+  "mapping": {
+    "primary_path": "/home/narolski/dmenv/bin/python",
+    "primary_target": "/home/narolski/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/bin/python3.12",
+    "uv_alias": "/home/narolski/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu",
+    "uv_target": "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu",
+    "canonical_file": "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/bin/python3.12"
+  },
+  "tests": 27,
+  "actual_target_access": false,
+  "old_sources_preserved": true
+}

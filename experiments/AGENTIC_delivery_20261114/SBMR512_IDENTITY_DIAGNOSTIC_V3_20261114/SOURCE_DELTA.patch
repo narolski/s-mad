@@ -1,0 +1,86 @@
+--- v2/acquire.py
++++ v3/acquire.py
+@@ -5,8 +5,12 @@
+ safeio=importlib.util.module_from_spec(_spec);_spec.loader.exec_module(safeio)
+ 
+ VENV = '/home/narolski/dmenv'
+-OUTPUT = '/lustre/pd03/hpc-narolski-1790461090/smad-next/coordination_20261114/sbmr512_identity_diagnostic_v2'
++OUTPUT = '/lustre/pd03/hpc-narolski-1790461090/smad-next/coordination_20261114/sbmr512_identity_diagnostic_v3'
+ INTERPRETER = VENV + '/bin/python'
++UV_ALIAS_DIR = '/home/narolski/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu'
++UV_VERSION_DIR = '/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu'
++EXPECTED_PRIMARY_TARGET = UV_ALIAS_DIR + '/bin/python3.12'
++CANONICAL_INTERPRETER = UV_VERSION_DIR + '/bin/python3.12'
+ DEPS = ('torch','torchvision','timm','numpy','Pillow','opencv-python','opencv-python-headless','transformers','huggingface-hub','safetensors','tokenizers')
+ MODULES = ('torch','torchvision','timm','numpy','PIL','cv2','transformers','huggingface_hub','safetensors','tokenizers')
+ SOURCES = (
+@@ -29,7 +33,8 @@
+  'file_cap','size_mismatch','file_grew','file_changed','hash_mismatch','malformed_metadata','missing_duplicate_Name',
+  'missing_duplicate_Version','invalid_Name','invalid_Version','malformed_Name','malformed_Version',
+  'distribution_name_mismatch','output_basename','startup_flags','root_grant','other_review','fixed_paths','scope',
+- 'bootstrap_identity','repeat_read_not_authorized','parent_failure_binding'))
++ 'bootstrap_identity','repeat_read_not_authorized','parent_failure_binding',
++ 'interpreter_primary_alias_mismatch','interpreter_uv_alias_mismatch','exact_alias_scope_not_authorized'))
+ CURRENT_STAGE='CONTROL'
+ CURRENT_DEPENDENCY=None
+ def stage(value,dependency=None):
+@@ -80,28 +85,27 @@
+   except FileNotFoundError: return None,dict(path=path,status='UNKNOWN_ABSENT')
+   self.used+=n
+   return raw,dict(path=path,sha256=h,bytes=n,status='CONTENT_HASHED_CURRENT_ONLY')
++def literal_link(path):
++ stage('INTERPRETER_PARENT')
++ parent=safeio.directory_fd(str(pathlib.PurePosixPath(path).parent))
++ try:
++  stage('INTERPRETER_LINK')
++  return os.readlink(pathlib.PurePosixPath(path).name,dir_fd=parent)
++ finally:os.close(parent)
+ def interpreter(reader,venv=VENV):
+- path=venv+'/bin/python';chain=[]
+- for _ in range(8):
+-  stage('INTERPRETER_PARENT')
+-  parent=safeio.directory_fd(str(pathlib.PurePosixPath(path).parent))
+-  try:
+-   stage('INTERPRETER_LINK')
+-   try: target=os.readlink(pathlib.PurePosixPath(path).name,dir_fd=parent)
+-   except OSError as e:
+-    if e.errno!=22: raise
+-    target=None
+-  finally: os.close(parent)
+-  if target is None:
+-   stage('INTERPRETER_READ')
+-   _,entry=reader.get(path,128<<20)
+-   require(entry['status']!='UNKNOWN_ABSENT','interpreter_absent')
+-   return dict(requested=venv+'/bin/python',resolved=path,symlink_chain=chain,content=entry)
+-  require(len(target)<=4096,'link_target_limit')
+-  resolved=os.path.normpath(target if target.startswith('/') else str(pathlib.PurePosixPath(path).parent/target))
+-  require(any(resolved.startswith(p+'/') for p in (venv,'/usr/bin','/usr/local/bin','/opt')),'interpreter_target_outside_grant')
+-  chain.append(dict(path=path,target=target,resolved=resolved));path=resolved
+- raise ValueError('symlink_chain_limit')
++ # EXACT separately admitted two-link topology; never realpath, generic UV search or follow.
++ requested=venv+'/bin/python'
++ first=literal_link(requested)
++ require(first==EXPECTED_PRIMARY_TARGET,'interpreter_primary_alias_mismatch')
++ second=literal_link(UV_ALIAS_DIR)
++ require(second==UV_VERSION_DIR,'interpreter_uv_alias_mismatch')
++ stage('INTERPRETER_READ')
++ _,entry=reader.get(CANONICAL_INTERPRETER,128<<20)
++ require(entry['status']!='UNKNOWN_ABSENT','interpreter_absent')
++ return dict(requested=requested,resolved=CANONICAL_INTERPRETER,
++  symlink_chain=[dict(path=requested,target=EXPECTED_PRIMARY_TARGET,resolved=EXPECTED_PRIMARY_TARGET),
++                 dict(path=UV_ALIAS_DIR,target=UV_VERSION_DIR,resolved=UV_VERSION_DIR)],
++  content=entry)
+ def collect(venv=VENV):
+  # venv override exists for generated fixtures only; CLI never accepts a path override.
+  reader=Reader();answer=dict(status='CURRENT_IDENTITY_ACQUISITION_NOT_HISTORICAL',venv=venv)
+@@ -161,8 +165,9 @@
+  release,rh=safeio.control(a.release)
+  stage('AUTHORIZE')
+  require(sys.flags.isolated==1 and sys.flags.no_site==1 and sys.flags.optimize==0,'startup_flags')
+- require(release['decision']=='GO_SBMR512_FIXED_IDENTITY_DIAGNOSTIC_V2' and release['root_authorized'] is True,'root_grant')
++ require(release['decision']=='GO_SBMR512_FIXED_IDENTITY_DIAGNOSTIC_V3' and release['root_authorized'] is True,'root_grant')
+  require(release['repeat_metadata_read_for_diagnostic_authorized'] is True,'repeat_read_not_authorized')
++ require(release['exact_two_alias_and_canonical_interpreter_scope_authorized'] is True and release['exact_alias_mapping']==dict(primary_path=INTERPRETER,primary_target=EXPECTED_PRIMARY_TARGET,uv_alias=UV_ALIAS_DIR,uv_target=UV_VERSION_DIR,canonical_file=CANONICAL_INTERPRETER),'exact_alias_scope_not_authorized')
+  require(release['parent_failure_review_sha256']==PARENT_FAILURE_REVIEW and release['parent_release_sha256']==PARENT_RELEASE,'parent_failure_binding')
+  require(release['author']!=release['reviewer'] and bool(release['reviewer']),'other_review')
+  require(release['venv']==VENV and release['output']==OUTPUT and release['automatic_retry'] is False,'fixed_paths')

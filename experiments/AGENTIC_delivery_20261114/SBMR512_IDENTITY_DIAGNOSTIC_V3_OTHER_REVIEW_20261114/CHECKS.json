@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-14T22:56:30.181527+00:00",
+  "verdict": "GO_SBMR512_IDENTITY_DIAGNOSTIC_V3_SOURCE_PRERUN_ONLY",
+  "source_manifest": "a851082d7d1765dce8c037ca244bd60e592f32647f55e79502d0c636a7766ba3",
+  "all_source_members_verified": {
+    "CPU_TEST_RESULT.json": "3a24b3dc0436c19f3db384b82a0ce46ff8eb58ad9d88be26766bba3601886d27",
+    "ENUM_REGISTRY.json": "10fff2a3df886b8a72c98d88de865b36ea8304c4ae3cfc17e62d96b7b3f78831",
+    "HANDOFF.json": "1113a5bf0ab1396e9a4687a2147c9fad15fbf8e1a251a22b0e76373ef682dec1",
+    "PREREG.md": "ff223a726999258f6ac4f9562a7199f99b1cb4b6a3d4f424640af71a6f018d51",
+    "ROOT_V3_GRANT_TEMPLATE_NOT_AUTHORITY.json": "8b2c13bd06351cb09f675785858aa600c29dfafcda6ba3df36705376af4fb422",
+    "SOURCE_DELTA.patch": "f3a23bd71c3a93e26e053af328938845996978db94eff912fd4b1496e0e22485",
+    "SYMLINK_METADATA_SOURCE_BINDING.json": "f658d210e9464809d68cd92e9ce977a03646b86929e51d32c86cbe2c84ea9b5a",
+    "acquire.py": "6bcb4186a2120c2a54e10db077683495875565a30c0c8c784677003b970e267d",
+    "run_cpu.sh": "dd3d4d2c15cacf0e4669c993cfed897e34c409bf9f77acc4f71b288d521334dd",
+    "safeio.py": "34c5f9d691714835ea164e5ae87eaf11ceaf5b166a7ce7e37cf1bd7d2402f4de",
+    "test_alias.py": "8fcb988d34ad4264984f1c0480c553d44eafba5dc932f20859b41610cce1bdfb",
+    "test_diagnostic.py": "77bd9b20211f145bc809d3d921d4ddfddd051607f092b504cb07996f8b1e55b3",
+    "test_generated.py": "15efbfd2dcda49349292735e418e75bfa4f4180032630e2de1cec49a30baa0dc"
+  },
+  "old_parent_manifests_all_members_unchanged": {
+    "SBMR512_IDENTITY_ACQUISITION_V1_20261114": "fe6e8aacb59f1c0324e21f9ba39782e54766e3719c558db1362aa0108fd16c7c",
+    "SBMR512_IDENTITY_DIAGNOSTIC_V2_20261114": "cf6924c6f398d08a6c1e4b86671e423a324710831db127f9948a9f74ab61fb1d"
+  },
+  "admitted_pointer_evidence_pins_verified": {
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/ROOT_SCOPE.json": "63a4a1cd16d7c077f8d51d07a8b25529446f327e5e29010d470f8f6b13b9e598",
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/ROOT_EXACT_UV_DIRECTORY_LINK_SCOPE.json": "447bc897e78e23395d7f5959bdf16a9339f81bc0c15902ea7fd49555aea30796",
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/stdout.txt": "f5b3521dcb00408959c4f89b43a7aa0a4a9914d1ef9db4c4272d97614fd9eba0",
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_link.stdout": "f0496decb9d8e097a6d82be744e8cdef4fcec15a8a3305fa8490ec4dc0a86c0b",
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_type.stdout": "d1e61ea4bf689712bbdb1379831fa7c6b74c639aefc8f1827e8970c4edb0cda6"
+  },
+  "template_mapping_matches_evidence": true,
+  "provided_generated_tests": {
+    "passed": 27,
+    "elapsed_seconds": 0.059
+  },
+  "independent_generated_source_tests": {
+    "passed": 7,
+    "elapsed_seconds": 0.029
+  },
+  "bash_syntax": "PASS",
+  "actual_WCSS_target_environment_metadata_binary_model_GPU_payload_access_or_main_wrapper_execution": false,
+  "root_exact_scope_and_repeated_metadata_grant_required": true,
+  "current_target_identity": "UNKNOWN_UNCHANGED",
+  "author_package_modified": false,
+  "prior_actual_v2_review_sha256": "189a02a76da16bd80e20fa20d7ef4e3c13ef4302532f3e0904227fcb9dbb85ce",
+  "independence_disclosure": "OTHER new v3 author; reviewer authored reused already-independently-reviewed safeio"
+}

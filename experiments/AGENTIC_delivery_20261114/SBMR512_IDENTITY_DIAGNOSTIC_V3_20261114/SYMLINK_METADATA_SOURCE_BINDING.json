@@ -1,0 +1,19 @@
+{
+  "exact_mapping": {
+    "primary_path": "/home/narolski/dmenv/bin/python",
+    "primary_target": "/home/narolski/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/bin/python3.12",
+    "uv_alias": "/home/narolski/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu",
+    "uv_target": "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu",
+    "canonical_file": "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/bin/python3.12"
+  },
+  "evidence_pins": {
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/ROOT_SCOPE.json": "63a4a1cd16d7c077f8d51d07a8b25529446f327e5e29010d470f8f6b13b9e598",
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/ROOT_EXACT_UV_DIRECTORY_LINK_SCOPE.json": "447bc897e78e23395d7f5959bdf16a9339f81bc0c15902ea7fd49555aea30796",
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/stdout.txt": "f5b3521dcb00408959c4f89b43a7aa0a4a9914d1ef9db4c4272d97614fd9eba0",
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_link.stdout": "f0496decb9d8e097a6d82be744e8cdef4fcec15a8a3305fa8490ec4dc0a86c0b",
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_type.stdout": "d1e61ea4bf689712bbdb1379831fa7c6b74c639aefc8f1827e8970c4edb0cda6"
+  },
+  "scope": "ALREADY_ROOT_ADMITTED_LINK_TEXT_ONLY_NO_TARGET_BYTES",
+  "parent_v1_manifest": "fe6e8aacb59f1c0324e21f9ba39782e54766e3719c558db1362aa0108fd16c7c",
+  "parent_v2_manifest": "cf6924c6f398d08a6c1e4b86671e423a324710831db127f9948a9f74ab61fb1d"
+}
