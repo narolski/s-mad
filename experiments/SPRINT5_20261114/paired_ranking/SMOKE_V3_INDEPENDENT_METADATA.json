@@ -1,0 +1,72 @@
+{
+  "decision": "TECHNICAL_SMOKE_PASS",
+  "scientific_scores_read": false,
+  "archives": [
+    {
+      "arm": "bce",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SPRINT5_1/smoke_v3/SPRINT5_1_smoke_v3_bce_s501.tar",
+      "sha256": "7bd5c7fe06823fc32ae269c5ffc6420810ffb73fd8a5fc1cb2d615783b889633",
+      "seed": 501,
+      "steps": 2,
+      "byte_gate_pass": true,
+      "finite_all_sets": true,
+      "train_items": 8386,
+      "schedule": {
+        "arm": "bce",
+        "seed": 501,
+        "steps": 2,
+        "bs": 256,
+        "pair_units_per_cycle": 124,
+        "schedule_sha256": "87f85f1c9c897f8e06af66cb39f87d95e7b94c67314b032595c4a7c12cd4fa3b",
+        "exposure_sha256": "581eefbba3a5db4959ebd5ecb096700ad1646240f03b07dd1386c3efe9314471",
+        "row_occurrences": 512,
+        "unique_row_indices": 512
+      },
+      "source_sums_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f"
+    },
+    {
+      "arm": "paired_bce",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SPRINT5_1/smoke_v3/SPRINT5_1_smoke_v3_paired_bce_s501.tar",
+      "sha256": "8b3bc1e5eeb5c65a5786484166ab783985cf6b5cb2d2b480c999fb52433a21df",
+      "seed": 501,
+      "steps": 2,
+      "byte_gate_pass": true,
+      "finite_all_sets": true,
+      "train_items": 8386,
+      "schedule": {
+        "arm": "paired_bce",
+        "seed": 501,
+        "steps": 2,
+        "bs": 256,
+        "pair_units_per_cycle": 124,
+        "schedule_sha256": "596f0a27899525c2744635e56ea5e3d01f3bb70b31545e11019885212ce95b15",
+        "exposure_sha256": "581eefbba3a5db4959ebd5ecb096700ad1646240f03b07dd1386c3efe9314471",
+        "row_occurrences": 512,
+        "unique_row_indices": 512
+      },
+      "source_sums_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f"
+    },
+    {
+      "arm": "paired_rank",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SPRINT5_1/smoke_v3/SPRINT5_1_smoke_v3_paired_rank_s501.tar",
+      "sha256": "577b16f14b492f29c221fd73e8884227dae0f3eadbcd3a99b52a5160afb0564c",
+      "seed": 501,
+      "steps": 2,
+      "byte_gate_pass": true,
+      "finite_all_sets": true,
+      "train_items": 8386,
+      "schedule": {
+        "arm": "paired_rank",
+        "seed": 501,
+        "steps": 2,
+        "bs": 256,
+        "pair_units_per_cycle": 124,
+        "schedule_sha256": "596f0a27899525c2744635e56ea5e3d01f3bb70b31545e11019885212ce95b15",
+        "exposure_sha256": "581eefbba3a5db4959ebd5ecb096700ad1646240f03b07dd1386c3efe9314471",
+        "row_occurrences": 512,
+        "unique_row_indices": 512
+      },
+      "source_sums_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f"
+    }
+  ]
+}

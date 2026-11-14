@@ -1,0 +1,9 @@
+# GO_PRODUCTION: three-arm paired-ranking, five seeds
+
+14 November2026 root independent execution review of Sol implementation and Astra pre-fit work. Exact v3sourceSUMS ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f; codecommit1f4d0f7; pre-fitcommit9c0e252 and BINDING SHA519546ef7002930f620610f01deb0cc4e8889acf819b829a80c05f95fff6e923. Root re-ran verify_prefit --require-committed PASS oncurrentallpins. Originalindependentprerun+rootv2/v3reviews retained; infrastructurefailures6320883/6320908 retained.
+
+WCSS H100 job6320973 COMPLETED0:0 in10:44, outer srun0. Root independent metadata-only tarinspector rehashed all3archives, checked2steps/seed501/8386rows/val10zero/last, sourceSUMSequality, every4set fullfinite count, referencebytegate, all21277ownfitdevlogitsexact, batteryrc0. Pairedschedulesidentical andall3exposurehashesexact; rankfirst2lossesfinite, matchedpaircounts5/4. No scientificmetrics read. SMOKE_V3_INDEPENDENT_METADATA.json bindsallarchives.
+
+Authorize all15previouslyregistered6250step batch256 lastcheckpointfits (BCE,pairedBCE,pairedranking; seeds501–505); nohyperparameter/scopechange. Root bindsmetadata andIUT/calibration amendment documentedBEFOREfits; floors200rows/15learners independentlyadmitted, direct132personcalibrationprovenance disjoint, fullcomponents andDfixed. Candidate scientificread stillHOLD pendingcomplete15eligibility andindependentlyreviewedonce-onlyreader; no benchmarkrelease/adoptionclaim.
+
+Resource-only dispatch: normallem-gpu-short,1H100/8CPU64GiB80GiBscratch perfit,3hwalltime, array0–14 withmax3concurrenttasks (overrides provisional%1 solelytoavoidunnecessaryserialization). FORCE_RM_TMPDIR; allI/Olocalscratch,durablehasharchives. Actualschedulerlimitsgovern; no paidresources/no otherjobs cancelled. Concurrencydoesnotchangefitrecipe. Noautomaticrequeue, failuresretainednoseedreplacement.
