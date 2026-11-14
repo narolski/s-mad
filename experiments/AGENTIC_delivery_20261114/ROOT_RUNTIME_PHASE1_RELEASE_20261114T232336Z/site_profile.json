@@ -1,0 +1,119 @@
+{
+  "at": "2026-11-14T23:47:14.907852+00:00",
+  "decision": "ROOT_ADOPT_ONE_RUNTIME_METADATA_H100_PLACEMENT",
+  "site_evidence": "/mnt/t7/smad_next/coordination_20261114/sbmr512_runtime_phase1_final_preflight_20261114T232336Z/native.json",
+  "site_evidence_sha256": "e66dc49921df581aca802224ec7bcf24714c00a1c1a2d39acf3f1fdb6ce7a290",
+  "partition": "lem-gpu-interactive",
+  "resource": "onegpu:hopper,2CPU,8Ghost,1Glocal,5min",
+  "source_profile_static": true,
+  "actual_capacity_evidence": {
+    "observed_at": "2026-11-14T23:45:46.177737+00:00",
+    "queries": [
+      {
+        "argv": [
+          "/opt/slurm/current/bin/scontrol",
+          "show",
+          "partition",
+          "lem-gpu-interactive"
+        ],
+        "exit": 0,
+        "stdout": "PartitionName=lem-gpu-interactive\n   AllowGroups=kdm,kdm-hpc,kdm-hpc-groups,plgrid AllowAccounts=ALL DenyQos=hpc-nikper27-1779291746\n   AllocNodes=ALL Default=NO QoS=gpu-interactive\n   DefaultTime=NONE DisableRootJobs=NO Exclusive=NO GraceTime=0 Hidden=NO\n   MaxNodes=UNLIMITED MaxTime=06:00:00 MinNodes=0 LLN=NO MaxCPUsPerNode=UNLIMITED MaxCPUsPerSocket=UNLIMITED\n   Nodes=r18-15\n   PriorityJobFactor=1000 PriorityTier=1 RootOnly=NO ReqResv=NO OverSubscribe=NO\n   OverTimeLimit=NONE PreemptMode=OFF\n   State=UP TotalCPUs=64 TotalNodes=1 SelectTypeParameters=NONE\n   JobDefaults=(null)\n   DefMemPerNode=UNLIMITED MaxMemPerNode=UNLIMITED\n   TRES=cpu=64,mem=1030000M,node=1,billing=64,gres/gpu=4,gres/gpu:hopper=4\n   ResumeTimeout=GLOBAL SuspendTimeout=GLOBAL SuspendTime=GLOBAL PowerDownOnIdle=NO\n\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/slurm/current/bin/scontrol",
+          "show",
+          "node",
+          "r18-15"
+        ],
+        "exit": 0,
+        "stdout": "NodeName=r18-15 Arch=x86_64 CoresPerSocket=16 \n   CPUAlloc=0 CPUEfctv=64 CPUTot=64 CPULoad=0.00\n   AvailableFeatures=(null)\n   ActiveFeatures=(null)\n   Gres=gpu:hopper:4(S:0-3),storage:shm:955G,storage:local:7000G,storage:lustre:325T\n   NodeAddr=r18-15 NodeHostName=r18-15 Version=26.05.5\n   OS=Linux 5.14.0-687.60.1.el9_8.x86_64 #1 SMP PREEMPT_DYNAMIC Mon Oct 26 08:05:05 EDT 2026 \n   RealMemory=1030000 AllocMem=0 FreeMem=1016030 Sockets=4 Boards=1\n   MemSpecLimit=51500\n   State=IDLE+POWERED_DOWN ThreadsPerCore=1 TmpDisk=0 Weight=1 Owner=N/A MCS_label=N/A\n   Partitions=lem-gpu-interactive \n   BootTime=2026-11-14T20:39:17 SlurmdStartTime=2026-11-14T20:41:57\n   LastBusyTime=Unknown ResumeAfterTime=None SuspendTime=1800\n   CfgTRES=cpu=64,mem=1030000M,billing=64,gres/gpu=4,gres/gpu:hopper=4\n   AllocTRES=\n   CurrentWatts=0 AveWatts=0\n\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/opt/slurm/current/bin/squeue",
+          "-h",
+          "-n",
+          "sbmr512-runtime-phase1",
+          "-o",
+          "%i|%j|%T"
+        ],
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "control_tools": [
+      {
+        "path": "/usr/bin/python3.9",
+        "canonical": "/usr/bin/python3.9",
+        "bytes": 15448,
+        "sha256": "1143733d3cbc738039e938d5875bb694641cf898f4f39f22c956e5b4d974c278",
+        "uid": 0,
+        "mode": "0o755"
+      },
+      {
+        "path": "/usr/bin/bash",
+        "canonical": "/usr/bin/bash",
+        "bytes": 1389024,
+        "sha256": "ec6d007d48ef11bc47ad3f372b4b20ff2f0d4e63867e7e4cc0f1b17b19fa88b2",
+        "uid": 0,
+        "mode": "0o755"
+      },
+      {
+        "path": "/usr/bin/tmux",
+        "canonical": "/usr/bin/tmux",
+        "bytes": 985024,
+        "sha256": "9f501143e24e2ae510058bf11571dd2cd8347a0759b53862a92fc670f98fba2c",
+        "uid": 0,
+        "mode": "0o755"
+      },
+      {
+        "path": "/usr/bin/timeout",
+        "canonical": "/usr/bin/timeout",
+        "bytes": 36848,
+        "sha256": "91c9f7e0cd55fe23863c68b5aeff2c111ea22da91149a617de29f4359ff5ba39",
+        "uid": 0,
+        "mode": "0o755"
+      },
+      {
+        "path": "/opt/slurm/current/bin/srun",
+        "canonical": "/opt/slurm/26.05.5/bin/srun",
+        "bytes": 913248,
+        "sha256": "dac6ef5857c497fcbffba7dd6d0ce286d7d6580c6559afa5194a78d9c7ee8a4f",
+        "uid": 0,
+        "mode": "0o755"
+      },
+      {
+        "path": "/usr/bin/cat",
+        "canonical": "/usr/bin/cat",
+        "bytes": 36312,
+        "sha256": "79605ec71edc0ee6bc83026d66ce5fb95254326776205465744f59f72ae89367",
+        "uid": 0,
+        "mode": "0o755"
+      },
+      {
+        "path": "/usr/bin/sync",
+        "canonical": "/usr/bin/sync",
+        "bytes": 36200,
+        "sha256": "ecdccf052db6b2a8ad54deb76a62ba82834374463ad1c58009e415cc196318f3",
+        "uid": 0,
+        "mode": "0o755"
+      }
+    ],
+    "parent_RZ1_exists": false,
+    "base_exists": false,
+    "dispatch_exists": false,
+    "result_exists": false,
+    "lustre_free_bytes": 154887606272
+  },
+  "stage_source_bytes": 31428,
+  "source_and_admission_small_files_only": true,
+  "working_IO": "Source+smallreceiptwrites ondurableLustre; one boundedread ofexistingsoftwareELFs<=4GiB, streamed withoutstagingbodycopies; no datasetbulkIO/modelcache/download",
+  "outer_seconds": 480,
+  "child_seconds": 240,
+  "root_resource_authority": "ExistinguserauthorizednecessaryWCSSmethodexperiments; thissingle5mintechnicalmetadataattempt, nolease/payment; separateAD5fullfitbudget remainsPENDING",
+  "not_a_runtime_or_billing_guarantee": true
+}

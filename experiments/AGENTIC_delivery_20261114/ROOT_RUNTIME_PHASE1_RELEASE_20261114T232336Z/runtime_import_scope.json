@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-14T23:47:14.907852+00:00",
+  "decision": "ROOT_ADOPT_RUNTIME_IMPORT_SCOPE_ONLY",
+  "fixed_modules": [
+    "numpy",
+    "PIL",
+    "torch",
+    "torchvision",
+    "timm"
+  ],
+  "software_entry": "/home/narolski/dmenv/bin/python",
+  "canonical_binary_sha256": "0886fb76ceec8ff568d23079b5da6342bb41675e216e11525d4d6a9e65988d10",
+  "import_context": "-I -S -B exactsitepackages/privateemptyHOME+HF+TORCH/offline; installedsoftwareanditsnormaltransitiveimportdependencies allowed inthisnewtechnicalcontext",
+  "CUDA_context_and_H100_metadata_initialization": true,
+  "model_construction_forward_training_optimizer_weights_images_NPZ_cache_download": false,
+  "historic_or_future_worker_context_equivalence": "NOT_CLAIMED",
+  "scientific_read": "HOLD"
+}
