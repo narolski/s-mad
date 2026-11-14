@@ -1,0 +1,14 @@
+/home/narolski/smad-next/src/AB1/ab1_read.py:59: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/opencode/tmpk0cw3hs_/SpV/train_SpV.csv' mode='r' encoding='UTF-8'>
+  return list(csv.DictReader(open(p)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/narolski/smad-next/src/AB1/ab1_read.py:59: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/opencode/tmpk0cw3hs_/BN/train_BN.csv' mode='r' encoding='UTF-8'>
+  return list(csv.DictReader(open(p)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/narolski/smad-next/src/AB1/ab1_read.py:59: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/opencode/tmpk0cw3hs_/BV/train_BV.csv' mode='r' encoding='UTF-8'>
+  return list(csv.DictReader(open(p)))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+........................
+----------------------------------------------------------------------
+Ran 24 tests in 0.056s
+
+OK

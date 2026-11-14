@@ -1,0 +1,67 @@
+3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]
+/home/narolski/mambamorph-code/.venv-spark/bin/python
+numpy 1.26.4
+Linux-6.17.0-1021-nvidia-aarch64-with-glibc2.39
+Build Dependencies:
+  blas:
+    detection method: pkgconfig
+    found: true
+    include directory: /usr/local/include
+    lib directory: /usr/local/lib
+    name: openblas64
+    openblas configuration: USE_64BITINT=1 DYNAMIC_ARCH=1 DYNAMIC_OLDER= NO_CBLAS=
+      NO_LAPACK= NO_LAPACKE= NO_AFFINITY=1 USE_OPENMP= NEOVERSEN1 MAX_THREADS=80
+    pc file directory: /usr/local/lib/pkgconfig
+    version: 0.3.23.dev
+  lapack:
+    detection method: internal
+    found: true
+    include directory: unknown
+    lib directory: unknown
+    name: dep281473153977184
+    openblas configuration: unknown
+    pc file directory: unknown
+    version: 1.26.4
+Compilers:
+  c:
+    args: -fno-strict-aliasing
+    commands: cc
+    linker: ld.bfd
+    linker args: -Wl,--strip-debug, -fno-strict-aliasing
+    name: gcc
+    version: 10.2.1
+  c++:
+    commands: c++
+    linker: ld.bfd
+    linker args: -Wl,--strip-debug
+    name: gcc
+    version: 10.2.1
+  cython:
+    commands: cython
+    linker: cython
+    name: cython
+    version: 3.0.8
+Machine Information:
+  build:
+    cpu: aarch64
+    endian: little
+    family: aarch64
+    system: linux
+  host:
+    cpu: aarch64
+    endian: little
+    family: aarch64
+    system: linux
+Python Information:
+  path: /opt/python/cp312-cp312/bin/python
+  version: '3.12'
+SIMD Extensions:
+  baseline:
+  - NEON
+  - NEON_FP16
+  - NEON_VFPV4
+  - ASIMD
+  found:
+  - ASIMDHP
+  - ASIMDFHM
+
