@@ -1,7 +1,8 @@
-# Selection rule for the next method version, version 3 (DRAFT, not yet registered)
+# Selection rule for the next method version, version 3
 
-**Status: DRAFT.** This text binds nothing yet. It becomes binding only after the author's written yes to this
-text, recorded in FINAL. Binding happens at the commit that removes "DRAFT" from this heading.
+**Status: APPROVED.** The author approved this exact text in Codex on 14 November 2026. The approval and
+SHA256 of the approved draft are recorded in `../FINAL_sealed-benchmark-read/SELECTION_RULE_V3_APPROVAL_20261114.md`.
+This rule becomes binding at the commit that removes the draft designation from the heading.
 
 **Fixed now (section 7, clause 1).** The margins, the list and the order of this text are fixed at the git commit
 that adds this file under this name. That commit is made before anyone in the lead chain sees the frozen
