@@ -23,7 +23,7 @@ A = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(A)
 C2 = A.C2
 AB1_READ_SHA = "74ecdf7a2ecb35812dcf4e5d5b9f5c3b1f095fc6846ae6f4813bfb28404d035b"
-X_OVERLAY = "e5886e72622b618cb260689820efea861b63b061749db561d256ad57116f819c"
+X_OVERLAY = "ea6607b32f38b889b995327f293474813294b81801d354f73855505b94527367"
 X_EVAL = pathlib.Path("/mnt/t7/smad_next/AB1/x/manifests/ab1x_eval.csv")
 X_EVAL_SHA = "5257fb63f321612c39f8da6613989976450a68cd97c0b55d51667b554995d35f"
 X_MANDIR = pathlib.Path("/mnt/t7/smad_next/AB1/x/manifests")

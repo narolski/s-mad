@@ -714,3 +714,38 @@ only the control arm the reviewer asked for and the wording below.
    the reader: all three loaded (21,277 rows each); no real tar was used. run_c.sh differs from the 40-times-run run.sh v2
    lineage only in overlay, SUMS name, arm list and results folder.
 - Pins: overlay `ab1c_overlay.tar` `bf276e548c5dc5a3c8d590d0500754c1d49ec87ad2e7b30237f05db94ffcafa7`; `run_c.sh` `219ae9b00fadeaf85c361e7aa8ba7c89755b2dc83a2260d7518bee4cbb53df65`; `ab1c_fit.sbatch` `1376e0d0604eec02582b15c316446d0d51774de9d1530b3974211c62f2ac3e37` (15 tasks); reader `ab1_pm3_read.py` `d21180d7e51b1126cf7fc605d6853603263397e62e9a63ccdfa0dfbffeb1576c`; builder `mk_ab1c.py` `10fc7f28e5ea1c1e79e86980ae0922cc86efcd8ec28d9d6336348fdca60f2788`. The dispatcher's sbatch command line also carries --extra=FORCE_RM_TMPDIR.
+
+## Amendment 8 (`date`: Sat Nov 14 01:02 CET 2026; infrastructure fault; nothing about the experiments changes)
+
+**What happened.** SbFM task 6315597_0 failed on WCSS after 34:49 at the scoring step (FileNotFoundError on
+data/eval/ms1/hold_ffhq_photo_0000.png). Cause: the SbFM overlay (`ab1fm_overlay.tar` 681525d8…) and the Sbx overlay
+(`ab1x_overlay.tar` e5886e72…) were built without the 1,480 MS1 hold-out images that their evaluation manifest
+(ab1x_eval.csv) names; the builders `mk_ab1x.py` and `mk_ab1fm.py` copied only the border and FaceMorpher images. The
+AB1 (v2), B2 and batch-C overlays contain them (1,481 files each). The local 20-step DGX tests passed because the
+8-row scoring limit never reached the hold-out rows; batch C's job script had only a synthetic loader test.
+**Checkpoint:** run.sh stops at the scoring error before the result tar is built, and $TMPDIR is wiped: the trained
+weights of a failed task are lost. SbFM _1-_4 were cancelled by the dispatcher on the owner's request (_1 at 33:23, _2 at
+20:55, _3 at 3:08, _4 never started); the Sbx fits 6314811 were held and are replaced. No SbFM or Sbx score exists; the
+SbFM read hold stands.
+
+**Fix.** The builders now also copy the 1,480 hold-out images unchanged from the MS1 pack tree (as mk_ab1.py does). The
+manifests are unchanged (train_SbFM 12312044…, train_Sbx 4e403717…, ab1x_eval 5257fb63…), and the border training images
+are byte-identical (border_train_log.csv 63736a89… unchanged). New overlays, uploaded under new names so that the queued
+Sbx rescoring job 6314812 (which uses only border and landmark_combined rows and the old overlay) is unaffected:
+`ab1x_overlay_v2.tar` `ea6607b32f38b889b995327f293474813294b81801d354f73855505b94527367`, `ab1fm_overlay_v2.tar`
+`e554b84f74e5de8791fddc168b99a7c46376ee48ab7902baf358ecbe668d8e47` (hashes verified on WCSS). Re-pinned: run_x.sh `35ed6695bc6666ee…`,
+run_fm.sh `48fe853c13d7ab77…`, ab1x_fit.sbatch `f373d90b04364c04…`, ab1fm_fit.sbatch `7d8a0c490986e91e…`; readers
+ab1x_read.py `9e353c81c16d9f96…` and ab1fm_read.py `f1d4452ada4f0182…` (only the overlay constant changed).
+
+**Pre-flight in every job.** New `src/AB1/preflight.py` (`6d3cf313f02bf09f…`, pinned in each job): before training, it
+lists the pack and overlay tars and asserts that every path of the job's evaluation and training manifest exists; a
+missing path exits non-zero at once. Added to ab1fm_fit.sbatch, ab1x_fit.sbatch and new versions of the queued B2 and
+batch-C jobs (`ab1b2_fit_v2.sbatch` `f2eb332011b8a005…`, `ab1c_fit_v2.sbatch` `1f2f815b31fd3728…`; their run scripts and overlays are
+unchanged). Static pre-flight on the DGX (same files, by hash), all PASS: AB1 overlay with train_SbH and train_B; B2 with
+train_SbR and train_SbnS3; batch C with train_SpV, train_BN, train_BV; fixed Sbx with train_Sbx; fixed SbFM with
+train_SbFM.
+
+**Re-runs.** The failed and cancelled SbFM tasks and the held Sbx fits are re-run once, unchanged in recipe, seeds and
+manifests (registered rule: infrastructure failures are re-run once). B2 6313020 and batch C 6316845 do not have the
+fault (their overlays hold every manifest path); the lead decides whether they are replaced by the v2 job files with the
+pre-flight (recommended by the owner, following the lead's instruction that every job carries a pre-flight).

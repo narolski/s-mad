@@ -16,8 +16,8 @@ source "$TASK_DIR/task.env"
 G=${PN1_ROOT:-/lustre/pd03/hpc-narolski-1790461090/smad-next}
 PACK=${PN1_PACK:-$G/packs/BB2/pn1_pack_fs.tar}
 PACK_SHA=96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004                 # pinned, not read from a file
-OVERLAY=${AB1_OVERLAY:-$G/packs/AB1/ab1fm_overlay.tar}                                    # AB1 second-engine arm
-OVERLAY_SHA=681525d8a7f11194dc35822dc9b5c77e936a0bd501313b6aedf292e21fd1b74d           # AB1: pinned, not read from a file
+OVERLAY=${AB1_OVERLAY:-$G/packs/AB1/ab1fm_overlay_v2.tar}                                   # AB1 second-engine arm
+OVERLAY_SHA=e554b84f74e5de8791fddc168b99a7c46376ee48ab7902baf358ecbe668d8e47           # AB1: pinned, not read from a file
 ARCH=a12_clip_vitb16_madation                                                           # the FS1 arch
 OUT=${AB1_RESULTS:-$G/results/AB1FM}                                                       # AB1
 W=$(cd -P "$TASK_WORK" && pwd)

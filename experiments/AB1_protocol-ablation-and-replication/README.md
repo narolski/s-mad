@@ -194,3 +194,6 @@ See prereg section 10.
   PRERUN_AB1_A6_A7_20261113.md (218dd02), fixes in 6b / 7b.
 - Fri Nov 13 21:39 CET 2026: batch C submitted by the dispatcher as WCSS array 6316845_[0-14] (limit 1:15, Nice 0, priority 679; behind the challengers and MS1, ahead of CB1, AD4, AD5). Owner: AB1 owner; about 36 min per fit; read with ab1_pm3_read.py --pair C when all 15 end, latest 15 Nov 18:00.
 - Sat Nov 14 00:25 CET 2026: SbFM 6315597_0 started 00:17:42, _1 00:22:54, _[2-4] pending (forecast 01:32); read hold on contrast numbers stands; fetch and verification proceed when tasks end.
+- Sat Nov 14 01:02 CET 2026: infrastructure fault and fix (amendment 8): SbFM 6315597_0 failed at scoring (MS1 hold-out images missing from the
+  SbFM and Sbx overlays); _1-_4 cancelled, Sbx fits 6314811 held; overlays rebuilt with the hold-out images (v2 names),
+  pre-flight added to every job; static pre-flight of all AB1 configurations passes. New queue files written.

@@ -123,6 +123,14 @@ def main():
         w = csv.DictWriter(f, fieldnames=keys)
         w.writeheader()
         w.writerows(ev + add)
+    # infrastructure fix (amendment 8, 14 Nov): the eval manifest names the 1,480 MS1 hold-out images (fam ms1ffhq); copy
+    # them unchanged from the MS1 pack tree, as mk_ab1.py does, so that scoring finds them
+    _ms1 = pathlib.Path("/mnt/t7/smad_next/MS1/pack_tree/pn1/data")
+    for _r in csv.DictReader(open("/mnt/t7/smad_next/AB1/manifests/ab1_eval.csv")):
+        if _r["fam"] == "ms1ffhq":
+            _dst = img / "pn1" / "data" / _r["path"]
+            _dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(_ms1 / _r["path"], _dst)
     # overlay
     tree = img
     (tree / "pn1" / "data" / "manifests").mkdir(parents=True, exist_ok=True)

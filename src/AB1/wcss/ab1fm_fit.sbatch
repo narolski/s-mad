@@ -21,8 +21,10 @@ ARMS=(SbFM SbFM SbFM SbFM SbFM)
 SEEDS=(408 409 410 411 412)
 I=$SLURM_ARRAY_TASK_ID
 ARM=${ARMS[$I]}; SEED=${SEEDS[$I]}
-[ "$(sha256sum "$P/run_fm.sh" | cut -c1-64)" = 9c04e3bd637111f38340a1ab385e05355a55db00d49295e45a3343ff3b32d7ea ] || { echo "AB1 FAIL run_fm.sh pin"; exit 1; }   # review F8
-[ "$(sha256sum "$P/ab1fm_overlay.tar" | cut -c1-64)" = 681525d8a7f11194dc35822dc9b5c77e936a0bd501313b6aedf292e21fd1b74d ] || { echo "AB1 FAIL overlay pin"; exit 1; }
+[ "$(sha256sum "$P/run_fm.sh" | cut -c1-64)" = 48fe853c13d7ab77ed362300c3984c7640f9dfcae1ff9237457015268d927bf4 ] || { echo "AB1 FAIL run_fm.sh pin"; exit 1; }   # review F8
+[ "$(sha256sum "$P/ab1fm_overlay_v2.tar" | cut -c1-64)" = e554b84f74e5de8791fddc168b99a7c46376ee48ab7902baf358ecbe668d8e47 ] || { echo "AB1 FAIL overlay pin"; exit 1; }
+[ "$(sha256sum "$P/preflight.py" | cut -c1-64)" = 6d3cf313f02bf09faae1a2465647709c939662d06458072c4ea2b12101756695 ] || { echo "AB1 FAIL preflight.py pin"; exit 1; }
+$HOME/dmenv/bin/python "$P/preflight.py" --pack "$L/packs/BB2/pn1_pack_fs.tar" --overlay "$P/ab1fm_overlay_v2.tar" --eval ab1x_eval.csv --train "train_$ARM.csv" || { echo "AB1 PREFLIGHT FAILED: no training started"; exit 1; }   # amendment 8
 TD=$TMPDIR/td; W=$TMPDIR/w; mkdir -p "$TD" "$W"
 printf 'TASK=AB1FM_%s_s%s\nARM=%s\nSEED=%s\n' "$ARM" "$SEED" "$ARM" "$SEED" > "$TD/task.env"
 echo "AB1 fit $ARM $SEED job $SLURM_ARRAY_JOB_ID/$SLURM_ARRAY_TASK_ID host $(hostname) $(date -Is)"
