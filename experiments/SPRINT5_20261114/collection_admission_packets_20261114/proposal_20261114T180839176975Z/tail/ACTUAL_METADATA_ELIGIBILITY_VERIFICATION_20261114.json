@@ -1,0 +1,1895 @@
+{
+  "decision": "PASS_ACTUAL_METADATA_ELIGIBILITY",
+  "cohort": "tail",
+  "fits": 15,
+  "reader_manifest_sha256": "943d47ef9ac0638c46dc1fdaf65782cabbd43d93405ce80305c4bac58c1fce5b",
+  "binding_sha256": "ff2aa74853658d1d318725e42eedbdd2ac16cde8d7da57971c04e4447626c6a2",
+  "reader_roster_sha256": "08502ee93c955e5e43c645d2a7a2230cecf52c38558aabf80dcaeae0d11c7e88",
+  "opaque_roster_sha256": "e99840224f61f28b6825712eb8665e41cb1d1dfb6569cf5119375e35c5a3eea9",
+  "metadata_release_sha256": "71aa13da51d86fef0d2747575749bddeafebdfd21c6c1107c00cc9e244c9a1db",
+  "execution_sha256": "1c074c5485b26463311398f3de4f95f6de03bb0db97ae1a92b633c1bc7d75723",
+  "complete_sha256": "288f8c6d61aee7a88afee1980488bba81b48de0e7ee711ff759c67a199e98285",
+  "collector_review_sha256": "b086df6ef2ff07669e0d143a578c4b9b6350e0a45b37f5b2061439b3b25b568c",
+  "input_admission_sha256": "1d85babbc525f4b3dcf966e988ca7e9eba0caab980f228fa093e4ce25f6c9556",
+  "source_last_commit": "2a1e908d656e2d248c006874b6b7a5121a86d27b",
+  "once_absent": true,
+  "output_absent": true,
+  "no_archive_or_payload_access": true,
+  "checks": [
+    {
+      "task": "SPRINT5_3_pilot_v1_bce_s521",
+      "archive_sha256": "7e3c0f2052e7491a17094ebb4cd2fafd60fafe5e5faf1d7ab463a50278186d96",
+      "envelope_sha256": "5723add3a2962f0449ed398ca990929e7ce0d54786dad6fd371492093459c084",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322194/work_bce/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322194/work_bce/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322194/work_bce/res/SPRINT5_3_pilot_v1_bce_s521/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 29.1
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322194/work_bce/res/SPRINT5_3_pilot_v1_bce_s521/scores_eval.npz",
+        "expect_eval_sha256": "7364b8856e24c66da1c863191cead8b2af67eaed1372c38897391e1bd31ad262",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_mean_s521",
+      "archive_sha256": "9aaa792714e32408f3c0348c099b93424a876afd33ef007891d48a9aa91d1ec1",
+      "envelope_sha256": "0cb1932907a5e911f0a3ba386915b57b5e049c128668445199e246d413179f69",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322209/work_mean/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322209/work_mean/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322209/work_mean/res/SPRINT5_3_pilot_v1_mean_s521/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 28.5
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322209/work_mean/res/SPRINT5_3_pilot_v1_mean_s521/scores_eval.npz",
+        "expect_eval_sha256": "ee9a1cf69c40c044ef10297330d7141f8a95234a0eaade54960fb684f2025e9d",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_cvar_s521",
+      "archive_sha256": "ff7db144080734fa2304f9a604f716ccc78b3b53455d7a39828bb5c0f8dc0792",
+      "envelope_sha256": "9ef119011ff80561ab1e508d4c74d1dd4a54dcb278d92908e78181eaf7991845",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322347/work_cvar/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322347/work_cvar/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322347/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s521/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 28.9
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322347/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s521/scores_eval.npz",
+        "expect_eval_sha256": "43f2c7e7145fdb59a96df79c7a6770ec28f718d46936646e1e6c6734b611360a",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_bce_s522",
+      "archive_sha256": "8aeb7579b764bdbb52fcbfcf9a787263e2e2e43668f5e4f4022cbb91da03ff62",
+      "envelope_sha256": "f722e8b9b6b280f0e035cff74300d904e058956c90fb206d799f61cc75499591",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322348/work_bce/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322348/work_bce/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322348/work_bce/res/SPRINT5_3_pilot_v1_bce_s522/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 29.2
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322348/work_bce/res/SPRINT5_3_pilot_v1_bce_s522/scores_eval.npz",
+        "expect_eval_sha256": "62e7d28aff612760b050f216be600290d4c8811fada91bf5ec298303f0141004",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_mean_s522",
+      "archive_sha256": "10f75fe32dcdcddd09cdf937690d88a857e2a44912b95db647ad595d94fc22d3",
+      "envelope_sha256": "c210440027c0dbdddee5d8edda769fcdd427c8547969e65a0d24508da4b45b9d",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322361/work_mean/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322361/work_mean/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322361/work_mean/res/SPRINT5_3_pilot_v1_mean_s522/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 28.6
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322361/work_mean/res/SPRINT5_3_pilot_v1_mean_s522/scores_eval.npz",
+        "expect_eval_sha256": "16168353c5e300a521ae1c12782c368329683c7c1f813a7bd0ec17252235498e",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_cvar_s522",
+      "archive_sha256": "0a378d0cbed3b33dd2bf248939dbaf78360b0a4a3049b4b8ec84c9b252b63b08",
+      "envelope_sha256": "97a5e82738019275938d609019e91ef120b1b998e9980499f337b850ffb8889b",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322375/work_cvar/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322375/work_cvar/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322375/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s522/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 28.9
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322375/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s522/scores_eval.npz",
+        "expect_eval_sha256": "7243be94d3915723671b0ed9b44b264f3b1b0f2fc71fe5191bfb913f45eb14d0",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_bce_s523",
+      "archive_sha256": "d2167711096b929ea3860d53e983bdd471c9c32c8bf9e95fb16364f22fc51192",
+      "envelope_sha256": "94740b6cefe0ee4a6118e5160b90770e99b62c34b219f88dbe8237c7ce96376c",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322377/work_bce/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322377/work_bce/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322377/work_bce/res/SPRINT5_3_pilot_v1_bce_s523/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 29.0
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322377/work_bce/res/SPRINT5_3_pilot_v1_bce_s523/scores_eval.npz",
+        "expect_eval_sha256": "406cee5db61284ecf05735c27ef80cd326d4a05b86556b51491c1ed429bf51b4",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_mean_s523",
+      "archive_sha256": "9901ce56d03723859688f9c089efcea8042056a9e5a9810e298fcbb7ecee0060",
+      "envelope_sha256": "afc42020d97f69700fc64741442d7ef7e9a1409e0810c9351688924fdefbe430",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322483/work_mean/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322483/work_mean/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322483/work_mean/res/SPRINT5_3_pilot_v1_mean_s523/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 29.3
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322483/work_mean/res/SPRINT5_3_pilot_v1_mean_s523/scores_eval.npz",
+        "expect_eval_sha256": "092e87c821de9830a06a5ffa47f908d03ad61abb035a1d5cdb9e0844f13622a9",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_cvar_s523",
+      "archive_sha256": "2e7a359b4b0e54e1b348d259ac641cff7a2af229745616c01fd5d15ef82642fb",
+      "envelope_sha256": "5e1ac2b43c07ea0d6cc6edf43a980429eacb9d032c5db262f082c6b32e21772a",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322548/work_cvar/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322548/work_cvar/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322548/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s523/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 28.8
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322548/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s523/scores_eval.npz",
+        "expect_eval_sha256": "bc2c3bd30784833c6560e24431bf5ac6c9bb804a75e31b27c2a1a66d472dfc2d",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_bce_s524",
+      "archive_sha256": "9433b12c6cde33cb3f4455f4e7ba0a9628e4ceb647ed1e378df50b22e01c6070",
+      "envelope_sha256": "da23af0c086eb7ca1b32c2a17f4185d678d4dec260148faa00628e6a79f78f5e",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322553/work_bce/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322553/work_bce/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322553/work_bce/res/SPRINT5_3_pilot_v1_bce_s524/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 29.0
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322553/work_bce/res/SPRINT5_3_pilot_v1_bce_s524/scores_eval.npz",
+        "expect_eval_sha256": "ec47149c8e5d78d508559ba69ccf31132f765a325db2a6dd55146112d149fedc",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_mean_s524",
+      "archive_sha256": "925818ba4eebae83df4c6174899532aaf1af2980af4a0488a5de9999042bd4eb",
+      "envelope_sha256": "acbab80336ff35f2afbec3d2c38bbb20b0beb4319e3d7608e8035093b42a909c",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322567/work_mean/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322567/work_mean/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322567/work_mean/res/SPRINT5_3_pilot_v1_mean_s524/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 29.1
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322567/work_mean/res/SPRINT5_3_pilot_v1_mean_s524/scores_eval.npz",
+        "expect_eval_sha256": "44d5ae2238c4fa684641c2f81f9a41a5927de7aff94a089dd33e401c2466fb6e",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_cvar_s524",
+      "archive_sha256": "ef6fc494ed3f845b92917460b6820c6ae39587af233f8e16e75cb10ec7567564",
+      "envelope_sha256": "a7df34691c9d2dba9d18c2a5d2924e9d3f110d4a8ec1cb457ded210b055bbe68",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322572/work_cvar/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322572/work_cvar/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322572/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s524/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 28.7
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322572/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s524/scores_eval.npz",
+        "expect_eval_sha256": "b063906e693cb4a1b792744597a00723dfd42d56710dd36198e602c3ce7ed6b7",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_bce_s525",
+      "archive_sha256": "89674c1586d0d6a13e23d76c34736bef1015f3b11eb64f6b37fcd476a25eda48",
+      "envelope_sha256": "d839a34754a7bdefd1db53e14c662f1e42bad3c0a215987dbfd1ef3bb49bac7c",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322576/work_bce/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322576/work_bce/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322576/work_bce/res/SPRINT5_3_pilot_v1_bce_s525/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 29.0
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322576/work_bce/res/SPRINT5_3_pilot_v1_bce_s525/scores_eval.npz",
+        "expect_eval_sha256": "279f244a419ecfc426e78c8d314148a0c99ab1a1a5e219537588b0d2be955b3a",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_mean_s525",
+      "archive_sha256": "2faf3247a556507adbd4c0bc0b06098e13829728495a1c59ee8226dbdceebbfb",
+      "envelope_sha256": "c0f998650fe774059dcc160a8ea1bc6fb33f5e798c717cd44e2b305cf29ea7a5",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6322582/work_mean/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6322582/work_mean/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6322582/work_mean/res/SPRINT5_3_pilot_v1_mean_s525/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 29.0
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6322582/work_mean/res/SPRINT5_3_pilot_v1_mean_s525/scores_eval.npz",
+        "expect_eval_sha256": "6d2812b7450e9f9b20b7d03ff39f7a07a6893f02df5ad6fc8e127ea49970fc31",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    },
+    {
+      "task": "SPRINT5_3_pilot_v1_cvar_s525",
+      "archive_sha256": "acf47e3eaa4342df510493a6144eef5566614b8d90602a29feb9283bee989a1b",
+      "envelope_sha256": "c3042a2bdf9ffb3f378bfbe58f6c0744bdb9795497820824c8b2bddb7338a405",
+      "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+      "steps": 100,
+      "batch_size": 256,
+      "forwards": 25600,
+      "reference_gate": {
+        "n": 2496,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "median_abs": 0.0,
+        "own_rule_flips": 0,
+        "stored_range": [
+          -3.5679702758789062,
+          3.4619810581207275
+        ],
+        "stored_between_m2_p2": 498,
+        "byte_identical": true,
+        "gate_class": "byte-gated",
+        "passed": true,
+        "criterion": "byte identity of all float32 logits; else tolerance-gated if max |dlogit| <= 0.0001 with 0 own-rule flips (node rule fixed 13 Nov 2026 before any GPU gate was read); else failed",
+        "reference": {
+          "network": "AB1_Sb_s408",
+          "tar": "AB1_Sb_s408.tar",
+          "tar_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+          "scores_eval_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+          "last_trainable_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "stored_by": "src/PN1/pn1_score.py (TF32 on), AB1 fit job 6311579, WCSS r18-8, NVIDIA H100, driver 595.112.07, torch 2.11.0+cu128 (~/dmenv), ab1_eval.csv order, batch 64",
+          "locations": [
+            "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+            "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar"
+          ]
+        },
+        "reference_tar": "/mnt/lscratch/slurm/6321244/work_cvar/AB1_Sb_s408.tar",
+        "reference_provenance": {
+          "backbone": "clip_vitb16_lora",
+          "code": "/mnt/lscratch/slurm/6321244/work_cvar/pn1/code",
+          "smadcvpr/common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+          "smadcvpr/archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+          "base_weights_sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f",
+          "weights_file": "/mnt/lscratch/slurm/6321244/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s525/battery/_reference/last_trainable.pt",
+          "weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+          "meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+          "arch": "a12_clip_vitb16_madation",
+          "res": 224,
+          "seed": 408,
+          "steps": 6250
+        },
+        "gate_batches": [
+          0,
+          8,
+          16,
+          24,
+          32,
+          40,
+          48,
+          56,
+          64,
+          72,
+          80,
+          88,
+          96,
+          104,
+          112,
+          120,
+          128,
+          136,
+          144,
+          152,
+          160,
+          168,
+          176,
+          184,
+          192,
+          200,
+          208,
+          216,
+          224,
+          232,
+          240,
+          248,
+          256,
+          264,
+          272,
+          280,
+          288,
+          296,
+          304
+        ],
+        "seconds": 28.9
+      },
+      "ownfit_gate": {
+        "expect_eval": "/mnt/lscratch/slurm/6321244/work_cvar/res/SPRINT5_3_pilot_v1_cvar_s525/scores_eval.npz",
+        "expect_eval_sha256": "621a6d85d24f482eefa11656c80a909533711059f62192f0c44194dcf4709dc1",
+        "n_common": 21277,
+        "n_differ": 0,
+        "max_abs": 0.0,
+        "passed": true,
+        "criterion": "byte identity on every stored id, at least 19797 ids"
+      },
+      "battery_sets": {
+        "dev": {
+          "n_scored": 21277,
+          "finite": true,
+          "complete": true
+        },
+        "tt1": {
+          "n_scored": 34411,
+          "finite": true,
+          "complete": true
+        },
+        "meds": {
+          "n_scored": 1018,
+          "finite": true,
+          "complete": true
+        },
+        "gd": {
+          "n_scored": 11042,
+          "finite": true,
+          "complete": true
+        }
+      }
+    }
+  ]
+}
