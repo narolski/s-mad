@@ -1,0 +1,36 @@
+{
+  "scope": "independent admitted technical records only",
+  "collection_sha256": "92f647711933aa7f5f0e1df5b85aae0dadab08fb1b0348b6eb1a7ec4b533d192",
+  "files_verified": 30,
+  "worker_manifest_sha256": "371c08a7caa89fe69488a67e295846d82ba72c60b1e32be92138fdd7f64cf130",
+  "source_committed_files_verified": 33,
+  "source_commit": "e4697c012ad07f9ace2180aacea1db20c0211c85",
+  "source_manifest_sha256": "40e6cb24e6a97b87020f61d47f786024b7472d651a2dfd97620a5999fdc9c9f4",
+  "release_sha256": "fd84969b2f41b3bd40f78ee4d76a3083f5a9acf337c40bcd84529cec8068a42f",
+  "claim_sha256": "c118a965cc98589e2a42bede8993637b538699310bb6b00689f4a1d9b452fe9d",
+  "step_result_sha256": "8af04429f21d608a924b15777e177577417b8fe93a9838bd812d8d60edeb77ea",
+  "first_batch_order_hash": "b0e73c3f1f9980a37417f604fca86050591bb6d33ce2c0fcf90634a5047351f0",
+  "first_batch_256_unique_indices": true,
+  "labels": "runtime assertion only; labels not separately saved; no dataset reopened",
+  "gradient_update_checks": {
+    "model": {
+      "count": 48,
+      "zero_gradient_count": 24,
+      "all_changed": true,
+      "all_optimizer_step_one": true,
+      "norm_recomputed": 0.009650560294910635,
+      "norm_reported": 0.009650560095906258
+    },
+    "header": {
+      "count": 2,
+      "zero_gradient_count": 0,
+      "all_changed": true,
+      "all_optimizer_step_one": true,
+      "norm_recomputed": 0.1049714310439036,
+      "norm_reported": 0.10497142374515533
+    }
+  },
+  "peak_allocated_GiB": 34.69322729110718,
+  "step_probe_seconds": 2.0361714670000026,
+  "verdict": "PASS_ONE_REAL_EFFECTIVE_STEP_ONLY"
+}
