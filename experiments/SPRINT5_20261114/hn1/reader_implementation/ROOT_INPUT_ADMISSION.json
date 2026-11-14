@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-14T16:42:46.214202+00:00",
+  "decision": "GO_INPUT_BINDING_ONLY",
+  "binding_sha256": "51ae40530ee4a848aece44693c143923a68636eb769468e5e5637904ab8eede3",
+  "author": "sol_sprint_experiments",
+  "reviewer": "astra_sprint_plan_review",
+  "root_verifier": "root",
+  "independent_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/hn1/reader_implementation/ASTRA_IMPLEMENTATION_REVIEW.md",
+  "independent_review_sha256": "916b46dd7e49865ad18eadbd50b2f1b070bc51228e1fa09111a9ec67fbf14e96",
+  "policy_input_admission_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/pilot_reader_policy_review/ROOT_POLICY_INPUT_ADMISSION.json",
+  "policy_input_admission_sha256": "dc7dc801054fe511da74e46c1ee4920085d86092a1962b9ed0aa8e285b79d08b",
+  "reader_manifest_sha256": "a8a083a686ab47cf8f02e5a7da9e6dec92a797e33c5ec9b4e75f979e30400794",
+  "verified_input_pin_count": 1034,
+  "scientific_read": "HOLD",
+  "camera_auxiliary": "HOLD"
+}

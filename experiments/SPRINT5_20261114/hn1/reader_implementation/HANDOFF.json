@@ -1,0 +1,12 @@
+{
+  "status": "FROZEN_CODE_ONLY_HANDOFF_REQUIRES_INDEPENDENT_REVIEW",
+  "source_manifest_sha256": "a8a083a686ab47cf8f02e5a7da9e6dec92a797e33c5ec9b4e75f979e30400794",
+  "input_binding_sha256": "51ae40530ee4a848aece44693c143923a68636eb769468e5e5637904ab8eede3",
+  "synthetic_tests": 20,
+  "tests_sha256": "4e755c777f83fe1d1245f1d8f72b5737429cc506a7518a62bcfb6f442e5f7748",
+  "metadata_check_sha256": "218d42df7b13d95eb40002ca64528b91e84464df7f8accddeb513646b7b97d36",
+  "candidate_payload_accessed": false,
+  "collector_or_reader_actual_invocation": false,
+  "scientific_read": "HOLD",
+  "camera_auxiliary": "HOLD"
+}
