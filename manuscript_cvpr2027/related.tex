@@ -1,5 +1,8 @@
 \section{Related Work}
 \label{sec:related}
+\paragraph{Detection settings: S-MAD and D-MAD.}
+Following the MAD survey taxonomy~\cite{venkatesh2021survey}, differential MAD (D-MAD) scores a suspected image against a trusted live capture, and single-image MAD (S-MAD) scores the suspected image alone. This paper operates in the S-MAD setting throughout: enrollment-time screening has no trusted reference, and every control, training run and read below scores single images.
+
 \paragraph{Morph generation and attack detection.}
 Face morphing can make an enrollment image resemble multiple contributors~\cite{ferrara2014magic}. SYN-MAD evaluates synthetic-to-real transfer~\cite{huber2022synmad}; SMDD supplies synthetic-only training~\cite{damer2022smdd}. MIPGAN uses identity-constrained GAN synthesis~\cite{zhang2021mipgan}, while MorDIFF interpolates diffusion-autoencoder representations~\cite{damer2023mordiff}. Each also changes reconstruction or processing history. Detecting such a pipeline is therefore distinct from detecting two identities, and neither implies a successful recognition attack. Our controls retain more of the construction in common without assuming that this removes every low-level difference.
 
