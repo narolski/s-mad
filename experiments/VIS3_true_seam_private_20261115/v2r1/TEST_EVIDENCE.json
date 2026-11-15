@@ -1,0 +1,31 @@
+{
+  "scope": "GENERATED_ONLY_SOURCE_AUTHORITY_SNAPSHOT_DELTA_NO_REAL_PAYLOADS",
+  "source_file_hashes": {
+    "authority_snapshot.py": "01b1dea440ab48a9cfa0efb9d0183cf475d4de2b64d0b4268d4f0a2d7e6a72d8",
+    "construct_driver.py": "56023336a2a1cdd8cf443335acf0d7c46db8c608ef6f464e0514aca7e557e582",
+    "contracts.py": "b53d5953d2e8e15763dc48dd79c5eefdf70ba39b47b0cec93d59ee7fbb85de67",
+    "model_runtime.py": "5f01ac19f6f048c5ef8a02598aef23a999e173a28b86de2a2d3aab157ba5b9c6",
+    "numeric_worker.py": "4cc88905751bc52845727b91a462aa13898eee1121ce3de8feb13ab6af720b0f",
+    "test_generated.py": "baec71d7321dce1b8830ebe5af1fc3a8306bb1477e3d056355c45eb6b98409d8",
+    "test_snapshots.py": "c07bda4d3ded70876d1f57793d71d69dbcb82e66e44ae547aa47e5731545c248"
+  },
+  "sourcepins_verified": 19,
+  "fixture_count": 22,
+  "runs": [
+    {
+      "fixture_source": "test_generated.py",
+      "exit_code": 0,
+      "stdout": "VIS3_CPU_CONSTRUCTION_COMPLETE_PENDING_OTHER_INPUT_ADMISSION\nVIS3_NUMERIC_COMPLETE_PENDING_OTHER_REVIEW full selfmad_hrnet_w18 512\nVIS3_NUMERIC_COMPLETE_PENDING_OTHER_REVIEW full A 512\nVIS3_NUMERIC_COMPLETE_PENDING_OTHER_REVIEW full B 512\n",
+      "stderr": ".............\n----------------------------------------------------------------------\nRan 13 tests in 0.600s\n\nOK\n",
+      "elapsed_seconds": 0.7096507977694273
+    },
+    {
+      "fixture_source": "test_snapshots.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.007s\n\nOK\n",
+      "elapsed_seconds": 0.055773910135030746
+    }
+  ],
+  "notes": "13preservedgeneratedfixtures+9snapshotfixtures. Temporary generatedPNGCPUandscalarfake-runtime1536writerrows NOTscientificresults; no actualphotos/weights/models/GPU/cluster/render. Model loading20statementAST unchanged. RootexpectedreleaseSHAexternal; failedcontrolsrejectbeforepayloadhash/decode/outputeffects."
+}

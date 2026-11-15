@@ -1,0 +1,84 @@
+{
+  "status": "DOCUMENTATION_ONLY_NOT_RELEASES",
+  "cpu": {
+    "issued_by": "root",
+    "author": "shortcut_visual_examples",
+    "reviewer": "OTHER_NONAUTHOR",
+    "independent_review_path": "EXACT_OTHER_SOURCE_REVIEW_PATH",
+    "independent_review_sha256": "EXACT_SHA",
+    "inventory_sha256": "EXACT_V2_INVENTORY_SHA",
+    "prereg_sha256": "636428eb3a2db72f287ee8eadbb2fd54f2dcd1606d93e309d15b0d9d9aa88e57",
+    "source_manifest_sha256": "EXACT_V2_SOURCE_SUMS_SHA",
+    "source_commit": "EXACT_COMMITTED_OWNED_SNAPSHOT",
+    "private_noncommercial_only": true,
+    "publication_allowed": false,
+    "render_allowed": false,
+    "phase": "construct",
+    "decision": "GO_VIS3_PRIVATE_CPU_CONSTRUCTION",
+    "source_pixel_export_allowed": true,
+    "new_derivative_construction_allowed": true
+  },
+  "numeric": {
+    "issued_by": "root",
+    "author": "shortcut_visual_examples",
+    "reviewer": "OTHER_NONAUTHOR",
+    "independent_review_path": "EXACT_OTHER_SOURCE_REVIEW_PATH",
+    "independent_review_sha256": "EXACT_SHA",
+    "inventory_sha256": "EXACT_V2_INVENTORY_SHA",
+    "prereg_sha256": "636428eb3a2db72f287ee8eadbb2fd54f2dcd1606d93e309d15b0d9d9aa88e57",
+    "source_manifest_sha256": "EXACT_V2_SOURCE_SUMS_SHA",
+    "source_commit": "EXACT_COMMITTED_OWNED_SNAPSHOT",
+    "private_noncommercial_only": true,
+    "publication_allowed": false,
+    "render_allowed": false,
+    "phase": "smoke OR full (instantiate exact one)",
+    "decision": "GO_VIS3_PRIVATE_NUMERIC_SMOKE OR GO_VIS3_PRIVATE_NUMERIC_FULL",
+    "source_pixel_export_allowed": false,
+    "models": [
+      "selfmad_hrnet_w18",
+      "A",
+      "B"
+    ],
+    "new_derived_image_numeric_allowed": true,
+    "original_four_anchor_inference_allowed": true,
+    "construction_receipt_path": "/mnt/t7/smad_next/VIS3/20261115/v2r1/constructed/CONSTRUCTION_RECEIPT.json",
+    "construction_receipt_sha256": "ACTUAL_AFTER_CPU",
+    "constructed_input_admission_path": "EXACT_OTHER_ACTUAL_INPUT_ADMISSION_JSON",
+    "constructed_input_admission_sha256": "ACTUAL",
+    "derivative_roster_sha256": "ACTUAL_AFTER_CPU"
+  },
+  "full_additional_grant_fields": {
+    "smoke_postreview_path": "EXACT_OTHER_SMOKE_REVIEW_JSON",
+    "smoke_postreview_sha256": "ACTUAL"
+  },
+  "other_constructed_input_admission": {
+    "decision": "GO_VIS3_PRIVATE_DERIVED_INPUTS",
+    "author": "shortcut_visual_examples",
+    "reviewer": "OTHER_NONAUTHOR",
+    "inventory_sha256": "EXACT",
+    "construction_receipt_sha256": "ACTUAL",
+    "derivative_roster_sha256": "ACTUAL",
+    "actual_alpha_npy_sha256": "ACTUAL",
+    "render_allowed": false,
+    "publication_allowed": false
+  },
+  "other_smoke_postreview": {
+    "decision": "GO_VIS3_FULL_NUMERIC",
+    "author": "shortcut_visual_examples",
+    "reviewer": "OTHER_NONAUTHOR",
+    "models": [
+      "selfmad_hrnet_w18",
+      "A",
+      "B"
+    ],
+    "inventory_sha256": "EXACT",
+    "derivative_roster_sha256": "ACTUAL",
+    "generated_regional_indexing_verified": true,
+    "smoke_result_sha256": {
+      "selfmad_hrnet_w18": "ACTUAL",
+      "A": "ACTUAL",
+      "B": "ACTUAL"
+    }
+  },
+  "required_external_cli_authority": "--expected-release-sha256 EXACT_ROOT_SUPPLIED_SHA (never compute within worker from same mutablepath)"
+}
