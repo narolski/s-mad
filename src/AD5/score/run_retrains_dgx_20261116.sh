@@ -6,7 +6,7 @@
 # Output: /mnt/t7/smad_next/AD5/scores_retrains/scores_rel_<name>__ad5{v1,v2}.npz (+ logs).
 set -uo pipefail
 R=/mnt/t7/smad_next/RS1/regen_pack
-W=/mnt/t7/smad_next/RS1/regen_run/prod
+W=/mnt/t7/smad_next/RS1/regen_run
 CF=/mnt/t7/smad_next/RS1/convert_retrains
 O=/mnt/t7/smad_next/AD5/scores_retrains
 T=/mnt/t7/smad_next/AD5/results_athena_pull
