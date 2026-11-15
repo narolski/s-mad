@@ -1,0 +1,24 @@
+{
+  "status": "INCOMPLETE_NONEXECUTABLE_REQUIRES_NEW_FROZEN_REQUEST",
+  "schema": "SBMR512_ENV_SOURCE_REQUEST_V1R1",
+  "interpreter": null,
+  "interpreter_sha256": null,
+  "distributions": null,
+  "files": null,
+  "required_distribution_fields": [
+    "name",
+    "metadata_root",
+    "metadata_dir",
+    "record_sha256",
+    "record_bytes",
+    "metadata_sha256",
+    "metadata_bytes"
+  ],
+  "required_file_fields": [
+    "path",
+    "sha256",
+    "bytes",
+    "kind"
+  ],
+  "actual_runtime_source_allowlist": "UNKNOWN_NOT_COLLECTED"
+}

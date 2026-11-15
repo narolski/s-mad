@@ -1,0 +1,14 @@
+{
+  "type": "author_ruling_filing",
+  "ruling": "FRLL-Morphs read unsealed by the upowazniony autor (operator message, 2026-11-15, translated register preserved in the amendment); purpose: submission result tables; author judges it does not violate scientific-work rules or CVPR requirements.",
+  "operator_order": "full closure locally on DGX GB10 (this machine): amendment + this filing with SHA -> reproduction checks / roster FREEZE with SHA256 -> runtime probe on a sample -> FULL read -> results cells with receipts; no phase gates; one-liner reports; NO new training; Vast.ai cancelled; WCSS/Athena only for a named step GB10 cannot run.",
+  "registered_by": "continuation session (single-agent, MAIN), 2026-11-15T19:16:30Z",
+  "amendment": {
+    "path": "experiments/FINAL_sealed-benchmark-read/AMENDMENT_AUTHOR_RULING_FRLL_20261115.md",
+    "sha256": "f58383c4d117621f198b4e12b93b13e1acdb89dd9f02ccbe1fa8cc3958fdb801"
+  },
+  "registration_under": "experiments/FINAL_sealed-benchmark-read/prereg.md (sections 1, 7, 8, 9, 10 as amended by the amendment file)",
+  "scope": "FRLL-Morphs read v1 only: 5 families native S form (AMSL 2175, FaceMorpher 1222, OpenCV 1221, StyleGAN2 1222, Webmorph 1221 morphs) vs 204 raw FRLL genuine (102 persons); detectors: Sb s403-407 (registered rescore.py, existing aligned frames), released detectors from existing registered RS1 production scores (FaceMorpher cell variant 2 only per RS1 amendment 7), SelfMAD hrnet_w18 freshly scored once on the DGX GB10 (RS1 score.py --mode own). DESCRIPTIVE read; no verdict tests moved from MAD22; benign variants, E7 FRLL pools, MorDIFF, DiM families, FEI stay sealed.",
+  "milestone_reports": [],
+  "receipt_protocol": "dated files in experiments/AGENTIC_delivery_20261114/ with independent numeric recount checks and sha256 receipts; no numbers without a receipt"
+}

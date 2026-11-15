@@ -1,0 +1,25 @@
+{
+  "status": "HOLD_NEW_PHASE_ADMISSION_AND_RUNTIME_REQUIRED",
+  "fixed_extension_models": [
+    {
+      "task": "SPRINT5_1_production_v3_paired_bce_s501",
+      "arm": "paired_bce",
+      "seed": 501,
+      "archive_path": "/mnt/t7/smad_next/coordination_20261114/hn_pair_collection_20261114T181157Z/SPRINT5_1_production_v3_paired_bce_s501.tar",
+      "archive_sha256": "d8b85bc178ecb4782e576f0181a87a3a41eade150cbd38d6e793311f109d7fcf"
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_rank_s501",
+      "arm": "paired_rank",
+      "seed": 501,
+      "archive_path": "/mnt/t7/smad_next/coordination_20261114/hn_pair_collection_20261114T181157Z/SPRINT5_1_production_v3_paired_rank_s501.tar",
+      "archive_sha256": "632695a4c1dc75ae06a94bd132e220aa448e4d96674a5c1768ecd3fab0a46afd"
+    }
+  ],
+  "frozen_comparator": "Sb seed403 last; XAI FP64/released source differs from H100-trained stack; new runtime reference binding required",
+  "archive_roster_sha256": "09393d4e809eeb9a9c217dc7af66b54b2cabd09f981dd73309e4e28d5fa3c9c0",
+  "archive_bodies_or_checkpoints_opened": false,
+  "required_reference_gate": "Use registered training/scoring stack H100/torch2.11+cu128 and its own21277row byteidentity gate via unchanged battery source; bind exact checkpoint member/source/base hash and input pixel metadata before newprivateFFHQforward. Any GB10 torch2.12 migration needs prospectively bound equivalence/native-reference check; no silent reuse ofVIS1numericanchors for501.",
+  "scientific_limit": "RankingNOT_QUALIFIED,5falsealarmFAILcells TT1FRGCborder/geo. Private42/56occlusion cannot rescue that decision or establish its mechanism/population prevalence.",
+  "further_source_plan": "No new501/Sb403 checkpoint orscore read performed. Root must explicitly release exact extraction/loading/reference work and newprivatephase/modelinput grant; new independent pre-review required. Current VIS2worker refuses these models rather than pretending compatibility."
+}

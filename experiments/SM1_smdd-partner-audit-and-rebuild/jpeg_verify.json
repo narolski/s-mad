@@ -1,0 +1,22 @@
+{
+ "rows": [
+  {
+   "src": "/mnt/t7/Datasety/downloads/frll_base/extracted/neutral_front/001_03.jpg",
+   "ref": "/home/narolski/mambamorph-code/smadcvpr_data/eval/frllm/frll_bona/001_03_jpeg70.png",
+   "aligned": true,
+   "png_bytes_equal": true,
+   "pixels_equal": true,
+   "max_abs": 0
+  },
+  {
+   "src": "/mnt/t7/Datasety/downloads/frll_base/extracted/neutral_front/002_03.jpg",
+   "ref": "/home/narolski/mambamorph-code/smadcvpr_data/eval/frllm/frll_bona/002_03_jpeg70.png",
+   "aligned": true,
+   "png_bytes_equal": true,
+   "pixels_equal": true,
+   "max_abs": 0
+  }
+ ],
+ "prep_eval_sha256": "374408ab3a886e6df25b563bc2344d190efe2ab7b3163efbb17c9b6ca9100628",
+ "call": "prep_eval.align(prep_eval.degrade(cv2.imread(src), \"jpeg70\"))"
+}

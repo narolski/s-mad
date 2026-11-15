@@ -1,0 +1,22 @@
+{
+ "excluded_keys": 20000,
+ "ffhqm_named_keys": 5600,
+ "ffhqm_named_inside_universe": true,
+ "excluded_raw_files_hashed": 20000,
+ "kept": 900,
+ "refs_found": 3999,
+ "refs_total": 4000,
+ "overlap_by_key": [],
+ "overlap_by_raw_sha256": [],
+ "duplicate_raw_sha256_among_kept": 0,
+ "duplicate_frame_sha256_among_kept": 0,
+ "max_cos_to_ffhqm_refs": 0.3964,
+ "n_cos_ref_ge_040": 0,
+ "max_cos_among_kept": 0.3908,
+ "n_pairs_kept_ge_040": 0,
+ "max_cos_holdout_vs_training": 0.3735,
+ "holdout_training_person_overlap": 0,
+ "benchmark_paths_in_lists": [],
+ "n_benchmark_paths": 0,
+ "pass": true
+}

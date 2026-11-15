@@ -1,0 +1,31 @@
+# Full15 paired-ranking metadata packet — independent operational review
+
+Reviewer: training_contribution/Sol, OTHER than packet author sol_sprint_experiments. **GO_FOR_ROOT_METADATA_RELEASE_AFTER_FRESH_COMMIT_PREFLIGHT_GATES. CURRENT LIVE EXECUTION HOLD UNTIL THOSE GATES. SCIENTIFIC READ/CLAIM NOT AUTHORIZED.** Review of exact receipt roster/operational scope and reuse of already accepted collector; not a new scientific-method or bootstrap review.
+
+Exact package `b8d51ec25d830f8af6ec4ddfec0aa50f929d2149b49ee096a8837c90d3684c0e`; roster `09393d4e809eeb9a9c217dc7af66b54b2cabd09f981dd73309e4e28d5fa3c9c0`; SOURCE_AND_SCOPE_BINDING `b7092842f5b1835a7daa000e83665931886a207e803c5d1bc6f434a03427a28f`; proposal release `00c4a4021cc10a25cfaadb813d72ce445cc1ea0f2277e3bb53bfe1219413c5ac`; handoff `6453ec92e19bef748bc8588caa167624462c86f46a7e86c422bca652acfa1fc5`.
+
+## Independently verified
+
+All10 package entries,33source/authority pins and6opaque receipt pins match. Reassembled the exact roster/provenance by reading only receiptJSON, sidecar text/hash and filesystem stat. All15 fixed bce/paired_bce/paired_rank×501–505 unique archive paths/digests are present, total5,477,068,800bytes, no missing/survivor subset. Assembly output equals both committed-proposal JSON contents. No archive body was opened or hashed by this reviewer. Arrival does not establish execution identity or fit eligibility.
+
+Each task matches the source default array index3(seed−501)+armindex; this association is a source/default map, not an independent scheduler query. Accepted training manifestef6bcc… and reader manifest93b2ff… remain byte-current. For all15 tasks the declared member scope matches the accepted collector:11metadata members, header-only last.pt+5scoremembers, and the same5scoremember names reserved for postclaim payload access. Score digests are to be copied from actual scorer metadata, never guessed from arrival.
+
+Executed4 generated CPU fixture methods with7failure subcases: PASS. Missing,duplicate,foreign task,badsidecarhash,untrustedreceipt,Boolean size,duplicatedigest fail; duplicate receipt fails;14draft cannot silently admit15. Imported and called only accepted `admit.validate_roster` on JSON metadata: PASS. Did not invoke actual collector, envelope, scientific admit/admit-only, read, journal or models.
+
+Actually ran the pinned `verify_prefit.py --binding …/prefit_binding_v1/BINDING.json --require-committed` with `/usr/bin/python3 -I`: exit0, PREFIT_METADATA_VERIFIED. This was an executed metadata/pin/Git check, not an assumed flag. All currently tracked authority paths inspected are clean. At inspection13 relevant paths were untracked: the11newpacket files including its package manifest plus the two existing completion-contract files. Newly added independent-review/check files and eventual root release likewise require root's commit/clean gate.
+
+## Mandatory operational boundary before root release
+
+Accepted `collect_metadata.py` verifies release/review/source/roster hashes and hashes all15 archive bodies before metadata access, but **does not itself run prefit --require-committed or enforce tracked/clean status of this newpacket/contract**. The later scientific `admit()` does run the prefit verifier; that is not a substitute for the metadata-stage gate.
+
+Therefore root must commit unchanged packet, both PLAN_AND_IMPLEMENTATION_CONTRACT.md and MANIFEST.json, this review/check evidence and exact rootrelease; then run a fresh fail-closed external prelaunch guard covering: (a) prefit `--require-committed`, (b) git ls-files --error-unmatch and empty scoped git status for every SOURCE_AND_SCOPE_BINDING authority path plus all packet/review/release/contract files, (c) exact33authority/6receipt/package/source/roster/release/review hashes, and (d) absence of the proposed create-only collection output. Record the successful guard with its clean commit before executing the command. The old PREFLIGHT.json is historical evidence, not that fresh guard. If any check fails, do not invoke collector. No accepted-source rewrite is required to meet this boundary with an explicit root launch guard.
+
+Once those gates pass without byte changes to reviewed content, root may issue/use a NEW GO_METADATA_COLLECTION_ONLY release with nonself author/reviewer and this exact review hash, original binding519546…, reader93b2…, roster09393…, and the fixed proposed output. Existing proposal decision/nullreview remains nonauthorization. The supplied `python -I` collector command is viable because the accepted collector explicitly adds its package parent before importing siblings; do not remove flags or otherwise alter source casually. Redirected log alone is not collection completion: require accepted COLLECTION_COMPLETE and15envelopes/reader roster; retain COLLECTION_FAILED/partial output, no automatic retry.
+
+## Scope preserved
+
+The source/authority hashes preserve all3arms×5seeds, original200primary rows/100hosts/40components,132calibration persons/128components,127th-order strict threshold,119genuinecells, support20/sparse INCONCLUSIVE/zero-variance policy, NI and own-zero rules. No new statistical endpoint, dropped sparsecell, failedseed deletion, threshold or bootstrap amendment. Accepted10,000draws and RNG2026111401/1403/1404, two deciding contrasts/97.5% intervals and floor/reporting machinery remain unchanged; this operational review did not rerun scientific statistics. Optional replicate-array saving is not made a metadata blocker.
+
+Metadata envelope must still pass registered6250/last/limit0/platform, exact15CPUplans and exposure/schedule associations, reference2496/own21277bytegates and complete finite dev21277/tt134411/meds1018/gd11042 checks. These are pending actual authorized collection and separate OTHER actual-envelope review. NPZ/weight bodies are not semantically read in this stage; source metadata hashes do not prove future score-array identity or eligibility. Fixed once/output locations and later separate GO_READER_READ remain unchanged. No scientific release is supplied by this review.
+
+Detailed reproducible checks: INDEPENDENT_OPERATIONAL_CHECKS_20261114.json. No actual archive/header/member/log/NPZ/checkpoint/model/score/GPU/cluster access occurred. Bounded review complete.

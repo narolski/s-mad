@@ -1,0 +1,15 @@
+CURRENT: Official labels/mapping have been acquired, but official-index→actual-local-HQ-image binding is unverified. No localHQ labels/mining are admitted. The independent labelled128px calibration has an executable bounded CPU registration in prereg_lowres.md, with a pinned2000-image/1000-ID selection and review/smoke gates. This initial inventory record is historical.
+
+# Look-alike eligibility and matched training [SPRINT5-5]: label-admission stage
+
+Prospective MAD22-informed newcycle, outsideNEXT. This stage inventories authoritative labels and joins an official HQ-to-CelebA mapping when available. It performs no detector fitting, image construction, embedding model inference, approximate label reconstruction or sealed benchmark read.
+
+Known truthful label source:202084CelebA128px image_id/person_id rows at `/mnt/t7/Datasety/datasets_processed/data-celeb-aligned/split.csv`. HQ existing embeddings have22806rows. `MS1/celebahq/persons.csv` is embedding-component metadata, not verified identity labels. Never use it to define different-person or same-person truth. Officialmapping must join exactly30000uniqueHQindices0–29999 to actual originalimage_ids in labelsource; partial/duplicate/missing joins stop admission. Preserve sourceSHA256s and originalsplit labels, do not silently reuse originalsplit as identity-disjoint experimentallocation.
+
+After labels: independent mining prereview fixes identity-component train/calibration/evaluation partition, excludes MS1heldout and training/evaluation/closed-set overlaps, calibrates label-noise filters on labelled128pxCelebA (including injected errors), pins source/sex/pose/IED/landmark quality metadata. No mining is admitted merely by mapping success. No new embeddings against sealed sources are authorized by this stage.
+
+Matching once independently admitted: two-person pair cos>=.60, same-person THIRDidentity pair within±.03cos, same source, Wquintile, |deltaYaw|<=15degrees and fixedsex/IEDstrata. Noidentity reused acrossgroups. >=100DISJOINT EVALUATIONgroups required; <50no-go;50–99 evaluation-only. Separate sufficient disjointtrainset required before matchedtraining;100total cannot license both training and decisiveevaluation. Floors/allcovariatebalance precedeinterpretation.
+
+Matchedtraining vs randompaircontrol must share actualadmitted identities/source marginals,rowcounts,negativefraction,spliceshare,steps,exposure and generator/storage/warppipeline. Singlelastcheckpoint,5freshseedspreallocated independently fromNEXT413–417. Fulltraining registration waits for feasibleadmitteddata; do not invent samplecounts or report groups as formed before search.
+
+Metadata command (ordinaryauthorizedpreparation): `OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python /home/narolski/smad-next/src/SPRINT5/la1/inventory.py --out /mnt/t7/smad_next/SPRINT5_5/inventory_v1`. Withofficialmapping, use a fresh output and `--mapping <verifiedofficialfile>`. NoGPU orclusterjob required. Missingmapping is explicitreadiness blocker, not scientificno-go from insufficientlookalikes.

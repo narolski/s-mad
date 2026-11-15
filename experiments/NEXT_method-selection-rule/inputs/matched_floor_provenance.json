@@ -1,0 +1,13 @@
+{
+  "prediction_source": "Full-landmark-contrast cross-fitted heldout scores, restricted to pinned matched IDs",
+  "rule_reference_values_reproduced": {
+    "surround_gbt": 0.5036728395061728,
+    "face_gbt": 0.9485956790123456,
+    "all_cue_logreg": 0.9451157407407408
+  },
+  "distinct_diagnostic": "floors/lcomb_smatch_build.json balance_refit re-fits only matched rows; not the rule reference",
+  "no_new_fit": true,
+  "shared_network_minus_floor_draw_seed": 20261115,
+  "standalone_existing_sel360_CI_seed": 20261119,
+  "warning": "Never substitute standalone floor CIs for shared network-minus-floor bootstrap draws."
+}

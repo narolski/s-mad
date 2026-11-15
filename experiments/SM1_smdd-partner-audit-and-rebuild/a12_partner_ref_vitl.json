@@ -1,0 +1,98 @@
+{
+ "releases_crop": {},
+ "releases_whole": {},
+ "heads": {
+  "a": {
+   "gaps": {
+    "trained_minus_KE": {
+     "gap": 0.045,
+     "ci": [
+      0.0317,
+      0.0608
+     ],
+     "seeds": [
+      0.0531,
+      0.0369
+     ]
+    },
+    "KE_minus_U": {
+     "gap": 0.0205,
+     "ci": [
+      0.0012,
+      0.0424
+     ],
+     "seeds": [
+      0.0195,
+      0.0214
+     ]
+    },
+    "trained_minus_U_registered": {
+     "gap": 0.0655,
+     "ci": [
+      0.0445,
+      0.0911
+     ],
+     "seeds": [
+      0.0726,
+      0.0583
+     ]
+    }
+   },
+   "own_rule_miss": {
+    "KP": 0.0002,
+    "KU": 0.0044,
+    "KE": 0.0028,
+    "KX": 0.0003,
+    "PP": 0.0,
+    "UU": 0.0
+   },
+   "n_seeds": 2
+  },
+  "feref": {
+   "gaps": {
+    "trained_minus_KE": {
+     "gap": 3.4629,
+     "ci": [
+      3.2661,
+      3.6664
+     ],
+     "seeds": [
+      3.4629
+     ]
+    },
+    "KE_minus_U": {
+     "gap": 1.4542,
+     "ci": [
+      1.2526,
+      1.6616
+     ],
+     "seeds": [
+      1.4542
+     ]
+    },
+    "trained_minus_U_registered": {
+     "gap": 4.9171,
+     "ci": [
+      4.6472,
+      5.1897
+     ],
+     "seeds": [
+      4.9171
+     ]
+    }
+   },
+   "own_rule_miss": {
+    "KP": 0.002,
+    "KU": 0.0236,
+    "KE": 0.0192,
+    "KX": 0.022,
+    "PP": 0.0,
+    "UU": 0.0
+   },
+   "n_seeds": 1
+  }
+ },
+ "heads_did_trained_minus_KE": {},
+ "note": "post hoc (A12 item 1); trained - U is the registered row, biased (U matched only on cosine to keys, IOD and yaw); the reported size of the trace is trained - KE",
+ "heads_dir": "/mnt/t7/smad_next/SM1/lora_audit_vitl"
+}

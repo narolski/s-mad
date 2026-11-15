@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-14T10:38:08.214291+01:00",
+  "source_commit": "8d009968d902801c47970ca1cd45c0464cdc8462",
+  "clean_git_status": true,
+  "verification": {
+    "prepare_inputs.py": {
+      "pins_verified": 44,
+      "require_clean": true,
+      "read_admission": false,
+      "reason": "This verifies inputs only, not challenger eligibility or full selection admission."
+    },
+    "prepare_support.py": {
+      "support_pins_verified": 20,
+      "require_clean": true,
+      "candidate_read_admission": false
+    }
+  },
+  "sha256": {
+    "experiments/NEXT_method-selection-rule/inputs/pins.sha256": "24725bb96179ab07363abf2c1f0e77cb8720ebb28550dae0cb3e18ad4d9e4259",
+    "experiments/NEXT_method-selection-rule/inputs/manifest.json": "549e39aaa6da36daf0f2488e5f82d6c1abcb26381880db96a51fffb49f9fbd8d",
+    "experiments/NEXT_method-selection-rule/inputs/support/pins.sha256": "5e8d39f02345b39755ffbcd13def8af26a1be057e15f7499d7d5649784c2b02a",
+    "experiments/NEXT_method-selection-rule/inputs/support/support_v3.json": "5ac8d319dbec42044d9812e9deaccb25096c5ba945aaf6e5011eaaf815eacc7a",
+    "experiments/NEXT_method-selection-rule/prereg_draft_v3.md": "5188ad9a696d86c935191a4fd45bee0f0762186c199a5bbd7d8368e87bf62667"
+  },
+  "scope": "committed candidate-independent input/support verification before technical rescoring; not selection admission",
+  "challenger_outputs_opened": false
+}

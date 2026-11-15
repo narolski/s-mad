@@ -1,0 +1,14 @@
+{
+  "decision": "GO_AUXILIARY_INPUT_BINDING_ONLY",
+  "required_root_decision": "GO_AUXILIARY_INPUT_BINDING_ONLY",
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "binding_sha256": "4b5861f8b506c68b73cef8bf4d95b4093a9822971a8d85728fe370c9d36c5ae4",
+  "source_sums_sha256": "692b0cde2e47fc62133fca3f58a4f4d4ff6c7357d0096d6e93b2ee4b6f30054a",
+  "policy_adoption_sha256": "a227479a3f28e7012ab6a41e4dc54cb478a8f769d683d379676a53c3ca5b3ca2",
+  "scientific_auxiliary_read": "HOLD",
+  "technical_member_access": "HOLD",
+  "independent_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/baseline_aux_reader_v1/INDEPENDENT_AUXILIARY_CODE_INPUT_REVIEW.md",
+  "independent_review_sha256": "ee36c91c91fd2609a9eaa78f07edbabad9a591b9f7601f27cbabf78bf154dd85",
+  "adopted_at": "2026-11-14T19:19:48.098003+00:00"
+}

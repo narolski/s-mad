@@ -1,0 +1,34 @@
+# Tail baseline auxiliary reader and technical collector v1
+
+This new adapter implements policy adoption `a227479a3f28e7012ab6a41e4dc54cb478a8f769d683d379676a53c3ca5b3ca2` / commit `4e7bac3`. Timing is explicitly AFTER_PRIMARY_RESULTS_SEEN_AND_INDEPENDENTLY_REVIEWED. Baseline reporting was already required; point-only uncertainty and this narrow auxiliary reopening are disclosed after-results clarifications, not retroactive preregistration. Frozen proposal v1, old readers, primary result and primary journal are preserved.
+
+The only numerical computation is one original Sb408 threshold from the same 70 positive calibration IDs: float64 `nextafter(sorted[7],-inf)`, strict greater. The single scalar is applied unchanged to baseline 468 evaluation rows and all 15 candidates’ 468 evaluation rows. Report baseline plus every candidate, six genuine cells with numerator/denominator/rate, four positive-family slots and both five-paired-seed contrasts. Missing AF0-s61 is null with NOT_ESTIMABLE_ABSENT_FAMILY. Original own-calibrated summaries, thresholds, primary intervals and NI dispositions are copied from the hash-bound completed result. No primary functions, calibration re-execution, RNG, bootstrap, new NI/CI, p-value, seed/threshold selection or winner is used.
+
+All output says NOT_ESTIMATED_DESCRIPTIVE_AUXILIARY, interval null, reason AFTER_PRIMARY_RESULTS_SEEN_AUXILIARY_POINT_COMPLETION. AUXILIARY_POINT_COVERAGE_COMPLETE indicates reporting coverage only. The threshold includes exact float64 hex/bits. Calibration sensitivity is reported without promising held-out 90% sensitivity. Baseline is one model, not five baseline fits.
+
+## Separate gates
+
+`prepare_inputs.py` creates a new immutable binding from source/metadata only. It never overwrites one. It verifies 604 pins, exact 70/468 ordered IDs and image mapping, all 15 admitted candidate members, the original COMPLETE primary result/claim/terminal/release/binding/full source, the adopted policy/reviews, and existing same-baseline root gate/source evidence. Result bytes are only hashed; no result summaries or arrays are decoded in preparation. No actual baseline/candidate archive member is opened.
+
+`metadata_only_check.py` performs the same safe validation. `--require-committed` additionally checks every applicable input/source path and the **actual binding** using real Git tracking and cleanliness. Dirty/untracked binding fails even with a newly matching content digest.
+
+`technical_collector.py` requires its own independently reviewed/root-issued GO_TAIL_BASELINE_AUX_TECHNICAL_ONLY and adopted new input/source binding. Its fixed fresh attempt directory is `/mnt/t7/smad_next/SPRINT5_3/baseline_aux_technical_v1`. Only then can it verify the opaque baseline archive hash, unique regular bounded selected member headers, fixed technical JSON/TXT fields and opaque score-member hash. It imports no NumPy and performs no NPZ decode, ID inspection, numerical finiteness test or scientific statistic. Full payload ID/schema/finiteness remains UNKNOWN. Recorded torch/H100/common-source runtime is checked; absent/mismatched runtime remains HOLD. An existing gate chain is reported honestly as prior root-admitted same-baseline evidence, never a fresh numerical gate or independent checkpoint rehash. The receipt still needs independent technical admission authorizing that specific existing gate reuse. Failure leaves a permanent failure receipt/attempt directory, without automatic retry.
+
+`read.py` requires a distinct GO_TAIL_BASELINE_AUX_READ_ONLY, independent code/input review, exact source/binding, clean committed dependencies, the exact technical receipt and independent baseline technical admission, and unchanged COMPLETE primary artifacts. The release explicitly grants only the auxiliary exception and full-container validation after claim; it cannot grant a new primary read.
+
+The fixed permanent journal is `/mnt/t7/smad_next/SPRINT5_3/reader_once_baseline_aux_v1`; fixed output is `/mnt/t7/smad_next/SPRINT5_3/reader_output_baseline_aux_v1/RESULT.json`. A create-only/fsynced auxiliary claim precedes every array or completed-result summary decode. Only afterward are the exact 21,277-row containers validated for schema, ordered IDs, digest and finiteness under the adopted serialization exception. Returned numerical values are restricted to baseline 538 and candidate 468; no candidate calibration values or outside-allowlist metrics/export. Candidate canonical dev members are the exact previously admitted members. No checkpoint is loaded.
+
+Primary result/source/claim/terminal/release bytes are checked before and after auxiliary computation, never written. Summaries are copy-only, and primary CIs remain in a separately labelled original companion rather than attached to new differences. Atomic output refuses overwrite; a postclaim failure writes FAILED and consumes the claim. No CLI alternative journal/output, retry, source-version bypass, camera panel or sealed benchmark access exists. Only the exact frozen durable-journal utility is imported; no primary reader/statistic module is imported.
+
+## Review and execution
+
+Evidence/binding: `experiments/SPRINT5_20261114/tail/baseline_aux_reader_v1/`. Proposed input, technical and scientific releases are deliberately unsigned and contain null future review/technical hashes. They do not grant execution. Root must adopt exact code/input after independent review, then separately release technical collection; after actual receipt review/admission, root may separately release auxiliary scientific read. Independent postresult review is still required. No GPU, scheduler or inference is needed/released.
+
+Safe verification commands (no real member/array access):
+
+```sh
+OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 CUDA_VISIBLE_DEVICES="" nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/SPRINT5/tail_baseline_aux_reader_v1/test_synthetic.py
+OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 CUDA_VISIBLE_DEVICES="" nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I src/SPRINT5/tail_baseline_aux_reader_v1/metadata_only_check.py
+```
+
+Twenty generated-only tests cover strict ties/order/counts, all 16 cases, missing-family nulls, copy-only summaries, no RNG/primary imports, full-container finite/schema/order/length/digest/duplicate rejection after claim, technical hashing of invalid NPZ bytes without decode, runtime unknown HOLD, release phase/scope/source/input restrictions, dirty/untracked binding, mandatory 15-model roster, claim-before-payload, failed reentry, success/atomic JSON and primary preservation. Passing them is not actual baseline/candidate admission. Technical member access, scientific auxiliary read, camera and benchmarks remain HOLD.

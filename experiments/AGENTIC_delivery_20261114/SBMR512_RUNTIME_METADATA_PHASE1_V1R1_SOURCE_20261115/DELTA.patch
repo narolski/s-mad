@@ -1,0 +1,248 @@
+--- v1/probe.py
++++ v1r1/probe.py
+@@ -1,43 +1,110 @@
+ """SOURCE ONLY: bounded prospective import/runtime observation, never a model build."""
+-import hashlib,importlib,json,os,pathlib,stat,subprocess,sys,time
++import hashlib,importlib,json,os,pathlib,re,stat,subprocess,sys,time
++sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
++from authority import capture_json
+ MODULES=('numpy','PIL','torch','torchvision','timm')
+ ALLOWED_ROOTS=('/home/narolski/dmenv','/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu','/usr/lib64','/lib64','/usr/lib/x86_64-linux-gnu','/lib/x86_64-linux-gnu')
+ MAX_MAPS=2<<20;MAX_LIBRARIES=512;MAX_LIBRARY=2<<30;MAX_TOTAL=4<<30
+ OUT='/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/sbmr512_runtime_metadata_phase1_v1/result'
+ def req(v,msg):
+  if not v:raise ValueError(msg)
++def normalized(path):
++ p=pathlib.PurePosixPath(path)
++ req(isinstance(path,str) and path.startswith('/') and '..' not in p.parts and str(p)==path,'noncanonical/traversal path')
++ return p
+ def inside(path,roots):
+- p=pathlib.Path(path)
+- return p.is_absolute() and any(p==pathlib.Path(r) or pathlib.Path(r) in p.parents for r in roots)
++ p=normalized(path)
++ return any(p==pathlib.PurePosixPath(r) or pathlib.PurePosixPath(r) in p.parents for r in roots)
++def open_components(path,trust_root=False):
++ """Descriptor-relative nofollow walk from /. No unrestricted resolve/follow."""
++ parts=normalized(path).parts[1:];req(parts,'root is not a file')
++ fd=os.open('/',os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW)
++ try:
++  for part in parts[:-1]:
++   nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=fd)
++   if trust_root:
++    s=os.fstat(nxt);req(s.st_uid==0 and not s.st_mode&0o022,'untrusted tool ancestor')
++   os.close(fd);fd=nxt
++  leaf=os.open(parts[-1],os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK,dir_fd=fd)
++  return leaf
++ finally:os.close(fd)
++def canonical_alias(path,aliases):
++ """Only exact root-registered literal aliases; none discovered/followed broadly."""
++ normalized(path);matches=[a for a in aliases if path==a['path'] or path.startswith(a['path']+'/')]
++ req(len(matches)<=1,'ambiguous aliases')
++ if not matches:return path
++ a=matches[0];normalized(a['path']);normalized(a['canonical'])
++ parent=str(pathlib.PurePosixPath(a['path']).parent)
++ # Validate every alias ancestor without following links, then readlink once.
++ parent_fd=os.open('/',os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW)
++ try:
++  for part in pathlib.PurePosixPath(parent).parts[1:]:
++   nxt=os.open(part,os.O_RDONLY|os.O_DIRECTORY|os.O_NOFOLLOW,dir_fd=parent_fd);os.close(parent_fd);parent_fd=nxt
++  name=pathlib.PurePosixPath(a['path']).name
++  req(os.readlink(name,dir_fd=parent_fd)==a['target'],'literal alias changed')
++ finally:os.close(parent_fd)
++ target=pathlib.PurePosixPath(a['target'])
++ req('..' not in target.parts,'alias parent traversal')
++ intended=str(target if target.is_absolute() else pathlib.PurePosixPath(parent)/target)
++ req(intended==a['canonical'],'alias canonical mismatch')
++ return a['canonical']+path[len(a['path']):]
+ def parse_maps(raw):
+- req(len(raw)<=MAX_MAPS,'maps cap');paths=set()
++ req(len(raw)<=MAX_MAPS,'maps cap');records={}
+  for line in raw.decode('utf-8',errors='strict').splitlines():
+   cells=line.split(None,5)
+   if len(cells)<6 or not cells[5].startswith('/'):continue
+   path=cells[5];req(not path.endswith(' (deleted)'),'deleted mapping')
+-  name=pathlib.Path(path).name
+-  # Only loaded shared-object file class; never model/cache/data or arbitrary maps.
+-  if '.so' not in name:continue
++  if '.so' not in pathlib.PurePosixPath(path).name:continue
+   req(inside(path,ALLOWED_ROOTS),'loaded library outside exact granted roots')
+-  paths.add(path)
+- req(len(paths)<=MAX_LIBRARIES,'library count cap');return sorted(paths)
+-def file_identity(path,body,remaining):
+- req(inside(path,ALLOWED_ROOTS),'root')
+- fd=os.open(path,os.O_RDONLY|os.O_NOFOLLOW)
++  major,minor=cells[3].split(':');dev=os.makedev(int(major,16),int(minor,16));inode=int(cells[4]);req(inode>0,'mapped inode')
++  rec=dict(path=path,device=dev,inode=inode)
++  req(path not in records or records[path]==rec,'inconsistent map identity');records[path]=rec
++ req(len(records)<=MAX_LIBRARIES,'library count cap')
++ return [records[k] for k in sorted(records)]
++def snapshot(s):return (s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns,s.st_uid,s.st_mode)
++def hash_fd(fd,a,cap,elf=False):
++ req(stat.S_ISREG(a.st_mode) and 0<=a.st_size<=cap,'regular/file size cap')
++ h=hashlib.sha256();count=0
++ if elf:
++  head=os.read(fd,min(4,a.st_size));req(head==b'\x7fELF','not ELF');h.update(head);count=len(head)
++ while count<a.st_size:
++  chunk=os.read(fd,min(4<<20,a.st_size-count));req(chunk,'file shrank');h.update(chunk);count+=len(chunk)
++ req(os.read(fd,1)==b'','file grew')
++ req(snapshot(a)==snapshot(os.fstat(fd)),'unstable file');return h.hexdigest()
++def file_identity(mapped,body,remaining,aliases=()):
++ path=mapped['path'];req(inside(path,ALLOWED_ROOTS),'root')
++ canonical=canonical_alias(path,aliases);req(inside(canonical,ALLOWED_ROOTS),'canonical root')
++ fd=open_components(canonical)
+  try:
+   a=os.fstat(fd);req(stat.S_ISREG(a.st_mode) and a.st_size<=MAX_LIBRARY,'file class/size')
+-  rec=dict(path=path,bytes=a.st_size,device=a.st_dev,inode=a.st_ino,mtime_ns=a.st_mtime_ns)
++  req((a.st_dev,a.st_ino)==(mapped['device'],mapped['inode']),'mapped descriptor identity mismatch')
++  rec=dict(path=path,canonical_path=canonical,bytes=a.st_size,device=a.st_dev,inode=a.st_ino,mtime_ns=a.st_mtime_ns)
+   if body:
+-   req(a.st_size<=remaining,'aggregate body cap');head=os.read(fd,4);req(head==b'\x7fELF','not ELF')
+-   h=hashlib.sha256(head);count=4
+-   while True:
+-    chunk=os.read(fd,4<<20)
+-    if not chunk:break
+-    count+=len(chunk);req(count<=a.st_size,'file growth');h.update(chunk)
+-   b=os.fstat(fd);req((a.st_dev,a.st_ino,a.st_size,a.st_mtime_ns)==(b.st_dev,b.st_ino,b.st_size,b.st_mtime_ns) and count==a.st_size,'unstable file')
+-   rec['sha256']=h.hexdigest();rec['scope']='ACTUALLY_LOADED_ELF_CURRENT_BODY_ONLY'
+-  else:rec['sha256']=None;rec['scope']='LOADED_SO_PATH_STAT_ONLY_NO_BODY_IDENTITY'
++   req(a.st_size<=remaining,'aggregate body cap');rec['sha256']=hash_fd(fd,a,min(MAX_LIBRARY,remaining),elf=True);rec['scope']='ACTUALLY_LOADED_ELF_CURRENT_BODY_ONLY'
++  else:
++   req(snapshot(a)==snapshot(os.fstat(fd)),'unstable stat');rec['sha256']=None;rec['scope']='LOADED_SO_PATH_STAT_ONLY_NO_BODY_IDENTITY'
+   return rec,a.st_size if body else 0
++ finally:os.close(fd)
++def driver_query(g,record_identity=None):
++ tool='/usr/bin/nvidia-smi';req(g['nvidia_smi_path']==tool,'fixed driver tool')
++ req(g['nvidia_smi_identity_mode'] in ('KNOWN_PIN','ACQUIRE_FIXED_ROOT_OS_TOOL'),'tool identity mode')
++ canonical=canonical_alias(tool,g['path_aliases']);req(inside(canonical,('/usr/bin','/usr/lib','/usr/lib64','/bin')),'fixed utility canonical class')
++ fd=open_components(canonical,trust_root=True)
++ try:
++  a=os.fstat(fd);req(a.st_uid==0 and not a.st_mode&0o022,'untrusted tool owner/write mode')
++  digest=hash_fd(fd,a,32<<20,elf=True)
++  expected=g['nvidia_smi_sha256']
++  if g['nvidia_smi_identity_mode']=='KNOWN_PIN':req(isinstance(expected,str) and len(expected)==64 and digest==expected,'known tool pin')
++  else:req(expected is None and g['root_managed_tool_identity_acquisition'] is True,'explicit OS tool acquisition permission')
++  identity=dict(path=tool,canonical_path=canonical,sha256=digest,bytes=a.st_size,uid=a.st_uid,mode=oct(stat.S_IMODE(a.st_mode)),identity_mode=g['nvidia_smi_identity_mode'],provenance='ROOT_MANAGED_FIXED_SITE_UTILITY_CURRENT_NODE_OBSERVATION')
++  if record_identity is not None:record_identity(identity)
++  # Execute this already hashed descriptor, avoiding pathname replacement races.
++  command=[tool,'--query-gpu=driver_version','--format=csv,noheader,nounits']
++  result=subprocess.run(command,executable='/proc/self/fd/'+str(fd),pass_fds=(fd,),capture_output=True,timeout=5,check=True)
++  req(snapshot(a)==snapshot(os.fstat(fd)),'tool changed during query')
++  req(len(result.stdout)<=16384 and len(result.stderr)<=16384,'driver output cap')
++  rows=result.stdout.decode('utf-8').strip().splitlines();req(1<=len(rows)<=16 and len(set(rows))==1 and re.fullmatch(r'[0-9]+(?:\.[0-9]+){1,3}',rows[0]),'numeric driver version')
++  identity['driver_version']=rows[0];return identity
+  finally:os.close(fd)
+ def put(path,obj):
+  with pathlib.Path(path).open('x') as f:json.dump(obj,f,indent=2,allow_nan=False);f.write('\n');f.flush();os.fsync(f.fileno())
+@@ -45,11 +112,11 @@
+  try:os.fsync(fd)
+  finally:os.close(fd)
+ def main():
+- grant_path,expected=sys.argv[1:];raw=pathlib.Path(grant_path).read_bytes();req(len(raw)<=65536 and hashlib.sha256(raw).hexdigest()==expected,'grant')
+- g=json.loads(raw)
+- req(g['decision']=='GO_SBMR512_RUNTIME_METADATA_PHASE1_V1' and g['root_authorized'] is True and g['reviewer'] and g['author']!=g['reviewer'],'release')
++ grant_path,expected=sys.argv[1:];g=capture_json(grant_path,expected,65536)
++ req(g['decision']=='GO_SBMR512_RUNTIME_METADATA_PHASE1_V1R1' and g['root_authorized'] is True and g['reviewer'] and g['author']!=g['reviewer'],'release')
+  req(g['scientific_read']=='HOLD' and g['automatic_retry'] is False and g['output']==OUT,'scope')
+  req(g['modules']==list(MODULES) and g['allowed_roots']==list(ALLOWED_ROOTS),'finite import/file scope')
++ req(isinstance(g['path_aliases'],list) and len(g['path_aliases'])<=4,'literal alias count cap')
+  req(g['max_library_bytes']==MAX_LIBRARY and g['max_total_elf_bytes']==MAX_TOTAL and g['max_libraries']==MAX_LIBRARIES,'caps')
+  req(g['model_construction'] is False and g['weights_images_npz'] is False,'no payload')
+  req(type(g['loaded_elf_body_hash'])==bool and g['input_current_identity_receipt_sha256']=='7847e2007570f75012f36fccd9257f73231c9a28cafbfb38ba86c2286d76e61b','identity constraints')
+@@ -60,17 +127,7 @@
+  put(out/'CLAIM.json',dict(grant_sha256=expected,scientific_read='HOLD',scope='IMPORT_RUNTIME_METADATA_ONLY_NO_MODEL',native_job_id=os.environ['SLURM_JOB_ID']))
+  start=time.monotonic()
+  try:
+-  # Fixed root-pinned driver metadata tool only; no shell, no model/data.
+-  tool='/usr/bin/nvidia-smi';req(g['nvidia_smi_path']==tool and isinstance(g['nvidia_smi_sha256'],str) and len(g['nvidia_smi_sha256'])==64,'driver tool pin')
+-  fd=os.open(tool,os.O_RDONLY|os.O_NOFOLLOW)
+-  try:
+-   st=os.fstat(fd);req(stat.S_ISREG(st.st_mode) and st.st_size<=32<<20,'driver tool cap');h=hashlib.sha256()
+-   for chunk in iter(lambda:os.read(fd,1<<20),b''):h.update(chunk)
+-   req(h.hexdigest()==g['nvidia_smi_sha256'],'driver tool changed')
+-  finally:os.close(fd)
+-  query=subprocess.run([tool,'--query-gpu=driver_version','--format=csv,noheader,nounits'],capture_output=True,timeout=5,check=True)
+-  req(len(query.stdout)<=16384 and len(query.stderr)<=16384,'driver output cap')
+-  driver_rows=query.stdout.decode('utf-8').strip().splitlines();req(1<=len(driver_rows)<=16 and len(set(driver_rows))==1,'driver version rows')
++  driver_identity=driver_query(g,lambda identity:put(out/'DRIVER_TOOL_IDENTITY.json',identity))
+   # Exact current native installation; no package scan, no .pth/sitecustomize execution.
+   site='/home/narolski/dmenv/lib/python3.12/site-packages';sys.path.append(site)
+   empty=out/'empty_home';empty.mkdir();os.environ['HOME']=str(empty);os.environ['HF_HOME']=str(empty/'hf');os.environ['TORCH_HOME']=str(empty/'torch');os.environ['XDG_CACHE_HOME']=str(empty/'cache');os.environ['HF_HUB_DISABLE_TELEMETRY']='1'
+@@ -84,10 +141,10 @@
+   # Fixed proc file only, bounded same-descriptor read. No /proc traversal.
+   with open('/proc/self/maps','rb') as f:maps=f.read(MAX_MAPS+1)
+   libraries=[];total=0
+-  for path in parse_maps(maps):
+-   rec,n=file_identity(path,g['loaded_elf_body_hash'],MAX_TOTAL-total);total+=n;libraries.append(rec)
++  for mapped in parse_maps(maps):
++   rec,n=file_identity(mapped,g['loaded_elf_body_hash'],MAX_TOTAL-total,g['path_aliases']);total+=n;libraries.append(rec)
+   import multiprocessing
+-  put(out/'RECEIPT.json',dict(status='PROSPECTIVE_IMPORT_ONLY_NOT_HISTORICAL_NOT_FIRSTBATCH',modules=imported,python=dict(executable=sys.executable,prefix=sys.prefix,version=sys.version,flags=dict(isolated=sys.flags.isolated,no_site=sys.flags.no_site)),gpu=dict(name=name,count=t.cuda.device_count(),compute_capability=list(t.cuda.get_device_capability(0)),torch_cuda=t.version.cuda,cudnn_version=t.backends.cudnn.version()),backend_defaults=defaults,multiprocessing_start_method=multiprocessing.get_start_method(allow_none=True),loaded_shared_objects=libraries,total_elf_body_bytes=total,elapsed_seconds=time.monotonic()-start,full_loader_closure='NOT_CLAIMED',worker_site_startup_equivalence='NOT_CLAIMED_NO_SITE_USED',native_driver_metadata=driver_rows[0],historical_identity='UNKNOWN',model_constructed=False,forward_calls=0,weights_images_npz_access=False,scientific_read='HOLD'))
++  put(out/'RECEIPT.json',dict(status='PROSPECTIVE_IMPORT_ONLY_NOT_HISTORICAL_NOT_FIRSTBATCH',modules=imported,python=dict(executable=sys.executable,prefix=sys.prefix,version=sys.version,flags=dict(isolated=sys.flags.isolated,no_site=sys.flags.no_site)),gpu=dict(name=name,count=t.cuda.device_count(),compute_capability=list(t.cuda.get_device_capability(0)),torch_cuda=t.version.cuda,cudnn_version=t.backends.cudnn.version()),backend_defaults=defaults,multiprocessing_start_method=multiprocessing.get_start_method(allow_none=True),loaded_shared_objects=libraries,total_elf_body_bytes=total,elapsed_seconds=time.monotonic()-start,full_loader_closure='NOT_CLAIMED',worker_site_startup_equivalence='NOT_CLAIMED_NO_SITE_USED',native_driver_metadata=driver_identity,historical_identity='UNKNOWN',model_constructed=False,forward_calls=0,weights_images_npz_access=False,scientific_read='HOLD'))
+   put(out/'COMPLETE.json',dict(scope='TECHNICAL_RUNTIME_METADATA_ONLY',scientific_read='HOLD'))
+  except BaseException as e:
+   put(out/'FAILED.json',dict(error_type=type(e).__name__,status='HOLD_NO_AUTOMATIC_RETRY'));raise
+--- v1/launch.py
++++ v1r1/launch.py
+@@ -2,6 +2,7 @@
+ import datetime,hashlib,json,os,pathlib,subprocess,sys
+ sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+ from contract import validate,OUTPUT
++from authority import capture_json
+ BASE=pathlib.Path(OUTPUT).parent
+ J=BASE/'dispatch_s408'
+ SRC=BASE/'source'
+@@ -17,10 +18,10 @@
+  finally:os.close(fd)
+ def main():
+  path,expected=sys.argv[1:]
+- if sys.flags.optimize or sha(path)!=expected:raise ValueError('bootstrap/config binding')
+- c=json.loads(pathlib.Path(path).read_bytes());validate(c)
++ if sys.flags.optimize:raise ValueError('optimized bootstrap')
++ c=capture_json(path,expected);validate(c)
+  if not (os.isatty(0) and os.isatty(1) and os.environ.get('TMUX_PANE')):raise ValueError('real detached tmux PTY required')
+- # All opaque admissions/config/source checked before permanent preallocation claim.
++ # Admission references checked here; root externally verifies source before invocation.
+  for a in c['admissions'].values():
+   if sha(a['path'])!=a['sha256']:raise ValueError('admission hash')
+  if pathlib.Path(OUTPUT).exists():raise ValueError('worker output exists; no retry')
+--- v1/node_driver.py
++++ v1r1/node_driver.py
+@@ -2,6 +2,7 @@
+ import hashlib,json,os,pathlib,subprocess,sys,time
+ sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+ from contract import validate,OUTPUT,BASE
++from authority import capture_json,capture_bytes
+ 
+ def sha(p):
+  h=hashlib.sha256()
+@@ -14,9 +15,7 @@
+  try:os.fsync(fd)
+  finally:os.close(fd)
+ def main():
+- path,expected=sys.argv[1:];raw=pathlib.Path(path).read_bytes()
+- if hashlib.sha256(raw).hexdigest()!=expected:raise ValueError('config')
+- c=json.loads(raw);validate(c);j=pathlib.Path(c['driver_dir'])
++ path,expected=sys.argv[1:];c=capture_json(path,expected);validate(c);j=pathlib.Path(c['driver_dir'])
+  if not (j/'CLAIM.json').is_file() or not (j/'NATIVE_JOB_ID.txt').is_file():raise ValueError('preallocation/native proof')
+  if os.environ.get('SLURM_JOB_PARTITION')!='lem-gpu-interactive' or os.environ.get('SLURM_CPUS_PER_TASK')!='2' or os.environ.get('SLURM_MEM_PER_NODE')!='8192':raise ValueError('native envelope')
+  put(j/'NODE_CLAIM.json',dict(scope='RUNTIME_IMPORT_ONLY',scientific_read='HOLD'))
+@@ -26,7 +25,7 @@
+   for p,h in c['content_pins'].items():
+    if sha(p)!=h:raise ValueError('exact granted pin changed')
+   source=pathlib.Path(c['worker_dir']);names=set()
+-  for line in pathlib.Path(c['source_manifest_path']).read_text().splitlines():
++  for line in capture_bytes(c['source_manifest_path'],c['content_pins'][c['source_manifest_path']]).decode('utf-8').splitlines():
+    h,n=line.split('  ',1)
+    if n in names or pathlib.Path(n).is_absolute() or '..'in pathlib.Path(n).parts:raise ValueError('manifest')
+    names.add(n);p=source/n
+--- v1/contract.py
++++ v1r1/contract.py
+@@ -5,7 +5,7 @@
+ def req(ok,msg):
+  if not ok:raise ValueError(msg)
+ def validate(c):
+- req(c['decision']=='GO_SBMR512_RUNTIME_METADATA_PHASE1_DISPATCH_V1' and c['root_authorized'] is True and c['reviewer'] and c['author']!=c['reviewer'],'release')
++ req(c['decision']=='GO_SBMR512_RUNTIME_METADATA_PHASE1_DISPATCH_V1R1' and c['root_authorized'] is True and c['reviewer'] and c['author']!=c['reviewer'],'release')
+  req(c['scientific_read']=='HOLD' and c['automatic_retry'] is False,'scope')
+  req(c['driver_dir']==BASE+'/dispatch_s408' and c['worker_dir']==BASE+'/source','fixed namespace')
+  req(c['output']==OUTPUT and c['input_identity_receipt_sha256']=='7847e2007570f75012f36fccd9257f73231c9a28cafbfb38ba86c2286d76e61b','adopted current identity')

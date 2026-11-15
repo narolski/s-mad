@@ -1,0 +1,78 @@
+--- src/CB1/idistill/cb1_idistill.sbatch
++++ src/recovery_20261114/cb1_idistill_waitfix.sbatch
+@@ -10,13 +10,18 @@
+ # idistill_cb1.patch). Submit with --gres=gpu:hopper:1,storage:local:150G --time=... and
+ #   --export=ALL,STAGE=ae        crop (SMDD release crop script, unchanged) + autoencoder (300 epochs) + latents
+ #   --export=ALL,STAGE=cls,SEED=401|402|403   classifier (needs results/CB1/idistill_ae.tar; exits within a minute if absent)
+-#   add SMOKE=1 for the smoke (both stages on small subsets, 2 AE epochs, 1 classifier epoch).
++#   add SMOKE=1 for the smoke (both stages on small subsets, 2 AE epochs, 6 classifier epochs).
+ # Everything in $TMPDIR (local NVMe): packs untarred there, venv built there from wheels, one tar back to Lustre.
+ set -euo pipefail
+ L=${CB1_L:-/lustre/pd03/hpc-narolski-1790461090/smad-next}; P=$L/packs/CB1; R=$L/results/CB1; mkdir -p $R   # CB1_L: rented variant root
+ STAGE=${STAGE:?ae|cls}; SM=${SMOKE:-}
+ case $STAGE in ae) T=idistill_ae ;; cls) T=idistill_cls_s${SEED:?} ;; all) T=idistill_all ;; *) exit 2 ;; esac   # all: AE then seeds ${SEEDS:-401 402 403} in parallel on the same GPU
+ [ -n "$SM" ] && T=${T}_smoke
++if [ -n "${CB1_RECOVERY_TAG:-}" ]; then
++  case $CB1_RECOVERY_TAG in *[!a-zA-Z0-9_-]*) echo "bad recovery tag"; exit 2 ;; esac
++  [ "$STAGE" = all ] || { echo "recovery tag supported only for complete all-stage runs"; exit 2; }
++  T=${T}_${CB1_RECOVERY_TAG}
++fi
+ [ -f $R/$T.tar.sha256 ] && { echo "$T done already"; exit 0; }
+ AE=$R/idistill_ae${SM:+_smoke}.tar
+ if [ $STAGE = cls ]; then
+@@ -48,9 +53,20 @@
+ $PY -I -c "import os,sys; sys.path[:0]=[p for p in os.environ.get('CB1_EXTRA_SITE','').split(':') if p]; import torch, torchvision, cv2, sklearn, facenet_pytorch, tensorboard; print(torch.__version__, torch.version.cuda, torch.cuda.get_arch_list(), torch.cuda.get_device_name(0)); cap = torch.cuda.get_device_capability(0); assert f'sm_{cap[0]}{cap[1]}' in torch.cuda.get_arch_list(), 'GPU arch not in this torch build'; x = torch.randn(64, 64, device='cuda'); print('cuda matmul ok', float((x @ x).sum()))"
+ ( n=0; while :; do nvidia-smi --query-gpu=memory.used,utilization.gpu --format=csv,noheader,nounits >> $W/out/gpu.csv; sleep 30; n=$((n+1))
+     if [ $((n % 60)) = 0 ]; then mkdir -p $R/${T}_partial   # review F4: checkpoints and logs leave TMPDIR every 30 min
+-      find $W/out -maxdepth 4 \( -name '*_best.pt' -o -name '*.pt' -o -name '*.pt.valbest' -o -name '*.log' \) -exec cp {} $R/${T}_partial/ \; ; fi
++      find $W/out -maxdepth 4 \( -name '*_best.pt' -o -name '*.pt' -o -name '*.pt.valbest' -o -name '*.pt.last' -o -name '*.log' \) -exec cp {} $R/${T}_partial/ \; ; fi
+   done ) >/dev/null 2>&1 &
+ MP=$!
++# Recovery 14 Nov: the monitor is not a training worker and must never be included in a bare wait.
++cleanup_monitor() {
++  if [ -n "${MP:-}" ]; then
++    kill "$MP" 2>/dev/null || true
++    wait "$MP" 2>/dev/null || true
++    MP=
++  fi
++}
++trap cleanup_monitor EXIT
++trap 'exit 143' TERM
++trap 'exit 130' INT
+ crop() {  # SMDD release crop script, unchanged: image_preprocess.py --in_folder --out_folder
+   ( cd $W/cb1/smdd && $PY -I $W/cb1/run_code.py $W/cb1/smdd $ST image_preprocess.py --in_folder "$1" --out_folder "$2" ) > "$3" 2>&1
+   echo "crop $(basename $1): $(ls $1 | wc -l) in, $(ls $2 | wc -l) out"
+@@ -100,13 +116,30 @@
+     done
+   }
+   case $STAGE in all) SL=${SEEDS:-401 402 403} ;; *) SL=${SEED:-401} ;; esac
+-  for S in $SL; do run_seed $S & done; wait
+-  for S in $SL; do [ -s $W/out/scores_s${S}_best.csv ] || { echo "seed $S produced no scores"; FAILED=1; }; done
++  WORKER_PIDS=(); WORKER_SEEDS=()
++  for S in $SL; do
++    run_seed "$S" &
++    WORKER_PIDS+=("$!"); WORKER_SEEDS+=("$S")
++  done
++  for i in "${!WORKER_PIDS[@]}"; do
++    if wait "${WORKER_PIDS[$i]}"; then
++      echo "worker ${WORKER_SEEDS[$i]} exit 0"
++    else
++      WR=$?
++      echo "worker ${WORKER_SEEDS[$i]} failed with exit $WR"
++      FAILED=1
++    fi
++  done
++  for S in $SL; do
++    for v in best valbest last; do
++      [ -s "$W/out/scores_s${S}_$v.csv" ] || { echo "seed $S produced no $v score file"; FAILED=1; }
++    done
++  done
+   cp $W/eval_all.csv $W/eval_all_meta.csv $W/smdd/train.csv $W/out/ 2>/dev/null || true
+   [ $STAGE = cls ] && rm -f $W/out/lat.tar $W/out/crops.tar $W/out/OUT_SHA256SUMS && rm -rf $W/out/ae
+   ( cd $W/out && find . -type f ! -name '*.tar' | LC_ALL=C sort | xargs sha256sum > OUT_SHA256SUMS_cls )
+ fi
+-kill $MP 2>/dev/null || true
++cleanup_monitor
+ tar -cf $TMPDIR/$T.tar -C $W/out .
+ cp $TMPDIR/$T.tar $R/$T.tar.part && mv $R/$T.tar.part $R/$T.tar && ( cd $R && sha256sum $T.tar > $T.tar.sha256 )
+ echo "DONE $T $(cat $R/$T.tar.sha256) $(date)"

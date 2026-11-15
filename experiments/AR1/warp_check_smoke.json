@@ -1,0 +1,34 @@
+{
+ "R2w4/opencv": {
+  "n": 8,
+  "max_abs_diff_max": 0.5,
+  "max_abs_diff_median": 0.5,
+  "mean_abs_diff_median": 0.2498801549275716,
+  "region": "whole frame",
+  "mask_fraction_median": 1.0
+ },
+ "R2w4/facemorpher": {
+  "n": 8,
+  "max_abs_diff_max": 0.0,
+  "max_abs_diff_median": 0.0,
+  "mean_abs_diff_median": 0.0,
+  "region": "face mask",
+  "mask_fraction_median": 0.2527275085449219
+ },
+ "R2w/opencv": {
+  "n": 8,
+  "max_abs_diff_max": 0.5,
+  "max_abs_diff_median": 0.5,
+  "mean_abs_diff_median": 0.2500171661376953,
+  "region": "whole frame",
+  "mask_fraction_median": 1.0
+ },
+ "R2w/facemorpher": {
+  "n": 8,
+  "max_abs_diff_max": 0.0,
+  "max_abs_diff_median": 0.0,
+  "mean_abs_diff_median": 0.0,
+  "region": "face mask",
+  "mask_fraction_median": 0.25160789489746094
+ }
+}

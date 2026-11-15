@@ -1,0 +1,9 @@
+# Independent breadth primary policy review
+
+Decision: GO_POLICY_CODE_ONLY. Reviewer: astra_sprint_plan_review; policy author: root. Reviewed ROOT_PROSPECTIVE_PRIMARY_POLICY.md (SHA256 b758d2ed88ed7a794a52fb102f9407aac515e9eca599ba1d5160be6e4f5a636b) and the stated frozen breadth binding bf5c55bc6d6663f57be70503c68c939f6b0e0f579513548973e423cdc118e808. This is a methodology clarification review, not implementation approval, metadata collection or scientific read release.
+
+The policy is coherent with the registered descriptive broad-minus-narrow pilot: fixed200rows/fiveDstrata, allfive paired seeds, mean per-network AUC, and10000 attempted draws. Within each replicate the single RNG2026111404 first draws full source-stratified person/geometry components and then joint paired seed indices. Multiplicity is preserved; no seed selection, score fusion, D merging or redraw occurs.
+
+Retaining every attempted draw and separately identifying missing-class/D-stratum cases makes the conditional interpretation explicit. Percentile95% intervals on readable draws are conditional descriptions, not unconditional95% coverage claims. Fewer than two finite draws or zero variation is inconclusive; unexpected nonfinite arithmetic on a structurally readable draw is fatal. No5% cutoff, .03/4-of5 rule, new superiority criterion or adoption verdict is imported. The same draws may support all15 fixed nuisance-floor descriptive comparisons, without refitting or a floor qualification claim.
+
+Implementation must test structural undefined versus unexpected nonfinite cases, exact RNG call ordering, paired seeds/component multiplicity and the retained10000-draw accounting. Input provenance, exact code/source review, allten-fit eligibility and independent root read releases remain separate. No candidate payloads were opened in this review.

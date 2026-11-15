@@ -1,0 +1,686 @@
+{
+  "decision": "PROPOSED_PACKET_ONLY",
+  "source_authority_pins": {
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/SHA256SUMS": "93b2ff226ee337fe3a486e0077be0a774a5229ce28ada45b46e41d6ed3ef42f4",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/EXPECTED_PLANS.json": "f7db5acb7df89ac5ad6c4de4f1f1a00295fab7ffd120bb98684a250c6ec7630c",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/README.md": "65db1454c9aed58338b72077e79d7bc9f6255c6b3b37099fce580298edeed4aa",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/SUPPORT_POLICY.json": "b63206fdee0af9dc15c814cc15fef4dbbe9bb6b42d75efed94b308629208aab7",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/__init__.py": "445189d026b11d629bdbfe12d55c7bda43d2ae9c4c558b29a9e4954f146eca2d",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/admit.py": "d93f9b2791012fb51b29e224da33ee7a7a9de364f951a7597544c692afc172ec",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/collect_metadata.py": "37fff74a6847f8216cabcbef23d7081cfa54e381390df99c1881175d59949bb2",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/data.py": "7b910e922b99b2a5225361fdb8a9a2fc9ec7004a76e2ae7721fd981f04793b4d",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/journal.py": "a06a9d9f74fb8b394c2d00938d4459d0c3a18e827108063ea73aa29cf7af2e65",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/metadata_only_check.py": "5fa6996a092c6b037c7cbdbe287d528e774fb420896e0b6eb420fa21e73ddcab",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/ranking_statistics.py": "4e93a99cdb643eabef37f56bf70a770a8dec22f1a32fe6a8de1c5b1f7e81dd5e",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/read.py": "f78fd95e241264b3e2fc031c10537fb0ca9880539c283b439b3ebc31818adc91",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/reporting.py": "e1a3d13621c909ffb624451e8b0a055bda0d18e9230d591b9c6b42b5f7688a02",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/test_reporting.py": "b90851ade7709d8449e35003d8afca50a0bb7a65c5bbe4d8bd1add45f55066f2",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/test_synthetic.py": "7e95c3cf6d303137c1ae375bb910fec9fa044f2036cb59fb92eec8946fe2ca43",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/SHA256SUMS": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/paired.py": "e5ab5ce98beaabba77c893efe42cd2d6aaec252fac79b3f144676288fe517b13",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/patch_train.py": "ed103b44ede70e5b3232e708d775907363df829779081fe7e50c623277d96eb7",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/run.sh": "adbcbc5ea6f3d9f54b05ddc928a7348328ca094aa5c117721d9401a944eb5d97",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/battery.sh": "286b27157967011c0cc59871d20011fac12552d14112fd45b17852be81c91e42",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/config.json": "82ff9ffd4b47ca8fbf828b4d4f33abcb4974c7e04485b69715a5b0152869e7fe",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/check_cpu.py": "62fbc04cfa348270e51f5503b4960a7c70e4567d4352a085155e41049eba6681",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/worker.sh": "7fab140870cf4985e208cd99056ebc447301e85c9b41a69b17a0d9c9a86347d9",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/verify_release.py": "1cd43b0179d00c45e545360207e8a3cdd3c7e27262cad7456e996b701fa7d9f5",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/production.sbatch": "02702be7cfbcb9196d72e4b69da853d92f18462afa130a04f23cb2eb6f2a9a8c",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/check_battery_byte.py": "1443d9db11bc9b946bad364210be6091064f18ea722c6ff9545fb487d09ce02c",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/prefit_binding_v1/BINDING.json": "519546ef7002930f620610f01deb0cc4e8889acf819b829a80c05f95fff6e923",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/PRODUCTION_RELEASE.json": "ea9088c838f1b8e647cf1b970996133e3829150ddc865b6515362b83f8135fb7",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/PRODUCTION_REVIEW_ROOT.md": "c6d499a4dd0aee4f6c95e67cfbddb40492a394ec198375b5ba0b6f80b471148f",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/reader_reporting_repair/ROOT_V2_CODE_ACCEPTANCE.md": "e9e6d7f48aae89fde5fc00201dc0f875c112c3c793c8e722d6bf5aefa69b6314",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/reader_reporting_repair/ASTRA_V2_CODE_REVIEW.md": "24f09ecb96bac03ec5e3592537b0c73d396ad675b6d46c282777bfefe175e387",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/reader_completion_contract_20261114/PLAN_AND_IMPLEMENTATION_CONTRACT.md": "f1fdb0dba16350fcf27a50e120e0ba11c53393b74396288b0a4ccfd033445d77",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/reader_completion_contract_20261114/MANIFEST.json": "e2d7516d70039f4cc4a3ea348ffc231fe2b46de7bd29cd621f5c2d991caa8b47"
+  },
+  "receipt_pins": {
+    "/mnt/t7/smad_next/coordination_20261114/hn_pair_collection_20261114T181157Z/COLLECTION_VERIFIED.json": "65fe3d0c52eb3dad076316bd4631f13cf71b3839357eb601ef7229fdfdcde804",
+    "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/COLLECTION_VERIFIED.json": "fca961c6171ce536036f6ded958db44210cc964040a76cdbad70b458a2c4fcea",
+    "/mnt/t7/smad_next/coordination_20261114/pair_seed503_collection_20261114T191758Z/COLLECTION_VERIFIED.json": "bd93044707c31efe058763e888765bdbfe1a82a72ddf08602d9260b5098d8ec1",
+    "/mnt/t7/smad_next/coordination_20261114/pair_seed504_collection_20261114T193958Z/COLLECTION_VERIFIED.json": "b7680d7a4f7e5754ced721c9fdfe24077898f317991fefdb60c685b8396ad596",
+    "/mnt/t7/smad_next/coordination_20261114/pair_seed505_first2_collection_20261114T200359Z/COLLECTION_VERIFIED.json": "8e838acc9cac61ce1ee11f1c4eafeb0ebfb354cce1740167809a4d739ce24ec2",
+    "/mnt/t7/smad_next/coordination_20261114/pair_seed505_final_collection_20261114T200359Z/COLLECTION_VERIFIED.json": "16d212cb0698f54445fea560d57a2e76daadbeaef0c3913c5b517da9a3da7207"
+  },
+  "tasks": [
+    {
+      "task": "SPRINT5_1_production_v3_bce_s501",
+      "arm": "bce",
+      "seed": 501,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 0,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_bce_s501/meta.json",
+        "SPRINT5_1_production_v3_bce_s501/info.json",
+        "SPRINT5_1_production_v3_bce_s501/battery/battery.json",
+        "SPRINT5_1_production_v3_bce_s501/battery/gate.json",
+        "SPRINT5_1_production_v3_bce_s501/battery/platform.json",
+        "SPRINT5_1_production_v3_bce_s501/sprint_schedule.json",
+        "SPRINT5_1_production_v3_bce_s501/SHA256SUMS",
+        "SPRINT5_1_production_v3_bce_s501/train.log",
+        "SPRINT5_1_production_v3_bce_s501/battery_status.txt",
+        "SPRINT5_1_production_v3_bce_s501/task.env",
+        "SPRINT5_1_production_v3_bce_s501/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_bce_s501/last.pt",
+        "SPRINT5_1_production_v3_bce_s501/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s501/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s501/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s501/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s501/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_bce_s501/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s501/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s501/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s501/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s501/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_bce_s501",
+      "arm": "paired_bce",
+      "seed": 501,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 1,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_bce_s501/meta.json",
+        "SPRINT5_1_production_v3_paired_bce_s501/info.json",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_bce_s501/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_bce_s501/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_bce_s501/train.log",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_bce_s501/task.env",
+        "SPRINT5_1_production_v3_paired_bce_s501/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_bce_s501/last.pt",
+        "SPRINT5_1_production_v3_paired_bce_s501/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_bce_s501/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s501/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_rank_s501",
+      "arm": "paired_rank",
+      "seed": 501,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 2,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_rank_s501/meta.json",
+        "SPRINT5_1_production_v3_paired_rank_s501/info.json",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_rank_s501/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_rank_s501/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_rank_s501/train.log",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_rank_s501/task.env",
+        "SPRINT5_1_production_v3_paired_rank_s501/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_rank_s501/last.pt",
+        "SPRINT5_1_production_v3_paired_rank_s501/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_rank_s501/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s501/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_bce_s502",
+      "arm": "bce",
+      "seed": 502,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 3,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_bce_s502/meta.json",
+        "SPRINT5_1_production_v3_bce_s502/info.json",
+        "SPRINT5_1_production_v3_bce_s502/battery/battery.json",
+        "SPRINT5_1_production_v3_bce_s502/battery/gate.json",
+        "SPRINT5_1_production_v3_bce_s502/battery/platform.json",
+        "SPRINT5_1_production_v3_bce_s502/sprint_schedule.json",
+        "SPRINT5_1_production_v3_bce_s502/SHA256SUMS",
+        "SPRINT5_1_production_v3_bce_s502/train.log",
+        "SPRINT5_1_production_v3_bce_s502/battery_status.txt",
+        "SPRINT5_1_production_v3_bce_s502/task.env",
+        "SPRINT5_1_production_v3_bce_s502/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_bce_s502/last.pt",
+        "SPRINT5_1_production_v3_bce_s502/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s502/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s502/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s502/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s502/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_bce_s502/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s502/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s502/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s502/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s502/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_bce_s502",
+      "arm": "paired_bce",
+      "seed": 502,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 4,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_bce_s502/meta.json",
+        "SPRINT5_1_production_v3_paired_bce_s502/info.json",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_bce_s502/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_bce_s502/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_bce_s502/train.log",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_bce_s502/task.env",
+        "SPRINT5_1_production_v3_paired_bce_s502/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_bce_s502/last.pt",
+        "SPRINT5_1_production_v3_paired_bce_s502/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_bce_s502/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s502/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_rank_s502",
+      "arm": "paired_rank",
+      "seed": 502,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 5,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_rank_s502/meta.json",
+        "SPRINT5_1_production_v3_paired_rank_s502/info.json",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_rank_s502/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_rank_s502/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_rank_s502/train.log",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_rank_s502/task.env",
+        "SPRINT5_1_production_v3_paired_rank_s502/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_rank_s502/last.pt",
+        "SPRINT5_1_production_v3_paired_rank_s502/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_rank_s502/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s502/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_bce_s503",
+      "arm": "bce",
+      "seed": 503,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 6,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_bce_s503/meta.json",
+        "SPRINT5_1_production_v3_bce_s503/info.json",
+        "SPRINT5_1_production_v3_bce_s503/battery/battery.json",
+        "SPRINT5_1_production_v3_bce_s503/battery/gate.json",
+        "SPRINT5_1_production_v3_bce_s503/battery/platform.json",
+        "SPRINT5_1_production_v3_bce_s503/sprint_schedule.json",
+        "SPRINT5_1_production_v3_bce_s503/SHA256SUMS",
+        "SPRINT5_1_production_v3_bce_s503/train.log",
+        "SPRINT5_1_production_v3_bce_s503/battery_status.txt",
+        "SPRINT5_1_production_v3_bce_s503/task.env",
+        "SPRINT5_1_production_v3_bce_s503/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_bce_s503/last.pt",
+        "SPRINT5_1_production_v3_bce_s503/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s503/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s503/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s503/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s503/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_bce_s503/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s503/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s503/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s503/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s503/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_bce_s503",
+      "arm": "paired_bce",
+      "seed": 503,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 7,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_bce_s503/meta.json",
+        "SPRINT5_1_production_v3_paired_bce_s503/info.json",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_bce_s503/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_bce_s503/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_bce_s503/train.log",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_bce_s503/task.env",
+        "SPRINT5_1_production_v3_paired_bce_s503/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_bce_s503/last.pt",
+        "SPRINT5_1_production_v3_paired_bce_s503/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_bce_s503/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s503/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_rank_s503",
+      "arm": "paired_rank",
+      "seed": 503,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 8,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_rank_s503/meta.json",
+        "SPRINT5_1_production_v3_paired_rank_s503/info.json",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_rank_s503/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_rank_s503/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_rank_s503/train.log",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_rank_s503/task.env",
+        "SPRINT5_1_production_v3_paired_rank_s503/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_rank_s503/last.pt",
+        "SPRINT5_1_production_v3_paired_rank_s503/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_rank_s503/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s503/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_bce_s504",
+      "arm": "bce",
+      "seed": 504,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 9,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_bce_s504/meta.json",
+        "SPRINT5_1_production_v3_bce_s504/info.json",
+        "SPRINT5_1_production_v3_bce_s504/battery/battery.json",
+        "SPRINT5_1_production_v3_bce_s504/battery/gate.json",
+        "SPRINT5_1_production_v3_bce_s504/battery/platform.json",
+        "SPRINT5_1_production_v3_bce_s504/sprint_schedule.json",
+        "SPRINT5_1_production_v3_bce_s504/SHA256SUMS",
+        "SPRINT5_1_production_v3_bce_s504/train.log",
+        "SPRINT5_1_production_v3_bce_s504/battery_status.txt",
+        "SPRINT5_1_production_v3_bce_s504/task.env",
+        "SPRINT5_1_production_v3_bce_s504/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_bce_s504/last.pt",
+        "SPRINT5_1_production_v3_bce_s504/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s504/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s504/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s504/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s504/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_bce_s504/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s504/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s504/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s504/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s504/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_bce_s504",
+      "arm": "paired_bce",
+      "seed": 504,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 10,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_bce_s504/meta.json",
+        "SPRINT5_1_production_v3_paired_bce_s504/info.json",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_bce_s504/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_bce_s504/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_bce_s504/train.log",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_bce_s504/task.env",
+        "SPRINT5_1_production_v3_paired_bce_s504/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_bce_s504/last.pt",
+        "SPRINT5_1_production_v3_paired_bce_s504/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_bce_s504/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s504/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_rank_s504",
+      "arm": "paired_rank",
+      "seed": 504,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 11,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_rank_s504/meta.json",
+        "SPRINT5_1_production_v3_paired_rank_s504/info.json",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_rank_s504/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_rank_s504/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_rank_s504/train.log",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_rank_s504/task.env",
+        "SPRINT5_1_production_v3_paired_rank_s504/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_rank_s504/last.pt",
+        "SPRINT5_1_production_v3_paired_rank_s504/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_rank_s504/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s504/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_bce_s505",
+      "arm": "bce",
+      "seed": 505,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 12,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_bce_s505/meta.json",
+        "SPRINT5_1_production_v3_bce_s505/info.json",
+        "SPRINT5_1_production_v3_bce_s505/battery/battery.json",
+        "SPRINT5_1_production_v3_bce_s505/battery/gate.json",
+        "SPRINT5_1_production_v3_bce_s505/battery/platform.json",
+        "SPRINT5_1_production_v3_bce_s505/sprint_schedule.json",
+        "SPRINT5_1_production_v3_bce_s505/SHA256SUMS",
+        "SPRINT5_1_production_v3_bce_s505/train.log",
+        "SPRINT5_1_production_v3_bce_s505/battery_status.txt",
+        "SPRINT5_1_production_v3_bce_s505/task.env",
+        "SPRINT5_1_production_v3_bce_s505/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_bce_s505/last.pt",
+        "SPRINT5_1_production_v3_bce_s505/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s505/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s505/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s505/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s505/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_bce_s505/scores_eval.npz",
+        "SPRINT5_1_production_v3_bce_s505/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_bce_s505/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_bce_s505/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_bce_s505/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_bce_s505",
+      "arm": "paired_bce",
+      "seed": 505,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 13,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_bce_s505/meta.json",
+        "SPRINT5_1_production_v3_paired_bce_s505/info.json",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_bce_s505/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_bce_s505/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_bce_s505/train.log",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_bce_s505/task.env",
+        "SPRINT5_1_production_v3_paired_bce_s505/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_bce_s505/last.pt",
+        "SPRINT5_1_production_v3_paired_bce_s505/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_bce_s505/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_bce_s505/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    },
+    {
+      "task": "SPRINT5_1_production_v3_paired_rank_s505",
+      "arm": "paired_rank",
+      "seed": 505,
+      "training_source_manifest_sha256": "ef6bccb43d1c8936af8730957ee4da35c0a04fb97ff5ee373920523d63d73f6f",
+      "expected_array_task_index": 14,
+      "metadata_members": [
+        "SPRINT5_1_production_v3_paired_rank_s505/meta.json",
+        "SPRINT5_1_production_v3_paired_rank_s505/info.json",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/battery.json",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/gate.json",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/platform.json",
+        "SPRINT5_1_production_v3_paired_rank_s505/sprint_schedule.json",
+        "SPRINT5_1_production_v3_paired_rank_s505/SHA256SUMS",
+        "SPRINT5_1_production_v3_paired_rank_s505/train.log",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery_status.txt",
+        "SPRINT5_1_production_v3_paired_rank_s505/task.env",
+        "SPRINT5_1_production_v3_paired_rank_s505/task_info.txt"
+      ],
+      "header_only_members": [
+        "SPRINT5_1_production_v3_paired_rank_s505/last.pt",
+        "SPRINT5_1_production_v3_paired_rank_s505/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/logits_gd.npz"
+      ],
+      "postclaim_score_member_allowlist": [
+        "SPRINT5_1_production_v3_paired_rank_s505/scores_eval.npz",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/logits_dev.npz",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/logits_tt1.npz",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/logits_meds.npz",
+        "SPRINT5_1_production_v3_paired_rank_s505/battery/logits_gd.npz"
+      ],
+      "forbidden_in_metadata_phase": [
+        "NPZ_arrays",
+        "weight_body",
+        "checkpoint_body",
+        "training_score_arrays",
+        "scientific_statistics"
+      ]
+    }
+  ],
+  "primary_rows": 200,
+  "genuine_cells": 119,
+  "minimum_guard_components": 20,
+  "sparse_and_degenerate": "INCONCLUSIVE_NO_CELL_DROPPING",
+  "same_once": "/mnt/t7/smad_next/SPRINT5_1/reader_once_v1",
+  "same_result": "/mnt/t7/smad_next/SPRINT5_1/reader_output_v1/RESULT.json",
+  "statistics_amendment": "NONE",
+  "optional_bootstrap_save_amendment": "NOT_IMPLEMENTED_NOT_REQUIRED_FOR_METADATA_CLOSURE"
+}

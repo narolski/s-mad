@@ -1,0 +1,41 @@
+{
+  "schema": "batchc-metadata-admission-audit-v1",
+  "date": "2026-11-14",
+  "repository_head_at_inspection": "3a2ca142df6e71da1c3042c61b09c0e56ca63d56",
+  "production_disposition": "NO_GO",
+  "scientific_go": false,
+  "candidate_payloads_opened": false,
+  "production_claim_created": false,
+  "cluster_contact": false,
+  "existing_files_edited": false,
+  "checks": {
+    "synthetic_admission_tests": {"passed": 18, "seconds": 0.026, "resource_warnings": 3},
+    "companion_synthetic_self_test": "PASS",
+    "full_mock": {
+      "exit_code": 0,
+      "output": "OPENCODE_BATCHC_MOCK_20261114.json",
+      "sha256": "eb5048177a2f2e047726689359c404893a8596981bb5eae07fdccd35435784b5",
+      "scores": "synthetic",
+      "metadata": "permitted real host/D/evaluation metadata",
+      "external_floor_branch_exercised": false
+    },
+    "floor_context_learner_files_head_equal_and_stage_pinned": 24,
+    "floor_contrasts_with_complete_eval_id_coverage": 6,
+    "unique_eval_ids": 21277,
+    "host_counts": {"dev": 100, "test": 191, "clean": 80, "shape_linked": 32, "clean_unlinked": 69},
+    "D_keys_unique": true,
+    "D_positive_finite": true,
+    "primary_D_missing": 0,
+    "archive_existence_only": {"batchc": 15, "comparators": 15, "sidecars": 30},
+    "native_identity_or_score_validation": "NOT_RUN"
+  },
+  "remaining_blockers": [
+    "B1: required within-D context print missing from batch-C reader and companion",
+    "B2: actual external floor numerical reproduction and companion real-input joins/reproduction not executed",
+    "B3: current source pins, all-30-archive integrity/provenance and independent exact release receipt pending",
+    "B4: native identity/order/provenance/finite checks only establish facts at authorized first access",
+    "B5: release-time once/output checks, durable execution receipts and independent conclusions review required"
+  ],
+  "next_owner_action": "AB1 owner prepares display-only within-D integration; independent reviewer checks patch; authorized floor/learner-only preflight and opaque collector verification precede release.",
+  "report": "OPENCODE_BATCHC_ADMISSION_20261114.md"
+}

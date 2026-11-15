@@ -1,0 +1,76 @@
+{
+ "train": {
+  "n": 100,
+  "no_face": [],
+  "share_named_partner_top": 0.97,
+  "cos_named_partner_mean": 0.3262,
+  "cos_other_four_mean": 0.0494,
+  "share_first_above_all20": 1.0,
+  "cos_first_mean": 0.5582,
+  "cos_rand20_mean": 0.0347,
+  "mismatches": [
+   {
+    "name": "morphed_img045507_img099545.png",
+    "named_partner": "img099545",
+    "top_partner": "img337488",
+    "cos_named": 0.24551584909078006,
+    "cos_other4": 0.10777962287840746,
+    "cos_first": 0.6944387451158216,
+    "cos_rand20_mean": 0.034740999566932385,
+    "first_above_all20": true
+   },
+   {
+    "name": "morphed_img423579_img282038.png",
+    "named_partner": "img282038",
+    "top_partner": "img054553",
+    "cos_named": 0.3068638365048023,
+    "cos_other4": 0.13306117399597378,
+    "cos_first": 0.6291258790513461,
+    "cos_rand20_mean": 0.056224425243930495,
+    "first_above_all20": true
+   },
+   {
+    "name": "morphed_img045775_img099545.png",
+    "named_partner": "img099545",
+    "top_partner": "img054553",
+    "cos_named": 0.1341133922274235,
+    "cos_other4": 0.07024901203440673,
+    "cos_first": 0.6273142166945134,
+    "cos_rand20_mean": -0.021855319411721245,
+    "first_above_all20": true
+   }
+  ]
+ },
+ "eval": {
+  "n": 100,
+  "no_face": [],
+  "share_named_partner_top": 0.98,
+  "cos_named_partner_mean": 0.296,
+  "cos_other_four_mean": 0.0182,
+  "share_first_above_all20": 1.0,
+  "cos_first_mean": 0.5146,
+  "cos_rand20_mean": 0.0246,
+  "mismatches": [
+   {
+    "name": "morphed_img407576_img141280.png",
+    "named_partner": "img141280",
+    "top_partner": "img226436",
+    "cos_named": 0.1036973083774312,
+    "cos_other4": 0.06748025376362533,
+    "cos_first": 0.5591308790946758,
+    "cos_rand20_mean": 0.026629724289337475,
+    "first_above_all20": true
+   },
+   {
+    "name": "morphed_img222668_img141280.png",
+    "named_partner": "img141280",
+    "top_partner": "img226436",
+    "cos_named": 0.01889467598785822,
+    "cos_other4": 0.049582105277850515,
+    "cos_first": 0.5929936388825887,
+    "cos_rand20_mean": 0.028871863723090068,
+    "first_above_all20": true
+   }
+  ]
+ }
+}

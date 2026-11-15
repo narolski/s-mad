@@ -1,0 +1,53 @@
+{
+  "scope": "SOURCE_ONLY; NO actual release records exist",
+  "read_order": [
+    "1.read only source inventory, rootphasegrant,OTHERsource review,source pins,git source snapshot; verify sourceclean/version/phase",
+    "2.CPUphaseONLY afternewgrant read/hash/decode ONLY two pinnednative512photos; transform; save exactlyfourregisteredderivedPNGs+actualmask/receipts",
+    "3.OTHERreview actualconstructedreceipts,mask,derivativehashes; no numeric inference beforeadmission",
+    "4.separateROOTnumericphasegrant binds actualroster/receipt/mask/OTHERadmission; only then anchors/derivativePNG/checkpointpayload reads",
+    "5.reproducefouroldanchors,allnewbaseline/repeat/literalcopy checks before48smoke or512fullresponses/model",
+    "6.OTHERsmokepostreview+generatedregionalindexgate beforefull",
+    "7.OTHERnumericpostreview+NEWprivateRGB/maprendergrant beforeseparate rendering; publicationHOLD"
+  ],
+  "constructed_private_exports": [
+    "42_samephoto.png",
+    "42_crossphoto.png",
+    "56_samephoto.png",
+    "56_crossphoto.png",
+    "actual_used_alpha.npy",
+    "DERIVED_INPUT_ROSTER.json",
+    "CONSTRUCTION_RECEIPT.json",
+    "SHA256.json"
+  ],
+  "forbidden": [
+    "00010",
+    "newphotos",
+    "FERET/FRGCpixels",
+    "501/Sb403/H100runtime",
+    "actual execution during source tests",
+    "new condition/seed/cell searches afteroutcomes",
+    "transformed-sourceRGBexport",
+    "benchmark/anatomy/identitycausalclaims",
+    "rendering/main/WIPchanges"
+  ],
+  "scope_facts": "samephoto is processedmix,notnoop; literalcopy onlynoop; knownfallbackellipse transition isactualusedmixingmask butnotanatomicallyverifiedseam; fourprespecified upperboundary patchesvsfourcorners descriptive spatiallyconfounded; regionalmean ismeanofseparate4096pixelinterventions,NOT simultaneous16384pixelremoval",
+  "authority_snapshot_contract": {
+    "external_root_expected_sha256": "mandatory commandline --expected-release-sha256, supplied out-of-band byroot",
+    "bounded_single_capture": "rootgrant64KiB,inventory256KiB,manifest64KiB,otherJSON/textcontrols1MiB; regular/no symlink,no concurrentfdmutation; hashcapturedbytesBEFOREparse",
+    "startup_control_confines": "inventory/release repositoryJSON; independentadmission/smokereview confinedrepo; derivedreceipt/roster exactconstructionroot",
+    "captured_controls": [
+      "rootgrant",
+      "inventory",
+      "sourcemanifest",
+      "OTHERsourcereview",
+      "prereg",
+      "constructionreceipt",
+      "constructedinputadmission",
+      "derivedroster",
+      "smokepostreview",
+      "admittedsmokeresultbytes"
+    ],
+    "receipts": "carry captured digests and use capturedobjects; never reopenauthoritypaths to label scientificruns",
+    "trust_boundary": "root-owned pinned startup interpreter/source tree/filesystem must remainimmutable aftersourceverification; Githistory/clean checks supplemental only; no claim of a sandbox against rootfilesystem modification"
+  }
+}

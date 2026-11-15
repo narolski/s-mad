@@ -1,0 +1,30 @@
+cell,genuine_class,n_morph,n_genuine,best_noncontent_null,O,diagnostic,best_aligned_null,O_aligned,diagnostic_aligned_only,thumbnail_auc
+amsl,all photos,2175,204,file: width,1.0,False,border: zero-border fraction,0.999535722334911,False,0.9998129366689205
+amsl,neutral-only,2175,102,file: width,1.0,False,border: zero-border fraction,0.999535722334911,False,0.9996484110885734
+facemorpher,all photos,1222,204,file: width,1.0,False,border: zero-border fraction,1.0,False,1.0
+facemorpher,neutral-only,1222,102,file: width,1.0,False,border: zero-border fraction,1.0,False,1.0
+opencv,all photos,1221,204,file: width,1.0,False,border: zero-border fraction,1.0,False,1.0
+opencv,neutral-only,1221,102,file: width,1.0,False,border: zero-border fraction,1.0,False,1.0
+stylegan,all photos,1222,204,file: width,1.0,False,border: zero-border fraction,0.9995868232726806,False,0.9977616251083085
+stylegan,neutral-only,1222,102,file: width,1.0,False,border: zero-border fraction,0.9995868232726806,False,0.9982189275055358
+webmorph,all photos,1221,204,file: width,1.0,False,border: zero-border fraction,0.9925527131409484,False,0.9974707327648504
+webmorph,neutral-only,1221,102,file: width,1.0,False,border: zero-border fraction,0.9925567278508455,False,0.9972218207512326
+mordiff,all photos,1000,204,file: width,1.0,False,"colour: 6 statistics, aligned frame",0.7805833333333333,True,0.968392156862745
+dim_a,all photos,500,204,file: width,1.0,False,border: zero-border fraction,0.9989901960784314,False,0.9996274509803922
+dim_a,neutral-only,500,102,file: width,1.0,False,border: zero-border fraction,0.9989901960784314,False,0.9989607843137255
+dim_c,all photos,500,204,file: width,1.0,False,border: zero-border fraction,0.9969705882352942,False,0.9988921568627451
+dim_c,neutral-only,500,102,file: width,1.0,False,border: zero-border fraction,0.9969705882352942,False,0.997313725490196
+fast_dim,all photos,500,204,file: width,1.0,False,border: zero-border fraction,0.9989901960784314,False,0.9996470588235294
+fast_dim,neutral-only,500,102,file: width,1.0,False,border: zero-border fraction,0.9989901960784314,False,0.9988823529411764
+fast_dim_ode,all photos,499,204,file: width,1.0,False,border: zero-border fraction,0.998988172423278,False,0.9986738182246847
+fast_dim_ode,neutral-only,499,102,file: width,1.0,False,border: zero-border fraction,0.998988172423278,False,0.9977012849227868
+greedy_dim,all photos,500,204,file: width,1.0,False,border: zero-border fraction,0.9989901960784314,False,0.9998431372549019
+greedy_dim,neutral-only,500,102,file: width,1.0,False,border: zero-border fraction,0.9989901960784314,False,0.9990588235294118
+greedy_dim_s,all photos,500,204,file: width,1.0,False,border: zero-border fraction,1.0,False,0.9992549019607843
+greedy_dim_s,neutral-only,500,102,file: width,1.0,False,border: zero-border fraction,1.0,False,0.9992156862745099
+MAD22c FaceMorpher,all photos,1000,204,file: width,1.0,False,border: zero-border fraction,0.9994950980392157,False,0.9977941176470588
+MAD22c MIPGAN_I,all photos,1000,204,file: width,1.0,False,border: zero-border fraction,1.0,False,0.9851960784313726
+MAD22c MIPGAN_II,all photos,999,204,file: width,1.0,False,border: zero-border fraction,1.0,False,0.9841459106164988
+MAD22c OpenCV,all photos,984,204,file: width,1.0,False,"colour: 6 statistics, aligned frame",0.7611639167862266,True,0.6230920213613901
+MAD22c Webmorph,all photos,500,204,file: chroma subsampling,1.0,False,"colour: 6 statistics, aligned frame",0.767078431372549,True,0.7695882352941177
+MAD22c Webmorph,neutral-only,500,102,file: chroma subsampling,1.0,False,"colour: 6 statistics, aligned frame",0.7478823529411764,True,0.6714901960784314

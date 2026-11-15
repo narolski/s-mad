@@ -1,0 +1,30 @@
+{
+ "MorDIFF": {
+  "n": 1000,
+  "true_smiling_share": 0.5,
+  "probe_frac_gt_0.5": 0.458,
+  "auc_probe_vs_true": 0.984776,
+  "probe_frac_gt_0.5_on_true_smiling": 0.9
+ },
+ "MAD22c/FaceMorpher": {
+  "n": 1000,
+  "true_smiling_share": 0.5,
+  "probe_frac_gt_0.5": 0.447,
+  "auc_probe_vs_true": 0.977028,
+  "probe_frac_gt_0.5_on_true_smiling": 0.878
+ },
+ "MAD22c/OpenCV": {
+  "n": 984,
+  "true_smiling_share": 0.5030487804878049,
+  "probe_frac_gt_0.5": 0.49898373983739835,
+  "auc_probe_vs_true": 0.9972650843816488,
+  "probe_frac_gt_0.5_on_true_smiling": 0.9737373737373738
+ },
+ "MAD22c/Webmorph": {
+  "n": 500,
+  "true_smiling_share": 0.0,
+  "probe_frac_gt_0.5": 0.022,
+  "auc_probe_vs_true": null,
+  "probe_frac_gt_0.5_on_true_smiling": null
+ }
+}

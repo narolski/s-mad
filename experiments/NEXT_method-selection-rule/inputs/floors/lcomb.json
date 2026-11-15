@@ -1,0 +1,135 @@
+{
+ "n_pos": 1000,
+ "n_neg": 2000,
+ "n_components": 3000,
+ "n_folds": 5,
+ "insample_best_single": 0.8885455,
+ "insample_best_single_stat": "RENDER:resid_corr_gb",
+ "insample_best_single_f27": 0.8855815,
+ "insample_best_single_f27_stat": "F27:noise_std_face",
+ "single": {
+  "auc": 0.888726,
+  "eer": 0.182,
+  "ci": [
+   0.8770308186157051,
+   0.9001399259914848
+  ],
+  "chosen_per_fold": [
+   "-RENDER:resid_corr_gb",
+   "-RENDER:resid_corr_gb",
+   "-RENDER:resid_corr_gb",
+   "-RENDER:resid_corr_gb",
+   "-RENDER:resid_corr_gb"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9822845,
+  "eer": 0.062,
+  "ci": [
+   0.9778402305032032,
+   0.9861505203252167
+  ]
+ },
+ "gbt": {
+  "auc": 0.980135,
+  "eer": 0.0715,
+  "ci": [
+   0.9751341268894735,
+   0.9845141099178693
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.947422,
+  "ci": [
+   0.9396304049145938,
+   0.9544916642302743
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.9822845,
+  "eer": 0.062,
+  "ci": [
+   0.9778402305032032,
+   0.9861505203252167
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.9523175,
+   "logreg": 0.947422
+  },
+  "BORDER": {
+   "gbt": 0.59720225,
+   "logreg": 0.58282525
+  },
+  "RES": {
+   "gbt": 0.92914875,
+   "logreg": 0.931525
+  },
+  "STORE": {
+   "gbt": 0.658989,
+   "logreg": 0.6555095
+  },
+  "RENDER": {
+   "gbt": 0.9248445,
+   "logreg": 0.904257
+  },
+  "BLEND": {
+   "gbt": 0.894541,
+   "logreg": 0.8729965
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.9685535,
+  "BORDER": 0.982264,
+  "RES": 0.9678725,
+  "STORE": 0.980606,
+  "RENDER": 0.9790035,
+  "BLEND": 0.9763045
+ },
+ "contrast": "lcomb",
+ "kind": "floor",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.9820465,
+  "eer": 0.062,
+  "ci": [
+   0.9776041797074754,
+   0.9859486265629475
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.9642325,
+  "eer": 0.10075,
+  "ci": [
+   0.9576997512460184,
+   0.9700212480246296
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "regression_gate": {
+  "value": 0.8855815,
+  "stat": "F27:noise_std_face",
+  "passed": true
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "ffhq_lcomb",
+   "rung": "landmark_combined_orig"
+  },
+  "negative": {
+   "fam": "ffhq_lcomb",
+   "rung": "landmark_combined_resmatch"
+  },
+  "note": "1,000 morphs vs 2,000 resmatch genuine"
+ }
+}

@@ -1,0 +1,21 @@
+{
+  "status": "SOURCE_READY_FOR_OTHER_DELTA_REVIEW_EXECUTION_HOLD",
+  "author": "Sol",
+  "reviewer": null,
+  "parent_source_manifest_sha256": "910f05bf4e8a5c341aaec1f270b0a6a82164a630a164ceca7242ab5fbdb6525e",
+  "parent_package_sha256": "2331bd103e55c3234449058c8a31ff67705d42d581ec0fc3e2a72a9580d33b35",
+  "OTHER_HOLD_review_sha256": "b7a82af949a171970b8311237b466957f9a45cd615f1b8f7e87165a3a805e177",
+  "samebytes_control_review_sha256": "e742a0f53b60fd8cb122db98416eaeffefe3357b97d79d6e317e0eff446a02d3",
+  "source_manifest_sha256": "8b6481b46d4448fb8fe530453fa94ef6f8b54d984fcc9adc6e3048627652757b",
+  "delta": [
+    "descriptor nofollow confinement/reject traversal/exact aliases",
+    "maps device+inode binding/snapshot cap+growth1",
+    "root-managed fixed OS-tool identity acquisition+samefd query",
+    "bounded samebytes config/grant/source-manifest snapshots"
+  ],
+  "scope": "SAME_FIXED5_IMPORTS_NO_MODEL_PAYLOAD_FORWARD",
+  "model_input_flags_required": false,
+  "actual_execution": false,
+  "root_runtime_release": null,
+  "scientific_read": "HOLD"
+}

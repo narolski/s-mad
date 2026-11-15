@@ -1,0 +1,229 @@
+{
+  "accounting_time": "2026-11-14T10:37:02.903002+01:00",
+  "candidate_scores_read": false,
+  "errors": [],
+  "generators": {
+    "mip1": {
+      "group_rung_counts": {
+        "dev/R2": 218,
+        "dev/R3": 109,
+        "dev/R4": 109,
+        "train/R2": 404,
+        "train/R3": 202,
+        "train/R4": 404
+      },
+      "logged_images": 1446,
+      "observed_allocated_H100_hours": 8.989166666666666,
+      "old_plan_H100_hours": 16.716666666666665,
+      "shards": 12
+    },
+    "mip2": {
+      "group_rung_counts": {
+        "dev/R2": 218,
+        "dev/R3": 109,
+        "dev/R4": 109,
+        "train/R2": 404,
+        "train/R3": 202,
+        "train/R4": 404
+      },
+      "logged_images": 1446,
+      "observed_allocated_H100_hours": 7.240833333333334,
+      "old_plan_H100_hours": 6.55,
+      "shards": 8
+    }
+  },
+  "jobs": {
+    "6315654_0": {
+      "elapsed": "00:25:58",
+      "end": "2026-11-14T08:56:43",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_1": {
+      "elapsed": "00:49:37",
+      "end": "2026-11-14T09:20:22",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_10": {
+      "elapsed": "01:24:56",
+      "end": "2026-11-14T10:04:53",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_11": {
+      "elapsed": "00:21:44",
+      "end": "2026-11-14T09:05:44",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_2": {
+      "elapsed": "01:05:05",
+      "end": "2026-11-14T09:35:50",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_3": {
+      "elapsed": "00:11:42",
+      "end": "2026-11-14T08:43:32",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_4": {
+      "elapsed": "00:49:47",
+      "end": "2026-11-14T09:22:37",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_5": {
+      "elapsed": "00:58:44",
+      "end": "2026-11-14T09:33:36",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_6": {
+      "elapsed": "00:14:34",
+      "end": "2026-11-14T08:51:29",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_7": {
+      "elapsed": "00:50:00",
+      "end": "2026-11-14T09:26:55",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_8": {
+      "elapsed": "00:49:39",
+      "end": "2026-11-14T09:27:35",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315654_9": {
+      "elapsed": "00:57:35",
+      "end": "2026-11-14T09:36:31",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315655_0": {
+      "elapsed": "00:30:10",
+      "end": "2026-11-14T09:15:11",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315655_1": {
+      "elapsed": "01:17:12",
+      "end": "2026-11-14T10:03:14",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315655_2": {
+      "elapsed": "00:22:43",
+      "end": "2026-11-14T09:08:45",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315655_3": {
+      "elapsed": "01:16:40",
+      "end": "2026-11-14T10:08:46",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315655_4": {
+      "elapsed": "00:23:53",
+      "end": "2026-11-14T09:19:01",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315655_5": {
+      "elapsed": "01:17:30",
+      "end": "2026-11-14T10:13:39",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315655_6": {
+      "elapsed": "01:21:27",
+      "end": "2026-11-14T10:17:36",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    },
+    "6315655_7": {
+      "elapsed": "00:44:52",
+      "end": "2026-11-14T09:42:02",
+      "exit_code": "0:0",
+      "state": "COMPLETED"
+    }
+  },
+  "remaining_checks": [
+    "Fresh archive SHA256 agreement; per-image bytes/dimensions/PNG/finite latents",
+    "Unchanged alignment pipeline with >=95% aligned per rung; false-aligned rows dropped and listed",
+    "glintr100 identity gate R4 verifies both>=70%,R3 verifies own>=90% per registered group",
+    "Committed admitted-image pins; matched training manifests; prefit cue floor; amendment2 and pre-run review",
+    "Training smoke then ten fits; same-row Sb rescoring; NEXT transfer learner/support pins"
+  ],
+  "scope": "Generation plans, logs, sidecars and scheduler receipts only; not image admission",
+  "sources": {
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_dev_feret_00.json": "3019c9e2bfe232c961362785de1e7f667355da51734ea869a50bc780114dde22",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_dev_frgc_00.json": "88ae1ad0b7b87a5d7a83a3fa7508c222ab82e8e921a83e06c7b4b04fef4aed05",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_dev_frgc_01.json": "4877299ab02e96d1a3baa2500151ee1b80af003d03659c55432a823bd400c0ff",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_dev_frgc_02.json": "046fe00017585e967fc9187cd141874abc29766dd0ad0be48e94e6241e654f50",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_train_feret_00.json": "1fc2a226c615c57354923b5a2f7aef8a2c463ba0a61db71567f9b67ade9bb425",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_train_feret_01.json": "70e339c1b0f246fae59dc78d18a790738064f272821086ec8f5d2e176dc4aac4",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_train_feret_02.json": "9315160381e160835f498f4b3600dc0eebbf75639e419d27efa2390b561e9b72",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_train_frgc_00.json": "4d35396fd4f8f7c43bcfe4cfec116746bcea90e0e32f86dd0cb1070652d987ae",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_train_frgc_01.json": "fbf98fe20f4b683e278703edc260826e0afee68b4d4dc0881161560a6bac0b28",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_train_frgc_02.json": "74c611d64b2d5ecce4231a4d6f38eeb8d5cbd62e179aca2e1e1c8340fc23e939",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_train_frgc_03.json": "253c5d442c7154bc2b8f9263fc2b1d54fac0ebd1d46860ce7805fc60df5f2cef",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip1_train_frgc_04.json": "3f6b1b7814166f46b0488ad0aa11352991550943133c4b364f10d497da70368f",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip2_dev_feret_00.json": "ae8a6a86d397114e68df95643015c8b8b0b60b3df63c8948b5403f9dd91ceffe",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip2_dev_frgc_00.json": "d767a112c2fd18c195a427cb5c1f3a3d8ab30223aa945efdab8fb856e06e8856",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip2_dev_frgc_01.json": "078c837b220f9636599a0e4ebdd7ee2363e6379dd58286062a796f3cbb9cbbb7",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip2_train_feret_00.json": "8a72d0546638185e177915e2e4006d79e977587232b6f969ab47f0da4161b7f7",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip2_train_feret_01.json": "c31d88000d9a9cc65b4277fd22a66d45d929f843d0e3c523082017d43fbfbf53",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip2_train_frgc_00.json": "819b2346fe0a1ac778e2f356bda31360528619112747a7150d487b99a3ffbb7e",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip2_train_frgc_01.json": "ee660f246776e8c01e2386b9a0c74a2a13bf5fa716e2acb43365d540fb72bea6",
+    "/mnt/t7/smad_next/GX1/inputs/shards/GX1_mip2_train_frgc_02.json": "46c8b7b5facb42926b654318dd9d587eedcc3dfe5671623e85f2bc017c66ff2f",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_dev_feret_00.log.csv": "b0fe40b4bba2915067694628fcdc44c96d8d9d7980d4be19c08c3bbe2b3a4fce",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_dev_feret_00.tar.sha256": "902f0ae46005af2371537f3c755845236a36e8cb70cd219b7ea1e49ca6d19f5f",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_dev_frgc_00.log.csv": "863e3a4c9dbc95a66a6ad96ccacddb62e3943e8a890759b5af60a6f1f122cdab",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_dev_frgc_00.tar.sha256": "bb667b59e86bfe9ef06a1962e67fbfa0b1f989eea2504f7ee7b095eb6904d793",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_dev_frgc_01.log.csv": "1440df4a4935b482cfce840912fe68a1b884fb8279863ed4b30d1f6d27216f8a",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_dev_frgc_01.tar.sha256": "3d09b4a6627df1ce291c16ab7ab7aaa9232d069a7fe38c123acf7b9015c3a283",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_dev_frgc_02.log.csv": "10288b0721630c634b43e5080ce269d9ebe575d56bd085ccd701e955ec9bf78a",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_dev_frgc_02.tar.sha256": "ac62d345244cbfa6ffb69dd9f807c016474b81f9746f41da7fb9596df9719cc9",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_feret_00.log.csv": "dd6cbc51e7dc4dbe17dec95599ef92a7e5fa8d28e05d72ccf6425e834ae2d883",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_feret_00.tar.sha256": "1bc0da5f7abcbaac4045fdfa491a62c3864390690571fcbc86d2577897cae508",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_feret_01.log.csv": "8fe256ac3b581f38bbed2c66d2d2d4c7d413586f33879b431bbf917685c85647",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_feret_01.tar.sha256": "a1184cf0931a0ec020a4cb1bd9f7bebf52670806bf51825da2a7364df94a6023",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_feret_02.log.csv": "74161ffbfdaa66006f41107ecd9db8c23e2877f03b4c1c8bb503b6f388a1d2e8",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_feret_02.tar.sha256": "2be9e9a2efcd99d13b7b12bbddeab9d4017b736c36057935edf68219a16024fb",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_00.log.csv": "9fa13f8b44d4add177ab8497dfa86e558c0400aa5e9ad9fc3a91a46041fedd1a",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_00.tar.sha256": "69f2b371fe9b25b479f90dd53f2e19902d03e0b24ec1231e5b75f11323431ca3",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_01.log.csv": "b97f210d93b44cd11d6536a720259eb6fe3e7feedc5531ecd34c856798691984",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_01.tar.sha256": "ad9bfb0b94504e391104eaddd479a03110f07c32f03007bdab28e58882f6288b",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_02.log.csv": "ac42e0b0de5ffa5961dc73769c421e7fd41be4a4dc9e1d5a5ad183e25de25db6",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_02.tar.sha256": "e55e25bf58897a7049970c7583da2e92cb7b8ff204c987b966ebd472f395238d",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_03.log.csv": "8b503c6bd024aa9a2a56fe98cf726c130d9b14bd2c147bcd0d8f1d31a5b13008",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_03.tar.sha256": "fdebeda29681ad1e6200e084851359f0259b60020b6a4a558b93d9769e00f144",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_04.log.csv": "02defeeaaf2d065cf8d4ca8110a9b79c65d105394866a52305bc5b1497450a9b",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip1_train_frgc_04.tar.sha256": "b681db03ce27e4de148d2e25a4d659ddad8dd51df3290b46c5b84777bc1f6704",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_dev_feret_00.log.csv": "c237a906cee824d6b8e7ae1debd9f6ad1d95c515bc2938cc514ce4f439f77401",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_dev_feret_00.tar.sha256": "eee290fc8403f2da6b1b3d0e3d512962aa4d4d57fb8b4c185f924afc643e7a8c",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_dev_frgc_00.log.csv": "19a05938dfb0f4c841ce5476294307810808512233f440c7244385c7aba49928",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_dev_frgc_00.tar.sha256": "7148c41fb5b4ed19521b0a2e8992dc45cd0fa86eb7081aed3360dd30ee4126b4",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_dev_frgc_01.log.csv": "4c4352d01accb186bb6315ac5e8abb24ae3740d426109a1c2836235af4cf873d",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_dev_frgc_01.tar.sha256": "c0ad37fa9f42028df4030040094584a0012e750fc8596a8e29beb2876ac46c54",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_feret_00.log.csv": "3021f2a2e13fac6bfd58e23ce7f2aa1591f5e473ba282dfe95f1404cf46d2a8d",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_feret_00.tar.sha256": "f640b2b630bb9683a13fb0c9355d143911c15b3244d80c301254020f2ce71d17",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_feret_01.log.csv": "120fe85198e497c63ba1f38cf3228e90daebe3f180fb93ff308eadb92c35482d",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_feret_01.tar.sha256": "34394a2677c9fff0e687e6071354b4e2c9289058e64c46fc1188c86893dc7d16",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_frgc_00.log.csv": "952611ed8537f9bb52dce8df15ae66ef5773af84366ce537934090aba11e331e",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_frgc_00.tar.sha256": "0cbdc85ca00c27dbe66d24471ef0c7ce70eedc874675d426847a4e5bf66a75c1",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_frgc_01.log.csv": "123f998c0595a092fc60fbd2fcb0247faf788db80f2d6d725a4d3f75b742246c",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_frgc_01.tar.sha256": "4f3d2d9c9d6bf757b3717312b45945739b3c9f803c6513a62226180a461550bb",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_frgc_02.log.csv": "bf8f665fbf8e020327816f1d28fdc348b46ed578f7787671ba055262b0525f03",
+    "/mnt/t7/smad_next/coordination_20261114/GX1_generation_metadata/GX1_mip2_train_frgc_02.tar.sha256": "9c1908e7202c29770076bfa26a06111a378f41b4e61ccdece72d3c178131dd12",
+    "/mnt/t7/smad_next/coordination_20261114/GX_GENERATION_AND_JOB_STATE.json": "7999f245ecd99fa3d90372fa15d30a88efa0b377a485298b3ccacabccf540b40"
+  },
+  "training_ready": false
+}

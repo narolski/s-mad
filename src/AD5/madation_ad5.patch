@@ -1,0 +1,59 @@
+diff -ruN madation_orig/src/backbone/model.py madation_src/src/backbone/model.py
+--- madation_orig/src/backbone/model.py	2026-01-06 11:21:18.000000000 +0100
++++ madation_src/src/backbone/model.py	2026-11-11 17:45:36.530760186 +0100
+@@ -2,10 +2,15 @@
+ import torch
+ import logging
+ import clip
++import os
+ 
+ class ClipModel():
+     def __init__(self, rank, model_name):
+-        self.backbone, _ = clip.load(model_name, device="cuda", jit=False)
++        if os.environ.get("AD5_CLIP_SD"):  # AD5 patch: same tensors as clip.load (checked), no download, weights_only
++            sd = torch.load(os.environ["AD5_CLIP_SD"], map_location="cpu", weights_only=True)
++            self.backbone = clip.model.build_model(sd).to("cuda")
++        else:
++            self.backbone, _ = clip.load(model_name, device="cuda", jit=False)
+         self.backbone.to(rank)
+ 
+         for param in self.backbone.parameters():
+diff -ruN madation_orig/src/config.py madation_src/src/config.py
+--- madation_orig/src/config.py	2026-01-06 11:21:18.000000000 +0100
++++ madation_src/src/config.py	2026-11-11 17:45:36.529440720 +0100
+@@ -56,7 +56,7 @@
+         config.train_scratch = False
+ 
+     dataset_paths = {
+-        "smdd": "/workspace/FaceMAD/Protocols/smdd_train_cropped.csv",
++        "smdd": os.environ.get("AD5_TRAIN_CSV", "/workspace/FaceMAD/Protocols/smdd_train_cropped.csv"),  # AD5 patch
+         "facemorpher": "/workspace/FaceMAD/Protocols/FaceMorpher.csv",
+         "mipgan1": "/workspace/FaceMAD/Protocols/MIPGAN_I.csv",
+         "mipgan2": "/workspace/FaceMAD/Protocols/MIPGAN_II.csv",
+@@ -85,13 +85,16 @@
+         config.test_dataset_path = [dataset_paths["facemorpher"], dataset_paths["mipgan1"], dataset_paths["mipgan2"], dataset_paths["mordiff"], dataset_paths["opencv"], dataset_paths["webmorph"], dataset_paths["feret_all_attacks"], dataset_paths["feret_morph_facemorpher"], dataset_paths["feret_morph_opencv"], dataset_paths["feret_morph_stylegan"], dataset_paths["frgc_all_attacks"], dataset_paths["frgc_morph_facemorpher"], dataset_paths["frgc_morph_opencv"], dataset_paths["frgc_morph_stylegan"], dataset_paths["frll_all_attacks"], dataset_paths["frll_morph_amsl"], dataset_paths["frll_morph_facemorpher"], dataset_paths["frll_morph_opencv"], dataset_paths["frll_morph_stylegan"], dataset_paths["frll_morph_webmorph"]]
+ 
+         config.test_data = ["facemorpher", "mipgan1", "mipgan2", "mordiff", "opencv", "webmorph", "feret_all_attacks", "feret_morph_facemorpher", "feret_morph_opencv", "feret_morph_stylegan", "frgc_all_attacks", "frgc_morph_facemorpher", "frgc_morph_opencv", "frgc_morph_stylegan", "frll_all_attacks", "frll_morph_amsl", "frll_morph_facemorpher", "frll_morph_opencv", "frll_morph_stylegan", "frll_morph_webmorph"]
++        if os.environ.get("AD5_NO_TEST") == "1":  # AD5 patch: no test-set evaluation (no test data on the node; never used for selection)
++            config.test_dataset_path = []
++            config.test_data = []
+     config.num_classes = 2
+     if config.backbone_size == "ViT-B/16" or config.backbone_size == "ViT-B/32":
+         # "ViT-B/32", "ViT-B/16", "ViT-L/14"
+         config.training_desc = f'ViT-B16/{config.training_type}/{config.dataset_name}'
+     elif config.backbone_size == "ViT-L/14":
+         config.training_desc = f'ViT-L14/{config.training_type}/{config.dataset_name}'
+-    config.output_path = "/output/last_trainings/" + config.training_desc
++    config.output_path = os.environ.get("AD5_OUT", "/output") + "/last_trainings/" + config.training_desc  # AD5 patch
+ 
+     if config.training_type == "MAD_training":
+         config.output_path = (
+@@ -124,7 +127,7 @@
+ if __name__ == "__main__":
+     torch.cuda.empty_cache()
+     # cudnn.benchmark = True
+-    set_seed(seed=777)
++    set_seed(seed=int(os.environ.get("AD5_SEED", "777")))  # AD5 patch: seeds 401-405
+ 
+     parser = argparse.ArgumentParser(description="Distributed training job")
+     parser.add_argument("--local-rank", type=int, help="local_rank")

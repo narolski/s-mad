@@ -1,0 +1,38 @@
+{
+ "FRLL native": {
+  "n": 204,
+  "share_top10_in_inner_face": 0.517,
+  "share_top10_in_outer_ring": 0.483,
+  "inner_share_of_hull_patches": 0.5
+ },
+ "FRLL E7 opencv": {
+  "n": 204,
+  "share_top10_in_inner_face": 0.52,
+  "share_top10_in_outer_ring": 0.48,
+  "inner_share_of_hull_patches": 0.5
+ },
+ "FRLL E7 facemorpher": {
+  "n": 204,
+  "share_top10_in_inner_face": 0.526,
+  "share_top10_in_outer_ring": 0.474,
+  "inner_share_of_hull_patches": 0.5
+ },
+ "AR1 R0": {
+  "n": 536,
+  "share_top10_in_inner_face": 0.438,
+  "share_top10_in_outer_ring": 0.562,
+  "inner_share_of_hull_patches": 0.499
+ },
+ "AR1 R2w opencv": {
+  "n": 536,
+  "share_top10_in_inner_face": 0.456,
+  "share_top10_in_outer_ring": 0.544,
+  "inner_share_of_hull_patches": 0.498
+ },
+ "AR1 R4 opencv": {
+  "n": 536,
+  "share_top10_in_inner_face": 0.488,
+  "share_top10_in_outer_ring": 0.512,
+  "inner_share_of_hull_patches": 0.5
+ }
+}

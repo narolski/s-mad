@@ -1,0 +1,12 @@
+{
+  "decision": "HOLD",
+  "packet_sha256": "8bafbc49c9a6ed0c832bce17cd75358a055eb48738ec15faeebca6e0d8e9c0b9",
+  "collector_sha256": "39d2f3899f53665d88fcfb386be3716928d6c53fb7d47f5e73e45bbafcc39564",
+  "predicates_sha256": "2c270fe119b8c558d4ef7b112088423e53716e68e9ce1f1cb8352a055fac5e5d",
+  "output": "/mnt/t7/smad_next/NEXT/technical_metadata_v2r1_collection_20261114",
+  "cpu_only": true,
+  "whole_log_original_regex_boolean_only": true,
+  "implementation_review": null,
+  "implementation_review_sha256": null,
+  "real_member_access_authorized": false
+}

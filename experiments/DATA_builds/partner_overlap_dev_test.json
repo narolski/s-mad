@@ -1,0 +1,33 @@
+{
+ "test_read_hosts": 191,
+ "dev_hosts": 100,
+ "test_read_hosts_with_dev_partner": 99,
+ "dev_hosts_that_are_partner_of_a_test_read_host": 99,
+ "dev_hosts_with_test_partner": 51,
+ "test_hosts_with_any_row_touching_dev_persons_or_photos": 111,
+ "test_hosts_in_ab1x_eval": 191,
+ "test_rows_touching_dev_by_fam_rung": {
+  "ladder|R0": 153,
+  "ladder|R2w": 306,
+  "ladder|R2w4": 222,
+  "ladder|R3": 204,
+  "ladder|R3m": 204,
+  "ladder|R4": 444,
+  "splice|R2w4_bg": 111,
+  "splice|R2w4_face": 111,
+  "splice|R2w_bg": 51,
+  "splice|R2w_face": 51,
+  "splice|R4_bg": 111,
+  "splice|R4_face": 111,
+  "splice|S0": 51,
+  "splice|S0_bg": 51,
+  "splice|S0_face": 51,
+  "splice|S3": 51,
+  "splice|S3_bg": 51,
+  "splice|S3_face": 51,
+  "splice|S4": 111,
+  "splice|S4_bg": 111,
+  "splice|S4_face": 111
+ },
+ "test_read_hosts_sharing_a_component_with_a_dev_host": 171
+}

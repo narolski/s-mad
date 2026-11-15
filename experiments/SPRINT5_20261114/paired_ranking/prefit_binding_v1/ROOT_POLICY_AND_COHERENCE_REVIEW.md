@@ -1,0 +1,9 @@
+# Root-approved prospective policy and coherence check
+
+PREFIT_METADATA_GO 519546ef7002930f620610f01deb0cc4e8889acf819b829a80c05f95fff6e923
+
+Authority: root explicitly approved pooled132-person127th-orderstrict> threshold, jointcomponent/seedcalibrationresampling; IUTmarginalone-sided95% guards superseding simultaneouscellwiseCIwording BEFOREproduction/scores; originalprimaryBonferroni; validconservativeboundorINCONCLUSIVE forzero-variance/sparsecells; reserved501–505solelySPRINT5_1 and511–515SPRINT5_4. Root directed implementation and scopedcommit. Recorded by Astra; this is not a manufactured additional independentreviewer.
+
+Astra coherence assessment: IUT requires all120guards to pass, so rejection of the unionnull controls the conjunctiveclaim at the marginallevel provided eachtestisvalid; it does not provide simultaneouscellwisecoverage. Nonparametriccluster/seedbootstrap is approximate, not finite-samplecertified. Sparse/degeneratecases cannot silentlypass; validboundorINCONCLUSIVE isexplicit. Unequal40components and132calibrationpersons limitprecision. Allguardcells retained, nooutcome-driven merging. Root independentlyapproved nuisancefloors andchecked their200uniqueIDs/40components/15finitecolumns. Directcalibrationprovenance resolves8386trainrows includinggeometry andfinds nooverlap. No detectorcandidate payload opened.
+
+This GO binds metadata only. It DOES NOT assert successfulGPUsmoke, productioneligibility, completedreader, operationaladoption orbenchmarkauthorization. Threeexactsource smoke archives and independentGO_PRODUCTION remain mandatory. The reader may be implemented afterfits, but mustbe independentlyreviewed against these fixedrules beforeanycandidatepayloadaccess. Any source/input/rulechange invalidates affectedpins and requiresprospectivereview, not permissivefallback.

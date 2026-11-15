@@ -1,0 +1,807 @@
+detector,block,family,stratum,n,spearman,lo95,hi95,power
+MADation ViT-B/16 release,release,amsl,neutral-neutral,2175,0.08594713731640237,-0.027937397081404924,0.1903806254267692,no power (no oracle embeddings)
+MADation ViT-B/16 release,release,facemorpher,neutral-neutral,1219,0.11362817331999457,0.0006914755074831196,0.23272055909037584,no power (no oracle embeddings)
+MADation ViT-B/16 release,release,opencv,neutral-neutral,1219,0.09682281611171789,-0.017695156484842302,0.20465195849537837,no power (no oracle embeddings)
+MADation ViT-B/16 release,release,stylegan,neutral-neutral,1219,0.03712952414252862,-0.06759049594402314,0.14053008556365965,no power (no oracle embeddings)
+MADation ViT-B/16 release,release,webmorph,neutral-neutral,1219,0.09173631557249522,-0.030094848293811084,0.20164969488978376,no power (no oracle embeddings)
+MADation ViT-B/16 release,release,mordiff,neutral-neutral,500,0.10471126684506736,-0.059450253192335364,0.2569353356957435,power
+MADation ViT-B/16 release,release,mordiff,smiling-smiling,500,0.0618568874275497,-0.09311328306794167,0.20192520841956133,power
+MADation ViT-B/16 release,release,dim_a,neutral-neutral,500,0.12714338857355428,-0.018586582411080597,0.26968971863389013,no power (no oracle embeddings)
+MADation ViT-B/16 release,release,dim_c,neutral-neutral,500,0.10958856635426541,-0.03940478703007102,0.2553611874580383,power
+MADation ViT-B/16 release,release,fast_dim,neutral-neutral,500,0.031191100764403058,-0.11830175407230854,0.1698890544474124,no power (no oracle embeddings)
+MADation ViT-B/16 release,release,fast_dim_ode,neutral-neutral,499,-0.1235066760026076,-0.26739784255623816,0.015537898335605642,no power (no oracle embeddings)
+MADation ViT-B/16 release,release,greedy_dim,neutral-neutral,500,-0.04703836528238191,-0.20115140341222285,0.11202106848359085,power
+MADation ViT-B/16 release,release,greedy_dim_s,neutral-neutral,500,0.14842129768519075,-0.008934655669145286,0.29935490936040865,power
+MADation ViT-L/14 release,release,amsl,neutral-neutral,2175,0.0924712930559184,0.0011797270126407973,0.1826138939708471,no power (no oracle embeddings)
+MADation ViT-L/14 release,release,facemorpher,neutral-neutral,1219,0.16860768088505734,0.05297142723575234,0.2705173537135123,no power (no oracle embeddings)
+MADation ViT-L/14 release,release,opencv,neutral-neutral,1219,0.17701359871961858,0.05364437270909548,0.27930845990777,no power (no oracle embeddings)
+MADation ViT-L/14 release,release,stylegan,neutral-neutral,1219,-0.086204539135085,-0.20545063093304633,0.02578941727988401,no power (no oracle embeddings)
+MADation ViT-L/14 release,release,webmorph,neutral-neutral,1219,0.13372332878234117,0.01816189452074468,0.2402908857911825,no power (no oracle embeddings)
+MADation ViT-L/14 release,release,mordiff,neutral-neutral,500,0.14175896703586813,-0.029894990986213087,0.29263586550951,power
+MADation ViT-L/14 release,release,mordiff,smiling-smiling,500,0.15998847995391982,0.0069041677634231755,0.302435640245676,power
+MADation ViT-L/14 release,release,dim_a,neutral-neutral,500,0.04282927737291485,-0.1127942556515336,0.19825384207069857,no power (no oracle embeddings)
+MADation ViT-L/14 release,release,dim_c,neutral-neutral,500,0.07712147833682885,-0.0702414497733116,0.2267549823969599,power
+MADation ViT-L/14 release,release,fast_dim,neutral-neutral,500,-0.003954687913664166,-0.15794766694307327,0.14189108349382876,no power (no oracle embeddings)
+MADation ViT-L/14 release,release,fast_dim_ode,neutral-neutral,499,0.07386039727311003,-0.0862830974161625,0.23140878491103647,no power (no oracle embeddings)
+MADation ViT-L/14 release,release,greedy_dim,neutral-neutral,500,0.12773935895743582,-0.035189452581107616,0.27534485161304467,power
+MADation ViT-L/14 release,release,greedy_dim_s,neutral-neutral,500,0.18391071964287856,0.01568490019999445,0.33834270015358925,power
+MADation FE ViT-B/16 release,release,amsl,neutral-neutral,2175,0.0694224804613596,-0.04815948624163866,0.17614926025271416,no power (no oracle embeddings)
+MADation FE ViT-B/16 release,release,facemorpher,neutral-neutral,1219,0.14250693132511116,0.015828343434259297,0.25092520192265494,no power (no oracle embeddings)
+MADation FE ViT-B/16 release,release,opencv,neutral-neutral,1219,0.15407893684724955,0.027353244274854662,0.2604898631572721,no power (no oracle embeddings)
+MADation FE ViT-B/16 release,release,stylegan,neutral-neutral,1219,0.06378463368730994,-0.06549093294888735,0.1783432722091673,no power (no oracle embeddings)
+MADation FE ViT-B/16 release,release,webmorph,neutral-neutral,1219,0.12303680911079964,-0.00559431011788547,0.23526953160762787,no power (no oracle embeddings)
+MADation FE ViT-B/16 release,release,mordiff,neutral-neutral,500,0.1093573974295897,-0.04614766053855419,0.25726829096674914,power
+MADation FE ViT-B/16 release,release,mordiff,smiling-smiling,500,0.0990252601010404,-0.04748899480327964,0.24818893112242216,power
+MADation FE ViT-B/16 release,release,dim_a,neutral-neutral,500,0.08204644018576074,-0.07702572103589773,0.23180646747350692,no power (no oracle embeddings)
+MADation FE ViT-B/16 release,release,dim_c,neutral-neutral,500,0.09209739238956956,-0.07591751217842102,0.25248453989624975,power
+MADation FE ViT-B/16 release,release,fast_dim,neutral-neutral,500,0.047585566342265365,-0.11771056521683931,0.20193034373223773,no power (no oracle embeddings)
+MADation FE ViT-B/16 release,release,fast_dim_ode,neutral-neutral,499,0.031264263466692414,-0.13717175759375094,0.19163709953427305,no power (no oracle embeddings)
+MADation FE ViT-B/16 release,release,greedy_dim,neutral-neutral,500,0.020781971127884512,-0.15360244624316693,0.1886770900338886,power
+MADation FE ViT-B/16 release,release,greedy_dim_s,neutral-neutral,500,0.1519188796755187,-0.00482634479412809,0.30494248643517485,power
+MADation FE ViT-L/14 release,release,amsl,neutral-neutral,2175,0.1003683013083606,-0.0168776071164757,0.19976887926459308,no power (no oracle embeddings)
+MADation FE ViT-L/14 release,release,facemorpher,neutral-neutral,1219,0.14864680911278705,0.032067985832691194,0.25609910637140254,no power (no oracle embeddings)
+MADation FE ViT-L/14 release,release,opencv,neutral-neutral,1219,0.13490197369610893,0.014964315341785552,0.24739305637776843,no power (no oracle embeddings)
+MADation FE ViT-L/14 release,release,stylegan,neutral-neutral,1219,0.0961413729969446,-0.029303720593452452,0.20233798734843725,no power (no oracle embeddings)
+MADation FE ViT-L/14 release,release,webmorph,neutral-neutral,1219,0.12156376630296489,0.0025927653652615848,0.23660057075321658,no power (no oracle embeddings)
+MADation FE ViT-L/14 release,release,mordiff,neutral-neutral,500,0.089812775251101,-0.0505074585787952,0.22431207224726663,power
+MADation FE ViT-L/14 release,release,mordiff,smiling-smiling,500,0.12263885855543422,-0.0370860232040286,0.27616748139262187,power
+MADation FE ViT-L/14 release,release,dim_a,neutral-neutral,500,0.18705578822315289,0.031008191080763938,0.3305687546730041,no power (no oracle embeddings)
+MADation FE ViT-L/14 release,release,dim_c,neutral-neutral,500,0.13677395509582038,-0.021892995620146394,0.29150312766432757,power
+MADation FE ViT-L/14 release,release,fast_dim,neutral-neutral,500,0.10480899523598095,-0.06246173605322838,0.2662680506706237,no power (no oracle embeddings)
+MADation FE ViT-L/14 release,release,fast_dim_ode,neutral-neutral,499,0.13021870246517128,-0.032746666390448806,0.279385283589363,no power (no oracle embeddings)
+MADation FE ViT-L/14 release,release,greedy_dim,neutral-neutral,500,0.10140472561890249,-0.06114092674106359,0.25759370625019073,power
+MADation FE ViT-L/14 release,release,greedy_dim_s,neutral-neutral,500,0.161188868755475,-0.0025889480777550487,0.3082080818712711,power
+MADation FS ViT-B/16 release,release,amsl,neutral-neutral,2175,0.023595182869267477,-0.07368985153734683,0.12196986060589533,no power (no oracle embeddings)
+MADation FS ViT-B/16 release,release,facemorpher,neutral-neutral,1219,0.163770641856633,0.04736139355227351,0.2721205756068229,no power (no oracle embeddings)
+MADation FS ViT-B/16 release,release,opencv,neutral-neutral,1219,0.1752631505377619,0.053694928716868165,0.2856951378285884,no power (no oracle embeddings)
+MADation FS ViT-B/16 release,release,stylegan,neutral-neutral,1219,-0.07742717823962951,-0.17731791213154793,0.034070656727999436,no power (no oracle embeddings)
+MADation FS ViT-B/16 release,release,webmorph,neutral-neutral,1219,0.07779138846834706,-0.041133370343595745,0.18475590832531433,no power (no oracle embeddings)
+MADation FS ViT-B/16 release,release,mordiff,neutral-neutral,500,-0.030547507245906307,-0.16868754774332045,0.1106199763715267,power
+MADation FS ViT-B/16 release,release,mordiff,smiling-smiling,500,-0.028721674867298708,-0.16988528966903688,0.10866681244224256,power
+MADation FS ViT-B/16 release,release,dim_a,neutral-neutral,500,-0.0440254174603176,-0.20821888670325278,0.11379822790622696,no power (no oracle embeddings)
+MADation FS ViT-B/16 release,release,dim_c,neutral-neutral,500,-0.07019558606196584,-0.21721747629344462,0.08837925065308806,power
+MADation FS ViT-B/16 release,release,fast_dim,neutral-neutral,500,-0.07765931909670662,-0.2363160576671362,0.08056058846414078,no power (no oracle embeddings)
+MADation FS ViT-B/16 release,release,fast_dim_ode,neutral-neutral,499,-0.050343038148051356,-0.20280536822974682,0.11041866093873969,no power (no oracle embeddings)
+MADation FS ViT-B/16 release,release,greedy_dim,neutral-neutral,500,-0.08182677386083606,-0.23195452690124513,0.06947639938443892,power
+MADation FS ViT-B/16 release,release,greedy_dim_s,neutral-neutral,500,-0.08265825619559214,-0.234029396250844,0.0741929169744253,power
+MADation FS ViT-L/14 release,release,amsl,neutral-neutral,2175,-0.04675710775201849,-0.1257358968257904,0.03657415481284259,no power (no oracle embeddings)
+MADation FS ViT-L/14 release,release,facemorpher,neutral-neutral,1219,0.06546616156902876,-0.03923655794933438,0.1658452350646257,no power (no oracle embeddings)
+MADation FS ViT-L/14 release,release,opencv,neutral-neutral,1219,0.02013908778593315,-0.08816090617328882,0.13893342241644852,no power (no oracle embeddings)
+MADation FS ViT-L/14 release,release,stylegan,neutral-neutral,1219,-0.08895577434906847,-0.18900444433093072,0.01322362371720368,no power (no oracle embeddings)
+MADation FS ViT-L/14 release,release,webmorph,neutral-neutral,1219,-0.06683671906315208,-0.1631873581558466,0.03891935078427186,no power (no oracle embeddings)
+MADation FS ViT-L/14 release,release,mordiff,neutral-neutral,500,-0.062317938245536726,-0.20806435756385327,0.10319821313023558,power
+MADation FS ViT-L/14 release,release,mordiff,smiling-smiling,500,-0.04616683685539396,-0.19601958617568016,0.09921773523092263,power
+MADation FS ViT-L/14 release,release,dim_a,neutral-neutral,500,-0.08717257687459128,-0.23550027199089527,0.06152925072237846,no power (no oracle embeddings)
+MADation FS ViT-L/14 release,release,dim_c,neutral-neutral,500,-0.14031603999933007,-0.27359422817826273,0.020760425087064292,power
+MADation FS ViT-L/14 release,release,fast_dim,neutral-neutral,500,-0.1059942665209285,-0.2493140533566475,0.04224706646054979,no power (no oracle embeddings)
+MADation FS ViT-L/14 release,release,fast_dim_ode,neutral-neutral,499,-0.09438626650892144,-0.24550599679350854,0.05905145145952691,no power (no oracle embeddings)
+MADation FS ViT-L/14 release,release,greedy_dim,neutral-neutral,500,-0.10202623455356787,-0.2504978865385056,0.05471516652032711,power
+MADation FS ViT-L/14 release,release,greedy_dim_s,neutral-neutral,500,-0.01348651826974952,-0.17353077493608,0.15215372294187543,power
+MADation ViT-B/16 dnorm (diagnostic variant),release,amsl,neutral-neutral,2175,0.0779270623172791,-0.036116342060267925,0.17560454457998276,no power (no oracle embeddings)
+MADation ViT-B/16 dnorm (diagnostic variant),release,facemorpher,neutral-neutral,1219,0.1726689127708692,0.056285664532333614,0.2754466839134693,no power (no oracle embeddings)
+MADation ViT-B/16 dnorm (diagnostic variant),release,opencv,neutral-neutral,1219,0.16043643151249262,0.0323625372722745,0.26476178765296937,no power (no oracle embeddings)
+MADation ViT-B/16 dnorm (diagnostic variant),release,stylegan,neutral-neutral,1219,0.10976970531127878,-0.01716669243760407,0.22511903680860995,no power (no oracle embeddings)
+MADation ViT-B/16 dnorm (diagnostic variant),release,webmorph,neutral-neutral,1219,0.10009894085258196,-0.008766026608645915,0.19272357337176793,no power (no oracle embeddings)
+MADation ViT-B/16 dnorm (diagnostic variant),release,mordiff,neutral-neutral,500,0.0907569390277561,-0.0570820058695972,0.23821259327232835,power
+MADation ViT-B/16 dnorm (diagnostic variant),release,mordiff,smiling-smiling,500,0.08774060696242786,-0.06864690817892552,0.23028999902307987,power
+MADation ViT-B/16 dnorm (diagnostic variant),release,dim_a,neutral-neutral,500,0.04522530090120361,-0.10702422857284546,0.19458009190857398,no power (no oracle embeddings)
+MADation ViT-B/16 dnorm (diagnostic variant),release,dim_c,neutral-neutral,500,0.0726561626246505,-0.08486286494880915,0.22408298067748544,power
+MADation ViT-B/16 dnorm (diagnostic variant),release,fast_dim,neutral-neutral,500,0.07650251401005603,-0.07455660291016102,0.21879405938088892,no power (no oracle embeddings)
+MADation ViT-B/16 dnorm (diagnostic variant),release,fast_dim_ode,neutral-neutral,499,0.07626559142381148,-0.07404845561832189,0.21476253643631915,no power (no oracle embeddings)
+MADation ViT-B/16 dnorm (diagnostic variant),release,greedy_dim,neutral-neutral,500,0.09408853635414541,-0.07106139417737722,0.2497059162706133,power
+MADation ViT-B/16 dnorm (diagnostic variant),release,greedy_dim_s,neutral-neutral,500,0.12182871131484527,-0.05408206889405846,0.2774233162403104,power
+MADation ViT-B/16 dscale (diagnostic variant),release,amsl,neutral-neutral,2175,0.09399966110460893,-0.026221372000873086,0.20783023200929157,no power (no oracle embeddings)
+MADation ViT-B/16 dscale (diagnostic variant),release,facemorpher,neutral-neutral,1219,0.15836321819647817,0.021396565483883023,0.2761424347758293,no power (no oracle embeddings)
+MADation ViT-B/16 dscale (diagnostic variant),release,opencv,neutral-neutral,1219,0.16061582350091358,0.040139302238821985,0.26254102364182463,no power (no oracle embeddings)
+MADation ViT-B/16 dscale (diagnostic variant),release,stylegan,neutral-neutral,1219,0.09325054453905122,-0.03496051440015435,0.2099291946738958,no power (no oracle embeddings)
+MADation ViT-B/16 dscale (diagnostic variant),release,webmorph,neutral-neutral,1219,0.10792938557896165,-0.01600910732522607,0.22073816768825022,no power (no oracle embeddings)
+MADation ViT-B/16 dscale (diagnostic variant),release,mordiff,neutral-neutral,500,0.09513782055128218,-0.06136180842295289,0.23495754078030548,power
+MADation ViT-B/16 dscale (diagnostic variant),release,mordiff,smiling-smiling,500,0.04750051000204,-0.09552334025502204,0.17992977723479264,power
+MADation ViT-B/16 dscale (diagnostic variant),release,dim_a,neutral-neutral,500,0.10076286705146821,-0.0500904724933207,0.24588322117924657,no power (no oracle embeddings)
+MADation ViT-B/16 dscale (diagnostic variant),release,dim_c,neutral-neutral,500,0.10223061692246768,-0.04603816596791148,0.2522994548082351,power
+MADation ViT-B/16 dscale (diagnostic variant),release,fast_dim,neutral-neutral,500,0.01096698786795147,-0.13877092078328132,0.1588610924780367,no power (no oracle embeddings)
+MADation ViT-B/16 dscale (diagnostic variant),release,fast_dim_ode,neutral-neutral,499,-0.09658043798440252,-0.24970121197402478,0.057966906577348695,no power (no oracle embeddings)
+MADation ViT-B/16 dscale (diagnostic variant),release,greedy_dim,neutral-neutral,500,-0.009740966963867856,-0.1701064120978117,0.14597182273864728,power
+MADation ViT-B/16 dscale (diagnostic variant),release,greedy_dim_s,neutral-neutral,500,0.14195835983343932,-0.018735218094661832,0.2893943294882774,power
+"SelfMAD release, our pipeline",release,amsl,neutral-neutral,2175,0.060463192543881855,-0.03137001674622297,0.16042665056884287,no power (no oracle embeddings)
+"SelfMAD release, our pipeline",release,facemorpher,neutral-neutral,1219,0.0851455629615266,-0.033106199093163015,0.19833425134420385,no power (no oracle embeddings)
+"SelfMAD release, our pipeline",release,opencv,neutral-neutral,1219,0.10504419479536002,-0.005724141153041273,0.21098800264298914,no power (no oracle embeddings)
+"SelfMAD release, our pipeline",release,stylegan,neutral-neutral,1219,-0.09240739093137361,-0.21168392300605773,0.03487211838364601,no power (no oracle embeddings)
+"SelfMAD release, our pipeline",release,webmorph,neutral-neutral,1219,0.024794849272372337,-0.08339320551604032,0.12979534417390817,no power (no oracle embeddings)
+"SelfMAD release, our pipeline",release,mordiff,neutral-neutral,500,0.15724219696878786,-0.004671691032126543,0.3042965829372405,power
+"SelfMAD release, our pipeline",release,mordiff,smiling-smiling,500,0.0933502934011736,-0.06528214197605849,0.2353839591145515,power
+"SelfMAD release, our pipeline",release,dim_a,neutral-neutral,500,0.07706594026376105,-0.08749894946813583,0.2397143710404634,no power (no oracle embeddings)
+"SelfMAD release, our pipeline",release,dim_c,neutral-neutral,500,0.016529250117000467,-0.13984636813402176,0.17225137352943415,power
+"SelfMAD release, our pipeline",release,fast_dim,neutral-neutral,500,0.0270999483997936,-0.13068897165358068,0.17791657745838163,no power (no oracle embeddings)
+"SelfMAD release, our pipeline",release,fast_dim_ode,neutral-neutral,499,-0.08418282347828186,-0.22206292897462845,0.05884903753176313,no power (no oracle embeddings)
+"SelfMAD release, our pipeline",release,greedy_dim,neutral-neutral,500,-0.07324973299893199,-0.21185979172587394,0.07809395510703321,power
+"SelfMAD release, our pipeline",release,greedy_dim_s,neutral-neutral,500,0.20222912891651565,0.0387429079040885,0.3459591172635555,power
+"MixFaceNet-MAD release, our frames",release,amsl,neutral-neutral,2175,0.05018827871038499,-0.050553074665367605,0.14501943252980704,no power (no oracle embeddings)
+"MixFaceNet-MAD release, our frames",release,facemorpher,neutral-neutral,1219,0.06485323464378014,-0.04376986930146813,0.1724861711263656,no power (no oracle embeddings)
+"MixFaceNet-MAD release, our frames",release,opencv,neutral-neutral,1219,0.07722266302666791,-0.02048526522703469,0.17209447920322404,no power (no oracle embeddings)
+"MixFaceNet-MAD release, our frames",release,stylegan,neutral-neutral,1219,-0.052169825563997636,-0.15584586188197136,0.05398513888940202,no power (no oracle embeddings)
+"MixFaceNet-MAD release, our frames",release,webmorph,neutral-neutral,1219,-0.04478571107270367,-0.14355364367365836,0.05729028824716802,no power (no oracle embeddings)
+"MixFaceNet-MAD release, our frames",release,mordiff,neutral-neutral,500,-0.03571041484165936,-0.18517287969589233,0.12167895659804343,power
+"MixFaceNet-MAD release, our frames",release,mordiff,smiling-smiling,500,-0.042548618194472775,-0.20177018009126185,0.12664389237761495,power
+"MixFaceNet-MAD release, our frames",release,dim_a,neutral-neutral,500,-0.10365631862527448,-0.2569383054971695,0.06380680836737153,no power (no oracle embeddings)
+"MixFaceNet-MAD release, our frames",release,dim_c,neutral-neutral,500,-0.08982784731138924,-0.23671856708824635,0.0704964619129896,power
+"MixFaceNet-MAD release, our frames",release,fast_dim,neutral-neutral,500,-0.04936858147432589,-0.20518557019531727,0.11721461750566944,no power (no oracle embeddings)
+"MixFaceNet-MAD release, our frames",release,fast_dim_ode,neutral-neutral,499,-0.06863519810705748,-0.2321992702782154,0.09977261777967208,no power (no oracle embeddings)
+"MixFaceNet-MAD release, our frames",release,greedy_dim,neutral-neutral,500,-0.07596894387577549,-0.22485194578766823,0.09207676164805886,power
+"MixFaceNet-MAD release, our frames",release,greedy_dim_s,neutral-neutral,500,-0.0411128364513458,-0.19894504807889463,0.11916576139628887,power
+"SelfMAD release, own preprocessing",release,amsl,neutral-neutral,2175,0.03447675217635322,-0.06679315809160472,0.14408382177352902,no power (no oracle embeddings)
+"SelfMAD release, own preprocessing",release,facemorpher,neutral-neutral,1219,0.021616228060873894,-0.09469729550182819,0.13460031449794757,no power (no oracle embeddings)
+"SelfMAD release, own preprocessing",release,opencv,neutral-neutral,1219,0.04938762769902727,-0.0635005110874772,0.16100303716957567,no power (no oracle embeddings)
+"SelfMAD release, own preprocessing",release,stylegan,neutral-neutral,1219,-0.07167673852472718,-0.1825256559997797,0.04277968714013677,no power (no oracle embeddings)
+"SelfMAD release, own preprocessing",release,webmorph,neutral-neutral,1219,-0.04296230436326178,-0.14984915181994438,0.07378852348774667,no power (no oracle embeddings)
+"SelfMAD release, own preprocessing",release,mordiff,neutral-neutral,500,0.07038988324889021,-0.08325840067118406,0.21726486459374428,power
+"SelfMAD release, own preprocessing",release,mordiff,smiling-smiling,500,-0.036139344557378224,-0.1844145942479372,0.11137023065239172,power
+"SelfMAD release, own preprocessing",release,dim_a,neutral-neutral,500,0.06444323377293508,-0.08764461986720562,0.22068527378141864,no power (no oracle embeddings)
+"SelfMAD release, own preprocessing",release,dim_c,neutral-neutral,500,-0.04469211476845907,-0.20218479707837106,0.12993830703198905,power
+"SelfMAD release, own preprocessing",release,fast_dim,neutral-neutral,500,0.03860223440893764,-0.1042029632255435,0.19272664673626397,no power (no oracle embeddings)
+"SelfMAD release, own preprocessing",release,fast_dim_ode,neutral-neutral,499,-0.0755223217519376,-0.2096113570034504,0.06464516744017579,no power (no oracle embeddings)
+"SelfMAD release, own preprocessing",release,greedy_dim,neutral-neutral,500,-0.05533010932043728,-0.19730077348649502,0.08962897397577754,power
+"SelfMAD release, own preprocessing",release,greedy_dim_s,neutral-neutral,500,0.17256702626810508,0.03163710157386959,0.3053237505257129,power
+M1 seed 1,other recipe,amsl,neutral-neutral,2175,0.09369554074863734,,,no power (no oracle embeddings)
+M1 seed 1,other recipe,facemorpher,neutral-neutral,1219,0.11626786359372122,,,no power (no oracle embeddings)
+M1 seed 1,other recipe,opencv,neutral-neutral,1219,0.13603958482073092,,,no power (no oracle embeddings)
+M1 seed 1,other recipe,stylegan,neutral-neutral,1219,0.0629581877348189,,,no power (no oracle embeddings)
+M1 seed 1,other recipe,webmorph,neutral-neutral,1219,0.04151688019716887,,,no power (no oracle embeddings)
+M1 seed 1,other recipe,mordiff,neutral-neutral,500,-0.03353091812367249,,,power
+M1 seed 1,other recipe,mordiff,smiling-smiling,500,-0.07219881679526718,,,power
+M1 seed 1,other recipe,dim_a,neutral-neutral,500,0.06646663386653547,,,no power (no oracle embeddings)
+M1 seed 1,other recipe,dim_c,neutral-neutral,500,0.01761645446581786,,,power
+M1 seed 1,other recipe,fast_dim,neutral-neutral,500,0.05330776523106092,,,no power (no oracle embeddings)
+M1 seed 1,other recipe,fast_dim_ode,neutral-neutral,499,0.08659622860178186,,,no power (no oracle embeddings)
+M1 seed 1,other recipe,greedy_dim,neutral-neutral,500,0.03770847083388333,,,power
+M1 seed 1,other recipe,greedy_dim_s,neutral-neutral,500,0.10348486193944774,,,power
+M1 seed 2,other recipe,amsl,neutral-neutral,2175,0.08066962413213274,,,no power (no oracle embeddings)
+M1 seed 2,other recipe,facemorpher,neutral-neutral,1219,0.08758760339683455,,,no power (no oracle embeddings)
+M1 seed 2,other recipe,opencv,neutral-neutral,1219,0.07214634474994397,,,no power (no oracle embeddings)
+M1 seed 2,other recipe,stylegan,neutral-neutral,1219,-0.06868154010132047,,,no power (no oracle embeddings)
+M1 seed 2,other recipe,webmorph,neutral-neutral,1219,0.00880182064418279,,,no power (no oracle embeddings)
+M1 seed 2,other recipe,mordiff,neutral-neutral,500,-0.02697802791211165,,,power
+M1 seed 2,other recipe,mordiff,smiling-smiling,500,-0.0446128184512738,,,power
+M1 seed 2,other recipe,dim_a,neutral-neutral,500,-0.04212621650486602,,,no power (no oracle embeddings)
+M1 seed 2,other recipe,dim_c,neutral-neutral,500,-0.10420284881139523,,,power
+M1 seed 2,other recipe,fast_dim,neutral-neutral,500,-0.039710366841467365,,,no power (no oracle embeddings)
+M1 seed 2,other recipe,fast_dim_ode,neutral-neutral,499,-0.009668976507231329,,,no power (no oracle embeddings)
+M1 seed 2,other recipe,greedy_dim,neutral-neutral,500,-0.10338866955467822,,,power
+M1 seed 2,other recipe,greedy_dim_s,neutral-neutral,500,0.03225267301069204,,,power
+M1 seed 3,other recipe,amsl,neutral-neutral,2175,0.09227068549742796,,,no power (no oracle embeddings)
+M1 seed 3,other recipe,facemorpher,neutral-neutral,1219,0.10501302528003374,,,no power (no oracle embeddings)
+M1 seed 3,other recipe,opencv,neutral-neutral,1219,0.11850270790547018,,,no power (no oracle embeddings)
+M1 seed 3,other recipe,stylegan,neutral-neutral,1219,-0.022889368359874675,,,no power (no oracle embeddings)
+M1 seed 3,other recipe,webmorph,neutral-neutral,1219,0.0023819604492305566,,,no power (no oracle embeddings)
+M1 seed 3,other recipe,mordiff,neutral-neutral,500,-0.00014803259213036854,,,power
+M1 seed 3,other recipe,mordiff,smiling-smiling,500,-0.015858879435517743,,,power
+M1 seed 3,other recipe,dim_a,neutral-neutral,500,0.014643034572138286,,,no power (no oracle embeddings)
+M1 seed 3,other recipe,dim_c,neutral-neutral,500,-0.03559127836511346,,,power
+M1 seed 3,other recipe,fast_dim,neutral-neutral,500,0.007854943419773679,,,no power (no oracle embeddings)
+M1 seed 3,other recipe,fast_dim_ode,neutral-neutral,499,0.03474650505830939,,,no power (no oracle embeddings)
+M1 seed 3,other recipe,greedy_dim,neutral-neutral,500,-0.10129979719918879,,,power
+M1 seed 3,other recipe,greedy_dim_s,neutral-neutral,500,0.11134361073567703,,,power
+M1 seed 4,other recipe,amsl,neutral-neutral,2175,0.06587775201238558,,,no power (no oracle embeddings)
+M1 seed 4,other recipe,facemorpher,neutral-neutral,1219,0.08152111474641362,,,no power (no oracle embeddings)
+M1 seed 4,other recipe,opencv,neutral-neutral,1219,0.11178030135654632,,,no power (no oracle embeddings)
+M1 seed 4,other recipe,stylegan,neutral-neutral,1219,-0.02719871119188318,,,no power (no oracle embeddings)
+M1 seed 4,other recipe,webmorph,neutral-neutral,1219,0.010536800001748938,,,no power (no oracle embeddings)
+M1 seed 4,other recipe,mordiff,neutral-neutral,500,-0.03528254113016452,,,power
+M1 seed 4,other recipe,mordiff,smiling-smiling,500,-0.040562946251785005,,,power
+M1 seed 4,other recipe,dim_a,neutral-neutral,500,-0.0015474301897207587,,,no power (no oracle embeddings)
+M1 seed 4,other recipe,dim_c,neutral-neutral,500,0.0017556550226200905,,,power
+M1 seed 4,other recipe,fast_dim,neutral-neutral,500,-0.004160944643778575,,,no power (no oracle embeddings)
+M1 seed 4,other recipe,fast_dim_ode,neutral-neutral,499,0.029737354226525337,,,no power (no oracle embeddings)
+M1 seed 4,other recipe,greedy_dim,neutral-neutral,500,-0.04770537482149928,,,power
+M1 seed 4,other recipe,greedy_dim_s,neutral-neutral,500,0.09291171787675274,,,power
+M1 seed 5,other recipe,amsl,neutral-neutral,2175,0.0903213140249644,,,no power (no oracle embeddings)
+M1 seed 5,other recipe,facemorpher,neutral-neutral,1219,0.079519826494777,,,no power (no oracle embeddings)
+M1 seed 5,other recipe,opencv,neutral-neutral,1219,0.10031364283392305,,,no power (no oracle embeddings)
+M1 seed 5,other recipe,stylegan,neutral-neutral,1219,-0.057898292248423085,,,no power (no oracle embeddings)
+M1 seed 5,other recipe,webmorph,neutral-neutral,1219,0.01859366591725126,,,no power (no oracle embeddings)
+M1 seed 5,other recipe,mordiff,neutral-neutral,500,-0.013462805851223404,,,power
+M1 seed 5,other recipe,mordiff,smiling-smiling,500,-0.026368137472549888,,,power
+M1 seed 5,other recipe,dim_a,neutral-neutral,500,-0.021358741434965738,,,no power (no oracle embeddings)
+M1 seed 5,other recipe,dim_c,neutral-neutral,500,-0.06530320521282085,,,power
+M1 seed 5,other recipe,fast_dim,neutral-neutral,500,-0.03174243096972388,,,no power (no oracle embeddings)
+M1 seed 5,other recipe,fast_dim_ode,neutral-neutral,499,0.02439201294154574,,,no power (no oracle embeddings)
+M1 seed 5,other recipe,greedy_dim,neutral-neutral,500,-0.11464298657194628,,,power
+M1 seed 5,other recipe,greedy_dim_s,neutral-neutral,500,0.04492414769659078,,,power
+M2 seed 1,other recipe,amsl,neutral-neutral,2175,0.04457625190349684,,,no power (no oracle embeddings)
+M2 seed 1,other recipe,facemorpher,neutral-neutral,1219,-0.04545799213865737,,,no power (no oracle embeddings)
+M2 seed 1,other recipe,opencv,neutral-neutral,1219,0.031161843849406654,,,no power (no oracle embeddings)
+M2 seed 1,other recipe,stylegan,neutral-neutral,1219,-0.009685213069308215,,,no power (no oracle embeddings)
+M2 seed 1,other recipe,webmorph,neutral-neutral,1219,-0.02873076739876714,,,no power (no oracle embeddings)
+M2 seed 1,other recipe,mordiff,neutral-neutral,500,-0.044987411949647796,,,power
+M2 seed 1,other recipe,mordiff,smiling-smiling,500,-0.014655322621290486,,,power
+M2 seed 1,other recipe,dim_a,neutral-neutral,500,-0.07344355777423109,,,no power (no oracle embeddings)
+M2 seed 1,other recipe,dim_c,neutral-neutral,500,-0.11025682502730011,,,power
+M2 seed 1,other recipe,fast_dim,neutral-neutral,500,-0.08804502418009671,,,no power (no oracle embeddings)
+M2 seed 1,other recipe,fast_dim_ode,neutral-neutral,499,-0.04782422676678658,,,no power (no oracle embeddings)
+M2 seed 1,other recipe,greedy_dim,neutral-neutral,500,-0.10622010488041951,,,power
+M2 seed 1,other recipe,greedy_dim_s,neutral-neutral,500,-0.008154464617858471,,,power
+M2 seed 2,other recipe,amsl,neutral-neutral,2175,0.029591137902208117,,,no power (no oracle embeddings)
+M2 seed 2,other recipe,facemorpher,neutral-neutral,1219,0.07580655344193926,,,no power (no oracle embeddings)
+M2 seed 2,other recipe,opencv,neutral-neutral,1219,0.06336714767533382,,,no power (no oracle embeddings)
+M2 seed 2,other recipe,stylegan,neutral-neutral,1219,-0.0037130056262810462,,,no power (no oracle embeddings)
+M2 seed 2,other recipe,webmorph,neutral-neutral,1219,-0.027788287066521256,,,no power (no oracle embeddings)
+M2 seed 2,other recipe,mordiff,neutral-neutral,500,-0.07534916539666159,,,power
+M2 seed 2,other recipe,mordiff,smiling-smiling,500,-0.02922462889851559,,,power
+M2 seed 2,other recipe,dim_a,neutral-neutral,500,-0.038799229059279274,,,no power (no oracle embeddings)
+M2 seed 2,other recipe,dim_c,neutral-neutral,500,-0.0977917699431014,,,power
+M2 seed 2,other recipe,fast_dim,neutral-neutral,500,-0.03778085512342049,,,no power (no oracle embeddings)
+M2 seed 2,other recipe,fast_dim_ode,neutral-neutral,499,-0.017886954632155876,,,no power (no oracle embeddings)
+M2 seed 2,other recipe,greedy_dim,neutral-neutral,500,-0.09069213876855507,,,power
+M2 seed 2,other recipe,greedy_dim_s,neutral-neutral,500,0.029629330984637943,,,power
+M2 seed 3,other recipe,amsl,neutral-neutral,2175,0.02404353884613034,,,no power (no oracle embeddings)
+M2 seed 3,other recipe,facemorpher,neutral-neutral,1219,0.01997586333429547,,,no power (no oracle embeddings)
+M2 seed 3,other recipe,opencv,neutral-neutral,1219,0.022370556580222547,,,no power (no oracle embeddings)
+M2 seed 3,other recipe,stylegan,neutral-neutral,1219,0.039776753397858085,,,no power (no oracle embeddings)
+M2 seed 3,other recipe,webmorph,neutral-neutral,1219,-0.034300146996891726,,,no power (no oracle embeddings)
+M2 seed 3,other recipe,mordiff,neutral-neutral,500,-0.04264116256465025,,,power
+M2 seed 3,other recipe,mordiff,smiling-smiling,500,0.03940114960459841,,,power
+M2 seed 3,other recipe,dim_a,neutral-neutral,500,0.009745958983835935,,,no power (no oracle embeddings)
+M2 seed 3,other recipe,dim_c,neutral-neutral,500,-0.025284101136404547,,,power
+M2 seed 3,other recipe,fast_dim,neutral-neutral,500,0.008425185700742802,,,no power (no oracle embeddings)
+M2 seed 3,other recipe,fast_dim_ode,neutral-neutral,499,0.03303773812685612,,,no power (no oracle embeddings)
+M2 seed 3,other recipe,greedy_dim,neutral-neutral,500,-0.007748862995451982,,,power
+M2 seed 3,other recipe,greedy_dim_s,neutral-neutral,500,0.0702632570530282,,,power
+M2 seed 4,other recipe,amsl,neutral-neutral,2175,-0.003968866251420879,,,no power (no oracle embeddings)
+M2 seed 4,other recipe,facemorpher,neutral-neutral,1219,0.02071823440495739,,,no power (no oracle embeddings)
+M2 seed 4,other recipe,opencv,neutral-neutral,1219,-0.012543706053384866,,,no power (no oracle embeddings)
+M2 seed 4,other recipe,stylegan,neutral-neutral,1219,-0.05188443734917482,,,no power (no oracle embeddings)
+M2 seed 4,other recipe,webmorph,neutral-neutral,1219,-0.034302929397834775,,,no power (no oracle embeddings)
+M2 seed 4,other recipe,mordiff,neutral-neutral,500,-0.05728035712142848,,,power
+M2 seed 4,other recipe,mordiff,smiling-smiling,500,-0.03953190212760851,,,power
+M2 seed 4,other recipe,dim_a,neutral-neutral,500,-0.13831735326941308,,,no power (no oracle embeddings)
+M2 seed 4,other recipe,dim_c,neutral-neutral,500,-0.1538265993063972,,,power
+M2 seed 4,other recipe,fast_dim,neutral-neutral,500,-0.12009340837363348,,,no power (no oracle embeddings)
+M2 seed 4,other recipe,fast_dim_ode,neutral-neutral,499,-0.10795499432600138,,,no power (no oracle embeddings)
+M2 seed 4,other recipe,greedy_dim,neutral-neutral,500,-0.12605493621974487,,,power
+M2 seed 4,other recipe,greedy_dim_s,neutral-neutral,500,0.0028231792927171707,,,power
+M2 seed 5,other recipe,amsl,neutral-neutral,2175,0.0667025427737235,,,no power (no oracle embeddings)
+M2 seed 5,other recipe,facemorpher,neutral-neutral,1219,0.01099661825664429,,,no power (no oracle embeddings)
+M2 seed 5,other recipe,opencv,neutral-neutral,1219,0.029032028548493637,,,no power (no oracle embeddings)
+M2 seed 5,other recipe,stylegan,neutral-neutral,1219,0.06879832144375869,,,no power (no oracle embeddings)
+M2 seed 5,other recipe,webmorph,neutral-neutral,1219,0.004918615766130456,,,no power (no oracle embeddings)
+M2 seed 5,other recipe,mordiff,neutral-neutral,500,0.07468474673898695,,,power
+M2 seed 5,other recipe,mordiff,smiling-smiling,500,0.09477244308977235,,,power
+M2 seed 5,other recipe,dim_a,neutral-neutral,500,0.07047224988899956,,,no power (no oracle embeddings)
+M2 seed 5,other recipe,dim_c,neutral-neutral,500,0.026585674342697367,,,power
+M2 seed 5,other recipe,fast_dim,neutral-neutral,500,0.06694711578846314,,,no power (no oracle embeddings)
+M2 seed 5,other recipe,fast_dim_ode,neutral-neutral,499,0.08629528937392857,,,no power (no oracle embeddings)
+M2 seed 5,other recipe,greedy_dim,neutral-neutral,500,0.049163332653330616,,,power
+M2 seed 5,other recipe,greedy_dim_s,neutral-neutral,500,0.08349153396613586,,,power
+M3 seed 1,M3,amsl,neutral-neutral,2175,0.006727954288442546,-0.0820158964022994,0.09087798297405239,no power (no oracle embeddings)
+M3 seed 1,M3,facemorpher,neutral-neutral,1219,0.16837582711008509,0.05457702288404107,0.26750995814800255,no power (no oracle embeddings)
+M3 seed 1,M3,opencv,neutral-neutral,1219,0.15911232665228078,0.044093573559075595,0.25619893744587885,no power (no oracle embeddings)
+M3 seed 1,M3,stylegan,neutral-neutral,1219,0.012533311798433335,-0.10215804111212493,0.12913011536002156,no power (no oracle embeddings)
+M3 seed 1,M3,webmorph,neutral-neutral,1219,0.05028404670008241,-0.061886965204030274,0.15455763116478916,no power (no oracle embeddings)
+M3 seed 1,M3,mordiff,neutral-neutral,500,0.0497434629738519,-0.10980716552585364,0.20503981411457048,power
+M3 seed 1,M3,mordiff,smiling-smiling,500,0.027191148764595056,-0.13354313895106315,0.18364578932523712,power
+M3 seed 1,M3,dim_a,neutral-neutral,500,0.07402743210972844,-0.061850759014487264,0.20930036343634106,no power (no oracle embeddings)
+M3 seed 1,M3,dim_c,neutral-neutral,500,0.0983187932751731,-0.04935623751953244,0.24084309265017506,power
+M3 seed 1,M3,fast_dim,neutral-neutral,500,0.028182160728642915,-0.10823645163327456,0.16341407820582382,no power (no oracle embeddings)
+M3 seed 1,M3,fast_dim_ode,neutral-neutral,499,-0.15686225462974138,-0.30454477965831755,-0.01173311376478528,no power (no oracle embeddings)
+M3 seed 1,M3,greedy_dim,neutral-neutral,500,-0.008915363661454644,-0.1636716727167368,0.14887086898088428,power
+M3 seed 1,M3,greedy_dim_s,neutral-neutral,500,0.054840987363949455,-0.09493577759712934,0.19681524969637373,power
+M3 seed 2,M3,amsl,neutral-neutral,2175,0.05362179980938613,-0.058023355435580015,0.15249767638742914,no power (no oracle embeddings)
+M3 seed 2,M3,facemorpher,neutral-neutral,1219,0.15193668711566294,0.028451198944821954,0.2604329593479633,no power (no oracle embeddings)
+M3 seed 2,M3,opencv,neutral-neutral,1219,0.16815597796549778,0.04792771628126502,0.27062218859791753,no power (no oracle embeddings)
+M3 seed 2,M3,stylegan,neutral-neutral,1219,0.02851399849101122,-0.07827871348708867,0.1285358373075723,no power (no oracle embeddings)
+M3 seed 2,M3,webmorph,neutral-neutral,1219,0.07697535395617995,-0.043572776950895786,0.18881312012672424,no power (no oracle embeddings)
+M3 seed 2,M3,mordiff,neutral-neutral,500,0.15055663422653692,-0.017302051791921257,0.29296241402626033,power
+M3 seed 2,M3,mordiff,smiling-smiling,500,0.14784107136428545,-0.008095654635690152,0.28553956001996983,power
+M3 seed 2,M3,dim_a,neutral-neutral,500,0.13106107138975132,-0.014588804519735276,0.26294942721724507,no power (no oracle embeddings)
+M3 seed 2,M3,dim_c,neutral-neutral,500,0.16646428585228631,0.021849427744746207,0.3040970653295515,power
+M3 seed 2,M3,fast_dim,neutral-neutral,500,0.08663679454717818,-0.0543147025629878,0.22430321238934992,no power (no oracle embeddings)
+M3 seed 2,M3,fast_dim_ode,neutral-neutral,499,-0.08985904338798079,-0.2511770181357861,0.06311605870723716,no power (no oracle embeddings)
+M3 seed 2,M3,greedy_dim,neutral-neutral,500,0.10607908031632125,-0.056741238199174406,0.25854162052273744,power
+M3 seed 2,M3,greedy_dim_s,neutral-neutral,500,0.10897809991239964,-0.04528618175536394,0.25114737302064893,power
+M3 seed 3,M3,amsl,neutral-neutral,2175,0.004987335099947042,-0.0948951767757535,0.10292392298579212,no power (no oracle embeddings)
+M3 seed 3,M3,facemorpher,neutral-neutral,1219,0.1534396404819993,0.03802106454968453,0.25858195424079894,no power (no oracle embeddings)
+M3 seed 3,M3,opencv,neutral-neutral,1219,0.13044248080067575,0.008717212500050664,0.23312582932412612,no power (no oracle embeddings)
+M3 seed 3,M3,stylegan,neutral-neutral,1219,-0.03849386119542411,-0.1534051775932312,0.0856902411207554,no power (no oracle embeddings)
+M3 seed 3,M3,webmorph,neutral-neutral,1219,0.07656133932061851,-0.0413559902459383,0.18550889529287815,no power (no oracle embeddings)
+M3 seed 3,M3,mordiff,neutral-neutral,500,0.05315685262741051,-0.10360186919569969,0.1964781105518341,power
+M3 seed 3,M3,mordiff,smiling-smiling,500,0.024874563498253992,-0.13539304733276367,0.1904499519616363,power
+M3 seed 3,M3,dim_a,neutral-neutral,500,0.03708379633518534,-0.09960022177547216,0.169923860579729,no power (no oracle embeddings)
+M3 seed 3,M3,dim_c,neutral-neutral,500,0.07833458533834135,-0.06813513785600663,0.23328709118068203,power
+M3 seed 3,M3,fast_dim,neutral-neutral,500,0.0052417169668678674,-0.14184120818972587,0.14098640978336313,no power (no oracle embeddings)
+M3 seed 3,M3,fast_dim_ode,neutral-neutral,499,-0.1723216070695608,-0.32057643458247187,-0.02226940626278521,no power (no oracle embeddings)
+M3 seed 3,M3,greedy_dim,neutral-neutral,500,-0.07580929523718094,-0.23225718066096307,0.09539011213928454,power
+M3 seed 3,M3,greedy_dim_s,neutral-neutral,500,0.0745876903507614,-0.08657626006752253,0.2196285609155893,power
+M3 seed 4,M3,amsl,neutral-neutral,2175,0.05671355879114823,-0.050105640199035406,0.15464983060955995,no power (no oracle embeddings)
+M3 seed 4,M3,facemorpher,neutral-neutral,1219,0.16564638231663883,0.050464536901563405,0.2708982333540915,no power (no oracle embeddings)
+M3 seed 4,M3,opencv,neutral-neutral,1219,0.15675219174815433,0.04127521310001612,0.2559125624597072,no power (no oracle embeddings)
+M3 seed 4,M3,stylegan,neutral-neutral,1219,0.03723909111680737,-0.07163716368377208,0.1419467732310295,no power (no oracle embeddings)
+M3 seed 4,M3,webmorph,neutral-neutral,1219,0.10484855888524297,-0.01723494408652186,0.21028545722365374,no power (no oracle embeddings)
+M3 seed 4,M3,mordiff,neutral-neutral,500,0.08819608290103761,-0.07844205275177955,0.2401672691106794,power
+M3 seed 4,M3,mordiff,smiling-smiling,500,0.03519431762193412,-0.12891610711812973,0.18865615874528885,power
+M3 seed 4,M3,dim_a,neutral-neutral,500,0.12783747134988538,-0.017519431840628385,0.26830315440893165,no power (no oracle embeddings)
+M3 seed 4,M3,dim_c,neutral-neutral,500,0.12893336682786813,-0.028504583006724715,0.2843506142497062,power
+M3 seed 4,M3,fast_dim,neutral-neutral,500,0.06003451213804854,-0.09548000432550907,0.20840551257133466,no power (no oracle embeddings)
+M3 seed 4,M3,fast_dim_ode,neutral-neutral,499,-0.10242402878045247,-0.26678988337516785,0.05983906798064703,no power (no oracle embeddings)
+M3 seed 4,M3,greedy_dim,neutral-neutral,500,0.030722330889323555,-0.12443589195609092,0.18014385029673569,power
+M3 seed 4,M3,greedy_dim_s,neutral-neutral,500,0.0732310129240517,-0.08476836029440164,0.21486814208328714,power
+M3 seed 5,M3,amsl,neutral-neutral,2175,0.039863231065893755,-0.06202204246073961,0.1343438312411308,no power (no oracle embeddings)
+M3 seed 5,M3,facemorpher,neutral-neutral,1219,0.146196415092015,0.032439408265054225,0.25122642144560814,no power (no oracle embeddings)
+M3 seed 5,M3,opencv,neutral-neutral,1219,0.1323817087034646,0.018757297284901144,0.23322391882538748,no power (no oracle embeddings)
+M3 seed 5,M3,stylegan,neutral-neutral,1219,0.0232065620673822,-0.08870007339864969,0.13622521646320807,no power (no oracle embeddings)
+M3 seed 5,M3,webmorph,neutral-neutral,1219,0.05044844022246753,-0.05932089844718576,0.15680619403719903,no power (no oracle embeddings)
+M3 seed 5,M3,mordiff,neutral-neutral,500,0.15969951879807517,0.0046791000990197085,0.3046106629073619,power
+M3 seed 5,M3,mordiff,smiling-smiling,500,0.10935394141576567,-0.048078748397529125,0.2559891588985919,power
+M3 seed 5,M3,dim_a,neutral-neutral,500,0.09533279733118932,-0.048993358947336675,0.23602894395589824,no power (no oracle embeddings)
+M3 seed 5,M3,dim_c,neutral-neutral,500,0.15335475741902968,0.005641402292530984,0.2886867716908451,power
+M3 seed 5,M3,fast_dim,neutral-neutral,500,0.06297826791307165,-0.07939210217446088,0.1966602098196744,no power (no oracle embeddings)
+M3 seed 5,M3,fast_dim_ode,neutral-neutral,499,-0.13299775454523502,-0.2810779258608818,0.019921672251075485,no power (no oracle embeddings)
+M3 seed 5,M3,greedy_dim,neutral-neutral,500,-0.006943227772911091,-0.16383770890533925,0.14694019258022292,power
+M3 seed 5,M3,greedy_dim_s,neutral-neutral,500,0.09578956715826863,-0.062304767593741414,0.24053821824491,power
+M3 seed 6,M3,amsl,neutral-neutral,2175,0.06984715067167689,-0.03806520672515035,0.16410399973392473,no power (no oracle embeddings)
+M3 seed 6,M3,facemorpher,neutral-neutral,1219,0.1629950810463709,0.046366726700216535,0.26617065966129283,no power (no oracle embeddings)
+M3 seed 6,M3,opencv,neutral-neutral,1219,0.16082135429534147,0.03694726936519146,0.26574530974030497,no power (no oracle embeddings)
+M3 seed 6,M3,stylegan,neutral-neutral,1219,0.014512572709270833,-0.09434375334531069,0.12035081163048739,no power (no oracle embeddings)
+M3 seed 6,M3,webmorph,neutral-neutral,1219,0.10167044090521572,-0.021611229283735156,0.20946086533367622,no power (no oracle embeddings)
+M3 seed 6,M3,mordiff,neutral-neutral,500,0.10960853443413773,-0.048595174495130775,0.26513037085533137,power
+M3 seed 6,M3,mordiff,smiling-smiling,500,0.0613624854499418,-0.09663153700530529,0.21643876284360883,power
+M3 seed 6,M3,dim_a,neutral-neutral,500,0.12940678962715849,-0.013407229585573078,0.26384567767381645,no power (no oracle embeddings)
+M3 seed 6,M3,dim_c,neutral-neutral,500,0.14242348169392677,-0.009035922773182391,0.28948053568601606,power
+M3 seed 6,M3,fast_dim,neutral-neutral,500,0.058760683042732166,-0.09154310561716557,0.20399658270180218,no power (no oracle embeddings)
+M3 seed 6,M3,fast_dim_ode,neutral-neutral,499,-0.10770611101721514,-0.26858262792229654,0.04551049927249545,no power (no oracle embeddings)
+M3 seed 6,M3,greedy_dim,neutral-neutral,500,-0.02411836847347389,-0.1899046737700701,0.13682884648442253,power
+M3 seed 6,M3,greedy_dim_s,neutral-neutral,500,0.08521147684590738,-0.0670569671317935,0.23146695382893084,power
+M3 seed 7,M3,amsl,neutral-neutral,2175,0.058960252943191516,-0.042771365493535995,0.1518170487135648,no power (no oracle embeddings)
+M3 seed 7,M3,facemorpher,neutral-neutral,1219,0.16527192994893555,0.04715848760679364,0.2705110117793083,no power (no oracle embeddings)
+M3 seed 7,M3,opencv,neutral-neutral,1219,0.1756405802041987,0.05307571105659008,0.2734440945088863,no power (no oracle embeddings)
+M3 seed 7,M3,stylegan,neutral-neutral,1219,0.06457503429806019,-0.04857455305755139,0.16487762741744516,no power (no oracle embeddings)
+M3 seed 7,M3,webmorph,neutral-neutral,1219,0.09330135663460748,-0.02921692095696926,0.19850468747317787,no power (no oracle embeddings)
+M3 seed 7,M3,mordiff,neutral-neutral,500,0.1174016536066144,-0.04001723416149616,0.25829628333449356,power
+M3 seed 7,M3,mordiff,smiling-smiling,500,0.07895311581246324,-0.08243308998644353,0.21945349387824517,power
+M3 seed 7,M3,dim_a,neutral-neutral,500,0.1109620438481754,-0.045942713413387536,0.2468341391533612,no power (no oracle embeddings)
+M3 seed 7,M3,dim_c,neutral-neutral,500,0.14144792579170318,-0.004129092034418136,0.28414666578173625,power
+M3 seed 7,M3,fast_dim,neutral-neutral,500,0.05985460741842968,-0.09347613602876663,0.20127876773476583,no power (no oracle embeddings)
+M3 seed 7,M3,fast_dim_ode,neutral-neutral,499,-0.11146958978197358,-0.2727911114692688,0.046082535944878635,no power (no oracle embeddings)
+M3 seed 7,M3,greedy_dim,neutral-neutral,500,-0.05553363013452053,-0.21602805219590665,0.10415994320064755,power
+M3 seed 7,M3,greedy_dim_s,neutral-neutral,500,0.10086088586420473,-0.051187251694500446,0.24711621031165115,power
+M3 seed 8,M3,amsl,neutral-neutral,2175,0.022466663368654598,-0.07596450932323932,0.11269563362002372,no power (no oracle embeddings)
+M3 seed 8,M3,facemorpher,neutral-neutral,1219,0.15951767609633385,0.04181770887225866,0.27371346876025193,no power (no oracle embeddings)
+M3 seed 8,M3,opencv,neutral-neutral,1219,0.1399217164869909,0.02649876726791263,0.2372655503451824,no power (no oracle embeddings)
+M3 seed 8,M3,stylegan,neutral-neutral,1219,0.06814773648039663,-0.04092453438788653,0.17272399179637427,no power (no oracle embeddings)
+M3 seed 8,M3,webmorph,neutral-neutral,1219,0.058223210430929644,-0.061717065051198006,0.1652633473277091,no power (no oracle embeddings)
+M3 seed 8,M3,mordiff,neutral-neutral,500,0.12479166716666867,-0.03848576592281461,0.27241440862417216,power
+M3 seed 8,M3,mordiff,smiling-smiling,500,0.12692335569342278,-0.03298370642587543,0.2722359791398048,power
+M3 seed 8,M3,dim_a,neutral-neutral,500,0.11372675890703564,-0.03347054151818156,0.24706812351942062,no power (no oracle embeddings)
+M3 seed 8,M3,dim_c,neutral-neutral,500,0.16294855579422315,0.012755254376679659,0.30241395980119695,power
+M3 seed 8,M3,fast_dim,neutral-neutral,500,0.07283136332545329,-0.07892188411206007,0.2131112873554229,no power (no oracle embeddings)
+M3 seed 8,M3,fast_dim_ode,neutral-neutral,499,-0.09967182557886858,-0.25338047444820405,0.05271218158304679,no power (no oracle embeddings)
+M3 seed 8,M3,greedy_dim,neutral-neutral,500,0.08488872355489421,-0.07781160306185483,0.23744788356125354,power
+M3 seed 8,M3,greedy_dim_s,neutral-neutral,500,0.11338230952923811,-0.041248666308820243,0.25534629821777327,power
+M3L seed 1,M3L,amsl,neutral-neutral,2175,-0.06886488616156107,-0.1672529771924019,0.027666203025728444,no power (no oracle embeddings)
+M3L seed 1,M3L,facemorpher,neutral-neutral,1219,0.1823050800026561,0.07699505425989628,0.2716500788927078,no power (no oracle embeddings)
+M3L seed 1,M3L,opencv,neutral-neutral,1219,0.2003701673127595,0.08901196233928203,0.29453888460993766,no power (no oracle embeddings)
+M3L seed 1,M3L,stylegan,neutral-neutral,1219,-0.07838330527367547,-0.18765006214380264,0.045820796303451025,no power (no oracle embeddings)
+M3L seed 1,M3L,webmorph,neutral-neutral,1219,0.052313900934734335,-0.06035512080416083,0.16239838562905787,no power (no oracle embeddings)
+M3L seed 1,M3L,mordiff,neutral-neutral,500,0.06424777699110797,-0.08399035353213549,0.20122307240962958,power
+M3L seed 1,M3L,mordiff,smiling-smiling,500,0.1121317125268501,-0.055983282066881655,0.26498600617051116,power
+M3L seed 1,M3L,dim_a,neutral-neutral,500,-0.030080664322657293,-0.1852092355489731,0.11960396692156773,no power (no oracle embeddings)
+M3L seed 1,M3L,dim_c,neutral-neutral,500,0.00028291313165252664,-0.16415251344442366,0.16091672629117965,power
+M3L seed 1,M3L,fast_dim,neutral-neutral,500,-0.11106361225444901,-0.25019057989120486,0.03492176579311482,no power (no oracle embeddings)
+M3L seed 1,M3L,fast_dim_ode,neutral-neutral,499,-0.06045256778617475,-0.22118863090872765,0.10811195280402892,no power (no oracle embeddings)
+M3L seed 1,M3L,greedy_dim,neutral-neutral,500,0.05439429757719031,-0.09499339368194341,0.2046097625046967,power
+M3L seed 1,M3L,greedy_dim_s,neutral-neutral,500,0.1452254449017796,-0.018279628362506628,0.292630848288536,power
+M3L seed 2,M3L,amsl,neutral-neutral,2175,-0.04591649745575069,-0.14931507892906665,0.06219422565773119,no power (no oracle embeddings)
+M3L seed 2,M3L,facemorpher,neutral-neutral,1219,0.15998481166819842,0.06250142604112625,0.2469675790518521,no power (no oracle embeddings)
+M3L seed 2,M3L,opencv,neutral-neutral,1219,0.18153055653857397,0.0710945576429367,0.2750138625502586,no power (no oracle embeddings)
+M3L seed 2,M3L,stylegan,neutral-neutral,1219,-0.12363043476151027,-0.23691632635891438,0.0003755078265384871,no power (no oracle embeddings)
+M3L seed 2,M3L,webmorph,neutral-neutral,1219,0.042868881939216855,-0.06419141981750727,0.15093565024435507,no power (no oracle embeddings)
+M3L seed 2,M3L,mordiff,neutral-neutral,500,0.010526154104616417,-0.13929187282919883,0.14894073568284508,power
+M3L seed 2,M3L,mordiff,smiling-smiling,500,0.03460257041028164,-0.1196217741817236,0.19132618568837637,power
+M3L seed 2,M3L,dim_a,neutral-neutral,500,-0.055841503366013456,-0.20068723037838937,0.09263801034539935,no power (no oracle embeddings)
+M3L seed 2,M3L,dim_c,neutral-neutral,500,0.011776367105468422,-0.15318735055625438,0.1725420020520687,power
+M3L seed 2,M3L,fast_dim,neutral-neutral,500,-0.15008767235068937,-0.28313045054674146,-0.0007073571544425363,no power (no oracle embeddings)
+M3L seed 2,M3L,fast_dim_ode,neutral-neutral,499,-0.10346215322210685,-0.25949443578720094,0.05493827406316988,no power (no oracle embeddings)
+M3L seed 2,M3L,greedy_dim,neutral-neutral,500,-0.0732874611498446,-0.2145390696823597,0.07184442989528175,power
+M3L seed 2,M3L,greedy_dim_s,neutral-neutral,500,0.13830304921219685,-0.025842860992997884,0.2770230181515214,power
+M3L seed 3,M3L,amsl,neutral-neutral,2175,-0.006676348627222545,-0.11835474465042353,0.1050818335264921,no power (no oracle embeddings)
+M3L seed 3,M3L,facemorpher,neutral-neutral,1219,0.1841051247921983,0.07817549724131823,0.2721338398754595,no power (no oracle embeddings)
+M3L seed 3,M3L,opencv,neutral-neutral,1219,0.19266129623090866,0.07867226656526327,0.2880783222615717,no power (no oracle embeddings)
+M3L seed 3,M3L,stylegan,neutral-neutral,1219,-0.05724231482184703,-0.16179733760654927,0.05333281382918346,no power (no oracle embeddings)
+M3L seed 3,M3L,webmorph,neutral-neutral,1219,0.07997813430344612,-0.03484832756221294,0.18987548649311048,no power (no oracle embeddings)
+M3L seed 3,M3L,mordiff,neutral-neutral,500,0.06067704270817083,-0.08624986540526151,0.20311507880687713,power
+M3L seed 3,M3L,mordiff,smiling-smiling,500,0.10382902331609327,-0.05036991024389863,0.24330273866653432,power
+M3L seed 3,M3L,dim_a,neutral-neutral,500,0.026708458833835335,-0.14405705071985722,0.18010216429829584,no power (no oracle embeddings)
+M3L seed 3,M3L,dim_c,neutral-neutral,500,0.05307314029256117,-0.10882736034691334,0.2154171664267777,power
+M3L seed 3,M3L,fast_dim,neutral-neutral,500,-0.06909810039240157,-0.21385294310748576,0.07361113894730793,no power (no oracle embeddings)
+M3L seed 3,M3L,fast_dim_ode,neutral-neutral,499,0.007824226766786586,-0.14696185365319253,0.15032828487455815,no power (no oracle embeddings)
+M3L seed 3,M3L,greedy_dim,neutral-neutral,500,0.03923852495409981,-0.11005286201834678,0.1880133576691149,power
+M3L seed 3,M3L,greedy_dim_s,neutral-neutral,500,0.15174051096204383,-0.015479522105306386,0.2963748849928379,power
+M3L seed 4,M3L,amsl,neutral-neutral,2175,-0.023469519779449714,-0.13752105236053466,0.08684105053544033,no power (no oracle embeddings)
+M3L seed 4,M3L,facemorpher,neutral-neutral,1219,0.1934162172815857,0.08844220153987407,0.28429866284132005,no power (no oracle embeddings)
+M3L seed 4,M3L,opencv,neutral-neutral,1219,0.20666134712456422,0.09375718832015992,0.30509374290704716,no power (no oracle embeddings)
+M3L seed 4,M3L,stylegan,neutral-neutral,1219,-0.06589909940968713,-0.17204394601285458,0.045516003575175934,no power (no oracle embeddings)
+M3L seed 4,M3L,webmorph,neutral-neutral,1219,0.07093104501613362,-0.037301025446504356,0.17816285230219364,no power (no oracle embeddings)
+M3L seed 4,M3L,mordiff,neutral-neutral,500,0.0021848727394909576,-0.14120430164039136,0.14079086408019065,power
+M3L seed 4,M3L,mordiff,smiling-smiling,500,0.05572716690866763,-0.10442776046693325,0.21485144719481453,power
+M3L seed 4,M3L,dim_a,neutral-neutral,500,0.020468529874119498,-0.1409150145947933,0.17243947759270667,no power (no oracle embeddings)
+M3L seed 4,M3L,dim_c,neutral-neutral,500,0.03633019332077328,-0.11833356339484453,0.18314484767615763,power
+M3L seed 4,M3L,fast_dim,neutral-neutral,500,-0.08870358681434724,-0.22733231633901596,0.05788848819211122,no power (no oracle embeddings)
+M3L seed 4,M3L,fast_dim_ode,neutral-neutral,499,-0.007151073230798948,-0.16967621371150016,0.15113324858248228,no power (no oracle embeddings)
+M3L seed 4,M3L,greedy_dim,neutral-neutral,500,0.06711636446545785,-0.07964324299246073,0.21367976181209086,power
+M3L seed 4,M3L,greedy_dim_s,neutral-neutral,500,0.13373755895023579,-0.029879986308515072,0.27477187216281884,power
+M3L seed 5,M3L,amsl,neutral-neutral,2175,0.03280331727447892,-0.07807494010776281,0.14193207658827303,no power (no oracle embeddings)
+M3L seed 5,M3L,facemorpher,neutral-neutral,1219,0.1738485585998765,0.06786269843578338,0.26376411691308016,no power (no oracle embeddings)
+M3L seed 5,M3L,opencv,neutral-neutral,1219,0.19136310743945187,0.07898720521479845,0.2852613784372806,no power (no oracle embeddings)
+M3L seed 5,M3L,stylegan,neutral-neutral,1219,-0.05061918697750764,-0.17041989080607892,0.0699537672102451,no power (no oracle embeddings)
+M3L seed 5,M3L,webmorph,neutral-neutral,1219,0.07608313072044243,-0.03735310984775424,0.18626149855554103,no power (no oracle embeddings)
+M3L seed 5,M3L,mordiff,neutral-neutral,500,0.055949023796095176,-0.09614981636404991,0.19124655388295642,power
+M3L seed 5,M3L,mordiff,smiling-smiling,500,0.08058598634394537,-0.07065440379083156,0.23011804930865756,power
+M3L seed 5,M3L,dim_a,neutral-neutral,500,-0.02023409693638774,-0.17899682745337486,0.1340948332101106,no power (no oracle embeddings)
+M3L seed 5,M3L,dim_c,neutral-neutral,500,0.02447270589082356,-0.12867549955844879,0.16799074932932853,power
+M3L seed 5,M3L,fast_dim,neutral-neutral,500,-0.08483909135636541,-0.22139297425746918,0.05467509273439641,no power (no oracle embeddings)
+M3L seed 5,M3L,fast_dim_ode,neutral-neutral,499,0.02847700219716541,-0.1442375686019659,0.18314815722405897,no power (no oracle embeddings)
+M3L seed 5,M3L,greedy_dim,neutral-neutral,500,0.02110683642734571,-0.1214505584910512,0.16382272318005553,power
+M3L seed 5,M3L,greedy_dim_s,neutral-neutral,500,0.1574207576830307,-0.0025404663174413145,0.2881861202418804,power
+M4 seed 1,other recipe,amsl,neutral-neutral,2175,0.054354376711165484,,,no power (no oracle embeddings)
+M4 seed 1,other recipe,facemorpher,neutral-neutral,1219,0.04689275962271934,,,no power (no oracle embeddings)
+M4 seed 1,other recipe,opencv,neutral-neutral,1219,-0.03857635005968673,,,no power (no oracle embeddings)
+M4 seed 1,other recipe,stylegan,neutral-neutral,1219,0.028380222739592526,,,no power (no oracle embeddings)
+M4 seed 1,other recipe,webmorph,neutral-neutral,1219,0.03816882376716285,,,no power (no oracle embeddings)
+M4 seed 1,other recipe,mordiff,neutral-neutral,500,-0.06824542498169993,,,power
+M4 seed 1,other recipe,mordiff,smiling-smiling,500,0.029052308209232835,,,power
+M4 seed 1,other recipe,dim_a,neutral-neutral,500,0.08938912555650222,,,no power (no oracle embeddings)
+M4 seed 1,other recipe,dim_c,neutral-neutral,500,-0.044782451129804515,,,power
+M4 seed 1,other recipe,fast_dim,neutral-neutral,500,0.11257216228864916,,,no power (no oracle embeddings)
+M4 seed 1,other recipe,fast_dim_ode,neutral-neutral,499,0.0448763551198783,,,no power (no oracle embeddings)
+M4 seed 1,other recipe,greedy_dim,neutral-neutral,500,0.127751743006972,,,power
+M4 seed 1,other recipe,greedy_dim_s,neutral-neutral,500,0.14866792267169068,,,power
+M4 seed 2,other recipe,amsl,neutral-neutral,2175,0.03563025843796915,,,no power (no oracle embeddings)
+M4 seed 2,other recipe,facemorpher,neutral-neutral,1219,0.052388382198981176,,,no power (no oracle embeddings)
+M4 seed 2,other recipe,opencv,neutral-neutral,1219,0.029639085737223177,,,no power (no oracle embeddings)
+M4 seed 2,other recipe,stylegan,neutral-neutral,1219,-0.001916765542905863,,,no power (no oracle embeddings)
+M4 seed 2,other recipe,webmorph,neutral-neutral,1219,0.01296394796724743,,,no power (no oracle embeddings)
+M4 seed 2,other recipe,mordiff,neutral-neutral,500,-0.06648343393373574,,,power
+M4 seed 2,other recipe,mordiff,smiling-smiling,500,0.029745334981339928,,,power
+M4 seed 2,other recipe,dim_a,neutral-neutral,500,0.061188532754131005,,,no power (no oracle embeddings)
+M4 seed 2,other recipe,dim_c,neutral-neutral,500,-0.06917336469345878,,,power
+M4 seed 2,other recipe,fast_dim,neutral-neutral,500,0.08472811491245964,,,no power (no oracle embeddings)
+M4 seed 2,other recipe,fast_dim_ode,neutral-neutral,499,-0.008793587174348697,,,no power (no oracle embeddings)
+M4 seed 2,other recipe,greedy_dim,neutral-neutral,500,0.10858661034644139,,,power
+M4 seed 2,other recipe,greedy_dim_s,neutral-neutral,500,0.1491008844035376,,,power
+M4 seed 3,other recipe,amsl,neutral-neutral,2175,0.031219325718530658,,,no power (no oracle embeddings)
+M4 seed 3,other recipe,facemorpher,neutral-neutral,1219,0.0460243777178736,,,no power (no oracle embeddings)
+M4 seed 3,other recipe,opencv,neutral-neutral,1219,-0.00940434114906817,,,no power (no oracle embeddings)
+M4 seed 3,other recipe,stylegan,neutral-neutral,1219,-0.008233615809918257,,,no power (no oracle embeddings)
+M4 seed 3,other recipe,webmorph,neutral-neutral,1219,0.003390229678585655,,,no power (no oracle embeddings)
+M4 seed 3,other recipe,mordiff,neutral-neutral,500,-0.029499957999832,,,power
+M4 seed 3,other recipe,mordiff,smiling-smiling,500,0.05758995835983343,,,power
+M4 seed 3,other recipe,dim_a,neutral-neutral,500,0.07761554246216984,,,no power (no oracle embeddings)
+M4 seed 3,other recipe,dim_c,neutral-neutral,500,-0.037569654278617116,,,power
+M4 seed 3,other recipe,fast_dim,neutral-neutral,500,0.09192219168876675,,,no power (no oracle embeddings)
+M4 seed 3,other recipe,fast_dim_ode,neutral-neutral,499,0.04593022188956225,,,no power (no oracle embeddings)
+M4 seed 3,other recipe,greedy_dim,neutral-neutral,500,0.1293822135288541,,,power
+M4 seed 3,other recipe,greedy_dim_s,neutral-neutral,500,0.16005865623462492,,,power
+M4 seed 4,other recipe,amsl,neutral-neutral,2175,0.02548626212533346,,,no power (no oracle embeddings)
+M4 seed 4,other recipe,facemorpher,neutral-neutral,1219,0.05109691627848359,,,no power (no oracle embeddings)
+M4 seed 4,other recipe,opencv,neutral-neutral,1219,nan,,,no power (no oracle embeddings)
+M4 seed 4,other recipe,stylegan,neutral-neutral,1219,0.03363357770122219,,,no power (no oracle embeddings)
+M4 seed 4,other recipe,webmorph,neutral-neutral,1219,-0.02045863639697097,,,no power (no oracle embeddings)
+M4 seed 4,other recipe,mordiff,neutral-neutral,500,-0.06336610946443785,,,power
+M4 seed 4,other recipe,mordiff,smiling-smiling,500,0.03243795375181501,,,power
+M4 seed 4,other recipe,dim_a,neutral-neutral,500,0.08440392161568647,,,no power (no oracle embeddings)
+M4 seed 4,other recipe,dim_c,neutral-neutral,500,-0.060488497953991804,,,power
+M4 seed 4,other recipe,fast_dim,neutral-neutral,500,0.10621780087120349,,,no power (no oracle embeddings)
+M4 seed 4,other recipe,fast_dim_ode,neutral-neutral,499,0.026169543907091287,,,no power (no oracle embeddings)
+M4 seed 4,other recipe,greedy_dim,neutral-neutral,500,0.08703058812235248,,,power
+M4 seed 4,other recipe,greedy_dim_s,neutral-neutral,500,0.16469595478381913,,,power
+M4 seed 5,other recipe,amsl,neutral-neutral,2175,0.024116323025694036,,,no power (no oracle embeddings)
+M4 seed 5,other recipe,facemorpher,neutral-neutral,1219,0.025432591606528457,,,no power (no oracle embeddings)
+M4 seed 5,other recipe,opencv,neutral-neutral,1219,0.029639085737223177,,,no power (no oracle embeddings)
+M4 seed 5,other recipe,stylegan,neutral-neutral,1219,-0.03663846465390267,,,no power (no oracle embeddings)
+M4 seed 5,other recipe,webmorph,neutral-neutral,1219,0.01982434835341818,,,no power (no oracle embeddings)
+M4 seed 5,other recipe,mordiff,neutral-neutral,500,-0.10003182412729651,,,power
+M4 seed 5,other recipe,mordiff,smiling-smiling,500,0.010658634634538538,,,power
+M4 seed 5,other recipe,dim_a,neutral-neutral,500,0.0782446329785319,,,no power (no oracle embeddings)
+M4 seed 5,other recipe,dim_c,neutral-neutral,500,-0.024010272041088163,,,power
+M4 seed 5,other recipe,fast_dim,neutral-neutral,500,0.0759434077736311,,,no power (no oracle embeddings)
+M4 seed 5,other recipe,fast_dim_ode,neutral-neutral,499,0.04124885916411135,,,no power (no oracle embeddings)
+M4 seed 5,other recipe,greedy_dim,neutral-neutral,500,0.14206031224124896,,,power
+M4 seed 5,other recipe,greedy_dim_s,neutral-neutral,500,0.15367943071772286,,,power
+M5 seed 1,other recipe,amsl,neutral-neutral,2175,0.10819005753290034,,,no power (no oracle embeddings)
+M5 seed 1,other recipe,facemorpher,neutral-neutral,1219,0.1548714905063486,,,no power (no oracle embeddings)
+M5 seed 1,other recipe,opencv,neutral-neutral,1219,0.14961894025370326,,,no power (no oracle embeddings)
+M5 seed 1,other recipe,stylegan,neutral-neutral,1219,-0.04795026816051565,,,no power (no oracle embeddings)
+M5 seed 1,other recipe,webmorph,neutral-neutral,1219,0.12835581899739892,,,no power (no oracle embeddings)
+M5 seed 1,other recipe,mordiff,neutral-neutral,500,-0.017781671126684506,,,power
+M5 seed 1,other recipe,mordiff,smiling-smiling,500,-0.011016140064560257,,,power
+M5 seed 1,other recipe,dim_a,neutral-neutral,500,-0.057004260017040065,,,no power (no oracle embeddings)
+M5 seed 1,other recipe,dim_c,neutral-neutral,500,0.006288409153636615,,,power
+M5 seed 1,other recipe,fast_dim,neutral-neutral,500,-0.05748925395701582,,,no power (no oracle embeddings)
+M5 seed 1,other recipe,fast_dim_ode,neutral-neutral,499,-0.034292005698143266,,,no power (no oracle embeddings)
+M5 seed 1,other recipe,greedy_dim,neutral-neutral,500,-0.034467977871911484,,,power
+M5 seed 1,other recipe,greedy_dim_s,neutral-neutral,500,0.061657110628442514,,,power
+M5 seed 2,other recipe,amsl,neutral-neutral,2175,0.03023254766672804,,,no power (no oracle embeddings)
+M5 seed 2,other recipe,facemorpher,neutral-neutral,1219,0.0695739620799825,,,no power (no oracle embeddings)
+M5 seed 2,other recipe,opencv,neutral-neutral,1219,0.05941210385483763,,,no power (no oracle embeddings)
+M5 seed 2,other recipe,stylegan,neutral-neutral,1219,0.045463537141547314,,,no power (no oracle embeddings)
+M5 seed 2,other recipe,webmorph,neutral-neutral,1219,0.04197380343013063,,,no power (no oracle embeddings)
+M5 seed 2,other recipe,mordiff,neutral-neutral,500,0.1128252193008772,,,power
+M5 seed 2,other recipe,mordiff,smiling-smiling,500,0.08569627878511513,,,power
+M5 seed 2,other recipe,dim_a,neutral-neutral,500,0.05001207204828819,,,no power (no oracle embeddings)
+M5 seed 2,other recipe,dim_c,neutral-neutral,500,-0.015971103884415538,,,power
+M5 seed 2,other recipe,fast_dim,neutral-neutral,500,0.06559811839247356,,,no power (no oracle embeddings)
+M5 seed 2,other recipe,fast_dim_ode,neutral-neutral,499,0.06313127459738753,,,no power (no oracle embeddings)
+M5 seed 2,other recipe,greedy_dim,neutral-neutral,500,-0.03155388621554486,,,power
+M5 seed 2,other recipe,greedy_dim_s,neutral-neutral,500,0.08666838075356417,,,power
+M5 seed 3,other recipe,amsl,neutral-neutral,2175,0.15045568202117313,,,no power (no oracle embeddings)
+M5 seed 3,other recipe,facemorpher,neutral-neutral,1219,0.17078397525200106,,,no power (no oracle embeddings)
+M5 seed 3,other recipe,opencv,neutral-neutral,1219,0.05609153357129044,,,no power (no oracle embeddings)
+M5 seed 3,other recipe,stylegan,neutral-neutral,1219,-0.09848487006551958,,,no power (no oracle embeddings)
+M5 seed 3,other recipe,webmorph,neutral-neutral,1219,0.13975316261271953,,,no power (no oracle embeddings)
+M5 seed 3,other recipe,mordiff,neutral-neutral,500,0.04629474517898071,,,power
+M5 seed 3,other recipe,mordiff,smiling-smiling,500,0.09225070500282,,,power
+M5 seed 3,other recipe,dim_a,neutral-neutral,500,-0.012050832203328813,,,no power (no oracle embeddings)
+M5 seed 3,other recipe,dim_c,neutral-neutral,500,0.08839619358477432,,,power
+M5 seed 3,other recipe,fast_dim,neutral-neutral,500,0.06508826035304141,,,no power (no oracle embeddings)
+M5 seed 3,other recipe,fast_dim_ode,neutral-neutral,499,-0.023531206992297847,,,no power (no oracle embeddings)
+M5 seed 3,other recipe,greedy_dim,neutral-neutral,500,0.02243384973539894,,,power
+M5 seed 3,other recipe,greedy_dim_s,neutral-neutral,500,0.10223292093168371,,,power
+M5 seed 4,other recipe,amsl,neutral-neutral,2175,0.0911153417580467,,,no power (no oracle embeddings)
+M5 seed 4,other recipe,facemorpher,neutral-neutral,1219,0.137151120873658,,,no power (no oracle embeddings)
+M5 seed 4,other recipe,opencv,neutral-neutral,1219,0.15809446476443628,,,no power (no oracle embeddings)
+M5 seed 4,other recipe,stylegan,neutral-neutral,1219,0.00068101581861352,,,no power (no oracle embeddings)
+M5 seed 4,other recipe,webmorph,neutral-neutral,1219,0.1016545878446045,,,no power (no oracle embeddings)
+M5 seed 4,other recipe,mordiff,neutral-neutral,500,-0.0676005904023616,,,power
+M5 seed 4,other recipe,mordiff,smiling-smiling,500,-0.06972421489685958,,,power
+M5 seed 4,other recipe,dim_a,neutral-neutral,500,-0.039054684218736875,,,no power (no oracle embeddings)
+M5 seed 4,other recipe,dim_c,neutral-neutral,500,0.025550022200088795,,,power
+M5 seed 4,other recipe,fast_dim,neutral-neutral,500,-0.05162967851871407,,,no power (no oracle embeddings)
+M5 seed 4,other recipe,fast_dim_ode,neutral-neutral,499,0.026359610787840736,,,no power (no oracle embeddings)
+M5 seed 4,other recipe,greedy_dim,neutral-neutral,500,0.002171912739776866,,,power
+M5 seed 4,other recipe,greedy_dim_s,neutral-neutral,500,0.03732206928827715,,,power
+M5 seed 5,other recipe,amsl,neutral-neutral,2175,0.054559202723636464,,,no power (no oracle embeddings)
+M5 seed 5,other recipe,facemorpher,neutral-neutral,1219,-0.022879497461291004,,,no power (no oracle embeddings)
+M5 seed 5,other recipe,opencv,neutral-neutral,1219,-0.05328463425041489,,,no power (no oracle embeddings)
+M5 seed 5,other recipe,stylegan,neutral-neutral,1219,-0.047762621715963634,,,no power (no oracle embeddings)
+M5 seed 5,other recipe,webmorph,neutral-neutral,1219,0.10790565567377594,,,no power (no oracle embeddings)
+M5 seed 5,other recipe,mordiff,neutral-neutral,500,0.0801002244008976,,,power
+M5 seed 5,other recipe,mordiff,smiling-smiling,500,0.10574605498421995,,,power
+M5 seed 5,other recipe,dim_a,neutral-neutral,500,0.055066396265585064,,,no power (no oracle embeddings)
+M5 seed 5,other recipe,dim_c,neutral-neutral,500,0.027481837927351708,,,power
+M5 seed 5,other recipe,fast_dim,neutral-neutral,500,0.04011318445273781,,,no power (no oracle embeddings)
+M5 seed 5,other recipe,fast_dim_ode,neutral-neutral,499,0.02412110968925803,,,no power (no oracle embeddings)
+M5 seed 5,other recipe,greedy_dim,neutral-neutral,500,0.11667157068628273,,,power
+M5 seed 5,other recipe,greedy_dim_s,neutral-neutral,500,0.0977002628010512,,,power
+M5 seed 6,other recipe,amsl,neutral-neutral,2175,0.1730759091907196,,,no power (no oracle embeddings)
+M5 seed 6,other recipe,facemorpher,neutral-neutral,1219,0.14578709717210678,,,no power (no oracle embeddings)
+M5 seed 6,other recipe,opencv,neutral-neutral,1219,0.13924773285665062,,,no power (no oracle embeddings)
+M5 seed 6,other recipe,stylegan,neutral-neutral,1219,-0.018095609523681444,,,no power (no oracle embeddings)
+M5 seed 6,other recipe,webmorph,neutral-neutral,1219,0.14434542050545873,,,no power (no oracle embeddings)
+M5 seed 6,other recipe,mordiff,neutral-neutral,500,0.11477825111300444,,,power
+M5 seed 6,other recipe,mordiff,smiling-smiling,500,0.018326665306661227,,,power
+M5 seed 6,other recipe,dim_a,neutral-neutral,500,-0.047875295501182,,,no power (no oracle embeddings)
+M5 seed 6,other recipe,dim_c,neutral-neutral,500,0.08938394153576613,,,power
+M5 seed 6,other recipe,fast_dim,neutral-neutral,500,0.048743522974091895,,,no power (no oracle embeddings)
+M5 seed 6,other recipe,fast_dim_ode,neutral-neutral,499,-0.04858941980346234,,,no power (no oracle embeddings)
+M5 seed 6,other recipe,greedy_dim,neutral-neutral,500,0.03356432625730503,,,power
+M5 seed 6,other recipe,greedy_dim_s,neutral-neutral,500,0.08055632222528888,,,power
+M5 seed 7,other recipe,amsl,neutral-neutral,2175,-0.030196030784739973,,,no power (no oracle embeddings)
+M5 seed 7,other recipe,facemorpher,neutral-neutral,1219,-0.11939949560370712,,,no power (no oracle embeddings)
+M5 seed 7,other recipe,opencv,neutral-neutral,1219,-0.12470536195823256,,,no power (no oracle embeddings)
+M5 seed 7,other recipe,stylegan,neutral-neutral,1219,-0.057118385264086614,,,no power (no oracle embeddings)
+M5 seed 7,other recipe,webmorph,neutral-neutral,1219,0.06091888658648891,,,no power (no oracle embeddings)
+M5 seed 7,other recipe,mordiff,neutral-neutral,500,0.005526646106584427,,,power
+M5 seed 7,other recipe,mordiff,smiling-smiling,500,-0.02246754587018348,,,power
+M5 seed 7,other recipe,dim_a,neutral-neutral,500,-0.014932187728750917,,,no power (no oracle embeddings)
+M5 seed 7,other recipe,dim_c,neutral-neutral,500,-0.05714374857499429,,,power
+M5 seed 7,other recipe,fast_dim,neutral-neutral,500,-0.026712682850731403,,,no power (no oracle embeddings)
+M5 seed 7,other recipe,fast_dim_ode,neutral-neutral,499,-0.10789482579617063,,,no power (no oracle embeddings)
+M5 seed 7,other recipe,greedy_dim,neutral-neutral,500,-0.09954779019116076,,,power
+M5 seed 7,other recipe,greedy_dim_s,neutral-neutral,500,0.01776621506486026,,,power
+M5 seed 8,other recipe,amsl,neutral-neutral,2175,0.10725163996895595,,,no power (no oracle embeddings)
+M5 seed 8,other recipe,facemorpher,neutral-neutral,1219,0.07270696541614748,,,no power (no oracle embeddings)
+M5 seed 8,other recipe,opencv,neutral-neutral,1219,0.11290847219225435,,,no power (no oracle embeddings)
+M5 seed 8,other recipe,stylegan,neutral-neutral,1219,0.09656450993274074,,,no power (no oracle embeddings)
+M5 seed 8,other recipe,webmorph,neutral-neutral,1219,0.06834902331433372,,,no power (no oracle embeddings)
+M5 seed 8,other recipe,mordiff,neutral-neutral,500,-0.09213108852435409,,,power
+M5 seed 8,other recipe,mordiff,smiling-smiling,500,-0.055492975303732636,,,power
+M5 seed 8,other recipe,dim_a,neutral-neutral,500,0.03879087516350065,,,no power (no oracle embeddings)
+M5 seed 8,other recipe,dim_c,neutral-neutral,500,0.06025752103008411,,,power
+M5 seed 8,other recipe,fast_dim,neutral-neutral,500,0.02552803811215245,,,no power (no oracle embeddings)
+M5 seed 8,other recipe,fast_dim_ode,neutral-neutral,499,0.07107728710432913,,,no power (no oracle embeddings)
+M5 seed 8,other recipe,greedy_dim,neutral-neutral,500,-0.008505442021768086,,,power
+M5 seed 8,other recipe,greedy_dim_s,neutral-neutral,500,0.06392310369241476,,,power
+M6 seed 1,other recipe,amsl,neutral-neutral,2175,-0.017401021735897613,,,no power (no oracle embeddings)
+M6 seed 1,other recipe,facemorpher,neutral-neutral,1219,-0.028537655523791283,,,no power (no oracle embeddings)
+M6 seed 1,other recipe,opencv,neutral-neutral,1219,0.03655517696500608,,,no power (no oracle embeddings)
+M6 seed 1,other recipe,stylegan,neutral-neutral,1219,-0.01268879501303654,,,no power (no oracle embeddings)
+M6 seed 1,other recipe,webmorph,neutral-neutral,1219,-0.018549034881171933,,,no power (no oracle embeddings)
+M6 seed 1,other recipe,mordiff,neutral-neutral,500,0.014231480925923704,,,power
+M6 seed 1,other recipe,mordiff,smiling-smiling,500,0.07964038256153023,,,power
+M6 seed 1,other recipe,dim_a,neutral-neutral,500,-0.0029957879831519325,,,no power (no oracle embeddings)
+M6 seed 1,other recipe,dim_c,neutral-neutral,500,-0.03303872415489662,,,power
+M6 seed 1,other recipe,fast_dim,neutral-neutral,500,0.011633038532154126,,,no power (no oracle embeddings)
+M6 seed 1,other recipe,fast_dim_ode,neutral-neutral,499,-0.011078252891324818,,,no power (no oracle embeddings)
+M6 seed 1,other recipe,greedy_dim,neutral-neutral,500,-0.038813627254509014,,,power
+M6 seed 1,other recipe,greedy_dim_s,neutral-neutral,500,0.047456253825015296,,,power
+M6 seed 2,other recipe,amsl,neutral-neutral,2175,-0.043505587256868004,,,no power (no oracle embeddings)
+M6 seed 2,other recipe,facemorpher,neutral-neutral,1219,-0.07975326330913461,,,no power (no oracle embeddings)
+M6 seed 2,other recipe,opencv,neutral-neutral,1219,-0.027628373520367205,,,no power (no oracle embeddings)
+M6 seed 2,other recipe,stylegan,neutral-neutral,1219,-0.07542011769953474,,,no power (no oracle embeddings)
+M6 seed 2,other recipe,webmorph,neutral-neutral,1219,-0.05995317484203415,,,no power (no oracle embeddings)
+M6 seed 2,other recipe,mordiff,neutral-neutral,500,-0.06180216720866884,,,power
+M6 seed 2,other recipe,mordiff,smiling-smiling,500,-0.027002508010032036,,,power
+M6 seed 2,other recipe,dim_a,neutral-neutral,500,-0.0801307525230101,,,no power (no oracle embeddings)
+M6 seed 2,other recipe,dim_c,neutral-neutral,500,-0.093500342001368,,,power
+M6 seed 2,other recipe,fast_dim,neutral-neutral,500,-0.0552871011484046,,,no power (no oracle embeddings)
+M6 seed 2,other recipe,fast_dim_ode,neutral-neutral,499,-0.05846700630176014,,,no power (no oracle embeddings)
+M6 seed 2,other recipe,greedy_dim,neutral-neutral,500,-0.08627007308029232,,,power
+M6 seed 2,other recipe,greedy_dim_s,neutral-neutral,500,-0.00022435289741158966,,,power
+M6 seed 3,other recipe,amsl,neutral-neutral,2175,-0.0013420025565404321,,,no power (no oracle embeddings)
+M6 seed 3,other recipe,facemorpher,neutral-neutral,1219,0.006825580625797746,,,no power (no oracle embeddings)
+M6 seed 3,other recipe,opencv,neutral-neutral,1219,0.03132704559301808,,,no power (no oracle embeddings)
+M6 seed 3,other recipe,stylegan,neutral-neutral,1219,-0.03696256683641741,,,no power (no oracle embeddings)
+M6 seed 3,other recipe,webmorph,neutral-neutral,1219,-0.05011750012934852,,,no power (no oracle embeddings)
+M6 seed 3,other recipe,mordiff,neutral-neutral,500,0.007403741614966459,,,power
+M6 seed 3,other recipe,mordiff,smiling-smiling,500,-0.020934995739982958,,,power
+M6 seed 3,other recipe,dim_a,neutral-neutral,500,0.01617779271117084,,,no power (no oracle embeddings)
+M6 seed 3,other recipe,dim_c,neutral-neutral,500,0.0002848331393325573,,,power
+M6 seed 3,other recipe,fast_dim,neutral-neutral,500,0.02824465697862791,,,no power (no oracle embeddings)
+M6 seed 3,other recipe,fast_dim_ode,neutral-neutral,499,0.018943815341526424,,,no power (no oracle embeddings)
+M6 seed 3,other recipe,greedy_dim,neutral-neutral,500,-0.04003744014976059,,,power
+M6 seed 3,other recipe,greedy_dim_s,neutral-neutral,500,0.06650426601706406,,,power
+M6 seed 4,other recipe,amsl,neutral-neutral,2175,-0.08468623564839535,,,no power (no oracle embeddings)
+M6 seed 4,other recipe,facemorpher,neutral-neutral,1219,-0.056070327701245926,,,no power (no oracle embeddings)
+M6 seed 4,other recipe,opencv,neutral-neutral,1219,-0.04385734312376312,,,no power (no oracle embeddings)
+M6 seed 4,other recipe,stylegan,neutral-neutral,1219,-0.07128461530358941,,,no power (no oracle embeddings)
+M6 seed 4,other recipe,webmorph,neutral-neutral,1219,-0.08762546392395247,,,no power (no oracle embeddings)
+M6 seed 4,other recipe,mordiff,neutral-neutral,500,-0.020621170484681938,,,power
+M6 seed 4,other recipe,mordiff,smiling-smiling,500,-0.062175608702434805,,,power
+M6 seed 4,other recipe,dim_a,neutral-neutral,500,-0.09706397225588902,,,no power (no oracle embeddings)
+M6 seed 4,other recipe,dim_c,neutral-neutral,500,-0.0894062136248545,,,power
+M6 seed 4,other recipe,fast_dim,neutral-neutral,500,-0.07623995295981184,,,no power (no oracle embeddings)
+M6 seed 4,other recipe,fast_dim_ode,neutral-neutral,499,-0.08857271168843711,,,no power (no oracle embeddings)
+M6 seed 4,other recipe,greedy_dim,neutral-neutral,500,-0.09239537758151033,,,power
+M6 seed 4,other recipe,greedy_dim_s,neutral-neutral,500,-0.027793359173436696,,,power
+M6 seed 5,other recipe,amsl,neutral-neutral,2175,-0.025906729637378806,,,no power (no oracle embeddings)
+M6 seed 5,other recipe,facemorpher,neutral-neutral,1219,-0.014905679589174527,,,no power (no oracle embeddings)
+M6 seed 5,other recipe,opencv,neutral-neutral,1219,-0.013493836352558552,,,no power (no oracle embeddings)
+M6 seed 5,other recipe,stylegan,neutral-neutral,1219,-0.0840505358208616,,,no power (no oracle embeddings)
+M6 seed 5,other recipe,webmorph,neutral-neutral,1219,-0.03320356966141559,,,no power (no oracle embeddings)
+M6 seed 5,other recipe,mordiff,neutral-neutral,500,0.015563870255481022,,,power
+M6 seed 5,other recipe,mordiff,smiling-smiling,500,0.036603026412105645,,,power
+M6 seed 5,other recipe,dim_a,neutral-neutral,500,0.07762322249288996,,,no power (no oracle embeddings)
+M6 seed 5,other recipe,dim_c,neutral-neutral,500,-0.019432685730742923,,,power
+M6 seed 5,other recipe,fast_dim,neutral-neutral,500,0.0661132564530258,,,no power (no oracle embeddings)
+M6 seed 5,other recipe,fast_dim_ode,neutral-neutral,499,0.07487196078904797,,,no power (no oracle embeddings)
+M6 seed 5,other recipe,greedy_dim,neutral-neutral,500,-0.05483052332209329,,,power
+M6 seed 5,other recipe,greedy_dim_s,neutral-neutral,500,0.0761811047244189,,,power
+M8 seed 1,other recipe,amsl,neutral-neutral,2175,0.09820759073582352,,,no power (no oracle embeddings)
+M8 seed 1,other recipe,facemorpher,neutral-neutral,1219,0.12773460823827845,,,no power (no oracle embeddings)
+M8 seed 1,other recipe,opencv,neutral-neutral,1219,0.09317653267396613,,,no power (no oracle embeddings)
+M8 seed 1,other recipe,stylegan,neutral-neutral,1219,0.03298410447465057,,,no power (no oracle embeddings)
+M8 seed 1,other recipe,webmorph,neutral-neutral,1219,0.037646832100718675,,,no power (no oracle embeddings)
+M8 seed 1,other recipe,mordiff,neutral-neutral,500,0.13676512306049227,,,power
+M8 seed 1,other recipe,mordiff,smiling-smiling,500,0.10193061572246287,,,power
+M8 seed 1,other recipe,dim_a,neutral-neutral,500,0.04601192804771219,,,no power (no oracle embeddings)
+M8 seed 1,other recipe,dim_c,neutral-neutral,500,0.034566570266281064,,,power
+M8 seed 1,other recipe,fast_dim,neutral-neutral,500,0.03938521354085416,,,no power (no oracle embeddings)
+M8 seed 1,other recipe,fast_dim_ode,neutral-neutral,499,0.036480575609049416,,,no power (no oracle embeddings)
+M8 seed 1,other recipe,greedy_dim,neutral-neutral,500,-0.06417760071040285,,,power
+M8 seed 1,other recipe,greedy_dim_s,neutral-neutral,500,0.10265599462397851,,,power
+M8 seed 2,other recipe,amsl,neutral-neutral,2175,0.07286286104971457,,,no power (no oracle embeddings)
+M8 seed 2,other recipe,facemorpher,neutral-neutral,1219,0.09778052514107932,,,no power (no oracle embeddings)
+M8 seed 2,other recipe,opencv,neutral-neutral,1219,0.13890965126777782,,,no power (no oracle embeddings)
+M8 seed 2,other recipe,stylegan,neutral-neutral,1219,0.035819881142456475,,,no power (no oracle embeddings)
+M8 seed 2,other recipe,webmorph,neutral-neutral,1219,0.0340114662742863,,,no power (no oracle embeddings)
+M8 seed 2,other recipe,mordiff,neutral-neutral,500,0.06592375169500678,,,power
+M8 seed 2,other recipe,mordiff,smiling-smiling,500,0.06855185820743283,,,power
+M8 seed 2,other recipe,dim_a,neutral-neutral,500,0.09372661490645963,,,no power (no oracle embeddings)
+M8 seed 2,other recipe,dim_c,neutral-neutral,500,0.05398178392713571,,,power
+M8 seed 2,other recipe,fast_dim,neutral-neutral,500,0.09233211332845331,,,no power (no oracle embeddings)
+M8 seed 2,other recipe,fast_dim_ode,neutral-neutral,499,0.07456010816814351,,,no power (no oracle embeddings)
+M8 seed 2,other recipe,greedy_dim,neutral-neutral,500,-0.023920415681662723,,,power
+M8 seed 2,other recipe,greedy_dim_s,neutral-neutral,500,0.13054804219216876,,,power
+M8 seed 3,other recipe,amsl,neutral-neutral,2175,0.08938788173471598,,,no power (no oracle embeddings)
+M8 seed 3,other recipe,facemorpher,neutral-neutral,1219,0.07683078835289615,,,no power (no oracle embeddings)
+M8 seed 3,other recipe,opencv,neutral-neutral,1219,0.0735064949518966,,,no power (no oracle embeddings)
+M8 seed 3,other recipe,stylegan,neutral-neutral,1219,-0.0010774383918464522,,,no power (no oracle embeddings)
+M8 seed 3,other recipe,webmorph,neutral-neutral,1219,0.026429178588205787,,,no power (no oracle embeddings)
+M8 seed 3,other recipe,mordiff,neutral-neutral,500,0.018580778323113292,,,power
+M8 seed 3,other recipe,mordiff,smiling-smiling,500,0.03422202488809955,,,power
+M8 seed 3,other recipe,dim_a,neutral-neutral,500,0.015367645470581883,,,no power (no oracle embeddings)
+M8 seed 3,other recipe,dim_c,neutral-neutral,500,0.018744746978987915,,,power
+M8 seed 3,other recipe,fast_dim,neutral-neutral,500,0.026359785439141758,,,no power (no oracle embeddings)
+M8 seed 3,other recipe,fast_dim_ode,neutral-neutral,499,0.040456527512857034,,,no power (no oracle embeddings)
+M8 seed 3,other recipe,greedy_dim,neutral-neutral,500,-0.038657146628586506,,,power
+M8 seed 3,other recipe,greedy_dim_s,neutral-neutral,500,0.0784694658778635,,,power
+M8 seed 4,other recipe,amsl,neutral-neutral,2175,0.05824458655163671,,,no power (no oracle embeddings)
+M8 seed 4,other recipe,facemorpher,neutral-neutral,1219,0.0717546953181533,,,no power (no oracle embeddings)
+M8 seed 4,other recipe,opencv,neutral-neutral,1219,0.11166006851198587,,,no power (no oracle embeddings)
+M8 seed 4,other recipe,stylegan,neutral-neutral,1219,0.02332058750793398,,,no power (no oracle embeddings)
+M8 seed 4,other recipe,webmorph,neutral-neutral,1219,0.019433507142853832,,,no power (no oracle embeddings)
+M8 seed 4,other recipe,mordiff,neutral-neutral,500,-0.0521937767751071,,,power
+M8 seed 4,other recipe,mordiff,smiling-smiling,500,-0.009384037536150143,,,power
+M8 seed 4,other recipe,dim_a,neutral-neutral,500,-0.016321025284101134,,,no power (no oracle embeddings)
+M8 seed 4,other recipe,dim_c,neutral-neutral,500,-0.022002712010848045,,,power
+M8 seed 4,other recipe,fast_dim,neutral-neutral,500,-0.010499273997095987,,,no power (no oracle embeddings)
+M8 seed 4,other recipe,fast_dim_ode,neutral-neutral,499,-0.01795958181423087,,,no power (no oracle embeddings)
+M8 seed 4,other recipe,greedy_dim,neutral-neutral,500,-0.04712898851595407,,,power
+M8 seed 4,other recipe,greedy_dim_s,neutral-neutral,500,0.051247020988083945,,,power
+M8 seed 5,other recipe,amsl,neutral-neutral,2175,0.03762066555319631,,,no power (no oracle embeddings)
+M8 seed 5,other recipe,facemorpher,neutral-neutral,1219,0.04791414332160507,,,no power (no oracle embeddings)
+M8 seed 5,other recipe,opencv,neutral-neutral,1219,0.021129479889104096,,,no power (no oracle embeddings)
+M8 seed 5,other recipe,stylegan,neutral-neutral,1219,0.05575117306354997,,,no power (no oracle embeddings)
+M8 seed 5,other recipe,webmorph,neutral-neutral,1219,-0.004408303558882924,,,no power (no oracle embeddings)
+M8 seed 5,other recipe,mordiff,neutral-neutral,500,-0.028299953199812797,,,power
+M8 seed 5,other recipe,mordiff,smiling-smiling,500,-0.05094874779499118,,,power
+M8 seed 5,other recipe,dim_a,neutral-neutral,500,0.009558566234264937,,,no power (no oracle embeddings)
+M8 seed 5,other recipe,dim_c,neutral-neutral,500,-0.017051780207120826,,,power
+M8 seed 5,other recipe,fast_dim,neutral-neutral,500,0.015465469861879445,,,no power (no oracle embeddings)
+M8 seed 5,other recipe,fast_dim_ode,neutral-neutral,499,0.036537750199193565,,,no power (no oracle embeddings)
+M8 seed 5,other recipe,greedy_dim,neutral-neutral,500,-0.060017328069312266,,,power
+M8 seed 5,other recipe,greedy_dim_s,neutral-neutral,500,0.0708943635774543,,,power
+M8O seed 1,other recipe,amsl,neutral-neutral,2175,0.08175490462855875,,,no power (no oracle embeddings)
+M8O seed 1,other recipe,facemorpher,neutral-neutral,1219,0.0359590541877221,,,no power (no oracle embeddings)
+M8O seed 1,other recipe,opencv,neutral-neutral,1219,0.07998683261877523,,,no power (no oracle embeddings)
+M8O seed 1,other recipe,stylegan,neutral-neutral,1219,0.07178504531138864,,,no power (no oracle embeddings)
+M8O seed 1,other recipe,webmorph,neutral-neutral,1219,0.07475939022225885,,,no power (no oracle embeddings)
+M8O seed 1,other recipe,mordiff,neutral-neutral,500,0.05296206784827139,,,power
+M8O seed 1,other recipe,mordiff,smiling-smiling,500,0.004029904119616478,,,power
+M8O seed 1,other recipe,dim_a,neutral-neutral,500,0.04269309877239509,,,no power (no oracle embeddings)
+M8O seed 1,other recipe,dim_c,neutral-neutral,500,-0.012282540921408628,,,power
+M8O seed 1,other recipe,fast_dim,neutral-neutral,500,0.05415938463753855,,,no power (no oracle embeddings)
+M8O seed 1,other recipe,fast_dim_ode,neutral-neutral,499,0.059774392157809594,,,no power (no oracle embeddings)
+M8O seed 1,other recipe,greedy_dim,neutral-neutral,500,0.0031048444193776774,,,power
+M8O seed 1,other recipe,greedy_dim_s,neutral-neutral,500,0.10789131264542327,,,power
+M8O seed 2,other recipe,amsl,neutral-neutral,2175,0.04517527723583801,,,no power (no oracle embeddings)
+M8O seed 2,other recipe,facemorpher,neutral-neutral,1219,0.09992757807831093,,,no power (no oracle embeddings)
+M8O seed 2,other recipe,opencv,neutral-neutral,1219,0.019389154346868807,,,no power (no oracle embeddings)
+M8O seed 2,other recipe,stylegan,neutral-neutral,1219,-0.035856363718631164,,,no power (no oracle embeddings)
+M8O seed 2,other recipe,webmorph,neutral-neutral,1219,-0.016428997732144488,,,no power (no oracle embeddings)
+M8O seed 2,other recipe,mordiff,neutral-neutral,500,-0.01414575258301033,,,power
+M8O seed 2,other recipe,mordiff,smiling-smiling,500,-0.05024967299869199,,,power
+M8O seed 2,other recipe,dim_a,neutral-neutral,500,0.014658874635498541,,,no power (no oracle embeddings)
+M8O seed 2,other recipe,dim_c,neutral-neutral,500,-0.07057689030756122,,,power
+M8O seed 2,other recipe,fast_dim,neutral-neutral,500,-0.006330553322213288,,,no power (no oracle embeddings)
+M8O seed 2,other recipe,fast_dim_ode,neutral-neutral,499,0.027984161093270878,,,no power (no oracle embeddings)
+M8O seed 2,other recipe,greedy_dim,neutral-neutral,500,-0.13702797211188844,,,power
+M8O seed 2,other recipe,greedy_dim_s,neutral-neutral,500,0.061987159948639785,,,power
+M8O seed 3,other recipe,amsl,neutral-neutral,2175,0.10866179717914849,,,no power (no oracle embeddings)
+M8O seed 3,other recipe,facemorpher,neutral-neutral,1219,-0.04269099076934433,,,no power (no oracle embeddings)
+M8O seed 3,other recipe,opencv,neutral-neutral,1219,0.06348468370826878,,,no power (no oracle embeddings)
+M8O seed 3,other recipe,stylegan,neutral-neutral,1219,0.02736129615365531,,,no power (no oracle embeddings)
+M8O seed 3,other recipe,webmorph,neutral-neutral,1219,0.07916423550664703,,,no power (no oracle embeddings)
+M8O seed 3,other recipe,mordiff,neutral-neutral,500,0.04106909561390096,,,power
+M8O seed 3,other recipe,mordiff,smiling-smiling,500,-0.023025942086221458,,,power
+M8O seed 3,other recipe,dim_a,neutral-neutral,500,0.07535876543506173,,,no power (no oracle embeddings)
+M8O seed 3,other recipe,dim_c,neutral-neutral,500,0.01986190344761379,,,power
+M8O seed 3,other recipe,fast_dim,neutral-neutral,500,0.07676161904647617,,,no power (no oracle embeddings)
+M8O seed 3,other recipe,fast_dim_ode,neutral-neutral,499,0.10370871864210346,,,no power (no oracle embeddings)
+M8O seed 3,other recipe,greedy_dim,neutral-neutral,500,0.012694130776523106,,,power
+M8O seed 3,other recipe,greedy_dim_s,neutral-neutral,500,0.10533114132456528,,,power
+M8O seed 4,other recipe,amsl,neutral-neutral,2175,0.06711028556272289,,,no power (no oracle embeddings)
+M8O seed 4,other recipe,facemorpher,neutral-neutral,1219,0.05272469593491884,,,no power (no oracle embeddings)
+M8O seed 4,other recipe,opencv,neutral-neutral,1219,0.09390819150099732,,,no power (no oracle embeddings)
+M8O seed 4,other recipe,stylegan,neutral-neutral,1219,0.10309970727154648,,,no power (no oracle embeddings)
+M8O seed 4,other recipe,webmorph,neutral-neutral,1219,0.025907114049355945,,,no power (no oracle embeddings)
+M8O seed 4,other recipe,mordiff,neutral-neutral,500,0.0377315109260437,,,power
+M8O seed 4,other recipe,mordiff,smiling-smiling,500,0.039984927939711756,,,power
+M8O seed 4,other recipe,dim_a,neutral-neutral,500,0.044512114048456196,,,no power (no oracle embeddings)
+M8O seed 4,other recipe,dim_c,neutral-neutral,500,0.03203667214668859,,,power
+M8O seed 4,other recipe,fast_dim,neutral-neutral,500,0.05934618938475754,,,no power (no oracle embeddings)
+M8O seed 4,other recipe,fast_dim_ode,neutral-neutral,499,0.037858946809281216,,,no power (no oracle embeddings)
+M8O seed 4,other recipe,greedy_dim,neutral-neutral,500,0.04254055416221665,,,power
+M8O seed 4,other recipe,greedy_dim_s,neutral-neutral,500,0.10078734714938858,,,power
+M8O seed 5,other recipe,amsl,neutral-neutral,2175,0.08822353896109954,,,no power (no oracle embeddings)
+M8O seed 5,other recipe,facemorpher,neutral-neutral,1219,0.07397641597212087,,,no power (no oracle embeddings)
+M8O seed 5,other recipe,opencv,neutral-neutral,1219,0.0907620711318151,,,no power (no oracle embeddings)
+M8O seed 5,other recipe,stylegan,neutral-neutral,1219,0.01672089809012687,,,no power (no oracle embeddings)
+M8O seed 5,other recipe,webmorph,neutral-neutral,1219,0.028893451732001526,,,no power (no oracle embeddings)
+M8O seed 5,other recipe,mordiff,neutral-neutral,500,-0.00734566138264553,,,power
+M8O seed 5,other recipe,mordiff,smiling-smiling,500,-0.027861135444541777,,,power
+M8O seed 5,other recipe,dim_a,neutral-neutral,500,0.018038856155424624,,,no power (no oracle embeddings)
+M8O seed 5,other recipe,dim_c,neutral-neutral,500,-0.030320281281125124,,,power
+M8O seed 5,other recipe,fast_dim,neutral-neutral,500,0.026736682946731788,,,no power (no oracle embeddings)
+M8O seed 5,other recipe,fast_dim_ode,neutral-neutral,499,0.03384407368954777,,,no power (no oracle embeddings)
+M8O seed 5,other recipe,greedy_dim,neutral-neutral,500,-0.020225648902595608,,,power
+M8O seed 5,other recipe,greedy_dim_s,neutral-neutral,500,0.11293552374209495,,,power

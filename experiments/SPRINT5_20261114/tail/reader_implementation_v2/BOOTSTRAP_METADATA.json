@@ -1,0 +1,16 @@
+{
+  "attempts": 10000,
+  "rng": 2026111403,
+  "redraws": 0,
+  "seed_indices_shared_across_all_models_and_contrasts": true,
+  "draw_order": "evaluation full components within sources; independent calibration full components within sources; jointfivepairedseedindices",
+  "design_sha256": "54ffe7325dfbd9d1821bafbdf916f8ed5cef24aed5388a66f5295e65749d5db4",
+  "empty_sparse_or_absent_guard_draws": {
+    "af0_u50": 0,
+    "af0_u5061": 10000,
+    "lad_R4": 0,
+    "lad_S4": 0
+  },
+  "required_genuine_and_calibration_empty_draws": 0,
+  "condition": "No rejection/filtering; fixed10000attempts"
+}

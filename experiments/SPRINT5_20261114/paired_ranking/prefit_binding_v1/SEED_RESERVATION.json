@@ -1,0 +1,29 @@
+{
+  "status": "BOUND_BY_ROOT",
+  "experiments": {
+    "SPRINT5_1": [
+      501,
+      502,
+      503,
+      504,
+      505
+    ],
+    "SPRINT5_4": [
+      511,
+      512,
+      513,
+      514,
+      515
+    ]
+  },
+  "NEXT_protected": [
+    413,
+    414,
+    415,
+    416,
+    417
+  ],
+  "authority": "Root explicit prospective binding in current task; no other sprint direction may consume reservedblocks",
+  "scope": "existingmetadata sourceaudit + leadconcurrentcoordination; no claim exhaustivehistoric scheduler scan",
+  "smoke_reuse": "sameexperimentseed501; infrastructurefailures retained, not newscientificseeds"
+}

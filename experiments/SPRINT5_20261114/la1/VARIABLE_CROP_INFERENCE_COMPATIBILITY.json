@@ -1,0 +1,11 @@
+{
+  "old_cpu8_script_sha256": "e60c246d1d6546851096160a321c0f1aa0a178cdf96c8167022d16682a19255f",
+  "new_script_sha256": "66f6621bfaa8e63fa3a021716ac6713d69bf64e9ff131bfa9eb41939ec126f2e",
+  "old_source_proof": "Exactinversemetadata-onlypatch reconstructedoldsource matches recordedSHA256; no guess allowed",
+  "inference_AST_equal": true,
+  "signatures": {
+    "cpu_backend": "d39a17da085e4f05496c939e3e6b2f47a986c3623affd06025913ee14789bf4e",
+    "embedding_loop": "48dec231b89c77ba38db0835ea09f06413c0a5b9dcf1b785ad86f0613424bd15"
+  },
+  "scope": "Actual image header metadata/scope correction only; root still independently admits priorCPU8."
+}

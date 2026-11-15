@@ -1,0 +1,26 @@
+{
+ "madation_vitb16": {
+  "n": 2647,
+  "max_abs_diff": 0.7785106301307678,
+  "mean_abs_diff": 0.012489874847233295,
+  "kendall_tau_logit": 0.9694247341718872,
+  "logit_abs_diff_median": 0.07500267028808594,
+  "logit_abs_diff_max": 4.57429838180542
+ },
+ "madation_vitl14": {
+  "n": 2647,
+  "max_abs_diff": 0.9238305687904358,
+  "mean_abs_diff": 0.010023235343396664,
+  "kendall_tau_logit": 0.9654561232628047,
+  "logit_abs_diff_median": 0.05241966247558594,
+  "logit_abs_diff_max": 7.007523059844971
+ },
+ "mixfacenet_mad_smdd": {
+  "n": 2647,
+  "max_abs_diff": 0.17653995752334595,
+  "mean_abs_diff": 0.01047072745859623,
+  "kendall_tau_logit": 0.9729101899753312,
+  "logit_abs_diff_median": 0.17085838317871094,
+  "logit_abs_diff_max": 1.1822023391723633
+ }
+}

@@ -1,0 +1,19 @@
+test_caps (test_technical_collector_v1.CollectorTests.test_caps) ... ok
+test_duplicates_unknown_nested (test_technical_collector_v1.CollectorTests.test_duplicates_unknown_nested) ... ok
+test_hash_missing_and_truncated (test_technical_collector_v1.CollectorTests.test_hash_missing_and_truncated) ... ok
+test_json_type_encoding_and_syntax (test_technical_collector_v1.CollectorTests.test_json_type_encoding_and_syntax) ... ok
+test_loss_nonfinite_and_ambiguous (test_technical_collector_v1.CollectorTests.test_loss_nonfinite_and_ambiguous) ... ok
+test_mixed_txt_canaries (test_technical_collector_v1.CollectorTests.test_mixed_txt_canaries) ... ok
+test_no_npz_access (test_technical_collector_v1.CollectorTests.test_no_npz_access) ... ok
+test_release_required_before_archive_access (test_technical_collector_v1.CollectorTests.test_release_required_before_archive_access) ... ok
+test_sanitized_failures (test_technical_collector_v1.CollectorTests.test_sanitized_failures) ... ok
+test_selective_canaries (test_technical_collector_v1.CollectorTests.test_selective_canaries) ... ok
+test_source_import_boundary (test_technical_collector_v1.CollectorTests.test_source_import_boundary) ... ok
+test_status_failures_retained (test_technical_collector_v1.CollectorTests.test_status_failures_retained) ... ok
+test_tar_safety (test_technical_collector_v1.CollectorTests.test_tar_safety) ... ok
+test_unselected_scalar_not_decoded (test_technical_collector_v1.CollectorTests.test_unselected_scalar_not_decoded) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.005s
+
+OK

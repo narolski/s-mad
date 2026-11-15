@@ -1,0 +1,13 @@
+# AD5 one real math-only first step: source handoff
+
+This new package is independently reviewable preparation, not execution authority. Read PREREG.md. `patch.py` verifies the original packed trainer and changes only one math SDPA context, technical observation and a stop after the first original model/header optimizer updates. `runtime.py` records source-derived expected gradients and one-update evidence; `contract.py` has pure outcome gates. Legitimate zero LoRA-A gradients are allowed; all-zero/nonchanged groups are not. No model/data/weights were opened during preparation: only allowlisted Python members of original code archive and known sidecars were read.
+
+Grounding: no standalone CLIP provenance archive was available. The packed model/fine-tuning/loss/dataset/trainer sources are the source of truth, archived source-only under grounding/ with hashes. No API/checkpoint identifier was supplied from memory. Original weights remain bound through the unchanged code archive94964c…; their individual bytes/hash were not read here.
+
+`launch.py`, `allocation_entry.sh`, `node.py` retain the reviewed ad5_sdpa_launcher_v1 discipline in a NEW namespace: permanent claim, durable actual tmux/srun PTY transcript, sanitized environment, early native allocation ID before Python, worker/native exit status and no retry. Exact launcher deltas are in the handoff evidence. A new root release must pin preregistration, separate source and launcher reviews, clean committed source proof and fresh native site/capacity evidence. Old failure6321768_401 and probe6323083 remain untouched. No staging or GPU action is performed by this package.
+
+Root-only worker verifies all original packs before extraction and uses original offline environment/weights/data/list construction. It exports only technical JSON/text/logs, preserving failures durably before FORCE_RM_TMPDIR cleanup. No checkpoint, image or score output is packaged. A new complete first-step record is a narrow technical finding, not original smoke/production/scientific admission.
+
+Safe CPU checks: `python3 test_cpu.py`; `python3 -m py_compile *.py`; `bash -n worker.sh`; `bash -n allocation_entry.sh`. They use AST/source verification, pure generated records and mocked model/torch/Slurm/tmux/GPU calls. The only shell execution fixture verifies early-ID persistence with a fake Python executable.
+
+Release skeleton and exact later staging/launch commands live in experiments/AD5_retrains-of-released-methods/real_math_first_step_20261114/. Root alone commits, stages and issues new GO after OTHER independent prereview. Production/scientific read remain HOLD; no automatic retry is provided.

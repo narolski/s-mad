@@ -1,0 +1,287 @@
+[
+  {
+    "arm": "bce",
+    "seed": 521,
+    "schedule": {
+      "seed": 521,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "16e36fe3fed12404b39fdcf7521661bf7a3062767fb4abe0525630e7b37217bd",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "e99919b00e21408a0647149a67f31aeb555b4e4183c19e2b93a3f3df6786aa7b",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "mean",
+    "seed": 521,
+    "schedule": {
+      "seed": 521,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "16e36fe3fed12404b39fdcf7521661bf7a3062767fb4abe0525630e7b37217bd",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "e99919b00e21408a0647149a67f31aeb555b4e4183c19e2b93a3f3df6786aa7b",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "cvar",
+    "seed": 521,
+    "schedule": {
+      "seed": 521,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "16e36fe3fed12404b39fdcf7521661bf7a3062767fb4abe0525630e7b37217bd",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "e99919b00e21408a0647149a67f31aeb555b4e4183c19e2b93a3f3df6786aa7b",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "bce",
+    "seed": 522,
+    "schedule": {
+      "seed": 522,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "383c17c01973ecf1cae432e0dc96107be7443498d4c64d20b68fabb97561c7c2",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "48cc9b573e1c6ac4377b56435d4acff5a6a79a3d9a0b77bf72b2b37c7d44e149",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "mean",
+    "seed": 522,
+    "schedule": {
+      "seed": 522,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "383c17c01973ecf1cae432e0dc96107be7443498d4c64d20b68fabb97561c7c2",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "48cc9b573e1c6ac4377b56435d4acff5a6a79a3d9a0b77bf72b2b37c7d44e149",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "cvar",
+    "seed": 522,
+    "schedule": {
+      "seed": 522,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "383c17c01973ecf1cae432e0dc96107be7443498d4c64d20b68fabb97561c7c2",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "48cc9b573e1c6ac4377b56435d4acff5a6a79a3d9a0b77bf72b2b37c7d44e149",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "bce",
+    "seed": 523,
+    "schedule": {
+      "seed": 523,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "8723ff2d3b7a67ee9694972f70d9444fc2ca7d2a5df4d22899c5e681c6a45d90",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "95a098433a01cf3945eb372e9007618254b9cad3a7a5eeacf6a71b8ca30f55fd",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "mean",
+    "seed": 523,
+    "schedule": {
+      "seed": 523,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "8723ff2d3b7a67ee9694972f70d9444fc2ca7d2a5df4d22899c5e681c6a45d90",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "95a098433a01cf3945eb372e9007618254b9cad3a7a5eeacf6a71b8ca30f55fd",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "cvar",
+    "seed": 523,
+    "schedule": {
+      "seed": 523,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "8723ff2d3b7a67ee9694972f70d9444fc2ca7d2a5df4d22899c5e681c6a45d90",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "95a098433a01cf3945eb372e9007618254b9cad3a7a5eeacf6a71b8ca30f55fd",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "bce",
+    "seed": 524,
+    "schedule": {
+      "seed": 524,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "b641c845a8432b5eb4ea484e0b4b1c6aa7ef1d66920958df6de93303cd946ece",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "1a04c2d306dea2a97e63b7a3bdc641e1064cc171762e53d21557500fad918438",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "mean",
+    "seed": 524,
+    "schedule": {
+      "seed": 524,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "b641c845a8432b5eb4ea484e0b4b1c6aa7ef1d66920958df6de93303cd946ece",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "1a04c2d306dea2a97e63b7a3bdc641e1064cc171762e53d21557500fad918438",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "cvar",
+    "seed": 524,
+    "schedule": {
+      "seed": 524,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "b641c845a8432b5eb4ea484e0b4b1c6aa7ef1d66920958df6de93303cd946ece",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "1a04c2d306dea2a97e63b7a3bdc641e1064cc171762e53d21557500fad918438",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "bce",
+    "seed": 525,
+    "schedule": {
+      "seed": 525,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "940bbcd08bdcc243ff7f7a9f9be9faaa40516ec76ce1afd811761222ecfec904",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "a8567c7cca706336b25c5adc64741944c994cad1bdefceddab6b77b4c0fb1b20",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "mean",
+    "seed": 525,
+    "schedule": {
+      "seed": 525,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "940bbcd08bdcc243ff7f7a9f9be9faaa40516ec76ce1afd811761222ecfec904",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "a8567c7cca706336b25c5adc64741944c994cad1bdefceddab6b77b4c0fb1b20",
+    "rows_per_fit": 25600
+  },
+  {
+    "arm": "cvar",
+    "seed": 525,
+    "schedule": {
+      "seed": 525,
+      "steps": 100,
+      "bs": 256,
+      "row_exposures": 25600,
+      "schedule_sha256": "940bbcd08bdcc243ff7f7a9f9be9faaa40516ec76ce1afd811761222ecfec904",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "train_manifest_sha256": "2cf3fda3affc8dd3d1574857f494037ea0382c8a2d314754b615686401b7fa4a",
+    "exposure_sha256": "a8567c7cca706336b25c5adc64741944c994cad1bdefceddab6b77b4c0fb1b20",
+    "rows_per_fit": 25600
+  }
+]

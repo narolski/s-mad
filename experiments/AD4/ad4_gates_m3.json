@@ -1,0 +1,669 @@
+{
+ "reader_sha256": "8fd182b49aa75268d44b5c220dd6d7a8c745cf99cdab1d58d5c3574357e3056b",
+ "results": "/mnt/t7/smad_next/AD4/results_wcss_m3",
+ "present_tars": {
+  "mf": [
+   401,
+   402,
+   403,
+   404,
+   405
+  ],
+  "perm": [
+   401,
+   402,
+   403,
+   404,
+   405
+  ]
+ },
+ "refused": {},
+ "checks": {
+  "AD4_m3mf_s401": {
+   "tar_sha256": "30e689cc683ed51cf549081345e6096f48729ed18033adb89e65ee3401c4ae4f",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5206088322401047
+  },
+  "AD4_m3mf_s402": {
+   "tar_sha256": "22a7ec8253c83799b62ee1c72a69420f006a3c5df28af92cf2007ec11ffbcebe",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5188676049311955
+  },
+  "AD4_m3mf_s403": {
+   "tar_sha256": "8d6bb54b414da0bb80c38773cd300933bf65d21818716c30fdafa941d15c12ac",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5196988765398661
+  },
+  "AD4_m3mf_s404": {
+   "tar_sha256": "811247bbead4b468c1b814b2fa12462be210beca861dac8c4ade80b331ccbc85",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5194040908416112
+  },
+  "AD4_m3mf_s405": {
+   "tar_sha256": "d07f3126fbf3ec489246de58959cc3bbb2a5176f18f1d9c4971537be131bb3be",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5195104009575314
+  },
+  "AD4_m3perm_s401": {
+   "tar_sha256": "34e17e1e8b45a97ac70806bac4068e08753458024a2b01792af39606a859e3f9",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5192203282647663
+  },
+  "AD4_m3perm_s402": {
+   "tar_sha256": "138a18c5d24168e66bb251cc23a465fef30328b792b9cd786fd105288f1ecfb1",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5186984881427553
+  },
+  "AD4_m3perm_s403": {
+   "tar_sha256": "200f8ff5866fcd34cf2c8a1d6a781d3a7265e67e9d0505194d169c158d227557",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5192206018500858
+  },
+  "AD4_m3perm_s404": {
+   "tar_sha256": "be3d86c3013ba1626fc306ce2cba1914ff23f135edfee54a683fac04b08a7cc8",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5188637433449427
+  },
+  "AD4_m3perm_s405": {
+   "tar_sha256": "3473ac8728d84ae03fbc7cae07e7d152159f2e4914bdcefc9ed6e6a81e35af30",
+   "meta_seed_ok": true,
+   "meta_arch_ok": true,
+   "device": "NVIDIA H100",
+   "torch": "2.2.1",
+   "train_hours": 0.5197417490349876
+  }
+ },
+ "order": {
+  "AD4_m3mf_s401": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     139,
+     117,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     124,
+     132,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     139,
+     117,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     124,
+     132,
+     0
+    ]
+   ]
+  },
+  "AD4_m3mf_s402": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     120,
+     136,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     129,
+     127,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     120,
+     136,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     129,
+     127,
+     0
+    ]
+   ]
+  },
+  "AD4_m3mf_s403": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     138,
+     118,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     124,
+     132,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     138,
+     118,
+     0
+    ],
+    [
+     125,
+     131,
+     0
+    ],
+    [
+     124,
+     132,
+     0
+    ]
+   ]
+  },
+  "AD4_m3mf_s404": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     122,
+     134,
+     0
+    ],
+    [
+     123,
+     133,
+     0
+    ],
+    [
+     109,
+     147,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     122,
+     134,
+     0
+    ],
+    [
+     123,
+     133,
+     0
+    ],
+    [
+     109,
+     147,
+     0
+    ]
+   ]
+  },
+  "AD4_m3mf_s405": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     134,
+     122,
+     0
+    ],
+    [
+     127,
+     129,
+     0
+    ],
+    [
+     129,
+     127,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     134,
+     122,
+     0
+    ],
+    [
+     127,
+     129,
+     0
+    ],
+    [
+     129,
+     127,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s401": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     129,
+     127,
+     0
+    ],
+    [
+     141,
+     115,
+     0
+    ],
+    [
+     121,
+     135,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     129,
+     127,
+     0
+    ],
+    [
+     141,
+     115,
+     0
+    ],
+    [
+     121,
+     135,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s402": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     131,
+     125,
+     0
+    ],
+    [
+     134,
+     122,
+     0
+    ],
+    [
+     122,
+     134,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     131,
+     125,
+     0
+    ],
+    [
+     134,
+     122,
+     0
+    ],
+    [
+     122,
+     134,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s403": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     127,
+     129,
+     0
+    ],
+    [
+     131,
+     125,
+     0
+    ],
+    [
+     120,
+     136,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     127,
+     129,
+     0
+    ],
+    [
+     131,
+     125,
+     0
+    ],
+    [
+     120,
+     136,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s404": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     130,
+     126,
+     0
+    ],
+    [
+     141,
+     115,
+     0
+    ],
+    [
+     126,
+     130,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     130,
+     126,
+     0
+    ],
+    [
+     141,
+     115,
+     0
+    ],
+    [
+     126,
+     130,
+     0
+    ]
+   ]
+  },
+  "AD4_m3perm_s405": {
+   "pass": true,
+   "equal_rows": 200,
+   "recorded_n": 200,
+   "first3_pred": [
+    [
+     137,
+     119,
+     0
+    ],
+    [
+     142,
+     114,
+     0
+    ],
+    [
+     132,
+     124,
+     0
+    ]
+   ],
+   "first3_rec": [
+    [
+     137,
+     119,
+     0
+    ],
+    [
+     142,
+     114,
+     0
+    ],
+    [
+     132,
+     124,
+     0
+    ]
+   ]
+  }
+ },
+ "reproduction": {
+  "status": "pass",
+  "cells": {
+   "mordiff/mordiff/native": {
+    "mean_eer": 0.0,
+    "per_seed": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/dim_a/native": {
+    "mean_eer": 0.9701960784313719,
+    "per_seed": [
+     0.4450980392156854,
+     3.4156862745098033,
+     0.1,
+     0.0,
+     0.8901960784313708
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/dim_c/native": {
+    "mean_eer": 0.0,
+    "per_seed": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/fast_dim/native": {
+    "mean_eer": 1.9203921568627451,
+    "per_seed": [
+     1.8803921568627473,
+     3.860784313725489,
+     0.4450980392156854,
+     0.0,
+     3.4156862745098033
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/fast_dim_ode/native": {
+    "mean_eer": 2.68625486266651,
+    "per_seed": [
+     1.9823961648787791,
+     3.964792329757553,
+     1.9823961648787791,
+     0.0,
+     5.50168965381744
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/greedy_dim/native": {
+    "mean_eer": 0.21803921568627418,
+    "per_seed": [
+     0.5450980392156854,
+     0.0,
+     0.1,
+     0.0,
+     0.4450980392156854
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "dim/greedy_dim_s/native": {
+    "mean_eer": 0.7921568627450979,
+    "per_seed": [
+     1.9803921568627474,
+     0.4450980392156854,
+     0.0,
+     0.1,
+     1.4352941176470562
+    ],
+    "bound": [
+     null,
+     3.0
+    ],
+    "pass": true
+   },
+   "frllm/facemorpher/native": {
+    "mean_eer": 2.4529861044254027,
+    "per_seed": [
+     5.887166650620969,
+     3.924777767080644,
+     0.49059722088507984,
+     0.49059722088507984,
+     1.4717916626552394
+    ],
+    "bound": [
+     null,
+     5.6
+    ],
+    "pass": true
+   },
+   "frllm/webmorph/native": {
+    "mean_eer": 0.6953076070723128,
+    "per_seed": [
+     0.9406465288818212,
+     1.9631931396637299,
+     0.490798284915931,
+     0.0,
+     0.08190008190008191
+    ],
+    "bound": [
+     null,
+     5.6
+    ],
+    "pass": true
+   },
+   "frllm/amsl/native": {
+    "mean_eer": 0.5791751183231914,
+    "per_seed": [
+     0.5209601081812026,
+     1.9688979039891839,
+     0.383029073698444,
+     0.0,
+     0.022988505747126436
+    ],
+    "bound": [
+     null,
+     5.6
+    ],
+    "pass": true
+   },
+   "frllm/opencv/native": {
+    "mean_eer": 17.71775786481669,
+    "per_seed": [
+     34.23302982126511,
+     25.480560774678416,
+     6.8711759888230475,
+     6.339427662957074,
+     15.664595076359783
+    ],
+    "bound": [
+     8.8,
+     26.0
+    ],
+    "pass": true
+   }
+  }
+ },
+ "scorer_equivalence": {
+  "file": "/home/narolski/smad-next/experiments/AD4/gate_scorer_equivalence.json",
+  "gate_pass": true
+ }
+}

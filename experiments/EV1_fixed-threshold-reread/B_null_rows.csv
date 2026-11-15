@@ -1,0 +1,354 @@
+cell,null,kind,n_morph,n_genuine,auc_or_O,lo95,hi95,note
+amsl,file: width,non-content file,2175,204,1.0,1.0,1.0,
+amsl,file: height,non-content file,2175,204,1.0,1.0,1.0,
+amsl,file: bytes,non-content file,2175,204,1.0,1.0,1.0,
+amsl,file: bytes per pixel,non-content file,2175,204,1.0,1.0,1.0,
+amsl,file: inter-eye distance,non-content file,2175,204,1.0,1.0,1.0,
+amsl,file: 5-attribute regression,non-content file,2175,204,1.0,1.0,1.0,
+amsl,file (A41 table): w,non-content file,2175,204,1.0,,,"stored file, point value from the file-table study (A41)"
+amsl,file (A41 table): h,non-content file,2175,204,1.0,,,"stored file, point value from the file-table study (A41)"
+amsl,file (A41 table): bpp,non-content file,2175,204,1.0,,,"stored file, point value from the file-table study (A41)"
+amsl,file (A41 table): q,non-content file,2175,204,1.0,,,"stored file, point value from the file-table study (A41)"
+amsl,file (A41 table): sub,non-content file,2175,204,0.5,,,"stored file, point value from the file-table study (A41)"
+amsl,file (A41 table): exif,non-content file,2175,204,1.0,,,"stored file, point value from the file-table study (A41)"
+amsl,file (A41 table): icc,non-content file,2175,204,0.5,,,"stored file, point value from the file-table study (A41)"
+amsl,file (A41 table): container,non-content file,2175,204,0.5,,,"stored file, point value from the file-table study (A41)"
+amsl,"colour: 6 statistics, aligned frame",non-content aligned,2175,204,0.8457696641875141,0.7934881827818956,0.8958503424724504,
+amsl,border: zero-border fraction,non-content aligned,2175,204,0.999535722334911,0.9981220992568773,1.0,
+amsl,expression label,non-content aligned,2175,204,0.75,0.75,0.75,morph expression inferred (C1 probe)
+amsl,thumbnail 32 x 32 grey regression,content,2175,204,0.9998129366689205,0.9992875232061835,1.0,
+amsl,"colour: 6 statistics, stored file",non-content file,2175,204,0.9988145143114717,0.9962807957234618,1.0,"stored files (own item list, paired by person draw); framing-confounded"
+amsl,morph-free M3 seed 1,morph-free network,2175,204,1.0,1.0,1.0,EER 0.00%
+amsl,morph-free M3 seed 2,morph-free network,2175,204,0.9999661933739012,0.9998478004327912,1.0,EER 0.50%
+amsl,morph-free M3 seed 3,morph-free network,2175,204,0.9988753662384494,0.9969677783091494,0.9998876602800185,EER 1.97%
+amsl,morph-free M1 seed 1,morph-free network,2175,204,0.741992337164751,0.692211827503409,0.7969616853646302,EER 30.32%
+amsl,morph-free M1 seed 2,morph-free network,2175,204,0.7375952219968447,0.6932639486522866,0.785168684036648,EER 31.30%
+amsl,morph-free M1 seed 3,morph-free network,2175,204,0.7972008113590263,0.748673963150676,0.8447536657876674,EER 25.89%
+facemorpher,file: width,non-content file,1222,204,1.0,1.0,1.0,
+facemorpher,file: height,non-content file,1222,204,1.0,1.0,1.0,
+facemorpher,file: bytes,non-content file,1222,204,1.0,1.0,1.0,
+facemorpher,file: bytes per pixel,non-content file,1222,204,1.0,1.0,1.0,
+facemorpher,file: inter-eye distance,non-content file,1222,204,1.0,1.0,1.0,
+facemorpher,file: 5-attribute regression,non-content file,1222,204,1.0,1.0,1.0,
+facemorpher,file (A41 table): w,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+facemorpher,file (A41 table): h,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+facemorpher,file (A41 table): bpp,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+facemorpher,file (A41 table): q,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+facemorpher,file (A41 table): sub,non-content file,1222,204,0.5,,,"stored file, point value from the file-table study (A41)"
+facemorpher,file (A41 table): exif,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+facemorpher,file (A41 table): icc,non-content file,1222,204,0.5,,,"stored file, point value from the file-table study (A41)"
+facemorpher,file (A41 table): container,non-content file,1222,204,0.5,,,"stored file, point value from the file-table study (A41)"
+facemorpher,"colour: 6 statistics, aligned frame",non-content aligned,1222,204,0.995771958537916,0.9888649585207351,0.9999958674184481,
+facemorpher,border: zero-border fraction,non-content aligned,1222,204,1.0,1.0,1.0,
+facemorpher,expression label,non-content aligned,1222,204,0.75,0.75,0.75,morph expression inferred (C1 probe)
+facemorpher,thumbnail 32 x 32 grey regression,content,1222,204,1.0,1.0,1.0,
+facemorpher,"colour: 6 statistics, stored file",non-content file,1222,204,0.9998876801129617,0.9993999638630484,1.0,"stored files (own item list, paired by person draw); framing-confounded"
+facemorpher,morph-free M3 seed 1,morph-free network,1222,204,0.9965301177754244,0.9902773571173714,0.999970261303576,EER 1.47%
+facemorpher,morph-free M3 seed 2,morph-free network,1222,204,0.9917284426045377,0.9830407383201416,0.9976481021451354,EER 4.91%
+facemorpher,morph-free M3 seed 3,morph-free network,1222,204,0.9993461378004557,0.9980782978366513,0.9999649900765818,EER 1.47%
+facemorpher,morph-free M1 seed 1,morph-free network,1222,204,0.9210792336574565,0.8818875582813219,0.9545382523634056,EER 14.23%
+facemorpher,morph-free M1 seed 2,morph-free network,1222,204,0.9212236449407913,0.8763521039928398,0.9598515808925975,EER 15.62%
+facemorpher,morph-free M1 seed 3,morph-free network,1222,204,0.9267353422547415,0.892450286743838,0.9550597958949878,EER 14.72%
+opencv,file: width,non-content file,1221,204,1.0,1.0,1.0,
+opencv,file: height,non-content file,1221,204,1.0,1.0,1.0,
+opencv,file: bytes,non-content file,1221,204,1.0,1.0,1.0,
+opencv,file: bytes per pixel,non-content file,1221,204,0.533093253681489,0.5070543516555375,0.5615145483038749,
+opencv,file: inter-eye distance,non-content file,1221,204,1.0,1.0,1.0,
+opencv,file: 5-attribute regression,non-content file,1221,204,1.0,1.0,1.0,
+opencv,file (A41 table): w,non-content file,1221,204,1.0,,,"stored file, point value from the file-table study (A41)"
+opencv,file (A41 table): h,non-content file,1221,204,1.0,,,"stored file, point value from the file-table study (A41)"
+opencv,file (A41 table): bpp,non-content file,1221,204,0.533093253681489,,,"stored file, point value from the file-table study (A41)"
+opencv,file (A41 table): q,non-content file,1221,204,1.0,,,"stored file, point value from the file-table study (A41)"
+opencv,file (A41 table): sub,non-content file,1221,204,0.5,,,"stored file, point value from the file-table study (A41)"
+opencv,file (A41 table): exif,non-content file,1221,204,1.0,,,"stored file, point value from the file-table study (A41)"
+opencv,file (A41 table): icc,non-content file,1221,204,0.5,,,"stored file, point value from the file-table study (A41)"
+opencv,file (A41 table): container,non-content file,1221,204,0.5,,,"stored file, point value from the file-table study (A41)"
+opencv,"colour: 6 statistics, aligned frame",non-content aligned,1221,204,0.9895778131072249,0.9731277526638599,1.0,
+opencv,border: zero-border fraction,non-content aligned,1221,204,1.0,1.0,1.0,
+opencv,expression label,non-content aligned,1221,204,0.75,0.75,0.75,morph expression inferred (C1 probe)
+opencv,thumbnail 32 x 32 grey regression,content,1221,204,1.0,1.0,1.0,
+opencv,"colour: 6 statistics, stored file",non-content file,1221,204,0.9996748084983379,0.9986096431889623,1.0,"stored files (own item list, paired by person draw); framing-confounded"
+opencv,morph-free M3 seed 1,morph-free network,1221,204,0.8473125531949062,0.8128497866306806,0.8805785914035208,EER 23.03%
+opencv,morph-free M3 seed 2,morph-free network,1221,204,0.8705697676285912,0.8323876325794535,0.911629147637237,EER 21.19%
+opencv,morph-free M3 seed 3,morph-free network,1221,204,0.9533691445456152,0.9263359726367804,0.9790294700020431,EER 11.78%
+opencv,morph-free M1 seed 1,morph-free network,1221,204,0.8629217452746865,0.8193224415056221,0.9072247896886352,EER 21.06%
+opencv,morph-free M1 seed 2,morph-free network,1221,204,0.887869152575035,0.8371803317570944,0.9341781175973435,EER 20.08%
+opencv,morph-free M1 seed 3,morph-free network,1221,204,0.8564500329206212,0.811989266171186,0.8965372618083552,EER 20.98%
+stylegan,file: width,non-content file,1222,204,1.0,1.0,1.0,
+stylegan,file: height,non-content file,1222,204,1.0,1.0,1.0,
+stylegan,file: bytes,non-content file,1222,204,1.0,1.0,1.0,
+stylegan,file: bytes per pixel,non-content file,1222,204,1.0,1.0,1.0,
+stylegan,file: inter-eye distance,non-content file,1222,204,0.9996630403388851,0.9985888866157466,1.0,
+stylegan,file: 5-attribute regression,non-content file,1222,204,1.0,1.0,1.0,
+stylegan,file (A41 table): w,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+stylegan,file (A41 table): h,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+stylegan,file (A41 table): bpp,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+stylegan,file (A41 table): q,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+stylegan,file (A41 table): sub,non-content file,1222,204,0.5,,,"stored file, point value from the file-table study (A41)"
+stylegan,file (A41 table): exif,non-content file,1222,204,1.0,,,"stored file, point value from the file-table study (A41)"
+stylegan,file (A41 table): icc,non-content file,1222,204,0.5,,,"stored file, point value from the file-table study (A41)"
+stylegan,file (A41 table): container,non-content file,1222,204,0.5,,,"stored file, point value from the file-table study (A41)"
+stylegan,"colour: 6 statistics, aligned frame",non-content aligned,1222,204,0.8962605500465325,0.8577036817202128,0.9327202626599073,
+stylegan,border: zero-border fraction,non-content aligned,1222,204,0.9995868232726806,0.997392664723746,1.0,
+stylegan,expression label,non-content aligned,1222,204,0.75,0.75,0.75,morph expression inferred (C1 probe)
+stylegan,thumbnail 32 x 32 grey regression,content,1222,204,0.9977616251083085,0.9922325376211255,1.0,
+stylegan,"colour: 6 statistics, stored file",non-content file,1222,204,0.9987043098745226,0.9962118271846963,0.9999021685827841,"stored files (own item list, paired by person draw); framing-confounded"
+stylegan,morph-free M3 seed 1,morph-free network,1222,204,0.6985414460383171,0.6547541087720073,0.7417745105824948,EER 38.23%
+stylegan,morph-free M3 seed 2,morph-free network,1222,204,0.8886629119732999,0.8480994724959062,0.9270531095927623,EER 19.62%
+stylegan,morph-free M3 seed 3,morph-free network,1222,204,0.8468237540515388,0.7922999101057688,0.9000951167447004,EER 24.57%
+stylegan,morph-free M1 seed 1,morph-free network,1222,204,0.8321619973685055,0.7789613110251209,0.8804219382907763,EER 23.55%
+stylegan,morph-free M1 seed 2,morph-free network,1222,204,0.6840241006386187,0.613560523558352,0.7536532640700804,EER 35.28%
+stylegan,morph-free M1 seed 3,morph-free network,1222,204,0.9022897211257662,0.865950653396952,0.9349985244216849,EER 16.68%
+webmorph,file: width,non-content file,1221,204,1.0,1.0,1.0,
+webmorph,file: height,non-content file,1221,204,1.0,1.0,1.0,
+webmorph,file: bytes,non-content file,1221,204,1.0,1.0,1.0,
+webmorph,file: bytes per pixel,non-content file,1221,204,1.0,1.0,1.0,
+webmorph,file: inter-eye distance,non-content file,1221,204,1.0,1.0,1.0,
+webmorph,file: 5-attribute regression,non-content file,1221,204,1.0,1.0,1.0,
+webmorph,file (A41 table): w,non-content file,1221,204,1.0,,,"stored file, point value from the file-table study (A41)"
+webmorph,file (A41 table): h,non-content file,1221,204,1.0,,,"stored file, point value from the file-table study (A41)"
+webmorph,file (A41 table): bpp,non-content file,1221,204,1.0,,,"stored file, point value from the file-table study (A41)"
+webmorph,file (A41 table): q,non-content file,1221,204,1.0,,,"stored file, point value from the file-table study (A41)"
+webmorph,file (A41 table): sub,non-content file,1221,204,0.5,,,"stored file, point value from the file-table study (A41)"
+webmorph,file (A41 table): exif,non-content file,1221,204,1.0,,,"stored file, point value from the file-table study (A41)"
+webmorph,file (A41 table): icc,non-content file,1221,204,0.5,,,"stored file, point value from the file-table study (A41)"
+webmorph,file (A41 table): container,non-content file,1221,204,0.5,,,"stored file, point value from the file-table study (A41)"
+webmorph,"colour: 6 statistics, aligned frame",non-content aligned,1221,204,0.8375688522747347,0.7934129321939358,0.8837451553046852,
+webmorph,border: zero-border fraction,non-content aligned,1221,204,0.9925527131409484,0.9825365204427788,0.9987358189883202,
+webmorph,expression label,non-content aligned,1221,204,0.75,0.75,0.75,morph expression inferred (C1 probe)
+webmorph,thumbnail 32 x 32 grey regression,content,1221,204,0.9974707327648504,0.9944945623719468,0.9993652809950183,
+webmorph,"colour: 6 statistics, stored file",non-content file,1221,204,0.9981652775770423,0.9940715464502108,0.9999787309388785,"stored files (own item list, paired by person draw); framing-confounded"
+webmorph,morph-free M3 seed 1,morph-free network,1221,204,1.0,1.0,1.0,EER 0.00%
+webmorph,morph-free M3 seed 2,morph-free network,1221,204,0.9999478087713382,0.9997598152707496,1.0,EER 0.49%
+webmorph,morph-free M3 seed 3,morph-free network,1221,204,0.9992532639591463,0.9980566547371419,0.9999509128171523,EER 1.47%
+webmorph,morph-free M1 seed 1,morph-free network,1221,204,0.7769186298598063,0.717998915803554,0.8350530534773669,EER 27.98%
+webmorph,morph-free M1 seed 2,morph-free network,1221,204,0.7065809124632654,0.6384698551644091,0.7748935892482853,EER 32.47%
+webmorph,morph-free M1 seed 3,morph-free network,1221,204,0.8319643172584349,0.7833322813185919,0.8752807271123144,EER 22.04%
+mordiff,file: width,non-content file,1000,204,1.0,1.0,1.0,
+mordiff,file: height,non-content file,1000,204,1.0,1.0,1.0,
+mordiff,file: bytes,non-content file,1000,204,1.0,1.0,1.0,
+mordiff,file: bytes per pixel,non-content file,1000,204,1.0,1.0,1.0,
+mordiff,file: inter-eye distance,non-content file,1000,204,1.0,1.0,1.0,
+mordiff,file: 5-attribute regression,non-content file,1000,204,1.0,1.0,1.0,
+mordiff,file (A41 table): w,non-content file,1000,204,1.0,,,"stored file, point value from the file-table study (A41)"
+mordiff,file (A41 table): h,non-content file,1000,204,1.0,,,"stored file, point value from the file-table study (A41)"
+mordiff,file (A41 table): bpp,non-content file,1000,204,1.0,,,"stored file, point value from the file-table study (A41)"
+mordiff,file (A41 table): exif,non-content file,1000,204,1.0,,,"stored file, point value from the file-table study (A41)"
+mordiff,file (A41 table): icc,non-content file,1000,204,0.5,,,"stored file, point value from the file-table study (A41)"
+mordiff,file (A41 table): container,non-content file,1000,204,1.0,,,"stored file, point value from the file-table study (A41)"
+mordiff,file (A41 table): ied,non-content file,1000,204,1.0,,,"stored file, point value from the file-table study (A41)"
+mordiff,"colour: 6 statistics, aligned frame",non-content aligned,1000,204,0.7805833333333333,0.719009205892802,0.8391302332620733,
+mordiff,border: zero-border fraction,non-content aligned,1000,204,0.6894754901960785,0.5775994708304462,0.7888101803998134,
+mordiff,expression label,non-content aligned,1000,204,0.5,0.4854408453021124,0.515403373749063,from names
+mordiff,thumbnail 32 x 32 grey regression,content,1000,204,0.968392156862745,0.9518062340825613,0.9818496034459778,
+mordiff,"colour: 6 statistics, stored file",non-content file,1000,204,1.0,1.0,1.0,"stored files (own item list, paired by person draw); framing-confounded"
+mordiff,morph-free M3 seed 1,morph-free network,1000,204,1.0,1.0,1.0,EER 0.00%
+mordiff,morph-free M3 seed 2,morph-free network,1000,204,1.0,1.0,1.0,EER 0.00%
+mordiff,morph-free M3 seed 3,morph-free network,1000,204,1.0,1.0,1.0,EER 0.00%
+mordiff,morph-free M1 seed 1,morph-free network,1000,204,0.8842941176470588,0.8474254355225966,0.9135768082214054,EER 20.20%
+mordiff,morph-free M1 seed 2,morph-free network,1000,204,0.8729362745098039,0.8321321835268427,0.9083167287020942,EER 20.05%
+mordiff,morph-free M1 seed 3,morph-free network,1000,204,0.990014705882353,0.9817412600893268,0.9962121623004984,EER 4.41%
+dim_a,file: width,non-content file,500,204,1.0,1.0,1.0,
+dim_a,file: height,non-content file,500,204,1.0,1.0,1.0,
+dim_a,file: bytes,non-content file,500,204,1.0,1.0,1.0,
+dim_a,file: bytes per pixel,non-content file,500,204,1.0,1.0,1.0,
+dim_a,file: inter-eye distance,non-content file,500,204,1.0,1.0,1.0,
+dim_a,file: 5-attribute regression,non-content file,500,204,1.0,1.0,1.0,
+dim_a,file (A41 table): w,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_a,file (A41 table): h,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_a,file (A41 table): bpp,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_a,file (A41 table): exif,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_a,file (A41 table): icc,non-content file,500,204,0.5,,,"stored file, point value from the file-table study (A41)"
+dim_a,file (A41 table): container,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_a,file (A41 table): ied,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_a,"colour: 6 statistics, aligned frame",non-content aligned,500,204,0.7123529411764706,0.6625308285911148,0.7659704622848919,
+dim_a,border: zero-border fraction,non-content aligned,500,204,0.9989901960784314,0.9941621374973301,1.0,
+dim_a,expression label,non-content aligned,500,204,0.75,0.75,0.75,morphs neutral by README
+dim_a,thumbnail 32 x 32 grey regression,content,500,204,0.9996274509803922,0.9982332431535373,1.0,
+dim_a,"colour: 6 statistics, stored file",non-content file,500,204,0.9974313725490196,0.9917693812787893,0.99995024469373,"stored files (own item list, paired by person draw); framing-confounded"
+dim_a,morph-free M3 seed 1,morph-free network,500,204,1.0,1.0,1.0,EER 0.00%
+dim_a,morph-free M3 seed 2,morph-free network,500,204,0.9999607843137255,0.9997603875827595,1.0,EER 0.45%
+dim_a,morph-free M3 seed 3,morph-free network,500,204,1.0,1.0,1.0,EER 0.00%
+dim_a,morph-free M1 seed 1,morph-free network,500,204,0.8422156862745098,0.7946446889509312,0.8896736794472713,EER 22.47%
+dim_a,morph-free M1 seed 2,morph-free network,500,204,0.6112058823529412,0.542166928594235,0.6810850695425088,EER 41.09%
+dim_a,morph-free M1 seed 3,morph-free network,500,204,0.8034607843137255,0.7473334931977578,0.8533455904095626,EER 24.55%
+dim_c,file: width,non-content file,500,204,1.0,1.0,1.0,
+dim_c,file: height,non-content file,500,204,1.0,1.0,1.0,
+dim_c,file: bytes,non-content file,500,204,1.0,1.0,1.0,
+dim_c,file: bytes per pixel,non-content file,500,204,1.0,1.0,1.0,
+dim_c,file: inter-eye distance,non-content file,500,204,1.0,1.0,1.0,
+dim_c,file: 5-attribute regression,non-content file,500,204,1.0,1.0,1.0,
+dim_c,file (A41 table): w,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_c,file (A41 table): h,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_c,file (A41 table): bpp,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_c,file (A41 table): exif,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_c,file (A41 table): icc,non-content file,500,204,0.5,,,"stored file, point value from the file-table study (A41)"
+dim_c,file (A41 table): container,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_c,file (A41 table): ied,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+dim_c,"colour: 6 statistics, aligned frame",non-content aligned,500,204,0.6985098039215686,0.6512961167208623,0.7526307855569764,
+dim_c,border: zero-border fraction,non-content aligned,500,204,0.9969705882352942,0.987833181801497,1.0,
+dim_c,expression label,non-content aligned,500,204,0.75,0.75,0.75,morphs neutral by README
+dim_c,thumbnail 32 x 32 grey regression,content,500,204,0.9988921568627451,0.9952373076696098,1.0,
+dim_c,"colour: 6 statistics, stored file",non-content file,500,204,0.9978235294117647,0.9929940134585257,0.9999618915892043,"stored files (own item list, paired by person draw); framing-confounded"
+dim_c,morph-free M3 seed 1,morph-free network,500,204,1.0,1.0,1.0,EER 0.00%
+dim_c,morph-free M3 seed 2,morph-free network,500,204,1.0,1.0,1.0,EER 0.00%
+dim_c,morph-free M3 seed 3,morph-free network,500,204,1.0,1.0,1.0,EER 0.00%
+dim_c,morph-free M1 seed 1,morph-free network,500,204,0.9367549019607843,0.892985274997559,0.9704628310318274,EER 11.88%
+dim_c,morph-free M1 seed 2,morph-free network,500,204,0.783578431372549,0.7143605949725862,0.8447476181765181,EER 28.42%
+dim_c,morph-free M1 seed 3,morph-free network,500,204,0.9670882352941177,0.944932984272335,0.9840277520417415,EER 10.35%
+fast_dim,file: width,non-content file,500,204,1.0,1.0,1.0,
+fast_dim,file: height,non-content file,500,204,1.0,1.0,1.0,
+fast_dim,file: bytes,non-content file,500,204,1.0,1.0,1.0,
+fast_dim,file: bytes per pixel,non-content file,500,204,1.0,1.0,1.0,
+fast_dim,file: inter-eye distance,non-content file,500,204,1.0,1.0,1.0,
+fast_dim,file: 5-attribute regression,non-content file,500,204,1.0,1.0,1.0,
+fast_dim,file (A41 table): w,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim,file (A41 table): h,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim,file (A41 table): bpp,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim,file (A41 table): exif,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim,file (A41 table): icc,non-content file,500,204,0.5,,,"stored file, point value from the file-table study (A41)"
+fast_dim,file (A41 table): container,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim,file (A41 table): ied,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim,"colour: 6 statistics, aligned frame",non-content aligned,500,204,0.741921568627451,0.6921626899887827,0.7999443651246906,
+fast_dim,border: zero-border fraction,non-content aligned,500,204,0.9989901960784314,0.9941621374973301,1.0,
+fast_dim,expression label,non-content aligned,500,204,0.75,0.75,0.75,morphs neutral by README
+fast_dim,thumbnail 32 x 32 grey regression,content,500,204,0.9996470588235294,0.9984818311518816,1.0,
+fast_dim,"colour: 6 statistics, stored file",non-content file,500,204,0.9979313725490196,0.9932079553410724,0.9999780672895556,"stored files (own item list, paired by person draw); framing-confounded"
+fast_dim,morph-free M3 seed 1,morph-free network,500,204,0.9995392156862745,0.9982888943468916,1.0,EER 0.99%
+fast_dim,morph-free M3 seed 2,morph-free network,500,204,0.9998333333333334,0.99928099398468,1.0,EER 0.45%
+fast_dim,morph-free M3 seed 3,morph-free network,500,204,1.0,1.0,1.0,EER 0.00%
+fast_dim,morph-free M1 seed 1,morph-free network,500,204,0.7777647058823529,0.7244802083156937,0.8304440176527383,EER 28.52%
+fast_dim,morph-free M1 seed 2,morph-free network,500,204,0.5316372549019608,0.45980740825513083,0.599062277281331,EER 47.03%
+fast_dim,morph-free M1 seed 3,morph-free network,500,204,0.7751274509803922,0.7091716303063563,0.833369337499323,EER 27.53%
+fast_dim_ode,file: width,non-content file,499,204,1.0,1.0,1.0,
+fast_dim_ode,file: height,non-content file,499,204,1.0,1.0,1.0,
+fast_dim_ode,file: bytes,non-content file,499,204,1.0,1.0,1.0,
+fast_dim_ode,file: bytes per pixel,non-content file,499,204,1.0,1.0,1.0,
+fast_dim_ode,file: inter-eye distance,non-content file,499,204,1.0,1.0,1.0,
+fast_dim_ode,file: 5-attribute regression,non-content file,499,204,1.0,1.0,1.0,
+fast_dim_ode,file (A41 table): w,non-content file,499,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim_ode,file (A41 table): h,non-content file,499,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim_ode,file (A41 table): bpp,non-content file,499,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim_ode,file (A41 table): exif,non-content file,499,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim_ode,file (A41 table): icc,non-content file,499,204,0.5,,,"stored file, point value from the file-table study (A41)"
+fast_dim_ode,file (A41 table): container,non-content file,499,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim_ode,file (A41 table): ied,non-content file,499,204,1.0,,,"stored file, point value from the file-table study (A41)"
+fast_dim_ode,"colour: 6 statistics, aligned frame",non-content aligned,499,204,0.8357499312350191,0.7862195438010577,0.8840044046750152,
+fast_dim_ode,border: zero-border fraction,non-content aligned,499,204,0.998988172423278,0.9941621374973301,1.0,
+fast_dim_ode,expression label,non-content aligned,499,204,0.75,0.75,0.75,morphs neutral by README
+fast_dim_ode,thumbnail 32 x 32 grey regression,content,499,204,0.9986738182246847,0.9950863860121482,1.0,
+fast_dim_ode,"colour: 6 statistics, stored file",non-content file,499,204,0.9939093874022555,0.9844549289027518,0.999286139282627,"stored files (own item list, paired by person draw); framing-confounded"
+fast_dim_ode,morph-free M3 seed 1,morph-free network,499,204,0.9989292310110417,0.996824079701841,1.0,EER 1.44%
+fast_dim_ode,morph-free M3 seed 2,morph-free network,499,204,0.9987327596369209,0.9963459796757952,0.9999716518572199,EER 1.09%
+fast_dim_ode,morph-free M3 seed 3,morph-free network,499,204,0.9998329993319973,0.9992492081684968,1.0,EER 0.99%
+fast_dim_ode,morph-free M1 seed 1,morph-free network,499,204,0.6463220558764587,0.5880384509959466,0.7037950546937691,EER 39.25%
+fast_dim_ode,morph-free M1 seed 2,morph-free network,499,204,0.3977661204762466,0.32637425095163036,0.47502941645499824,EER 55.90%
+fast_dim_ode,morph-free M1 seed 3,morph-free network,499,204,0.6404279146528351,0.5768820548421324,0.6988899000118045,EER 39.25%
+greedy_dim,file: width,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim,file: height,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim,file: bytes,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim,file: bytes per pixel,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim,file: inter-eye distance,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim,file: 5-attribute regression,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim,file (A41 table): w,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim,file (A41 table): h,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim,file (A41 table): bpp,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim,file (A41 table): exif,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim,file (A41 table): icc,non-content file,500,204,0.5,,,"stored file, point value from the file-table study (A41)"
+greedy_dim,file (A41 table): container,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim,file (A41 table): ied,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim,"colour: 6 statistics, aligned frame",non-content aligned,500,204,0.7575882352941177,0.7064487431788338,0.8143568171008181,
+greedy_dim,border: zero-border fraction,non-content aligned,500,204,0.9989901960784314,0.9941621374973301,1.0,
+greedy_dim,expression label,non-content aligned,500,204,0.75,0.75,0.75,morphs neutral by README
+greedy_dim,thumbnail 32 x 32 grey regression,content,500,204,0.9998431372549019,0.9993022745053388,1.0,
+greedy_dim,"colour: 6 statistics, stored file",non-content file,500,204,0.9964019607843138,0.9894043428231086,0.9997712036257032,"stored files (own item list, paired by person draw); framing-confounded"
+greedy_dim,morph-free M3 seed 1,morph-free network,500,204,0.9998333333333334,0.9993563372788268,1.0,EER 0.55%
+greedy_dim,morph-free M3 seed 2,morph-free network,500,204,0.9999901960784314,0.9999215646980235,1.0,EER 0.10%
+greedy_dim,morph-free M3 seed 3,morph-free network,500,204,1.0,1.0,1.0,EER 0.00%
+greedy_dim,morph-free M1 seed 1,morph-free network,500,204,0.9638627450980393,0.9342438873108251,0.9857966451509745,EER 8.71%
+greedy_dim,morph-free M1 seed 2,morph-free network,500,204,0.8424803921568628,0.7910370925244556,0.8897064604143544,EER 25.10%
+greedy_dim,morph-free M1 seed 3,morph-free network,500,204,0.9992352941176471,0.9974438759958902,0.9999700566675491,EER 1.44%
+greedy_dim_s,file: width,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim_s,file: height,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim_s,file: bytes,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim_s,file: bytes per pixel,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim_s,file: inter-eye distance,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim_s,file: 5-attribute regression,non-content file,500,204,1.0,1.0,1.0,
+greedy_dim_s,file (A41 table): w,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim_s,file (A41 table): h,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim_s,file (A41 table): bpp,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim_s,file (A41 table): exif,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim_s,file (A41 table): icc,non-content file,500,204,0.5,,,"stored file, point value from the file-table study (A41)"
+greedy_dim_s,file (A41 table): container,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim_s,file (A41 table): ied,non-content file,500,204,1.0,,,"stored file, point value from the file-table study (A41)"
+greedy_dim_s,"colour: 6 statistics, aligned frame",non-content aligned,500,204,0.7649117647058824,0.72208663844505,0.8118491577795093,
+greedy_dim_s,border: zero-border fraction,non-content aligned,500,204,1.0,1.0,1.0,
+greedy_dim_s,expression label,non-content aligned,500,204,0.75,0.75,0.75,morphs neutral by README
+greedy_dim_s,thumbnail 32 x 32 grey regression,content,500,204,0.9992549019607843,0.9973453822888022,1.0,
+greedy_dim_s,"colour: 6 statistics, stored file",non-content file,500,204,0.9980490196078431,0.9933986406945517,1.0,"stored files (own item list, paired by person draw); framing-confounded"
+greedy_dim_s,morph-free M3 seed 1,morph-free network,500,204,0.9972156862745098,0.9926327213154548,0.999811472093636,EER 1.44%
+greedy_dim_s,morph-free M3 seed 2,morph-free network,500,204,0.9999607843137255,0.9997593585491457,1.0,EER 0.45%
+greedy_dim_s,morph-free M3 seed 3,morph-free network,500,204,1.0,1.0,1.0,EER 0.00%
+greedy_dim_s,morph-free M1 seed 1,morph-free network,500,204,0.9595784313725491,0.9321030603053942,0.981290867781766,EER 10.35%
+greedy_dim_s,morph-free M1 seed 2,morph-free network,500,204,0.8117941176470588,0.7505558407976896,0.8661167773561036,EER 26.44%
+greedy_dim_s,morph-free M1 seed 3,morph-free network,500,204,0.9656666666666667,0.9416000880239852,0.9839833357120544,EER 10.79%
+MAD22c FaceMorpher,file: width,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c FaceMorpher,file: height,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c FaceMorpher,file: bytes,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c FaceMorpher,file: bytes per pixel,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c FaceMorpher,file: container,non-content file,1000,204,0.5,0.5,0.5,in-sample category rate
+MAD22c FaceMorpher,file: chroma subsampling,non-content file,1000,204,0.5,0.5,0.5,in-sample category rate (container|subsampling)
+MAD22c FaceMorpher,file: 6-attribute regression,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c FaceMorpher,"colour: 6 statistics, aligned frame",non-content aligned,1000,204,0.8421176470588235,0.7954801967288517,0.8901572408889865,
+MAD22c FaceMorpher,border: zero-border fraction,non-content aligned,1000,204,0.9994950980392157,0.9967700148493283,1.0,
+MAD22c FaceMorpher,expression label,non-content aligned,1000,204,0.5,0.4854408453021124,0.515403373749063,from names
+MAD22c FaceMorpher,"colour: 6 statistics, stored file",non-content file,1000,204,0.995357843137255,0.9873194567056884,0.999789500404648,framing-confounded
+MAD22c FaceMorpher,thumbnail 32 x 32 grey regression,content,1000,204,0.9977941176470588,0.9929029435448385,1.0,
+MAD22c MIPGAN_I,file: width,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c MIPGAN_I,file: height,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c MIPGAN_I,file: bytes,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c MIPGAN_I,file: bytes per pixel,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c MIPGAN_I,file: container,non-content file,1000,204,1.0,1.0,1.0,in-sample category rate
+MAD22c MIPGAN_I,file: chroma subsampling,non-content file,1000,204,1.0,1.0,1.0,in-sample category rate (container|subsampling)
+MAD22c MIPGAN_I,file: 6-attribute regression,non-content file,1000,204,1.0,1.0,1.0,
+MAD22c MIPGAN_I,"colour: 6 statistics, aligned frame",non-content aligned,1000,204,0.9260343137254902,0.8917329904475171,0.957746972514604,
+MAD22c MIPGAN_I,border: zero-border fraction,non-content aligned,1000,204,1.0,1.0,1.0,
+MAD22c MIPGAN_I,expression label,non-content aligned,1000,204,0.5,0.4854408453021124,0.515403373749063,from names
+MAD22c MIPGAN_I,"colour: 6 statistics, stored file",non-content file,1000,204,0.9987843137254901,0.9955118190926944,1.0,framing-confounded
+MAD22c MIPGAN_I,thumbnail 32 x 32 grey regression,content,1000,204,0.9851960784313726,0.9608487364461659,1.0,
+MAD22c MIPGAN_II,file: width,non-content file,999,204,1.0,1.0,1.0,
+MAD22c MIPGAN_II,file: height,non-content file,999,204,1.0,1.0,1.0,
+MAD22c MIPGAN_II,file: bytes,non-content file,999,204,1.0,1.0,1.0,
+MAD22c MIPGAN_II,file: bytes per pixel,non-content file,999,204,1.0,1.0,1.0,
+MAD22c MIPGAN_II,file: container,non-content file,999,204,1.0,1.0,1.0,in-sample category rate
+MAD22c MIPGAN_II,file: chroma subsampling,non-content file,999,204,1.0,1.0,1.0,in-sample category rate (container|subsampling)
+MAD22c MIPGAN_II,file: 6-attribute regression,non-content file,999,204,1.0,1.0,1.0,
+MAD22c MIPGAN_II,"colour: 6 statistics, aligned frame",non-content aligned,999,204,0.9104349447486703,0.8760789392337546,0.9445258968304864,
+MAD22c MIPGAN_II,border: zero-border fraction,non-content aligned,999,204,1.0,1.0,1.0,
+MAD22c MIPGAN_II,expression label,non-content aligned,999,204,0.5002502502502503,0.4859190572324957,0.5158690838433503,from names
+MAD22c MIPGAN_II,"colour: 6 statistics, stored file",non-content file,999,204,0.9989401165871754,0.9960006290711075,1.0,framing-confounded
+MAD22c MIPGAN_II,thumbnail 32 x 32 grey regression,content,999,204,0.9841459106164988,0.959240353326295,1.0,
+MAD22c OpenCV,file: width,non-content file,984,204,1.0,1.0,1.0,
+MAD22c OpenCV,file: height,non-content file,984,204,1.0,1.0,1.0,
+MAD22c OpenCV,file: bytes,non-content file,984,204,0.9945500557946756,0.9888924504074494,0.9985762405434125,
+MAD22c OpenCV,file: bytes per pixel,non-content file,984,204,0.9946596524788778,0.9891040305720872,0.9986129110491219,
+MAD22c OpenCV,file: container,non-content file,984,204,0.5,0.5,0.5,in-sample category rate
+MAD22c OpenCV,file: chroma subsampling,non-content file,984,204,0.5,0.5,0.5,in-sample category rate (container|subsampling)
+MAD22c OpenCV,file: 6-attribute regression,non-content file,984,204,1.0,1.0,1.0,
+MAD22c OpenCV,"colour: 6 statistics, aligned frame",non-content aligned,984,204,0.7611639167862266,0.7233139582718133,0.8020417721391834,
+MAD22c OpenCV,border: zero-border fraction,non-content aligned,984,204,0.5049019607843137,0.5,0.5147058823529411,
+MAD22c OpenCV,expression label,non-content aligned,984,204,0.5015243902439024,0.48632780454686897,0.516139161879441,from names
+MAD22c OpenCV,"colour: 6 statistics, stored file",non-content file,984,204,0.6260461501673841,0.5906502589853158,0.6627291438666856,framing-confounded
+MAD22c OpenCV,thumbnail 32 x 32 grey regression,content,984,204,0.6230920213613901,0.5763510577665847,0.6695520749156482,
+MAD22c Webmorph,file: width,non-content file,500,204,0.5,0.5,0.5,
+MAD22c Webmorph,file: height,non-content file,500,204,0.5,0.5,0.5,
+MAD22c Webmorph,file: bytes,non-content file,500,204,0.8042254901960784,0.7698717400902193,0.8395461984685999,
+MAD22c Webmorph,file: bytes per pixel,non-content file,500,204,0.8042254901960784,0.7698717400902193,0.8395461984685999,
+MAD22c Webmorph,file: container,non-content file,500,204,0.5,0.5,0.5,in-sample category rate
+MAD22c Webmorph,file: chroma subsampling,non-content file,500,204,1.0,1.0,1.0,in-sample category rate (container|subsampling)
+MAD22c Webmorph,file: 6-attribute regression,non-content file,500,204,1.0,1.0,1.0,
+MAD22c Webmorph,"colour: 6 statistics, aligned frame",non-content aligned,500,204,0.767078431372549,0.7303450545410949,0.8073427630746502,
+MAD22c Webmorph,border: zero-border fraction,non-content aligned,500,204,0.5049019607843137,0.5,0.5147058823529411,
+MAD22c Webmorph,expression label,non-content aligned,500,204,0.75,0.75,0.75,from names
+MAD22c Webmorph,"colour: 6 statistics, stored file",non-content file,500,204,0.6472941176470588,0.6091315250298626,0.6871382964271159,framing-confounded
+MAD22c Webmorph,thumbnail 32 x 32 grey regression,content,500,204,0.7695882352941177,0.7303509802077297,0.8078034267520485,

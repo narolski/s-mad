@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-14T22:20:06.171174+00:00",
+  "status": "FROZEN_SOURCE_ONLY_PENDING_OTHER_REVIEW_AND_ROOT_RELEASE",
+  "fixes": [
+    "B1 direct email parse of same authenticated bounded METADATA snapshot no fallback/reopen",
+    "B2 nofollow directory descriptors regular fstat read caps change detection and same-byte hash/control parsing"
+  ],
+  "source_sha256": "34c5f9d691714835ea164e5ae87eaf11ceaf5b166a7ce7e37cf1bd7d2402f4de",
+  "tests_sha256": "94c0819fae7ece10cfe265882910cd5eb05b5004fcaea115dd216bccc5112d2f",
+  "actual_runtime_source_allowlist": "UNKNOWN",
+  "existing_files_modified": false,
+  "actual_probe_main": false,
+  "actual_environment_model_GPU_data_archive_access": false,
+  "actual_timing_full_runs": "HOLD"
+}

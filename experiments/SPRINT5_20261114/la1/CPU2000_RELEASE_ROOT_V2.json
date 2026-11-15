@@ -1,0 +1,13 @@
+{
+  "decision": "GO_CPU_CALIBRATION",
+  "scope": "LA1-0 labelled variable-resolution aligned CelebA crops only; no HQ admission",
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "script_sha256": "66f6621bfaa8e63fa3a021716ac6713d69bf64e9ff131bfa9eb41939ec126f2e",
+  "selection_sha256": "2ba96c20a3b214be6cacfd951937077e98160d1b57c857a5c7948e5dc6054e52",
+  "independent_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/la1/PRERUN_ROOT_LOWRES_CPU2000_V2.md",
+  "independent_review_sha256": "cd3a0e5722ccd897493d20e5c7957424f07fe2d48ad77f4e5a99835094c3c236",
+  "cpu8_smoke_pass": true,
+  "cpu8_result_path": "/mnt/t7/smad_next/SPRINT5_5/lowres_cpu8_v1/result.json",
+  "cpu8_result_sha256": "7efa0fd31ff2300da862c0b9c7723e49438ad75c28edc7074748a271f5bcefcd"
+}

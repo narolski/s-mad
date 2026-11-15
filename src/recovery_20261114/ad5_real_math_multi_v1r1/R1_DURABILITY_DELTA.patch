@@ -1,0 +1,515 @@
+--- frozen_v1/PREREG.md
++++ v1r1/PREREG.md
+@@ -1,29 +1,27 @@
+-# AD5 real math-only three-epoch smoke v1 — prospective technical registration
++# AD5 multi-update math-only v1r1 — R1 durability amendment
+ 
+-PROPOSED / EXECUTION HOLD pending independent source/launcher prereview, clean committed owned-source pins, current site/resource check and root exact once-only release. New namespace ad5_real_math_multi_v1. This is not a retry or migration of6321768_401,6323083 or6323725; no action on these jobs. Historical default efficient-SDPA backward failure remains preserved. PASS of6323725 establishes one real update only, not full recovery, utility or backend equivalence.
++PROPOSED / EXECUTION HOLD pending independent R1 delta review, root adoption, clean committed owned-source check, current site preflight and a NEW exact root once-only release. Namespace ad5_real_math_multi_v1r1; no old allocation action or automaticretry.
+ 
+-## Fixed execution
++Incorporates the qualified training/checkpoint design of PREREG_QUALIFIED_V1.md SHA603f9314e15b5067331b587a1d333bb25226c2825113d8a60c1ca962b7554c16. Independent review f8694bd3b8093411cc32d3e0299de2fa8e18feb0b29c2ad02198f58f8864363f grants qualified training-design GO and HOLD only for R1 durability. This amendment supersedes that v1 document's EXIT-only preservation description; all training/model/checkpoint criterion scope remains unchanged.
+ 
+-Original pack94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee, wheels3bd18def4da9cbec2766896fa160c34c0364de464ca3abd02d675c72620cf13c, crops3189e52af12e2853b06c86993b1b8b5cfef891fda749395778492e3445924900. Original canonical every12th reduced3311-row list SHAea8a0c6af979ca0d46ca23011efab4d98d9202920524f51d0c845e64f0bb2309, same weight descriptor53b401837e5baa82115d3b6db60c6fff43cfd1a6412e48ed0193d54a69d2f993. Bodies are not opened during this source-preparation task; future released worker verifies pack hashes and records/enforces runtime descriptors before training.
++## Unchanged computation and acceptance
+ 
+-ViT-B/16,ARM B,seed401,world1,H100,perdevice/global256,accumulation1,FP32,torch2.0.1+cu118/CUDA11.8. Original preprocessing/sampler/LoRA qv r2 alpha4 dropout.4,linear header,BinaryCrossEntropy,original two AdamW objects/model LR1e-5/header1e-4/betas(.9,.999)/wd.05/eps1e-8 and original max_norm5 remain unchanged. No dtype/batch/microbatch/package change. Only computational backend intervention is explicit SDPA flashfalse/mathtrue/memoryefficientfalse around original model+header forward/backward. Original dropout/RNG/transform outputs are untouched by observers.
++Original3311-row reduced list,3epochs,12drop_last batches/epoch,EXACT36updates of EACH original optimizer,global256,ARM B/ViT-B16/seed401/FP32/torch2.0.1+cu118; original packs/code94964...,wheels3bd18...,crops3189...,canonical CSVea8a...,weights53b4.... Original loss/LoRA/preprocessing/sampler/RNG/optimizer/clipping/scheduler/logging/save/control flow and sole explicit math-SDPA intervention remain byteidentical to qualified v1. runtime.py,base_runtime.py,contract.py,patch.py,PATCH_PROOF.json,EXACT_TRAINER_DELTA.patch all have exact same bytes as v1. Computation invariant proof and full old35file preservation hashes supplied.
+ 
+-Three original epochs with drop_last3311/256:12effective batches/epoch,EXACT36updates of EACH optimizer,9216sample forwards. Sampler seed0 with epochs0,1,2 is distinct from trainingseed401. Legacy total_step print38 is arithmetic metadata, not execution count. All original optimizer.zero_grad, six scheduler calls(two per epoch),36logging/tensorboard calls,three checkpoint callbacks and final tensorboard close retain exact original order. No one-shot early return remains. CPU AST inverse-observer check proves original MAD_training AST restored after removing observers and unwrapping math context. Original header-only and test paths are unmodified, but none executed. AD5_NO_TEST=1 and epochs0..2 ensure no test dataset/evaluation callback; no scientific metric/benchmark.
++All36steps require source-derived exact50gradient presence/finite/groupnonzero checks,legitimateindividualAzeros allowed,finiteweights/moments,exactoptimizer progression and actualbatchorder; original callbacks and three epochs complete. Original produced3_backbone.pth/3_header.pth only,strict finite state/tensorbyte identity and eval/math/noTTA same-last-used-training-batch logitbytegate unchanged. No test dataset/evaluation/scientificmetric/benchmark/new images/modelrebuild/oldcandidatecheckpoint access. No rawlogits/images/labels saved. Original first-step/default failures and qualified v1 remain intact.
+ 
+-## Technical observations and pass scope
++## R1 durable evidence and bounded supervision
+ 
+-Each of36updates must have exact observed256dataset visits/order+canonicalIDs matched to original sampler, actualtarget labels,shape256x3x224x224/float32; finite scalar loss (no numeric loss in technical receipts); all48vision q/vLoRA plus2header expected gradients present/finite, nonzero at least one per group; preclip group norms finite/positive; original clipping+exact model/header step. Every expected optimizer state step equals completed update, moments finite,updatedtrainables finite and some changed per group; all floating model/header state finite. Individual A gradients may be zero with source B=0 initialization; do not require every A to have nonzero data gradient/change. Legitimate zero is different from missing/nonfinite/allgroupzero.
++Data/code/wheels/env/model I/O remain node-local TMPDIR. body.sh keeps original training invocation unchanged except PYTHONUNBUFFERED output control, newnamespace and durable technical output routing. The local out path is a symlink to fresh KEEP/technical. Exact unchanged observer put() writes each completed small JSON with exclusive create, flush+fsync and parentdir fsync directly on durable storage; no EXIT-copy dependency for36step evidence.
+ 
+-Observe original checkpoint callback at epochs0,1,2. Original source saves only at epoch2 for save_every3 and epoch>1: exact filenames3_backbone.pth and3_header.pth beneath config.output_path (original AD5_OUT/last_trainings/training_desc/... computation). No invented last.pt path or new serialization. Preserve this run's original checkpoints and callback logs/tensorboard files durably. No original/preexisting candidate checkpoint is opened.
++New supervise.py runs exactly ONE body child in a new process group. It streams combined stdout/stderr to durable technical/train_stdout.log and fsyncs every received chunk before optional terminal echo. Training traceback/progress therefore survives ordinary child failure/termination independently of node-local cleanup. Original training.log,TensorBoard event files and ONLY this run's3_backbone.pth/3_header.pth are incrementally mirrored at one-second polling opportunities as fsynced atomic-replace snapshots. Snapshots may be partial/inflight and are explicitly NOT semantic checkpoint validation. Original run files stay local; durable copies are technical evidence. No other file class/checkpoint/score is mirrored. Final quiescent mirror/hash inventory follows child termination, with manifest-failure receipt on incomplete collection. Exact model pass still requires existing produced-checkpoint gate and independent reconciliation; copied checkpoint bytes are not an independent rehash of any preexisting model.
+ 
+-New separately registered technical checkpoint gate runs ONLY after all36original updates/callbacks/tensorboard close: deserialize exactly this producer's two checkpoint files with weights_only=True; assert unique regular nonsymlink paths; exact state key/dtype/shape/tensor-byte equality to just-trained in-memory state and finite floating state. Compute one eval/noTTA FP32 two-column raw-header-logit tensor on the retained, already-used last training batch under math-only context. Do not fetch/retransform another image. Restore train mode before strict checkpoint reload, because LoRA eval merges base weights. Strict-load produced states, check exact tensor bytes, eval/math-only/no_grad same batch again, require identical float32logit bytes. Save only equality/hash/shape/dtype, never raw logits/images/labels or detector metrics. This is a local produced-checkpoint roundtrip, not original backend/reference scientific equivalence. Any mismatch is terminal FAIL/INCOMPLETE; no tolerance fallback/autoretry/model/data change.
++Early allocation ID is durably recorded before Python, now with allocation-start epoch. Hard allocation remains15minutes with same1H100/8CPU/120G/150Glocal. Supervisor uses720seconds FROM EARLY ALLOCATION START (not child start); at that deadline sends process-group TERM, allows10seconds, then KILL if needed. Final artifact collection AND output-manifest hashing share60seconds, leaving nominal margin before hard limit. Signals likewise trigger termination and explicit INCOMPLETE. Timeout/termination/supervision/collection error can NEVER PASS even if a partial MULTI_RESULT exists. If allocation budget is already exhausted before body startup, no body child starts. No retry, new allocation, model-data change or extra update is introduced.
+ 
+-PASS requires all36update evidence, original lifecycle completion, produced-checkpoint identity and same-lastbatch bytegate,child/node/worker/native terminal reconciliation. Exit0 alone is not PASS. Technical result still does not establish full-list production training/recovery,default backend equivalence,generalization or detector utility.
++No software can promise completed evidence after arbitrary hardware/storage loss or an uninterruptible kernel/filesystem operation. The bounded budget and durable writes reduce dependence on end-of-job cleanup; missing/in-flight evidence remains INCOMPLETE. Supervisor exits and root native terminal reconciliation remain mandatory, not inferred from worker0. Only reason-free child0 plus complete36receipt and stable error-free final snapshots becomes eligible for technical review, never automatic production/scientific acceptance.
+ 
+-## Allocation, durability and failure
++## Fixtures and live boundary
+ 
+-Exactly one NEW allocation proposed: actual durable tmux pane+srun --pty,1H100,8CPU,120G RAM,150G local TMPDIR,15minutes,clean env,early nativeID file before node Python. Explicit --immediate60 does not bound scheduler configuration wait. No exclusions/rental/cancel/automaticretry. Reuse reviewed launcher discipline in new namespace; versioned launcher/worker diffs supplied. Create-only fsynced permanent CLAIM precedes allocation; TERMINAL/NODE_EXIT and worker EXIT trap preserve failures,all technical records/original callback artifacts/checkpoints before forced TMPDIR cleanup. Root reconciling Slurm terminal state remains mandatory; no GPU query by this author.
++Fourteen CPU AST/generated/mock/real-child fixtures pass: qualified original36lifecycle retained; real child writes/fsyncs a production put() receipt then fails; real hanging child handles TERM; real TERM-ignoring child is KILLed; already-written receipt/stdout/originalartifact snapshots survive; partial success marker never overrides timeout; reentry fails before second child. Tests use generated bytes masquerading solely as a fixture filename, not model/checkpoint bodies.
+ 
+-15minutes is a hard technical budget, not a predicted completion guarantee. Prior85s one-step job and2.036s observer interval are not full-run throughput measurements. Missing/incomplete/checkpoint mismatch/time limit remains failed; do not retry under this registration. No future scoring/full training authorized.
+-
+-Source preparation only: exactoriginal trainer e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d; new patch computed from that source, not one-step derivative. Grounding copies are immutable source-only. New source-only utils/logging.py extraction from allowlisted original code member establishes exact callback save names; no weights/data/candidate checkpoint read. All live stages remain root controlled and require independent review.
++No model/data/weights/candidate archive/GPU/WCSS access was performed for R1. Live release must bind this exact newsource,prereg,other-agent delta review,launcher review,owned-source commit/site evidence and720second durability revision. All old jobs6321768_401,6323083,6323725 unchanged. Full fit/scoring/production recovery/scientific admission remain HOLD.
+--- frozen_v1/PREREG_QUALIFIED_V1.md
++++ v1r1/PREREG_QUALIFIED_V1.md
+@@ -0,0 +1,29 @@
++# AD5 real math-only three-epoch smoke v1 — prospective technical registration
++
++PROPOSED / EXECUTION HOLD pending independent source/launcher prereview, clean committed owned-source pins, current site/resource check and root exact once-only release. New namespace ad5_real_math_multi_v1. This is not a retry or migration of6321768_401,6323083 or6323725; no action on these jobs. Historical default efficient-SDPA backward failure remains preserved. PASS of6323725 establishes one real update only, not full recovery, utility or backend equivalence.
++
++## Fixed execution
++
++Original pack94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee, wheels3bd18def4da9cbec2766896fa160c34c0364de464ca3abd02d675c72620cf13c, crops3189e52af12e2853b06c86993b1b8b5cfef891fda749395778492e3445924900. Original canonical every12th reduced3311-row list SHAea8a0c6af979ca0d46ca23011efab4d98d9202920524f51d0c845e64f0bb2309, same weight descriptor53b401837e5baa82115d3b6db60c6fff43cfd1a6412e48ed0193d54a69d2f993. Bodies are not opened during this source-preparation task; future released worker verifies pack hashes and records/enforces runtime descriptors before training.
++
++ViT-B/16,ARM B,seed401,world1,H100,perdevice/global256,accumulation1,FP32,torch2.0.1+cu118/CUDA11.8. Original preprocessing/sampler/LoRA qv r2 alpha4 dropout.4,linear header,BinaryCrossEntropy,original two AdamW objects/model LR1e-5/header1e-4/betas(.9,.999)/wd.05/eps1e-8 and original max_norm5 remain unchanged. No dtype/batch/microbatch/package change. Only computational backend intervention is explicit SDPA flashfalse/mathtrue/memoryefficientfalse around original model+header forward/backward. Original dropout/RNG/transform outputs are untouched by observers.
++
++Three original epochs with drop_last3311/256:12effective batches/epoch,EXACT36updates of EACH optimizer,9216sample forwards. Sampler seed0 with epochs0,1,2 is distinct from trainingseed401. Legacy total_step print38 is arithmetic metadata, not execution count. All original optimizer.zero_grad, six scheduler calls(two per epoch),36logging/tensorboard calls,three checkpoint callbacks and final tensorboard close retain exact original order. No one-shot early return remains. CPU AST inverse-observer check proves original MAD_training AST restored after removing observers and unwrapping math context. Original header-only and test paths are unmodified, but none executed. AD5_NO_TEST=1 and epochs0..2 ensure no test dataset/evaluation callback; no scientific metric/benchmark.
++
++## Technical observations and pass scope
++
++Each of36updates must have exact observed256dataset visits/order+canonicalIDs matched to original sampler, actualtarget labels,shape256x3x224x224/float32; finite scalar loss (no numeric loss in technical receipts); all48vision q/vLoRA plus2header expected gradients present/finite, nonzero at least one per group; preclip group norms finite/positive; original clipping+exact model/header step. Every expected optimizer state step equals completed update, moments finite,updatedtrainables finite and some changed per group; all floating model/header state finite. Individual A gradients may be zero with source B=0 initialization; do not require every A to have nonzero data gradient/change. Legitimate zero is different from missing/nonfinite/allgroupzero.
++
++Observe original checkpoint callback at epochs0,1,2. Original source saves only at epoch2 for save_every3 and epoch>1: exact filenames3_backbone.pth and3_header.pth beneath config.output_path (original AD5_OUT/last_trainings/training_desc/... computation). No invented last.pt path or new serialization. Preserve this run's original checkpoints and callback logs/tensorboard files durably. No original/preexisting candidate checkpoint is opened.
++
++New separately registered technical checkpoint gate runs ONLY after all36original updates/callbacks/tensorboard close: deserialize exactly this producer's two checkpoint files with weights_only=True; assert unique regular nonsymlink paths; exact state key/dtype/shape/tensor-byte equality to just-trained in-memory state and finite floating state. Compute one eval/noTTA FP32 two-column raw-header-logit tensor on the retained, already-used last training batch under math-only context. Do not fetch/retransform another image. Restore train mode before strict checkpoint reload, because LoRA eval merges base weights. Strict-load produced states, check exact tensor bytes, eval/math-only/no_grad same batch again, require identical float32logit bytes. Save only equality/hash/shape/dtype, never raw logits/images/labels or detector metrics. This is a local produced-checkpoint roundtrip, not original backend/reference scientific equivalence. Any mismatch is terminal FAIL/INCOMPLETE; no tolerance fallback/autoretry/model/data change.
++
++PASS requires all36update evidence, original lifecycle completion, produced-checkpoint identity and same-lastbatch bytegate,child/node/worker/native terminal reconciliation. Exit0 alone is not PASS. Technical result still does not establish full-list production training/recovery,default backend equivalence,generalization or detector utility.
++
++## Allocation, durability and failure
++
++Exactly one NEW allocation proposed: actual durable tmux pane+srun --pty,1H100,8CPU,120G RAM,150G local TMPDIR,15minutes,clean env,early nativeID file before node Python. Explicit --immediate60 does not bound scheduler configuration wait. No exclusions/rental/cancel/automaticretry. Reuse reviewed launcher discipline in new namespace; versioned launcher/worker diffs supplied. Create-only fsynced permanent CLAIM precedes allocation; TERMINAL/NODE_EXIT and worker EXIT trap preserve failures,all technical records/original callback artifacts/checkpoints before forced TMPDIR cleanup. Root reconciling Slurm terminal state remains mandatory; no GPU query by this author.
++
++15minutes is a hard technical budget, not a predicted completion guarantee. Prior85s one-step job and2.036s observer interval are not full-run throughput measurements. Missing/incomplete/checkpoint mismatch/time limit remains failed; do not retry under this registration. No future scoring/full training authorized.
++
++Source preparation only: exactoriginal trainer e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d; new patch computed from that source, not one-step derivative. Grounding copies are immutable source-only. New source-only utils/logging.py extraction from allowlisted original code member establishes exact callback save names; no weights/data/candidate checkpoint read. All live stages remain root controlled and require independent review.
+--- frozen_v1/README.md
++++ v1r1/README.md
+@@ -1 +1 @@
+-New36-update math-only technical smoke; execution HOLD. See PREREG.md,EXACT_TRAINER_DELTA.patch,LAUNCHER_DELTAS.patch. CPUtests source/mocks only; no scientific output. Original first-step source frozen untouched.
++R1 durability-only immutable revision. Qualified computation files byteidentical to v1. Direct durable fsynced observer receipts,live fsyncedstdout,incremental allowlisted artifact snapshots and allocation-relative720s TERM/KILL supervision. Execution HOLD pending independentdelta-review/rootnewrelease. See PREREG.md and R1_DURABILITY_DELTA.patch.
+--- frozen_v1/allocation_entry.sh
++++ v1r1/allocation_entry.sh
+@@ -1,10 +1,12 @@
+ #!/bin/bash
+ # Earliest allocation receipt, before Python startup/source checks/worker can fail.
+ set -euo pipefail
+-J=/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/dispatch/ad5_real_math_multi_v1_20261114
++J=/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/dispatch/ad5_real_math_multi_v1r1_20261114
+ : "${SLURM_JOB_ID:?native allocation required}"
+ set -C
+ printf '%s\n' "$SLURM_JOB_ID" > "$J/NATIVE_JOB_ID.txt"
+ sync -f "$J/NATIVE_JOB_ID.txt"
++date +%s > "$J/NATIVE_ALLOCATION_EPOCH.txt"
++sync -f "$J/NATIVE_ALLOCATION_EPOCH.txt"
+ printf 'AD5_REAL_MATH_STEP_NATIVE_JOB_ID=%s\n' "$SLURM_JOB_ID"
+-exec python3 -I /lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/ad5_real_math_multi_v1/node.py
++exec python3 -I /lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/ad5_real_math_multi_v1r1/node.py
+--- frozen_v1/body.sh
++++ v1r1/body.sh
+@@ -0,0 +1,48 @@
++#!/bin/bash
++# Source-pinned new 36-update test. Root release required; never a retry.
++set -euo pipefail
++L=/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5
++SRC=$L/ad5_real_math_multi_v1r1
++KEEP=$L/logs/keep/ad5_real_math_multi_v1r1_20261114
++: "${TMPDIR:?}" "${SLURM_JOB_ID:?}"
++case "$TMPDIR" in /mnt/lscratch/*) ;; *) echo not-local-TMPDIR;exit 2;; esac
++python3 -I -c "import sys;sys.path.insert(0,'$SRC');import verify;verify.release()"
++[ -d "$KEEP/technical" ] || exit 90
++S=$TMPDIR/ad5_real_math_multi_v1r1
++mkdir -p "$S/code" "$S/wheels" "$S/crop"
++ln -s "$KEEP/technical" "$S/out"
++export PYTHONUNBUFFERED=1
++export ARM=B AD5_SEED=401 AD5_NO_TEST=1 CUDA_LAUNCH_BLOCKING=1 TORCH_SHOW_CPP_STACKTRACES=1 PYTHONFAULTHANDLER=1
++for spec in 'ad5w_code:94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee' 'ad5w_wheels39:3bd18def4da9cbec2766896fa160c34c0364de464ca3abd02d675c72620cf13c' 'smdd_train_cropped:3189e52af12e2853b06c86993b1b8b5cfef891fda749395778492e3445924900'; do
++ name=${spec%%:*};expected=${spec#*:}
++ [ "$(sha256sum "$L/packs/$name.tar"|cut -c1-64)" = "$expected" ] || exit 3
++done
++# Actual weight/data access starts only here, inside separately released native allocation.
++tar -xf "$L/packs/ad5w_code.tar" -C "$S/code"
++tar -xf "$L/packs/ad5w_wheels39.tar" -C "$S/wheels"
++tar -xf "$L/packs/smdd_train_cropped.tar" -C "$S/crop"
++python3 -I "$SRC/patch.py" "$S/code" > "$S/out/PATCH_PROOF.json"
++python3 -m venv "$S/env"
++PY=$S/env/bin/python
++"$PY" -m pip install -q --no-index --find-links "$S/wheels" setuptools==69.5.1 wheel==0.43.0
++"$PY" -m pip install -q --no-index --find-links "$S/wheels" --no-build-isolation -r "$S/code/src/AD5/env/madation_requirements.txt"
++"$PY" -m pip freeze > "$S/out/pip_freeze.txt"
++"$PY" -I -c "import sys,torch;assert sys.version_info[:2]==(3,9);assert torch.__version__=='2.0.1+cu118';assert torch.version.cuda=='11.8';assert torch.cuda.device_count()==1;assert 'H100' in torch.cuda.get_device_name(0);print(sys.version,torch.__version__,torch.version.cuda,torch.cuda.get_device_name(0))" > "$S/out/environment.txt"
++# EXACT old reduced-smoke construction: prefix replacement THEN every12th row.
++sed "s#^CROP_ROOT#$S/crop#" "$S/crop/smdd_train_cropped_rel.csv" > "$S/train.csv"
++awk 'NR==1 || (NR-2) % 12 == 0' "$S/train.csv" > "$S/t.csv"
++mv "$S/t.csv" "$S/train.csv"
++[ "$(( $(wc -l < "$S/train.csv") - 1 ))" = 3311 ] || exit 4
++awk 'NR==1 || (NR-2) % 12 == 0' "$S/crop/smdd_train_cropped_rel.csv" | sha256sum > "$S/out/canonical_reduced_csv_sha256.txt"
++[ "$(cut -c1-64 "$S/out/canonical_reduced_csv_sha256.txt")" = ea8a0c6af979ca0d46ca23011efab4d98d9202920524f51d0c845e64f0bb2309 ] || exit 5
++sha256sum "$S/train.csv" > "$S/out/runtime_train_csv_sha256.txt" 
++sha256sum "$S/code/weights/clip_vitb16_openai.bin" > "$S/out/runtime_weight_sha256.txt"
++[ "$(cut -c1-64 "$S/out/runtime_weight_sha256.txt")" = 53b401837e5baa82115d3b6db60c6fff43cfd1a6412e48ed0193d54a69d2f993 ] || exit 6
++export AD5_TRAIN_CSV=$S/train.csv AD5_OUT=$S/run AD5_CLIP_SD=$S/code/weights/clip_vitb16_openai.bin AD5_MULTI_OUT=$S/out AD5_CROP_ROOT=$S/crop
++rc=0
++(cd "$S/code/build/madation_src/src" && OMP_NUM_THREADS=4 "$PY" -I -m torch.distributed.launch --nproc_per_node=1 --nnodes=1 --node_rank=0 --master_addr=localhost --master_port=12401 config.py --debug=True --dataset_name=MADTrain --training_type=MAD_training --lr_model=1e-5 --lr_header=1e-4 --backbone_size=ViT-B/16 --lora_dropout=0.4 --lora_r=2 --lora_a=4 --batch_size=256 --num_epoch=3 --save_every=3 --log_every=25) || rc=$?
++printf '%s\n' "$rc" > "$S/out/child_exit.txt"
++[ "$rc" = 0 ] || exit "$rc"
++"$PY" -I -c "import json;d=json.load(open('$S/out/MULTI_RESULT.json'));assert d['status']=='THIRTY_SIX_REAL_MATH_UPDATES_AND_CHECKPOINT_ROUNDTRIP_COMPLETE';assert d['optimizer_model_updates']==d['optimizer_header_updates']==d['effective_batches']==36"
++# Only this producer's original epoch3 checkpoint pair is preserved; no scorer/evaluation.
++exit 0
+--- frozen_v1/launch.py
++++ v1r1/launch.py
+@@ -1,8 +1,8 @@
+ """One NEW real 36-update technical smoke, real tmux/srun PTY; no migration or cancellation."""
+ import datetime,hashlib,json,os,pathlib,subprocess,sys
+ ROOT=pathlib.Path('/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5')
+-J=ROOT/'dispatch/ad5_real_math_multi_v1_20261114'
+-SRC=ROOT/'ad5_real_math_multi_v1'
++J=ROOT/'dispatch/ad5_real_math_multi_v1r1_20261114'
++SRC=ROOT/'ad5_real_math_multi_v1r1'
+ 
+ def sha(p):
+  h=hashlib.sha256()
+@@ -28,7 +28,7 @@
+ def main():
+  assert os.isatty(0) and os.isatty(1) and os.environ.get('TMUX_PANE'),'real tmux PTY required'
+  verify_release()
+- assert not (ROOT/'logs/keep/ad5_real_math_multi_v1_20261114').exists(),'worker namespace exists'
++ assert not (ROOT/'logs/keep/ad5_real_math_multi_v1r1_20261114').exists(),'worker namespace exists'
+  # Create/fsync permanent claim BEFORE tmux setup or allocation. Failure is terminal.
+  write('CLAIM.json',{'utc':utc(),'release_sha256':sha(J/'ROOT_RELEASE.json'),'scope':'NEW_REAL_THIRTY_SIX_UPDATE_MATH_ONLY','automatic_retry':False})
+  rc=125;error=None
+@@ -38,7 +38,7 @@
+   subprocess.run(['tmux','set-option','-p','-t',pane,'remain-on-exit','on'],check=True)
+   (J/'terminal.log').open('x').close()
+   subprocess.run(['tmux','pipe-pane','-t',pane,'-o','cat >> '+str(J/'terminal.log')],check=True)
+-  cmd=['/opt/slurm/current/bin/srun','--verbose','--immediate=60','--job-name=ad5-real-math-multi-v1','--partition=lem-gpu-interactive','--nodes=1','--ntasks=1','--cpus-per-task=8','--mem=120G','--gres=gpu:hopper:1,storage:local:150G','--time=00:15:00','--extra=FORCE_RM_TMPDIR','--pty','/bin/bash',str(SRC/'allocation_entry.sh')]
++  cmd=['/opt/slurm/current/bin/srun','--verbose','--immediate=60','--job-name=ad5-real-math-multi-v1r1','--partition=lem-gpu-interactive','--nodes=1','--ntasks=1','--cpus-per-task=8','--mem=120G','--gres=gpu:hopper:1,storage:local:150G','--time=00:15:00','--extra=FORCE_RM_TMPDIR','--pty','/bin/bash',str(SRC/'allocation_entry.sh')]
+   env=dict(HOME='/home/narolski',USER='narolski',LOGNAME='narolski',PATH='/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin',SHELL='/bin/bash',LANG='C',LC_ALL='C',TERM=os.environ.get('TERM','xterm'))
+   write('INTENT.json',{'utc':utc(),'argv':cmd,'environment':env,'scope':'36 real effective updates and produced-checkpoint roundtrip only; technical receipt and independent review decide interpretation'})
+   rc=subprocess.call(cmd,cwd=ROOT,env=env)
+--- frozen_v1/node.py
++++ v1r1/node.py
+@@ -1,7 +1,7 @@
+ """Allocation receipts and clean native env for the new36-update worker."""
+ import hashlib,json,os,pathlib,subprocess,sys,datetime
+ ROOT=pathlib.Path('/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5')
+-J=ROOT/'dispatch/ad5_real_math_multi_v1_20261114'
++J=ROOT/'dispatch/ad5_real_math_multi_v1r1_20261114'
+ def put(name,obj):
+  with (J/name).open('x') as f:json.dump(obj,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+ def main():
+@@ -12,21 +12,26 @@
+   assert os.environ['SLURM_JOB_PARTITION']=='lem-gpu-interactive' and os.environ['SLURM_CPUS_PER_TASK']=='8'
+   assert os.environ.get('TMPDIR','').startswith('/mnt/lscratch/') and len(os.environ['CUDA_VISIBLE_DEVICES'].split(','))==1
+   assert os.environ.get('SLURM_MEM_PER_NODE')=='122880'
+-  worker=ROOT/'ad5_real_math_multi_v1/worker.sh'
++  worker=ROOT/'ad5_real_math_multi_v1r1/worker.sh'
+   import importlib.util
+-  spec=importlib.util.spec_from_file_location('step_verify',ROOT/'ad5_real_math_multi_v1/verify.py');v=importlib.util.module_from_spec(spec);spec.loader.exec_module(v);v.release()
++  spec=importlib.util.spec_from_file_location('step_verify',ROOT/'ad5_real_math_multi_v1r1/verify.py');v=importlib.util.module_from_spec(spec);spec.loader.exec_module(v);v.release()
+   env={k:v for k,v in os.environ.items() if k.startswith('SLURM_') or k in ('CUDA_VISIBLE_DEVICES','TMPDIR','TERM')}
+   env.update(HOME='/home/narolski',USER='narolski',LOGNAME='narolski',PATH='/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin',SHELL='/bin/bash',LANG='C',LC_ALL='C')
+   put('NODE_START.json',{'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'native_job_id':os.environ['SLURM_JOB_ID'],'environment':env})
+   rc=subprocess.call(['/bin/bash',str(worker)],env=env,cwd=ROOT)
+  except BaseException as e:err=type(e).__name__+': '+str(e)
+  finally:
+-  keep=ROOT/'logs/keep/ad5_real_math_multi_v1_20261114'
++  keep=ROOT/'logs/keep/ad5_real_math_multi_v1r1_20261114'
+   path=keep/'technical/MULTI_RESULT.json';step=None
+   try:step=json.loads(path.read_text()) if path.is_file() else None
+   except (ValueError,OSError) as e:err=(err+'; ' if err else '')+'incomplete step receipt: '+str(e)
+   if step is not None and not isinstance(step,dict):err=(err+'; ' if err else '')+'invalid step receipt type';step=None
+   worker_rc=rc
++  supervisor=keep/'SUPERVISOR_EXIT.json'
++  try:
++   control=json.loads(supervisor.read_text())
++   if not control.get('eligible_for_technical_review',False):rc=94 if rc==0 else rc
++  except (ValueError,OSError):rc=94 if rc==0 else rc
+   if rc==0 and (step is None or step.get('status')!='THIRTY_SIX_REAL_MATH_UPDATES_AND_CHECKPOINT_ROUNDTRIP_COMPLETE'):rc=94
+   put('NODE_EXIT.json',{'worker_exit':worker_rc,'node_exit':rc,'error':err,'step_receipt_status':step.get('status') if step else None,
+    'technical_smoke_not_production_recovery':True,'missing_status_is_incomplete':True})
+--- frozen_v1/supervise.py
++++ v1r1/supervise.py
+@@ -0,0 +1,118 @@
++"""R1 real child/process-group supervision; no model imports or numeric payload decoding."""
++import argparse,datetime,hashlib,json,os,pathlib,selectors,signal,subprocess,sys,time
++def syncdir(path):
++ fd=os.open(path,os.O_RDONLY)
++ try:os.fsync(fd)
++ finally:os.close(fd)
++def put(path,obj):
++ with path.open("x") as f:json.dump(obj,f,indent=2,allow_nan=False);f.write("\n");f.flush();os.fsync(f.fileno())
++ syncdir(path.parent)
++def mirror(local,dest,deadline):
++ """Incremental snapshots; no claim of checkpoint validity while producer is running."""
++ entries=[]
++ if not local.exists():return entries
++ for p in sorted(local.rglob("*")):
++  if time.monotonic()>=deadline:raise TimeoutError("collection budget")
++  if not p.is_file() or p.is_symlink():continue
++  if p.name not in ("training.log","3_backbone.pth","3_header.pth") and not p.name.startswith("events.out.tfevents"):continue
++  rel=p.relative_to(local);q=dest/rel;q.parent.mkdir(parents=True,exist_ok=True)
++  tmp=q.with_name(q.name+".inflight_snapshot")
++  before=p.stat();h=hashlib.sha256()
++  with p.open("rb") as source,tmp.open("wb") as target:
++   while True:
++    if time.monotonic()>=deadline:raise TimeoutError("collection budget")
++    b=source.read(1<<20)
++    if not b:break
++    target.write(b);h.update(b)
++   target.flush();os.fsync(target.fileno())
++  after=p.stat();os.replace(tmp,q);syncdir(q.parent)
++  entries.append(dict(path=str(rel),bytes=q.stat().st_size,sha256=h.hexdigest(),stable_during_copy=before.st_size==after.st_size and before.st_mtime_ns==after.st_mtime_ns,snapshot_not_semantic_checkpoint_validation=True))
++ return entries
++def run(keep,local,argv,start_epoch,max_seconds=720,term_grace=10,collection_seconds=60,echo=True):
++ deadline=time.monotonic()+max(0,start_epoch+max_seconds-time.time())
++ reason=[None];proc=None;sent=None;killed=False;errors=[];last_mirror=0;mirrors=[]
++ def handler(sig,frame):reason[0]=reason[0] or ("SIGNAL_"+str(sig))
++ old={s:signal.signal(s,handler) for s in (signal.SIGTERM,signal.SIGINT)}
++ put(keep/"SUPERVISOR_START.json",dict(argv=argv,allocation_epoch=start_epoch,budget_seconds=max_seconds,term_grace_seconds=term_grace,collection_seconds=collection_seconds,automatic_retry=False,direct_durable_technical_records=True,live_snapshots="NOT_ATTESTED_COMPLETE"))
++ try:
++  if time.monotonic()>=deadline:reason[0]="ALLOCATION_BUDGET_EXHAUSTED_BEFORE_CHILD"
++  if reason[0] is None:
++   proc=subprocess.Popen(argv,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,start_new_session=True,bufsize=0)
++   sel=selectors.DefaultSelector();sel.register(proc.stdout,selectors.EVENT_READ)
++   exited_at=None
++   with (keep/"technical/train_stdout.log").open("xb",buffering=0) as log:
++    while sel.get_map() or proc.poll() is None:
++     now=time.monotonic()
++     if now>=deadline:reason[0]=reason[0] or "PRE_HARD_LIMIT_TIMEOUT"
++     if proc.poll() is not None and exited_at is None:exited_at=now
++     if exited_at is not None and sel.get_map() and now-exited_at>term_grace:reason[0]=reason[0] or "ORPHAN_STDOUT_INCOMPLETE"
++     if reason[0] and sent is None:
++      try:os.killpg(proc.pid,signal.SIGTERM)
++      except ProcessLookupError:pass
++      sent=now
++     if sent is not None and now-sent>=term_grace and not killed:
++      try:os.killpg(proc.pid,signal.SIGKILL)
++      except ProcessLookupError:pass
++      killed=True
++     for key,_ in sel.select(.1):
++      data=os.read(key.fd,1<<16)
++      if data:
++       log.write(data);os.fsync(log.fileno())
++       if echo:
++        try:os.write(1,data)
++        except OSError:pass
++      else:sel.unregister(key.fileobj);key.fileobj.close()
++     if now-last_mirror>=1:
++      try:mirrors=mirror(local,keep/"original_run",min(time.monotonic()+2,deadline))
++      except (OSError,TimeoutError) as e:errors.append(type(e).__name__)
++      last_mirror=now
++     if killed and sent is not None and now-sent>term_grace+2:
++      # A descendant retaining stdout must not block the final failure receipt.
++      for key in list(sel.get_map().values()):sel.unregister(key.fileobj);key.fileobj.close()
++      if proc.poll() is None:raise TimeoutError("child could not be reaped after KILL")
++    child=proc.wait(timeout=2)
++  else:child=None
++ except BaseException as e:
++  errors.append(type(e).__name__);reason[0]=reason[0] or "SUPERVISOR_ERROR"
++  if proc is not None:
++   try:os.killpg(proc.pid,signal.SIGKILL);killed=True
++   except ProcessLookupError:pass
++   try:proc.wait(timeout=2)
++   except subprocess.TimeoutExpired:pass
++  child=proc.returncode if proc is not None else None
++ finally:
++  collection_deadline=time.monotonic()+collection_seconds
++  try:mirrors=mirror(local,keep/"original_run",collection_deadline)
++  except (OSError,TimeoutError) as e:errors.append("final_"+type(e).__name__)
++  result=None
++  try:result=json.loads((keep/"technical/MULTI_RESULT.json").read_text())
++  except (ValueError,OSError):pass
++  complete=isinstance(result,dict) and result.get("status")=="THIRTY_SIX_REAL_MATH_UPDATES_AND_CHECKPOINT_ROUNDTRIP_COMPLETE" and result.get("effective_batches")==36
++  eligible=reason[0] is None and not errors and child==0 and complete and all(v["stable_during_copy"] for v in mirrors)
++  rc=0 if eligible else (124 if reason[0] and "TIMEOUT" in reason[0] else 94)
++  put(keep/"SUPERVISOR_EXIT.json",dict(child_exit=child,supervisor_exit=rc,status="COMPLETE_PENDING_INDEPENDENT_REVIEW" if eligible else "INCOMPLETE_OR_FAILED",reason=reason[0],errors=errors,term_sent=sent is not None,kill_sent=killed,eligible_for_technical_review=eligible,partial_multi_result_never_overrides_timeout=True,final_snapshots=mirrors,arbitrary_hardware_loss_retention="NOT_GUARANTEED",automatic_retry=False))
++  try:
++   lines=[]
++   for p in sorted(keep.rglob("*")):
++    if not p.is_file() or p.is_symlink() or p.name=="SHA256SUMS":continue
++    h=hashlib.sha256()
++    with p.open("rb") as f:
++     while True:
++      if time.monotonic()>=collection_deadline:raise TimeoutError("manifest budget")
++      b=f.read(1<<20)
++      if not b:break
++      h.update(b)
++    lines.append(h.hexdigest()+"  "+str(p.relative_to(keep))+"\n")
++   with (keep/"SHA256SUMS").open("x") as f:f.writelines(lines);f.flush();os.fsync(f.fileno())
++   syncdir(keep)
++  except (OSError,TimeoutError) as e:
++   rc=94
++   put(keep/"MANIFEST_FAILURE.json",dict(status="INCOMPLETE",error_type=type(e).__name__,eligible_for_technical_review=False))
++  for sig,h in old.items():signal.signal(sig,h)
++ return rc
++def main():
++ p=argparse.ArgumentParser();p.add_argument("--keep",required=True);p.add_argument("--local-run",required=True);p.add_argument("--allocation-start-file",required=True);p.add_argument("--max-seconds",type=float,default=720);p.add_argument("--term-grace",type=float,default=10);p.add_argument("--collection-seconds",type=float,default=60);p.add_argument("command",nargs=argparse.REMAINDER);a=p.parse_args()
++ argv=a.command[1:] if a.command[:1]==["--"] else a.command
++ assert argv
++ return run(pathlib.Path(a.keep),pathlib.Path(a.local_run),argv,float(pathlib.Path(a.allocation_start_file).read_text()),a.max_seconds,a.term_grace,a.collection_seconds)
++if __name__=="__main__":sys.exit(main())
+--- frozen_v1/test_cpu.py
++++ v1r1/test_cpu.py
+@@ -126,7 +126,7 @@
+  def test_native_id_survives_python_startup_failure(self):
+   with tempfile.TemporaryDirectory() as td:
+    root=pathlib.Path(td);j=root/'journal';j.mkdir();b=root/'bin';b.mkdir();py=b/'python3';py.write_text('#!/bin/sh\nexit 73\n');py.chmod(0o755)
+-   text=(HERE/'allocation_entry.sh').read_text().replace('/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/dispatch/ad5_real_math_multi_v1_20261114',str(j))
++   text=(HERE/'allocation_entry.sh').read_text().replace('/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/dispatch/ad5_real_math_multi_v1r1_20261114',str(j))
+    f=root/'entry.sh';f.write_text(text);env=dict(os.environ,SLURM_JOB_ID='987',PATH=str(b)+':/usr/bin:/bin')
+    run=subprocess.run(['/bin/bash',str(f)],env=env,capture_output=True,text=True);self.assertEqual(run.returncode,73);self.assertEqual((j/'NATIVE_JOB_ID.txt').read_text(),'987\n')
+    self.assertNotEqual(subprocess.run(['/bin/bash',str(f)],env=env,capture_output=True).returncode,0)
+@@ -134,8 +134,8 @@
+   for content,worker_rc,expected in [(json.dumps({'status':'THIRTY_SIX_REAL_MATH_UPDATES_AND_CHECKPOINT_ROUNDTRIP_COMPLETE'}),0,0),(None,0,94),('{',0,94),(json.dumps({'status':'THIRTY_SIX_REAL_MATH_UPDATES_AND_CHECKPOINT_ROUNDTRIP_COMPLETE'}),7,7)]:
+    with self.subTest(content=content),tempfile.TemporaryDirectory() as td:
+     m=module('node');root=pathlib.Path(td);j=root/'journal';j.mkdir();(j/'NATIVE_JOB_ID.txt').write_text('321\n')
+-    source=root/'ad5_real_math_multi_v1';source.mkdir();(source/'verify.py').write_text('def release(): return {}\n');(source/'worker.sh').write_text('# generated')
+-    keep=root/'logs/keep/ad5_real_math_multi_v1_20261114';keep.mkdir(parents=True);(keep/'technical').mkdir()
++    source=root/'ad5_real_math_multi_v1r1';source.mkdir();(source/'verify.py').write_text('def release(): return {}\n');(source/'worker.sh').write_text('# generated')
++    keep=root/'logs/keep/ad5_real_math_multi_v1r1_20261114';keep.mkdir(parents=True);(keep/'technical').mkdir();(keep/'SUPERVISOR_EXIT.json').write_text(json.dumps({'eligible_for_technical_review':True}))
+     if content is not None:(keep/'technical/MULTI_RESULT.json').write_text(content)
+     env={'SLURM_JOB_ID':'321','SLURM_JOB_PARTITION':'lem-gpu-interactive','SLURM_CPUS_PER_TASK':'8','SLURM_MEM_PER_NODE':'122880','CUDA_VISIBLE_DEVICES':'0','TMPDIR':'/mnt/lscratch/generated','PYTHONPATH':'BAD','AD5_NG':'8'}
+     def execute(cmd,**kw):self.assertNotIn('PYTHONPATH',kw['env']);self.assertNotIn('AD5_NG',kw['env']);return worker_rc
+--- frozen_v1/test_retention.py
++++ v1r1/test_retention.py
+@@ -0,0 +1,49 @@
++"""Real CPU child failures/TERM/KILL exercise production supervisor and fsynced put."""
++import ast,json,os,pathlib,sys,tempfile,time,unittest
++import supervise
++HERE=pathlib.Path(__file__).resolve().parent
++CHILD=r"""
++import ast,json,os,pathlib,signal,sys,time
++base=pathlib.Path(sys.argv[1]);keep=pathlib.Path(sys.argv[2]);local=pathlib.Path(sys.argv[3]);mode=sys.argv[4]
++# Execute the exact production observer put() without importing torch.
++tree=ast.parse(base.read_text());fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='put')
++exec(compile(ast.Module(body=[fn],type_ignores=[]),'actual_put','exec'),globals())
++put(keep/'technical/COMPLETED_STEP.json',{'step':1,'finite':True})
++local.mkdir();(local/'training.log').write_text('generated original log\\n');(local/'3_header.pth').write_bytes(b'generated fixture checkpoint, not a model')
++print('GENERATED_CHILD_STARTED',flush=True)
++if mode=='fail':sys.exit(7)
++put(keep/'technical/MULTI_RESULT.json',{'status':'THIRTY_SIX_REAL_MATH_UPDATES_AND_CHECKPOINT_ROUNDTRIP_COMPLETE','effective_batches':36})
++if mode=='term':
++ signal.signal(signal.SIGTERM,lambda *a:sys.exit(23))
++else:signal.signal(signal.SIGTERM,signal.SIG_IGN)
++while True:time.sleep(.02)
++"""
++class Retention(unittest.TestCase):
++ def run_child(self,mode):
++  with tempfile.TemporaryDirectory() as td:
++   p=pathlib.Path(td);keep=p/'durable';keep.mkdir();(keep/'technical').mkdir();(keep/'original_run').mkdir();local=p/'node_run'
++   t=time.monotonic()
++   rc=supervise.run(keep,local,[sys.executable,'-u','-c',CHILD,str(HERE/'base_runtime.py'),str(keep),str(local),mode],time.time(),max_seconds=.6,term_grace=.2,collection_seconds=1,echo=False)
++   self.assertLess(time.monotonic()-t,4)
++   self.assertTrue(json.loads((keep/'technical/COMPLETED_STEP.json').read_text())['finite'])
++   self.assertIn(b'GENERATED_CHILD_STARTED',(keep/'technical/train_stdout.log').read_bytes())
++   self.assertEqual((keep/'original_run/3_header.pth').read_bytes(),b'generated fixture checkpoint, not a model')
++   status=json.loads((keep/'SUPERVISOR_EXIT.json').read_text());self.assertFalse(status['eligible_for_technical_review']);self.assertEqual(status['status'],'INCOMPLETE_OR_FAILED')
++   self.assertFalse(status['automatic_retry'])
++   # Exclusive control receipt makes a second supervisor launch fail before spawning child.
++   with self.assertRaises(FileExistsError):supervise.run(keep,local,['not-a-real-command'],time.time(),.1,.1,.1,False)
++   return rc,status
++ def test_real_child_failure_retains_completed_receipt_stdout_and_artifacts(self):
++  rc,s=self.run_child('fail');self.assertEqual(s['child_exit'],7);self.assertNotEqual(rc,0)
++ def test_real_TERM_partial_success_file_cannot_override_timeout(self):
++  rc,s=self.run_child('term');self.assertEqual(rc,124);self.assertTrue(s['term_sent']);self.assertFalse(s['kill_sent']);self.assertEqual(s['child_exit'],23)
++ def test_real_KILL_ignoring_TERM_retains_completed_evidence(self):
++  rc,s=self.run_child('kill');self.assertEqual(rc,124);self.assertTrue(s['term_sent']);self.assertTrue(s['kill_sent']);self.assertEqual(s['child_exit'],-9)
++ def test_only_allowed_original_artifact_snapshots(self):
++  with tempfile.TemporaryDirectory() as td:
++   p=pathlib.Path(td);local=p/'local';local.mkdir();dest=p/'dest';dest.mkdir()
++   (local/'unregistered_checkpoint.pth').write_bytes(b'not copied');(local/'scores.npz').write_bytes(b'not copied')
++   (local/'training.log').write_text('generated');(local/'image.png').symlink_to(local/'training.log')
++   rows=supervise.mirror(local,dest,time.monotonic()+1)
++   self.assertEqual([r['path'] for r in rows],['training.log']);self.assertFalse((dest/'scores.npz').exists())
++if __name__=='__main__':unittest.main()
+--- frozen_v1/verify.py
++++ v1r1/verify.py
+@@ -4,10 +4,10 @@
+ import pathlib
+ 
+ ROOT=pathlib.Path('/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5')
+-SOURCE=ROOT/'ad5_real_math_multi_v1'
+-JOURNAL=ROOT/'dispatch/ad5_real_math_multi_v1_20261114'
+-KEEP=ROOT/'logs/keep/ad5_real_math_multi_v1_20261114'
+-DECISION='GO_ONE_NEW_AD5_REAL_MATH_MULTI_V1'
++SOURCE=ROOT/'ad5_real_math_multi_v1r1'
++JOURNAL=ROOT/'dispatch/ad5_real_math_multi_v1r1_20261114'
++KEEP=ROOT/'logs/keep/ad5_real_math_multi_v1r1_20261114'
++DECISION='GO_ONE_NEW_AD5_REAL_MATH_MULTI_V1R1'
+ CODE_SHA='94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee'
+ WHEELS_SHA='3bd18def4da9cbec2766896fa160c34c0364de464ca3abd02d675c72620cf13c'
+ DATA_SHA='3189e52af12e2853b06c86993b1b8b5cfef891fda749395778492e3445924900'
+@@ -25,6 +25,7 @@
+     assert r['decision']==DECISION and r['root_authorized'] is True and r['author']!=r['reviewer']
+     assert r['automatic_retry'] is False and r['scientific_read']=='HOLD' and r['production_recovery'] is False
+     assert (r['arm'],r['seed'],r['global_batch'],r['effective_updates'])==('B',401,256,36)
++    assert r['durability_revision']=='R1_DIRECT_FSYNC_AND_SUPERVISED_720S' and r['supervisor_deadline_seconds']==720
+     assert r['checkpoint_scope']=='EXACT_THIS_RUN_3_BACKBONE_AND_HEADER_ONLY' and r['technical_same_lastbatch_forward'] is True
+     assert r['old_passed_one_step_job']=='6323725'
+     assert r['old_failed_job']=='6321768_401' and r['old_synthetic_job']=='6323083' and r['old_job_action']=='NONE'
+--- frozen_v1/worker.sh
++++ v1r1/worker.sh
+@@ -1,61 +1,14 @@
+ #!/bin/bash
+-# Source-pinned new 36-update test. Root release required; never a retry.
++# R1 control-plane wrapper; body/training computation unchanged.
+ set -euo pipefail
+ L=/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5
+-SRC=$L/ad5_real_math_multi_v1
+-KEEP=$L/logs/keep/ad5_real_math_multi_v1_20261114
++SRC=$L/ad5_real_math_multi_v1r1
++KEEP=$L/logs/keep/ad5_real_math_multi_v1r1_20261114
++J=$L/dispatch/ad5_real_math_multi_v1r1_20261114
+ : "${TMPDIR:?}" "${SLURM_JOB_ID:?}"
+-case "$TMPDIR" in /mnt/lscratch/*) ;; *) echo not-local-TMPDIR;exit 2;; esac
++case "$TMPDIR" in /mnt/lscratch/*) ;; *) exit 2;; esac
+ python3 -I -c "import sys;sys.path.insert(0,'$SRC');import verify;verify.release()"
+ mkdir "$KEEP"
+-S=$TMPDIR/ad5_real_math_multi_v1
+-mkdir -p "$S/out" "$S/code" "$S/wheels" "$S/crop"
+-rc=125
+-preserve() {
+- original=$?
+- trap - EXIT
+- set +e
+- printf 'worker_exit=%s\nnative_job_id=%s\n' "$original" "$SLURM_JOB_ID" > "$S/out/worker_status.txt"
+- mkdir -p "$KEEP/technical" "$KEEP/original_run"
+- cp -a "$S/out/." "$KEEP/technical/" || original=96
+- if [ -d "$S/run" ]; then cp -a "$S/run/." "$KEEP/original_run/" || original=96; fi
+- (cd "$KEEP" && find technical original_run -type f -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS) || original=96
+- sync -f "$KEEP"
+-
+- exit "$original"
+-}
+-trap preserve EXIT
+-export ARM=B AD5_SEED=401 AD5_NO_TEST=1 CUDA_LAUNCH_BLOCKING=1 TORCH_SHOW_CPP_STACKTRACES=1 PYTHONFAULTHANDLER=1
+-for spec in 'ad5w_code:94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee' 'ad5w_wheels39:3bd18def4da9cbec2766896fa160c34c0364de464ca3abd02d675c72620cf13c' 'smdd_train_cropped:3189e52af12e2853b06c86993b1b8b5cfef891fda749395778492e3445924900'; do
+- name=${spec%%:*};expected=${spec#*:}
+- [ "$(sha256sum "$L/packs/$name.tar"|cut -c1-64)" = "$expected" ] || exit 3
+-done
+-# Actual weight/data access starts only here, inside separately released native allocation.
+-tar -xf "$L/packs/ad5w_code.tar" -C "$S/code"
+-tar -xf "$L/packs/ad5w_wheels39.tar" -C "$S/wheels"
+-tar -xf "$L/packs/smdd_train_cropped.tar" -C "$S/crop"
+-python3 -I "$SRC/patch.py" "$S/code" > "$S/out/PATCH_PROOF.json"
+-python3 -m venv "$S/env"
+-PY=$S/env/bin/python
+-"$PY" -m pip install -q --no-index --find-links "$S/wheels" setuptools==69.5.1 wheel==0.43.0
+-"$PY" -m pip install -q --no-index --find-links "$S/wheels" --no-build-isolation -r "$S/code/src/AD5/env/madation_requirements.txt"
+-"$PY" -m pip freeze > "$S/out/pip_freeze.txt"
+-"$PY" -I -c "import sys,torch;assert sys.version_info[:2]==(3,9);assert torch.__version__=='2.0.1+cu118';assert torch.version.cuda=='11.8';assert torch.cuda.device_count()==1;assert 'H100' in torch.cuda.get_device_name(0);print(sys.version,torch.__version__,torch.version.cuda,torch.cuda.get_device_name(0))" > "$S/out/environment.txt"
+-# EXACT old reduced-smoke construction: prefix replacement THEN every12th row.
+-sed "s#^CROP_ROOT#$S/crop#" "$S/crop/smdd_train_cropped_rel.csv" > "$S/train.csv"
+-awk 'NR==1 || (NR-2) % 12 == 0' "$S/train.csv" > "$S/t.csv"
+-mv "$S/t.csv" "$S/train.csv"
+-[ "$(( $(wc -l < "$S/train.csv") - 1 ))" = 3311 ] || exit 4
+-awk 'NR==1 || (NR-2) % 12 == 0' "$S/crop/smdd_train_cropped_rel.csv" | sha256sum > "$S/out/canonical_reduced_csv_sha256.txt"
+-[ "$(cut -c1-64 "$S/out/canonical_reduced_csv_sha256.txt")" = ea8a0c6af979ca0d46ca23011efab4d98d9202920524f51d0c845e64f0bb2309 ] || exit 5
+-sha256sum "$S/train.csv" > "$S/out/runtime_train_csv_sha256.txt" 
+-sha256sum "$S/code/weights/clip_vitb16_openai.bin" > "$S/out/runtime_weight_sha256.txt"
+-[ "$(cut -c1-64 "$S/out/runtime_weight_sha256.txt")" = 53b401837e5baa82115d3b6db60c6fff43cfd1a6412e48ed0193d54a69d2f993 ] || exit 6
+-export AD5_TRAIN_CSV=$S/train.csv AD5_OUT=$S/run AD5_CLIP_SD=$S/code/weights/clip_vitb16_openai.bin AD5_MULTI_OUT=$S/out AD5_CROP_ROOT=$S/crop
+-rc=0
+-(cd "$S/code/build/madation_src/src" && OMP_NUM_THREADS=4 "$PY" -I -m torch.distributed.launch --nproc_per_node=1 --nnodes=1 --node_rank=0 --master_addr=localhost --master_port=12401 config.py --debug=True --dataset_name=MADTrain --training_type=MAD_training --lr_model=1e-5 --lr_header=1e-4 --backbone_size=ViT-B/16 --lora_dropout=0.4 --lora_r=2 --lora_a=4 --batch_size=256 --num_epoch=3 --save_every=3 --log_every=25) > "$S/out/train_stdout.log" 2>&1 || rc=$?
+-printf '%s\n' "$rc" > "$S/out/child_exit.txt"
+-[ "$rc" = 0 ] || exit "$rc"
+-"$PY" -I -c "import json;d=json.load(open('$S/out/MULTI_RESULT.json'));assert d['status']=='THIRTY_SIX_REAL_MATH_UPDATES_AND_CHECKPOINT_ROUNDTRIP_COMPLETE';assert d['optimizer_model_updates']==d['optimizer_header_updates']==d['effective_batches']==36"
+-# Only this producer's original epoch3 checkpoint pair is preserved; no scorer/evaluation.
+-exit 0
++mkdir "$KEEP/technical" "$KEEP/original_run"
++sync -f "$KEEP"
++exec python3 -I "$SRC/supervise.py" --keep "$KEEP" --local-run "$TMPDIR/ad5_real_math_multi_v1r1/run" --allocation-start-file "$J/NATIVE_ALLOCATION_EPOCH.txt" --max-seconds 720 --term-grace 10 --collection-seconds 60 -- /bin/bash "$SRC/body.sh"

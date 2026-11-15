@@ -1,0 +1,437 @@
+[
+ {
+  "type": "result",
+  "key": "v2:1feca0c904fb467ea71b557c347385c8d751f351f6eccb9555dc3d820b5055fe",
+  "agentId": "a70ef6154c0917beb",
+  "result": {
+   "family": "GAN latent morphs (StyleGAN3-T inversions: GAN32 on FERET/FRGC as the primary set; H3 plus A37 spread-matched renders on CASIA as the transfer set). No MIPGAN one-person images were available.",
+   "data_used": "Set G (GAN32 from the earlier Codex loop): 64 blocks, 32 FERET and 32 FRGC, 128 persons with no person in two blocks, 256 hosts. Per rung: 256 camera photos (x0), 256 one-photo reconstructions (x1, the pass-through), 128 same-person mixes (x2), 128 two-person morphs (x3). Renders are the raw 1024 files, sha256 checked. The camera photos were copied byte-for-byte out of volatile /tmp/opencode into /mnt/t7/smad_next/PD1/gan/anchors, 256 of 256 hashes equal. Set H: 423 pairs. x1 is the H3 render of the contributor shown (that person is one of the morph's two contributors: A in 202 pairs, B in 221). x1s is the A37 spread-matched render of the same person, and x3 is the H3 morph. Primary frame is the raw 1024 output; H3 raw PNGs were taken byte-for-byte from the generation tars after checking tar hashes. The aligned 512 eval frame is reported as descriptive. Set S: 2,000 SMDD genuine renders with their existing E7 copies from the morph-free networks data (a47 data47 i3): 1,000 fit the softening direction, 1,000 are held out. Set F (scoring only): the 204 FRLL photos, native against existing E7 copies. Corrected MAD22 copies: FaceMorpher history (primary, all 204 differ from native), OpenCV (96 differ), Webmorph (100 differ). FRLL-Morphs resmatch copies for AMSL, FaceMorpher, OpenCV and Webmorph (204 each). Benchmark cells: FRLL-Morphs StyleGAN (1,222), corrected MAD22 MIPGAN-I (1,000) and MIPGAN-II (999). In all three the history-matched genuine copies are byte-identical to native (204 of 204 checked), so only native applies. Features (frozen, existing 224 loader, 12,151 images per backbone): CLIP ViT-L/14 pooled (primary), CLIP mean patch token, DINOv3 ViT-L/16 pooled. The registered DINOv3 mean patch token is identical to DINOv3 pooled, because timm averages patch tokens; DINOv3 therefore counts as one feature. Our CLIP features match the cache of frozen features read mixing (FZ1) to within 0.32% relative. Also used: seven image statistics (FZ1 set) and the W+ latents for the latent-averageness statistic. Missing: mirror self-morphs (would need new GAN inversions), graded mixing, camera photos and same-person mixes for set H, and the MIPGAN one-person controls (AG1), which have only 7 smoke images on FRLL persons and are incomplete. Nothing was generated.",
+   "q1_direction_consistency": "Share of held-out hosts whose difference moves along the training-fold mean direction (CLIP pooled / CLIP mean patch / DINOv3). Set G: pipeline x0->x1 is 1.00 for all three (consistent). Same-person mixing x1->x2 is 0.76 [0.70, 0.81] / 0.87 / 0.79 (consistent). Second identity x2->x3 is 0.68 [0.62, 0.75] / 0.73 / 0.65 (not consistent). Whole morph x1->x3 is 0.80 [0.76, 0.84] / 0.91 / 0.84 (consistent). Set H: whole morph is 0.88 / 0.94 / 0.93 (consistent). Latent spread x1->x1s, which involves one identity only, is 0.995 to 1.00 (consistent). Morph beyond spread x1s->x3 is 0.61 [0.56, 0.65] / 0.62 / 0.63 (not consistent). SMDD softening is 1.00 (consistent). Projection AUCs for CLIP pooled: mixing 0.64, whole morph 0.72, H latent spread 0.84, H beyond spread 0.59.",
+   "q2_cosines": "Cosine of G same-person mixing with G whole morph: 0.70 [0.63, 0.74] / 0.67 / 0.81, cross-fitted. This passes the registered reading (at least 0.5) that the same-person signal is the signal of real morphs. Cosine with SMDD softening: 0.24 / 0.24 / 0.24, so the reading 'the signal is softness' does not hold. Cosine with the H latent-spread direction (one identity, latent moved toward the mean): 0.66 / 0.66 / 0.78, almost as high as with the whole morph. Cosine with the part of the H morph left after spread matching: 0.11 / -0.13 / -0.20, with intervals including 0. Cosine with the pipeline direction: -0.12 to -0.25. Cosine with FRLL softening (labelled a diagnostic of FRLL images): -0.12 to 0.09. G whole morph against H latent spread: 0.72 to 0.82. H whole morph against H latent spread: 0.90 to 0.94. Split-half reliability of the mixing direction: 0.69 / 0.70 / 0.82. Cross-set bootstrap intervals are biased downward and should be read as rough.",
+   "q3_one_person_trained_head": "The one-person head is trained only on x2 against x1 of the same host, with a paired logistic loss. On set G, out-of-fold over 5 folds by block, x3 vs x1 is 0.80 [0.77, 0.84] (CLIP pooled), 0.80 [0.76, 0.84] (CLIP patch) and 0.78 [0.74, 0.82] (DINOv3). Hosts with s(x3) > s(x1): 0.90 to 0.93. The best image statistic (mirror asymmetry) reaches 0.60, so the excess is +0.20 [0.16, 0.25] / +0.20 / +0.17. The two-person comparator head gets 0.81 / 0.80 / 0.83, and the one-person head minus the two-person head is -0.007 [-0.036, 0.023] for CLIP pooled. Other contrasts for the one-person head: x3 vs x0 is 0.85 / 0.75 / 0.71. Against the same-person-mix reference (x3 vs x2) it is 0.61 [0.57, 0.65] / 0.63 / 0.57. x1 vs x0 is 0.52 / 0.40 / 0.39. Fold seeds 402 to 405 give 0.785 to 0.800. Softened genuine photos are flagged at the threshold that flags 5% of native photos (10 of 204). Primary set, MAD22 FaceMorpher-history E7 copies: 4.4% [CP 2.0, 8.2] / 8.3% [4.9, 13.0] / 4.9% [2.4, 8.8]. Other FRLL E7 sets: 2 to 8%. Held-out SMDD E7 copies: 6.6 to 11.4%. Applying the registered reading, the result is 'works' for all three features, so the family verdict by the registered rule is 'idea works'. The registered latent-averageness qualifier also fires for every feature. Against spread-matched one-identity renders on set H, the same head scores x3 vs x1s at 0.47 [0.44, 0.50] / 0.46 / 0.48, while x3 vs x1 is 0.82 to 0.86. It ranks spread-matched one-identity renders above plain reconstructions at 0.84 to 0.88, as strongly as it ranks two-person morphs above them. The latent distance-to-mean statistic alone gives 1.00 for x3 vs x1 on G and H, and 0.95 for x3 vs x2. The separation therefore does not survive spread matching. The two-person head behaves the same way (0.44 to 0.47).",
+   "q4_trace_subtraction": "One-person head G x3 vs x1 before projection is 0.80 / 0.80 / 0.78 (CLIP pooled / CLIP patch / DINOv3). Removing the SMDD softening direction gives 0.80 / 0.81 / 0.77. Removing the pipeline direction x0->x1 gives 0.81 / 0.80 / 0.79. Removing both gives 0.80 / 0.79 / 0.78. The drop is at most 0.02 in every case ('keeps separation'). The primary flag rate stays at 3.9 to 7.4%: the heads hardly reacted to softening in the first place. H x3 vs x1s stays at 0.46 to 0.48 after any removal. Removing the single latent-spread direction learned on set H (descriptive, G numbers only) lowers G x3 vs x1 to 0.72 / 0.67 / 0.66, a drop of 0.08 to 0.13. The two-person head shows the same pattern.",
+   "q5_dose": "Graded mixing could not be tested: GAN32 and H3 hold midpoints only, and the GAN dose curve (AG3) was not run. Contributor dissimilarity (1 - FR cosine) against the paired gain s(x3) - s(x1), Spearman correlation. Set G, 64 blocks, one-person head: 0.08 [-0.18, 0.34] / 0.11 / -0.03, so the score does not rise. Two-person head: 0.28 [0.05, 0.49] / 0.21 [-0.03, 0.43] / 0.24 [0.02, 0.45], so it rises for CLIP pooled and DINOv3. Set H, one-person head: the x3 - x1 gain gives 0.05 to 0.09 (intervals include 0). The x3 - x1s gain gives 0.10 [0.005, 0.19] / 0.14 [0.05, 0.23] / 0.09 [-0.01, 0.19]. Descriptive: the gain also correlates 0.18 to 0.36 with the latent distance between the two codes. More dissimilar contributors also have more distant codes, so these correlations cannot separate identity from latent displacement.",
+   "benchmark_cells": "Descriptive, no refit, native genuine only. One-person head AUC (CLIP pooled / CLIP patch / DINOv3): FRLL-Morphs StyleGAN 0.72 [0.67, 0.77] / 0.64 / 0.75; corrected MAD22 MIPGAN-I 0.73 [0.67, 0.78] / 0.48 / 0.45; corrected MAD22 MIPGAN-II 0.64 [0.58, 0.69] / 0.38 / 0.49. Two-person head, CLIP pooled: 0.75 / 0.70 / 0.64. With softening removed, the CLIP pooled one-person head gives 0.67 / 0.62 / 0.53. The neutral-only genuine column is higher in every row (for example 0.81). Per the rule on FRLL neutral-plus-smiling pairs, no conclusion is drawn from that.",
+   "verdict_for_family": "idea works",
+   "caveats": [
+    "The verdict 'idea works' comes from the pre-registered rule: on CLIP pooled the one-person head reaches 0.80 for x3 vs x1, exceeds the image-statistic floor by 0.20 and flags 4.4% of softened photos. It is NOT evidence of second-identity reading. The registered latent-averageness qualifier fires for every feature: against spread-matched one-identity renders the same heads score 0.44 to 0.48, they rank those one-identity renders above reconstructions at 0.84 to 0.88, and the latent distance-to-mean statistic alone gives 1.00. What the one-person head catches in GAN morphs is that a midpoint latent lies closer to the mean code.",
+    "The registered floor contains image statistics only; latent distance cannot be computed from an image and was registered as reported-not-floor. Had it counted, every head would sit below the floor.",
+    "Against the same-person-mix reference (x3 vs x2) the one-person head reaches only 0.57 to 0.63, and the latent statistic alone gives 0.95 there.",
+    "Set G is small (64 blocks, about +-0.04 on the primary AUC). Its camera photos x0 are in a different frame and resolution from the renders, so x0->x1 mixes the generator with frame, background and resolution changes.",
+    "Mirror self-morphs, graded mixing and MIPGAN one-person images do not exist for this family. G-morph potency (verification against both contributors) was not checked, and the H3 potency gate failed earlier (48%).",
+    "The registered DINOv3 mean patch token is identical to DINOv3 pooled (timm averages patch tokens), so DINOv3 counts as one feature.",
+    "Deviations from the pre-registration: GPU feature extraction took about 67 minutes of wall time on the shared GB10 (registered budget 1 hour; peak memory 1.7 GB). The roughly 20 s first pass ran as a 5th process while extraction used 4.",
+    "Regularisation C was mostly chosen at 0.001 to 0.01, and 0.001 is the edge of the grid.",
+    "Cross-set cosine intervals are bootstrap percentiles of a downward-biased statistic. Q4 (d) on set H is in-sample and is not reported."
+   ],
+   "files": [
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/prereg.md",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/result.md",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/summary.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/q1_directions.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/q2_cosines.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/q3_heads.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/q3_flag_rates.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/q4_trace_subtraction.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/q5_dissimilarity.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/benchmarks.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/res_clip_pool.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/res_clip_patch.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/res_dinov3_pool.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/first_pass_clip_pool_fold0.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/check_clip_vs_fz1_cache.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/gan/manifest_log.json",
+    "/home/narolski/smad-next/src/PD1/gan/pd1_manifest.py",
+    "/home/narolski/smad-next/src/PD1/gan/pd1_feats.py",
+    "/home/narolski/smad-next/src/PD1/gan/pd1_stats.py",
+    "/home/narolski/smad-next/src/PD1/gan/pd1_lib.py",
+    "/home/narolski/smad-next/src/PD1/gan/pd1_first.py",
+    "/home/narolski/smad-next/src/PD1/gan/pd1_analysis.py",
+    "/home/narolski/smad-next/src/PD1/gan/pd1_summary.py",
+    "/mnt/t7/smad_next/PD1/gan/items.csv",
+    "/mnt/t7/smad_next/PD1/gan/hosts.csv",
+    "/mnt/t7/smad_next/PD1/gan/feats",
+    "/mnt/t7/smad_next/PD1/gan/stats.npz",
+    "/mnt/t7/smad_next/PD1/gan/latents.npz",
+    "/mnt/t7/smad_next/PD1/gan/anchors",
+    "/mnt/t7/smad_next/PD1/gan/h3raw"
+   ]
+  },
+  "toolsUsed": [
+   "Bash",
+   "Read",
+   "Write",
+   "Edit",
+   "ToolSearch",
+   "Monitor",
+   "StructuredOutput"
+  ]
+ },
+ {
+  "type": "result",
+  "key": "v2:a0bc8c011381f12f08a2d8c3ae7e7b4658f0e0fa8035579b92ae9f4482d0bc70",
+  "agentId": "afee5bb20114adbcf",
+  "result": {
+   "family": "landmark morphs (OpenCV-style engine decides; FaceMorpher descriptive)",
+   "data_used": "Primary pool: the landmark ladder (AR1), 536 FRGC/colorFERET hosts (FRGC 427, FERET 109). For each host and both engines: x0 (photo), x1 (warp-only R2w), x1m (mirror warp-only R2wm), xm (mirror self-morph R3m), x2 (same-person morph R3), x3 (two-person morph R4), 536 each. All rungs were already built by the AR1 owner, so I built no images. Graded FaceMorpher set: 300 hosts x 6 levels. FRLL ladder: 102 persons, diagnostic only. Folds: 5, made from runs of the partner permutation (101 groups); partners of test hosts are excluded from training. Alpha-field probe (AF0) images, 663 persons disjoint from the hosts, OpenCV engine: 715 photos, 1,000 each of zero-field / 0.25 / 0.5 blends, and (amendment 1) the 2,000 warped halves of the 0.5 blends. Amendment 1 also adds AF0 wave-4 shrink-and-enlarge copies (existing E7 path) of 200 hosts' x0 and x1 at the two registered strengths (1,200 images). SMDD: 1,500 render / stored-small (80 px) pairs (1,000 fit the softening direction, 500 test). Benchmark: AF0 bench_s list (FRLL-Morphs amsl/facemorpher/opencv/webmorph and corrected MAD22 FaceMorpher/OpenCV/Webmorph, 600 morphs per cell, 500 for MAD22 Webmorph), 204 native plus 204 E7 genuine per family. H1 Poisson: 598+598. Features: CLIP ViT-L/14 class token and CLIP mean patch token, extracted here in one pass for about 25k images because AF0's cache has no class token; the mean token matches AF0's cache to max abs diff 0.0003. DINOv3 ViT-L/16 512 mean patch token from AF0 caches, plus my own extraction for x1m, SMDD and the softened hosts. The 27 simple statistics (cue_floor + PNG size) come from AF0's cache plus my own runs of the same unchanged function. Amendment 2 adds a descriptive control: the same heads fitted on the 27 statistics. Missing: SMDD and AF0 0.25-blend statistics, so some sets are absent for the statistics control. Only the 536 hosts entered any fit (asserted in code).",
+   "q1_direction_consistency": "Every step is consistent (share >= 0.75, lower bound > 0.65) for all 3 features and both engines. Values are OpenCV, held-out share / AUC of the single projection, for CLIP class, CLIP mean, DINOv3:\n- pipeline x0->x1: 0.98/0.67, 0.85/0.55, 0.98/0.72\n- mirror mixing x1->xm: 1.00/0.99, 1.00/0.99, 1.00/0.98 (matched x1m->xm the same)\n- same-person mixing x1->x2: 0.99/0.92, 1.00/0.91, 1.00/0.82\n- second identity x2->x3: 0.86 [0.80,0.90]/0.83, 0.88/0.82, 0.85/0.70\n- whole morph x1->x3: 1.00/0.98, 0.99/0.98, 1.00/0.89\nThe pipeline trace is also 'consistent', so this criterion does not separate morph signal from processing traces.",
+   "q2_cosines": "Cross-validated over 20 split halves, OpenCV, for CLIP class / CLIP mean / DINOv3:\n- Same-person mixing vs whole morph: 0.89 [0.87,0.91] / 0.83 / 0.91. Mirror mixing vs whole morph: 0.88 / 0.69 / 0.57. Both are >= 0.5, so the reading \"the signal learned from same-person morphs is the signal of real morphs\" holds for all three.\n- Same-person mixing vs second identity: 0.73 / 0.51 / 0.61.\n- Mixing vs SMDD softening: 0.04 / -0.05 / -0.04. Mixing vs host softening (amendment 1): 0.10 to 0.16. So \"the signal is softness\" holds for none of them.\n- Mixing vs pipeline: -0.06 to -0.01 for CLIP, 0.31 for DINOv3. The pipeline direction itself is aligned with softening (0.31 to 0.67).\n- One-person vs two-person head weights: 0.79 / 0.80 / 0.86.\n- In the 27-statistic space, mixing vs host softening is 0.75, so the softness reading would hold there.\n- Split-half reliabilities are 0.95 to 0.99 (CLIP mean pipeline 0.67). FaceMorpher shows the same pattern.",
+   "q3_one_person_trained_head": "Out-of-fold over 536 hosts, OpenCV engine, one-person head (trained on x2 vs x1 and xm vs x1).\n1) CLIP class token: x1 vs x3 AUC 0.998 [0.995,1.000]. Floor (band power 0.125-0.25 cycles/px) 0.886 [0.862,0.907]; Laplacian variance alone 0.774. Excess 0.112 [0.092,0.136]. Flag rate on softened genuine at the untouched-5% threshold: FRLL E7 OpenCV 5.4% (11/204), corrected MAD22 E7 OpenCV 5.4%. Reading: works.\n2) CLIP mean patch token: 0.987 [0.979,0.993]; excess 0.101 [0.080,0.125]; flags 3.9% / 4.9%. Reading: works.\n3) DINOv3 mean patch token: 0.934 [0.918,0.950]; excess 0.0485 [0.022,0.079], just under 0.05; flags 5.9% / 4.9%. Reading: mixed.\nFamily by the registered 2-of-3 rule: idea works.\n- Against the genuine photo, x0 vs x3: 0.999, 0.987, 0.946 (floor 0.928).\n- Compared with the two-person head on x1 vs x3: +0.004 [0.000,0.009], -0.009 [-0.015,-0.003], -0.051 [-0.065,-0.039]. Two-person heads reach 0.995, 0.996, 0.986.\n- The one-person heads separate same-person morphs from two-person morphs only partly (x2 vs x3: 0.80, 0.77, 0.64). They do not separate mirror self-morphs from two-person morphs (xm vs x3: 0.60, 0.44, 0.50). What transfers is blending of two captures, not a second identity.\n- Cross-engine transfer: 0.94 to 0.999.\n- Matched-geometry check (AF0 0.5 blend vs its own two warped halves, unseen persons): 0.999 / 0.993 / 0.970, floor 0.831.\n- Descriptive softened sets: the CLIP class head flags 27.5% [21.4,34.2] of the hosts' own shrink-and-enlarge copies at the MAD22-FaceMorpher strength (14.0% at the AMSL strength) and 22.0% of SMDD stored-small copies. CLIP mean and DINOv3 stay at or below 7.5%.\n- Statistics control (amendment 2): 0.853, excess -0.033, flags 70.1% of FRLL E7. Reading: fails, as a softness detector.",
+   "q4_trace_subtraction": "Directions were estimated without held-out hosts and projected out before refitting. Variants: (a) SMDD softening, (b) pipeline x0->x1, (c) both, plus the amendment-1 host-softening direction.\n- Separation is kept everywhere. x1 vs x3: CLIP class 0.998 / 0.997 / 0.997 / 0.997; CLIP mean 0.987 throughout; DINOv3 0.935 / 0.922 / 0.922 / 0.931. Excess is unchanged (DINOv3 0.036 to 0.049), so the readings do not change: CLIP works, DINOv3 mixed.\n- The registered flag rates (i) and (ii) were already at the untouched level (3.9 to 5.9%) before projection, so \"loses reaction\" holds trivially.\n- The difference shows on the hosts' own softened photos (AMSL / FaceMorpher strength). CLIP class falls from 14.0 / 27.5% to 10.5 / 20.0% with (a), 7.0 / 12.5% with (b), 7.0 / 10.0% with (c) and 2.0 / 4.5% with host softening, with x1 vs x3 at 0.997. SMDD stored-small falls from 22.0% to 0.6% (a) or 3.2% (host).\n- Statistics control: host-softening projection lowers FRLL E7 flags from 70.1% to 15.7%, but it stays a softness reader.",
+   "q5_dose": "- Graded FaceMorpher set (300 hosts, out-of-fold): every head's score rises with the mixing fraction (Page p < 1e-279). The OpenCV-trained CLIP class one-person head reaches AUC vs m=0 of 0.82 / 0.97 / 0.99 / 1.00 at m = 0.1 / 0.2 / 0.3 / 0.5; DINOv3 reaches 0.76 / 0.87 / 0.92 / 0.96.\n- OpenCV-engine dose (AF0 zero / 0.25 / 0.5, unseen persons): Spearman 0.81 [0.79,0.82] CLIP class, 0.79 CLIP mean, 0.71 [0.69,0.73] DINOv3. All rise.\n- Contributor dissimilarity (1 - glintr100 cosine) vs s(x3)-s(x1), one-person head: CLIP class 0.03 [-0.05,0.11] (no), CLIP mean 0.13 [0.05,0.21] (rises), DINOv3 0.01 [-0.08,0.10] (no). The two-person head rises for all three (0.11 to 0.16). Partners are look-alikes by construction.",
+   "benchmark_cells": "Final OpenCV one-person heads, no refit. Each entry is AUC morph vs native genuine, then vs E7 genuine, then morphs flagged at the native-5% threshold, for CLIP class / CLIP mean / DINOv3:\n- FRLL-Morphs AMSL: 0.857/0.838/50.8%; 0.881/0.879/59.0%; 0.758/0.756/11.3%\n- FRLL-Morphs FaceMorpher: 0.998/0.998/99.7%; 0.998/0.997/99.5%; 0.935/0.937/57.3%\n- FRLL-Morphs OpenCV: 0.999/0.999/99.5%; 0.997/0.997/99.5%; 0.959/0.958/75.2%\n- FRLL-Morphs WebMorph: 0.893/0.879/63.7%; 0.949/0.947/78.5%; 0.918/0.917/54.8%\n- Corrected MAD22 FaceMorpher: 1.000/1.000; 0.998/0.997; 0.942/0.909\n- Corrected MAD22 OpenCV: 0.950/0.948/68.0%; 0.936/0.937/71.3%; 0.915/0.916/51.7%\n- Corrected MAD22 Webmorph: 0.909/0.905; 0.932/0.932; 0.892/0.894\n- E7 genuine flagged: 3.9 to 9.3%.\n- Neutral-only genuine AUCs are within 0.03 of the all-genuine ones.\n- H1 Poisson (unseen tool and source): 0.890 / 0.835 / 0.772.\n- The statistics control gets 0.94 to 1.00 against native FRLL genuine but falls to 0.37 to 0.70 against E7. The feature heads lose at most 0.033.\n- Two-person heads are higher on AMSL and WebMorph (CLIP mean 0.965 and 0.988).\n- All benchmark cells are descriptive: the benchmark frames come from a different alignment than the training frames.",
+   "verdict_for_family": "idea works",
+   "caveats": [
+    "The registered 2-of-3 rule decides: both CLIP features 'work'. DINOv3 is 'mixed' only because its excess over the floor is 0.0485 against a 0.05 bar.",
+    "What the one-person heads learn is blending of two captures, not a second identity. They score mirror self-morphs like two-person morphs (xm vs x3 0.44 to 0.60) and only partly separate same-person morphs (0.64 to 0.80). Under the proposed class definitions they would flag single-subject manipulations as attacks.",
+    "The registered softened-genuine sets (FRLL and MAD22 E7, OpenCV family) are mild. On the hosts' own shrink-and-enlarge copies at the stronger registered strength (amendment 1, descriptive), the CLIP class-token one-person head flags 27.5% [21.4,34.2], which is above the 15% bar that applies to the registered sets. It also flags 22% of SMDD stored-small copies. Projecting out the host-softening direction brings these to 4.5% and 3.2% with no AUC loss. CLIP mean and DINOv3 stay at or below 7.5%.",
+    "Geometry mismatch: x1 is warped toward the same person's shape, x3 toward the mean with another person's shape. The matched-geometry AF0 halves test (0.970 to 0.999, floor 0.831) uses other persons and the OpenCV engine only.",
+    "The floor is the best single statistic, picked post hoc. A head on all 27 statistics (amendment 2) reaches 0.853 on x1 vs x3 but is a softness detector (flags 70% of FRLL E7; ranks softened one-person images above morphs).",
+    "Amendments 1 and 2 were written after I had seen the CLIP results and a code-path test (one C, 200 draws), but before any of their own numbers. The new sets are descriptive and the registered readings are unchanged.",
+    "The bootstrap intervals cover person sampling only, not head fitting. The chosen regularisation sits at the grid edge for the CLIP mean one-person head (C=0.001), the statistics control and the two-person heads (C=1).",
+    "Not tested: whether the heads read blending in the face or in the surround (no blanked rerun); WebMorph or AMSL as training engines. FaceMorpher results are descriptive. Benchmark frames use a different alignment from the training frames, and the benchmark morphs are AF0's 600-image subsample.",
+    "The SMDD softening direction passes 256 px and 80 px images through each backbone's own resize (standard preprocessing only; no image written). The host-softening direction covers 200 of the 536 hosts.",
+    "The machine was heavily shared. One DINOv3 smoke run hit a CUDA allocation error and succeeded on retry. CLIP was re-extracted (the class token is not in any cache); its mean patch token was verified against AF0's cache. No git operations, no WCSS, no spending."
+   ],
+   "files": [
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/prereg.md",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/result.md",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/verdict.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/q1.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/q3q4.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/external_sets.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/bench.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/q2_readings.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/q5.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/readings_{clip_cls,clip_mean,dino_mean,stats27}.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/softened_hosts_*.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/first_pass_dino_opencv_fold0.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/landmark/check_clip_mean_vs_af0.json",
+    "/home/narolski/smad-next/src/PD1/landmark/analyse.py",
+    "/home/narolski/smad-next/src/PD1/landmark/pd1_lib.py",
+    "/home/narolski/smad-next/src/PD1/landmark/pd1_common.py",
+    "/home/narolski/smad-next/src/PD1/landmark/feat.py",
+    "/home/narolski/smad-next/src/PD1/landmark/lists.py",
+    "/home/narolski/smad-next/src/PD1/landmark/cues.py",
+    "/home/narolski/smad-next/src/PD1/landmark/af0_means.py",
+    "/home/narolski/smad-next/src/PD1/landmark/summarize.py",
+    "/mnt/t7/smad_next/PD1/landmark/"
+   ]
+  },
+  "toolsUsed": [
+   "Bash",
+   "Read",
+   "Write",
+   "Edit",
+   "StructuredOutput"
+  ]
+ },
+ {
+  "type": "result",
+  "key": "v2:3c46ddf6cf14d6c37ef6f47782e6cf2ae1250329c1545fc842f2fb2f8fe0365d",
+  "agentId": "ae75aac46555381b7",
+  "result": {
+   "family": "Diffusion-autoencoder (DiffAE) morphs, MorDIFF and DiM style",
+   "data_used": "Training hosts (FERET and FRGC, the only material in any fit): 129 complete DiffAE blocks (102 from /mnt/t7/smad_research/diffae-expanded123-v1, 27 from confirmation64-diffae-v1 with aligned originals in confirmation64-alignment-v1; diffae-roi102-v1 has no images of its own, it is a read-out of the same 102 blocks). Excluded before any computation: confirm64-feret-F-05, because its person A is a val10 subject. That leaves 258 persons and 516 hosts (captures), 1,548 images: x0 genuine photo through DiffAE's aligner 516, x1 reconstruction 516, x2 same-person mix 258 (shared by the person's two captures), x3 two-person morph 258. All are 256 px lossless PNG and all renders use 20 decoding steps. No mirror mix and no graded mix exist for these hosts. FRLL (evaluation and diagnostics only), 256 px lossless: photos 204, reconstructions at 20 steps 204 and at 100 steps 204, same-person mixes (neutral plus smiling, confounded) 102 + 102, two-person same-pair morphs at 20 and 100 steps 200 + 200. Also the stored-size frames of the MorDIFF control set (A43): published MorDIFF 200, our B/B20/C/C20/D/D20, photo stored small 204, native R0 204, history-matched E7 copies 204. Mirror mixes from the identical-and-mirrored-inputs check (AD1b) full run: 32 FRLL persons (photo mixed with its own mirror image at 20 steps, plus the reconstruction re-rendered in the same job), scored after the main runs with the saved heads. Softening material: 1,200 SMDD genuine renders and their existing 80 px shrunk copies (A47 I-3 data); 600 fit the direction and 600 are held out for flag rates. Benchmarks: eval.csv (sha 86d055d3): MorDIFF 1,000 and six DiM families of 499 or 500 each, against FRLL genuine photos native 204 and history-matched 204 per family. Built: frozen features for 12,683 images (CLIP ViT-L/14 pooled and mean patch token, DINOv3 ViT-L/16 pooled), seven simple statistics for the training and FRLL images, glintr100 embeddings of the 516 training photos. No new image was made. Missing: softened copies of the training hosts, graded mixes, mirror mixes for training hosts, and DiM reconstructions or same-person DiM mixes. The DINOv3 mean-patch set is identical to DINOv3 pooled (timm averages patch tokens), so there are three distinct feature sets.",
+   "q1_direction_consistency": "Held-out hosts, 5 folds by person. Each cell gives the share of hosts moving the expected way [95%] and the AUC of the single projection. Every step is a consistent direction on all three feature sets. CLIP pooled: pipeline trace x0 to x1 1.000 [1.000, 1.000], 0.896; same-person mixing x1 to x2 0.944 [0.922, 0.965], 0.895; second identity x2 to x3 0.812 [0.726, 0.884], 0.762; whole morph x1 to x3 0.926 [0.885, 0.961], 0.834; genuine to morph 0.981, 0.918. CLIP mean patch: 1.000 / 0.994 / 0.855 [0.787, 0.914] / 0.948 / 0.988. DINOv3: 1.000 / 0.988 / 0.859 [0.785, 0.919] / 0.955 / 0.998. FRLL diagnostic with the training direction applied unchanged: pipeline 204 of 204, whole morph at 256 px 91.0%, mirror mix 32 of 32.",
+   "q2_cosines": "Cross-validated split-half cosines (200 splits, intervals from 1,000 block bootstraps; the intervals are conservative towards 0). Same-person mixing against whole morph: CLIP pooled 0.76 [0.67, 0.76], CLIP patch 0.73, DINOv3 0.81. Reading: the direction learned from same-person mixes is the direction of real morphs. Mixing against softening (SMDD shrunk copies): −0.19 / −0.13 / −0.11, so the signal is not softness. Mixing against pipeline trace: −0.05 / −0.06 / +0.19, so it is not the pipeline trace. Mixing against second identity: −0.70 / −0.34 / −0.36 (anti-aligned). Whole morph against softening: −0.22 / −0.09 / +0.06. FRLL diagnostics (CLIP pooled): the SMDD softening direction agrees with the FRLL E7 direction at 0.53 and with the FRLL stored-small direction at 0.54 (only 0.14 to 0.32 for the other feature sets). The FRLL whole-morph direction has cosine 0.67 with the training mixing direction, and the 32-person mirror-mix direction 0.65 (CLIP patch 0.36, DINOv3 0.39).",
+   "q3_one_person_trained_head": "One-person head H1: linear, paired logistic loss on same-person mix (x2) against the same host's reconstruction (x1), C by inner grouped CV. Held-out hosts, pooled out-of-fold, two-way person bootstrap B = 10,000. CLIP pooled (primary): x3 vs x1 0.948 [0.921, 0.970]. Simple-statistic floor = PNG size 0.773 (Laplacian variance 0.521; a head on all seven statistics trained the same way 0.746). Excess +0.175 [0.125, 0.229]. Flag rate on FRLL E7 genuine photos at the threshold flagging 5% of native photos: 2.0% [0.5, 4.9]. Fixed reading: WORKS. CLIP mean patch: 0.877 [0.830, 0.917], excess +0.104 [0.041, 0.167], flag 4.4% [2.0, 8.2]: works. DINOv3: 0.913 [0.867, 0.950], excess +0.140 [0.077, 0.202], flag 3.9% [1.7, 7.6]: works. Secondary softened pools (CLIP pooled): FRLL photo stored small 0.0%, held-out SMDD shrunk copies 0.0%. Other contrasts for CLIP pooled H1: x3 vs x0 0.876 [0.828, 0.918], below the PNG-size floor of 0.906 for that contrast; x2 vs x1 0.981; x1 vs x0 0.276 (reconstructions score below genuine photos); x3 vs x2 0.288 [0.229, 0.352] (same-person mixes score above two-person morphs; 0.369 and 0.376 on the other sets). Two-person head H2 (x3 against x1): x3 vs x1 0.989 [0.977, 0.996]; it also fails to separate x3 from x2 (0.456). Mirror mixes (32 FRLL persons): H1 separates them from their reconstruction at 0.999 and ranks them above two-person morphs (two-person morph vs mirror AUC 0.197). Cohort transfer (fit on expanded123, tested on the confirmation blocks): 0.942 [0.850, 0.995]. FRLL at 256 px, 20 steps, no refit: our morph vs reconstruction 0.886 [0.82, 0.94] (neutral pairs only 0.903).",
+   "q4_trace_subtraction": "Refit inside each fold after projecting directions out of the features (softening k=1 and k=5 from SMDD-fit pairs; pipeline from the training folds). H1 x3 vs x1 and FRLL E7 flag rate: CLIP pooled none 0.948 / 2.0%, softening k=1 0.950 / 2.5%, k=5 0.950 / 2.5%, pipeline 0.936 / 2.5%, both 0.934 / 2.9%. CLIP patch 0.877 to 0.898 / 4.4 to 6.4%. DINOv3 0.912 to 0.915 / 3.9 to 4.9%. Reading \"keeps its separation\": yes everywhere (largest drop 0.014). Reading \"loses its reaction to softened genuine photos\": not met by the registered wording, because the unprojected heads had no reaction (2 to 4%) and the projected rates are equal or 0.5 to 2 points higher. Removing the pipeline direction moves reconstructions to the level of genuine photos (x1 vs x0 0.276 to 0.512) and raises morph vs genuine photo to 0.950. Same-person mixes still score above morphs (0.30 to 0.38). The excess over the floor stays at +0.107 or more.",
+   "q5_dose": "Graded mixing: not testable (all DiffAE renders mix at 0.5). Contributor dissimilarity (1 − glintr100 cosine), 258 training morphs, block bootstrap. Spearman ρ with the morph's out-of-fold H1 score: CLIP pooled +0.242 [0.102, 0.378], CLIP patch +0.369 [0.229, 0.495], DINOv3 +0.309 [0.182, 0.429]; reading \"rises with dissimilarity\" on all three. With the paired step s(x3) − s(x1): +0.078 [−0.071, 0.224] (no rise detected), +0.156 [0.008, 0.300] (rises), +0.136 [−0.012, 0.278] (no rise detected). Descriptive: the DiffAE semantic-code distance correlates more strongly (+0.45 to +0.58). Across the rungs the relation is not monotone: same-person mixes, the least dissimilar contributors, score highest.",
+   "benchmark_cells": "Final one-person head H1 on CLIP pooled, no refit. Each cell gives AUC against native FRLL genuine photos [95%], equal error rate, and AUC against history-matched (E7) photos. MorDIFF (morphs about 150 px): 0.680 [0.62, 0.74], 38.8%, 0.724. DiM A: 0.968 [0.94, 0.99], 9.4%, 0.968. DiM C: 0.956, 10.9%. Fast-DiM: 0.973, 9.4%. Fast-DiM-ODE: 0.989, 4.9%. Greedy-DiM: 0.832 [0.78, 0.88], 27.4%. Greedy-DiM-S: 0.978, 8.8%. E7 photos are flagged at 2.0 to 4.9% at the 5% native threshold, and the neutral-only genuine column moves AUCs by at most 0.05. CLIP mean patch: MorDIFF 0.591, DiM families 0.671 to 0.961. DINOv3: MorDIFF 0.638, DiM 0.684 to 0.969. Two-person head H2 (CLIP pooled): MorDIFF 0.711, DiM 0.882 to 0.995. H1 with softening and pipeline removed: MorDIFF 0.759, DiM 0.864 to 0.990. Training images are DiffAE 256 px crops while the benchmark frames are 512 px canonical frames; all DiM morph files are 256 px, MorDIFF files about 150 × 195 px.",
+   "verdict_for_family": "idea works",
+   "caveats": [
+    "The fixed reading says 'works', but the head reads the DiffAE mixing step, not a second identity: same-person mixes (x3 vs x2 AUC 0.29 to 0.38) and mirror mixes (two-person morph vs mirror mix 0.20 to 0.41) score above two-person morphs. By the proposed class definitions these are single-subject manipulations.",
+    "On the training hosts, PNG size alone separates morphs from genuine photos (0.906) better than the CLIP heads (0.876 and 0.825). This contrast is outside the registered reading.",
+    "No DiM reconstructions or same-person DiM mixes exist, so the DiM benchmark separation cannot be split into pipeline and mixing steps; that the head reads mixing there is not verified. Our own FRLL reconstructions score below genuine photos (0.42).",
+    "No softened copies of the training hosts exist. The softening direction came from SMDD renders against their shrunk copies; it agrees with the FRLL softening directions at 0.53 to 0.54 for CLIP pooled but only 0.14 to 0.32 for the other two feature sets.",
+    "Q4 'loses its reaction to softened genuine photos' is not met only because the unprojected heads never reacted (2 to 4% flagged).",
+    "The DINOv3 mean-patch set is identical to DINOv3 pooled (timm average pooling), so three distinct feature sets were analysed, not four.",
+    "Mirror mixes cover only 32 FRLL persons (the identical-and-mirrored-inputs full run) and were scored after the main runs with the saved heads. The Q2 block of the results JSON still holds the earlier 4-person mirror cosine; the 32-person values are in mirror.json.",
+    "The FRLL bootstrap first drew over 140 person IDs. All external blocks were re-scored over the 102 real persons with the MorDIFF ladder re-read (AD1) seed; point estimates are identical and only the third decimal of the intervals moved. First-draw copies are kept in /mnt/t7/smad_next/PD1/diffae/results_*_firstdraw.json.",
+    "FERET same-person pairs are mostly from one session (92 of 130 persons); the FRGC session structure was not checked. A post hoc split shows the inversion in every subset.",
+    "FRLL neutral-plus-smiling mixes are printed but marked confounded; no conclusion is drawn from them.",
+    "Published MorDIFF decoding step count not verified. At the published small storage size, separation drops (0.67 to 0.86 against 0.82 to 0.94 at 256 px).",
+    "For about 48 minutes (17:24 to 18:12) my statistics job ran beside the 4-process feature extraction, 5 processes in total (3 of them mostly idle loader workers). CUDA out-of-memory errors at model load were handled by retries.",
+    "The confirmation64 blocks were labelled 'prospective_confirmation_no_fit' by the earlier Codex loop; they were used as training hosts as the task instructed, and the cohort transfer from expanded123 to confirmation64 is reported separately (0.942).",
+    "The pre-registration text (written before computing) uses some bare experiment IDs; it was left unchanged."
+   ],
+   "files": [
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/prereg.md",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/result.md",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/readings.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/q1.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/q2_cos.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/q3q4.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/flags.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/external.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/bench.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/q5.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/mirror.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/mirror.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/posthoc_session_split.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/first_pass.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/results_clip_pool.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/results_clip_patch.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/diffae/results_dino_pool.json",
+    "/home/narolski/smad-next/src/PD1/diffae/pd1_items.py",
+    "/home/narolski/smad-next/src/PD1/diffae/pd1_feats.py",
+    "/home/narolski/smad-next/src/PD1/diffae/pd1_stats.py",
+    "/home/narolski/smad-next/src/PD1/diffae/pd1_fr.py",
+    "/home/narolski/smad-next/src/PD1/diffae/pd1_common.py",
+    "/home/narolski/smad-next/src/PD1/diffae/pd1_analysis.py",
+    "/home/narolski/smad-next/src/PD1/diffae/pd1_rescore.py",
+    "/home/narolski/smad-next/src/PD1/diffae/pd1_mirror.py",
+    "/home/narolski/smad-next/src/PD1/diffae/pd1_report.py",
+    "/home/narolski/smad-next/src/PD1/diffae/run_feats.sh",
+    "/home/narolski/smad-next/src/PD1/diffae/run_all_feats3.sh",
+    "/home/narolski/smad-next/src/PD1/diffae/run_after_ad1b.sh",
+    "/mnt/t7/smad_next/PD1/diffae/lists/items.csv",
+    "/mnt/t7/smad_next/PD1/diffae/feat/",
+    "/mnt/t7/smad_next/PD1/diffae/heads/",
+    "/mnt/t7/smad_next/PD1/diffae/fr/tr_glint.npz",
+    "/mnt/t7/smad_next/PD1/diffae/report.md"
+   ]
+  },
+  "toolsUsed": [
+   "Bash",
+   "Read",
+   "Write",
+   "Edit",
+   "StructuredOutput"
+  ]
+ },
+ {
+  "type": "result",
+  "key": "v2:e8a683cf2020189e568b1c163e13d23ef7e5d9d601443ae5d6e6bc536a9ab6b2",
+  "agentId": "ad604033e4acec665",
+  "result": {
+   "family": "landmark morphs (OpenCV-style engine decides; FaceMorpher descriptive)",
+   "recomputed": "Terms: warp-only image (x1), mirror self-morph (xm), same-person morph (x2), two-person morph (x3), host photo (x0); AUC = area under the ROC curve; floor = best single simple statistic; E7 = existing shrink-and-enlarge copies.\n\nRecomputed with my own code (own paired-logistic solver, own two-way person bootstrap, own folds: 5 random host folds with partners of test hosts purged, 3 split seeds). All registered Q3 numbers match.\n- One-person head, x1 vs x3: CLIP class token 0.9976 to 0.9978 (owner 0.998); CLIP mean patch token 0.9846 to 0.9871 (owner 0.987); DINOv3 mean patch token 0.9293 to 0.9322 (owner 0.934).\n- Floor 0.8858 (band power 0.125 to 0.25 cycles/px), Laplacian variance 0.774: identical. Excess 0.112 / 0.099 to 0.101 / 0.044 to 0.046 (owner 0.112 / 0.101 / 0.0485).\n- Registered flag rates on FRLL E7 OpenCV and corrected MAD22 E7 OpenCV: 11/204 and 11/204; 8/204 and 10/204; 12/204 and 10/204. Identical to the owner's.\n- Two-person heads 0.995 / 0.993 to 0.995 / 0.983 to 0.986; mirror self-morph vs two-person morph 0.58 to 0.60 / 0.43 to 0.45 / 0.49 to 0.50: match.\n- Owner's saved out-of-fold scores re-read: 0.9982 / 0.9871 / 0.9343.\n- Features: I re-extracted CLIP for the 2,680 OpenCV ladder images; minimum cosine to the owner's cache 0.9999.\n- Also matching: Q1 shares, Q2 cosines (same-person mixing vs whole morph 0.89 / 0.84 / 0.92), softened-host flag rate of the CLIP class head (55/200 with per-fold thresholds), morph against its own warped halves on unseen persons (0.999 / 0.993 / 0.970), approved Poisson set (H1) 0.890 / 0.835 / 0.772.\n- Not re-extracted: CLIP class tokens of the softened hosts, SMDD pairs, benchmark cells and alpha-field probe (AF0) images (owner's extraction used).\n\nScripts, outputs and notes: /mnt/t7/smad_next/PD1/landmark/verify/ (NOTES.md, v1 to v9 scripts, out/*.json).",
+   "refutation_attempts": [
+    {
+     "attack": "Independent recomputation of the Q3 numbers from cached features, with re-extracted CLIP features for the ladder rungs",
+     "outcome": "Reproduced within 0.005 AUC for all three features; floor and both registered flag rates identical. The DINOv3 excess stays under 0.05 in every split (0.044 to 0.046).",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Person or pair leakage; the same partner on both sides",
+     "outcome": "None. The owner's folds share 0 persons between training and held-out images for both heads (checked by re-running their fold function). My own strictly purged random folds give the same AUCs. Across databases it also holds: trained on FRGC, tested on colorFERET 0.993 / 0.980 / 0.932; reverse 0.990 / 0.964 / 0.923.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "FRLL material inside a fit; threshold chosen on test data; top-tenth pooling",
+     "outcome": "None found. Fits use only the 536 FRGC and colorFERET hosts (asserted in code); the regularisation is chosen by inner cross-validation on training hosts; the flag threshold comes from the untouched genuine set; no top-fraction pooling is used (class token and mean token only).",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Geometry mismatch: x1 is warped less than x3",
+     "outcome": "Survives. A matched warp-only rung now exists on the same hosts (host warped to the host-plus-partner mean shape, host texture only; built by the landmark ladder (AR1) owner after this run). Against it x3 scores 0.9974 [0.993, 1.000] / 0.984 / 0.930, and x3 is above it in 100% of hosts. Small warp vs large warp alone: 0.50 to 0.51.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Session, expression or capture type of the second photo",
+     "outcome": "Survives. Raw second photos against host photos score 0.49 / 0.50, so the head does not read the second photo's capture type. Trained on mirror self-morphs only (one photograph, no second session) the head still gives 0.981 (CLIP class) and 0.955 (CLIP mean); DINOv3 falls to 0.839, below the floor. On unseen persons the morph is above its host-side half and its partner-side half equally (0.999 / 0.999).",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Stored size, decoding steps, blank or border regions as file-level cues",
+     "outcome": "No. All rungs are 512 px RGB PNG. PNG size separates x1 from x3 at 0.69 (folded), blank fraction 0.55, brightness 0.52, blockiness 0.51, all below the floor.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Softness, on the registered softened sets and in feature geometry",
+     "outcome": "Survives, with one weak spot. Flag rates 3.9 to 5.9% as reported. The softening step moves features by only 0.04 to 0.15 mixing steps along the mixing direction, so the low cosines hide nothing. With both classes softened (existing softened copies of the ladder), x3 vs x1 stays 0.998 / 0.983 (CLIP). Weak spot: registered set (ii), corrected MAD22 E7 OpenCV, is almost unsoftened (Laplacian variance 0.81 of native, against 0.35 for set (i) and 0.20 for the hosts at the stronger strength), so it tests little.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Softness, on the hosts' own softened photos (owner's amendment-1 set, descriptive in the registration)",
+     "outcome": "Bites for the CLIP class token. With per-fold thresholds the one-person head flags 55/200 = 27.5% [21.4, 34.2] at the stronger registered strength (bar: 15%); 98% of hosts score higher after softening. CLIP mean patch 8.0% and DINOv3 7.5% stay under the bar. If this set counts as 'softened genuine photos', the CLIP class token reads mixed and only 1 of 3 features works. Projecting out the host-softening direction brings it to 4% with AUC 0.996 (reproduced).",
+     "changes_verdict": true
+    },
+    {
+     "attack": "Where the head reads: face or surround (existing constant-grey blanked copies of the ladder, matched geometry)",
+     "outcome": "Bites; this is the main finding. Heads trained on full frames keep 0.988 / 0.941 / 0.922 when only the surround is visible (face hull grey) and fall to 0.706 / 0.621 / 0.653 when only the face hull is visible. That is 0.19 to 0.27 below the best single statistic on the same face-only images (0.892). Two-person-trained heads behave the same (0.71 / 0.67 / 0.72), so this comes from the whole-frame double exposure of the OpenCV-style engine (ghosted hair, clothing, mixed background), not from one-person training. Refitted on face-only images, the registered paired head reaches 0.911 / 0.859 / 0.870, i.e. excess +0.019 [-0.012, 0.049] / -0.033 / -0.022: not above the floor. Only an ordinary unpaired logistic regression refitted on face-only one-person images reaches 0.977 / 0.953 / 0.956 (excess 0.085 / 0.061 / 0.064; 0.02 to 0.05 above a logistic regression on the 27 statistics). That head is not registered and its reaction to softened photos could not be tested (no softened face-only images exist).",
+     "changes_verdict": true
+    },
+    {
+     "attack": "Stronger simple-statistic floors: by database, several statistics together, statistics of the 224 px model input",
+     "outcome": "Weakens the 0.05 margin but not under the registered floor. Pooling FRGC and colorFERET depresses the floor: within FRGC (427 hosts) one statistic reaches 0.944, and the excess there is 0.055 / 0.041 to 0.043 / -0.007 to -0.013. A logistic regression on the 27 statistics trained on one-person images only reaches 0.956 [0.936, 0.972] (the owner's statistics control gave 0.853 because of its paired head); the feature heads are +0.042 [0.026, 0.062] / +0.029 [0.011, 0.049] / -0.026 against it. An AUC gap of 0.05 is close to impossible above 0.95, so this is partly a ceiling effect. That statistics detector is a softness detector (flags 72.5% of FRLL E7 OpenCV, 93% of softened hosts); the CLIP mean and DINOv3 heads are not. Floor at 224 px: 0.896, about the same as at 512 px.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Power of the DINOv3 negative (mixed; 0.051 below the two-person head)",
+     "outcome": "The negative belongs to the paired loss, not to the features or to one-person training. An unpaired logistic regression on the same one-person images gives x1 vs x3 0.9999 [0.9994, 1.000] for DINOv3 (CLIP class 0.9998, CLIP mean 0.999), registered flag rates 6.4% / 5.4%, and higher benchmark cells (DINOv3 FRLL-Morphs WebMorph 0.918 to 0.985, corrected MAD22 OpenCV 0.915 to 0.999; FRLL-Morphs AMSL unchanged at 0.76). The within-host paired loss is therefore not what makes the idea work; it costs accuracy. It also raises the CLIP class reaction to softened hosts to 40.5%. Unregistered, chosen after seeing results.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Power of the other negatives (no second-identity reading; no dissimilarity trend; unseen tool)",
+     "outcome": "Mirror self-morph vs two-person morph 0.44 to 0.60 with intervals of about +-0.045 on 536 hosts: adequately powered, the finding stands. The contributor-dissimilarity test is range-restricted (partner cosine 0.145 to 0.342 between the 5th and 95th percentile), so 'does not rise' is weak evidence. On the approved Poisson set (H1: unseen tool, face spliced into one photo) the heads reach 0.77 to 0.89 (unpaired 0.85 to 0.92), and on FRLL-Morphs AMSL 0.76 to 0.88: lower exactly where there is no double-exposed surround.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Pre-registration predates the numbers; fixed readings applied as written",
+     "outcome": "Yes. The pre-registration was committed at 17:25:21 (commit 5a19286); the first number was written at 17:44:07; the main text is unchanged since (only amendments appended). Readings were applied as written, including DINOv3 = mixed at excess 0.0485. Two small blemishes: the lists and simple statistics of the amendment-1 sets were built at 18:17 to 18:24, before the amendment's stated 18:25 (no head score of those sets existed before 19:30); amendment 2 is headed 18:40 but the file was saved at 18:33:32, 43 seconds before its first number.",
+     "changes_verdict": false
+    }
+   ],
+   "corrected_verdict": "mixed",
+   "corrected_wording": "Landmark morphs, OpenCV-style engine, frozen features, 536 FRGC and colorFERET hosts. AUC = area under the ROC curve.\n\nWhat holds. A linear head trained only on one-person images (same-person morphs and mirror self-morphs against the warp-only image of the same host) ranks two-person morphs of held-out persons above their warp-only images: AUC 0.998 (CLIP class token), 0.985 to 0.987 (CLIP mean patch token), 0.93 (DINOv3 mean patch token). This reproduces with independent code and folds, across the two databases, on unseen persons, and with matched warp geometry. No leakage, no FRLL person in a fit, registration in order.\n\nWhat it is not. It is not a second-identity signal (mirror self-morphs score like two-person morphs), and it is no better than training on two-person morphs directly. The within-host paired loss is not what makes it work: an ordinary unpaired logistic regression on the same one-person images gives 0.999 to 1.000 for all three features.\n\nWhere the registered result does not survive.\n1. The separation sits mainly outside the face. With only the surround visible the heads keep 0.92 to 0.99. With only the face hull visible they fall to 0.62 to 0.71, below the best single simple statistic (0.89). Refitted on face-only images the registered paired head reaches 0.86 to 0.91, which does not exceed that statistic. So on full frames the head mostly detects the double-exposed surround that this whole-frame blending engine produces. Consistent with that, it is weaker on morphs with a spliced face (FRLL-Morphs AMSL 0.76 to 0.88; approved Poisson set (H1) 0.77 to 0.89).\n2. The CLIP class-token head flags 27.5% [21.4, 34.2] of the hosts' own softened photos at the stronger registered strength (bar 15%). It passes on the registered sets, one of which is almost unsoftened.\n3. The margin over simple statistics depends on the floor: 0.10 to 0.11 over the registered pooled single statistic for CLIP, but 0.03 to 0.04 over a logistic regression on the 27 statistics trained on the same one-person images (0.956), and nothing for DINOv3.\n\nWhat remains open in the idea's favour. A face-region signal learned from one-person images does appear with an unpaired head refitted on face-only images: 0.95 to 0.98, which is 0.06 to 0.09 above the best single statistic and equal to a two-person-trained head. This variant was chosen after seeing results, is not registered, and its reaction to softened photos is untested.\n\nReading: by the registration as written the family reads \"idea works\" (2 of 3 features). After the surround and softened-host attacks the supportable statement is \"mixed\": learning from one-person morphs transfers to two-person morphs of a whole-frame blending tool, mainly as a detector of double exposure outside the face; a face-region morph signal beyond simple statistics is not shown with the registered head.",
+   "what_would_settle_it": [
+    "Register a face-region version of the author's test as primary: surround blanked to constant grey in every rung (existing blanked copies), unpaired logistic head, a fresh person split, with the fixed reading unchanged. Include the softened-photo leg: existing softened copies of the hosts, blanked the same way (needs only constant-colour blanking of existing softened images).",
+    "Build the one-person ladder (warp-only, mirror self-morph, same-person morph, two-person morph) with the approved Poisson warp script, where the surround comes from the host photo only, and repeat Q3 there. If the one-person head still separates at 0.75 or more above the floor, the signal is face blending; if it collapses, it was surround double exposure.",
+    "Score the benchmark cells with the surround blanked under the benchmark alignment, in particular FRLL-Morphs AMSL and WebMorph, with one-person and two-person heads side by side.",
+    "Train with softened one-person images as extra negatives (the author's 'softness is not blending') and re-measure the CLIP class-token flag rate on the hosts' own softened photos at both strengths; compare with the projection of the host-softening direction (which already gives 4%).",
+    "Fix the floor before the next run as a logistic regression on the 27 simple statistics trained on the same images and reported per database, and state the margin as a ratio of error (1 minus AUC) rather than an AUC difference, because a 0.05 gap cannot be reached above 0.95.",
+    "Replace the within-host paired loss by an ordinary unpaired head (or add a between-host term) in the registration, and confirm on the 663 unseen persons of the alpha-field probe (AF0) once one-person morphs or blanked halves exist for them."
+   ]
+  },
+  "toolsUsed": [
+   "Read",
+   "Bash",
+   "Write",
+   "Edit",
+   "StructuredOutput"
+  ]
+ },
+ {
+  "type": "result",
+  "key": "v2:28729025ea4eacd4abe2249448de8ccc9530e22cb15fd190b104283dee8e8c7e",
+  "agentId": "af31bb2a01019f576",
+  "result": {
+   "family": "diffusion (diffusion-autoencoder, DiffAE, morphs; MorDIFF and DiM style) — owner folder experiments/PD1_signal-isolation-paired-differences/diffae",
+   "recomputed": "All with my own code (own host table from the run plans, own AUC, own person bootstrap, own head fit) on the owner's cached features; scripts and tables in /mnt/t7/smad_next/PD1/diffusion/verify/ (index: NOTES.txt). AUC = area under the ROC curve; one-person head = linear head trained only on same-person mix against the reconstruction of the same photo; reconstruction = DiffAE run on one photo.\n\nMATCH (owner's value in brackets):\n- One-person head, two-person morph against reconstruction, held-out persons: CLIP pooled 0.951 [0.925, 0.971] (0.948 [0.921, 0.970]); CLIP mean patch 0.893 [0.853, 0.929] (0.877); DINOv3 0.920 [0.877, 0.954] (0.913). The small differences come from my different inner split for the regularisation strength C; with C fixed at 0.01 or 10 the CLIP pooled value is 0.955 to 0.960.\n- Two-person morph against same-person mix 0.291 / 0.360 / 0.368 (0.288 / 0.369 / 0.376); morph against genuine photo 0.879 (0.876); reconstruction against genuine photo 0.277 (0.276); two-person head 0.992 (0.989).\n- Simple-statistic floor from my own statistics on the native files: file size 0.773 (0.773); excess +0.178 [0.126, 0.230] (+0.175 [0.125, 0.229]).\n- Softened (history-matched) FRLL photos flagged at the 5% native threshold: 2.0% with the owner's C (2.0%).\n- Direction shares 1.000 / 0.944 / 0.812 / 0.926 (identical). Cosines mixing-vs-whole-morph 0.765, mixing-vs-softening -0.189, mixing-vs-pipeline -0.053, mixing-vs-second-identity -0.707 (0.76 / -0.19 / -0.05 / -0.70).\n- Contributor-dissimilarity correlation with the owner's out-of-fold scores: 0.242 and 0.078 (identical).\n- Benchmark cells with the owner's C = 0.001: MorDIFF 0.680, DiM A 0.968, DiM C 0.956, Fast-DiM 0.973, Fast-DiM-ODE 0.989, Greedy-DiM 0.832, Greedy-DiM-S 0.978 (identical). FRLL 256 px morph against reconstruction with the owner's saved head 0.886 [0.820, 0.943] (identical). Cohort transfer 0.946 (0.942).\n- Feature cache: I re-extracted CLIP ViT-L/14 for all 1,548 training-host images with my own loader; maximum absolute difference to the owner's cache 0.0 (pooled and mean patch). All 2,828 images of the training, FRLL 256 px and mirror sets are 256 x 256 RGB.\nNo number failed to reproduce.\n\nProcess note: one recursive grep of mine over /home/narolski/mambamorph-code listed the name of a file containing \"fst\" (smadcvpr/build_fst_spec.py); only the name was printed, no content was shown or used. One GPU job (peak 1.46 GB), otherwise CPU with 2 threads and nice 10. Nothing written to the owner's folders or the repository.",
+   "refutation_attempts": [
+    {
+     "attack": "Simple image statistics, single and combined (softness or any simple statistic explains the separation)",
+     "outcome": "Single statistic: registered floor stands (best is file size 0.773; median absolute Laplacian 0.704; Laplacian variance about 0.52). Combined: a logistic head on 26 simple statistics of the native 256 px files (file size, Laplacian and gradient statistics, 8 spectral band energies, colour spreads, block variances), trained the same one-person way on training folds only, reaches 0.947 [0.917, 0.970] for two-person morph against reconstruction on held-out persons. Excess of the feature heads over it: CLIP pooled +0.004 [-0.028, +0.042], CLIP mean patch -0.055 [-0.099, -0.013], DINOv3 -0.027 [-0.076, +0.019]. Two numbers alone (file size + median absolute Laplacian) give 0.826 [0.78, 0.87]; the owner's seven statistics at native size give 0.779. On FRLL at 256 px, no refit, the statistics head gives 0.961 (CLIP pooled head 0.886) and 0.960 for mirror mix against reconstruction. The two scores are almost uncorrelated inside a rung (rank correlation -0.12 and 0.04) and their sum reaches 0.987, so the features hold extra information, but the separation itself does not need a foundation model. The registered '+0.05 over the floor' holds only against a single statistic.",
+     "changes_verdict": true
+    },
+    {
+     "attack": "Decoding steps: does the head react to a one-photo render with more steps and no mixing? (owner's saved heads, FRLL scored only)",
+     "outcome": "Yes. The 100-step reconstruction of a photo scores above the 20-step reconstruction of the same photo in 197 of 204 (CLIP pooled), 204 of 204 (CLIP mean patch), 200 of 204 (DINOv3); AUC 0.746 [0.719, 0.778], 0.684, 0.842. At the threshold that flags 5% of 20-step reconstructions, 34.8%, 15.2% and 51.5% of the 100-step reconstructions are flagged. A 20-step two-person morph against 100-step reconstructions drops to 0.734 [0.649, 0.822], 0.643, 0.656 (equal steps: 0.886, 0.816, 0.943). The two-person head reacts the same way (0.866; 46.6% flagged), so this is not special to one-person training. The owner's trace subtraction (pipeline direction removed) only reduces it: CLIP pooled 0.661 and 22.1% flagged; DINOv3 0.832 and 49.0%. Labelled diagnostic (step direction estimated on half of the FRLL persons, tested on the other half, not a detector): step reaction falls to 0.48 to 0.53 while morph against reconstruction stays 0.71 to 0.81 (CLIP pooled) and 0.85 to 0.92 (DINOv3), so the two signals are separable in principle but the registered heads do not separate them.",
+     "changes_verdict": true
+    },
+    {
+     "attack": "MorDIFF benchmark cell: is the separation mixing or the render? (stored-size frames, owner's saved CLIP pooled head)",
+     "outcome": "Published MorDIFF against native photo 0.680 [0.597, 0.770]; 100-step one-photo reconstruction against native photo 0.576 [0.550, 0.604]; published MorDIFF against 100-step reconstructions 0.604 [0.519, 0.697] (DINOv3 0.547 [0.478, 0.619]); against 20-step reconstructions 0.779 [0.699, 0.863]. The reading depends on which pass-through is the control, and the step count of the release is not verified. No DiM reconstructions or same-person DiM mixes exist, so the DiM cells (0.83 to 0.99) cannot be attributed to mixing; attack not runnable there.",
+     "changes_verdict": true
+    },
+    {
+     "attack": "Benchmark numbers against the regularisation strength (threshold or setting chosen favourably)",
+     "outcome": "The final C = 0.001 was selected by the registered tie-break: the cross-validated paired share is 0.9961 for all five C values (CLIP sets), ties go to the smallest. No test data were used, so no rule was broken. But the benchmark cells move with C while the in-domain result does not (0.951 to 0.960): MorDIFF 0.611 to 0.680, DiM A 0.852 to 0.968, DiM C 0.793 to 0.956, Greedy-DiM 0.614 to 0.832, Fast-DiM-ODE 0.913 to 0.989. The summary quotes the most favourable of the five settings.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Border, blank regions, face against surround (CLIP features re-extracted with constant-grey blanking; heads refit inside each condition)",
+     "outcome": "No blank borders: all images 256 x 256 RGB crops. One-person head, two-person morph against reconstruction: face box only 0.963 [0.944, 0.979]; face blanked (surround only) 0.940 [0.903, 0.968]; unchanged 0.959. CLIP mean patch 0.872 / 0.909 / 0.902. Statistics of the four corners alone (9 numbers) give 0.763. The head does not need the face: the signal is a property of the whole render (background and hair included), not facial content. With the face blanked the inversion against same-person mixes mostly disappears (0.43 to 0.48 against 0.23 to 0.29 face only).",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Person or pair leakage, same partner on both sides, pipeline leak",
+     "outcome": "Survives. Rebuilt from the run plans: 129 blocks, 258 persons each in exactly one block, 516 captures and 516 raw-file hashes each used once, 0 persons in more than one fold, the one val10 block excluded. A negative-control head trained on reconstruction of capture 1 against reconstruction of capture 0 of the same person gives 0.52 / 0.50 / 0.47 for two-person morph against reconstruction.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "FRLL material inside a fit; threshold chosen on test data",
+     "outcome": "Survives. Code read: heads, standardisation, C and projections use FERET and FRGC hosts or SMDD renders only; FRLL is scored only; the flag threshold is the 5% point of native FRLL photos as registered; FRLL-only directions are labelled diagnostics.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Expression or session differences between the same-person photos; photo source",
+     "outcome": "Survives with a drop. FERET: 92 of 130 same-person pairs are from one date (83 are regular plus alternative frontal shots). Head trained only on those same-date pairs (184 hosts), tested on FRGC: 0.827 / 0.849 / 0.746 (CLIP pooled / mean patch / DINOv3); trained only on two-date pairs (76 hosts): 0.849 / 0.808 / 0.796. Cross-database: FERET to FRGC 0.874 / 0.841 / 0.778; FRGC to FERET 0.933 / 0.884 / 0.947. The inversion against same-person mixes holds in every split (0.28 to 0.44). DINOv3 sits at the 0.75 mark in two splits.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "'Second identity is a consistent direction' (share 0.81 to 0.86): session composition as the simpler explanation",
+     "outcome": "Partly refuted. Share by subset: FERET same-date pairs 0.918 to 0.951, FERET two-date pairs 0.803 to 0.934, FRGC 0.738 to 0.793 (CLIP pooled 0.738, below the 0.75 mark). In FERET the same-person mix is mostly within one session while 116 of 130 two-person pairs cross dates, so the step is confounded with a session change. A head trained for this step reaches 0.79 to 0.80 overall, 0.91 on FERET same-date pairs, 0.74 to 0.79 on FRGC; simple statistics reach 0.666. The composition rule for twins (both partners from another session) is not met. FRGC session structure not verified.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Softness (mixing-vs-softening cosine, softened-photo flag rate, trace subtraction)",
+     "outcome": "Reproduced: cosine -0.19; 2.0 to 3.9% of history-matched photos flagged. But the control has no power for this family: DiffAE mixes carry more fine detail than reconstructions, not less (median file size 77 kB and 76 kB against 67 kB; median absolute Laplacian 1.53 to 1.56 against 1.19; genuine photos 94 kB and 3.56). Softening pushes scores down. The relevant control is a pass-through with more detail and no mixing, and there the head does react (decoding-step attack). 'Loses its reaction' in the trace subtraction is a degenerate reading, as the owner says.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Stored size and decoding steps inside the training set",
+     "outcome": "Survives. The generation script asserts exactly 20 denoiser calls for every render and uses the same render call for reconstructions and mixes; all files are 256 px lossless PNG. Blocks with any failed quality check were dropped whole (102 of 123 and 28 of 48 kept), a selection I could not test.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Top-tenth pooling artefacts",
+     "outcome": "Not applicable: the features are pooled embeddings and mean patch tokens; no map is pooled.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Power of the negative results",
+     "outcome": "(a) Same-person mixes above two-person morphs (0.29 to 0.38): well powered (258 against 258, interval 0.23 to 0.35), holds per database and session; it is not blindness of the features, since a probe trained for the step reaches 0.79. (b) 'No rise with contributor dissimilarity' on the paired step: underpowered; rho is 0.04 to 0.16 across the five C values with interval half-width 0.13, so a correlation up to about 0.25 is not excluded; the rise of the raw score (0.17 to 0.41) is stable. (c) Weak MorDIFF cell (0.59 to 0.68) is not evidence that the idea fails there: frames differ (256 px crops in training, 512 frames with about 150 px storage in the benchmark); at 256 px the same head gives 0.886. (d) Graded mixing: no data. (e) Feature size 224 from 256 px: no issue.",
+     "changes_verdict": false
+    },
+    {
+     "attack": "Pre-registration timing and readings applied as written",
+     "outcome": "Passes. prereg.md was created and last modified at 16:57:12, committed at 17:25:21 (5a19286) and is byte-identical now; first 8-image statistics test 17:20, first feature file 17:27, first analysis 18:11. Every fixed reading in readings.csv follows the registered rule (single-statistic floor, 0.75 / +0.05 / 15% marks, C tie-break). Disclosed deviations are real and harmless: DINOv3 mean patch equals DINOv3 pooled; mirror mixes for 32 persons scored after the main runs; the 27 confirmation blocks carry the earlier label 'prospective_confirmation_no_fit' and were used as training hosts as instructed.",
+     "changes_verdict": false
+    }
+   ],
+   "corrected_verdict": "mixed",
+   "corrected_wording": "Signal isolation by paired differences (PD1), diffusion-autoencoder (DiffAE) family. A linear head trained only on one-person images (same-person DiffAE mix against the reconstruction of the same photo) separates two-person DiffAE morphs from reconstructions on held-out persons at AUC 0.95 [0.92, 0.97] on frozen CLIP ViT-L/14 pooled features (0.88 to 0.92 on the other two feature sets), 0.78 to 0.95 from one photo database to the other, and 0.89 on FRLL at 256 px; 2 to 4% of softened genuine photos are flagged. The registered reading \"works\" is met as written and every number reproduces.\n\nWhat transfers is a render-texture trace of DiffAE mixing at equal render settings, not a morph-specific signal:\n1. A head on 26 simple image statistics trained the same one-person way reaches 0.947; the excess of the feature head over it is +0.00 [-0.03, +0.04]. The registered +0.18 is against a single statistic only.\n2. The head ranks same-person mixes and mirror mixes above two-person morphs (0.29 and 0.20). Under the three-category definitions it detects a single-subject manipulation.\n3. It reacts to decoding steps without any mixing: the 100-step reconstruction of a photo outscores its 20-step reconstruction in 197 of 204 FRLL photos, 35% of them are flagged at the threshold that flags 5% of 20-step reconstructions, and a 20-step morph against 100-step reconstructions gives 0.73. The two-person-trained head behaves the same.\n4. With the face blanked it still reaches 0.94.\n5. For morph against genuine photo on the training hosts it stays below one statistic (0.88 against 0.91 for file size, 0.955 for median absolute Laplacian).\n\nBenchmark cells are descriptive and not robust: MorDIFF 0.61 to 0.68 and the DiM families 0.61 to 0.99 depending on the regularisation strength (the reported values are the setting chosen by a tie-break), and published MorDIFF morphs separate from 100-step one-photo reconstructions at only 0.60 [0.52, 0.70]. \"Second identity is a consistent direction\" holds on the pooled set but is confounded with session in FERET and is 0.74 to 0.79 on FRGC. The softening control is uninformative here because DiffAE mixes carry more fine detail than reconstructions, not less.",
+   "what_would_settle_it": [
+    "Render the training hosts' reconstructions (and a subset of mixes) at several decoding step counts (20, 50, 100) with the pinned DiffAE, then refit the one-person head with step count crossed between positives and negatives and re-apply the 0.75 / +0.05 / 15% rule with 'more steps, no mixing' as the false-alarm pool. Needs new DiffAE renders (author's yes; GB10 or Athena).",
+    "A one-photo control that uses the mixing arithmetic without a second image: decode a photo's semantic code with a stochastic code that no longer matches it (for example slerp with an independent Gaussian draw), or repair the identical-inputs path of the identical-and-mirrored-inputs check (AD1b), which currently returns NaN. Tells whether the head reads 'two images mixed' or 'stochastic code no longer matches the photo'.",
+    "Register the simple-statistic floor as a combined head (the 26 native-size statistics in /mnt/t7/smad_next/PD1/diffusion/verify/v2_stats.py) for all three families and re-apply the +0.05 rule; add a matched test in which morphs and reconstructions are paired on file size and spectral band energies.",
+    "DiM-pipeline reconstructions and same-person DiM mixes of FRLL photos (DiM A, Fast-DiM, Greedy-DiM), so the DiM benchmark cells can be split into pipeline and mixing steps; depends on the DiM code running (ladder on DiM and Greedy-DiM, AD2).",
+    "The decoding step count of the published MorDIFF set (authors' code or the authors themselves) to fix which reconstruction is the right control for that cell.",
+    "Session-matched twins as the composition rule requires (same-person partner and second person both from another session than the host), plus FRGC session metadata, to test the second-identity step without the session confound; and graded mixes (0.1 to 0.5) on a subset for the dose test.",
+    "Quote benchmark cells as a range over the registered C values, or fix C by a rule that cannot end in a five-way tie, before any benchmark number of this head is used."
+   ]
+  },
+  "toolsUsed": [
+   "Bash",
+   "Read",
+   "ToolSearch",
+   "StructuredOutput"
+  ]
+ },
+ {
+  "type": "result",
+  "key": "v2:0f74ba034a3978f6660194d8671d904c9f2317dd652d51e5499a1243aebaf612",
+  "agentId": "a31492b4905bd142a",
+  "result": {
+   "answer": "No shared mixing direction, and no transfer: a one-person head trained on two morph families did not detect two-person morphs of the third. All 9 registered held-out cells (3 families x 3 features) read \"fails\", so the plain answer is no. With frozen CLIP ViT-L/14 pooled, CLIP mean patch and DINOv3 ViT-L/16 features and linear heads, a detector trained on one-person morphs of several pipelines would not be expected to detect two-person morphs of an unseen pipeline.\n\n- **Two-person heads fail too.** Heads trained on two-person morphs of two families give 0.38 to 0.69 on the held-out family, so the failure is not caused by training on one-person images.\n- **Softness is not the cause.** The registered softened genuine sets are flagged at 3.9 to 8.8%.\n- **The code and features are sound.** The same heads fitted inside each family reproduce the families' own numbers: landmark 1.00/0.99/0.95, diffusion 0.95/0.88/0.91, GAN 0.81/0.78/0.79.\n- **Each family's one-person signal is specific to its pipeline.** Landmark reads double exposure, mostly in the surround. Diffusion reads render texture. GAN reads the latent code pulled toward the mean. The GAN direction is partly opposed to the other two.\n\n**Verdicts used.** Landmark and diffusion use the verified \"mixed\". GAN had no delivered verification (a partial sceptic run exists on disk), so the owner's \"idea works\" stands, with its own latent-averageness qualifier fired.\n\n**Process.**\n- Pre-registration was written before any number. Amendment 1 (before any number): the diffusion CLIP cache failed my 1e-3 equality check (0.0031, made with TF32 off), so all diffusion images were re-extracted with the common code.\n- Amendment 2 is post hoc, written after the CLIP results: pairwise single-family transfer and probes of the mean-direction heads.\n- An 8-image smoke test ran before every command. An analysis code-path test (fewer draws) ran after registration; its head point estimates equal the full run's.\n- Compute: about 9 GPU-minutes, peak 1.72 GB; at most 2 CPU processes with nice 10. No git, cluster or spending.\n- The pre-registration, result and README (`README.md` per `DOCUMENTATION.md`, current as of 21:21) are written. No independent review of this step has run.",
+   "cosines_between_families": "The one-person mixing step (x1 to x2) is not shared by any pair of families. Values are cross-fitted cosines in z-space over 200 person-half splits, for CLIP pooled / CLIP patch / DINOv3:\n\n| Step | Landmark vs diffusion | Landmark vs GAN | Diffusion vs GAN |\n|---|---|---|---|\n| One-person mixing | 0.44 / 0.37 / 0.15 | -0.04 / -0.15 / -0.13 | -0.27 / -0.37 / -0.45 |\n| Whole morph (x1 to x3) | 0.38 / 0.37 / 0.23 | -0.16 / -0.11 / -0.13 | -0.16 / -0.09 / -0.25 |\n| Pipeline (x0 to x1) | 0.08 / -0.18 / -0.03 | 0.02 / 0.08 / 0.09 | 0.59 / 0.30 / 0.30 |\n\n- **Reading.** All 9 mixing pairs read \"not shared\", including after disattenuation (landmark vs diffusion 0.45/0.39/0.16). The registered reading is \"no shared mixing direction\" in all three features.\n- **Reliabilities are high enough for that reading.** Split-half reliability of the mixing directions is 0.94 to 0.99 for landmark and diffusion, and 0.67 to 0.83 for GAN.\n- **Whole morph and pipeline also read \"no shared direction\".** The only \"shared\" pipeline pair is diffusion vs GAN in CLIP pooled (0.59): generator reconstruction is a common direction.\n- **Secondary L2 space gives the same picture.** Only landmark vs diffusion mixing in CLIP pooled reaches 0.50.\n- **The mixing directions are not softness.** Cosines with SMDD softening are -0.23 to 0.23.\n- **The GAN mixing direction is GAN latent spread.** It aligns with the one-identity latent-spread direction (0.56 to 0.73), while diffusion mixing is opposed to it (-0.28 to -0.51).\n- **The GAN pipeline step looks like landmark mixing.** Camera photo to GAN render aligns with landmark mixing at 0.32 to 0.59.",
+   "leave_one_family_out": "Heads were fitted on two families, with every person of the held-out family removed from training, and scored on all hosts of the third. AUC is x1 vs x3 with a 95% person bootstrap, for CLIP pooled / CLIP patch / DINOv3.\n\n| Held out | Training hosts | One-person head | Floor | Two-person head | Flag rate |\n|---|---|---|---|---|---|\n| Landmark (536 hosts) | diffusion 124, GAN 40 | 0.432 [0.386, 0.482] / 0.676 / 0.522 | 0.886 | 0.48 / 0.69 / 0.56 | 4.4 to 5.4% |\n| Diffusion (516 hosts) | landmark 291, GAN 56 | 0.555 [0.499, 0.613] / 0.559 / 0.506 | 0.773 | 0.59 / 0.68 / 0.59 | 5.9 to 8.3% |\n| GAN (256 hosts) | landmark 399, diffusion 316 | 0.383 [0.298, 0.475] / 0.300 / 0.325 | 0.601 | 0.44 / 0.41 / 0.38 | 3.9 to 5.4% |\n\n- **Every cell fails.** Excess over the floor is -0.45 to -0.21 with all intervals below 0.\n- **Transfer gap against the in-family head on the same features** is -0.57 to -0.32 for landmark, -0.41 to -0.32 for diffusion and -0.48 to -0.43 for GAN.\n- **Robust to the head recipe.** All five C values fail; the best is the smallest C on landmark, 0.78 / 0.81, still below the floor. No person purge, landmark x2-only positives and unweighted families: all 27 sensitivity cells fail.\n- **What the heads read on GAN.** Heads trained on landmark and diffusion score GAN renders whose latent is nearer the mean lower (set H x1 vs x3 0.24 to 0.38; x1 vs x1s 0.25 to 0.43), and separate camera photos from renders at 0.95.\n- **What the heads read on diffusion.** They read the DiffAE pipeline (photo vs reconstruction 0.65 to 0.75) more than DiffAE mixing (0.38 to 0.49).\n- **Post hoc, pairwise.** Diffusion to landmark gives 0.61 to 0.91, and the unfitted mean direction 0.976 on CLIP pooled. GAN to landmark is opposed (0.10 to 0.47). Landmark to diffusion is 0.62 to 0.74; every pair involving GAN is at most 0.51.\n- **The one transferring direction reads the surround.** On landmark it gives surround only 0.95 and face only 0.54, and scores mirror self-morphs like morphs (0.44).",
+   "largest_threat": "Family is confounded with frame, resolution and photo source:\n- landmark: 512 px aligned frames;\n- diffusion: 256 px DiffAE crops;\n- GAN: 1,024 px renders, with camera photos in a third frame.\n\nEach family's one-person signal was also found to be largely a pipeline artefact: by the verifiers for landmark (surround double exposure) and diffusion (render texture and decoding steps), and by the owner's registered qualifier for GAN (latent averageness).\n\nSo the negative shows that these pipeline artefacts do not transfer. It does not show that a blending signal confined to the face could not transfer once all pipelines run on the same host photos in one frame, with the surround blanked. That test needs new generation, which is the author's call.\n\nSome shared component does exist between landmark and diffusion: cosines 0.15 to 0.44, and the post hoc diffusion mean direction transfers to landmark at 0.976. But it reads the landmark surround (face only 0.54), so it is not evidence of a shared face-morph signal.\n\nSmaller threats: only three families; frozen features with linear heads only, so a fine-tuned network was not tested; and small purged GAN training sets (40 and 56 hosts). The no-purge run with 256 GAN hosts gives the same readings.",
+   "files": [
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/prereg.md",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/result.md",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/README.md",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/readings.json",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/cosines.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/lofo.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/infamily.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/sensitivity.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/probes.csv",
+    "/home/narolski/smad-next/experiments/PD1_signal-isolation-paired-differences/transfer/pairwise_posthoc.csv",
+    "/home/narolski/smad-next/src/PD1/transfer/tf_items.py",
+    "/home/narolski/smad-next/src/PD1/transfer/tf_feats.py",
+    "/home/narolski/smad-next/src/PD1/transfer/run_feats.sh",
+    "/home/narolski/smad-next/src/PD1/transfer/tf_lib.py",
+    "/home/narolski/smad-next/src/PD1/transfer/tf_analysis.py",
+    "/home/narolski/smad-next/src/PD1/transfer/run_analysis.sh",
+    "/home/narolski/smad-next/src/PD1/transfer/tf_posthoc.py",
+    "/home/narolski/smad-next/src/PD1/transfer/tf_summary.py",
+    "/mnt/t7/smad_next/PD1/transfer/lists/landmark_items.csv",
+    "/mnt/t7/smad_next/PD1/transfer/feats/",
+    "/mnt/t7/smad_next/PD1/transfer/res/",
+    "/mnt/t7/smad_next/PD1/transfer/logs/"
+   ]
+  },
+  "toolsUsed": [
+   "Bash",
+   "Read",
+   "Write",
+   "Edit",
+   "StructuredOutput"
+  ]
+ }
+]

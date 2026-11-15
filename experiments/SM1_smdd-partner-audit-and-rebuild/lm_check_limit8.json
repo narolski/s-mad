@@ -1,0 +1,20 @@
+{
+ "n": 12,
+ "seconds": 125.3,
+ "images_per_minute": 5.7,
+ "workers": 4,
+ "no_face": {
+  "contrib": 0,
+  "pool": 0,
+  "bfcheck": 0
+ },
+ "no_face_names": [],
+ "bfcheck_max_abs_px_vs_if106": [
+  0.01425933837890625,
+  3.0517578125e-05,
+  2.288818359375e-05,
+  3.814697265625e-05
+ ],
+ "n_contrib": 3858,
+ "n_pool": 3000
+}

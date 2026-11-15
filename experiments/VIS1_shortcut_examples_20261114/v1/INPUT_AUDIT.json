@@ -1,0 +1,247 @@
+{
+  "at": "2026-11-14T17:17:07.643194+00:00",
+  "preparation": "CPU metadata/source only; no torch/model/score-array imports",
+  "scope": "proposed new private descriptive image response; NOT inherited XAI execution authority",
+  "inputs": [
+    {
+      "input": {
+        "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_orig.png",
+        "sha256": "dbd11bb9c9545524c01eafd4d0f4e1478faa5aa9c9ca04d8f4643124f92592d1",
+        "id": "00042_native",
+        "photo_key": "00042",
+        "condition": "native",
+        "manifest_id": "fq005006"
+      },
+      "manifest": {
+        "id": "fq005006",
+        "path": "eval/ffhqm/ffhq_bona/00042_orig.png",
+        "set": "ffhqm",
+        "family": "ffhq_bona",
+        "label": "0",
+        "variant": "orig",
+        "aligned": "1",
+        "native_w": "1024",
+        "native_h": "1024",
+        "file_bytes": "1357309",
+        "ied": "249.75587463378906"
+      },
+      "construction_metadata": {
+        "id": "fq005006",
+        "src": "FFHQ-1024/Part1/00042.png",
+        "key": "00042",
+        "key_x": "",
+        "key_y": "",
+        "pre_w": "1024",
+        "pre_h": "1024",
+        "pre_png_bytes": "1541639",
+        "pre_ied": "249.75587463378906",
+        "scale": "1.0",
+        "border_frac": "0.03835296630859375",
+        "aligned_png_bytes": "429336"
+      },
+      "attribution": {
+        "role": "bona_fide",
+        "pair_key": "",
+        "ffhq_key": "00042",
+        "author": "Rebecca Brown",
+        "license": "Attribution-NonCommercial License",
+        "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+        "photo_url": "https://www.flickr.com/photos/rebeccacbrown13/2168341402/",
+        "photo_title": "Shirtless, bearded Josh."
+      }
+    },
+    {
+      "input": {
+        "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_resmatch_landmark_complete.png",
+        "sha256": "a1e4c13cc32bba5450e3a9b36fa19a6e1fffa130907f0f62b18d2e0002207a97",
+        "id": "00042_history",
+        "photo_key": "00042",
+        "condition": "history",
+        "manifest_id": "fq005007"
+      },
+      "manifest": {
+        "id": "fq005007",
+        "path": "eval/ffhqm/ffhq_bona/00042_resmatch_landmark_complete.png",
+        "set": "ffhqm",
+        "family": "landmark_complete",
+        "label": "0",
+        "variant": "resmatch",
+        "aligned": "1",
+        "native_w": "1024",
+        "native_h": "1024",
+        "file_bytes": "1357309",
+        "ied": "249.75587463378906"
+      },
+      "construction_metadata": {
+        "id": "fq005007",
+        "src": "FFHQ-1024/Part1/00042.png",
+        "key": "00042",
+        "key_x": "",
+        "key_y": "",
+        "pre_w": "265",
+        "pre_h": "265",
+        "pre_png_bytes": "118792",
+        "pre_ied": "64.59004211425781",
+        "scale": "0.2586968164285914",
+        "border_frac": "0.04248809814453125",
+        "aligned_png_bytes": "329717"
+      },
+      "attribution": {
+        "role": "bona_fide",
+        "pair_key": "",
+        "ffhq_key": "00042",
+        "author": "Rebecca Brown",
+        "license": "Attribution-NonCommercial License",
+        "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+        "photo_url": "https://www.flickr.com/photos/rebeccacbrown13/2168341402/",
+        "photo_title": "Shirtless, bearded Josh."
+      }
+    },
+    {
+      "input": {
+        "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_orig.png",
+        "sha256": "c07df69f9421404b37f76d05d23242d0b5c25b9584dee273cf5973d467cf22fa",
+        "id": "00056_native",
+        "photo_key": "00056",
+        "condition": "native",
+        "manifest_id": "fq005012"
+      },
+      "manifest": {
+        "id": "fq005012",
+        "path": "eval/ffhqm/ffhq_bona/00056_orig.png",
+        "set": "ffhqm",
+        "family": "ffhq_bona",
+        "label": "0",
+        "variant": "orig",
+        "aligned": "1",
+        "native_w": "1024",
+        "native_h": "1024",
+        "file_bytes": "1439231",
+        "ied": "265.3272399902344"
+      },
+      "construction_metadata": {
+        "id": "fq005012",
+        "src": "FFHQ-1024/Part1/00056.png",
+        "key": "00056",
+        "key_x": "",
+        "key_y": "",
+        "pre_w": "1024",
+        "pre_h": "1024",
+        "pre_png_bytes": "1526582",
+        "pre_ied": "265.3272399902344",
+        "scale": "1.0",
+        "border_frac": "0.07288360595703125",
+        "aligned_png_bytes": "392021"
+      },
+      "attribution": {
+        "role": "bona_fide",
+        "pair_key": "",
+        "ffhq_key": "00056",
+        "author": "RAFFI YOUREDJIAN",
+        "license": "Attribution-NonCommercial License",
+        "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+        "photo_url": "https://www.flickr.com/photos/62487011@N08/28696918755/",
+        "photo_title": "MANGAGAN-7"
+      }
+    },
+    {
+      "input": {
+        "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_resmatch_landmark_complete.png",
+        "sha256": "04629c855318c47c764bb6d5f84b5a41306203ba636bcdd511e298e77576fe16",
+        "id": "00056_history",
+        "photo_key": "00056",
+        "condition": "history",
+        "manifest_id": "fq005013"
+      },
+      "manifest": {
+        "id": "fq005013",
+        "path": "eval/ffhqm/ffhq_bona/00056_resmatch_landmark_complete.png",
+        "set": "ffhqm",
+        "family": "landmark_complete",
+        "label": "0",
+        "variant": "resmatch",
+        "aligned": "1",
+        "native_w": "1024",
+        "native_h": "1024",
+        "file_bytes": "1439231",
+        "ied": "265.3272399902344"
+      },
+      "construction_metadata": {
+        "id": "fq005013",
+        "src": "FFHQ-1024/Part1/00056.png",
+        "key": "00056",
+        "key_x": "",
+        "key_y": "",
+        "pre_w": "249",
+        "pre_h": "249",
+        "pre_png_bytes": "99216",
+        "pre_ied": "64.28042602539062",
+        "scale": "0.24351457337918897",
+        "border_frac": "0.06904220581054688",
+        "aligned_png_bytes": "295088"
+      },
+      "attribution": {
+        "role": "bona_fide",
+        "pair_key": "",
+        "ffhq_key": "00056",
+        "author": "RAFFI YOUREDJIAN",
+        "license": "Attribution-NonCommercial License",
+        "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+        "photo_url": "https://www.flickr.com/photos/62487011@N08/28696918755/",
+        "photo_title": "MANGAGAN-7"
+      }
+    }
+  ],
+  "age_review": {
+    "00042": {
+      "method": "manual visual description of original aligned photo",
+      "description": "adult-appearing person with full beard and glasses; no numeric age metadata or documentary adulthood verification"
+    },
+    "00056": {
+      "method": "manual visual description of original aligned photo",
+      "description": "adult-appearing person with short hair and facial stubble; no numeric age metadata or documentary adulthood verification"
+    },
+    "publication_clearance": "PENDING separately; apparent age is not consent or identity verification"
+  },
+  "overlap": {
+    "exact_path_key_check": [
+      {
+        "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/train_A.csv",
+        "sha256": "af070a60529db3e8636d31a62ee613faa6ecdb106d20f5c855eb106ee8eb12ca",
+        "arm": "A",
+        "rows": 1992,
+        "manifest_db_values": [
+          "feret",
+          "frgc"
+        ],
+        "exact_path_or_explicit_FFHQ_key_matches": []
+      },
+      {
+        "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/train_B.csv",
+        "sha256": "bd53dc3252a767671bd5b35651e9108a35f7b363fe4642bae593fa88a442da70",
+        "arm": "B",
+        "rows": 7762,
+        "manifest_db_values": [
+          "feret",
+          "frgc"
+        ],
+        "exact_path_or_explicit_FFHQ_key_matches": []
+      }
+    ],
+    "full_training_image_hash_overlap": "NOT_VERIFIED; no full training-image reread performed",
+    "person_overlap": "UNKNOWN; FFHQ keys are photograph IDs, not person IDs; no synthetic identity labels",
+    "component_overlap": "UNKNOWN across FFHQ/SMDD/FERET/FRGC; no inherited independent-component claim",
+    "SelfMAD_original_training_overlap": "UNKNOWN beyond release recipe record; not independently auditable here",
+    "permitted_interpretation": "Potentially exposed descriptive development examples, not held-out test or benchmark evidence"
+  },
+  "existing_score_search": {
+    "checked": {
+      "path": "/home/narolski/smad-next/manuscript_cvpr2027/figures/shortcut_attribution_20261114/per_image_scores.csv",
+      "sha256": "4dd8aebf658dc23d8620a1ff5771a2e0292d7afb1b0f777eef818b62bb3c1c09"
+    },
+    "result": "No00042/00056 response in this specifically admitted XAI CSV; global absence not asserted; other scientific arrays not opened"
+  },
+  "rights": "CC BY-NC2.0 per-image attribution plus dataset BY-NC-SA4.0. Private noncommercial research is proposed; require root exact release. Publication/privacy disposition pending.",
+  "threshold": null,
+  "operations": "Existing PNG bytes only; history is E7 INTER_AREA shrink then alignment, not isolated JPEG/blur. No new image construction."
+}

@@ -1,0 +1,194 @@
+{
+ "label": "MAD22-informed, post-read, descriptive; no method choice follows",
+ "H_new_1_expression": {
+  "OpenCV": {
+   "per_seed": {
+    "PN1_Sb_s403": {
+     "threshold": -3.0939018726348877,
+     "bpcer_08": 0.0392156862745098,
+     "bpcer_03": 0.0196078431372549,
+     "ratio": 2.0,
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.029471544715447155
+    },
+    "PN1_Sb_s404": {
+     "threshold": -3.17170786857605,
+     "bpcer_08": 0.029411764705882353,
+     "bpcer_03": 0.0196078431372549,
+     "ratio": 1.5,
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.024390243902439025
+    },
+    "PN1_Sb_s405": {
+     "threshold": -1.188956379890442,
+     "bpcer_08": 0.049019607843137254,
+     "bpcer_03": 0.00980392156862745,
+     "ratio": 5.0,
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.029471544715447155
+    },
+    "PN1_Sb_s406": {
+     "threshold": -0.3269794285297394,
+     "bpcer_08": 0.029411764705882353,
+     "bpcer_03": 0.00980392156862745,
+     "ratio": 3.0,
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.021341463414634148
+    },
+    "PN1_Sb_s407": {
+     "threshold": -0.2852890193462372,
+     "bpcer_08": 0.0196078431372549,
+     "bpcer_03": 0.0,
+     "ratio": "inf",
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.008130081300813009
+    }
+   },
+   "n_ratio_ge2": 4,
+   "n_ratio_lt1_5": 0,
+   "verdict": "supported"
+  },
+  "Webmorph": {
+   "per_seed": {
+    "PN1_Sb_s403": {
+     "threshold": -3.295677423477173,
+     "bpcer_08": 0.06862745098039216,
+     "bpcer_03": 0.06862745098039216,
+     "ratio": 1.0,
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.068
+    },
+    "PN1_Sb_s404": {
+     "threshold": -3.3320693969726562,
+     "bpcer_08": 0.22549019607843138,
+     "bpcer_03": 0.08823529411764706,
+     "ratio": 2.5555555555555554,
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.156
+    },
+    "PN1_Sb_s405": {
+     "threshold": -2.963951587677002,
+     "bpcer_08": 0.18627450980392157,
+     "bpcer_03": 0.0392156862745098,
+     "ratio": 4.75,
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.112
+    },
+    "PN1_Sb_s406": {
+     "threshold": -2.9576940536499023,
+     "bpcer_08": 0.22549019607843138,
+     "bpcer_03": 0.0392156862745098,
+     "ratio": 5.75,
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.13
+    },
+    "PN1_Sb_s407": {
+     "threshold": -2.950455665588379,
+     "bpcer_08": 0.08823529411764706,
+     "bpcer_03": 0.0196078431372549,
+     "ratio": 4.5,
+     "n08": 102,
+     "n03": 102,
+     "apcer_at_t": 0.052
+    }
+   },
+   "n_ratio_ge2": 4,
+   "n_ratio_lt1_5": 1,
+   "verdict": "supported"
+  },
+  "overall": "supported"
+ },
+ "H_new_2_border_genuine_side": {
+  "per_seed": {
+   "PN1_Sb_s403": {
+    "eer_S": 0.0050000000000000044,
+    "eer_BE_S": 0.04200000000000004,
+    "eer_Smorph_BEgenuine": 0.06862745098039216,
+    "rise_points": 3.7000000000000033,
+    "share": 1.7196608373078945,
+    "read": true
+   },
+   "PN1_Sb_s404": {
+    "eer_S": 0.014705882352941176,
+    "eer_BE_S": 0.06499999999999995,
+    "eer_Smorph_BEgenuine": 0.09099999999999997,
+    "rise_points": 5.029411764705877,
+    "share": 1.5169590643274864,
+    "read": true
+   },
+   "PN1_Sb_s405": {
+    "eer_S": 0.028000000000000025,
+    "eer_BE_S": 0.029411764705882353,
+    "eer_Smorph_BEgenuine": 0.0392156862745098,
+    "rise_points": 0.14117647058823277,
+    "share": null,
+    "read": false
+   },
+   "PN1_Sb_s406": {
+    "eer_S": 0.0392156862745098,
+    "eer_BE_S": 0.0392156862745098,
+    "eer_Smorph_BEgenuine": 0.05600000000000005,
+    "rise_points": 0.0,
+    "share": null,
+    "read": false
+   },
+   "PN1_Sb_s407": {
+    "eer_S": 0.029000000000000026,
+    "eer_BE_S": 0.04411764705882353,
+    "eer_Smorph_BEgenuine": 0.06000000000000005,
+    "rise_points": 1.5117647058823507,
+    "share": 2.050583657587554,
+    "read": true
+   }
+  },
+  "n_read": 3,
+  "n_share_ge_0_70": 3,
+  "n_share_lt_0_40": 0,
+  "verdict": "inconclusive"
+ },
+ "H_new_3_blend_energy": {
+  "verdict": "not read",
+  "why": "no per-frame landmark files exist for the MAD22 canonical frames (registered condition); the AF0 canonical mean hull is not one"
+ },
+ "H_new_4_dev_auc_predicts_rank": {
+  "seeds": [
+   401,
+   402,
+   403,
+   404,
+   405,
+   406,
+   407
+  ],
+  "lcomb_auc": {
+   "401": 0.8868175,
+   "402": 0.9094615,
+   "403": 0.814187,
+   "404": 0.873577,
+   "405": 0.845375,
+   "406": 0.8844105,
+   "407": 0.8845755
+  },
+  "mad22_mean2_H_eer_pct": {
+   "401": 5.065447154471546,
+   "402": 9.670588235294119,
+   "403": 4.901960784313726,
+   "404": 9.025490196078433,
+   "405": 7.107843137254902,
+   "406": 7.5670731707317085,
+   "407": 3.006504065040655
+  },
+  "spearman": 0.28571428571428575,
+  "verdict": "falsified",
+  "caveat": "n = 7, low power; 401/402 from another block"
+ }
+}

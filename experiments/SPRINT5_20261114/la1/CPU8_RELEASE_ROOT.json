@@ -1,0 +1,10 @@
+{
+  "decision": "GO_CPU_SMOKE",
+  "scope": "LA1-0 labelled128px calibration only; no HQ admission",
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "script_sha256": "e60c246d1d6546851096160a321c0f1aa0a178cdf96c8167022d16682a19255f",
+  "selection_sha256": "2ba96c20a3b214be6cacfd951937077e98160d1b57c857a5c7948e5dc6054e52",
+  "independent_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/la1/PRERUN_ROOT_LOWRES_CPU8.md",
+  "independent_review_sha256": "e62d494fa8ac2fe1ca0535762b561853331dd038d4dd4c37d2efa6e919ae9b15"
+}

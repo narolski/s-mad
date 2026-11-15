@@ -1,0 +1,240 @@
+{
+ "opencv|pipeline": {
+  "engine": "opencv",
+  "step": "pipeline",
+  "a": "x0",
+  "b": "x1",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.7988,
+  "auc_ci": [
+   0.7753166594731566,
+   0.8209422511973713
+  ],
+  "consistent": true
+ },
+ "opencv|mirror_mix": {
+  "engine": "opencv",
+  "step": "mirror_mix",
+  "a": "x1",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.7801,
+  "auc_ci": [
+   0.7626245231398975,
+   0.7973347175038985
+  ],
+  "consistent": true
+ },
+ "opencv|mirror_mix_matched": {
+  "engine": "opencv",
+  "step": "mirror_mix_matched",
+  "a": "x1m",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.7827,
+  "auc_ci": [
+   0.7649902017431499,
+   0.799842496936957
+  ],
+  "consistent": true
+ },
+ "opencv|same_person_mix": {
+  "engine": "opencv",
+  "step": "same_person_mix",
+  "a": "x1",
+  "b": "x2",
+  "share": 0.9646,
+  "share_ci": [
+   0.9477611940298507,
+   0.9794776119402985
+  ],
+  "auc": 0.7816,
+  "auc_ci": [
+   0.762189170750724,
+   0.8006186998774782
+  ],
+  "consistent": true
+ },
+ "opencv|second_identity": {
+  "engine": "opencv",
+  "step": "second_identity",
+  "a": "x2",
+  "b": "x3",
+  "share": 0.7743,
+  "share_ci": [
+   0.7196390352589123,
+   0.8274597841250665
+  ],
+  "auc": 0.6529,
+  "auc_ci": [
+   0.6187493734244195,
+   0.6863526623575186
+  ],
+  "consistent": true
+ },
+ "opencv|whole_morph": {
+  "engine": "opencv",
+  "step": "whole_morph",
+  "a": "x1",
+  "b": "x3",
+  "share": 0.9627,
+  "share_ci": [
+   0.9317751644585558,
+   0.9866673003802282
+  ],
+  "auc": 0.8309,
+  "auc_ci": [
+   0.8070825675725848,
+   0.8539456753823824
+  ],
+  "consistent": true
+ },
+ "opencv|photo_to_morph": {
+  "engine": "opencv",
+  "step": "photo_to_morph",
+  "a": "x0",
+  "b": "x3",
+  "share": 0.9869,
+  "share_ci": [
+   0.9674940961693388,
+   0.9982820072253062
+  ],
+  "auc": 0.8784,
+  "auc_ci": [
+   0.8599240260930057,
+   0.8964839780042109
+  ],
+  "consistent": true
+ },
+ "facemorpher|pipeline": {
+  "engine": "facemorpher",
+  "step": "pipeline",
+  "a": "x0",
+  "b": "x1",
+  "share": 0.8825,
+  "share_ci": [
+   0.8526119402985075,
+   0.9085820895522388
+  ],
+  "auc": 0.7117,
+  "auc_ci": [
+   0.6892202641178435,
+   0.7336952132991758
+  ],
+  "consistent": true
+ },
+ "facemorpher|mirror_mix": {
+  "engine": "facemorpher",
+  "step": "mirror_mix",
+  "a": "x1",
+  "b": "xm",
+  "share": 0.9963,
+  "share_ci": [
+   0.9906716417910447,
+   1.0
+  ],
+  "auc": 0.7671,
+  "auc_ci": [
+   0.7496713320060148,
+   0.7840457228781466
+  ],
+  "consistent": true
+ },
+ "facemorpher|mirror_mix_matched": {
+  "engine": "facemorpher",
+  "step": "mirror_mix_matched",
+  "a": "x1m",
+  "b": "xm",
+  "share": 1.0,
+  "share_ci": [
+   1.0,
+   1.0
+  ],
+  "auc": 0.7757,
+  "auc_ci": [
+   0.7584056165070172,
+   0.7923118491033638
+  ],
+  "consistent": true
+ },
+ "facemorpher|same_person_mix": {
+  "engine": "facemorpher",
+  "step": "same_person_mix",
+  "a": "x1",
+  "b": "x2",
+  "share": 0.9683,
+  "share_ci": [
+   0.9514925373134329,
+   0.9832089552238806
+  ],
+  "auc": 0.7746,
+  "auc_ci": [
+   0.7552175282635331,
+   0.7936526265593673
+  ],
+  "consistent": true
+ },
+ "facemorpher|second_identity": {
+  "engine": "facemorpher",
+  "step": "second_identity",
+  "a": "x2",
+  "b": "x3",
+  "share": 0.778,
+  "share_ci": [
+   0.7223263532242405,
+   0.8327214267281363
+  ],
+  "auc": 0.6662,
+  "auc_ci": [
+   0.6329184878559451,
+   0.69786338864289
+  ],
+  "consistent": true
+ },
+ "facemorpher|whole_morph": {
+  "engine": "facemorpher",
+  "step": "whole_morph",
+  "a": "x1",
+  "b": "x3",
+  "share": 0.9608,
+  "share_ci": [
+   0.9291486645718775,
+   0.9850515570576267
+  ],
+  "auc": 0.8158,
+  "auc_ci": [
+   0.7923468441033097,
+   0.8391295358148745
+  ],
+  "consistent": true
+ },
+ "facemorpher|photo_to_morph": {
+  "engine": "facemorpher",
+  "step": "photo_to_morph",
+  "a": "x0",
+  "b": "x3",
+  "share": 0.9552,
+  "share_ci": [
+   0.9185547582397682,
+   0.9832820492327365
+  ],
+  "auc": 0.8449,
+  "auc_ci": [
+   0.8241401922102155,
+   0.8647637377409935
+  ],
+  "consistent": true
+ }
+}

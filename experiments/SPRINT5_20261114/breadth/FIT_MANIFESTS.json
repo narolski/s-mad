@@ -1,0 +1,92 @@
+[
+  {
+    "arm": "narrow_more_variants",
+    "seed": 511,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_narrow_more_variants_s511.csv",
+    "sha256": "0481ede92491fb6f5d12d20dc6a4dc647f9f762bea54963699a3d3e473c9c362",
+    "allocation_sha256": "d5459300f134e34d76fca89a91df6369a0a044043b300f52aaef93deebb48a87",
+    "rows": 32,
+    "images_hashed": 32
+  },
+  {
+    "arm": "broad_fewer_variants",
+    "seed": 511,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_broad_fewer_variants_s511.csv",
+    "sha256": "033b30b8c341d2b1ed4d723d764e681f7973ee0abed31257363ba1a900dced4d",
+    "allocation_sha256": "91d89d6ada276bdc3f9cfc2e6844a68037e633492893704fa1d04b51988e15b5",
+    "rows": 32,
+    "images_hashed": 32
+  },
+  {
+    "arm": "narrow_more_variants",
+    "seed": 512,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_narrow_more_variants_s512.csv",
+    "sha256": "931a8faf07edcce8efd5cd32a1e16b78e69459ae641b111ef93c84fd35d6dc1a",
+    "allocation_sha256": "e72d595e39d81a0e87f6f004996fdb36c9df59c898d26e319d0f9566978f5e07",
+    "rows": 32,
+    "images_hashed": 32
+  },
+  {
+    "arm": "broad_fewer_variants",
+    "seed": 512,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_broad_fewer_variants_s512.csv",
+    "sha256": "f9ace5791edb2a1719b040e379bc6d8210a59ae5cdc47ca21caa0fc3a4fc1325",
+    "allocation_sha256": "c92f6fcea1e59fde129df968ada49cc72c768991c5503829ba1a679943b3ccd9",
+    "rows": 32,
+    "images_hashed": 32
+  },
+  {
+    "arm": "narrow_more_variants",
+    "seed": 513,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_narrow_more_variants_s513.csv",
+    "sha256": "da34c0c8ffeb8472e358feec6e14928bf86203bb51e9ae9ee408e4d2096501db",
+    "allocation_sha256": "3c17dd3236f67d5088bf37853d621930b129e5e55e9e9cc92c5f14789f185d22",
+    "rows": 32,
+    "images_hashed": 32
+  },
+  {
+    "arm": "broad_fewer_variants",
+    "seed": 513,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_broad_fewer_variants_s513.csv",
+    "sha256": "012b45b6f34077116a0d652d7eba70d33f0aff15e7650cbaf837b29ab295ff11",
+    "allocation_sha256": "49902fb47a27452a3aae0e1c58dce28d9def60466ea9c8cc47df58a62cf4a777",
+    "rows": 32,
+    "images_hashed": 32
+  },
+  {
+    "arm": "narrow_more_variants",
+    "seed": 514,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_narrow_more_variants_s514.csv",
+    "sha256": "441fa04aadcd4be6a9048a6cb3981f8015510374aecbc34bd9f6bf352a2dafe8",
+    "allocation_sha256": "e3aff62bc84ef26b5f768f1de836d740452265440d2b76eb97f53e1a3ffdb7aa",
+    "rows": 32,
+    "images_hashed": 32
+  },
+  {
+    "arm": "broad_fewer_variants",
+    "seed": 514,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_broad_fewer_variants_s514.csv",
+    "sha256": "560592701e35037a6ab79c62119a67fbcd400df53f138435ea3bddf784c6b6a0",
+    "allocation_sha256": "ead93a81c9a57ef83074299b31d1128791c4ee7f253e56a41b4ef8c8270f2eea",
+    "rows": 32,
+    "images_hashed": 32
+  },
+  {
+    "arm": "narrow_more_variants",
+    "seed": 515,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_narrow_more_variants_s515.csv",
+    "sha256": "cce8f0be013b3b5ae4f787215d4e7770f16dd278043a40709f686bbc4fba19e1",
+    "allocation_sha256": "2f1f00a01b9dac1ae3acb619cbd07ad37ccece852cb531b461459b51224e7444",
+    "rows": 32,
+    "images_hashed": 32
+  },
+  {
+    "arm": "broad_fewer_variants",
+    "seed": 515,
+    "path": "/home/narolski/smad-next/src/SPRINT5/breadth_fit/train_broad_fewer_variants_s515.csv",
+    "sha256": "b2be4603399992534424d703e71bdcea1a257e57ef0153d7b4ffc50c4489a460",
+    "allocation_sha256": "aae2e25aa6e887c2b89dd7b5cee7e6f650311bb31a13f6b41f29d9e182170a43",
+    "rows": 32,
+    "images_hashed": 32
+  }
+]

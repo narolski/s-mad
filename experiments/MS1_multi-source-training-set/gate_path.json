@@ -1,0 +1,148 @@
+{
+ "u50": [
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0000.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/u50/train_frgc_u50_0000.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0001.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/u50/train_frgc_u50_0001.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0002.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/u50/train_frgc_u50_0002.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0003.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/u50/train_frgc_u50_0003.png",
+   "equal": true,
+   "max_abs": 0
+  }
+ ],
+ "zero": [
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_zero_0000.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/zero/train_frgc_zero_0000.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_zero_0001.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/zero/train_frgc_zero_0001.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_zero_0002.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/zero/train_frgc_zero_0002.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_zero_0003.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/zero/train_frgc_zero_0003.png",
+   "equal": true,
+   "max_abs": 0
+  }
+ ],
+ "half": [
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0000_halfA.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/halfA/train_frgc_u50_0000_halfA.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0000_halfB.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/halfB/train_frgc_u50_0000_halfB.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0001_halfA.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/halfA/train_frgc_u50_0001_halfA.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0001_halfB.png",
+   "b": "/mnt/t7/smad_next/AF0/img/train/halfB/train_frgc_u50_0001_halfB.png",
+   "equal": true,
+   "max_abs": 0
+  }
+ ],
+ "fm61": [
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0001_fm61.png",
+   "b": "/mnt/t7/smad_next/AF0/img/soft/fm61/train_frgc_u50_0001_fm61.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0003_fm61.png",
+   "b": "/mnt/t7/smad_next/AF0/img/soft/fm61/train_frgc_u50_0003_fm61.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0005_fm61.png",
+   "b": "/mnt/t7/smad_next/AF0/img/soft/fm61/train_frgc_u50_0005_fm61.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/train_frgc_u50_0007_fm61.png",
+   "b": "/mnt/t7/smad_next/AF0/img/soft/fm61/train_frgc_u50_0007_fm61.png",
+   "equal": true,
+   "max_abs": 0
+  }
+ ],
+ "r4": [
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/ar1_000538.png",
+   "b": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/R4/feret_00002.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/ar1_000542.png",
+   "b": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/R4/feret_00003.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/ar1_000546.png",
+   "b": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/R4/feret_00019.png",
+   "equal": true,
+   "max_abs": 0
+  },
+  {
+   "a": "/mnt/t7/smad_next/MS1/gate/ar1_000550.png",
+   "b": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/R4/feret_00024.png",
+   "equal": true,
+   "max_abs": 0
+  }
+ ],
+ "all_equal": true,
+ "n": 20,
+ "sha256": {
+  "/home/narolski/mambamorph-code/scripts/73_delin_align.py": "47eefed3171d7ee63880b22e986e9666582a55fc3a62839671b9d8104e7e68e0",
+  "/home/narolski/mambamorph-code/scripts/78_tool_morph.py": "b8a389f10ce685fc95b50c69cbcdcf3d44a818ed3d6c04a79849534365cf12b1",
+  "/home/narolski/mambamorph-code/scripts/68_hires_morph.py": "71643aad7deaabbead698367342434242ec6955fc654c4d19a8f504b41f96d7a",
+  "/home/narolski/mambamorph-code/smadcvpr/prep_eval.py": "374408ab3a886e6df25b563bc2344d190efe2ab7b3163efbb17c9b6ca9100628",
+  "/home/narolski/smad-next/src/AF0/af_morph.py": "5a5aff1bf8f7292a20fccda853847c56ccd86d28a495aaedd1b0662ef1d0ab8d",
+  "/home/narolski/smad-next/src/AF0/soften.py": "aa90f2719e13b934b5de0171925f1cec13b22722d48f4eea5ee8a9273ded4212",
+  "/home/narolski/smad-next/src/AF0/ghost.py": "a13a8d4bfb4f146c25eaf9e330ef093ee6e64a417d6d7fddf6a55e4f1b8c61d1",
+  "/home/narolski/smad-next/src/AR1/variants.py": "76f4cd170ddb5e7b114fbf21b0c5331df3b2cd66b83ecf9624d5195568a09456",
+  "/home/narolski/smad-next/src/AR1/splice.py": "502108de586ea4608ca4a9bd06529adaa0ea3ccf3e386d1d50d37b1040af664b",
+  "/home/narolski/smad-next/src/AR1/fr.py": "eb425605480f8bdfa51acff27fc5c490e3e32151b0d18c589ca5a267050aa238",
+  "/home/narolski/smad-next/src/AR1/ar1_common.py": "42806acb43b0c8d5c6876622dc5cfd5377c6bac3a38cda250824606fb7d407ab",
+  "/home/narolski/smad-next/src/PN1/mkmanifests.py": "37ff64596deeefb2664df2dca983e5baf1dc5a02314a44fc826c0b4cb7b78967"
+ }
+}

@@ -1,0 +1,242 @@
+diff --git a/src/AB1/ab1_pm3_read.py b/src/AB1/ab1_pm3_read.py
+index d6b8baa..0c7eb89 100644
+--- a/src/AB1/ab1_pm3_read.py
++++ b/src/AB1/ab1_pm3_read.py
+@@ -22,7 +22,10 @@ import importlib.util
+ import io
+ import json
+ import math
++import os
++from datetime import datetime, timezone
+ import pathlib
++import subprocess
+ import sys
+ import tarfile
+ 
+@@ -43,7 +46,11 @@ A = PM.A
+ C2 = A.C2
+ K = PM.K
+ PM_SHA = "ba6efdada789c2a42ef47fa1fa39e707012f66641be40b6346ce9b45b067ed5e"
+-C_OVERLAY = "62712bb9d5066443d5737c84da852d055ab248930d5f38fc8b77ba0074a34c68"
++# Amendment 7b / run_c.sh: rebuilt fifteen-task overlay includes BV.
++C_OVERLAY = "bf276e548c5dc5a3c8d590d0500754c1d49ec87ad2e7b30237f05db94ffcafa7"
++C_RESULTS = pathlib.Path("/mnt/t7/smad_next/AB1/c/results")
++AB1_RESULTS = pathlib.Path("/mnt/t7/smad_next/AB1/results")
++ONCE_ROOT = pathlib.Path("/mnt/t7/smad_next/AB1/READ_ONCE_PM3")
+ C_MANDIR = pathlib.Path("/mnt/t7/smad_next/AB1/c/manifests")
+ FS1_RES = pathlib.Path("/mnt/t7/smad_next/PN1/results_fs")
+ FS1_EVAL = pathlib.Path("/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/pn1_eval.csv")
+@@ -52,11 +59,163 @@ FS1_EVAL_SHA = "f0f29f2201bd3a1dc67f24772347960ba7a383a9e5c1fa8920d0cc1b854a5045
+ 
+ FSMAN = pathlib.Path("/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests")
+ SP_MAN = pathlib.Path("/mnt/t7/smad_next/PN1/manifests_sp/train_Sp.csv")
++CONTEXT_ROOT = HERE.parents[1]
++CONTEXT_DIR = pathlib.Path("experiments/ADV_shortcut-floors/floors")
++WITHIN_D_CONTRASTS = ("ri_R4_vs_R3", "test_cv_R4_vs_R3")
++
++
++def _within_d_context(mock=False):
++    """Amendment 4b display only; no floor calculation or candidate access.
++
++    Verify both context files and their stage-6 pinfile against HEAD before
++    native access. Mock mode embeds synthetic placeholders, never real floors.
++    """
++    scope = ("Different row sets from the batch-C deciding populations; context only. "
++             "Not a floor on dev+clean80 or clean80, not used in any decision, "
++             "threshold, bootstrap or network-minus-floor comparison.")
++    if mock:
++        return {c: dict(scope=scope, synthetic=True, source=None, context={
++            "note": "Synthetic context placeholder; no real floor values loaded."})
++                for c in WITHIN_D_CONTRASTS}
++
++    def committed(relative):
++        data = (CONTEXT_ROOT / relative).read_bytes()
++        saved = subprocess.run(
++            ["git", "-C", str(CONTEXT_ROOT), "show", "HEAD:" + relative.as_posix()],
++            check=True, capture_output=True).stdout
++        if data != saved:
++            raise ValueError(f"uncommitted within-D context input: {relative}")
++        return data
++
++    pinpath = CONTEXT_DIR / "pins_stage6.sha256"
++    pinbytes = committed(pinpath)
++    pins = pinbytes.decode().splitlines()
++    result = {}
++    for c in WITHIN_D_CONTRASTS:
++        name = c + "_withinD.json"
++        relative = CONTEXT_DIR / name
++        data = committed(relative)
++        digest = hashlib.sha256(data).hexdigest()
++        if digest + "  " + name not in pins:
++            raise ValueError(f"within-D context missing committed stage-6 pin: {name}")
++        result[c] = dict(scope=scope, synthetic=False, source=dict(
++            path=str((CONTEXT_ROOT / relative).resolve()), sha256=digest,
++            pinfile=str((CONTEXT_ROOT / pinpath).resolve()),
++            pinfile_sha256=hashlib.sha256(pinbytes).hexdigest()),
++            context=json.loads(data))
++    return result
++
++
++def _exclusive_json(path, value):
++    """Durable create-only JSON; failures never remove a possibly consumed claim."""
++    path = pathlib.Path(path)
++    with path.open("x") as f:
++        json.dump(value, f, indent=1,
++                  default=lambda o: o.item() if isinstance(o, np.generic) else str(o))
++        f.write("\n")
++        f.flush()
++        os.fsync(f.fileno())
++    fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
++    try:
++        os.fsync(fd)
++    finally:
++        os.close(fd)
++
++
++def _claim_read(pair, out, mock, c_results, ab1_results, once_root=ONCE_ROOT):
++    """Called before any archive loader. Canonical per-pair claim survives failure.
++
++    Production CLI cannot redirect once_root. A new output path cannot bypass it.
++    Mock callers do not claim production and still cannot overwrite output.
++    """
++    out = pathlib.Path(out).absolute()
++    if os.path.lexists(out):
++        raise FileExistsError(f"output already exists (never overwritten): {out}")
++    if not out.parent.is_dir():
++        raise FileNotFoundError(f"output directory does not exist: {out.parent}")
++    if mock:
++        return None
++    root = pathlib.Path(once_root)
++    root.mkdir(parents=True, exist_ok=True)
++    claim = root / f"{pair}.claim.json"
++    _exclusive_json(claim, dict(
++        status="claimed_before_score_access", pair=pair,
++        claimed_utc=datetime.now(timezone.utc).isoformat(), pid=os.getpid(),
++        output=str(out), reader_sha256=hashlib.sha256(pathlib.Path(__file__).read_bytes()).hexdigest(),
++        c_results=str(pathlib.Path(c_results).resolve()),
++        ab1_results=str(pathlib.Path(ab1_results).resolve()),
++        c_overlay=C_OVERLAY,
++        failure_policy="Claim is permanent even after failure; no automatic retry or deletion."))
++    return claim
++
++
++def _validate_native_archive(tar, arm, seed, eval_manifest, eval_sha):
++    """Check task identity and lossless row mapping before the legacy dict(zip).
++
++    Uses only the pinned evaluation manifest; never infers expected row order from
++    candidate output. Returns a rejection reason, or None for valid metadata.
++    """
++    tar = pathlib.Path(tar)
++    sidecar = tar.with_name(tar.name + ".sha256")
++    if not tar.exists() or not sidecar.exists():
++        return "missing"
++    tokens = sidecar.read_text().split()
++    if not tokens or hashlib.sha256(tar.read_bytes()).hexdigest() != tokens[0]:
++        return "sha256 mismatch"
++    manifest_bytes = pathlib.Path(eval_manifest).read_bytes()
++    if hashlib.sha256(manifest_bytes).hexdigest() != eval_sha:
++        raise ValueError("pinned eval manifest hash mismatch")
++    expected = [r["id"] for r in csv.DictReader(io.StringIO(manifest_bytes.decode()))]
++    if len(expected) != len(set(expected)):
++        raise ValueError("pinned eval manifest has duplicate IDs")
++    task = tar.name[:-4]
++    try:
++        with tarfile.open(tar) as archive:
++            wanted = (f"{task}/task.env", f"{task}/scores_eval.npz")
++            for name in wanted:
++                members = [m for m in archive.getmembers() if m.name == name]
++                if len(members) != 1 or not members[0].isfile():
++                    return f"native metadata member missing, duplicated or non-file: {name}"
++            env = archive.extractfile(wanted[0]).read().decode()
++            # The registered launchers write one unquoted assignment per line.
++            fields = {}
++            for line in env.splitlines():
++                key, sep, value = line.strip().partition("=")
++                if key in ("TASK", "ARM", "SEED") and sep:
++                    if key in fields:
++                        return f"task.env duplicate {key}"
++                    fields[key] = value
++            if fields.get("TASK") != task or fields.get("ARM") != arm or fields.get("SEED") != str(seed):
++                return "task.env exact task/arm/seed mismatch"
++            with np.load(io.BytesIO(archive.extractfile(wanted[1]).read()), allow_pickle=False) as z:
++                ids, logits = z["id"], z["logit"]
++                if ids.ndim != 1 or logits.ndim != 1 or len(ids) != len(logits):
++                    return "eval id/logit shape or length mismatch"
++                actual = [str(x) for x in ids]
++                if len(actual) != len(set(actual)):
++                    return "duplicate eval score IDs"
++                if actual != expected:
++                    return "eval score IDs/order differ from pinned manifest"
++                if not np.isfinite(logits.astype(float)).all():
++                    return "non-finite eval logits"
++    except (KeyError, ValueError, UnicodeError, tarfile.TarError) as exc:
++        return f"native metadata invalid: {type(exc).__name__}"
++    return None
++
++
++def _load_ab1_checked(tar, arm, seed):
++    why = _validate_native_archive(tar, arm, seed, A.EVAL, A.EVAL_SHA)
++    if why is not None:
++        return None, None, why
++    return A.load(tar, "AB1", arm)
+ 
+ 
+ def load_fs1(arm, s):
+     T = f"PN1_{arm}_s{s}"
+     tar = FS1_RES / f"{T}.tar"
++    why = _validate_native_archive(tar, arm, s, FS1_EVAL, FS1_EVAL_SHA)
++    if why is not None:
++        return None, why
+     shf = FS1_RES / f"{T}.tar.sha256"
+     if not tar.exists() or not shf.exists():
+         return None, "missing"
+@@ -91,6 +250,10 @@ def main():
+     ap.add_argument("--pair", choices=("Sp", "FS1", "C"), required=True)
+     ap.add_argument("--out", required=True)
+     ap.add_argument("--mock", action="store_true")
++    ap.add_argument("--c-results", type=pathlib.Path, default=C_RESULTS,
++                    help="Batch-C archive directory; archive/sidecar/provenance checks remain unchanged")
++    ap.add_argument("--ab1-results", type=pathlib.Path, default=AB1_RESULTS,
++                    help="Existing AB1 comparator archive directory")
+     a = ap.parse_args()
+     assert A.sha(HERE / "ab1_pm_read.py") == PM_SHA
+     seeds = (408, 409, 410, 411, 412) if a.pair in ("Sp", "C") else (403, 404, 405, 406, 407)
+@@ -134,6 +297,9 @@ def main():
+              label=("recipe at replication seeds 408-412, development plus clean test hosts, post hoc, not held-out"
+                     if a.pair == "Sp" else ("post-freeze ablation rows at seeds 408-412, development plus clean test hosts, not held-out"
+                                             if a.pair == "C" else "frozen networks' own seeds, development plus clean test hosts, post hoc")))
++    if a.pair == "C":
++        R["within_D_floors"] = _within_d_context(mock=a.mock)
++    claim = _claim_read(a.pair, a.out, a.mock, a.c_results, a.ab1_results)
+     nets = {}
+     for arm in arms:
+         for s in seeds:
+@@ -145,12 +311,12 @@ def main():
+                 sv = (A.OVERLAY["AB1"], A.MANDIR)
+                 A.OVERLAY["AB1"], A.MANDIR = C_OVERLAY, C_MANDIR
+                 try:
+-                    x, _, why = A.load(pathlib.Path("/mnt/t7/smad_next/AB1/c/results") / f"AB1C_{arm}_s{s}.tar", "AB1", arm)
++                    x, _, why = _load_ab1_checked(a.c_results / f"AB1C_{arm}_s{s}.tar", arm, s)
+                 finally:
+                     A.OVERLAY["AB1"], A.MANDIR = sv
+                 why = "read" if x is not None else why
+             elif a.pair in ("Sp", "C"):
+-                x, _, why = A.load(pathlib.Path("/mnt/t7/smad_next/AB1/results") / f"AB1_{arm}_s{s}.tar", "AB1", arm)
++                x, _, why = _load_ab1_checked(a.ab1_results / f"AB1_{arm}_s{s}.tar", arm, s)
+                 why = "read" if x is not None else why
+             else:
+                 if arm == "Sp" and s not in (403, 404, 405):
+@@ -272,7 +438,12 @@ def main():
+         import check
+         R["adv_floors"] = {f"{arm}_s{s}": {c: dict(all=check.exceeds(c, x), nuisance=check.exceeds(c, x, floor="nuisance"))
+                                           for c in PM.ADV_CONTRASTS} for (arm, s), x in nets.items()}
+-    json.dump(R, open(a.out, "w"), indent=1, default=lambda o: o.item() if isinstance(o, np.generic) else str(o))
++    _exclusive_json(pathlib.Path(a.out), R)
++    if claim is not None:
++        _exclusive_json(claim.with_name(f"{a.pair}.complete.json"), dict(
++            status="complete", output=str(pathlib.Path(a.out).resolve()),
++            output_sha256=hashlib.sha256(pathlib.Path(a.out).read_bytes()).hexdigest(),
++            completed_utc=datetime.now(timezone.utc).isoformat()))
+     print(json.dumps(R["verdicts"], indent=1))
+ 
+ 

@@ -1,0 +1,419 @@
+# MIPGAN one-person controls (AG1, with AG2 and AG3): full record
+
+Owner: AG1 owner (Opus agent). Started 11 Nov 2026, 14:22 CET. Record started 11 Nov ~17:45 CET; dated lines are added
+below as work goes on, history is not rewritten. Short verdict file: `result.md`; registration: `prereg.md`.
+
+## 1. Question and current answer
+
+Question: on the MIPGAN benchmark cells (corrected MAD22 MIPGAN-I and MIPGAN-II; FRLL StyleGAN as fallback), do
+released morphing-attack detectors react to "this image came out of the generator" or to the morph? The ladder: R0
+camera photo, R1 existing E7 control, R2 = MIPGAN optimiser on one photo twice (A = B), R3m = one photo with its own
+mirror image (added 11 Nov evening), R3 = two photos of one person, R4 = two persons; plus a bridge to the published
+MIPGAN files. AG2 replaces camera photos by their R2 images; AG3 grades two-person mixing 0 to 0.4 (AG3T: the same
+on twin pairs).
+
+Status 11 Nov evening: **no data image and no score exist yet.** Inputs, pairs, shard plans, generation code and the
+analysis code are built and tested on the DGX. The single pack is uploaded to Athena. **Blocked:** Athena's Slurm does
+not accept the account yet (no association for the user); the lead's watcher tests every 20 minutes and will tell
+the owner. Nothing may be submitted or probed until then.
+
+## 2. Timeline (11 Nov 2026, CET)
+
+- 14:22 Task received (lead). Read OWNER_BRIEF, 11_AUDIT_PLAN, 10_ASSET_INVENTORY, 12_STATE_AT_HANDOVER, NOTEBOOK.
+- 14:25 Located our MIPGAN implementation (section 4): branch gan1 24cc974 of `/home/narolski/mambamorph-code-gan1`,
+  used for H4 (A33, WCSS job 6237081) and H4b (A34, job 6237487). Timings read from the H4 tars. Weights and packs
+  existed only in `/tmp/opencode`; copied to `/mnt/t7/smad_next/AG1/packs_src/` (sha256 equal).
+- 14:28 WCSS listing (lock, one command): `~/jobs/h3sg3` and `~/jobs/h2embmid` hold only array scripts and logs;
+  `$L/smadcvpr/packs/{gan_weights.tar, gan_sg1.tar}` still present with the registered sha256; container
+  `pytorch_latest.sif` dated Mar 2025.
+- 14:29-14:46 GB10 run of the unchanged `generate_mip1.py` on the H4 gate pair: completes (994 s on the shared GB10),
+  so the code is not x86-only; its PNG differs from the H100 gate PNG by mean 15.5, max 123 grey levels.
+- 14:35-14:58 `build_inputs.py select` and `prep`: 604 photos prepared, 0 dropped.
+- 14:58-15:00 `pair`, `shards`; WCSS packs and task directories built (`make_tasks.sh`).
+- 14:59-16:37 Local test of the WCSS `run.sh` on smoke shard o00 (2 FRLL persons, 7 images): exit 0 (section 6).
+- 15:01-15:05 Uploaded to WCSS: `smad-next/packs/AG1/` (gan packs hard-linked, ag1_inputs, ag1_code, SHA256SUMS
+  verified with `sha256sum -c`), login-node import test with `~/dmenv/bin/python -I` (vendored modules import).
+- 15:05 Pre-registration written (`prereg.md`). Pre-run review (experiment-reviewer subagent): GO WITH FIXES.
+- 15:10-16:30 Amendment 1 (all fixes of the review, section 7 lists the bugs): readings A and B, matched bins on
+  non-identity terms, session-gap sensitivity, AG2 bridge gate, G-b extensions, cuDNN deterministic, finiteness
+  checks, dmenv fallback removed, RT on 152 persons, AG3 alpha 0, AG3T twin-dose arm, pooled primary pool, FERET
+  decode fix. Shards rebuilt; WCSS packs and 13 task dirs re-uploaded to `smad-next/staging/AG1/` (not in ready/).
+- 16:39-17:02 Dependency-path test (AG3-type shard reading the o00 result tar) with the final code: exit 0.
+- 16:55 Self-check `mipgan_alpha(0.5)` vs `generate.mipgan`: max |w| difference 0.65 (section 6, open).
+- ~17:10 Lead: generation moves to Athena (A100), WCSS unreachable, add the mirror rung for every host.
+- 17:12-17:20 Mirror crops built (302), shards rebuilt (14), single Athena pack built and uploaded with the Athena
+  scripts.
+- 17:22 `sbatch tasks/AG1/ag1_smoke.sbatch` refused: "Invalid account or account/partition combination"; one
+  `--test-only` for each of plgmultivision-gpu-a100 and plgrestorearc-gpu-a100: same. `sshare -U`: no association.
+  Reported to the lead; no further probing (lead's rule).
+- ~17:35 Lead: account will be plgrestorearc-gpu-a100; sbatch files changed and re-uploaded. Amendment 2 written.
+- 17:50 Alpha-equivalence test done (section 6): objectives equal; run-to-run spread of `generate.mipgan` max |w| 0.379.
+- 18:00-18:20 Scoring made runnable without WCSS: SelfMAD release found on T7 (copy by the AR1 owner,
+  `/mnt/t7/smad_next/AR1/weights/selfmad_release/hrnet_w18_checkpoint.model.safetensors`, sha256 0ad8db6f..., equal
+  to the A36 release list line); MADation releases from `/mnt/t7/wcss_backups/madation_official_upload/madation_official.tar`;
+  dlib 81-landmark model `/mnt/t7/thirdparty/dlib81_wcss_20261107/`. New `score_dgx.sh`; `ag1_manifest.py` now copies
+  the admitted MAD22 frames into the AG1 data root (hash re-checked) and writes paths relative to it. Pipeline test on
+  the 7 smoke images (`test_score_pipeline.py`, `/mnt/t7/smad_next/AG1/tests/score_pipeline/`): pins, check_scope and
+  the strict weight load of MADation ViT-B/16 passed; the move to the GPU failed with CUDA out of memory (the GB10 had
+  12 GB free; about 17 other GPU processes of other owners). To retry when the GPU is quieter.
+- 19:00 Smoke job 3544209 COMPLETED in 9 min 56 s (0.17 GPU-h), node t0020, A100-SXM4-40GB: MIPGAN-I 11 / 11
+  images in 302 s, MIPGAN-II 8 / 8 in 200 s, format check 0 deviating, tars `results/AG1/AG1_smoke_mip1.tar`
+  (8239b384...) and `AG1_smoke_mip2.tar` (9110d99c...), copied to `/mnt/t7/smad_next/AG1/results/` with matching
+  sha256. A100 rates: inversion 500 steps 30.7 s, MIPGAN-I 150 steps 10.7 s, MIPGAN-II 23.8 s per image (incl. e4e);
+  peak GPU memory (nvidia-smi) 2.8 GB / 6.7 GB; RAM disk use 1.1 GB / 2.3 GB. Final loss MIPGAN-I R2 1.665 / 0.412,
+  R3 2.953 / 1.246, R3m 3.247 / 1.331, R4 5.474 / 5.550, RT 2.947, AG3(0.3) 4.785; MIPGAN-II R2 2.429 / 0.735, R3
+  3.304 / 1.457, R3m 3.545 / 1.520, R4 5.676 / 5.706 (persons frll_001 / frll_010). Production estimate 19.9 A100
+  GPU-h; array time limit raised to 10 h (longest shard, MIPGAN-II FRLL 00, about 4.5 h).
+- ~21:20 Per-tar flow tested end to end on the two smoke-based test tars (`/mnt/t7/smad_next/AG1/tests/manifest/`):
+  `shard` x 2 (11 + 8 images, aligned 1.000, oracle 19 / 0 fail, RT 1), `frames` (3,030 rows), `oracle` (623
+  embedded = 604 camera + 19 generated), `rt`, `pins`, `ag1_baselines.py` (3,030 frames), `ag1_read.py --gate-only`;
+  all exit 0 under the thread caps. Test frames removed afterwards.
+- ~21:00 Disk alert (T7 reached 100% at about 20:40): removed my own temporary test directories (26 GB -> 6.1 GB;
+  extracted weights, MADation test extraction, build intermediates; all rebuildable). The GAN weights were not stored
+  twice (hard links). Proposed for the author's approval list, not deleted: `athena/ag1_pack.tar` (2.8 GB, copy on
+  Athena), `athena/pack/{ag1_inputs.tar, ag1_code.tar}`, `staging/packs` (WCSS copy). Lead chose option (c):
+  copy back and process one result tar at a time; a fetched tar is removed after processing once its sha256 matches
+  the Athena copy and is recorded in `experiments/AG1/fetched_tars.csv`. `ag1_manifest.py` rewritten for this
+  (stage `shard <tar>` reads PNGs straight from the tar: frame, oracle embedding, RT check, into
+  `data/shards/<shard>.json` and `_oracle.npz`; stages `frames / oracle / rt / pins` merge); driver
+  `src/AG1/fetch_and_process.sh` (free-space check >= 52 GB before each fetch, transfer lock, hash check, process,
+  ledger line, remove local tar). Estimated copy-back 6.8 GB in total, never more than one tar (<= 1.1 GB) at a time.
+- 19:55 Capped oracle test on the smoke-based test manifest: 3,030 images embedded with glintr100, 0 without a face;
+  `ag1_read.py --gate-only` on it runs end to end (G-b computed for mip1 / mip2 FRLL on the two smoke hosts, RT 1
+  pair mean 2.6 grey levels on the A100; code test only, two hosts are no gate). Outputs
+  `/mnt/t7/smad_next/AG1/tests/manifest/{data, read}`.
+- 19:48 (lead, author-approved) all waiting jobs moved in place to account plgmultivision-gpu-a100: core 3544797,
+  graded mixing 3544798 / 3544799, spread 3545819. Accounts per job: smoke 3544188 and 3544209 ran on
+  plgrestorearc-gpu-a100; the four production arrays on plgmultivision-gpu-a100. Local sbatch files now carry
+  `-A plgmultivision-gpu-a100` for any new job (uploaded at the next transfer).
+- 19:20-19:30 Manifest builder tested on the smoke outputs (renamed copies in `/mnt/t7/smad_next/AG1/tests/manifest/`):
+  3,030 rows (604 camera R0, 408 E7 R1, 1,999 published MIPGAN, 19 generated), aligned-flag rate 0.995, RT check
+  runs (1 pair, max 86 grey levels), pins written. The oracle step ran at about 500% CPU and the lead flagged the
+  DGX load (189 on 20 cores): it was stopped and restarted with `OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2
+  MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 nice -n 10` and with onnxruntime sessions rebuilt at 2 intra-op threads
+  (`cap_threads` in `ag1_manifest.py`; onnxruntime ignores OMP_NUM_THREADS). Rule from now on: every DGX process
+  of this owner runs with these caps, at most two at a time; `ag1_baselines.py` defaults to 2 workers.
+- 19:15-19:40 Lead's reading rules registered as amendment 3 in `prereg.md` before any data image or score: three
+  classes (genuine; morphing attack; single-subject manipulation reported in its own table), flag rates under both
+  class policies with no verdict word, SelfMAD own crop primary, no single deciding release, mirror rung for trace
+  contrasts only with a symmetry baseline beside it, every contrast as excess over the best simple baseline (file
+  size, Laplacian variance, high-frequency band power, 32 x 32 thumbnail probe), and the spread-matched one-person
+  render R2s as the decisive control for "two codes mixed" against "closer to the mean code". New code:
+  `ag1_baselines.py` (per-image baselines), reader changes, `ag1_spread.py` + `athena/ag1_spread_task.sh` +
+  `athena/ag1_spread.sbatch` (R2s = G(m + (w_R2 - m) / sqrt(2)), A37 rule; tested on two smoke hosts on the GB10:
+  R2s latent distance 6.80 / 6.02 against R4 6.56 / 6.41 and R2 8.42 / 7.38). Spread array submitted: Athena job
+  3545819 (4 tasks: mip1 frll / feret / frgc, mip2 frll; afterok on the whole core array 3544797; 1 h limit each).
+  Input alignment (rule 2): the H4 / A33 FFHQ alignment (LANCZOS shrink, reflect padding with blur, bilinear quad
+  warp, INTER_AREA 512) is a property of every generated rung, run unchanged and identically for all of them; it
+  cannot create a difference between rungs, and rung images are not compared with camera photos as if it were
+  neutral.
+- 19:05 Production submitted: core array 3544797 (indices 0-7 = `core.txt`: mip1 frll 00/01, feret 00/01, frgc 00/01,
+  mip2 frll 00/01); graded mixing 3544798 (indices 0-1, FERET, afterok on 3544797_2 and _3) and 3544799 (indices 2-3,
+  FRGC, afterok on 3544797_4 and _5). Logs `.../smad-next/logs/AG1-<job>_<index>.out`.
+- 18:45 Smoke job resubmitted with the fixes (`ag1_task.sh` 216ad6d3, `ag1_smoke.sbatch` 719406d8, `ag1_array.sbatch`
+  c8ef41f9): Athena job 3544209.
+- 18:31 Smoke job 3544188 FAILED after 3 min 49 s (0.06 GPU-h): the environment build succeeded (python 3.10.4, torch
+  2.2.1+cu121, torchvision 0.17.1+cu121, numpy 1.26.4, pillow 10.2.0, A100-SXM4-40GB on node t0014; `envs/AG1` kept),
+  then "No space left on device" while unpacking the 2.9 GB pack in `$SCRATCH_LOCAL` (`-C localfs` is only 4.0 GB on
+  Athena). Fix 1 (`ag1_task.sh`): check the outer tar's sha256 in place on the project store and stream the inner
+  tars out of it, dropping weights the generator does not need (ffhq.pkl, w600k onnx, and e4e for MIPGAN-I); local
+  footprint 1.1 GB for a MIPGAN-I shard (tested on the DGX against the same pack); result tar written straight to
+  the project store and hashed there. Fix 2 (lead's measurement): work in `$MEMFS` (`-C memfs`, RAM disk counted in
+  `--mem`, kept at 64G). Lead's new lock rule: short commands take `/tmp/smadnext-athena-cmd.lock` (`-w 300`),
+  transfers `/tmp/smadnext-athena.lock` (`-w 1800`); a flock timeout returns 1 silently (a local wait, not a refused
+  login). A first resubmission waited on the old single lock and was stopped before it ran anything.
+- 18:27 Lead: Athena accepts jobs (account plgrestorearc-gpu-a100). Smoke job submitted: Athena job 3544188
+  (`tasks/AG1/ag1_smoke.sbatch`, log `.../smad-next/logs/AG1smoke-3544188.out`).
+- 17:41 Local mip2 smoke (WCSS `run.sh` logic, GB10, code before amendment 1) finished: 4 / 4 images, exit 0, tar
+  sha256 a0827cbe... Per image on the shared GB10 832 to 1,114 s (incl. e4e). Final loss R2 2.43, R3 3.29 / 1.46, R4
+  5.66; generator-side w600k cosine R4 0.720 / 0.710, R3 0.959 / 0.968. Log
+  `/mnt/t7/smad_next/AG1/localtest/AG1_o01-smoke-mip2_s0.stdout.log`.
+
+## 3. Data
+
+| Item | Path | Count | Hash / note |
+|---|---|---|---|
+| FRLL photos (R0 of the benchmark) | `/mnt/t7/smad_heldout/mad22_incoming/marco_owncloud_20261109T103840Z/author_files/original_sorted/BonaFide/NNN_{03,08}.jpg` | 102 x 2 | byte-identical to `frll_base` (checked on 001_03) |
+| colorFERET | `/mnt/t7/Datasety/colorferet/dvd{1,2}/data/images/*/*_fa*.ppm.bz2`, gender from `ground_truths/name_value` | 100 persons x 2 dates (of 159 eligible: >= 2 fa dates, not val10, gender known) | |
+| FRGC 2.0 | `/mnt/t7/Datasety/FRGC-2.0/FRGC-2.0-dist/nd1/...`; metadata `bbaselite_FRGC_2.0/bbaselite_data_frgc2.1.sql` (env nd1E00004/5 controlled, rec_subject emotiontype BlankStare, capture date, subject gender) | 100 persons x 2 dates (of 442 eligible) | |
+| Selection | `/mnt/t7/smad_next/AG1/inputs/select.json` | 250 candidates + 102 FRLL | fc561e98... |
+| Prepared crops (512, FFHQ-aligned) + 5 points | `/mnt/t7/smad_next/AG1/inputs/pack/{crops/, photos.json}` | 604 + 302 mirrored (`__s1m`) | photos.json dd070722... (after mirror); before mirror kept as `inputs/photos_before_mirror.json` |
+| w600k embeddings (pairing only) | `/mnt/t7/smad_next/AG1/inputs/emb_w600k.npz` | 604 | 26efc2a2... |
+| Pairs | `/mnt/t7/smad_next/AG1/inputs/{pairs.csv, sigma.json}`; copy `experiments/AG1/pairs.csv` | 302 | pairs.csv 19145659..., sigma.json 415c06f4... |
+| Shard plans | `/mnt/t7/smad_next/AG1/inputs/shards/*.json`; table `experiments/AG1/shards.csv` | 14 shards, 3,833 images | shards.csv a870e61c... |
+| Athena pack | DGX `/mnt/t7/smad_next/AG1/athena/ag1_pack.tar`; Athena `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AG1/ag1_pack.tar` | 2.9 GB | c6b9d2c9fce9ae589b7929bd0f0e03048e1b24cb88f7ff8b3babf7700bbbb406; inner: gan_weights.tar e06f19af..., gan_sg1.tar 1571c1a3..., ag1_code.tar 8504079b..., ag1_inputs.tar 58de590d... |
+| Weight packs (registered, A28 / A33) | `/mnt/t7/smad_next/AG1/packs_src/{gan_weights.tar, gan_sg1.tar}` (+ .content); also WCSS `$L/smadcvpr/packs/` | | e06f19af..., 1571c1a3... |
+| WCSS staging (superseded by Athena) | `/lustre/pd03/hpc-narolski-1790461090/smad-next/{packs,staging}/AG1/` | 13 task dirs, not in ready/ | ag1_inputs 7771484e..., ag1_code 735816eb... (pre-mirror) |
+| Local tests | `/mnt/t7/smad_next/AG1/{smoke, localtest, tests}/` | | not data; never enter a manifest |
+
+Dropped: none at prep (0 of 604). Mirror: all 302 hosts got a face on the mirrored crop.
+Pool facts: FRLL 50 cycles (48 two-cycles); FERET 25 cycles; FRGC 19 cycles. Contributor w600k cosine, morphs / twins:
+FRLL 0.140 / 0.905, FERET 0.161 / 0.836, FRGC 0.170 / 0.862. Reflect padding in the input alignment: FERET 145 / 200,
+FRGC 13 / 200, FRLL 0. Session gap morph vs twin (reviewer, from photos.json): median 306 vs 121 days FERET, 160 vs
+64 FRGC; only about 72 of 200 primary morphs have B within 60 days of the twin's A'.
+
+Shard table (est = WCSS H100 estimate x 1.3 + 12 min; A100 rate unknown until the smoke job):
+
+| Order | Shard | Inversions | Images | Est min | Needs |
+|---|---|---|---|---|---|
+| 0 | AG1_smoke_mip1 | 6 | 11 | 22 | |
+| 1 | AG1_smoke_mip2 | 6 (e4e) | 8 | 19 | |
+| 2-3 | AG1_mip1_frll_00 / _01 | 159 / 147 | 480 / 444 | 149 / 139 | |
+| 4-5 | AG1_mip1_feret_00 / _01 | 174 / 126 | 421 / 304 | 147 / 109 | |
+| 6-7 | AG1_mip1_frgc_00 / _01 | 177 / 123 | 428 / 297 | 149 / 107 | |
+| 8-9 | AG1_mip2_frll_00 / _01 | 288 / 18 (e4e) | 678 / 42 | 149 / 21 | |
+| 10-13 | AG1_mip1_{feret,frgc}_ag3_{00,01} | 0 | 180 each | 40 each | the two core shards of the pool |
+
+Rung counts (incl. smoke): mip1 R2 606, R2i 605, R3 304, R3m 304, R4 304, RT 153, BR 108, AG3 401, AG3T 320;
+mip2 R2 206, R3 104, R3m 104, R4 104, RT 102, BR 108.
+
+## 4. Code (`/home/narolski/smad-next/src/AG1/`)
+
+Run order: `build_inputs.py select -> prep -> pair -> mirror -> shards` (DGX CPU, `.venv-spark` python) ->
+`athena/make_athena_pack.sh` -> upload -> `athena/ag1_smoke.sbatch` -> `athena/ag1_array.sbatch` (core list, then AG3
+list with afterok) -> copy back -> `ag1_manifest.py frames | oracle | rt | pins` (DGX) -> scoring
+(`make_score_root.sh` + `ag1_score.py`, GPU) -> `ag1_read.py --gate-only`, commit gates, then `ag1_read.py`.
+
+| File | sha256 (first 8) | Job |
+|---|---|---|
+| build_inputs.py | 8fad6a50 | selection, input prep (H4 path), pairing (cycle cover), mirror crops, shard plans |
+| ag1_gen.py | b2dc54eb | GPU generation of one shard; vendored gan1 code; `mipgan_alpha`; logs; peak memory |
+| vendor/*.py | A33 hashes | generate.py 30dd21c0, generate_mip1.py dac17110, stylegan1.py 8e565643, arcface.py 6b68fc3a, lpips_vgg.py 264a4c58 (unchanged from gan1 24cc974) |
+| athena/ag1_task.sh | 1d5036f4 | one shard on Athena: pack checks, needs, run, format check, result tar |
+| athena/ag1_smoke.sbatch | e7d6579e | builds envs/AG1 (pinned), runs both smoke shards |
+| athena/ag1_array.sbatch | 036c337e | production array over a list file |
+| athena/make_athena_pack.sh | 4a631d12 | builds ag1_pack.tar and core.txt / ag3.txt |
+| run.sh, make_tasks.sh | 544e4902, b27e7753 | WCSS slot-queue versions (superseded) |
+| ag1_manifest.py | 9fcb826b | frames (prep_eval.align), FERET decode to lossless PNG, glint oracle, RT pixel check, pins |
+| ag1_score.py | 29a87898 | A43 adapter copy (a43 -> ag1) over a41g_score.py f53612cb |
+| make_score_root.sh | 10269d98 | job root from mambamorph-code c669666 + ag1_score.py |
+| ag1_read.py | b1c80b8f | gates, ladder, readings A / B, shares, matched bins, session gap, AG2, AG3 / AG3T, Holm |
+| test_reader_synthetic.py | c6daf46f | synthetic manifest for the reader test |
+| test_alpha_equiv.py | ee5f247d | alpha-0.5 objective equality and run-to-run spread test |
+| score_dgx.sh | (new) | scoring on the DGX: job root, A12REL from local copies, one npz per release and mode |
+| test_score_pipeline.py | (new) | tiny manifest from smoke images; checks score count and finiteness only |
+
+Environment. DGX: `/home/narolski/mambamorph-code/.venv-spark/bin/python` (torch 2.12.1+cu130, GB10). Athena (to be
+built by the smoke job): `/net/pr2/projects/plgrid/plggrestoration/smad-next/envs/AG1`, module Python/3.10.4, torch
+2.2.1 (cu121), torchvision 0.17.1, numpy 1.26.4, pillow 10.2.0, pip 24.0; versions to `envs/AG1/versions.txt` and
+`pip_freeze.txt`. pytorch_msssim 1.0.0 comes from the weights pack. Weights: StyleGAN v1 FFHQ-1024 (NVIDIA
+karras2019 pkl f277a437..., PyTorch port 4618be6e...), e4e FFHQ + StyleGAN2 config-f, w600k_r50 fused, VGG-16
+(torchvision 397923af), LPIPS v0.1. All loaded with `weights_only=True` (forced, also where vendored code asks
+otherwise; e4e loads fine that way). Generator settings: inversion 500 Adam steps lr 0.02; MIPGAN 150 steps lr 0.03 x
+0.95 / 6; TF32 off; cuDNN deterministic; `torch.manual_seed(0)`.
+
+## 5. Results
+
+None yet (no data image generated, no score read).
+
+## 6. Checks
+
+Verified:
+- Vendored files equal the A33-registered hashes (checked at every `ag1_gen.py` start).
+- Code runs on ARM: unchanged `generate_mip1.py` on the H4 gate pair (GB10, 994 s), `/mnt/t7/smad_next/AG1/smoke/`.
+- WCSS `run.sh` logic on smoke shard o00 (GB10, local roots via `AG1_SN` / `AG1_PY`): 7 / 7 images, exit 0, tar
+  sha256 0b1293bc... Logs `/mnt/t7/smad_next/AG1/localtest/AG1_o00-smoke-mip1_s0.stdout.log`. Per image: R2 901 s
+  (incl. 1 inversion), R3 1,040 s, R4 1,522 s, RT 311 s, AG3 384 s on the shared GB10. Final loss: R2 1.67, R3 2.96,
+  R4 5.42, RT 2.98, AG3(0.3) 4.82. Generator-side w600k cosines: R4 0.728 / 0.721; R3 0.966 / 0.965; AG3(0.3) 0.892 /
+  0.502. Inversion cosine 0.987 to 0.993. Contact sheet `/mnt/t7/smad_next/AG1/localtest/smoke_sheet.jpg` looks right.
+- Final code (ag1_code 735816eb, = the Athena code except the peak-memory lines) through `run.sh` on a dependency
+  shard: needed latents extracted from the o00 tar, alpha 0 / 0.2 and AG3T 0.2 run, exit 0. Achieved dose (cosine to
+  B): alpha 0 0.128, 0.2 0.366, 0.3 0.502, 0.5 0.721; AG3T 0.2 cosine to A' 0.932.
+- Output format: 1024 x 1024 RGB PNG without ancillary chunks, FFHQ framing as the published MAD22 MIPGAN files
+  (eyes ours (387, 482) / (634, 481), published MIPGAN-I (385, 476) / (640, 478)). `ag1_task.sh` checks every PNG.
+- Mirror crops: written and read back, `fliplr(read) == original` asserted for all 302.
+- Reader on the real design with synthetic scores: `/mnt/t7/smad_next/AG1/tests/reader_synthetic/` (exit 0).
+- Scoring adapter selftest in a c669666 job root: 22 checks passed, `/mnt/t7/smad_next/AG1/tests/score_adapter/`.
+- WCSS packs `sha256sum -c` OK on Lustre; dmenv import of the vendored modules OK.
+
+Not verified:
+- Anything on Athena: the environment build, the A100 timing and memory, the container-free path. The smoke job is
+  exactly this test.
+- mip2 path with the final code (the local mip2 smoke used the code before amendment 1; it passed 4 / 4 at 17:41;
+  e4e loads under forced weights_only). The Athena smoke runs mip2 with the final code.
+- `mipgan_alpha(0.5)` vs `generate.mipgan` (17:50, `test_alpha_equiv.py`, GB10, result
+  `/mnt/t7/smad_next/AG1/localtest/alphatest/alpha_equiv.json`): the two objectives are exactly equal in a forward
+  pass at the same latent (5.132192611694336 both). Run twice from the same start, `generate.mipgan` itself ends
+  max |w| 0.379 apart (mean 0.054) even with cuDNN deterministic; the alpha-path self-check difference was max 0.65
+  (`/mnt/t7/smad_next/AG1/localtest/selfcheck/out/selfcheck.json`). Reading: same objective; the trajectory
+  difference is of the order of the run-to-run non-determinism (one pair, not a distribution). Bitwise equality is not
+  claimed. Generation is not bitwise repeatable run to run on one GPU.
+- `ag1_manifest.py` and real scoring (need images). MixFaceNet-MAD has no AG1 scorer.
+
+## 7. Dead ends and failures
+
+- Cross-hardware: same code and inputs, GB10 vs H100: PNG mean |diff| 15.5, max 123 (H4 gate pair). Consequence: one
+  platform for all data.
+- RT (order-reversed twin) differs from R3 by mean 3.9, max 133 grey levels on the GB10: MIPGAN's loss is symmetric
+  mathematically but not in floating-point summation order, and 150 steps amplify the difference. RT was first planned
+  as a determinism check; changed to a run-to-run noise floor (prereg).
+- The reviewer's bugs, all fixed in amendment 1: FERET sources are `.ppm.bz2` and `cv2.imread` would return None in
+  the manifest builder (now decoded once to lossless PNG); main-verdict folded interval used only the lower bound
+  (fixed to max(hi, 1 - lo)); G-b computed but never used (now gates every cell); matched bins on final loss would
+  compare a biased subset (now non-identity terms, coverage >= 50%, also-reported only); FERET and FRGC shared the
+  same bootstrap seed (now per pool); aligned flag wrong on re-runs (now stored); no finiteness check (added); dmenv
+  fallback could mix torch stacks (removed); docstring claimed the input alignment was "imported unchanged" (the
+  call sequence is re-typed from h4_prep.py; corrected and flagged).
+- Generation is not bitwise repeatable: the same `generate.mipgan` call twice from the same latent on the GB10 ends
+  max |w| 0.379 apart (cuDNN deterministic set; probably atomic adds in the backward of the differentiable ArcFace
+  crop). Images of one rung are therefore samples of a slightly noisy procedure; RT measures that noise.
+- `python -I` ignores PYTHONPATH: the first GB10 run failed on `pytorch_msssim`; `ag1_gen.py` inserts the pack's
+  `py/` directory itself.
+- WCSS slot-queue plan (13 tasks staged 15:05 / 16:40) superseded by Athena; tasks remain in
+  `smad-next/staging/AG1/` on Lustre, never in ready/.
+- Athena submission refused (account association missing), 17:22; see section 10.
+- A synthetic G-b result once printed as "{}": only my grep filter dropped the indented JSON; no bug.
+
+## 8. Observations and ideas
+
+- The GB10 can generate (15 to 60 x slower than an H100 while shared); a fallback only.
+- With 48 two-cycles, FRLL R4 is about 50 dyads; FRLL cells will be wide.
+- The twin-dose arm (AG3T) costs about 37 GPU-min and separates "second photo" from "second identity" in the dose
+  reading; the reviewer's further idea, a GAN mirror twin on the primary pool, is now the R3m rung.
+- SelfMAD's release: 10_ASSET_INVENTORY says "WCSS only", but the AR1 owner copied it to T7 (sha256 matches the A36
+  list); scoring needs no WCSS access.
+
+## 9. Open items and next steps
+
+1. Wait for the lead's message that Athena accepts plgrestorearc-gpu-a100; then submit the smoke job (section 10).
+2. Smoke passes: record A100 seconds per image, peak memory, final losses, format check; message the lead; submit
+   core array, then AG3 array with afterok; record job IDs and GPU-hours in `result.md`.
+3. Copy result tars back with hash checks; `ag1_manifest.py frames / oracle / rt / pins`; author picks reading A or B;
+   `ag1_read.py --gate-only`; scoring on GPU; `ag1_read.py`.
+4. Open author questions: R2 class (A or B); approval of the H4 input alignment (blur / resampling); which SelfMAD row
+   is primary; is ViT-B/16 alone deciding; is R3m a morph.
+5. (done 17:50) alpha-0.5 equivalence reading.
+
+## 10. Handover state (11 Nov ~17:45 CET)
+
+- **Update 12 Nov afternoon (after the independent review, verdict "needs qualification", all numbers reproduced):**
+  (1) Integrity: amendments 5-6, gates.json and read/ outputs committed (ed053bc); result.md corrected: gates were not
+  committed before scores existed (score files 11:34-11:42; gate stage first run ~11:47; gates.json 12:05:38; the gate
+  code reads no score file). Second verified copy of the five Athena originals (3.5 GB; the T7 drive had 23 GB free, so
+  not fetched): `cp -p` within Athena to `/net/pr2/projects/plgrid/plggrestoration/smad-next/backup/AG1_originals/`,
+  then each backup streamed to the DGX and hashed: all five match the ledger (`athena_backup_verify.txt`). New
+  OWNER_BRIEF rule (nothing released while it holds the only copy) noted. (2) Amendment 7 committed (83d4b8f) before
+  computing H-new-1, H-new-2, G-a (`published_eer.json`) and the post-hoc additions. (3) `src/AG1/ag1_posthoc.py`
+  (thread caps, 30 GB limit) -> `read/posthoc.json`, `read_athena_only/`; numbers in result.md "Post-hoc facts".
+  (4) Text corrections and the reviewer's three-sentence paragraph in result.md. (5) Drafts only:
+  `drafts_hnew3_hnew4.md` (H-new-3 render check 0.2 GPU-h; H-new-4 look-alike R4 about 3 A100-h).
+- **Update 12 Nov ~13:30:** scoring on the DGX GPU (MADation ViT-B/16, ViT-L/14, SelfMAD own crop and our pipeline;
+  7,229 rows each; write-once npz with hashes in `scoring/score.log`). Reader: first run killed by the kernel OOM
+  killer at 114 GB (bug: `np.load(...)["thumb"][k]` re-read the whole array per image; fixed with `dict(np.load())`;
+  reruns under `ulimit -v 30 GB`). Second bug: the per-platform rows took a host's platform from all its rows; spread
+  renders were rented for every host, so "rented" equalled the pooled set; fixed to the platform of the host's core
+  rows (Athena 159 hosts, rented 41 in the primary pool). Facts table `read/facts.md` sent to the lead before any
+  interpretation.
+- **Update 12 Nov 11:50:** full build: manifest 7,229 rows from 16 shards (aligned-flag rate 0.998; no rung below
+  0.90), oracle 4,822 embedded / 0 without a face, RT 254 pairs (median of per-pair mean |diff| 1.57, max 3.89 grey
+  levels; max single pixel 235), pins `data/AG1_data_pins.sha256` (ag1.csv 5892c918..., ag1_raw.csv f013b3f9...),
+  baselines 7,229 frames. Gate stage (`experiments/AG1/read/gates.json`, before any detector score): G-b passes in
+  every pool: oracle AUC R4 vs R3 FRLL 1.000 / FERET 0.979 / FRGC 0.995 / primary 0.986 / MIPGAN-II FRLL 1.000; R4
+  verifies both contributors 1.000 on input and on unseen photos; R3 verifies A 1.000; R2 false-match rate
+  0.0009-0.0013 at thresholds 0.244-0.269 (FMR 1e-3 on camera impostors). Latent-distance medians (MIPGAN-I): R2
+  7.54, R3 6.51, R3m 6.53, R4 6.51, R2s 5.64 (the A37 1/sqrt(2) rule overshoots R4 by 0.87); MIPGAN-II: R2 10.51, R3
+  10.35, R4 9.87, R2s 8.81. Bug fixed: the gate stage expected an initial latent for render-only R2s rows.
+  Scoring started on the DGX GPU (`score_dgx.sh`, four release rows; MADation releases extracted one by one for disk).
+- **Update 12 Nov 11:30:** rented run finished: MIPGAN-II FRLL 00 (678 images) and 01 (42), graded mixing 4 x 180,
+  spread renders 102 / 100 / 100 / 102; each fetched, hash-checked, processed (aligned 0.994-1.000, oracle 0 fails),
+  ledgered and its Athena task cancelled (3544797_6, _7; 3544798_0, _1; 3544799_2, _3; 3545819_0-3); RELEASE written
+  11:27, machine destroyed by the guard (port refused 11:29). Rented machine time 02:55-11:27 (about 8.5 h at 0.51
+  USD/h, about 4.4 USD; lead's lease record is authoritative).
+  **Data-loss incident (my design error):** the driver deleted each fetched rented tar after processing (the
+  one-at-a-time rule) and then wrote RELEASE; unlike the Athena shards, the rented tars had no second verified copy, so
+  the 1024-px PNGs and latents of the 11 rented shards (about 3.5 GB) no longer exist. Kept: the 512-px aligned frames
+  (what the detectors score), glintr100 embeddings, RT numbers and every log.csv line (losses, latent distances,
+  sha256 of the original PNGs). Consequence: no re-alignment or new 1024-px analysis for those shards; latents for
+  further doses or renders would need regeneration (about 9 GPU-h). Lesson: a working copy may be deleted only when a
+  second verified copy exists outside the machine that will be released.
+- **Update 12 Nov 04:53:** rented first check under rule (b) passed 03:16:58 (`check/compare.txt`). AG1_mip1_frgc_01
+  generated on the rented A100 in about 1.5 h, fetched, hash-checked, processed (297 images, aligned 1.000, oracle
+  297 / 0 fail, RT 10), local tar removed; Athena task 3544797_5 cancelled by the driver. Next: MIPGAN-II FRLL 00 / 01.
+- **Update 12 Nov 03:25:** all five Athena core shards fetched, hash-checked and processed (ledger
+  `fetched_tars.csv`; local tars removed, originals on Athena). Platform label fixed: both platforms report
+  "NVIDIA A100-SXM4-40GB", so `ag1_manifest.py` now labels by origin (`athena_...` for the five listed Athena shards,
+  `rented_...` otherwise); the five processed shard files were relabelled. Old fetch loop stopped (nothing left on
+  Athena to fetch). Watching `drive_v2.sh` (PID 3091276); it fetches, processes and removes each rented tar and
+  writes RELEASE itself only after the last one. If it stops: restart from the main session with
+  `MINFREE=20 RENTED_RULE=b bash /home/narolski/smad-next/src/AG1/rented/drive_v2.sh 104.189.178.123 3010 /mnt/t7/smad_next/vast/ag1`
+  (processed shards are skipped; the smoke check reruns, about 5 min).
+- **Update 12 Nov 03:15 (b):** lead decision 03:11: rented platform accepted under rule (b) after seeing all three
+  runs (amendment 6; not a registered pass; possible small platform offset on frll_001 R2 not excluded; readings
+  pooled and without rented shards, conservative one stands). `drive_v2.sh` started by the lead (PID 3091276,
+  RENTED_RULE=b, MINFREE=20, `drive_v2.out` in the lease folder).
+- **Update 12 Nov 03:15:** first check on the rented A100 FAILED by the amendment 4 rule (recorded as a fail, no
+  override): 11 / 11 images, format exact, frll_001 R2 loss 1.847 vs Athena 1.665 (10.9% > 10%); the other 9
+  optimised images within 0.4-1.7%. Amendment 5 registered after seeing the failure (decision rule for two reruns).
+  Reruns (same machine, same settings): frll_001 R2 1.879 and 1.777 (spread 0.102 < the 0.18 gap; both above
+  Athena, no straddle; 5.7% apart, not < 2%): neither the accept nor the stop branch of amendment 5 is met; sent to
+  the lead for a decision. Spread across the three rented runs per image 0.012-0.101 (R2 frll_001 largest). Files:
+  `/mnt/t7/smad_next/vast/ag1/check/{rented_AG1_smoke_mip1.tar, rerun_1.tar, rerun_2.tar, compare.txt}`.
+  `compare_smoke.py` gained an optional rule b; `drive_v2.sh` passes `RENTED_RULE` (default strict).
+- **Update 12 Nov 03:05:** rented machine (lead): lease `/mnt/t7/smad_next/vast/ag1`, host 104.189.178.123 port
+  3010, A100-SXM4-40GB, 0.51 USD/h, cap 10 USD / 20 h; lead uploaded the folder and started
+  `MINFREE=20 bash src/AG1/rented/drive.sh 104.189.178.123 3010 /mnt/t7/smad_next/vast/ag1` (PID 3080694; logs
+  `drive.out`, `ag1_drive.log` in the lease folder). First start failed at setup: the driver wrote to
+  `/root/ag1/logs/` which the upload does not create (my bug: the DGX rehearsal had made it). The lead created
+  `/root/ag1/{logs,results}` and restarted; SETUP_OK, smoke check started 02:55. Fix in `drive_v2.sh` (mkdir before
+  setup), used for any restart. I first edited `drive.sh` in place while it was running and restored it to the exact
+  previous bytes (sha256 bd26b7fa...) within a minute, before the running step ended: bash reads a running script by
+  offset, so an in-place edit could have run shifted text.
+- **Update 12 Nov ~03:00:** Athena fair-share exhausted (new jobs forecast for late December). Finished on Athena:
+  core 3544797_0 to _4 (MIPGAN-I FRLL 00/01, FERET 00/01, FRGC 00; 18.5 A100 GPU-h; elapsed 2:30, 4:43, 4:48,
+  1:43, 4:46; three tasks ran about 2x slower than the smoke-based estimate). Processed on the DGX: FRLL 00, FERET
+  01 (ledger). Fetch floor lowered by the lead to 20 GB free (fetch script threshold 21 GB).
+  Rented-machine path written (`src/AG1/rented/`: `remote_run.sh` setup / shard / spread on the machine,
+  `drive.sh HOST PORT LEASE` on the DGX, `compare_smoke.py` first check) and amendment 4 registered (platform column,
+  one platform per shard, per-platform sensitivity, first-check rule: 11 images, format, final loss within 10%).
+  Upload folder `/mnt/t7/smad_next/AG1/rented/ag1/upload/` (2.8 GB): ag1_pack.tar (hard link, c6b9d2c9...),
+  needs_lat.tar (220a03d0..., 1,044 MIPGAN-I latents streamed out of the five Athena tars with their sha256 checked
+  in flight), ag1_spread.py, remote_run.sh. Rehearsal on the DGX (`/dev/shm`, removed after): setup OK, smoke shard
+  1 job (loss 1.614 vs Athena 1.665), a dependent graded-mixing job reading Athena latents, spread renders of the 100
+  FERET hosts from Athena latents; one bug found and fixed in rehearsal (setup's hash check path), one found by
+  reading (the smoke check's latents would have overwritten Athena latents of frll_001 / frll_010; smoke latents
+  are now kept out). Order on the machine: FRGC 01, MIPGAN-II FRLL 00 / 01, graded mixing, spread.
+- **Update ~23:00:** T7 fell to 47 GB free (other writes); fetch paused, then lead set the floor to 40 GB free (one tar
+  at a time, tar removed after processing). Threshold in `fetch_and_process.sh` now 42 GB before a fetch. First core
+  result: 3544797_3 (FERET 01) done in 1 h 43 min, 509 MB tar.
+- **Update ~21:25:** DGX loop running (this owner's shell, background): every 15 min it calls
+  `src/AG1/fetch_and_process.sh` until 16 shards (8 core, 4 graded mixing, 4 spread) are processed; logs
+  `/mnt/t7/smad_next/AG1/fetch_<HHMM>.log`; ledger `experiments/AG1/fetched_tars.csv`. If it dies, rerun the script
+  by hand: it skips processed shards and only fetches results that exist on Athena. Core task 3544797_0 started
+  about 20:50.
+- **Update 19:40:** spread-matched renders 3545819 (4 tasks, wait for the core array). Facts table goes to the lead
+  before any interpretation (amendment 3, rule 7).
+- **Update 19:05:** Athena jobs: smoke 3544188 (failed, 0.06 GPU-h), smoke 3544209 (passed, 0.17 GPU-h); production
+  3544797 (8 tasks), 3544798 and 3544799 (2 tasks each, dependent), about 19.9 GPU-h expected. Next: copy every
+  `results/AG1/<shard>.tar` + `.sha256` back to `/mnt/t7/smad_next/AG1/results/` with the transfer lock, check hashes,
+  then the manifest, oracle, RT and pins steps; scores are read only after the lead confirms the reading rules.
+- Athena: `/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AG1/ag1_pack.tar` (+ .sha256) and
+  `.../tasks/AG1/{ag1_task.sh, ag1_smoke.sbatch, ag1_array.sbatch, core.txt, ag3.txt}` uploaded; `results/AG1/`,
+  `envs/` created; no job submitted (0 GPU-hours spent).
+- Start command once the account works (one connection, with the lock):
+  `flock -w 120 /tmp/smadnext-athena.lock ssh -o BatchMode=yes plgpnarolski@athena.cyfronet.pl 'cd /net/pr2/projects/plgrid/plggrestoration/smad-next && sbatch tasks/AG1/ag1_smoke.sbatch'`
+  Log: `.../smad-next/logs/AG1smoke-<jobid>.out`; results `results/AG1/AG1_smoke_mip{1,2}.tar`.
+- Then: `sbatch --array=0-7 tasks/AG1/ag1_array.sbatch tasks/AG1/core.txt` and
+  `sbatch --array=0-3 --dependency=afterok:<core job id> tasks/AG1/ag1_array.sbatch tasks/AG1/ag3.txt`.
+- If a task fails: its log is `.../logs/AG1-<job>_<index>.out`; tasks are idempotent (a verified result tar makes them
+  exit 0), so resubmitting the same index is safe. Exit codes: 2 pack hash, 3 missing core tar, 4 copy hash, 5 (WCSS
+  only), 6 no environment.
+- DGX processes of this owner: none running (local smokes and tests finished 17:41 / 17:50).
+- WCSS: 13 superseded task dirs in `smad-next/staging/AG1/` (not in ready/); packs in `smad-next/packs/AG1/`.
+- Compute spent: 0 cluster GPU-hours; DGX GB10 about 3 GPU-hours of shared tests; 0 USD.
+
+## 11. Reproduce from scratch
+
+```bash
+P=/home/narolski/mambamorph-code/.venv-spark/bin/python
+cd /home/narolski/smad-next/src/AG1
+$P build_inputs.py select && $P build_inputs.py prep && $P build_inputs.py pair && $P build_inputs.py mirror && $P build_inputs.py shards
+bash athena/make_athena_pack.sh                      # -> /mnt/t7/smad_next/AG1/athena/{ag1_pack.tar, tasks/}
+flock -w 1800 /tmp/smadnext-athena.lock rsync -a /mnt/t7/smad_next/AG1/athena/ag1_pack.tar* plgpnarolski@athena.cyfronet.pl:/net/pr2/projects/plgrid/plggrestoration/smad-next/packs/AG1/
+flock -w 600 /tmp/smadnext-athena.lock rsync -a /mnt/t7/smad_next/AG1/athena/tasks/ plgpnarolski@athena.cyfronet.pl:/net/pr2/projects/plgrid/plggrestoration/smad-next/tasks/AG1/
+# on Athena: sbatch tasks/AG1/ag1_smoke.sbatch; then the two arrays (section 10)
+# back on the DGX, after copying results/AG1/*.tar(+.sha256) to /mnt/t7/smad_next/AG1/results/:
+$P ag1_manifest.py frames && $P ag1_manifest.py oracle && $P ag1_manifest.py rt && $P ag1_manifest.py pins
+$P -I ag1_read.py --data /mnt/t7/smad_next/AG1/data --logs /mnt/t7/smad_next/AG1/results/x --photos /mnt/t7/smad_next/AG1/inputs/pack/photos.json --out /home/narolski/smad-next/experiments/AG1/read --gate-only
+```
+Note: `select` draws seeded (20261111) candidates; `prep` depends on the CPU detector and reproduces the crops only
+up to onnxruntime numerics; the committed `photos.json` hash is the reference.

@@ -1,0 +1,130 @@
+{
+ "n_pos": 299,
+ "n_neg": 299,
+ "n_components": 299,
+ "n_folds": 5,
+ "insample_best_single": 0.5679690383776468,
+ "insample_best_single_stat": "STORE:png_idat_mean_bytes",
+ "insample_best_single_f27": 0.5494345700831087,
+ "insample_best_single_f27_stat": "F27:b6_diag>.5",
+ "single": {
+  "auc": 0.5458943412266082,
+  "eer": 0.45484949832775917,
+  "ci": [
+   0.5063915672084205,
+   0.5857530956029574
+  ],
+  "chosen_per_fold": [
+   "+RENDER:resid_kurt_face",
+   "+RENDER:resid_kurt_face",
+   "-STORE:png_idat_mean_bytes",
+   "-STORE:png_idat_mean_bytes",
+   "-STORE:png_idat_mean_bytes"
+  ]
+ },
+ "logreg": {
+  "auc": 0.5873200523484078,
+  "eer": 0.44481605351170567,
+  "ci": [
+   0.5596973188219372,
+   0.6146816031140592
+  ]
+ },
+ "gbt": {
+  "auc": 0.5602398183465509,
+  "eer": 0.44816053511705684,
+  "ci": [
+   0.5220920347647118,
+   0.6000391494502298
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.568729656267827,
+  "ci": [
+   0.5623863267748683,
+   0.5781045514032281
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.5873200523484078,
+  "eer": 0.44481605351170567,
+  "ci": [
+   0.5596973188219372,
+   0.6146816031140592
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.5551280187022517,
+   "logreg": 0.568729656267827
+  },
+  "BORDER": {
+   "gbt": 0.5,
+   "logreg": 0.5
+  },
+  "RES": {
+   "gbt": 0.5351562063064171,
+   "logreg": 0.5659444525229024
+  },
+  "STORE": {
+   "gbt": 0.5379022606011118,
+   "logreg": 0.5608214673213946
+  },
+  "RENDER": {
+   "gbt": 0.5684947595664478,
+   "logreg": 0.5644120311853335
+  },
+  "BLEND": {
+   "gbt": 0.5185176899587253,
+   "logreg": 0.5308106173309023
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.5915929352020671,
+  "BORDER": 0.5899262871779958,
+  "RES": 0.5866489189158958,
+  "STORE": 0.575664701737117,
+  "RENDER": 0.5896019060189484,
+  "BLEND": 0.584971085334616
+ },
+ "contrast": "xf1_FMHH_vs_H",
+ "kind": "floor",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.5756423306227,
+  "eer": 0.45484949832775917,
+  "ci": [
+   0.5690204807552488,
+   0.5853969754253308
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 0.5893334526459436,
+  "eer": 0.451505016722408,
+  "ci": [
+   0.5567820829744634,
+   0.6206102280735114
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "XF1",
+  "positive": {
+   "fam": "xf1",
+   "rung": "FMHH"
+  },
+  "negative": {
+   "fam": "xf1",
+   "rung": "H"
+  },
+  "note": "XF1: one-photo FaceMorpher render vs the plain photo"
+ }
+}

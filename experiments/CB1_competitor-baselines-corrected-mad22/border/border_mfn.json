@@ -1,0 +1,170 @@
+{
+ "genuine_orig_border": {
+  "median": 0.0,
+  "max": 2.288818359375e-05
+ },
+ "amsl": {
+  "morph_border_median": 0.0531,
+  "share_morphs_border_le_0p005": 0.012,
+  "e7_border_median": 0.0,
+  "spearman_logit_vs_border_morphs": [
+   -0.8,
+   0.0
+  ],
+  "auc_all_morphs_vs_genuine": {
+   "auc": 0.1,
+   "ci95": [
+    0.058,
+    0.151
+   ],
+   "n_pos": 2175,
+   "n_neg": 204
+  },
+  "auc_border_matched_morphs_vs_genuine": {
+   "auc": 0.462,
+   "ci95": [
+    0.276,
+    0.651
+   ],
+   "n_pos": 26,
+   "n_neg": 204
+  },
+  "auc_all_morphs_vs_e7": {
+   "auc": 0.062,
+   "ci95": [
+    0.034,
+    0.099
+   ],
+   "n_pos": 2175,
+   "n_neg": 204
+  }
+ },
+ "facemorpher": {
+  "morph_border_median": 0.2597,
+  "share_morphs_border_le_0p005": 0.0,
+  "e7_border_median": 0.0,
+  "spearman_logit_vs_border_morphs": [
+   -0.389,
+   1.5587352612688136e-45
+  ],
+  "auc_all_morphs_vs_genuine": {
+   "auc": 0.002,
+   "ci95": [
+    0.0,
+    0.006
+   ],
+   "n_pos": 1222,
+   "n_neg": 204
+  },
+  "auc_border_matched_morphs_vs_genuine": null,
+  "auc_all_morphs_vs_e7": {
+   "auc": 0.001,
+   "ci95": [
+    0.0,
+    0.003
+   ],
+   "n_pos": 1222,
+   "n_neg": 204
+  }
+ },
+ "opencv": {
+  "morph_border_median": 0.1916,
+  "share_morphs_border_le_0p005": 0.0,
+  "e7_border_median": 0.0,
+  "spearman_logit_vs_border_morphs": [
+   -0.457,
+   5.516631536906375e-64
+  ],
+  "auc_all_morphs_vs_genuine": {
+   "auc": 0.003,
+   "ci95": [
+    0.0,
+    0.01
+   ],
+   "n_pos": 1221,
+   "n_neg": 204
+  },
+  "auc_border_matched_morphs_vs_genuine": null,
+  "auc_all_morphs_vs_e7": {
+   "auc": 0.001,
+   "ci95": [
+    0.0,
+    0.004
+   ],
+   "n_pos": 1221,
+   "n_neg": 204
+  }
+ },
+ "stylegan": {
+  "morph_border_median": 0.0317,
+  "share_morphs_border_le_0p005": 0.008,
+  "e7_border_median": 0.0,
+  "spearman_logit_vs_border_morphs": [
+   -0.496,
+   8.239004929076724e-77
+  ],
+  "auc_all_morphs_vs_genuine": {
+   "auc": 0.768,
+   "ci95": [
+    0.697,
+    0.83
+   ],
+   "n_pos": 1222,
+   "n_neg": 204
+  },
+  "auc_border_matched_morphs_vs_genuine": {
+   "auc": 0.908,
+   "ci95": [
+    0.0,
+    0.99
+   ],
+   "n_pos": 10,
+   "n_neg": 204
+  },
+  "auc_all_morphs_vs_e7": {
+   "auc": 0.768,
+   "ci95": [
+    0.697,
+    0.83
+   ],
+   "n_pos": 1222,
+   "n_neg": 204
+  }
+ },
+ "webmorph": {
+  "morph_border_median": 0.0507,
+  "share_morphs_border_le_0p005": 0.061,
+  "e7_border_median": 0.0,
+  "spearman_logit_vs_border_morphs": [
+   -0.897,
+   0.0
+  ],
+  "auc_all_morphs_vs_genuine": {
+   "auc": 0.168,
+   "ci95": [
+    0.111,
+    0.229
+   ],
+   "n_pos": 1221,
+   "n_neg": 204
+  },
+  "auc_border_matched_morphs_vs_genuine": {
+   "auc": 0.761,
+   "ci95": [
+    0.614,
+    0.881
+   ],
+   "n_pos": 74,
+   "n_neg": 204
+  },
+  "auc_all_morphs_vs_e7": {
+   "auc": 0.118,
+   "ci95": [
+    0.072,
+    0.169
+   ],
+   "n_pos": 1221,
+   "n_neg": 204
+  }
+ }
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PROPOSED_METADATA_ONLY_CONDITIONAL_BOOTSTRAP",
+  "rng": "numpy.default_rng(2026111402), PCG64; source/component draws first; then10000x5paired-seed-index draws",
+  "numpy": "1.26.4",
+  "accepted": 10000,
+  "attempts": 10178,
+  "rejected": 178,
+  "rejected_fraction": 0.017488701120062882,
+  "conditioning": "all5fixedDstrata containbothlabels; rejectusinglabels/components only, neverusing scores",
+  "component_draws_sha256": "0f045d8b9e71ebd627702a362bd473356de4091bec3aa6322bf92757c87f8dbd",
+  "seed_draws_sha256": "eb04e4b3ff18af8075453852642c7c0f1640b3a62e9879a01af25ccca03ab239",
+  "input_sha256": "03202a4afd96ce5e2d65acf1b4285310747efb86983615f95f05abfae221e6ce",
+  "script_sha256": "942df55151258b055567257c0232a2dca5aaf39b21f0ee693be21097105eaeea",
+  "scope": "proposal requires independentrootreview; no reader/source/fitregistration changes"
+}

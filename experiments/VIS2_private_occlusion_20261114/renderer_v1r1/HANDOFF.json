@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-14T22:22:41.670655+00:00",
+  "status": "IMMUTABLE_V1R1_READY_FOR_OTHER_DELTA_REVIEW",
+  "source_manifest_sha256": "5ab609dfdb8d3c2a7df1ef9c9fa574b307d055bc44ff1f1282a39f84838768ab",
+  "renderer_sha256": "7d85d113f24777503d7d6d2a2db6b3bb540f59486fa7c3813e8dc3f1c274ad81",
+  "config_mac_sha256": "424a14a8ba367280d18dd04e9248f2d9452d40f43e035192fc605397cc09cdad",
+  "delta_patch_sha256": "36ca7310881d1c00e67672ee3ea5f0472c3feddc4a1729454693f9c7501eff89",
+  "tests_sha256": "61f14c4c3b8027ebc56e60fe77c6c0a14648ca7d8cf16be0211bbef09187aecf",
+  "old_source_manifest_unchanged": "4b412cbbeea8ee3375b886db80ef39ec5f28acdd97b03e81e2d7fb93f0b921b3",
+  "tests": 18,
+  "prior_contract_fixtures_unchanged": true,
+  "actual_ReportLab_state_without_render": "PASS0/.45/1",
+  "mocked_full_flow": "PASS3072records/6pagesperedition/12virtualSVG/2mockPDF; no validimage/documentcreated",
+  "actual_real_result_RGB_or_render": false,
+  "new_root_grant": "REQUIRED_AFTER_OTHER_GO",
+  "publication": "HOLD"
+}

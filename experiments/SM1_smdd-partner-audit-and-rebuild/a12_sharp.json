@@ -1,0 +1,486 @@
+{
+ "d": {
+  "pooled_reference_only": {
+   "stored": {
+    "auc": 0.9349,
+    "se": 0.0041,
+    "n_morph": 2000,
+    "n_genuine": 2000,
+    "median_morph": 188.5,
+    "median_genuine": 543.5
+   },
+   "loader224": {
+    "auc": 0.9478,
+    "se": 0.0036,
+    "n_morph": 2000,
+    "n_genuine": 2000,
+    "median_morph": 93.3,
+    "median_genuine": 220.0
+   }
+  },
+  "strata": {
+   "256px": {
+    "stored": {
+     "auc": 0.9349,
+     "se": 0.0041,
+     "n_morph": 2000,
+     "n_genuine": 2000,
+     "median_morph": 188.5,
+     "median_genuine": 543.5
+    },
+    "loader224": {
+     "auc": 0.9478,
+     "se": 0.0036,
+     "n_morph": 2000,
+     "n_genuine": 2000,
+     "median_morph": 93.3,
+     "median_genuine": 220.0
+    },
+    "morph_share": 0.5,
+    "morph_vs_genuine_subkind": {
+     "render": {
+      "stored": {
+       "auc": 0.9956,
+       "se": 0.0011,
+       "n_morph": 2000,
+       "n_genuine": 1005,
+       "median_morph": 188.5,
+       "median_genuine": 856.7
+      },
+      "loader224": {
+       "auc": 0.9889,
+       "se": 0.0017,
+       "n_morph": 2000,
+       "n_genuine": 1005,
+       "median_morph": 93.3,
+       "median_genuine": 289.6
+      }
+     },
+     "half": {
+      "stored": {
+       "auc": 0.8735,
+       "se": 0.0062,
+       "n_morph": 2000,
+       "n_genuine": 995,
+       "median_morph": 188.5,
+       "median_genuine": 344.2
+      },
+      "loader224": {
+       "auc": 0.9063,
+       "se": 0.0052,
+       "n_morph": 2000,
+       "n_genuine": 995,
+       "median_morph": 93.3,
+       "median_genuine": 170.4
+      }
+     }
+    }
+   }
+  },
+  "two_variable_rule": {
+   "registered_stratum_plus_logvar224": 0.9476,
+   "with_interactions_224": 0.9476,
+   "stratum_plus_logvar_stored": 0.9345,
+   "stratum_only": 0.5
+  }
+ },
+ "e": {
+  "pooled_reference_only": {
+   "stored": {
+    "auc": 0.8466,
+    "se": 0.0062,
+    "n_morph": 2000,
+    "n_genuine": 2000,
+    "median_morph": 333.2,
+    "median_genuine": 742.9
+   },
+   "loader224": {
+    "auc": 0.7244,
+    "se": 0.008,
+    "n_morph": 2000,
+    "n_genuine": 2000,
+    "median_morph": 22.1,
+    "median_genuine": 106.7
+   }
+  },
+  "strata": {
+   "256px": {
+    "stored": {
+     "auc": 0.9357,
+     "se": 0.0057,
+     "n_morph": 991,
+     "n_genuine": 1038,
+     "median_morph": 193.5,
+     "median_genuine": 556.2
+    },
+    "loader224": {
+     "auc": 0.9516,
+     "se": 0.005,
+     "n_morph": 991,
+     "n_genuine": 1038,
+     "median_morph": 95.5,
+     "median_genuine": 224.4
+    },
+    "morph_share": 0.488,
+    "morph_vs_genuine_subkind": {
+     "render": {
+      "stored": {
+       "auc": 0.9953,
+       "se": 0.0015,
+       "n_morph": 991,
+       "n_genuine": 511,
+       "median_morph": 193.5,
+       "median_genuine": 848.7
+      },
+      "loader224": {
+       "auc": 0.9907,
+       "se": 0.0022,
+       "n_morph": 991,
+       "n_genuine": 511,
+       "median_morph": 95.5,
+       "median_genuine": 291.9
+      }
+     },
+     "half": {
+      "stored": {
+       "auc": 0.878,
+       "se": 0.0085,
+       "n_morph": 991,
+       "n_genuine": 527,
+       "median_morph": 193.5,
+       "median_genuine": 345.7
+      },
+      "loader224": {
+       "auc": 0.9136,
+       "se": 0.0071,
+       "n_morph": 991,
+       "n_genuine": 527,
+       "median_morph": 95.5,
+       "median_genuine": 172.7
+      }
+     }
+    }
+   },
+   "80px": {
+    "stored": {
+     "auc": 0.908,
+     "se": 0.0068,
+     "n_morph": 1009,
+     "n_genuine": 962,
+     "median_morph": 489.0,
+     "median_genuine": 893.5
+    },
+    "loader224": {
+     "auc": 0.8977,
+     "se": 0.0072,
+     "n_morph": 1009,
+     "n_genuine": 962,
+     "median_morph": 12.6,
+     "median_genuine": 21.2
+    },
+    "morph_share": 0.512,
+    "morph_vs_genuine_subkind": {
+     "render": {
+      "stored": {
+       "auc": 0.9326,
+       "se": 0.0062,
+       "n_morph": 1009,
+       "n_genuine": 494,
+       "median_morph": 489.0,
+       "median_genuine": 943.4
+      },
+      "loader224": {
+       "auc": 0.9229,
+       "se": 0.0066,
+       "n_morph": 1009,
+       "n_genuine": 494,
+       "median_morph": 12.6,
+       "median_genuine": 22.1
+      }
+     },
+     "half": {
+      "stored": {
+       "auc": 0.882,
+       "se": 0.0085,
+       "n_morph": 1009,
+       "n_genuine": 468,
+       "median_morph": 489.0,
+       "median_genuine": 848.4
+      },
+      "loader224": {
+       "auc": 0.871,
+       "se": 0.0089,
+       "n_morph": 1009,
+       "n_genuine": 468,
+       "median_morph": 12.6,
+       "median_genuine": 20.0
+      }
+     }
+    }
+   }
+  },
+  "two_variable_rule": {
+   "registered_stratum_plus_logvar224": 0.9279,
+   "with_interactions_224": 0.9268,
+   "stratum_plus_logvar_stored": 0.9221,
+   "stratum_only": 0.5027
+  }
+ },
+ "f": {
+  "pooled_reference_only": {
+   "stored": {
+    "auc": 0.843,
+    "se": 0.0063,
+    "n_morph": 2000,
+    "n_genuine": 2000,
+    "median_morph": 319.3,
+    "median_genuine": 733.2
+   },
+   "loader224": {
+    "auc": 0.7238,
+    "se": 0.008,
+    "n_morph": 2000,
+    "n_genuine": 2000,
+    "median_morph": 22.1,
+    "median_genuine": 104.2
+   }
+  },
+  "strata": {
+   "256px": {
+    "stored": {
+     "auc": 0.9334,
+     "se": 0.0072,
+     "n_morph": 661,
+     "n_genuine": 686,
+     "median_morph": 193.6,
+     "median_genuine": 546.6
+    },
+    "loader224": {
+     "auc": 0.9487,
+     "se": 0.0063,
+     "n_morph": 661,
+     "n_genuine": 686,
+     "median_morph": 95.4,
+     "median_genuine": 222.1
+    },
+    "morph_share": 0.491,
+    "morph_vs_genuine_subkind": {
+     "render": {
+      "stored": {
+       "auc": 0.9968,
+       "se": 0.0016,
+       "n_morph": 661,
+       "n_genuine": 326,
+       "median_morph": 193.6,
+       "median_genuine": 846.9
+      },
+      "loader224": {
+       "auc": 0.9919,
+       "se": 0.0025,
+       "n_morph": 661,
+       "n_genuine": 326,
+       "median_morph": 95.4,
+       "median_genuine": 292.2
+      }
+     },
+     "half": {
+      "stored": {
+       "auc": 0.876,
+       "se": 0.0105,
+       "n_morph": 661,
+       "n_genuine": 360,
+       "median_morph": 193.6,
+       "median_genuine": 351.5
+      },
+      "loader224": {
+       "auc": 0.9096,
+       "se": 0.0089,
+       "n_morph": 661,
+       "n_genuine": 360,
+       "median_morph": 95.4,
+       "median_genuine": 174.0
+      }
+     }
+    }
+   },
+   "256px+jpeg": {
+    "stored": {
+     "auc": 0.9354,
+     "se": 0.01,
+     "n_morph": 330,
+     "n_genuine": 352,
+     "median_morph": 149.5,
+     "median_genuine": 520.5
+    },
+    "loader224": {
+     "auc": 0.9557,
+     "se": 0.0082,
+     "n_morph": 330,
+     "n_genuine": 352,
+     "median_morph": 93.7,
+     "median_genuine": 229.4
+    },
+    "morph_share": 0.484,
+    "morph_vs_genuine_subkind": {
+     "render": {
+      "stored": {
+       "auc": 0.9883,
+       "se": 0.0043,
+       "n_morph": 330,
+       "n_genuine": 185,
+       "median_morph": 149.5,
+       "median_genuine": 826.9
+      },
+      "loader224": {
+       "auc": 0.9866,
+       "se": 0.0046,
+       "n_morph": 330,
+       "n_genuine": 185,
+       "median_morph": 93.7,
+       "median_genuine": 297.7
+      }
+     },
+     "half": {
+      "stored": {
+       "auc": 0.8768,
+       "se": 0.015,
+       "n_morph": 330,
+       "n_genuine": 167,
+       "median_morph": 149.5,
+       "median_genuine": 305.2
+      },
+      "loader224": {
+       "auc": 0.9214,
+       "se": 0.0117,
+       "n_morph": 330,
+       "n_genuine": 167,
+       "median_morph": 93.7,
+       "median_genuine": 169.5
+      }
+     }
+    }
+   },
+   "80px": {
+    "stored": {
+     "auc": 0.9105,
+     "se": 0.0083,
+     "n_morph": 655,
+     "n_genuine": 650,
+     "median_morph": 491.2,
+     "median_genuine": 893.6
+    },
+    "loader224": {
+     "auc": 0.9011,
+     "se": 0.0088,
+     "n_morph": 655,
+     "n_genuine": 650,
+     "median_morph": 12.7,
+     "median_genuine": 21.4
+    },
+    "morph_share": 0.502,
+    "morph_vs_genuine_subkind": {
+     "render": {
+      "stored": {
+       "auc": 0.9347,
+       "se": 0.0075,
+       "n_morph": 655,
+       "n_genuine": 341,
+       "median_morph": 491.2,
+       "median_genuine": 948.6
+      },
+      "loader224": {
+       "auc": 0.9259,
+       "se": 0.008,
+       "n_morph": 655,
+       "n_genuine": 341,
+       "median_morph": 12.7,
+       "median_genuine": 22.3
+      }
+     },
+     "half": {
+      "stored": {
+       "auc": 0.8837,
+       "se": 0.0104,
+       "n_morph": 655,
+       "n_genuine": 309,
+       "median_morph": 491.2,
+       "median_genuine": 850.3
+      },
+      "loader224": {
+       "auc": 0.8738,
+       "se": 0.0109,
+       "n_morph": 655,
+       "n_genuine": 309,
+       "median_morph": 12.7,
+       "median_genuine": 20.3
+      }
+     }
+    }
+   },
+   "80px+jpeg": {
+    "stored": {
+     "auc": 0.8943,
+     "se": 0.0125,
+     "n_morph": 354,
+     "n_genuine": 312,
+     "median_morph": 442.5,
+     "median_genuine": 857.7
+    },
+    "loader224": {
+     "auc": 0.8863,
+     "se": 0.0129,
+     "n_morph": 354,
+     "n_genuine": 312,
+     "median_morph": 12.0,
+     "median_genuine": 20.5
+    },
+    "morph_share": 0.532,
+    "morph_vs_genuine_subkind": {
+     "render": {
+      "stored": {
+       "auc": 0.9192,
+       "se": 0.0117,
+       "n_morph": 354,
+       "n_genuine": 153,
+       "median_morph": 442.5,
+       "median_genuine": 918.2
+      },
+      "loader224": {
+       "auc": 0.9108,
+       "se": 0.0124,
+       "n_morph": 354,
+       "n_genuine": 153,
+       "median_morph": 12.0,
+       "median_genuine": 21.8
+      }
+     },
+     "half": {
+      "stored": {
+       "auc": 0.8704,
+       "se": 0.0152,
+       "n_morph": 354,
+       "n_genuine": 159,
+       "median_morph": 442.5,
+       "median_genuine": 777.5
+      },
+      "loader224": {
+       "auc": 0.8627,
+       "se": 0.0157,
+       "n_morph": 354,
+       "n_genuine": 159,
+       "median_morph": 12.0,
+       "median_genuine": 18.8
+      }
+     }
+    }
+   }
+  },
+  "two_variable_rule": {
+   "registered_stratum_plus_logvar224": 0.9268,
+   "with_interactions_224": 0.9256,
+   "stratum_plus_logvar_stored": 0.9191,
+   "stratum_only": 0.4943
+  }
+ },
+ "note": "post hoc (A12 item 2); acceptance needs AUC <= 0.65 inside every stratum; the pooled AUC mixes storage sizes (a network sees the stratum) and is never a reduction"
+}

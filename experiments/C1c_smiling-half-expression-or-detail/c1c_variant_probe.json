@@ -1,0 +1,227 @@
+{
+ "frll_bona:orig": {
+  "probe_share_08_gt_03": 1.0,
+  "probe_flags_08": 0.9705882352941176,
+  "probe_flags_03": 0.00980392156862745,
+  "noise_bg_tl": {
+   "share_08_gt_03": 0.9607843137254902,
+   "median_ratio": 4.863268251023992,
+   "median_03": 0.4940523268130782
+  },
+  "noise_bg_tr": {
+   "share_08_gt_03": 0.9803921568627451,
+   "median_ratio": 4.597010483890965,
+   "median_03": 0.5395940729232869
+  },
+  "noise_forehead": {
+   "share_08_gt_03": 0.9607843137254902,
+   "median_ratio": 1.4589980454968021,
+   "median_03": 23.921571242932618
+  },
+  "noise_mouth": {
+   "share_08_gt_03": 0.9607843137254902,
+   "median_ratio": 1.4890385074369714,
+   "median_03": 47.072329688784805
+  }
+ },
+ "frll_bona:jpeg50": {
+  "probe_share_08_gt_03": 1.0,
+  "probe_flags_08": 0.9705882352941176,
+  "probe_flags_03": 0.00980392156862745,
+  "noise_bg_tl": {
+   "share_08_gt_03": 0.23529411764705882,
+   "median_ratio": 0.6309048290223922,
+   "median_03": 0.5485223501165173
+  },
+  "noise_bg_tr": {
+   "share_08_gt_03": 0.21568627450980393,
+   "median_ratio": 0.5940665850825108,
+   "median_03": 0.5298792065845943
+  },
+  "noise_forehead": {
+   "share_08_gt_03": 0.4411764705882353,
+   "median_ratio": 0.974464055956447,
+   "median_03": 32.177107884944924
+  },
+  "noise_mouth": {
+   "share_08_gt_03": 0.7352941176470589,
+   "median_ratio": 1.1591870538243212,
+   "median_03": 49.34004831653485
+  }
+ },
+ "frll_bona:blur1": {
+  "probe_share_08_gt_03": 1.0,
+  "probe_flags_08": 0.9607843137254902,
+  "probe_flags_03": 0.00980392156862745,
+  "noise_bg_tl": {
+   "share_08_gt_03": 0.9509803921568627,
+   "median_ratio": 3.014149650135578,
+   "median_03": 0.3973134351779927
+  },
+  "noise_bg_tr": {
+   "share_08_gt_03": 0.9705882352941176,
+   "median_ratio": 3.0131697554202352,
+   "median_03": 0.4229038674293246
+  },
+  "noise_forehead": {
+   "share_08_gt_03": 0.8235294117647058,
+   "median_ratio": 1.0888329879080856,
+   "median_03": 11.354647064120705
+  },
+  "noise_mouth": {
+   "share_08_gt_03": 0.9117647058823529,
+   "median_ratio": 1.3670765537494463,
+   "median_03": 28.541145956511016
+  }
+ },
+ "frll_bona:resample50": {
+  "probe_share_08_gt_03": 1.0,
+  "probe_flags_08": 0.9607843137254902,
+  "probe_flags_03": 0.00980392156862745,
+  "noise_bg_tl": {
+   "share_08_gt_03": 0.9607843137254902,
+   "median_ratio": 2.5432517816345555,
+   "median_03": 0.37952710495963093
+  },
+  "noise_bg_tr": {
+   "share_08_gt_03": 0.9705882352941176,
+   "median_ratio": 2.519582035533749,
+   "median_03": 0.40072970364616434
+  },
+  "noise_forehead": {
+   "share_08_gt_03": 0.6568627450980392,
+   "median_ratio": 1.036954943403612,
+   "median_03": 7.756696166558552
+  },
+  "noise_mouth": {
+   "share_08_gt_03": 0.8627450980392157,
+   "median_ratio": 1.3571782256812788,
+   "median_03": 22.18894442033607
+  }
+ },
+ "resmatch:facemorpher": {
+  "probe_share_08_gt_03": 1.0,
+  "probe_flags_08": 0.9607843137254902,
+  "probe_flags_03": 0.00980392156862745,
+  "noise_bg_tl": {
+   "share_08_gt_03": 0.9509803921568627,
+   "median_ratio": 3.3397982047271064,
+   "median_03": 0.41568980533389827
+  },
+  "noise_bg_tr": {
+   "share_08_gt_03": 0.9803921568627451,
+   "median_ratio": 3.1396660255809703,
+   "median_03": 0.44858518570827016
+  },
+  "noise_forehead": {
+   "share_08_gt_03": 0.8921568627450981,
+   "median_ratio": 1.150583386559524,
+   "median_03": 13.044022482640115
+  },
+  "noise_mouth": {
+   "share_08_gt_03": 0.9509803921568627,
+   "median_ratio": 1.3718042277052085,
+   "median_03": 30.364864724295508
+  }
+ },
+ "resmatch:amsl": {
+  "probe_share_08_gt_03": 1.0,
+  "probe_flags_08": 0.9607843137254902,
+  "probe_flags_03": 0.00980392156862745,
+  "noise_bg_tl": {
+   "share_08_gt_03": 0.9509803921568627,
+   "median_ratio": 2.9161671510605283,
+   "median_03": 0.38322152390367914
+  },
+  "noise_bg_tr": {
+   "share_08_gt_03": 0.9705882352941176,
+   "median_ratio": 2.692273303843366,
+   "median_03": 0.4053210826814384
+  },
+  "noise_forehead": {
+   "share_08_gt_03": 0.8137254901960784,
+   "median_ratio": 1.1002744243449258,
+   "median_03": 10.286434434533486
+  },
+  "noise_mouth": {
+   "share_08_gt_03": 0.9313725490196079,
+   "median_ratio": 1.3804193221462127,
+   "median_03": 26.551878024048467
+  }
+ },
+ "resmatch:dim_a": {
+  "probe_share_08_gt_03": 1.0,
+  "probe_flags_08": 0.9411764705882353,
+  "probe_flags_03": 0.00980392156862745,
+  "noise_bg_tl": {
+   "share_08_gt_03": 0.9509803921568627,
+   "median_ratio": 1.8463378619209756,
+   "median_03": 0.27437739801803074
+  },
+  "noise_bg_tr": {
+   "share_08_gt_03": 0.9705882352941176,
+   "median_ratio": 1.7022769772681219,
+   "median_03": 0.29069569004072215
+  },
+  "noise_forehead": {
+   "share_08_gt_03": 0.3627450980392157,
+   "median_ratio": 0.9722661101132619,
+   "median_03": 3.860394294366461
+  },
+  "noise_mouth": {
+   "share_08_gt_03": 0.8725490196078431,
+   "median_ratio": 1.3733844061883644,
+   "median_03": 16.046224785579923
+  }
+ },
+ "resmatch:mordiff": {
+  "probe_share_08_gt_03": 1.0,
+  "probe_flags_08": 0.8627450980392157,
+  "probe_flags_03": 0.0196078431372549,
+  "noise_bg_tl": {
+   "share_08_gt_03": NaN,
+   "median_ratio": NaN,
+   "median_03": NaN
+  },
+  "noise_bg_tr": {
+   "share_08_gt_03": NaN,
+   "median_ratio": NaN,
+   "median_03": NaN
+  },
+  "noise_forehead": {
+   "share_08_gt_03": 0.43137254901960786,
+   "median_ratio": 0.9785263919911491,
+   "median_03": 4.122392915313923
+  },
+  "noise_mouth": {
+   "share_08_gt_03": 0.9019607843137255,
+   "median_ratio": 1.3610799791042483,
+   "median_03": 17.303932130544652
+  }
+ },
+ "mordiff_bona:orig": {
+  "probe_share_08_gt_03": 1.0,
+  "probe_flags_08": 0.9019607843137255,
+  "probe_flags_03": 0.0196078431372549,
+  "noise_bg_tl": {
+   "share_08_gt_03": NaN,
+   "median_ratio": NaN,
+   "median_03": NaN
+  },
+  "noise_bg_tr": {
+   "share_08_gt_03": NaN,
+   "median_ratio": NaN,
+   "median_03": NaN
+  },
+  "noise_forehead": {
+   "share_08_gt_03": 0.9411764705882353,
+   "median_ratio": 1.4701573369181782,
+   "median_03": 24.148996665980803
+  },
+  "noise_mouth": {
+   "share_08_gt_03": 0.9705882352941176,
+   "median_ratio": 1.4954213299484471,
+   "median_03": 48.086942023146825
+  }
+ }
+}

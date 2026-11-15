@@ -1,0 +1,126 @@
+{
+ "n_pos": 125,
+ "n_neg": 125,
+ "n_components": 250,
+ "n_folds": 5,
+ "insample_best_single": 0.906368,
+ "insample_best_single_stat": "F27:b2_.063-.125",
+ "insample_best_single_f27": 0.906368,
+ "insample_best_single_f27_stat": "F27:b2_.063-.125",
+ "single": {
+  "auc": 0.888128,
+  "eer": 0.208,
+  "ci": [
+   0.8458999836270541,
+   0.9267016629076319
+  ],
+  "chosen_per_fold": [
+   "-F27:b2_.063-.125",
+   "-F27:b2_.063-.125",
+   "-F27:b5_.375-.5",
+   "-F27:lapvar_face",
+   "-F27:b2_.063-.125"
+  ]
+ },
+ "logreg": {
+  "auc": 0.948736,
+  "eer": 0.128,
+  "ci": [
+   0.9174345534159296,
+   0.9732050972138481
+  ]
+ },
+ "gbt": {
+  "auc": 0.934912,
+  "eer": 0.152,
+  "ci": [
+   0.9027877793386418,
+   0.9623719504365691
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.927552,
+  "ci": [
+   0.8922282950838908,
+   0.9575611037164153
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.948736,
+  "eer": 0.128,
+  "ci": [
+   0.9174345534159296,
+   0.9732050972138481
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.897984,
+   "logreg": 0.927552
+  },
+  "BORDER": {
+   "gbt": 0.670208,
+   "logreg": 0.571456
+  },
+  "RES": {
+   "gbt": 0.847104,
+   "logreg": 0.897984
+  },
+  "STORE": {
+   "gbt": 0.549824,
+   "logreg": 0.629824
+  },
+  "RENDER": {
+   "gbt": 0.890112,
+   "logreg": 0.89856
+  },
+  "BLEND": {
+   "gbt": 0.856448,
+   "logreg": 0.889472
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.94816,
+  "BORDER": 0.940288,
+  "RES": 0.936192,
+  "STORE": 0.95808,
+  "RENDER": 0.94496,
+  "BLEND": 0.952064
+ },
+ "contrast": "lcomb_bal",
+ "kind": "floor",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.951552,
+  "eer": 0.12,
+  "ci": [
+   0.9220824272246402,
+   0.9752085084278843
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 0.949696,
+  "eer": 0.096,
+  "ci": [
+   0.919887802451135,
+   0.9744426292523544
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "rowfile": "/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/lcomb_bal_rows.csv"
+  },
+  "negative": {},
+  "note": "lcomb matched on the surround score and pre_ied (amendment 3)"
+ }
+}

@@ -1,0 +1,486 @@
+{
+ "a": {
+  "X20_over_REC20": {
+   "mean": 0.745,
+   "seeds": [
+    0.7077,
+    0.7823
+   ],
+   "ci": [
+    0.7268,
+    0.7634
+   ]
+  },
+  "SAME20_over_REC20": {
+   "mean": 0.6057,
+   "seeds": [
+    0.553,
+    0.6584
+   ],
+   "ci": [
+    0.5867,
+    0.625
+   ]
+  },
+  "X20_over_SAME20": {
+   "mean": 0.6583,
+   "seeds": [
+    0.6627,
+    0.6538
+   ],
+   "ci": [
+    0.6366,
+    0.6802
+   ]
+  },
+  "X20_over_SAME20_lapstrat": {
+   "mean": 0.595,
+   "seeds": [
+    0.6034,
+    0.5866
+   ],
+   "ci": [
+    0.5678,
+    0.6222
+   ]
+  },
+  "X20_over_SAME20_thetastrat": {
+   "mean": 0.5679,
+   "seeds": [
+    0.5715,
+    0.5642
+   ],
+   "ci": [
+    0.5229,
+    0.6124
+   ]
+  },
+  "incE_median_amsl112": {
+   "mean": 0.1078,
+   "seeds": [
+    0.072,
+    0.1437
+   ]
+  },
+  "incE_share_down_amsl112": {
+   "mean": 0.015,
+   "seeds": [
+    0.01,
+    0.02
+   ]
+  },
+  "incE_share_abs_lt_0.01_amsl112": {
+   "mean": 0.02,
+   "seeds": [
+    0.015,
+    0.025
+   ]
+  },
+  "pairedAUC_perhost_amsl112": {
+   "mean": 0.985,
+   "seeds": [
+    0.99,
+    0.98
+   ],
+   "ci": [
+    0.9697,
+    0.9973
+   ]
+  },
+  "incE_median_fm61": {
+   "mean": 0.6814,
+   "seeds": [
+    0.5007,
+    0.8622
+   ]
+  },
+  "incE_share_down_fm61": {
+   "mean": 0.0075,
+   "seeds": [
+    0.0,
+    0.015
+   ]
+  },
+  "incE_share_abs_lt_0.01_fm61": {
+   "mean": 0.0025,
+   "seeds": [
+    0.0,
+    0.005
+   ]
+  },
+  "pairedAUC_perhost_fm61": {
+   "mean": 0.9925,
+   "seeds": [
+    1.0,
+    0.985
+   ],
+   "ci": [
+    0.9831,
+    1.0
+   ]
+  }
+ },
+ "e": {
+  "X20_over_REC20": {
+   "mean": 0.5099,
+   "seeds": [
+    0.5077,
+    0.512
+   ],
+   "ci": [
+    0.4848,
+    0.5357
+   ]
+  },
+  "SAME20_over_REC20": {
+   "mean": 0.3555,
+   "seeds": [
+    0.3399,
+    0.3711
+   ],
+   "ci": [
+    0.3321,
+    0.3785
+   ]
+  },
+  "X20_over_SAME20": {
+   "mean": 0.6445,
+   "seeds": [
+    0.6603,
+    0.6287
+   ],
+   "ci": [
+    0.6191,
+    0.6696
+   ]
+  },
+  "X20_over_SAME20_lapstrat": {
+   "mean": 0.6208,
+   "seeds": [
+    0.632,
+    0.6096
+   ],
+   "ci": [
+    0.5931,
+    0.6479
+   ]
+  },
+  "X20_over_SAME20_thetastrat": {
+   "mean": 0.5833,
+   "seeds": [
+    0.5954,
+    0.5711
+   ],
+   "ci": [
+    0.538,
+    0.6274
+   ]
+  },
+  "incE_median_amsl112": {
+   "mean": -0.0032,
+   "seeds": [
+    0.0012,
+    -0.0076
+   ]
+  },
+  "incE_share_down_amsl112": {
+   "mean": 0.57,
+   "seeds": [
+    0.485,
+    0.655
+   ]
+  },
+  "incE_share_abs_lt_0.01_amsl112": {
+   "mean": 0.4,
+   "seeds": [
+    0.475,
+    0.325
+   ]
+  },
+  "pairedAUC_perhost_amsl112": {
+   "mean": 0.43,
+   "seeds": [
+    0.515,
+    0.345
+   ],
+   "ci": [
+    0.3724,
+    0.4876
+   ]
+  },
+  "incE_median_fm61": {
+   "mean": -0.0087,
+   "seeds": [
+    -0.0062,
+    -0.0113
+   ]
+  },
+  "incE_share_down_fm61": {
+   "mean": 0.645,
+   "seeds": [
+    0.63,
+    0.66
+   ]
+  },
+  "incE_share_abs_lt_0.01_fm61": {
+   "mean": 0.29,
+   "seeds": [
+    0.34,
+    0.24
+   ]
+  },
+  "pairedAUC_perhost_fm61": {
+   "mean": 0.355,
+   "seeds": [
+    0.37,
+    0.34
+   ],
+   "ci": [
+    0.299,
+    0.4135
+   ]
+  }
+ },
+ "f": {
+  "X20_over_REC20": {
+   "mean": 0.5623,
+   "seeds": [
+    0.5714,
+    0.5533
+   ],
+   "ci": [
+    0.5382,
+    0.5878
+   ]
+  },
+  "SAME20_over_REC20": {
+   "mean": 0.4133,
+   "seeds": [
+    0.4169,
+    0.4098
+   ],
+   "ci": [
+    0.3902,
+    0.4361
+   ]
+  },
+  "X20_over_SAME20": {
+   "mean": 0.6389,
+   "seeds": [
+    0.6478,
+    0.6301
+   ],
+   "ci": [
+    0.6147,
+    0.6633
+   ]
+  },
+  "X20_over_SAME20_lapstrat": {
+   "mean": 0.6169,
+   "seeds": [
+    0.6239,
+    0.61
+   ],
+   "ci": [
+    0.5893,
+    0.6436
+   ]
+  },
+  "X20_over_SAME20_thetastrat": {
+   "mean": 0.5867,
+   "seeds": [
+    0.592,
+    0.5814
+   ],
+   "ci": [
+    0.5399,
+    0.6318
+   ]
+  },
+  "incE_median_amsl112": {
+   "mean": 0.0005,
+   "seeds": [
+    0.0011,
+    -0.0001
+   ]
+  },
+  "incE_share_down_amsl112": {
+   "mean": 0.4825,
+   "seeds": [
+    0.465,
+    0.5
+   ]
+  },
+  "incE_share_abs_lt_0.01_amsl112": {
+   "mean": 0.44,
+   "seeds": [
+    0.51,
+    0.37
+   ]
+  },
+  "pairedAUC_perhost_amsl112": {
+   "mean": 0.5175,
+   "seeds": [
+    0.535,
+    0.5
+   ],
+   "ci": [
+    0.4559,
+    0.5771
+   ]
+  },
+  "incE_median_fm61": {
+   "mean": -0.0004,
+   "seeds": [
+    -0.0009,
+    0.0001
+   ]
+  },
+  "incE_share_down_fm61": {
+   "mean": 0.51,
+   "seeds": [
+    0.52,
+    0.5
+   ]
+  },
+  "incE_share_abs_lt_0.01_fm61": {
+   "mean": 0.355,
+   "seeds": [
+    0.43,
+    0.28
+   ]
+  },
+  "pairedAUC_perhost_fm61": {
+   "mean": 0.49,
+   "seeds": [
+    0.48,
+    0.5
+   ],
+   "ci": [
+    0.4298,
+    0.553
+   ]
+  }
+ },
+ "differences": {
+  "a-e:X20_over_REC20": {
+   "diff": 0.2351,
+   "ci": [
+    0.215,
+    0.2563
+   ]
+  },
+  "a-e:SAME20_over_REC20": {
+   "diff": 0.2502,
+   "ci": [
+    0.2312,
+    0.2706
+   ]
+  },
+  "a-e:X20_over_SAME20": {
+   "diff": 0.0138,
+   "ci": [
+    -0.0056,
+    0.0333
+   ]
+  },
+  "a-e:X20_over_SAME20_lapstrat": {
+   "diff": -0.0258,
+   "ci": [
+    -0.0499,
+    -0.0013
+   ]
+  },
+  "a-e:X20_over_SAME20_thetastrat": {
+   "diff": -0.0154,
+   "ci": [
+    -0.0541,
+    0.0231
+   ]
+  },
+  "e-f:pairedAUC_perhost_amsl112": {
+   "diff": -0.0875,
+   "ci": [
+    -0.125,
+    -0.0519
+   ]
+  },
+  "e-f:pairedAUC_perhost_fm61": {
+   "diff": -0.135,
+   "ci": [
+    -0.1754,
+    -0.0965
+   ]
+  }
+ },
+ "A17": {
+  "H_n3a": {
+   "a_minus_e": {
+    "diff": -0.0258,
+    "ci": [
+     -0.0499,
+     -0.0013
+    ]
+   },
+   "verdict": "supported"
+  },
+  "H_n3b": {
+   "theta_strat": {
+    "a": {
+     "mean": 0.5679,
+     "seeds": [
+      0.5715,
+      0.5642
+     ],
+     "ci": [
+      0.5229,
+      0.6124
+     ]
+    },
+    "e": {
+     "mean": 0.5833,
+     "seeds": [
+      0.5954,
+      0.5711
+     ],
+     "ci": [
+      0.538,
+      0.6274
+     ]
+    },
+    "f": {
+     "mean": 0.5867,
+     "seeds": [
+      0.592,
+      0.5814
+     ],
+     "ci": [
+      0.5399,
+      0.6318
+     ]
+    }
+   },
+   "verdict": "undecided"
+  }
+ },
+ "H-new-B_registered_paired": {
+  "e_minus_f": [
+   {
+    "diff": -0.0875,
+    "ci": [
+     -0.125,
+     -0.0519
+    ]
+   },
+   {
+    "diff": -0.135,
+    "ci": [
+     -0.1754,
+     -0.0965
+    ]
+   }
+  ],
+  "verdict": "falsified"
+ },
+ "note": "SAME20 table, H-new-E calibration, per-host H-new-B: post hoc re-reads; A17 registered (f6b06e2)"
+}

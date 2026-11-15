@@ -1,0 +1,52 @@
+# Independent Sol pre-review: AD5 first backward diagnostic
+
+Observed 2026-11-14T15:52:33.612957+00:00. Reviewer independent of Astra diagnostic author. **GO_FOR_EXACT_REGISTERED_15MIN_BATCH_DIAGNOSTIC**, subject to root's explicit staging/identity/environment/duplicate checks below. This approves one technical diagnostic, not a full smoke, production retry, method change, scientific admission or results claim. No approval for a standalone invocation inheriting the script's12h header or arbitrary environment overrides. No package-author files or supplementary files changed.
+
+## Evidence and independent checks
+
+Re-read mambamorph AGENTS and pointed CONTINUE, current delivery resource policy, status/notebook excerpts, Astra baseline technical review, prospective prereg and both exact sources. H100 stays WCSS, no paid H100; leader alone submits. No scheduler query, GPU, rental, model/checkpoint deserialization, image/score/result payload or scientific reader executed. Existing code-only archive is explicitly within this source-review scope.
+
+Independently streamed opaque code tar SHA256 and read only allowlisted Python SOURCE members from `/mnt/t7/smad_next/AD5/wcss/ad5w_code.tar`. Archive hash exactly `94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee`. Packed trainer exactly `e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d`; packed config `931f682a0f6cd0e01eb3b13f394f6ee42defd5bd4e03821324b3c97e866232dd`. No weights or non-source member bodies read. This was not broad extraction.
+
+Copied only trainer source into a fresh temporary CPU directory, ran the reviewed instrumenter with python3 -I there, independently compiled and AST-parsed modified source, then discarded temporary directory. PASS, patch exit0, exact resulting trainer `f9cfa6bcd457e21cf449c917621dd40c0122da6ea712355f74fd8380a53104f0`. Unified diff confirmed one exact replacement only at original191–194. `bash -n src/recovery_20261114/ad5w_firstbackward_diagnostic.sbatch`: PASS0. No module import or training code execution. Compared shell to `ad5w_launchblocking_smoke.sbatch`; original training/crop/wheel/launcher path is unchanged apart from guards, instrumentation, namespace and terminating diagnostic collection.
+
+| Reviewed file | SHA256 |
+|---|---|
+| `src/recovery_20261114/ad5_backward_instrument.py` | `04668b872d83171bf7a2ae909a7955f266fd44b51237805e0b629e955b309f0f` |
+| `src/recovery_20261114/ad5w_firstbackward_diagnostic.sbatch` | `e090bd45f69cbc30b58ac1faa5c711cde672a75d842e944e5882a1c0eb4e7f92` |
+| `experiments/AGENTIC_delivery_20261114/ASTRA_AD5_FIRST_BACKWARD_PREREG_20261114.md` | `ebb4e12d76cab4b872aee9ab3b9fcd390d6f6463116fee9709aed1c5d48d0a7b` |
+| `experiments/AGENTIC_delivery_20261114/ASTRA_BASELINE_TECHNICAL_REVIEW_20261114.md` | `bc01d0bed0250cf9b26d90d21ad9160516ba6450e1ba662f234c94b766a0e9c4` |
+
+## Scope and method invariance: PASS
+
+Original TrainerClip.MAD_training constructs AdamW/schedulers before epoch0, then set_epoch(0), takes its first dataloader batch, moves images/targets to CUDA, encodes, normalizes features, computes header loss, backward, clipping and optimizer steps in that order. Patch preserves original encoder/header/loss calls and no tensor/label conversion or backend selection is added. It raises SystemExit0 immediately after synchronized first backward. Clipping, optimizer_model.step/header.step, scheduler steps, later batches, callback checkpoint and test_model are unreachable through this fixed MAD_training path. If an earlier op fails, control propagates out without an update. Wording correction: **optimizer objects ARE constructed unchanged; no optimizer UPDATE occurs**. Do not describe it as a path that never constructs an optimizer.
+
+Packed config88–90 removes all test dataset lists when inline AD5_NO_TEST=1. Exact shell forces MAD_training, ViT-B/16, seed401, original reduced smoke list (every12th row), global batch256, unchanged LoRA/float32/loss/package settings. Added code does not print tensor values, per-image predictions, labels or loss. Existing original setup logging is training-only. Checkpoint callback/tensorboard hyperparameter setup can create directories/log metadata before the batch; no learned checkpoint save is reached. This is appropriate for technical trace retention, not scientific scoring.
+
+No RNG call is added by instrumentation before the batch/forward. Batch sampling and augmentation code are untouched and original seed setup remains. This is the first original smoke batch by unchanged construction, NOT newly proven byte-identical tensor contents across runs; original config enables cuDNN benchmark. Do not claim exact numerical determinism from static review.
+
+## Synchronization/localization: PASS with correct interpretation
+
+CUDA_LAUNCH_BLOCKING, C++ stack traces and faulthandler are set; explicit synchronize before forward and after encoder/header/backward provide phase boundaries. detect_anomaly(check_nan=False) covers forward/backward for an autograd forward trace and does not add a NaN-result decision. Backend enabled flags are availability/configuration flags, not evidence a particular SDPA kernel ran. Illegal-instruction cause remains unknown until actual trace. If pre-forward synchronize fails there is no encoder-localization conclusion. If instrumented backward completes, marker plus childexit0 means only completion under instrumentation; it is NOT original smoke success. Failure without informative trace remains inconclusive. No clipping workaround or backend switch is approved.
+
+## Shell, preservation and reproducibility
+
+PASS for the exact preregistered command: ARM=B, array401 enforced; SMOKE nonempty required; fresh create-only keep directory refuses reuse, including concurrent mkdir race. Scratch code/venv use TMPDIR, prior sources/packs/venv unchanged. The patcher checks exact original trainer and single target match; staged patcher itself has a hard full SHA check. -I ignores Python environment variables for instrumenter. Pack sidecars are checked before unpacking; offline wheel installation and fixed Python3.9 assertion retain original setup. Child failure is captured via rc and full redirected log, monitoring process is killed+waited, five output files copied+cmp'ed and SHA256SUMS written before success/failure exit. Shell accepts success only if child0 plus explicit completion marker. Old result-packaging path after diagnostic exit1 is unreachable for enforced B; X/L guards reject before execution.
+
+Limits: normal child return gets full five-file receipts; TERM handler copies only *.log/*.csv and can suppress cp errors, and startup ERR has no finalizer. Therefore timeout/startup failure is not a complete diagnostic bundle; retain native scheduler stdout/status and whatever keep files exist, explicitly classify failure/inconclusive and never infer pass from empty namespace. This is already allowed in prereg's partial-startup/timeout disposition. Collection to /mnt/t7 is root's explicit post-run action, not performed by script. No durable-storage guarantee for SIGKILL is claimed.
+
+## Required launch actions by root (already preregistered prerequisites, not new experiments)
+
+1. Commit/bind these exact file hashes, stage and compare remote source bytes. Compare remote code/wheel/crop SIDECARS to the already collected authoritative sidecars, not merely tar against a mutable adjacent sidecar. Code hash must equal94964c…d6ee. Wheel/data original tar integrity remains a root staging check; this reviewer did not read their payloads. Preserve collection receipt.
+2. In the actual submission shell explicitly unset AD5_L, AD5_PYTHON, AD5_NG, EPOCHS and inherited recipe overrides before using exact prereg command; record effective environment identity. Script intentionally retains those legacy overrides and `--export=ALL`; the GO is for sanitized registered invocation. No arbitrary inherited overrides covered.
+3. Use exact command in prereg: lem-gpu-short, **one H100**, array401,8CPU120G,150Glocal, **--time=00:15:00**, ARM=B,SMOKE=1,exact staged patcher. Header still says12h and does not itself fix GPU count: command-line overrides are part of reviewed executable. Verify actual queue/duplicate/namespace state once under gx10 WCSS flock before submission. No limit/capacity availability was queried by this reviewer. At most0.25allocatedH100h by submitted15min limit; anomaly startup runtime remains estimate. No shortened/changed training recipe needed.
+4. Interactive alternative is not reviewed here: only srun--pty is valid under known policy and requires independently reviewed equivalent durable launcher, including explicit array seed401. Do not move this sbatch to interactive partition.
+5. Collect native status+outer stdout, keep logs and SHA metadata to /mnt/t7 with>=50GiB floor, compare copies, retain original failures. On return, inspect technical trace only; review diagnostic conclusion independently before preparing any prospective fix. No automatic rerun after inconclusive trace.
+
+## Recommended source cleanups (not blockers for exact invocation above)
+
+- Replace copied12h SBATCH default with15min and stale production/X/L/packaging comments with this diagnostic scope, plus fail-closed NG==1/effective environment guards. Any changed bytes need rehash and narrow independent delta review; this GO does not cover future edits.
+- Improve EXIT/TERM finalizer to preserve instrumentation.json/pip_freeze and explicit incomplete status on startup/timeouts; never suppress collection failure as success. Current command cannot report diagnostic success when those normal-path copies fail, so this recommendation improves failure observability rather than fixing a false PASS path.
+- Preserve source-sidecar/train-CSV hashes and exact nvidia/torch metadata in root launch/collection receipt, since legacy unreachable job.json packaging does not run. Do not restore checkpoint/result packaging merely to obtain job.json.
+
+No user permission question required: this fits the already authorized bounded technical diagnostic, but only root can execute after satisfying the listed existing gates. This independent reviewer made no submission or source fix. GO expires if any reviewed source/prereg hash changes, input sidecars differ, environment is not sanitized, hardware/resources change or namespace is already used. No change to IDistill production disposition or supplement readiness.

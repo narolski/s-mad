@@ -1,0 +1,192 @@
+{
+ "SpV": {
+  "unique": 5223,
+  "rows_before_balance": 5535,
+  "rows": 8386,
+  "repeated_for_volume": 312,
+  "unique_by_kind": {
+   "af0_half": 1456,
+   "af0_half61": 363,
+   "af0_photo": 518,
+   "af0_photo61": 254,
+   "af0_u50": 728,
+   "af0_u5061": 366,
+   "af0_zero": 730,
+   "lad_R0": 156,
+   "lad_R2w": 156,
+   "lad_R4": 124,
+   "lad_S4": 124,
+   "lad_half": 248
+  },
+  "rows_by_kind": {
+   "af0_half": 1595,
+   "af0_half61": 363,
+   "af0_photo": 543,
+   "af0_photo61": 254,
+   "af0_u50": 2711,
+   "af0_u5061": 617,
+   "af0_zero": 798,
+   "lad_R0": 175,
+   "lad_R2w": 182,
+   "lad_R4": 435,
+   "lad_S4": 430,
+   "lad_half": 283
+  },
+  "strata": {
+   "feret|native": {
+    "unique_neg": 1602,
+    "unique_att": 372,
+    "rows": 3204
+   },
+   "feret|s61": {
+    "unique_neg": 392,
+    "unique_att": 166,
+    "rows": 784
+   },
+   "frgc|native": {
+    "unique_neg": 1974,
+    "unique_att": 604,
+    "rows": 3948
+   },
+   "frgc|s61": {
+    "unique_neg": 225,
+    "unique_att": 200,
+    "rows": 450
+   }
+  },
+  "sha256": "f6521d96de7d93ff62232c4eb8236d2560cf39f2e8ca6a56d676f3c0c39af759"
+ },
+ "BN": {
+  "unique": 5411,
+  "rows_before_balance": 5411,
+  "rows": 8386,
+  "repeated_for_volume": 0,
+  "unique_by_kind": {
+   "af0_half": 1456,
+   "af0_half61": 363,
+   "af0_photo": 518,
+   "af0_photo61": 254,
+   "af0_u50": 728,
+   "af0_u5061": 366,
+   "af0_zero": 730,
+   "lad_R0": 156,
+   "lad_R2w": 156,
+   "lad_R4": 124,
+   "lad_S0": 156,
+   "lad_S3": 156,
+   "lad_half": 248
+  },
+  "rows_by_kind": {
+   "af0_half": 1456,
+   "af0_half61": 363,
+   "af0_photo": 518,
+   "af0_photo61": 254,
+   "af0_u50": 3077,
+   "af0_u5061": 617,
+   "af0_zero": 730,
+   "lad_R0": 156,
+   "lad_R2w": 156,
+   "lad_R4": 499,
+   "lad_S0": 156,
+   "lad_S3": 156,
+   "lad_half": 248
+  },
+  "strata": {
+   "feret|native": {
+    "unique_neg": 1602,
+    "unique_att": 350,
+    "rows": 3204
+   },
+   "feret|s61": {
+    "unique_neg": 392,
+    "unique_att": 166,
+    "rows": 784
+   },
+   "frgc|native": {
+    "unique_neg": 1974,
+    "unique_att": 502,
+    "rows": 3948
+   },
+   "frgc|s61": {
+    "unique_neg": 225,
+    "unique_att": 200,
+    "rows": 450
+   }
+  },
+  "sha256": "c1b4497bb59343b7f5dd48149e300fb136533790724dfdf83aa395a703fe6af1"
+ },
+ "BV": {
+  "unique": 5099,
+  "rows_before_balance": 5411,
+  "rows": 8386,
+  "repeated_for_volume": 312,
+  "unique_by_kind": {
+   "af0_half": 1456,
+   "af0_half61": 363,
+   "af0_photo": 518,
+   "af0_photo61": 254,
+   "af0_u50": 728,
+   "af0_u5061": 366,
+   "af0_zero": 730,
+   "lad_R0": 156,
+   "lad_R2w": 156,
+   "lad_R4": 124,
+   "lad_half": 248
+  },
+  "rows_by_kind": {
+   "af0_half": 1584,
+   "af0_half61": 363,
+   "af0_photo": 544,
+   "af0_photo61": 254,
+   "af0_u50": 3077,
+   "af0_u5061": 617,
+   "af0_zero": 803,
+   "lad_R0": 183,
+   "lad_R2w": 177,
+   "lad_R4": 499,
+   "lad_half": 285
+  },
+  "strata": {
+   "feret|native": {
+    "unique_neg": 1602,
+    "unique_att": 350,
+    "rows": 3204
+   },
+   "feret|s61": {
+    "unique_neg": 392,
+    "unique_att": 166,
+    "rows": 784
+   },
+   "frgc|native": {
+    "unique_neg": 1974,
+    "unique_att": 502,
+    "rows": 3948
+   },
+   "frgc|s61": {
+    "unique_neg": 225,
+    "unique_att": 200,
+    "rows": 450
+   }
+  },
+  "sha256": "ee4e227b2cd6648d196b5d61300a9cf483c85f05a80afae0fd6e774153baf04f"
+ },
+ "eval": {
+  "rows": 21277,
+  "fs1_rows": 19797,
+  "ms1ffhq_rows": 1480,
+  "by_fam": {
+   "af0": 1339,
+   "ladder": 6093,
+   "splice": 4365,
+   "ffhq": 5000,
+   "ffhq_lcomb": 3000,
+   "ms1ffhq": 1480
+  },
+  "sha256": "93a5ba234f91e57951829c5536fabbe0f792ee4ad0a293f074aaca72f7465bd5"
+ },
+ "overlay": {
+  "sha256": "bf276e548c5dc5a3c8d590d0500754c1d49ec87ad2e7b30237f05db94ffcafa7",
+  "bytes": 562380800,
+  "files": 1484
+ }
+}

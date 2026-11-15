@@ -1,0 +1,43 @@
+{
+ "n_train_hosts": 204,
+ "n_test_hosts": 52,
+ "n_test_blocks": 13,
+ "Q1 pipeline x0->x1": {
+  "share": 1.0,
+  "proj_auc": 0.9822485207100592
+ },
+ "Q1 same-person mixing x1->x2": {
+  "share": 0.7884615384615384,
+  "proj_auc": 0.6738165680473372
+ },
+ "Q1 second identity x2->x3": {
+  "share": 0.6346153846153846,
+  "proj_auc": 0.650887573964497
+ },
+ "Q1 whole morph x1->x3": {
+  "share": 0.7307692307692307,
+  "proj_auc": 0.7329881656804734
+ },
+ "Q1 camera to morph x0->x3": {
+  "share": 1.0,
+  "proj_auc": 0.9992603550295858
+ },
+ "Q3 one-person head (x2 vs x1)": {
+  "C": 0.01,
+  "auc_x3_vs_x1": 0.783284023668639,
+  "auc_x3_vs_x0": 0.8291420118343196,
+  "auc_x3_vs_x2": 0.5798816568047337,
+  "auc_x2_vs_x1": 0.7034023668639053,
+  "auc_x1_vs_x0": 0.5136834319526628,
+  "paired_win_x3_over_x1": 0.9230769230769231
+ },
+ "Q3 two-person head (x3 vs x1)": {
+  "C": 0.01,
+  "auc_x3_vs_x1": 0.772189349112426,
+  "auc_x3_vs_x0": 0.8402366863905325,
+  "auc_x3_vs_x2": 0.6494082840236687,
+  "auc_x2_vs_x1": 0.6686390532544378,
+  "auc_x1_vs_x0": 0.5099852071005917,
+  "paired_win_x3_over_x1": 0.8653846153846154
+ }
+}

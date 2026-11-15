@@ -1,0 +1,15 @@
+{
+  "status": "PINNED_SOURCE_LINK_PASS_NOT_NEW_PAYLOAD_ADMISSION",
+  "source_manifest_path": "/home/narolski/smad-next/src/SPRINT5/tail_baseline/SHA256SUMS",
+  "source_manifest_sha256": "5e25d43ce54763011b85f669826c3d375ffdda4270a7a2ac545a40b48675beb5",
+  "run_source_path": "/home/narolski/smad-next/src/SPRINT5/tail_baseline/run.sh",
+  "run_source_sha256": "4a30c75a95eebbea771748a70b641d6046747b88a6efa56d2c20bf945c9bc830",
+  "check_gate_source_path": "/home/narolski/smad-next/src/SPRINT5/tail_baseline/check_gate.py",
+  "check_gate_source_sha256": "654c32f2ae0b28aa0210b7a3cd566c604e979fab2c52e3146c853b878bd7099e",
+  "root_training_release_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/TRAIN_BASELINE_RELEASE.json",
+  "root_training_release_sha256": "4d6cec6bedbc538342859c53e602ef9e3831b847f51bc0f3ccaff756c9329969",
+  "original_baseline_archive_sha256_literal_in_pinned_worker": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+  "gate_flow": "Pinned worker hashes originalbaselinearchive, extracts exactmeta/trainable/scores_eval, runs fixedbattery dev against originalexpecteval, checksstrictgate, then produces TRAIN_ONLY archive; existingrootadmission reportsPASS",
+  "actual_archive_or_NPZ_or_checkpoint_access": false,
+  "claim": "Source-chain supports noGPUreuse viability; does not establish fresh auxiliarymember/finite/ID admission"
+}

@@ -1,0 +1,186 @@
+{
+ "list_sha256": "4c0caa89ab25406854b6865c17943ef5e9532b0e5cc8bed58ad8e73d53b15871",
+ "rule": "a>=0.30 and b<=0.75 shortcut; b>=0.90 calibration shift; else inconclusive",
+ "A_s401": {
+  "a_bona_flag_own": 0.2245,
+  "a_ci": [
+   0.206,
+   0.24301249999999994
+  ],
+  "b_auc_morph_vs_bona": 0.98760625,
+  "b_ci": [
+   0.9840163624999999,
+   0.9908761875000001
+  ],
+  "verdict": "calibration shift (not a shortcut)",
+  "printed": {
+   "bona_flag_cam": 0.948,
+   "tau_cam": -3.6031055450439453,
+   "morph_miss_own": 0.0,
+   "resmatch_bona_flag_own": 0.5475,
+   "auc_morph_vs_resmatch_bona": 0.935307,
+   "bona_median_logit": -3.0639376640319824,
+   "morph_median_logit": 3.5889384746551514
+  }
+ },
+ "B_s401": {
+  "a_bona_flag_own": 0.1785,
+  "a_ci": [
+   0.162,
+   0.1955
+  ],
+  "b_auc_morph_vs_bona": 0.9977485,
+  "b_ci": [
+   0.9966909375,
+   0.998666225
+  ],
+  "verdict": "calibration shift (not a shortcut)",
+  "printed": {
+   "bona_flag_cam": 0.9525,
+   "tau_cam": -3.580979585647583,
+   "morph_miss_own": 0.0,
+   "resmatch_bona_flag_own": 0.2625,
+   "auc_morph_vs_resmatch_bona": 0.9940425,
+   "bona_median_logit": -2.876936674118042,
+   "morph_median_logit": 3.598467469215393
+  }
+ },
+ "Bn_s401": {
+  "a_bona_flag_own": 0.2235,
+  "a_ci": [
+   0.205,
+   0.242
+  ],
+  "b_auc_morph_vs_bona": 0.9970605,
+  "b_ci": [
+   0.9955238125,
+   0.9982975749999999
+  ],
+  "verdict": "calibration shift (not a shortcut)",
+  "printed": {
+   "bona_flag_cam": 0.9765,
+   "tau_cam": -3.588609457015991,
+   "morph_miss_own": 0.001,
+   "resmatch_bona_flag_own": 0.2935,
+   "auc_morph_vs_resmatch_bona": 0.993117,
+   "bona_median_logit": -3.034767508506775,
+   "morph_median_logit": 3.60251784324646
+  }
+ },
+ "C_s401": {
+  "a_bona_flag_own": 0.1775,
+  "a_ci": [
+   0.1604875,
+   0.1935
+  ],
+  "b_auc_morph_vs_bona": 0.998668,
+  "b_ci": [
+   0.997932975,
+   0.9992932125
+  ],
+  "verdict": "calibration shift (not a shortcut)",
+  "printed": {
+   "bona_flag_cam": 0.9645,
+   "tau_cam": -3.5565409660339355,
+   "morph_miss_own": 0.0,
+   "resmatch_bona_flag_own": 0.2355,
+   "auc_morph_vs_resmatch_bona": 0.996573,
+   "bona_median_logit": -2.6802221536636353,
+   "morph_median_logit": 3.550122022628784
+  }
+ },
+ "A_s402": {
+  "a_bona_flag_own": 0.099,
+  "a_ci": [
+   0.0864875,
+   0.1115
+  ],
+  "b_auc_morph_vs_bona": 0.9965165,
+  "b_ci": [
+   0.9949824875,
+   0.9977060125
+  ],
+  "verdict": "calibration shift (not a shortcut)",
+  "printed": {
+   "bona_flag_cam": 0.955,
+   "tau_cam": -3.6248507499694824,
+   "morph_miss_own": 0.001,
+   "resmatch_bona_flag_own": 0.3405,
+   "auc_morph_vs_resmatch_bona": 0.9709015,
+   "bona_median_logit": -3.4328887462615967,
+   "morph_median_logit": 3.590813994407654
+  }
+ },
+ "B_s402": {
+  "a_bona_flag_own": 0.064,
+  "a_ci": [
+   0.053,
+   0.0745
+  ],
+  "b_auc_morph_vs_bona": 0.9979355,
+  "b_ci": [
+   0.9969904375,
+   0.9987835
+  ],
+  "verdict": "calibration shift (not a shortcut)",
+  "printed": {
+   "bona_flag_cam": 0.9585,
+   "tau_cam": -3.6028048992156982,
+   "morph_miss_own": 0.005,
+   "resmatch_bona_flag_own": 0.118,
+   "auc_morph_vs_resmatch_bona": 0.9947165,
+   "bona_median_logit": -3.35467267036438,
+   "morph_median_logit": 3.558971643447876
+  }
+ },
+ "Bn_s402": {
+  "a_bona_flag_own": 0.054,
+  "a_ci": [
+   0.044,
+   0.06401249999999993
+  ],
+  "b_auc_morph_vs_bona": 0.9977165,
+  "b_ci": [
+   0.9965894375000001,
+   0.99866505
+  ],
+  "verdict": "calibration shift (not a shortcut)",
+  "printed": {
+   "bona_flag_cam": 0.968,
+   "tau_cam": -3.6119368076324463,
+   "morph_miss_own": 0.007,
+   "resmatch_bona_flag_own": 0.1025,
+   "auc_morph_vs_resmatch_bona": 0.9948255,
+   "bona_median_logit": -3.28611159324646,
+   "morph_median_logit": 3.561938166618347
+  }
+ },
+ "C_s402": {
+  "a_bona_flag_own": 0.0345,
+  "a_ci": [
+   0.0265,
+   0.0425
+  ],
+  "b_auc_morph_vs_bona": 0.999752,
+  "b_ci": [
+   0.999550475,
+   0.999889
+  ],
+  "verdict": "calibration shift (not a shortcut)",
+  "printed": {
+   "bona_flag_cam": 0.9565,
+   "tau_cam": -3.5944950580596924,
+   "morph_miss_own": 0.0,
+   "resmatch_bona_flag_own": 0.074,
+   "auc_morph_vs_resmatch_bona": 0.999239,
+   "bona_median_logit": -3.3023133277893066,
+   "morph_median_logit": 3.54914128780365
+  }
+ },
+ "arm_verdicts": {
+  "A": "calibration shift (not a shortcut)",
+  "B": "calibration shift (not a shortcut)",
+  "Bn": "calibration shift (not a shortcut)",
+  "C": "calibration shift (not a shortcut)"
+ }
+}

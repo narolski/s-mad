@@ -1,0 +1,29 @@
+{
+  "status": "PASS_INPUT_METADATA_ONLY",
+  "experiment_id": "SPRINT5_2",
+  "primary_rows": 200,
+  "primary_components": 40,
+  "floors": 15,
+  "floor_shape": [
+    200,
+    15
+  ],
+  "expected_fit_plans": 10,
+  "bootstrap": {
+    "accepted": 10000,
+    "attempts": 10178,
+    "rejected": 178,
+    "rejected_fraction": 0.017488701120062882,
+    "rng": 2026111402,
+    "component_draw_sha256": "0f045d8b9e71ebd627702a362bd473356de4091bec3aa6322bf92757c87f8dbd",
+    "paired_seed_draw_sha256": "eb04e4b3ff18af8075453852642c7c0f1640b3a62e9879a01af25ccca03ab239",
+    "condition": "Every fixed D stratum contains both classes; label/input-only rejection",
+    "draw_order": "all accepted source-stratified full-component draws THEN joint10000x5seed-indexmatrix",
+    "coverage": "Conditional descriptive component/continuation bootstrap given readable fixed D strata; no unconditional95%coverage guarantee.",
+    "scope": "Input metadata only; no candidate payloads, archives, score members or checkpoints",
+    "candidate_payload_accessed": false
+  },
+  "candidate_payload_accessed": false,
+  "camera_auxiliary": "HOLD",
+  "scientific_read": "HOLD"
+}

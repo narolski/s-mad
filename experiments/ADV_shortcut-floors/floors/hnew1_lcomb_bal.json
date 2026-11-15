@@ -1,0 +1,15 @@
+{
+ "hypothesis": "H-new-1",
+ "rows": 250,
+ "families": [
+  "F27",
+  "BLEND"
+ ],
+ "auc": {
+  "single": 0.888128,
+  "logreg": 0.929216,
+  "gbt": 0.913664
+ },
+ "best": 0.929216,
+ "reading": "supported"
+}

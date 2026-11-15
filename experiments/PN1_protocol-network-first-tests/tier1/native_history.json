@@ -1,0 +1,299 @@
+{
+ "post_hoc": true,
+ "canonical_ied": 132.0,
+ "missing_native": [],
+ "sources": {
+  "FRGC": {
+   "pool": "test ladder R0 hosts",
+   "native_ied": {
+    "n": 154,
+    "median": 271.49543407282357,
+    "p5": 232.15405392996524,
+    "p95": 307.16403330325846,
+    "enlargement_to_frame": 0.48619602186235467
+   },
+   "native_sizes": {
+    "1704x2272": 154
+   },
+   "raw_format": {
+    "jpeg": 154
+   }
+  },
+  "colorFERET": {
+   "pool": "test ladder R0 hosts",
+   "native_ied": {
+    "n": 33,
+    "median": 132.015150645674,
+    "p5": 100.72605375429653,
+    "p95": 162.24893232254655,
+    "enlargement_to_frame": 0.9998852355536475
+   },
+   "native_sizes": {
+    "512x768": 37
+   },
+   "raw_format": {
+    "ppm (bzip2)": 37
+   }
+  },
+  "FRLL": {
+   "pool": "FRLL native (= MAD22 genuine), bench rows",
+   "native_ied": {
+    "n": 204,
+    "median": 202.32815551757812,
+    "p5": 182.79293365478514,
+    "p95": 223.58903579711912,
+    "enlargement_to_frame": 0.6524054927616435
+   },
+   "native_sizes": {
+    "1350x1350": 204
+   },
+   "raw_format": {
+    "jpeg": 102
+   },
+   "raw_format_files_checked": 102,
+   "note": ""
+  },
+  "H1 (CASIA)": {
+   "pool": "H1 genuine",
+   "native_ied": {
+    "n": 598,
+    "median": 37.70125,
+    "p5": 34.690305,
+    "p95": 39.98327,
+    "enlargement_to_frame": 3.5012101720765223
+   },
+   "native_sizes": {
+    "112x112": 598
+   },
+   "raw_format": {
+    "png": 300
+   },
+   "raw_format_files_checked": 300,
+   "note": "the 112x112 files are the native files of this set (CASIA-WebFace history before them not recorded)"
+  },
+  "FFHQ": {
+   "pool": "ffhqm ffhq_bona orig (2,000)",
+   "native_ied": {
+    "n": 2000,
+    "median": 258.88417053222656,
+    "p5": 241.18387145996093,
+    "p95": 275.1366958618164,
+    "enlargement_to_frame": 0.5098805374180586
+   },
+   "native_sizes": {
+    "1024x1024": 2000
+   },
+   "raw_format": {
+    "png": 300
+   },
+   "raw_format_files_checked": 300,
+   "note": "morph files of the same set: landmark_complete native 256x256",
+   "morph_landmark_complete_native": {
+    "native_ied": {
+     "n": 1000,
+     "median": 64.61104965209961,
+     "p5": 61.50634288787842,
+     "p95": 67.49331588745117,
+     "enlargement_to_frame": 2.0429942047182097
+    }
+   }
+  },
+  "FEI": {
+   "pool": "gtest fei_bona (385; manifest metadata only, no score opened)",
+   "native_ied": {
+    "n": 385,
+    "median": 89.99022674560547,
+    "p5": 80.34849395751954,
+    "p95": 102.52430267333985,
+    "enlargement_to_frame": 1.4668259518131064
+   },
+   "native_sizes": {
+    "640x480": 385
+   },
+   "raw_format": {
+    "jpeg": 300
+   },
+   "raw_format_files_checked": 300,
+   "note": ""
+  }
+ },
+ "tier1_flags": {
+  "A_s401": {
+   "FRGC": {
+    "n": 154,
+    "own": 0.0,
+    "cam": 0.012987012987012988
+   },
+   "colorFERET": {
+    "n": 37,
+    "own": 0.0,
+    "cam": 0.0
+   },
+   "FRLL": {
+    "n": 204,
+    "own": 0.0,
+    "cam": 0.5098039215686274
+   },
+   "H1 (CASIA)": {
+    "n": 598,
+    "own": 0.22240802675585283,
+    "cam": 1.0
+   }
+  },
+  "A_s402": {
+   "FRGC": {
+    "n": 154,
+    "own": 0.0,
+    "cam": 0.05194805194805195
+   },
+   "colorFERET": {
+    "n": 37,
+    "own": 0.0,
+    "cam": 0.10810810810810811
+   },
+   "FRLL": {
+    "n": 204,
+    "own": 0.004901960784313725,
+    "cam": 0.6617647058823529
+   },
+   "H1 (CASIA)": {
+    "n": 598,
+    "own": 0.15551839464882944,
+    "cam": 1.0
+   }
+  },
+  "B_s401": {
+   "FRGC": {
+    "n": 154,
+    "own": 0.0,
+    "cam": 0.006493506493506494
+   },
+   "colorFERET": {
+    "n": 37,
+    "own": 0.0,
+    "cam": 0.02702702702702703
+   },
+   "FRLL": {
+    "n": 204,
+    "own": 0.0,
+    "cam": 0.7745098039215687
+   },
+   "H1 (CASIA)": {
+    "n": 598,
+    "own": 0.08193979933110368,
+    "cam": 1.0
+   }
+  },
+  "B_s402": {
+   "FRGC": {
+    "n": 154,
+    "own": 0.0,
+    "cam": 0.01948051948051948
+   },
+   "colorFERET": {
+    "n": 37,
+    "own": 0.0,
+    "cam": 0.05405405405405406
+   },
+   "FRLL": {
+    "n": 204,
+    "own": 0.004901960784313725,
+    "cam": 0.6715686274509803
+   },
+   "H1 (CASIA)": {
+    "n": 598,
+    "own": 0.0033444816053511705,
+    "cam": 1.0
+   }
+  },
+  "Bn_s401": {
+   "FRGC": {
+    "n": 154,
+    "own": 0.0,
+    "cam": 0.03896103896103896
+   },
+   "colorFERET": {
+    "n": 37,
+    "own": 0.0,
+    "cam": 0.02702702702702703
+   },
+   "FRLL": {
+    "n": 204,
+    "own": 0.0,
+    "cam": 0.9509803921568627
+   },
+   "H1 (CASIA)": {
+    "n": 598,
+    "own": 0.07859531772575251,
+    "cam": 1.0
+   }
+  },
+  "Bn_s402": {
+   "FRGC": {
+    "n": 154,
+    "own": 0.0,
+    "cam": 0.03896103896103896
+   },
+   "colorFERET": {
+    "n": 37,
+    "own": 0.0,
+    "cam": 0.02702702702702703
+   },
+   "FRLL": {
+    "n": 204,
+    "own": 0.004901960784313725,
+    "cam": 0.7009803921568627
+   },
+   "H1 (CASIA)": {
+    "n": 598,
+    "own": 0.0033444816053511705,
+    "cam": 1.0
+   }
+  },
+  "C_s401": {
+   "FRGC": {
+    "n": 154,
+    "own": 0.0,
+    "cam": 0.01948051948051948
+   },
+   "colorFERET": {
+    "n": 37,
+    "own": 0.0,
+    "cam": 0.02702702702702703
+   },
+   "FRLL": {
+    "n": 204,
+    "own": 0.0,
+    "cam": 0.30392156862745096
+   },
+   "H1 (CASIA)": {
+    "n": 598,
+    "own": 0.25585284280936454,
+    "cam": 0.9949832775919732
+   }
+  },
+  "C_s402": {
+   "FRGC": {
+    "n": 154,
+    "own": 0.0,
+    "cam": 0.006493506493506494
+   },
+   "colorFERET": {
+    "n": 37,
+    "own": 0.0,
+    "cam": 0.0
+   },
+   "FRLL": {
+    "n": 204,
+    "own": 0.0,
+    "cam": 0.37745098039215685
+   },
+   "H1 (CASIA)": {
+    "n": 598,
+    "own": 0.03678929765886288,
+    "cam": 1.0
+   }
+  }
+ },
+ "tier1_flags_note": "FFHQ, FEI: not scored by any tier-1 network (FFHQ under amendment 13 only)"
+}

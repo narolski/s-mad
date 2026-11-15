@@ -1,0 +1,12 @@
+{
+  "status": "SPECIFICATION_ONLY_NO_PLACEHOLDER_MAPS_RENDERED",
+  "target_width_mm": 180,
+  "minimum_font_pt": 8,
+  "per_model_case_pages": 6,
+  "per_page": "One fixed photo andmodel: original/history exactfaceimages side-by-side, actualbaseline scores andhistory\u0394; below fouractual8x8occlusionmaps (native/history\u00d7black/grayfill) withsourcefacesvisible; optional source-overlay only under newrootrendergrant. Shownewpatchpositionsandnative64pxsupport.",
+  "normalization": "Per model L=max(abs(allfull4inputs\u00d72fills\u00d764deltas)), symmetric[-L,L], shared acrossbothphotos/pages/fills; zero included. No perpanelnormalization, smoothing, interpolation, clipping orquantileboost.",
+  "grayscale": "Absolute magnitude plusnegativehatching, explicit legend; includeoriginalcolorphotos unchanged; separategrayscaleprintproof.",
+  "legend": "\u0394z=z_occluded\u2212z_original, measuredlogitunits; negative:lowerattack-orientedoutput. Noterrorrate/calibratedprobability/localcausalcue.",
+  "plain_language": "Ta sama fotografia. Co zmienia si\u0119 w wyniku, gdy zas\u0142onimy ma\u0142y fragment? / Same photograph. How does the score change when a small patch is hidden?",
+  "context": "Native/history crops differ because alignmentrerun; coordinates areimage-grid aligned,notanatomically matched. Bothfills retained; occluder itselfcreatesartifacts. Noactualsplice/seammaskonthisgenuinephoto."
+}

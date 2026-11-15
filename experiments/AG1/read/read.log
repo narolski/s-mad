@@ -1,0 +1,21 @@
+GATES {"G-b": {"mip1/frll": "pass", "mip1/primary": "pass", "mip1/feret": "pass", "mip1/frgc": "pass", "mip2/frll": "pass"}, "RT": {"n": 254, "median_mean_absdiff": 1.5708595911661785, "max_mean_absdiff": 3.8914836247762046, "max_absdiff": 235}}
+mip1/frll/madation_vitb16 | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: identity reading | AG2: implementation-confounded (bridge AUC outside 0.40-0.60) | dose: -
+mip1/frll/madation_vitl14 | G-b: pass | A: reads morphing | B: reads morphing | R3 vs R4: identity reading | AG2: implementation-confounded (bridge AUC outside 0.40-0.60) | dose: -
+mip1/frll/selfmad_hrnet_w18__own | G-b: pass | A: reads the benchmark | B: reads morphing | R3 vs R4: mixed | AG2: implementation-confounded (bridge AUC outside 0.40-0.60) | dose: -
+mip1/frll/selfmad_hrnet_w18__rel | G-b: pass | A: reads the benchmark | B: reads morphing | R3 vs R4: mixed | AG2: retained | dose: -
+mip2/frll/madation_vitb16 | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: identity reading | AG2: implementation-confounded (bridge AUC outside 0.40-0.60) | dose: -
+mip2/frll/madation_vitl14 | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: identity reading | AG2: mixed | dose: -
+mip2/frll/selfmad_hrnet_w18__own | G-b: pass | A: reads the benchmark | B: reads morphing | R3 vs R4: mixed | AG2: implementation-confounded (bridge AUC outside 0.40-0.60) | dose: -
+mip2/frll/selfmad_hrnet_w18__rel | G-b: pass | A: reads the benchmark | B: reads morphing | R3 vs R4: mixed | AG2: implementation-confounded (bridge AUC outside 0.40-0.60) | dose: -
+mip1/primary/madation_vitb16 | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/primary/madation_vitl14 | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/primary/selfmad_hrnet_w18__own | G-b: pass | A: reads the benchmark | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/primary/selfmad_hrnet_w18__rel | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/feret/madation_vitb16 | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/feret/madation_vitl14 | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/feret/selfmad_hrnet_w18__own | G-b: pass | A: reads the benchmark | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/feret/selfmad_hrnet_w18__rel | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/frgc/madation_vitb16 | G-b: pass | A: reads the benchmark | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/frgc/madation_vitl14 | G-b: pass | A: mixed | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/frgc/selfmad_hrnet_w18__own | G-b: pass | A: reads the benchmark | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}
+mip1/frgc/selfmad_hrnet_w18__rel | G-b: pass | A: reads the benchmark | B: reads morphing | R3 vs R4: mixed | AG2: - | dose: {'AG3': 'ramp', 'AG3T': 'ramp'}

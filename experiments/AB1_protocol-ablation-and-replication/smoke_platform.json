@@ -1,0 +1,11 @@
+{
+ "gate_stats": {
+  "n": 6339,
+  "p99": 0.004669923186302184,
+  "max": 0.026311278343200684,
+  "agree": 1.0,
+  "passed": true
+ },
+ "holdout_rows": 1480,
+ "holdout_finite": true
+}

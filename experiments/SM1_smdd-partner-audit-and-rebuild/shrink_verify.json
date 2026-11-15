@@ -1,0 +1,97 @@
+{
+ "n": 8,
+ "all_bytes_equal": true,
+ "a47_data_sha256": "fcd48e1a9d0495457ca290a9fc1182c8eff4cb3ddc7a844c9a25ca5073014640",
+ "prep_eval_sha256": "374408ab3a886e6df25b563bc2344d190efe2ab7b3163efbb17c9b6ca9100628",
+ "call": "prep_eval.degrade(img, \"R\", scale=0.3125) via a47_data._one",
+ "rows": [
+  {
+   "name": "img000001.png",
+   "status": "ok",
+   "bytes_equal": true,
+   "sha_ours": "7f6c9190b54a54bf1a12c21d3d767874b9ca0546b48547ae6d7baa21f29a1d67",
+   "sha_stored": "7f6c9190b54a54bf1a12c21d3d767874b9ca0546b48547ae6d7baa21f29a1d67",
+   "out_shape": [
+    80,
+    80
+   ]
+  },
+  {
+   "name": "img069917.png",
+   "status": "ok",
+   "bytes_equal": true,
+   "sha_ours": "62f05e05ffe88696c035920bbd5a71f485c2ed9ecadc8804368eb0cca3ee72ea",
+   "sha_stored": "62f05e05ffe88696c035920bbd5a71f485c2ed9ecadc8804368eb0cca3ee72ea",
+   "out_shape": [
+    80,
+    80
+   ]
+  },
+  {
+   "name": "img139633.png",
+   "status": "ok",
+   "bytes_equal": true,
+   "sha_ours": "eee687d21f84dfdb5908c9a3872aeccc953c1bff5b06fc11e0929ebf3137d49d",
+   "sha_stored": "eee687d21f84dfdb5908c9a3872aeccc953c1bff5b06fc11e0929ebf3137d49d",
+   "out_shape": [
+    80,
+    80
+   ]
+  },
+  {
+   "name": "img207762.png",
+   "status": "ok",
+   "bytes_equal": true,
+   "sha_ours": "ad501c271a663e051b8d86ef42a329fd0ecf9b7f123beb8ba24b97921302d2a9",
+   "sha_stored": "ad501c271a663e051b8d86ef42a329fd0ecf9b7f123beb8ba24b97921302d2a9",
+   "out_shape": [
+    80,
+    80
+   ]
+  },
+  {
+   "name": "img278048.png",
+   "status": "ok",
+   "bytes_equal": true,
+   "sha_ours": "460f19b27ef5cb2acbb9dffcf87263f6e1493e55fac9c79f928e82f0a5783fa3",
+   "sha_stored": "460f19b27ef5cb2acbb9dffcf87263f6e1493e55fac9c79f928e82f0a5783fa3",
+   "out_shape": [
+    80,
+    80
+   ]
+  },
+  {
+   "name": "img348037.png",
+   "status": "ok",
+   "bytes_equal": true,
+   "sha_ours": "58efa5a83d8a375d751d7f57ad4787d5a2e4ca7fc7c35b66addd7fdc7d1de7d0",
+   "sha_stored": "58efa5a83d8a375d751d7f57ad4787d5a2e4ca7fc7c35b66addd7fdc7d1de7d0",
+   "out_shape": [
+    80,
+    80
+   ]
+  },
+  {
+   "name": "img417307.png",
+   "status": "ok",
+   "bytes_equal": true,
+   "sha_ours": "319bac887b18d8c972906fc1fde234afdd21fabfb443e353c2996c06da801a96",
+   "sha_stored": "319bac887b18d8c972906fc1fde234afdd21fabfb443e353c2996c06da801a96",
+   "out_shape": [
+    80,
+    80
+   ]
+  },
+  {
+   "name": "img485165.png",
+   "status": "ok",
+   "bytes_equal": true,
+   "sha_ours": "aab11aa376b6821a744a348c177155fc1e0ad07de00b8508b809b7260da53ffc",
+   "sha_stored": "aab11aa376b6821a744a348c177155fc1e0ad07de00b8508b809b7260da53ffc",
+   "out_shape": [
+    80,
+    80
+   ]
+  }
+ ]
+}

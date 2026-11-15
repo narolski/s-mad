@@ -1,0 +1,154 @@
+{
+  "scope": "candidate-free reference preflight; not scientific admission",
+  "candidate_payloads_opened": false,
+  "synthetic_candidate": "constant zero",
+  "context_sources": {
+    "ri_R4_vs_R3": {
+      "path": "/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/ri_R4_vs_R3_withinD.json",
+      "sha256": "9d177165c79d0ea002c10983c1b18535b7fdd478cb65cdac13b8100b746d55c9",
+      "pinfile": "/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/pins_stage6.sha256",
+      "pinfile_sha256": "827cab78dd590cea56ddabfed4a29e0e0626439214f89f93af69f6486b32a59f"
+    },
+    "test_cv_R4_vs_R3": {
+      "path": "/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/test_cv_R4_vs_R3_withinD.json",
+      "sha256": "98187bd847afc8d314732f891bf09bd9855bb6740e9206a79d70142b6058e785",
+      "pinfile": "/home/narolski/smad-next/experiments/ADV_shortcut-floors/floors/pins_stage6.sha256",
+      "pinfile_sha256": "827cab78dd590cea56ddabfed4a29e0e0626439214f89f93af69f6486b32a59f"
+    }
+  },
+  "checks": [
+    {
+      "contrast": "ri_R4_vs_R3",
+      "floor": "all",
+      "rows": 582,
+      "components": 110,
+      "passed": true,
+      "pins": {
+        "ri_R4_vs_R3.json": "pins_stage3.sha256",
+        "ri_R4_vs_R3_heldout.csv": "pins_stage3.sha256"
+      }
+    },
+    {
+      "contrast": "ri_R4_vs_R3",
+      "floor": "nuisance",
+      "rows": 582,
+      "components": 110,
+      "passed": true,
+      "pins": {
+        "ri_R4_vs_R3.json": "pins_stage3.sha256",
+        "ri_R4_vs_R3_heldout.csv": "pins_stage3.sha256"
+      }
+    },
+    {
+      "contrast": "ri_S4_vs_S3",
+      "floor": "all",
+      "rows": 582,
+      "components": 110,
+      "passed": true,
+      "pins": {
+        "ri_S4_vs_S3.json": "pins_stage3.sha256",
+        "ri_S4_vs_S3_heldout.csv": "pins_stage3.sha256"
+      }
+    },
+    {
+      "contrast": "ri_S4_vs_S3",
+      "floor": "nuisance",
+      "rows": 582,
+      "components": 110,
+      "passed": true,
+      "pins": {
+        "ri_S4_vs_S3.json": "pins_stage3.sha256",
+        "ri_S4_vs_S3_heldout.csv": "pins_stage3.sha256"
+      }
+    },
+    {
+      "contrast": "dev_S4_vs_S3",
+      "floor": "all",
+      "rows": 200,
+      "components": 100,
+      "passed": true,
+      "pins": {
+        "dev_S4_vs_S3.json": "pins_stage3.sha256",
+        "dev_S4_vs_S3_heldout.csv": "pins_stage3.sha256"
+      }
+    },
+    {
+      "contrast": "dev_S4_vs_S3",
+      "floor": "nuisance",
+      "rows": 200,
+      "components": 100,
+      "passed": true,
+      "pins": {
+        "dev_S4_vs_S3.json": "pins_stage3.sha256",
+        "dev_S4_vs_S3_heldout.csv": "pins_stage3.sha256"
+      }
+    },
+    {
+      "contrast": "test_cv_R4_vs_R3",
+      "floor": "all",
+      "rows": 382,
+      "components": 130,
+      "passed": true,
+      "pins": {
+        "test_cv_R4_vs_R3.json": "pins_stage0.sha256",
+        "test_cv_R4_vs_R3_heldout.csv": "pins_stage0.sha256"
+      }
+    },
+    {
+      "contrast": "test_cv_R4_vs_R3",
+      "floor": "nuisance",
+      "rows": 382,
+      "components": 130,
+      "passed": true,
+      "pins": {
+        "test_cv_R4_vs_R3.json": "pins_stage0.sha256",
+        "test_cv_R4_vs_R3_heldout.csv": "pins_stage0.sha256"
+      }
+    },
+    {
+      "contrast": "test_fm_R4_vs_R3",
+      "floor": "all",
+      "rows": 382,
+      "components": 130,
+      "passed": true,
+      "pins": {
+        "test_fm_R4_vs_R3.json": "pins_stage0.sha256",
+        "test_fm_R4_vs_R3_heldout.csv": "pins_stage0.sha256"
+      }
+    },
+    {
+      "contrast": "test_fm_R4_vs_R3",
+      "floor": "nuisance",
+      "rows": 382,
+      "components": 130,
+      "passed": true,
+      "pins": {
+        "test_fm_R4_vs_R3.json": "pins_stage0.sha256",
+        "test_fm_R4_vs_R3_heldout.csv": "pins_stage0.sha256"
+      }
+    },
+    {
+      "contrast": "test_S4_vs_S3",
+      "floor": "all",
+      "rows": 382,
+      "components": 130,
+      "passed": true,
+      "pins": {
+        "test_S4_vs_S3.json": "pins_stage3.sha256",
+        "test_S4_vs_S3_heldout.csv": "pins_stage3.sha256"
+      }
+    },
+    {
+      "contrast": "test_S4_vs_S3",
+      "floor": "nuisance",
+      "rows": 382,
+      "components": 130,
+      "passed": true,
+      "pins": {
+        "test_S4_vs_S3.json": "pins_stage3.sha256",
+        "test_S4_vs_S3_heldout.csv": "pins_stage3.sha256"
+      }
+    }
+  ],
+  "head": "3a2ca142df6e71da1c3042c61b09c0e56ca63d56"
+}

@@ -1,0 +1,58 @@
+{
+ "madation_vitb16": {
+  "n": 300,
+  "max_abs": 5.3236,
+  "median_abs": 0.0592,
+  "mean_shift_photos": 0.0184,
+  "mean_shift_morphs": 0.1354,
+  "flips_at_rule": 2
+ },
+ "madation_vitl14": {
+  "n": 300,
+  "max_abs": 16.237,
+  "median_abs": 0.0147,
+  "mean_shift_photos": -0.0015,
+  "mean_shift_morphs": 0.3965,
+  "flips_at_rule": 4
+ },
+ "madation_fe_vitl14": {
+  "n": 300,
+  "max_abs": 7.2583,
+  "median_abs": 0.5628,
+  "mean_shift_photos": -0.1642,
+  "mean_shift_morphs": -0.6128,
+  "flips_at_rule": 7
+ },
+ "madation_fe_vitb16": {
+  "n": 300,
+  "max_abs": 11.0504,
+  "median_abs": 0.8615,
+  "mean_shift_photos": 0.5617,
+  "mean_shift_morphs": 2.3482,
+  "flips_at_rule": 1
+ },
+ "madation_fs_vitb16": {
+  "n": 300,
+  "max_abs": 2.4547,
+  "median_abs": 0.003,
+  "mean_shift_photos": -0.0005,
+  "mean_shift_morphs": 0.0785,
+  "flips_at_rule": 1
+ },
+ "madation_fs_vitl14": {
+  "n": 300,
+  "max_abs": 0.8095,
+  "median_abs": 0.0363,
+  "mean_shift_photos": -0.0029,
+  "mean_shift_morphs": 0.0103,
+  "flips_at_rule": 2
+ },
+ "mixfacenet_mad_smdd": {
+  "n": 300,
+  "max_abs": 1.1844,
+  "median_abs": 0.2201,
+  "mean_shift_photos": -0.0002,
+  "mean_shift_morphs": -0.1386,
+  "flips_at_rule": 2
+ }
+}

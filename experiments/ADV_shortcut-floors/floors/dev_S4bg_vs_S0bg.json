@@ -1,0 +1,133 @@
+{
+ "n_pos": 100,
+ "n_neg": 100,
+ "n_components": 100,
+ "n_folds": 5,
+ "insample_best_single": 0.9322,
+ "insample_best_single_stat": "F27:b3_.125-.25",
+ "insample_best_single_f27": 0.9322,
+ "insample_best_single_f27_stat": "F27:b3_.125-.25",
+ "single": {
+  "auc": 0.929,
+  "eer": 0.13,
+  "ci": [
+   0.8915949999999999,
+   0.9626549999999999
+  ],
+  "chosen_per_fold": [
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9575,
+  "eer": 0.1,
+  "ci": [
+   0.9308974999999999,
+   0.9822
+  ]
+ },
+ "gbt": {
+  "auc": 0.9586,
+  "eer": 0.07,
+  "ci": [
+   0.9274975,
+   0.9838025
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9477,
+  "ci": [
+   0.9159925,
+   0.9764
+  ]
+ },
+ "floor": {
+  "model": "gbt",
+  "auc": 0.9586,
+  "eer": 0.07,
+  "ci": [
+   0.9274975,
+   0.9838025
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.929,
+   "logreg": 0.9477
+  },
+  "BORDER": {
+   "gbt": 0.5,
+   "logreg": 0.5
+  },
+  "RES": {
+   "gbt": 0.8631,
+   "logreg": 0.8971
+  },
+  "STORE": {
+   "gbt": 0.79455,
+   "logreg": 0.8312
+  },
+  "RENDER": {
+   "gbt": 0.83235,
+   "logreg": 0.8525
+  },
+  "BLEND": {
+   "gbt": 0.936,
+   "logreg": 0.8936
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.9654,
+  "BORDER": 0.9586,
+  "RES": 0.9555,
+  "STORE": 0.9566,
+  "RENDER": 0.9556,
+  "BLEND": 0.949
+ },
+ "contrast": "dev_S4bg_vs_S0bg",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "gbt",
+  "auc": 0.9589,
+  "eer": 0.08,
+  "ci": [
+   0.9277974999999999,
+   0.9838025
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 0.9468,
+  "eer": 0.12,
+  "ci": [
+   0.9167974999999999,
+   0.9731
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "splice",
+   "role": "dev",
+   "rung": "S4_bg"
+  },
+  "negative": {
+   "fam": "splice",
+   "role": "dev",
+   "rung": "S0_bg"
+  },
+  "note": "SA1 row 12 (face only)"
+ }
+}

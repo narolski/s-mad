@@ -12,6 +12,10 @@
 # A task is a directory in $Q/ready holding run.sh and est_minutes (an integer).
 # Claiming is an atomic rename. All task IO must go through $TMPDIR.
 set -u
+# RETIRED 12 Nov 2026 (lead, on the author's instruction). Slots hold a GPU while they wait for work that is placed
+# later. On 12 Nov, 108 slots started while WCSS could not be reached, found an empty queue and idled for about
+# 69 H100 GPU-hours. Do not submit this script. Every job must carry its own workload (see OWNER_BRIEF.md).
+echo "slot.sh is retired: submit jobs that carry their own workload (OWNER_BRIEF.md, 12 Nov 2026)" >&2; exit 64
 Q="${SMADNEXT_QUEUE:?queue directory required}"
 LIMIT_S="${SMADNEXT_LIMIT_S:-21600}"      # must match --time
 IDLE_WAIT_S="${SMADNEXT_IDLE_WAIT_S:-1800}" # how long an empty slot waits for a task

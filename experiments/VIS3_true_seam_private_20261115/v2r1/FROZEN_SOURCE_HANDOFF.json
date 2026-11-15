@@ -1,0 +1,80 @@
+{
+  "version": "VIS3v2r1_authority_snapshot_fix",
+  "author": "shortcut_visual_examples",
+  "status": "IMMUTABLE_SOURCE_ONLY_FOR_OTHER_DELTA_REVIEW",
+  "responds_to_OTHER_HOLD_sha256": "73d5ad5151de14adeba4ba33d793434166708fbd882557ceec9b61cd4271d850",
+  "files": [
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2r1/authority_snapshot.py",
+      "sha256": "01b1dea440ab48a9cfa0efb9d0183cf475d4de2b64d0b4268d4f0a2d7e6a72d8"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2r1/construct_driver.py",
+      "sha256": "56023336a2a1cdd8cf443335acf0d7c46db8c608ef6f464e0514aca7e557e582"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2r1/contracts.py",
+      "sha256": "b53d5953d2e8e15763dc48dd79c5eefdf70ba39b47b0cec93d59ee7fbb85de67"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2r1/model_runtime.py",
+      "sha256": "5f01ac19f6f048c5ef8a02598aef23a999e173a28b86de2a2d3aab157ba5b9c6"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2r1/numeric_worker.py",
+      "sha256": "4cc88905751bc52845727b91a462aa13898eee1121ce3de8feb13ab6af720b0f"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2r1/test_generated.py",
+      "sha256": "baec71d7321dce1b8830ebe5af1fc3a8306bb1477e3d056355c45eb6b98409d8"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2r1/test_snapshots.py",
+      "sha256": "c07bda4d3ded70876d1f57793d71d69dbcb82e66e44ae547aa47e5731545c248"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2r1/SHA256SUMS",
+      "sha256": "4aa997c961f65487d7cf46fd9a9629760adf643c2cb04411a8f8ea4945b666c5"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2r1/COMMANDS.md",
+      "sha256": "9b30854ac241aaf1b6a479b68b1e93c0b2280317a85421543e8d2fe5fc4af622"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2r1/INVENTORY.json",
+      "sha256": "d67d18e3193887ea085e9cd7be95054bb2bb946fde655e9d5e158a8f2ae4aecf"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2r1/PRINT_LAYOUT_HANDOFF.json",
+      "sha256": "c5c919652649f7de24cacb4b040b8fed260b69a221b5ee34a8c45edf4c7d270f"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2r1/READ_CONTRACT.json",
+      "sha256": "9419c4c9e4e35c4deac158c2345e512287f56cc3e1af4cfc449cb5d6cc4eb81c"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2r1/RELEASE_SCHEMAS.json",
+      "sha256": "5bf8518b91270615a27bba7aae879a644f8e1fa2b442adca7e896baa0955f0da"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2r1/SNAPSHOT_FIX.md",
+      "sha256": "ea3bdc1a182bee7389cf3e0a9a13182293dacb3369922738ebac5a7eefb5c1e5"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2r1/TEST_EVIDENCE.json",
+      "sha256": "c53537861215a221459d2661b209d5b78037541352fe724f4aed059f8b59d23a"
+    }
+  ],
+  "delta": "requiredexternalROOTexpectedgrantSHA+boundedregularsamecapturedbyteshashparsecontrols; capturedhashesinreceipts; Gitchecks supplemental; nodependentcontrolpathreopenforauthority",
+  "preserved": "constructor/alpha/math/loading20AST/grid/48smoke/K4regionalindividualmeans/4cases2fills3models1536schedule; v2/v1/acceptedVIS2/prereg untouched",
+  "tests": "22generatedonlyPASS;19sourcepinsPASS; noscientificpayloads",
+  "actual_CPU_grant": null,
+  "actual_constructed_inputs": null,
+  "OTHER_actual_input_admission": null,
+  "numeric_phase_grants": null,
+  "actual_new_scientific_responses": null,
+  "render_grant": null,
+  "publication": "HOLD",
+  "trust_boundary": "ROOTexternallypinsreleaseSHAandownsprotectedstartupsource/interpreter/filesystem; no sandboxagainstrootfilesystemmutation",
+  "next_gate": "OTHER exactdeltaGO; newROOTCPUprivateconstructiongrant+externalSHA; OTHERactualinputreview; separateROOTnumericphasegrants+externalSHAs; smoke/fullOTHERreviews; separaterendergrant"
+}

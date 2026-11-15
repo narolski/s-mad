@@ -1,0 +1,17 @@
+{
+  "id": "SPRINT5_4",
+  "decision": "GO_SMOKE",
+  "seeds": [
+    511,
+    512,
+    513,
+    514,
+    515
+  ],
+  "fresh_seed_allocation_pass": true,
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "source_sums_sha256": "debbea9496cdcd553cf2b18671f0868452cfdc9cc16fa7ee66b0e81b97361a04",
+  "independent_review_path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/SPRINT5_4_v1/PRERUN_ROOT_SMOKE.md",
+  "independent_review_sha256": "876c9cc97057cd56455ae80d1afecf930c404e1d0c8c58a81832094004e2eea9"
+}

@@ -1,0 +1,22 @@
+{
+  "decision": "GO_READER_READ",
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "released_at": "2026-11-14T20:50:51.589099+00:00",
+  "binding_sha256": "519546ef7002930f620610f01deb0cc4e8889acf819b829a80c05f95fff6e923",
+  "reader_sums_sha256": "93b2ff226ee337fe3a486e0077be0a774a5229ce28ada45b46e41d6ed3ef42f4",
+  "roster_sha256": "6c115d91a8813e66a711ed612af71476459343ffcd2cde0e1977c66e35e542ee",
+  "independent_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/full15_metadata_packet_20261114/ACTUAL_METADATA_POSTREVIEW_20261114.md",
+  "independent_review_sha256": "d09399c9af89b087f7f28f3cdd5eb24f53feeeaab1c8724cc66e01991c792d17",
+  "collector_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/full15_metadata_packet_20261114/INDEPENDENT_OPERATIONAL_REVIEW_20261114.md",
+  "collector_review_sha256": "c85710a0314b59b1b3e50e8592df613219e88bd8a18e859de375ab1fb19ccb10",
+  "minimum_guard_components": 20,
+  "zero_variance_policy": "INCONCLUSIVE",
+  "all15_required": true,
+  "scope": "Registered SPRINT5_1 development-only populations; no historical191,NEXT selection or still-sealed benchmark read",
+  "once": "/mnt/t7/smad_next/SPRINT5_1/reader_once_v1",
+  "output": "/mnt/t7/smad_next/SPRINT5_1/reader_output_v1/RESULT.json",
+  "source_authority_binding_sha256": "b7092842f5b1835a7daa000e83665931886a207e803c5d1bc6f434a03427a28f",
+  "metadata_collection_release_sha256": "070340d1b625c366944d17095e617aa8609991a59b7736fd2038770211a3da4e",
+  "retry": "FORBIDDEN; retain permanent claim and all failures"
+}

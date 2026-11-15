@@ -1,0 +1,162 @@
+{
+ "frgcferet": {
+  "reference": "independent photo R",
+  "tau_fmr1e3": 0.28287507554889124,
+  "n_impostor": 193244,
+  "hosts_with_reference": 534,
+  "opencv": {
+   "n": {
+    "R3": 534,
+    "R4": 532,
+    "NC": 534
+   },
+   "no_face": {
+    "R3": 0,
+    "R4": 0,
+    "NC": 0
+   },
+   "oracle_auc_morph_vs_twin": 0.9981871814367379,
+   "ci95": [
+    0.9961092739035516,
+    0.9995554028768826
+   ],
+   "pass_oracle": true,
+   "morph_verifies_both": 0.9924812030075187,
+   "morph_verifies_both_ci": [
+    0.9808615720093986,
+    0.9979476916762648
+   ],
+   "pass_verification": true,
+   "morph_verifies_both_source_photos": 1.0,
+   "twin_verifies_host": 1.0,
+   "twin_verifies_host_ci": [
+    0.9931157915216751,
+    1.0
+   ],
+   "negative_control_auc_NC_vs_R3": 0.4999859725904417,
+   "negative_control_ci95": [
+    0.49974746279229615,
+    0.5001981809956656
+   ],
+   "pass_negative_control": true,
+   "G_b": true
+  },
+  "facemorpher": {
+   "n": {
+    "R3": 534,
+    "R4": 532,
+    "NC": 534
+   },
+   "no_face": {
+    "R3": 0,
+    "R4": 0,
+    "NC": 0
+   },
+   "oracle_auc_morph_vs_twin": 0.9981836614006927,
+   "ci95": [
+    0.9962700405800806,
+    0.999467437098267
+   ],
+   "pass_oracle": true,
+   "morph_verifies_both": 0.9906015037593985,
+   "morph_verifies_both_ci": [
+    0.9782042210593369,
+    0.9969414910734639
+   ],
+   "pass_verification": true,
+   "morph_verifies_both_source_photos": 1.0,
+   "twin_verifies_host": 1.0,
+   "twin_verifies_host_ci": [
+    0.9931157915216751,
+    1.0
+   ],
+   "negative_control_auc_NC_vs_R3": 0.4999456437879617,
+   "negative_control_ci95": [
+    0.49967907917069954,
+    0.5001280001122193
+   ],
+   "pass_negative_control": true,
+   "G_b": true
+  }
+ },
+ "frll": {
+  "reference": "source photo H (no independent photo)",
+  "tau_fmr1e3": 0.2542269299030311,
+  "n_impostor": 10302,
+  "hosts_with_reference": 102,
+  "opencv": {
+   "n": {
+    "R3": 102,
+    "R4": 102,
+    "NC": 102
+   },
+   "no_face": {
+    "R3": 0,
+    "R4": 0,
+    "NC": 0
+   },
+   "oracle_auc_morph_vs_twin": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "pass_oracle": true,
+   "morph_verifies_both": 1.0,
+   "morph_verifies_both_ci": [
+    0.964480673342116,
+    1.0
+   ],
+   "pass_verification": true,
+   "morph_verifies_both_source_photos": 1.0,
+   "twin_verifies_host": 1.0,
+   "twin_verifies_host_ci": [
+    0.964480673342116,
+    1.0
+   ],
+   "negative_control_auc_NC_vs_R3": 0.5,
+   "negative_control_ci95": [
+    0.49759707804690506,
+    0.502402921953095
+   ],
+   "pass_negative_control": true,
+   "G_b": true
+  },
+  "facemorpher": {
+   "n": {
+    "R3": 102,
+    "R4": 102,
+    "NC": 102
+   },
+   "no_face": {
+    "R3": 0,
+    "R4": 0,
+    "NC": 0
+   },
+   "oracle_auc_morph_vs_twin": 1.0,
+   "ci95": [
+    1.0,
+    1.0
+   ],
+   "pass_oracle": true,
+   "morph_verifies_both": 1.0,
+   "morph_verifies_both_ci": [
+    0.964480673342116,
+    1.0
+   ],
+   "pass_verification": true,
+   "morph_verifies_both_source_photos": 1.0,
+   "twin_verifies_host": 1.0,
+   "twin_verifies_host_ci": [
+    0.964480673342116,
+    1.0
+   ],
+   "negative_control_auc_NC_vs_R3": 0.5001922337562476,
+   "negative_control_ci95": [
+    0.49807766243752405,
+    0.5026432141484044
+   ],
+   "pass_negative_control": true,
+   "G_b": true
+  }
+ }
+}

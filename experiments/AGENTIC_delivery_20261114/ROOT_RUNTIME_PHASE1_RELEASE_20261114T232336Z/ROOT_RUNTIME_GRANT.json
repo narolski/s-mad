@@ -1,0 +1,41 @@
+{
+  "decision": "GO_SBMR512_RUNTIME_METADATA_PHASE1_V1R1",
+  "root_authorized": true,
+  "author": "sol_bii_timing_launchprep",
+  "reviewer": "astra_sprint_plan_review",
+  "scientific_read": "HOLD",
+  "automatic_retry": false,
+  "output": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/sbmr512_runtime_metadata_phase1_v1/result",
+  "modules": [
+    "numpy",
+    "PIL",
+    "torch",
+    "torchvision",
+    "timm"
+  ],
+  "allowed_roots": [
+    "/home/narolski/dmenv",
+    "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu",
+    "/usr/lib64",
+    "/lib64",
+    "/usr/lib/x86_64-linux-gnu",
+    "/lib/x86_64-linux-gnu"
+  ],
+  "max_library_bytes": 2147483648,
+  "max_total_elf_bytes": 4294967296,
+  "max_libraries": 512,
+  "model_construction": false,
+  "weights_images_npz": false,
+  "loaded_elf_body_hash": true,
+  "input_current_identity_receipt_sha256": "7847e2007570f75012f36fccd9257f73231c9a28cafbfb38ba86c2286d76e61b",
+  "nvidia_smi_path": "/usr/bin/nvidia-smi",
+  "nvidia_smi_sha256": null,
+  "nvidia_smi_identity_mode": "ACQUIRE_FIXED_ROOT_OS_TOOL",
+  "root_managed_tool_identity_acquisition": true,
+  "path_aliases": [],
+  "root_issued_at": "2026-11-14T23:47:14.907852+00:00",
+  "source_commit": "28a6b9596c06f71a53dccb84e46769fddc93c219",
+  "source_manifest_sha256": "8b6481b46d4448fb8fe530453fa94ef6f8b54d984fcc9adc6e3048627652757b",
+  "OTHER_source_review_sha256": "a2e3f21db43390b639c60ac433cc1f20d2258246d59ffec00b4f69580e99b29e",
+  "model_timing_and_scientific_execution_authorized": false
+}

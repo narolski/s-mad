@@ -1,0 +1,100 @@
+--- render_v1r1/render_measured.py
++++ layout_v2/render_measured.py
+@@ -14,10 +14,10 @@
+ IDS=('00042_native','00042_history','00056_native','00056_history')
+ KEYS=('00042','00056')
+ MM=72/25.4
+-WIDTH_MM,HEIGHT_MM=180,322
+-EDGE_MM=68
+-MAP_X=(12,100)
+-MAP_Y=(116,201)
++WIDTH_MM,HEIGHT_MM=180,279.4
++EDGE_MM=58
++MAP_X=(17,105)
++MAP_Y=(100,173)
+ MIN_FONT=8.2
+ _ACTIVE_OUTPUT=None
+ 
+@@ -146,6 +146,7 @@
+     need(cfg['inputs_ids']==list(IDS) and cfg['models']==list(MODELS),'configuration roster changed')
+     need([x['id'] for x in cfg['inputs']]==list(IDS),'source input order/duplicates changed')
+     need(cfg['render_mode']=='source_overlay' and cfg['map_interpolation']=='none','only measured native cells allowed')
++    need(cfg['page_width_mm']==WIDTH_MM and cfg['page_height_mm']==HEIGHT_MM and cfg['photo_map_edge_mm']==EDGE_MM and cfg['minimum_font_pt']==MIN_FONT,'layout configuration differs from frozen source')
+     need(importlib.metadata.version('reportlab')==cfg['render_runtime']['reportlab'],'render library changed')
+     need(importlib.metadata.version('pillow')==cfg['render_runtime']['pillow'],'image library changed')
+     need(str(Path(sys.executable).resolve())==str(Path(cfg['render_runtime']['python']).resolve()),'render interpreter changed')
+@@ -196,7 +197,7 @@
+         for model in MODELS:
+             data=measured[model];limit=data['limit']
+             for key in KEYS:
+-                sv=[f'<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="322mm" viewBox="0 0 {width} {height}">',
++                sv=[f'<svg xmlns="http://www.w3.org/2000/svg" width="180mm" height="279.4mm" viewBox="0 0 {width} {height}">',
+                     '<title>Private measured occlusion response; not causal attribution</title>',f'<rect width="{width}" height="{height}" fill="white"/>']
+                 def text(x,y,s,size=MIN_FONT,bold=False):
+                     font='Bold' if bold else 'Body';x*=MM;y*=MM
+@@ -223,14 +224,14 @@
+                     sv.append('</g>')
+                 text(8,8,'Ta sama fotografia. Zasłaniamy mały fragment.',11.1,True)
+                 text(8,14,f"{cfg['labels'][model]} | fotografia {key} | rzeczywiste pomiary, nie mapa przyczynowa",8.3)
+-                text(12,21,'Wariant oryginalny',8.8,True);text(100,21,'Istniejąca historia przetworzenia',8.8,True)
+-                for id,x in [(key+'_native',12),(key+'_history',100)]:
+-                    photo(id,x,24);z=data['baseline'][id];score=1/(1+math.exp(-z)) if z>=0 else math.exp(z)/(1+math.exp(z))
+-                    text(x,98,f'Wynik bazowy: {score:.3f}; z={z:+.3g}',8.6,True)
+-                text(8,105,'Poniżej: zmiana z po zasłonięciu wskazanego kwadratu 64 x 64 px.',8.3)
+-                for fill,y,title in [(0,116,'Zasłonięcie czernią (0/255)'),(128,201,'Zasłonięcie szarością (128/255)')]:
+-                    text(12,y-4,title,8.8,True)
+-                    for id,x in [(key+'_native',12),(key+'_history',100)]:
++                text(MAP_X[0],21,'Wariant oryginalny',8.8,True);text(MAP_X[1],21,'Istniejąca historia przetworzenia',8.8,True)
++                for id,x in [(key+'_native',MAP_X[0]),(key+'_history',MAP_X[1])]:
++                    photo(id,x,24);z=data['baseline'][id]
++                    text(x,88,f'Wynik morph (z): {z:+.3f}',9.4,True)
++                text(8,93,'Poniżej: zmiana z po zasłonięciu wskazanego kwadratu 64 x 64 px.',8.3)
++                for fill,y,title in [(0,MAP_Y[0],'Zasłonięcie czernią (0/255)'),(128,MAP_Y[1],'Zasłonięcie szarością (128/255)')]:
++                    text(MAP_X[0],y-4,title,8.8,True)
++                    for id,x in [(key+'_native',MAP_X[0]),(key+'_history',MAP_X[1])]:
+                         photo(id,x,y)
+                         for cell in range(64):
+                             val=data['values'][id,fill,cell];xx=x+(cell%8)*EDGE_MM/8;yy=y+(cell//8)*EDGE_MM/8
+@@ -242,19 +243,23 @@
+                                                  'negative_hatching':bool(gray and val<0),'overlay_alpha':0.0 if limit==0 else cfg['overlay_alpha'],
+                                                  'x_mm':xx,'y_mm':yy,'edge_mm':EDGE_MM/8})
+                 if limit==0:
+-                    rectangle(12,275,156,3,(1,1,1),1)
+-                    text(12,283,'Wszystkie zmierzone zmiany wynoszą 0. Nie dodano kontrastu.',8.3,True)
++                    rectangle(12,237,156,3,(1,1,1),1)
++                    text(12,245,'Wszystkie zmierzone zmiany wynoszą 0. Nie dodano kontrastu.',8.3,True)
+                 else:
+                     for i in range(64):
+                         value=limit*i/63 if gray else -limit+2*limit*i/63
+-                        rectangle(12+i*156/64,275,156/64,3,color(value,limit,gray),1)
+-                    text(12,283,('0' if gray else f'{-limit:.3g}')+'   |   '+('wartość bezwzględna; kreskowanie: minus' if gray else 'ujemna zmiana  /  0  /  dodatnia zmiana')+f'   |   {limit:.3g}',8.2)
+-                text(8,290,'Δz = z po zasłonięciu − z oryginalne. Wspólna skala 512 pomiarów/model.',8.2)
+-                text(8,295,'Wynik bazowy to niekalibrowany sigmoid(z), a nie prawdopodobieństwo ataku.',8.2)
+-                text(8,300,'Maska usuwa treść i tworzy artefakt. Lokalna reakcja nie wskazuje przyczyny.',8.2)
+-                text(8,305,'Kadry różnią się wyrównaniem. Nie ma szwu; pozycje nie są dopasowane anatomicznie.',8.2)
+-                text(8,310,cfg['credits_short'][key],8.2)
+-                text(8,316,'PRIVATE RESEARCH PREVIEW - NOT PUBLICATION CLEARED',8.3,True)
++                        rectangle(12+i*156/64,237,156/64,3,color(value,limit,gray),1)
++                    ticks=f'0 → {limit:.3g}' if gray else f'{-limit:.3g}  /  0  /  {limit:.3g}'
++                    text(12,245,ticks+' | wspólna skala 512 pomiarów/model; modele mają różne skale.',8.2)
++                if gray:
++                    text(8,249,'Szara nakładka: wielkość zmiany; kreskowanie: obniżenie wyniku morph.',8.2)
++                else:
++                    text(8,249,'Czerwony: zasłonięcie podnosi wynik morph. Niebieski: obniża.',8.2)
++                text(8,254,'Δz = z po zasłonięciu − z oryginalne. Większe z = silniejsze wskazanie morph.',8.2)
++                text(8,259,'Nie jest to prawdopodobieństwo. Maska tworzy artefakt; brak wniosku o przyczynie.',8.2)
++                text(8,264,'Kadry różnią się wyrównaniem. Nie ma szwu; pozycje nie są dopasowane anatomicznie.',8.2)
++                text(8,269,cfg['credits_short'][key],8.2)
++                text(8,275,'PRIVATE RESEARCH PREVIEW - NOT PUBLICATION CLEARED',8.3,True)
+                 c.showPage();sv.append('</svg>')
+                 svg=args.out_root/f'{edition}_{model}_{key}.svg';svg.write_text('\n'.join(sv));files.append(svg)
+                 summary.append({'edition':edition,'model':model,'photo_key':key,'shared_full_model_limit':limit,'zero_limit':limit==0})
+@@ -264,7 +269,7 @@
+     files.append(args.out_root/'CELL_RENDER_RECORDS.json')
+     caption=('Actual constant-occlusion responses on two fixed potentially exposed developmental FFHQ photographs. '
+              'Each measured native64pxcell is displayed without interpolation; black0 andgray128 replacements are separate. '
+-             'Delta=z_occluded−z_original, not error rate, probability, segmentation or causal reliance. Baseline display is the mathematical sigmoid of measuredlogit, not calibrated probability. '
++             'Delta=z_occluded−z_original, not error rate, probability, segmentation or causal reliance. Baseline display is measured raw morph-oriented logit z; larger z means a stronger morph indication, not calibrated probability. Red means hiding the patch raises z; blue means hiding it lowers z. '
+              'A single symmetric scale permodel covers all512fullresponses acrossbothphotos/histories/fills; grayscale shows absolute magnitude and negative hatching. '
+              'Native/history alignments differ. No morph splice/seam exists on these genuine photographs. '
+              'Models/resolutions differ; no robustness ranking, utility or population claim. RankingNOT_QUALIFIED and its5falsealarmFAILs remain unchanged. '

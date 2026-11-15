@@ -1,0 +1,33 @@
+{
+  "status": "SOURCE_ONLY_LAYOUT_HANDOFF_NO_RENDERER_OR_PRIVATE_RENDER_GRANT",
+  "reuse": "src/VIS2/layout_v2 accepted dimensions; preserveacceptedfiles",
+  "page_mm": [
+    180,
+    279.4
+  ],
+  "min_font_pt": 8.2,
+  "image_map_mm": 58,
+  "columns": 2,
+  "inputs": [
+    "42_samephoto",
+    "42_crossphoto",
+    "56_samephoto",
+    "56_crossphoto"
+  ],
+  "models": [
+    "selfmad_hrnet_w18",
+    "A",
+    "B"
+  ],
+  "fills": [
+    0,
+    128
+  ],
+  "retain_all_maps": true,
+  "scale": "permodel symmetricL=maxabs all512actualnewresponses; noclip/interpolation/normalization; allzeroL transparentliteralzero",
+  "sign": "Red:hidingraisesrawmorphlogit;blue:hidinglowers",
+  "mask": "onlyactualsavedusedalpha onconstructedimages; nevergenuinefakecontour",
+  "labels": "fourprespecifiedboundary-overlap patches vs four exteriorcorners; differentposition/content; meanofseparatepatchinterventions",
+  "english_caption": "Controlled soft-splice illustration on two fixed potentially exposed photographs. Same-photo self-blending and reciprocal two-photo recombination share the recorded mixing mask and processing parameters. Each square is separately replaced with a constant. Changes in raw morph logit are descriptive, not evidence of a unique causal mechanism or benchmark performance.",
+  "polish_reader": "Ten sam obszar po\u0142\u0105czenia, lecz fragment pochodzi z tej samej albo drugiej fotografii. Co robi detektor, gdy osobno zas\u0142aniamy fragment granicy lub naro\u017cnik t\u0142a?"
+}

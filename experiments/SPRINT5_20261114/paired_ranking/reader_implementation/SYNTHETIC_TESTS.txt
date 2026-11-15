@@ -1,0 +1,34 @@
+test_all15_required (__main__.Admission.test_all15_required) ... ok
+test_calibration_overlap_rejected_including_geometry_supplier (__main__.Admission.test_calibration_overlap_rejected_including_geometry_supplier) ... ok
+test_claim_and_terminal_never_retried (__main__.Admission.test_claim_and_terminal_never_retried) ... ok
+test_collector_never_opens_npz_or_checkpoint_payload (__main__.Admission.test_collector_never_opens_npz_or_checkpoint_payload) ... ok
+test_floor_label_or_order_mismatch_rejected (__main__.Admission.test_floor_label_or_order_mismatch_rejected) ... /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader/test_synthetic.py:167: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpglgzo53w/floor.csv' mode='r' encoding='UTF-8'>
+  save();data.floors({'floor_path':p,'primary':primary})
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.12/traceback.py:241: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpglgzo53w/floor.csv' mode='r' encoding='UTF-8'>
+  tb.tb_frame.clear()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_metadata_rejection_paths (__main__.Admission.test_metadata_rejection_paths) ... ok
+test_mutated_schedule_rejected_before_payload (__main__.Admission.test_mutated_schedule_rejected_before_payload) ... ok
+test_npz_order_label_finiteness_and_no_historical_return (__main__.Admission.test_npz_order_label_finiteness_and_no_historical_return) ... ok
+test_result_never_overwritten (__main__.Admission.test_result_never_overwritten) ... ok
+test_review_source_and_roster_hashes_bound (__main__.Admission.test_review_source_and_roster_hashes_bound) ... ok
+test_component_multiplicity_not_deduplicated (__main__.Statistics.test_component_multiplicity_not_deduplicated) ... ok
+test_favorable_optimization_with_inconclusive_adoption (__main__.Statistics.test_favorable_optimization_with_inconclusive_adoption) ... ok
+test_floor_maximum_recomputed_when_best_model_switches (__main__.Statistics.test_floor_maximum_recomputed_when_best_model_switches) ... ok
+test_geometry_provider_union_and_sparse (__main__.Statistics.test_geometry_provider_union_and_sparse) ... ok
+test_nonfinite_guard_draws_fail_closed_and_record_counts (__main__.Statistics.test_nonfinite_guard_draws_fail_closed_and_record_counts) ... ok
+test_one_failing_guard_blocks_IUT (__main__.Statistics.test_one_failing_guard_blocks_IUT) ... ok
+test_precomputed_sampler_exact_rng_and_ragged_row_equivalence (__main__.Statistics.test_precomputed_sampler_exact_rng_and_ragged_row_equivalence) ... ok
+test_seedmean_is_not_auc_of_average (__main__.Statistics.test_seedmean_is_not_auc_of_average) ... ok
+test_source_crossing_rejected (__main__.Statistics.test_source_crossing_rejected) ... ok
+test_threshold_order_ties_infinity (__main__.Statistics.test_threshold_order_ties_infinity) ... ok
+test_tied_auc_and_missing_stratum (__main__.Statistics.test_tied_auc_and_missing_stratum) ... ok
+test_uniform_shift_cannot_improve_thresholded_rate (__main__.Statistics.test_uniform_shift_cannot_improve_thresholded_rate) ... ok
+test_zero_variance_never_passes (__main__.Statistics.test_zero_variance_never_passes) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.710s
+
+OK

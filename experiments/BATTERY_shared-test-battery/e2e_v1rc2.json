@@ -1,0 +1,261 @@
+{
+ "cases": {
+  "PN1_A_s403": {
+   "stored_record": "A_s403_FS1block",
+   "rows_leaves": 357,
+   "rows_differ": 11,
+   "rows_details": [
+    {
+     "path": "/1/stats[3]/not_computed",
+     "ref": "failed the C2P platform gate (L40S); not read",
+     "got": "1330 MS1 hold-out rows missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/1/stats[4]/not_computed",
+     "ref": "failed the C2P platform gate (L40S); not read",
+     "got": "1330 MS1 hold-out rows missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/1/stats[5]/not_computed",
+     "ref": "failed the C2P platform gate (L40S); not read",
+     "got": "1330 MS1 hold-out rows missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/1/stats[6]/not_computed",
+     "ref": "failed the C2P platform gate (L40S); not read",
+     "got": "1330 MS1 hold-out rows missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/1/stats[7]/not_computed",
+     "ref": "FS1 networks were not scored on the MS1 hold-out in their fit job",
+     "got": "1330 AB1 evaluation rows (incl. MS1 hold-out) missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/2/stats[0]/not_computed",
+     "ref": "failed the C2P platform gate (L40S); not read",
+     "got": "1330 MS1 hold-out rows missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/2/stats[1]/not_computed",
+     "ref": "failed the C2P platform gate (L40S); not read",
+     "got": "1330 MS1 hold-out rows missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/2/stats[2]/not_computed",
+     "ref": "failed the C2P platform gate (L40S); not read",
+     "got": "1330 MS1 hold-out rows missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/6/stats[2]/not_computed",
+     "ref": "FS1 networks were not scored on the MS1 hold-out in their fit job",
+     "got": "1330 AB1 evaluation rows (incl. MS1 hold-out) missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/8/stats[2]/not_computed",
+     "ref": "FS1 networks were not scored on the MS1 hold-out in their fit job",
+     "got": "1330 AB1 evaluation rows (incl. MS1 hold-out) missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/9/stats[2]/not_computed",
+     "ref": "FS1 networks were not scored on the MS1 hold-out in their fit job",
+     "got": "1330 AB1 evaluation rows (incl. MS1 hold-out) missing or non-finite",
+     "abs_diff": null
+    }
+   ],
+   "blocks_leaves": 1507,
+   "blocks_differ": 4,
+   "blocks_details": [
+    {
+     "path": "/PR1/train_acc_rule0_info",
+     "ref": 1.0,
+     "got": null
+    },
+    {
+     "path": "/AB1/not_computed",
+     "ref": "FS1 networks were not scored on the MS1 hold-out in their fit job",
+     "got": "1330 AB1 evaluation rows (incl. MS1 hold-out) missing or non-finite",
+     "abs_diff": null
+    },
+    {
+     "path": "/TT1/tau_cam_label",
+     "ref": "saturated band; from the stored TF32-on scores, applied to TF32-off logits (printed only)",
+     "got": "saturated band; this run's TF32-on dev scores applied to its TF32-on TT1 logits (printed only)",
+     "abs_diff": null
+    },
+    {
+     "path": "/C2P/not_computed",
+     "ref": "failed the C2P platform gate (L40S); not read",
+     "got": "1330 MS1 hold-out rows missing or non-finite",
+     "abs_diff": null
+    }
+   ],
+   "unresolved_row_paths": [],
+   "computed_blocks": [
+    "BD1",
+    "FS1",
+    "GD",
+    "MEDS",
+    "PR1",
+    "TT1",
+    "scoring"
+   ]
+  },
+  "AB1_Sb_s408": {
+   "stored_record": "Sb_s408_AB1block",
+   "rows_leaves": 345,
+   "rows_differ": 18,
+   "rows_details": [
+    {
+     "path": "/4/stats[0]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/4/stats[1]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/4/stats[2]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/4/stats[3]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/4/stats[5]/not_computed",
+     "ref": "not scored on MEDS",
+     "got": "no MEDS logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/4/stats[6]/not_computed",
+     "ref": "not scored on MEDS",
+     "got": "no MEDS logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/5/stats[0]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/5/stats[1]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/10/stats[0]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/10/stats[1]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/13/stats[0]/not_computed",
+     "ref": "not scored on GD",
+     "got": "no GD logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/13/stats[1]/not_computed",
+     "ref": "not scored on GD",
+     "got": "no GD logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/13/stats[2]/not_computed",
+     "ref": "not scored on GD",
+     "got": "no GD logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/14/stats[0]/not_computed",
+     "ref": "not scored on GD",
+     "got": "no GD logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/14/stats[1]/not_computed",
+     "ref": "not scored on GD",
+     "got": "no GD logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/14/stats[2]/not_computed",
+     "ref": "not scored on GD",
+     "got": "no GD logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/17/stats[0]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/19/stats[4]/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    }
+   ],
+   "blocks_leaves": 667,
+   "blocks_differ": 3,
+   "blocks_details": [
+    {
+     "path": "/TT1/not_computed",
+     "ref": "not scored on TT1 rows",
+     "got": "no TT1 logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/MEDS/not_computed",
+     "ref": "not scored on MEDS",
+     "got": "no MEDS logits",
+     "abs_diff": null
+    },
+    {
+     "path": "/GD/not_computed",
+     "ref": "not scored on GD",
+     "got": "no GD logits",
+     "abs_diff": null
+    }
+   ],
+   "unresolved_row_paths": [],
+   "computed_blocks": [
+    "AB1",
+    "BD1",
+    "C2P",
+    "FS1",
+    "PR1",
+    "scoring"
+   ]
+  }
+ },
+ "union_unresolved": []
+}

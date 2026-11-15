@@ -1,0 +1,31 @@
+{
+  "status": "READY_FOR_INDEPENDENT_HN10_ACTUAL_ROSTER_AND_COLLECTOR_REVIEW",
+  "files": {
+    "IMMUTABLE_MANIFEST.json": "4afd4b7fd94581ae57bdda5e3292f2738437f5055cb5a112393c6e2a9ee7e3cf",
+    "PREPARATION_SUMMARY.json": "b0f40e571cbeaae83c03313c0ba6e3dd7995b927f8d02badf7284e83f70f3e81",
+    "README.md": "7172f7882698f4f54dfb8d4ea056fae0541a74ecb8a80613a59e6e411b59d8b0",
+    "hn/ACTUAL_ROSTER_VALIDATION.json": "55d44c111a870f4ca79682efac8a248fc68376aba6e3801de9c2c61e700fd683",
+    "hn/EXPECTED_TASKS.json": "fb5973a48a14a746de3e75da01a8669449d24b6c1acfd6622b476597827e2c06",
+    "hn/INPUT_SOURCE_PREFLIGHT.json": "f8688de0e3962f82979a76a74f85920002c19ec5bc625335befc608a12c026b9",
+    "hn/OPAQUE_ARCHIVE_ROSTER.json": "621611f53e89b601dae00c937893b6ef193548be8a74d15591081080a3c17a10",
+    "hn/PACKET_STATUS.json": "b307b60ce044fd8b0ff02f4845d5af777d52c41dd99f0b5e75960677059e82b7",
+    "hn/PREFLIGHT_STDERR.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "hn/PROPOSED_METADATA_COLLECTION_RELEASE.json": "d629acac4e43e94dca5c1d330a95c91967253945a725d3a842eb60602e84536f",
+    "hn/ROOT_COMMAND_AFTER_REVIEW_ONLY.txt": "ff55a658b273aaa65c152e0f6530e491eaaed37c17ff32847f18a0fa2d0501e2"
+  },
+  "hn": {
+    "roster_sha256": "621611f53e89b601dae00c937893b6ef193548be8a74d15591081080a3c17a10",
+    "proposed_release_sha256": "d629acac4e43e94dca5c1d330a95c91967253945a725d3a842eb60602e84536f",
+    "preflight_sha256": "f8688de0e3962f82979a76a74f85920002c19ec5bc625335befc608a12c026b9",
+    "actual_roster_validation_sha256": "55d44c111a870f4ca79682efac8a248fc68376aba6e3801de9c2c61e700fd683",
+    "git_clean_path_count": 100,
+    "input_pin_count": 1034
+  },
+  "archive_members_opened": false,
+  "collector_or_reader_invoked": false,
+  "claim_created": false,
+  "independent_checkpoint_rehash": false,
+  "actual_metadata_collection_release": "HOLD",
+  "scientific_read": "HOLD",
+  "camera_auxiliary": "HOLD"
+}

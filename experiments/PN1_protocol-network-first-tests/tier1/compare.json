@@ -1,0 +1,609 @@
+{
+ "B_vs_A_s401": {
+  "miss_A": 0.013008130081300813,
+  "miss_X": 0.0055,
+  "diff": -0.007508130081300813,
+  "lo": -0.04087843673040429,
+  "hi": 0.08501713365548948,
+  "tau_cam_A": -3.6031055450439453,
+  "tau_cam_X": -3.580979585647583,
+  "non_inferior_3pt": false,
+  "lowers_miss": false
+ },
+ "B_vs_A_s402": {
+  "miss_A": 0.007508130081300813,
+  "miss_X": 0.01076219512195122,
+  "diff": 0.003254065040650407,
+  "lo": -0.015582746007550068,
+  "hi": 0.16445534505161954,
+  "tau_cam_A": -3.6248507499694824,
+  "tau_cam_X": -3.6028048992156982,
+  "non_inferior_3pt": false,
+  "lowers_miss": false
+ },
+ "Bn_vs_A_s401": {
+  "miss_A": 0.013008130081300813,
+  "miss_X": 0.0005,
+  "diff": -0.012508130081300813,
+  "lo": -0.044183643681049434,
+  "hi": 0.1418723187094191,
+  "tau_cam_A": -3.6031055450439453,
+  "tau_cam_X": -3.588609457015991,
+  "non_inferior_3pt": false,
+  "lowers_miss": false
+ },
+ "Bn_vs_A_s402": {
+  "miss_A": 0.007508130081300813,
+  "miss_X": 0.008754065040650407,
+  "diff": 0.0012459349593495934,
+  "lo": -0.015785561904868822,
+  "hi": 0.24902742842610842,
+  "tau_cam_A": -3.6248507499694824,
+  "tau_cam_X": -3.6119368076324463,
+  "non_inferior_3pt": false,
+  "lowers_miss": false
+ },
+ "C_vs_A_s401": {
+  "miss_A": 0.013008130081300813,
+  "miss_X": 0.0105,
+  "diff": -0.0025081300813008123,
+  "lo": -0.030566477634732938,
+  "hi": 0.052983184108373604,
+  "tau_cam_A": -3.6031055450439453,
+  "tau_cam_X": -3.5565409660339355,
+  "non_inferior_3pt": false,
+  "lowers_miss": false
+ },
+ "C_vs_A_s402": {
+  "miss_A": 0.007508130081300813,
+  "miss_X": 0.0075,
+  "diff": -8.130081300813594e-06,
+  "lo": -0.022562853262657685,
+  "hi": 0.015636890563768706,
+  "tau_cam_A": -3.6248507499694824,
+  "tau_cam_X": -3.5944950580596924,
+  "non_inferior_3pt": true,
+  "lowers_miss": false
+ },
+ "C_vs_B_s401": {
+  "miss_A": 0.0055,
+  "miss_X": 0.0105,
+  "diff": 0.005000000000000001,
+  "lo": -0.03915999876029313,
+  "hi": 0.04335204586707514,
+  "tau_cam_A": -3.580979585647583,
+  "tau_cam_X": -3.5565409660339355,
+  "non_inferior_3pt": false,
+  "lowers_miss": false,
+  "C_jpeg50_le10_both_thresholds": false,
+  "C_jpeg_flags": {
+   "FRLL_bona_jpeg90": {
+    "own": 0.0,
+    "cam": 0.29901960784313725
+   },
+   "FRLL_bona_jpeg70": {
+    "own": 0.0,
+    "cam": 0.2107843137254902
+   },
+   "FRLL_bona_jpeg50": {
+    "own": 0.0,
+    "cam": 0.3235294117647059
+   }
+  }
+ },
+ "C_vs_B_s402": {
+  "miss_A": 0.01076219512195122,
+  "miss_X": 0.0075,
+  "diff": -0.0032621951219512207,
+  "lo": -0.1511408059217187,
+  "hi": 0.0026248962288401945,
+  "tau_cam_A": -3.6028048992156982,
+  "tau_cam_X": -3.5944950580596924,
+  "non_inferior_3pt": true,
+  "lowers_miss": false,
+  "C_jpeg50_le10_both_thresholds": false,
+  "C_jpeg_flags": {
+   "FRLL_bona_jpeg90": {
+    "own": 0.0,
+    "cam": 0.37254901960784315
+   },
+   "FRLL_bona_jpeg70": {
+    "own": 0.0,
+    "cam": 0.3137254901960784
+   },
+   "FRLL_bona_jpeg50": {
+    "own": 0.0,
+    "cam": 0.46568627450980393
+   }
+  }
+ },
+ "A_violation_by_seed": {
+  "401": {
+   "storage_violation": true,
+   "jpeg50_violation": true,
+   "shift_sd": 63.39853825403912
+  },
+  "402": {
+   "storage_violation": true,
+   "jpeg50_violation": true,
+   "shift_sd": 108.16894311942
+  }
+ },
+ "reference_standard_recipe_smdd": {
+  "a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s1_r": {
+   "own": {
+    "flags_history": {
+     "T_R0_61": 0.1466,
+     "T_R0_112": 0.0209,
+     "FRLL_amsl_e7": 0.0098,
+     "FRLL_facemorpher_e7": 0.0049,
+     "FRLL_opencv_e7": 0.0098,
+     "FRLL_webmorph_e7": 0.0098,
+     "MAD22_FaceMorpher_e7": 0.2402,
+     "MAD22_OpenCV_e7": 0.0,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0098,
+     "FRLL_bona_resample50": 0.0147
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0314,
+     "MAD22_OpenCV_morph": 0.0457,
+     "MAD22_Webmorph_morph": 0.726,
+     "H1_morph": 0.2542
+    },
+    "family_mean_miss": 0.26433148047230176
+   },
+   "cam": {
+    "flags_history": {
+     "T_R0_61": 0.377,
+     "T_R0_112": 0.0471,
+     "FRLL_amsl_e7": 0.0882,
+     "FRLL_facemorpher_e7": 0.0294,
+     "FRLL_opencv_e7": 0.0539,
+     "FRLL_webmorph_e7": 0.098,
+     "MAD22_FaceMorpher_e7": 0.5,
+     "MAD22_OpenCV_e7": 0.0,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0539,
+     "FRLL_bona_resample50": 0.1324
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0105,
+     "MAD22_OpenCV_morph": 0.0102,
+     "MAD22_Webmorph_morph": 0.554,
+     "H1_morph": 0.0
+    },
+    "family_mean_miss": 0.1436584514536245
+   }
+  },
+  "a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s2_r": {
+   "own": {
+    "flags_history": {
+     "T_R0_61": 0.5026,
+     "T_R0_112": 0.0785,
+     "FRLL_amsl_e7": 0.0098,
+     "FRLL_facemorpher_e7": 0.0049,
+     "FRLL_opencv_e7": 0.0049,
+     "FRLL_webmorph_e7": 0.0147,
+     "MAD22_FaceMorpher_e7": 0.3529,
+     "MAD22_OpenCV_e7": 0.0,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0049,
+     "FRLL_bona_resample50": 0.0196
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0,
+     "MAD22_OpenCV_morph": 0.0874,
+     "MAD22_Webmorph_morph": 0.682,
+     "H1_morph": 0.1321
+    },
+    "family_mean_miss": 0.2253763493487778
+   },
+   "cam": {
+    "flags_history": {
+     "T_R0_61": 0.644,
+     "T_R0_112": 0.1152,
+     "FRLL_amsl_e7": 0.0441,
+     "FRLL_facemorpher_e7": 0.0196,
+     "FRLL_opencv_e7": 0.0196,
+     "FRLL_webmorph_e7": 0.0539,
+     "MAD22_FaceMorpher_e7": 0.5,
+     "MAD22_OpenCV_e7": 0.0049,
+     "MAD22_Webmorph_e7": 0.0049,
+     "FRLL_bona_blur1": 0.0294,
+     "FRLL_bona_resample50": 0.0637
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0,
+     "MAD22_OpenCV_morph": 0.0437,
+     "MAD22_Webmorph_morph": 0.524,
+     "H1_morph": 0.0552
+    },
+    "family_mean_miss": 0.15572078337004105
+   }
+  },
+  "a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s3_r": {
+   "own": {
+    "flags_history": {
+     "T_R0_61": 0.1571,
+     "T_R0_112": 0.0052,
+     "FRLL_amsl_e7": 0.0,
+     "FRLL_facemorpher_e7": 0.0,
+     "FRLL_opencv_e7": 0.0,
+     "FRLL_webmorph_e7": 0.0,
+     "MAD22_FaceMorpher_e7": 0.0637,
+     "MAD22_OpenCV_e7": 0.0,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0,
+     "FRLL_bona_resample50": 0.0
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0,
+     "MAD22_OpenCV_morph": 0.2937,
+     "MAD22_Webmorph_morph": 0.948,
+     "H1_morph": 0.4247
+    },
+    "family_mean_miss": 0.4166120877178671
+   },
+   "cam": {
+    "flags_history": {
+     "T_R0_61": 0.5812,
+     "T_R0_112": 0.0995,
+     "FRLL_amsl_e7": 0.0196,
+     "FRLL_facemorpher_e7": 0.0147,
+     "FRLL_opencv_e7": 0.0147,
+     "FRLL_webmorph_e7": 0.0196,
+     "MAD22_FaceMorpher_e7": 0.3235,
+     "MAD22_OpenCV_e7": 0.0049,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0147,
+     "FRLL_bona_resample50": 0.0392
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0,
+     "MAD22_OpenCV_morph": 0.0346,
+     "MAD22_Webmorph_morph": 0.658,
+     "H1_morph": 0.0
+    },
+    "family_mean_miss": 0.17313821138211383
+   }
+  },
+  "a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s4_r": {
+   "own": {
+    "flags_history": {
+     "T_R0_61": 0.4188,
+     "T_R0_112": 0.089,
+     "FRLL_amsl_e7": 0.2549,
+     "FRLL_facemorpher_e7": 0.1716,
+     "FRLL_opencv_e7": 0.1863,
+     "FRLL_webmorph_e7": 0.2451,
+     "MAD22_FaceMorpher_e7": 0.6961,
+     "MAD22_OpenCV_e7": 0.0833,
+     "MAD22_Webmorph_e7": 0.0931,
+     "FRLL_bona_blur1": 0.2059,
+     "FRLL_bona_resample50": 0.3039
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.049,
+     "FRLL_bona_jpeg70": 0.0147,
+     "FRLL_bona_jpeg50": 0.0049
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0,
+     "MAD22_OpenCV_morph": 0.0122,
+     "MAD22_Webmorph_morph": 0.394,
+     "H1_morph": 0.0987
+    },
+    "family_mean_miss": 0.12621433232726978
+   },
+   "cam": {
+    "flags_history": {
+     "T_R0_61": 0.2775,
+     "T_R0_112": 0.0314,
+     "FRLL_amsl_e7": 0.1176,
+     "FRLL_facemorpher_e7": 0.0833,
+     "FRLL_opencv_e7": 0.0931,
+     "FRLL_webmorph_e7": 0.1324,
+     "MAD22_FaceMorpher_e7": 0.4951,
+     "MAD22_OpenCV_e7": 0.0441,
+     "MAD22_Webmorph_e7": 0.0392,
+     "FRLL_bona_blur1": 0.0833,
+     "FRLL_bona_resample50": 0.1667
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0294,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0052,
+     "MAD22_OpenCV_morph": 0.0366,
+     "MAD22_Webmorph_morph": 0.596,
+     "H1_morph": 0.2475
+    },
+    "family_mean_miss": 0.22132815168597147
+   }
+  },
+  "a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s5_r": {
+   "own": {
+    "flags_history": {
+     "T_R0_61": 0.0524,
+     "T_R0_112": 0.0105,
+     "FRLL_amsl_e7": 0.0049,
+     "FRLL_facemorpher_e7": 0.0,
+     "FRLL_opencv_e7": 0.0,
+     "FRLL_webmorph_e7": 0.0,
+     "MAD22_FaceMorpher_e7": 0.1275,
+     "MAD22_OpenCV_e7": 0.0,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0,
+     "FRLL_bona_resample50": 0.0049
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.1099,
+     "MAD22_OpenCV_morph": 0.2215,
+     "MAD22_Webmorph_morph": 0.832,
+     "H1_morph": 0.2375
+    },
+    "family_mean_miss": 0.3502376383515363
+   },
+   "cam": {
+    "flags_history": {
+     "T_R0_61": 0.1675,
+     "T_R0_112": 0.0366,
+     "FRLL_amsl_e7": 0.0441,
+     "FRLL_facemorpher_e7": 0.0147,
+     "FRLL_opencv_e7": 0.0147,
+     "FRLL_webmorph_e7": 0.0392,
+     "MAD22_FaceMorpher_e7": 0.4314,
+     "MAD22_OpenCV_e7": 0.0,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0147,
+     "FRLL_bona_resample50": 0.0735
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0049
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0471,
+     "MAD22_OpenCV_morph": 0.0732,
+     "MAD22_Webmorph_morph": 0.554,
+     "H1_morph": 0.005
+    },
+    "family_mean_miss": 0.16982696824087787
+   }
+  },
+  "a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s6_r": {
+   "own": {
+    "flags_history": {
+     "T_R0_61": 0.2147,
+     "T_R0_112": 0.0262,
+     "FRLL_amsl_e7": 0.1029,
+     "FRLL_facemorpher_e7": 0.0784,
+     "FRLL_opencv_e7": 0.0833,
+     "FRLL_webmorph_e7": 0.1324,
+     "MAD22_FaceMorpher_e7": 0.5147,
+     "MAD22_OpenCV_e7": 0.0441,
+     "MAD22_Webmorph_e7": 0.049,
+     "FRLL_bona_blur1": 0.0833,
+     "FRLL_bona_resample50": 0.1569
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0245,
+     "FRLL_bona_jpeg70": 0.0196,
+     "FRLL_bona_jpeg50": 0.0147
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0052,
+     "MAD22_OpenCV_morph": 0.0488,
+     "MAD22_Webmorph_morph": 0.376,
+     "H1_morph": 0.3462
+    },
+    "family_mean_miss": 0.19404248401324126
+   },
+   "cam": {
+    "flags_history": {
+     "T_R0_61": 0.3403,
+     "T_R0_112": 0.0262,
+     "FRLL_amsl_e7": 0.2059,
+     "FRLL_facemorpher_e7": 0.1324,
+     "FRLL_opencv_e7": 0.1667,
+     "FRLL_webmorph_e7": 0.2108,
+     "MAD22_FaceMorpher_e7": 0.6373,
+     "MAD22_OpenCV_e7": 0.0588,
+     "MAD22_Webmorph_e7": 0.0637,
+     "FRLL_bona_blur1": 0.152,
+     "FRLL_bona_resample50": 0.2549
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0539,
+     "FRLL_bona_jpeg70": 0.0539,
+     "FRLL_bona_jpeg50": 0.049
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0052,
+     "MAD22_OpenCV_morph": 0.0173,
+     "MAD22_Webmorph_morph": 0.218,
+     "H1_morph": 0.0803
+    },
+    "family_mean_miss": 0.08019489584672415
+   }
+  },
+  "a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s7_r": {
+   "own": {
+    "flags_history": {
+     "T_R0_61": 0.2042,
+     "T_R0_112": 0.0157,
+     "FRLL_amsl_e7": 0.0245,
+     "FRLL_facemorpher_e7": 0.0147,
+     "FRLL_opencv_e7": 0.0147,
+     "FRLL_webmorph_e7": 0.0245,
+     "MAD22_FaceMorpher_e7": 0.3824,
+     "MAD22_OpenCV_e7": 0.0,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0196,
+     "FRLL_bona_resample50": 0.0392
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0105,
+     "MAD22_OpenCV_morph": 0.0681,
+     "MAD22_Webmorph_morph": 0.66,
+     "H1_morph": 0.1856
+    },
+    "family_mean_miss": 0.23104484104494516
+   },
+   "cam": {
+    "flags_history": {
+     "T_R0_61": 0.3089,
+     "T_R0_112": 0.0209,
+     "FRLL_amsl_e7": 0.0392,
+     "FRLL_facemorpher_e7": 0.0245,
+     "FRLL_opencv_e7": 0.0245,
+     "FRLL_webmorph_e7": 0.0441,
+     "MAD22_FaceMorpher_e7": 0.4608,
+     "MAD22_OpenCV_e7": 0.0,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0245,
+     "FRLL_bona_resample50": 0.0735
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0049
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0052,
+     "MAD22_OpenCV_morph": 0.0305,
+     "MAD22_Webmorph_morph": 0.516,
+     "H1_morph": 0.0619
+    },
+    "family_mean_miss": 0.15339907916782156
+   }
+  },
+  "a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s8_r": {
+   "own": {
+    "flags_history": {
+     "T_R0_61": 0.0628,
+     "T_R0_112": 0.0,
+     "FRLL_amsl_e7": 0.0,
+     "FRLL_facemorpher_e7": 0.0,
+     "FRLL_opencv_e7": 0.0,
+     "FRLL_webmorph_e7": 0.0,
+     "MAD22_FaceMorpher_e7": 0.0,
+     "MAD22_OpenCV_e7": 0.0,
+     "MAD22_Webmorph_e7": 0.0,
+     "FRLL_bona_blur1": 0.0,
+     "FRLL_bona_resample50": 0.0
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0,
+     "FRLL_bona_jpeg70": 0.0,
+     "FRLL_bona_jpeg50": 0.0
+    },
+    "any_gt10": false,
+    "miss_gating": {
+     "T_R4_opencv": 0.1047,
+     "MAD22_OpenCV_morph": 0.7876,
+     "MAD22_Webmorph_morph": 0.99,
+     "H1_morph": 0.3495
+    },
+    "family_mean_miss": 0.5579529989150686
+   },
+   "cam": {
+    "flags_history": {
+     "T_R0_61": 0.4398,
+     "T_R0_112": 0.0576,
+     "FRLL_amsl_e7": 0.1422,
+     "FRLL_facemorpher_e7": 0.0735,
+     "FRLL_opencv_e7": 0.1029,
+     "FRLL_webmorph_e7": 0.1324,
+     "MAD22_FaceMorpher_e7": 0.7402,
+     "MAD22_OpenCV_e7": 0.0294,
+     "MAD22_Webmorph_e7": 0.0294,
+     "FRLL_bona_blur1": 0.0931,
+     "FRLL_bona_resample50": 0.201
+    },
+    "flags_jpeg": {
+     "FRLL_bona_jpeg90": 0.0196,
+     "FRLL_bona_jpeg70": 0.0196,
+     "FRLL_bona_jpeg50": 0.0637
+    },
+    "any_gt10": true,
+    "miss_gating": {
+     "T_R4_opencv": 0.0,
+     "MAD22_OpenCV_morph": 0.0813,
+     "MAD22_Webmorph_morph": 0.694,
+     "H1_morph": 0.0
+    },
+    "family_mean_miss": 0.1938252032520325
+   }
+  }
+ },
+ "networks_read": [
+  "A_s401",
+  "A_s402",
+  "B_s401",
+  "B_s402",
+  "Bn_s401",
+  "Bn_s402",
+  "C_s401",
+  "C_s402"
+ ],
+ "networks_refused": {}
+}

@@ -1,0 +1,565 @@
+- **A41 (registration, 2026-11-07 04:10 CET; the shortcut proof plan's zero-GPU items and the rules of its GPU and author-gated items, one family of 8 pre-specified decision rules on previously observed estimates (F1-F8, Holm, familywise one-sided alpha 0.05; not confirmatory tests of new effects: four of them have logged point estimates, (11)), the kill sets, the downgrade map and the pre-written wording: S0 operating characteristics, S1 determinism / ties / platform, S2 person-clustered native -> E7 (H-new-135a/b/c), S3 specificity with a negative-control detector (H-new-150), S7 threshold-free dose ladder and minimal dose (H-new-136, H-new-151), S8 cue-matched MorDIFF and blur / JPEG exposures (H-new-137, H-new-138), S9 H3 absence (H-new-141), S10 GAN storage ladder (H-new-142), S1 ties (H-new-143), XA-M spectra (H-new-152), XA2 dose transport (H-new-153), DC-A construction table (H-new-155), DC-B / DC-C / DC-D / DC-8 descriptive; rules only, data pinned later, each run only after its own data registration (the author's yes is logged for Q1, Q2, Q3, Q6 and Q7, 249090b): X3 (H-new-139a/b, H-new-140; Q1), X14b (H-new-144; Q2), X7' (H-new-145; Q3), S11 / X4 (H-new-146; Q7), S12 (H-new-157 / H-new-158; Q6), XA1 (H-new-154), XA3c (H-new-156); zero cluster, zero GPU for the parts registered here; branch a41 a56741d, code 7df223c, code manifest plans/A41/A41_code_manifest.sha256 52e69fe96c0ec561598ef463f92cddd5f5452f6e08846e2a996563792f5922eb; reader smadcvpr/a41_read.py 0bc7381b0eddb29b6abb74fbf705f9befaae2700316bcb804b94e7cc3e743cb1; tests smadcvpr/test_a41.py 2e3533aa850ef8517a43dbd8b615f857f64080dc6a50322ded2ccccf54f158dd; S0 output plans/A41/oc_a41.json 0997de2cc08388fafa5c9c6545f072476b791e3ee5e94bb3d9ccf4f3dae72f04 / oc_a41.md f512dd30792ad559f3a944019bf9224200ab421209ab557f38c6f8cfda090eba; registered under the author's answer (3) of 2026-11-07 01:35 CET (249090b, "Yes, register (Recommended)": registered once the pre-run review passes, the author signing off the definition, the 8 hypotheses and the drop list by Sun 8 Nov 12:00, Q4); pre-run review (experiment-reviewer) GO WITH FIXES, findings 1-10 applied before registration (16); once a REAL read has run, Q4 can only drop or weaken wording (15); logged before any A41 score or statistic exists (12); made after the X3 DiffAE images and their generation and gate logs existed (2026-11-07 01:44-03:12 CET, none opened by this build, (11)); the hypotheses were designed after the A32 / A36 / A39 results had been seen (disclosure (11)); results logged on main after (11)'s last disclosure (eb27c08, 5d3a872: the A37 amendment H101 feature copy-back record, the P read and its post-result review) are named in the disclosure addendum (17), no rule changed; made after A12 benchmark numbers existed and had been seen by the authors; made after A13 / H-new outputs existed; made after the W3 report existed; logged after the W3 freeze line; not a W3 input; exploratory, post-freeze. No `fst*`, A12SP or `manifests/valx.csv` file was opened; the fst / valx-named code-manifest lines are carried over unopened.)**
+  (1) **Origin, scope and labels.** The author's requests of 2026-11-06 ~21:45 ("Go ahead and run the experiments to
+  ensure that we can safely claim that these networks use shortcuts and we are absolutely sure about our proof"),
+  2026-11-07 ~00:25 ("What do we need to do to prove that the shortcuts exist? Propose an analysis based on XAI
+  methods or other applicable statistical methods.") and ~00:45 ("Go with the recommendations posted above. Focus on
+  maximising the chance of proving that these shortcuts are there."), read as: maximise validity and power
+  (person-clustered statistics, specificity and validity gates, rules fixed before their data are read), never rules
+  chosen to favour the hypothesis; every rule below can fail. Sources: the proof plan (proof_plan.md, 7 Nov ~01:30
+  CET: designs A (XAI), B (causal / statistics), C (data) and the hostile critique merged), the A41 plan (A41_plan.md,
+  6 Nov ~23:00) and the claims audit / adversary of 6 Nov. Built 2026-11-07 01:30-02:58 CET and revised after the
+  pre-run review 03:15-03:33 CET ((16)) on branch a41 (cut from main 4a83018; 8f2794c: a40 208ae23's code as byte
+  copies, pins checked), with a39_read.py / a40_read.py / a36_read.py as patterns. Every number is one network's, or a
+  mean over a row's networks of single-network numbers with every network printed; no ensemble, no score, seed or view
+  fusion beyond the registered TTA; nothing is selected (the only thresholds are A32's native-pool t5 and the margins
+  below); file size, resolution, format and source enter only as analysis covariates or cue-only diagnostic floors,
+  never as a detector input or gate; cue-only classifiers, the dose curve g, the cue index q and erased heads are
+  diagnostic objects, never detectors. No MADMamba (E10 / W3 MADMamba) score is read; the MADMamba / S1 / FST seal of
+  2026-10-31 stays. No blur, resampling, JPEG or other degradation code is written or run; prep_eval.py /
+  prep_gtest.py are not imported, edited or synced and PE.degrade is not called; the E5 / E7 pools are the registered
+  ones; images are decoded only for measurement (XA-M, XA2's q, DC-B frame cues: a Hann window is a measurement step,
+  the windowed image is never scored or written; the 224-px view is the registered loader common.ImageItems.load,
+  unchanged); DC-A / DC-C read file headers only (no pixel decoded). Third-party weights are not loaded by this
+  reader. Exploratory, post-freeze, not a W3 input.
+  (2) **Definition (X0, for the paper; the author's sign-off Q4 due Sun 8 Nov 12:00).** A detector's result on a
+  benchmark cell is shortcut-carried for target property T when (i) a cue c separates the cell's classes; (ii) c can
+  be induced in bona fide images by an operation with no morphing and no identity mixing (here E7's downsampling of
+  the FRLL photos to the morph family's IED, and X3's a256 alignment and rec encode / decode); (iii) a registered
+  control that removes or equalises c, with T fixed, removes at least half of the separation. Operationally: the
+  native EER is at most 10%, the person-clustered 95% lower bound of the EER rise under the control is at least +10
+  points, and the point share of the separation removed on the d' scale (d' = sqrt(2) Phi^-1(AUC), AUC clipped to
+  [0.005, 0.995]; the smaller of score and logit where both exist) is at least 0.5; a rise with LB >= +10 and a
+  smaller share is "partly carried", never "shortcut-carried" (pre-run review finding 7). Two targets, always named:
+  T_morph (the image came out of a morphing process) and T_id (the image combines two identities). Condition (ii)
+  replaces the earlier "c is not T", which a reviewer can dispute for T_morph because morphing itself resamples, and
+  the earlier sentence that generator-output detection can be a legitimate T_morph cue is withdrawn (finding 8): C1's
+  wording is not weakened for T_morph. The cue need not be named for a shortcut; until XA-M and S7 settle it the cue
+  word is "bona fide processing history; cue not identified". The top grade is "meets registered criteria N1-N4" (the
+  word "proven" is not used, finding 9), all four required (finding 2): N1 reliance (F1 or F2 rejected with the d'
+  share >= 0.5), N2 specificity (F4), N3 validity in kind (F3, X3 only; nothing at zero GPU substitutes for it;
+  binding assay sensitivity: the X3 positive-control row FE ViT-L/14 must exceed 0.65 on rec), N4 reproduction (C1:
+  X7' with both components, "published regime reproduced on raw files" and "our frames do not change the native
+  regime"; C2: X14b, F6). Critique V1 (our aligner aliases the native frames) is why N4 is required; whether to keep
+  it is the author's under Q4, decided before the first REAL read or not at all (15).
+  (3) **The family (one family, m = 8 fixed; pre-specified decision rules on previously observed estimates, not
+  confirmatory tests (finding 9): the point estimates of F1, F2, F4 (i) and F4 (ii) are logged (8.4 -> 90.7, 2.5 ->
+  61.3, 0.11, 4.4) and pass on their points with certainty, so those rules only ask whether a person-clustered bound
+  clears a margin; one-sided; Holm at familywise 0.05; an item that does not run enters with p = 1; p = the share of
+  bootstrap replicates on the null side, ties counted for the null; absence claims are intersection-union tests, p =
+  the largest component p, Berger 1982).** F1 H-new-135a (C1): the SelfMAD release with its own preprocessing (OWN),
+  DiM Greedy-DiM: rejected iff native EER <= 10 (point) and p10 = P*(Delta <= +10) <= its Holm level; label at that
+  level: robust / size uncertain (p5 <= level, p10 > level) / not robust (p5 > level); Delta = EER(morphs vs the
+  family's E7 pool) - EER(morphs vs native); the cell counts for N1 only with the d' share >= 0.5 (X0 (iii)). F2
+  H-new-135b (C1): OWN, MorDIFF (native = mordiff_bona, E7 = the mordiff resmatch pool): as F1. F3 H-new-139a (C1, X3,
+  rule only): OWN, UB of A_rec = AUC(published morphs vs DiffAE reconstructions) < 0.65 in Greedy-DiM and MorDIFF
+  (IUT). F4 H-new-150 (C1, C2, S3; IUT of three components at its Holm level): (i) the UB of OWN's MAD22 FaceMorpher
+  EER against its own E7 pool <= 5 (p = P*(EER >= 5)); (ii) the UB of the official ViT-B/16 release's FRLL FaceMorpher
+  EER against its E7 pool <= 10; (iii) the negative-control detector, the official ViT-L/14 release on Greedy-DiM:
+  native EER <= 10 (point; logged 9.8 against the limit 10, so this point can decide C1's top grade) and the UB of its
+  E7 rise < +10 (p = P*(Delta >= +10)). (ii) and (iii) use H-new-143's less favourable rule (finding 5): the
+  logit_noTTA versions are computed beside the registered scores, and the larger p and, for (iii), the larger native
+  (both must be <= 10) decide; (i) has no logit (the SelfMAD own file), its EER under both tie-breaks is printed.
+  Printed beside, never decisive: the paired contrasts Delta(OWN) - Delta(ViT-L/14) on Greedy-DiM and
+  Delta(ViT-B/16) - Delta(ViT-L/14) on DiM-C and Greedy-DiM-S (same draw), and the other positive controls (OWN FRLL
+  OpenCV / FaceMorpher under E7, ViT-B/16 MAD22 FaceMorpher / FRLL OpenCV under E7; H1 Poisson and FFHQ-Morphs
+  landmark_complete as logged in A36, not re-read). Caveats printed with it: ViT-L/14 reads other processing, so (iii)
+  shows only that E7 does not mechanically destroy a detector that is good on DiM; MAD22 FaceMorpher files are
+  themselves cue-laden, fine for (i). F5 H-new-135c (C2): the official ViT-B/16 release, MorDIFF: tier 1 "inflated"
+  iff native <= 10 and p5 <= its Holm level (this is F5's rejection); then, in fixed sequence at the same level, the
+  tier-2 rise iff p10 <= that level, worded "shortcut-carried" only with the point d' share >= 0.5 (the smaller of
+  score and logit), else "partly carried (tier 2 rise; d' share < 0.5)" (finding 7). The logged EERs 4.9 -> 19.6 imply
+  a share of about 0.48 under equal-variance Gaussians (d' 3.31 -> 1.71), so "partly carried" is the expected word.
+  The tiers were fixed before any person interval existed and are not changed after it. F6 H-new-144 (C2, X14b, rule
+  only): the person LB of the E7 rise >= +5 in all five crops (IUT). F7 H-new-139b (C2, X3, rule only): the ViT-B/16
+  release, UB of A_rec < 0.65 on MorDIFF. F8 H-new-141 (C3, S9): every one of the 12 H-new-72 primary rows (3 releases
+  with one network each and 9 re-implemented recipes with 51 networks; a row = the mean over its networks of
+  single-network AUCs, every network printed) has a one-sided pair-clustered UB of its H3 AUC < 0.65 on the full and
+  the potent pairs, orig and pp (48 pair components; p_c = P*(AUC >= 0.65)), and every row with more than one network
+  a one-sided 95% seed UB (t over its networks, n - 1 df) of its seed-mean AUC < 0.65 on the same four (36 seed
+  components; p = P(T <= t_obs); H-new-72's "pair CI and seed CI must agree", restored by finding 4). Wording,
+  one-sided: "no primary row scores the H3 morphs above their renders at AUC >= 0.65", never "no signal" or "does not
+  separate"; a row whose two-sided 95% pair CI lies below 0.5 is printed as separation in the reverse direction
+  (renders above morphs). Potent pair: min(cos_glint_a, cos_glint_b) >= h3sg3_stats.json thr_fmr_1e-3, per variant
+  (203 orig / 212 pp, reproduced from the stats file). F8 rewrites the registered H-new-72 (disclosed in (11)). Holm
+  levels: a rejected hypothesis carries its own step level; every non-rejected one the level at which the procedure
+  stopped (its tier label uses that level).
+  (4) **Kill sets (refuters; they run whatever the family's outcome; a fired kill overrides the claim's wording and
+  caps the claim at "strong" or lower, (9)).** A bound-based kill fires iff its point condition holds and its
+  one-sided p <= 0.05, unadjusted (finding 6: Holm within a set made the refuters harder to fire, the C3 set starting
+  at 0.05 / 60); Holm within each claim's fixed set is printed beside, never decisive; a kill whose point condition
+  fails enters with p = 1; point rules apply directly. A kill whose point outcome is already logged is printed as a
+  "known point outcome", never called a test: S7 "none" for OWN (the t5 flag-rate ladder 5.4 -> 99.5-100% is logged)
+  and S8 H-new-137 "carried" for ViT-B/16 (the H-new-74 (B) matched / full EERs are logged). C1 (m = 4 beside): X3
+  A_rec >= 0.80 with LB >= 0.75 in Greedy-DiM, in MorDIFF (point A_rec >= 0.80; p = P*(A_rec <= 0.75)); XA2 "beyond
+  the cue" for OWN on Greedy-DiM, on MorDIFF (point A_res >= 0.70 with XA2's image gates passed and its binding
+  positive control passed; p = P*(A_res <= 0.62)); point: S7 dose ladder "none" for OWN (only when the ladder is
+  calibrated: ViT-L/14 "none"), XA3c "pool artefact" for OWN (if it runs). An XA3c pool artefact also cancels F1 / F2
+  as N1: E7 is then not a valid control and X3 cannot repair it, so C1 is "not supported". C2 (m = 2 beside): X3 A_rec
+  kill for ViT-B/16 on MorDIFF; XA2 "beyond the cue" for ViT-B/16 on MorDIFF; point: X14b point rise < +5 in >= 2
+  crops, S8 H-new-137 "carried" (|EER_matched - EER_E7| > 10) for ViT-B/16, XA3c "pool artefact" for ViT-B/16 (if it
+  runs; a single XA3c verdict applies to both releases). C3 (Holm beside with m = 60: 12 rows x {orig, pp} x {potent,
+  within-pair}, plus X4's 12 rows): a potent-subset AUC >= 0.65 with p = P*(AUC - subset floor <= 0); a within-pair
+  concordance theta = P(z(morph) > z(its own render)) >= 0.65 with p = P*(theta <= 0.55); X4's kill if X4 runs.
+  Identity credit (not a kill): X3 A_self >= 0.70 with LB >= 0.60.
+  (5) **Downgrade map (every gate failure maps to a pre-written weaker wording, never to "drop the cell").**
+  Determinism on byte-identical copies fails for a network (S1: swapping a copy's scores moves a decision contrast
+  by > 0.001 AUC or > 0.1 EER points) -> that network's "exact fact on this benchmark" statements are dropped, its
+  claims at most "strong". Ties / logits move a decision cell (H-new-143) -> the less favourable value is used (decide
+  takes the larger p and the larger native of the registered score and logit_noTTA in F1, F2, F5 and the F4 components
+  (ii) and (iii), and the smaller d' share); cells without a logit (the SelfMAD own file: F1, F2, F4 (i)) print the
+  EER under both tie-breaks (ties broken for and against the detector by rank), descriptive, never decisive. GB10
+  platform gate fails -> that network's new GB10 rows (X3, X14b, X7') are "not run" and the claim takes its not-run
+  wording. X3 alignment (< 90%) or identity (< 90%) -> the pool is relabelled "renders", F3 / F7 descriptive (p = 1),
+  C1 stays "strong". X3 fidelity (AUC > 0.70) -> the contrasts use our cross morphs within one implementation, wording
+  "against our DiffAE morphs". X3 positive-control row (FE ViT-L/14) also <= 0.65 on rec -> C1 is capped at "strong"
+  ("X3 assay sensitivity not shown: no analysed detector separates these morphs from reconstructions"; binding,
+  finding 8). W-c triggers (>= 10% of a control's difference energy in the warp border) and XA3c does not run or is
+  not evaluable -> C1 and C2 at most "strong" ("pool artefact not excluded"; finding 10). XA2 positivity /
+  monotonicity / separation gate fails -> "amount of over-correction not evaluable"; the overshoot index only; XA2
+  positive control fails -> XA2 non-specific (no kill, no corroboration). XA-M index invalid (Parseval residual >
+  1e-6) -> the cue word stays "bona fide processing history". X14b crop not scorable -> "crop robustness not shown";
+  C2 "inflated on our frames". X7' not run or failing either component -> C1 at most "strong", "on our frames". S7
+  ViT-L/14 not "none" -> the ladder is reported as miscalibrated (no kill, no support). A cell whose scores are not
+  all finite -> "not available" (p = 1).
+  (6) **Secondary registered rules (not in the family; two-sided 95% person- or pair-clustered percentile intervals
+  unless stated).** S1 determinism (gate): per network over seven swaps (dim_bona / mad22_bona orig vs frll_bona orig;
+  the FRLL StyleGAN, MAD22 MIPGAN-I / II E7 pools vs native; the MAD22 OpenCV / Webmorph E7 copies byte-identical to
+  native), byte identity by sha256 of the stored frames; per-image differences printed, not gating. H-new-143 (ties,
+  logits): tie-robust iff every decision cell's EER statistics (native, E7 and the rise; F1, F2, F5 and the F4
+  components (ii) and (iii), finding 5) move by <= 2 points between the registered score and logit_noTTA (where
+  stored); a decision class with > 5% tied scores labels the cell "saturated"; the SelfMAD own file stores float32
+  probabilities only (no logit: "saturated" is printed, mid-ranks in every AUC, and its decision cells print the EER
+  under both tie-breaks, descriptive). H-new-136 (S7, threshold-free dose ladder; the 185 FRLL photos shared by the
+  MAD22 and FRLL pools; levels ~1.0 (MAD22 OpenCV and Webmorph E7, mean), 1.47 (FRLL FaceMorpher E7), 1.56 (FRLL
+  OpenCV E7), 1.80 (FRLL AMSL and Webmorph E7, mean), 3.19 (the six DiM E7 pools, mean), 3.30 (MAD22 FaceMorpher E7);
+  nominal dose = mean over a level's pools of the median over photos of max(1, IED / the family's median morph IED);
+  AUC_k = AUC(pool vs the same photos native); the MorDIFF pool excluded (frame-cropped)): "dose response" iff
+  Spearman(dose, AUC_k) over the six levels >= 0.9, AUC at 3.19 >= 0.90 and Page's trend p < 0.05 (102 person blocks
+  of person-mean scores, native first); "none" iff Spearman <= 0.5 or AUC at 3.19 <= 0.65; else neither. Rows: OWN
+  (decision for its kill, a known point outcome, (4)), the SelfMAD pipeline row, ViT-B/16, ViT-L/14 (must come out
+  "none"). Scores: logit_noTTA where stored. H-new-151 (S7, minimal dose): in the MAD22 OpenCV / Webmorph E7 pools the
+  photos whose frame differs in bytes from the native copy and whose dose <= 1.05; rho_min = mean paired shift there /
+  mean paired shift at 1.47x (FRLL FaceMorpher E7, 185 photos): "any-processing trace" iff the 95% LB of rho_min >=
+  0.5; "graded loss" iff rho_min <= 0.2; else neither; not evaluable iff fewer than 10 such photos or no positive
+  1.47x shift. H-new-137 (S8): each release's EER on the pinned MorDIFF-vs-E7 cue-matched subset (a36_cues.json, 203
+  per class) against its full E7 EER: "not geometry- or bytes-carried" iff |difference| <= 5; "carried" iff > 10 (the
+  ViT-B/16 "carried" is a C2 kill with a known point outcome, (4)); else between. Rows OWN, pipeline, ViT-B/16,
+  ViT-L/14. H-new-138 (S8): the registered blur1 / JPEG 90 / 70 / 50 / resample50 / chip copies of the 204 frll_bona
+  photos: "fine-detail" iff AUC(blur1 vs orig) >= AUC(E7 1.47x vs orig); "resolution-specific" iff AUC(blur1) - 0.5 <
+  (AUC(E7 1.47x) - 0.5) / 2; else "both"; the pipeline row decides; the 224-px rows are descriptive (blur1 acts on the
+  raw 1350-px photo, about sigma 0.5 px at frame scale); OWN has no blur1 (not evaluable). Design B's sensitivity
+  ratio kappa is dropped (it divides by a small, opposite-signed JPEG shift). H-new-142 (S10): the same 300 MAD22
+  MIPGAN-I / II and FRLL StyleGAN morphs at orig, jpeg90 / 70 / 50, resample50 vs fixed native bona fide (mad22_bona
+  185 / frll_bona 204): "storage-format cue" iff the LB of the EER rise at jpeg90 >= +10; "no format cue" iff UB < +3
+  at jpeg90 and UB < +10 at jpeg50; else graded. Rows: the pipeline row, ViT-B/16, ViT-L/14, M3 R x d0 (8 networks),
+  M3L R x d0 (5); OWN descriptive (no jpeg90 / jpeg70 scores). A storage cue adds "PNG vs JPEG" to the GAN
+  construction sentence (C4). H-new-152 (XA-M; measurement only, no image written or scored): for the 204 photos the
+  power of native - copy per radial band F1-F5 (0-0.15, 0.15-0.30, 0.30-0.50, 0.50-0.75, >= 0.75 of the frame's
+  Nyquist, corners in F5), at every E7 pool, resample50 and the exposures, energy-weighted over photos, and its share
+  inside the warp border (zero pixels of either frame plus a 16-px band); radially averaged spectra (128 bins per
+  Nyquist) of every bona fide pool and of the DiM, MorDIFF, MAD22 FaceMorpher and FRLL FaceMorpher / OpenCV morphs at
+  the 512 frame and at the 224 loader output (SelfMAD's 384 crop needs the dlib-81 fetch: the 512 frame stands in
+  until then). W-a (C1 cue word, with H-new-151 of OWN): >= 50% of the difference energy in F5 at 1.47x and at 1.56x
+  and "any-processing trace" -> "aliasing / processing trace"; < 30% in both and "graded loss" -> "fine-detail loss";
+  else "bona fide processing history; cue not identified". W-b (C2 cue word): at the 224 input the lowest frequency
+  (>= 0.05 Nyquist, 3-bin moving mean of the dB ratio) at which the MorDIFF E7 pool's and the MorDIFF morphs' mean
+  power fall 20 dB below the native photos': both >= 0.95 -> "fine-detail softness", never "resolution"; both < 0.8 ->
+  "resolution" allowed; else not identified. W-c: >= 10% of a control's difference energy in the border -> XA3c runs
+  (if the GPU session happens). H-new-153 (XA2, dose transport on a measured cue): q = log10(high-band / mid-band mean
+  power) of the network's input (ViT-B/16: the 224 loader output, logit_noTTA; OWN: the 512 frame, stored
+  probabilities, labelled saturated); mid band 0.05-0.25 Nyquist; high band = the narrowest radial range holding 80%
+  of the fold-A native - E7 difference energy above 0.05 (fold A = odd FRLL person ids; the six DiM, four FRLL and
+  MAD22 FaceMorpher E7 pools), cut below at 0.25; index invalid if under 0.05 wide. g = isotonic (decreasing in q) on
+  the bona fide dose pools (native, every non-duplicate E7 pool, the two MorDIFF-frame pools, resample50),
+  cross-fitted by person parity; A_res = AUC(strict-set morph residuals vs bona fide residuals) (strict: both
+  contributors in the test fold), person bootstrap refitting g (B = 2,000). Gates, checked on the images before the
+  statistic: >= 80% of morph q inside the fold-A bona fide q range (2.5-97.5%); the pool medians decreasing in dose
+  (Spearman <= -0.9 over the uncropped pools); q separates native from the family E7 pool at AUC >= 0.90.
+  "Cue-equivalent" iff 0.40 < A_res <= 0.60 with the 90% CI inside [0.35, 0.65]; "E7-excess" iff A_res <= 0.40 (UB <
+  0.45; the paper then prints the over-correction); "beyond the cue" iff A_res >= 0.70 (LB >= 0.62; a kill, (4)); else
+  neither; binding positive control MAD22 FaceMorpher A_res >= 0.75, else non-specific. Cells: OWN Greedy-DiM, OWN
+  MorDIFF, ViT-B/16 MorDIFF. The overshoot index (P(q_morph > q_E7) - 0.5) is printed beside. XA2 answers
+  over-correction in amount, never in kind (only X3 does). H-new-155 (DC-A, the benchmark-level statement B; header
+  enumeration of every shipped file, no pixel decoded): container (magic bytes), width x height, bytes per pixel, JPEG
+  quality (IJG estimate from DQT table 0), chroma subsampling, progressive, EXIF / ICC; IED from eval.csv. One-feature
+  O = max(AUC, 1 - AUC) over the whole cell. Documented attributes fixed now: DiM (six families) and MorDIFF:
+  container, width, bytes / px, IED; MAD22 MIPGAN-I / II: container, width, bytes / px; MAD22 FaceMorpher: width,
+  bytes / px, IED; MAD22 OpenCV / Webmorph and the five FRLL-Morphs families descriptive. A cell is
+  construction-confounded iff a documented attribute is confirmed (O >= 0.95). Supported iff every documented
+  attribute of the ten decision cells is confirmed; "partly" iff each decision cell has one confirmed; falsified iff a
+  decision cell has none (a documented difference the files do not confirm refutes that attribute). Literature check
+  (author item): earlier reports of quality or resolution confounds in MAD benchmarks; no citation verified here.
+  Descriptive (no verdict): DC-B (a)/(b) cue-only floors on frame cues (log aligned PNG bytes, border fraction, a
+  scale-aware JPEG-grid periodogram peak at 8 x 132 / native IED px; LR and HGB over 5 person-disjoint folds; a
+  200-permutation LR null whose 95th percentile must be <= 0.56, else "leaky (not read)"; positive controls clean iff
+  O <= 0.75, cue-confounded iff >= 0.90; the a36_cues.json bytes / G AUCs reproduced from a36_cues.npz first), DC-B
+  (c) H3 manifest-covariate floors (clean iff <= 0.65), DC-C (a) SMDD header counts (all 256 x 256 RGB PNG or not),
+  DC-C (b) the SelfMAD recipe as hypotheses only (the self-blend branch transforms the bona fide image in about 12.5%
+  of samples; the self-morph branch's LANCZOS zoom proxies averaging; nothing is said about the release's checkpoint
+  rule without the authors' confirmation, Q10), DC-D (a) the 15 pairwise AUCs of the six DiM E7 pools (within 0.5 +-
+  0.03 -> "no builder artefact", else a builder-noise caveat), DC-D (b) the ViT-L/14 pool anomaly (MorDIFF E7 vs DiM-A
+  E7, paired by photo on border, grid and 224 band ratio; "crop- or border-driven" iff border paired AUC >= 0.80 with
+  the spectral one <= 0.65), DC-8 the reproduction register (reproduced iff |ours - published| <= 5 and the published
+  value inside the person-clustered 95% CI; regime reproduced iff <= 5 but outside; else not reproduced; a sentence
+  about a published number only for a reproduced or regime-reproduced cell).
+  (7) **Rules only (registered now; data and readers come with their data registration; the author's yes is logged for
+  Q1, Q2, Q3, Q6 and Q7 (249090b); each runs only after its own data registration, which pins its data and reader
+  before any score; if not run, the claim takes the fallback wording in (9)).** X3 (S4; Q1 yes; generated locally
+  2026-11-07 01:44-03:12 CET, not yet data-registered or scored, (11)): DiffAE repository and its FFHQ-256 checkpoint
+  downloaded and pinned; pools a256 (its own alignment, no generator), rec (encode / decode), self (102 own-identity
+  morphs, DiM-A / MorDIFF recipe), cross (100 seeded dim_a pairs); every pool through prep_eval.align imported
+  unchanged (MorDIFF contrasts through frame_crop); output /mnt/t7/smad_heldout/a41_diffae/ with SHA256SUMS and a
+  manifest committed before any score; gates before any score: alignment >= 90%, identity >= 90% (rec verifies its
+  source, self its person, glintr100 FMR 0.1%), cue floors, platform, fidelity AUC <= 0.70; F3 / F7 as (3); kill as
+  (4); H-new-140: "no identity-mixing evidence" iff A_self <= 0.60, identity credit iff A_self >= 0.70 with LB >=
+  0.60; version agreement TOST |A(a256) - A(E7)| <= 0.10 (a256 clearly less morph-like than E7: the inflation is
+  re-anchored on a256); positive-control row FE ViT-L/14 (binding assay sensitivity: also <= 0.65 on rec caps C1 at
+  "strong", (5)); contrasts telescoping native -> a256 -> rec -> self -> published morphs, paired and
+  person-clustered. X14b (S5; Q2 yes): five sub-windows of the 512 frames by array slicing (c0 full; c1 central 448;
+  c2 central 384; c3 448 shifted up 32 px; c4 448 shifted left 32 px), lossless PNG registered by sha256, the
+  unchanged release loader; F6 as (3); kill: point rise < +5 in >= 2 crops; the native EER per crop printed against
+  1.10, no crop chosen for its closeness; c0 primary. X7' (S6, H-new-145; Q3 yes): SelfMAD's released crop.py and
+  loader unchanged on the raw files (its JPEG-95 re-encode of .jpg inputs is part of the released regime, disclosed):
+  "published regime reproduced on raw files" iff raw Greedy-DiM within 5 of 7.60 and the FRLL-5 mean within 5 of 2.96;
+  "our frames do not change the native regime" iff |raw - frame| <= 3 for Greedy-DiM and MorDIFF; N4 for C1 needs
+  both; E7 stays on our frames; in the GPU session X7' runs before XA1. S11 / X4 (H-new-146; Q7 yes and the A37 ruling
+  "Yes, both"): a C3 kill for a row iff AUC(H3 morphs vs spread-matched renders) >= 0.65 with LB >= 0.55. S12 (Q6 yes,
+  the author's A8.9 (3)(b) answer of 249090b): (a) H-new-157 the raw-file three-kernel E7 ladder (INTER_AREA, PIL
+  bicubic, Lanczos): versions agree iff every kernel's AUC is within 0.10 of the INTER_AREA one; (b) H-new-158 the
+  existing degrade resample50 on DiM / MorDIFF morphs: "responds" iff |Delta EER| >= 10, "insensitive" iff < 3, else
+  graded (cue word only). XA1 (H-new-154; after X3, only if S0-S10 and XA-M are done by Sun 12:00): LEACE at the head
+  input, direction fitted on fold-A natives vs the family's E7 pool, EER change on fold-B natives vs strict fold-B
+  morphs; gates probe AUC >= 0.85 before, <= 0.60 after (incl. the erased head's own), MAD22 FaceMorpher rise <= +5
+  (binding), the rise beats 1,000 random directions (99th percentile); "carried by the downsampling direction" iff
+  rise >= +10 with LB >= +5; "not carried" iff <= +3 (UB <= +6); it changes only the mechanism sentence. XA3c
+  (H-new-156; only if W-c triggers): the two-point attribution a = (x_native - x_E7) . (grad z(x_native) + grad
+  z(x_E7)) / 2 split by band and border, read only if the completeness error <= 20%; "pool artefact" per release (OWN,
+  ViT-B/16; a C1 / C2 kill; for OWN it also cancels F1 / F2 as N1, (4)) iff the border share >= 0.25 or the F1
+  share >= 0.50. GB10 platform gate (every GB10 network, before any new pool is read): re-score frll_bona orig; pass
+  iff |AUC(MorDIFF morphs vs frll_bona orig) - the registered| <= 0.005 and Kendall tau >= 0.99 over the 204 photos.
+  The registered verdict functions are a41_read.py's verdict139, verdict140, x3_gates, x3_version, verdict144,
+  verdict145, verdict146, verdict154, verdict156, verdict157, verdict158 and platform_gate; their readers must write
+  the JSON fields decide reads (RUNBOOK_A41 4). H-new-147 / 148 / 149 (A41_plan's X6 / X8) are not used by A41 (after
+  the window; Q8).
+  (8) **Units, bootstrap, seeds.** FRLL-based cells: the 102 FRLL persons, pigeonhole (dyadic) bootstrap (Owen 2007;
+  Davezies et al. 2021): person counts ~ Multinomial(102, 1/102); a bona fide photo weighs its person's count, a morph
+  the product of its two contributors' counts (an FRLL-Morphs self-pair the count), native and control pools and every
+  network of a part on the same draw; B = 10,000 (default_rng([20261107, 41, 2])) in eval; unit weights reproduce every
+  cell's EER exactly (binding, checked per cell). Beside: the image-level paired bootstrap and the one-way host bootstrap
+  for the three decision cells. H3: pairs, B = 10,000 (default_rng([20261107, 41, 9])). XA2: persons, B = 2,000 refits
+  (default_rng([20261107, 41, 13])). Weighted EER = analyze.eer_weighted (unit weights reproduce analyze.eer); weighted
+  AUC = a36_read.wauc (ties one half).
+  (9) **Wording by outcome (pre-written; the paper's claim table has one row per claim: network, cell, cue control,
+  Delta [person CI], d' share, positive-control family under the same control, negative-control detector, A_rec /
+  A_self, native vs published, the registered verdict logged earlier for the same question (C1: A32 H1 neither; C2:
+  A36 H-new-75 neither; C3: A36 H-new-72 neither in both pools; finding 4), verdict tier).** C1 (OWN, FRLL-based DiM /
+  MorDIFF): "meets registered criteria N1-N4" iff F1 or F2 is rejected with the d' share >= 0.5, F3 and F4 are
+  rejected, X7' passes both components, no C1 kill fired, OWN is deterministic, the X3 positive control exceeds 0.65
+  on rec and W-c is resolved ("not evidence of diffusion-morph detection", scoped: one network, FRLL-based pools);
+  "strong" otherwise, with person CIs and every missing item named (X3 not run / did not pass / "partly generator
+  output"; F4 not rejected: "E7 not shown to be specific"; X7' not run or not passed: "on our frames"; a fired non-X3
+  C1 kill with F3 rejected: "C1 rests on X3" (finding 1: a claim with a fired kill never gets the top grade); d' share
+  < 0.5: "partly carried"; X3 assay sensitivity not shown; W-c open; not deterministic); "suggestive" iff a non-X3 C1
+  kill fires and F3 is not rejected; "shortcut dropped" iff an X3 kill fires; "not supported" iff neither F1 nor F2 is
+  rejected, or XA3c finds a pool artefact for OWN. **Expected C1 grade: "strong"** (finding 9): from S0 (13), P(F4
+  (iii) passes) at a true rise of 0 and the logged native 9.8 is 0.53-0.62 at 0.05 / 8 and 0.53-0.62 at 0.05 (ICC 0-0.5); P(F3 passes) at A_rec 0.55 is 0.26-0.79 at 0.05 / 8 and 0.66-0.96 at 0.05 (ICC 0-0.5);
+  X7' is not simulated (P <= 1); so P("meets registered criteria N1-N4") is at most about 0.14-0.49 at 0.05 / 8 and 0.35-0.60 at 0.05 (treating the two
+  as independent), and "strong" is the likely grade. C2 (the official ViT-B/16 release, MorDIFF; never "MADation";
+  "resolution" only if W-b allows): "strong, registered" iff F5 (its tier printed), F6 and F7 are rejected, no C2 kill
+  fired and W-c is resolved; "strong" for the inflation iff F5 only ("shortcut-carried" only at tier 2 with the d'
+  share >= 0.5, else "partly carried"); a descriptive row iff a C2 kill fires or F5 is not rejected. Expected (S0
+  (13), full logged effect): at 0.05 / 8 inflated 0.12-0.35, partly carried 0.24-0.47, shortcut-carried 0.40-0.41; at 0.05 inflated 0.03-0.10, partly carried 0.47-0.56, shortcut-carried 0.41-0.43 (ICC 0-0.5). C3: "strong (narrow)" iff F8 and no C3 kill: "no primary row scores the H3
+  morphs above their renders at AUC >= 0.65 (one-sided pair and seed bounds; full and potent pairs, orig and pp)",
+  with the reverse-direction rows printed beside (renders above morphs, e.g. the SelfMAD own row's logged 0.353); the
+  row named iff a kill fires ("identity or averageness evidence on potent morphs for row X"); undetermined otherwise.
+  Expected (S0 (13), one row at the logged maximum 0.591): P(F8 supported) at 0.05 / 8 seed SD 0.01 0.10-0.87, seed SD 0.03 0.04-0.13, pair components only 0.10-0.87; at 0.05 seed SD 0.01 0.45-0.98, seed SD 0.03 0.37-0.80, pair components only 0.45-0.98 (ICC 0-0.8). B: "meets its registered criterion" iff H-new-155
+  supported, else strong with its label. C4: the construction sentence (strong), "PNG vs JPEG" added for a row with a
+  storage-format cue; no causal GAN sentence beyond SelfMAD without X6. Sentences that go whatever happens (author
+  sign-off Q4): "published S-MAD detectors rely on shortcuts" (general); "for every method"; "MADation carries the
+  shortcut" (method-level); the MixFaceNet-MAD resolution sentence; "the same OpenCV morphs"; the probe as identity
+  evidence; any sentence about the SelfMAD authors' checkpoint selection; "resolution" for C2 unless W-b allows it;
+  "proven" and "absolutely sure" for any claim; "does not separate" for C3; the WACV-draft claims of A41_plan
+  section 2. Always printed beside: the positive controls, our own networks' history (E07 10.53 -> 32.63; the 15-52%
+  false alarms on downsampled photos) and "MADMamba not evaluated on H3 (sealed)".
+  (10) **Registered inputs (sha256; REAL mode refuses anything else).** eval.csv 86d055d349c63a225893ace30cb3db8b1e9aea4e72350d78152126d7a49d56c9;
+  h3sg3.csv 4b29a7c9d755e385a9c86fafc69fed84af8285efe132eb157e0637c05f05a6de; h3sg3_stats.json
+  9cb2995cb3efa9ddc49d007edd319ae57b7a2d99e29b7f87d918360d5e78bd82; smadcvpr/results/A36/a36_read_own.json
+  b523e866d5dd631958c1e86081c6973091d50e248c7a7a7211c55f65466b8765 (its inputs pin every score file A41 reads: the A32
+  own eval npz, the A36 own_h3sg3.npz, A12REL selfmad_hrnet_w18 / madation_vitb16 / madation_vitl14 /
+  madation_fe_vitl14 scores_eval.npz and scores_h3sg3.npz, A12BR scores_eval_es.npz of M3 / M3L R x d0 and
+  scores_h3sg3_es.npz of the 51 primary networks); smadcvpr/results/RSX/rsx_read.json
+  011de6393e20538ad393bae3475d4f719c38eb132cc2beaf25c7cd9931d5ed9a (only its SelfMAD own, SelfMAD pipeline and M3 R x d0
+  rows are read; its W3 rows are not); a36_cues.json 35b23841a14a0313be690bdad232c75166d942861b846916dcfd78f465477453;
+  a36_cues.npz 0bbe1a68ec00d03b4c25502403c6049ee3bbd152def8aff4ad9410da17ee60e0; the A32 own eval npz
+  b2e012b9b0bd1df4a62257757dcb0aec75b4e93ead8a362526b80d3a090bb9db; A36_networks.tsv
+  51a80e939e8d3e43e1498301e4cd3f0a36d7e04404ee7aa4384ddcb1dded5848; A36_releases.tsv
+  715d24bd05621138df1ddbb088bbe7ac2b555033ee575e6f1d0add0e4ffc6f54; code pins a36_read.py 684aea1b..., a36_a1.py
+  f05faa69..., a38_read.py 213a1f56..., a39_read.py 10fcd666..., a37a1_read.py b963573e..., a40_read.py a1a1fdeb...,
+  analyze.py 6dd9220f..., common.py b5d42a99..., rsx_read.py 35221821... (full values in a41_read.py CODE_PINS). The eval
+  frames under smadcvpr_data/eval and the raw benchmark folders under /mnt/t7/Datasety/downloads are read by sha256 (S1),
+  decoded (img) or header-read (files); every input's sha256 is written into each output (inputs, inputs_digest).
+  (11) **What was seen before this design, and what is blind (disclosure).** Seen point estimates (logged in A32, A36,
+  A39, the audit, the adversary, the plan): every RSX native / E7 EER cell and its image-level CI (OWN Greedy-DiM 8.4
+  -> 90.7, MorDIFF 2.5 -> 61.3; ViT-B/16 MorDIFF 4.9 -> 19.6, DiM-C 6.4 -> 29.5, Greedy-DiM-S 6.9 -> 29.4; ViT-L/14
+  Greedy-DiM 9.8 -> 9.8, DiM deltas -5.3 to 0.0); the positive controls (OWN MAD22 FaceMorpher E7 0.11%, FRLL
+  FaceMorpher / OpenCV E7 4.8 / 3.9%, ViT-B/16 FRLL FaceMorpher E7 4.4%); the t5 flag-rate dose ladders (OWN 5.4 /
+  53.9 / 65.2 / 84.8 / 95.1 / 99.5-100%; ViT-B/16 5.9 -> 72%; JPEG-50 1.5 / 4.4 / 52.9%); the H-new-74 (B) matched /
+  full EERs on the MorDIFF-vs-E7 subset; the H3 / H4b row AUCs (0.353-0.591) and floors (0.526 / 0.560 / 0.607); the
+  reproduction values (8.37 vs 7.60, 4.70 vs 2.96, 4.90 vs 1.10, 28.9 vs 19.26); the DC-A medians (format, width, IED,
+  bytes / px) and A36's native-bytes AUC 1.0; 6 of 6 SMDD headers (Design C); the ViT-L/14 pool flags 19.6 vs 6.9%.
+  a12_4_read_stage1.json (registered A12 output) holds per-arm E5 EERs and orig-pool shifts for MAD22 MIPGAN-I / II
+  and FRLL StyleGAN of M3 R x d0, M3L R x d0 and the SelfMAD pipeline row: H-new-142's point estimates for those rows
+  are not blind (its key paths were listed in this build, no value printed); the official MADation releases have no
+  A12 E5 cell (blind). **Consequences for the family (finding 9):** F1, F2, F4 (i) and F4 (ii) pass on their logged
+  points with certainty; F4 (iii)'s logged native 9.8 sits 0.2 under its limit and can decide C1's top grade; F5's d'
+  share is about 0.48 from the logged EERs, so its tier-2 word is expected to be "partly carried"; H-new-136's C1 kill
+  (S7 "none" for OWN) and H-new-137's C2 kill ("carried" for ViT-B/16) have known point outcomes (the logged ladder
+  and the H-new-74 (B) EERs say neither fires) and are printed as known point outcomes, not tests (finding 10); F8's
+  full-pair intervals and seed spread are not blind: the A36 read (a36_read.json / a36_read_own.json; PROTOCOL A36
+  amendment 1 (13)) holds every primary row's H3 orig / pp pair CIs, seed means and per-network AUCs, so only F8's
+  potent-subset components and this read's resampling are new (the staged text of 02:58 called F8's intervals blind;
+  corrected, finding 4). **Earlier registered verdicts on the same questions (finding 4), printed in the claim
+  table:** A32 H1 neither (the SelfMAD release both cells "inflated"; MADation R x d0 "not reproduced"), which C1
+  follows; A36 H-new-75 neither (MorDIFF "inflated" +14.7; Greedy-DiM native 54.0 "not reproduced"), after which F5
+  keeps only the MorDIFF cell; A36 H-new-72 neither in both pools (registered before scoring: every primary row's H3
+  AUC in [0.35, 0.60] and H4b AUC <= the H4b floor, pair CI and seed CI agreeing). F8 rewrites H-new-72 after its
+  result was seen: it drops the H4b component (the primary rows' H4b AUCs sit near the 0.912 bytes-only floor, M3L R x
+  d0 0.923, D +0.010, and the CLIP rows reach 0.85-0.92 there); it had dropped the seed-CI requirement, now restored
+  as F8's seed component; and it replaces the two-sided band [0.35, 0.60] with a one-sided UB < 0.65. The SelfMAD own
+  row's 0.353 is the mirror image of 0.647, so "does not separate" is false in the two-sided sense: C3 is worded
+  one-sidedly and the rows below 0.5 are printed as reverse separation. **The author's answers (finding 3):** 249090b,
+  logged on main 2026-11-07 02:33 CET (answers of 01:35), before the first staging of this entry (02:58), records yes
+  to Q1 (X3), Q2 (X14b slicing), Q3 (X7' crop.py on raw files), Q5 (cue_floor.stats measure-only), Q6 (the kernel
+  ladder and resample50 on DiM / MorDIFF morphs, the yes on PROTOCOL A8.9 (3)(b)) and Q7 (X4, with the A37 ruling
+  "Yes, both"), and (3) that A41 may be registered once its pre-run review passes, the author signing off the
+  definition, the 8 hypotheses and the drop list by Sun 8 Nov 12:00. The staged text of 02:58 said the author had
+  ruled on none of Q1-Q12 and that registration waited for Q4; both were wrong and are corrected here. **X3 outputs
+  that exist before this registration (finding 3; named with their times only; this build opened none of them):**
+  /mnt/t7/smad_heldout/a41_diffae/logs/x3_stage.log 01:44, x3_align.log 01:47, x3_gate.log and gate_contact.png 01:50,
+  x3_gen.log and sample_contact.png 03:11, x3_build.log 03:12; work/stage_report.json, cross_pairs.csv, self_pairs.csv
+  and raw_frll.sha256 01:44, gate_log.json and gate_log.rows.csv 01:50, gen_log.json and gen_log.rows.csv 03:11,
+  mordiff_frame.json 03:12. The X3 gate thresholds (alignment >= 90%, identity >= 90%, fidelity AUC <= 0.70) are the
+  proof plan's (proof_plan.md, written 01:21 CET), fixed before X3 staging began (01:44) and unchanged here. Whether
+  the session that ran X3 printed alignment, identity or contact-sheet quantities is not established by this build;
+  the X3 data registration must state it, and if any was seen the X3 gates are reported as "thresholds fixed before
+  the data existed; gate quantities seen before registration", not as blind. No X3 image has been scored. **Other
+  results logged on main that bear on A41's rules (named here; no A41 rule changed in response):** the A40 part F read
+  and its post-result review (7ec3362, 02:23 CET, before the first staging): H-new-130 falsified within FFHQ, scores
+  not bit-identical on byte-identical copies (max 9.6e-05, flags identical), A40's FFHQ minimal-dose pattern (small
+  rescales and their flag changes) seen before H-new-151 is registered; that review's F5 removes "fine-detail loss" as
+  C1's cue word for now and its F6 proposes that the S7 "none" kill fire only when the minimal dose is not
+  "any-processing trace". A41 keeps W-a and the S7 kill as registered: W-a is a measured-cue rule, and its
+  "fine-detail loss" output, if reached, is reported in the paper with A40's H-new-130 falsification beside it;  the
+  F6 change would weaken a refuter whose point outcome is already known not to fire (author item, (15)); A40's F3
+  (re-scoring gates need a tolerance, not bit-exactness) is met by the platform gate's |dAUC| <= 0.005 and tau >=
+  0.99. The A37 amended read and the A39 S2 read (ee944b8, 03:26 CET, after the first staging): our networks score the
+  A37 spread-matched renders at or below chance (AUC 42.8-49.2 by arm); X4's rule (H-new-146, the published rows on
+  those renders) was written before (proof plan 01:21, staged 02:58) and is unchanged; no published row has been
+  scored on them. **Blind, new (never computed in a registered read):** the person-clustered intervals and p-values of
+  F1, F2, F4 and F5 (S2, S3: their inputs and points are known, so the paper presents them as robustness re-analyses);
+  F8's potent-subset components; the threshold-free dose AUCs and Page test (H-new-136) and the minimal-dose ratio
+  (H-new-151); the blur / JPEG exposure AUCs (H-new-138); the potent-subset AUCs, the within-pair concordances and the
+  refitted subset floors (S9 and the C3 kills); the decision-level determinism swaps (S1); the logit versions of F4
+  (ii) / (iii) and the tie-break EERs; every XA-M spectrum and band share (the critique's geometry predictions, frame
+  content to about 0.44 of frame Nyquist at the 224 input vs 0.48-0.49 for the morphs, are predictions, not
+  measurements); every XA2 number; DC-A's JPEG quality / chroma / EXIF / ICC enumeration; DC-B's border and grid cues;
+  DC-D's replicate-pool AUCs; and every X3, X14b, X7', X4, S12, XA1 and XA3c number. What this build computed: the
+  reproduction gates only ((12)); metadata (eval.csv and h3sg3.csv cell counts, names and IEDs, the S7 nominal doses
+  1.00 / 1.47 / 1.56 / 1.80 / 3.19 / 3.30 from IED metadata, the H3 potency shares from the stats file, the primary
+  rows' network counts 1, 1, 1, 5 x 7, 8, 8 from a36_read_own.json's list lengths); the key structure of the
+  registered JSONs; and the synthetic S0 ((13)).
+  (12) **Gate-only checks before registration (scratchpad a41/dev/gate_dev.py: the registration check stubbed, every
+  code pin, registered input and score-file pin checked as in REAL mode, stopped right after each part's binding gate,
+  nothing written, only the gate line printed).** eval: 878 registered numbers reproduced, max |d| 0 (rsx_read.json
+  SelfMAD own / pipeline / M3 R x d0 per seed; a36_read_own.json RSX rows of ViT-B/16, ViT-L/14, FE ViT-L/14 and the
+  H-new-74 (B) full / matched EERs of every row on MIPGAN-I / II, FRLL StyleGAN and MorDIFF E7); h3: 218 numbers, max
+  |d| 0 (a36_read_own.json heldout H3 orig / pp per-network AUCs and EERs of the 12 primary rows, the bytes-only
+  floors; the potency shares of h3sg3_stats.json); img: 153 numbers, max |d| 0 (the eval gate for OWN and ViT-B/16 and
+  a36_cues.json's full bytes / G AUCs from a36_cues.npz); files: manifest pin only (no gate). Rerun after the pre-run
+  review fixes on the reviewed reader 0bc7381b0eddb29b6abb74fbf705f9befaae2700316bcb804b94e7cc3e743cb1 (scratchpad a41/dev/gate_checks_review1.txt): eval 878, h3 218, img 153
+  numbers, max |d| 0 in each part; files: pin check only.
+  (13) **Operating characteristics (S0; plans/A41/oc_a41.json 0997de2cc08388fafa5c9c6545f072476b791e3ee5e94bb3d9ccf4f3dae72f04; synthetic Gaussian scores on the real person
+  and pair structure; 200 replicates per scenario; B 500 per replicate (the registered decisions use
+  10,000); at the Bonferroni level 0.05 / 8 and at 0.05, between which every Holm level lies). Run on the reviewed
+  reader 0bc7381b0eddb29b6abb74fbf705f9befaae2700316bcb804b94e7cc3e743cb1. F5's tier-2 word uses the simulated d' share; F8 adds the seed component at an assumed seed SD of
+  0.01 and 0.03 (the rows' network counts 1, 1, 1, 5 x 7, 8, 8; the row carrying a scenario's highest AUC has 5
+  networks), printed beside the pair-only result; the kills, X7', the logit versions and F6 are not simulated. A first
+  S0 run (v1, reader 223afcff...) had a bug in the simulator's F8 block (the morph scores were scaled by sqrt(1 - ICC
+  / 2), so the simulated AUC fell below its target at ICC > 0); it was set aside (scratchpad a41/oc_v1,
+  oc_a41.*.bak-v1), the simulator fixed, a realistic F8 scenario (one row at the logged maximum 0.591) and ICC 0.8 for
+  the H3 pairs added (the logged pair CIs, about +-0.02 at 423 pairs against about +-0.04 unpaired, imply a high
+  within-pair correlation), and S0 rerun; that run (reader a884a935..., oc_a41.json 71aec5c2...) was in turn set aside
+  unregistered after the pre-run review changed the reader (scratchpad a41/oc_prereview, (16)); no rule was changed in
+  response to any S0 output. Probability of each verdict (zero-probability verdicts not listed):**
+  F1 own Greedy-DiM (logged 8.4 -> 90.7) | ICC 0.0 | null: Bonferroni alpha/8: not reproduced (native EER > 10) 0.080; Bonferroni alpha/8: not robust 0.920; saturated label 0.970; unadjusted 0.05: not reproduced (native EER > 10) 0.080; unadjusted 0.05: not robust 0.920
+  F1 own Greedy-DiM (logged 8.4 -> 90.7) | ICC 0.0 | half: Bonferroni alpha/8: not reproduced (native EER > 10) 0.090; Bonferroni alpha/8: robust 0.910; saturated label 0.965; unadjusted 0.05: not reproduced (native EER > 10) 0.090; unadjusted 0.05: robust 0.910
+  F1 own Greedy-DiM (logged 8.4 -> 90.7) | ICC 0.0 | full: Bonferroni alpha/8: not reproduced (native EER > 10) 0.090; Bonferroni alpha/8: robust 0.910; saturated label 1.000; unadjusted 0.05: not reproduced (native EER > 10) 0.090; unadjusted 0.05: robust 0.910
+  F1 own Greedy-DiM (logged 8.4 -> 90.7) | ICC 0.2 | null: Bonferroni alpha/8: not reproduced (native EER > 10) 0.140; Bonferroni alpha/8: not robust 0.860; saturated label 0.940; unadjusted 0.05: not reproduced (native EER > 10) 0.140; unadjusted 0.05: not robust 0.860
+  F1 own Greedy-DiM (logged 8.4 -> 90.7) | ICC 0.2 | half: Bonferroni alpha/8: not reproduced (native EER > 10) 0.115; Bonferroni alpha/8: robust 0.885; saturated label 0.945; unadjusted 0.05: not reproduced (native EER > 10) 0.115; unadjusted 0.05: robust 0.885
+  F1 own Greedy-DiM (logged 8.4 -> 90.7) | ICC 0.2 | full: Bonferroni alpha/8: not reproduced (native EER > 10) 0.085; Bonferroni alpha/8: robust 0.915; saturated label 1.000; unadjusted 0.05: not reproduced (native EER > 10) 0.085; unadjusted 0.05: robust 0.915
+  F1 own Greedy-DiM (logged 8.4 -> 90.7) | ICC 0.5 | null: Bonferroni alpha/8: not reproduced (native EER > 10) 0.090; Bonferroni alpha/8: not robust 0.910; saturated label 0.915; unadjusted 0.05: not reproduced (native EER > 10) 0.090; unadjusted 0.05: not robust 0.910
+  F1 own Greedy-DiM (logged 8.4 -> 90.7) | ICC 0.5 | half: Bonferroni alpha/8: not reproduced (native EER > 10) 0.095; Bonferroni alpha/8: robust 0.905; saturated label 0.925; unadjusted 0.05: not reproduced (native EER > 10) 0.095; unadjusted 0.05: robust 0.905
+  F1 own Greedy-DiM (logged 8.4 -> 90.7) | ICC 0.5 | full: Bonferroni alpha/8: not reproduced (native EER > 10) 0.070; Bonferroni alpha/8: robust 0.930; saturated label 1.000; unadjusted 0.05: not reproduced (native EER > 10) 0.070; unadjusted 0.05: robust 0.930
+  F2 own MorDIFF (logged 2.5 -> 61.3) | ICC 0.0 | null: Bonferroni alpha/8: not robust 1.000; saturated label 1.000; unadjusted 0.05: not robust 1.000
+  F2 own MorDIFF (logged 2.5 -> 61.3) | ICC 0.0 | half: Bonferroni alpha/8: robust 1.000; saturated label 1.000; unadjusted 0.05: robust 1.000
+  F2 own MorDIFF (logged 2.5 -> 61.3) | ICC 0.0 | full: Bonferroni alpha/8: robust 1.000; saturated label 1.000; unadjusted 0.05: robust 1.000
+  F2 own MorDIFF (logged 2.5 -> 61.3) | ICC 0.2 | null: Bonferroni alpha/8: not robust 1.000; saturated label 1.000; unadjusted 0.05: not robust 1.000
+  F2 own MorDIFF (logged 2.5 -> 61.3) | ICC 0.2 | half: Bonferroni alpha/8: robust 0.975; Bonferroni alpha/8: size uncertain 0.025; saturated label 1.000; unadjusted 0.05: robust 1.000
+  F2 own MorDIFF (logged 2.5 -> 61.3) | ICC 0.2 | full: Bonferroni alpha/8: robust 1.000; saturated label 1.000; unadjusted 0.05: robust 1.000
+  F2 own MorDIFF (logged 2.5 -> 61.3) | ICC 0.5 | null: Bonferroni alpha/8: not robust 1.000; saturated label 1.000; unadjusted 0.05: not robust 1.000
+  F2 own MorDIFF (logged 2.5 -> 61.3) | ICC 0.5 | half: Bonferroni alpha/8: robust 0.965; Bonferroni alpha/8: size uncertain 0.035; saturated label 1.000; unadjusted 0.05: robust 0.995; unadjusted 0.05: size uncertain 0.005
+  F2 own MorDIFF (logged 2.5 -> 61.3) | ICC 0.5 | full: Bonferroni alpha/8: robust 1.000; saturated label 1.000; unadjusted 0.05: robust 1.000
+  F5 ViT-B/16 MorDIFF (logged 4.9 -> 19.6) | ICC 0.0 | null: Bonferroni alpha/8: not inflated (LB < +5) 1.000; unadjusted 0.05: not inflated (LB < +5) 1.000
+  F5 ViT-B/16 MorDIFF (logged 4.9 -> 19.6) | ICC 0.0 | half: Bonferroni alpha/8: not inflated (LB < +5) 1.000; unadjusted 0.05: inflated (tier 1) 0.120; unadjusted 0.05: not inflated (LB < +5) 0.880
+  F5 ViT-B/16 MorDIFF (logged 4.9 -> 19.6) | ICC 0.0 | full: Bonferroni alpha/8: inflated (tier 1) 0.115; Bonferroni alpha/8: partly carried (tier 2 rise; d' share < 0.5) 0.475; Bonferroni alpha/8: shortcut-carried (tier 2) 0.410; unadjusted 0.05: inflated (tier 1) 0.025; unadjusted 0.05: partly carried (tier 2 rise; d' share < 0.5) 0.565; unadjusted 0.05: shortcut-carried (tier 2) 0.410
+  F5 ViT-B/16 MorDIFF (logged 4.9 -> 19.6) | ICC 0.2 | null: Bonferroni alpha/8: not inflated (LB < +5) 1.000; unadjusted 0.05: not inflated (LB < +5) 1.000
+  F5 ViT-B/16 MorDIFF (logged 4.9 -> 19.6) | ICC 0.2 | half: Bonferroni alpha/8: inflated (tier 1) 0.010; Bonferroni alpha/8: not inflated (LB < +5) 0.990; unadjusted 0.05: inflated (tier 1) 0.140; unadjusted 0.05: not inflated (LB < +5) 0.860
+  F5 ViT-B/16 MorDIFF (logged 4.9 -> 19.6) | ICC 0.2 | full: Bonferroni alpha/8: inflated (tier 1) 0.200; Bonferroni alpha/8: partly carried (tier 2 rise; d' share < 0.5) 0.400; Bonferroni alpha/8: shortcut-carried (tier 2) 0.400; unadjusted 0.05: inflated (tier 1) 0.055; unadjusted 0.05: partly carried (tier 2 rise; d' share < 0.5) 0.515; unadjusted 0.05: shortcut-carried (tier 2) 0.430
+  F5 ViT-B/16 MorDIFF (logged 4.9 -> 19.6) | ICC 0.5 | null: Bonferroni alpha/8: not inflated (LB < +5) 1.000; unadjusted 0.05: not inflated (LB < +5) 1.000
+  F5 ViT-B/16 MorDIFF (logged 4.9 -> 19.6) | ICC 0.5 | half: Bonferroni alpha/8: inflated (tier 1) 0.015; Bonferroni alpha/8: not inflated (LB < +5) 0.985; unadjusted 0.05: inflated (tier 1) 0.090; unadjusted 0.05: not inflated (LB < +5) 0.910
+  F5 ViT-B/16 MorDIFF (logged 4.9 -> 19.6) | ICC 0.5 | full: Bonferroni alpha/8: inflated (tier 1) 0.355; Bonferroni alpha/8: partly carried (tier 2 rise; d' share < 0.5) 0.245; Bonferroni alpha/8: shortcut-carried (tier 2) 0.400; unadjusted 0.05: inflated (tier 1) 0.095; unadjusted 0.05: partly carried (tier 2 rise; d' share < 0.5) 0.475; unadjusted 0.05: shortcut-carried (tier 2) 0.430
+  F4(iii) ViT-L/14 Greedy-DiM (null = logged 9.8 -> 9.8; full = +10) | ICC 0.0 | null: Bonferroni alpha/8: (iii) fails 0.375; Bonferroni alpha/8: (iii) passes (UB < +10) 0.625; unadjusted 0.05: (iii) fails 0.375; unadjusted 0.05: (iii) passes (UB < +10) 0.625
+  F4(iii) ViT-L/14 Greedy-DiM (null = logged 9.8 -> 9.8; full = +10) | ICC 0.0 | half: Bonferroni alpha/8: (iii) fails 0.465; Bonferroni alpha/8: (iii) passes (UB < +10) 0.535; unadjusted 0.05: (iii) fails 0.435; unadjusted 0.05: (iii) passes (UB < +10) 0.565
+  F4(iii) ViT-L/14 Greedy-DiM (null = logged 9.8 -> 9.8; full = +10) | ICC 0.0 | full: Bonferroni alpha/8: (iii) fails 1.000; unadjusted 0.05: (iii) fails 1.000
+  F4(iii) ViT-L/14 Greedy-DiM (null = logged 9.8 -> 9.8; full = +10) | ICC 0.2 | null: Bonferroni alpha/8: (iii) fails 0.400; Bonferroni alpha/8: (iii) passes (UB < +10) 0.600; unadjusted 0.05: (iii) fails 0.400; unadjusted 0.05: (iii) passes (UB < +10) 0.600
+  F4(iii) ViT-L/14 Greedy-DiM (null = logged 9.8 -> 9.8; full = +10) | ICC 0.2 | half: Bonferroni alpha/8: (iii) fails 0.455; Bonferroni alpha/8: (iii) passes (UB < +10) 0.545; unadjusted 0.05: (iii) fails 0.390; unadjusted 0.05: (iii) passes (UB < +10) 0.610
+  F4(iii) ViT-L/14 Greedy-DiM (null = logged 9.8 -> 9.8; full = +10) | ICC 0.2 | full: Bonferroni alpha/8: (iii) fails 1.000; unadjusted 0.05: (iii) fails 0.995; unadjusted 0.05: (iii) passes (UB < +10) 0.005
+  F4(iii) ViT-L/14 Greedy-DiM (null = logged 9.8 -> 9.8; full = +10) | ICC 0.5 | null: Bonferroni alpha/8: (iii) fails 0.470; Bonferroni alpha/8: (iii) passes (UB < +10) 0.530; unadjusted 0.05: (iii) fails 0.470; unadjusted 0.05: (iii) passes (UB < +10) 0.530
+  F4(iii) ViT-L/14 Greedy-DiM (null = logged 9.8 -> 9.8; full = +10) | ICC 0.5 | half: Bonferroni alpha/8: (iii) fails 0.450; Bonferroni alpha/8: (iii) passes (UB < +10) 0.550; unadjusted 0.05: (iii) fails 0.395; unadjusted 0.05: (iii) passes (UB < +10) 0.605
+  F4(iii) ViT-L/14 Greedy-DiM (null = logged 9.8 -> 9.8; full = +10) | ICC 0.5 | full: Bonferroni alpha/8: (iii) fails 1.000; unadjusted 0.05: (iii) fails 0.990; unadjusted 0.05: (iii) passes (UB < +10) 0.010
+  F8 H3 | ICC 0.0 | one row at 0.591 (the logged maximum), eleven at 0.50: Bonferroni alpha/8: pair components only: not supported 0.905; Bonferroni alpha/8: pair components only: supported 0.095; Bonferroni alpha/8: seed SD 0.01: F8 not supported 0.905; Bonferroni alpha/8: seed SD 0.01: F8 supported 0.095; Bonferroni alpha/8: seed SD 0.03: F8 not supported 0.965; Bonferroni alpha/8: seed SD 0.03: F8 supported 0.035; unadjusted 0.05: pair components only: not supported 0.550; unadjusted 0.05: pair components only: supported 0.450; unadjusted 0.05: seed SD 0.01: F8 not supported 0.550; unadjusted 0.05: seed SD 0.01: F8 supported 0.450; unadjusted 0.05: seed SD 0.03: F8 not supported 0.630; unadjusted 0.05: seed SD 0.03: F8 supported 0.370
+  F8 H3 | ICC 0.2 | one row at 0.591 (the logged maximum), eleven at 0.50: Bonferroni alpha/8: pair components only: not supported 0.835; Bonferroni alpha/8: pair components only: supported 0.165; Bonferroni alpha/8: seed SD 0.01: F8 not supported 0.835; Bonferroni alpha/8: seed SD 0.01: F8 supported 0.165; Bonferroni alpha/8: seed SD 0.03: F8 not supported 0.960; Bonferroni alpha/8: seed SD 0.03: F8 supported 0.040; unadjusted 0.05: pair components only: not supported 0.420; unadjusted 0.05: pair components only: supported 0.580; unadjusted 0.05: seed SD 0.01: F8 not supported 0.420; unadjusted 0.05: seed SD 0.01: F8 supported 0.580; unadjusted 0.05: seed SD 0.03: F8 not supported 0.555; unadjusted 0.05: seed SD 0.03: F8 supported 0.445
+  F8 H3 | ICC 0.5 | one row at 0.591 (the logged maximum), eleven at 0.50: Bonferroni alpha/8: pair components only: not supported 0.530; Bonferroni alpha/8: pair components only: supported 0.470; Bonferroni alpha/8: seed SD 0.01: F8 not supported 0.530; Bonferroni alpha/8: seed SD 0.01: F8 supported 0.470; Bonferroni alpha/8: seed SD 0.03: F8 not supported 0.900; Bonferroni alpha/8: seed SD 0.03: F8 supported 0.100; unadjusted 0.05: pair components only: not supported 0.185; unadjusted 0.05: pair components only: supported 0.815; unadjusted 0.05: seed SD 0.01: F8 not supported 0.185; unadjusted 0.05: seed SD 0.01: F8 supported 0.815; unadjusted 0.05: seed SD 0.03: F8 not supported 0.345; unadjusted 0.05: seed SD 0.03: F8 supported 0.655
+  F8 H3 | ICC 0.8 | one row at 0.591 (the logged maximum), eleven at 0.50: Bonferroni alpha/8: pair components only: not supported 0.130; Bonferroni alpha/8: pair components only: supported 0.870; Bonferroni alpha/8: seed SD 0.01: F8 not supported 0.130; Bonferroni alpha/8: seed SD 0.01: F8 supported 0.870; Bonferroni alpha/8: seed SD 0.03: F8 not supported 0.870; Bonferroni alpha/8: seed SD 0.03: F8 supported 0.130; unadjusted 0.05: pair components only: not supported 0.015; unadjusted 0.05: pair components only: supported 0.985; unadjusted 0.05: seed SD 0.01: F8 not supported 0.015; unadjusted 0.05: seed SD 0.01: F8 supported 0.985; unadjusted 0.05: seed SD 0.03: F8 not supported 0.200; unadjusted 0.05: seed SD 0.03: F8 supported 0.800
+  F8 H3 | ICC 0.0 | all rows at 0.591 (worst case): Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F8 H3 | ICC 0.2 | all rows at 0.591 (worst case): Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F8 H3 | ICC 0.5 | all rows at 0.591 (worst case): Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 0.940; unadjusted 0.05: pair components only: supported 0.060; unadjusted 0.05: seed SD 0.01: F8 not supported 0.940; unadjusted 0.05: seed SD 0.01: F8 supported 0.060; unadjusted 0.05: seed SD 0.03: F8 not supported 0.990; unadjusted 0.05: seed SD 0.03: F8 supported 0.010
+  F8 H3 | ICC 0.8 | all rows at 0.591 (worst case): Bonferroni alpha/8: pair components only: not supported 0.695; Bonferroni alpha/8: pair components only: supported 0.305; Bonferroni alpha/8: seed SD 0.01: F8 not supported 0.695; Bonferroni alpha/8: seed SD 0.01: F8 supported 0.305; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 0.150; unadjusted 0.05: pair components only: supported 0.850; unadjusted 0.05: seed SD 0.01: F8 not supported 0.150; unadjusted 0.05: seed SD 0.01: F8 supported 0.850; unadjusted 0.05: seed SD 0.03: F8 not supported 0.840; unadjusted 0.05: seed SD 0.03: F8 supported 0.160
+  F8 H3 | ICC 0.0 | one row at 0.65: Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F8 H3 | ICC 0.2 | one row at 0.65: Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F8 H3 | ICC 0.5 | one row at 0.65: Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F8 H3 | ICC 0.8 | one row at 0.65: Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F8 H3 | ICC 0.0 | one row at 0.70: Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F8 H3 | ICC 0.2 | one row at 0.70: Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F8 H3 | ICC 0.5 | one row at 0.70: Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F8 H3 | ICC 0.8 | one row at 0.70: Bonferroni alpha/8: pair components only: not supported 1.000; Bonferroni alpha/8: seed SD 0.01: F8 not supported 1.000; Bonferroni alpha/8: seed SD 0.03: F8 not supported 1.000; unadjusted 0.05: pair components only: not supported 1.000; unadjusted 0.05: seed SD 0.01: F8 not supported 1.000; unadjusted 0.05: seed SD 0.03: F8 not supported 1.000
+  F3 / F7 X3 rec | ICC 0.0 | A_rec 0.55 (expected): Bonferroni alpha/8: F3 not supported 0.210; Bonferroni alpha/8: F3 supported 0.790; unadjusted 0.05: F3 not supported 0.035; unadjusted 0.05: F3 supported 0.965
+  F3 / F7 X3 rec | ICC 0.2 | A_rec 0.55 (expected): Bonferroni alpha/8: F3 not supported 0.485; Bonferroni alpha/8: F3 supported 0.515; unadjusted 0.05: F3 not supported 0.155; unadjusted 0.05: F3 supported 0.845
+  F3 / F7 X3 rec | ICC 0.5 | A_rec 0.55 (expected): Bonferroni alpha/8: F3 not supported 0.745; Bonferroni alpha/8: F3 supported 0.255; unadjusted 0.05: F3 not supported 0.345; unadjusted 0.05: F3 supported 0.655
+  F3 / F7 X3 rec | ICC 0.0 | A_rec 0.65 (boundary): Bonferroni alpha/8: F3 not supported 1.000; unadjusted 0.05: F3 not supported 1.000
+  F3 / F7 X3 rec | ICC 0.2 | A_rec 0.65 (boundary): Bonferroni alpha/8: F3 not supported 1.000; unadjusted 0.05: F3 not supported 0.995; unadjusted 0.05: F3 supported 0.005
+  F3 / F7 X3 rec | ICC 0.5 | A_rec 0.65 (boundary): Bonferroni alpha/8: F3 not supported 1.000; unadjusted 0.05: F3 not supported 1.000
+  F3 / F7 X3 rec | ICC 0.0 | A_rec 0.75: Bonferroni alpha/8: F3 not supported 1.000; unadjusted 0.05: F3 not supported 1.000
+  F3 / F7 X3 rec | ICC 0.2 | A_rec 0.75: Bonferroni alpha/8: F3 not supported 1.000; unadjusted 0.05: F3 not supported 1.000
+  F3 / F7 X3 rec | ICC 0.5 | A_rec 0.75: Bonferroni alpha/8: F3 not supported 1.000; unadjusted 0.05: F3 not supported 1.000
+  (14) **Deviations from the plan and the designs, disclosed.** F4 (iii) adds the precondition native <= 10 (logged
+  9.8; a negative control with a high native EER is uninformative, critique O6). The S9 subset floor is the bytes-only
+  and a six-column manifest-covariate floor refit on the subset plus the fixed full-set geometry floors, not
+  cue_floor.py: the author approved cue_floor.stats() as a measure-only run on the eval frames (Q5 yes, 249090b),
+  which measures eval frames, not the H3 images, and has not run; S9 stays a read of the registered H3 manifest
+  columns, and no later cue_floor run replaces this floor (no change after data; the staged "needs Q5" justification
+  was stale, finding 3). The SelfMAD 384-px geometry for XA-M and XA2 waits for the dlib-81 fetch (part of Q3's yes,
+  not yet run); the 512 frame decides for OWN in this registration and the 384 version is a later sensitivity, never a
+  replacement. DC-B uses aligned bytes, the border fraction and the grid peak (A36's SCRFD geometry only through
+  a36_cues.npz, printed, not refit); the DC-B null uses LR only. XA2's dose set includes the two MorDIFF-frame pools,
+  so the MorDIFF cell's residuals are on the same fit. The OC simulation does not cover F6 (crop correlation unknown),
+  the kills, X7', the logit versions or the image gates. Holm levels for tier labels of non-rejected hypotheses: the
+  stop level. Changes from the plan made by the pre-run review (16), each stricter for the claims: C1's top grade
+  needs F4 and N4 (X7'), the stricter of the plan's two readings; any fired C1 kill caps C1 at "strong"; the kills
+  decide at unadjusted 0.05 (the plan: Holm within each set); the tier-2 and N1 word needs the d' share >= 0.5; F8
+  adds the seed component; X3 assay sensitivity is binding; F4 (ii) / (iii) take the less favourable of score and
+  logit. H-new numbers 135-158 checked free on every branch (git grep over all refs, fst / valx / A12SP excluded);
+  H-new-147 / 148 / 149 unused.
+  (15) **Open for the author.** Q4, by Sun 8 Nov 12:00: the sign-off on the definition (2), the family, the two C2
+  tiers, the drop list (9) and the review's defaults now in the rules: (a) the top grade needs X7' (N4); (b) any fired
+  C1 kill caps C1 at "strong", and an XA3c pool artefact makes C1 "not supported"; (c) the kills decide at unadjusted
+  0.05; (d) the C2 tier-2 word needs the d' share >= 0.5, and C3 binds both the pair bound and the seed-mean bound of
+  every multi-network row; (e) X3 assay sensitivity is binding. **Rule for the sign-off (finding 3):** before the
+  first A41 REAL read the author may change any rule here (the change is then logged as an amendment before any data
+  are read); once a REAL read has run, Q4 can only drop or weaken wording (drop a claim, a sentence or a grade, or
+  lower a grade); any change to a threshold, margin, component, kill level or the N1-N4 bar (for example removing N4
+  or returning to Holm-adjusted kills) is then a post hoc amendment, labelled as such and never replacing the
+  registered verdict. Q1, Q2, Q3, Q5, Q6 and Q7 are answered yes (249090b; each item runs after its own data
+  registration, (7)); the review's question to the author: did anyone look at the X3 alignment or gate logs or the
+  contact sheets, and which quantities were printed ((11))? Also for the author: the A40 post-result review's F6 (the
+  S7 kill only when the minimal dose is not "any-processing trace") is not adopted ((11)); adopting it before the
+  first REAL read is the author's choice. Still open: Q8 the window extension (X6, X8, figures); Q9 CPU analysis on
+  9-15 Nov; Q10 emails to the MADation and SelfMAD authors; Q11 the MADMamba seal; Q12 integrated-gradient paths (not
+  needed).
+  (16) **Pre-run review (experiment-reviewer, 2026-11-07 ~03:10 CET, on the staged entry of 02:58, reader a884a935...,
+  tests 5737537e..., the RUNBOOK and PROTOCOL; verdict GO WITH FIXES; nothing broke a hard rule) and how each finding
+  was handled.** Every fix changed the reader, so the tests, S0, the gate-only checks, the code manifest and every pin
+  here were regenerated; the pre-review S0 pair (oc_a41.json 71aec5c2..., written by a884a935...) was set aside
+  unregistered (scratchpad a41/oc_prereview, *.bak-prereview); no rule was changed in response to any S0 output. (1)
+  Major, a kill did not stop the top grade (C1 "proven" when a non-X3 C1 kill fired and F3 was rejected; asserted by
+  the old test): fixed; any fired C1 kill caps C1 at "strong" ("C1 rests on X3"), an XA3c pool artefact cancels F1 /
+  F2 as N1 (C1 "not supported"), and XA3c is now also in the C2 point kills, as (7) always said; the test now asserts
+  the cap. (2) Major, is X7' required: the text (N1-N4) and the code now agree that it is (both verdict145
+  components); the author may drop it under Q4 only before the first REAL read. (3) Major, disclosure: corrected in
+  (11), (14), (15) and the header (the author's answers of 249090b, registration once the review passes, the X3
+  outputs and the Q4 rule); RUNBOOK sections 2 and 4 rewritten (no wait for Q4; the stale Q1 deadline removed). (4)
+  Major, earlier verdicts and the C3 rule: the earlier verdicts are disclosed in (11) and printed in decide's claim
+  table; F8 gains the seed component (36 components); C3 is worded one-sidedly and the reverse-direction rows are
+  printed. (5) Major, F4 (iii) skipped the less favourable rule: the ViT-L/14 Greedy-DiM and the ViT-B/16 FRLL
+  FaceMorpher logit cells are computed; the larger native and the larger p decide; H-new-143 covers the F4 components.
+  (6) Major, multiplicity correction of the kills favoured the claims: the kills decide at unadjusted 0.05, Holm
+  printed beside (Q4 sign-off). (7) Major, the C2 tier-2 word was too strong: "shortcut-carried" needs the d' share >=
+  0.5, else "partly carried"; the same share gates N1 for C1 (X0 (iii)). (8) Major, the definition: (ii) reworded (an
+  operation with no morphing and no identity mixing induces c), the T_morph sentence withdrawn, X3 assay sensitivity
+  binding (cap at "strong"). (9) Minor, labels and expected outcome: the family is "pre-specified decision rules on
+  previously observed estimates", the top grade "meets registered criteria N1-N4" (B: "meets its registered
+  criterion"); the expected outcomes are stated in (9) from the regenerated S0. (10) Minor: W-c without XA3c caps C1 /
+  C2 at "strong"; the known point outcomes are labelled, not called tests; the OWN decision cells print the EER under
+  both tie-breaks (descriptive). Improvements not taken: the S0 conditioned on the logged points (rank 6; the
+  scenarios already use the logged natives and effects, and X7' cannot be simulated); running X7' before XA1 (rank 7)
+  is a scheduling item for the GPU session, recorded in RUNBOOK 4. No STOP item was raised.
+  (17) **Disclosure addendum at registration (2026-11-07 04:10 CET, main HEAD 5d3a872; text only: the reader
+  0bc7381b..., the tests, S0, the code manifest and every rule, threshold, component, kill, wording and the N1-N4 bar
+  are unchanged).** The last results that (11) names are those of ee944b8 (03:26 CET). Between ee944b8 and main HEAD
+  5d3a872 main gained two commits and nothing else, eb27c08 (03:36 CET) and 5d3a872 (04:00 CET), both made outside this
+  build; this registration opened none of their feature, score, latent or probe files, and the numbers below are quoted
+  from their committed PROTOCOL bullets. (a) **eb27c08, the A37 amendment H101 feature copy-back record:** the P feature
+  copy-back list 7ec07c54... (70 files; jobs 6260257_0 and 6260259_0-4, COMPLETED 0:0, 0.264 H100 GPU-h); the P read's
+  --pools-sha, the five-pool pin list 4525bff8... (the five A37 pool manifests at their pins; the a37spread line
+  28bde1ef... is the same in the six-pool list b3c14735...); the arm-g swa.pt stat (12 of 12 older than their H3 scores
+  and both A37 scorings). Bearing: none on any A41 decision statistic or claim. A41 reads no A30, A37 or A38 network
+  score, feature or probe output (no A37 file is among the inputs of (10)); the record matters only for X4's later data
+  registration, which pins the a37spread pool by that manifest line. No A41 rule changes; no A41 decision statistic
+  becomes non-blind. (b) **5d3a872, the A37 amendment H101 (P) results and post-result review:** P was read by the
+  registered a37a1_read.py b963573e... (REAL, local CPU, 03:39:36-03:39:44 CET at main HEAD eb27c08): H-new-101
+  supported; the frozen linear H3 probes on CLIP ViT-B/16 and ConvNeXt-T features (pretrained, CL_pre / CN_pre, and the
+  12 A30 arm c networks) score the spread-matched renders as morph-like as the H3 morphs (out of fold, orig: A_ms 0.4525
+  [0.4279, 0.4785] and 0.4947 [0.4702, 0.5198]; matched vs plain renders A_sp 0.9466 and 0.9257; arm c seed-mean A_ms
+  0.452 and 0.479); truncation "rises as psi falls", overshoot in both backbones; copy and re-decode controls 0.500. Its
+  post-result review (sound, interpretation qualified): F1, if the contributor latents w1, w2 are N(m, S), the morph
+  latent (w1 + w2) / 2 and the matched render latent m + (w - m) / sqrt(2) are both N(m, S / 2), so a spread-matched
+  single-person render comes from nearly the same latent distribution as a latent-average morph, an AUC near 0.5 on that
+  pool is what any image-only detector should produce, and the design has almost no power against a two-identity
+  component ("not two identities" over-claims); F2, the matched control is slightly over-shrunk (median d_sm 30.83 vs
+  31.83; implied contributor latent correlation about 0.07), so "below chance" reads "at chance"; F3, the centre is
+  probably w_avg (suggestive, post hoc); F4, the probes' whole H3 separation carries over (ratio 0.95-1.20);
+  H-new-220..224 proposed, not registered; X4 named as the test of whether C3 is robust to typicality for the published
+  rows. Bearing, item by item: (i) **X4 (H-new-146; a C3 kill for a row iff AUC(H3 morphs vs spread-matched renders) >=
+  0.65 with LB >= 0.55).** Rule unchanged. No primary row has been scored on any A37 pool: the 12 primary rows are the
+  releases (A12REL) and the 51 A12BR networks of the 9 re-implemented recipes (A36_networks.tsv), and neither the P
+  probes (pretrained backbones and A30 arm c networks) nor A37's 84 A30 networks are among them, so X4's statistics stay
+  blind in value. They are not blind in expectation: A37 (84 networks, AUC 42.8-49.2, (11)), P (0.45 and 0.49) and F1's
+  argument predict AUCs near 0.5 for any image-only row, and F2's over-shrink pulls them slightly below 0.5, which makes
+  the kill slightly harder to fire (toward C3's claim). X4 is therefore, by construction, a refuter with almost no power
+  against an identity component: "survives" supports only "no evidence beyond latent location on these renders", never
+  "the row lacks identity evidence"; a firing stays a C3 kill as registered. (ii) **F8 (H-new-141) and the C3 kills on
+  H3 (potent-subset AUC, within-pair concordance).** Rules and their blind status unchanged: P adds no number for any
+  primary row; F8's full-pair intervals and seed spread were already not blind ((11)); its potent-subset components, the
+  concordances and the refitted subset floors stay blind. P and F1 say that H3's morph-render separation is carried by
+  latent location (H3 morphs are "too average"), so a fired H3 kill is read with its registered label "identity or
+  averageness evidence on potent morphs for row X", which already allows averageness; C3's registered absence wording
+  stands as written. (iii) **Wording.** Nothing changes here. Named for the author's Q4 as optional weakenings ((15):
+  weakening stays open after a REAL read): beside C3 and X4, "this design has almost no power against a two-identity
+  component", and "at chance (control slightly over-matched)" for any spread-matched AUC below 0.5; the drop list (9)
+  already holds "the probe as identity evidence" and "does not separate" for C3. (iv) **No bearing:** F1-F7, the C1 and
+  C2 kills, B, C4, X3, X14b, X7', XA1, XA2, XA3c, S12 and the platform gate (P concerns StyleGAN3 renders only; A41's C1
+  / C2 cells are FRLL-based morphs and photos); H-new-220..224 are not A41 hypotheses, and m = 8 and C3's m = 60 are
+  unchanged; the review's F5 (withdraw A38's render-negative arm as a C3 lever) and the RUNBOOK_A39 step 6 path fix
+  touch no A41 item. (v) **Guard simulation** at registration on main 5d3a872 with this text appended in memory: every
+  registered reader's block and holder counts unchanged; a41_read.py from 0 of 0 to 1 of 1 under "- **A41 (registration"
+  and under "- **A41 ".

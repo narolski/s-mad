@@ -1,0 +1,36 @@
+{
+  "original_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/reader_implementation_v2r1/ROOT_INPUT_ADMISSION.json",
+  "original_sha256": "85fb4129e1432e7f59540c997a46f8c76ee16d6c73095fae99ed3704813e033e",
+  "compat_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/reader_implementation_v2r1/ROOT_INPUT_ADMISSION_COLLECTOR_COMPAT.json",
+  "compat_sha256": "1d85babbc525f4b3dcf966e988ca7e9eba0caab980f228fa093e4ce25f6c9556",
+  "delta": {
+    "at": {
+      "original": "2026-11-14T17:46:04.053450+00:00",
+      "compatibility": "2026-11-14T18:06:08.034426+00:00"
+    },
+    "baseline_reporting_requirement": {
+      "original": null,
+      "compatibility": "REQUIRED_BUT_HOLD_PENDING_SEPARATE_BINDING_AND_ADMISSION"
+    },
+    "baseline_threshold_auxiliary": {
+      "original": "REQUIRED_BUT_HOLD_PENDING_SEPARATE_BINDING_AND_ADMISSION",
+      "compatibility": "HOLD"
+    },
+    "correction": {
+      "original": null,
+      "compatibility": "Root receipt schema correction only: literal HOLD scope enum and explicit adopted point-only diagnostic field required by frozen validate_release. No numerical policy/input/source/read authority change. Original receipt preserved."
+    },
+    "diagnostic_panels": {
+      "original": null,
+      "compatibility": "ADOPTED_POINT_ONLY_NOT_ESTIMATED"
+    },
+    "supersedes_schema_only": {
+      "original": null,
+      "compatibility": {
+        "path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/reader_implementation_v2r1/ROOT_INPUT_ADMISSION.json",
+        "sha256": "85fb4129e1432e7f59540c997a46f8c76ee16d6c73095fae99ed3704813e033e"
+      }
+    }
+  },
+  "source_and_policy_changed": false
+}

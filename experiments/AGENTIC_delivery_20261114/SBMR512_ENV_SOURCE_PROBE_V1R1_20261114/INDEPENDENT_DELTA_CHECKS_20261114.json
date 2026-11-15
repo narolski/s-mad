@@ -1,0 +1,29 @@
+{
+  "pins": {
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/ALLOWLIST_REQUEST_UNSIGNED.json": "56b8bbb0fb0d92411f6a3c2d000bf8007def0773c115913bd1d3795123387dac",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/CPU_TEST_RESULT.json": "e7d2febad7b1eb9fc3b74bff5a7e1a58775ac52f6a60b4673624969d03409526",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/HANDOFF_20261114.json": "d90d07acef4a0919ed4bcec9627905f448b588d6469e1fd909a9270b9e06efee",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/METADATA_RELEASE_UNSIGNED.json": "9b8952034b637b4cb7d6194014918c9610d0c9d0a1911dbb38f44672ea2e418c",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/PARENT_PRESERVATION.json": "25538cc4dec08f3c9d8f74e1feb8463c15de178296429fa441c5b9aacd90aa40",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/README.md": "4f1fededc5686516b2ca89952a4647e3bd55d0c56927ef7ca70afe3fe3dd6405",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/SOURCE_DELTA.patch": "60cb0cc0fab60cc9fb2a024e9a26da7dcc1e2f1db7555438d676c7cd605fa347",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/probe.py": "34c5f9d691714835ea164e5ae87eaf11ceaf5b166a7ce7e37cf1bd7d2402f4de",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1R1_20261114/test_probe.py": "94c0819fae7ece10cfe265882910cd5eb05b5004fcaea115dd216bccc5112d2f",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1_20261114/ALLOWLIST_REQUEST_UNSIGNED.json": "180b53e1f8682ba8cf2135d2d7e89d44efb74ba8936862641c3a79c8fb5ee4bb",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1_20261114/CPU_TEST_RESULT.json": "735faf0aece98a671b8fc9c01da8e0114ec498be65add436612d2ab3fcfb13a6",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1_20261114/HANDOFF_20261114.json": "9ca355b7de057d9e984ef5c42769dd3b339616c0509d5e2c15f0705539dc535c",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1_20261114/METADATA_RELEASE_UNSIGNED.json": "7a654e7db16ab9af1b30be249c5bbce089bc5da0b9d80b31554f0845ad03eb29",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1_20261114/PARENT_SOURCE_PINS.json": "d367282ce60686480208a0fe501f464f761a1ceb13efbbd2269637f6627c2baf",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1_20261114/README.md": "167b73eef36e26668383ab415843f546e16d2da7f356479095fba1838424bc33",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1_20261114/probe.py": "f0051c1c4f817c1d9c103d2397f188f0cdf1a3e04ed2e60bacfeed8fd0bb16d4",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SBMR512_ENV_SOURCE_PROBE_V1_20261114/test_probe.py": "e39edd2b77cc969baa7f30e0bb9728f032fb3abd1bc1935fb7f35ff42ffc437d"
+  },
+  "parent_preserved": true,
+  "independent_tests": {
+    "passed": 19,
+    "seconds": 0.031,
+    "scope": "generated files only; no main/actual environment probe"
+  },
+  "B1": "empty pinned METADATA rejects; no PKG-INFO open; same authenticated bytes parsed",
+  "B2": "leaf and ancestor swaps reject before target read; descriptor replacement cannot change read target; growth cap and controls snapshot verified"
+}

@@ -1,0 +1,9 @@
+# Paired ranking [SPRINT5-1]: infrastructure repair2
+
+Prospective before retry,14November2026. H100 smoke6320883 retained: BCE2-step fit/ordinaryscore succeeded, batterycaller failed argparseexit2 because pinnedrc1 code does not support `--expect-eval`. Pairedarms were notexecuted. No platformgate was measured by thatfailure and no scientificscore wasread. Failure is not a scientificnull or validGPU-smokepass.
+
+Repair: pin released-candidate rc2tar`19bf00aeb0b6b1ade3a5b424087a7d00bf3f6ec13f4bf9a0a63fc84510c736f3`, whose actualCLIhelp accepts `--expect-eval`; CPUhelp evidence `RC2_CLI_HELP.txt`. Keep strictsprint bytegate: additional `check_battery_byte.py` requires referencebyteidentical,0differences,max0,gateclassbyte-gated, candidate-fitnetcheckall21277rows exact andall4developmentsetsfinite. Tolerance-gated rc2record is not sprintpass. Fullrc2battery remains an infrastructurecandidate, not a claim thathistoricalbatteryformalrelease occurred.
+
+No model,loss,sampler,steps,seed,calibration orendpoint change. Recompute ALL3arms atseed501,2stepsfrominitialization under newsource/namespace. No reuse ofsuccessfulBCEv1checkpoint as anadmittedv2smoke and nooverwrite ofv1. Output`results/SPRINT5_1/smoke_v2`, tasknames includev2; source`packs/SPRINT5_1_v2/source`. Productionpathv2 remainsheld for independentGOreceipt, prereg/data/floor/calibration/readerconditionsunchanged. Allsourcehashes andthefailedjobdisposition includedinconfig.json and resulttar.
+
+Source tar `/mnt/t7/smad_next/SPRINT5_1/source_v2.tar` SHA256 `0c77ea93ac35ac7478c73f5812f1de27e979de4008bf1f60f1783d714f3cb787`; internalSHA256SUMSdigest `8961f58e8e1e1a5955ebcea28fae2ff03abbafe3fad84175c210306b53c302e1`. Source path `src/SPRINT5/paired_ranking_v2/`. Independentrootreviewrequiredbeforeretry. Parentsoleclusterexecutor; useactualPTY,200Gscratch and2hallocation aspriorresource-onlydisposition.

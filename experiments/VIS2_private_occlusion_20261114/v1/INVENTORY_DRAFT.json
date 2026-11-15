@@ -1,0 +1,257 @@
+{
+  "experiment": "VIS2_PRIVATE_OCCLUSION_V1",
+  "repository": "/home/narolski/smad-next",
+  "worker_sha256": "49fac2668bce1c24e88a581a9ce38c16f6ec1b9e64b633cc7edaf61d1fb7068e",
+  "inputs_ids": [
+    "00042_native",
+    "00042_history",
+    "00056_native",
+    "00056_history"
+  ],
+  "inputs": [
+    {
+      "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_orig.png",
+      "sha256": "dbd11bb9c9545524c01eafd4d0f4e1478faa5aa9c9ca04d8f4643124f92592d1",
+      "id": "00042_native",
+      "photo_key": "00042",
+      "condition": "native",
+      "manifest_id": "fq005006"
+    },
+    {
+      "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_resmatch_landmark_complete.png",
+      "sha256": "a1e4c13cc32bba5450e3a9b36fa19a6e1fffa130907f0f62b18d2e0002207a97",
+      "id": "00042_history",
+      "photo_key": "00042",
+      "condition": "history",
+      "manifest_id": "fq005007"
+    },
+    {
+      "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_orig.png",
+      "sha256": "c07df69f9421404b37f76d05d23242d0b5c25b9584dee273cf5973d467cf22fa",
+      "id": "00056_native",
+      "photo_key": "00056",
+      "condition": "native",
+      "manifest_id": "fq005012"
+    },
+    {
+      "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_resmatch_landmark_complete.png",
+      "sha256": "04629c855318c47c764bb6d5f84b5a41306203ba636bcdd511e298e77576fe16",
+      "id": "00056_history",
+      "photo_key": "00056",
+      "condition": "history",
+      "manifest_id": "fq005013"
+    }
+  ],
+  "fills": [
+    0,
+    128
+  ],
+  "patch": 64,
+  "native_size": 512,
+  "smoke_cells": [
+    0,
+    7,
+    27,
+    36,
+    56,
+    63
+  ],
+  "models": {
+    "selfmad_hrnet_w18": {
+      "kind": "release",
+      "code": "/home/narolski/mambamorph-code-a46/smadcvpr",
+      "checkpoint": "/mnt/t7/smad_next/AR1/weights/selfmad_release/hrnet_w18_checkpoint.model.safetensors",
+      "checkpoints": [
+        {
+          "path": "/mnt/t7/smad_next/AR1/weights/selfmad_release/hrnet_w18_checkpoint.model.safetensors",
+          "sha256": "0ad8db6f8f156cb21606e03ab32c88d122640cb835f7a93c77cca30c01386a26"
+        }
+      ]
+    },
+    "A": {
+      "kind": "own",
+      "code": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr",
+      "meta": "/mnt/t7/smad_next/TT1/nets_fs/PN1_A_s403/meta.json",
+      "checkpoint": "/mnt/t7/smad_next/TT1/nets_fs/PN1_A_s403/last_trainable.pt",
+      "checkpoints": [
+        {
+          "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_A_s403/meta.json",
+          "sha256": "701731d57f43f616b174acd3f77a779565ec2c1fab2db6990aa12fbd60a54f93"
+        },
+        {
+          "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_A_s403/last_trainable.pt",
+          "sha256": "3532c7bcf4da29a02e81bfd12112c91b821be25b938509a2a3745957fd2349df"
+        },
+        {
+          "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/hf/a12/vit_base_patch16_clip_224.openai.safetensors",
+          "sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f"
+        }
+      ],
+      "seed": 403,
+      "checkpoint_type": "last_trainable plus pinned frozen CLIP base"
+    },
+    "B": {
+      "kind": "own",
+      "code": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr",
+      "meta": "/mnt/t7/smad_next/TT1/nets_fs/PN1_B_s403/meta.json",
+      "checkpoint": "/mnt/t7/smad_next/TT1/nets_fs/PN1_B_s403/last_trainable.pt",
+      "checkpoints": [
+        {
+          "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_B_s403/meta.json",
+          "sha256": "46f076c1c487fa5639d7bfef11fdea66d7a8e6ff2ba7a66a972e02c3577bbe93"
+        },
+        {
+          "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_B_s403/last_trainable.pt",
+          "sha256": "da9c57491e3e0cba1aa3a7b1523ca5104fe5707dc9bb769bbcb294a2a354fd27"
+        },
+        {
+          "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/hf/a12/vit_base_patch16_clip_224.openai.safetensors",
+          "sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f"
+        }
+      ],
+      "seed": 403,
+      "checkpoint_type": "last_trainable plus pinned frozen CLIP base"
+    }
+  },
+  "models_order": [
+    "selfmad_hrnet_w18",
+    "A",
+    "B"
+  ],
+  "environment": {
+    "python": "3.12.3",
+    "python_executable": "/home/narolski/mambamorph-code/.venv-spark/bin/python",
+    "python_resolved": "/usr/bin/python3.12",
+    "machine": "aarch64",
+    "packages": {
+      "torch": "2.12.1+cu130",
+      "torchvision": "0.27.1+cu130",
+      "timm": "1.0.27",
+      "numpy": "1.26.4",
+      "pillow": "12.2.0",
+      "safetensors": "0.8.0"
+    },
+    "gpu": "NVIDIA GB10",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false,
+    "precision": "float32 noTTA noAMP TF32disabled; explicit benchmark/deterministic=False fixed prospectively"
+  },
+  "hf_home": "/mnt/t7/smad_next/PN1/fs_tree/pn1/hf",
+  "baseline_logits": {
+    "selfmad_hrnet_w18": {
+      "00042_native": 0.32592952251434326,
+      "00042_history": 4.2132368087768555,
+      "00056_native": -1.5349633693695068,
+      "00056_history": -0.4208979606628418
+    },
+    "A": {
+      "00042_native": -3.381847381591797,
+      "00042_history": -3.5183634757995605,
+      "00056_native": -3.431549549102783,
+      "00056_history": -3.467275381088257
+    },
+    "B": {
+      "00042_native": -3.099207878112793,
+      "00042_history": -3.3830161094665527,
+      "00056_native": -3.3750040531158447,
+      "00056_history": -3.4658310413360596
+    }
+  },
+  "source_pins": [
+    {
+      "path": "/mnt/t7/smad_next/VIS1/20261114/v1/selfmad_hrnet_w18/RESULT.json",
+      "sha256": "a0c7793f2596e6ddc6f653a0a6e971fcfb63dc6410bd8f66478ce274d12e1d7e"
+    },
+    {
+      "path": "/mnt/t7/smad_next/VIS1/20261114/v1/A/RESULT.json",
+      "sha256": "18c46b3d3fced82f6162bcd2a5542601a72a08739675aa7b0421e1d82fa5bc62"
+    },
+    {
+      "path": "/mnt/t7/smad_next/VIS1/20261114/v1/B/RESULT.json",
+      "sha256": "35fa6ad2f0a74c152ca8b8437d543942c06a51423fc15c0393fe90898d456214"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS1_shortcut_examples_20261114/v1/INVENTORY_v2.json",
+      "sha256": "061924577bf7762f76d3c5672c70d1017bfdc0c8c5dbbd3365c13f189f38a31b"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS1_shortcut_examples_20261114/v1/INPUT_AUDIT.json",
+      "sha256": "673c8cf7a90c58793260da2b92605746871380bd2c978aba27049ad6c9d1105e"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS1_shortcut_examples_20261114/v1/ROOT_PRIVATE_RENDER_GRANT.json",
+      "sha256": "65f93232fe6439106a6555f54a5fd799eaa88e691bdae76b6016ee7f1a63f79d"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS1_shortcut_examples_20261114/v1/PRIVATE_RENDER_v1/independent_review/VIS1_PRIVATE_FIGURE_INDEPENDENT_REVIEW_20261114.md",
+      "sha256": "96ba523cbeffb273162d225ba1458bd6daa7eb21b1c854a5d255e067a9006e3b"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS1_shortcut_examples_20261114/v1/VIS1_CONTROLS_POSTRESULT_REVIEW_20261114.md",
+      "sha256": "ff9d1a19e2ad57ac1592803abc746314199c7f7b9d040ed641e86ad2181b5e81"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/full15_metadata_packet_20261114/INDEPENDENT_SCIENTIFIC_POSTREVIEW_20261114.md",
+      "sha256": "ecfe5793c23453fa107a567a8ff40a95a504f3a73cdd1b62c67c97084d71bad4"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/OCC1/occlusion_runner.py",
+      "sha256": "2d89d00054bdcae2a4f3f99b791b8af6280f702d3ea071a876b0307f8388776a"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS1/v1/score_vis1.py",
+      "sha256": "ef9355dc4d9ff45a554363d25759bb9dc3b98a3c2b95c714314a4a51d7ccad60"
+    },
+    {
+      "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr/common.py",
+      "sha256": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8"
+    },
+    {
+      "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr/archs_a12.py",
+      "sha256": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876"
+    },
+    {
+      "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr/archs_v2.py",
+      "sha256": "15eb64589c59bc418ac741422379c4b00c754a1c7a511075fba349a3a78957de"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/common.py",
+      "sha256": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/archs_a12.py",
+      "sha256": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/archs_v2.py",
+      "sha256": "15eb64589c59bc418ac741422379c4b00c754a1c7a511075fba349a3a78957de"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/a12_released.py",
+      "sha256": "839f0cd4498577cad5410a63e1da63feeff53e05a3bed2c511ff67cac01e41da"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/a36_madation.py",
+      "sha256": "bc87465f0969dd3bb26e5511017df69d52c4d926dcc38c19aa9cdf1ba55ec876"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/mixfacenet_port.py",
+      "sha256": "ba35736b4a5e284b3b7dcf38e2423a85f7ede4a7c8addeec3b856e786cdadcdd"
+    },
+    {
+      "path": "/mnt/t7/smad_heldout/ffhq_morphs/prep_ffhqm.py",
+      "sha256": "5070b5d3724dc8c0aaefc55ea1cf902c3e0094ea1812047af0be1d9ef91b51b2"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS1/v1/prepare_vis1.py",
+      "sha256": "4499ec54c01984626a0a89ece0b16c3a1990f2df6610e942fc215f5d96237555"
+    }
+  ],
+  "prereg_path": "/home/narolski/smad-next/experiments/VIS2_private_occlusion_20261114/v1/prereg.md",
+  "output_root": "/mnt/t7/smad_next/VIS2/20261114/v1",
+  "source_pixel_export_allowed": false,
+  "legacy_VIS1_grant_extends_new_occlusions": false,
+  "new_execution": "HOLD",
+  "new_overlay_render": "HOLD",
+  "publication": "HOLD"
+}

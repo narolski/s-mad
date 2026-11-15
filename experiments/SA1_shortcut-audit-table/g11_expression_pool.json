@@ -1,0 +1,20 @@
+{
+ "cfd": {
+  "persons": 827,
+  "persons_neutral_and_happy": 158,
+  "by_subset": {
+   "CFD": 158
+  },
+  "happy_closed": 153,
+  "happy_open": 154,
+  "ms1_pool_images": 831,
+  "ms1_pool_all_neutral": true
+ },
+ "kdef": {
+  "persons_front": 70,
+  "persons_neutral_and_happy_front": 70,
+  "same_session_pairs": 70
+ },
+ "reading": "a paired expression pool exists",
+ "note": "CFD and KDEF are MS1 held-out evaluation sources (never training); scoring there needs its own registration and the lead's approval. Happy images are not aligned yet (MS1 pools hold neutral images only)."
+}

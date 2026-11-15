@@ -1,0 +1,62 @@
+diff -ru code_orig/data_utils.py code/data_utils.py
+--- code_orig/data_utils.py	2023-09-07 19:32:11.000000000 +0200
++++ code/data_utils.py	2026-11-13 00:01:56.212116654 +0100
+@@ -118,14 +118,14 @@
+ 
+         if self.split == 'train':
+             if self.latent_size == 256:
+-                autoenc_bf_path = "/nas-ctm01/datasets/public/BIOMETRICS/embeddings/unetautoencoder/2023-02-20_15-54-40/os25k_bf_t_cropped/"
+-                autoenc_morph_path = "/nas-ctm01/datasets/public/BIOMETRICS/embeddings/unetautoencoder/2023-02-20_15-54-40/os25k_m_t_cropped/"
++                autoenc_bf_path = os.environ["IDS_LAT"] + "/os25k_bf_t_cropped/"
++                autoenc_morph_path = os.environ["IDS_LAT"] + "/os25k_m_t_cropped/"
+             elif self.latent_size == 128:
+-                autoenc_bf_path = "/nas-ctm01/datasets/public/BIOMETRICS/embeddings/unetautoencoder/2023-02-23_14-20-28/os25k_bf_t_cropped/"
+-                autoenc_morph_path = "/nas-ctm01/datasets/public/BIOMETRICS/embeddings/unetautoencoder/2023-02-23_14-20-28/os25k_m_t_cropped/"
++                autoenc_bf_path = os.environ["IDS_LAT"] + "/os25k_bf_t_cropped/"
++                autoenc_morph_path = os.environ["IDS_LAT"] + "/os25k_m_t_cropped/"
+             else:
+-                autoenc_bf_path = "/nas-ctm01/datasets/public/BIOMETRICS/embeddings/unetautoencoder/2023-02-25_09-04-28/os25k_bf_t_cropped/"
+-                autoenc_morph_path = "/nas-ctm01/datasets/public/BIOMETRICS/embeddings/unetautoencoder/2023-02-25_09-04-28/os25k_m_t_cropped/"
++                autoenc_bf_path = os.environ["IDS_LAT"] + "/os25k_bf_t_cropped/"
++                autoenc_morph_path = os.environ["IDS_LAT"] + "/os25k_m_t_cropped/"
+ 
+             if label == 1:
+                 lv_1 = torch.from_numpy(np.load(autoenc_bf_path + image_path[21:] + '.npy'))
+diff -ru code_orig/train.py code/train.py
+--- code_orig/train.py	2023-09-07 19:32:11.000000000 +0200
++++ code/train.py	2026-11-13 00:01:56.212498779 +0100
+@@ -174,6 +174,8 @@
+         # Each epoch has a training and validation phase
+         train_loss, train_acc = train_fn(model, dataloaders['train'], dataset_sizes['train'], optimizer, criterion, weight_loss, loss_measure, args.autoenc_bf_path, args.autoenc_morph_path, args.lmbda, device=device,epoch=epoch)
+         val_loss, val_acc, val_eer_values,out_20,out_10,out_1,out_01 = eval_fn(model, dataloaders['val'], dataset_sizes['val'], criterion, device=device)
++        if val_eer_values < getattr(run_training, '_cb1_best_val', 1e9):  # CB1: checkpoint selected on the SMDD validation split
++            run_training._cb1_best_val = val_eer_values; torch.save(model.state_dict(), model_path + '.valbest'); print('CB1 valbest epoch', epoch, val_eer_values)
+         logging.info('train loss: {}, train acc: {}, val loss: {}, val acc: {}, val eer: {}'.format(train_loss, train_acc, val_loss, val_acc, val_eer_values))
+ 
+         if epoch % 5 == 0:
+@@ -211,6 +213,7 @@
+ 
+     # save best model weights
+     torch.save(best_model_wts, model_path)
++    torch.save(model.state_dict(), model_path + '.last')  # CB1: last checkpoint
+ 
+ 
+ 
+@@ -277,7 +280,7 @@
+     model = model.to(device)
+     model.eval()
+     mean = 0
+-    for test_csv_path in ["/nas-ctm01/datasets/public/BIOMETRICS/Face_Morphing/facelab_london/asml.csv","/nas-ctm01/datasets/public/BIOMETRICS/Face_Morphing/facelab_london/stylegan.csv","/nas-ctm01/datasets/public/BIOMETRICS/Face_Morphing/facelab_london/facemorpher.csv","/nas-ctm01/datasets/public/BIOMETRICS/Face_Morphing/facelab_london/opencv.csv","/nas-ctm01/datasets/public/BIOMETRICS/Face_Morphing/facelab_london/webmorph.csv"]:
++    for test_csv_path in [os.environ["IDS_FRLL"] + "/asml.csv",os.environ["IDS_FRLL"] + "/stylegan.csv",os.environ["IDS_FRLL"] + "/facemorpher.csv",os.environ["IDS_FRLL"] + "/opencv.csv",os.environ["IDS_FRLL"] + "/webmorph.csv"]:
+         print(f"Generating test results on: {test_csv_path}")
+         # Create the test set
+         test_dataset = FaceDataset(
+@@ -415,6 +418,8 @@
+ if __name__ == '__main__':
+ 
+     cudnn.benchmark = True
++    import random as _r; _s = int(os.environ.get('IDS_SEED', '0'))  # CB1: seed
++    torch.manual_seed(_s); np.random.seed(_s); _r.seed(_s)
+ 
+     if torch.cuda.is_available():
+         print('GPU is available')

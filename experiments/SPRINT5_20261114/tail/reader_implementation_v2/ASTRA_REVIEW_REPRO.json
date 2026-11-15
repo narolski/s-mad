@@ -1,0 +1,15 @@
+{
+  "scope": "candidate-free source hashes + metadata validation; Git subprocesses mocked only to capture exact paths",
+  "all_source_pins": true,
+  "source_manifest_sha256": "5ae5f48e8b5525ae53a3603f24444a0efef833c567bc52caa308fb9119fba195",
+  "binding_sha256": "36866c220c1df69b57ca69fb271121c9704ad417e2f93358eac4398cc8e8fdfa",
+  "binding_path": "experiments/SPRINT5_20261114/tail/reader_implementation_v2/PILOT_READER_BINDING.json",
+  "binding_in_tracked_checks": false,
+  "binding_in_status_checks": false,
+  "last_pin": "/home/narolski/smad-next/src/SPRINT5/tail_reader_v2/diagnostics.py",
+  "primary_stats_byteidentical": true,
+  "primary_stats_sha256": "65bce2a72b53efbb312265f67e99af2074d5f6ef2ae3771f7d6ad04c2f16f802",
+  "v1_manifest_sha256": "d2912f78818bc32ef7164eb9bd3327fc579453b2a216347c3e5405deb536dd30",
+  "candidate_access": false,
+  "actual_collector_reader_invoked": false
+}

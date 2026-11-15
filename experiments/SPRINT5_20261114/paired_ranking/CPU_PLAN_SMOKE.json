@@ -1,0 +1,172 @@
+{
+  "checks": [
+    "all15 full production schedules: exact row-index exposure equality, paired-arm identity"
+  ],
+  "plans": [
+    {
+      "arm": "bce",
+      "seed": 501,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "e94f947e810f5b6957e670a36ca21b8c040c435ca8f944e458d428bb05b9384c",
+      "exposure_sha256": "3eef1ef55b3c757d23e4c9a20270ada2ab39228343dc9a609a38b20339ebae24",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_bce",
+      "seed": 501,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "5de80b90eca730d3c91c4a16fb630c5268e38426c5a9626c427509f2139e8868",
+      "exposure_sha256": "3eef1ef55b3c757d23e4c9a20270ada2ab39228343dc9a609a38b20339ebae24",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_rank",
+      "seed": 501,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "5de80b90eca730d3c91c4a16fb630c5268e38426c5a9626c427509f2139e8868",
+      "exposure_sha256": "3eef1ef55b3c757d23e4c9a20270ada2ab39228343dc9a609a38b20339ebae24",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "bce",
+      "seed": 502,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "bbb002355d34d13fffbb22e4fd78d1b42c420f060862d5a9f2ae1f852921996f",
+      "exposure_sha256": "120af6f6b6ba5eb3f6f4a586bd21dfade9c1d9df8475fc809bc20d213aa87e4d",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_bce",
+      "seed": 502,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "2854719c88cd92738e0035c5795055afcaf7770ff19b9b3332653f2a48a25881",
+      "exposure_sha256": "120af6f6b6ba5eb3f6f4a586bd21dfade9c1d9df8475fc809bc20d213aa87e4d",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_rank",
+      "seed": 502,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "2854719c88cd92738e0035c5795055afcaf7770ff19b9b3332653f2a48a25881",
+      "exposure_sha256": "120af6f6b6ba5eb3f6f4a586bd21dfade9c1d9df8475fc809bc20d213aa87e4d",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "bce",
+      "seed": 503,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "3fe5fc8a95768602b9b5b9ecefea0b25d8f3d0b2a18b87b8235c6286416890a8",
+      "exposure_sha256": "2672a96f89758ba64f4ec5bb4eba01679ed6b37c4c24b849e9c93c2f9e8746ce",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_bce",
+      "seed": 503,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "547a353469b8cdf030e752330b30e977cb39b5a726de6a43b7cbb5bd4e0398fe",
+      "exposure_sha256": "2672a96f89758ba64f4ec5bb4eba01679ed6b37c4c24b849e9c93c2f9e8746ce",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_rank",
+      "seed": 503,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "547a353469b8cdf030e752330b30e977cb39b5a726de6a43b7cbb5bd4e0398fe",
+      "exposure_sha256": "2672a96f89758ba64f4ec5bb4eba01679ed6b37c4c24b849e9c93c2f9e8746ce",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "bce",
+      "seed": 504,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "cb269ec9e27c7dc90186f810aca85744793dbb72c1c4455f6ea46da95bc0df28",
+      "exposure_sha256": "2d8744099ec3f2b2f055ffffb80e55e872f271d4161feaa36cb916c581bff426",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_bce",
+      "seed": 504,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "0527e4ae7bca780f01672a7f69e2c288f5f834091ea6960b78e952a427297c1e",
+      "exposure_sha256": "2d8744099ec3f2b2f055ffffb80e55e872f271d4161feaa36cb916c581bff426",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_rank",
+      "seed": 504,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "0527e4ae7bca780f01672a7f69e2c288f5f834091ea6960b78e952a427297c1e",
+      "exposure_sha256": "2d8744099ec3f2b2f055ffffb80e55e872f271d4161feaa36cb916c581bff426",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "bce",
+      "seed": 505,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "a285f5e83144fddbb4ff62006ba6c0cc00901d3b5283441627f1211edb74627b",
+      "exposure_sha256": "ae654a77d7a79b8c4c05b761ff6ec56d9554339f28fcf428bc32f96c2c880e6c",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_bce",
+      "seed": 505,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "eddcdca626ab3f57773b348a66971526bc422485142a67029fa3f25092f4e35c",
+      "exposure_sha256": "ae654a77d7a79b8c4c05b761ff6ec56d9554339f28fcf428bc32f96c2c880e6c",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    },
+    {
+      "arm": "paired_rank",
+      "seed": 505,
+      "steps": 6250,
+      "bs": 256,
+      "pair_units_per_cycle": 124,
+      "schedule_sha256": "eddcdca626ab3f57773b348a66971526bc422485142a67029fa3f25092f4e35c",
+      "exposure_sha256": "ae654a77d7a79b8c4c05b761ff6ec56d9554339f28fcf428bc32f96c2c880e6c",
+      "row_occurrences": 1600000,
+      "unique_row_indices": 8386
+    }
+  ]
+}

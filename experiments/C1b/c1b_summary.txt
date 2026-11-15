@@ -1,0 +1,262 @@
+## (a) within-person neutral-above-smiling AUC (frll_bona = dim_bona frames; mordiff_bona secondary)
+
+| Detector | AUC_wp [95%] | persons neutral > smiling | pooled AUC [95%] | MorDIFF frames AUC_wp [95%] |
+|---|---|---|---|---|
+| MADation ViT-B/16 release | 0.578 [0.480, 0.676] | 59/102 (ties 0) | 0.539 [0.501, 0.577] | 0.529 [0.431, 0.627] |
+| MADation ViT-L/14 release | 0.990 [0.971, 1.000] | 101/102 (ties 0) | 0.855 [0.814, 0.898] | 0.794 [0.716, 0.873] |
+| MADation FE ViT-B/16 release | 0.088 [0.039, 0.147] | 9/102 (ties 0) | 0.238 [0.193, 0.279] | 0.098 [0.049, 0.157] |
+| MADation FE ViT-L/14 release | 0.343 [0.255, 0.432] | 35/102 (ties 0) | 0.405 [0.362, 0.444] | 0.206 [0.127, 0.284] |
+| MADation FS ViT-B/16 release | 0.539 [0.441, 0.637] | 55/102 (ties 0) | 0.528 [0.490, 0.567] | 0.657 [0.568, 0.745] |
+| MADation FS ViT-L/14 release | 0.500 [0.402, 0.598] | 51/102 (ties 0) | 0.493 [0.437, 0.546] | 0.520 [0.422, 0.618] |
+| SelfMAD release, own preprocessing | 0.480 [0.382, 0.578] | 49/102 (ties 0) | 0.489 [0.446, 0.532] | 0.422 [0.324, 0.520] |
+| SelfMAD release, our pipeline (desc.) | 0.314 [0.225, 0.402] | 32/102 (ties 0) | 0.418 [0.379, 0.454] | 0.412 [0.314, 0.510] |
+| MixFaceNet-MAD release, our frames (desc.) | 0.471 [0.373, 0.569] | 48/102 (ties 0) | 0.479 [0.450, 0.509] | 0.529 [0.431, 0.627] |
+
+| Recipe, checkpoint | n | AUC_wp per seed | mean | n ≥ 0.65 | n with LB > 0.5 | MorDIFF frames per seed |
+|---|---|---|---|---|---|---|
+| M1 es | 5 | 0.49 0.44 0.49 0.45 0.63 | 0.500 | 0 | 1 | 0.55 0.47 0.45 0.49 0.63 |
+| M1 last | 5 | 0.49 0.48 0.45 0.54 0.51 | 0.494 | 0 | 0 | 0.51 0.47 0.51 0.49 0.54 |
+| M2 es | 5 | 0.55 0.43 0.51 0.63 0.57 | 0.537 | 0 | 1 | 0.61 0.61 0.55 0.68 0.58 |
+| M2 last | 5 | 0.59 0.48 0.55 0.63 0.56 | 0.560 | 0 | 1 | 0.59 0.58 0.63 0.58 0.56 |
+| M3 es | 8 | 0.98 0.99 0.84 0.99 0.94 0.95 0.89 0.95 | 0.942 | 8 | 8 | 0.28 0.27 0.22 0.31 0.15 0.34 0.20 0.24 |
+| M3 last | 8 | 0.88 0.75 0.78 0.67 0.97 0.82 0.72 0.85 | 0.806 | 8 | 8 | 0.90 0.66 0.72 0.66 0.93 0.76 0.85 0.80 |
+| M3L es | 5 | 0.96 0.81 0.92 0.96 0.91 | 0.914 | 5 | 5 | 0.08 0.13 0.11 0.14 0.09 |
+| M3L last | 5 | 1.00 1.00 1.00 1.00 1.00 | 1.000 | 5 | 5 | 0.94 0.97 0.96 0.99 0.96 |
+| M4 es | 5 | 0.34 0.00 0.26 0.06 0.33 | 0.199 | 0 | 0 | 0.10 0.00 0.09 0.00 0.21 |
+| M4 last | 5 | 0.34 0.44 0.44 0.38 0.46 | 0.414 | 0 | 0 | 0.10 0.28 0.26 0.10 0.29 |
+| M5 es | 8 | 0.28 0.67 0.31 0.50 0.65 0.58 0.40 0.54 | 0.491 | 1 | 2 | 0.07 0.60 0.34 0.45 0.35 0.46 0.24 0.45 |
+| M5 last | 8 | 0.33 0.61 0.25 0.58 0.51 0.45 0.34 0.44 | 0.440 | 0 | 1 | 0.33 0.66 0.30 0.52 0.59 0.42 0.37 0.37 |
+| M6 es | 5 | 0.56 0.50 0.51 0.58 0.48 | 0.525 | 0 | 0 | 0.61 0.54 0.48 0.64 0.50 |
+| M6 last | 5 | 0.56 0.65 0.61 0.54 0.48 | 0.567 | 0 | 2 | 0.50 0.63 0.62 0.58 0.50 |
+| M8 es | 5 | 0.59 0.43 0.50 0.63 0.61 | 0.551 | 0 | 2 | 0.51 0.50 0.58 0.58 0.58 |
+| M8 last | 5 | 0.44 0.58 0.57 0.62 0.60 | 0.561 | 0 | 1 | 0.45 0.54 0.60 0.56 0.54 |
+| M8O es | 5 | 0.52 0.51 0.58 0.45 0.54 | 0.520 | 0 | 0 | 0.57 0.57 0.66 0.53 0.63 |
+| M8O last | 5 | 0.43 0.58 0.51 0.61 0.58 | 0.541 | 0 | 1 | 0.38 0.41 0.41 0.53 0.50 |
+
+## Fixed falsifiers
+
+H1: 13 of 13 last-checkpoint MADation-recipe networks have AUC_wp >= 0.65 (falsified if < 10) -> not falsified
+   M3 s1 last: 0.882 [0.814, 0.941], 90/102
+   M3 s2 last: 0.755 [0.667, 0.833], 77/102
+   M3 s3 last: 0.784 [0.706, 0.863], 80/102
+   M3 s4 last: 0.667 [0.578, 0.755], 68/102
+   M3 s5 last: 0.971 [0.931, 1.000], 99/102
+   M3 s6 last: 0.824 [0.745, 0.892], 84/102
+   M3 s7 last: 0.716 [0.627, 0.804], 73/102
+   M3 s8 last: 0.853 [0.784, 0.912], 87/102
+   M3L s1 last: 1.000 [1.000, 1.000], 102/102
+   M3L s2 last: 1.000 [1.000, 1.000], 102/102
+   M3L s3 last: 1.000 [1.000, 1.000], 102/102
+   M3L s4 last: 1.000 [1.000, 1.000], 102/102
+   M3L s5 last: 1.000 [1.000, 1.000], 102/102
+H2: mean AUC_wp of the 8 last M3 = 0.806 (min 0.667, max 0.971); 0 of 8 <= 0.60 -> FALSIFIED
+
+## (b) EER change neutral-only minus all, imbalanced cells, releases (points; [95% two-way person bootstrap])
+
+| Detector | amsl | facemorpher | opencv | stylegan | webmorph | dim_a | dim_c | fast_dim | fast_dim_ode | greedy_dim | greedy_dim_s | mean | cells with LB > 0 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| MADation ViT-B/16 release | +0.4 [-1.2, +2.9] | +0.1 [-0.5, +1.8] | +0.1 [-0.5, +1.7] | +0.3 [-1.5, +2.8] | +1.1 [-0.2, +3.0] | +0.1 [-1.5, +2.6] | +0.4 [-0.7, +3.3] | +0.5 [-1.3, +2.6] | +0.5 [-1.5, +2.7] | +0.9 [-1.8, +4.5] | +1.8 [-0.8, +3.0] | +0.57 | 0/11 |
+| MADation ViT-L/14 release | +6.9 [+3.5, +10.3] | +0.0 [-0.7, +0.8] | +0.1 [-0.7, +0.8] | +13.3 [+9.3, +18.5] | +1.9 [+0.1, +3.5] | +5.4 [+3.0, +10.4] | +5.4 [+1.9, +8.3] | +5.6 [+2.8, +10.5] | +6.4 [+2.0, +8.5] | +4.0 [+0.7, +6.0] | +1.1 [+0.1, +3.9] | +4.55 | 9/11 |
+| MADation FE ViT-B/16 release | -8.4 [-12.5, -5.8] | -8.8 [-12.2, -5.3] | -9.9 [-12.8, -5.9] | -10.8 [-15.1, -6.8] | -8.8 [-12.2, -5.9] | -8.3 [-12.5, -5.1] | -9.3 [-13.4, -5.5] | -9.8 [-15.0, -6.0] | -9.7 [-13.2, -5.5] | -10.7 [-12.8, -4.9] | -9.3 [-12.6, -5.5] | -9.42 | 0/11 |
+| MADation FE ViT-L/14 release | -1.0 [-3.5, +1.4] | +0.0 [-1.9, +0.9] | -0.4 [-2.0, +0.8] | -0.6 [-3.5, +1.0] | -2.0 [-3.2, +0.6] | -1.0 [-3.6, +0.7] | -1.3 [-3.4, +0.9] | -1.1 [-3.5, +1.0] | -1.0 [-3.4, +0.7] | -0.2 [-4.0, +1.2] | -1.1 [-3.2, +0.5] | -0.88 | 0/11 |
+| MADation FS ViT-B/16 release | -0.2 [-1.6, +2.7] | -1.0 [-2.3, +1.3] | +0.0 [-1.6, +1.5] | -1.4 [-3.1, +1.9] | +0.3 [-2.2, +2.0] | -1.0 [-2.9, +2.1] | -0.3 [-4.1, +1.8] | -1.2 [-3.5, +1.7] | -0.4 [-2.7, +2.2] | -0.9 [-2.9, +1.9] | -2.4 [-5.0, +0.7] | -0.78 | 0/11 |
+| MADation FS ViT-L/14 release | -0.9 [-3.7, +2.7] | -0.1 [-3.5, +2.2] | +0.2 [-3.2, +1.8] | -0.3 [-3.9, +3.0] | -0.5 [-4.0, +2.0] | +0.0 [-4.4, +3.3] | -0.3 [-4.1, +3.2] | +0.0 [-4.1, +3.0] | -0.9 [-4.3, +3.1] | -0.2 [-4.1, +3.1] | -0.9 [-4.4, +2.7] | -0.37 | 0/11 |
+| SelfMAD release, own preprocessing | -2.0 [-3.5, -0.4] | -0.2 [-0.5, +0.2] | +0.0 [-0.2, +0.0] | -1.3 [-4.0, +0.5] | -2.2 [-4.6, -0.4] | -1.9 [-4.1, -0.2] | -1.0 [-2.5, +0.0] | -2.1 [-4.8, -0.3] | -2.3 [-4.5, +0.5] | -1.7 [-4.6, +0.2] | -1.0 [-2.4, +0.0] | -1.43 | 0/11 |
+| SelfMAD release, our pipeline (desc.) | -3.0 [-5.9, -1.4] | +0.0 [-1.7, +0.5] | -0.3 [-0.8, +0.2] | -3.4 [-6.4, -0.5] | -3.3 [-5.9, -1.1] | -3.7 [-6.8, -0.7] | -1.1 [-3.5, +0.5] | -3.4 [-7.5, -1.2] | -2.3 [-5.9, -0.2] | -3.0 [-6.8, -0.2] | -1.0 [-3.8, +0.5] | -2.22 | 0/11 |
+| MixFaceNet-MAD release, our frames (desc.) | -0.5 [-2.8, +0.8] | +0.0 [-1.0, +0.7] | +0.0 [-0.9, +0.8] | -0.9 [-2.8, +1.1] | -0.0 [-2.0, +1.4] | +0.0 [-2.7, +1.7] | -0.2 [-2.4, +1.6] | -0.1 [-2.8, +1.9] | -0.1 [-2.9, +1.5] | -0.4 [-2.6, +1.9] | -0.6 [-2.4, +1.4] | -0.26 | 0/11 |
+
+## (b) EER all -> neutral-only, releases, every cell (EER all / neu / smi)
+
+| Detector | amsl | facemorpher | opencv | stylegan | webmorph | dim_a | dim_c | fast_dim | fast_dim_ode | greedy_dim | greedy_dim_s | mordiff |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| MADation ViT-B/16 release | 15.1 / 15.5 / 13.9 | 2.8 / 2.9 / 2.0 | 2.9 / 3.0 / 2.0 | 23.1 / 23.3 / 21.6 | 4.9 / 6.0 / 2.9 | 20.6 / 20.7 / 20.6 | 6.4 / 6.8 / 5.0 | 16.1 / 16.6 / 15.7 | 25.9 / 26.5 / 25.5 | 54.0 / 54.9 / 52.0 | 6.9 / 8.7 / 6.0 | 4.9 / 4.9 / 4.9 |
+| MADation ViT-L/14 release | 17.7 / 24.5 / 7.9 | 1.0 / 1.0 / 0.2 | 1.0 / 1.1 / 1.0 | 52.4 / 65.7 / 34.3 | 4.9 / 6.9 / 2.9 | 22.0 / 27.4 / 10.8 | 16.2 / 21.6 / 8.8 | 22.6 / 28.2 / 11.8 | 15.2 / 21.6 / 6.8 | 9.8 / 13.8 / 5.8 | 8.8 / 9.9 / 5.8 | 28.9 / 31.4 / 26.3 |
+| MADation FE ViT-B/16 release | 26.0 / 17.6 / 35.3 | 16.7 / 7.8 / 21.6 | 18.6 / 8.7 / 23.5 | 35.3 / 24.5 / 44.9 | 22.5 / 13.7 / 30.4 | 23.9 / 15.6 / 31.5 | 28.9 / 19.6 / 39.2 | 35.2 / 25.4 / 42.4 | 29.4 / 19.7 / 38.2 | 47.0 / 36.3 / 55.8 | 21.0 / 11.8 / 26.6 | 39.7 / 33.4 / 45.1 |
+| MADation FE ViT-L/14 release | 21.6 / 20.6 / 22.7 | 3.9 / 3.9 / 4.7 | 4.4 / 3.9 / 4.9 | 19.2 / 18.6 / 19.7 | 9.8 / 7.9 / 10.6 | 14.8 / 13.8 / 16.6 | 17.2 / 15.8 / 17.6 | 20.6 / 19.5 / 21.4 | 15.7 / 14.7 / 16.8 | 22.0 / 21.8 / 23.6 | 11.8 / 10.7 / 12.8 | 34.8 / 31.4 / 40.2 |
+| MADation FS ViT-B/16 release | 40.6 / 40.3 / 40.2 | 16.7 / 15.7 / 16.8 | 3.9 / 3.9 / 3.9 | 17.1 / 15.7 / 17.7 | 32.1 / 32.4 / 31.4 | 16.6 / 15.6 / 17.6 | 20.0 / 19.7 / 20.5 | 17.2 / 15.9 / 17.7 | 16.1 / 15.7 / 16.5 | 16.6 / 15.7 / 17.6 | 24.0 / 21.6 / 26.4 | 67.6 / 71.6 / 66.7 |
+| MADation FS ViT-L/14 release | 39.2 / 38.3 / 39.3 | 38.2 / 38.1 / 39.2 | 31.9 / 32.1 / 32.5 | 44.6 / 44.3 / 45.1 | 32.9 / 32.4 / 33.3 | 45.0 / 45.0 / 45.0 | 44.5 / 44.2 / 45.0 | 47.0 / 47.0 / 47.0 | 44.1 / 43.2 / 45.1 | 46.5 / 46.2 / 47.0 | 38.1 / 37.2 / 38.2 | 43.0 / 41.1 / 44.4 |
+| SelfMAD release, own preprocessing | 2.9 / 1.0 / 3.9 | 0.4 / 0.1 / 0.1 | 0.1 / 0.1 / 0.1 | 14.2 / 12.9 / 16.5 | 5.9 / 3.7 / 7.9 | 3.9 / 2.0 / 5.0 | 2.0 / 1.0 / 3.0 | 5.8 / 3.8 / 7.8 | 13.1 / 10.8 / 14.7 | 8.4 / 6.6 / 11.0 | 2.0 / 1.0 / 2.9 | 2.5 / 2.0 / 2.9 |
+| SelfMAD release, our pipeline (desc.) | 9.8 / 6.8 / 13.5 | 1.0 / 1.0 / 2.0 | 0.4 / 0.1 / 0.2 | 27.9 / 24.5 / 32.3 | 11.3 / 8.0 / 14.7 | 15.6 / 12.0 / 19.6 | 4.0 / 2.9 / 4.8 | 17.2 / 13.8 / 22.6 | 31.8 / 29.4 / 35.1 | 29.4 / 26.4 / 34.4 | 4.0 / 3.0 / 4.8 | 6.5 / 5.0 / 7.8 |
+| MixFaceNet-MAD release, our frames (desc.) | 82.8 / 82.3 / 83.3 | 98.0 / 98.0 / 98.0 | 98.0 / 98.0 / 98.0 | 28.4 / 27.6 / 29.4 | 75.5 / 75.4 / 75.5 | 42.2 / 42.2 / 42.2 | 39.2 / 39.0 / 39.2 | 46.1 / 46.0 / 46.1 | 50.1 / 49.9 / 50.2 | 43.6 / 43.2 / 44.1 | 27.1 / 26.4 / 28.4 | 27.5 / 31.4 / 25.3 |
+
+## (b) BPCER@APCER 5% and 10%, all -> neutral-only (releases, imbalanced cells; difference [95%])
+
+
+bpcer5:
+
+| Detector | amsl | facemorpher | opencv | stylegan | webmorph | dim_a | dim_c | fast_dim | fast_dim_ode | greedy_dim | greedy_dim_s |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| MADation ViT-B/16 release | 32→33 (+1 [-3, +5]) | 2→3 (+1 [+0, +2]) | 2→3 (+1 [-0, +2]) | 50→52 (+2 [-3, +6]) | 5→7 (+2 [+0, +4]) | 55→57 (+2 [-3, +7]) | 7→9 (+2 [-1, +4]) | 42→41 (-0 [-4, +5]) | 70→73 (+2 [-1, +8]) | 88→91 (+3 [+0, +6]) | 9→11 (+1 [-1, +4]) |
+| MADation ViT-L/14 release | 31→51 (+20 [+14, +25]) | 0→0 (+0 [+0, +0]) | 0→0 (+0 [+0, +0]) | 87→99 (+12 [+6, +19]) | 5→8 (+3 [+1, +6]) | 43→71 (+27 [+19, +34]) | 35→58 (+23 [+15, +32]) | 43→71 (+27 [+22, +34]) | 29→49 (+20 [+12, +26]) | 16→25 (+10 [+5, +20]) | 15→24 (+9 [+3, +17]) |
+| MADation FE ViT-B/16 release | 59→41 (-18 [-23, -13]) | 28→11 (-17 [-22, -13]) | 31→13 (-18 [-23, -13]) | 73→55 (-18 [-21, -11]) | 50→32 (-18 [-25, -14]) | 48→29 (-19 [-25, -14]) | 64→47 (-17 [-23, -12]) | 73→55 (-18 [-21, -11]) | 73→56 (-17 [-21, -11]) | 87→78 (-9 [-13, -4]) | 48→29 (-19 [-24, -14]) |
+| MADation FE ViT-L/14 release | 47→40 (-7 [-11, -2]) | 3→2 (-1 [-3, +1]) | 3→2 (-1 [-4, +1]) | 42→36 (-5 [-10, -0]) | 16→14 (-2 [-6, +1]) | 33→29 (-3 [-10, +1]) | 45→38 (-7 [-11, -0]) | 47→40 (-7 [-12, -1]) | 42→36 (-5 [-11, +0]) | 50→44 (-6 [-12, -1]) | 29→26 (-2 [-9, +1]) |
+| MADation FS ViT-B/16 release | 75→79 (+4 [-0, +9]) | 40→40 (+0 [-3, +5]) | 4→4 (+0 [-2, +1]) | 25→22 (-3 [-6, +1]) | 66→69 (+3 [-1, +9]) | 25→24 (-2 [-5, +3]) | 33→34 (+1 [-4, +4]) | 33→34 (+1 [-5, +4]) | 25→24 (-2 [-5, +3]) | 24→22 (-2 [-6, +2]) | 47→50 (+3 [-3, +7]) |
+| MADation FS ViT-L/14 release | 87→86 (-0 [-4, +3]) | 88→87 (-1 [-4, +3]) | 87→86 (-0 [-5, +3]) | 91→91 (+0 [-3, +3]) | 75→75 (+0 [-5, +5]) | 89→88 (-0 [-4, +3]) | 90→90 (+0 [-4, +3]) | 93→93 (+0 [-3, +3]) | 90→90 (+0 [-4, +3]) | 92→93 (+1 [-3, +3]) | 79→76 (-2 [-5, +4]) |
+| SelfMAD release, own preprocessing | 2→1 (-1 [-3, +0]) | 0→0 (+0 [+0, +0]) | 0→0 (+0 [+0, +0]) | 31→25 (-6 [-9, +2]) | 6→2 (-4 [-6, -1]) | 3→1 (-2 [-5, -0]) | 1→1 (+0 [-2, +0]) | 6→2 (-4 [-7, -1]) | 21→18 (-3 [-8, +1]) | 11→8 (-3 [-6, +0]) | 0→0 (-0 [-1, +0]) |
+| SelfMAD release, our pipeline (desc.) | 15→7 (-8 [-10, -3]) | 0→0 (+0 [-1, +0]) | 0→0 (+0 [+0, +0]) | 62→57 (-5 [-11, +1]) | 18→11 (-7 [-11, -3]) | 27→21 (-7 [-11, -2]) | 3→2 (-1 [-4, +0]) | 32→27 (-5 [-10, -2]) | 74→75 (+0 [-8, +4]) | 60→54 (-6 [-11, -1]) | 3→2 (-1 [-5, +1]) |
+| MixFaceNet-MAD release, our frames (desc.) | 100→100 (+0 [+0, +0]) | 100→100 (+0 [+0, +0]) | 100→100 (+0 [+0, +0]) | 87→85 (-1 [-4, +1]) | 100→100 (+0 [+0, +0]) | 91→91 (+0 [-3, +1]) | 91→90 (-0 [-3, +1]) | 91→91 (+0 [-3, +1]) | 92→91 (-1 [-3, +1]) | 92→91 (-1 [-3, +1]) | 91→91 (+0 [-4, +1]) |
+
+bpcer10:
+
+| Detector | amsl | facemorpher | opencv | stylegan | webmorph | dim_a | dim_c | fast_dim | fast_dim_ode | greedy_dim | greedy_dim_s |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| MADation ViT-B/16 release | 21→22 (+0 [-3, +5]) | 1→1 (+0 [-1, +0]) | 0→0 (-0 [-1, +1]) | 40→40 (+0 [-4, +5]) | 3→5 (+1 [+0, +3]) | 41→41 (+0 [-3, +5]) | 5→7 (+2 [+0, +4]) | 32→33 (+1 [-2, +5]) | 53→55 (+1 [-3, +6]) | 85→89 (+4 [+0, +7]) | 5→7 (+2 [+0, +4]) |
+| MADation ViT-L/14 release | 23→39 (+16 [+11, +21]) | 0→0 (+0 [+0, +0]) | 0→0 (+0 [+0, +0]) | 80→96 (+16 [+11, +24]) | 2→5 (+2 [+0, +5]) | 32→54 (+22 [+15, +28]) | 24→40 (+17 [+9, +26]) | 36→60 (+24 [+17, +31]) | 21→35 (+15 [+7, +21]) | 9→15 (+5 [+3, +12]) | 6→10 (+3 [+1, +10]) |
+| MADation FE ViT-B/16 release | 46→25 (-20 [-25, -14]) | 22→7 (-15 [-20, -9]) | 24→8 (-16 [-21, -11]) | 67→51 (-16 [-23, -12]) | 39→20 (-19 [-24, -14]) | 41→21 (-21 [-25, -15]) | 50→32 (-18 [-24, -13]) | 68→53 (-15 [-23, -12]) | 56→36 (-20 [-24, -13]) | 84→73 (-12 [-17, -8]) | 32→14 (-19 [-23, -14]) |
+| MADation FE ViT-L/14 release | 38→33 (-4 [-10, +0]) | 0→0 (-0 [-2, +0]) | 0→0 (-0 [-2, +0]) | 31→28 (-3 [-8, +1]) | 10→8 (-2 [-5, +0]) | 22→21 (-1 [-6, +2]) | 31→27 (-3 [-9, +1]) | 38→33 (-4 [-10, +0]) | 28→25 (-3 [-8, +2]) | 37→32 (-4 [-10, +0]) | 15→12 (-3 [-6, +1]) |
+| MADation FS ViT-B/16 release | 66→69 (+2 [-2, +8]) | 25→24 (-2 [-5, +3]) | 1→1 (+0 [-0, +1]) | 22→20 (-2 [-5, +2]) | 57→62 (+5 [+0, +9]) | 21→20 (-1 [-5, +2]) | 25→22 (-3 [-6, +2]) | 24→22 (-2 [-6, +2]) | 19→19 (-0 [-5, +2]) | 22→20 (-2 [-5, +2]) | 33→34 (+1 [-4, +4]) |
+| MADation FS ViT-L/14 release | 75→75 (+0 [-5, +5]) | 80→77 (-2 [-6, +3]) | 67→68 (+0 [-5, +6]) | 87→86 (-0 [-4, +3]) | 58→58 (-0 [-6, +6]) | 86→86 (+0 [-5, +3]) | 84→84 (+0 [-5, +3]) | 88→87 (-1 [-4, +3]) | 76→75 (-1 [-5, +4]) | 87→86 (-0 [-5, +3]) | 68→69 (+1 [-4, +6]) |
+| SelfMAD release, own preprocessing | 2→1 (-1 [-3, +0]) | 0→0 (+0 [+0, +0]) | 0→0 (+0 [+0, +0]) | 20→17 (-3 [-8, +0]) | 5→2 (-3 [-6, -1]) | 3→1 (-2 [-4, +0]) | 0→0 (+0 [-1, +0]) | 4→1 (-3 [-6, -1]) | 14→11 (-3 [-7, +0]) | 8→4 (-4 [-7, -1]) | 0→0 (+0 [+0, +0]) |
+| SelfMAD release, our pipeline (desc.) | 10→4 (-6 [-9, -2]) | 0→0 (+0 [+0, +0]) | 0→0 (+0 [+0, +0]) | 49→40 (-9 [-12, -2]) | 13→7 (-6 [-10, -3]) | 21→14 (-7 [-11, -3]) | 2→2 (+0 [-2, +1]) | 24→16 (-8 [-11, -3]) | 60→54 (-6 [-11, -0]) | 50→42 (-8 [-13, -3]) | 1→1 (-0 [-2, +1]) |
+| MixFaceNet-MAD release, our frames (desc.) | 100→100 (+0 [+0, +0]) | 100→100 (+0 [+0, +0]) | 100→100 (+0 [+0, +0]) | 74→73 (-1 [-5, +2]) | 100→100 (+0 [+0, +0]) | 87→85 (-1 [-4, +1]) | 87→85 (-1 [-4, +1]) | 87→85 (-1 [-4, +1]) | 89→88 (-0 [-4, +1]) | 90→88 (-1 [-3, +1]) | 83→81 (-1 [-4, +2]) |
+
+## (b) recipes: mean over seeds of the EER change neutral-only minus all (imbalanced cells)
+
+| Recipe, ckpt | amsl | facemorpher | opencv | stylegan | webmorph | dim_a | dim_c | fast_dim | fast_dim_ode | greedy_dim | greedy_dim_s | mean | networks×cells with LB > 0 | EER all, mean over cells |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| M1 es | -0.2 | -0.1 | +0.4 | +0.4 | +0.1 | +0.7 | +0.4 | +0.4 | +0.5 | +0.4 | -0.4 | +0.23 | 0/55 | 23.2 |
+| M1 last | +0.8 | +0.6 | +0.1 | +0.3 | +0.6 | +0.2 | +0.3 | +0.9 | +0.9 | -0.1 | +0.4 | +0.44 | 0/55 | 27.8 |
+| M2 es | +0.3 | -0.3 | -0.2 | +1.0 | +0.5 | +1.4 | +0.5 | +0.2 | +0.1 | +0.7 | +0.5 | +0.44 | 0/55 | 58.8 |
+| M2 last | +0.6 | +0.6 | +0.5 | +0.3 | +0.5 | +0.2 | +0.3 | +0.6 | +0.7 | +0.4 | +0.2 | +0.44 | 0/55 | 61.1 |
+| M3 es | +2.9 | +1.1 | +1.9 | +3.2 | +2.5 | +2.1 | +1.9 | +1.7 | +2.5 | +5.7 | +1.2 | +2.43 | 49/88 | 8.4 |
+| M3 last | -0.1 | -0.1 | -0.2 | +4.7 | -0.2 | -0.0 | -0.3 | +0.0 | +0.9 | +6.6 | -0.1 | +1.02 | 10/88 | 8.9 |
+| M3L es | +3.4 | -0.2 | -0.1 | +0.7 | +1.4 | +0.7 | +1.9 | +3.7 | +1.4 | +5.0 | +1.1 | +1.74 | 22/55 | 9.8 |
+| M3L last | +0.5 | -0.0 | +0.1 | +21.4 | +0.1 | +4.7 | +7.5 | +13.8 | +7.1 | +11.1 | +9.6 | +6.88 | 35/55 | 14.6 |
+| M4 es | +0.0 | -4.1 | -13.4 | -13.8 | +0.0 | +0.0 | +0.0 | +0.0 | +0.0 | +0.0 | +0.0 | -2.85 | 0/55 | 88.7 |
+| M4 last | +0.0 | -3.4 | -4.2 | -4.2 | +0.0 | +0.0 | +0.0 | +0.0 | +0.0 | +0.0 | +0.0 | -1.06 | 0/55 | 89.4 |
+| M5 es | -0.3 | -0.5 | -0.3 | -0.7 | +0.1 | -0.9 | +0.2 | -0.8 | -0.7 | -0.6 | +0.1 | -0.39 | 3/88 | 22.1 |
+| M5 last | -0.2 | -0.4 | -0.4 | -1.5 | -0.1 | -1.0 | -0.5 | -0.9 | -0.9 | -1.0 | -0.1 | -0.64 | 0/88 | 42.6 |
+| M6 es | +0.8 | +1.1 | +0.1 | +0.0 | +0.4 | +0.0 | +0.8 | +0.4 | +0.6 | -0.1 | +0.6 | +0.42 | 0/55 | 48.3 |
+| M6 last | +0.8 | +0.6 | -0.2 | +0.6 | +0.1 | +1.0 | +1.0 | +1.4 | +1.5 | +0.6 | +0.3 | +0.70 | 0/55 | 52.4 |
+| M8 es | +1.5 | +1.0 | +1.2 | +1.5 | +1.3 | +1.3 | +0.7 | +1.0 | +1.2 | +1.0 | +0.6 | +1.12 | 2/55 | 38.2 |
+| M8 last | +2.0 | +1.9 | +1.5 | +0.6 | +1.4 | +0.9 | +0.7 | +0.5 | +1.2 | +0.9 | +0.9 | +1.13 | 2/55 | 38.6 |
+| M8O es | +0.2 | -0.1 | +0.1 | +0.7 | -0.1 | +0.1 | +0.6 | +0.3 | +0.7 | +0.7 | +0.5 | +0.32 | 0/55 | 49.2 |
+| M8O last | +0.5 | +0.8 | +0.0 | +1.1 | +0.5 | +0.6 | +0.6 | +0.4 | +0.9 | +1.4 | +0.8 | +0.70 | 0/55 | 45.8 |
+
+## Family summary of the EER change (neutral-only minus all, mean over the 11 imbalanced cells)
+
+| Family | networks | mean EER change (range over networks) | mean BPCER@5 change | AUC_wp mean (range) |
+|---|---|---|---|---|
+| MADation releases ViT-B/16, ViT-L/14 | 2 | +2.56 (+0.6 to +4.5) | +7.7 | 0.784 (0.58–0.99) |
+| MADation FE/FS releases | 4 | -2.87 (-9.4 to -0.4) | -5.3 | 0.368 (0.09–0.54) |
+| SelfMAD release (both pipelines) | 2 | -1.83 (-2.2 to -1.4) | -2.9 | 0.397 (0.31–0.48) |
+| MixFaceNet-MAD release | 1 | -0.26 (-0.3 to -0.3) | -0.4 | 0.471 (0.47–0.47) |
+| M3 last | 8 | +1.02 (-0.7 to +3.2) | +2.7 | 0.806 (0.67–0.97) |
+| M3L last | 5 | +6.88 (+5.8 to +8.6) | +21.8 | 1.000 (1.00–1.00) |
+| M3 es | 8 | +2.43 (+0.6 to +4.4) | +6.1 | 0.942 (0.84–0.99) |
+| M3L es | 5 | +1.74 (+1.4 to +2.5) | +10.0 | 0.914 (0.81–0.96) |
+| CNN recipes last (M1 M2 M4 M5 M6 M8 M8O) | 38 | +0.17 (-3.1 to +1.7) | -0.2 | 0.505 (0.25–0.65) |
+| CNN recipes es | 38 | -0.12 (-4.5 to +2.2) | -0.5 | 0.476 (0.00–0.67) |
+
+Spearman(AUC_wp, mean EER change) over all 111 score sets: 0.858
+
+## Cue-matrix reading rule per detector (pre-registered)
+
+| Detector / recipe | verdict |
+|---|---|
+| MADation ViT-B/16 release | undetermined (AUC_wp 0.578, EER-change LB > 0 in 0/11 cells) |
+| MADation ViT-L/14 release | USED (AUC_wp 0.990, EER-change LB > 0 in 9/11 cells) |
+| MADation FE ViT-B/16 release | undetermined (AUC_wp 0.088, EER-change LB > 0 in 0/11 cells) |
+| MADation FE ViT-L/14 release | undetermined (AUC_wp 0.343, EER-change LB > 0 in 0/11 cells) |
+| MADation FS ViT-B/16 release | NOT USED (AUC_wp 0.539, EER-change LB > 0 in 0/11 cells) |
+| MADation FS ViT-L/14 release | NOT USED (AUC_wp 0.500, EER-change LB > 0 in 0/11 cells) |
+| SelfMAD release, own preprocessing | NOT USED (AUC_wp 0.480, EER-change LB > 0 in 0/11 cells) |
+| SelfMAD release, our pipeline (desc.) | undetermined (AUC_wp 0.314, EER-change LB > 0 in 0/11 cells) |
+| MixFaceNet-MAD release, our frames (desc.) | NOT USED (AUC_wp 0.471, EER-change LB > 0 in 0/11 cells) |
+| M1 es | NOT USED 3, undetermined 2 |
+| M1 last | NOT USED 5 |
+| M2 es | NOT USED 2, undetermined 3 |
+| M2 last | NOT USED 2, undetermined 3 |
+| M3 es | USED 5, undetermined 3 |
+| M3 last | undetermined 8 |
+| M3L es | USED 1, undetermined 4 |
+| M3L last | USED 5 |
+| M4 es | undetermined 5 |
+| M4 last | NOT USED 3, undetermined 2 |
+| M5 es | NOT USED 2, undetermined 6 |
+| M5 last | NOT USED 2, undetermined 6 |
+| M6 es | NOT USED 3, undetermined 2 |
+| M6 last | NOT USED 2, undetermined 3 |
+| M8 es | NOT USED 1, undetermined 4 |
+| M8 last | undetermined 5 |
+| M8O es | NOT USED 4, undetermined 1 |
+| M8O last | NOT USED 1, undetermined 4 |
+
+## MorDIFF (balanced cell): EER all / neu / smi and 2x2 AUC (morph expression x genuine expression), releases
+
+- MADation ViT-B/16 release: EER 4.9 / 4.9 / 4.9; neu-all 0.0 [-2.0, 1.4]; M03/G03 0.985, M03/G08 0.982, M08/G03 0.992, M08/G08 0.989
+- MADation ViT-L/14 release: EER 28.9 / 31.4 / 26.3; neu-all 2.5 [0.2, 4.6]; M03/G03 0.758, M03/G08 0.834, M08/G03 0.775, M08/G08 0.845
+- MADation FE ViT-B/16 release: EER 39.7 / 33.4 / 45.1; neu-all -6.3 [-10.8, -3.0]; M03/G03 0.664, M03/G08 0.439, M08/G03 0.845, M08/G08 0.671
+- MADation FE ViT-L/14 release: EER 34.8 / 31.4 / 40.2; neu-all -3.4 [-7.1, -0.3]; M03/G03 0.730, M03/G08 0.613, M08/G03 0.781, M08/G08 0.671
+- MADation FS ViT-B/16 release: EER 67.6 / 71.6 / 66.7; neu-all 4.0 [-0.0, 6.7]; M03/G03 0.223, M03/G08 0.277, M08/G03 0.243, M08/G08 0.304
+- MADation FS ViT-L/14 release: EER 43.0 / 41.1 / 44.4; neu-all -1.9 [-4.6, 2.0]; M03/G03 0.597, M03/G08 0.568, M08/G03 0.623, M08/G08 0.596
+- SelfMAD release, own preprocessing: EER 2.5 / 2.0 / 2.9; neu-all -0.5 [-2.4, 0.7]; M03/G03 0.997, M03/G08 0.990, M08/G03 0.996, M08/G08 0.990
+- SelfMAD release, our pipeline (desc.): EER 6.5 / 5.0 / 7.8; neu-all -1.5 [-2.8, 1.0]; M03/G03 0.977, M03/G08 0.975, M08/G03 0.979, M08/G08 0.976
+- MixFaceNet-MAD release, our frames (desc.): EER 27.5 / 31.4 / 25.3; neu-all 3.9 [-0.0, 6.4]; M03/G03 0.781, M03/G08 0.829, M08/G03 0.763, M08/G08 0.816
+
+## (c) Rank changes, 27 rows (9 releases + 18 recipe-checkpoint seed means), imbalanced cells
+
+| Cell | Kendall τ | rows that move | pairs flipped | release pairs flipped beyond noise |
+|---|---|---|---|---|
+| frllm/amsl | 0.954 | 10 | 8 | MADation ViT-L/14 release vs MADation FE ViT-B/16 release |
+| frllm/facemorpher | 0.964 | 7 | 6 | none |
+| frllm/opencv | 0.976 | 10 | 4 | none |
+| frllm/stylegan | 0.833 | 15 | 29 | none |
+| frllm/webmorph | 0.949 | 12 | 9 | none |
+| dim/dim_a | 0.930 | 15 | 12 | none |
+| dim/dim_c | 0.937 | 7 | 11 | none |
+| dim/fast_dim | 0.901 | 16 | 17 | none |
+| dim/fast_dim_ode | 0.914 | 18 | 15 | none |
+| dim/greedy_dim | 0.874 | 12 | 22 | none |
+| dim/greedy_dim_s | 0.943 | 13 | 10 | none |
+
+Rank of selected rows (all -> neutral-only):
+
+| Row | amsl | facemorpher | opencv | stylegan | webmorph | dim_a | dim_c | fast_dim | fast_dim_ode | greedy_dim | greedy_dim_s |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| MADation ViT-B/16 release | 8→7 | 7→7 | 7→7 | 9→8 | 4→5 | 11→12 | 5→4 | 4→6 | 10→11 | 24→24 | 6→9 |
+| MADation ViT-L/14 release | 9→11 | 4→4 | 5→6 | 27→27 | 5→6 | 12→13 | 9→13 | 10→13 | 6→9 | 3→4 | 10→10 |
+| SelfMAD release, own preprocessing | 2→1 | 2→2 | 1→1 | 3→2 | 6→3 | 2→1 | 2→2 | 3→2 | 4→2 | 1→1 | 1→1 |
+| MixFaceNet-MAD release, our frames (desc.) | 25→25 | 27→27 | 27→27 | 12→13 | 25→25 | 20→19 | 22→22 | 19→19 | 19→18 | 19→18 | 21→20 |
+| M3 last (seed mean) | 3→3 | 6→6 | 6→5 | 13→18 | 2→2 | 1→2 | 1→1 | 1→1 | 2→1 | 14→20 | 2→2 |
+| M3L last (seed mean) | 1→2 | 1→1 | 4→4 | 18→26 | 1→1 | 5→8 | 13→16 | 13→16 | 5→8 | 6→10 | 20→22 |
+| M4 last (seed mean) | 27→27 | 24→24 | 15→15 | 25→22 | 27→27 | 27→27 | 27→27 | 27→27 | 27→27 | 27→27 | 27→27 |
+| M8O last (seed mean) | 19→19 | 18→18 | 20→20 | 17→17 | 19→19 | 19→20 | 20→20 | 21→23 | 22→23 | 18→19 | 22→21 |
+
+Release-pair flips (point estimates), per cell:
+
+- frllm/amsl: MADation ViT-L/14 release vs MADation FE ViT-B/16 release gap -8.3 → +6.9 (change CI [+11.3, +20.5]); MADation ViT-L/14 release vs MADation FE ViT-L/14 release gap -3.9 → +3.9 (change CI [+3.8, +11.8]); MADation FE ViT-B/16 release vs MADation FE ViT-L/14 release gap +4.4 → -3.0 (change CI [-11.8, -4.7])
+- frllm/stylegan: MADation FE ViT-B/16 release vs MixFaceNet-MAD release, our frames (desc.) gap +6.9 → -3.0 (change CI [-15.0, -5.3])
+- frllm/webmorph: MADation ViT-B/16 release vs SelfMAD release, own preprocessing gap -1.0 → +2.3 (change CI [+1.1, +6.4]); MADation ViT-L/14 release vs SelfMAD release, own preprocessing gap -0.9 → +3.2 (change CI [+1.4, +7.2]); MADation FS ViT-B/16 release vs MADation FS ViT-L/14 release gap -0.8 → +0.0 (change CI [-2.7, +4.6])
+- dim/dim_a: MADation ViT-B/16 release vs MADation FE ViT-B/16 release gap -3.3 → +5.1 (change CI [+5.2, +13.1]); MADation ViT-L/14 release vs MADation FE ViT-B/16 release gap -1.9 → +11.8 (change CI [+10.0, +20.3]); MADation FE ViT-L/14 release vs SelfMAD release, our pipeline (desc.) gap -0.9 → +1.8 (change CI [-1.3, +6.4])
+- dim/dim_c: MADation ViT-L/14 release vs MADation FE ViT-B/16 release gap -12.7 → +2.0 (change CI [+9.6, +19.2]); MADation ViT-L/14 release vs MADation FE ViT-L/14 release gap -1.0 → +5.7 (change CI [+2.3, +10.0]); MADation ViT-L/14 release vs MADation FS ViT-B/16 release gap -3.9 → +1.9 (change CI [+1.7, +10.3]); MADation FE ViT-B/16 release vs MADation FS ViT-B/16 release gap +8.8 → -0.1 (change CI [-13.4, -3.5])
+- dim/fast_dim: MADation ViT-B/16 release vs MADation FS ViT-B/16 release gap -1.1 → +0.7 (change CI [-1.8, +4.4]); MADation ViT-B/16 release vs SelfMAD release, our pipeline (desc.) gap -1.1 → +2.9 (change CI [+1.2, +8.4]); MADation ViT-L/14 release vs MADation FE ViT-B/16 release gap -12.7 → +2.8 (change CI [+10.9, +22.9])
+- dim/fast_dim_ode: MADation ViT-B/16 release vs MADation FE ViT-B/16 release gap -3.5 → +6.7 (change CI [+5.7, +14.0]); MADation ViT-L/14 release vs MADation FE ViT-B/16 release gap -14.2 → +1.9 (change CI [+9.5, +19.5]); MADation ViT-L/14 release vs MADation FE ViT-L/14 release gap -0.4 → +6.9 (change CI [+2.4, +9.9]); MADation ViT-L/14 release vs MADation FS ViT-B/16 release gap -0.9 → +5.9 (change CI [+1.5, +9.7])
+- dim/greedy_dim: MADation FE ViT-B/16 release vs MADation FS ViT-L/14 release gap +0.5 → -9.9 (change CI [-13.8, -3.1]); MADation FE ViT-B/16 release vs MixFaceNet-MAD release, our frames (desc.) gap +3.4 → -6.8 (change CI [-13.1, -4.2])
+
+## Probe validation on morphs with known expression
+
+| Family | n (smiling) | accuracy [95%] | sensitivity [95%] | specificity [95%] | AUC [95%] |
+|---|---|---|---|---|---|
+| MAD22c/FaceMorpher | 1000 (500) | 0.931 [0.913, 0.946] | 0.878 [0.846, 0.905] | 0.984 [0.969, 0.993] | 0.977 [0.969, 0.985] |
+| MAD22c/MIPGAN_I | 1000 (500) | 0.811 [0.785, 0.835] | 0.642 [0.598, 0.684] | 0.980 [0.964, 0.990] | 0.969 [0.959, 0.977] |
+| MAD22c/MIPGAN_II | 999 (499) | 0.886 [0.865, 0.905] | 0.820 [0.783, 0.852] | 0.952 [0.929, 0.969] | 0.961 [0.950, 0.970] |
+| MAD22c/OpenCV | 984 (495) | 0.978 [0.966, 0.986] | 0.974 [0.956, 0.986] | 0.982 [0.965, 0.992] | 0.997 [0.996, 0.999] |
+| MAD22c/Webmorph | 500 (0) | 0.978 [0.961, 0.989] | – | 0.978 [0.961, 0.989] | – |
+| MorDIFF | 1000 (500) | 0.942 [0.926, 0.956] | 0.900 [0.870, 0.925] | 0.984 [0.969, 0.993] | 0.985 [0.977, 0.991] |
+
+Pooled references: {"landmark": {"families": ["MAD22c/FaceMorpher", "MAD22c/OpenCV", "MAD22c/Webmorph"], "n_smiling": 995, "sensitivity": 0.9256281407035176, "n_neutral": 1489, "specificity": 0.9811954331766286, "accuracy": 0.9589371980676329}, "mipgan": {"families": ["MAD22c/MIPGAN_I", "MAD22c/MIPGAN_II"], "n_smiling": 999, "sensitivity": 0.7307307307307307, "n_neutral": 1000, "specificity": 0.966, "accuracy": 0.848424212106053}, "mordiff": {"families": ["MorDIFF"], "n_smiling": 500, "sensitivity": 0.9, "n_neutral": 500, "specificity": 0.984, "accuracy": 0.942}}
+
+| Target family | n | flagged smile-like [95%] | reference | corrected smiling share [95%] | neutral-only status |
+|---|---|---|---|---|---|
+| FRLL-Morphs/amsl | 2175 | 0.010 [0.006, 0.015] | landmark | 0.000 [0.000, 0.000] | supported |
+| FRLL-Morphs/facemorpher | 1222 | 0.011 [0.006, 0.018] | landmark | 0.000 [0.000, 0.001] | supported |
+| FRLL-Morphs/opencv | 1221 | 0.011 [0.006, 0.019] | landmark | 0.000 [0.000, 0.002] | supported |
+| FRLL-Morphs/stylegan | 1222 | 0.069 [0.055, 0.084] | mipgan | 0.050 [0.025, 0.075] | supported |
+| FRLL-Morphs/webmorph | 1221 | 0.015 [0.009, 0.023] | landmark | 0.000 [0.000, 0.006] | supported |
+| DiM/dim_a | 500 | 0.050 [0.033, 0.073] | mordiff | 0.038 [0.014, 0.063] | (DiM: README) |
+| DiM/dim_c | 500 | 0.026 [0.014, 0.044] | mordiff | 0.011 [0.000, 0.032] | (DiM: README) |
+| DiM/fast_dim | 500 | 0.058 [0.039, 0.082] | mordiff | 0.048 [0.021, 0.074] | (DiM: README) |
+| DiM/fast_dim_ode | 499 | 0.058 [0.039, 0.082] | mordiff | 0.048 [0.021, 0.075] | (DiM: README) |
+| DiM/greedy_dim | 500 | 0.068 [0.048, 0.094] | mordiff | 0.059 [0.032, 0.087] | (DiM: README) |
+| DiM/greedy_dim_s | 500 | 0.040 [0.025, 0.061] | mordiff | 0.027 [0.005, 0.051] | (DiM: README) |

@@ -1,0 +1,18 @@
+{
+  "decision": "GO_VIS3_FULL_NUMERIC",
+  "author": "shortcut_visual_examples",
+  "reviewer": "sol_manuscript_review",
+  "models": [
+    "selfmad_hrnet_w18",
+    "A",
+    "B"
+  ],
+  "inventory_sha256": "d67d18e3193887ea085e9cd7be95054bb2bb946fde655e9d5e158a8f2ae4aecf",
+  "derivative_roster_sha256": "ef50ff6893e01aed01a39cc55cc8b550fe22a846a9e299480f927b7685916365",
+  "generated_regional_indexing_verified": true,
+  "smoke_result_sha256": {
+    "selfmad_hrnet_w18": "beb98f03ee4f654c2dfc4c699c9eb4b321d3c2b317b3446c7b37bb51f4c62134",
+    "A": "f9b19254d224be9eda149c674c73c466b1e8b9a14d5ea49bf8311e63297fac49",
+    "B": "4bf3107a17ec17e4a9afb3d68b6ae34c6ec0aff7d61b7cdf05a30ed3143f4eb2"
+  }
+}

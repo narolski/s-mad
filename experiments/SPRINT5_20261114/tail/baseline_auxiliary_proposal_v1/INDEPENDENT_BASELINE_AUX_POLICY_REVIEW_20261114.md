@@ -1,0 +1,38 @@
+# Independent tail baseline auxiliary policy review — 2026-11-14
+
+Reviewer: Astra (astra_sprint_plan_review), independent of proposer astra_compute_unblock_plan and code/metadata author Sol.
+Decision: **GO_POLICY_FOR_ROOT_ADOPTION_AND_IMPLEMENTATION_ONLY** for the exact point-only, after-primary-results proposal. Scientific auxiliary access, archive/member inspection and execution remain HOLD until separately reviewed technical/code/input gates and exact root releases. This is not retroactive preregistration.
+
+## Exact reviewed evidence
+
+Plan2362a7b22828f2c0ae60d37301b05943edb2c5002644d2112464ffbc9487c1cd; source/metadata freeze manifestbf511390f2969402d3d29eb67ff7951dc7287f35ba12dec53ddde489f9099951; proposal source manifest0af907330e1d827486c8965630d3a54d1d502b574aa5aa39ca14defc8a6df099. All manifest-listed proposal files and source members independently rehashed and matched. This policy review is not implementation certification.
+
+Read actual prereg_pilot.md, adopted POLICY_PROPOSAL.md and ROOT_POLICY_INPUT_ADOPTION.md, exact plan, mapping/input/candidate-member proposals and existing baseline source/gate linkage. Independently compared exact ordered70 calibration and468 evaluation IDs against adopted metadata; all538 mapping entries preserve ID/order/source/component and semantically identical labels (old label strings are normalized to integers in new mapping). Calibration/evaluation ID sets are disjoint. Candidate proposal retains15 models; no new populations or outcomes were selected. Existing source/gate receipt paths and their stated hashes were independently verified. No image pixels, archives/members, score NPZ, model weights, scientific result values, reader or claim were accessed.
+
+## Registration versus after-results clarification
+
+Original pilot explicitly requires frozen baseline-threshold results alongside independently positive-calibrated primary rates, score quantiles and AUC. Adopted policy section30 fixes the SAME70 positive-calibration IDs, admitted Sb408, one common baseline, and later separate exact member/ID read release. Thus baseline auxiliary coverage is an existing reporting obligation, not a new success endpoint selected after a favorable result.
+
+The general original bootstrap language is broader than a purely point-only panel, while adopted detailed bootstrap/NI rules address model-specific recalibrated primary thresholds and sensitivity guards. Neither unambiguously fixes a distinct uncertainty estimand for an original frozen-baseline tau. The proposed NOT_ESTIMATED choice is therefore a genuine AFTER_PRIMARY_RESULTS_SEEN clarification. It is acceptable as limited point-reporting coverage closure, not proof that all originally contemplated uncertainty work is complete. AUXILIARY_POINT_COVERAGE_COMPLETE must mean exactly that; do not relabel it complete confirmatory analysis, preregistered point-only inference or full utility validation. Uncertainty remains unestimated unless a separately disclosed later policy is adopted; do not carry primary intervals onto auxiliary effects.
+
+## Endorsed bounded estimand
+
+Compute one exact float64 tau=nextafter(sorted Sb408 calibration scores[7],−infinity), with strict score>tau; record exact representation and achieved calibration sensitivity. Apply the identical scalar to baseline468 evaluation rows and all15 candidate468 evaluation rows. No recalibration, threshold/family/seed selection, RNG, new CI, p-value, NI decision or winner.
+
+Preserve baseline as one model and all15 candidate rows, six fixed genuine cells with numerators/denominators70FERET and26FRGC per processing, and four positive slots146/0/17/17 with component context10/0/17/17. Missing AF0_u5061 remains null/NOT_ESTIMABLE_ABSENT_FAMILY, not zero. Both five-seed contrasts CVaR−mean and BCE−mean, their means, fixed-minus-own and candidate-minus-baseline point differences must be retained regardless of sign. Copy own-calibrated companions only from the exact completed primary summaries; no primary computation/threshold/bootstrap rerun. This tests scale/operating-point sensitivity descriptively, not mechanism, utility or superiority. Original8NI outcomes and primary results remain unchanged.
+
+## Separate auxiliary authority is necessary
+
+The existing completed primary release and permanent claim do not permit this reopening. The adopted obligation and deferred-baseline-release wording provide a substantive basis for root to adopt a narrow AUXILIARY_ONLY exception; they are not themselves executable permission. Root must explicitly authorize exactly this after-primary extension and candidate reopening, with no general alternate-journal loophole.
+
+Keep primary claim/terminal/result/source/release immutable and require their exact COMPLETE chain before auxiliary admission. Bind one fresh fixed auxiliary journal reader_once_baseline_aux_v1 and output reader_output_baseline_aux_v1/RESULT.json. Create/fsync permanent auxiliary claim before any baseline/candidate score access; failure remains terminal, with no replacement path, retry or source-version escape. Dedicated code must not invoke primary reader/analyze/design. Preserve primary artifacts byte-for-byte and independently verify that after execution.
+
+## Remaining concrete gates before any scientific auxiliary access
+
+1. Baseline exact member identity/digest, regular unique header, runtime/platform and reference/own-fit gate linkage need explicit technical admission. Existing admitted archivea84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa and source/gate chain support reuse feasibility but do not prove the presently unknown original NPZ member digest, ID order/schema or finite values. No fresh GPU run is implied by this gap. A separately root-authorized opaque-member-hash/technical stage may establish non-scientific evidence without deserializing logits.
+2. Freeze candidate exact15 archive/member digests from admitted roster; baseline numerical allowlist538=70+468, candidate numerical allowlist468 only. Do not numerically use candidate calibration70, camera132/119, historical191 or other sets.
+3. Whole21,277-ID NPZ schema/order checking and array materialization require an explicit serialization-access exception under the later scientific auxiliary claim. Full-array finiteness inspection is also access, not a metadata-only loophole. Root release must state exactly whether it allows that check or finite checks only on selected rows; either way no statistics, logging or export on nonallowlisted scores. Full manifest ID/schema/hash checks and selected label/path/image mapping are mandatory. No NPZ validation before claim under a falsely labeled metadata stage.
+4. Freeze source/input/ordered-ID binding in clean tracked commit; independently review code and synthetic tests for ties/strict eighth order statistic, invariant tau, exact counts/null family, all seeds/contrasts, copy-only companions, no RNG/primary calls, source/release/complete-primary rejection, create-only failure/reentry and untouched primary bytes.
+5. Root adopts this exact policy with after-results timing, then issues separate bounded technical and ultimately exact auxiliary-only scientific releases after their independent reviews. Postresult numeric/interpretation review remains mandatory.
+
+No policy blocker for root adoption of this narrowly labeled point completion. Baseline schema/ID/finiteness and implementation admission are real execution blockers, not reasons to rewrite the policy or silently inspect scores. Camera, sealed data, baseline live score access and all candidate reopening remain HOLD until those exact later gates are satisfied.

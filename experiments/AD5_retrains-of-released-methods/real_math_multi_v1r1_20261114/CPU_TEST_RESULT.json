@@ -1,0 +1,10 @@
+{
+  "scope": "CPU_only_AST_generated_mock_and_actual_child_TERM_KILL_retention",
+  "tests": 14,
+  "passed": 14,
+  "seconds": 1.589,
+  "shell_syntax": "worker/body/allocation_entry PASS",
+  "real_model_data_weights_gpu_access": false,
+  "supervisor_used": "actual_production_supervise.run",
+  "technical_writer_used": "actual_production_base_runtime.put_AST_extracted_no_torch_import"
+}

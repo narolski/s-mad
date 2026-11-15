@@ -1,0 +1,14 @@
+test_canary_values_ignored (test_minimal_extension_v1.Tests.test_canary_values_ignored) ... ok
+test_cli_release_before_any_archive_then_synthetic_20_complete (test_minimal_extension_v1.Tests.test_cli_release_before_any_archive_then_synthetic_20_complete) ... ok
+test_env_native_vs_integrity (test_minimal_extension_v1.Tests.test_env_native_vs_integrity) ... ok
+test_hash_size_and_text_encoding (test_minimal_extension_v1.Tests.test_hash_size_and_text_encoding) ... ok
+test_missing_member_unknown (test_minimal_extension_v1.Tests.test_missing_member_unknown) ... ok
+test_native_token_expected_and_no_alternative (test_minimal_extension_v1.Tests.test_native_token_expected_and_no_alternative) ... ok
+test_opaque_streaming_and_no_other_extract (test_minimal_extension_v1.Tests.test_opaque_streaming_and_no_other_extract) ... ok
+test_scope_no_expansion_or_batch_switch (test_minimal_extension_v1.Tests.test_scope_no_expansion_or_batch_switch) ... ok
+test_unsafe_and_duplicate_fail_no_partial_digest (test_minimal_extension_v1.Tests.test_unsafe_and_duplicate_fail_no_partial_digest) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.048s
+
+OK

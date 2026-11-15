@@ -1,0 +1,131 @@
+{
+ "n_pos": 1000,
+ "n_neg": 2000,
+ "n_components": 3000,
+ "n_folds": 5,
+ "insample_best_single": 0.9579835,
+ "insample_best_single_stat": "F27:noise_std",
+ "insample_best_single_f27": 0.9579835,
+ "insample_best_single_f27_stat": "F27:noise_std",
+ "single": {
+  "auc": 0.95778575,
+  "eer": 0.114,
+  "ci": [
+   0.9510220319643885,
+   0.9643905810796032
+  ],
+  "chosen_per_fold": [
+   "-F27:noise_std",
+   "-F27:noise_std",
+   "-F27:noise_std",
+   "-F27:noise_std",
+   "-F27:noise_std"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9961855,
+  "eer": 0.0265,
+  "ci": [
+   0.9945015741959771,
+   0.9975595529885986
+  ]
+ },
+ "gbt": {
+  "auc": 0.993128,
+  "eer": 0.03925,
+  "ci": [
+   0.990829735282509,
+   0.9952297965123893
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9864715,
+  "ci": [
+   0.9830699054027796,
+   0.9893890125
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.9961855,
+  "eer": 0.0265,
+  "ci": [
+   0.9945015741959771,
+   0.9975595529885986
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.987911,
+   "logreg": 0.9864715
+  },
+  "BORDER": {
+   "gbt": 0.67067275,
+   "logreg": 0.6090265
+  },
+  "RES": {
+   "gbt": 0.924493,
+   "logreg": 0.9308595
+  },
+  "STORE": {
+   "gbt": 0.797067,
+   "logreg": 0.781559
+  },
+  "RENDER": {
+   "gbt": 0.95485,
+   "logreg": 0.938508
+  },
+  "BLEND": {
+   "gbt": 0.9089355,
+   "logreg": 0.892739
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.9790145,
+  "BORDER": 0.995083,
+  "RES": 0.993656,
+  "STORE": 0.995328,
+  "RENDER": 0.9955615,
+  "BLEND": 0.9951255
+ },
+ "contrast": "hn2_lcomplete_vs_bona",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.9948865,
+  "eer": 0.03275,
+  "ci": [
+   0.9929596932789216,
+   0.9965518427337375
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.9780335,
+  "eer": 0.07,
+  "ci": [
+   0.9731012276832695,
+   0.9823350261162392
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "ffhq",
+   "rung": "landmark_complete_orig"
+  },
+  "negative": {
+   "fam": "ffhq",
+   "rung": "landmark_complete_resmatch"
+  },
+  "note": "FFHQ landmark_complete"
+ }
+}

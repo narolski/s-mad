@@ -1,0 +1,5 @@
+# GO ten HN geometry transfer pilot fits
+
+Root independently ran inspect_hn_smoke.py on both actual archives and verified source manifest3640adc6a2204e1d82ce455167e00e433859f4b63bf63970f67d3ca0910ca793, archive SHA256sidecars, strict2496reference and21277own-score byte gates, completefinite dev21277/tt134411/meds1018/gd11042, seed531/twoeffectiveupdates/emptyval10/final-last,248uniquerows perarm496forwardimages and storedcheckpoint/warmstartreceipt. Slurm6321237 COMPLETED0:0 after7:09. Root authored metadata inspector independently ofAstraHNimplementation. Technical metadata only; scientificscores neveropened.
+
+Approve unchangedpinnedsource/overlay for matched/self5pairedseeds531–535,100updates×248=24800forwardimagesperfit, onecommonSb408warmstart. OneH1008CPU64G100Gscratch1hlimit, max3concurrentfitsresource-onlyoverride ofpercent1. Native-onlygeometry/resamplingtransferpilot, notindependentHNheldout, notidentity-specificproof, noNEXTadoption. Strongnuisancefloor0.743 remainsreported. Scientificreadingrequiresseparateindependentreview and exacttenfiteligibility.

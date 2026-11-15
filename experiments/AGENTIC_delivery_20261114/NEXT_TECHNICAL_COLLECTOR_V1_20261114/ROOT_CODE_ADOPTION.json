@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-14T19:25:06.500740+00:00",
+  "decision": "GO_BOUNDED_TECHNICAL_IMPLEMENTATION_ONLY_NO_EXECUTION_RELEASE",
+  "author": "training_contribution",
+  "reviewer": "root",
+  "source_sha256": "52f5d02bf58c8c962b0d691491667d7e3b27e851887e0fc16ac1e7650fe927a7",
+  "package_sums_sha256": "eba68c0789bf7660f75843961ae876d8500718a99af8002a352b8e43a83ec384",
+  "typed_scope_sha256": "62ee3356bb4f83c6f438d9515783d09e8662d575b9ee368e60b2bf74a61bd50b",
+  "independent_review_path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/NEXT_TECHNICAL_COLLECTOR_V1_20261114/INDEPENDENT_IMPLEMENTATION_REVIEW_20261114.md",
+  "independent_review_sha256": "ce8e884a7a981b9ee47510bfacdd28dcbde7c8c7715177bbb4fce53dc5994e4d",
+  "actual_archive_member_access": "HOLD_SEPARATE_ROOT_RELEASE_REQUIRED",
+  "native_full_eligibility": "HOLD",
+  "scientific_read_authorized": false,
+  "known_partial_gates": [
+    "native finite-loss full grammar",
+    "config model-seed-source one-to-one",
+    "RZ1R complete native gates"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+ "candidates": 50000,
+ "excluded_keys": 20000,
+ "attempted": 1833,
+ "kept": 900,
+ "outcomes": {
+  "kept": 900,
+  "no_face_or_frontal_filter": 821,
+  "identity_duplicate": 112
+ },
+ "threshold": 0.4,
+ "seconds": 185,
+ "parts": {
+  "af0": 450,
+  "ladder": 150,
+  "holdout": 300
+ },
+ "aligner_sha256": "47eefed3171d7ee63880b22e986e9666582a55fc3a62839671b9d8104e7e68e0",
+ "fr_sha256": "eb425605480f8bdfa51acff27fc5c490e3e32151b0d18c589ca5a267050aa238"
+}

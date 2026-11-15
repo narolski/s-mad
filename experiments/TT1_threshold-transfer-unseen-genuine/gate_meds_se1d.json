@@ -1,0 +1,152 @@
+{
+ "rule": "byte identity on the 3,417 TT1 fam-gate rows against pn1fs",
+ "nets": {
+  "PN1_A_s403": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_A_s404": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_A_s405": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_A_s406": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_A_s407": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_B_s403": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_B_s404": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_B_s405": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_B_s406": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_B_s407": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_Sb_s403": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_Sb_s404": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_Sb_s405": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_Sb_s406": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_Sb_s407": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_Sp_s403": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_Sp_s404": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  },
+  "PN1_Sp_s405": {
+   "n": 3417,
+   "max_abs": 0.0,
+   "n_differ": 0,
+   "flips": 0,
+   "ok": true
+  }
+ },
+ "passed": [
+  "PN1_A_s403",
+  "PN1_A_s404",
+  "PN1_A_s405",
+  "PN1_A_s406",
+  "PN1_A_s407",
+  "PN1_B_s403",
+  "PN1_B_s404",
+  "PN1_B_s405",
+  "PN1_B_s406",
+  "PN1_B_s407",
+  "PN1_Sb_s403",
+  "PN1_Sb_s404",
+  "PN1_Sb_s405",
+  "PN1_Sb_s406",
+  "PN1_Sb_s407",
+  "PN1_Sp_s403",
+  "PN1_Sp_s404",
+  "PN1_Sp_s405"
+ ],
+ "failed": []
+}

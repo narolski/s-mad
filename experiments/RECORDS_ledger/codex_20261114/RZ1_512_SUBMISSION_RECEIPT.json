@@ -1,0 +1,6 @@
+{
+  "at": "2026-11-14T10:25:53.329652+01:00",
+  "rc": 1,
+  "stdout": "{\n  \"at\": \"2026-11-14T10:25:53.302617+01:00\",\n  \"admission_commit\": \"23a2b08\",\n  \"argv\": [\n    \"/opt/slurm/current/bin/sbatch\",\n    \"--extra=FORCE_RM_TMPDIR\",\n    \"--time=06:00:00\",\n    \"--dependency=afterok:6316283\",\n    \"--nice=10\",\n    \"rz1-512.sbatch\"\n  ],\n  \"state\": \"response\",\n  \"rc\": 1,\n  \"stdout\": \"\",\n  \"stderr\": \"sbatch: error: Batch job submission failed: Job dependency problem\\n\"\n}\n",
+  "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 21, in <module>\nAssertionError: Submission not confirmed; inspect receipt before any retry\n"
+}

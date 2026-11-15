@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-14T22:32:03.906167+00:00",
+  "status": "IMMUTABLE_LAYOUT_V2_SOURCE_ONLY_READY_FOR_OTHER_REVIEW",
+  "source_manifest_sha256": "9ce196b3d0e53c58c0dedb0f182675222bb5c3ec2dd96eed07308453aeb40604",
+  "renderer_sha256": "71107b893eb144fc2bd9f45c6cb41115aed9ec942becc079e58fbab74d3a5e5f",
+  "config_mac_sha256": "a083f9e251367606604344c3def51bc13708d16110ff4ae5c449c399195c8180",
+  "delta_patch_sha256": "85236d6605ab00cf1c4e9c11b8d8c412fa30920c8913936d610b3705a6cf8c22",
+  "generated_tests_sha256": "f0828a2e0a3be903924d8b5d2597dcd71c792e800e4d188bf0e36314792a1e93",
+  "differential_sha256": "2bbdc43246b421da9da36d579f52fe01d0d372df9a14d93638ba5a50ddb0c01a",
+  "page_mm": [
+    180,
+    279.4
+  ],
+  "source_and_map_edge_mm": 58,
+  "minimum_font_pt": 8.2,
+  "tests": 18,
+  "nonlayout_cell_records_unchanged": 3072,
+  "baseline_display": "rawmorph-orientedz,no sigmoid/probability",
+  "real_RGB_RESULT_or_render_access": false,
+  "old_v1r1_unchanged": true,
+  "new_root_layout_grant": "REQUIRED_AFTER_OTHER_GO",
+  "publication": "HOLD"
+}

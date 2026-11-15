@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-14T19:52:10.243389+00:00",
+  "decision": "GO_BII_DESIGN_FOR_SOURCE_PREPARATION_ONLY",
+  "review_sha256": "e1720ddcd6920ab89a55aa91fb6cfdd0deafd34f9d1cadf8a5c4a577b8f3fc9d",
+  "partial_reviewer_independence_acknowledged": true,
+  "root_is_final_methodological_decision_owner": true,
+  "fixed14spec_design_sha256": "26871ab37a3e3c1cbb25e882de9eb71c05630cc9937a9b6e1f9f7e30b697bd9a",
+  "prospective_context_choice": "B(ii): exact full original eval and TT1 manifest order, batch64 and original native/flip call sequence for native AND every perturbation; remap/export only prebound cross IDs",
+  "purpose": "Preserve original batching context for strict native byte gate; no portability-based artificial candidate exclusion",
+  "cross_only_A_or_adaptive_fallback": "FORBIDDEN",
+  "bytegate_tolerance_relaxation": "FORBIDDEN",
+  "additional_context_and_TTA_computation": "Permitted in prospective design only; exact inputs/source/call counts/transient noncross handling/resource budget must be separately reviewed before any actual access",
+  "noncross_logits": "Transient only; no storage/export/metrics/selection access",
+  "actual_checkpoint_image_score_access_authorized_now": false,
+  "model_executable_or_GPU_release": false,
+  "source_runtime_checkpoint_fields": "UNKNOWN_PENDING_TECHNICAL_METADATA",
+  "future_registration_revision": "Required new immutable packet; preserve v1; revise sample/batch call counts including flip context before resource request",
+  "exposure_scope": "No new kernel scientific outputs generated/read by root or its assigned agents in this session; global prior exposure attestation remains separate"
+}

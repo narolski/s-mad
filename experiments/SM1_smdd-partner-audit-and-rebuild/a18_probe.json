@@ -1,0 +1,363 @@
+{
+ "clip_mad": {
+  "n_train": 803,
+  "n_train_X": 401,
+  "all": {
+   "F": {
+    "mean": 0.9009,
+    "seeds": [
+     0.9009
+    ],
+    "ci": [
+     0.8648,
+     0.9388
+    ]
+   },
+   "F_plus": {
+    "mean": 0.962,
+    "seeds": [
+     0.962
+    ],
+    "ci": [
+     0.9369,
+     0.9841
+    ]
+   },
+   "Fimg": {
+    "mean": 0.778,
+    "seeds": [
+     0.778
+    ],
+    "ci": [
+     0.7276,
+     0.834
+    ]
+   },
+   "Fimg_plus": {
+    "mean": 0.9582,
+    "seeds": [
+     0.9582
+    ],
+    "ci": [
+     0.9322,
+     0.981
+    ]
+   },
+   "score_only": {
+    "mean": 0.9612,
+    "seeds": [
+     0.9612
+    ],
+    "ci": [
+     0.9393,
+     0.9815
+    ]
+   },
+   "score_raw_auc": {
+    "mean": 0.9628,
+    "seeds": [
+     0.9628
+    ],
+    "ci": [
+     0.9414,
+     0.9825
+    ]
+   },
+   "dAUC_over_F": {
+    "mean": 0.0612,
+    "seeds": [
+     0.0612
+    ],
+    "ci": [
+     0.0296,
+     0.0923
+    ]
+   },
+   "dAUC_over_Fimg": {
+    "mean": 0.1802,
+    "seeds": [
+     0.1802
+    ],
+    "ci": [
+     0.1267,
+     0.2326
+    ]
+   },
+   "_n": {
+    "n_X": 133,
+    "n_SAME": 134,
+    "n_cycles": 55
+   },
+   "verdict": "falsified: the network adds information beyond the measured traces"
+  },
+  "unflagged": {
+   "F": {
+    "mean": 0.8998,
+    "seeds": [
+     0.8998
+    ],
+    "ci": [
+     0.8615,
+     0.9401
+    ]
+   },
+   "F_plus": {
+    "mean": 0.9616,
+    "seeds": [
+     0.9616
+    ],
+    "ci": [
+     0.934,
+     0.9858
+    ]
+   },
+   "Fimg": {
+    "mean": 0.7884,
+    "seeds": [
+     0.7884
+    ],
+    "ci": [
+     0.7351,
+     0.849
+    ]
+   },
+   "Fimg_plus": {
+    "mean": 0.9568,
+    "seeds": [
+     0.9568
+    ],
+    "ci": [
+     0.9278,
+     0.9826
+    ]
+   },
+   "score_only": {
+    "mean": 0.9626,
+    "seeds": [
+     0.9626
+    ],
+    "ci": [
+     0.9395,
+     0.9832
+    ]
+   },
+   "score_raw_auc": {
+    "mean": 0.964,
+    "seeds": [
+     0.964
+    ],
+    "ci": [
+     0.9416,
+     0.9839
+    ]
+   },
+   "dAUC_over_F": {
+    "mean": 0.0618,
+    "seeds": [
+     0.0618
+    ],
+    "ci": [
+     0.0293,
+     0.0943
+    ]
+   },
+   "dAUC_over_Fimg": {
+    "mean": 0.1684,
+    "seeds": [
+     0.1684
+    ],
+    "ci": [
+     0.1136,
+     0.2224
+    ]
+   },
+   "_n": {
+    "n_X": 123,
+    "n_SAME": 131,
+    "n_cycles": 55
+   },
+   "verdict": "falsified: the network adds information beyond the measured traces"
+  }
+ },
+ "dinov2": {
+  "n_train": 803,
+  "n_train_X": 401,
+  "all": {
+   "F": {
+    "mean": 0.9009,
+    "seeds": [
+     0.9009
+    ],
+    "ci": [
+     0.8648,
+     0.9388
+    ]
+   },
+   "F_plus": {
+    "mean": 0.9701,
+    "seeds": [
+     0.9701
+    ],
+    "ci": [
+     0.9491,
+     0.9887
+    ]
+   },
+   "Fimg": {
+    "mean": 0.778,
+    "seeds": [
+     0.778
+    ],
+    "ci": [
+     0.7276,
+     0.834
+    ]
+   },
+   "Fimg_plus": {
+    "mean": 0.9579,
+    "seeds": [
+     0.9579
+    ],
+    "ci": [
+     0.9322,
+     0.9814
+    ]
+   },
+   "score_only": {
+    "mean": 0.9606,
+    "seeds": [
+     0.9606
+    ],
+    "ci": [
+     0.9351,
+     0.9838
+    ]
+   },
+   "score_raw_auc": {
+    "mean": 0.9629,
+    "seeds": [
+     0.9629
+    ],
+    "ci": [
+     0.9375,
+     0.9857
+    ]
+   },
+   "dAUC_over_F": {
+    "mean": 0.0692,
+    "seeds": [
+     0.0692
+    ],
+    "ci": [
+     0.0378,
+     0.1008
+    ]
+   },
+   "dAUC_over_Fimg": {
+    "mean": 0.1799,
+    "seeds": [
+     0.1799
+    ],
+    "ci": [
+     0.1291,
+     0.2306
+    ]
+   },
+   "_n": {
+    "n_X": 133,
+    "n_SAME": 134,
+    "n_cycles": 55
+   },
+   "verdict": "falsified: the network adds information beyond the measured traces"
+  },
+  "unflagged": {
+   "F": {
+    "mean": 0.8998,
+    "seeds": [
+     0.8998
+    ],
+    "ci": [
+     0.8615,
+     0.9401
+    ]
+   },
+   "F_plus": {
+    "mean": 0.9692,
+    "seeds": [
+     0.9692
+    ],
+    "ci": [
+     0.9454,
+     0.9895
+    ]
+   },
+   "Fimg": {
+    "mean": 0.7884,
+    "seeds": [
+     0.7884
+    ],
+    "ci": [
+     0.7351,
+     0.849
+    ]
+   },
+   "Fimg_plus": {
+    "mean": 0.9572,
+    "seeds": [
+     0.9572
+    ],
+    "ci": [
+     0.93,
+     0.9826
+    ]
+   },
+   "score_only": {
+    "mean": 0.9632,
+    "seeds": [
+     0.9632
+    ],
+    "ci": [
+     0.9368,
+     0.9865
+    ]
+   },
+   "score_raw_auc": {
+    "mean": 0.9642,
+    "seeds": [
+     0.9642
+    ],
+    "ci": [
+     0.9382,
+     0.9873
+    ]
+   },
+   "dAUC_over_F": {
+    "mean": 0.0694,
+    "seeds": [
+     0.0694
+    ],
+    "ci": [
+     0.0367,
+     0.103
+    ]
+   },
+   "dAUC_over_Fimg": {
+    "mean": 0.1688,
+    "seeds": [
+     0.1688
+    ],
+    "ci": [
+     0.1158,
+     0.2206
+    ]
+   },
+   "_n": {
+    "n_X": 123,
+    "n_SAME": 131,
+    "n_cycles": 55
+   },
+   "verdict": "falsified: the network adds information beyond the measured traces"
+  }
+ },
+ "note": "A18 parallel arm (frozen-feature probe), registered with A18; development data only"
+}

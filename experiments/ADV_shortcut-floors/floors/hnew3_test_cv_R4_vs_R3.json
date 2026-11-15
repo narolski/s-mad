@@ -1,0 +1,39 @@
+{
+ "hypothesis": "H-new-3",
+ "contrast": "test_cv_R4_vs_R3",
+ "chroma": {
+  "overall": {
+   "single": 0.491927304624325,
+   "logreg": 0.5260820701186919,
+   "gbt": 0.5386913735917327
+  },
+  "within_D": {
+   "n_rows": 382,
+   "D": "D",
+   "single": 0.49485672299779576,
+   "coverage": 1.0,
+   "logreg": 0.5143277002204262,
+   "gbt": 0.5418074944893461,
+   "pure_D_reference": 0.5847171197648787
+  }
+ },
+ "luma": {
+  "overall": {
+   "single": 0.6421698966585346,
+   "logreg": 0.7176338367917546,
+   "gbt": 0.6777500616759409
+  },
+  "within_D": {
+   "n_rows": 382,
+   "D": "D",
+   "single": 0.6403379867744305,
+   "coverage": 1.0,
+   "logreg": 0.7227038941954446,
+   "gbt": 0.6831741366642174,
+   "pure_D_reference": 0.5847171197648787
+  }
+ },
+ "chroma_within_D_best": 0.5418074944893461,
+ "luma_within_D_best": 0.7227038941954446,
+ "reading": "falsified"
+}

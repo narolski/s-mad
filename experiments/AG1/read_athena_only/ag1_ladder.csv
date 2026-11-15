@@ -1,0 +1,17 @@
+cell,R0>PUB,R0>R1,R0>R2,R0>R4,R1>R2,R2>PUB (AG2),R2>R3,"R2>R3m (mirror, own rung)",R2>R4,R2s>R4 (spread-matched one-person render),R3>R4,R3>RT (noise floor),"R3m>R4 (mirror, own rung)",bridge PUB vs BR,main_A,main_B,side_R3_R4
+mip1/frll/madation_vitb16,0.893,0.5,0.748,0.982,0.748,0.712,0.744,0.752,0.927,,0.789,0.489,0.745,0.207,mixed,reads morphing,identity reading
+mip1/frll/madation_vitl14,0.953,0.5,0.613,0.998,0.613,0.893,0.758,0.852,0.981,,0.874,0.491,0.757,0.235,reads morphing,reads morphing,identity reading
+mip1/frll/selfmad_hrnet_w18__own,1.0,0.5,0.996,1.0,0.996,0.872,0.722,0.707,0.861,,0.693,0.501,0.692,0.607,reads the benchmark,reads morphing,mixed
+mip1/frll/selfmad_hrnet_w18__rel,1.0,0.5,0.974,1.0,0.974,0.925,0.771,0.784,0.92,,0.733,0.5,0.717,0.563,reads the benchmark,reads morphing,mixed
+mip1/primary/madation_vitb16,,,0.888,0.992,,,0.785,0.791,0.881,,0.663,0.523,0.644,,mixed,reads morphing,mixed
+mip1/primary/madation_vitl14,,,0.794,0.988,,,0.811,0.84,0.938,,0.711,0.51,0.658,,mixed,reads morphing,mixed
+mip1/primary/selfmad_hrnet_w18__own,,,0.912,0.983,,,0.718,0.67,0.822,,0.656,0.541,0.685,,reads the benchmark,reads morphing,mixed
+mip1/primary/selfmad_hrnet_w18__rel,,,0.88,0.988,,,0.774,0.717,0.883,,0.659,0.531,0.683,,mixed,reads morphing,mixed
+mip1/feret/madation_vitb16,,,0.849,0.984,,,0.782,0.808,0.881,,0.669,0.501,0.627,,mixed,reads morphing,mixed
+mip1/feret/madation_vitl14,,,0.741,0.977,,,0.772,0.836,0.929,,0.729,0.502,0.654,,mixed,reads morphing,mixed
+mip1/feret/selfmad_hrnet_w18__own,,,0.868,0.971,,,0.742,0.691,0.828,,0.653,0.554,0.682,,reads the benchmark,reads morphing,mixed
+mip1/feret/selfmad_hrnet_w18__rel,,,0.851,0.98,,,0.805,0.737,0.886,,0.64,0.526,0.669,,mixed,reads morphing,mixed
+mip1/frgc/madation_vitb16,,,0.945,1.0,,,0.814,0.782,0.913,,0.674,0.578,0.674,,reads the benchmark,reads morphing,mixed
+mip1/frgc/madation_vitl14,,,0.871,1.0,,,0.887,0.858,0.955,,0.697,0.52,0.673,,mixed,reads morphing,mixed
+mip1/frgc/selfmad_hrnet_w18__own,,,0.978,0.999,,,0.684,0.643,0.813,,0.654,0.529,0.69,,reads the benchmark,reads morphing,mixed
+mip1/frgc/selfmad_hrnet_w18__rel,,,0.921,0.998,,,0.722,0.683,0.874,,0.693,0.511,0.706,,mixed,reads morphing,mixed

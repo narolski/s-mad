@@ -1,0 +1,15 @@
+order,shard,gen,db,persons,inversions,images,rungs,needs,h100_min_raw,est_minutes
+0,AG1_smoke_mip1,mip1,frll,2,6,11,AG3:1 R2:2 R2i:1 R3:2 R3m:2 R4:2 RT:1,,3.5,22
+1,AG1_smoke_mip2,mip2,frll,2,0,8,R2:2 R3:2 R3m:2 R4:2,,1.2,19
+2,AG1_mip1_frll_00,mip1,frll,53,159,480,BR:56 R2:106 R2i:106 R3:53 R3m:53 R4:53 RT:53,,105.4,149
+3,AG1_mip1_frll_01,mip1,frll,49,147,444,BR:52 R2:98 R2i:98 R3:49 R3m:49 R4:49 RT:49,,97.5,139
+4,AG1_mip1_feret_00,mip1,feret,58,174,421,R2:116 R2i:116 R3:58 R3m:58 R4:58 RT:15,,103.2,147
+5,AG1_mip1_feret_01,mip1,feret,42,126,304,R2:84 R2i:84 R3:42 R3m:42 R4:42 RT:10,,74.6,109
+6,AG1_mip1_frgc_00,mip1,frgc,59,177,428,R2:118 R2i:118 R3:59 R3m:59 R4:59 RT:15,,104.9,149
+7,AG1_mip1_frgc_01,mip1,frgc,41,123,297,R2:82 R2i:82 R3:41 R3m:41 R4:41 RT:10,,72.8,107
+8,AG1_mip2_frll_00,mip2,frll,96,0,678,BR:102 R2:192 R3:96 R3m:96 R4:96 RT:96,,105.1,149
+9,AG1_mip2_frll_01,mip2,frll,6,0,42,BR:6 R2:12 R3:6 R3m:6 R4:6 RT:6,,6.5,21
+10,AG1_mip1_feret_ag3_00,mip1,feret,0,0,180,AG3:180,AG1_mip1_feret_00 AG1_mip1_feret_01,21.0,40
+11,AG1_mip1_feret_ag3_01,mip1,feret,0,0,180,AG3:20 AG3T:160,AG1_mip1_feret_00 AG1_mip1_feret_01,21.0,40
+12,AG1_mip1_frgc_ag3_00,mip1,frgc,0,0,180,AG3:180,AG1_mip1_frgc_00 AG1_mip1_frgc_01,21.0,40
+13,AG1_mip1_frgc_ag3_01,mip1,frgc,0,0,180,AG3:20 AG3T:160,AG1_mip1_frgc_00 AG1_mip1_frgc_01,21.0,40

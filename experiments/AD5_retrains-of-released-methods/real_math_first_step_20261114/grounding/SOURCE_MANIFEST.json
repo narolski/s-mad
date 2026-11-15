@@ -1,0 +1,12 @@
+{
+  "archive_sidecar_pin": "94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee",
+  "source_only_members": {
+    "build/madation_src/src/training/trainer.py": "e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d",
+    "build/madation_src/src/config.py": "931f682a0f6cd0e01eb3b13f394f6ee42defd5bd4e03821324b3c97e866232dd",
+    "build/madation_src/src/data/lmdb_dataset.py": "cd5e7d4f8e1e345e6c8916ae4e5a5209dccb6c12cb5b09b74cce96a453865cd6",
+    "build/madation_src/src/finetuning/lora.py": "3ae2f06961023d259ad05973b1a3ae30cf15001c593e74d9daf43e6c90862276",
+    "build/madation_src/src/backbone/model.py": "f5949ac42fc6f63ee1bd85c548f4860bdf5fb89d67c89a2879f0a608bcad005d",
+    "src/AD5/checks/run_with_site.py": "d1d837b2e39f032cb588e6f601690047cc91dd5ad7045d2ddbba04d543943ded"
+  },
+  "weight_data_bodies_read": false
+}

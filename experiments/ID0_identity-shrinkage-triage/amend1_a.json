@@ -1,0 +1,1623 @@
+{
+ "part": "a",
+ "amendment": "prereg.md amendment 1 (11 Nov 18:45)",
+ "B": 2000,
+ "seconds": 29.0,
+ "result": [
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R4 vs host photo H",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.4938,
+   "ci_real": [
+    0.4505,
+    0.5401
+   ],
+   "auc_ideal": 0.4392,
+   "ci_ideal": [
+    0.3976,
+    0.4831
+   ],
+   "realised_share": 0.1012,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R4 vs host photo H",
+   "readout": "virtual head",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.593,
+   "ci_real": [
+    0.5491,
+    0.6332
+   ],
+   "auc_ideal": 0.6422,
+   "ci_ideal": [
+    0.6054,
+    0.678
+   ],
+   "realised_share": 0.6536,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R4 vs host photo H",
+   "readout": "mean-direction projection",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5471,
+   "ci_real": [
+    0.5062,
+    0.5875
+   ],
+   "auc_ideal": 0.614,
+   "ci_ideal": [
+    0.576,
+    0.6529
+   ],
+   "realised_share": 0.4129,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R4 vs R2w",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5031,
+   "ci_real": [
+    0.4595,
+    0.5476
+   ],
+   "auc_ideal": 0.4488,
+   "ci_ideal": [
+    0.4072,
+    0.4929
+   ],
+   "realised_share": -0.0614,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R4 vs R2w",
+   "readout": "virtual head",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5904,
+   "ci_real": [
+    0.5463,
+    0.6308
+   ],
+   "auc_ideal": 0.64,
+   "ci_ideal": [
+    0.6027,
+    0.6759
+   ],
+   "realised_share": 0.6453,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R4 vs R2w",
+   "readout": "mean-direction projection",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5421,
+   "ci_real": [
+    0.5016,
+    0.5816
+   ],
+   "auc_ideal": 0.6076,
+   "ci_ideal": [
+    0.5694,
+    0.6455
+   ],
+   "realised_share": 0.3908,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R4 vs R3",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.498,
+   "ci_real": [
+    0.4551,
+    0.5423
+   ],
+   "auc_ideal": 0.4432,
+   "ci_ideal": [
+    0.4016,
+    0.4863
+   ],
+   "realised_share": 0.0346,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R4 vs R3",
+   "readout": "virtual head",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5575,
+   "ci_real": [
+    0.5139,
+    0.5977
+   ],
+   "auc_ideal": 0.6072,
+   "ci_ideal": [
+    0.5683,
+    0.6434
+   ],
+   "realised_share": 0.5363,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R4 vs R3",
+   "readout": "mean-direction projection",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5337,
+   "ci_real": [
+    0.4936,
+    0.5731
+   ],
+   "auc_ideal": 0.6008,
+   "ci_ideal": [
+    0.5623,
+    0.64
+   ],
+   "realised_share": 0.3347,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 FaceMorpher R4 vs host photo H",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.4958,
+   "ci_real": [
+    0.4532,
+    0.5391
+   ],
+   "auc_ideal": 0.4392,
+   "ci_ideal": [
+    0.3976,
+    0.4831
+   ],
+   "realised_share": 0.0696,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 FaceMorpher R4 vs host photo H",
+   "readout": "virtual head",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5781,
+   "ci_real": [
+    0.5348,
+    0.6189
+   ],
+   "auc_ideal": 0.6422,
+   "ci_ideal": [
+    0.6054,
+    0.678
+   ],
+   "realised_share": 0.5488,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 FaceMorpher R4 vs host photo H",
+   "readout": "mean-direction projection",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5036,
+   "ci_real": [
+    0.4635,
+    0.5435
+   ],
+   "auc_ideal": 0.614,
+   "ci_ideal": [
+    0.576,
+    0.6529
+   ],
+   "realised_share": 0.0315,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 FaceMorpher R4 vs R2w",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5029,
+   "ci_real": [
+    0.4612,
+    0.5459
+   ],
+   "auc_ideal": 0.4461,
+   "ci_ideal": [
+    0.4044,
+    0.4908
+   ],
+   "realised_share": -0.0534,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 FaceMorpher R4 vs R2w",
+   "readout": "virtual head",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.576,
+   "ci_real": [
+    0.532,
+    0.6175
+   ],
+   "auc_ideal": 0.6406,
+   "ci_ideal": [
+    0.6016,
+    0.6766
+   ],
+   "realised_share": 0.5405,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 FaceMorpher R4 vs R2w",
+   "readout": "mean-direction projection",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5135,
+   "ci_real": [
+    0.4744,
+    0.5532
+   ],
+   "auc_ideal": 0.6196,
+   "ci_ideal": [
+    0.5825,
+    0.6569
+   ],
+   "realised_share": 0.1129,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 FaceMorpher R4 vs R3",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5012,
+   "ci_real": [
+    0.4583,
+    0.5441
+   ],
+   "auc_ideal": 0.4442,
+   "ci_ideal": [
+    0.4023,
+    0.4868
+   ],
+   "realised_share": -0.0209,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 FaceMorpher R4 vs R3",
+   "readout": "virtual head",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.552,
+   "ci_real": [
+    0.5098,
+    0.5921
+   ],
+   "auc_ideal": 0.6155,
+   "ci_ideal": [
+    0.5764,
+    0.6513
+   ],
+   "realised_share": 0.4502,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 FaceMorpher R4 vs R3",
+   "readout": "mean-direction projection",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5064,
+   "ci_real": [
+    0.467,
+    0.5468
+   ],
+   "auc_ideal": 0.6163,
+   "ci_ideal": [
+    0.5774,
+    0.6551
+   ],
+   "realised_share": 0.0549,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R3 (same person) vs host photo H",
+   "readout": "ISS",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.4948,
+   "ci_real": [
+    0.4839,
+    0.5057
+   ],
+   "auc_ideal": 0.4792,
+   "ci_ideal": [
+    0.4702,
+    0.4884
+   ],
+   "realised_share": 0.2516,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R3 (same person) vs host photo H",
+   "readout": "virtual head",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.5371,
+   "ci_real": [
+    0.5256,
+    0.5488
+   ],
+   "auc_ideal": 0.5185,
+   "ci_ideal": [
+    0.5105,
+    0.5274
+   ],
+   "realised_share": 2.0019,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R3 (same person) vs host photo H",
+   "readout": "mean-direction projection",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.5142,
+   "ci_real": [
+    0.5056,
+    0.5232
+   ],
+   "auc_ideal": 0.5157,
+   "ci_ideal": [
+    0.5089,
+    0.5233
+   ],
+   "realised_share": 0.9043,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R3 (same person) vs R2w",
+   "readout": "ISS",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.5058,
+   "ci_real": [
+    0.4936,
+    0.517
+   ],
+   "auc_ideal": 0.49,
+   "ci_ideal": [
+    0.4794,
+    0.5003
+   ],
+   "realised_share": -0.579,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R3 (same person) vs R2w",
+   "readout": "virtual head",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.5337,
+   "ci_real": [
+    0.5221,
+    0.5459
+   ],
+   "auc_ideal": 0.5147,
+   "ci_ideal": [
+    0.5051,
+    0.5251
+   ],
+   "realised_share": 2.289,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "AR1 OpenCV R3 (same person) vs R2w",
+   "readout": "mean-direction projection",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.5091,
+   "ci_real": [
+    0.4993,
+    0.519
+   ],
+   "auc_ideal": 0.5113,
+   "ci_ideal": [
+    0.5022,
+    0.5209
+   ],
+   "realised_share": 0.8059,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored B20 vs E",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.571,
+   "ci_real": [
+    0.4874,
+    0.6571
+   ],
+   "auc_ideal": 0.4538,
+   "ci_ideal": [
+    0.3791,
+    0.5351
+   ],
+   "realised_share": -1.5374,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored B20 vs E",
+   "readout": "virtual head",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.6217,
+   "ci_real": [
+    0.5483,
+    0.6939
+   ],
+   "auc_ideal": 0.6905,
+   "ci_ideal": [
+    0.6193,
+    0.761
+   ],
+   "realised_share": 0.6388,
+   "ci_share": [
+    0.3104,
+    0.9736
+   ],
+   "powered": true
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored B20 vs E",
+   "readout": "mean-direction projection",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.5371,
+   "ci_real": [
+    0.4567,
+    0.6155
+   ],
+   "auc_ideal": 0.6301,
+   "ci_ideal": [
+    0.5524,
+    0.7071
+   ],
+   "realised_share": 0.2854,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored B20 vs D20",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.5543,
+   "ci_real": [
+    0.4709,
+    0.6396
+   ],
+   "auc_ideal": 0.4361,
+   "ci_ideal": [
+    0.3593,
+    0.5191
+   ],
+   "realised_share": -0.8504,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored B20 vs D20",
+   "readout": "virtual head",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.5245,
+   "ci_real": [
+    0.4538,
+    0.5941
+   ],
+   "auc_ideal": 0.5936,
+   "ci_ideal": [
+    0.5235,
+    0.6634
+   ],
+   "realised_share": 0.2617,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored B20 vs D20",
+   "readout": "mean-direction projection",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.5191,
+   "ci_real": [
+    0.4361,
+    0.5973
+   ],
+   "auc_ideal": 0.6144,
+   "ci_ideal": [
+    0.5378,
+    0.6895
+   ],
+   "realised_share": 0.1667,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored C20 (same person) vs E",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.5242,
+   "ci_real": [
+    0.4842,
+    0.5637
+   ],
+   "auc_ideal": 0.4846,
+   "ci_ideal": [
+    0.4755,
+    0.491
+   ],
+   "realised_share": -1.5701,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored C20 (same person) vs E",
+   "readout": "virtual head",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.4735,
+   "ci_real": [
+    0.4465,
+    0.4997
+   ],
+   "auc_ideal": 0.5112,
+   "ci_ideal": [
+    0.5073,
+    0.5168
+   ],
+   "realised_share": -2.3547,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored C20 (same person) vs E",
+   "readout": "mean-direction projection",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.4911,
+   "ci_real": [
+    0.4661,
+    0.5164
+   ],
+   "auc_ideal": 0.5067,
+   "ci_ideal": [
+    0.5028,
+    0.512
+   ],
+   "realised_share": -1.3381,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored C20 (same person) vs D20",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.5068,
+   "ci_real": [
+    0.4664,
+    0.5474
+   ],
+   "auc_ideal": 0.4694,
+   "ci_ideal": [
+    0.4474,
+    0.4897
+   ],
+   "realised_share": -0.2217,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored C20 (same person) vs D20",
+   "readout": "virtual head",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.3775,
+   "ci_real": [
+    0.3473,
+    0.4041
+   ],
+   "auc_ideal": 0.4145,
+   "ci_ideal": [
+    0.3966,
+    0.4268
+   ],
+   "realised_share": 1.4323,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "A43 stored C20 (same person) vs D20",
+   "readout": "mean-direction projection",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.4767,
+   "ci_real": [
+    0.4475,
+    0.5047
+   ],
+   "auc_ideal": 0.4897,
+   "ci_ideal": [
+    0.4744,
+    0.5033
+   ],
+   "realised_share": 2.2558,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "H3 StyleGAN3 morph vs h3_bona",
+   "readout": "ISS",
+   "n_pos": 423,
+   "n_neg": 423,
+   "auc_real": 0.5449,
+   "ci_real": [
+    0.5128,
+    0.5781
+   ],
+   "auc_ideal": 0.5849,
+   "ci_ideal": [
+    0.557,
+    0.6154
+   ],
+   "realised_share": 0.5286,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "H3 StyleGAN3 morph vs h3_bona",
+   "readout": "virtual head",
+   "n_pos": 423,
+   "n_neg": 423,
+   "auc_real": 0.5996,
+   "ci_real": [
+    0.5707,
+    0.6276
+   ],
+   "auc_ideal": 0.3226,
+   "ci_ideal": [
+    0.2871,
+    0.3602
+   ],
+   "realised_share": -0.5611,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "H3 StyleGAN3 morph vs h3_bona",
+   "readout": "mean-direction projection",
+   "n_pos": 423,
+   "n_neg": 423,
+   "auc_real": 0.5801,
+   "ci_real": [
+    0.5524,
+    0.6071
+   ],
+   "auc_ideal": 0.4519,
+   "ci_ideal": [
+    0.4238,
+    0.477
+   ],
+   "realised_share": -1.6666,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "H3 StyleGAN3 morph vs a37spread",
+   "readout": "ISS",
+   "n_pos": 423,
+   "n_neg": 423,
+   "auc_real": 0.5526,
+   "ci_real": [
+    0.5228,
+    0.585
+   ],
+   "auc_ideal": 0.5919,
+   "ci_ideal": [
+    0.5615,
+    0.6251
+   ],
+   "realised_share": 0.5724,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "H3 StyleGAN3 morph vs a37spread",
+   "readout": "virtual head",
+   "n_pos": 423,
+   "n_neg": 423,
+   "auc_real": 0.4582,
+   "ci_real": [
+    0.4295,
+    0.4863
+   ],
+   "auc_ideal": 0.2393,
+   "ci_ideal": [
+    0.2071,
+    0.2741
+   ],
+   "realised_share": 0.1604,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "H3 StyleGAN3 morph vs a37spread",
+   "readout": "mean-direction projection",
+   "n_pos": 423,
+   "n_neg": 423,
+   "auc_real": 0.4971,
+   "ci_real": [
+    0.4696,
+    0.5245
+   ],
+   "auc_ideal": 0.3698,
+   "ci_ideal": [
+    0.34,
+    0.3975
+   ],
+   "realised_share": 0.0223,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "published MorDIFF vs rec (a46)",
+   "readout": "ISS",
+   "n_pos": 1000,
+   "n_neg": 204,
+   "auc_real": 0.5424,
+   "ci_real": [
+    0.4918,
+    0.5959
+   ],
+   "auc_ideal": 0.4294,
+   "ci_ideal": [
+    0.3827,
+    0.4742
+   ],
+   "realised_share": -0.6002,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "glint",
+   "contrast": "published MorDIFF vs rec (a46)",
+   "readout": "virtual head",
+   "n_pos": 1000,
+   "n_neg": 204,
+   "auc_real": 0.4889,
+   "ci_real": [
+    0.4396,
+    0.5369
+   ],
+   "auc_ideal": 0.6789,
+   "ci_ideal": [
+    0.6392,
+    0.7192
+   ],
+   "realised_share": -0.0619,
+   "ci_share": [
+    -0.3857,
+    0.1941
+   ],
+   "powered": true
+  },
+  {
+   "arm": "glint",
+   "contrast": "published MorDIFF vs rec (a46)",
+   "readout": "mean-direction projection",
+   "n_pos": 1000,
+   "n_neg": 204,
+   "auc_real": 0.4796,
+   "ci_real": [
+    0.4285,
+    0.5327
+   ],
+   "auc_ideal": 0.581,
+   "ci_ideal": [
+    0.5326,
+    0.6275
+   ],
+   "realised_share": -0.2525,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "clip",
+   "contrast": "AR1 OpenCV R4 vs host photo H",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.391,
+   "ci_real": [
+    0.35,
+    0.4314
+   ],
+   "auc_ideal": 0.8645,
+   "ci_ideal": [
+    0.834,
+    0.8937
+   ],
+   "realised_share": -0.2991,
+   "ci_share": [
+    -0.4197,
+    -0.1805
+   ],
+   "powered": true
+  },
+  {
+   "arm": "clip",
+   "contrast": "AR1 OpenCV R4 vs R2w",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.3639,
+   "ci_real": [
+    0.3233,
+    0.4036
+   ],
+   "auc_ideal": 0.8452,
+   "ci_ideal": [
+    0.8133,
+    0.8759
+   ],
+   "realised_share": -0.3944,
+   "ci_share": [
+    -0.5252,
+    -0.2705
+   ],
+   "powered": true
+  },
+  {
+   "arm": "clip",
+   "contrast": "AR1 OpenCV R4 vs R3",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.3624,
+   "ci_real": [
+    0.3232,
+    0.4019
+   ],
+   "auc_ideal": 0.8493,
+   "ci_ideal": [
+    0.8164,
+    0.8804
+   ],
+   "realised_share": -0.3939,
+   "ci_share": [
+    -0.5208,
+    -0.2743
+   ],
+   "powered": true
+  },
+  {
+   "arm": "clip",
+   "contrast": "AR1 OpenCV R3 (same person) vs host photo H",
+   "readout": "ISS",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.5263,
+   "ci_real": [
+    0.5085,
+    0.5446
+   ],
+   "auc_ideal": 0.6049,
+   "ci_ideal": [
+    0.5926,
+    0.6177
+   ],
+   "realised_share": 0.2508,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "clip",
+   "contrast": "AR1 OpenCV R3 (same person) vs R2w",
+   "readout": "ISS",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.4978,
+   "ci_real": [
+    0.4797,
+    0.5148
+   ],
+   "auc_ideal": 0.5768,
+   "ci_ideal": [
+    0.5645,
+    0.5892
+   ],
+   "realised_share": -0.028,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "clip",
+   "contrast": "A43 stored B20 vs E",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.6347,
+   "ci_real": [
+    0.5552,
+    0.7143
+   ],
+   "auc_ideal": 0.8533,
+   "ci_ideal": [
+    0.8151,
+    0.8961
+   ],
+   "realised_share": 0.3811,
+   "ci_share": [
+    0.1622,
+    0.5819
+   ],
+   "powered": true
+  },
+  {
+   "arm": "clip",
+   "contrast": "A43 stored B20 vs D20",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.6981,
+   "ci_real": [
+    0.6161,
+    0.7754
+   ],
+   "auc_ideal": 0.9179,
+   "ci_ideal": [
+    0.8824,
+    0.9507
+   ],
+   "realised_share": 0.4739,
+   "ci_share": [
+    0.2847,
+    0.6481
+   ],
+   "powered": true
+  },
+  {
+   "arm": "clip",
+   "contrast": "A43 stored C20 (same person) vs E",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.6919,
+   "ci_real": [
+    0.649,
+    0.7378
+   ],
+   "auc_ideal": 0.5468,
+   "ci_ideal": [
+    0.5393,
+    0.5602
+   ],
+   "realised_share": 4.0996,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "clip",
+   "contrast": "A43 stored C20 (same person) vs D20",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.7565,
+   "ci_real": [
+    0.7163,
+    0.8026
+   ],
+   "auc_ideal": 0.5888,
+   "ci_ideal": [
+    0.5461,
+    0.635
+   ],
+   "realised_share": 2.8901,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "clip",
+   "contrast": "published MorDIFF vs rec (a46)",
+   "readout": "ISS",
+   "n_pos": 1000,
+   "n_neg": 204,
+   "auc_real": 0.6188,
+   "ci_real": [
+    0.5618,
+    0.6801
+   ],
+   "auc_ideal": 0.855,
+   "ci_ideal": [
+    0.816,
+    0.897
+   ],
+   "realised_share": 0.3347,
+   "ci_share": [
+    0.1726,
+    0.4987
+   ],
+   "powered": true
+  },
+  {
+   "arm": "dino",
+   "contrast": "AR1 OpenCV R4 vs host photo H",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5351,
+   "ci_real": [
+    0.4887,
+    0.5796
+   ],
+   "auc_ideal": 0.9006,
+   "ci_ideal": [
+    0.8751,
+    0.9248
+   ],
+   "realised_share": 0.0877,
+   "ci_share": [
+    -0.0279,
+    0.1926
+   ],
+   "powered": true
+  },
+  {
+   "arm": "dino",
+   "contrast": "AR1 OpenCV R4 vs R2w",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5328,
+   "ci_real": [
+    0.4864,
+    0.5778
+   ],
+   "auc_ideal": 0.8997,
+   "ci_ideal": [
+    0.8735,
+    0.9236
+   ],
+   "realised_share": 0.082,
+   "ci_share": [
+    -0.0345,
+    0.1882
+   ],
+   "powered": true
+  },
+  {
+   "arm": "dino",
+   "contrast": "AR1 OpenCV R4 vs R3",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.5272,
+   "ci_real": [
+    0.482,
+    0.5699
+   ],
+   "auc_ideal": 0.9052,
+   "ci_ideal": [
+    0.8788,
+    0.9308
+   ],
+   "realised_share": 0.0671,
+   "ci_share": [
+    -0.0455,
+    0.1668
+   ],
+   "powered": true
+  },
+  {
+   "arm": "dino",
+   "contrast": "AR1 OpenCV R3 (same person) vs host photo H",
+   "readout": "ISS",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.509,
+   "ci_real": [
+    0.491,
+    0.5273
+   ],
+   "auc_ideal": 0.6947,
+   "ci_ideal": [
+    0.6782,
+    0.7136
+   ],
+   "realised_share": 0.0461,
+   "ci_share": [
+    -0.0471,
+    0.1325
+   ],
+   "powered": true
+  },
+  {
+   "arm": "dino",
+   "contrast": "AR1 OpenCV R3 (same person) vs R2w",
+   "readout": "ISS",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.5059,
+   "ci_real": [
+    0.4882,
+    0.5236
+   ],
+   "auc_ideal": 0.6924,
+   "ci_ideal": [
+    0.6763,
+    0.7117
+   ],
+   "realised_share": 0.0305,
+   "ci_share": [
+    -0.064,
+    0.1173
+   ],
+   "powered": true
+  },
+  {
+   "arm": "dino",
+   "contrast": "A43 stored B20 vs E",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.5457,
+   "ci_real": [
+    0.4394,
+    0.6464
+   ],
+   "auc_ideal": 0.7884,
+   "ci_ideal": [
+    0.7192,
+    0.8516
+   ],
+   "realised_share": 0.1584,
+   "ci_share": [
+    -0.2633,
+    0.4412
+   ],
+   "powered": true
+  },
+  {
+   "arm": "dino",
+   "contrast": "A43 stored B20 vs D20",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.6108,
+   "ci_real": [
+    0.522,
+    0.6984
+   ],
+   "auc_ideal": 0.8158,
+   "ci_ideal": [
+    0.7585,
+    0.8712
+   ],
+   "realised_share": 0.3508,
+   "ci_share": [
+    0.0785,
+    0.5684
+   ],
+   "powered": true
+  },
+  {
+   "arm": "dino",
+   "contrast": "A43 stored C20 (same person) vs E",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.5645,
+   "ci_real": [
+    0.5224,
+    0.6103
+   ],
+   "auc_ideal": 0.5549,
+   "ci_ideal": [
+    0.5448,
+    0.569
+   ],
+   "realised_share": 1.1751,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "dino",
+   "contrast": "A43 stored C20 (same person) vs D20",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.627,
+   "ci_real": [
+    0.5898,
+    0.6697
+   ],
+   "auc_ideal": 0.6212,
+   "ci_ideal": [
+    0.584,
+    0.6608
+   ],
+   "realised_share": 1.048,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "diffae",
+   "contrast": "AR1 OpenCV R4 vs host photo H",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.6951,
+   "ci_real": [
+    0.6591,
+    0.7322
+   ],
+   "auc_ideal": 0.8946,
+   "ci_ideal": [
+    0.8699,
+    0.9183
+   ],
+   "realised_share": 0.4945,
+   "ci_share": [
+    0.4181,
+    0.566
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "AR1 OpenCV R4 vs R2w",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.6921,
+   "ci_real": [
+    0.6566,
+    0.7289
+   ],
+   "auc_ideal": 0.8948,
+   "ci_ideal": [
+    0.8697,
+    0.9182
+   ],
+   "realised_share": 0.4866,
+   "ci_share": [
+    0.4096,
+    0.5597
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "AR1 OpenCV R4 vs R3",
+   "readout": "ISS",
+   "n_pos": 520,
+   "n_neg": 528,
+   "auc_real": 0.6761,
+   "ci_real": [
+    0.6375,
+    0.7148
+   ],
+   "auc_ideal": 0.8983,
+   "ci_ideal": [
+    0.871,
+    0.9233
+   ],
+   "realised_share": 0.4422,
+   "ci_share": [
+    0.3606,
+    0.5198
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "AR1 OpenCV R3 (same person) vs host photo H",
+   "readout": "ISS",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.5427,
+   "ci_real": [
+    0.5231,
+    0.5627
+   ],
+   "auc_ideal": 0.7209,
+   "ci_ideal": [
+    0.7021,
+    0.7399
+   ],
+   "realised_share": 0.1934,
+   "ci_share": [
+    0.1084,
+    0.2669
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "AR1 OpenCV R3 (same person) vs R2w",
+   "readout": "ISS",
+   "n_pos": 528,
+   "n_neg": 528,
+   "auc_real": 0.537,
+   "ci_real": [
+    0.518,
+    0.5553
+   ],
+   "auc_ideal": 0.7186,
+   "ci_ideal": [
+    0.7005,
+    0.7375
+   ],
+   "realised_share": 0.1691,
+   "ci_share": [
+    0.0864,
+    0.2404
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "A43 stored B20 vs E",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.3242,
+   "ci_real": [
+    0.2509,
+    0.3987
+   ],
+   "auc_ideal": 0.6852,
+   "ci_ideal": [
+    0.6327,
+    0.7376
+   ],
+   "realised_share": -0.949,
+   "ci_share": [
+    -1.6659,
+    -0.4762
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "A43 stored B20 vs D20",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.4615,
+   "ci_real": [
+    0.3848,
+    0.5338
+   ],
+   "auc_ideal": 0.8102,
+   "ci_ideal": [
+    0.7643,
+    0.8552
+   ],
+   "realised_share": -0.1241,
+   "ci_share": [
+    -0.3859,
+    0.1044
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "A43 stored C20 (same person) vs E",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.4777,
+   "ci_real": [
+    0.4314,
+    0.5213
+   ],
+   "auc_ideal": 0.5709,
+   "ci_ideal": [
+    0.5577,
+    0.5885
+   ],
+   "realised_share": -0.3137,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "diffae",
+   "contrast": "A43 stored C20 (same person) vs D20",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.6054,
+   "ci_real": [
+    0.558,
+    0.6559
+   ],
+   "auc_ideal": 0.7074,
+   "ci_ideal": [
+    0.6678,
+    0.7482
+   ],
+   "realised_share": 0.5082,
+   "ci_share": [
+    0.2891,
+    0.7243
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "DiffAE-native B20 vs a256",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.6869,
+   "ci_real": [
+    0.6118,
+    0.7569
+   ],
+   "auc_ideal": 0.8334,
+   "ci_ideal": [
+    0.7851,
+    0.8789
+   ],
+   "realised_share": 0.5606,
+   "ci_share": [
+    0.3467,
+    0.7358
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "DiffAE-native B20 vs D20",
+   "readout": "ISS",
+   "n_pos": 200,
+   "n_neg": 204,
+   "auc_real": 0.6881,
+   "ci_real": [
+    0.6263,
+    0.7491
+   ],
+   "auc_ideal": 0.8248,
+   "ci_ideal": [
+    0.7736,
+    0.8778
+   ],
+   "realised_share": 0.5793,
+   "ci_share": [
+    0.4144,
+    0.7286
+   ],
+   "powered": true
+  },
+  {
+   "arm": "diffae",
+   "contrast": "DiffAE-native C20 (same person) vs a256",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.4424,
+   "ci_real": [
+    0.3995,
+    0.4821
+   ],
+   "auc_ideal": 0.5328,
+   "ci_ideal": [
+    0.5282,
+    0.5425
+   ],
+   "realised_share": -1.7566,
+   "ci_share": null,
+   "powered": false
+  },
+  {
+   "arm": "diffae",
+   "contrast": "DiffAE-native C20 (same person) vs D20",
+   "readout": "ISS",
+   "n_pos": 102,
+   "n_neg": 204,
+   "auc_real": 0.445,
+   "ci_real": [
+    0.4142,
+    0.4754
+   ],
+   "auc_ideal": 0.5359,
+   "ci_ideal": [
+    0.5019,
+    0.5689
+   ],
+   "realised_share": -1.5328,
+   "ci_share": null,
+   "powered": false
+  }
+ ]
+}

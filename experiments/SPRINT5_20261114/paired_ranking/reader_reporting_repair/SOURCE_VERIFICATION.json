@@ -1,0 +1,39 @@
+{
+  "paired_ranking_reader": {
+    "manifest_sha256": "02c7401529a8ca8b2a7af220f7ef36f8cbd8a71ffc50052b0a52f6e2606d1b6c",
+    "entries": {
+      "admit.py": "d93f9b2791012fb51b29e224da33ee7a7a9de364f951a7597544c692afc172ec",
+      "collect_metadata.py": "5486022e9f5f6f1ffaf7a505728fda22a1a66e0314359c6cf7e936604a2f3125",
+      "data.py": "89eee250744410bae936e6f8cc9f1e2979a2fff0559415c107c2b4e30a22b5fc",
+      "journal.py": "a06a9d9f74fb8b394c2d00938d4459d0c3a18e827108063ea73aa29cf7af2e65",
+      "metadata_only_check.py": "3558473d00bb62e8b37ec47d59778e506c1b25175e1ec44e6977e9b612387189",
+      "ranking_statistics.py": "e3a5d8eb5b15c28aa0bf3f3495daf970126b52827b35230123553182ae028d8a",
+      "read.py": "492dcf7a19d705cda89d5a2dec492e3c13cdd56188acc36d9f299729e240923a",
+      "test_synthetic.py": "48a4dccdb2f12a7333c0bb69bd0580ec85b45614008edd38449a5c7cb28a834c",
+      "README.md": "85ca61264bb4892bc93e5fcf411e988146e94f85d9e9431fdd5ab5ddf7a0ef15",
+      "EXPECTED_PLANS.json": "f7db5acb7df89ac5ad6c4de4f1f1a00295fab7ffd120bb98684a250c6ec7630c",
+      "SUPPORT_POLICY.json": "b63206fdee0af9dc15c814cc15fef4dbbe9bb6b42d75efed94b308629208aab7"
+    }
+  },
+  "paired_ranking_reader_v2": {
+    "manifest_sha256": "93b2ff226ee337fe3a486e0077be0a774a5229ce28ada45b46e41d6ed3ef42f4",
+    "entries": {
+      "EXPECTED_PLANS.json": "f7db5acb7df89ac5ad6c4de4f1f1a00295fab7ffd120bb98684a250c6ec7630c",
+      "README.md": "65db1454c9aed58338b72077e79d7bc9f6255c6b3b37099fce580298edeed4aa",
+      "SUPPORT_POLICY.json": "b63206fdee0af9dc15c814cc15fef4dbbe9bb6b42d75efed94b308629208aab7",
+      "__init__.py": "445189d026b11d629bdbfe12d55c7bda43d2ae9c4c558b29a9e4954f146eca2d",
+      "admit.py": "d93f9b2791012fb51b29e224da33ee7a7a9de364f951a7597544c692afc172ec",
+      "collect_metadata.py": "37fff74a6847f8216cabcbef23d7081cfa54e381390df99c1881175d59949bb2",
+      "data.py": "7b910e922b99b2a5225361fdb8a9a2fc9ec7004a76e2ae7721fd981f04793b4d",
+      "journal.py": "a06a9d9f74fb8b394c2d00938d4459d0c3a18e827108063ea73aa29cf7af2e65",
+      "metadata_only_check.py": "5fa6996a092c6b037c7cbdbe287d528e774fb420896e0b6eb420fa21e73ddcab",
+      "ranking_statistics.py": "4e93a99cdb643eabef37f56bf70a770a8dec22f1a32fe6a8de1c5b1f7e81dd5e",
+      "read.py": "f78fd95e241264b3e2fc031c10537fb0ca9880539c283b439b3ebc31818adc91",
+      "reporting.py": "e1a3d13621c909ffb624451e8b0a055bda0d18e9230d591b9c6b42b5f7688a02",
+      "test_reporting.py": "b90851ade7709d8449e35003d8afca50a0bb7a65c5bbe4d8bd1add45f55066f2",
+      "test_synthetic.py": "7e95c3cf6d303137c1ae375bb910fec9fa044f2036cb59fb92eec8946fe2ca43"
+    }
+  },
+  "observed_utc": "2026-11-14T15:27:44.169311+00:00",
+  "scope": "source files only; no candidates or journals"
+}

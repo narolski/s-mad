@@ -1,0 +1,20 @@
+{
+  "decision": "GO_METADATA_COLLECTION_ONLY",
+  "root_authorized": true,
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "independent_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/full15_metadata_packet_20261114/INDEPENDENT_OPERATIONAL_REVIEW_20261114.md",
+  "independent_review_sha256": "c85710a0314b59b1b3e50e8592df613219e88bd8a18e859de375ab1fb19ccb10",
+  "binding_sha256": "519546ef7002930f620610f01deb0cc4e8889acf819b829a80c05f95fff6e923",
+  "reader_sums_sha256": "93b2ff226ee337fe3a486e0077be0a774a5229ce28ada45b46e41d6ed3ef42f4",
+  "archive_roster_sha256": "09393d4e809eeb9a9c217dc7af66b54b2cabd09f981dd73309e4e28d5fa3c9c0",
+  "output": "/mnt/t7/smad_next/SPRINT5_1/metadata_collection_full15_v2_20261114_v1",
+  "scientific_read": "HOLD",
+  "scientific_claim": "NOT_CREATED",
+  "baseline_auxiliary": "UNCHANGED",
+  "camera_calibration": "UNCHANGED_PREFIT127_OF132_STRICT_GT",
+  "archive_members_opened": false,
+  "implementation": "REUSE_EXACT_ACCEPTED_reader_v2_collect_metadata.py",
+  "all15_required": true,
+  "released_at": "2026-11-14T20:38:28.589874+00:00"
+}

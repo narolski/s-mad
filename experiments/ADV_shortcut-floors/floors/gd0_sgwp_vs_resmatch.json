@@ -1,0 +1,131 @@
+{
+ "n_pos": 1000,
+ "n_neg": 2000,
+ "n_components": 3000,
+ "n_folds": 5,
+ "insample_best_single": 0.876296,
+ "insample_best_single_stat": "F27:b3_.125-.25",
+ "insample_best_single_f27": 0.876296,
+ "insample_best_single_f27_stat": "F27:b3_.125-.25",
+ "single": {
+  "auc": 0.87624775,
+  "eer": 0.193,
+  "ci": [
+   0.8626482594790266,
+   0.8886806987529773
+  ],
+  "chosen_per_fold": [
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25"
+  ]
+ },
+ "logreg": {
+  "auc": 0.964141,
+  "eer": 0.09425,
+  "ci": [
+   0.9578067907321376,
+   0.9698487081292162
+  ]
+ },
+ "gbt": {
+  "auc": 0.9798565,
+  "eer": 0.073,
+  "ci": [
+   0.9759282967515432,
+   0.983384070894174
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.940837,
+  "ci": [
+   0.9326126261803063,
+   0.9484075642251724
+  ]
+ },
+ "floor": {
+  "model": "gbt",
+  "auc": 0.9798565,
+  "eer": 0.073,
+  "ci": [
+   0.9759282967515432,
+   0.983384070894174
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.94893,
+   "logreg": 0.940837
+  },
+  "BORDER": {
+   "gbt": 0.63074925,
+   "logreg": 0.614371
+  },
+  "RES": {
+   "gbt": 0.78009775,
+   "logreg": 0.7457535
+  },
+  "STORE": {
+   "gbt": 0.85224425,
+   "logreg": 0.841707
+  },
+  "RENDER": {
+   "gbt": 0.9054545,
+   "logreg": 0.798705
+  },
+  "BLEND": {
+   "gbt": 0.84573,
+   "logreg": 0.8297885
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.9630585,
+  "BORDER": 0.9792025,
+  "RES": 0.980137,
+  "STORE": 0.97947,
+  "RENDER": 0.953304,
+  "BLEND": 0.9790855
+ },
+ "contrast": "gd0_sgwp_vs_resmatch",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "gbt",
+  "auc": 0.979681,
+  "eer": 0.07,
+  "ci": [
+   0.9754063715945714,
+   0.9832534888683929
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.9546505,
+  "eer": 0.113,
+  "ci": [
+   0.9479338349055445,
+   0.9616673232545471
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "GD",
+  "positive": {
+   "fam": "gd0",
+   "rung": "stylegan_wplus_orig"
+  },
+  "negative": {
+   "fam": "gd0",
+   "rung": "stylegan_wplus_resmatch"
+  },
+  "note": "GX1 transfer read"
+ }
+}

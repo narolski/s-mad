@@ -1,0 +1,69 @@
+{
+  "scope": "metadata only; no score/result/checkpoint read",
+  "manifests": {
+    "dev": {
+      "path": "/mnt/t7/smad_next/AB1/overlay_tree/pn1/data/manifests/ab1_eval.csv",
+      "sha256": "93a5ba234f91e57951829c5536fabbe0f792ee4ad0a293f074aaca72f7465bd5",
+      "rows": 21277,
+      "families": {
+        "af0": 1339,
+        "ladder": 6093,
+        "splice": 4365,
+        "ffhq": 5000,
+        "ffhq_lcomb": 3000,
+        "ms1ffhq": 1480
+      }
+    },
+    "tt1": {
+      "path": "/mnt/t7/smad_next/TT1/pack_tree/tt1/data/manifests/tt1_score.csv",
+      "sha256": "c0055b51467cf8d001d56cbc4689706d68f0bf35c64066b1ba49fada5cb45761",
+      "rows": 34411,
+      "families": {
+        "gate": 3417,
+        "tt1": 30994
+      }
+    },
+    "meds": {
+      "path": "/mnt/t7/smad_next/TT1/meds/pack_tree/tt1m/data/manifests/meds_score.csv",
+      "sha256": "9093d5d5425e1d031f5f940e15321a6371cb0fe6a5d2014aabc404ba4543415a",
+      "rows": 1018,
+      "families": {
+        "meds": 1018
+      }
+    },
+    "gd": {
+      "path": "/mnt/t7/smad_next/PR1/pr1_gd_tree/pr1g/data/manifests/pr1_gd.csv",
+      "sha256": "3577a91351131b104457424054c29ca3c6f3fc59666e9204598e45e608e15157",
+      "rows": 11042,
+      "families": {
+        "gd0": 9000,
+        "gd1": 1146,
+        "gd2": 896
+      }
+    }
+  },
+  "primary": {
+    "rows": 200,
+    "hosts": 100,
+    "ids_sha256": "557fa4b04e51b4977a1f18847eb86f404bdc1f9697a910f38de3951d7b3e6672"
+  },
+  "seed_audit": {
+    "proposed": [
+      501,
+      502,
+      503,
+      504,
+      505
+    ],
+    "protected_next": [
+      413,
+      414,
+      415,
+      416,
+      417
+    ],
+    "prior_metadata_hits": [],
+    "status": "NO_PRIOR_ALLOCATION_FOUND_IN_SCOPED_METADATA",
+    "limit": "No universal scheduler/history claim; lead must cross-check concurrent allocations and bind allocation before production."
+  }
+}

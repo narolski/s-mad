@@ -1,0 +1,258 @@
+[
+ {
+  "family": "amsl",
+  "stratum": "neutral-neutral",
+  "n": 2175,
+  "n_self_pairs_excluded": 0,
+  "delta_median": 0.9618277006960538,
+  "delta_iqr": [
+   0.9084646655222723,
+   1.012254689535561
+  ],
+  "delta_vs_AR1_pearson": 0.9757373236488233,
+  "oracle_source": null,
+  "rho_oracle": null,
+  "rho_oracle_ci95": [
+   null,
+   null
+  ],
+  "power": "no power (no oracle embeddings)"
+ },
+ {
+  "family": "facemorpher",
+  "stratum": "neutral-neutral",
+  "n": 1219,
+  "n_self_pairs_excluded": 3,
+  "delta_median": 0.9633201215079547,
+  "delta_iqr": [
+   0.9117765463286838,
+   1.014711766291163
+  ],
+  "delta_vs_AR1_pearson": 0.9752001287901239,
+  "oracle_source": null,
+  "rho_oracle": null,
+  "rho_oracle_ci95": [
+   null,
+   null
+  ],
+  "power": "no power (no oracle embeddings)"
+ },
+ {
+  "family": "opencv",
+  "stratum": "neutral-neutral",
+  "n": 1219,
+  "n_self_pairs_excluded": 2,
+  "delta_median": 0.9633201215079547,
+  "delta_iqr": [
+   0.9117765463286838,
+   1.014711766291163
+  ],
+  "delta_vs_AR1_pearson": 0.9752001287901239,
+  "oracle_source": null,
+  "rho_oracle": null,
+  "rho_oracle_ci95": [
+   null,
+   null
+  ],
+  "power": "no power (no oracle embeddings)"
+ },
+ {
+  "family": "stylegan",
+  "stratum": "neutral-neutral",
+  "n": 1219,
+  "n_self_pairs_excluded": 3,
+  "delta_median": 0.9633201215079547,
+  "delta_iqr": [
+   0.9117765463286838,
+   1.014711766291163
+  ],
+  "delta_vs_AR1_pearson": 0.9752001287901239,
+  "oracle_source": null,
+  "rho_oracle": null,
+  "rho_oracle_ci95": [
+   null,
+   null
+  ],
+  "power": "no power (no oracle embeddings)"
+ },
+ {
+  "family": "webmorph",
+  "stratum": "neutral-neutral",
+  "n": 1219,
+  "n_self_pairs_excluded": 2,
+  "delta_median": 0.9633201215079547,
+  "delta_iqr": [
+   0.9117765463286838,
+   1.014711766291163
+  ],
+  "delta_vs_AR1_pearson": 0.9752001287901239,
+  "oracle_source": null,
+  "rho_oracle": null,
+  "rho_oracle_ci95": [
+   null,
+   null
+  ],
+  "power": "no power (no oracle embeddings)"
+ },
+ {
+  "family": "mordiff",
+  "stratum": "neutral-neutral",
+  "n": 500,
+  "n_self_pairs_excluded": 0,
+  "delta_median": 0.8838283224611068,
+  "delta_iqr": [
+   0.8426352640394124,
+   0.9211878686768838
+  ],
+  "delta_vs_AR1_pearson": 0.9530922138043848,
+  "oracle_source": "a46 pub_mordiff",
+  "rho_oracle": 0.5221348565394262,
+  "rho_oracle_ci95": [
+   0.41091733911926326,
+   0.613707181503401
+  ],
+  "power": "power"
+ },
+ {
+  "family": "mordiff",
+  "stratum": "smiling-smiling",
+  "n": 500,
+  "n_self_pairs_excluded": 0,
+  "delta_median": 0.8890851331630092,
+  "delta_iqr": [
+   0.8517204737004285,
+   0.9269421943147036
+  ],
+  "delta_vs_AR1_pearson": 0.9513071535625012,
+  "oracle_source": "a46 pub_mordiff",
+  "rho_oracle": 0.4840200160800643,
+  "rho_oracle_ci95": [
+   0.36493689967431986,
+   0.5913433017362187
+  ],
+  "power": "power"
+ },
+ {
+  "family": "dim_a",
+  "stratum": "neutral-neutral",
+  "n": 500,
+  "n_self_pairs_excluded": 0,
+  "delta_median": 0.8838283224611068,
+  "delta_iqr": [
+   0.8426352640394124,
+   0.9211878686768838
+  ],
+  "delta_vs_AR1_pearson": 0.953092213804385,
+  "secondary_oracle_a41_dim_a_subset": {
+   "n": 100,
+   "rho": 0.5791179117911791,
+   "ci95": [
+    0.30407653276326024,
+    0.7399435267709289
+   ],
+   "power_at_0.3": true
+  },
+  "oracle_source": null,
+  "rho_oracle": null,
+  "rho_oracle_ci95": [
+   null,
+   null
+  ],
+  "power": "no power (no oracle embeddings)"
+ },
+ {
+  "family": "dim_c",
+  "stratum": "neutral-neutral",
+  "n": 500,
+  "n_self_pairs_excluded": 0,
+  "delta_median": 0.8838283224611068,
+  "delta_iqr": [
+   0.8426352640394124,
+   0.9211878686768838
+  ],
+  "delta_vs_AR1_pearson": 0.953092213804385,
+  "oracle_source": "a46 pub_dim_c",
+  "rho_oracle": 0.5147899631598526,
+  "rho_oracle_ci95": [
+   0.3932228136868248,
+   0.6156354106218869
+  ],
+  "power": "power"
+ },
+ {
+  "family": "fast_dim",
+  "stratum": "neutral-neutral",
+  "n": 500,
+  "n_self_pairs_excluded": 0,
+  "delta_median": 0.8838283224611068,
+  "delta_iqr": [
+   0.8426352640394124,
+   0.9211878686768838
+  ],
+  "delta_vs_AR1_pearson": 0.953092213804385,
+  "oracle_source": null,
+  "rho_oracle": null,
+  "rho_oracle_ci95": [
+   null,
+   null
+  ],
+  "power": "no power (no oracle embeddings)"
+ },
+ {
+  "family": "fast_dim_ode",
+  "stratum": "neutral-neutral",
+  "n": 499,
+  "n_self_pairs_excluded": 0,
+  "delta_median": 0.88401116571665,
+  "delta_iqr": [
+   0.8426616407712035,
+   0.9214516595434339
+  ],
+  "delta_vs_AR1_pearson": 0.9530695958005501,
+  "oracle_source": null,
+  "rho_oracle": null,
+  "rho_oracle_ci95": [
+   null,
+   null
+  ],
+  "power": "no power (no oracle embeddings)"
+ },
+ {
+  "family": "greedy_dim",
+  "stratum": "neutral-neutral",
+  "n": 500,
+  "n_self_pairs_excluded": 0,
+  "delta_median": 0.8838283224611068,
+  "delta_iqr": [
+   0.8426352640394124,
+   0.9211878686768838
+  ],
+  "delta_vs_AR1_pearson": 0.953092213804385,
+  "oracle_source": "a46 pub_greedy_dim",
+  "rho_oracle": 0.627816399265597,
+  "rho_oracle_ci95": [
+   0.5246506243820905,
+   0.7059819449737398
+  ],
+  "power": "power"
+ },
+ {
+  "family": "greedy_dim_s",
+  "stratum": "neutral-neutral",
+  "n": 500,
+  "n_self_pairs_excluded": 0,
+  "delta_median": 0.8838283224611068,
+  "delta_iqr": [
+   0.8426352640394124,
+   0.9211878686768838
+  ],
+  "delta_vs_AR1_pearson": 0.953092213804385,
+  "oracle_source": "a46 pub_greedy_dim_s",
+  "rho_oracle": 0.5322272809091235,
+  "rho_oracle_ci95": [
+   0.4132419277271438,
+   0.6270306868413854
+  ],
+  "power": "power"
+ }
+]

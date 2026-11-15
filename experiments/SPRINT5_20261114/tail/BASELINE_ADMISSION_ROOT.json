@@ -1,0 +1,16 @@
+{
+  "decision": "ADMIT_TRAIN_ONLY_CONSTANTS",
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "archive_sha256": "dfa98a01f4273d6b1161ffd1321865adbff8d2fd445eafdcb1cc80e1835c1d62",
+  "reference_sha256": "5d1c7d0ebc4efa558d432011d5c45a87b93f95836fe161c1e2157b3fc469b5db",
+  "status": "exit_status=0\njob=6321187\n",
+  "camera_identity_counts": {
+    "feret/native": 467,
+    "feret/s61": 220,
+    "frgc/native": 170,
+    "frgc/s61": 22
+  },
+  "independently_recomputed": "weighted95pctanchor,all4eta90pct,andall4positivefamilymeans agree1e-12; all5535trainingrowsfinite/allowlisted; strictreferenceand21277ownfitbytegatePASS",
+  "scientific_dev_scores_read": false
+}

@@ -1,0 +1,25 @@
+/home/narolski/smad-next/src/ME1/me1_read.py:76: RuntimeWarning: divide by zero encountered in log
+  ech = {k: np.log(num(f"{k}_echo_ratio")) for k in rungs}
+/home/narolski/smad-next/src/BD1/bd1_read.py:38: RuntimeWarning: invalid value encountered in scalar divide
+  return float((r.sum() - len(p) * (len(p) + 1) / 2) / (len(p) * len(n)))
+Traceback (most recent call last):
+  File "/home/narolski/smad-next/src/ME1/me1_read.py", line 267, in <module>
+    main()
+  File "/home/narolski/smad-next/src/ME1/me1_read.py", line 155, in main
+    g = cfgain(b4, b3, O4[:, None], O3[:, None], idx)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/narolski/smad-next/src/ME1/me1_read.py", line 112, in cfgain
+    a0 = auc(*cf_scores(b4[idx], b3[idx], cp, SEED))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/narolski/smad-next/src/TB1/tb1_amend2.py", line 75, in cf_scores
+    s[te] = m.decision_function((X[te] - mu) / sd)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/narolski/mambamorph-code/.venv-spark/lib/python3.12/site-packages/sklearn/linear_model/_base.py", line 389, in decision_function
+    X = validate_data(self, X, accept_sparse="csr", reset=False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/narolski/mambamorph-code/.venv-spark/lib/python3.12/site-packages/sklearn/utils/validation.py", line 3038, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/narolski/mambamorph-code/.venv-spark/lib/python3.12/site-packages/sklearn/utils/validation.py", line 1110, in check_array
+    raise ValueError(
+ValueError: Found array with 0 sample(s) (shape=(0, 3)) while a minimum of 1 is required by LogisticRegression.

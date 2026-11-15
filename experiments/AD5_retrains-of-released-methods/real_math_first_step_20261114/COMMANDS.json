@@ -1,0 +1,27 @@
+{
+  "safe_cpu_tests": [
+    "python3",
+    "/home/narolski/smad-next/src/recovery_20261114/ad5_real_math_step_v1/test_cpu.py"
+  ],
+  "source_stage": "Rootonly existinglockedtransport copy exactcommittedsource to /lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/ad5_real_math_step_v1",
+  "native_verify_after_staging": "cd /lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/ad5_real_math_step_v1 && sha256sum -c SHA256SUMS",
+  "dispatch_setup": "After OTHER independent source/launcherreviews and freshnativecapacitycheck, create /lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/dispatch/ad5_real_math_step_v1_20261114; stage exactPREREG/source_review/launcher_review/ownedcommit/siteproof and NEW root ROOT_RELEASE.json; neveruseunsignedproposal.",
+  "native_launch_after_root_release_argv": [
+    "tmux",
+    "new-session",
+    "-d",
+    "-s",
+    "ad5-real-math-step-v1",
+    "python3 -I /lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/ad5_real_math_step_v1/launch.py"
+  ],
+  "resources": {
+    "partition": "lem-gpu-interactive",
+    "cpu": 8,
+    "host_memory": "120G",
+    "gpu": "hopper:1",
+    "local_request": "150G",
+    "time": "00:15:00",
+    "real_pty": true,
+    "capacity_guaranteed": false
+  }
+}

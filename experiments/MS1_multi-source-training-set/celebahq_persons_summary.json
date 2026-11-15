@@ -1,0 +1,31 @@
+{
+ "threshold": 0.4,
+ "aligned_with_embedding": 22806,
+ "components": 5664,
+ "largest_component": 137,
+ "dropped_images": 12908,
+ "dropped_persons": 2444,
+ "hits_by_reference": {
+  "casia": 10988,
+  "cfd": 0,
+  "ffhq": 101,
+  "frgcferet": 4,
+  "kdef": 0,
+  "tt1": 1287
+ },
+ "kept_images": 9898,
+ "kept_persons": 3220,
+ "kept_persons_with_2plus": 1814,
+ "kept_component_size_hist": {
+  "1": 1406,
+  "2": 554,
+  "3": 370,
+  "4": 227,
+  "5": 171,
+  "6": 117,
+  "7": 95,
+  "8": 71,
+  "9": 55,
+  "10": 33
+ }
+}

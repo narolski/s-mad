@@ -1,0 +1,168 @@
+{
+  "schema": "AB1FMSUPP-v1",
+  "models": [
+    {
+      "name": "AB1FM_SbFM_s408",
+      "seed": 408,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1FM/AB1FM_SbFM_s408.tar",
+      "sha256": "c5158241115f2ae0dd382a2a83126900db9f431bb5e582a136b14716371e1b54",
+      "gate_manifest": "ab1x_eval.csv",
+      "gate_rows": 24859
+    },
+    {
+      "name": "AB1_Sb_s408",
+      "seed": 408,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar",
+      "sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+      "gate_manifest": "ab1_eval.csv",
+      "gate_rows": 21277
+    },
+    {
+      "name": "AB1FM_SbFM_s409",
+      "seed": 409,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1FM/AB1FM_SbFM_s409.tar",
+      "sha256": "90d4762a97d15386332175f6cb14301ccde3147e7f88ef3742b2d2c1ec22a91f",
+      "gate_manifest": "ab1x_eval.csv",
+      "gate_rows": 24859
+    },
+    {
+      "name": "AB1_Sb_s409",
+      "seed": 409,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s409.tar",
+      "sha256": "dd575673e437b2ad34aa50e9f2785ee2c17a1b89b424b2324b4beb6ae5f32352",
+      "gate_manifest": "ab1_eval.csv",
+      "gate_rows": 21277
+    },
+    {
+      "name": "AB1FM_SbFM_s410",
+      "seed": 410,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1FM/AB1FM_SbFM_s410.tar",
+      "sha256": "dd0d76fbfcbbab1493e38cf75a73594fa33562cec2095233092a759b4ffc03e4",
+      "gate_manifest": "ab1x_eval.csv",
+      "gate_rows": 24859
+    },
+    {
+      "name": "AB1_Sb_s410",
+      "seed": 410,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s410.tar",
+      "sha256": "40b47155a7a1ca1a13bc9ae101b135b3d0730d70d968af6e7ad235453ca96875",
+      "gate_manifest": "ab1_eval.csv",
+      "gate_rows": 21277
+    },
+    {
+      "name": "AB1FM_SbFM_s411",
+      "seed": 411,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1FM/AB1FM_SbFM_s411.tar",
+      "sha256": "208bd6128c13fe6171f83dfb969223fbd0d3d31a3fe0c455e9eb8cf02d14077c",
+      "gate_manifest": "ab1x_eval.csv",
+      "gate_rows": 24859
+    },
+    {
+      "name": "AB1_Sb_s411",
+      "seed": 411,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s411.tar",
+      "sha256": "764a4e5e6a5692cb974a15957cf55ac88d475a519381d8ef827f932791144aa6",
+      "gate_manifest": "ab1_eval.csv",
+      "gate_rows": 21277
+    },
+    {
+      "name": "AB1FM_SbFM_s412",
+      "seed": 412,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1FM/AB1FM_SbFM_s412.tar",
+      "sha256": "5cd577bc6f9021a666d3e768dd5179e0528d24e0530c98f2c4a0b3c8f7550ecd",
+      "gate_manifest": "ab1x_eval.csv",
+      "gate_rows": 24859
+    },
+    {
+      "name": "AB1_Sb_s412",
+      "seed": 412,
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s412.tar",
+      "sha256": "c1e0f081194ffb46395e896bd872f509a930967b8ed5da101823d95659070c84",
+      "gate_manifest": "ab1_eval.csv",
+      "gate_rows": 21277
+    }
+  ],
+  "packs": [
+    {
+      "name": "fs",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/pn1_pack_fs.tar",
+      "sha256": "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004",
+      "sums": "pn1/SHA256SUMS"
+    },
+    {
+      "name": "ab1",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/AB1/ab1_overlay_v2.tar",
+      "sha256": "171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149",
+      "sums": "pn1/AB1SUMS"
+    },
+    {
+      "name": "fm",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/AB1/ab1fm_overlay_v2.tar",
+      "sha256": "e554b84f74e5de8791fddc168b99a7c46376ee48ab7902baf358ecbe668d8e47",
+      "sums": "pn1/AB1FMSUMS"
+    },
+    {
+      "name": "tt1",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/TT1/tt1_pack.tar",
+      "sha256": "2109f742b0378c188f394a3b26c363ef2ffb0ea43eab78ecea7674884022c554",
+      "sums": "tt1/SHA256SUMS"
+    },
+    {
+      "name": "meds",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/tt1m_meds.tar",
+      "sha256": "3fb917b226c6d31fab176a4d8fdd5d6e6b22b8274cc091591f444e623a87ab61",
+      "sums": "tt1m/SHA256SUMS"
+    }
+  ],
+  "scripts": {
+    "gate": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/bb2_gate.py",
+      "sha256": "08d430dc6451b10f66754ad7185a3a96d01ea9788aececd033d17dc92e73f168",
+      "source": "src/BB2/bb2_gate.py"
+    },
+    "rescore": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/rescore.py",
+      "sha256": "6f6eede71c6d9a895199dabc8bc90b882adb25f5f91cd2fcc676ebe7a380b51e",
+      "source": "src/PN1/rescore.py"
+    },
+    "wrapper": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/rescore_tf32.py",
+      "sha256": "0d0b6b6fb5ebc4d5bdbe15384fcd00e13c0756785ed22743893186e68245d8d5",
+      "source": "src/TT1/rescore_tf32.py"
+    },
+    "precision": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/precision_probe.py",
+      "sha256": "b49c1e704bc8957db76398abfd5ab54218ee152ac32ed9e061c634378148605e",
+      "source": "src/BB2/precision_probe.py"
+    }
+  },
+  "source_receipt": "/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json",
+  "source_receipt_sha256": "da918e251af1c26529ba37aacce50e99b42917cb52f921d0254fcef46bf79372",
+  "support_sha256": "5ac8d319dbec42044d9812e9deaccb25096c5ba945aaf6e5011eaaf815eacc7a",
+  "manifest_sha256": {
+    "tt1_score.csv": "c0055b51467cf8d001d56cbc4689706d68f0bf35c64066b1ba49fada5cb45761",
+    "meds_score.csv": "9093d5d5425e1d031f5f940e15321a6371cb0fe6a5d2014aabc404ba4543415a",
+    "ab1x_eval.csv": "5257fb63f321612c39f8da6613989976450a68cd97c0b55d51667b554995d35f"
+  },
+  "expected_gpu": "NVIDIA H100",
+  "families": [
+    {
+      "root": "tt1",
+      "manifest": "tt1_score.csv",
+      "family": "tt1",
+      "rows": 30994
+    },
+    {
+      "root": "meds",
+      "manifest": "meds_score.csv",
+      "family": "meds",
+      "rows": 1018
+    }
+  ],
+  "output_name": "AB1FMSUPP_20261114",
+  "scope": "Existing networks, exact fit-manifest identity gate, supplementary development TT1/MEDS/border scores only. No fit or scientific selection.",
+  "common_input_pins_sha256": "24725bb96179ab07363abf2c1f0e77cb8720ebb28550dae0cb3e18ad4d9e4259",
+  "support_input_pins_sha256": "5e8d39f02345b39755ffbcd13def8af26a1be057e15f7499d7d5649784c2b02a",
+  "pre_read_receipt_sha256": "9a02d57b1decb4035360992c1f89a777d9d03cc282121ef1ad7ff1f00ae17bd0",
+  "pre_read_source_commit": "8d009968d902801c47970ca1cd45c0464cdc8462"
+}

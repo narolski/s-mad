@@ -1,0 +1,2639 @@
+{
+ "expression_probe": {
+  "cv_accuracy_by_person": [
+   0.857,
+   0.857,
+   0.842,
+   0.853,
+   0.854
+  ],
+  "mean": 0.8526997641161728,
+  "note": "trained on FRLL genuine aligned crops (neutral 03 vs smiling 08), lower-face box, 5-fold by person"
+ },
+ "cells": {
+  "FRLL-Morphs/amsl": {
+   "n_morph_raw": 2175,
+   "n_bona_raw": 204,
+   "n_morph_al": 2175,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.10406615447804751,
+     "frac_gt_0.5": 0.009655172413793104
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.09557358575614154,
+     "mean_G": 0.0242438584629254,
+     "mean_B": 0.015546540455262565,
+     "std_R": 0.7409894072571558,
+     "std_G": 0.743403200360604,
+     "std_B": 0.7374419652918639
+    },
+    "O_max": 0.9844534595447374,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9988279139406959,
+     "auc_folds": [
+      0.996,
+      1.0,
+      0.998,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.37443092179400495,
+     "mean_G": 0.3583727743971152,
+     "mean_B": 0.36270002253775074,
+     "std_R": 0.7138967771016452,
+     "std_G": 0.6512598602659455,
+     "std_B": 0.624068064007212,
+     "mean_nz_R": 0.5498647734956051,
+     "mean_nz_G": 0.5232702276312824,
+     "mean_nz_B": 0.5189001577642551,
+     "std_nz_R": 0.4001036736533694,
+     "std_nz_G": 0.3579535722334911,
+     "std_nz_B": 0.3429637142213207
+    },
+    "O_max": 0.7138967771016452,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.8509672139671653,
+     "auc_folds": [
+      0.864,
+      0.849,
+      0.829,
+      0.835,
+      0.879
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.75992913195859,
+     "auc_folds": [
+      0.708,
+      0.771,
+      0.729,
+      0.802,
+      0.789
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.05309295654296875,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG": [
+       2175,
+       204
+      ]
+     }
+    },
+    "sub": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "2": [
+       2175,
+       204
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       2175,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       2175,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       2175,
+       204
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       2175,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       2175,
+       204
+      ]
+     }
+    }
+   }
+  },
+  "FRLL-Morphs/facemorpher": {
+   "n_morph_raw": 1222,
+   "n_bona_raw": 204,
+   "n_morph_al": 1222,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.11537806602274785,
+     "frac_gt_0.5": 0.010638297872340425
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.014950579249703154,
+     "mean_G": 0.0005896794069509964,
+     "mean_B": 0.00010028561342704021,
+     "std_R": 0.6119708931035589,
+     "std_G": 0.47857097012291006,
+     "std_B": 0.4220700555181156
+    },
+    "O_max": 0.999899714386573,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9999867426753282,
+     "auc_folds": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.012583838772825005,
+     "mean_G": 0.00843201437694554,
+     "mean_B": 0.008720836943615416,
+     "std_R": 0.9857032829498411,
+     "std_G": 0.8665840313212028,
+     "std_B": 0.78274124707166,
+     "mean_nz_R": 0.40201694425724466,
+     "mean_nz_G": 0.2853968101152081,
+     "mean_nz_B": 0.25485783511440585,
+     "std_nz_R": 0.20326690414299925,
+     "std_nz_G": 0.09294871794871795,
+     "std_nz_B": 0.06546644844517185
+    },
+    "O_max": 0.9915679856230545,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9962668960112655,
+     "auc_folds": [
+      0.992,
+      0.99,
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.9832396727769547,
+     "auc_folds": [
+      0.965,
+      0.963,
+      0.993,
+      0.997,
+      0.998
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.25965309143066406,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG": [
+       1222,
+       204
+      ]
+     }
+    },
+    "sub": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "2": [
+       1222,
+       204
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       1222,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1222,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1222,
+       204
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       1222,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       1222,
+       204
+      ]
+     }
+    }
+   }
+  },
+  "FRLL-Morphs/opencv": {
+   "n_morph_raw": 1221,
+   "n_bona_raw": 204,
+   "n_morph_al": 1221,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.12681658580271987,
+     "frac_gt_0.5": 0.011466011466011465
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.026171893818952643,
+     "mean_G": 0.0018507812625459684,
+     "mean_B": 0.00040147098970628385,
+     "std_R": 0.6473438679321032,
+     "std_G": 0.5591125885243532,
+     "std_B": 0.5173957379839733
+    },
+    "O_max": 0.9995985290102937,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9998803827751196,
+     "auc_folds": [
+      1.0,
+      1.0,
+      0.999,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.042515777809895454,
+     "mean_G": 0.02911066146360264,
+     "mean_B": 0.027251850781262545,
+     "std_R": 0.966200157376628,
+     "std_G": 0.8434463875640347,
+     "std_B": 0.7653442212265742,
+     "mean_nz_R": 0.4370493488140547,
+     "mean_nz_G": 0.3553339435692377,
+     "mean_nz_B": 0.3315668609786257,
+     "std_nz_R": 0.23202614379084968,
+     "std_nz_G": 0.12833823127940774,
+     "std_nz_B": 0.09940020234137881
+    },
+    "O_max": 0.9727481492187374,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9904527956826537,
+     "auc_folds": [
+      0.985,
+      0.968,
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.966245111393825,
+     "auc_folds": [
+      0.931,
+      0.947,
+      0.977,
+      0.978,
+      0.998
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.19160079956054688,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG": [
+       1221,
+       204
+      ]
+     }
+    },
+    "sub": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "2": [
+       1221,
+       204
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       1221,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1221,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1221,
+       204
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       1221,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       1221,
+       204
+      ]
+     }
+    }
+   }
+  },
+  "FRLL-Morphs/stylegan": {
+   "n_morph_raw": 1222,
+   "n_bona_raw": 204,
+   "n_morph_al": 1222,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.19484372035909978,
+     "frac_gt_0.5": 0.06873977086743044
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.02221928051089503,
+     "mean_G": 0.00478964089727544,
+     "mean_B": 0.0029925227046628798,
+     "std_R": 0.6827805590321235,
+     "std_G": 0.6384142036520009,
+     "std_B": 0.6079474342928661
+    },
+    "O_max": 0.9970074772953371,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9985790136734677,
+     "auc_folds": [
+      0.997,
+      1.0,
+      0.996,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.28417332563139824,
+     "mean_G": 0.28896697795321075,
+     "mean_B": 0.31116218991688327,
+     "std_R": 0.46121353615095795,
+     "std_G": 0.3624442411989346,
+     "std_B": 0.3234973203684092,
+     "mean_nz_R": 0.3729501620615513,
+     "mean_nz_G": 0.37886300182920957,
+     "mean_nz_B": 0.40143929912390486,
+     "std_nz_R": 0.26983649433586854,
+     "std_nz_G": 0.20513221655274222,
+     "std_nz_B": 0.18335820416546325
+    },
+    "O_max": 0.8166417958345368,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.899448018810566,
+     "auc_folds": [
+      0.853,
+      0.909,
+      0.886,
+      0.907,
+      0.942
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.8932128288782252,
+     "auc_folds": [
+      0.848,
+      0.886,
+      0.897,
+      0.901,
+      0.934
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.0317230224609375,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG": [
+       1222,
+       204
+      ]
+     }
+    },
+    "sub": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "2": [
+       1222,
+       204
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       1222,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1222,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1222,
+       204
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       1222,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       1222,
+       204
+      ]
+     }
+    }
+   }
+  },
+  "FRLL-Morphs/webmorph": {
+   "n_morph_raw": 1221,
+   "n_bona_raw": 204,
+   "n_morph_al": 1221,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.09542309749532824,
+     "frac_gt_0.5": 0.014742014742014743
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.05432705432705433,
+     "mean_G": 0.012144497438615086,
+     "mean_B": 0.006985595220889339,
+     "std_R": 0.76705850235262,
+     "std_G": 0.7623211446740858,
+     "std_B": 0.7505981917746624
+    },
+    "O_max": 0.9930144047791106,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9987315055059984,
+     "auc_folds": [
+      0.997,
+      1.0,
+      0.997,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.3398411780764722,
+     "mean_G": 0.3250188691365162,
+     "mean_B": 0.3312858312858313,
+     "std_R": 0.6880329527388351,
+     "std_G": 0.6266962149315091,
+     "std_B": 0.5991432609079668,
+     "mean_nz_R": 0.4947648182942301,
+     "mean_nz_G": 0.47455476867241575,
+     "mean_nz_B": 0.47752163928634517,
+     "std_nz_R": 0.39978481154951745,
+     "std_nz_G": 0.3643871143871144,
+     "std_nz_B": 0.3537521478697949
+    },
+    "O_max": 0.6880329527388351,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.8399510863311855,
+     "auc_folds": [
+      0.817,
+      0.86,
+      0.82,
+      0.817,
+      0.887
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.7637152634773237,
+     "auc_folds": [
+      0.707,
+      0.787,
+      0.74,
+      0.759,
+      0.825
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.05066680908203125,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG": [
+       1221,
+       204
+      ]
+     }
+    },
+    "sub": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "2": [
+       1221,
+       204
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       1221,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1221,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1221,
+       204
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       1221,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       1221,
+       204
+      ]
+     }
+    }
+   }
+  },
+  "MAD22c/FaceMorpher": {
+   "n_morph_raw": 1000,
+   "n_bona_raw": 204,
+   "n_morph_al": 1000,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": {
+     "03/03": 500,
+     "08/08": 500
+    },
+    "O_expression_label": 0.5,
+    "smiling_share_morph_vs_bona": [
+     0.5,
+     0.5
+    ]
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.05591666666666667,
+     "mean_G": 0.02132843137254902,
+     "mean_B": 0.01419607843137255,
+     "std_R": 0.7143088235294117,
+     "std_G": 0.7342450980392157,
+     "std_B": 0.7332696078431372
+    },
+    "O_max": 0.9858039215686274,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9955492800932682,
+     "auc_folds": [
+      0.991,
+      0.999,
+      0.989,
+      0.999,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.2956372549019608,
+     "mean_G": 0.3054264705882353,
+     "mean_B": 0.30741176470588233,
+     "std_R": 0.6821127450980392,
+     "std_G": 0.629014705882353,
+     "std_B": 0.6039950980392157,
+     "mean_nz_R": 0.45945588235294116,
+     "mean_nz_G": 0.4661470588235294,
+     "mean_nz_B": 0.46182843137254903,
+     "std_nz_R": 0.3372794117647059,
+     "std_nz_G": 0.32065196078431374,
+     "std_nz_B": 0.31880392156862747
+    },
+    "O_max": 0.7043627450980392,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.8411452227043139,
+     "auc_folds": [
+      0.814,
+      0.877,
+      0.831,
+      0.824,
+      0.86
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.8224021129939846,
+     "auc_folds": [
+      0.792,
+      0.786,
+      0.857,
+      0.776,
+      0.901
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.0539093017578125,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG": [
+       1000,
+       204
+      ]
+     }
+    },
+    "sub": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "2": [
+       1000,
+       204
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       1000,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1000,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1000,
+       204
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       1000,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       1000,
+       204
+      ]
+     }
+    }
+   }
+  },
+  "MAD22c/MIPGAN_I": {
+   "n_morph_raw": 1000,
+   "n_bona_raw": 204,
+   "n_morph_al": 1000,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": {
+     "03/03": 500,
+     "08/08": 500
+    },
+    "O_expression_label": 0.5,
+    "smiling_share_morph_vs_bona": [
+     0.5,
+     0.5
+    ]
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.036083333333333335,
+     "mean_G": 0.008730392156862745,
+     "mean_B": 0.003985294117647059,
+     "std_R": 0.5240098039215686,
+     "std_G": 0.49926470588235294,
+     "std_B": 0.49191666666666667
+    },
+    "O_max": 0.996014705882353,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9994679761424372,
+     "auc_folds": [
+      1.0,
+      1.0,
+      0.998,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.39805392156862746,
+     "mean_G": 0.42010294117647057,
+     "mean_B": 0.423031862745098,
+     "std_R": 0.42522058823529413,
+     "std_G": 0.3213921568627451,
+     "std_B": 0.2854607843137255,
+     "mean_nz_R": 0.5485490196078432,
+     "mean_nz_G": 0.5666127450980392,
+     "mean_nz_B": 0.5656176470588236,
+     "std_nz_R": 0.1436764705882353,
+     "std_nz_G": 0.10209313725490196,
+     "std_nz_B": 0.09473039215686274
+    },
+    "O_max": 0.9052696078431373,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9316257068100215,
+     "auc_folds": [
+      0.865,
+      0.925,
+      0.959,
+      0.943,
+      0.966
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.9713927020314153,
+     "auc_folds": [
+      0.945,
+      0.945,
+      0.997,
+      0.974,
+      0.996
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.040435791015625,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG": [
+       0,
+       204
+      ],
+      "PNG": [
+       1000,
+       0
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "2": [
+       0,
+       204
+      ],
+      "None": [
+       1000,
+       0
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       1000,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1000,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "False": [
+       0,
+       204
+      ],
+      "None": [
+       1000,
+       0
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       1000,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ],
+      "PNG|None|RGB|None": [
+       1000,
+       0
+      ]
+     }
+    }
+   }
+  },
+  "MAD22c/MIPGAN_II": {
+   "n_morph_raw": 999,
+   "n_bona_raw": 204,
+   "n_morph_al": 999,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": {
+     "03/03": 500,
+     "08/08": 499
+    },
+    "O_expression_label": 0.5002502502502503,
+    "smiling_share_morph_vs_bona": [
+     0.49949949949949946,
+     0.5
+    ]
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.0387151857740093,
+     "mean_G": 0.009058077685528666,
+     "mean_B": 0.004381832813205362,
+     "std_R": 0.46959214116076864,
+     "std_G": 0.47471000412176884,
+     "std_B": 0.4797640778032935
+    },
+    "O_max": 0.9956181671867946,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9995412500456029,
+     "auc_folds": [
+      1.0,
+      1.0,
+      0.998,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.40328563857975624,
+     "mean_G": 0.42063141572945495,
+     "mean_B": 0.4203271899350331,
+     "std_R": 0.39518440008636085,
+     "std_G": 0.305918663761801,
+     "std_B": 0.27991226520638285,
+     "mean_nz_R": 0.5567577381302872,
+     "mean_nz_G": 0.5692408094368878,
+     "mean_nz_B": 0.5631415729454945,
+     "std_nz_R": 0.11782370605900018,
+     "std_nz_G": 0.0897318887514966,
+     "std_nz_B": 0.09043357082572769
+    },
+    "O_max": 0.9102681112485034,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9169214616620225,
+     "auc_folds": [
+      0.844,
+      0.908,
+      0.95,
+      0.923,
+      0.959
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.9777682118572517,
+     "auc_folds": [
+      0.951,
+      0.96,
+      0.997,
+      0.982,
+      0.999
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.0413055419921875,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG": [
+       0,
+       204
+      ],
+      "PNG": [
+       999,
+       0
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "2": [
+       0,
+       204
+      ],
+      "None": [
+       999,
+       0
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       999,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       999,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "False": [
+       0,
+       204
+      ],
+      "None": [
+       999,
+       0
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       999,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ],
+      "PNG|None|RGB|None": [
+       999,
+       0
+      ]
+     }
+    }
+   }
+  },
+  "MAD22c/OpenCV": {
+   "n_morph_raw": 984,
+   "n_bona_raw": 204,
+   "n_morph_al": 984,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": {
+     "03/03": 489,
+     "08/08": 495
+    },
+    "O_expression_label": 0.5015243902439024,
+    "smiling_share_morph_vs_bona": [
+     0.5030487804878049,
+     0.5
+    ]
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.5018980153036825,
+     "mean_G": 0.49860513311015464,
+     "mean_B": 0.5032580105212817,
+     "std_R": 0.4163578032839152,
+     "std_G": 0.41595428821935276,
+     "std_B": 0.4207366889845369
+    },
+    "O_max": 0.5840457117806472,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.6295806482262278,
+     "auc_folds": [
+      0.618,
+      0.626,
+      0.583,
+      0.612,
+      0.708
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.5172863860991551,
+     "mean_G": 0.5239269488283118,
+     "mean_B": 0.5278873744619799,
+     "std_R": 0.3361828471225889,
+     "std_G": 0.3330842499601467,
+     "std_B": 0.33664614219671607,
+     "mean_nz_R": 0.5172863860991551,
+     "mean_nz_G": 0.5239269488283118,
+     "mean_nz_B": 0.5278873744619799,
+     "std_nz_R": 0.3361828471225889,
+     "std_nz_G": 0.3330842499601467,
+     "std_nz_B": 0.33664614219671607
+    },
+    "O_max": 0.6669157500398533,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.7706031046384063,
+     "auc_folds": [
+      0.734,
+      0.727,
+      0.79,
+      0.737,
+      0.864
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.7706031046384063,
+     "auc_folds": [
+      0.734,
+      0.727,
+      0.79,
+      0.737,
+      0.864
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.0,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG": [
+       984,
+       204
+      ]
+     }
+    },
+    "sub": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "2": [
+       984,
+       204
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       984,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       984,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       984,
+       204
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       984,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       984,
+       204
+      ]
+     }
+    }
+   }
+  },
+  "MAD22c/Webmorph": {
+   "n_morph_raw": 500,
+   "n_bona_raw": 204,
+   "n_morph_al": 500,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": {
+     "03/03": 500
+    },
+    "O_expression_label": 0.75,
+    "smiling_share_morph_vs_bona": [
+     0.0,
+     0.5
+    ]
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.5049901960784313,
+     "mean_G": 0.4923823529411765,
+     "mean_B": 0.5002352941176471,
+     "std_R": 0.4023921568627451,
+     "std_G": 0.40531372549019606,
+     "std_B": 0.41349019607843135
+    },
+    "O_max": 0.5976078431372549,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.6476975582807186,
+     "auc_folds": [
+      0.653,
+      0.639,
+      0.602,
+      0.628,
+      0.716
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.4962549019607843,
+     "mean_G": 0.500421568627451,
+     "mean_B": 0.5037450980392156,
+     "std_R": 0.34419607843137257,
+     "std_G": 0.3402156862745098,
+     "std_B": 0.34237254901960784,
+     "mean_nz_R": 0.4962549019607843,
+     "mean_nz_G": 0.500421568627451,
+     "mean_nz_B": 0.5037450980392156,
+     "std_nz_R": 0.34419607843137257,
+     "std_nz_G": 0.3402156862745098,
+     "std_nz_B": 0.34237254901960784
+    },
+    "O_max": 0.6597843137254902,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.7723675537151087,
+     "auc_folds": [
+      0.754,
+      0.74,
+      0.784,
+      0.736,
+      0.849
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.7723675537151087,
+     "auc_folds": [
+      0.754,
+      0.74,
+      0.784,
+      0.736,
+      0.849
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.0,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "JPEG": [
+       500,
+       204
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "0": [
+       500,
+       0
+      ],
+      "2": [
+       0,
+       204
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       500,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       500,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       500,
+       204
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       500,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|0|RGB|False": [
+       500,
+       0
+      ],
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ]
+     }
+    }
+   }
+  },
+  "MorDIFF": {
+   "n_morph_raw": 1000,
+   "n_bona_raw": 204,
+   "n_morph_al": 1000,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": {
+     "03/03": 500,
+     "08/08": 500
+    },
+    "O_expression_label": 0.5,
+    "smiling_share_morph_vs_bona": [
+     0.5,
+     0.5
+    ]
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.0019215686274509803,
+     "mean_G": 0.0,
+     "mean_B": 0.0,
+     "std_R": 0.6092549019607844,
+     "std_G": 0.21240196078431373,
+     "std_B": 0.0886764705882353
+    },
+    "O_max": 1.0,
+    "lr6_cv_by_person": {
+     "auc_mean": 1.0,
+     "auc_folds": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.561921568627451,
+     "mean_G": 0.5604411764705882,
+     "mean_B": 0.5589852941176471,
+     "std_R": 0.4647843137254902,
+     "std_G": 0.4805098039215686,
+     "std_B": 0.484328431372549,
+     "mean_nz_R": 0.45651470588235293,
+     "mean_nz_G": 0.4764950980392157,
+     "mean_nz_B": 0.48487254901960786,
+     "std_nz_R": 0.4433627450980392,
+     "std_nz_G": 0.4346862745098039,
+     "std_nz_B": 0.4373137254901961
+    },
+    "O_max": 0.5653137254901961,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.7813598842177564,
+     "auc_folds": [
+      0.76,
+      0.757,
+      0.824,
+      0.754,
+      0.812
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.6135402384930186,
+     "auc_folds": [
+      0.616,
+      0.625,
+      0.656,
+      0.545,
+      0.626
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.5256576538085938,
+     0.5435504913330078
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG": [
+       0,
+       204
+      ],
+      "PNG": [
+       1000,
+       0
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "2": [
+       0,
+       204
+      ],
+      "None": [
+       1000,
+       0
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       1000,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       1000,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "False": [
+       0,
+       204
+      ],
+      "None": [
+       1000,
+       0
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       1000,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ],
+      "PNG|None|RGB|None": [
+       1000,
+       0
+      ]
+     }
+    }
+   }
+  },
+  "DiM/dim_a": {
+   "n_morph_raw": 500,
+   "n_bona_raw": 204,
+   "n_morph_al": 500,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.13486261407809214,
+     "frac_gt_0.5": 0.05
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.04586274509803922,
+     "mean_G": 0.010950980392156863,
+     "mean_B": 0.0062352941176470585,
+     "std_R": 0.8053431372549019,
+     "std_G": 0.8142450980392156,
+     "std_B": 0.8065686274509803
+    },
+    "O_max": 0.993764705882353,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.998057711071889,
+     "auc_folds": [
+      0.996,
+      1.0,
+      0.995,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.39600980392156865,
+     "mean_G": 0.39862745098039215,
+     "mean_B": 0.40100980392156865,
+     "std_R": 0.6321470588235294,
+     "std_G": 0.6076666666666667,
+     "std_B": 0.591843137254902,
+     "mean_nz_R": 0.49769607843137254,
+     "mean_nz_G": 0.4960588235294118,
+     "mean_nz_B": 0.4959019607843137,
+     "std_nz_R": 0.43788235294117644,
+     "std_nz_G": 0.4355294117647059,
+     "std_nz_B": 0.4347450980392157
+    },
+    "O_max": 0.6321470588235294,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.7128030401118309,
+     "auc_folds": [
+      0.696,
+      0.752,
+      0.745,
+      0.721,
+      0.65
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.614027299136683,
+     "auc_folds": [
+      0.601,
+      0.617,
+      0.602,
+      0.591,
+      0.659
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.031236648559570312,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG": [
+       0,
+       204
+      ],
+      "PNG": [
+       500,
+       0
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "2": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       500,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       500,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "False": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       500,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ],
+      "PNG|None|RGB|None": [
+       500,
+       0
+      ]
+     }
+    }
+   }
+  },
+  "DiM/dim_c": {
+   "n_morph_raw": 500,
+   "n_bona_raw": 204,
+   "n_morph_al": 500,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.113120106914409,
+     "frac_gt_0.5": 0.026
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.0383921568627451,
+     "mean_G": 0.00842156862745098,
+     "mean_B": 0.004372549019607843,
+     "std_R": 0.8213235294117647,
+     "std_G": 0.834764705882353,
+     "std_B": 0.8313529411764706
+    },
+    "O_max": 0.9956274509803922,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9983856485821117,
+     "auc_folds": [
+      0.997,
+      1.0,
+      0.995,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.36949019607843137,
+     "mean_G": 0.3627254901960784,
+     "mean_B": 0.36642156862745096,
+     "std_R": 0.6627941176470589,
+     "std_G": 0.6477647058823529,
+     "std_B": 0.6407843137254902,
+     "mean_nz_R": 0.47481372549019607,
+     "mean_nz_G": 0.4654607843137255,
+     "mean_nz_B": 0.46691176470588236,
+     "std_nz_R": 0.46675490196078434,
+     "std_nz_G": 0.4790392156862745,
+     "std_nz_B": 0.4857549019607843
+    },
+    "O_max": 0.6627941176470589,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.7106256078061893,
+     "auc_folds": [
+      0.71,
+      0.705,
+      0.783,
+      0.691,
+      0.665
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.609390557788273,
+     "auc_folds": [
+      0.613,
+      0.585,
+      0.607,
+      0.577,
+      0.666
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.03289222717285156,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG": [
+       0,
+       204
+      ],
+      "PNG": [
+       500,
+       0
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "2": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       500,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       500,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "False": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       500,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ],
+      "PNG|None|RGB|None": [
+       500,
+       0
+      ]
+     }
+    }
+   }
+  },
+  "DiM/fast_dim": {
+   "n_morph_raw": 500,
+   "n_bona_raw": 204,
+   "n_morph_al": 500,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.1319035689306577,
+     "frac_gt_0.5": 0.058
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.047745098039215686,
+     "mean_G": 0.010794117647058824,
+     "mean_B": 0.005323529411764706,
+     "std_R": 0.8288725490196078,
+     "std_G": 0.8393529411764706,
+     "std_B": 0.8323137254901961
+    },
+    "O_max": 0.9946764705882353,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9983017456804937,
+     "auc_folds": [
+      0.996,
+      1.0,
+      0.996,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.3892450980392157,
+     "mean_G": 0.3823725490196078,
+     "mean_B": 0.3741078431372549,
+     "std_R": 0.6739117647058823,
+     "std_G": 0.6570490196078431,
+     "std_B": 0.6424803921568627,
+     "mean_nz_R": 0.4941078431372549,
+     "mean_nz_G": 0.4842549019607843,
+     "mean_nz_B": 0.4726372549019608,
+     "std_nz_R": 0.4782156862745098,
+     "std_nz_G": 0.4876960784313725,
+     "std_nz_B": 0.4899705882352941
+    },
+    "O_max": 0.6739117647058823,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.7509481907516171,
+     "auc_folds": [
+      0.749,
+      0.738,
+      0.805,
+      0.739,
+      0.724
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.6246554357467848,
+     "auc_folds": [
+      0.618,
+      0.627,
+      0.652,
+      0.602,
+      0.624
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.03246116638183594,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG": [
+       0,
+       204
+      ],
+      "PNG": [
+       500,
+       0
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "2": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       500,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       500,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "False": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       500,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ],
+      "PNG|None|RGB|None": [
+       500,
+       0
+      ]
+     }
+    }
+   }
+  },
+  "DiM/fast_dim_ode": {
+   "n_morph_raw": 499,
+   "n_bona_raw": 204,
+   "n_morph_al": 499,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.13856219323061905,
+     "frac_gt_0.5": 0.05811623246492986
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.04913749066760973,
+     "mean_G": 0.018055719281700657,
+     "mean_B": 0.01211246021454674,
+     "std_R": 0.8002180832252741,
+     "std_G": 0.8128315454438289,
+     "std_B": 0.8127333097567684
+    },
+    "O_max": 0.9878875397854533,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.994913016378886,
+     "auc_folds": [
+      0.989,
+      0.998,
+      0.988,
+      0.999,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.40277614051632676,
+     "mean_G": 0.4560591771778852,
+     "mean_B": 0.47784785256788087,
+     "std_R": 0.6350347754332194,
+     "std_G": 0.6209183072026406,
+     "std_B": 0.6194054776219104,
+     "mean_nz_R": 0.509961098667924,
+     "mean_nz_G": 0.5625171912452356,
+     "mean_nz_B": 0.5797280836182168,
+     "std_nz_R": 0.42992848441982,
+     "std_nz_G": 0.4330523792683406,
+     "std_nz_B": 0.44745373099139457
+    },
+    "O_max": 0.6350347754332194,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.8395400337042244,
+     "auc_folds": [
+      0.806,
+      0.876,
+      0.819,
+      0.898,
+      0.799
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.8259926332549735,
+     "auc_folds": [
+      0.814,
+      0.794,
+      0.835,
+      0.793,
+      0.893
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.032749176025390625,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG": [
+       0,
+       204
+      ],
+      "PNG": [
+       499,
+       0
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "2": [
+       0,
+       204
+      ],
+      "None": [
+       499,
+       0
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       499,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       499,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "False": [
+       0,
+       204
+      ],
+      "None": [
+       499,
+       0
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       499,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ],
+      "PNG|None|RGB|None": [
+       499,
+       0
+      ]
+     }
+    }
+   }
+  },
+  "DiM/greedy_dim": {
+   "n_morph_raw": 500,
+   "n_bona_raw": 204,
+   "n_morph_al": 500,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.1540441559323358,
+     "frac_gt_0.5": 0.068
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.03700980392156863,
+     "mean_G": 0.011372549019607842,
+     "mean_B": 0.006127450980392157,
+     "std_R": 0.824421568627451,
+     "std_G": 0.8322647058823529,
+     "std_B": 0.8264607843137255
+    },
+    "O_max": 0.9938725490196079,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9971666220672553,
+     "auc_folds": [
+      0.994,
+      1.0,
+      0.993,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.3565980392156863,
+     "mean_G": 0.39159803921568626,
+     "mean_B": 0.3852843137254902,
+     "std_R": 0.6706078431372549,
+     "std_G": 0.6564901960784314,
+     "std_B": 0.642421568627451,
+     "mean_nz_R": 0.4638627450980392,
+     "mean_nz_G": 0.49954901960784315,
+     "mean_nz_B": 0.48930392156862745,
+     "std_nz_R": 0.46868627450980394,
+     "std_nz_G": 0.47490196078431374,
+     "std_nz_B": 0.48020588235294115
+    },
+    "O_max": 0.6706078431372549,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.7581989937661626,
+     "auc_folds": [
+      0.729,
+      0.83,
+      0.75,
+      0.778,
+      0.704
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.7485226922848756,
+     "auc_folds": [
+      0.772,
+      0.724,
+      0.741,
+      0.721,
+      0.785
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.034091949462890625,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG": [
+       0,
+       204
+      ],
+      "PNG": [
+       500,
+       0
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "2": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       500,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       500,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "False": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       500,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ],
+      "PNG|None|RGB|None": [
+       500,
+       0
+      ]
+     }
+    }
+   }
+  },
+  "DiM/greedy_dim_s": {
+   "n_morph_raw": 500,
+   "n_bona_raw": 204,
+   "n_morph_al": 500,
+   "n_bona_al": 204,
+   "C1": {
+    "bona_expr_counts": {
+     "03": 102,
+     "08": 102
+    },
+    "morph_expr_from_names": "not in file names",
+    "morph_probe_p_smiling": {
+     "mean": 0.14363065645153628,
+     "frac_gt_0.5": 0.04
+    }
+   },
+   "C3_raw": {
+    "one_feature_auc": {
+     "mean_R": 0.04488235294117647,
+     "mean_G": 0.009705882352941177,
+     "mean_B": 0.004715686274509804,
+     "std_R": 0.7456372549019608,
+     "std_G": 0.7527156862745098,
+     "std_B": 0.7394313725490196
+    },
+    "O_max": 0.9952843137254902,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.9983726133572663,
+     "auc_folds": [
+      0.997,
+      1.0,
+      0.995,
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "C3_al": {
+    "one_feature_auc": {
+     "mean_R": 0.37901960784313726,
+     "mean_G": 0.37199019607843137,
+     "mean_B": 0.3659117647058823,
+     "std_R": 0.5740196078431372,
+     "std_G": 0.5319509803921568,
+     "std_B": 0.507235294117647,
+     "mean_nz_R": 0.4852254901960784,
+     "mean_nz_G": 0.4755392156862745,
+     "mean_nz_B": 0.4658333333333333,
+     "std_nz_R": 0.357921568627451,
+     "std_nz_G": 0.34648039215686277,
+     "std_nz_B": 0.3385196078431373
+    },
+    "O_max": 0.6614803921568627,
+    "lr6_cv_by_person": {
+     "auc_mean": 0.7642361159262083,
+     "auc_folds": [
+      0.773,
+      0.823,
+      0.758,
+      0.73,
+      0.737
+     ]
+    },
+    "lr6_nonzero_cv_by_person": {
+     "auc_mean": 0.7630230625309108,
+     "auc_folds": [
+      0.73,
+      0.749,
+      0.768,
+      0.748,
+      0.819
+     ]
+    },
+    "zero_border_frac_median_morph_bona": [
+     0.033535003662109375,
+     0.0
+    ]
+   },
+   "C4": {
+    "container": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG": [
+       0,
+       204
+      ],
+      "PNG": [
+       500,
+       0
+      ]
+     }
+    },
+    "sub": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "2": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "mode": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "RGB": [
+       500,
+       204
+      ]
+     }
+    },
+    "icc": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "False": [
+       500,
+       204
+      ]
+     }
+    },
+    "prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "False": [
+       0,
+       204
+      ],
+      "None": [
+       500,
+       0
+      ]
+     }
+    },
+    "bits": {
+     "O": 0.5,
+     "counts_morph_bona": {
+      "8": [
+       500,
+       204
+      ]
+     }
+    },
+    "format_key container|sub|mode|prog": {
+     "O": 1.0,
+     "counts_morph_bona": {
+      "JPEG|2|RGB|False": [
+       0,
+       204
+      ],
+      "PNG|None|RGB|None": [
+       500,
+       0
+      ]
+     }
+    }
+   }
+  }
+ },
+ "errors": []
+}

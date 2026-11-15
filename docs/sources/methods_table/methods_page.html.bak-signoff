@@ -1,0 +1,1123 @@
+<title>Detectors Without Shortcuts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:wght@600&display=swap">
+<style>
+:root{--bg:#f4f3ee;--surface:#fffefb;--sunk:#ecebe4;--ink:#1c232c;--muted:#5a6370;--line:#d9d7cd;--accent:#0b6b6b;
+--accent-soft:#dcebe9;--warn:#9a5b00;--warn-soft:#f6ead2;--bad:#a3322a;--bad-soft:#f5dfdc;--good:#2d6a2f;
+--good-soft:#e0eedc;--info:#2c5a9a;--info-soft:#dfe8f5;--violet:#6a3f99;--violet-soft:#ebe2f5;--grey-soft:#e7e6e0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11161c;--surface:#171d25;--sunk:#0d1116;
+--ink:#e3e7ec;--muted:#98a2b0;--line:#2a323d;--accent:#5ec4bc;--accent-soft:#16312f;--warn:#e0a548;--warn-soft:#33270f;
+--bad:#ec8a80;--bad-soft:#3a1d1a;--good:#8fd08a;--good-soft:#1b3019;--info:#8db4ec;--info-soft:#1a2738;--violet:#c3a2ec;
+--violet-soft:#2a1f3a;--grey-soft:#232a33;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11161c;--surface:#171d25;--sunk:#0d1116;--ink:#e3e7ec;--muted:#98a2b0;--line:#2a323d;
+--accent:#5ec4bc;--accent-soft:#16312f;--warn:#e0a548;--warn-soft:#33270f;--bad:#ec8a80;--bad-soft:#3a1d1a;--good:#8fd08a;
+--good-soft:#1b3019;--info:#8db4ec;--info-soft:#1a2738;--violet:#c3a2ec;--violet-soft:#2a1f3a;--grey-soft:#232a33;
+color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+font-size:15px;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));
+padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:"IBM Plex Serif",Georgia,serif;text-wrap:balance;margin:0;line-height:1.2}
+h1{font-size:1.9rem;font-weight:600}h2{font-size:1.3rem;font-weight:600}h3{font-size:1.05rem;font-weight:600}
+.mono,code,pre,td.num{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+
+/* Layout: one reading column (74ch) for prose; tables run to the 1120px wrap and scroll inside their own frame. */
+.label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lede{color:var(--muted);max-width:68ch;margin:6px 0 0}
+header.top{display:flex;flex-direction:column;gap:10px}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:1px 9px;font-size:.78rem;
+border:1px solid transparent;white-space:nowrap;font-weight:600}
+.k-asof{background:var(--sunk);color:var(--ink);border-color:var(--line)}
+.k-read{background:var(--info-soft);color:var(--info)}
+.k-pend{background:var(--warn-soft);color:var(--warn)}
+.k-seal{background:var(--violet-soft);color:var(--violet)}
+.v-yes{background:var(--good-soft);color:var(--good)}
+.v-part{background:var(--warn-soft);color:var(--warn)}
+.v-no{background:var(--bad-soft);color:var(--bad)}
+.v-ns{background:var(--grey-soft);color:var(--muted)}
+nav.toc{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.88rem;border-top:1px solid var(--line);
+border-bottom:1px solid var(--line);padding-block:10px}
+nav.toc a{color:var(--accent);text-decoration:none}
+nav.toc a:hover{text-decoration:underline}
+nav.toc b{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--muted);margin-right:4px}
+section.s{display:flex;flex-direction:column;gap:14px;min-width:0;scroll-margin-top:12px}
+section.s>h2{padding-top:18px;border-top:1px solid var(--line)}
+section.s h2 .n{font-family:"IBM Plex Mono",monospace;color:var(--accent);margin-right:8px}
+.prose{max-width:74ch;min-width:0}
+.prose p,.prose li{line-height:1.62}
+.prose p{margin:0 0 10px}
+.prose ul,.prose ol{padding-left:1.3em;margin:0 0 10px;display:flex;flex-direction:column;gap:4px}
+.prose li>ul,.prose li>ol{margin:4px 0 0}
+.prose li>p{margin:0 0 4px}
+.prose h3{margin:16px 0 6px}
+code{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;background:var(--sunk);padding:0 4px;
+border-radius:4px;font-size:.88em}
+a{color:var(--accent)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px 22px}
+.cols>div{min-width:0}
+.cols h3{font-size:.98rem;margin:0 0 6px}
+.cols ul{padding-left:1.2em;margin:0;display:flex;flex-direction:column;gap:5px;font-size:.92rem;line-height:1.55}
+.callout{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:6px;padding:12px 16px;
+max-width:74ch}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.status{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 16px;max-width:74ch}
+.status ul{margin-bottom:0}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:var(--surface);
+-webkit-overflow-scrolling:touch}
+.tw:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:.82rem;font-variant-numeric:tabular-nums}
+th,td{padding:6px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.45}
+th{background:var(--sunk);font-weight:600;position:sticky;top:0}
+tbody tr:last-child td{border-bottom:none}
+tr.grp td{background:var(--sunk);font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;font-size:.9rem;
+padding-block:8px}
+td:first-child{font-family:"IBM Plex Mono",monospace;color:var(--muted);white-space:nowrap}
+table.cmp{min-width:1060px}
+table.cmp td:nth-child(2){min-width:190px;font-weight:600}
+table.cmp td:nth-child(n+3){min-width:250px}
+table.sc{min-width:2350px}
+table.sc th{white-space:normal}
+table.sc td:nth-child(2),table.sc th:nth-child(2){min-width:180px;position:sticky;left:0;z-index:1;
+background:var(--surface);box-shadow:1px 0 0 var(--line)}
+table.sc th:nth-child(2){background:var(--sunk);z-index:2}
+table.sc td:nth-child(2){font-weight:600}
+table.sc td:nth-child(3){min-width:360px}
+table.sc td:nth-child(4){min-width:150px}
+table.sc td:nth-child(n+5){min-width:230px}
+table.small{width:auto;min-width:0}
+table.small td:first-child{font-family:inherit;color:var(--ink);white-space:normal}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0;
+display:flex;flex-direction:column;gap:6px}
+.card h3{font-size:.98rem;display:flex;gap:8px;align-items:baseline}
+.card h3 .n{font-family:"IBM Plex Mono",monospace;color:var(--accent);font-size:.85rem}
+.card ul{padding-left:1.1em;margin:0;display:flex;flex-direction:column;gap:4px;font-size:.88rem;line-height:1.5}
+.card li>ul{margin-top:3px}
+.card p{margin:0;font-size:.88rem;line-height:1.5}
+.card em{font-style:normal;font-weight:600;color:var(--muted)}
+details.src{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+details.src>summary{cursor:pointer;padding:10px 14px;font-weight:600}
+details.src[open]>summary{border-bottom:1px solid var(--line)}
+details.src>div{padding:12px 16px;font-size:.88rem;overflow-wrap:anywhere}
+footer{color:var(--muted);font-size:.82rem;border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:640px){
+h1{font-size:1.5rem}
+table.sc td:nth-child(2),table.sc th:nth-child(2){position:static;box-shadow:none}
+.cards{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<div class="wrap">
+<header class="top">
+<div class="label">S-MAD resubmission · competing detectors under construction controls · prepared for Paweł Narolski and co-author</div>
+<h1>Detectors without construction shortcuts</h1>
+<p class="lede">You asked two things. First, how the competing detectors do on regular (landmark), GAN and diffusion morphs once the benchmarks' construction shortcuts are taken away. Second, for each method, which shortcut was found, and what it would take to show it beyond doubt. This page joins the two answers. Section 2 is the comparison table; section 3 is the shortcut-per-method table; section 4 says what is still missing.</p>
+<div class="facts">
+<span class="chip k-asof">As of 2026-11-07, 22:25 CET</span>
+<span class="chip k-seal">MADMamba sealed, not shown</span>
+<span class="chip k-read">A42 amendment 1: read, post hoc</span>
+<span class="chip k-read">A43: read, registered cell "steps" (post hoc)</span>
+</div>
+</header>
+<div class="prose"><p><strong>Scope</strong></p>
+<ul>
+<li><strong>One network per release.</strong> The official releases are the authors' weights, one network each. Their claims are about those checkpoints, not the SelfMAD or MADation methods.</li>
+<li><strong>Our frames.</strong> Releases are scored on our 512-px eye-aligned frames unless a row says otherwise. Only the SelfMAD release was also scored with its own crop on the raw files.</li>
+<li><strong>Recipes are our re-implementations</strong>, trained on SMDD only; most did not reproduce the published numbers.</li>
+<li><strong>MADMamba is sealed</strong> and not on this page ("MADMamba not evaluated on H3 (sealed)"). No W3, E10 or FST number is used, and no <code>fst*</code> file, <code>manifests/valx.csv</code> or <code>A12SP</code> path was opened.</li>
+<li><strong>Wording awaits the author's sign-off</strong> (Sun 8 Nov 12:00), which can only drop or weaken it.</li>
+</ul></div>
+<nav class="toc" aria-label="Sections">
+<a href="#s1"><b>1</b>What "without shortcuts" means</a>
+<a href="#s2"><b>2</b>Comparison table</a>
+<a href="#s3"><b>3</b>Shortcut per method</a>
+<a href="#s4"><b>4</b>What would make it beyond doubt</a>
+<a href="#s5"><b>5</b>What this does not show</a>
+<a href="#sources">Sources</a>
+</nav>
+<section class="s" id="s1">
+<h2><span class="n">1</span>What "without shortcuts" means, and how it was tested</h2>
+<div class="prose"><p><strong>The problem.</strong> A morph detector has to tell morphs (one face image built from two people) from genuine photos of one person. On the standard benchmarks the two classes were also made in different ways:</p>
+<ul>
+<li>The genuine photos are large, high-quality camera JPEG files.</li>
+<li>The morphs are files of other sizes and formats. In most families their faces are also smaller. The exceptions are MAD22 OpenCV and Webmorph and FRLL StyleGAN, where the face sizes already match.</li>
+<li>Several landmark families also carry black alignment borders. Border fraction alone separates several evaluation families almost perfectly (AUC 0.99–1.00; E07 README).</li>
+<li>GAN and diffusion morphs are generator output, while the genuine photos come from a camera.</li>
+<li><strong>Claim B.</strong> In ten registered cells (the seven FRLL diffusion families and MAD22 MIPGAN-I, MIPGAN-II and FaceMorpher), one documented file attribute alone separates morphs from genuine photos: "Morph and bona fide files differ in documented construction attributes that alone separate the classes (O = 1.000 per decision cell)."</li>
+</ul>
+<p>FRLL is the Face Research Lab London set; MAD22 is the SYN-MAD 2022 benchmark. The networks never see file headers. They see decoded pixels, so file attributes matter only through what they leave in the pixels.</p>
+<p>So a detector can score well by noticing how the file or picture was made, without noticing that two identities were blended. This page calls such a difference a <strong>construction difference</strong>. The word <strong>shortcut</strong> is kept for A41's registered definition, which so far applies to C1 only. Under it, three things must all hold:</p>
+<ol>
+<li>A property separates the classes.</li>
+<li>The property can be put into genuine photos without morphing.</li>
+<li>A control that removes it removes at least half of the separation.</li>
+</ol>
+<p>No control removes every difference: E7 leaves the borders, and H1 leaves file size. To see what a detector does without a given difference, we either <strong>change the genuine side</strong> so that it shares one construction property with the morphs (face size in E7, the generator family in X3), or <strong>build a new set</strong> in which both classes are made the same way and only the number of identities differs (H1, H2, H3, H4b). Then we score the same networks again.</p></div><div class="prose"><h3>The two kinds of number</h3>
+<ul>
+<li><strong>Equal error rate (EER, %)</strong> is thresholded: the error rate where missed morphs and false alarms are equally frequent. 0 is perfect and 50 is chance. Above 50 means the detector rates the genuine images as more morph-like than the morphs ("inverted"). The threshold is re-chosen for each comparison, so EER does not show how a deployed detector behaves; the flag rates at a fixed threshold do.</li>
+<li><strong>Area under the curve (AUC)</strong> is threshold-free: the chance that a random morph scores above a random comparison image. 0.5 is chance; below 0.5 means the comparison images look more morph-like than the morphs.</li>
+<li><strong>Floors.</strong> Some controls have a floor: the AUC a simple statistic (file size, eye position, or a combination) reaches on the same comparison. A detector shows something beyond that statistic only if it clearly beats the floor.</li>
+</ul></div><div class="tw"><table class="small">
+<thead>
+<tr>
+<th>Control</th>
+<th>Floors (AUC)</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H1</td>
+<td>bytes 0.620 (<code>orig</code>) / 0.681 (<code>pp</code>); eye geometry 0.526 / 0.522</td>
+<td>A36 amendment 1 label rule ([b])</td>
+</tr>
+<tr>
+<td>H3</td>
+<td>bytes 0.526; eye geometry 0.560; combined covariates 0.607–0.617</td>
+<td></td>
+</tr>
+<tr>
+<td>H4b</td>
+<td>bytes 0.912</td>
+<td></td>
+</tr>
+<tr>
+<td>H2</td>
+<td>bytes 0.522; eye geometry 0.518</td>
+<td></td>
+</tr>
+<tr>
+<td>Arc2Face</td>
+<td>bytes 0.514; eye geometry 0.509</td>
+<td></td>
+</tr>
+<tr>
+<td>X4</td>
+<td>none logged (only a kill rule)</td>
+<td></td>
+</tr>
+<tr>
+<td>X3</td>
+<td>cue floors are print-only (Q-G2)</td>
+<td>not used for any statement here</td>
+</tr>
+</tbody>
+</table></div><div class="prose"><h3>How each morph type was tested</h3></div><div class="cols"><div><h3>Regular (landmark) morphs</h3><ul>
+<li><strong>Shrunk genuine photos (E7).</strong> Each genuine photo is shrunk (area averaging) to the family's median morph face size before the same alignment: ~1.0x for MAD22 OpenCV and Webmorph, 3.3x for MAD22 FaceMorpher. This matches face size only, not processing history, and the alignment borders remain.</li>
+<li><strong>The controlled Poisson set (H1).</strong> A fifth landmark tool (MediaPipe Delaunay warp plus Poisson blend) on CASIA-WebFace identities at 112 px; 598 pairs. Both classes share source photos, size, the ~40% black border and post-processing. The only known remaining difference is file size (morphs are 3–5% smaller PNGs): floor 0.620 on <code>orig</code> and 0.681 on <code>pp</code>. <code>orig</code> is the registered primary variant.</li>
+</ul></div><div><h3>GAN morphs</h3><ul>
+<li><strong>H3.</strong> StyleGAN3 two-person latent-average morphs against single-person renders of the same generator. Its classes differ in latent spread by construction.</li>
+<li><strong>X4.</strong> The same morphs against renders matched to the morphs' latent spread; little power against a two-identity signal by construction.</li>
+<li><strong>H4b.</strong> StyleGAN v1 MIPGAN-I-style morphs against single-identity renders of the host; file size alone gives 0.912.</li>
+<li><strong>Renders vs camera (H-new-83).</strong> A separate check of whether a detector scores generator output above camera photos. Registered verdict "neither"; per-pool AUCs descriptive.</li>
+</ul></div><div><h3>Diffusion morphs</h3><ul>
+<li><strong>Shrunk genuine photos (E7).</strong> Each diffusion family has its own dose; the DiM pools average 3.19x. For the SelfMAD release it was also run on the raw files with its own crop, with three shrinking methods: one result, not three replications.</li>
+<li><strong>Genuine photos through the morphs' generator family (X3).</strong> DiffAE reconstructions of the genuine photos, photos only resized by DiffAE's aligner, and one-person "morphs". Releases only. Its positive control failed (FE ViT-L/14 0.636 ≤ 0.65): "assay sensitivity not shown".</li>
+<li><strong>Other diffusion generators (H2, Arc2Face).</strong> H2 is low-potency (1.1% of morphs verify against both contributors); Arc2Face is the potent set (94.7%). Both columns are descriptive.</li>
+</ul></div></div>
+</section>
+<section class="s" id="s2">
+<h2><span class="n">2</span>Comparison table: regular, GAN and diffusion morphs under the controls</h2>
+<div class="prose"><h3>How to read the table</h3>
+<ul>
+<li><strong>Cells.</strong> "→" joins a benchmark number and its controlled number of the same metric (EER → EER). " | " separates different tests or metrics.</li>
+<li><strong>Rows.</strong> Releases are the authors' official weights, one network each. Recipes are our re-implementations, trained on SMDD only (d0); their numbers are means over the stated number of networks (seeds).</li>
+<li><strong>‡</strong> marks the 12 primary rows of the registered GAN test (C3). Rows 4–8 are descriptive and outside C3.</li>
+<li><strong>Verdict words</strong> ("holds", "partly holds", "does not hold", "not shown") are post hoc labels of this note, not A41 grades. "Partly holds" is not the dropped phrase "partly carried".</li>
+</ul></div><div class="tw"><table class="cmp">
+<thead>
+<tr>
+<th>#</th>
+<th>Method (networks)</th>
+<th>Regular (landmark) morphs [a][b]</th>
+<th>GAN morphs [c][d]</th>
+<th>Diffusion morphs [e][f]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="grp"><td colspan="5">Official releases</td></tr>
+<tr>
+<td>1</td>
+<td>SelfMAD release, HRNet-W18, its own dlib crop and resize on our frames (1) ‡</td>
+<td>EER FM/OCV/AMSL/WM 0.4/0.1/2.9/5.9 → 4.8/3.9/33.3/51.9 (WM above 50 under E7); MAD22 FM 0.0 → 0.11 | H1 <code>orig</code> 0.872 (point; above in A39's count, descriptive) · <code>pp</code> 0.821 (point, no label). <span class="chip v-part">partly holds</span></td>
+<td>MIPGAN-I EER 0.5 | H3 0.353 (reversed) | X4 0.447 | H4b 0.405. <span class="chip v-ns">not shown</span></td>
+<td>EER Greedy-DiM 8.4 → 90.7, MorDIFF 2.5 → 61.3 (C1; inverted) | X3 rec 0.024 / 0.330 (reversed) | H2 0.510. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>MADation release, CLIP ViT-B/16 + LoRA (1) ‡</td>
+<td>EER 2.8/2.9/15.1/4.9 → 4.4/4.4/28.9/10.8; MAD22 FM 0.6 → 5.9 | H1 <code>orig</code> 0.770 (above) · <code>pp</code> 0.727 (not above). <span class="chip v-part">partly holds</span></td>
+<td>MIPGAN-I EER 18.4; G-test 9.9 | H3 0.554 | X4 0.423 | H4b 0.716. <span class="chip v-ns">not shown</span></td>
+<td>EER MorDIFF 4.9 → 19.6 (C2), DiM-C 6.4 → 29.5, DiM-A 20.6 → 56.4, Greedy-DiM 54.0 → 84.9 | X3 rec MorDIFF 0.847 (open), DiM-A 0.361 | H2 0.497. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>3</td>
+<td>MADation release, CLIP ViT-L/14 + LoRA (1) ‡</td>
+<td>EER 1.0/1.0/17.7/4.9 → 1.0/1.0/14.7/4.4; MAD22 FM 0.0 → 0.55 | H1 <code>orig</code> 0.718 (above) · <code>pp</code> 0.684 (not above). <span class="chip v-yes">holds</span></td>
+<td>MIPGAN-I EER 11.9; G-test 69.5 (inverted) | H3 0.427 (reversed) | X4 0.445 | H4b 0.902. <span class="chip v-ns">not shown</span></td>
+<td>EER Greedy-DiM 9.8 → 9.8, DiM-A 22.0 → 16.7, MorDIFF 28.9 → 39.7 | X3 rec Greedy-DiM 0.749 (floor-limited) | H2 0.466. <span class="chip v-part">partly holds</span></td>
+</tr>
+<tr>
+<td>4</td>
+<td>MADation baseline FE ViT-B/16, frozen CLIP + head (1)</td>
+<td>EER 16.7/18.6/26.0/22.5 → 22.6/26.0/38.7/31.9; MAD22 FM 1.0 → 7.2 | H1 <code>orig</code> 0.681 (above, descriptive) · <code>pp</code> 0.681 (not above). <span class="chip v-part">partly holds</span></td>
+<td>MIPGAN-I EER 35.1; G-test 35.1 | H3 0.514 | X4 0.451 | H4b 0.661. <span class="chip v-ns">not shown</span></td>
+<td>EER DiM 21.0–47.0 → 41.6–73.6, MorDIFF 39.7 → 53.5 | X3 not run | H2 0.498. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>5</td>
+<td>MADation baseline FE ViT-L/14, frozen CLIP + head (1)</td>
+<td>EER 3.9/4.4/21.6/9.8 → 4.4/4.9/23.0/10.3; MAD22 FM 1.6 → 2.7 | H1 <code>orig</code> 0.735 · <code>pp</code> 0.745 (both above, descriptive). <span class="chip v-yes">holds</span></td>
+<td>MIPGAN-I EER 8.5; G-test 29.1 | H3 0.505 | X4 0.475 | H4b 0.804. <span class="chip v-ns">not shown</span></td>
+<td>EER Greedy-DiM-S 11.8 → 13.8, Greedy-DiM 22.0 → 28.0, MorDIFF 34.8 → 32.4 | X3 rec Greedy-DiM 0.636 (positive-control gate failed), DiM-A 0.772, MorDIFF 0.742 | H2 0.502. <span class="chip v-part">partly holds</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td>MADation baseline FS ViT-B/16, from scratch + head (1)</td>
+<td>EER 16.7/3.9/40.6/32.1 → 17.3/5.4/40.7/34.8; MAD22 FM 30.3 → 47.6 | H1 <code>orig</code> 0.472 · <code>pp</code> 0.422 (not above; below 0.5). <span class="chip v-no">does not hold</span> (collapses under E7)</td>
+<td>MIPGAN-I EER 17.8; G-test 46.4 | H3 0.511 | X4 0.466 | H4b 0.546. <span class="chip v-ns">not shown</span></td>
+<td>EER DiM 16.1–24.0 → 41.6–45.6, MorDIFF 67.6 → 62.2 (inverted) | X3 not run | H2 0.476. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>7</td>
+<td>MADation baseline FS ViT-L/14, from scratch + head (1)</td>
+<td>EER 38.2/31.9/39.2/32.9 → 37.7/32.8/39.7/32.8; MAD22 FM 32.9 → 35.7 | H1 <code>orig</code> 0.554 · <code>pp</code> 0.536 (not above). <span class="chip v-no">does not hold</span> (weak natively)</td>
+<td>MIPGAN-I EER 32.5; G-test 67.4 (inverted) | H3 0.540 | X4 0.470 | H4b 0.641. <span class="chip v-ns">not shown</span></td>
+<td>EER DiM 38.1–47.0 → 40.2–49.0, MorDIFF 43.0 → 42.1 | X3 not run | H2 0.502. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>8</td>
+<td>MixFaceNet-MAD, the official release, on our frames (loader checked on its own training files) (1)</td>
+<td>EER 98.0/98.0/82.8/75.5 → 98.0/98.1/86.8/80.4 (inverted); MAD22 FM 85.4 → 91.9 | H1 <code>orig</code> 0.572 · <code>pp</code> 0.598 (below floor, descriptive). <span class="chip v-no">does not hold</span> (inverted natively)</td>
+<td>MIPGAN-I EER 47.0; G-test 39.5 | H3 0.581 | X4 not scored | H4b 0.695. <span class="chip v-ns">not shown</span></td>
+<td>EER DiM 27.1–50.1 → 43.6–66.7, MorDIFF 27.5 → 40.1 | X3 not run | H2 0.536. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr class="grp"><td colspan="5">Published recipes, our re-implementation, SMDD only</td></tr>
+<tr>
+<td>9</td>
+<td>M1 Inception-MAD, Inception-v3 from scratch (5) ‡</td>
+<td>EER 53.6/53.6/27.5/24.9 → 71.5/72.2/46.3/42.1 (FM, OCV inverted); MAD22 FM 6.4 → 39.0 | H1 <code>orig</code> 0.564 · <code>pp</code> 0.603 (not above). <span class="chip v-no">does not hold</span> (inverted natively; collapses under E7)</td>
+<td>MIPGAN-I EER 19.8; G-test 37.5 | H3 0.555 | X4 0.441 | H4b 0.672. <span class="chip v-ns">not shown</span></td>
+<td>UA8c 14.4 → 49.4 (uncapped UA8 under E7: 63.0) | X3 not run | H2 0.534. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>10</td>
+<td>M2 MorphHRNet-style, HRNet-W48 from scratch (5) ‡</td>
+<td>EER 90.7/87.1/73.2/67.5 → 92.5/90.0/79.7/73.7 (inverted); MAD22 FM 51.6 → 73.8 | H1 <code>orig</code> 0.570 · <code>pp</code> 0.594 (not above). <span class="chip v-no">does not hold</span> (inverted natively)</td>
+<td>MIPGAN-I EER 43.0; G-test 38.2 | H3 0.591 | X4 0.469 | H4b 0.678. <span class="chip v-ns">not shown</span></td>
+<td>UA8c 41.7 → 48.5 (uncapped: 66.4) | X3 not run | H2 0.532. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>11</td>
+<td>M3 MADation recipe, CLIP ViT-B/16 + LoRA (8) ‡</td>
+<td>EER 3.3/5.7/10.8/8.6 → 3.6/5.8/11.4/8.8; MAD22 FM 5.0 → 5.3 | H1 <code>orig</code> 0.805 · <code>pp</code> 0.750 (both above). <span class="chip v-yes">holds</span></td>
+<td>MIPGAN-I EER 7.0; G-test 35.6 | H3 0.448 (reversed) | X4 0.458 | H4b 0.847. <span class="chip v-ns">not shown</span></td>
+<td>UA8c 12.6 → 12.1; MorDIFF 35.1 → 28.6 | X3 not run | H2 0.483. <span class="chip v-part">partly holds</span></td>
+</tr>
+<tr>
+<td>12</td>
+<td>M3L MADation recipe, CLIP ViT-L/14 + LoRA (5) ‡</td>
+<td>EER 0.4/0.3/15.0/7.8 → 0.4/0.3/14.5/7.6; MAD22 FM 0.6 → 0.5 | H1 <code>orig</code> 0.833 · <code>pp</code> 0.810 (both above). <span class="chip v-yes">holds</span></td>
+<td>MIPGAN-I EER 0.8; G-test 37.6 | H3 0.401 (reversed) | X4 0.442 | H4b 0.923. <span class="chip v-ns">not shown</span></td>
+<td>UA8c 17.7 → 16.1; MorDIFF 45.7 → 41.5 | X3 not run | H2 0.474. <span class="chip v-part">partly holds</span></td>
+</tr>
+<tr>
+<td>13</td>
+<td>M4 SelfMAD-style, HRNet-W18 + self-blended fakes from SMDD genuine photos only (5) ‡</td>
+<td>EER 90.9/38.3/100/100 → 82.0/24.5/100/100 (FM, AMSL, WM inverted); MAD22 FM 99.8 → 0.8 (shrinking made the photos look genuine to it) | H1 <code>orig</code> 0.761 · <code>pp</code> 0.761 (both above). <span class="chip v-part">partly holds</span> (inverted on the benchmarks)</td>
+<td>MIPGAN-I EER 34.5; G-test 24.3 | H3 0.551 | X4 0.517 | H4b 0.403. <span class="chip v-ns">not shown</span></td>
+<td>UA8c 50.0 (capped; 100 uncapped in all 7) → 42.8 (uncapped: 49.3) | X3 not run | H2 0.475. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>14</td>
+<td>M5 PW-MAD, DenseNet-121 with pixel-wise labels (8) ‡</td>
+<td>EER 14.4/15.8/8.9/4.2 → 24.5/28.8/25.7/14.3; MAD22 FM 1.2 → 20.7 | H1 <code>orig</code> 0.533 · <code>pp</code> 0.547 (not above). <span class="chip v-no">does not hold</span> (collapses under E7)</td>
+<td>MIPGAN-I EER 36.8; G-test 56.0 (inverted) | H3 0.564 | X4 0.460 | H4b 0.455. <span class="chip v-ns">not shown</span></td>
+<td>UA8c 28.0 → 49.5 (uncapped: 72.3) | X3 not run | H2 0.491. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>15</td>
+<td>M6 OrthoMAD, ResNet-18 from scratch (5) ‡</td>
+<td>EER 61.3/81.4/66.8/59.8 → 67.7/85.8/74.6/69.3 (inverted); MAD22 FM 24.4 → 47.5 | H1 <code>orig</code> 0.623 · <code>pp</code> 0.653 (not above). <span class="chip v-no">does not hold</span> (inverted natively; collapses under E7)</td>
+<td>MIPGAN-I EER 37.0; G-test 33.7 | H3 0.574 | X4 0.469 | H4b 0.647. <span class="chip v-ns">not shown</span></td>
+<td>UA8c 36.8 → 48.2 (uncapped: 60.9) | X3 not run | H2 0.525. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>16</td>
+<td>M8 MixFaceNet-MAD recipe, MixFaceNet-S from scratch (5) ‡</td>
+<td>EER 66.5/57.4/46.9/44.8 → 75.2/70.1/63.6/61.7 (FM, OCV inverted natively; all four under E7); MAD22 FM 27.6 → 65.7 | H1 <code>orig</code> 0.588 · <code>pp</code> 0.648 (not above). <span class="chip v-no">does not hold</span> (inverted natively; collapses under E7)</td>
+<td>MIPGAN-I EER 35.5; G-test 37.3 | H3 0.560 | X4 0.448 | H4b 0.623. <span class="chip v-ns">not shown</span></td>
+<td>UA8c 28.1 → 48.9 (uncapped: 63.8) | X3 not run | H2 0.533. <span class="chip v-no">does not hold</span></td>
+</tr>
+<tr>
+<td>17</td>
+<td>M8O MixFaceNet-MAD, official training code (5) ‡</td>
+<td>EER 85.1/78.4/55.8/54.1 → 88.5/84.1/66.4/65.2 (inverted); MAD22 FM 30.8 → 70.3 | H1 <code>orig</code> 0.580 · <code>pp</code> 0.631 (not above). <span class="chip v-no">does not hold</span> (inverted natively; collapses under E7)</td>
+<td>MIPGAN-I EER 45.8; G-test 36.8 | H3 0.556 | X4 0.453 | H4b 0.630. <span class="chip v-ns">not shown</span></td>
+<td>UA8c 36.3 → 49.0 (uncapped: 66.0) | X3 not run | H2 0.534. <span class="chip v-no">does not hold</span></td>
+</tr>
+</tbody>
+</table></div><div class="prose"><h3>Notes to the table (condensed)</h3>
+<ul>
+<li><strong>Regular, benchmark [a].</strong> EER %, FRLL families in the order FaceMorpher / OpenCV / AMSL / WebMorph, each against the 204 FRLL genuine photos (102 persons). MAD22 FaceMorpher is against the 185 MAD22 genuine photos (byte copies of FRLL photos); every MAD22 number is on our 185 + 4,069 MAD22 files, against the published 204 + 4,483. A12.4 calls the recipes' benchmark pool "an eval-pipeline diagnostic, never a detection result".</li>
+<li><strong>Regular, controlled [b].</strong> E7 shrinking factors: FRLL FM 1.47x, OCV 1.56x, AMSL and WebMorph 1.80x, MAD22 FaceMorpher 3.30x. MAD22 OpenCV and Webmorph are left out (~1.0x, so E7 tests nothing there). Person-clustered 95% CIs (A41 S3): SelfMAD FRLL FM 4.8 [1.95, 7.34] and OCV 3.9 [1.41, 5.85]; ViT-B/16 FRLL FM 4.42 [2.12, 6.93] and OCV 4.42 [2.08, 7.37]; MAD22 FM SelfMAD 0.11 [0.00, 0.89] and ViT-B/16 5.94 [3.25, 10.62].</li>
+<li><strong>H1 label rule</strong> (A36 amendment 1). "Above the floor" needs a point margin D ≥ +0.05, a one-sided Bonferroni lower bound of D &gt; 0, and a seed-CI lower bound of AUC − floor &gt; 0. Labels on the 11 primary rows are registered; the others are descriptive; all were set post-freeze. The SelfMAD own-crop <code>orig</code> 0.872 and <code>pp</code> 0.821 are point estimates.</li>
+<li><strong>GAN, benchmark [c].</strong> MIPGAN-I is EER % on MAD22 MIPGAN-I (generator PNG against camera JPEG). ViT-B/16 18.4 [13.4, 23.6] and ViT-L/14 11.9 [8.0, 15.6] (person 95%, DC-8). The G-test is held-out StyleGAN2 latent-average morphs of FEI pairs against FEI frontal captures; its morphs are scaled to the genuine photos' face size by construction. C4: "These sets compare generator output (PNG) with camera photos (JPEG)."</li>
+<li><strong>GAN, controlled [d].</strong> H3 floors: bytes 0.526, eye geometry 0.560, combined covariates 0.607–0.617; "reversed" means the 95% pair CI lies below 0.5. A row would count as "shown" only if H3 is above its combined floor by its CI and X4 is above 0.5 by its CI. No row meets this: the highest H3 is M2 at 0.591 [pair 90% 0.572, 0.610], the highest X4 is M4 at 0.517 [95% 0.493, 0.541].</li>
+<li><strong>Diffusion, benchmark [e].</strong> EER on the FRLL diffusion families against the original genuine photos. Recipes show UA8c: the mean EER over the seven held-out diffusion families, each capped at 50. The cap hides inversion, so the uncapped UA8 under E7 is shown beside it.</li>
+<li><strong>Diffusion, controlled [f].</strong> Person-clustered 95% CIs exist only for the SelfMAD own-crop, SelfMAD our-pipeline, ViT-B/16, ViT-L/14 and FE ViT-L/14 releases. X3 values are Greedy-DiM / MorDIFF unless a family is named; the Greedy-DiM vs reconstruction comparison is floor-limited (file bytes alone 0.987–0.998). H2 (IP-Adapter-FaceID SD 1.5; floors 0.522 / 0.518) and Arc2Face (every row 0.482–0.539) are descriptive.</li>
+</ul></div><div class="prose"><h3>Verdict rules (post hoc, not A41 grades)</h3>
+<ul>
+<li><strong>Regular.</strong> <em>holds</em>: under E7 the EER is ≤ 10% on at least two FRLL landmark families and no FRLL landmark family or MAD22 FaceMorpher rises by more than 3 points, <strong>and</strong> H1 <code>orig</code> is labelled above its floor. <em>partly holds</em>: exactly one of the two. <em>does not hold</em>: neither. Descriptive tags: <em>inverted natively</em> (native EER above 50% on at least two FRLL landmark families), <em>weak natively</em> (≥ 25% on all four, not inverted), <em>collapses under E7</em> (a family at ≤ 35% natively rises by at least 10 points).</li>
+<li><strong>GAN.</strong> <em>shown / not shown</em>, as in [d]. Every row is "not shown". It does not mean the detector is blind to two identities.</li>
+<li><strong>Diffusion.</strong> E7 "holds" on a family when the E7 EER is within 5 points of native and at most 25%. <em>holds</em>: E7 holds on at least one family and H2 or Arc2Face is clearly above its floor (no row qualifies). <em>partly holds</em>: E7 holds on at least one family. <em>does not hold</em>: on no family. X3 is left out of the verdicts: its positive control failed, and C2 calls the one separating row "open".</li>
+</ul></div><div class="tw"><table class="small">
+<thead>
+<tr>
+<th>Morph type</th>
+<th>holds</th>
+<th>partly holds</th>
+<th>does not hold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regular</td>
+<td>4 (ViT-L/14 release, FE ViT-L/14, M3, M3L)</td>
+<td>4 (SelfMAD release, ViT-B/16 release, FE ViT-B/16, M4)</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Diffusion</td>
+<td>0</td>
+<td>4 (ViT-L/14 release, FE ViT-L/14, M3, M3L)</td>
+<td>13</td>
+</tr>
+</tbody>
+</table></div><div class="prose"><p>The GAN column has no count. It is "not shown" in every row, and C3 is the only allowed summary.</p>
+<h3>Status of the numbers</h3>
+<ul>
+<li><strong>Registered decision cells.</strong> SelfMAD MAD22 FaceMorpher under E7 (F4 (i), supported); ViT-B/16 FRLL FaceMorpher under E7 (F4 (ii)); SelfMAD Greedy-DiM and MorDIFF (C1, "strong (final)"); ViT-B/16 MorDIFF (C2, "descriptive row (final)"; the refuter F7 fired); ViT-L/14 Greedy-DiM as the negative control (F4 (iii), supported); FE ViT-L/14 as the X3 positive-control gate (failed, 0.636 ≤ 0.65).</li>
+<li><strong>Registered tests.</strong> H3 and X4 on the ‡ rows: C3, "strong (narrow)". Claim B: "meets its registered criterion". C4: "construction sentence".</li>
+<li><strong>Registered labels without a grade.</strong> The H1 <code>orig</code> labels on the 11 primary rows; H4b through A36 H-new-72 ("neither"); renders vs camera, H-new-83 ("neither"); "CLIP carries the render cue", H-new-84 ("neither").</li>
+<li><strong>Everything else is descriptive</strong>, including every verdict word, every <code>pp</code> H1 label and every recipe number. A41's rules were written after earlier estimates on the same questions had been seen; never call A41 "confirmatory".</li>
+</ul></div>
+</section>
+<section class="s" id="s3">
+<h2><span class="n">3</span>Shortcut per method, against the registered bar</h2>
+<div class="prose"><p>The comparison table says how each detector does under the controls. This section asks the stricter question: for each method, was a shortcut found under A41's registered rules, and how far does the evidence go?</p></div><div class="prose"><h3>The registered bar (A41)</h3>
+<p>The program's registered bar is A41's. The top grade a shortcut claim can earn is "meets registered criteria N1–N4", and all four conditions are required. A grade is the label A41's registered rules assign, not a level of certainty (CONCLUSIONS).</p>
+<ul>
+<li><strong>N1, reliance.</strong> A control removes the construction difference while everything else stays fixed, and at least half of the separation goes.<ul>
+<li>In numbers (CONCLUSIONS' summary): the benchmark error rate (EER) is at most 10%; the person-clustered lower bound of its rise under the control is at least +10 points; at least half of the separation is gone (d′ share ≥ 0.5).</li>
+<li>Operationally (F1, F2, F5): the rise is decided by a one-sided person-clustered test that it exceeds +10, at its Holm level (p10 ≤ level), not by the printed two-sided interval. C2's printed interval starts at 10.3 (one-sided lower bound 10.97), but p10 0.0170 &gt; 0.00833, so tier 2 was not reached.</li>
+</ul>
+</li>
+<li><strong>N2, specificity (F4).</strong> The same control leaves real morph evidence detectable: MAD22 FaceMorpher morphs stay detected under it. It also does not move a detector that ignores downsampling: the ViT-L/14 release, on Greedy-DiM. This shows only that E7 does not mechanically destroy a detector that is good on DiM (A41's printed caveat).</li>
+<li><strong>N3, validity in kind (F3, X3 only).</strong> Genuine photos passed through the morphs' own generator family, without any morphing, behave like morphs for the detector. Here these are DiffAE reconstructions (X3). The test must also show that it could catch identity mixing at all: its positive-control detector, FE ViT-L/14, must score above 0.65 on the reconstructions.</li>
+<li>
+<p><strong>N4, reproduction.</strong> For C1, with the release's own crop on the raw files (X7′, H-new-145), both components:</p>
+<ul>
+<li>"published regime reproduced on raw files": raw Greedy-DiM within 5 points of the published 7.60, and the FRLL-5 mean within 5 of 2.96;</li>
+<li>"our frames do not change the native regime": |raw − frame| ≤ 3 points for Greedy-DiM and MorDIFF.</li>
+</ul>
+<p>The raw-file reversal is descriptive. For C2, N4 is the five-crop check (X14b, F6).</p>
+</li>
+</ul>
+<p><strong>No claim meets this bar.</strong> The closest is C1, the SelfMAD release on diffusion morphs:</p>
+<ul>
+<li>It meets N1 (F1, F2), N2 (F4, Greedy-DiM; not shown on MorDIFF) and N4 (X7′, both components).</li>
+<li>It does not meet N3: the positive control reached only 0.636.</li>
+<li>A border or alignment artefact of our control photos is not formally excluded.</li>
+<li>The top grade would also need no fired C1 kill and W-c resolved (PROTOCOL l.14441).</li>
+<li>So its grade is "strong (final)", and the top grade cannot be reached.</li>
+</ul></div><div class="callout"><p><strong>Three statements that are easy to confuse.</strong></p>
+<ul>
+<li>
+<p><strong>"The result meets A41's shortcut definition."</strong> This is about what carries one detector's result on one benchmark cell. A41's definition requires, in numbers:</p>
+<ol>
+<li>a construction difference separates morphs from genuine photos;</li>
+<li>the same difference can be put into genuine photos without any morphing;</li>
+<li>removing it removes at least half of the separation, at the thresholds above.</li>
+</ol>
+<p>C1 is the only claim whose numbers meet A41's shortcut definition. It is graded "strong (final)", and two registered conditions are open: the assay sensitivity of X3, and a pool artefact that is not formally excluded. In plain words (CONCLUSIONS): the SelfMAD release treats genuine photos that were merely shrunk to the morphs' face size as more morph-like than real Greedy-DiM morphs.</p>
+</li>
+<li>
+<p><strong>"The benchmark number changes under a control."</strong> The benchmark number changes when a control alters a construction difference. This says neither by how much deployed performance is overstated nor that the detector relies on that difference.</p>
+<ul>
+<li>A41's "inflated" label (tier 1) needs a native EER of at most 10% and a one-sided person-clustered test that the rise exceeds +5 passing at its Holm level (p5). It was first printed for the ViT-B/16 release on MorDIFF. It was superseded by "descriptive row" when a registered refuter fired, so this note does not use the word for that row.</li>
+<li>Every other rise under a control below is descriptive. No registered rule was applied to it. Person intervals exist only for the A41 S2 and S3 release cells, not for FE ViT-B/16, FS, MixFaceNet-MAD or the recipes.</li>
+</ul>
+</li>
+<li><strong>"The detector fails a clean test."</strong> This is an absence. On a set where both classes come from the same tool or generator, and the known remaining differences are named (H1 file size, floor 0.620; H3 latent spread, by construction; H4b file size, floor 0.912), the detector does not rank morphs above non-morphs by a useful margin.<ul>
+<li>What it shows (C3 only, StyleGAN3): the detector's GAN benchmark number is not evidence of morph detection. The H1 labels are registered without a grade; H2 and Arc2Face are descriptive.</li>
+<li>What it does not show: a shortcut, because it says nothing about which cue the detector uses on the benchmark. Nor does it show that the detector is blind to identity, unless the test has power and a passing positive control. X4 sits near 0.5 by construction, H2 is low-potency, and X3's positive control failed.</li>
+<li>The registered example is C3, "strong (narrow)", for GAN morphs.</li>
+</ul>
+</li>
+</ul>
+<p>Claims B and C4 describe the benchmarks, not the detectors:</p>
+<ul>
+<li>B: morph and genuine files differ in construction attributes.</li>
+<li>C4: the GAN sets compare generator output with camera photos.</li>
+</ul>
+<p>They make a shortcut possible. They do not show that any detector uses one.</p></div><div class="prose"><h3>Reading the table</h3>
+<ul>
+<li><strong>E7.</strong> Genuine photos shrunk to the morphs' median face size before the same alignment. Cells give EER in %, native → E7.</li>
+<li><strong>Brackets.</strong> [ ] is a person-clustered 95% interval unless marked otherwise. "pair 90%" marks the A36 H1 and H3 intervals. Row 11's FRLL reproduction interval is marked "TOST": the A12-BR TOST interval (90%) over seeds plus the image bootstrap.</li>
+<li><strong>X3 AUC.</strong> Published morphs against DiffAE reconstructions of the genuine photos. Below 0.5 means the reconstructions look more morph-like than the morphs.</li>
+<li><strong>"Renders vs camera"</strong> (in the outcome column, not N3). AUC of the single-person StyleGAN3 renders of H3 against FRLL / FFHQ / FEI camera photos (A36 amendment 1, H-new-83).<ul>
+<li>The registered cell is the FRLL pool on the 11 primary rows (M1–M8O and the ViT-B/16 and ViT-L/14 releases), with verdict "neither". The FFHQ and FEI pools are descriptive, and so are rows 4–8 and the SelfMAD row (A39 R3).</li>
+<li>It is not A41's N3 (A41: "X3 only"). The renders are not re-rendered genuine photos, and StyleGAN3 is not the MIPGAN generator.</li>
+</ul>
+</li>
+<li><strong>"‡".</strong> One of the 12 primary rows of C3.</li>
+<li><strong>Fixed outcome tags.</strong> "meets A41's shortcut definition" (C1 only); "registered refuter fired" (C2); "negative control"; "not tested under a registered rule (descriptive: …)"; "no native EER ≤ 10% to carry" (rows 15–17: "no native EER ≤ 10% that E7 changes").</li>
+<li><strong>"Which morph type".</strong> Filled only for cells with a registered grade; "—" otherwise.</li>
+<li><strong>"Met / not met".</strong> Used only where A41 registered that condition for that cell. Everything else is a logged number with its status.</li>
+<li><strong>GAN status.</strong> "C3 absence, 'strong (narrow)'; not a shortcut grade" on every ‡ row.</li>
+</ul></div><div class="tw"><table class="sc">
+<thead>
+<tr>
+<th>#</th>
+<th>Method (networks)</th>
+<th>Shortcut test outcome and construction cue (plain words)</th>
+<th>Which morph type</th>
+<th>N1 reliance (number)</th>
+<th>N2 specificity (number)</th>
+<th>N3 validity in kind (number)</th>
+<th>N4 reproduction (number)</th>
+<th>Status (registered grade if any)</th>
+<th>Missing for the top grade or replication / next test</th>
+</tr>
+</thead>
+<tbody>
+<tr class="grp"><td colspan="10">Official releases</td></tr>
+<tr>
+<td>1</td>
+<td>SelfMAD release, HRNet-W18, its own dlib crop and resize on our frames (1) ‡</td>
+<td><strong>Diffusion: meets A41's shortcut definition (C1).</strong> Against photos shrunk to the morphs' face size before the same alignment (E7), genuine photos score as more morph-like than published Greedy-DiM and MorDIFF morphs. Photos only resampled by DiffAE's aligner, and DiffAE reconstructions, also score above MorDIFF morphs. Cue word: "bona fide processing history; cue not identified". Its score rises with the shrinking factor: photo-only AUC 0.584 at ~1.0x → 0.998 at 3.30x ("dose response", registered secondary rule). <strong>Regular:</strong> not tested under a registered rule (descriptive: AMSL 2.9 → 33.3, WebMorph 5.9 → 51.9). <strong>GAN:</strong> C3 absence (Status). Renders vs camera 1.000 / 0.952 (FRLL / FFHQ; descriptive, A39 R3).</td>
+<td>Diffusion: FRLL Greedy-DiM (main cell), MorDIFF (supporting)</td>
+<td>Greedy-DiM 8.4 → 90.7, +82.4 [77.3, 87.4], d′ share 2.11. MorDIFF 2.5 → 61.3, +58.8 [54.2, 64.6], d′ share 1.19 (F1, F2 supported). <strong>Met:</strong> the ranking reverses (share 2.11). The control does more than remove the separation, which the review reads as pointing to the E7 construction (H-new-233, proposed); hence the pool-artefact qualifier.</td>
+<td>MAD22 FaceMorpher against its own E7 pool 0.11 [0.00, 0.89]. ViT-L/14 release on Greedy-DiM Δ 0.00 [−3.15, 3.41] (F4 supported). <strong>Met for Greedy-DiM.</strong> On MorDIFF the same control moves ViT-L/14 by +10.74 [7.22, 14.19], so not shown there.</td>
+<td>Reconstructions ranked above published morphs: Greedy-DiM 0.024 [0.011, 0.042] (floor-limited), MorDIFF 0.330 [0.284, 0.374]. Resampled-only photos 0.004 / 0.092 (F3 supported). The binding positive control failed: FE ViT-L/14 0.636 [0.579, 0.693] ≤ 0.65. <strong>Not met</strong> ("assay sensitivity not shown").</td>
+<td>Raw files with its own crop (X7′, H-new-145). "Published regime reproduced on raw files" (raw Greedy-DiM within 5 of 7.60; FRLL-5 mean within 5 of 2.96): Greedy-DiM 6.39 [3.35, 9.42]; FRLL-5 5.55. "Our frames do not change the native regime" (|raw − frame| ≤ 3): Greedy-DiM 6.39 vs 8.37; MorDIFF 1.49 vs 2.53. <strong>Met</strong> (both components). The reversal persists on the raw files, 6.4 → 87.2 (descriptive).</td>
+<td><strong>C1 "strong (final)"</strong>; top grade unreachable. Pool artefact not formally excluded (the border test, XA3c, ran but could not be evaluated). Earlier registered test (A32 H1): "neither". GAN: C3 absence, "strong (narrow)"; not a shortcut grade.</td>
+<td>N3 with a positive control that passes. A successor border/alignment test. A second checkpoint, or a retrain over seeds (H-new-242; retrained networks are ours, not the release). Fresh data and another studio pool (X8).</td>
+</tr>
+<tr>
+<td>2</td>
+<td>MADation release, CLIP ViT-B/16 + LoRA (1) ‡</td>
+<td><strong>Diffusion: registered refuter fired (C2).</strong> Its MorDIFF EER rises against shrunk photos (C2's registered cue word "fine-detail softness"; cue not identified). But it separates the published MorDIFF morphs from DiffAE reconstructions, a registered refuter: "Identity evidence or a file/frame property: open." Also descriptive, not registered decision cells (F5 covers MorDIFF only; no d′ share logged): DiM-C 6.39 → 29.51, +23.12 [19.08, 29.21]; Greedy-DiM-S 6.93 → 29.41, +22.47 [18.00, 27.43]. <strong>Regular:</strong> not tested under a registered rule (descriptive: AMSL 15.1 → 28.9, WebMorph 4.9 → 10.8). <strong>GAN:</strong> C3 absence (Status). Renders vs camera 0.947 / 0.980 / 0.964.</td>
+<td>Diffusion: MorDIFF (C2 cell); DiM-C and Greedy-DiM-S (descriptive)</td>
+<td>MorDIFF 4.9 → 19.6, +14.7 [10.3, 18.9]; d′ share 0.463 &lt; 0.5. Tier 2 not reached: p10 0.0170 &gt; its Holm level 0.00833 (the printed interval starts at 10.3, but the rule is the one-sided test). A rise in all five crops (+13.2 to +21.0). <strong>Not met.</strong></td>
+<td>FRLL FaceMorpher under E7 4.42 [2.12, 6.93] (F4 (ii) supported). But the MorDIFF control moves the ViT-L/14 release by +10.74 [7.22, 14.19]; in the central 256-px window that rise stays at +12.3 [6.6, 16.2] (A42, post hoc; CONCLUSIONS: the non-specificity "is not a border artefact"). <strong>Not shown for MorDIFF.</strong></td>
+<td><strong>Not met:</strong> the registered refuter fired (F7, H-new-139b, falsified by its kill): MorDIFF morphs vs reconstructions 0.847 [0.803, 0.891]. With border area matched: 0.844 [0.787, 0.895] (A42, post hoc). Central 256-px window: 0.61 [0.56, 0.65] (A42 amendment 1, post hoc, explanation only; not a border test). DiM-A 0.361 the other way (descriptive). Identity evidence or a file/frame property: open.</td>
+<td><strong>Met as registered</strong> (F6 supported; five crops of our frames, not raw files). No raw-file run with MADation's pipeline. On our frames MorDIFF 4.9 against a published 1.1.</td>
+<td><strong>C2 "descriptive row (final)"</strong> (a registered refuter fired). Earlier registered test (A36 H-new-75): "neither". GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "above" (registered label, no grade).</td>
+<td>A42 amendment 1: read (post hoc; see "Beside C2" in §4). A43 (the MorDIFF two-by-two, H-new-241; registered 20:18 CET, read 22:02 CET): registered cell "steps". The release separates the published MorDIFF morphs from our DiffAE reconstructions rendered with 100 decoding steps (0.83 [0.77, 0.90]) but not from the same reconstructions rendered with the 20 steps that best reproduce the published pixels (0.49 [0.38, 0.59], below 0.65); our 20-step same-pair morphs score like the published ones (0.50 [0.47, 0.54]); two- vs one-identity morphs undetermined (0.71 [0.63, 0.79]). No grade changes; C2's explanation sentence waits for Q4. Then Bx20 and the A12BR re-score (author items), off-centre same-scale windows (H-new-262/263, proposed), a fresh-data replication (H-new-234).</td>
+</tr>
+<tr>
+<td>3</td>
+<td>MADation release, CLIP ViT-L/14 + LoRA (1) ‡</td>
+<td><strong>Negative control</strong> (A41 F4 (iii)). Shrinking photos does not move it on Greedy-DiM and photo-only (photo-only AUC 0.494 → 0.455, "none"); its MorDIFF pool rise is +10.74. It does react to other processing: 52.9% of JPEG-50 genuine photos flagged at its native threshold (descriptive). <strong>GAN:</strong> C3 absence (Status). Renders vs camera 0.904 / 0.808 / 0.924.</td>
+<td>—</td>
+<td>Greedy-DiM 9.8 → 9.8, Δ 0.00 [−3.15, 3.41]. MorDIFF 28.9 → 39.7, +10.74 [7.22, 14.19], but native above 10, so not a decision cell.</td>
+<td>It is C1's N2 control: native 9.80 ≤ 10 and Δ 0.00 [−3.15, 3.41] on Greedy-DiM (F4 (iii) supported).</td>
+<td>Greedy-DiM vs reconstructions 0.749 [0.696, 0.802]. Floor-limited (simple image properties alone 0.993), so uninformative. Same-person DiffAE "morphs" score above Greedy-DiM morphs (0.386, descriptive).</td>
+<td>Our frames only. MorDIFF 28.9 against 19.3: not reproduced. MIPGAN-I 11.9 against 20.32: not reproduced. MIPGAN-II 9.9 against 9.06: reproduced.</td>
+<td>F4 (iii) supported (as control). GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "above" (registered label).</td>
+<td>No shortcut test applies: it is the negative control. Its MorDIFF rise is untested (native above 10).</td>
+</tr>
+<tr>
+<td>4</td>
+<td>MADation baseline FE ViT-B/16, frozen CLIP + head (1)</td>
+<td><strong>Not tested under a registered rule</strong> (descriptive: its numbers fall under E7; FRLL landmark 16.7–26.0 → 22.6–38.7; DiM 21.0–47.0 → 41.6–73.6). Renders vs camera 0.922 / 0.892 / 0.656 (descriptive). Registered "CLIP carries the render cue" (H-new-84): "neither".</td>
+<td>—</td>
+<td>No person interval and no rule. Most native EERs are above 10, outside A41's definition. MAD22 FaceMorpher 1.0 → 7.2.</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Our frames only: MorDIFF 39.7 against 17.86, not reproduced.</td>
+<td>descriptive only (outside C3)</td>
+<td>E7 cells with person intervals under a registered rule; X3; a raw-file run.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MADation baseline FE ViT-L/14, frozen CLIP + head (1)</td>
+<td><strong>Not tested under a registered rule</strong> (descriptive: it changes little under E7; landmark +0.5 to +1.5; Greedy-DiM-S holds). It is the registered X3 positive control, whose gate failed (N3). Renders vs camera 0.887 / 0.903 / 0.861 (descriptive).</td>
+<td>—</td>
+<td>Greedy-DiM-S 11.8 → 13.8, +1.98 [0.25, 4.72] (descriptive; native above 10).</td>
+<td>not tested</td>
+<td>MorDIFF vs reconstructions 0.742 [0.689, 0.792], DiM-A 0.772 (descriptive; not shown to be identity evidence: no fidelity check covered MorDIFF). As the registered X3 positive control on Greedy-DiM: 0.636 [0.579, 0.693] ≤ 0.65, gate failed.</td>
+<td>Our frames only: MorDIFF 34.8 against 22.85, not reproduced.</td>
+<td>descriptive only. Its failed gate is what blocks N3 for C1.</td>
+<td>For C1, a positive-control detector that clears 0.65 on a same-generator test.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>MADation baseline FS ViT-B/16, from scratch + head (1)</td>
+<td><strong>Not tested under a registered rule</strong> (descriptive: weak natively; its moderate DiM numbers go to near chance against shrunk photos, 16.1–24.0 → 41.6–45.6). Renders vs camera 0.877 / 0.509 / 0.569 (descriptive).</td>
+<td>—</td>
+<td>No person interval. DiM native 16–24, above A41's 10% entry bar. FRLL OpenCV 3.9 → 5.4 holds.</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Our frames: MorDIFF 67.6 against 28.14, not reproduced.</td>
+<td>descriptive only</td>
+<td>No shortcut test applies: no native EER ≤ 10% falls under the control (FRLL OpenCV 3.9 → 5.4).</td>
+</tr>
+<tr>
+<td>7</td>
+<td>MADation baseline FS ViT-L/14, from scratch + head (1)</td>
+<td><strong>No native EER ≤ 10% to carry.</strong> Weak natively everywhere (27.6–49.0% with or without a control). G-test inverted (67.4). Renders vs camera 0.594 / 0.611 / 0.465 (descriptive).</td>
+<td>—</td>
+<td>— (no native cell at or below 10%)</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Our frames only: MorDIFF 43.0 against a published 40.92 (no reproduction label logged; near chance either way).</td>
+<td>descriptive only</td>
+<td>No shortcut test applies (no native EER ≤ 10%).</td>
+</tr>
+<tr>
+<td>8</td>
+<td>MixFaceNet-MAD, the official release, on our frames (loader checked on its own training files) (1)</td>
+<td><strong>No native EER ≤ 10% to carry.</strong> It does not reproduce on our frames (cause: our frames or the genuine-photo source, not separated). It ranks FRLL genuine photos above FRLL landmark morphs with or without the control. No sentence may tie its numbers to image size (drop list). Renders vs camera 0.588 / 0.875 / 0.651 (descriptive).</td>
+<td>—</td>
+<td>— (FRLL landmark families inverted natively, 75.5–98.0)</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Not reproduced on our frames: MAD22-5 / FRLL-5 41.7 / 76.5 against 13.69 / 8.96. The loader is verified (0.45% on its own SMDD training files), so the cause is our frames or the genuine-photo source; the two are not separated.</td>
+<td>descriptive only (outside C3; X4 not scored)</td>
+<td>Scoring on its own crops and raw files before any reading.</td>
+</tr>
+<tr class="grp"><td colspan="10">Published recipes, our re-implementation, SMDD only</td></tr>
+<tr>
+<td>9</td>
+<td>M1 Inception-MAD, Inception-v3 from scratch (5) ‡</td>
+<td><strong>Not tested under a registered rule</strong> (descriptive: its rankings follow the benchmark's morph files. Against byte-copy genuine photos, OpenCV-tool morphs score 3.3% from MAD22's 1351-px files and 53.6% from FRLL's 431-px files. Its fair results collapse once the photos are shrunk). <strong>GAN:</strong> C3 absence (Status). Renders vs camera 0.969 / 0.977 / 0.644 (morphs vs FRLL 0.990).</td>
+<td>—</td>
+<td>Seed means; no person interval, no d′ share. MAD22 FaceMorpher 6.4 → 39.0. Greedy-DiM 9.0 → 60.7. UA8c 14.4 → 49.4 (uncapped 63.0).</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Re-implementation, not the authors' pipeline. Reproduction test (TOST): falsified.</td>
+<td>descriptive only (no registered shortcut rule applied to recipes). GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "not above" (registered label).</td>
+<td>A registered E7 rule with person intervals over its networks, a negative control and X3. A re-implementation that reproduces.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>M2 MorphHRNet-style, HRNet-W48 from scratch (5) ‡</td>
+<td><strong>No native EER ≤ 10% to carry.</strong> Inverted natively on FRLL landmark families (67.5–90.7%). Degrading both classes does not remove the inversion (H-new-B falsified). Renders vs camera 0.440 / 0.886 / 0.587.</td>
+<td>—</td>
+<td>— (no FRLL landmark, MAD22 FaceMorpher or diffusion cell at or below 10% natively)</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Re-implementation; TOST falsified.</td>
+<td>descriptive only. GAN: C3 absence, "strong (narrow)"; not a shortcut grade. It is the highest H3 row (0.591 [pair 90% 0.572, 0.610]), still below the combined floor; single networks reach a within-pair θ of 0.66, and simple image properties alone reach 0.62. H1 "not above".</td>
+<td>No shortcut test applies (no native EER ≤ 10%).</td>
+</tr>
+<tr>
+<td>11</td>
+<td>M3 MADation recipe, CLIP ViT-B/16 + LoRA (8) ‡</td>
+<td><strong>Not tested under a registered rule</strong> (descriptive: on regular and diffusion morphs it changes little under E7. Photo-only, it flags 5.9% of half-size photos at its native threshold, against 5.4% native; A32 hypothesis M, "not supported as registered", read descriptively). <strong>GAN:</strong> its MIPGAN-I EER (7.0%) is measured on generator output against camera photos (C4). On the clean test it ranks single-person renders above morphs (H3 0.448). Renders vs camera 0.951 / 0.956 / 0.967.</td>
+<td>—</td>
+<td>Regular and diffusion: little change under E7 (seed means, descriptive). Landmark moves ≤ 0.6; MAD22 FaceMorpher 5.0 → 5.3; UA8c 12.6 → 12.1. GAN: no control on the benchmark cell.</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Re-implementation. MAD22 reproduced on the mean only (per family MIPGAN-I 7.0 against 33.37, OpenCV 23.7 against 3.85). FRLL inconclusive: +2.17 [TOST 0.86, 3.47], margin 1.73.</td>
+<td>GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "above" (registered label). Otherwise descriptive.</td>
+<td>GAN: X6 (the causal C4 test; it would need its own registered claim); a same-generator clean set with a passing positive control. X3 for the recipes.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>M3L MADation recipe, CLIP ViT-L/14 + LoRA (5) ‡</td>
+<td><strong>Not tested under a registered rule</strong> (descriptive: regular and diffusion change little under E7; MorDIFF stays weak, 45.7 → 41.5). <strong>GAN:</strong> MIPGAN-I 0.8% is synthetic vs camera. H3 0.401 (reversed). H4b 0.923 is not above the file-size floor of 0.912 (+0.010; Bonferroni lower bound −0.031). Renders vs camera 0.934 / 0.940 / 0.957.</td>
+<td>—</td>
+<td>Landmark ≤ 0.6 change (FaceMorpher 0.4 → 0.4; MAD22 FaceMorpher 0.6 → 0.5). UA8c 17.7 → 16.1 (seed means).</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Re-implementation. MAD22 better than published (TOST).</td>
+<td>GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "above". Otherwise descriptive.</td>
+<td>As M3.</td>
+</tr>
+<tr>
+<td>13</td>
+<td>M4 SelfMAD-style, HRNet-W18 + self-blended fakes from SMDD genuine photos only (5) ‡</td>
+<td><strong>No native EER ≤ 10% to carry.</strong> Inverted on the benchmarks: 100% EER on AMSL, WebMorph and all seven diffusion families, 90.9% on FaceMorpher. Shrinking makes photos look genuine to it (MAD22 FaceMorpher 99.8 → 0.8), the opposite direction from the SelfMAD release. Above the floor on the clean landmark set (H1 0.761). Renders vs camera 0.314 / 0.394 / 0.999.</td>
+<td>—</td>
+<td>— (no native cell at or below 10%; the control improves it)</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Re-implementation; TOST falsified.</td>
+<td>descriptive only. GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "above".</td>
+<td>No shortcut test applies (no native EER ≤ 10%). Its opposite-direction response is descriptive.</td>
+</tr>
+<tr>
+<td>14</td>
+<td>M5 PW-MAD, DenseNet-121 with pixel-wise labels (8) ‡</td>
+<td><strong>Not tested under a registered rule</strong> (descriptive: fair native results fall once the photos are shrunk; MAD22 OpenCV and Webmorph, shrunk only ~1.0x, do not change). Renders vs camera 0.881 / 0.845 / 0.801.</td>
+<td>—</td>
+<td>Seed means, no person interval; seed SD up to ±17 on some families. WebMorph 4.2 → 14.3; AMSL 8.9 → 25.7; MAD22 FaceMorpher 1.2 → 20.7; UA8c 28.0 → 49.5 (uncapped 72.3).</td>
+<td>not tested (the ~1.0x families' stability is a no-dose check, descriptive)</td>
+<td>X3 not run.</td>
+<td>Re-implementation; TOST falsified.</td>
+<td>descriptive only. GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "not above".</td>
+<td>As M1.</td>
+</tr>
+<tr>
+<td>15</td>
+<td>M6 OrthoMAD, ResNet-18 from scratch (5) ‡</td>
+<td><strong>No native EER ≤ 10% that E7 changes.</strong> Inverted natively on FRLL landmark families (59.8–81.4%), and not removed by degrading both classes (H-new-B falsified). MAD22 FaceMorpher 24.4 → 47.5 (collapses under E7, descriptive). Renders vs camera 0.525 / 0.913 / 0.572.</td>
+<td>—</td>
+<td>— (no native cell at or below 10% that E7 changes: MAD22 OpenCV 9.4 → 10.0, shrunk only ~1.0x)</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Re-implementation; TOST falsified.</td>
+<td>descriptive only. GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "not above".</td>
+<td>No shortcut test applies (no native EER ≤ 10% that E7 changes).</td>
+</tr>
+<tr>
+<td>16</td>
+<td>M8 MixFaceNet-MAD recipe, MixFaceNet-S from scratch (5) ‡</td>
+<td><strong>No native EER ≤ 10% that E7 changes.</strong> Weak or inverted natively (FRLL FaceMorpher and OpenCV inverted). MAD22 FaceMorpher 27.6 → 65.7 under E7 (descriptive). Renders vs camera 0.763 / 0.963 / 0.662.</td>
+<td>—</td>
+<td>— (no native cell at or below 10% that E7 changes: MAD22 OpenCV 6.4 → 6.8, ~1.0x)</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Re-implementation; TOST falsified.</td>
+<td>descriptive only. GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "not above".</td>
+<td>No shortcut test applies (no native EER ≤ 10% that E7 changes).</td>
+</tr>
+<tr>
+<td>17</td>
+<td>M8O MixFaceNet-MAD, official training code (5) ‡</td>
+<td><strong>No native EER ≤ 10% that E7 changes.</strong> Inverted natively on all four FRLL landmark families. At its native 5% threshold it flags 26.7% of half-size genuine photos and 57.3% of the DiM E7 photo pool (descriptive): shrunk photos move toward "morph" for it, but it has no good native result for that to carry. Renders vs camera 0.697 / 0.954 / 0.629.</td>
+<td>—</td>
+<td>— (no native cell at or below 10% that E7 changes: MAD22 OpenCV 6.1 → 6.7, ~1.0x)</td>
+<td>not tested</td>
+<td>X3 not run.</td>
+<td>Official-code reproduction (O-Repro): falsified. O × d0 MAD22-5 35.78 ± 3.66, FRLL-5 67.59 ± 7.31, against the published 13.69 / 8.96 (A12-BR README l.146).</td>
+<td>descriptive only. GAN: C3 absence, "strong (narrow)"; not a shortcut grade. H1 <code>orig</code> "not above".</td>
+<td>No shortcut test applies (no native EER ≤ 10% that E7 changes).</td>
+</tr>
+</tbody>
+</table></div><div class="prose"><h3>Notes to the table</h3>
+<ul>
+<li><strong>Confidence-interval levels.</strong><ul>
+<li>Person-clustered 95%: the A41 cells (S2, S3, DC-8, X3, X7′) and A42 (border-matched and central-window X3, the central-window rises).</li>
+<li>Pair 90%: the A36 H1 and H3 values.</li>
+<li>TOST (90%, over seeds plus the image bootstrap): the A12-BR reproduction intervals (row 11).</li>
+<li>Seed means, or mean ± SD: the recipes.</li>
+</ul>
+</li>
+<li><strong>H1 labels.</strong> Registered for the 11 primary rows (M1–M8O and the ViT-B/16 and ViT-L/14 releases), with no grade and set post-freeze. The SelfMAD own-crop H1 (<code>orig</code> 0.872) is a point estimate, counted "above" only in A39's sensitivity read.</li>
+<li><strong>No landmark (regular) cell has a shortcut grade.</strong> E7 leaves the alignment borders on landmark families (E07 README), and border fraction alone separates several evaluation families almost perfectly (AUC 0.99–1.00). On MorDIFF, 0.471 of the pool's difference from the native photos sits in the warped border (H-new-152 W-c).</li>
+<li><strong>Recipes.</strong> No registered shortcut rule was applied to them. A12.4 calls their benchmark pool "an eval-pipeline diagnostic, never a detection result".</li>
+<li><strong>Printed beside every claim in the paper</strong> (CONCLUSIONS):<ul>
+<li>the positive controls: the X3 gate failed (0.636 ≤ 0.65), and the ViT-L/14 release is unchanged on Greedy-DiM (Δ 0.00 [−3.15, 3.41]);</li>
+<li>our own networks' history with the same shortcut (take it from CONCLUSIONS);</li>
+<li>"MADMamba not evaluated on H3 (sealed)".</li>
+</ul>
+</li>
+</ul></div><div class="prose"><h3>Method by method: what was found, how we know, how sure</h3></div><div class="cards"><article class="card"><h3><span class="n">1</span>SelfMAD release</h3><ul>
+<li><em>What:</em> meets A41's shortcut definition on diffusion morphs (C1). It treats genuine photos that were only shrunk to the morphs' face size as more morph-like than real Greedy-DiM and MorDIFF morphs. Cue: "bona fide processing history; cue not identified".</li>
+<li><em>How we know:</em><ul>
+<li>Against photos shrunk to the morphs' face size before the same alignment (E7), its Greedy-DiM EER goes 8.4% → 90.7% (+82.4 [77.3, 87.4]).</li>
+<li>The same control leaves MAD22 FaceMorpher morphs detected (0.11%) and leaves the ViT-L/14 release unchanged on Greedy-DiM (Δ 0.00).</li>
+<li>With its own crop on the raw files, its published regime reproduces (6.4% against 7.6%) and our frames do not change the native regime. There the reversal persists (6.4% → 87.2%, descriptive).</li>
+</ul>
+</li>
+<li>
+<p><em>How sure:</em> this is C1, graded "strong (final)", the highest grade any shortcut claim reached here, but not the top grade. Two registered conditions are open:</p>
+<ul>
+<li>the reconstruction test's positive control failed (0.636 ≤ 0.65);</li>
+<li>a border or alignment artefact of our control photos is not formally excluded.</li>
+</ul>
+<p>It is also one checkpoint on 204 photos of 102 persons, the earlier registered test said "neither", and it says nothing about the SelfMAD method.</p>
+</li>
+</ul></article><article class="card"><h3><span class="n">2</span>MADation release ViT-B/16</h3><ul>
+<li><em>What:</em> no shortcut is shown; a registered refuter fired. On MorDIFF its EER rises against shrunk photos (C2's registered cue word "fine-detail softness"; cue not identified), but our rules do not let us call this a shortcut.</li>
+<li><em>How we know:</em><ul>
+<li>The rise, 4.9% → 19.6% (+14.7 [10.3, 18.9]), appears in all five crops (+13.2 to +21.0).</li>
+<li>It removes less than half of the separation (d′ share 0.46). Tier 2 is not reached (p10 0.0170 &gt; 0.00833). The same control also moves the ViT-L/14 release (+10.7).</li>
+<li>The release separates the published MorDIFF morphs from DiffAE reconstructions (0.85 [0.80, 0.89]), a registered refuter.</li>
+<li>Two DiM variants also rise, from 6–7% to 29% (DiM-C, Greedy-DiM-S; descriptive, not decision cells).</li>
+</ul>
+</li>
+<li><em>How sure:</em> this is C2, a "descriptive row (final)". Its row sentence still reads "Identity evidence or a file/frame property: open"; A43 (registered, read 2026-11-07 22:02 CET, post hoc with a disclosed forecast, one network, 200 published pairs) answers it: the separation from reconstructions follows the decoding step count (0.83 at 100 steps, 0.49 [0.38, 0.59] at the matched 20), identity blending is not needed to explain it and is not separately shown (0.71 [0.63, 0.79], undetermined). The sentence changes only through the author's Q4; the proposed replacement is in CONCLUSIONS, "Beside C2 (A43)".</li>
+</ul></article><article class="card"><h3><span class="n">3</span>MADation release ViT-L/14</h3><ul>
+<li><em>What:</em> the negative control. It is the detector that ignores downsampling on Greedy-DiM and photo-only; its MorDIFF pool rise is +10.7.</li>
+<li><em>How we know:</em> its Greedy-DiM EER is unchanged under the control (9.8 → 9.8, Δ 0.00 [−3.15, 3.41]), and shrunk photos do not look more morph-like to it (0.494 → 0.455). It does react to JPEG-50 photos (52.9% flagged).</li>
+<li><em>How sure:</em> it is registered as a control component (F4 (iii) supported), not as a claim about the detector. On GAN morphs it does not rank morphs above single-person renders by the registered margin (H3 0.427, reversed; C3).</li>
+</ul></article><article class="card"><h3><span class="n">4</span>FE ViT-B/16</h3><ul>
+<li><em>What:</em> not tested under a registered rule.</li>
+<li><em>How we know:</em> its numbers fall under E7 on landmark and DiM morphs, but most of them start above 10%. No registered rule or person interval was applied, and X3 was not run.</li>
+<li><em>How sure:</em> descriptive only, one network.</li>
+</ul></article><article class="card"><h3><span class="n">5</span>FE ViT-L/14</h3><ul>
+<li><em>What:</em> not tested under a registered rule.</li>
+<li><em>How we know:</em> it changes little under E7 (Greedy-DiM-S +1.98 [0.25, 4.72]). It separates published MorDIFF morphs from reconstructions (0.742 [0.689, 0.792]), which is not shown to be identity evidence (no fidelity check covered MorDIFF).</li>
+<li><em>How sure:</em> descriptive. As the registered positive control on Greedy-DiM it reached only 0.636 ≤ 0.65. That failure is why C1 cannot meet N3. It does not void C2's refuter, which fired under its own registered rule.</li>
+</ul></article><article class="card"><h3><span class="n">6</span>FS ViT-B/16</h3><ul>
+<li><em>What:</em> not tested under a registered rule.</li>
+<li><em>How we know:</em> it is weak natively. Its DiM numbers (16–24%) go to 42–46% against shrunk photos, but they start above A41's 10% entry bar.</li>
+<li><em>How sure:</em> descriptive only, one network.</li>
+</ul></article><article class="card"><h3><span class="n">7</span>FS ViT-L/14</h3><ul>
+<li><em>What:</em> no native EER ≤ 10% to carry.</li>
+<li><em>How we know:</em> it sits at 27.6–49.0% with or without the control, so there is no good result for a cue to carry. On our frames its MorDIFF EER is 43.0% against a published 40.92% (no reproduction label logged).</li>
+<li><em>How sure:</em> descriptive only.</li>
+</ul></article><article class="card"><h3><span class="n">8</span>MixFaceNet-MAD release</h3><ul>
+<li><em>What:</em> no native EER ≤ 10% to carry.</li>
+<li><em>How we know:</em> it does not reproduce on our frames (41.7 / 76.5 against the published 13.69 / 8.96). Its loader is verified on its own training files (0.45%), so the cause is our frames or the genuine-photo source, and these are not separated.</li>
+<li><em>How sure:</em> descriptive only. No sentence may tie its numbers to image size.</li>
+</ul></article><article class="card"><h3><span class="n">9</span>M1 Inception-MAD</h3><ul>
+<li><em>What:</em> not tested under a registered rule. Descriptively, its rankings follow the benchmark's morph files, and its fair results collapse once the photos are shrunk.</li>
+<li><em>How we know:</em> OpenCV-tool morphs score 3.3% from MAD22's 1351-px files and 53.6% from FRLL's 431-px files. Under E7, MAD22 FaceMorpher goes 6.4% → 39.0% and UA8c 14.4 → 49.4.</li>
+<li><em>How sure:</em> descriptive only. These are seed means of a re-implementation that did not reproduce, with no person interval, no negative control and no X3.</li>
+</ul></article><article class="card"><h3><span class="n">10</span>M2 MorphHRNet-style</h3><ul>
+<li><em>What:</em> no native EER ≤ 10% to carry.</li>
+<li><em>How we know:</em> it is inverted natively on FRLL landmark morphs (67–91%), and degrading both classes does not remove that.</li>
+<li><em>How sure:</em> descriptive. On GAN morphs its 0.591 is the best H3 row and still below the combined file-size and eye-geometry floor (C3). Single networks reach a within-pair θ of 0.66, and simple image properties alone reach 0.62.</li>
+</ul></article><article class="card"><h3><span class="n">11</span>M3 MADation recipe ViT-B/16</h3><ul>
+<li><em>What:</em> not tested under a registered rule. On regular and diffusion morphs it changes little under E7 (seed means, descriptive).</li>
+<li><em>How we know:</em> on GAN morphs:<ul>
+<li>its 7.0% MIPGAN-I EER compares generator output with camera photos;</li>
+<li>it scores single-person renders above camera photos (0.951 / 0.956 / 0.967; renders vs camera, registered only for the FRLL pool, H-new-83 "neither");</li>
+<li>with both classes from the generator, it ranks renders above morphs (H3 0.448).</li>
+</ul>
+</li>
+<li><em>How sure:</em> the GAN absence is C3, "strong (narrow)". The renders-vs-camera numbers are descriptive, and no causal GAN test has run (X6).<ul>
+<li>Allowed: "its GAN benchmark number is not evidence of morph detection".</li>
+<li>Not allowed: "it uses a GAN shortcut".</li>
+</ul>
+</li>
+</ul></article><article class="card"><h3><span class="n">12</span>M3L MADation recipe ViT-L/14</h3><ul>
+<li><em>What:</em> not tested under a registered rule; the pattern is the same as M3.</li>
+<li><em>How we know:</em> MIPGAN-I is 0.8% on synthetic vs camera, H3 is 0.401 (reversed), and H4b is not above the file-size floor (0.923 against 0.912; Bonferroni lower bound −0.031).</li>
+<li><em>How sure:</em> C3 "strong (narrow)" for the absence; the rest is descriptive.</li>
+</ul></article><article class="card"><h3><span class="n">13</span>M4 SelfMAD-style</h3><ul>
+<li><em>What:</em> no native EER ≤ 10% to carry.</li>
+<li><em>How we know:</em> it is inverted on the benchmarks. Shrinking makes photos look genuine to it (MAD22 FaceMorpher 99.8 → 0.8), the opposite of the SelfMAD release. It is above the floor on the clean landmark set (H1 0.761).</li>
+<li><em>How sure:</em> descriptive only.</li>
+</ul></article><article class="card"><h3><span class="n">14</span>M5 PW-MAD</h3><ul>
+<li><em>What:</em> not tested under a registered rule. Descriptively, its fair native results fall once the photos are shrunk.</li>
+<li><em>How we know:</em> WebMorph goes 4.2 → 14.3, MAD22 FaceMorpher 1.2 → 20.7 and UA8c 28.0 → 49.5, while the families shrunk only ~1.0x do not change.</li>
+<li><em>How sure:</em> descriptive only. These are seed means with seed SD up to ±17, from a re-implementation that did not reproduce.</li>
+</ul></article><article class="card"><h3><span class="n">15</span>M6 OrthoMAD</h3><ul>
+<li><em>What:</em> no native EER ≤ 10% that E7 changes.</li>
+<li><em>How we know:</em> it is inverted natively on FRLL landmark morphs (59.8–81.4%), and degrading both classes does not remove that. MAD22 FaceMorpher goes 24.4 → 47.5 under E7 (descriptive). Its only native cell at or below 10%, MAD22 OpenCV (9.4 → 10.0), is shrunk only ~1.0x, so E7 tests nothing there.</li>
+<li><em>How sure:</em> descriptive only.</li>
+</ul></article><article class="card"><h3><span class="n">16</span>M8 MixFaceNet-MAD recipe</h3><ul>
+<li><em>What:</em> no native EER ≤ 10% that E7 changes.</li>
+<li><em>How we know:</em> it is weak or inverted natively. Its MAD22 FaceMorpher fall (27.6 → 65.7) starts above 10%. Its only native cell at or below 10%, MAD22 OpenCV (6.4 → 6.8), is shrunk only ~1.0x.</li>
+<li><em>How sure:</em> descriptive only.</li>
+</ul></article><article class="card"><h3><span class="n">17</span>M8O MixFaceNet-MAD, official code</h3><ul>
+<li><em>What:</em> no native EER ≤ 10% that E7 changes.</li>
+<li><em>How we know:</em> it is inverted natively on all four FRLL landmark families. Shrunk photos move toward "morph" for it (26.7% of half-size photos flagged at its native threshold), but there is no good native result for that to carry. Its MAD22 OpenCV cell (6.1 → 6.7) is shrunk only ~1.0x.</li>
+<li><em>How sure:</em> descriptive only. The official-code reproduction was falsified (MAD22-5 35.78 ± 3.66, FRLL-5 67.59 ± 7.31, against 13.69 / 8.96).</li>
+</ul></article></div><div class="callout"><p><strong>Across rows.</strong></p><ul>
+<li>C1 is the only claim whose numbers meet A41's shortcut definition. It is graded "strong (final)"; two registered conditions are open (assay sensitivity of X3; pool artefact not formally excluded). In plain words (CONCLUSIONS): the SelfMAD release treats genuine photos that were merely shrunk to the morphs' face size as more morph-like than real Greedy-DiM morphs.</li>
+<li>Every other row carries one of the fixed tags:<ul>
+<li>registered refuter fired (C2, the ViT-B/16 release on MorDIFF);</li>
+<li>negative control (the ViT-L/14 release);</li>
+<li>not tested under a registered rule (descriptive moves under a control);</li>
+<li>no native EER ≤ 10% to carry.</li>
+</ul>
+</li>
+<li>Separately, there are absences on clean tests: C3 for GAN morphs, and the H1 labels for landmark morphs (registered, no grade). Neither is a shortcut grade.</li>
+<li>Never write "published detectors rely on shortcuts", "for every method" or "MADation carries the shortcut".</li>
+</ul></div>
+</section>
+<section class="s" id="s4">
+<h2><span class="n">4</span>What would make it beyond doubt</h2>
+<div class="prose"><p>This section names what is still missing for each claim. None of it can change a grade.</p>
+<p><strong>Even the top grade would not be "beyond doubt":</strong></p>
+<ul>
+<li>Each claim concerns one released network.</li>
+<li>It is scored on one pool of 204 FRLL photos of 102 persons, and the re-runs re-use the same persons and images.</li>
+<li>A41's rules were written after earlier estimates of the same questions had been seen. Those earlier registered tests said "neither".</li>
+<li>The cue itself is not identified.</li>
+</ul>
+<p>"Beyond doubt" would need the top grade plus replication: another checkpoint or retrain, fresh data and another studio pool, all under rules fixed before the data are seen.</p></div><div class="status"><p><strong>A42 amendment 1 and A43: status</strong></p>
+<ul>
+<li><strong>A42 amendment 1</strong> (the window test; the ViT-B/16 release; MorDIFF).<ul>
+<li>The window was read at 18:08 CET. Its results bullet and post-result review were logged at 18:30 CET (PROTOCOL l.17322 and l.17398, commit d03dfe7), after this note's first sources were read.</li>
+<li>The author answered question (i) at about 18:35 CET (logged 18:39 CET, 756dfad): his crop-slicing approval covers the central 256-px window. Under amendment 1's timing rule this changes no label.</li>
+<li>A42 is post hoc and descriptive. It changes no A41 verdict, kill or grade.</li>
+<li>This note uses only CONCLUSIONS' "Beside C2" sentence (quoted in §4, C2 item 1). It does not use the registered H-new-240 (b) label "held": the post-result review says "held" means the separation does not survive the central window, not that the border explains it.</li>
+</ul>
+</li>
+<li><strong>A43 (the MorDIFF two-by-two, H-new-241): registered 2026-11-07 20:18 CET (main f49ea74), read 22:02 CET, results and post-result review logged 22:25 CET (PROTOCOL blocks "A43 results" and "A43 post-result review", commit ec721be).</strong><ul>
+<li>It compares the published MorDIFF morphs with our same-pair DiffAE morphs at 100 and at 20 decoding steps (one set of codes), our two-identity morphs with our one-identity self-morphs, and our reconstructions of the genuine photos at both step counts; every group is stored like the published files. The 20-step count was chosen score-blind as the one that best reproduces the published pixels (median PSNR 27.0 vs 26.4 dB).</li>
+<li>Registered cell (first-match rule): "shortcut (processing history: the decoding step count) shown for MorDIFF". Labels: published vs 100-step reconstructions present (0.83 [0.77, 0.90]); published vs 20-step reconstructions below 0.65 (0.49 [0.38, 0.59]; not shown above 0.35, so never "indistinguishable"); published vs our 20-step same-pair morphs absent (0.50 [0.47, 0.54]; paired win 0.50); two- vs one-identity 20-step morphs undetermined (0.71 [0.63, 0.79]; the self-morphs mix two expressions); our 20-step morphs vs our 20-step reconstructions below (0.48). The 20-step render scores higher in every arm (0.87, 0.90, 0.79); 20-step reconstructions vs the photos 0.93, the published morphs vs the photos 0.89.</li>
+<li>Post-result review: sound, needs qualification. The cell's "not two identities blended" is read as "identity blending is not needed to explain it, and is not separately shown". One released network (the ViT-B/16 weights, never the MADation method); FE ViT-L/14 keeps part of its separation at 20 steps (0.76 to 0.67); the step match is relative to 20 vs 100 steps (never "MorDIFF used 20 steps"). Post hoc, outcome partly forecast (designed after A41 and A42 were read). A43 is its own Holm family of 20 tests; it changes no A41 verdict, kill or grade and never feeds the A41 decision reader.</li>
+<li>Consequence for C2: the A41 refuter (reconstructions at 100 steps) is a render-count effect. C2 stays a "descriptive row (final)" on the downsampling control ("inflated", less than half removed); its explanation sentence changes only through the author's Q4 (Sun 8 Nov 12:00). The name clash noted earlier is resolved: the zero-GPU batch of H-new-257/258/260/264–266 is A44; A43 is the MorDIFF two-by-two.</li>
+</ul>
+</li>
+</ul></div><div class="prose"><p>A41's grades are final. CONCLUSIONS: "What can still change a grade. Nothing". That covers C1–C4 and B. Each item below can only change an explanation sentence, or support a new claim registered separately before its data are seen.</p>
+<p><strong>C1 (SelfMAD release, diffusion morphs)</strong></p>
+<ol>
+<li><strong>N3 with a working positive control.</strong> This is the one registered condition still missing. It needs a same-generator test whose positive-control detector clears its bar. On X3, FE ViT-L/14 reached only 0.636 ≤ 0.65, where simple image properties alone give 0.993. This note's sources name no scheduled item for it.</li>
+<li><strong>Exclude the control-pool artefact.</strong><ul>
+<li>A successor border test, with its cut set relative to the untrained-network baseline (A41's calibration note).</li>
+<li>Path attribution (H-new-261, about 0.05 GPU-h, after the deadline).</li>
+<li>The best-aligned-third check (H-new-260, zero GPU, proposed) can add a sentence. It cannot remove the qualifier.</li>
+</ul>
+</li>
+<li><strong>A second checkpoint, or a retrain over seeds</strong> (after the deadline). This is the SelfMAD retrain whose self-morphs use an integer shift instead of an interpolated zoom (H-new-242; 2 seeds per arm, 40–80 GPU-h). It would add retrained networks (ours, not the release) and test the mechanism note, which is "consistent with" C1 and does not explain it.</li>
+<li><strong>Fresh data and another studio pool (X8)</strong> (after the deadline). Every C1 number sits on the same 204 FRLL photos of 102 persons.</li>
+</ol>
+<p><strong>C2 (ViT-B/16 release, MorDIFF)</strong></p>
+<ol>
+<li><strong>A42 amendment 1, the window test</strong> (H-new-240 (b), H-new-255): read. It added the Beside-C2 explanation sentence only, and the zoom confound stays (H-new-262/263, proposed). CONCLUSIONS, "Beside C2" (explanation, not part of "What we may write"): "Post hoc (A42; one network, the same 204 photos; the window covered by the author's ruling on (i) of 2026-11-07 about 18:35 CET): matching border area leaves the separation at 0.84. In the central 256-px window, which holds no zero-fill and which the loader enlarges about 2x, it falls to 0.61 [0.56, 0.65], while the rise against downsampled photos grows to +32.9 [28.9, 37.7]. Most of the refuter lies outside the central window or depends on the face's scale (not separated); the rise does not need the zero-filled border. Identity evidence or a file/frame property: open." Never "the kill is spurious"; never call this window a "border test".</li>
+<li><strong>Same-pair MorDIFF morphs (H-new-241), A43, the MorDIFF two-by-two:</strong> read (registered cell "steps").<ul>
+<li>Published morphs vs our same-pair morphs: no file-specific cue beyond the step count (0.50 [0.47, 0.54], absent in every release).</li>
+<li>Two- vs one-identity morphs: undetermined (0.71 [0.63, 0.79]); identity blending is not needed to explain the MorDIFF result and is not separately shown.</li>
+<li>Published morphs vs our reconstructions: 0.83 at 100 decoding steps, 0.49 [0.38, 0.59] at the matched 20 steps. PROTOCOL calls H-new-241 "the only identity-vs-pipeline test for C2"; it has run, post hoc with a disclosed forecast, and adds an explanation sentence only (pending Q4). Follow-ups proposed, not registered: cross-expression Bx20 (the expression confound), the A12BR retrained ViT-B/16 on the same frames (release vs method), the top-band energy of 20- vs 100-step renders, and the W3 network on the same frames after the unseal.</li>
+</ul>
+</li>
+<li><strong>Zero-GPU matching checks</strong> (H-new-257, H-new-258; proposed, not registered): is the border slope a property of the control photos, and does matching on border area and on file size per content pixel remove the separation? PROTOCOL and CONCLUSIONS plan these, with H-new-260 and 264–266, as one zero-GPU registration, now named A44 (A43 is the MorDIFF two-by-two in item 2).</li>
+<li><strong>After the deadline:</strong><ul>
+<li>a fresh-data replication of the ViT-B/16 rise (H-new-234);</li>
+<li>a same-scale window that keeps the zero-fill;</li>
+<li>another studio pool (X8).</li>
+</ul>
+</li>
+</ol>
+<p><strong>C3 (GAN morphs, absence)</strong></p>
+<ol>
+<li><strong>A clean set with power against a two-identity signal and a positive control that passes.</strong> X4 sits near 0.5 by construction, and H3's classes differ in latent spread.</li>
+<li><strong>Other generators.</strong> C3 covers StyleGAN3 only.</li>
+<li><strong>X6, the causal test of C4</strong> (3–5 H100-h or 8–16 GB10-h, after the deadline). C4's grade is final; X6 could only support a separately registered causal claim about what a detector uses on MIPGAN-I/II.</li>
+</ol>
+<p><strong>Regular (landmark) morphs (no shortcut grade registered)</strong></p>
+<ol>
+<li><strong>A registered landmark rule with a border-matched control.</strong> E7 leaves the alignment borders in place. It also needs person-clustered intervals for the descriptive falls: SelfMAD AMSL and WebMorph, and the recipes' collapses (M1, M5, M6, M8, M8O).</li>
+<li><strong>Per-network registered rules for the recipes, with a negative control.</strong> None has been applied so far.</li>
+</ol>
+<p><strong>B and C4 (benchmark construction)</strong></p>
+<ul>
+<li>Hash the 15,518 enumerated files. They were listed, not hashed; a hash-only manifest is proposed.</li>
+<li>C4's grade is final; X6 could only support a separately registered causal claim. A storage-format sentence would need a new registered claim (no row read a storage-format cue, H-new-142).</li>
+</ul></div>
+</section>
+<section class="s" id="s5">
+<h2><span class="n">5</span>What this does not show</h2>
+<div class="prose"><ul>
+<li>
+<p><strong>It does not grade the methods.</strong> The verdict words are post hoc descriptive labels. The only grades are CONCLUSIONS':</p>
+<ul>
+<li>C1 "strong (final)";</li>
+<li>C2 "descriptive row (final)";</li>
+<li>C3 "strong (narrow)";</li>
+<li>B "meets its registered criterion";</li>
+<li>C4 "construction sentence".</li>
+</ul>
+<p>The regular (landmark) column has no shortcut grade at all.</p>
+</li>
+<li>
+<p><strong>The release results are not about the methods.</strong></p>
+<ul>
+<li>Each release is one network. C1 and C2 are about those checkpoints, not about the SelfMAD or MADation methods.</li>
+<li>Never write "published detectors rely on shortcuts", "for every method" or "MADation carries the shortcut".</li>
+</ul>
+</li>
+<li><strong>Most results are on our frames, not the authors' pipelines.</strong><ul>
+<li>The releases were scored on our 512-px eye-aligned frames. Only the SelfMAD release was also scored with its own crop and on raw files, and its raw-file E7 covers three diffusion families only.</li>
+<li>Several release numbers do not reproduce on our frames (§3).</li>
+<li>The MixFaceNet-MAD release is out of its input domain on our frames.</li>
+</ul>
+</li>
+<li><strong>The recipes are re-implementations that mostly did not reproduce.</strong><ul>
+<li>Most CNN recipes failed the reproduction check.</li>
+<li>Their benchmark pool is an eval-pipeline diagnostic (A12.4).</li>
+<li>A12 numbers must not be set against published tables in the paper.</li>
+<li>The same architectures trained with our protocol and data (P × d1) are not competing methods. They are in <code>gather_regular.md</code> §5 and <code>gather_diffusion.md</code> §3e.</li>
+</ul>
+</li>
+<li><strong>The data are narrow.</strong><ul>
+<li>FRLL and MAD22 share one pool of 204 or 185 genuine photos from 102 persons, so the families are not independent.</li>
+<li>The controlled Poisson set is CASIA-WebFace at 112 px.</li>
+<li>GAN evidence is one generator per test: StyleGAN3 for H3 and X4, StyleGAN v1 for H4b.</li>
+<li>The generator-matched diffusion evidence is DiffAE (X3, releases only, with a failed positive control). H2 and Arc2Face are other generators.</li>
+<li>FFHQ-Morphs is left out of the verdicts. File size alone separates its DiffAE pool (1.000), and its own README calls it "unfit to be used for evaluation purposes".</li>
+</ul>
+</li>
+<li><strong>It does not show which cue a network reads, or anything causal.</strong><ul>
+<li>SelfMAD release: "cue not identified". Never write "resolution", "aliasing", "fine-detail loss", "interpolation trace" or "spectral cue".</li>
+<li>GANs: no row reached the registered "storage-format cue" label (H-new-142).</li>
+<li>MixFaceNet-MAD: no image-size sentence.</li>
+</ul>
+</li>
+<li><strong>It does not show that detectors are blind to identity.</strong><ul>
+<li>H3's classes differ in latent spread by construction, and X4 has little power against a two-identity signal by construction.</li>
+<li>H2 is low-potency.</li>
+<li>X3's positive control failed (0.636 ≤ 0.65): "assay sensitivity not shown".</li>
+<li>Never write "does not separate", "no signal" or "no network" for C3.</li>
+</ul>
+</li>
+<li><strong>Control-pool artefacts are not excluded.</strong><ul>
+<li>E7 leaves the alignment borders on landmark families (E07 README).</li>
+<li>A border or alignment artefact of our E7 pool is not formally excluded: the border test ran but could not be evaluated.</li>
+<li>The MorDIFF E7 pool is the weaker control. Almost half (0.471) of that pool's difference from the native photos sits in the warped border (H-new-152 W-c). That is a pool property, not a border-test reading of any network. The pool also raises the ViT-L/14 negative control by +10.7.</li>
+</ul>
+</li>
+<li><strong>The reruns are not replications.</strong> The crop test and the kernel ladder re-use the same persons and images.</li>
+<li><strong>It says nothing about MADMamba, W3, E10 or the FST.</strong><ul>
+<li>CONCLUSIONS requires three things printed beside every shortcut claim: "MADMamba not evaluated on H3 (sealed)", the positive controls, and our own networks' history with the same control.</li>
+<li>That history concerns our own networks, so it is not repeated here. Take it from CONCLUSIONS when writing the paper.</li>
+</ul>
+</li>
+<li><strong>It makes no generalisation claim.</strong> Nothing here supports a "GAN or diffusion generalisation" sentence for any method.</li>
+</ul></div><div class="prose"><h3>Flags for the author</h3>
+<ol>
+<li><strong>C4 wording.</strong><ul>
+<li>A41 DC-A (<code>a41_files.json</code>) records the FRLL StyleGAN morphs as JPEG (quality 74.7, 1024 px), not PNG. MAD22 MIPGAN-I/II are PNG against JPEG.</li>
+<li>The G-test's file containers are not in DC-A, so "(PNG) … (JPEG)" is unlogged for the G-test, not false.</li>
+<li>Your sign-off can only weaken the wording. A possible version: "generator output (PNG, or JPEG q≈75 for FRLL StyleGAN) with camera photos (JPEG)".</li>
+</ul>
+</li>
+<li><strong>H1 primary variant.</strong><ul>
+<li>This note uses <code>orig</code> as primary, as both A27 (PROTOCOL l.7751) and the A36 amendment 1 rule (l.9929) register it. <code>pp</code> is printed beside it.</li>
+<li>The "claims on pp" phrase at l.8649 belongs to the A30 registration amendment 2 and covers A30's own networks only.</li>
+<li>Three releases change label between <code>orig</code> and <code>pp</code>:<ul>
+<li>ViT-B/16: 0.770 above / 0.727 not above.</li>
+<li>ViT-L/14: 0.718 above / 0.684 not above.</li>
+<li>FE ViT-B/16: 0.681 above / 0.681 not above.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Diffusion verdicts exclude X3.</strong> If X3 were counted as a same-generator control:</p>
+<ul>
+<li>FE ViT-L/14 would meet the old "works" rule (E7 kept on Greedy-DiM-S; X3 MorDIFF 0.742).</li>
+<li>The ViT-B/16 release would be "partly" on X3 MorDIFF 0.847 alone.</li>
+</ul>
+<p>We left X3 out because its positive control failed and C2 calls the MorDIFF separation "open".</p>
+</li>
+<li>
+<p><strong>Verdict cut-offs are post hoc.</strong> The cut-offs (10% on two families, 3 points, 5 points and 25% for diffusion) were set after seeing the numbers. Different cut-offs would move a few labels.</p>
+</li>
+<li><strong>Border evidence.</strong> Per-family border results are only in E07 <code>raw/data-shortcut.md</code>, which is outside this note's allowed sources. That file says border fraction alone separates FRLL FaceMorpher / OpenCV / WebMorph morphs from E7 photos at AUC 1.00 and MAD22 landmark morphs at 0.69, and that AMSL is not in that check. Only the README's general statement is used above.</li>
+<li><strong>Mixed CI levels.</strong> Keep the level next to each number:<ul>
+<li>A41 S2 / S3 / DC-8: person-clustered 95%.</li>
+<li>A41 H3 bounds: one-sided 95% pair.</li>
+<li>X4: two-sided pair 95%.</li>
+<li>A36 H1 and H3: pair 90%.</li>
+<li>A36 RSX: image bootstrap 95%.</li>
+<li>Recipes: seed SD, or seed t95 for UA8c and H2.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cells with no controlled number.</strong></p>
+<ul>
+<li>X4 for the MixFaceNet-MAD release.</li>
+<li>X3 for every recipe, for the FE ViT-B/16 and FS releases, and for the MixFaceNet-MAD release.</li>
+<li>The SelfMAD own-crop G-test.</li>
+<li>A raw-file E7 for any landmark family.</li>
+<li>Any header comparison of morphs against the E7 pool.</li>
+</ul>
+</li>
+<li>
+<p><strong>CONCLUSIONS l.124 heading.</strong> The bullet's heading still reads "…MorDIFF result is inflated on our frames". Its body and the claims table say "descriptive row". A reviewer will quote the heading.</p>
+</li>
+<li><strong>The name "A43".</strong> Resolved: A43 is the MorDIFF two-by-two (registered and read); the zero-GPU registration of H-new-257/258/260/264–266 is A44 (not yet registered).</li>
+<li><strong>A43 interpretation table.</strong> The registered cell that fired is "shortcut (processing history: the decoding step count) shown for MorDIFF"; it names the released ViT-B/16 weights, not the method, and C2's grade is final. Its "not two identities blended" clause enters this note and the paper only in the qualified form "identity blending is not needed to explain it and is not separately shown".</li>
+</ol></div>
+</section>
+<details class="src" id="sources"><summary>Sources</summary><div class="prose"><p><strong>For the shortcut section</strong></p>
+<ul>
+<li>Grades and allowed wording: <code>experiments/CONCLUSIONS.md</code>, the section "What we can claim about shortcuts" (marked Final), l.164 onward. It is not the last section of the file.</li>
+<li>The four conditions N1–N4: PROTOCOL, A41 registration (2), (3) and (9), and the A41 ledger README.</li>
+<li>A42: the PROTOCOL A42 blocks, including the amendment 1 results (l.17322) and post-result review (l.17398), and the author's answer on question (i); <code>smadcvpr/results/A42/a42_border.md</code>; CONCLUSIONS "Beside C2".</li>
+<li>Recipe reproduction tests: <code>experiments/A12-BR_benchmark_recipes/README.md</code>.</li>
+<li>Per-row numbers: the three gathers in this folder.</li>
+</ul><p><strong>For the comparison table.</strong> Paths are under <code>/home/narolski/mambamorph-code/</code> unless absolute.</p>
+<p><strong>Scratch gathers</strong> (per-number keys, SDs and CIs):</p>
+<ul>
+<li><code>/tmp/claude-1000/-home-narolski-mambamorph/c2840dc9-dd37-4619-9347-d8a76080b93f/scratchpad/methods_table/gather_regular.md</code></li>
+<li><code>/tmp/claude-1000/-home-narolski-mambamorph/c2840dc9-dd37-4619-9347-d8a76080b93f/scratchpad/methods_table/gather_gan.md</code></li>
+<li><code>/tmp/claude-1000/-home-narolski-mambamorph/c2840dc9-dd37-4619-9347-d8a76080b93f/scratchpad/methods_table/gather_diffusion.md</code></li>
+</ul>
+<p><strong>Grades and wording</strong></p>
+<ul>
+<li><code>experiments/CONCLUSIONS.md</code>, §"What we can claim about shortcuts" (l.164 onwards): C1, C2, C3, B, C4, the scope, the mechanism note, the drop list, and what is printed beside each claim.</li>
+<li>The same file:<ul>
+<li>l.155: H3 latent spread; X4 "almost the same kind of image by construction".</li>
+<li>l.241: "synthetic vs camera"; the MAD22 185 + 4,069 caveat; the MixFaceNet-MAD row wording.</li>
+<li>§"What this means for the paper": no A12 numbers against published tables, and no generalisation claim.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Regular column</strong></p>
+<ul>
+<li><strong>SelfMAD release.</strong> Native and E7 per family: <code>smadcvpr/results/RSX/rsx_read.json</code> <code>networks[].summary</code> (byte-identical to the A32 <code>raw/</code> copy). Half-size flag rates: <code>smadcvpr/results/RSX/rsx_read.md</code> "Mechanism". H1 <code>orig</code> / <code>pp</code> points: <code>smadcvpr/results/A36/a36_read_own.md</code> l.42.</li>
+<li><strong>MADation and FE / FS releases.</strong> <code>smadcvpr/results/A36/a36_read.json</code> <code>RSX.rows</code> (<code>fam</code>, <code>boot95</code>, <code>mech</code>, <code>e7_bpcer_at_native_t5</code>).</li>
+<li><strong>MixFaceNet-MAD release.</strong> <code>smadcvpr/results/A36/a36_a2.json</code> <code>row_a36.RSX.fam</code> / <code>.boot95</code>.</li>
+<li><strong>Recipes.</strong> <code>smadcvpr/results/A12/a12_4_read_stage1.json</code> <code>arms["M1:r:d0" … "M8O:ocode:d0", "M4:r:d0b"].family_eer_orig / family_eer_e7</code>. The inversion test is in <code>a12_4_read_stage1.md</code> §(ii) (H-new-B).</li>
+<li><strong>Registered E7 cells and dose ladder.</strong> <code>smadcvpr/results/A41/a41_eval.json</code>:<ul>
+<li><code>S3.components.i</code>: SelfMAD MAD22 FaceMorpher 0.11 [0.00, 0.89].</li>
+<li><code>S3.positive_controls_beside</code>: ViT-B/16 MAD22 FaceMorpher 5.94 [3.25, 10.62].</li>
+<li><code>S7.rows</code>: dose ladder.</li>
+</ul>
+</li>
+<li><strong>H1 AUCs and labels.</strong> <code>smadcvpr/results/A36/a36_a1.md</code> §(5): <code>orig</code> table (registered label) and <code>pp</code> table (beside).</li>
+<li><strong>H1 rules.</strong><ul>
+<li><code>smadcvpr/PROTOCOL.md</code> A27 (l.7751: "Primary: <code>orig</code>"; registration ~l.7715).</li>
+<li>A36 amendment 1 label rule (l.9924–9929).</li>
+<li>A30 registration amendment 2 (l.8642–8649) for the <code>pp</code> note in flag 2.</li>
+</ul>
+</li>
+<li><strong>Borders.</strong> <code>experiments/E07_shortcut_controls/README.md</code> l.70–73.</li>
+<li><strong>Construction attributes.</strong> <code>smadcvpr/results/A41/a41_files.md</code> / <code>.json</code> (DC-A).</li>
+<li><strong>OpenCV cross-benchmark check and reproduction tests.</strong> <code>experiments/A12-BR_benchmark_recipes/README.md</code> (l.140–146).</li>
+</ul>
+<p><strong>GAN column</strong></p>
+<ul>
+<li><strong>H3, H4b, H4 and renders vs camera.</strong> <code>smadcvpr/results/A36/a36_read_own.md</code> §(C) and <code>smadcvpr/results/A36/a36_a1.md</code> §(1). H-new-83 and H-new-84 verdicts: <code>a36_a1.md</code> l.7. MixFaceNet-MAD release: <code>a36_a2.md</code>.</li>
+<li><strong>H3 bounds and reversed cells.</strong> <code>smadcvpr/results/A41/a41_h3.md</code>.</li>
+<li><strong>X4.</strong> <code>smadcvpr/results/A41/a41g_x4.md</code> / <code>.json</code> (H-new-146).</li>
+<li><strong>Native MIPGAN-I.</strong><ul>
+<li>SelfMAD: <code>smadcvpr/results/RSX/rsx_read.md</code>.</li>
+<li>ViT-B/16, ViT-L/14: <code>a41_eval.json</code> DC-8.</li>
+<li>FE / FS: <code>a36_read_own.md</code> "RSX".</li>
+<li>MixFaceNet-MAD release: <code>a36_a2.md</code>.</li>
+<li>Recipes: <code>smadcvpr/results/A12/a12_4_read_stage1.json</code> <code>arms[…].family_eer_orig["MAD22/MIPGAN_I"]</code>.</li>
+</ul>
+</li>
+<li><strong>G-test.</strong><ul>
+<li>Recipes and the SelfMAD our-pipeline row: <code>smadcvpr/results/A12/a12_5_read_stage1.md</code> (i).</li>
+<li>MADation and FE / FS releases: <code>a36_read_own.md</code> "G-test".</li>
+<li>MixFaceNet-MAD release: <code>a36_a2.md</code>.</li>
+<li>Definition: <code>smadcvpr/PROTOCOL.md</code> l.122–126.</li>
+</ul>
+</li>
+<li><strong>Storage-format label.</strong> <code>a41_eval.json</code> <code>H-new-142</code>.</li>
+<li><strong>Registrations.</strong> <code>smadcvpr/PROTOCOL.md</code> A34 (H4b, l.8517–8545) and A35 (H3).</li>
+<li><strong>M2 within-pair θ.</strong> <code>experiments/A41_shortcut-proof-zero-gpu/README.md</code> (l.230) and <code>meta.json</code>.</li>
+<li><strong>MixFaceNet-MAD loader check.</strong> <code>experiments/A39_batch-before-window-close/README.md</code> (S2).</li>
+</ul>
+<p><strong>Diffusion column</strong></p>
+<ul>
+<li><strong>Release E7 per family.</strong> <code>smadcvpr/results/A41/a41_eval.json</code> <code>S2.cells["&lt;row&gt; | dim/&lt;family&gt;"]</code> and <code>["&lt;row&gt; | mordiff/mordiff"]</code> (<code>native</code>, <code>e7</code>, <code>delta</code>, <code>delta_ci95</code>).</li>
+<li><strong>Raw-file E7 and kernels.</strong> <code>smadcvpr/results/A41/a41g_x7.md</code>, <code>a41g_s12.json</code> <code>detail.a</code>, <code>a41g2_s12k.json</code>.</li>
+<li><strong>X3.</strong> <code>smadcvpr/results/A41/a41g_x3.md</code> / <code>.json</code>. Floor-limited Greedy-DiM vs rec: l.11 and l.51.</li>
+<li><strong>Five crops.</strong> <code>smadcvpr/results/A41/a41g_x14b.md</code>.</li>
+<li><strong>Border-matched X3.</strong> <code>smadcvpr/results/A42/a42_border.md</code>.</li>
+<li><strong>FE / FS releases, H2 and Arc2Face.</strong> <code>smadcvpr/results/A36/a36_read_own.md</code> "RSX: MADation official" and §(C). MixFaceNet-MAD release: <code>smadcvpr/results/A36/a36_a2.md</code> "RSX, UA8c and MAD22" and "held-out comparisons".</li>
+<li><strong>H2 and Arc2Face potency.</strong> <code>smadcvpr/PROTOCOL.md</code> A29 (l.8087–8090) and A23 (l.7376).</li>
+<li><strong>Recipe per-family E7 and uncapped UA8.</strong> <code>smadcvpr/results/A12/a12_4_read_stage1.json</code> <code>arms[*].family_eer_orig / family_eer_e7</code> and <code>endpoints_e7.UA8</code>.</li>
+<li><strong>Recipe UA8c with t95.</strong> <code>smadcvpr/results/A36/a36_a2.md</code> "UA8c per row".</li>
+<li><strong>Frozen-CLIP head.</strong> <code>smadcvpr/results/A12/a12_4_read_stage2.json</code> <code>arms["M3:a124lp:d0"]</code>.</li>
+<li><strong>UA8c definition and the last-checkpoint value.</strong> <code>experiments/A12-BR_benchmark_recipes/README.md</code> (l.52–53, 117, 138–139).</li>
+<li><strong>Diffusion flag rates.</strong> <code>smadcvpr/results/RSX/rsx_read.md</code> "Mechanism".</li>
+</ul>
+<p><strong>Not read or not used</strong></p>
+<ul>
+<li>No <code>fst*</code> file, <code>manifests/valx.csv</code> or <code>A12SP</code> path was opened.</li>
+<li>No MADMamba, W3, E10 or FST result was used.</li>
+<li>The league (L0–L2) and W3 rows that share <code>rsx_read.md</code> / <code>rsx_read.json</code> were not used.</li>
+</ul></div></details>
+<footer>Built from <code>methods_table_final.md</code> and <code>shortcut_per_method_final.md</code> (scratchpad, read-only gathers of logged reader outputs). No number on this page was computed for it, apart from the E7 − native differences and ranges carried over from those files.</footer>
+</div>

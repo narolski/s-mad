@@ -1,0 +1,11 @@
+{
+ "prep_eval": "/home/narolski/mambamorph-code/smadcvpr/prep_eval.py",
+ "prep_eval_sha256": "374408ab3a886e6df25b563bc2344d190efe2ab7b3163efbb17c9b6ca9100628",
+ "align_sha256": "8014ff51c6a81cc8fcaa2bba8227fafa9477f9d89d676a9973a1c8096e2cdc03",
+ "rows": 25241,
+ "input_manifest": "/mnt/t7/smad_next/TT1/raw_manifest.csv",
+ "input_manifest_sha256": "a7aebe163328d12652c512fcb169152e7c3c4c31f63833d91e1ae3d63dd12168",
+ "aligned_manifest": "/mnt/t7/smad_next/TT1/aligned_manifest.csv",
+ "aligned_manifest_sha256": "8b3c6fa932ac24c13a086984468539ba841f2facc1ac883be34c89b1c6971bef",
+ "seconds": 668.2
+}

@@ -1,0 +1,23 @@
+{
+ "n": 133,
+ "faces_found": 133,
+ "cos_render_partner_median": 0.6057,
+ "cos_render_host_median": 0.6077,
+ "shard6_extfloor": {
+  "n": 66,
+  "partial_rho": 0.021,
+  "ci": [
+   -0.1909,
+   0.2715
+  ]
+ },
+ "all_given_F": {
+  "n": 133,
+  "partial_rho": -0.1473,
+  "ci": [
+   -0.3118,
+   0.031
+  ]
+ },
+ "verdict": "undecided"
+}

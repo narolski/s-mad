@@ -1,0 +1,48 @@
+{
+ "sb_unique": 5535,
+ "added": 404,
+ "added_by_kind": {
+  "lad_R4fm": 124,
+  "lad_R2wfm": 156,
+  "lad_R2w4fm": 124
+ },
+ "unique": 5939,
+ "rows_after_balance": 8946,
+ "row_share_pct": {
+  "af0_half": 16.28,
+  "af0_half61": 4.06,
+  "af0_photo": 5.79,
+  "af0_photo61": 2.84,
+  "af0_u50": 30.3,
+  "af0_u5061": 6.9,
+  "af0_zero": 8.16,
+  "lad_R0": 1.74,
+  "lad_R2w": 1.74,
+  "lad_R2w4fm": 1.39,
+  "lad_R2wfm": 1.74,
+  "lad_R4": 4.86,
+  "lad_R4fm": 3.13,
+  "lad_S0": 1.74,
+  "lad_S3": 1.74,
+  "lad_S4": 4.81,
+  "lad_half": 2.77
+ },
+ "strata": {
+  "fm_block": {
+   "feret|native": {
+    "unique_neg": 48,
+    "unique_att": 22,
+    "rows": 96
+   },
+   "frgc|native": {
+    "unique_neg": 232,
+    "unique_att": 102,
+    "rows": 464
+   }
+  }
+ },
+ "train_SbFM_sha256": "1231204496664287e4513ac4cf004156a5140386987e3b6cc8a83084c242e491",
+ "overlay_sha256": "681525d8a7f11194dc35822dc9b5c77e936a0bd501313b6aedf292e21fd1b74d",
+ "overlay_bytes": 1048453120,
+ "overlay_files": 3988
+}

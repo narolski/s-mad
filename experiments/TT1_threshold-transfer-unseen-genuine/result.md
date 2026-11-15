@@ -1,0 +1,561 @@
+# Threshold transfer on unseen genuine sources (TT1): result (registered reading; reviewed 13 Nov, corrections applied)
+
+Status: the 11 networks that passed the platform gate were scored on lease tt1c (A100-SXM4 80 GB, torch 2.2.1); the
+registered reader was run (cf963d1). Independent review `experiments/reviews/REVIEW_TT1_20261113.md` (21ed1d1): numbers
+reproduce exactly, conclusions need qualification; its text corrections are applied below. Post hoc numbers requested
+by the review (F1-F8) are in `posthoc_review.json` (`src/TT1/posthoc_review.py`), labelled post hoc.
+
+Registration and deviations:
+- TT1-S `prereg_scoring.md` (01557ce); pins at ccd6319 and 4f1ce82.
+- TT1-D1 (8bf5e12), TT1-D2 (4454f3f), TT1-D3 (38999cc). TT1-D3 was written after seeing the tt1b gate.
+- Reader re-pin 52e64f6.
+
+Files:
+- `tt1_read.json` (sha256 `9ac3a0b8…`), tables in `tt1_read_tables.md` (`2cf5899e…`).
+- Gates: `gate_a100_tt1c.json`; earlier failed gates `gate_dgx_run2.json`, `gate_a100.json`, `gate_a100_tt1b.json`.
+- Scores: `/mnt/t7/smad_next/TT1/results/TT1_A100_tt1c_full.tar`.
+- Pool counts: `pools_summary.md`.
+
+This is a false-alarm test only: there are no morphs of these sources, and none of these sources is a benchmark.
+"Flag" means logit > 0, the network's own rule.
+
+## Platform gate
+
+| Lease or machine | Gate result |
+|---|---|
+| DGX (GB10, torch 2.12) | failed, all 12 networks |
+| tt1a | failed: FFHQ rows differed at the last bit, from batch composition |
+| tt1b | failed in Bn_s401 only |
+| tt1c | passed for the 11 non-excluded networks |
+
+Detail for tt1c:
+- FFHQ rows are byte-identical in all 12 networks (0 of 3,000 rows differ).
+- Camera photos: 0 decision changes, Kendall 0.996-0.998.
+- Bn_s401 repeats its tt1b miss exactly (one camera row, |Δ| 0.035). It is excluded under TT1-D3, and every read
+  that needs it is "not available (failed platform gate)". Bn_s402 is printed alone ("one seed").
+- tt1c reproduced tt1b's gate numbers to every printed digit.
+
+## Registered verdicts (seeds 401/402, two machines)
+
+### TT-H1: does the own rule transfer to unseen sources?
+
+A family "fails" if the lower bound of its person-bootstrap interval is above 5%.
+
+| Arm | Families failing (both seeds) | Registered verdict |
+|---|---|---|
+| A | lfw_calfw and agedb_30 on both seeds; prediction was ≥ 4 of 7 | not supported as predicted |
+| B | none | falsified: on both seeds every family's own-rule share has upper bound ≤ 10% (points 0.0-4.9%; also ≤ 8.3% by Clopper-Pearson). False alarms only, on black-bordered 1.7-3.5x frames; the same networks flag 17.8% / 6.4% of FFHQ genuine photos |
+| Sb | cfp_ff and agedb_30 | supported narrowly (AgeDB lower bounds 0.051 / 0.053 against 0.05) |
+| Bv | none | falsified (printed arm) |
+| C | 4 on seed 401, 0 on seed 402 | printed |
+
+The R_cam own-rule share is 0 for every network except C_s401 (0.5%), so TT-H1 is informative for every network.
+
+Limits of B's verdict (review F4): it does not show that scores are unchanged (ranks shift completely; TT-H2), that
+τ_cam transfers (99-100% flagged), that attacks from these sources are caught (no morphs), or that the rule transfers
+to sharp sources (B_s401 flags 17.8% of FFHQ genuine photos, which would fail TT-H1's own 10% bar). A possible trade
+against misses is invisible to TT1 (tested on development attack pools in H-new-4).
+
+### TT-H2: do unseen photos sit above the training-source photos?
+
+Supported for all 11 networks. AUC of each unseen source against R_cam is 0.987-1.000 in all 8 sources. No read is
+floor-tied: R_cam sits about 0.15 logit above the head floor of about −3.83, and its share within 0.05 of the floor
+is 0. R_cam spans 0.05-0.15 logit (5th-95th percentile); unseen medians sit 0.3-0.8 logit (A, B) and 1.0-1.7 (Sb)
+above it, about 3 logits below the rule for B. The AUC measures displacement, not closeness to the threshold.
+
+### TT-H3: is the border material?
+
+Inconclusive for all 11 networks:
+- The border alone shifts camera photos by +0.04 to +0.10 logit (paired median; CFP-sized borders +0.21 to +0.38),
+  about 10-20% of the unseen excess except CFP-FF. R3(e) is high because R_cam is tight. On FFHQ the shift is mixed
+  in sign.
+- Matching the border lowers the unseen-vs-camera AUC by 0.004-0.41. The largest drop is CFP-FF (0.12-0.41); the
+  smallest are CASIA-FASD and the packs other than CFP (0.01-0.05).
+- The FFHQ border read R3(d) is 0.49-0.62, below the 0.65 required.
+
+### TT-H4: do softer photos score higher at fixed size?
+
+- A: not supported as predicted. ρ ≤ −0.15 in 2 of 4 packs on both seeds: LFW −0.41/−0.45, AgeDB −0.34/−0.37;
+  CALFW and CFP −0.09 to −0.15.
+- B and Sb: supported (|ρ| below A's in ≥ 3 of 4 packs on both seeds).
+
+### TT-H5: does the source matter beyond crop geometry, enlargement and border?
+
+The registered verdict is "source matters beyond geometry" for A, B, Sb (and the printed arms C, Bv). The geometry
+reference is not weak: R3(f) is 0.81-0.97 at the 224 px geometry and 0.88-1.00 at 112 px.
+
+What the verdict rests on, stated plainly:
+- In the 224 px group (the four anti-spoofing sets), every network places the unseen frames above the
+  geometry-matched camera photos (R3(g) 0.91-1.00).
+- In the 112 px group (the four packs) the arms differ:
+  - B, C and Bv: 0.95-0.98.
+  - Sb: 0.87-0.92.
+  - A: 0.16-0.41. Arm A scores the 112 px geometry-matched camera photos ABOVE the real 112 px pack photos.
+- So for arm A at 112 px, crop geometry plus shrink-and-enlarge history accounts for more than the whole pack
+  excess.
+- Own-rule flags on camera photos after the 112 px path: A 46.0% / 56.6% (paired shift +2.85 / +5.37 logit); B, Bv,
+  C, Bn 0.2-1.9%; Sb 7.7% / 3.4%. At 224 px: 0-1% for every arm. A's 'source matters' verdict rests on the four
+  anti-spoofing sets only. (Post hoc, descriptive; recomputed by the owner, `posthoc_review.json`.)
+- R4(c)/(d) are printed under the M5 labels and decide nothing. The variance share is unstable across seeds (B 0.03
+  vs 0.69) and is not interpreted.
+
+### TT-H6: arms (descriptive; no arm, seed or threshold is chosen from TT1)
+
+| Pair | ΔF̄ seed 401 [interval] | ΔF̄ seed 402 [interval] | Registered sentence |
+|---|---|---|---|
+| B − A | −0.033 [−0.041, −0.027] | −0.035 [−0.040, −0.032] | "B has lower genuine flag rates than A on seeds 401/402" |
+| Sb − A | −0.013 | −0.005 | not distinguished |
+| Sb − B | +0.021 [0.013, 0.029] | +0.031 [0.028, 0.033] | not distinguished |
+
+- Sb − B is positive on both seeds with intervals above 0. Sb flags more unseen genuine photos than B, but the
+  registered rule only prints a "lower" sentence.
+- Post hoc, descriptive: Sb − B rises to +0.055 / +0.082 above −1; Bv − B ≈ 0 at every cut-off.
+
+  | Cut-off (logit) | Sb − B, s401 / s402 | Bv − B, s401 / s402 |
+  |---|---|---|
+  | 0 | +0.021 / +0.031 | −0.002 / −0.000 |
+  | −0.5 | +0.030 / +0.047 | −0.001 / −0.000 |
+  | −1 | +0.055 / +0.082 | −0.001 / −0.000 |
+  | −2 | +0.325 / +0.341 | −0.003 / −0.000 |
+- The intervals capture image sampling only, not training variance.
+
+Per-network summary (F̄ = mean of the 7 family flag shares, F_max = largest family flag share):
+
+| Network | F̄ | F_max |
+|---|---|---|
+| A_s401 | 0.057 | 0.151 |
+| A_s402 | 0.038 | 0.122 |
+| B_s401 | 0.024 | 0.034 |
+| B_s402 | 0.002 | 0.009 |
+| Sb_s401 | 0.045 | 0.112 |
+| Sb_s402 | 0.033 | 0.100 |
+| C_s401 | 0.117 | 0.180 |
+| C_s402 | 0.019 | 0.063 |
+| Bv_s401 | 0.022 | 0.033 |
+| Bv_s402 | 0.002 | 0.009 |
+| Bn_s402 (one seed) | 0.001 | 0.003 |
+
+## Numbers anyone might quote
+
+Own-rule flag shares, primary pool, person-bootstrap 95% interval (inflated for packs):
+
+| Network | LFW | AgeDB | CFP-FF | OULU-NPU | FFHQ genuine (R_ffhq) |
+|---|---|---|---|---|---|
+| A_s401 | 23.5% [22.2, 24.8] | 9.9% | 4.0% | 0.1% | 22.5% |
+| A_s402 | 18.7% | 8.3% | 4.3% | 0.0% | 9.9% |
+| B_s401 | 4.9% | 3.2% | 3.0% | 1.1% | 17.8% |
+| B_s402 | 0.2% | 0.4% | 0.9% | 0.0% | 6.4% |
+| Sb_s401 | 1.4% | 6.6% | 11.2% | 7.7% | 5.9% |
+| Sb_s402 | 2.9% | 6.9% | 10.0% | 2.0% | 7.0% |
+
+- Camera photos (R_cam): 0% flagged for every network except C_s401 (0.5%).
+- At τ_cam (the camera-photo threshold; label "saturated band"), 99-100% of every unseen source and 95-99% of FFHQ
+  genuine photos are flagged, against 2.2-5.5% of R_cam.
+
+## Seed spread
+
+- B_s401 against B_s402: F̄ 0.024 against 0.002.
+- C_s401 against C_s402: F̄ 0.117 against 0.019.
+- The seed-to-seed spread of the same arm is as large as most arm differences.
+- Seed = machine (seed 401 on pn1a, seed 402 on pn1b). Every arm sentence is a two-seed lead.
+
+## Post-result amendments H-new-1, 2, 4, 5 (registered before computing: 5954c12, a714c17; `hnew.json`, `diag_kernels.json`)
+
+All are post hoc to the TT1 reading; development data only.
+
+- **H-new-2, onset of A's storage cue: FALSIFIED.** On the development ladder R0 and AF0 development photos (226 pairs),
+  the stored 61.2 px copies (2.16x enlargement) shift A by a paired median +0.09 / +0.26 logit (B: 0.00 / −0.00), with
+  12% / 19% of A's copies flagged (B 0.9% / 0.5%). The registered rule (A's 61 px shift > B's + 0.1 on both seeds)
+  fails on seed 401. At 112.7 px (1.17x) every arm shifts by ≤ 0.01.
+  - Together with TT1's geometry reference (3.5x: A +2.85 / +5.37, 46-57% flagged), A's large shift appears only
+    beyond 2.16x on these data, or needs the crop geometry as well. The onset is not located.
+  - The PN1 tier-1 test-ladder figure (+1.73 / +2.64) was a mean raw shift on other hosts.
+- **H-new-1, missing high frequency: not falsified.**
+  - Median face-box Laplacian variance: geometry-matched 112 px camera photos 7.3, pack photos 10.7. The geometry
+    references are softer.
+  - A scores them 2.26 / 4.91 logits above the packs.
+  - Pooled OLS slope of A's logit on log face-box variance: −0.88 / −0.88.
+  - Consistent with A reading missing high frequency. Measurement only; not causal.
+- **H-new-4, trade between genuine flags and misses: "supported" by the registered rule, but driven by one arm.**
+  Spearman ρ(F̄, development miss) = −0.63 over 10 networks (permutation p = 0.027). Development attack pools: ladder
+  R4 582, AF0 u50 180, splice S4 291.
+  - The ladder R4 and AF0 u50 misses are at the floor (0-0.6%) for every network. The miss mean is driven by the
+    splice pool: Sb misses 25-26% of splices against 93-97% for A, B, C, Bv.
+  - So the negative ρ is "Sb flags more genuine photos and misses fewer splices". It is not a B-against-A trade:
+    B's development misses equal A's within 1 point (0.322-0.324 against 0.312-0.315).
+- **H-new-5, GB10 kernels: FALSIFIED.** None of six settings brings the DGX within 1e-3 of the A100 on the five
+  diagnostic rows (best 0.088): TF32 off/on and math-only attention, alone and combined. The DGX (GB10 / torch 2.12)
+  cannot be a scoring fallback for comparisons with A100 scores. The source of the difference is not located; other
+  network ops or library versions remain.
+
+## Review findings and where they are applied
+
+F1 AUC meaning (TT-H2 text); F2 storage result (TT-H5 text, post hoc); F3 border wording (TT-H3 text); F4 limits of
+B (TT-H1 text); F5 Sb narrow (TT-H1 table); F6 seed = machine (Seed spread); F7 Sb − B cut-offs (TT-H6, post hoc); F8
+reader correction (section below); F9 TT1-D3 accepted (gate section); F10 platform pins
+(`PLATFORM_PINS_FOR_FINAL_READ.md`). What the paper may say (review Q6): "On about 21,000 genuine photos from eight
+development sources unseen in training (small faces enlarged 1.7-3.5x, with a black border), the protocol-trained
+network kept its fixed decision rule: at most 4.9% of any family flagged, on two seeds, against up to 23.5% for the
+plain network. These photos are still clearly displaced from the training camera photos in score, so a threshold
+calibrated on camera photos does not transfer (99-100% flagged)."
+
+## What cannot be claimed
+
+- Any miss rate or morph detection.
+- A benchmark or generalisation statement.
+- A cause of any source effect. Source is confounded with JPEG, sensor and capture.
+- A separate effect of enlargement across geometry groups.
+- Any arm choice. TT-H6 is descriptive. B is not shown to be the better arm overall.
+- That the threshold transfers in general or to sharp sources; calibration.
+
+Pack intervals use pseudo-identities, inflated by sqrt(components / people).
+
+## Reader correction (review F8; labelled as a correction, verdicts unchanged)
+
+The registered reader did not clip inflated lower bounds at 0 (AgeDB −0.001 for Bn_s402 and Bv_s402) and gives
+zero-width bootstrap intervals for zero-event families. Correction: lower bounds are clipped at 0, and the exact
+Clopper-Pearson interval is printed beside every zero-event family (`posthoc_review.json`, family_flag_corrected).
+Re-check: TT-H1 failing-family lists and the "all upper ≤ 10%" test are identical after the clip for A, B, Sb, C, Bv
+on both seeds (TT-H1_recheck_after_clip: unchanged = true for all). Largest Clopper-Pearson upper bound over families:
+B 8.3% / 5.5%, Bv 8.3% / 5.5%, A 15.8% / 12.8%, Sb 12.2% / 10.9%, C 25.1% / 7.1%. CFP-FF and AgeDB people may overlap with
+CASIA-WebFace celebrities (not checked).
+
+## Spend
+
+Rented A100 time:
+- tt1a 0.56 USD;
+- tt1b about 0.6 USD;
+- tt1c about 0.9 USD (01:03 to the 01:46 release).
+
+DGX GPU about 25 min. WCSS: nothing queued (uploaded files kept).
+
+# Fresh-seed block TT1-FS (seeds 403-407) and extension TT1-X Part 1 (Sp): registered reading; reviewed (REVIEW_TT1_FS_20261113.md, 59c08bb: needs qualification), corrections applied
+
+Registration TT1-FS: `prereg_fs1_block.md`. It was registered at a2fef5c, with the pre-run amendment at ab81b35 and
+the operational note at 451c419. Reader `tt1_read_fs.py` 87356fd7…, run once.
+
+Files:
+- `tt1_read_fs.json` (sha256 `434208c6…`) and the tables in `tt1_read_fs_tables.md`.
+- Scores: `/mnt/t7/smad_next/TT1/results/TT1_A100_pn1fs_fs.tar`.
+
+Platform:
+- Lease pn1fs: A100-PCIE-40GB, GPU-5bd20020…, driver 610.57.04, torch 2.2.1, CUDA 12.1, cuDNN 8902, timm 1.0.27,
+  numpy 1.26.4, Pillow 10.2.0.
+- The job took the fit lock at 10:08:28 CET.
+- **Gate: 15 of 15 networks byte-identical** on all 19,797 FS1 evaluation rows (TF32 on, batch 64, manifest order),
+  max |Δ| 0 for every network.
+- TF32 split on R_cam (this job's logits (PyTorch defaults: matmul TF32 off, cuDNN TF32 on) against the stored TF32-on ones): max |Δ| 0.001-0.042 logit,
+  0 own-rule changes in any network.
+
+The F4 limits apply: false alarms only, on low-resolution black-bordered frames, development sources only. No arm,
+seed or threshold is chosen from TT1.
+
+## Registered verdicts (an arm verdict needs at least 4 of 5 seeds agreeing)
+
+| Hypothesis | A | B | Sb |
+|---|---|---|---|
+| TT-H1: does the own rule transfer? | **mixed** (3 of 5 'transfers'); the prediction (at least 4 failing families) held on 0 of 5 seeds; s404 fails 2 families, s405 fails 1 | **transfers on 5 of 5 seeds**: every family's upper bound ≤ 10%, largest bootstrap bound 3.3% (exact Clopper-Pearson bound for zero-event MSU-MFSD 5.5% on every seed) | **transfers on 4 of 5 seeds**, so the prediction (at least 2 failing families) is falsified on fresh seeds (it held on 0 of 5). This reverses the narrow 401/402 'supported'. s404 fails 1 family (cfp_ff, 13.4%) |
+| TT-H2: unseen photos above the training-source photos? | supported 5 of 5 | supported 5 of 5 | supported 5 of 5 |
+| TT-H3: is the border material? | inconclusive 5 of 5 | inconclusive 5 of 5 | inconclusive 5 of 5 |
+| TT-H4: softer photos score higher at fixed size? | **mixed**: "not as predicted" 3 of 5 | **'falsified' by the registered rule, 4 of 5** (ρ ≥ 0 in at least 3 packs): B shows no 'softer scores higher' effect. This agrees with B's own prediction; \|ρ\| is also below A's on 4 of 5 seeds. Not evidence against B | **mixed**: \|ρ\| below A's on 3 of 5 seeds; the mixed count comes from A being flat on s405/s406; Sb's \|ρ\| ≤ 0.154 everywhere |
+| TT-H5: source matters beyond geometry? | "source matters beyond geometry" 5 of 5 | same, 5 of 5 | same, 5 of 5 |
+
+Per-seed numbers behind the verdicts:
+- **TT-H1, A:** largest family upper bounds per seed are 3.4%, 19.2%, 10.4%, 2.0% and 7.9%.
+- **TT-H1, B:** this matches its registered falsifier, "own rule transfers on these sources", now on five seeds.
+- **TT-H1, Sb:** under the registered rule the arm verdict is "transfers". The registered prediction was failure in at
+  least 2 families per seed; it held on 0 of 5 seeds.
+- **TT-H2:** AUC of every unseen source against R_cam is 0.989-1.000 for every network.
+- **TT-H4, A:** ρ(logit, log sharpness) in LFW is −0.28 to −0.54 on every seed. In AgeDB it is −0.29 to −0.40 on four
+  seeds and 0.00 on s406. In CALFW and CFP it is −0.18 to +0.12.
+- **TT-H4, B:** ρ is −0.13 to +0.22.
+
+### TT-H6 (descriptive; the −0.03 bar equals the size of the 401/402 B − A effect)
+
+| Pair | ΔF̄ per seed (403, 404, 405, 406, 407) | Mean ± SD over 5 seeds | Seeds negative | Registered sentence |
+|---|---|---|---|---|
+| B − A | −0.005, −0.041, −0.032, −0.003, −0.022 | −0.021 ± 0.016 | 5 / 5 | not distinguished |
+| Sb − A | +0.008, −0.007, −0.021, +0.010, −0.005 | −0.003 ± 0.013 | 3 / 5 | not distinguished |
+| Sb − B | +0.013, +0.034, +0.011, +0.014, +0.017 | +0.018 ± 0.009 | 0 / 5 | not distinguished |
+| B − Sb | −0.013, −0.034, −0.011, −0.014, −0.017 | −0.018 ± 0.009 | 5 / 5 | "not distinguished" (bar −0.03 reached on 1 of 5 seeds) |
+
+- B − A: every per-seed interval excludes 0, but only 2 of 5 seeds reach −0.03.
+- Sb − B: every per-seed interval lies above 0.
+- Across all seven seeds, B − A is negative on 7 of 7 and meets −0.03 on 4 of 7; Sb − B is positive on 7 of 7. The
+  fresh-seed effect (−0.021) is about 60% of the 401/402 effect. The two blocks differ in training and scoring host
+  (pn1a/pn1b plus tt1c, against pn1fs), so the shrinkage is not attributed.
+
+Across-seed means (± SD):
+
+| Arm | F̄ | F_max |
+|---|---|---|
+| A | 0.023 ± 0.019 | 0.078 ± 0.068 |
+| B | 0.0024 ± 0.0028 | 0.0072 ± 0.0072 |
+| Sb | 0.020 ± 0.012 | 0.064 ± 0.041 |
+
+### Printed reads (no rule)
+
+- **Geometry-112 flag share (camera photos after the 112 px path):**
+  - A: 0.415, 0.504, 0.475, 0.185, 0.348;
+  - B: 0.012, 0.002, 0.002, 0.000, 0.005;
+  - Sb: 0.091, 0.065, 0.022, 0.029, 0.058.
+  - At 224 px the share is 0-1.2% for every network.
+- A's TT-H5 'source matters' verdict rests on the 224 px anti-spoofing group only, as in 401/402.
+- **R3(g) at 112 px, all four packs:**
+  - A: 0.23-0.50;
+  - B: 0.93-0.997;
+  - Sb: 0.81-0.95.
+  - At 224 px every network is at 0.92-1.00.
+- **FFHQ genuine own-rule flags:**
+  - A: 0.065-0.108;
+  - B: 0.025-0.108;
+  - Sb: 0.024-0.051.
+- On FFHQ genuine photos, B is not clearly below A (paired −0.05 to 0; equal on s404), and B exceeds 10% on 2 of 7
+  seeds (s401, s404). B's low false-alarm rate is specific to the low-resolution bordered frames.
+- **F̄ above −2 logit:**
+  - A: 0.010-0.072;
+  - B: 0.006-0.022;
+  - Sb: 0.215-0.393.
+
+## TT1-X Part 1: the Sp arm, seeds 403-405 (printed only; no rule)
+
+Reader `tt1_read_x.py` (f358128, pinned before any Sp score was opened). Output `tt1_read_x_sp.json` (`986c2573…`).
+Gate: 3 of 3 byte-identical.
+
+| Network | F̄ | F_max | Family with F_max | FFHQ genuine flag | Geometry-112 flag | R3(g) at 112 px | F̄ above −2 |
+|---|---|---|---|---|---|---|---|
+| Sp_s403 | 0.033 | 0.109 | cfp_ff | 0.085 | 0.084 | 0.86-0.87 | 0.20 |
+| Sp_s404 | 0.030 | 0.114 | cfp_ff | 0.154 | 0.041 | 0.92-0.93 | 0.12 |
+| Sp_s405 | 0.023 | 0.060 | casia_fasd | 0.116 | 0.024 | 0.94-0.95 | 0.26 |
+
+FS1 Sb at the same seeds, for reference: F̄ 0.015, 0.041, 0.013.
+
+## What the paper may and may not say (review REVIEW_TT1_FS_20261113.md)
+
+May say: "On about 21,000 genuine photos from eight development sources not seen in training (small faces enlarged
+1.7-3.5x, with a black border), the protocol-trained network kept its fixed decision rule on all seven seeds: at most
+4.9% of any family flagged, mean F̄ 0.6%. The plain network exceeded the rule on 4 of 7 seeds (up to 23.5%). Both remain
+clearly displaced from the training camera photos, so a threshold calibrated on camera photos does not transfer." With
+the note: the seven seeds come from two training blocks on different hosts (pn1a/pn1b plus tt1c; pn1fs).
+
+May not say: that B is the better arm overall; that B transfers to sharp sources (FFHQ up to 17.8%); anything about
+misses or detection; that the B − A size is fixed; that the plain network "fails to transfer" in general (it passes on
+3 of 7 seeds); that splice positives (Sb) "cost" false alarms in general (Sb is higher on these frames but lowest on
+FFHQ).
+
+Sp (review F7): Sp F̄ 0.023-0.033 against Sb 0.013-0.041 at the same seeds, not separable; Sp flags more FFHQ genuine
+photos (8.5-15.4%) and is the only arm with nonzero R_cam flags (0.2-0.7%).
+
+## Post-result items Z1-Z4 (registered before computing at 62139a7; `zfs.json`, `src/TT1/zfs.py`; zero GPU; reviewed by results-reviewer (opus): sound, wording fixes applied)
+
+- **Z1 (post hoc): flags against development misses, 15 fresh-seed networks.** Verdict: **"no B-against-A miss cost
+  shown"**.
+  - Spearman ρ(F̄, development miss) = −0.35 (permutation p = 0.10).
+  - B − A development miss is −0.002, +0.001, +0.010, +0.003, +0.010 on seeds 403-407, all ≤ 0.02. The ladder R4 and
+    AF0 u50 misses are 0-0.3% for every network; splice S4 is B − A −0.7 to +3.1 points.
+  - Sb − B is −0.22 to −0.25: Sb misses far fewer splices, about 25% against about 97%.
+  - Ladder R4 and AF0 u50 misses are at the floor (≤ 0.6%) for every network, and A and B both miss 92-99% of S4
+    splices. So y can show a B-against-A cost only on splices, and both arms are near the ceiling there. The verdict
+    is therefore weak evidence of no cost. The pooled ρ is between arms. Within each arm, Spearman(F̄, y) is +0.2 (A),
+    +0.7 (B) and +0.8 (Sb) (post hoc, from zfs.json), so within an arm more false alarms go with more misses. The p
+    value is a one-sided permutation p.
+- **Z2 (descriptive): A's flags track its storage sensitivity.** Verdict: **"related"**.
+  - Spearman(F̄, geometry-112 flag share) = 0.90 and Spearman(F̄, |ρ_LFW|) = 0.70, the latter exactly at the 0.7 cut.
+    With n = 5, Spearman moves in steps of 0.1. 'Related' is the coded label for ≥ 0.7.
+  - F̄ per seed: 0.007, 0.048, 0.034, 0.004, 0.023.
+  - Geometry-112 flags per seed: 0.415, 0.504, 0.475, 0.185, 0.348.
+  - Seeds 401/402, printed separately because they come from other hosts: F̄ 0.057 / 0.038 and geometry-112 flags
+    0.460 / 0.566.
+  - A_s401 has the highest F̄ of all seven seeds but a middling geometry-112 share.
+  - Association only, five seeds.
+- **Z3 (descriptive): Sb and CFP-sized borders.** Verdict: **"Sb above B on 5 of 5 seeds"**.
+  - CFP-FF border-reference flag share, Sb against B: 0.118 / 0.014, 0.060 / 0.010, 0.067 / 0.007, 0.029 / 0.000,
+    0.163 / 0.019.
+  - Sb flags more training-source camera photos once a CFP-FF-shaped constant border is blanked in (Sb 0.029-0.163;
+    B 0.000-0.019). On the same photos without the border, both flag 0.000 on all five seeds. The excess is not
+    specific to CFP: Sb − B is +0.026 to +0.060 on MSU-MFSD and +0.026 to +0.048 on Oulu-NPU, and +0.00 to +0.03
+    elsewhere. CFP-FF is the largest gap on 3 of 5 seeds. This is descriptive and Sb is splice-trained, so it does not
+    show that Sb uses borders on unseen CFP-FF images.
+  - R3(c) for CFP-FF (Sb − B) is mixed: −0.074 to +0.082.
+- **Z4 (descriptive): B's FFHQ flags against its unseen-source flags.** Verdict: **"one seed-level instability
+  consistent"**.
+  - Over B's 7 seeds, Spearman(FFHQ genuine flag share, F̄) = 0.96.
+  - FFHQ flags: 0.179, 0.064, 0.052, 0.108, 0.061, 0.038, 0.025.
+  - F̄: 0.0238, 0.0022, 0.0016, 0.0073, 0.0020, 0.0003, 0.0010.
+  - This is an association over 7 seeds from two hosts. Seeds 401/402 were trained on pn1a/pn1b and scored on tt1c;
+    seed 401 is the extreme on both axes. On seeds 403-407 alone, ρ = 0.90.
+
+## TT1-X Part 2: MS1 Sb, SbM3, SbV, seeds 403-407 (printed only; no rule; reviewed (post-result, 13 Nov), corrections applied)
+
+Source: MS1's own L40S scores. Reader `tt1_read_ms1.py` (sha256 `142c8c4f…`, pinned at fdc41e2), run once. Output `tt1_read_ms1.json` (sha256
+`f5787f57…`); tables in `tt1_read_fs_tables.md`.
+
+Labels:
+- Every number comes from the L40S that trained the network: seeds 403+406 on machine m1, 404+407 on m2, 405 on m3.
+  Seed and machine are confounded across seeds, not within a seed.
+- U and the in-pack references were scored with TF32 on; tt1ref references with TF32 off. The TF32 split on R_cam is
+  max |Δ| 0.002-0.022 logit, with 0 decision changes.
+- For SbM3, every FFHQ read (R_ffhq, R_ffhq^border, M_ffhq, u, R3(b), R3(d)) is on a trained source. The TT1 FFHQ
+  images and persons were excluded from SbM3's training by key, file and identity (MS1 exclusion proof), and SbM3's
+  FFHQ training images were made by a different pipeline.
+- U_all pools are cut to aligned frames (4,152 non-aligned rows absent); U_p (21,035) is complete.
+- Column sources: F̄ and F_max are in-pack, TF32 on; the Geo-112 and CFP-border flags are tt1ref, TF32 off.
+
+| Seed | F̄ Sb | F̄ SbM3 | F̄ SbV | F_max Sb | F_max SbM3 | F_max SbV | Geo-112 flag Sb | Geo-112 flag SbM3 | Geo-112 flag SbV | CFP-border flag Sb | CFP-border flag SbM3 | CFP-border flag SbV |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 403 | 0.014 | 0.008 | 0.021 | 0.041 | 0.025 | 0.056 | 0.089 | 0.029 | 0.082 | 0.108 | 0.149 | 0.113 |
+| 404 | 0.041 | 0.003 | 0.036 | 0.136 | 0.007 | 0.109 | 0.062 | 0.026 | 0.053 | 0.062 | 0.034 | 0.041 |
+| 405 | 0.013 | 0.009 | 0.013 | 0.035 | 0.030 | 0.032 | 0.031 | 0.031 | 0.019 | 0.072 | 0.106 | 0.041 |
+| 406 | 0.013 | 0.004 | 0.012 | 0.041 | 0.011 | 0.039 | 0.029 | 0.007 | 0.010 | 0.026 | 0.024 | 0.017 |
+| 407 | 0.017 | 0.002 | 0.016 | 0.062 | 0.007 | 0.055 | 0.058 | 0.014 | 0.038 | 0.163 | 0.082 | 0.115 |
+
+What the table shows:
+- **SbM3 against Sb.** SbM3's F̄ is below L40S Sb's on 5 of 5 seeds (difference −0.0045 to −0.0388). MS1's registered
+  read of this statistic (P1-T) is 'untestable at the own rule (floor)'; no claim. TT1 adds none. The rank reads do not
+  show better source separation: SbM3's R3(f) is lower than Sb's on 5/5 seeds (g224 0.725-0.771 vs 0.757-0.868; g112
+  0.846-0.903 vs 0.901-0.953), and R3(c) on cfp_ff is 0.49-0.79 vs 0.63-0.86 (mixed TF32). F̄ at −2 is 0.008-0.024 vs
+  0.21-0.41: SbM3 moves the whole genuine distribution lower, consistent with MS1's P2 and its printed miss cost on
+  FFHQ morphs.
+- **FFHQ genuine flags (R_ffhq, 2,000 images, in-pack, TF32 on).** Sb 0.024-0.050; SbM3 0.0015-0.0075 (trained
+  source); SbV 0.027-0.044.
+- **Camera photos (R_cam).** Flagged 0-0.5% by every network.
+- **Geometry-224 flags.** 0-1.2% for every network.
+- **R3(g), 112-px group (lfw, calfw, cfp_ff, agedb_30; mixed TF32).** Sb 0.81-0.95, SbM3 0.83-0.95, SbV 0.83-0.97.
+- **Retraining reference, not a comparison.** L40S MS1 Sb F̄ (0.0141, 0.0414, 0.0132, 0.0132, 0.0172) is within 0.0008
+  of FS1 A100 Sb at the same seeds (0.0145, 0.0411, 0.0129, 0.0140, 0.0175). Same manifest and seed, independently
+  trained on different GPUs, with different TF32 settings for U. Printed only. MS1's registered F_T values
+  (ms1_read.json) differ from these in the 4th decimal and are the registered ones.
+
+# MEDS extension TT1-M (NIST SD32 mugshots; registered reading; reviewed 13 Nov (results-reviewer): needs qualification, corrections applied)
+
+Setup:
+- Registration: `prereg_meds_block.md` (4ca7755; pre-run fixes f5389a3; driver guard fix 41803d6).
+- Reader: `tt1_read_meds.py` (0b5d86b1…), run once.
+- Output: `tt1_read_meds.json` (sha256 `dd65adb3…`).
+- Scores: `/mnt/t7/smad_next/TT1/results/TT1M_se1d.tar` (two copies).
+- No MEDS image is in this repository. The MEDS pack and frames were removed from se1d after verification
+  (17:14:56, the lead's instruction).
+
+Platform: se1d, A100-PCIE-40GB, GPU-92f69f4c…, driver 570.211.01, torch 2.2.1, CUDA 12.1, cuDNN 8902, venv pins.
+This is a different host and driver from pn1fs. **Gate: 18 of 18 networks byte-identical** on the 3,417 TT1 reference
+rows against pn1fs (max |Δ| 0).
+
+Pool: MEDS primary pool, 865 aligned frontal images of 400 persons. MEDS is its own family, not pooled.
+
+## Per network
+
+| Network | Own-rule flag [person bootstrap] | Clopper-Pearson | AUC vs R_cam | AUC vs R_ffhq | Median shift from R_cam (logit) |
+|---|---|---|---|---|---|
+| A_s403 | 0.013 [0.004, 0.024] | [0.006, 0.023] | 0.990 | 0.357 | 0.18 |
+| A_s404 | 0.051 [0.032, 0.072] | [0.037, 0.068] | 0.990 | 0.418 | 0.18 |
+| A_s405 | 0.020 [0.008, 0.033] | [0.011, 0.031] | 0.989 | 0.340 | 0.16 |
+| A_s406 | 0.040 [0.024, 0.060] | [0.028, 0.056] | 0.994 | 0.616 | 0.32 |
+| A_s407 | 0.023 [0.011, 0.037] | [0.014, 0.035] | 0.983 | 0.425 | 0.21 |
+| B_s403 | 0.003 [0.000, 0.010] | | 0.994 | 0.339 | 0.24 |
+| B_s404 | 0.029 [0.015, 0.046] | | 0.989 | 0.300 | 0.18 |
+| B_s405 | 0.006 [0.000, 0.014] | | 0.989 | 0.274 | 0.18 |
+| B_s406 | 0.010 [0.002, 0.022] | | 0.999 | 0.562 | 0.42 |
+| B_s407 | 0.001 [0.000, 0.004] | | 0.987 | 0.427 | 0.31 |
+| Sb_s403 | 0.003 | | 0.988 | 0.263 | 0.51 |
+| Sb_s404 | 0.003 | | 0.987 | 0.177 | 0.35 |
+| Sb_s405 | 0.005 | | 0.979 | 0.195 | 0.37 |
+| Sb_s406 | 0.005 | | 0.983 | 0.136 | 0.42 |
+| Sb_s407 | 0.001 | | 0.994 | 0.219 | 0.52 |
+| Sp_s403 (printed only) | 0.003 | | 0.979 | 0.26 | |
+| Sp_s404 (printed only) | 0.010 | | 0.977 | 0.22 | |
+| Sp_s405 (printed only) | 0.013 | | 0.979 | 0.21 | |
+
+## Registered verdicts (4 of 5 seeds)
+
+- **TT-M1, own rule on MEDS: "transfers" for A, B and Sb, on 5 of 5 seeds each.** Every upper bound is ≤ 10%; the
+  largest is A_s404 at 7.2%.
+  - The predictions for B and Sb are confirmed.
+  - No prediction was made for A; A also meets the bar.
+- **TT-M2: "displaced" for all arms, 5 of 5.** AUC against R_cam is 0.979-0.999 for the deciding arms (Sp
+  0.977-0.979). R_cam is a tight floor (p95 within 0.05 logit of its median), so the median shift is only 0.16-0.52
+  logit, 2-8% of u.
+- **TT-M3 (descriptive), all "not distinguished".**
+
+| Pair | Mean ± SD | Seeds negative |
+|---|---|---|
+| B − A | −0.019 ± 0.008 | 5 / 5 |
+| Sb − A | −0.026 ± 0.016 | 5 / 5 |
+| Sb − B | −0.006 ± 0.011 | 3 / 5 |
+
+B − A: interval excludes 0 on 5 of 5 seeds, −0.03 met on 1 of 5 seeds. Sb − A: interval excludes 0 on 4 of 5 seeds, met
+on 2 of 5. Sb − B: 3 negative, 2 equal.
+
+## Printed reads (no rule)
+
+- **AUC against R_ffhq is 0.14-0.62**, below 0.5 on 16 of 18 networks (A_s406 0.616, B_s406 0.562). MEDS scores at or
+  below the FFHQ genuine photos for most networks.
+- **TT-M4.** Spearman of logit with log Laplacian variance is +0.37 to +0.50 and with log enlargement +0.21 to +0.46.
+  Laplacian variance is computed on the full native frame, so across MEDS's mixed sizes it tracks image size (ρ with
+  width −0.51). Post hoc review split by size: inside the 240x240 group, ρ with sharpness is −0.10 to −0.24 for A and B
+  (the TT1 sign) and ρ with enlargement +0.29 to +0.53. Among the other images, ρ with enlargement is about 0. No sign
+  reversal relative to TT1 is shown.
+- **240x240 images:** 110 in the primary pool, 54 persons, enlarged 1.6-5.8x (median 2.8); 0.000-0.391 flagged (A
+  0.10-0.39, B 0.009-0.23, Sb 0-0.027). Post hoc review: nearly all flags fall in this group (for example A_s404 43 of
+  44, B_s404 25 of 25), with at most 1 flag per network among the other 755 images. The MEDS-I against MEDS-II
+  difference (A 0.040-0.159 against 0.008-0.032) follows from this: 51 of 126 MEDS-I images are 240x240, and MEDS-I
+  images above 240x240 have 0 flags. Size, JPEG coding and part cannot be separated.
+- **Secondary pool.** 153 non-aligned frames: 0-1.3% flagged.
+
+## What may and may not be said (MEDS; review of 13 Nov)
+
+May say: "On 865 frontal NIST MEDS mugshots of 400 persons, unseen in training, all 15 fresh-seed networks stayed within
+the fixed decision rule (bootstrap upper bound ≤ 7.2%). The false alarms that occur concentrate in small 240x240
+mugshots whose faces are enlarged about 3x. There the plain network flags up to 39% of 54 persons and the protocol
+network up to 23%." The platform result also stands: the 18 networks reproduced byte for byte on a second A100 PCIe
+host with another driver (570.211.01 against 610.57.04).
+
+May not say: that MEDS-I or the source itself causes the flags; that sharper photos score higher; that MEDS is strongly
+displaced in magnitude; that any arm is better; anything about misses.
+
+Next (review): a registered post hoc stratified print (size group × part) for all 18 networks (zero GPU); MEDS 240-group
+flags against TT1 families at matched enlargement (zero GPU); a downsampling test of the larger MEDS images to about
+46 px eye distance (author item: resampling code); morph pairs from the 157 multi-encounter persons later.
+
+## MEDS post hoc follow-ups S1, S2 (registered at 104edc3 before computing; `meds_strata.json`, sha256 `b4c5da33…`; zero GPU; reviewed (needs qualification), corrections applied)
+
+- **S1, flags by size and part (all 18 networks).**
+  - **Other sizes (755 images, 353 persons):** 0 or 1 flags in every network.
+  - **240x240 (110 images, 54 persons), flags per arm:**
+
+| Arm | Flags per seed (403-407) |
+|---|---|
+| A | 11, 43, 16, 34, 19 |
+| B | 2, 25, 4, 8, 1 |
+| Sb | 2, 2, 3, 3, 0 |
+| Sp (403-405) | 2, 8, 10 |
+
+  - **Inside the 240 group, part does not matter.** A_s404 flags 20 of 51 MEDS-I and 23 of 59 MEDS-II images; B_s404
+    flags 12 of 51 and 13 of 59. So the MEDS-I excess is explained by composition: 51 of 126 MEDS-I images are 240x240,
+    against 59 of 739 in MEDS-II.
+  - **Inside the 240 group (A_s404, B_s404):**
+    - ρ(logit, log Laplacian variance) is −0.22 / −0.24 for A_s404 / B_s404, but its sign is not consistent across
+      seeds (A: +0.12, −0.22, +0.05, −0.10, −0.12; B: +0.10, −0.24, +0.01, −0.06, −0.07); no sign is read.
+    - ρ with log enlargement is positive in every A seed (+0.44 to +0.60) and every B seed (+0.09 to +0.37), and about 0
+      for Sb and Sp.
+  - **Among the other sizes:** ρ with enlargement is about 0 for A and B (+0.13 to +0.21 for Sb and Sp), and ρ with log
+    Laplacian variance is +0.20 to +0.34 (size-confounded, as the review noted).
+- **S2, MEDS-240 against the TT1 low-resolution families at matched enlargement.**
+  - **Method:** bins of 1.6-6.0x; TT1 reweighted to the MEDS-240 bin mix.
+  - **Bin coverage is uneven.** TT1 has 1,377 frames at 1.6–2.0x (the anti-spoofing frames), 4 at 2.0–2.5x (all
+    casia_fasd, 4 persons), 13 at 2.5–3.0x, about 9,700 each at 3.0–3.5x and 3.5–4.0x, and 127 at 4.0–6.0x; 23 TT1 frames
+    at 1.2–1.6x are dropped (no MEDS-240 image there). MEDS-240 has 31 and 23 images in the two sparse bins (weights 0.28
+    and 0.21), so one flagged casia frame moves the reweighted TT1 rate by 0.07, more than the 0.05 margin. The bootstrap
+    sets a bin rate to 0 when a draw contains none of its persons (about 2% of draws for the 4-person bin), and the
+    intervals are coarse, near-discrete steps.
+  - **Arm sentences (at least 4 of 5 seeds; |MEDS-240 − TT1 reweighted| ≤ 0.05 = "consistent with enlargement"):**
+    - **A: "differs".** MEDS-240 higher on every seed: +0.073, +0.185, +0.011, +0.230, +0.063. Intervals exclude 0 on
+      s403 and s406. B_s406 [0.017, 0.154] also excludes 0.
+    - **B: "mixed"**, 3 of 5 consistent: +0.017, +0.147, +0.035, +0.073, +0.008.
+    - **Sb: "consistent with enlargement"**, 4 of 5: +0.010, −0.145, −0.049, +0.019, −0.010.
+    - **Sp (printed only):** −0.070, −0.085, −0.057.
+    - **Sensitivity (not registered):** dropping the two sparse bins, A differs on 5 of 5 seeds (+0.14 to +0.48), B stays
+      mixed (+0.02 to +0.29), Sb is consistent on 5 of 5 (|diff| ≤ 0.024) and Sp is +0.00 to +0.06. The Sb_s404 '−0.145'
+      and all the negative Sp differences come from 1–2 flagged casia frames in the 2.0–2.5x bin.
+  - **Reading (descriptive, not causal).** For A on every seed, and for B on some seeds, the small MEDS mugshots are flagged more than TT1
+    frames at the same enlargement. They differ from TT1 in source, JPEG coding, crop and border (TT1 frames carry a
+    black border, MEDS none), so the excess is not attributed.

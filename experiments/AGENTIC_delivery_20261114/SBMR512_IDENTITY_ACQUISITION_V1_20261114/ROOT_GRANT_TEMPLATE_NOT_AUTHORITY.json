@@ -1,0 +1,19 @@
+{
+  "decision": "PROPOSED_NOT_AUTHORIZATION",
+  "root_authorized": false,
+  "author": "astra_sprint_plan_review",
+  "reviewer": null,
+  "venv": "/home/narolski/dmenv",
+  "output": "/lustre/pd03/hpc-narolski-1790461090/smad-next/coordination_20261114/sbmr512_identity_acquisition_v1",
+  "automatic_retry": false,
+  "scope": "FIXED_CURRENT_SOURCE_INSTALL_METADATA_ONLY",
+  "scientific_read": "HOLD",
+  "independent_review_path": null,
+  "independent_review_sha256": null,
+  "source_sha256": {
+    "acquire.py": "c6606754f0200819016747f5ef19709b67aaece46bc519fb9cd840e6a68a1487",
+    "safeio.py": "34c5f9d691714835ea164e5ae87eaf11ceaf5b166a7ce7e37cf1bd7d2402f4de"
+  },
+  "bootstrap_interpreter": null,
+  "bootstrap_interpreter_sha256": null
+}

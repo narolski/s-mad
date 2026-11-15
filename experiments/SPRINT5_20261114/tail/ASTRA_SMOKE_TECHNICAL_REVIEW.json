@@ -1,0 +1,120 @@
+{
+  "decision": "GO_15_PILOT_FITS_TECHNICAL",
+  "reviewer": "astra_sprint_plan_review",
+  "author": "sol_sprint_experiments",
+  "job": 6321199,
+  "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+  "evidence_sha256": "cf49680719206fa852d225ae424dc9d4db0c736fd28006848689923fa58783fb",
+  "scope": "metadata, byte gates, training traces and tiny objective-state tensors only; no scientific score arrays deserialized",
+  "fits": 15,
+  "steps_per_fit": 100,
+  "seeds": [
+    521,
+    522,
+    523,
+    524,
+    525
+  ],
+  "conditioning": "one admitted AB1 Sb408 common warmstart; stochastic continuation only",
+  "reader": "independent PREREAD required before scientific interpretation",
+  "arms": [
+    {
+      "arm": "bce",
+      "sha256": "d7e0cd1f8844233bdf06d2450f47f046bfb4e73dfd9532b948c6a8bfd9d86df4",
+      "reference_bytegate": 2496,
+      "own_bytegate": 21277,
+      "finite_counts": {
+        "dev": 21277,
+        "tt1": 34411,
+        "meds": 1018,
+        "gd": 11042
+      },
+      "checkpoint_preserved": true,
+      "schedule_sha256": "dbb0ebeafae6f6a2b62f5a12f21eec61b1c9ad15bfd96bf7c2c4416e3aad5b01"
+    },
+    {
+      "arm": "mean",
+      "sha256": "78868f6e59f2056cad5d514c3d3c5a24c32aa979e71e5a628d8d2d9b5f8ed3cd",
+      "reference_bytegate": 2496,
+      "own_bytegate": 21277,
+      "finite_counts": {
+        "dev": 21277,
+        "tt1": 34411,
+        "meds": 1018,
+        "gd": 11042
+      },
+      "checkpoint_preserved": true,
+      "schedule_sha256": "dbb0ebeafae6f6a2b62f5a12f21eec61b1c9ad15bfd96bf7c2c4416e3aad5b01",
+      "dual_commits": 2,
+      "final_effective_step": 1,
+      "final_eta": [
+        0.6930495500564575,
+        0.6929910778999329,
+        0.653109610080719,
+        0.657254159450531
+      ],
+      "final_dual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tail_occupancy": [
+        {
+          "feret/native": 5,
+          "feret/s61": 7,
+          "frgc/native": 8,
+          "frgc/s61": 9
+        },
+        {
+          "feret/native": 7,
+          "feret/s61": 4,
+          "frgc/native": 11,
+          "frgc/s61": 7
+        }
+      ]
+    },
+    {
+      "arm": "cvar",
+      "sha256": "83bc5483d9595d5c6717bd8128c443200e5f3ef26421fd803278a9bd44f76a0a",
+      "reference_bytegate": 2496,
+      "own_bytegate": 21277,
+      "finite_counts": {
+        "dev": 21277,
+        "tt1": 34411,
+        "meds": 1018,
+        "gd": 11042
+      },
+      "checkpoint_preserved": true,
+      "schedule_sha256": "dbb0ebeafae6f6a2b62f5a12f21eec61b1c9ad15bfd96bf7c2c4416e3aad5b01",
+      "dual_commits": 2,
+      "final_effective_step": 1,
+      "final_eta": [
+        0.7129320502281189,
+        0.7092911005020142,
+        0.6726475954055786,
+        0.6747786998748779
+      ],
+      "final_dual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tail_occupancy": [
+        {
+          "feret/native": 5,
+          "feret/s61": 7,
+          "frgc/native": 8,
+          "frgc/s61": 9
+        },
+        {
+          "feret/native": 6,
+          "feret/s61": 3,
+          "frgc/native": 6,
+          "frgc/s61": 3
+        }
+      ]
+    }
+  ]
+}

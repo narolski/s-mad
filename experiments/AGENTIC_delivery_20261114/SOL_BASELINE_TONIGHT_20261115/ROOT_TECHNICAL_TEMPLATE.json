@@ -1,0 +1,14 @@
+{
+  "decision": "GO_AD5_TECHNICAL_METADATA_ONLY",
+  "packet_sha256": "c811212a02d3d0ed0ee959e764ebbc7dbb0c1589a66faa90d4aeaf49d0011ab2",
+  "source_sha256": {
+    "technical_entry.py": "9157b18cf520160188e814ec5db1df2e5bebde851db198d60415e80d53544f3e",
+    "ad5_technical_core.py": "3f0f71a34e0b30edb2a6702124b11c076770b275492f6a1725920450e5e406cc",
+    "native_metadata_predicates_v2.py": "2c270fe119b8c558d4ef7b112088423e53716e68e9ce1f1cb8352a055fac5e5d"
+  },
+  "review": "ROOT_SET_EXACT_OTHER_REVIEW_PATH",
+  "review_sha256": "ROOT_SET_OTHER_REVIEW_SHA256",
+  "review_decision": "GO_AD5_TECHNICAL_METADATA_ONLY",
+  "output": "/mnt/t7/smad_next/AD5/technical_admission_20261115_v1",
+  "cpu_only": true
+}

@@ -1,0 +1,595 @@
+detector,set,alpha,threshold_rule,threshold,pool,rate_type,n,rate,cp_lo,cp_hi,a43_consistency_maxabs
+MADation ViT-B/16 release,MorDIFF,0.05,native threshold,-8.63331413269043,arm E stored-small (genuine under both policies),flag rate,204,0.27450980392156865,0.21450817092613422,0.3411933741950234,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,arm E stored-small (genuine under both policies),flag rate,204,0.029411764705882353,0.010868536888231872,0.06291470988073002,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",8.970850944519043,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,native threshold,-8.63331413269043,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.9607843137254902,0.9241943691917641,0.9829198950743304,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.35294117647058826,0.28748710968821906,0.4227392717771865,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",8.970850944519043,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.049019607843137254,0.02375394071210534,0.08829920169689397,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,native threshold,-8.63331413269043,"D one-photo reconstruction, 100 steps",flag rate,204,0.4264705882352941,0.3576683943997995,0.4974415110454616,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,"D one-photo reconstruction, 100 steps",flag rate,204,0.03431372549019608,0.01390516092950283,0.06941864069625532,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",8.970850944519043,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,native threshold,-8.63331413269043,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.6274509803921569,0.526119059021505,0.7211751556235868,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.09803921568627451,0.04802276455842711,0.17291434347330456,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",8.970850944519043,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0196078431372549,0.0023834845816113038,0.06903921219895646,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,native threshold,-8.63331413269043,"C same-person mix, 100 steps (own row)",flag rate,102,0.17647058823529413,0.10807314800183374,0.2644848650987162,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",8.970850944519043,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,native threshold,-8.63331413269043,A published MorDIFF morphs (200),miss,200,0.14,0.0950875173590198,0.19594526111961424,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,A published MorDIFF morphs (200),miss,200,0.63,0.5590535152152594,0.6970301757287629,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",8.970850944519043,A published MorDIFF morphs (200),miss,200,0.915,0.8673948341704476,0.9497040813697427,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,native threshold,-8.63331413269043,"B20 our same-pair morphs, 20 steps",miss,200,0.1,0.06215936625406609,0.15021278786775577,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,"B20 our same-pair morphs, 20 steps",miss,200,0.65,0.5795493775220064,0.715929329677058,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",8.970850944519043,"B20 our same-pair morphs, 20 steps",miss,200,0.92,0.8733351439779183,0.9535823916001774,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,native threshold,-8.63331413269043,"B our same-pair morphs, 100 steps",miss,200,0.73,0.6628474093126695,0.7901966625338547,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,"B our same-pair morphs, 100 steps",miss,200,0.98,0.9495863909101037,0.9945244341204436,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",8.970850944519043,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,native threshold,-8.63331413269043,"eval MorDIFF morphs (1,000)",miss,1000,0.116,0.09680595526975852,0.1374867505495638,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,"eval MorDIFF morphs (1,000)",miss,1000,0.612,0.5810039234046049,0.6423345959638972,0.0
+MADation ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",8.970850944519043,"eval MorDIFF morphs (1,000)",miss,1000,0.904,0.8840333566371232,0.9215479637525775,0.0
+MADation ViT-B/16 release,StyleGAN3,0.05,native threshold,-8.63331413269043,H3 one-identity renders (423),flag rate,423,0.7706855791962175,0.7276219611292266,0.8099156447087659,
+MADation ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,H3 one-identity renders (423),flag rate,423,0.5484633569739953,0.49965889822584864,0.5965853319026141,
+MADation ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",10.998456954956055,H3 one-identity renders (423),flag rate,423,0.01182033096926714,0.0038488639168130032,0.027367843582560798,
+MADation ViT-B/16 release,StyleGAN3,0.05,native threshold,-8.63331413269043,spread-matched renders (423),flag rate,423,0.8747044917257684,0.8393316056424591,0.9047191386245487,
+MADation ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,spread-matched renders (423),flag rate,423,0.6950354609929078,0.6487241747074612,0.7385932898464767,
+MADation ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",10.998456954956055,spread-matched renders (423),flag rate,423,0.04964539007092199,0.030990401439540228,0.07488943037989294,
+MADation ViT-B/16 release,StyleGAN3,0.05,native threshold,-8.63331413269043,H3 two-identity morphs (423),miss,423,0.1536643026004728,0.12064077464192717,0.1916220936790954,
+MADation ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",4.995326519012451,H3 two-identity morphs (423),miss,423,0.40425531914893614,0.35712004606710146,0.45273950107924715,
+MADation ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",10.998456954956055,H3 two-identity morphs (423),miss,423,0.9763593380614657,0.9569546694857073,0.9886065002210718,
+MADation ViT-B/16 release,MorDIFF,0.1,native threshold,-9.918947219848633,arm E stored-small (genuine under both policies),flag rate,204,0.6274509803921569,0.5571847324640671,0.693954357528989,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,arm E stored-small (genuine under both policies),flag rate,204,0.03431372549019608,0.01390516092950283,0.06941864069625532,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",8.470199584960938,arm E stored-small (genuine under both policies),flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,native threshold,-9.918947219848633,"D20 one-photo reconstruction, 20 steps",flag rate,204,1.0,0.9820797693375605,1.0,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.5,0.4293765953957943,0.5706234046042057,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",8.470199584960938,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.09803921568627451,0.0609190430267319,0.14734926138480547,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,native threshold,-9.918947219848633,"D one-photo reconstruction, 100 steps",flag rate,204,0.7401960784313726,0.6743398814344549,0.7989285831770353,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,"D one-photo reconstruction, 100 steps",flag rate,204,0.09803921568627451,0.0609190430267319,0.14734926138480547,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",8.470199584960938,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,native threshold,-9.918947219848633,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.8333333333333334,0.7466150256224936,0.8998068940772345,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.22549019607843138,0.14863123476972087,0.31888733602891395,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",8.470199584960938,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.029411764705882353,0.00610697386242859,0.08355334185835596,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,native threshold,-9.918947219848633,"C same-person mix, 100 steps (own row)",flag rate,102,0.45098039215686275,0.3522419932711232,0.5526398857497853,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,"C same-person mix, 100 steps (own row)",flag rate,102,0.0196078431372549,0.0023834845816113038,0.06903921219895646,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",8.470199584960938,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,native threshold,-9.918947219848633,A published MorDIFF morphs (200),miss,200,0.015,0.003104107621553509,0.0432082819177126,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,A published MorDIFF morphs (200),miss,200,0.51,0.4385217225621664,0.5811774847945146,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",8.470199584960938,A published MorDIFF morphs (200),miss,200,0.86,0.8040547388803857,0.9049124826409802,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,native threshold,-9.918947219848633,"B20 our same-pair morphs, 20 steps",miss,200,0.01,0.0012133490137360302,0.035654668397239776,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,"B20 our same-pair morphs, 20 steps",miss,200,0.52,0.44841239866057386,0.5909860003619938,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",8.470199584960938,"B20 our same-pair morphs, 20 steps",miss,200,0.885,0.8324530555177461,0.9256866263077029,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,native threshold,-9.918947219848633,"B our same-pair morphs, 100 steps",miss,200,0.445,0.37490109471851,0.5167536888074262,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,"B our same-pair morphs, 100 steps",miss,200,0.96,0.9227080317739839,0.9825751910055194,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",8.470199584960938,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,native threshold,-9.918947219848633,"eval MorDIFF morphs (1,000)",miss,1000,0.013,0.006939617502851476,0.022127803636778486,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,"eval MorDIFF morphs (1,000)",miss,1000,0.482,0.4506223374692156,0.5134839164162952,0.0
+MADation ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",8.470199584960938,"eval MorDIFF morphs (1,000)",miss,1000,0.852,0.8284575617048234,0.8734472671715777,0.0
+MADation ViT-B/16 release,StyleGAN3,0.1,native threshold,-9.918947219848633,H3 one-identity renders (423),flag rate,423,0.8203309692671394,0.7803610391461211,0.8557486719617503,
+MADation ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,H3 one-identity renders (423),flag rate,423,0.5981087470449172,0.5496521430360816,0.6451830944709084,
+MADation ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",10.898626327514648,H3 one-identity renders (423),flag rate,423,0.04018912529550828,0.02358300352445767,0.06356833972253587,
+MADation ViT-B/16 release,StyleGAN3,0.1,native threshold,-9.918947219848633,spread-matched renders (423),flag rate,423,0.9219858156028369,0.8921818480898711,0.9456923384598163,
+MADation ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,spread-matched renders (423),flag rate,423,0.7423167848699763,0.6978500204108306,0.783356592539115,
+MADation ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",10.898626327514648,spread-matched renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+MADation ViT-B/16 release,StyleGAN3,0.1,native threshold,-9.918947219848633,H3 two-identity morphs (423),miss,423,0.1016548463356974,0.07454918623190102,0.13448118356446526,
+MADation ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",1.5098049640655518,H3 two-identity morphs (423),miss,423,0.33569739952718675,0.29080015006709314,0.38291228992809606,
+MADation ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",10.898626327514648,H3 two-identity morphs (423),miss,423,0.9574468085106383,0.9335796744625957,0.9745884122282069,
+MADation ViT-L/14 release,MorDIFF,0.05,native threshold,-12.474649429321289,arm E stored-small (genuine under both policies),flag rate,204,0.24509803921568626,0.18772213281839442,0.3100408982336723,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,arm E stored-small (genuine under both policies),flag rate,204,0.024509803921568627,0.008005098786001,0.056267859823377134,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-6.645638465881348,arm E stored-small (genuine under both policies),flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,native threshold,-12.474649429321289,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.6225490196078431,0.5521838135770147,0.6892964995481052,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.2549019607843137,0.19661169366603046,0.3204634949515356,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-6.645638465881348,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.049019607843137254,0.02375394071210534,0.08829920169689397,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,native threshold,-12.474649429321289,"D one-photo reconstruction, 100 steps",flag rate,204,0.4068627450980392,0.3387994285712641,0.4776739235979021,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,"D one-photo reconstruction, 100 steps",flag rate,204,0.09313725490196079,0.05700961750797497,0.14162260874708033,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-6.645638465881348,"D one-photo reconstruction, 100 steps",flag rate,204,0.0196078431372549,0.005367693317136762,0.04944028848013167,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,native threshold,-12.474649429321289,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.5686274509803921,0.4668231136757778,0.6663411375897696,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.17647058823529413,0.10807314800183374,0.2644848650987162,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-6.645638465881348,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0196078431372549,0.0023834845816113038,0.06903921219895646,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,native threshold,-12.474649429321289,"C same-person mix, 100 steps (own row)",flag rate,102,0.5686274509803921,0.4668231136757778,0.6663411375897696,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,"C same-person mix, 100 steps (own row)",flag rate,102,0.21568627450980393,0.1403795091134594,0.3081403643967966,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-6.645638465881348,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,native threshold,-12.474649429321289,A published MorDIFF morphs (200),miss,200,0.395,0.3267649918050633,0.4663964280265182,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,A published MorDIFF morphs (200),miss,200,0.735,0.6681299077913818,0.7947609086140768,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-6.645638465881348,A published MorDIFF morphs (200),miss,200,0.945,0.9037223555660872,0.9722277454479935,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,native threshold,-12.474649429321289,"B20 our same-pair morphs, 20 steps",miss,200,0.375,0.3077138482176408,0.44605137418258545,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,"B20 our same-pair morphs, 20 steps",miss,200,0.695,0.6261321954662298,0.7579805629764088,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-6.645638465881348,"B20 our same-pair morphs, 20 steps",miss,200,0.965,0.9292190016490228,0.9858144741015807,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,native threshold,-12.474649429321289,"B our same-pair morphs, 100 steps",miss,200,0.55,0.4782493109935384,0.6202464100211151,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,"B our same-pair morphs, 100 steps",miss,200,0.855,0.7984385038268202,0.9006913774447924,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-6.645638465881348,"B our same-pair morphs, 100 steps",miss,200,0.995,0.9724581015427943,0.999873418972133,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,native threshold,-12.474649429321289,"eval MorDIFF morphs (1,000)",miss,1000,0.441,0.40993929790473455,0.47240902442999955,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,"eval MorDIFF morphs (1,000)",miss,1000,0.722,0.6931061822718083,0.7495802495485977,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-6.645638465881348,"eval MorDIFF morphs (1,000)",miss,1000,0.94,0.9234395095960652,0.9539049645775157,9.5367431640625e-07
+MADation ViT-L/14 release,StyleGAN3,0.05,native threshold,-12.474649429321289,H3 one-identity renders (423),flag rate,423,0.7257683215130024,0.6805894350555536,0.7677564797176668,
+MADation ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,H3 one-identity renders (423),flag rate,423,0.6004728132387707,0.5520449085111436,0.6474851104999566,
+MADation ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",11.703031539916992,H3 one-identity renders (423),flag rate,423,0.04491725768321513,0.027256471160634944,0.06925713382383374,
+MADation ViT-L/14 release,StyleGAN3,0.05,native threshold,-12.474649429321289,spread-matched renders (423),flag rate,423,0.6879432624113475,0.64140383338186,0.7318299206839833,
+MADation ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,spread-matched renders (423),flag rate,423,0.5673758865248227,0.5186471793358196,0.6151556438395663,
+MADation ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",11.703031539916992,spread-matched renders (423),flag rate,423,0.04964539007092199,0.030990401439540228,0.07488943037989294,
+MADation ViT-L/14 release,StyleGAN3,0.05,native threshold,-12.474649429321289,H3 two-identity morphs (423),miss,423,0.3617021276595745,0.3158385905739047,0.40951539344416715,
+MADation ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-12.123798370361328,H3 two-identity morphs (423),miss,423,0.5130023640661938,0.46424060109272236,0.5615810464318969,
+MADation ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",11.703031539916992,H3 two-identity morphs (423),miss,423,0.9692671394799054,0.9480192168623378,0.9835366222695354,
+MADation ViT-L/14 release,MorDIFF,0.1,native threshold,-12.532236099243164,arm E stored-small (genuine under both policies),flag rate,204,0.39215686274509803,0.324719884365051,0.46277643544969194,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,arm E stored-small (genuine under both policies),flag rate,204,0.058823529411764705,0.030761079839869823,0.10049784620004382,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-10.860058784484863,arm E stored-small (genuine under both policies),flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,native threshold,-12.532236099243164,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.7941176470588235,0.732071506249306,0.8474053629827678,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.3382352941176471,0.2736466238722536,0.4076045559310109,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-10.860058784484863,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.09803921568627451,0.0609190430267319,0.14734926138480547,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,native threshold,-12.532236099243164,"D one-photo reconstruction, 100 steps",flag rate,204,0.553921568627451,0.48289840300794556,0.6233546833816102,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,"D one-photo reconstruction, 100 steps",flag rate,204,0.16666666666666666,0.11826824130059738,0.22503491955802798,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-10.860058784484863,"D one-photo reconstruction, 100 steps",flag rate,204,0.04411764705882353,0.020368978080692202,0.08209445290121617,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,native threshold,-12.532236099243164,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.7254901960784313,0.6282394229000433,0.809214374920735,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.30392156862745096,0.21671660836732978,0.4028664201576985,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-10.860058784484863,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.06862745098039216,0.028035264623386402,0.13629699718072058,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,native threshold,-12.532236099243164,"C same-person mix, 100 steps (own row)",flag rate,102,0.7254901960784313,0.6282394229000433,0.809214374920735,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,"C same-person mix, 100 steps (own row)",flag rate,102,0.30392156862745096,0.21671660836732978,0.4028664201576985,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-10.860058784484863,"C same-person mix, 100 steps (own row)",flag rate,102,0.049019607843137254,0.016105818843923623,0.11069566263552737,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,native threshold,-12.532236099243164,A published MorDIFF morphs (200),miss,200,0.295,0.2327687842231247,0.3634231333179104,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,A published MorDIFF morphs (200),miss,200,0.64,0.5692860539812827,0.7064952791088333,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-10.860058784484863,A published MorDIFF morphs (200),miss,200,0.9,0.8497872121322442,0.937840633745934,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,native threshold,-12.532236099243164,"B20 our same-pair morphs, 20 steps",miss,200,0.275,0.21437741524309534,0.34242541862375053,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,"B20 our same-pair morphs, 20 steps",miss,200,0.625,0.5539486258174146,0.6922861517823592,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-10.860058784484863,"B20 our same-pair morphs, 20 steps",miss,200,0.895,0.8439812944524971,0.9338187729712882,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,native threshold,-12.532236099243164,"B our same-pair morphs, 100 steps",miss,200,0.42,0.350743857791056,0.49166382512261964,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,"B our same-pair morphs, 100 steps",miss,200,0.795,0.7323460792147147,0.8486894280044806,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-10.860058784484863,"B our same-pair morphs, 100 steps",miss,200,0.98,0.9495863909101037,0.9945244341204436,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,native threshold,-12.532236099243164,"eval MorDIFF morphs (1,000)",miss,1000,0.333,0.30381780242015766,0.3631692178520082,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,"eval MorDIFF morphs (1,000)",miss,1000,0.649,0.6185133989073752,0.6786062068810231,9.5367431640625e-07
+MADation ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-10.860058784484863,"eval MorDIFF morphs (1,000)",miss,1000,0.874,0.8518262835289732,0.8939431677375203,9.5367431640625e-07
+MADation ViT-L/14 release,StyleGAN3,0.1,native threshold,-12.532236099243164,H3 one-identity renders (423),flag rate,423,0.7659574468085106,0.7226431008811571,0.8055061708137117,
+MADation ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,H3 one-identity renders (423),flag rate,423,0.6312056737588653,0.5832545111363605,0.6773073374119727,
+MADation ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",11.348752975463867,H3 one-identity renders (423),flag rate,423,0.09219858156028368,0.06638463066609168,0.12388170431822092,
+MADation ViT-L/14 release,StyleGAN3,0.1,native threshold,-12.532236099243164,spread-matched renders (423),flag rate,423,0.7281323877068558,0.6830506848860308,0.769989652275085,
+MADation ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,spread-matched renders (423),flag rate,423,0.6052009456264775,0.5568338166010987,0.6520857556033688,
+MADation ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",11.348752975463867,spread-matched renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+MADation ViT-L/14 release,StyleGAN3,0.1,native threshold,-12.532236099243164,H3 two-identity morphs (423),miss,423,0.31678486997635935,0.2726856750075846,0.3634697514360888,
+MADation ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-12.264245986938477,H3 two-identity morphs (423),miss,423,0.4799054373522459,0.43139893768035514,0.5286948838865098,
+MADation ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",11.348752975463867,H3 two-identity morphs (423),miss,423,0.9314420803782506,0.9030212248463965,0.9536082492502974,
+MADation FE ViT-B/16 release,MorDIFF,0.05,native threshold,-1.8833410739898682,arm E stored-small (genuine under both policies),flag rate,204,0.43137254901960786,0.36240257928515934,0.5023665407770268,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,arm E stored-small (genuine under both policies),flag rate,204,0.03431372549019608,0.01390516092950283,0.06941864069625532,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.84499454498291,arm E stored-small (genuine under both policies),flag rate,204,0.03431372549019608,0.01390516092950283,0.06941864069625532,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,native threshold,-1.8833410739898682,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.3235294117647059,0.2598756428598976,0.39240103432910833,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0196078431372549,0.005367693317136762,0.04944028848013167,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.84499454498291,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0196078431372549,0.005367693317136762,0.04944028848013167,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,native threshold,-1.8833410739898682,"D one-photo reconstruction, 100 steps",flag rate,204,0.45098039215686275,0.3814062058156623,0.5220000155402083,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,"D one-photo reconstruction, 100 steps",flag rate,204,0.029411764705882353,0.010868536888231872,0.06291470988073002,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.84499454498291,"D one-photo reconstruction, 100 steps",flag rate,204,0.029411764705882353,0.010868536888231872,0.06291470988073002,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,native threshold,-1.8833410739898682,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.3333333333333333,0.24307314166899946,0.4335573184627945,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.84499454498291,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,native threshold,-1.8833410739898682,"C same-person mix, 100 steps (own row)",flag rate,102,0.47058823529411764,0.37097329328526285,0.5719555182492991,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,"C same-person mix, 100 steps (own row)",flag rate,102,0.00980392156862745,0.00024818300126994516,0.05341541039718626,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.84499454498291,"C same-person mix, 100 steps (own row)",flag rate,102,0.00980392156862745,0.00024818300126994516,0.05341541039718626,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,native threshold,-1.8833410739898682,A published MorDIFF morphs (200),miss,200,0.59,0.5184215852127789,0.6588693543285322,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,A published MorDIFF morphs (200),miss,200,0.97,0.935849373294973,0.9889125443277452,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.84499454498291,A published MorDIFF morphs (200),miss,200,0.97,0.935849373294973,0.9889125443277452,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,native threshold,-1.8833410739898682,"B20 our same-pair morphs, 20 steps",miss,200,0.61,0.5386787674550014,0.6780089378847594,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,"B20 our same-pair morphs, 20 steps",miss,200,0.97,0.935849373294973,0.9889125443277452,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.84499454498291,"B20 our same-pair morphs, 20 steps",miss,200,0.97,0.935849373294973,0.9889125443277452,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,native threshold,-1.8833410739898682,"B our same-pair morphs, 100 steps",miss,200,0.43,0.36038559182698865,0.5017208471715779,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,"B our same-pair morphs, 100 steps",miss,200,0.96,0.9227080317739839,0.9825751910055194,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.84499454498291,"B our same-pair morphs, 100 steps",miss,200,0.96,0.9227080317739839,0.9825751910055194,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,native threshold,-1.8833410739898682,"eval MorDIFF morphs (1,000)",miss,1000,0.616,0.5850500048195575,0.6462648624488312,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,"eval MorDIFF morphs (1,000)",miss,1000,0.976,0.9644993614686408,0.9845636167664915,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.84499454498291,"eval MorDIFF morphs (1,000)",miss,1000,0.976,0.9644993614686408,0.9845636167664915,0.0
+MADation FE ViT-B/16 release,StyleGAN3,0.05,native threshold,-1.8833410739898682,H3 one-identity renders (423),flag rate,423,0.4397163120567376,0.39180010737421017,0.48848152856190763,
+MADation FE ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,H3 one-identity renders (423),flag rate,423,0.03546099290780142,0.01998056556455628,0.0578136933721072,
+MADation FE ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",4.855926036834717,H3 one-identity renders (423),flag rate,423,0.03546099290780142,0.01998056556455628,0.0578136933721072,
+MADation FE ViT-B/16 release,StyleGAN3,0.05,native threshold,-1.8833410739898682,spread-matched renders (423),flag rate,423,0.5153664302600472,0.4665943791020533,0.5639221125306164,
+MADation FE ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,spread-matched renders (423),flag rate,423,0.05200945626477541,0.03287743237309263,0.0776867247130728,
+MADation FE ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",4.855926036834717,spread-matched renders (423),flag rate,423,0.04964539007092199,0.030990401439540228,0.07488943037989294,
+MADation FE ViT-B/16 release,StyleGAN3,0.05,native threshold,-1.8833410739898682,H3 two-identity morphs (423),miss,423,0.5626477541371159,0.5138936234429227,0.6105195622485602,
+MADation FE ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",4.84499454498291,H3 two-identity morphs (423),miss,423,0.950354609929078,0.9251105696201071,0.9690095985604598,
+MADation FE ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",4.855926036834717,H3 two-identity morphs (423),miss,423,0.950354609929078,0.9251105696201071,0.9690095985604598,
+MADation FE ViT-B/16 release,MorDIFF,0.1,native threshold,-3.5194997787475586,arm E stored-small (genuine under both policies),flag rate,204,0.5637254901960784,0.4927151181846714,0.6328565208352357,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,arm E stored-small (genuine under both policies),flag rate,204,0.08333333333333333,0.04929422036705681,0.13007236000369415,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.7756078243255615,arm E stored-small (genuine under both policies),flag rate,204,0.08333333333333333,0.04929422036705681,0.13007236000369415,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,native threshold,-3.5194997787475586,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.46568627450980393,0.39572850808901355,0.5366557390486002,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.07352941176470588,0.0417358525040129,0.11837596930065258,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.7756078243255615,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.07352941176470588,0.0417358525040129,0.11837596930065258,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,native threshold,-3.5194997787475586,"D one-photo reconstruction, 100 steps",flag rate,204,0.6029411764705882,0.5322508208941594,0.6705938895785475,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,"D one-photo reconstruction, 100 steps",flag rate,204,0.11274509803921569,0.0728278594334612,0.1643589208210378,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.7756078243255615,"D one-photo reconstruction, 100 steps",flag rate,204,0.09803921568627451,0.0609190430267319,0.14734926138480547,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,native threshold,-3.5194997787475586,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.4803921568627451,0.380394006073766,0.5815584695275038,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0392156862745098,0.010786651332693992,0.09737096247713449,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.7756078243255615,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.029411764705882353,0.00610697386242859,0.08355334185835596,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,native threshold,-3.5194997787475586,"C same-person mix, 100 steps (own row)",flag rate,102,0.6764705882352942,0.57662878790808,0.7657575654213179,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,"C same-person mix, 100 steps (own row)",flag rate,102,0.08823529411764706,0.041143831377718536,0.16089819225628652,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.7756078243255615,"C same-person mix, 100 steps (own row)",flag rate,102,0.0784313725490196,0.034469341105163434,0.1487018888882727,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,native threshold,-3.5194997787475586,A published MorDIFF morphs (200),miss,200,0.475,0.40412003342497876,0.5466319825296759,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,A published MorDIFF morphs (200),miss,200,0.92,0.8733351439779183,0.9535823916001774,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.7756078243255615,A published MorDIFF morphs (200),miss,200,0.93,0.8853402664628894,0.9612044295704372,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,native threshold,-3.5194997787475586,"B20 our same-pair morphs, 20 steps",miss,200,0.455,0.38461304203891705,0.5267407524810115,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,"B20 our same-pair morphs, 20 steps",miss,200,0.93,0.8853402664628894,0.9612044295704372,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.7756078243255615,"B20 our same-pair morphs, 20 steps",miss,200,0.93,0.8853402664628894,0.9612044295704372,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,native threshold,-3.5194997787475586,"B our same-pair morphs, 100 steps",miss,200,0.31,0.24665803744172582,0.3790770405203258,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,"B our same-pair morphs, 100 steps",miss,200,0.875,0.8210262499212004,0.9174476581711831,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.7756078243255615,"B our same-pair morphs, 100 steps",miss,200,0.885,0.8324530555177461,0.9256866263077029,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,native threshold,-3.5194997787475586,"eval MorDIFF morphs (1,000)",miss,1000,0.469,0.43770014204901375,0.5004828555633052,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,"eval MorDIFF morphs (1,000)",miss,1000,0.923,0.9047006190217404,0.938757972216451,0.0
+MADation FE ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.7756078243255615,"eval MorDIFF morphs (1,000)",miss,1000,0.926,0.9079882639857509,0.9414505557393473,0.0
+MADation FE ViT-B/16 release,StyleGAN3,0.1,native threshold,-3.5194997787475586,H3 one-identity renders (423),flag rate,423,0.5602836879432624,0.5115184714380924,0.6081998926257899,
+MADation FE ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,H3 one-identity renders (423),flag rate,423,0.09219858156028368,0.06638463066609168,0.12388170431822092,
+MADation FE ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",3.505310297012329,H3 one-identity renders (423),flag rate,423,0.054373522458628844,0.034776686046179374,0.08047249033153271,
+MADation FE ViT-B/16 release,StyleGAN3,0.1,native threshold,-3.5194997787475586,spread-matched renders (423),flag rate,423,0.6619385342789598,0.6146631025212448,0.7069298006324678,
+MADation FE ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,spread-matched renders (423),flag rate,423,0.1276595744680851,0.09737587817687628,0.16326579804162047,
+MADation FE ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",3.505310297012329,spread-matched renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+MADation FE ViT-B/16 release,StyleGAN3,0.1,native threshold,-3.5194997787475586,H3 two-identity morphs (423),miss,423,0.42789598108747046,0.38021263204806294,0.47659491550850186,
+MADation FE ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",2.697577476501465,H3 two-identity morphs (423),miss,423,0.8936170212765957,0.8602478329654912,0.9213389171417141,
+MADation FE ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",3.505310297012329,H3 two-identity morphs (423),miss,423,0.9196217494089834,0.8894893710286471,0.9436952861018075,
+MADation FE ViT-L/14 release,MorDIFF,0.05,native threshold,-2.2891108989715576,arm E stored-small (genuine under both policies),flag rate,204,0.20588235294117646,0.15259463701723217,0.26792849375069405,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,arm E stored-small (genuine under both policies),flag rate,204,0.014705882352941176,0.003043034945676965,0.042373060407709405,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.21799373626709,arm E stored-small (genuine under both policies),flag rate,204,0.014705882352941176,0.003043034945676965,0.042373060407709405,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,native threshold,-2.2891108989715576,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.4264705882352941,0.3576683943997995,0.4974415110454616,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0392156862745098,0.017080104925669543,0.07580563080823591,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.21799373626709,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0392156862745098,0.017080104925669543,0.07580563080823591,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,native threshold,-2.2891108989715576,"D one-photo reconstruction, 100 steps",flag rate,204,0.27450980392156865,0.21450817092613422,0.3411933741950234,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,"D one-photo reconstruction, 100 steps",flag rate,204,0.029411764705882353,0.010868536888231872,0.06291470988073002,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.21799373626709,"D one-photo reconstruction, 100 steps",flag rate,204,0.029411764705882353,0.010868536888231872,0.06291470988073002,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,native threshold,-2.2891108989715576,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.4215686274509804,0.32442353054273226,0.5233895612521418,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0392156862745098,0.010786651332693992,0.09737096247713449,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.21799373626709,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0392156862745098,0.010786651332693992,0.09737096247713449,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,native threshold,-2.2891108989715576,"C same-person mix, 100 steps (own row)",flag rate,102,0.6078431372549019,0.506199534505277,0.7030531566203302,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,"C same-person mix, 100 steps (own row)",flag rate,102,0.09803921568627451,0.04802276455842711,0.17291434347330456,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.21799373626709,"C same-person mix, 100 steps (own row)",flag rate,102,0.09803921568627451,0.04802276455842711,0.17291434347330456,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,native threshold,-2.2891108989715576,A published MorDIFF morphs (200),miss,200,0.355,0.2887837777135844,0.42558616692657963,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,A published MorDIFF morphs (200),miss,200,0.92,0.8733351439779183,0.9535823916001774,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.21799373626709,A published MorDIFF morphs (200),miss,200,0.92,0.8733351439779183,0.9535823916001774,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,native threshold,-2.2891108989715576,"B20 our same-pair morphs, 20 steps",miss,200,0.355,0.2887837777135844,0.42558616692657963,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,"B20 our same-pair morphs, 20 steps",miss,200,0.915,0.8673948341704476,0.9497040813697427,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.21799373626709,"B20 our same-pair morphs, 20 steps",miss,200,0.915,0.8673948341704476,0.9497040813697427,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,native threshold,-2.2891108989715576,"B our same-pair morphs, 100 steps",miss,200,0.15,0.10354952352186263,0.2071587036685507,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,"B our same-pair morphs, 100 steps",miss,200,0.78,0.7161387526864924,0.8353639386882141,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.21799373626709,"B our same-pair morphs, 100 steps",miss,200,0.78,0.7161387526864924,0.8353639386882141,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,native threshold,-2.2891108989715576,"eval MorDIFF morphs (1,000)",miss,1000,0.337,0.3077195058402128,0.36724381124766997,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,"eval MorDIFF morphs (1,000)",miss,1000,0.905,0.885115155595548,0.922459792918345,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",4.21799373626709,"eval MorDIFF morphs (1,000)",miss,1000,0.905,0.885115155595548,0.922459792918345,2.384185791015625e-06
+MADation FE ViT-L/14 release,StyleGAN3,0.05,native threshold,-2.2891108989715576,H3 one-identity renders (423),flag rate,423,0.5224586288416075,0.4736620761114805,0.5709389448750244,
+MADation FE ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,H3 one-identity renders (423),flag rate,423,0.10401891252955082,0.07660279333842125,0.13711895124845472,
+MADation FE ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",7.040038108825684,H3 one-identity renders (423),flag rate,423,0.04964539007092199,0.030990401439540228,0.07488943037989294,
+MADation FE ViT-L/14 release,StyleGAN3,0.05,native threshold,-2.2891108989715576,spread-matched renders (423),flag rate,423,0.5650118203309693,0.5162698587579104,0.6128381466632722,
+MADation FE ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,spread-matched renders (423),flag rate,423,0.11347517730496454,0.08486270491369742,0.14762577726669424,
+MADation FE ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",7.040038108825684,spread-matched renders (423),flag rate,423,0.037825059101654845,0.021772121176616213,0.06069993741407814,
+MADation FE ViT-L/14 release,StyleGAN3,0.05,native threshold,-2.2891108989715576,H3 two-identity morphs (423),miss,423,0.47754137115839246,0.4290610551249756,0.5263379238885195,
+MADation FE ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",4.21799373626709,H3 two-identity morphs (423),miss,423,0.9030732860520094,0.8708085685139565,0.9295433892006107,
+MADation FE ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",7.040038108825684,H3 two-identity morphs (423),miss,423,0.966903073286052,0.9450920458530478,0.9817897636977972,
+MADation FE ViT-L/14 release,MorDIFF,0.1,native threshold,-3.740980863571167,arm E stored-small (genuine under both policies),flag rate,204,0.2647058823529412,0.20554085275998563,0.3308471963216475,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,arm E stored-small (genuine under both policies),flag rate,204,0.03431372549019608,0.01390516092950283,0.06941864069625532,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.5710554122924805,arm E stored-small (genuine under both policies),flag rate,204,0.03431372549019608,0.01390516092950283,0.06941864069625532,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,native threshold,-3.740980863571167,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.5637254901960784,0.4927151181846714,0.6328565208352357,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.09313725490196079,0.05700961750797497,0.14162260874708033,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.5710554122924805,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.09313725490196079,0.05700961750797497,0.14162260874708033,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,native threshold,-3.740980863571167,"D one-photo reconstruction, 100 steps",flag rate,204,0.39215686274509803,0.324719884365051,0.46277643544969194,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,"D one-photo reconstruction, 100 steps",flag rate,204,0.05392156862745098,0.027221482066912762,0.09443078359314644,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.5710554122924805,"D one-photo reconstruction, 100 steps",flag rate,204,0.05392156862745098,0.027221482066912762,0.09443078359314644,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,native threshold,-3.740980863571167,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.5882352941176471,0.48643537261203756,0.6847738600652203,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.09803921568627451,0.04802276455842711,0.17291434347330456,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.5710554122924805,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.09803921568627451,0.04802276455842711,0.17291434347330456,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,native threshold,-3.740980863571167,"C same-person mix, 100 steps (own row)",flag rate,102,0.7156862745098039,0.6178226018228452,0.8006202925811527,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,"C same-person mix, 100 steps (own row)",flag rate,102,0.20588235294117646,0.13219408223366605,0.29732999949598005,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.5710554122924805,"C same-person mix, 100 steps (own row)",flag rate,102,0.20588235294117646,0.13219408223366605,0.29732999949598005,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,native threshold,-3.740980863571167,A published MorDIFF morphs (200),miss,200,0.2,0.14689448821575882,0.26222636458960025,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,A published MorDIFF morphs (200),miss,200,0.815,0.7541365375513216,0.8662713398202384,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.5710554122924805,A published MorDIFF morphs (200),miss,200,0.815,0.7541365375513216,0.8662713398202384,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,native threshold,-3.740980863571167,"B20 our same-pair morphs, 20 steps",miss,200,0.23,0.17358086280159124,0.29460639456598076,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,"B20 our same-pair morphs, 20 steps",miss,200,0.83,0.7706283996061137,0.8793043767637826,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.5710554122924805,"B20 our same-pair morphs, 20 steps",miss,200,0.83,0.7706283996061137,0.8793043767637826,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,native threshold,-3.740980863571167,"B our same-pair morphs, 100 steps",miss,200,0.085,0.05029591863025728,0.13260516582955234,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,"B our same-pair morphs, 100 steps",miss,200,0.615,0.5437613072168549,0.6827754746371324,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.5710554122924805,"B our same-pair morphs, 100 steps",miss,200,0.615,0.5437613072168549,0.6827754746371324,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,native threshold,-3.740980863571167,"eval MorDIFF morphs (1,000)",miss,1000,0.2,0.17562057483084223,0.22615937282137055,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,"eval MorDIFF morphs (1,000)",miss,1000,0.808,0.7821951822437158,0.8319766825284644,2.384185791015625e-06
+MADation FE ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",2.5710554122924805,"eval MorDIFF morphs (1,000)",miss,1000,0.808,0.7821951822437158,0.8319766825284644,2.384185791015625e-06
+MADation FE ViT-L/14 release,StyleGAN3,0.1,native threshold,-3.740980863571167,H3 one-identity renders (423),flag rate,423,0.6217494089834515,0.5736308255674956,0.6681520697448613,
+MADation FE ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,H3 one-identity renders (423),flag rate,423,0.1702127659574468,0.13562996170536828,0.20948614881559527,
+MADation FE ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",4.607885360717773,H3 one-identity renders (423),flag rate,423,0.09219858156028368,0.06638463066609168,0.12388170431822092,
+MADation FE ViT-L/14 release,StyleGAN3,0.1,native threshold,-3.740980863571167,spread-matched renders (423),flag rate,423,0.6524822695035462,0.6049770768124902,0.6978371383169567,
+MADation FE ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,spread-matched renders (423),flag rate,423,0.19148936170212766,0.15508066127179107,0.2322781161048398,
+MADation FE ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",4.607885360717773,spread-matched renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+MADation FE ViT-L/14 release,StyleGAN3,0.1,native threshold,-3.740980863571167,H3 two-identity morphs (423),miss,423,0.37115839243498816,0.32497972050015206,0.4191531626981633,
+MADation FE ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",2.5710554122924805,H3 two-identity morphs (423),miss,423,0.8368794326241135,0.7981542196099743,0.8708098958060622,
+MADation FE ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",4.607885360717773,H3 two-identity morphs (423),miss,423,0.9243498817966903,0.8948809805840955,0.9476824737013317,
+MADation FS ViT-B/16 release,MorDIFF,0.05,native threshold,-8.434844970703125,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-7.3616414070129395,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,native threshold,-8.434844970703125,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-7.3616414070129395,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,native threshold,-8.434844970703125,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-7.3616414070129395,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,native threshold,-8.434844970703125,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-7.3616414070129395,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,native threshold,-8.434844970703125,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-7.3616414070129395,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,native threshold,-8.434844970703125,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-7.3616414070129395,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,native threshold,-8.434844970703125,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-7.3616414070129395,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,native threshold,-8.434844970703125,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-7.3616414070129395,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,native threshold,-8.434844970703125,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-7.3616414070129395,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0
+MADation FS ViT-B/16 release,StyleGAN3,0.05,native threshold,-8.434844970703125,H3 one-identity renders (423),flag rate,423,0.08747044917257683,0.0623346840848375,0.11855064368153978,
+MADation FS ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,H3 one-identity renders (423),flag rate,423,0.06619385342789598,0.04443254444993733,0.09424998646246688,
+MADation FS ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",-6.726387977600098,H3 one-identity renders (423),flag rate,423,0.04964539007092199,0.030990401439540228,0.07488943037989294,
+MADation FS ViT-B/16 release,StyleGAN3,0.05,native threshold,-8.434844970703125,spread-matched renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+MADation FS ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,spread-matched renders (423),flag rate,423,0.05673758865248227,0.03668741296343418,0.08324740655083024,
+MADation FS ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",-6.726387977600098,spread-matched renders (423),flag rate,423,0.04728132387706856,0.029116432634827785,0.07207984977892828,
+MADation FS ViT-B/16 release,StyleGAN3,0.05,native threshold,-8.434844970703125,H3 two-identity morphs (423),miss,423,0.9385342789598109,0.9112329195746601,0.9594593374509525,
+MADation FS ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-7.3616414070129395,H3 two-identity morphs (423),miss,423,0.966903073286052,0.9450920458530478,0.9817897636977972,
+MADation FS ViT-B/16 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",-6.726387977600098,H3 two-identity morphs (423),miss,423,0.966903073286052,0.9450920458530478,0.9817897636977972,
+MADation FS ViT-B/16 release,MorDIFF,0.1,native threshold,-8.801639556884766,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-8.469793319702148,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,native threshold,-8.801639556884766,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.00980392156862745,0.0011895134350051145,0.03496451112408707,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-8.469793319702148,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,native threshold,-8.801639556884766,"D one-photo reconstruction, 100 steps",flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-8.469793319702148,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,native threshold,-8.801639556884766,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-8.469793319702148,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,native threshold,-8.801639556884766,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-8.469793319702148,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,native threshold,-8.801639556884766,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-8.469793319702148,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,native threshold,-8.801639556884766,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-8.469793319702148,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,native threshold,-8.801639556884766,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-8.469793319702148,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,native threshold,-8.801639556884766,"eval MorDIFF morphs (1,000)",miss,1000,0.998,0.9927941610885425,0.9997576988831227,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0
+MADation FS ViT-B/16 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-8.469793319702148,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0
+MADation FS ViT-B/16 release,StyleGAN3,0.1,native threshold,-8.801639556884766,H3 one-identity renders (423),flag rate,423,0.1276595744680851,0.09737587817687628,0.16326579804162047,
+MADation FS ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,H3 one-identity renders (423),flag rate,423,0.08747044917257683,0.0623346840848375,0.11855064368153978,
+MADation FS ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",-8.447186470031738,H3 one-identity renders (423),flag rate,423,0.08747044917257683,0.0623346840848375,0.11855064368153978,
+MADation FS ViT-B/16 release,StyleGAN3,0.1,native threshold,-8.801639556884766,spread-matched renders (423),flag rate,423,0.1347517730496454,0.10368208800996717,0.17103731219835439,
+MADation FS ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,spread-matched renders (423),flag rate,423,0.1016548463356974,0.07454918623190102,0.13448118356446526,
+MADation FS ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",-8.447186470031738,spread-matched renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+MADation FS ViT-B/16 release,StyleGAN3,0.1,native threshold,-8.801639556884766,H3 two-identity morphs (423),miss,423,0.8983451536643026,0.8655188164355347,0.925450813768099,
+MADation FS ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-8.469793319702148,H3 two-identity morphs (423),miss,423,0.933806146572104,0.9057500135375331,0.9555674555500626,
+MADation FS ViT-B/16 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",-8.447186470031738,H3 two-identity morphs (423),miss,423,0.9361702127659575,0.9084871053478516,0.9575179699040562,
+MADation FS ViT-L/14 release,MorDIFF,0.05,native threshold,-9.501015663146973,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-9.379878997802734,arm E stored-small (genuine under both policies),flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,native threshold,-9.501015663146973,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-9.379878997802734,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,native threshold,-9.501015663146973,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-9.379878997802734,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,native threshold,-9.501015663146973,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-9.379878997802734,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,native threshold,-9.501015663146973,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-9.379878997802734,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,native threshold,-9.501015663146973,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-9.379878997802734,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,native threshold,-9.501015663146973,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-9.379878997802734,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,native threshold,-9.501015663146973,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-9.379878997802734,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,native threshold,-9.501015663146973,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.05,"worst-pool, policy G (genuine)",-9.379878997802734,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0
+MADation FS ViT-L/14 release,StyleGAN3,0.05,native threshold,-9.501015663146973,H3 one-identity renders (423),flag rate,423,0.1607565011820331,0.1270486973944135,0.19929386368277766,
+MADation FS ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,H3 one-identity renders (423),flag rate,423,0.14420803782505912,0.11213685828398993,0.1813538030683416,
+MADation FS ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",-5.772582054138184,H3 one-identity renders (423),flag rate,423,0.02364066193853428,0.011393499778928206,0.04304533051429272,
+MADation FS ViT-L/14 release,StyleGAN3,0.05,native threshold,-9.501015663146973,spread-matched renders (423),flag rate,423,0.24113475177304963,0.20112111740089322,0.28481224299977687,
+MADation FS ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,spread-matched renders (423),flag rate,423,0.2198581560283688,0.1812870192781443,0.26239893332561093,
+MADation FS ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",-5.772582054138184,spread-matched renders (423),flag rate,423,0.04964539007092199,0.030990401439540228,0.07488943037989294,
+MADation FS ViT-L/14 release,StyleGAN3,0.05,native threshold,-9.501015663146973,H3 two-identity morphs (423),miss,423,0.7966903073286052,0.7551365784314721,0.8340354217586784,
+MADation FS ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-9.379878997802734,H3 two-identity morphs (423),miss,423,0.8108747044917257,0.7702452857535537,0.8470896969425074,
+MADation FS ViT-L/14 release,StyleGAN3,0.05,"worst-pool, policy G (genuine)",-5.772582054138184,H3 two-identity morphs (423),miss,423,0.950354609929078,0.9251105696201071,0.9690095985604598,
+MADation FS ViT-L/14 release,MorDIFF,0.1,native threshold,-9.938289642333984,arm E stored-small (genuine under both policies),flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,arm E stored-small (genuine under both policies),flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-9.925958633422852,arm E stored-small (genuine under both policies),flag rate,204,0.004901960784313725,0.00012409920094080966,0.02700790299789123,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,native threshold,-9.938289642333984,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-9.925958633422852,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,native threshold,-9.938289642333984,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-9.925958633422852,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,native threshold,-9.938289642333984,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-9.925958633422852,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,native threshold,-9.938289642333984,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-9.925958633422852,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,native threshold,-9.938289642333984,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-9.925958633422852,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,native threshold,-9.938289642333984,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-9.925958633422852,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,native threshold,-9.938289642333984,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-9.925958633422852,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,native threshold,-9.938289642333984,"eval MorDIFF morphs (1,000)",miss,1000,0.997,0.9912579767615217,0.9993809000683505,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,"eval MorDIFF morphs (1,000)",miss,1000,0.998,0.9927941610885425,0.9997576988831227,0.0
+MADation FS ViT-L/14 release,MorDIFF,0.1,"worst-pool, policy G (genuine)",-9.925958633422852,"eval MorDIFF morphs (1,000)",miss,1000,0.998,0.9927941610885425,0.9997576988831227,0.0
+MADation FS ViT-L/14 release,StyleGAN3,0.1,native threshold,-9.938289642333984,H3 one-identity renders (423),flag rate,423,0.2647754137115839,0.22331992220167224,0.30955654555359846,
+MADation FS ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,H3 one-identity renders (423),flag rate,423,0.26004728132387706,0.21886734430068602,0.3046203897570571,
+MADation FS ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",-7.452884674072266,H3 one-identity renders (423),flag rate,423,0.04018912529550828,0.02358300352445767,0.06356833972253587,
+MADation FS ViT-L/14 release,StyleGAN3,0.1,native threshold,-9.938289642333984,spread-matched renders (423),flag rate,423,0.3617021276595745,0.3158385905739047,0.40951539344416715,
+MADation FS ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,spread-matched renders (423),flag rate,423,0.35933806146572106,0.3135562835706547,0.407102987621866,
+MADation FS ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",-7.452884674072266,spread-matched renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+MADation FS ViT-L/14 release,StyleGAN3,0.1,native threshold,-9.938289642333984,H3 two-identity morphs (423),miss,423,0.6666666666666666,0.6195135706433686,0.7114686398661263,
+MADation FS ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-9.925958633422852,H3 two-identity morphs (423),miss,423,0.6713947990543735,0.6243690771773228,0.716002414709654,
+MADation FS ViT-L/14 release,StyleGAN3,0.1,"worst-pool, policy G (genuine)",-7.452884674072266,H3 two-identity morphs (423),miss,423,0.9196217494089834,0.8894893710286471,0.9436952861018075,
+"SelfMAD release, our pipeline",MorDIFF,0.05,native threshold,7.138383388519287,arm E stored-small (genuine under both policies),flag rate,204,0.00980392156862745,0.0011895134350051145,0.03496451112408707,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,arm E stored-small (genuine under both policies),flag rate,204,0.00980392156862745,0.0011895134350051145,0.03496451112408707,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy G (genuine)",7.138383388519287,arm E stored-small (genuine under both policies),flag rate,204,0.00980392156862745,0.0011895134350051145,0.03496451112408707,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,native threshold,7.138383388519287,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy G (genuine)",7.138383388519287,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,native threshold,7.138383388519287,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy G (genuine)",7.138383388519287,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,native threshold,7.138383388519287,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy G (genuine)",7.138383388519287,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,native threshold,7.138383388519287,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy G (genuine)",7.138383388519287,"C same-person mix, 100 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,native threshold,7.138383388519287,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy G (genuine)",7.138383388519287,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,native threshold,7.138383388519287,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy G (genuine)",7.138383388519287,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,native threshold,7.138383388519287,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy G (genuine)",7.138383388519287,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,native threshold,7.138383388519287,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.05,"worst-pool, policy G (genuine)",7.138383388519287,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",StyleGAN3,0.05,native threshold,7.138383388519287,H3 one-identity renders (423),flag rate,423,0.08274231678486997,0.05830840479581254,0.1131967109851275,
+"SelfMAD release, our pipeline",StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,H3 one-identity renders (423),flag rate,423,0.08274231678486997,0.05830840479581254,0.1131967109851275,
+"SelfMAD release, our pipeline",StyleGAN3,0.05,"worst-pool, policy G (genuine)",7.784079551696777,H3 one-identity renders (423),flag rate,423,0.04964539007092199,0.030990401439540228,0.07488943037989294,
+"SelfMAD release, our pipeline",StyleGAN3,0.05,native threshold,7.138383388519287,spread-matched renders (423),flag rate,423,0.02127659574468085,0.009774076248943523,0.04000418912971369,
+"SelfMAD release, our pipeline",StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,spread-matched renders (423),flag rate,423,0.02127659574468085,0.009774076248943523,0.04000418912971369,
+"SelfMAD release, our pipeline",StyleGAN3,0.05,"worst-pool, policy G (genuine)",7.784079551696777,spread-matched renders (423),flag rate,423,0.009456264775413711,0.002582354025739966,0.024033664518054252,
+"SelfMAD release, our pipeline",StyleGAN3,0.05,native threshold,7.138383388519287,H3 two-identity morphs (423),miss,423,0.9881796690307328,0.9726321564174392,0.996151136083187,
+"SelfMAD release, our pipeline",StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",7.138383388519287,H3 two-identity morphs (423),miss,423,0.9881796690307328,0.9726321564174392,0.996151136083187,
+"SelfMAD release, our pipeline",StyleGAN3,0.05,"worst-pool, policy G (genuine)",7.784079551696777,H3 two-identity morphs (423),miss,423,0.9976359338061466,0.9868992240835819,0.9999401488171954,
+"SelfMAD release, our pipeline",MorDIFF,0.1,native threshold,5.573985576629639,arm E stored-small (genuine under both policies),flag rate,204,0.0784313725490196,0.04549376061090428,0.12424387999286433,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,arm E stored-small (genuine under both policies),flag rate,204,0.0784313725490196,0.04549376061090428,0.12424387999286433,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy G (genuine)",5.573985576629639,arm E stored-small (genuine under both policies),flag rate,204,0.0784313725490196,0.04549376061090428,0.12424387999286433,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,native threshold,5.573985576629639,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy G (genuine)",5.573985576629639,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,native threshold,5.573985576629639,"D one-photo reconstruction, 100 steps",flag rate,204,0.058823529411764705,0.030761079839869823,0.10049784620004382,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,"D one-photo reconstruction, 100 steps",flag rate,204,0.058823529411764705,0.030761079839869823,0.10049784620004382,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy G (genuine)",5.573985576629639,"D one-photo reconstruction, 100 steps",flag rate,204,0.058823529411764705,0.030761079839869823,0.10049784620004382,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,native threshold,5.573985576629639,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.029411764705882353,0.00610697386242859,0.08355334185835596,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.029411764705882353,0.00610697386242859,0.08355334185835596,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy G (genuine)",5.573985576629639,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.029411764705882353,0.00610697386242859,0.08355334185835596,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,native threshold,5.573985576629639,"C same-person mix, 100 steps (own row)",flag rate,102,0.029411764705882353,0.00610697386242859,0.08355334185835596,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,"C same-person mix, 100 steps (own row)",flag rate,102,0.029411764705882353,0.00610697386242859,0.08355334185835596,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy G (genuine)",5.573985576629639,"C same-person mix, 100 steps (own row)",flag rate,102,0.029411764705882353,0.00610697386242859,0.08355334185835596,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,native threshold,5.573985576629639,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy G (genuine)",5.573985576629639,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,native threshold,5.573985576629639,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy G (genuine)",5.573985576629639,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,native threshold,5.573985576629639,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy G (genuine)",5.573985576629639,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,native threshold,5.573985576629639,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",MorDIFF,0.1,"worst-pool, policy G (genuine)",5.573985576629639,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.0015256404876708984
+"SelfMAD release, our pipeline",StyleGAN3,0.1,native threshold,5.573985576629639,H3 one-identity renders (423),flag rate,423,0.19148936170212766,0.15508066127179107,0.2322781161048398,
+"SelfMAD release, our pipeline",StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,H3 one-identity renders (423),flag rate,423,0.19148936170212766,0.15508066127179107,0.2322781161048398,
+"SelfMAD release, our pipeline",StyleGAN3,0.1,"worst-pool, policy G (genuine)",6.988935470581055,H3 one-identity renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+"SelfMAD release, our pipeline",StyleGAN3,0.1,native threshold,5.573985576629639,spread-matched renders (423),flag rate,423,0.08983451536643026,0.06435680607182058,0.12121893224563457,
+"SelfMAD release, our pipeline",StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,spread-matched renders (423),flag rate,423,0.08983451536643026,0.06435680607182058,0.12121893224563457,
+"SelfMAD release, our pipeline",StyleGAN3,0.1,"worst-pool, policy G (genuine)",6.988935470581055,spread-matched renders (423),flag rate,423,0.028368794326241134,0.014742673550641417,0.04902988733946532,
+"SelfMAD release, our pipeline",StyleGAN3,0.1,native threshold,5.573985576629639,H3 two-identity morphs (423),miss,423,0.9361702127659575,0.9084871053478516,0.9575179699040562,
+"SelfMAD release, our pipeline",StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",5.573985576629639,H3 two-identity morphs (423),miss,423,0.9361702127659575,0.9084871053478516,0.9575179699040562,
+"SelfMAD release, our pipeline",StyleGAN3,0.1,"worst-pool, policy G (genuine)",6.988935470581055,H3 two-identity morphs (423),miss,423,0.9858156028368794,0.9693835607852128,0.9947772578286604,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.05,native threshold,-6.575575828552246,H3 one-identity renders (423),flag rate,423,0.1276595744680851,0.09737587817687628,0.16326579804162047,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-6.056690216064453,H3 one-identity renders (423),flag rate,423,0.1111111111111111,0.08279116557665649,0.14500545929926942,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.05,"worst-pool, policy G (genuine)",0.2778382897377014,H3 one-identity renders (423),flag rate,423,0.028368794326241134,0.014742673550641417,0.04902988733946532,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.05,native threshold,-6.575575828552246,spread-matched renders (423),flag rate,423,0.20803782505910165,0.1703326060409756,0.24988326461500776,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-6.056690216064453,spread-matched renders (423),flag rate,423,0.19148936170212766,0.15508066127179107,0.2322781161048398,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.05,"worst-pool, policy G (genuine)",0.2778382897377014,spread-matched renders (423),flag rate,423,0.04964539007092199,0.030990401439540228,0.07488943037989294,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.05,native threshold,-6.575575828552246,H3 two-identity morphs (423),miss,423,0.8226950354609929,0.7828956790846237,0.8579076310197165,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",-6.056690216064453,H3 two-identity morphs (423),miss,423,0.8368794326241135,0.7981542196099743,0.8708098958060622,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.05,"worst-pool, policy G (genuine)",0.2778382897377014,H3 two-identity morphs (423),miss,423,0.9314420803782506,0.9030212248463965,0.9536082492502974,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.1,native threshold,-9.000686645507812,H3 one-identity renders (423),flag rate,423,0.17257683215130024,0.13778164696318998,0.2120279525201853,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-7.362077713012695,H3 one-identity renders (423),flag rate,423,0.14893617021276595,0.11638292035885851,0.18649373547403456,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.1,"worst-pool, policy G (genuine)",-2.8796627521514893,H3 one-identity renders (423),flag rate,423,0.054373522458628844,0.034776686046179374,0.08047249033153271,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.1,native threshold,-9.000686645507812,spread-matched renders (423),flag rate,423,0.3073286052009456,0.2636598186730568,0.3537172786522393,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-7.362077713012695,spread-matched renders (423),flag rate,423,0.23167848699763594,0.1922882080980606,0.27486834410303834,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.1,"worst-pool, policy G (genuine)",-2.8796627521514893,spread-matched renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.1,native threshold,-9.000686645507812,H3 two-identity morphs (423),miss,423,0.7470449172576832,0.7027955743031671,0.7877996913294623,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",-7.362077713012695,H3 two-identity morphs (423),miss,423,0.8037825059101655,0.7626815070046302,0.8405721085106515,
+"MixFaceNet-MAD release, our frames",StyleGAN3,0.1,"worst-pool, policy G (genuine)",-2.8796627521514893,H3 two-identity morphs (423),miss,423,0.8959810874704491,0.8628810487515453,0.9233972066615788,
+"SelfMAD release, own preprocessing",MorDIFF,0.05,native threshold,0.08109328150749207,arm E stored-small (genuine under both policies),flag rate,204,1.0,0.9820797693375605,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",0.9984536170959473,arm E stored-small (genuine under both policies),flag rate,204,0.049019607843137254,0.02375394071210534,0.08829920169689397,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy G (genuine)",0.9984536170959473,arm E stored-small (genuine under both policies),flag rate,204,0.049019607843137254,0.02375394071210534,0.08829920169689397,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,native threshold,0.08109328150749207,"D20 one-photo reconstruction, 20 steps",flag rate,204,1.0,0.9820797693375605,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",0.9984536170959473,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy G (genuine)",0.9984536170959473,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,native threshold,0.08109328150749207,"D one-photo reconstruction, 100 steps",flag rate,204,1.0,0.9820797693375605,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",0.9984536170959473,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy G (genuine)",0.9984536170959473,"D one-photo reconstruction, 100 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,native threshold,0.08109328150749207,"C20 same-person mix, 20 steps (own row)",flag rate,102,1.0,0.964480673342116,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",0.9984536170959473,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy G (genuine)",0.9984536170959473,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,native threshold,0.08109328150749207,"C same-person mix, 100 steps (own row)",flag rate,102,1.0,0.964480673342116,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",0.9984536170959473,"C same-person mix, 100 steps (own row)",flag rate,102,0.00980392156862745,0.00024818300126994516,0.05341541039718626,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy G (genuine)",0.9984536170959473,"C same-person mix, 100 steps (own row)",flag rate,102,0.00980392156862745,0.00024818300126994516,0.05341541039718626,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,native threshold,0.08109328150749207,A published MorDIFF morphs (200),miss,200,0.0,0.0,0.01827534035513624,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",0.9984536170959473,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy G (genuine)",0.9984536170959473,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,native threshold,0.08109328150749207,"B20 our same-pair morphs, 20 steps",miss,200,0.0,0.0,0.01827534035513624,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",0.9984536170959473,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy G (genuine)",0.9984536170959473,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,native threshold,0.08109328150749207,"B our same-pair morphs, 100 steps",miss,200,0.0,0.0,0.01827534035513624,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",0.9984536170959473,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy G (genuine)",0.9984536170959473,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,native threshold,0.08109328150749207,"eval MorDIFF morphs (1,000)",miss,1000,0.0,0.0,0.003682083896865671,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy X (inadmissible)",0.9984536170959473,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.05,"worst-pool, policy G (genuine)",0.9984536170959473,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",StyleGAN3,0.05,native threshold,0.08109328150749207,H3 one-identity renders (423),flag rate,423,1.0,0.9913171602777683,1.0,
+"SelfMAD release, own preprocessing",StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",0.9788011908531189,H3 one-identity renders (423),flag rate,423,0.5697399527186762,0.5210255872092786,0.617472051666528,
+"SelfMAD release, own preprocessing",StyleGAN3,0.05,"worst-pool, policy G (genuine)",0.9998334646224976,H3 one-identity renders (423),flag rate,423,0.04964539007092199,0.030990401439540228,0.07488943037989294,
+"SelfMAD release, own preprocessing",StyleGAN3,0.05,native threshold,0.08109328150749207,spread-matched renders (423),flag rate,423,0.9976359338061466,0.9868992240835819,0.9999401488171954,
+"SelfMAD release, own preprocessing",StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",0.9788011908531189,spread-matched renders (423),flag rate,423,0.4066193853427896,0.35942430787526536,0.4551300269833492,
+"SelfMAD release, own preprocessing",StyleGAN3,0.05,"worst-pool, policy G (genuine)",0.9998334646224976,spread-matched renders (423),flag rate,423,0.02127659574468085,0.009774076248943523,0.04000418912971369,
+"SelfMAD release, own preprocessing",StyleGAN3,0.05,native threshold,0.08109328150749207,H3 two-identity morphs (423),miss,423,0.002364066193853428,5.985118280462175e-05,0.01310077591641809,
+"SelfMAD release, own preprocessing",StyleGAN3,0.05,"worst-pool, policy X (inadmissible)",0.9788011908531189,H3 two-identity morphs (423),miss,423,0.6453900709219859,0.5977254151821053,0.6910047240860864,
+"SelfMAD release, own preprocessing",StyleGAN3,0.05,"worst-pool, policy G (genuine)",0.9998334646224976,H3 two-identity morphs (423),miss,423,0.9976359338061466,0.9868992240835819,0.9999401488171954,
+"SelfMAD release, own preprocessing",MorDIFF,0.1,native threshold,0.051794566214084625,arm E stored-small (genuine under both policies),flag rate,204,1.0,0.9820797693375605,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",0.9948185086250305,arm E stored-small (genuine under both policies),flag rate,204,0.09803921568627451,0.0609190430267319,0.14734926138480547,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy G (genuine)",0.9948185086250305,arm E stored-small (genuine under both policies),flag rate,204,0.09803921568627451,0.0609190430267319,0.14734926138480547,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,native threshold,0.051794566214084625,"D20 one-photo reconstruction, 20 steps",flag rate,204,1.0,0.9820797693375605,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",0.9948185086250305,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy G (genuine)",0.9948185086250305,"D20 one-photo reconstruction, 20 steps",flag rate,204,0.0,0.0,0.01792023066243955,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,native threshold,0.051794566214084625,"D one-photo reconstruction, 100 steps",flag rate,204,1.0,0.9820797693375605,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",0.9948185086250305,"D one-photo reconstruction, 100 steps",flag rate,204,0.014705882352941176,0.003043034945676965,0.042373060407709405,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy G (genuine)",0.9948185086250305,"D one-photo reconstruction, 100 steps",flag rate,204,0.014705882352941176,0.003043034945676965,0.042373060407709405,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,native threshold,0.051794566214084625,"C20 same-person mix, 20 steps (own row)",flag rate,102,1.0,0.964480673342116,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",0.9948185086250305,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy G (genuine)",0.9948185086250305,"C20 same-person mix, 20 steps (own row)",flag rate,102,0.0,0.0,0.03551932665788406,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,native threshold,0.051794566214084625,"C same-person mix, 100 steps (own row)",flag rate,102,1.0,0.964480673342116,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",0.9948185086250305,"C same-person mix, 100 steps (own row)",flag rate,102,0.0196078431372549,0.0023834845816113038,0.06903921219895646,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy G (genuine)",0.9948185086250305,"C same-person mix, 100 steps (own row)",flag rate,102,0.0196078431372549,0.0023834845816113038,0.06903921219895646,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,native threshold,0.051794566214084625,A published MorDIFF morphs (200),miss,200,0.0,0.0,0.01827534035513624,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",0.9948185086250305,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy G (genuine)",0.9948185086250305,A published MorDIFF morphs (200),miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,native threshold,0.051794566214084625,"B20 our same-pair morphs, 20 steps",miss,200,0.0,0.0,0.01827534035513624,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",0.9948185086250305,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy G (genuine)",0.9948185086250305,"B20 our same-pair morphs, 20 steps",miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,native threshold,0.051794566214084625,"B our same-pair morphs, 100 steps",miss,200,0.0,0.0,0.01827534035513624,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",0.9948185086250305,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy G (genuine)",0.9948185086250305,"B our same-pair morphs, 100 steps",miss,200,1.0,0.9817246596448638,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,native threshold,0.051794566214084625,"eval MorDIFF morphs (1,000)",miss,1000,0.0,0.0,0.003682083896865671,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy X (inadmissible)",0.9948185086250305,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",MorDIFF,0.1,"worst-pool, policy G (genuine)",0.9948185086250305,"eval MorDIFF morphs (1,000)",miss,1000,1.0,0.9963179161031344,1.0,0.00042006373405456543
+"SelfMAD release, own preprocessing",StyleGAN3,0.1,native threshold,0.051794566214084625,H3 one-identity renders (423),flag rate,423,1.0,0.9913171602777683,1.0,
+"SelfMAD release, own preprocessing",StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",0.9544293284416199,H3 one-identity renders (423),flag rate,423,0.6926713947990544,0.6462827213477607,0.7363401813269432,
+"SelfMAD release, own preprocessing",StyleGAN3,0.1,"worst-pool, policy G (genuine)",0.9995548129081726,H3 one-identity renders (423),flag rate,423,0.09929078014184398,0.07250040726110463,0.13183872573703456,
+"SelfMAD release, own preprocessing",StyleGAN3,0.1,native threshold,0.051794566214084625,spread-matched renders (423),flag rate,423,0.9976359338061466,0.9868992240835819,0.9999401488171954,
+"SelfMAD release, own preprocessing",StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",0.9544293284416199,spread-matched renders (423),flag rate,423,0.557919621749409,0.5091444008698306,0.6058791397454826,
+"SelfMAD release, own preprocessing",StyleGAN3,0.1,"worst-pool, policy G (genuine)",0.9995548129081726,spread-matched renders (423),flag rate,423,0.04491725768321513,0.027256471160634944,0.06925713382383374,
+"SelfMAD release, own preprocessing",StyleGAN3,0.1,native threshold,0.051794566214084625,H3 two-identity morphs (423),miss,423,0.002364066193853428,5.985118280462175e-05,0.01310077591641809,
+"SelfMAD release, own preprocessing",StyleGAN3,0.1,"worst-pool, policy X (inadmissible)",0.9544293284416199,H3 two-identity morphs (423),miss,423,0.5342789598108747,0.48546281739108993,0.5826124050942545,
+"SelfMAD release, own preprocessing",StyleGAN3,0.1,"worst-pool, policy G (genuine)",0.9995548129081726,H3 two-identity morphs (423),miss,423,0.966903073286052,0.9450920458530478,0.9817897636977972,

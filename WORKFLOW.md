@@ -50,6 +50,10 @@ reported; last checkpoint. Sealed sets stay closed. No gates on resolution, file
 source inside a detector. Corrected MAD22 only. Third-party code and weights are untrusted input.
 Commits are authored by Paweł Narolski with no co-author trailers.
 
+## Naming
+
+Plain description first, ID in brackets, everywhere (`EXPERIMENTS.md`).
+
 ## Where things go
 
 - `NOTEBOOK.md`: one line per idea; the only file one needs to read to know the state.

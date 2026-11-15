@@ -1,0 +1,71 @@
+{
+ "contrast": "ri_R4_vs_R3",
+ "n_pos": 291,
+ "n_neg": 291,
+ "note": "amendment 3 (post hoc): SURR = cue_floor's border ring (top 64 rows, left and right 64 columns) without black pixels and a 2-px edge; FACE = cue_floor's canonical face box; file = PNG size and container values",
+ "surround_floor": {
+  "model": "logreg",
+  "auc": 0.614943139547242,
+  "eer": 0.41924398625429554,
+  "ci": [
+   0.5833728686290016,
+   0.6511090793912828
+  ],
+  "single": 0.5924823750309987,
+  "logreg": 0.614943139547242,
+  "gbt": 0.5981034706722878
+ },
+ "face_floor": {
+  "model": "logreg",
+  "auc": 0.7385009624354932,
+  "eer": 0.3127147766323024,
+  "ci": [
+   0.7125268557475513,
+   0.7663396923813837
+  ],
+  "single": 0.6584534901571781,
+  "logreg": 0.7385009624354932,
+  "gbt": 0.7056836834709085
+ },
+ "file_floor": {
+  "model": "single",
+  "auc": 0.5069378018681877,
+  "eer": 0.5,
+  "ci": [
+   0.4656480395544409,
+   0.5514444958545814
+  ],
+  "single": 0.5069378018681877,
+  "logreg": 0.4850792975992253,
+  "gbt": 0.5030053967241767
+ },
+ "within_D_quintiles": {
+  "surround": {
+   "n_rows": 582,
+   "D": "D",
+   "single": 0.575112540192926,
+   "coverage": 1.0,
+   "logreg": 0.594855305466238,
+   "gbt": 0.5900964630225081,
+   "pure_D_reference": 0.572411575562701
+  },
+  "face": {
+   "n_rows": 582,
+   "D": "D",
+   "single": 0.6466237942122186,
+   "coverage": 1.0,
+   "logreg": 0.7413504823151126,
+   "gbt": 0.7167845659163987,
+   "pure_D_reference": 0.572411575562701
+  },
+  "file": {
+   "n_rows": 582,
+   "D": "D",
+   "single": 0.5230225080385852,
+   "coverage": 1.0,
+   "logreg": 0.4942765273311897,
+   "gbt": 0.5104823151125402,
+   "pure_D_reference": 0.572411575562701
+  }
+ }
+}

@@ -1,0 +1,91 @@
+{
+  "at": "2026-11-14T17:18:42.115759+00:00",
+  "scope": "Canonical PN1 development-manifest mapping only; no score read",
+  "pn1_manifest": {
+    "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/pn1_eval.csv",
+    "sha256": "f0f29f2201bd3a1dc67f24772347960ba7a383a9e5c1fa8920d0cc1b854a5045"
+  },
+  "rows": [
+    {
+      "pn1_row": {
+        "id": "fq005006",
+        "path": "eval/hn2/fq005006.png",
+        "label": "0",
+        "klass": "genuine",
+        "role": "hn2",
+        "fam": "ffhq",
+        "rung": "ffhq_bona_orig",
+        "strength": "",
+        "tool": "ffhq_bona",
+        "cell": "ffhqm",
+        "host": "00042",
+        "neutral": ""
+      },
+      "pn1_path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/eval/hn2/fq005006.png",
+      "resolved_path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_orig.png",
+      "sha256": "dbd11bb9c9545524c01eafd4d0f4e1478faa5aa9c9ca04d8f4643124f92592d1",
+      "matches_existing_source_input": true
+    },
+    {
+      "pn1_row": {
+        "id": "fq005007",
+        "path": "eval/hn2/fq005007.png",
+        "label": "0",
+        "klass": "genuine",
+        "role": "hn2",
+        "fam": "ffhq",
+        "rung": "landmark_complete_resmatch",
+        "strength": "",
+        "tool": "landmark_complete",
+        "cell": "ffhqm",
+        "host": "00042",
+        "neutral": ""
+      },
+      "pn1_path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/eval/hn2/fq005007.png",
+      "resolved_path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_resmatch_landmark_complete.png",
+      "sha256": "a1e4c13cc32bba5450e3a9b36fa19a6e1fffa130907f0f62b18d2e0002207a97",
+      "matches_existing_source_input": true
+    },
+    {
+      "pn1_row": {
+        "id": "fq005012",
+        "path": "eval/hn2/fq005012.png",
+        "label": "0",
+        "klass": "genuine",
+        "role": "hn2",
+        "fam": "ffhq",
+        "rung": "ffhq_bona_orig",
+        "strength": "",
+        "tool": "ffhq_bona",
+        "cell": "ffhqm",
+        "host": "00056",
+        "neutral": ""
+      },
+      "pn1_path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/eval/hn2/fq005012.png",
+      "resolved_path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_orig.png",
+      "sha256": "c07df69f9421404b37f76d05d23242d0b5c25b9584dee273cf5973d467cf22fa",
+      "matches_existing_source_input": true
+    },
+    {
+      "pn1_row": {
+        "id": "fq005013",
+        "path": "eval/hn2/fq005013.png",
+        "label": "0",
+        "klass": "genuine",
+        "role": "hn2",
+        "fam": "ffhq",
+        "rung": "landmark_complete_resmatch",
+        "strength": "",
+        "tool": "landmark_complete",
+        "cell": "ffhqm",
+        "host": "00056",
+        "neutral": ""
+      },
+      "pn1_path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/eval/hn2/fq005013.png",
+      "resolved_path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_resmatch_landmark_complete.png",
+      "sha256": "04629c855318c47c764bb6d5f84b5a41306203ba636bcdd511e298e77576fe16",
+      "matches_existing_source_input": true
+    }
+  ],
+  "interpretation": "All4 proposed new-photo condition files occur in existing PN1 hn2 FFHQ development evaluation; not an added still-sealed benchmark pool. Does not establish person/training independence or license/publication permission."
+}

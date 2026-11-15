@@ -1,0 +1,45 @@
+{
+"baseline_check": {
+"b_lad": {
+"n_pos": 124,
+"n_neg": 312,
+"lcomb_auc": 0.8138695,
+"ref": 0.8138695
+},
+"s_lad": {
+"n_pos": 248,
+"n_neg": 624,
+"lcomb_auc": 0.8144465,
+"ref": 0.8144465
+}
+},
+"gd0_baselines": {
+"stylegan_wplus": {
+"b_lad": 0.909139,
+"s_lad": 0.886142,
+"best_single": 0.876296,
+"best_single_name": "b3_.125-.25"
+},
+"stylegan_w": {
+"b_lad": 0.9129295,
+"s_lad": 0.897276,
+"best_single": 0.910215,
+"best_single_name": "b3_.125-.25"
+},
+"diffae": {
+"b_lad": 0.6660155,
+"s_lad": 0.6384515,
+"best_single": 0.7546795,
+"best_single_name": "noise_std"
+}
+}
+}
+GD0_A {"families": {"stylegan_wplus": {"auc": [0.9188105, 0.972081, 0.943591, 0.9575485, 0.938579], "minus_s_lad": [0.03266849999999999, 0.08593899999999999, 0.05744899999999997, 0.07140650000000004, 0.05243700000000007], "verdict": "transfers", "qualifier": "beyond the 27-statistic baseline; not shown to be morph detection (GAN one-person renders are not separated, GD2)"}, "stylegan_w": {"auc": [0.860727, 0.9269375, 0.87523975, 0.909504, 0.8742055], "minus_s_lad": [-0.03654899999999994, 0.029661500000000007, -0.02203624999999998, 0.012228000000000017, -0.023070499999999994], "verdict": "transfers", "qualifier": "not shown beyond simple statistics; not shown to be morph detection (GAN one-person renders are not separated, GD2)"}, "diffae_printed": [0.649231, 0.6997555, 0.735103, 0.681827, 0.68876075]}, "H_GD0": "supported", "decides": false, "label": "StyleGAN morph against camera photo; the GAN render cue is not separated"}
+GD1_A {"X_vs_REC": [0.5534113648200433, 0.6594939831693211, 0.649488774978756, 0.5264658315287409, 0.5339491790246977], "REC_vs_G": [0.9871714042926455, 0.98367643430827, 0.9783723033908062, 0.9964639127216908, 0.9685863874345549], "label": "history-confounded (G is a camera photo resampled to 256 px)", "verdict": "render path used"}
+GD2_A {"f_R2": [0.7184873949579832, 0.680672268907563, 0.592436974789916, 0.7100840336134454, 0.5714285714285714], "R4_vs_R2": [0.7331364978423802, 0.8337497161026572, 0.8210311151487623, 0.7965591642062231, 0.8707131501249148], "verdict": "inconclusive"}
+GD0_B {"families": {"stylegan_wplus": {"auc": [0.8708955, 0.971137, 0.9258435, 0.9359765, 0.8515275], "minus_s_lad": [-0.01524649999999994, 0.08499500000000004, 0.039701500000000056, 0.049834500000000004, -0.03461449999999999], "verdict": "transfers", "qualifier": "not shown beyond simple statistics; not shown to be morph detection (GAN one-person renders are not separated, GD2)"}, "stylegan_w": {"auc": [0.72528, 0.900538, 0.797544, 0.8345165, 0.710841], "minus_s_lad": [-0.17199599999999993, 0.003261999999999987, -0.09973199999999993, -0.06275949999999997, -0.18643500000000002], "verdict": "inconclusive, no claim", "qualifier": ""}, "diffae_printed": [0.68999725, 0.72994175, 0.7409035, 0.6796915, 0.676037]}, "H_GD0": "mixed", "decides": false, "label": "StyleGAN morph against camera photo; the GAN render cue is not separated"}
+GD1_B {"X_vs_REC": [0.45904717524190675, 0.4660782325045914, 0.5575779172720046, 0.47805707080398013, 0.4894876785175845], "REC_vs_G": [0.9686137989638441, 0.9643650119240152, 0.9888435075792879, 0.9871302869987116, 0.9244949425728461], "label": "", "verdict": "render path used"}
+GD2_B {"f_R2": [0.6470588235294118, 0.5882352941176471, 0.40336134453781514, 0.6680672268907563, 0.3025210084033613], "R4_vs_R2": [0.8109243697478992, 0.8908698614580968, 0.9086986145809676, 0.8649784238019532, 0.8963206904383375], "verdict": "inconclusive"}
+GD0_Sb {"families": {"stylegan_wplus": {"auc": [0.9520785, 0.98352, 0.972399, 0.989648, 0.982959], "minus_s_lad": [0.06593650000000006, 0.09737799999999996, 0.08625700000000003, 0.10350599999999999, 0.09681700000000004], "verdict": "transfers", "qualifier": "beyond the 27-statistic baseline; not shown to be morph detection (GAN one-person renders are not separated, GD2)"}, "stylegan_w": {"auc": [0.880916, 0.937326, 0.8957035, 0.966575, 0.942445], "minus_s_lad": [-0.01635999999999993, 0.04005000000000003, -0.0015724999999999767, 0.069299, 0.045169000000000015], "verdict": "transfers", "qualifier": "not shown beyond simple statistics; not shown to be morph detection (GAN one-person renders are not separated, GD2)"}, "diffae_printed": [0.7387095, 0.748097, 0.71959775, 0.686203, 0.75969]}, "H_GD0": "supported", "decides": true, "label": "StyleGAN morph against camera photo; the GAN render cue is not separated"}
+GD1_Sb {"X_vs_REC": [0.5764918724815657, 0.562758696307667, 0.5287958115183246, 0.5953235931032592, 0.568021709931197], "REC_vs_G": [0.9953537457854774, 0.9919547161536142, 0.9955319207258573, 0.9919547161536142, 0.990803431923467], "label": "", "verdict": "render path used"}
+GD2_Sb {"f_R2": [0.8781512605042017, 0.8487394957983193, 0.7815126050420168, 0.9033613445378151, 0.7815126050420168], "R4_vs_R2": [0.8640699523052464, 0.8959232341585283, 0.896150352032705, 0.8874630933454463, 0.9322053145582557], "verdict": "inconclusive"}

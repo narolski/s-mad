@@ -1,0 +1,43 @@
+{
+ "prep_eval_sha256": "374408ab3a886e6df25b563bc2344d190efe2ab7b3163efbb17c9b6ca9100628",
+ "files": [
+  {
+   "src": "/home/narolski/mambamorph/Datasety/downloads/frll_base/extracted/neutral_front/001_03.jpg",
+   "ref": "/home/narolski/mambamorph-code/smadcvpr_data/eval/frllm/frll_bona/001_03_jpeg70.png",
+   "aligned": true,
+   "max_abs_pixel": 0,
+   "bytes_equal": true,
+   "sha_ours": "fc31731565a77761f68c28d0b15e12716933c64735fe15604a5b976894e8a6e6",
+   "sha_ref": "fc31731565a77761f68c28d0b15e12716933c64735fe15604a5b976894e8a6e6"
+  },
+  {
+   "src": "/home/narolski/mambamorph/Datasety/downloads/frll_base/extracted/neutral_front/002_03.jpg",
+   "ref": "/home/narolski/mambamorph-code/smadcvpr_data/eval/frllm/frll_bona/002_03_jpeg70.png",
+   "aligned": true,
+   "max_abs_pixel": 0,
+   "bytes_equal": true,
+   "sha_ours": "0f6573f72b87ba08e88b97db3fc6cc8d850d8fdef14acbf9bda1883df0f96130",
+   "sha_ref": "0f6573f72b87ba08e88b97db3fc6cc8d850d8fdef14acbf9bda1883df0f96130"
+  },
+  {
+   "src": "/home/narolski/mambamorph/Datasety/downloads/frll_base/extracted/neutral_front/003_03.jpg",
+   "ref": "/home/narolski/mambamorph-code/smadcvpr_data/eval/frllm/frll_bona/003_03_jpeg70.png",
+   "aligned": true,
+   "max_abs_pixel": 0,
+   "bytes_equal": true,
+   "sha_ours": "425e6c71fc12dc9acb6241487453254b9ca99d0afaa68b5fc57d46c8f86ddccc",
+   "sha_ref": "425e6c71fc12dc9acb6241487453254b9ca99d0afaa68b5fc57d46c8f86ddccc"
+  },
+  {
+   "src": "/home/narolski/mambamorph/Datasety/downloads/frll_base/extracted/neutral_front/004_03.jpg",
+   "ref": "/home/narolski/mambamorph-code/smadcvpr_data/eval/frllm/frll_bona/004_03_jpeg70.png",
+   "aligned": true,
+   "max_abs_pixel": 0,
+   "bytes_equal": true,
+   "sha_ours": "07afa2235fea941415b9da43c09bb4061bfecf6bbea2b6192dd7f743ed60a6d0",
+   "sha_ref": "07afa2235fea941415b9da43c09bb4061bfecf6bbea2b6192dd7f743ed60a6d0"
+  }
+ ],
+ "pass_pixels": true,
+ "pass_bytes": true
+}

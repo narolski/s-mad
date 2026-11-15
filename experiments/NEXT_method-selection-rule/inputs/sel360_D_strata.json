@@ -1,0 +1,37 @@
+{
+  "log_D_edges": [
+    1.9982402291077017,
+    2.2939288265734388,
+    2.532601979866175,
+    2.8085363793641993
+  ],
+  "strata": [
+    {
+      "quintile": 0,
+      "positive": 15,
+      "negative": 57
+    },
+    {
+      "quintile": 1,
+      "positive": 37,
+      "negative": 35
+    },
+    {
+      "quintile": 2,
+      "positive": 33,
+      "negative": 39
+    },
+    {
+      "quintile": 3,
+      "positive": 41,
+      "negative": 31
+    },
+    {
+      "quintile": 4,
+      "positive": 54,
+      "negative": 18
+    }
+  ],
+  "coverage": 1.0,
+  "bootstrap_unit": "component from ri_R4_vs_R3_heldout.csv"
+}

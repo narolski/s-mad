@@ -1,0 +1,32 @@
+{
+  "decision": "GO_VIS2_NUMERIC_OCCLUSION_ONLY",
+  "recorded_at": "2026-11-14T22:04:25.315261+00:00",
+  "author": "shortcut_visual_examples",
+  "reviewer": "training_contribution",
+  "issued_by": "root",
+  "independent_review_path": "/home/narolski/smad-next/experiments/VIS2_private_occlusion_20261114/v1/INDEPENDENT_PRERUN_REVIEW_20261114.md",
+  "independent_review_sha256": "831e612f5a0680fbec5db0d6a8d3ac1f3be6d314ad798476a3b875c117b1f1a0",
+  "inventory_sha256": "11316da9452632614dd85ae8cd659c7e363467a6f66590a8dc6b21125b1dfcf9",
+  "prereg_sha256": "14a8bc76d13b8f5a36a71d262642d6046ffc80d36621d04ea87bd9c3c666804b",
+  "source_manifest_sha256": "31ae2f57c2212c2ac85a90360753e9f20e5db98a6ba3e5c4a9dd5efaa686b0cb",
+  "source_commit": "29da6d932c199e9f2ef0dd923cce0dabdc1fe0e0",
+  "phase": "full",
+  "models": [
+    "selfmad_hrnet_w18",
+    "A",
+    "B"
+  ],
+  "new_private_occlusion_transform_allowed": true,
+  "source_pixel_export_allowed": false,
+  "new_overlay_render_allowed": false,
+  "other_technical_numeric_smoke_postreview_allowed": true,
+  "full_authorized": true,
+  "publication": "HOLD",
+  "501_extension": "HOLD",
+  "resource": "local GB10 oneprocess, fixed512response/model plus12controls;15min/model;2CPUthreads; unchanged source/runtime/model/input; no rendering or501",
+  "root_checks": "source/input/checkpoint opaque hashes matched; metadata-only exactpackage/Python PASS; GPU GB10 0percent/no computeapps; T7>=50GiB checked; fixed smoke namespaces absent",
+  "smoke_postreview_path": "/home/narolski/smad-next/experiments/VIS2_private_occlusion_20261114/v1/INDEPENDENT_SMOKE_POSTREVIEW_20261114.md",
+  "smoke_postreview_sha256": "5085f250a1b1b136029c700448adf12ba39648ec7a88f5d9de38b65edc00d6cd",
+  "other_technical_numeric_full_postreview_allowed": true,
+  "root_smoke_decision": "ACCEPT_ALL3_TECHNICAL_SMOKE_ONLY;144responses;all12baselineanchors exact;no methodologicalclaim"
+}

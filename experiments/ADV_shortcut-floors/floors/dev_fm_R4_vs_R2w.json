@@ -1,0 +1,136 @@
+{
+ "n_pos": 100,
+ "n_neg": 100,
+ "n_components": 100,
+ "n_folds": 5,
+ "insample_best_single": 0.9207,
+ "insample_best_single_stat": "F27:b3_.125-.25",
+ "insample_best_single_f27": 0.9207,
+ "insample_best_single_f27_stat": "F27:b3_.125-.25",
+ "single": {
+  "auc": 0.91915,
+  "eer": 0.13,
+  "ci": [
+   0.8786487500000001,
+   0.95655125
+  ],
+  "chosen_per_fold": [
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9891,
+  "eer": 0.05,
+  "ci": [
+   0.9786,
+   0.9971
+  ]
+ },
+ "gbt": {
+  "auc": 0.9768,
+  "eer": 0.07,
+  "ci": [
+   0.9583975,
+   0.9907
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9365,
+  "ci": [
+   0.8974949999999999,
+   0.9694025000000001
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.9891,
+  "eer": 0.05,
+  "ci": [
+   0.9786,
+   0.9971
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.9219,
+   "logreg": 0.9365
+  },
+  "BORDER": {
+   "gbt": 0.523,
+   "logreg": 0.5509
+  },
+  "RES": {
+   "gbt": 0.8765,
+   "logreg": 0.8975
+  },
+  "STORE": {
+   "gbt": 0.8782,
+   "logreg": 0.8464
+  },
+  "RENDER": {
+   "gbt": 0.97465,
+   "logreg": 0.9059
+  },
+  "BLEND": {
+   "gbt": 0.9311,
+   "logreg": 0.9239
+  }
+ },
+ "carrying_family": "RENDER",
+ "leave_family_out": {
+  "F27": 0.9918,
+  "BORDER": 0.9901,
+  "RES": 0.9906,
+  "STORE": 0.9736,
+  "RENDER": 0.9609,
+  "BLEND": 0.9787
+ },
+ "contrast": "dev_fm_R4_vs_R2w",
+ "kind": "floor",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.989,
+  "eer": 0.05,
+  "ci": [
+   0.9787975,
+   0.997
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.9887,
+  "eer": 0.06,
+  "ci": [
+   0.9776,
+   0.9964
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "ladder",
+   "strength": "",
+   "role": "dev",
+   "rung": "R4",
+   "tool": "facemorpher"
+  },
+  "negative": {
+   "fam": "ladder",
+   "strength": "",
+   "role": "dev",
+   "rung": "R2w",
+   "tool": "facemorpher"
+  },
+  "note": "SbFM printed"
+ }
+}

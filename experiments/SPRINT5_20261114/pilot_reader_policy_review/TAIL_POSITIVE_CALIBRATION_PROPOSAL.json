@@ -1,0 +1,2388 @@
+[
+  {
+    "id": "val_feret_u50_0001",
+    "path": "eval/pn1/val_feret_u50_0001.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00945",
+    "neutral": "",
+    "persons": [
+      "feret:00374",
+      "feret:00945"
+    ],
+    "photos": [
+      "feret:00374_940422_fa",
+      "feret:00945_960627_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00057",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0007",
+    "path": "eval/pn1/val_feret_u50_0007.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00061",
+    "neutral": "",
+    "persons": [
+      "feret:00061",
+      "feret:00792"
+    ],
+    "photos": [
+      "feret:00061_931230_fa",
+      "feret:00792_941205_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00061",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0013",
+    "path": "eval/pn1/val_feret_u50_0013.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00801",
+    "neutral": "",
+    "persons": [
+      "feret:00374",
+      "feret:00801"
+    ],
+    "photos": [
+      "feret:00374_940422_fa",
+      "feret:00801_941205_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00057",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0016",
+    "path": "eval/pn1/val_feret_u50_0016.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00573",
+    "neutral": "",
+    "persons": [
+      "feret:00399",
+      "feret:00573"
+    ],
+    "photos": [
+      "feret:00399_940422_fa",
+      "feret:00573_940928_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00055",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0017",
+    "path": "eval/pn1/val_feret_u50_0017.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00345",
+    "neutral": "",
+    "persons": [
+      "feret:00044",
+      "feret:00345"
+    ],
+    "photos": [
+      "feret:00044_931230_fa",
+      "feret:00345_940422_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00012",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0020",
+    "path": "eval/pn1/val_feret_u50_0020.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00515",
+    "neutral": "",
+    "persons": [
+      "feret:00515",
+      "feret:00573"
+    ],
+    "photos": [
+      "feret:00515_940519_fa",
+      "feret:00573_940928_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00055",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0022",
+    "path": "eval/pn1/val_feret_u50_0022.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00544",
+    "neutral": "",
+    "persons": [
+      "feret:00544",
+      "feret:00592"
+    ],
+    "photos": [
+      "feret:00544_940519_fa_a",
+      "feret:00592_940928_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00397",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0024",
+    "path": "eval/pn1/val_feret_u50_0024.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00180",
+    "neutral": "",
+    "persons": [
+      "feret:00180",
+      "feret:00833"
+    ],
+    "photos": [
+      "feret:00180_931230_fa",
+      "feret:00833_940307_fa_a"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00012",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0029",
+    "path": "eval/pn1/val_feret_u50_0029.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00546",
+    "neutral": "",
+    "persons": [
+      "feret:00345",
+      "feret:00546"
+    ],
+    "photos": [
+      "feret:00345_940422_fa",
+      "feret:00546_940519_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00012",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0035",
+    "path": "eval/pn1/val_feret_u50_0035.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00044",
+    "neutral": "",
+    "persons": [
+      "feret:00044",
+      "feret:00935"
+    ],
+    "photos": [
+      "feret:00044_931230_fa",
+      "feret:00935_960627_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00012",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0037",
+    "path": "eval/pn1/val_feret_u50_0037.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00030",
+    "neutral": "",
+    "persons": [
+      "feret:00030",
+      "feret:00833"
+    ],
+    "photos": [
+      "feret:00030_930831_fa_a",
+      "feret:00833_940307_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00012",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0039",
+    "path": "eval/pn1/val_feret_u50_0039.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00792",
+    "neutral": "",
+    "persons": [
+      "feret:00244",
+      "feret:00792"
+    ],
+    "photos": [
+      "feret:00244_940128_fa",
+      "feret:00792_941205_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00061",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0042",
+    "path": "eval/pn1/val_feret_u50_0042.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00592",
+    "neutral": "",
+    "persons": [
+      "feret:00397",
+      "feret:00592"
+    ],
+    "photos": [
+      "feret:00397_940422_fa",
+      "feret:00592_940928_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00397",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0043",
+    "path": "eval/pn1/val_feret_u50_0043.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00235",
+    "neutral": "",
+    "persons": [
+      "feret:00235",
+      "feret:00967"
+    ],
+    "photos": [
+      "feret:00235_940128_fa",
+      "feret:00967_960627_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00235",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0045",
+    "path": "eval/pn1/val_feret_u50_0045.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00057",
+    "neutral": "",
+    "persons": [
+      "feret:00057",
+      "feret:00733"
+    ],
+    "photos": [
+      "feret:00057_931230_fa",
+      "feret:00733_960530_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00057",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0048",
+    "path": "eval/pn1/val_feret_u50_0048.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00075",
+    "neutral": "",
+    "persons": [
+      "feret:00075",
+      "feret:00820"
+    ],
+    "photos": [
+      "feret:00075_931230_fa",
+      "feret:00820_940307_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00075",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0052",
+    "path": "eval/pn1/val_feret_u50_0052.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00715",
+    "neutral": "",
+    "persons": [
+      "feret:00374",
+      "feret:00715"
+    ],
+    "photos": [
+      "feret:00374_940422_fa",
+      "feret:00715_941201_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00057",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0054",
+    "path": "eval/pn1/val_feret_u50_0054.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00055",
+    "neutral": "",
+    "persons": [
+      "feret:00055",
+      "feret:00530"
+    ],
+    "photos": [
+      "feret:00055_931230_fa_a",
+      "feret:00530_940519_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00055",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0058",
+    "path": "eval/pn1/val_feret_u50_0058.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00817",
+    "neutral": "",
+    "persons": [
+      "feret:00061",
+      "feret:00817"
+    ],
+    "photos": [
+      "feret:00061_931230_fa",
+      "feret:00817_941205_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00061",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0060",
+    "path": "eval/pn1/val_feret_u50_0060.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00958",
+    "neutral": "",
+    "persons": [
+      "feret:00891",
+      "feret:00958"
+    ],
+    "photos": [
+      "feret:00891_960530_fa",
+      "feret:00958_960627_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00235",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0061",
+    "path": "eval/pn1/val_feret_u50_0061.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00422",
+    "neutral": "",
+    "persons": [
+      "feret:00422",
+      "feret:00515"
+    ],
+    "photos": [
+      "feret:00422_940422_fa",
+      "feret:00515_940519_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00055",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0074",
+    "path": "eval/pn1/val_feret_u50_0074.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00974",
+    "neutral": "",
+    "persons": [
+      "feret:00374",
+      "feret:00974"
+    ],
+    "photos": [
+      "feret:00374_940422_fa",
+      "feret:00974_960627_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00057",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0075",
+    "path": "eval/pn1/val_feret_u50_0075.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00967",
+    "neutral": "",
+    "persons": [
+      "feret:00891",
+      "feret:00967"
+    ],
+    "photos": [
+      "feret:00891_960530_fa",
+      "feret:00967_960627_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00235",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0077",
+    "path": "eval/pn1/val_feret_u50_0077.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00530",
+    "neutral": "",
+    "persons": [
+      "feret:00399",
+      "feret:00530"
+    ],
+    "photos": [
+      "feret:00399_940422_fa",
+      "feret:00530_940519_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00055",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0081",
+    "path": "eval/pn1/val_feret_u50_0081.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00216",
+    "neutral": "",
+    "persons": [
+      "feret:00216",
+      "feret:00945"
+    ],
+    "photos": [
+      "feret:00216_940128_fa",
+      "feret:00945_960627_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00057",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0082",
+    "path": "eval/pn1/val_feret_u50_0082.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00935",
+    "neutral": "",
+    "persons": [
+      "feret:00180",
+      "feret:00935"
+    ],
+    "photos": [
+      "feret:00180_931230_fa",
+      "feret:00935_960627_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00012",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0084",
+    "path": "eval/pn1/val_feret_u50_0084.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00697",
+    "neutral": "",
+    "persons": [
+      "feret:00697",
+      "feret:00833"
+    ],
+    "photos": [
+      "feret:00697_941121_fa",
+      "feret:00833_940307_fa_a"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00012",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0086",
+    "path": "eval/pn1/val_feret_u50_0086.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00612",
+    "neutral": "",
+    "persons": [
+      "feret:00547",
+      "feret:00612"
+    ],
+    "photos": [
+      "feret:00547_940519_fa_b",
+      "feret:00612_940928_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00547",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0087",
+    "path": "eval/pn1/val_feret_u50_0087.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00101",
+    "neutral": "",
+    "persons": [
+      "feret:00101",
+      "feret:00485"
+    ],
+    "photos": [
+      "feret:00101_931230_fa",
+      "feret:00485_940519_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00101",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0090",
+    "path": "eval/pn1/val_feret_u50_0090.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00733",
+    "neutral": "",
+    "persons": [
+      "feret:00733",
+      "feret:00974"
+    ],
+    "photos": [
+      "feret:00733_960530_fa",
+      "feret:00974_960627_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00057",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0091",
+    "path": "eval/pn1/val_feret_u50_0091.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00199",
+    "neutral": "",
+    "persons": [
+      "feret:00199",
+      "feret:00244"
+    ],
+    "photos": [
+      "feret:00199_940128_fa",
+      "feret:00244_940128_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00061",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0094",
+    "path": "eval/pn1/val_feret_u50_0094.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00833",
+    "neutral": "",
+    "persons": [
+      "feret:00012",
+      "feret:00833"
+    ],
+    "photos": [
+      "feret:00012_930831_fa",
+      "feret:00833_940307_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00012",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0095",
+    "path": "eval/pn1/val_feret_u50_0095.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00459",
+    "neutral": "",
+    "persons": [
+      "feret:00044",
+      "feret:00459"
+    ],
+    "photos": [
+      "feret:00044_931230_fa",
+      "feret:00459_940422_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00012",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "val_feret_u50_0097",
+    "path": "eval/pn1/val_feret_u50_0097.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "af0",
+    "rung": "u50",
+    "strength": "",
+    "tool": "af0engine",
+    "cell": "",
+    "host": "feret:00887",
+    "neutral": "",
+    "persons": [
+      "feret:00801",
+      "feret:00887"
+    ],
+    "photos": [
+      "feret:00801_941205_fa",
+      "feret:00887_960530_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [],
+    "primary_photo_overlap": [],
+    "component": "feret:00057",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": false,
+    "positive_family": "af0_u50"
+  },
+  {
+    "id": "ar1_000646",
+    "path": "eval/pn1/ar1_000646.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "feret:00383",
+    "neutral": "",
+    "persons": [
+      "feret:00383",
+      "feret:00876"
+    ],
+    "photos": [
+      "feret:00383_940422_fa_a",
+      "feret:00876_960530_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "feret:00383",
+      "feret:00876"
+    ],
+    "primary_photo_overlap": [
+      "feret:00383_940422_fa_a",
+      "feret:00876_960530_fa"
+    ],
+    "component": "feret:00383",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_000746",
+    "path": "eval/pn1/ar1_000746.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "feret:00669",
+    "neutral": "",
+    "persons": [
+      "feret:00108",
+      "feret:00669"
+    ],
+    "photos": [
+      "feret:00108_931230_fa",
+      "feret:00669_941121_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "feret:00108",
+      "feret:00669"
+    ],
+    "primary_photo_overlap": [
+      "feret:00108_931230_fa",
+      "feret:00669_941121_fa"
+    ],
+    "component": "feret:00108",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_000810",
+    "path": "eval/pn1/ar1_000810.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "feret:00724",
+    "neutral": "",
+    "persons": [
+      "feret:00710",
+      "feret:00724"
+    ],
+    "photos": [
+      "feret:00710_941201_fa",
+      "feret:00724_941201_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "feret:00710",
+      "feret:00724"
+    ],
+    "primary_photo_overlap": [
+      "feret:00710_941201_fa",
+      "feret:00724_941201_fa"
+    ],
+    "component": "feret:00710",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_000882",
+    "path": "eval/pn1/ar1_000882.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "feret:00767",
+    "neutral": "",
+    "persons": [
+      "feret:00283",
+      "feret:00767"
+    ],
+    "photos": [
+      "feret:00283_940307_fa",
+      "feret:00767_941201_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "feret:00283",
+      "feret:00767"
+    ],
+    "primary_photo_overlap": [
+      "feret:00283_940307_fa",
+      "feret:00767_941201_fa"
+    ],
+    "component": "feret:00283",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001374",
+    "path": "eval/pn1/ar1_001374.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04427",
+    "neutral": "",
+    "persons": [
+      "frgc:04427",
+      "frgc:04730"
+    ],
+    "photos": [
+      "frgc:04427d46",
+      "frgc:04730d110"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04427",
+      "frgc:04730"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04427d46",
+      "frgc:04730d110"
+    ],
+    "component": "frgc:04427",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001466",
+    "path": "eval/pn1/ar1_001466.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04471",
+    "neutral": "",
+    "persons": [
+      "frgc:04471",
+      "frgc:04893"
+    ],
+    "photos": [
+      "frgc:04471d86",
+      "frgc:04893d56"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04471",
+      "frgc:04893"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04471d86",
+      "frgc:04893d56"
+    ],
+    "component": "frgc:04302",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001486",
+    "path": "eval/pn1/ar1_001486.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04477",
+    "neutral": "",
+    "persons": [
+      "frgc:04298",
+      "frgc:04477"
+    ],
+    "photos": [
+      "frgc:04298d51",
+      "frgc:04477d57"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04298",
+      "frgc:04477"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04298d51",
+      "frgc:04477d57"
+    ],
+    "component": "frgc:04298",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001518",
+    "path": "eval/pn1/ar1_001518.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04494",
+    "neutral": "",
+    "persons": [
+      "frgc:04494",
+      "frgc:04582"
+    ],
+    "photos": [
+      "frgc:04494d77",
+      "frgc:04582d09"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04494",
+      "frgc:04582"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04494d77",
+      "frgc:04582d09"
+    ],
+    "component": "frgc:04494",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001566",
+    "path": "eval/pn1/ar1_001566.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04513",
+    "neutral": "",
+    "persons": [
+      "frgc:04513",
+      "frgc:04585"
+    ],
+    "photos": [
+      "frgc:04513d84",
+      "frgc:04585d38"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04513",
+      "frgc:04585"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04513d84",
+      "frgc:04585d38"
+    ],
+    "component": "frgc:04513",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001602",
+    "path": "eval/pn1/ar1_001602.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04531",
+    "neutral": "",
+    "persons": [
+      "frgc:04531",
+      "frgc:04609"
+    ],
+    "photos": [
+      "frgc:04531d234",
+      "frgc:04609d25"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04531",
+      "frgc:04609"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04531d234",
+      "frgc:04609d25"
+    ],
+    "component": "frgc:04531",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001618",
+    "path": "eval/pn1/ar1_001618.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04539",
+    "neutral": "",
+    "persons": [
+      "frgc:04539",
+      "frgc:04577"
+    ],
+    "photos": [
+      "frgc:04539d65",
+      "frgc:04577d89"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04539",
+      "frgc:04577"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04539d65",
+      "frgc:04577d89"
+    ],
+    "component": "frgc:04539",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001770",
+    "path": "eval/pn1/ar1_001770.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04599",
+    "neutral": "",
+    "persons": [
+      "frgc:04339",
+      "frgc:04599"
+    ],
+    "photos": [
+      "frgc:04339d204",
+      "frgc:04599d09"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04339",
+      "frgc:04599"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04339d204",
+      "frgc:04599d09"
+    ],
+    "component": "frgc:04339",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001874",
+    "path": "eval/pn1/ar1_001874.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04642",
+    "neutral": "",
+    "persons": [
+      "frgc:04595",
+      "frgc:04642"
+    ],
+    "photos": [
+      "frgc:04595d54",
+      "frgc:04642d44"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04595",
+      "frgc:04642"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04595d54",
+      "frgc:04642d44"
+    ],
+    "component": "frgc:04595",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_001986",
+    "path": "eval/pn1/ar1_001986.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04698",
+    "neutral": "",
+    "persons": [
+      "frgc:04379",
+      "frgc:04698"
+    ],
+    "photos": [
+      "frgc:04379d120",
+      "frgc:04698d54"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04379",
+      "frgc:04698"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04379d120",
+      "frgc:04698d54"
+    ],
+    "component": "frgc:04379",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_002042",
+    "path": "eval/pn1/ar1_002042.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04717",
+    "neutral": "",
+    "persons": [
+      "frgc:04717",
+      "frgc:04810"
+    ],
+    "photos": [
+      "frgc:04717d10",
+      "frgc:04810d79"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04717",
+      "frgc:04810"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04717d10",
+      "frgc:04810d79"
+    ],
+    "component": "frgc:04717",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_002098",
+    "path": "eval/pn1/ar1_002098.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04733",
+    "neutral": "",
+    "persons": [
+      "frgc:04733",
+      "frgc:04829"
+    ],
+    "photos": [
+      "frgc:04733d04",
+      "frgc:04829d50"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04733",
+      "frgc:04829"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04733d04",
+      "frgc:04829d50"
+    ],
+    "component": "frgc:04302",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_002134",
+    "path": "eval/pn1/ar1_002134.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04744",
+    "neutral": "",
+    "persons": [
+      "frgc:04578",
+      "frgc:04744"
+    ],
+    "photos": [
+      "frgc:04578d12",
+      "frgc:04744d02"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04578",
+      "frgc:04744"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04578d12",
+      "frgc:04744d02"
+    ],
+    "component": "frgc:04578",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "ar1_002238",
+    "path": "eval/pn1/ar1_002238.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "ladder",
+    "rung": "R4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04778",
+    "neutral": "",
+    "persons": [
+      "frgc:04598",
+      "frgc:04778"
+    ],
+    "photos": [
+      "frgc:04598d37",
+      "frgc:04778d28"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04598",
+      "frgc:04778"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04598d37",
+      "frgc:04778d28"
+    ],
+    "component": "frgc:04598",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_R4"
+  },
+  {
+    "id": "sp2_S4_opencv_feret_00383",
+    "path": "eval/pn1/sp2_S4_opencv_feret_00383.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "feret:00383",
+    "neutral": "",
+    "persons": [
+      "feret:00383",
+      "feret:00876"
+    ],
+    "photos": [
+      "feret:00383_940422_fa_a",
+      "feret:00876_960530_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "feret:00383",
+      "feret:00876"
+    ],
+    "primary_photo_overlap": [
+      "feret:00383_940422_fa_a",
+      "feret:00876_960530_fa"
+    ],
+    "component": "feret:00383",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_feret_00669",
+    "path": "eval/pn1/sp2_S4_opencv_feret_00669.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "feret:00669",
+    "neutral": "",
+    "persons": [
+      "feret:00108",
+      "feret:00669"
+    ],
+    "photos": [
+      "feret:00108_931230_fa",
+      "feret:00669_941121_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "feret:00108",
+      "feret:00669"
+    ],
+    "primary_photo_overlap": [
+      "feret:00108_931230_fa",
+      "feret:00669_941121_fa"
+    ],
+    "component": "feret:00108",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_feret_00724",
+    "path": "eval/pn1/sp2_S4_opencv_feret_00724.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "feret:00724",
+    "neutral": "",
+    "persons": [
+      "feret:00710",
+      "feret:00724"
+    ],
+    "photos": [
+      "feret:00710_941201_fa",
+      "feret:00724_941201_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "feret:00710",
+      "feret:00724"
+    ],
+    "primary_photo_overlap": [
+      "feret:00710_941201_fa",
+      "feret:00724_941201_fa"
+    ],
+    "component": "feret:00710",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_feret_00767",
+    "path": "eval/pn1/sp2_S4_opencv_feret_00767.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "feret:00767",
+    "neutral": "",
+    "persons": [
+      "feret:00283",
+      "feret:00767"
+    ],
+    "photos": [
+      "feret:00283_940307_fa",
+      "feret:00767_941201_fa"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "feret:00283",
+      "feret:00767"
+    ],
+    "primary_photo_overlap": [
+      "feret:00283_940307_fa",
+      "feret:00767_941201_fa"
+    ],
+    "component": "feret:00283",
+    "source": "feret",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04427",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04427.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04427",
+    "neutral": "",
+    "persons": [
+      "frgc:04427",
+      "frgc:04730"
+    ],
+    "photos": [
+      "frgc:04427d46",
+      "frgc:04730d110"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04427",
+      "frgc:04730"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04427d46",
+      "frgc:04730d110"
+    ],
+    "component": "frgc:04427",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04471",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04471.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04471",
+    "neutral": "",
+    "persons": [
+      "frgc:04471",
+      "frgc:04893"
+    ],
+    "photos": [
+      "frgc:04471d86",
+      "frgc:04893d56"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04471",
+      "frgc:04893"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04471d86",
+      "frgc:04893d56"
+    ],
+    "component": "frgc:04302",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04477",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04477.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04477",
+    "neutral": "",
+    "persons": [
+      "frgc:04298",
+      "frgc:04477"
+    ],
+    "photos": [
+      "frgc:04298d51",
+      "frgc:04477d57"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04298",
+      "frgc:04477"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04298d51",
+      "frgc:04477d57"
+    ],
+    "component": "frgc:04298",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04494",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04494.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04494",
+    "neutral": "",
+    "persons": [
+      "frgc:04494",
+      "frgc:04582"
+    ],
+    "photos": [
+      "frgc:04494d77",
+      "frgc:04582d09"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04494",
+      "frgc:04582"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04494d77",
+      "frgc:04582d09"
+    ],
+    "component": "frgc:04494",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04513",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04513.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04513",
+    "neutral": "",
+    "persons": [
+      "frgc:04513",
+      "frgc:04585"
+    ],
+    "photos": [
+      "frgc:04513d84",
+      "frgc:04585d38"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04513",
+      "frgc:04585"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04513d84",
+      "frgc:04585d38"
+    ],
+    "component": "frgc:04513",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04531",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04531.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04531",
+    "neutral": "",
+    "persons": [
+      "frgc:04531",
+      "frgc:04609"
+    ],
+    "photos": [
+      "frgc:04531d234",
+      "frgc:04609d25"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04531",
+      "frgc:04609"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04531d234",
+      "frgc:04609d25"
+    ],
+    "component": "frgc:04531",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04539",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04539.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04539",
+    "neutral": "",
+    "persons": [
+      "frgc:04539",
+      "frgc:04577"
+    ],
+    "photos": [
+      "frgc:04539d65",
+      "frgc:04577d89"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04539",
+      "frgc:04577"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04539d65",
+      "frgc:04577d89"
+    ],
+    "component": "frgc:04539",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04599",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04599.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04599",
+    "neutral": "",
+    "persons": [
+      "frgc:04339",
+      "frgc:04599"
+    ],
+    "photos": [
+      "frgc:04339d204",
+      "frgc:04599d09"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04339",
+      "frgc:04599"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04339d204",
+      "frgc:04599d09"
+    ],
+    "component": "frgc:04339",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04642",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04642.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04642",
+    "neutral": "",
+    "persons": [
+      "frgc:04595",
+      "frgc:04642"
+    ],
+    "photos": [
+      "frgc:04595d54",
+      "frgc:04642d44"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04595",
+      "frgc:04642"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04595d54",
+      "frgc:04642d44"
+    ],
+    "component": "frgc:04595",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04698",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04698.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04698",
+    "neutral": "",
+    "persons": [
+      "frgc:04379",
+      "frgc:04698"
+    ],
+    "photos": [
+      "frgc:04379d120",
+      "frgc:04698d54"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04379",
+      "frgc:04698"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04379d120",
+      "frgc:04698d54"
+    ],
+    "component": "frgc:04379",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04717",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04717.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04717",
+    "neutral": "",
+    "persons": [
+      "frgc:04717",
+      "frgc:04810"
+    ],
+    "photos": [
+      "frgc:04717d10",
+      "frgc:04810d79"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04717",
+      "frgc:04810"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04717d10",
+      "frgc:04810d79"
+    ],
+    "component": "frgc:04717",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04733",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04733.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04733",
+    "neutral": "",
+    "persons": [
+      "frgc:04733",
+      "frgc:04829"
+    ],
+    "photos": [
+      "frgc:04733d04",
+      "frgc:04829d50"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04733",
+      "frgc:04829"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04733d04",
+      "frgc:04829d50"
+    ],
+    "component": "frgc:04302",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04744",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04744.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04744",
+    "neutral": "",
+    "persons": [
+      "frgc:04578",
+      "frgc:04744"
+    ],
+    "photos": [
+      "frgc:04578d12",
+      "frgc:04744d02"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04578",
+      "frgc:04744"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04578d12",
+      "frgc:04744d02"
+    ],
+    "component": "frgc:04578",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  },
+  {
+    "id": "sp2_S4_opencv_frgc_04778",
+    "path": "eval/pn1/sp2_S4_opencv_frgc_04778.png",
+    "label": "1",
+    "klass": "attack",
+    "role": "dev",
+    "fam": "splice",
+    "rung": "S4",
+    "strength": "",
+    "tool": "opencv",
+    "cell": "",
+    "host": "frgc:04778",
+    "neutral": "",
+    "persons": [
+      "frgc:04598",
+      "frgc:04778"
+    ],
+    "photos": [
+      "frgc:04598d37",
+      "frgc:04778d28"
+    ],
+    "training_person_overlap": [],
+    "training_photo_overlap": [],
+    "primary_person_overlap": [
+      "frgc:04598",
+      "frgc:04778"
+    ],
+    "primary_photo_overlap": [
+      "frgc:04598d37",
+      "frgc:04778d28"
+    ],
+    "component": "frgc:04598",
+    "source": "frgc",
+    "training_component_overlap": false,
+    "primary_component_overlap": true,
+    "positive_family": "lad_S4"
+  }
+]

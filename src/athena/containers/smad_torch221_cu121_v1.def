@@ -1,0 +1,9 @@
+Bootstrap: docker
+From: pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime
+
+%post
+    pip install --no-cache-dir timm==1.0.27 huggingface_hub==0.36.2 safetensors==0.8.0 numpy==1.26.4 pyyaml==6.0.3 pillow==10.2.0
+
+%labels
+    project smad-next
+    base pytorch/pytorch:2.2.1-cuda12.1-cudnn8-runtime

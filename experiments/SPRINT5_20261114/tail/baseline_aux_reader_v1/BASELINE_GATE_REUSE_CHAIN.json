@@ -1,0 +1,15 @@
+{
+  "status": "EXISTING_ROOT_ADMITTED_SAME_BASELINE_SOURCE_CHAIN_NOT_NEW_PAYLOAD_PASS",
+  "files": {
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/baseline_auxiliary_proposal_v1/BASELINE_EXISTING_GATE_CHAIN_PROPOSAL.json": "8d5b582c4350f90b96083e92e11b342733b0e83bd52e8ca6cf14a044610ba04e",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/baseline_auxiliary_proposal_v1/BASELINE_RUN_SOURCE_LINK_PROPOSAL.json": "f4bb24de2b6cf089a0578c7c0f8cac9af0a20b456dd803b534ab3b409abf9179",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/BASELINE_ADMISSION_ROOT.json": "90e5a49bda1383d73a053d9c66869976d3a291f4a35dc6c86d970a54199ec2ea",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/TRAIN_BASELINE_RELEASE.json": "4d6cec6bedbc538342859c53e602ef9e3831b847f51bc0f3ccaff756c9329969",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/tail/PILOT_RELEASE.json": "37a15a7c3b020ec8134650d7fb610aa2565e1c104c50874d9d6aada7641295da"
+  },
+  "source_manifest_path": "/home/narolski/smad-next/src/SPRINT5/tail_baseline/SHA256SUMS",
+  "source_manifest_sha256": "5e25d43ce54763011b85f669826c3d375ffdda4270a7a2ac545a40b48675beb5",
+  "baseline_archive_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+  "actual_archive_or_NPZ_accessed": false,
+  "reuse_requires_independent_technical_admission": true
+}

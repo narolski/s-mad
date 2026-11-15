@@ -1,0 +1,38 @@
+family,engine,db,role,host_matched,two_person,same_person,warp_only,one_photo,rungs,note
+landmark ladder (AR1),opencv,feret,dev,yes,19,19,19,19,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),opencv,feret,excluded,yes,18,18,18,18,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),opencv,feret,test,yes,46,46,46,46,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),opencv,feret,train,yes,26,26,26,26,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),opencv,frgc,dev,yes,81,81,81,81,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),opencv,frgc,excluded,yes,62,62,62,62,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),opencv,frgc,test,yes,154,154,154,154,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),opencv,frgc,train,yes,130,130,130,130,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),facemorpher,feret,dev,yes,19,19,19,19,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),facemorpher,feret,excluded,yes,18,18,18,18,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),facemorpher,feret,test,yes,46,46,46,46,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),facemorpher,feret,train,yes,26,26,26,26,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),facemorpher,frgc,dev,yes,81,81,81,81,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),facemorpher,frgc,excluded,yes,62,62,62,62,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),facemorpher,frgc,test,yes,154,154,154,154,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+landmark ladder (AR1),facemorpher,frgc,train,yes,130,130,130,130,R4 / R3 / R2w4 / R2,R2 equals R0 for OpenCV; R2w (warp toward own second photo) also exists for every host
+MIPGAN (AG1),mip1,feret,dev,yes,10,10,n/a,10,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+MIPGAN (AG1),mip1,feret,excluded,yes,10,10,n/a,10,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+MIPGAN (AG1),mip1,feret,not_in_ladder_split,yes,37,37,n/a,37,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+MIPGAN (AG1),mip1,feret,test,yes,25,25,n/a,25,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+MIPGAN (AG1),mip1,feret,train,yes,18,18,n/a,18,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+MIPGAN (AG1),mip1,frgc,dev,yes,12,12,n/a,12,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+MIPGAN (AG1),mip1,frgc,excluded,yes,12,12,n/a,12,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+MIPGAN (AG1),mip1,frgc,not_in_ladder_split,yes,2,2,n/a,2,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+MIPGAN (AG1),mip1,frgc,test,yes,40,40,n/a,40,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+MIPGAN (AG1),mip1,frgc,train,yes,34,34,n/a,34,R4 / R3 / None / R2,no warp-only rung exists for a GAN pipeline; R2i and R3m also exist
+DiffAE (DG1 set B),diffae,feret,dev,yes,19,19,n/a,19,X / SAME / None / REC,MIR (mirror self-morph) also exists
+DiffAE (DG1 set B),diffae,feret,excluded,yes,18,18,n/a,18,X / SAME / None / REC,MIR (mirror self-morph) also exists
+DiffAE (DG1 set B),diffae,feret,test,yes,46,46,n/a,46,X / SAME / None / REC,MIR (mirror self-morph) also exists
+DiffAE (DG1 set B),diffae,feret,train,yes,26,26,n/a,26,X / SAME / None / REC,MIR (mirror self-morph) also exists
+DiffAE (DG1 set B),diffae,frgc,dev,yes,81,81,n/a,81,X / SAME / None / REC,MIR (mirror self-morph) also exists
+DiffAE (DG1 set B),diffae,frgc,excluded,yes,62,62,n/a,62,X / SAME / None / REC,MIR (mirror self-morph) also exists
+DiffAE (DG1 set B),diffae,frgc,test,yes,154,154,n/a,154,X / SAME / None / REC,MIR (mirror self-morph) also exists
+DiffAE (DG1 set B),diffae,frgc,train,yes,130,130,n/a,130,X / SAME / None / REC,MIR (mirror self-morph) also exists
+AF0 morph fields,af0,frgc+feret,train,no,af0_u50 rows 2430,"SE1 self-morphs (mirror partner) 644 images, outside Sb",af0_zero (not in Sb rows); halves af0_half rows 1720,none built,"u50 / selfm / zero, half / -",rows of train_SbZ (repetitions included)
+face splices,opencv hull (amendment 7b),frgc+feret,train,no,lad_S4 rows 392,lad_S3 rows 185,n/a,lad_S0 rows 185,S4 / S3 / - / S0,"no FaceMorpher splices (D1c, author)"
+MS1 FFHQ ladder,opencv,ffhq,train+hold,no,lad_R4 150 (training),none (one photo per person),R2w4 (built with R4),OpenCV R2 = R0 (identity),R4 / - / R2w4 / R0,"D1d FaceMorpher one-photo renders 898 exist, but no FaceMorpher FFHQ two-person morphs exist yet"

@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-14T23:47:14.907852+00:00",
+  "decision": "ROOT_AUTHORIZE_ONE_BOUNDED_ACTUALLY_MAPPED_ELF_AND_FIXED_SITE_TOOL_IDENTITY",
+  "loaded_elf_body_hash": true,
+  "scope": "Singlecapped/proc/self/maps afterfixedimports/CUDAmetadata; actuallymapped.so only, exactallowedroots/registeredaliases, device+inodeboundsamefd/nofollowregularELFbytes",
+  "max_file_bytes": 2147483648,
+  "max_total_bytes": 4294967296,
+  "max_files": 512,
+  "source_enum_roots": "ExactPROPOSED_RUNTIME_GRANT roots, no broadhome/search/crawl",
+  "path_aliases": [],
+  "nvidia_mode": "ACQUIRE_FIXED_ROOT_OS_TOOL",
+  "fixed_tool": "/usr/bin/nvidia-smi",
+  "trusted_tool_rule": "CanonicalconfinedregularELF/rootUID/non-group-other-writableancestors+file, max32MiB, hash+durableidentityBEFOREsame-FD5sdriver_version-onlyquery; no fakepreknownhash",
+  "automatic_fallback_retry": false,
+  "data_weights_images_NPZ_or_other_process_access": false,
+  "loader_closure_and_historical_identity": "NOT_CLAIMED",
+  "scientific_read": "HOLD"
+}

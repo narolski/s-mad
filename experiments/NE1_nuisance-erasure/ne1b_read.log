@@ -1,0 +1,9 @@
+read PN1_Sb_s403
+read PN1_Sb_s404
+read PN1_Sb_s405
+read PN1_Sb_s406
+read PN1_Sb_s407
+{
+ "splice_ceiling": "intermediate (probe above H0 but below the bottleneck bar) [low 3, bottleneck 0, nonlinear-only 0 of 5]",
+ "border": "criteria unreachable (inconclusive by design): the half-B ceiling eraser E7c is not clean [E7c clean 3; E7: clean 2, removed-with-cost 0, removed 2, not-removed 3; LEACE: clean 0, removed-with-cost 0, removed 0, not-removed 5 of 5 non-floor seeds]"
+}

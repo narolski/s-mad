@@ -1,0 +1,115 @@
+{
+ "train": {
+  "morph_dir": "/mnt/t7/Datasety/downloads/SMDD/SMDD_release_train/m15k_t",
+  "genuine_dir": "/mnt/t7/Datasety/downloads/SMDD/SMDD_release_train/os25k_bf_t",
+  "source_dir": "/mnt/t7/Datasety/downloads/SMDD/os25k_m_t",
+  "n_morph_files": 15000,
+  "n_unparsed": 0,
+  "unparsed_examples": [],
+  "n_first_contributors": 3853,
+  "n_second_contributors": 5,
+  "second_contributor_counts": {
+   "img054553": 3444,
+   "img282038": 3310,
+   "img496816": 3260,
+   "img337488": 2813,
+   "img099545": 2173
+  },
+  "first_also_second": 0,
+  "morphs_per_first_contributor_hist": {
+   "1": 172,
+   "2": 349,
+   "3": 710,
+   "4": 1110,
+   "5": 1512
+  },
+  "duplicate_pairs": 0,
+  "n_contributors": 3858,
+  "contributors_in_source_dir": 3858,
+  "contributors_not_in_source_dir": [],
+  "contributors_in_genuine_dir": 0,
+  "n_genuine": 25000,
+  "n_source": 25000,
+  "genuine_names_also_in_source_dir": 0,
+  "same_bytes_of_first200_shared_names": null,
+  "morph_sizes": {
+   "256x256": 14267,
+   "256x258": 281,
+   "256x257": 230,
+   "256x259": 131,
+   "256x260": 47,
+   "256x261": 31,
+   "256x262": 8,
+   "256x263": 3,
+   "260x258": 1,
+   "256x264": 1
+  },
+  "morph_share_not_256": 0.04887,
+  "genuine_sizes": {
+   "256x256": 25000
+  },
+  "source_sizes": {
+   "256x256": 25000
+  }
+ },
+ "evaluation": {
+  "morph_dir": "/mnt/t7/Datasety/downloads/SMDD/SMDD_release_evaluation/m15k_e",
+  "genuine_dir": "/mnt/t7/Datasety/downloads/SMDD/SMDD_release_evaluation/os25k_bf_e",
+  "source_dir": "/mnt/t7/Datasety/downloads/SMDD/os25k_m_e",
+  "n_morph_files": 15000,
+  "n_unparsed": 0,
+  "unparsed_examples": [],
+  "n_first_contributors": 3919,
+  "n_second_contributors": 5,
+  "second_contributor_counts": {
+   "img279570": 3536,
+   "img226436": 3331,
+   "img141280": 3232,
+   "img042475": 2988,
+   "img005071": 1913
+  },
+  "first_also_second": 0,
+  "morphs_per_first_contributor_hist": {
+   "1": 157,
+   "2": 335,
+   "3": 723,
+   "4": 1516,
+   "5": 1188
+  },
+  "duplicate_pairs": 0,
+  "n_contributors": 3924,
+  "contributors_in_source_dir": 3924,
+  "contributors_not_in_source_dir": [],
+  "contributors_in_genuine_dir": 0,
+  "n_genuine": 25000,
+  "n_source": 25000,
+  "genuine_names_also_in_source_dir": 0,
+  "same_bytes_of_first200_shared_names": null,
+  "morph_sizes": {
+   "256x256": 14583,
+   "256x257": 172,
+   "256x258": 119,
+   "256x259": 69,
+   "256x260": 27,
+   "256x261": 12,
+   "256x262": 10,
+   "256x263": 6,
+   "256x264": 2
+  },
+  "morph_share_not_256": 0.0278,
+  "genuine_sizes": {
+   "256x256": 25000
+  },
+  "source_sizes": {
+   "256x256": 25000
+  }
+ },
+ "cross_split": {
+  "second_contributors_shared": [],
+  "first_contributors_shared": 0,
+  "genuine_names_shared": 0,
+  "train_contributors_in_eval_genuine": 0,
+  "eval_contributors_in_train_genuine": 0,
+  "source_names_shared": 0
+ }
+}

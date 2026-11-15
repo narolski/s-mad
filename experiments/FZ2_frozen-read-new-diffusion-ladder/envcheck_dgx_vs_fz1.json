@@ -1,0 +1,20 @@
+{
+ "clip_mad": {
+  "n": 64,
+  "cos_min": 0.9999999999999998,
+  "cos_mean": 1.0,
+  "pass_cos": true,
+  "logit_max_abs": 0.0,
+  "spearman": 0.9999999999999998,
+  "pass_head": true,
+  "pass": true
+ },
+ "dinov2": {
+  "n": 64,
+  "cos_min": 0.9999999999999999,
+  "cos_mean": 1.0,
+  "pass_cos": true,
+  "pass": true
+ },
+ "pass": true
+}

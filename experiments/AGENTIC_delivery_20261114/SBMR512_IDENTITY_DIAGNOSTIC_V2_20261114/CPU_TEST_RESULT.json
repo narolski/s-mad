@@ -1,0 +1,10 @@
+{
+  "tests": 19,
+  "passed": 19,
+  "seconds": 0.028,
+  "bash_syntax": "PASS",
+  "collection_AST_without_stage_calls": "EXACT_PARENT",
+  "safeio_unchanged": true,
+  "actual_environment_read": false,
+  "prior_test_development_failure": "Fixture self.root attribute typo corrected to self.v.parent; no acquisition/source failure or real read"
+}

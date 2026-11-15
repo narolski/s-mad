@@ -1,0 +1,131 @@
+{
+ "n_pos": 191,
+ "n_neg": 191,
+ "n_components": 130,
+ "n_folds": 5,
+ "insample_best_single": 0.7498149721772978,
+ "insample_best_single_stat": "RENDER:chroma_noise_cb",
+ "insample_best_single_f27": 0.7052986486116061,
+ "insample_best_single_f27_stat": "F27:png_bytes",
+ "single": {
+  "auc": 0.7485266303007044,
+  "eer": 0.30628272251308897,
+  "ci": [
+   0.7154782621166949,
+   0.7824520150082787
+  ],
+  "chosen_per_fold": [
+   "+RENDER:chroma_noise_cb",
+   "+RENDER:chroma_noise_cb",
+   "+RENDER:chroma_noise_cb",
+   "+RENDER:chroma_noise_cb",
+   "+RENDER:chroma_noise_cb"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9452865875387187,
+  "eer": 0.10471204188481675,
+  "ci": [
+   0.9204227988777482,
+   0.9666889208929634
+  ]
+ },
+ "gbt": {
+  "auc": 0.9270853320906773,
+  "eer": 0.13089005235602094,
+  "ci": [
+   0.9027413682833366,
+   0.9494683967667227
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9062525698308709,
+  "ci": [
+   0.8773974055877372,
+   0.932550298699294
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.9452865875387187,
+  "eer": 0.10471204188481675,
+  "ci": [
+   0.9204227988777482,
+   0.9666889208929634
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.8792522134809901,
+   "logreg": 0.9062525698308709
+  },
+  "BORDER": {
+   "gbt": 0.5,
+   "logreg": 0.5026589183410543
+  },
+  "RES": {
+   "gbt": 0.6337134398728105,
+   "logreg": 0.6687042570104986
+  },
+  "STORE": {
+   "gbt": 0.6966640168855021,
+   "logreg": 0.7325457087250897
+  },
+  "RENDER": {
+   "gbt": 0.847948247032702,
+   "logreg": 0.8909569364874866
+  },
+  "BLEND": {
+   "gbt": 0.6607823250459143,
+   "logreg": 0.6587812834078013
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.9240700638688633,
+  "BORDER": 0.9451495298922727,
+  "RES": 0.9480825635262191,
+  "STORE": 0.9469861023546504,
+  "RENDER": 0.92102738411776,
+  "BLEND": 0.9420794386118801
+ },
+ "contrast": "gd1_X_vs_REC",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.9307310654861435,
+  "eer": 0.13612565445026178,
+  "ci": [
+   0.9028791296122717,
+   0.9545536033629306
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 0.9102546531070969,
+  "eer": 0.16230366492146597,
+  "ci": [
+   0.8834788160125546,
+   0.9343058248876734
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "GD",
+  "positive": {
+   "fam": "gd1",
+   "rung": "X"
+  },
+  "negative": {
+   "fam": "gd1",
+   "rung": "REC"
+  },
+  "note": "SA1 row 13"
+ }
+}

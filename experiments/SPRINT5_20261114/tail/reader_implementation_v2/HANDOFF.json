@@ -1,0 +1,16 @@
+{
+  "status": "FROZEN_V2_CODE_ONLY_REQUIRES_INDEPENDENT_REVIEW",
+  "source_manifest_sha256": "5ae5f48e8b5525ae53a3603f24444a0efef833c567bc52caa308fb9119fba195",
+  "input_binding_sha256": "36866c220c1df69b57ca69fb271121c9704ad417e2f93358eac4398cc8e8fdfa",
+  "synthetic_tests": 26,
+  "tests_sha256": "e37d5cbfeccd869936bfdab539e613f44d6882cc8ae1514186f570dae9a4d6f2",
+  "metadata_check_sha256": "6db8a950d64848d7b58969c0959375e4a783a9417bc7c565bd342ccbdd1281cf",
+  "primary_stats_byteidentical_v1": true,
+  "shared_once_journal_and_output": true,
+  "candidate_payload_accessed": false,
+  "collector_or_reader_actual_invocation": false,
+  "scientific_read": "HOLD",
+  "diagnostics": "ADOPTED_POINT_ONLY_NOT_ESTIMATED",
+  "baseline_threshold_auxiliary": "REQUIRED_BUT_HOLD_PENDING_SEPARATE_BINDING_AND_ADMISSION",
+  "camera_auxiliary": "HOLD"
+}

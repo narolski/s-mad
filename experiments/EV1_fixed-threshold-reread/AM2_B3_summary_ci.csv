@@ -1,0 +1,67 @@
+detector,alpha,threshold_pool,family_mean_miss,lo95,hi95
+MADation ViT-B/16 release,0.05,unprocessed FRLL photos (all 204),0.2735527813313285,0.2071473316018408,0.448586030191498
+MADation ViT-B/16 release,0.05,"every history-matched pool (Part A gated set, with devbona)",0.787963746571383,0.728443333676402,0.8673785016111835
+MADation ViT-B/16 release,0.05,"full-frame pools, inter-eye distance >= 100 px",0.5483512331482671,0.43741184211697776,0.6461799810821409
+MADation ViT-B/16 release,0.1,unprocessed FRLL photos (all 204),0.19930938161571032,0.17015007071944974,0.26421062007341456
+MADation ViT-B/16 release,0.1,"every history-matched pool (Part A gated set, with devbona)",0.7287429888298956,0.6698156798209156,0.7738116383787446
+MADation ViT-B/16 release,0.1,"full-frame pools, inter-eye distance >= 100 px",0.42661010218415013,0.3628658299952076,0.5328397573002555
+MADation ViT-L/14 release,0.05,unprocessed FRLL photos (all 204),0.3929354546880277,0.2760466775759901,0.5160198412184053
+MADation ViT-L/14 release,0.05,"every history-matched pool (Part A gated set, with devbona)",0.6607391050799996,0.6248191597093737,0.7044048183551355
+MADation ViT-L/14 release,0.05,"full-frame pools, inter-eye distance >= 100 px",0.49238657936851715,0.4325376501232325,0.5744554732882559
+MADation ViT-L/14 release,0.1,unprocessed FRLL photos (all 204),0.26644937190695034,0.18974011786833075,0.3679994547961536
+MADation ViT-L/14 release,0.1,"every history-matched pool (Part A gated set, with devbona)",0.6281632390550765,0.59008593510844,0.6601527539422861
+MADation ViT-L/14 release,0.1,"full-frame pools, inter-eye distance >= 100 px",0.43149450378365506,0.3603420405857619,0.5043197339445482
+MADation FE ViT-B/16 release,0.05,unprocessed FRLL photos (all 204),0.5924184605523576,0.47846723312624706,0.6753890363444215
+MADation FE ViT-B/16 release,0.05,"every history-matched pool (Part A gated set, with devbona)",0.9912698373007504,0.9768437021949521,0.9973596339461168
+MADation FE ViT-B/16 release,0.05,"full-frame pools, inter-eye distance >= 100 px",0.8147432826042378,0.7481336714388974,0.8772583995743847
+MADation FE ViT-B/16 release,0.1,unprocessed FRLL photos (all 204),0.5026523008517669,0.40608329004916466,0.5958086062283797
+MADation FE ViT-B/16 release,0.1,"every history-matched pool (Part A gated set, with devbona)",0.9719348096290773,0.9558953292461593,0.9882979320049876
+MADation FE ViT-B/16 release,0.1,"full-frame pools, inter-eye distance >= 100 px",0.7702828157354196,0.6621852097590329,0.8302020301138978
+MADation FE ViT-L/14 release,0.05,unprocessed FRLL photos (all 204),0.3060494243105981,0.22153206562486913,0.39079836575602767
+MADation FE ViT-L/14 release,0.05,"every history-matched pool (Part A gated set, with devbona)",0.8246714166580581,0.7626296021297685,0.8871076099158511
+MADation FE ViT-L/14 release,0.05,"full-frame pools, inter-eye distance >= 100 px",0.35509166112143825,0.2615276345607912,0.4298563343620885
+MADation FE ViT-L/14 release,0.1,unprocessed FRLL photos (all 204),0.22794112071581354,0.147565011962188,0.30239546845026466
+MADation FE ViT-L/14 release,0.1,"every history-matched pool (Part A gated set, with devbona)",0.751377755704106,0.6728681886481543,0.8201191203319199
+MADation FE ViT-L/14 release,0.1,"full-frame pools, inter-eye distance >= 100 px",0.2599146626432357,0.1775285391799796,0.35170831515428036
+MADation FS ViT-B/16 release,0.05,unprocessed FRLL photos (all 204),0.4509710731209385,0.30421057673555696,0.8081104602929917
+MADation FS ViT-B/16 release,0.05,"every history-matched pool (Part A gated set, with devbona)",0.8884907086922996,0.8478425098832517,0.9166986844475417
+MADation FS ViT-B/16 release,0.05,"full-frame pools, inter-eye distance >= 100 px",0.8158361426400372,0.775849035988392,0.8581538166405545
+MADation FS ViT-B/16 release,0.1,unprocessed FRLL photos (all 204),0.31178857192536086,0.2340535714762392,0.4302872021490292
+MADation FS ViT-B/16 release,0.1,"every history-matched pool (Part A gated set, with devbona)",0.8515479335067764,0.817476023942874,0.8826378598935181
+MADation FS ViT-B/16 release,0.1,"full-frame pools, inter-eye distance >= 100 px",0.7891230439289832,0.7130866800338949,0.8218005846704743
+MADation FS ViT-L/14 release,0.05,unprocessed FRLL photos (all 204),0.9418181469547635,0.8774350938434808,0.9824137725491296
+MADation FS ViT-L/14 release,0.05,"every history-matched pool (Part A gated set, with devbona)",0.9643826093544886,0.944154005790854,0.992189497286311
+MADation FS ViT-L/14 release,0.05,"full-frame pools, inter-eye distance >= 100 px",0.9643826093544886,0.8900138149749788,0.9867701820915198
+MADation FS ViT-L/14 release,0.1,unprocessed FRLL photos (all 204),0.8679236461404983,0.8120652439125544,0.9327522825659018
+MADation FS ViT-L/14 release,0.1,"every history-matched pool (Part A gated set, with devbona)",0.8927215950858041,0.8652558892443214,0.9576082999287974
+MADation FS ViT-L/14 release,0.1,"full-frame pools, inter-eye distance >= 100 px",0.8760086534399086,0.8305996309850348,0.956216423143119
+MADation ViT-B/16 dnorm (diagnostic variant),0.05,unprocessed FRLL photos (all 204),0.3267417682482563,0.2556430383634401,0.4021902555020252
+MADation ViT-B/16 dnorm (diagnostic variant),0.05,"every history-matched pool (Part A gated set, with devbona)",0.7094695654103177,0.64039120279688,0.7770713083289638
+MADation ViT-B/16 dnorm (diagnostic variant),0.05,"full-frame pools, inter-eye distance >= 100 px",0.37596777906420004,0.30103894191982455,0.44810115657551053
+MADation ViT-B/16 dnorm (diagnostic variant),0.1,unprocessed FRLL photos (all 204),0.3012733385819007,0.2259352209852864,0.3618669658125709
+MADation ViT-B/16 dnorm (diagnostic variant),0.1,"every history-matched pool (Part A gated set, with devbona)",0.6457966364809827,0.5574114226175265,0.7165139197894272
+MADation ViT-B/16 dnorm (diagnostic variant),0.1,"full-frame pools, inter-eye distance >= 100 px",0.33220343584545686,0.26544940118162474,0.4027235597472368
+MADation ViT-B/16 dscale (diagnostic variant),0.05,unprocessed FRLL photos (all 204),0.40194965623567214,0.2824436566602021,0.4873846193374585
+MADation ViT-B/16 dscale (diagnostic variant),0.05,"every history-matched pool (Part A gated set, with devbona)",0.8077036434225983,0.7432894608729681,0.8771308611803338
+MADation ViT-B/16 dscale (diagnostic variant),0.05,"full-frame pools, inter-eye distance >= 100 px",0.5693908673745912,0.4495477071318464,0.6317880104558385
+MADation ViT-B/16 dscale (diagnostic variant),0.1,unprocessed FRLL photos (all 204),0.27868934077257074,0.225407040675663,0.38126672662175853
+MADation ViT-B/16 dscale (diagnostic variant),0.1,"every history-matched pool (Part A gated set, with devbona)",0.7562874589814382,0.6686973268335185,0.8274049578739566
+MADation ViT-B/16 dscale (diagnostic variant),0.1,"full-frame pools, inter-eye distance >= 100 px",0.4442175465691074,0.3661925046812613,0.5236863571594318
+"SelfMAD release, our pipeline",0.05,unprocessed FRLL photos (all 204),0.32446818276835865,0.2474930796105282,0.44645139140165924
+"SelfMAD release, our pipeline",0.05,"every history-matched pool (Part A gated set, with devbona)",0.9277034700970872,0.9081257948423989,0.9468602124301496
+"SelfMAD release, our pipeline",0.05,"full-frame pools, inter-eye distance >= 100 px",0.8374907609805881,0.8008231297943597,0.8696499705094811
+"SelfMAD release, our pipeline",0.1,unprocessed FRLL photos (all 204),0.2347325375615411,0.18612464751326308,0.31503826146908587
+"SelfMAD release, our pipeline",0.1,"every history-matched pool (Part A gated set, with devbona)",0.88910214588938,0.8685308792961997,0.910260878521798
+"SelfMAD release, our pipeline",0.1,"full-frame pools, inter-eye distance >= 100 px",0.7967365888132716,0.751031377586296,0.8358432898540722
+"MixFaceNet-MAD release, our frames",0.05,unprocessed FRLL photos (all 204),0.8594195270420273,0.8130626629587928,0.9187667837630195
+"MixFaceNet-MAD release, our frames",0.05,"every history-matched pool (Part A gated set, with devbona)",0.9876050684667707,0.9793072017737146,0.997784603446714
+"MixFaceNet-MAD release, our frames",0.05,"full-frame pools, inter-eye distance >= 100 px",0.9542462379569999,0.9265290518488966,0.9746698471613624
+"MixFaceNet-MAD release, our frames",0.1,unprocessed FRLL photos (all 204),0.8201436067085068,0.7489278614925746,0.8738029050565232
+"MixFaceNet-MAD release, our frames",0.1,"every history-matched pool (Part A gated set, with devbona)",0.9768619125746785,0.961236155842633,0.9895151656282096
+"MixFaceNet-MAD release, our frames",0.1,"full-frame pools, inter-eye distance >= 100 px",0.9303712244153978,0.8850664230440135,0.9547571509721807
+"SelfMAD release, own preprocessing",0.05,unprocessed FRLL photos (all 204),0.08177068028533908,0.03823386406181523,0.2809962557832528
+"SelfMAD release, own preprocessing",0.05,"every history-matched pool (Part A gated set, with devbona)",0.8677615257683123,0.8373080848131638,0.9008146358911804
+"SelfMAD release, own preprocessing",0.05,"full-frame pools, inter-eye distance >= 100 px",0.8677615257683123,0.8366325127971274,0.9008146358911804
+"SelfMAD release, own preprocessing",0.1,unprocessed FRLL photos (all 204),0.03893597801552008,0.018840069555455488,0.07256177990122506
+"SelfMAD release, own preprocessing",0.1,"every history-matched pool (Part A gated set, with devbona)",0.8428068317883063,0.7994829979360538,0.8702489663122404
+"SelfMAD release, own preprocessing",0.1,"full-frame pools, inter-eye distance >= 100 px",0.8428068317883063,0.7878984075130039,0.8702489663122404

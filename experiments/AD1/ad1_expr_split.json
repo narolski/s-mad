@@ -1,0 +1,130 @@
+{
+ "MADation ViT-B/16 release": {
+  "main B20 vs D20, neutral only (expression-matched)": [
+   0.444,
+   0.312,
+   0.58
+  ],
+  "R3->R4 B20 neutral vs C20 (all)": [
+   0.646,
+   0.536,
+   0.756
+  ],
+  "R2->R3 C20 vs D20 neutral": [
+   0.299,
+   0.24,
+   0.358
+  ],
+  "main B20 vs D20, smiling only (expression-matched)": [
+   0.51,
+   0.394,
+   0.625
+  ],
+  "R3->R4 B20 smiling vs C20 (all)": [
+   0.765,
+   0.674,
+   0.844
+  ],
+  "R2->R3 C20 vs D20 smiling": [
+   0.233,
+   0.186,
+   0.28
+  ]
+ },
+ "MADation ViT-L/14 release": {
+  "main B20 vs D20, neutral only (expression-matched)": [
+   0.475,
+   0.343,
+   0.606
+  ],
+  "R3->R4 B20 neutral vs C20 (all)": [
+   0.523,
+   0.383,
+   0.661
+  ],
+  "R2->R3 C20 vs D20 neutral": [
+   0.451,
+   0.397,
+   0.506
+  ],
+  "main B20 vs D20, smiling only (expression-matched)": [
+   0.495,
+   0.378,
+   0.612
+  ],
+  "R3->R4 B20 smiling vs C20 (all)": [
+   0.558,
+   0.424,
+   0.686
+  ],
+  "R2->R3 C20 vs D20 smiling": [
+   0.437,
+   0.387,
+   0.487
+  ]
+ },
+ "SelfMAD release, own preprocessing": {
+  "main B20 vs D20, neutral only (expression-matched)": [
+   0.408,
+   0.307,
+   0.519
+  ],
+  "R3->R4 B20 neutral vs C20 (all)": [
+   0.259,
+   0.181,
+   0.34
+  ],
+  "R2->R3 C20 vs D20 neutral": [
+   0.677,
+   0.626,
+   0.73
+  ],
+  "main B20 vs D20, smiling only (expression-matched)": [
+   0.398,
+   0.295,
+   0.505
+  ],
+  "R3->R4 B20 smiling vs C20 (all)": [
+   0.246,
+   0.163,
+   0.337
+  ],
+  "R2->R3 C20 vs D20 smiling": [
+   0.678,
+   0.627,
+   0.731
+  ]
+ },
+ "SelfMAD release, our pipeline": {
+  "main B20 vs D20, neutral only (expression-matched)": [
+   0.462,
+   0.349,
+   0.575
+  ],
+  "R3->R4 B20 neutral vs C20 (all)": [
+   0.273,
+   0.194,
+   0.359
+  ],
+  "R2->R3 C20 vs D20 neutral": [
+   0.7,
+   0.65,
+   0.751
+  ],
+  "main B20 vs D20, smiling only (expression-matched)": [
+   0.459,
+   0.345,
+   0.575
+  ],
+  "R3->R4 B20 smiling vs C20 (all)": [
+   0.306,
+   0.202,
+   0.419
+  ],
+  "R2->R3 C20 vs D20 smiling": [
+   0.666,
+   0.618,
+   0.716
+  ]
+ }
+}

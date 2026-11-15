@@ -1,0 +1,142 @@
+{
+ "n_pos": 100,
+ "n_neg": 100,
+ "n_components": 100,
+ "n_folds": 5,
+ "insample_best_single": 0.6749,
+ "insample_best_single_stat": "F27:b2_.063-.125",
+ "insample_best_single_f27": 0.6749,
+ "insample_best_single_f27_stat": "F27:b2_.063-.125",
+ "single": {
+  "auc": 0.67345,
+  "eer": 0.375,
+  "ci": [
+   0.6316975,
+   0.71925875
+  ],
+  "chosen_per_fold": [
+   "-F27:b2_.063-.125",
+   "-F27:b2_.063-.125",
+   "-F27:b2_.063-.125",
+   "-F27:b2_.063-.125",
+   "-F27:b2_.063-.125"
+  ]
+ },
+ "logreg": {
+  "auc": 0.82,
+  "eer": 0.25,
+  "ci": [
+   0.7744924999999999,
+   0.8655025000000001
+  ]
+ },
+ "gbt": {
+  "auc": 0.7159,
+  "eer": 0.31,
+  "ci": [
+   0.6509,
+   0.7800025
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.801,
+  "ci": [
+   0.7507975,
+   0.84951
+  ]
+ },
+ "floor": {
+  "model": "logreg",
+  "auc": 0.82,
+  "eer": 0.25,
+  "ci": [
+   0.7744924999999999,
+   0.8655025000000001
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.7025,
+   "logreg": 0.801
+  },
+  "BORDER": {
+   "gbt": 0.50845,
+   "logreg": 0.49495
+  },
+  "RES": {
+   "gbt": 0.66115,
+   "logreg": 0.724
+  },
+  "STORE": {
+   "gbt": 0.5018,
+   "logreg": 0.5485
+  },
+  "RENDER": {
+   "gbt": 0.5123,
+   "logreg": 0.5494
+  },
+  "BLEND": {
+   "gbt": 0.573,
+   "logreg": 0.7178
+  }
+ },
+ "carrying_family": "F27",
+ "leave_family_out": {
+  "F27": 0.7538,
+  "BORDER": 0.8126,
+  "RES": 0.8218,
+  "STORE": 0.8175,
+  "RENDER": 0.8081,
+  "BLEND": 0.8182
+ },
+ "contrast": "dev_S4_vs_S3",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "logreg",
+  "auc": 0.814,
+  "eer": 0.25,
+  "ci": [
+   0.76629,
+   0.8598049999999999
+  ]
+ },
+ "nuisance_floor": {
+  "model": "logreg",
+  "auc": 0.7388,
+  "eer": 0.3,
+  "ci": [
+   0.6823825,
+   0.7951025
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "within_D_quintiles": {
+  "n_rows": 200,
+  "D": "D",
+  "single": 0.6515025041736227,
+  "coverage": 0.6,
+  "logreg": 0.7854757929883138,
+  "gbt": 0.7003338898163606,
+  "pure_D_reference": 0.5659432387312187
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "splice",
+   "role": "dev",
+   "rung": "S4"
+  },
+  "negative": {
+   "fam": "splice",
+   "role": "dev",
+   "rung": "S3"
+  },
+  "note": "SA1 row 8"
+ }
+}

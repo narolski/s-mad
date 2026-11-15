@@ -1,0 +1,46 @@
+{
+  "status": "BOUND",
+  "experiment": "SPRINT5_2",
+  "seeds": [
+    531,
+    532,
+    533,
+    534,
+    535
+  ],
+  "arms": [
+    "matched",
+    "self"
+  ],
+  "conditioning": "oneAB1Sb408warmstart; smoke531 does not count as scientificfit",
+  "protected": [
+    413,
+    414,
+    415,
+    416,
+    417
+  ],
+  "other_active_blocks": {
+    "SPRINT5_1": [
+      501,
+      502,
+      503,
+      504,
+      505
+    ],
+    "SPRINT5_4": [
+      511,
+      512,
+      513,
+      514,
+      515
+    ],
+    "SPRINT5_3": [
+      521,
+      522,
+      523,
+      524,
+      525
+    ]
+  }
+}

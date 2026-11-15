@@ -1,0 +1,35 @@
+test_caps (test_collector_v2.CollectorTests.test_caps) ... ok
+test_duplicates_unknown_nested (test_collector_v2.CollectorTests.test_duplicates_unknown_nested) ... ok
+test_hash_missing_and_truncated (test_collector_v2.CollectorTests.test_hash_missing_and_truncated) ... ok
+test_json_type_encoding_and_syntax (test_collector_v2.CollectorTests.test_json_type_encoding_and_syntax) ... ok
+test_loss_nonfinite_and_ambiguous (test_collector_v2.CollectorTests.test_loss_nonfinite_and_ambiguous) ... ok
+test_mixed_txt_canaries (test_collector_v2.CollectorTests.test_mixed_txt_canaries) ... ok
+test_no_npz_access (test_collector_v2.CollectorTests.test_no_npz_access) ... ok
+test_release_required_before_archive_access (test_collector_v2.CollectorTests.test_release_required_before_archive_access) ... ok
+test_sanitized_failures (test_collector_v2.CollectorTests.test_sanitized_failures) ... ok
+test_selective_canaries (test_collector_v2.CollectorTests.test_selective_canaries) ... ok
+test_source_import_boundary (test_collector_v2.CollectorTests.test_source_import_boundary) ... ok
+test_status_failures_retained (test_collector_v2.CollectorTests.test_status_failures_retained) ... ok
+test_tar_safety (test_collector_v2.CollectorTests.test_tar_safety) ... ok
+test_unselected_scalar_not_decoded (test_collector_v2.CollectorTests.test_unselected_scalar_not_decoded) ... ok
+test_missing_batch_proof_is_unknown (test_predicates_v2.PredicatesTests.test_missing_batch_proof_is_unknown) ... ok
+test_missing_status_and_nonfinite_no_global_eligibility (test_predicates_v2.PredicatesTests.test_missing_status_and_nonfinite_no_global_eligibility) ... ok
+test_original_loss_cases (test_predicates_v2.PredicatesTests.test_original_loss_cases) ... ok
+test_python_numeric_vs_literal_boolean (test_predicates_v2.PredicatesTests.test_python_numeric_vs_literal_boolean) ... ok
+test_res512_string_not_truthiness (test_predicates_v2.PredicatesTests.test_res512_string_not_truthiness) ... ok
+test_rz_substring_vs_strict (test_predicates_v2.PredicatesTests.test_rz_substring_vs_strict) ... ok
+test_supplement_full_tuple_and_literal_family_flags (test_predicates_v2.PredicatesTests.test_supplement_full_tuple_and_literal_family_flags) ... ok
+test_technical_info_selective_export (test_predicates_v2.PredicatesTests.test_technical_info_selective_export) ... ok
+test_w2_native_and_integrity (test_predicates_v2.PredicatesTests.test_w2_native_and_integrity) ... ok
+test_counter_int_raw_semantics (test_source_equivalence_v2r1.SourceEquivalence.test_counter_int_raw_semantics) ... ok
+test_env_gpu_guard_types_substrings (test_source_equivalence_v2r1.SourceEquivalence.test_env_gpu_guard_types_substrings) ... ok
+test_every_native_fit_recipe_token_against_source (test_source_equivalence_v2r1.SourceEquivalence.test_every_native_fit_recipe_token_against_source) ... ok
+test_every_refit_raw_substring (test_source_equivalence_v2r1.SourceEquivalence.test_every_refit_raw_substring) ... ok
+test_every_rz_recipe_fragment_against_source (test_source_equivalence_v2r1.SourceEquivalence.test_every_rz_recipe_fragment_against_source) ... ok
+test_exact_loss_reference_both_native_branches (test_source_equivalence_v2r1.SourceEquivalence.test_exact_loss_reference_both_native_branches) ... ok
+test_numeric_equality_and_boolean_source_families (test_source_equivalence_v2r1.SourceEquivalence.test_numeric_equality_and_boolean_source_families) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.057s
+
+OK

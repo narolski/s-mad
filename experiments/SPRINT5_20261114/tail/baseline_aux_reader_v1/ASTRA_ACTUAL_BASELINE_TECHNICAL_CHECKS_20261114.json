@@ -1,0 +1,23 @@
+{
+  "status": "PASS_ACTUAL_TECHNICAL_RECEIPT_AND_SAME_BASELINE_GATE_CHAIN",
+  "receipt_sha256": "619b555568d131d7c4681bfeb2d50f5225e241b1edeab3737b07e28973e3f4ae",
+  "technical_release_sha256": "1aba530e4e80fc4b40a31b84bdab8481efc6f6ed492766216661fc6d6414bad0",
+  "input_admission_sha256": "1018fce769719e45fdc627e0fbcecbba28329915b4a9e55b8513000359150992",
+  "source_manifest_sha256": "692b0cde2e47fc62133fca3f58a4f4d4ff6c7357d0096d6e93b2ee4b6f30054a",
+  "binding_sha256": "4b5861f8b506c68b73cef8bf4d95b4093a9822971a8d85728fe370c9d36c5ae4",
+  "gate_chain_sha256": "db2c3b714bff37908f494013f0ab9ceeb804682a5a2cd77b764e6240eee723a8",
+  "member_sha256": "83e3bf359ea39e5b373c453d578c610a7798041efa0d345e7fbf5fc710523a25",
+  "member_bytes": 3150518,
+  "runtime": {
+    "torch": "2.11.0+cu128",
+    "device": "NVIDIA H100",
+    "common_py_sha256": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+    "precision": "Source-pinned scorer uses float32/eval/noautocast and explicitly enables TF32; not inferred from fresh env-process defaults"
+  },
+  "source_commit_match": "45a62dba67bebbffe704b46b363d571fda119be1",
+  "actual_require_committed": "PASS",
+  "input_pins": 604,
+  "auxiliary_once_output_absent": true,
+  "archive_member_npz_score_access": false,
+  "schema_ID_finite": "UNKNOWN_UNTIL_AUXILIARY_CLAIM"
+}

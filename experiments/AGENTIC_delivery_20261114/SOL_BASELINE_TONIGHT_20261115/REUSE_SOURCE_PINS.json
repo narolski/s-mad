@@ -1,0 +1,13 @@
+{
+  "src/AD5/score/ad5_score_athena.py": "d578344120799f7a09a535ca2b553a0268f5501e448c9022edf9789bebf1ff2a",
+  "src/AD5/score/ad5_score_dgx.py": "bb2129c7bc89185887f4d3d78227d6c528bdea2e5ded68a18cf2c56f7e4d954e",
+  "src/AD5/score/convert_selfmad.py": "743433e5a5194e75e4d6e6c5ab1ecf1aac6399be224fd099b8d1a87a3f6c0acf",
+  "src/AD5/athena/ad5_score_rel.sbatch": "4bc7b896f786deed9c24fd71b923df0be4e5555fb18e5c2e560f995b0a42e7e0",
+  "src/AD5/score/run_selfmad_dgx.sh": "5f57dc545be02a6cd554656907c9b3a3996e7b90267868997b3c95c9302047a2",
+  "src/RS1/score.py": "56bb124444980f630d676758d25aaefe5b3485874c8aea174e0bd74d3c597cc8",
+  "src/RS1/ar1_common.py": "42806acb43b0c8d5c6876622dc5cfd5377c6bac3a38cda250824606fb7d407ab",
+  "src/AD5/athena/ad5_madation_train.sbatch": "d798540161918144a560aea5c6ecfebe0c1e9b6e7875123983bda5de8331a8fc",
+  "src/AD5/wcss/ad5w_train.sbatch": "32abe90db8b43ce3390db164fa3302e859e3dd308e47b5d19bb3097a6d438edb",
+  "src/AD5/wcss/ad5w_selfmad.sbatch": "6c16511fd308ed1e2ed038b000c923b8787ca77ef1c8d312bd3e87a72bb568b0",
+  "experiments/AD5_retrains-of-released-methods/prereg.md": "6316790fe09ad6b6da1c1781f2b9630f5d7fe2ae197b3993e1f6123adcc2ad47"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "SPRINT5_3",
+  "decision": "GO_SMOKE",
+  "seeds": [
+    521,
+    522,
+    523,
+    524,
+    525
+  ],
+  "fresh_seed_allocation_pass": true,
+  "author": "sol_sprint_experiments",
+  "reviewer": "root",
+  "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+  "independent_review_path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/SPRINT5_3_v1/PRERUN_ROOT_PILOT_SMOKE.md",
+  "independent_review_sha256": "4b00f6e207dd23d8fa6245d3c9927c19c55e0f4cb457973d4ae7f71495cd5f52",
+  "baseline_archive_path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SPRINT5_3/SPRINT5_3_TRAIN_BASELINE_AB1Sb408_v1.tar",
+  "baseline_archive_sha256": "dfa98a01f4273d6b1161ffd1321865adbff8d2fd445eafdcb1cc80e1835c1d62"
+}

@@ -1,0 +1,26 @@
+{
+  "package_files_verified": 13,
+  "source_input_pins_verified": 83,
+  "archives_retained": 77,
+  "networks": 75,
+  "supplements": 2,
+  "seed_denominator": 5,
+  "BB2_submitted_batch_unknown": 15,
+  "SbMR512_technical_descriptors": 5,
+  "unit_tests_passed": 23,
+  "synthetic_canary_archives_passed": 154,
+  "additional_differential_failures": [
+    {
+      "mutation": "append suffix to RZ1 fit pack_sha256 value",
+      "original_native_recipe": true,
+      "collector_native_failed_predicate": "recipe.pack_sha256"
+    },
+    {
+      "mutation": "append suffix to final RZ1 fit skip_tt1 0",
+      "original_native_recipe": true,
+      "collector_native_failed_predicate": "recipe.skip_tt1"
+    }
+  ],
+  "actual_archive_access": false,
+  "verdict": "HOLD_SOURCE_SEMANTICS_CORRECTION_REQUIRED"
+}

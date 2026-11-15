@@ -1,0 +1,24 @@
+test_conditional_interval_counts_not_success_gate (__main__.DescriptiveStatistics.test_conditional_interval_counts_not_success_gate) ... ok
+test_mean_auc_not_score_fusion_and_no_armwise_seed_resampling (__main__.DescriptiveStatistics.test_mean_auc_not_score_fusion_and_no_armwise_seed_resampling) ... ok
+test_positive_and_negative_descriptive_controls (__main__.DescriptiveStatistics.test_positive_and_negative_descriptive_controls) ... ok
+test_reader_averages_network_statistics_not_logits (__main__.DescriptiveStatistics.test_reader_averages_network_statistics_not_logits) ... ok
+test_registered_rng_and_draw_order_matches_direct_frozen_sampler (__main__.DescriptiveStatistics.test_registered_rng_and_draw_order_matches_direct_frozen_sampler) ... ok
+test_sparse_or_degenerate_no_false_precision (__main__.DescriptiveStatistics.test_sparse_or_degenerate_no_false_precision) ... ok
+test_structural_undefined_draws_retained (__main__.DescriptiveStatistics.test_structural_undefined_draws_retained) ... ok
+test_switching_floor_maximum_uses_frozen_statistic (__main__.DescriptiveStatistics.test_switching_floor_maximum_uses_frozen_statistic) ... ok
+test_exact10roster_not15 (__main__.MetadataAdmission.test_exact10roster_not15) ... ok
+test_exact_exposure_and_row_identity (__main__.MetadataAdmission.test_exact_exposure_and_row_identity) ... ok
+test_primary_only_member_allowlist (__main__.MetadataAdmission.test_primary_only_member_allowlist) ... ok
+test_protocol_source_seed_manifest_platform_rejections (__main__.MetadataAdmission.test_protocol_source_seed_manifest_platform_rejections) ... ok
+test_release_review_binding_source_and_roster_pins (__main__.MetadataAdmission.test_release_review_binding_source_and_roster_pins) ... ok
+test_tolerance_partial_or_nonfinite_battery_rejected (__main__.MetadataAdmission.test_tolerance_partial_or_nonfinite_battery_rejected) ... ok
+test_admit_only_never_reaches_payload_or_journal (__main__.PayloadAndJournal.test_admit_only_never_reaches_payload_or_journal) ... ok
+test_collector_accepts_only_metadata_not_fake_weight_or_npz (__main__.PayloadAndJournal.test_collector_accepts_only_metadata_not_fake_weight_or_npz) ... ok
+test_only_primary_returned_extreme_historical_camera_sentinels_ignored (__main__.PayloadAndJournal.test_only_primary_returned_extreme_historical_camera_sentinels_ignored) ... ok
+test_permanent_claim_failure_and_no_overwrite (__main__.PayloadAndJournal.test_permanent_claim_failure_and_no_overwrite) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.386s
+
+OK
+BREADTH10METADATA_AND_INPUTS_ADMITTED; no payload/claim/camera access

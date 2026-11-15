@@ -1,0 +1,137 @@
+{
+ "n_pos": 100,
+ "n_neg": 100,
+ "n_components": 100,
+ "n_folds": 5,
+ "insample_best_single": 0.9167,
+ "insample_best_single_stat": "F27:b3_.125-.25",
+ "insample_best_single_f27": 0.9167,
+ "insample_best_single_f27_stat": "F27:b3_.125-.25",
+ "single": {
+  "auc": 0.9141,
+  "eer": 0.14500000000000002,
+  "ci": [
+   0.8703474999999999,
+   0.9531
+  ],
+  "chosen_per_fold": [
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25",
+   "-F27:b3_.125-.25"
+  ]
+ },
+ "logreg": {
+  "auc": 0.9576,
+  "eer": 0.06,
+  "ci": [
+   0.9272975,
+   0.9846
+  ]
+ },
+ "gbt": {
+  "auc": 0.9855,
+  "eer": 0.06,
+  "ci": [
+   0.9721974999999999,
+   0.9954
+  ]
+ },
+ "logreg_f27": {
+  "auc": 0.9386,
+  "ci": [
+   0.9021925,
+   0.9715025
+  ]
+ },
+ "floor": {
+  "model": "gbt",
+  "auc": 0.9855,
+  "eer": 0.06,
+  "ci": [
+   0.9721974999999999,
+   0.9954
+  ]
+ },
+ "family_alone": {
+  "F27": {
+   "gbt": 0.9348,
+   "logreg": 0.9386
+  },
+  "BORDER": {
+   "gbt": 0.523,
+   "logreg": 0.5503
+  },
+  "RES": {
+   "gbt": 0.84145,
+   "logreg": 0.8936
+  },
+  "STORE": {
+   "gbt": 0.8208,
+   "logreg": 0.8095
+  },
+  "RENDER": {
+   "gbt": 0.9565,
+   "logreg": 0.9064
+  },
+  "BLEND": {
+   "gbt": 0.9183,
+   "logreg": 0.8943
+  }
+ },
+ "carrying_family": "RENDER",
+ "leave_family_out": {
+  "F27": 0.9654,
+  "BORDER": 0.9855,
+  "RES": 0.9856,
+  "STORE": 0.9832,
+  "RENDER": 0.9582,
+  "BLEND": 0.9835
+ },
+ "contrast": "dev_cv_R4_vs_R2w",
+ "kind": "floor",
+ "label": "after the frozen candidate's read; features designed with Sb's landmark_combined value known",
+ "pixel_only_floor": {
+  "model": "gbt",
+  "auc": 0.9855,
+  "eer": 0.07,
+  "ci": [
+   0.9720975,
+   0.9952
+  ]
+ },
+ "nuisance_floor": {
+  "model": "gbt",
+  "auc": 0.964,
+  "eer": 0.1,
+  "ci": [
+   0.939585,
+   0.984
+  ],
+  "families": [
+   "BORDER:",
+   "RES:",
+   "STORE:",
+   "RENDER:"
+  ]
+ },
+ "definition": {
+  "manifest": "AB1X",
+  "positive": {
+   "fam": "ladder",
+   "strength": "",
+   "role": "dev",
+   "rung": "R4",
+   "tool": "opencv"
+  },
+  "negative": {
+   "fam": "ladder",
+   "strength": "",
+   "role": "dev",
+   "rung": "R2w",
+   "tool": "opencv"
+  },
+  "note": "SbFM printed; SA1 row 6"
+ }
+}
