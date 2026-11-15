@@ -1,0 +1,29 @@
+{
+  "issued_by": "root",
+  "author": "shortcut_visual_examples",
+  "reviewer": "sol_manuscript_review",
+  "independent_review_path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SOL_TONIGHT_REVIEWS_20261115/VIS3_V2R1_SOURCE_DELTA_REVIEW_20261115.md",
+  "independent_review_sha256": "c0234ae3a23ba3ebad00d317e1d9cd32ce8846a20d89e5863da9d571b1bebe22",
+  "inventory_sha256": "d67d18e3193887ea085e9cd7be95054bb2bb946fde655e9d5e158a8f2ae4aecf",
+  "prereg_sha256": "636428eb3a2db72f287ee8eadbb2fd54f2dcd1606d93e309d15b0d9d9aa88e57",
+  "source_manifest_sha256": "4aa997c961f65487d7cf46fd9a9629760adf643c2cb04411a8f8ea4945b666c5",
+  "source_commit": "2e6bb23d2b8242db1375dedb651a4f21ad8ae600",
+  "private_noncommercial_only": true,
+  "publication_allowed": false,
+  "render_allowed": false,
+  "phase": "smoke",
+  "decision": "GO_VIS3_PRIVATE_NUMERIC_SMOKE",
+  "source_pixel_export_allowed": false,
+  "models": [
+    "selfmad_hrnet_w18",
+    "A",
+    "B"
+  ],
+  "new_derived_image_numeric_allowed": true,
+  "original_four_anchor_inference_allowed": true,
+  "construction_receipt_path": "/mnt/t7/smad_next/VIS3/20261115/v2r1/constructed/CONSTRUCTION_RECEIPT.json",
+  "construction_receipt_sha256": "27fb7fbf4a4df542dbe5f5abeb6114bd7e8529d9c2ea7780c1dca5cc44cd8731",
+  "constructed_input_admission_path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SOL_TONIGHT_REVIEWS_20261115/VIS3_V2R1_ACTUAL_INPUT_ADMISSION_20261115.json",
+  "constructed_input_admission_sha256": "a83ed75db4a60ce30973e533eb49c7c451efe1decaef72f59ef364850e793026",
+  "derivative_roster_sha256": "ef50ff6893e01aed01a39cc55cc8b550fe22a846a9e299480f927b7685916365"
+}
