@@ -11,21 +11,22 @@ We introduce controls that retain different parts of this construction. A warp-o
 % Sources: PR1/result.md, GD1/GD2; XF1/result.md; AB1/prereg.md amendment 4.
 \begin{table}[t]
 \centering
-\small
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{p{.43\linewidth}p{.49\linewidth}}
+\renewcommand{\arraystretch}{1.15}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Complementary controls. Passing one comparison does not establish invariance to the others or prove identity-specific detection.}
+\label{tab:control-design}
+\begin{tabular}{>{\raggedright\arraybackslash}p{.38\linewidth} >{\raggedright\arraybackslash}p{.56\linewidth}}
 \toprule
 Comparison & Question addressed \\
 \midrule
-Processed vs original photograph & Can processing alone alter a decision? \\
-One-photo render vs camera image & Is the rendering path sufficient? \\
-Blend vs matched warp-only image & Does blending add a detectable signal beyond warping? \\
-Two-person vs same-person morph & Does ranking persist when both sides combine photographs? \\
-Two-person vs same-person splice & Does training distinguish matched local manipulations? \\
+Processed vs.\ original photograph & Can processing alone alter a decision? \\
+One-photo render vs.\ camera image & Is the rendering path sufficient? \\
+Blend vs.\ matched warp-only image & Does blending add a detectable signal beyond warping? \\
+Two-person vs.\ same-person morph & Does ranking persist when both sides combine photographs? \\
+Two-person vs.\ same-person splice & Does training distinguish matched local manipulations? \\
 \bottomrule
 \end{tabular}
-\caption{Complementary controls. Passing one comparison does not establish invariance to the others or prove identity-specific detection.}
-\label{tab:control-design}
 \end{table}
 
 \subsection{Matched constructions and regional controls}
