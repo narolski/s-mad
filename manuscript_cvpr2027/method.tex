@@ -1,7 +1,7 @@
 \section{Controlled Evaluation of Morph Detection}
 \label{sec:controls}
 
-We ask which transformations activate a detector, and whether discrimination persists when negatives undergo comparable construction. A \emph{control} removes a proposed explanation from a comparison; it need not be an unmodified bona fide photograph.
+A detector can separate benchmark morphs from genuine photographs without identifying the property that motivates the task: contributions from different people. Our framework therefore asks two questions separately: which image transformations are sufficient to activate a detector, and whether discrimination persists when the negative example undergoes a comparable construction process. We use the term \emph{control} for an image that removes a proposed explanation from a comparison. It does not imply that every control is an unmodified bona fide photograph.
 
 \subsection{Image processing and identity mixing}
 Let $x_i$ denote a photograph of person $i$, and let $x'_i$ be a different photograph of the same person. Write $M_e(x_i,x_j)$ for an image produced by morphing engine $e$, and $P_h(x)$ for an image with processing history $h$. A conventional comparison separates $M_e(x_i,x_j)$, $i\ne j$, from $x_i$. Its class difference includes identity mixing, geometric warping, blending, rendering, storage and potentially the background. A high area under the ROC curve (AUC) on this comparison does not identify which of these differences the detector exploits.
@@ -9,7 +9,24 @@ Let $x_i$ denote a photograph of person $i$, and let $x'_i$ be a different photo
 We introduce controls that retain different parts of this construction. A warp-only control undergoes geometric transformation without combining two images. A same-person morph $M_e(x_i,x'_i)$ combines two photographs but not two identities. A one-photo reconstruction passes a single input through a generative rendering path. These comparisons narrow the interpretation of a score; none automatically isolates an identity mechanism. In particular, two photographs of one person still differ in expression, pose, illumination and texture, while blending can change local variance and noise independently of identity.
 
 % Sources: PR1/result.md, GD1/GD2; XF1/result.md; AB1/prereg.md amendment 4.
-
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{.43\linewidth}p{.49\linewidth}}
+\toprule
+Comparison & Question addressed \\
+\midrule
+Processed vs original photograph & Can processing alone alter a decision? \\
+One-photo render vs camera image & Is the rendering path sufficient? \\
+Blend vs matched warp-only image & Does blending add a detectable signal beyond warping? \\
+Two-person vs same-person morph & Does ranking persist when both sides combine photographs? \\
+Two-person vs same-person splice & Does training distinguish matched local manipulations? \\
+\bottomrule
+\end{tabular}
+\caption{Complementary controls. Passing one comparison does not establish invariance to the others or prove identity-specific detection.}
+\label{tab:control-design}
+\end{table}
 
 \subsection{Matched constructions and regional controls}
 Our landmark construction ladder includes camera photographs, warp-only images, same-person whole-frame morphs and two-person whole-frame morphs. The splice construction places a manipulated face region into a host frame. Its positive is a two-person face splice; its negatives include a seam-only construction and a same-person splice. These negatives retain parts of the insertion procedure while removing the intended two-person change. These examples make the mere presence of an insertion seam insufficient to reproduce the training labels; residual seam or blending differences remain possible cues.
@@ -21,7 +38,7 @@ The whole-frame two-person versus same-person analysis also stratifies by a spli
 \begin{equation}
 D(S,C)=\frac{1}{3|H|}\sum_{p\in H}\sum_{c=1}^{3}|S_{pc}-C_{pc}|.
 \end{equation}
-The proxy uses stored 512-pixel RGB values in $[0,255]$. Splices copy morph pixels into corresponding warp-only frames within the convex hull of averaged host/partner 106-point landmarks (integer coordinates), without added blur or resampling; outside pixels are unchanged. Seam-only controls insert same-person warp pixels into the two-person warp counterpart. Whole-frame morphs inherit their host's respective splice $D$: this is a proxy adjustment, not direct whole-frame blend-energy matching. Within each eligible stratum $q$, we compute an AUC $a_q$ and aggregate it as
+This mean absolute RGB difference is measured on stored 512-pixel images in the range $[0,255]$. The two-person splice copies whole-frame morph pixels into a warp-only image directed toward the two-person mean shape; the same-person splice copies same-person morph pixels into its corresponding warp-only image. Both use the convex hull of the averaged host and other-person 106-point landmarks, rounded to integer coordinates. Pixel copying introduces no additional blur or resampling. The seam-only construction instead inserts same-person warp-only pixels into the two-person warp-only counterpart. Each splice equals its counterpart outside the hull. For whole-frame observations, the two-person morph receives its host's two-person-splice $D$, and the same-person morph receives the same-person-splice $D$. Thus, this is a proxy adjustment, not direct matching of whole-frame blend energy. Within each eligible stratum $q$, we compute an AUC $a_q$ and aggregate it as
 \begin{equation}
  a_D=\frac{\sum_q n_q^+n_q^- a_q}{\sum_q n_q^+n_q^-},
 \end{equation}
@@ -29,7 +46,9 @@ where $n_q^+$ and $n_q^-$ count the two construction classes. The registered ana
 
 \subsection{Processing-only and statistic-based references}
 % Sources: reviews/REVIEW_AD4_CLUSTER_20261113.md; XF1/result.md; PR1/result.md.
-Morph-free shrink-and-enlarge supervision tests processing-cue sufficiency without morph or blending examples; benchmark success does not identify every detector's mechanism. Statistic learners fitted on the detector's training list and transferred to evaluation are distinguished from cross-fitted references trained within the evaluation distribution. The latter can establish predictive low-level differences but are not matched generalization competitors.
+To test whether processing can suffice without morph supervision, we evaluate networks trained to distinguish synthetic face images from their shrink-and-enlarge copies. Neither positive morph examples nor blending is needed for that training task. Success on a morph benchmark is therefore evidence that the benchmark admits a processing-based solution. It is not evidence that every detector implements the same decision rule.
+
+We additionally use hand-crafted image statistics and learned combinations of them as alternative explanations. Their scope depends on where they were fitted. A learner fitted on the detector's training list and transferred to common evaluation rows is distinct from a cross-fitted diagnostic trained within the evaluation distribution. The latter can demonstrate that local statistics are predictive, but is not a like-for-like generalization competitor to a network that never saw that distribution. We retain this distinction in the tables and conclusions.
 
 \section{Training with Matched Controls}
 \label{sec:training}
