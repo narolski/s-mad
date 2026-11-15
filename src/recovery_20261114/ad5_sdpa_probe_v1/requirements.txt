@@ -6,7 +6,7 @@
 # 6310090 / 6310207 failed on H100 with it). Same torch and torchvision versions, CUDA 11.8 build from
 # download.pytorch.org/whl/cu118 (sm_90 in the arch list; CUDA libraries bundled, so no nvidia-*-cu11 wheels).
 # torch-2.0.1+cu118-cp39 sha256 eb55f29d..., torchvision-0.15.2+cu118-cp39 sha256 f2c6f5a1....
-torch==2.0.1+cu118
+torch==2.13.0
 torchvision==0.15.2+cu118
 triton==2.0.0
 cmake==3.28.3
