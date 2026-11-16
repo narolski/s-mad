@@ -1,0 +1,8 @@
+117c117
+<         if self.rank == 0 and epoch > 1 and (epoch+1) % self.save_every == 0:
+---
+>         if self.rank == 0 and epoch >= 0 and (epoch+1) % self.save_every == 0:
+119c119
+<         if header is not None and self.rank == 0 and epoch > 1 and (epoch+1) % self.save_every == 0:
+---
+>         if header is not None and self.rank == 0 and epoch >= 0 and (epoch+1) % self.save_every == 0:
