@@ -22,27 +22,27 @@ S = released weights (registered prod scoring, RS1 crops v1 primary / v2 seconda
 | MAD22/DiM-MI-Semantic(greedy_dim_s) (500, 408) | 14.46 -> 18.97±9.51 (k=5/5) | 23.40 -> 17.50±2.76 (k=5/5) | 10.60 -> 11.44±1.48 (k=5/5) | B 18.85±9.02; L 15.84±2.72; X 11.93±1.18 |
 | MAD22/MorDiff (945, 408) | 0.25 -> 0.39±0.34 (k=5/5) | 2.86 -> 1.94±0.52 (k=5/5) | 7.60 -> 13.80±17.92 (k=5/5) | B 1.45±1.34; L 14.31±5.05; X 9.22±1.78 |
 
-## SelfMAD retrains (own preprocessing, own id space; 4/5 seeds — s405 still training)
+## SelfMAD retrains (own preprocessing, own id space; 5/5 seeds — s405 completed 12:02:58Z 16 Nov)
 
-| family (n) | s401 | s402 | s403 | s404 | mean±sd |
-|---|---|---|---|---|---|
-| FRLL/amsl | 2.45, 4.41, 7.35, 7.63 | 5.46±2.48 |
-| FRLL/facemorpher | 0.49, 0.98, 2.45, 1.55 | 1.37±0.84 |
-| FRLL/opencv | 0.16, 0.49, 1.39, 1.47 | 0.88±0.65 |
-| FRLL/stylegan | 18.99, 20.87, 22.55, 21.57 | 20.99±1.51 |
-| FRLL/webmorph | 6.86, 14.71, 20.59, 22.06 | 16.05±6.90 |
-| MAD22/FaceMorpher | n/a, n/a, n/a, n/a | n/a |
-| MAD22/OpenCV | n/a, n/a, n/a, n/a | n/a |
-| MAD22/Webmorph | n/a, n/a, n/a, n/a | n/a |
-| MAD22/MIPGAN_I | n/a, n/a, n/a, n/a | n/a |
-| MAD22/MIPGAN_II | n/a, n/a, n/a, n/a | n/a |
-| MAD22/DiM-MvM(dim_a) | 33.00, 35.30, 37.85, 34.80 | 35.24±2.00 |
-| MAD22/DiM-MvM(dim_c) | 21.85, 20.60, 23.15, 21.40 | 21.75±1.07 |
-| MAD22/DiM-LM2(fast_dim) | 44.55, 44.20, 47.00, 44.75 | 45.12±1.27 |
-| MAD22/DiM-LM2-ODE(fast_dim_ode) | 53.70, 55.05, 56.60, 54.30 | 54.91±1.25 |
-| MAD22/DiM-MI(greedy_dim) | 52.40, 54.20, 49.30, 46.90 | 50.70±3.24 |
-| MAD22/DiM-MI-Semantic(greedy_dim_s) | 22.30, 21.20, 22.60, 21.20 | 21.82±0.73 |
-| MAD22/MorDiff | 28.10, 27.30, 29.90, 26.10 | 27.85±1.59 |
+| family (n) | s401 | s402 | s403 | s404 | s405 | mean±sd |
+|---|---|---|---|---|---|---|
+| FRLL/amsl | 2.45, 4.41, 7.35, 7.63, 7.17 | 5.80±2.28 |
+| FRLL/facemorpher | 0.49, 0.98, 2.45, 1.55, 1.96 | 1.49±0.78 |
+| FRLL/opencv | 0.16, 0.49, 1.39, 1.47, 1.15 | 0.93±0.58 |
+| FRLL/stylegan | 18.99, 20.87, 22.55, 21.57, 22.50 | 21.29±1.47 |
+| FRLL/webmorph | 6.86, 14.71, 20.59, 22.06, 24.41 | 17.72±7.05 |
+| MAD22/FaceMorpher | n/a, n/a, n/a, n/a, n/a | n/a |
+| MAD22/OpenCV | n/a, n/a, n/a, n/a, n/a | n/a |
+| MAD22/Webmorph | n/a, n/a, n/a, n/a, n/a | n/a |
+| MAD22/MIPGAN_I | n/a, n/a, n/a, n/a, n/a | n/a |
+| MAD22/MIPGAN_II | n/a, n/a, n/a, n/a, n/a | n/a |
+| MAD22/DiM-MvM(dim_a) | 33.00, 35.30, 37.85, 34.80, 35.80 | 35.35±1.75 |
+| MAD22/DiM-MvM(dim_c) | 21.85, 20.60, 23.15, 21.40, 21.30 | 21.66±0.95 |
+| MAD22/DiM-LM2(fast_dim) | 44.55, 44.20, 47.00, 44.75, 48.20 | 45.74±1.76 |
+| MAD22/DiM-LM2-ODE(fast_dim_ode) | 53.70, 55.05, 56.60, 54.30, 57.31 | 55.39±1.53 |
+| MAD22/DiM-MI(greedy_dim) | 52.40, 54.20, 49.30, 46.90, 55.10 | 51.58±3.43 |
+| MAD22/DiM-MI-Semantic(greedy_dim_s) | 22.30, 21.20, 22.60, 21.20, 24.20 | 22.30±1.24 |
+| MAD22/MorDiff | 28.10, 27.30, 29.90, 26.10, 26.25 | 27.53±1.56 |
 
 ## Receipts (SHA256)
 
@@ -69,6 +69,13 @@ Hselfmad s401: scores_own_selfmad_S_s401__ad5.npz sha256 d3a53c52d3c83d4c0b6050c
 Hselfmad s402: scores_own_selfmad_S_s402__ad5.npz sha256 9099f6748ebb018baa76b4e44687a1631a7c4413d5b05e908f557c1c703e2a4f missing_ids 0
 Hselfmad s403: scores_own_selfmad_S_s403__ad5.npz sha256 03a812c13de71551700e8bdc3db0feee8e630471315901835f36616a09cdb24d missing_ids 0
 Hselfmad s404: scores_own_selfmad_S_s404__ad5.npz sha256 1fe532a7fc725f1affc42d661363afc942c173878519696bc5cd94b0e682e2e7 missing_ids 0
+Hselfmad s405: scores_own_selfmad_S_s405__ad5.npz sha256 aa68a5e069bd40225250bda93cf39b208f3946ff650d12a3fead6da08c51f21c missing_ids 0
 ```
 
-Qualifiers: (1) H rows = our OWN retrained versions of the released methods (distinct from released-weights rows); (2) scoring runs on GB10-regenerated RS1 crops (per-file byte-identity vs prod crops: v1 80.2% (22,664/28,253), v2 74.4% (21,619/29,049)); (3) FRLL FaceMorpher v1 cell uses only the morph rows with a v1 crop (RS1 amendment 7); (4) SelfMAD block = 4/5 seeds, own-mode preprocessing; (5) EER ties-halved, no threshold fitting; (6) release sanity: released B/L AND MixFaceNet weights re-scored on regen crops, per-family EER delta vs prod-S v1/v2 mean|d| 0.099-0.257 pp, max 1.40 pp (17 families each; MixFaceNet v1 mean|d| 0.257 pp max 0.980 pp, v2 mean|d| 0.245 pp max 0.490 pp; independent check 2026-11-16T06:20Z, /tmp/rsx_delta_20261116.py, n=17/17 families, missing_scored_ids 0).
+Qualifiers: (1) H rows = our OWN retrained versions of the released methods (distinct from "
+                 "released-weights rows); (2) scoring runs on GB10-regenerated RS1 crops (per-file byte-identity vs "
+                 "prod crops: v1 80.2% (22,664/28,253), v2 74.4% (21,619/29,049)); (3) FRLL FaceMorpher v1 cell uses only the morph rows with a v1 crop (RS1 amendment 7); "
+                 "(4) SelfMAD block = 5/5 seeds, own-mode preprocessing (s405 scored 16 Nov on GB10, npz sha256 aa68a5e0...); (5) EER ties-halved, no threshold fitting; "
+                 "(6) release sanity: released B/L AND MixFaceNet weights re-scored on regen crops, per-family EER delta vs "
+                 "prod-S v1/v2 mean|d| 0.099-0.257 pp, max 1.40 pp (17 families each; MixFaceNet v1 mean|d| 0.257 pp max 0.980 pp, v2 mean|d| 0.245 pp max 0.490 pp; "
+                 "independent check 2026-11-16T06:20Z, /tmp/rsx_delta_20261116.py, n=17/17 families, missing_scored_ids 0). "
