@@ -11,7 +11,10 @@
 # AD6 matched-recipe retrains (prereg: experiments/AD6_matched-recipe-comparator-retrains/prereg.md). Registered
 # recipe transfer: authors' code + AD5 patches (UNCHANGED), training data = full-Sb budget list 1,600,000 rows
 # (6,250 updates x global batch 256), num_epoch=1, checkpoint of epoch 1 only. One task = one seed (array id).
-# Submit with --gres=gpu:hopper:<N>,storage:local:150G --array=401-405 --export=ALL,ARM=B|L,L=<lustre dir>.
+# Submit with --gres=gpu:hopper:<N>,storage:local:150G --array=401-405 --export=ALL,ARM=B|L,AD6_L=<lustre dir>
+# (v3.1: header said L= which sets a var the script never reads; line 22 requires AD6_L. Smokes 6336514/6339945
+# died on this). v3.1: train_stdout.log is written DIRECTLY to $L/logs/keep/$T/ (crash-survivable, live tail);
+# the 15-min smoke 6340130 lost its log with local scratch when SIGKILL beat the TERM trap.
 #   B = MADation ViT-B/16 LoRA, L = MADation ViT-L/14 LoRA (authors' train.sh flags; per-GPU batch = 256/NG).
 # Code/wheels: ad6w_code.tar (ad5w_code.tar + the registered AD6 epoch-1 save patch, 2 lines in
 # build/madation_src/src/utils/logging.py; patch file src/AD6/ad6_save_epoch1.patch), ad5w_wheels39.tar (AD5 wheels,
@@ -24,7 +27,7 @@ PYBIN=${AD6_PYTHON:-python3}
 SEED=${SLURM_ARRAY_TASK_ID:?array task = seed}; ARM=${ARM:?ARM=B|L}
 case $ARM in B) T=madation_B_v3sbr_s${SEED} ;; L) T=madation_L_v3sbr_s${SEED} ;; X) T=mixfacenet_X_sbr_s${SEED} ;; *) echo "bad ARM" >&2; exit 2 ;; esac
 [ -f $L/results/$T.tar.sha256 ] && { echo "$T done already"; exit 0; }
-: "${TMPDIR:?local scratch required}"; S=$TMPDIR/ad6; mkdir -p $S/out
+: "${TMPDIR:?local scratch required}"; S=$TMPDIR/ad6; mkdir -p $S/out $L/logs/keep/$T
 keep() { mkdir -p $L/logs/keep/$T; cp "$@" $L/logs/keep/$T/ 2>/dev/null || true; }
 trap 'echo "TERM $(date +%T)"; keep $S/out/*.log $S/out/*.csv; exit 1' TERM
 hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; date
@@ -52,9 +55,9 @@ if [ $ARM = X ]; then
   ( cd $S/code/build/smdd_src && AD5_LAST=1 AD5_SEED=$SEED AD5_EPOCH_DIR=$S/out/epochs \
       $PY -I $S/code/src/AD5/checks/run_with_site.py $S/code/build/smdd_src $S/code/build/smdd_src/main.py \
       --train_csv_path $TRAIN --model_path $S/out/mixfacenet_SMDD.pth --is_train True --is_test False \
-      --output_dir $S/out --max_epoch 1 --batch_size 256 ) > $S/out/train_stdout.log 2>&1 || rc=$?
+      --output_dir $S/out --max_epoch 1 --batch_size 256 ) > $L/logs/keep/$T/train_stdout.log 2>&1 || rc=$?
   kill $MPX || true; SEC=$(( $(date +%s) - t0 )); [ $rc = 0 ] && [ -s $S/out/mixfacenet_SMDD.pth ] \
-    || { tail -40 $S/out/train_stdout.log; keep $S/out/train_stdout.log; exit 1; }
+    || { tail -40 $L/logs/keep/$T/train_stdout.log; exit 1; }
   printf '{"task":"%s","arm":"%s_sbr","seed":%s,"job":"%s_%s","host":"%s","gpus":%s,"per_gpu_batch":256,"global_batch":256,"updates_target":6250,"seconds":%s,"train_csv_sha256":"%s"}\n' \
     $T $ARM $SEED ${SLURM_ARRAY_JOB_ID:-0} $SEED $(hostname) 1 $SEC "$(sha256sum $TRAIN | cut -c1-64)" > $S/out/job.json
   ( cd $S/out && sha256sum mixfacenet_SMDD.pth > SHA256SUMS )
@@ -75,7 +78,7 @@ C=$S/code
     AD5_OUT=$S/run AD5_CLIP_SD=$CS $PY -I -m torch.distributed.launch --nproc_per_node=$NG --nnodes=1 --node_rank=0 \
     --master_addr=localhost --master_port=$(( 13000 + SEED )) config.py --debug=True --dataset_name="MADTrain" \
     --training_type="MAD_training" --num_epoch=1 --save_every=1 --lr_model=1e-5 --lr_header=1e-4 "${A[@]}" \
-    --batch_size=$BPG ) > $S/out/train_stdout.log 2>&1 || rc=$?
+    --batch_size=$BPG ) > $L/logs/keep/$T/train_stdout.log 2>&1 || rc=$?
 D=$(dirname "$(ls $S/run/last_trainings/*/*/*/*/training.log 2>/dev/null | head -1)")
 cp -r $D/training.log $D/tensorboard $S/out/ 2>/dev/null || true
 cp $D/1_backbone.pth $D/1_header.pth $S/out/ 2>/dev/null || rc=9
@@ -83,7 +86,7 @@ kill $MP || true
 SEC=$(( $(date +%s) - t0 ))
 echo "rc $rc seconds $SEC gpus $NG per_gpu_batch $BPG peak_MiB $(awk -F', ' '{if ($2+0>m) m=$2+0} END {print m+0}' $S/out/gpumem.csv)"
 grep -h "Speed\|Loss" $S/out/training.log 2>/dev/null | tail -3 || true
-if [ $rc != 0 ]; then tail -40 $S/out/train_stdout.log; keep $S/out/train_stdout.log $S/out/training.log $S/out/gpumem.csv; exit 1; fi
+if [ $rc != 0 ]; then tail -40 $L/logs/keep/$T/train_stdout.log; keep $S/out/gpumem.csv; exit 1; fi
 printf '{"task":"%s","arm":"%s_sbr","seed":%s,"job":"%s_%s","host":"%s","gpus":%s,"per_gpu_batch":%s,"global_batch":256,"updates_target":6250,"seconds":%s,"train_csv_sha256":"%s"}\n' \
   $T $ARM $SEED ${SLURM_ARRAY_JOB_ID:-0} $SEED $(hostname) $NG $BPG $SEC "$(sha256sum $TRAIN | cut -c1-64)" > $S/out/job.json
 ( cd $S/out && sha256sum 1_backbone.pth 1_header.pth training.log > SHA256SUMS )

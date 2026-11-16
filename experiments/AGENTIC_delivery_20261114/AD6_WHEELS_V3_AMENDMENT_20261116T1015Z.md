@@ -52,3 +52,14 @@ illegal-instruction in backward with torch 2.0.1+cu118 on H100 sm_90; authors' c
 ## Gate
 Scoring of any v3-trained artifact is allowed ONLY after (a) smoke PASS and (b) full B/L results with jobs.json
 + pip_freeze receipts. If smoke FAILs -> stop, report, option (B) Athena fallback.
+
+## v3.1 REVISION (17 Nov?? no: 16 Nov 2026 ~19:05Z) — pack + logging plumbing only, recipe/code UNCHANGED
+- nvjitlink: v3 pack was missing nvidia-nvjitlink-cu12 (declared dep of nvidia-cusolver-cu12 11.4.5.107).
+  Smoke 6339975 FAILED at pip ("Could not find a version ... nvidia-nvjitlink-cu12"). Wheel added:
+  nvidia_nvjitlink_cu12-12.1.105-py3-none-manylinux1_x86_64.whl sha256 015fed699b390ce3b8a8578d822d501a
+  4194d0a341d3859554067c1ab291cb85 == PyPI anchor. Pack rebuilt (17 entries, 4.0G):
+  sha256 189968dfed80828feed091cbc4c78e754e2e77ffe8f2bcabb6c2049d246cc07d, verified server-side 18:38Z.
+- Submission bug: header said L=; line 22 reads ${AD6_L}; smokes 6336514 + 6339945 died in ~2 s. Fixed header.
+- Observability: v3.1 writes train_stdout.log DIRECTLY to $L/logs/keep/$T/ (local-scratch copies died with the
+  job on SIGKILL; smoke 6340130's log was lost that way). Recipe and authors' code unchanged.
+- New sbatch md5 (local == WCSS): 2d91c81592b446f4214bc20a8debfb54 (was e2aa10fc...).
