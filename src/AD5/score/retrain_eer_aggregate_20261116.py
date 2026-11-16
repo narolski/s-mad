@@ -12,7 +12,7 @@ Cells (registered populations from the pack athena_manifest.csv / RS1 manifest.c
     dim_a, dim_c, fast_dim, fast_dim_ode, greedy_dim, greedy_dim_s, mordiff): positives = M22_<fam> / M_<variant>,
     negatives = G22_raw + G22_aln (408 bona fide).
 Id->(set,label): pack athena_manifest.csv for the prod id space (0 missing ids, verified); RS1 manifest.csv for
-the SelfMAD own-mode id space. SelfMAD rows are flagged 4/5 (s405 still training; added later).
+the SelfMAD own-mode id space (s405 completed 16 Nov 12:02:58Z, scored same day on GB10 with the same pins; SelfMAD rows are 5/5 seeds).
 
 Create-only output: /mnt/t7/smad_next/AD5/RETRAIN_COHORT_EER_20261116/{aggregate.csv,aggregate.md,receipts.txt}
   python3 -I retrain_eer_aggregate_20261116.py
@@ -148,8 +148,8 @@ def main():
                                                    int(ns[0]), len(vals))
             receipts.append(f"H {arm} {v}: seeds {len(cells5)} shas {seensha[0][:16]}..{seensha[-1][:16]}")
 
-    # 4) SelfMAD retrains s401–404 (4/5, own id space), mode own — FRLL + MAD22(DiM/MorDiff) cells
-    for s in (401, 402, 403, 404):
+    # 4) SelfMAD retrains s401–405 (5/5, own id space), mode own — FRLL + MAD22(DiM/MorDiff) cells
+    for s in (401, 402, 403, 404, 405):
         f = pathlib.Path(f"/mnt/t7/smad_next/AD5/scores_selfmad/scores_own_selfmad_S_s{s}__ad5.npz")
         if not f.exists():
             continue
@@ -210,10 +210,10 @@ def main():
                 return f"{s[0]:.2f} -> {a}" if s else f"-> {a}", b
             cB, vBv = fmt(sB, hB, vB); cL, vLv = fmt(sL, hL, vL); cX, vXv = fmt(sX, hX, vX)
             fo.write(f"| {fam} ({npos}, {nneg}) | {cB} | {cL} | {cX} | B {vBv}; L {vLv}; X {vXv} |\n")
-        fo.write("\n## SelfMAD retrains (own preprocessing, own id space; 4/5 seeds — s405 still training)\n\n")
-        fo.write("| family (n) | s401 | s402 | s403 | s404 | mean±sd |\n|---|---|---|---|---|---|\n")
+        fo.write("\n## SelfMAD retrains (own preprocessing, own id space; 5/5 seeds — s405 completed 12:02:58Z 16 Nov)\n\n")
+        fo.write("| family (n) | s401 | s402 | s403 | s404 | s405 | mean±sd |\n|---|---|---|---|---|---|---|\n")
         for fam in fam_order:
-            vals = [(s, rows[f"Hselfmad_{s}"].get(fam)) for s in (401, 402, 403, 404)]
+            vals = [(s, rows[f"Hselfmad_{s}"].get(fam)) for s in (401, 402, 403, 404, 405)]
             cells = ", ".join(f"{v[0]:.2f}" if v else "n/a" for _, v in vals)
             allv = [v[0] for _, v in vals if v]
             m = f"{np.mean(allv):.2f}±{np.std(allv, ddof=1):.2f}" if len(allv) > 1 else "n/a"
@@ -223,7 +223,7 @@ def main():
                  "released-weights rows); (2) scoring runs on GB10-regenerated RS1 crops (per-file byte-identity vs "
                  "prod crops: v1 80.2% (22,664/28,253), v2 74.4% (21,619/29,049), MixFaceNet sanity not re-scored — released-weights rows here are re-joined per id, not recomputed); "
                  "(3) FRLL FaceMorpher v1 cell uses only the morph rows with a v1 crop (RS1 amendment 7); "
-                 "(4) SelfMAD block = 4/5 seeds, own-mode preprocessing; (5) EER ties-halved, no threshold fitting; "
+                 "(4) SelfMAD block = 5/5 seeds, own-mode preprocessing; (5) EER ties-halved, no threshold fitting; "
                  "(6) release sanity: released B/L weights re-scored on regen crops, per-family EER delta vs prod-S "
                  "v1/v2 mean|d| 0.10-0.24 pp, max 1.40 pp (17 families each; independent check 2026-11-16, /tmp/rsx_delta_20261116.py), "
                  "mixfacenet sanity not re-scored (same regen crop set).\n")
