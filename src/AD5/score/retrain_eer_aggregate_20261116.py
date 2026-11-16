@@ -221,9 +221,12 @@ def main():
         fo.write("\n## Receipts (SHA256)\n\n```\n" + "\n".join(receipts) + "\n```\n")
         fo.write("\nQualifiers: (1) H rows = our OWN retrained versions of the released methods (distinct from "
                  "released-weights rows); (2) scoring runs on GB10-regenerated RS1 crops (per-file byte-identity vs "
-                 "prod crops: v1 80.2%, v2 74-4% — the released S rows here are re-joined per id, not recomputed); "
+                 "prod crops: v1 80.2% (22,664/28,253), v2 74.4% (21,619/29,049), MixFaceNet sanity not re-scored — released-weights rows here are re-joined per id, not recomputed); "
                  "(3) FRLL FaceMorpher v1 cell uses only the morph rows with a v1 crop (RS1 amendment 7); "
-                 "(4) SelfMAD block = 4/5 seeds, own-mode preprocessing; (5) EER ties-halved, no threshold fitting.\n")
+                 "(4) SelfMAD block = 4/5 seeds, own-mode preprocessing; (5) EER ties-halved, no threshold fitting; "
+                 "(6) release sanity: released B/L weights re-scored on regen crops, per-family EER delta vs prod-S "
+                 "v1/v2 mean|d| 0.10-0.24 pp, max 1.40 pp (17 families each; independent check 2026-11-16, /tmp/rsx_delta_20261116.py), "
+                 "mixfacenet sanity not re-scored (same regen crop set).\n")
 
     (OUT / "receipts.txt").write_text("\n".join(receipts) + "\n")
     print("AGGREGATE_DONE", OUT)
