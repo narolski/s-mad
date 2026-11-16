@@ -70,6 +70,9 @@ nvidia-cusolver-cu12==11.4.5.107
 nvidia-cusparse-cu12==12.1.0.106
 nvidia-nccl-cu12==2.18.1
 nvidia-nvtx-cu12==12.1.105
+# nvjitlink: declared dep of nvidia-cusolver-cu12 11.4.5.107; MISSING from the original v3 pack (smoke 6339975 FAILED:
+# "Could not find a version ... nvidia-nvjitlink-cu12"). Added 16 Nov 18:37Z, sha256 015fed69... == PyPI anchor.
+nvidia-nvjitlink-cu12==12.1.105
 setuptools==69.5.1
 wheel==0.43.0
 # sdists (no wheel on PyPI), built inside the job: easydict==1.10 openai-clip==1.0.1
