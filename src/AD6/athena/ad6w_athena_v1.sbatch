@@ -11,6 +11,8 @@
 # recipe fixes the GLOBAL batch 256 and num_epoch=1 -> 6250 updates, exactly as registered on WCSS).
 # All 4 packs sha-verified far-side 16 Nov 2026 (v3 = 189968df...07d anchor match) before this script existed.
 set -euo pipefail
+set -x
+trap 'echo "ERR at line $LINENO: cmd=[$BASH_COMMAND]"' ERR
 L=${AD6_L:-/net/pr2/projects/plgrid/plggrestoration/smad-next/AD6}
 PYBIN=${AD6_PYTHON:-/usr/bin/python3.9}
 SEED=${SLURM_ARRAY_TASK_ID:?array task = seed}; ARM=${ARM:?ARM=B|L|X}
@@ -20,14 +22,22 @@ case $ARM in B) T=madation_B_v3sbr_s${SEED} ;; L) T=madation_L_v3sbr_s${SEED} ;;
 keep() { mkdir -p $L/logs/keep/$T; cp "$@" $L/logs/keep/$T/ 2>/dev/null || true; }
 trap 'echo "TERM $(date +%T)"; keep $S/out/*.log $S/out/*.csv; exit 1' TERM
 hostname; nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader; date
-for p in ad6w_code ad5w_wheels39 ad6_sb_pack ad6w_wheels39_v3; do
+# addendum 16 Nov ~20:45Z: original ad6_sb_pack.tar (2b5b2880) is DGX-native — ALL data members are
+# symlinks into /mnt/t7 (only 2 real files). On Athena those targets do not exist: smoke #2 (3556490)
+# died at the manifests guard ([ -f ] ERR, line 42) and would die in the loader on the 339k lad_* rows.
+# ATHENA FIX (data-source twin, recipe/CSV content UNCHANGED): dereferenced rebuild of the same pack
+# (same members, symlinks -> real files, built on the DGX with tar -h from the sha-2b5b2880 pack):
+# ad6_sb_pack_athena_v1.tar (1,918,525,440 B, sha baa5abe39fb5daf7f6b5bf41a911ebbb7d08f768994125f3cb99208c7c0f6d5a),
+# upload streamed in one transfer, sidecar .sha256 in the packs dir. csb pack csv = byte-identical CROP_ROOT rows.
+for p in ad6w_code ad5w_wheels39 ad6_sb_pack_athena_v1 ad6w_wheels39_v3; do
   ( cd $L/packs && sha256sum -c $p.tar.sha256 ) || { echo "HASH MISMATCH $p" >&2; exit 3; }
 done
 mkdir -p $S/code $S/wheels $S/data
 tar -xf $L/packs/ad6w_code.tar -C $S/code
 tar -xf $L/packs/ad5w_wheels39.tar -C $S/wheels
 tar -xf $L/packs/ad6w_wheels39_v3.tar -C $S/wheels
-tar -xf $L/packs/ad6_sb_pack.tar -C $S/data
+tar -xf $L/packs/ad6_sb_pack_athena_v1.tar -C $S/data
+echo "MEMFS usage after extraction: $(du -sm $S 2>/dev/null | cut -f1) MB, memfs:"; df -h $MEMFS 2>/dev/null | tail -1
 t0=$(date +%s)
 $PYBIN -m venv $S/env; PY=$S/env/bin/python
 $PY -m pip install -q --no-index --find-links $S/wheels setuptools==69.5.1 wheel==0.43.0
