@@ -20,7 +20,7 @@ set -euo pipefail
 L=${AD6_L:?set L=/lustre/pd03/hpc-narolski-1790461090/smad-next/AD6}
 PYBIN=${AD6_PYTHON:-python3}
 SEED=${SLURM_ARRAY_TASK_ID:?array task = seed}; ARM=${ARM:?ARM=B|L}
-case $ARM in B) T=madation_B_sbr_s${SEED} ;; L) T=madation_L_sbr_s${SEED} ;; *) echo "bad ARM" >&2; exit 2 ;; esac
+case $ARM in B) T=madation_B_sbr_s${SEED} ;; L) T=madation_L_sbr_s${SEED} ;; X) T=mixfacenet_X_sbr_s${SEED} ;; *) echo "bad ARM" >&2; exit 2 ;; esac
 [ -f $L/results/$T.tar.sha256 ] && { echo "$T done already"; exit 0; }
 : "${TMPDIR:?local scratch required}"; S=$TMPDIR/ad6; mkdir -p $S/out
 keep() { mkdir -p $L/logs/keep/$T; cp "$@" $L/logs/keep/$T/ 2>/dev/null || true; }
@@ -43,6 +43,23 @@ TRAIN=$S/data/train_Sb_6250x256.csv
 sed -i "s#^CROP_ROOT#$S/data#" $TRAIN
 [ -f $S/data/manifests/train_Sb.csv ]
 printf 'rows %s\n' "$(( $(wc -l < $TRAIN) - 1 ))"
+if [ $ARM = X ]; then
+  ( while :; do nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader,nounits >> $S/out/gpumem.csv 2>/dev/null || true; sleep 10; done ) >/dev/null 2>&1 &
+  MPX=$!; rc=0
+  ( cd $S/code/build/smdd_src && AD5_LAST=1 AD5_SEED=$SEED AD5_EPOCH_DIR=$S/out/epochs \
+      $PY -I $S/code/src/AD5/checks/run_with_site.py $S/code/build/smdd_src $S/code/build/smdd_src/main.py \
+      --train_csv_path $TRAIN --model_path $S/out/mixfacenet_SMDD.pth --is_train True --is_test False \
+      --output_dir $S/out --max_epoch 1 --batch_size 256 ) > $S/out/train_stdout.log 2>&1 || rc=$?
+  kill $MPX || true; SEC=$(( $(date +%s) - t0 )); [ $rc = 0 ] && [ -s $S/out/mixfacenet_SMDD.pth ] \
+    || { tail -40 $S/out/train_stdout.log; keep $S/out/train_stdout.log; exit 1; }
+  printf '{"task":"%s","arm":"%s_sbr","seed":%s,"job":"%s_%s","host":"%s","gpus":%s,"per_gpu_batch":256,"global_batch":256,"updates_target":6250,"seconds":%s,"train_csv_sha256":"%s"}\n' \
+    $T $ARM $SEED ${SLURM_ARRAY_JOB_ID:-0} $SEED $(hostname) 1 $SEC "$(sha256sum $TRAIN | cut -c1-64)" > $S/out/job.json
+  ( cd $S/out && sha256sum mixfacenet_SMDD.pth > SHA256SUMS )
+  tar -cf $TMPDIR/$T.tar -C $S/out .
+  ( cd $TMPDIR && sha256sum $T.tar > $T.tar.sha256 )
+  mkdir -p $L/results; cp $TMPDIR/$T.tar $L/results/; cp $TMPDIR/$T.tar.sha256 $L/results/
+  cat $L/results/$T.tar.sha256; echo DONE $T; date; exit 0
+fi
 NG=$(nvidia-smi -L | wc -l); BPG=$(( 256 / NG )); [ $(( BPG * NG )) = 256 ] || { echo "256 not divisible by $NG" >&2; exit 2; }
 case $ARM in
   L) A=(--backbone_size="ViT-L/14" --lora_dropout=0.2 --lora_r=2 --lora_a=8); CS=$S/code/weights/clip_vitl14_openai.bin ;;
