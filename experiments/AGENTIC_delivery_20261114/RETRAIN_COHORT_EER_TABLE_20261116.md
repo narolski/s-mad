@@ -57,6 +57,8 @@ RSX madation_vitb16 v1: scores_rel_madation_vitb16__ad5v1.npz sha256 e76d3f360be
 RSX madation_vitb16 v2: scores_rel_madation_vitb16__ad5v2.npz sha256 9205fe7c1b128eda6e0a55e0eabdf7f210667200395defd5bd5490015c9b30ee missing_ids 0
 RSX madation_vitl14 v1: scores_rel_madation_vitl14__ad5v1.npz sha256 c12c85f860ad6bae37fc54dfb238d314a1f88be5ea3a937a8eafec7b21535d0d missing_ids 0
 RSX madation_vitl14 v2: scores_rel_madation_vitl14__ad5v2.npz sha256 32c9cb23348b882fcdd081a8614a6961186dec7d141c18e765e2f993cc8e11fa missing_ids 0
+RSX mixfacenet_mad_smdd v1: scores_rel_mixfacenet_mad_smdd__ad5v1.npz sha256 4a895f4da4c182c8668dd15e8e2996eb632eb03cf6f1147fbfdc0fcd24d4c121 missing_ids 0
+RSX mixfacenet_mad_smdd v2: scores_rel_mixfacenet_mad_smdd__ad5v2.npz sha256 b01ef171b57104c8d5251c7055c6eab1e07a68e26e73e0a48f233fd6ed3cbbf2 missing_ids 0
 H madation_B v1: seeds 5 shas 6c72ad67584531c8..21cbfbcba35bb0d4
 H madation_B v2: seeds 5 shas 19310a3dba5cf6b9..118af21c0207d8ea
 H madation_L v1: seeds 5 shas cb01d57f3eb68e62..7c8274106752183c
@@ -69,4 +71,4 @@ Hselfmad s403: scores_own_selfmad_S_s403__ad5.npz sha256 03a812c13de71551700e8bd
 Hselfmad s404: scores_own_selfmad_S_s404__ad5.npz sha256 1fe532a7fc725f1affc42d661363afc942c173878519696bc5cd94b0e682e2e7 missing_ids 0
 ```
 
-Qualifiers: (1) H rows = our OWN retrained versions of the released methods (distinct from released-weights rows); (2) scoring runs on GB10-regenerated RS1 crops (per-file byte-identity vs prod crops: v1 80.2% (22,664/28,253), v2 74.4% (21,619/29,049), MixFaceNet sanity not re-scored — released-weights rows here are re-joined per id, not recomputed); (3) FRLL FaceMorpher v1 cell uses only the morph rows with a v1 crop (RS1 amendment 7); (4) SelfMAD block = 4/5 seeds, own-mode preprocessing; (5) EER ties-halved, no threshold fitting; (6) release sanity: released B/L weights re-scored on regen crops, per-family EER delta vs prod-S v1/v2 mean|d| 0.10-0.24 pp, max 1.40 pp (17 families each; independent check 2026-11-16, /tmp/rsx_delta_20261116.py), mixfacenet sanity not re-scored (same regen crop set).
+Qualifiers: (1) H rows = our OWN retrained versions of the released methods (distinct from released-weights rows); (2) scoring runs on GB10-regenerated RS1 crops (per-file byte-identity vs prod crops: v1 80.2% (22,664/28,253), v2 74.4% (21,619/29,049)); (3) FRLL FaceMorpher v1 cell uses only the morph rows with a v1 crop (RS1 amendment 7); (4) SelfMAD block = 4/5 seeds, own-mode preprocessing; (5) EER ties-halved, no threshold fitting; (6) release sanity: released B/L AND MixFaceNet weights re-scored on regen crops, per-family EER delta vs prod-S v1/v2 mean|d| 0.099-0.257 pp, max 1.40 pp (17 families each; MixFaceNet v1 mean|d| 0.257 pp max 0.980 pp, v2 mean|d| 0.245 pp max 0.490 pp; independent check 2026-11-16T06:20Z, /tmp/rsx_delta_20261116.py, n=17/17 families, missing_scored_ids 0).
