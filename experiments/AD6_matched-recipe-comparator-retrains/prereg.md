@@ -33,7 +33,7 @@ comparators should move toward our recipe's behaviour; if the architectures cann
 |---|---|---|---|---|---|
 | `madation_B_sbr` | MADation ViT-B/16 LoRA (`MAD_training`, lr 1e-5/1e-4, lora_r 2, lora_a 4, dropout 0.4, scheduler cosine = authors' defaults) | **full-Sb budget list** (below) | 6,250 updates × global batch 256 = **1 materialized epoch of 1,600,000 rows**, num_epoch=1, per-GPU batch 256/NG (authors' global batch 256 preserved), checkpoint of epoch 1 only | 401–405 | WCSS, lem-gpu-short, gpu:hopper:4 per job |
 | `madation_L_sbr` | same, ViT-L/14 (lora_r 2, lora_a 8, dropout 0.2) | same | same | 401–405 | WCSS, same |
-| `mixfacenet_X_sbr` | SMDD `main.py` (AD5 patches: AD5_LAST=1, AD5_SEED) | same | max_epoch=1, batch_size 256 → exactly 6,250 updates, weights after epoch 1 | 401–405 | DGX GB10 (fallback WCSS if GB10 blocked; same one-experiment read) |
+| `mixfacenet_X_sbr` | SMDD `main.py` (AD5 patches: AD5_LAST=1, AD5_SEED) | same | max_epoch=1, batch_size 256 → exactly 6,250 updates, weights after epoch 1 | 401–405 | DGX WCSS (amendment 1: moved from GB10 after measured 6.5 s/step; see §8) |
 
 Nothing else differs between seeds (same as AD5: `AD5_SEED` only; the materialized training list is **one shared
 file for all arms and seeds**, so seeds differ only by model init / loader shuffling).
@@ -113,3 +113,17 @@ RETRAIN_COHORT_EER_TABLE_20261116. Qualifiers of that table carry over.
 - Scoring (after checkpoints arrive): identical pipeline/roster/crops as RETRAIN_COHORT scoring (30/30, 15 Nov
   pipeline), receipts + aggregate extension **Hsbr block appended** to RETRAIN_COHORT_EER_TABLE (v1 primary,
   v2 validation).
+
+## 8. Dispatch record (2026-11-16, ~03:05–03:15Z)
+
+- Packs uploaded to WCSS lustre `…/smad-next/AD6/packs/` and sha-verified there (`ad6_sb_pack.tar` OK,
+  `ad6w_code.tar` OK; wheels symlinked from AD5 packs). sbatch at `…/AD6/ad6w_train.sbatch`.
+- Submitted through the dispatcher queue (`submit_one.sh`):
+  - **6334803** array 401-405, ARM=B, gpu:hopper:4, nice 40,
+  - **6334807** array 401-405, ARM=X, gpu:hopper:1, nice 41,
+  - **6334804** array 401-405, ARM=L, gpu:hopper:4, nice 42.
+- **Amendment 1 (03:12Z, before any X training result):** ARM X platform changed GB10 → WCSS primary. Reason:
+  GB10 measured ~6.5 s/step (early steps, batch 256) ≈ 11 h/seed → 5 seeds ≈ days; WCSS estimated 0.3-1 h/seed.
+  The already-started GB10 run (mixfacenet_X_sbr_s401, started 03:03:43Z) continues as a redundancy twin and
+  per the lead's one-experiment rule is discarded as a result source unless the WCSS arm fails; its log stays
+  for determinism comparison. Prereg §2 platform table updated by this amendment.
