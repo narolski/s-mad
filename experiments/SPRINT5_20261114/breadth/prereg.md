@@ -1,3 +1,5 @@
+CURRENT: The real existing-data pilot is registered in prereg_pilot.md. It uses30available reciprocal historical training pairs, exact32-image allocations with16vs32actual contributing identities, and seeds511–515. HQ mapping is not a dependency. This older generic allocation prototype remains historical.
+
 # Identity breadth versus variants at fixed rows [SPRINT5-4]: allocation prototype
 
 MAD22-informed separatecycle outsideNEXT. This is the residual breadth-vs-variantallocation question, not genericmoredata alreadytested byMS1. Prototype createsmetadata arms from authoritative disjointidentitypairunits. No realdataallocation or detectorfit hasyetbeen admitted.

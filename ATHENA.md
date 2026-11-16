@@ -110,3 +110,7 @@ failure, one result tar with a `.sha256` beside it.
 - Copy back to `/mnt/t7/smad_next/<ID>/`, with a hash check, only what will be read on the DGX (score files, small
   tables, images a DGX step needs). Large packs and image sets stay in the Athena project folder (10 TB); the DGX
   data drive filled up on 11 Nov.
+
+## Author project update — 14 November 2026
+
+Author requests moving computations to dedicated project `plgmorphgeneral`. Read-only association query currently lists only `plgmultivision-gpu-a100` and `plgrestorearc-gpu-a100` for plgpnarolski. Slurm test-only (no job created) rejects both `plgmorphgeneral-gpu-a100` and `plgmorphgeneral` with invalid account/account-partition combination on plgrid-gpu-a100. Pending3545814 and3545813 remain on existing account to preserve queue position. Once new project association is active, move eligible pending jobs in place and use it for new work; do not interrupt running jobs.

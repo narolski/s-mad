@@ -403,6 +403,11 @@ The sealed read of corrected MAD22 for the frozen candidate ran on lease final2 
 - Sealed MAD22 read, post-read descriptive (0821c96): smiling genuine photos flagged more often on Webmorph (4.5-5.75 times on 4 of 5 seeds); development AUC did not rank seeds by MAD22 error. MAD22-informed; no method choice follows.
 - External FFHQ FaceMorpher read (XF1): the first design was the lead's error (the one-photo FaceMorpher output equals the photo); redesigned as two-person morph against the warp-only image, face-only form deciding, adversary gate 0.859 below 0.90. Registered 01283b0, Athena 3553044 (all 15 networks byte-identical on the gate), read once 04e1417, reviewed 3c75c53: A 0.864, B 0.879, Sb 0.889; Sb − B +0.011 [−0.010, +0.031] "inconclusive"; Sb − A +0.025 "inconclusive"; licence (b) for every arm, (c) not reached; all-cue floors 0.925 / 0.917 not reached by any network.
 - Mechanism ledger v3.1 (d2c3ba1): shape-matched same-person negatives proposed (DATA recipe D13, two variants, needs the author's word; nothing built).
+# MAIN recovery, 14 Nov 2026, approximately 09:38 CET
+
+Recovered128 archives with remote SHA256 and sidecar agreement; detailed evidence and file list in `/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json`. No challenger contrasts read. BB2 re-smoke6317545 actual gate JSONs pass bit-identically:19797 DINOv3 rows and21277 AB1 rows. Amendment7d script verified against d89c1ac and remote; exact held W2 command submitted once as6319264 (pending Priority,4h). AB1C6316845 first successful durable output verified; conditional throttle raised1→15 and scheduler confirms it.
+
+DGX IDistill seed401 completed04:04:08CET; AE and classifier archives plus smoke SHA verified. H100 IDistill6312778 still running but required smoke6312775 timed out, so production is not eligible for scientific adoption under the existing registration. MADation H100 log shows SIGABRT; underlying cause unresolved. No baseline retries. RZ1512 continuation needs remaining admission reconciliation (no ready queue command found). Selection-rulev3 remains DRAFT awaiting explicit approval and pins. Full recovery status: `/mnt/t7/smad_next/recovery_20261114_MAIN/STATUS.md`.
 
 
 ## Codex continuation recorded 2026-11-14T10:46:10.805385+01:00
@@ -416,3 +421,407 @@ Submitted at 10:27:59 CET: 6319490, 15 registered 512 px fits with the M6 six-ho
 All 15 AB1C tasks 6316845 completed by 10:26:14. Sixteen additional archives (15 AB1C plus RZ1R A408) were copied and SHA256/sidecar-verified without opening payloads. IDistill 6312778 remains active and preserved; original smoke 6312775 remains TIMEOUT. New smokes do not retroactively validate production. DINOv3 rescoring 6319264 is not resubmitted. At the last target capture at 10:37 all new jobs and DINOv3 rescoring were pending.
 
 Remaining critical path: independent full reader review and native adapters, second-engine supplementary scoring (prepared), verified result arrivals, once-only selection, and fresh 413–417 confirmation. All 20 GX generation shards completed; generation metadata is not image/identity admission, and no training manifest exists yet. The author's 224 px interior-crop interpretation is asked and pending; 512 work is independent. No persistent monitor was started or old Claude agent/timer replayed.
+
+## 14 Nov — agentic delivery workflow and resource/scientific coordination (Codex)
+
+Author authorized implementing the evidence-gated workflow and explicitly added computation coordination and scientific hypothesis review. Record: `experiments/AGENTIC_delivery_20261114/README.md`. Six roles rotate through four concurrent slots; bounded tasks, no unattended monitor. Current NEXT rule, cutoff and confirmation remain unchanged; no sealed read or rental released. Method, controls, statistics and compute plans were written from reviewed sources and metadata. Scientific synthesis is a separate assigned role.
+
+Fresh WCSS/Athena read-only snapshots are in the workflow folder: six newer WCSS jobs pending, remaining Athena MADation arrays waiting; existing running jobs preserved. Capacity planning identifies conditional 512-fit deadline pressure, not a guaranteed queue forecast. Existing count-balanced batch-C fits are reused. Static audit found a stale overlay hash, source path mismatch, missing conditional learner report and native admission gaps; guard-only repairs and synthetic tests are underway, independent review required before production. No new scientific output was opened by this workflow.
+
+## 14 Nov — resource restriction from author
+
+No paid H100 capacity: H100-only work stays on WCSS; A100 work primarily Athena. USD10 fallback is retained for cheaper compatible hardware only where useful. Updated AGENTIC compute policy/queue; prior H100 purchase scenarios are superseded, not funding requests. No rentals or scheduler mutations made by this update.
+
+## 14 Nov — Batch-C first registered read and summary-level independent review (OpenCode)
+
+Reviewed source binding7d5e06b; final independent admission SHA25612745bb6f9150a0d16b637e51b1cb9d05f143a5d9fc426fd2f77e22240dd259d. MAIN read pair C once14Nov12:47:16–12:51:58CET, exit0, empty stderr; canonical claim/completion preserved. Output `/mnt/t7/smad_next/AB1/c/read_20261114/ab1_pm3_read_C.json`, SHA2569b73b148c57b9dbfbfdf60da2360aa9825ac7ddd8c42a94cd2fe137e21c802ea. All30 networks/all five seeds retained, no native refusal.
+
+Independent review `experiments/reviews/REVIEW_AB1_BATCHC_OPENCODE_20261114.md` verifies144 summary comparisons and registered verdict arithmetic, NOT yet independent score-level bootstrap reproduction. Primary whole-frame two-person versus same-person: Sb−SpV +0.048098592 AUC, saved95%CI[0.026893408,0.072238231], present,5/5 positive; BN−BV −0.002992958 [−0.008883478,0.004497694], registered benefit absent. Secondary face-spliced: +0.081781250 [0.053514957,0.108347349] and −0.024656250 [−0.045510204,−0.005024836], respectively. The negative secondary control contradicts the anticipated improvement; retain it.
+
+Within-pair row count/class balance and positive repetition controlled; matched-negative content remains confounded with312 additional unique images. Interaction is descriptive without an interaction CI/test. These are development/MAD22-informed post-freeze ablations, not benchmark superiority, shortcut independence, fresh-seed confirmation or NEXT selection. Intervals condition on five trained networks, no seed resampling. MAIN authorized narrowly scoped independent verification using10400 already-admitted logits, without rerunning production reader or modifying canonical journals; verification pending.
+
+### Batch-C independent numerical verification completed,14Nov
+
+`experiments/reviews/REVIEW_AB1_BATCHC_INDEPENDENT_REPRODUCTION_20261114.md`: PASS, all166 comparisons exactly reproduced (maximum difference0.0) from10400 logits/20 already-admitted networks. Independently implemented AUC, D stratification, graph components and fixed-stream bootstrap reproduced all four registered outcome estimates,95%/99.5% intervals and verdicts. Canonical journals unchanged; no production-reader rerun. This supersedes the score-level verification limitation above for these four outcomes only. Artifacts: `/mnt/t7/smad_next/AB1/c/independent_verification_20261114/`. Scientific scope and diversity confound unchanged. Writer assigned precise manuscript integration with independent text review to follow.
+
+### Reviewed Batch-C manuscript package
+
+Final independent text/layout review grants GO for packaging: `manuscript_cvpr2027/OPENCODE_FINAL_TEXT_LAYOUT_REVIEW_20261114.md`. Eight main-text pages, nine total; disclosure ends and references begin on page8. MAIN verified all16 review hashes and packaged31 source/PDF/review members, including required `publication_wip.tex`; all ZIP members byte-verified. `smad_cvpr2027_draft.zip` SHA256 `ec7f3431789db5ce4ea81f49ae153da46b1bc141c18b65b2a8d0e4645213f32c`. Previous ZIP preserved; full receipt `/mnt/t7/smad_next/coordination_20261114/opencode_takeover/MANUSCRIPT_BATCHC_PACKAGE.json`. Reviewed draft only; broader submission limitations remain. No upload performed.
+
+
+## SPRINT5 execution update 2026-11-14T14:40:13.643887+00:00
+
+Root submitted15rankingfits6321090,10breadthpilotfits6321194 and15tailpilotfits6321244 after actualH100smokes and independent technicalreviews. HNmatched/selfnative geometry2arm smoke6321237 running; no scientificcandidate score reads. HNtrain-onlynuisancefloor maxwithinD AUC0.7433476296522621, conditionalfixedlearnerCI[0.712510492865163,0.7959151230372816]; qualifiedtransferonly, noidentityspecificity claim. LA1HQindexbinding remainsblocked; actualalternative labelledCelebAcrops variable-size not128square (19/2000exact), metadata correctedbefore fullCPU2000calibrationv2. Root-preserved v1 preflightfailure occurredbeforeinference. Allnewseeds separate fromprotected413–417 andNEXTselection.
+
+
+# SPRINT5 execution receipt — 2026-11-14T14:48:58.183558+00:00
+
+User request: execute the five additional experiment directions on clusters. Four reviewed GPU series are submitted to WCSS H100. Scheduler snapshot: all four PENDING (Priority); none is reported as a completed scientific experiment.
+
+| Direction | Job | Fits | Seeds | State |
+|---|---|---:|---|---|
+| Paired S4/S3 ranking: BCE / paired BCE / paired ranking |6321090|15|501–505|PENDING Priority|
+| Native matched-target vs self-target HN transfer |6321261|10|531–535|PENDING Priority|
+| Camera-tail objective: BCE / mean / CVaR |6321244|15|521–525|PENDING Priority|
+| Breadth vs more capture/orientation variants |6321194|10|511–515|PENDING Priority|
+| LA1 identity/label admission |CPU2000v2|diagnostic only|fixed selection|Completed diagnostic; HQ training BLOCKED|
+
+Every GPU series passed actual H100 technical smokes using lem-gpu-interactive. Full arrays use lem-gpu-short, one H100 per fit, maximum3 concurrent perarray; no duplicate jobs or paid rentals. Three short series are100-update pilots; ranking uses6250 updates. Tail/HN five-seed variation is conditional on one common Sb408 warmstart, not independent full retraining. Breadth comparison changes capture/orientation allocation along with identity count. Scientific readers remain closed pending independently reviewed exact-fit admission. Fresh413–417 confirmation and NEXT selection are untouched.
+
+HN train-only nuisance floor was measured and independently checked: maximum within-D AUC0.7433476296522621, conditional fixed-learner CI[0.712510492865163,0.7959151230372816]. This allows only qualified geometry-transfer interpretation, not identity-specificity or shortcut-free claims.
+
+LA1 existing labelled variable-resolution CelebA calibration completed2000 images in598.4seconds,1999 faces found,1998 complete-pair images;500 calibration and499 validation persons after one pair exclusion, no replacement. Independent audit reproduced clean flags160/998=16.03%; injected errors99/99 flagged, with unchanged-image flags241/899=26.81% and70singleton images. This does NOT establish a useful noise filter. Only one raw cross-person image pair reached cosine0.60; none reached0.70/0.77. Local HQ file-to-official-person mapping remains unverified; no HQ training or mining admission. Actual source dimensions66–147 by79–169, only19exact128square; former128px wording corrected before fullrun. Original CPU8 and failed preflightv1 evidence preserved.
+
+Athena: no new submission; latest access/account check unresolved and failed login not retried. New reviewed H100 workloads remain on WCSS. CelebA-Spoof download remains41/74parts due explicit GoogleDrive quota; not used as complete dataset.
+
+Sources: per-direction preregistrations, source SHA256SUMS, ROOT/Astra reviews and release JSON in this directory; WCSS Slurm records; COMPUTE_QUEUE.json; LA1 ASTRA_LOWRES_CPU2000_REVIEW.json. Source/release commits include8f1137d,b28b695,544391a,eb4da8e,51e72bc,de72be0,9b6c0d5. This receipt authorizes no scientific candidate score read.
+
+
+### E3 source freeze 2026-11-14T15:13:31.617343+00:00
+
+Closed registered opaque15archive seed-freeze metadata gap via b11a8c9; actualfreeze2026-11-14T16:11:40CET, modefive403–407. Evidence ROOT_E3_PREFREEZE_20261114.json andROOT_E3_FREEZE_REVIEW_20261114.md. No candidate/member/score read orNEXTqualification. Further breadthreaderimplementation and HN/tailpolicy preparation assigned to existingSol/Astra.
+
+
+## Progress-cycle root follow-through — 2026-11-14T15:51:23.419293+00:00
+
+See ROOT_PROGRESS_FOLLOWTHROUGH_20261114T153855Z.md: breadth code accepted in a29502e, opaque baseline diagnostics collected and independently technically reviewed; IDistill production still HOLD. MADation first-backward package now under independent Sol pre-review. OCC1 numeric PASS but print repair assigned to method_results; face/publication HOLD. Supplement delivered unintegrated, independent Astra review assigned. No new GPU submission, scientific read release or timer.
+
+
+## Root execution / follow-through — 2026-11-14T16:05:23.001397+00:00
+
+Luna progress cycle 2026-11-14T16:00:56Z completed; see PROGRESS_SUPERVISOR_20261114T160056Z.md. Root completed opaque SbFM supplementary archive collection: 51,363,840 bytes, SHA256 e4c815d952b07fdc964eb3991c82ecbdf0712ecce097539e0ec01db679eb704a; fresh remote/local/sidecar match. No archive member, score or raw stdout content read. Durable receipt: /mnt/t7/smad_next/coordination_20261114/sbfm_collection_20261114T160056Z/COLLECTION_VERIFIED.json. Scientific eligibility/read remains HOLD.
+
+Root read independent Sol AD5 review, verified exact sources and author/independent hashes, committed registration/release 2c6ee4b. Under WCSS common flock, checked empty fresh namespace/launch receipt/staged sources and no same-name queued job, verified all three remote opaque packs plus sidecars against prior collection, staged exact reviewed source bytes, and submitted once with minimal sanitized environment. New job6321768: first-backward diagnostic, seed401, one H100, lem-gpu-short, 8CPU120G150Glocal, exact15min. Actual receipt /mnt/t7/smad_next/coordination_20261114/ad5_firstbackward_20261114T160056Z/SUBMISSION_RECEIPT.json. This only localizes failure; no optimizer update, checkpoint or scientific score. Submission confirmed, execution state/result not yet queried. Preserve original failures; no automatic retry.
+
+Supplement factual GO independently established; author delivered43page actual-CVPR variant. Astra now independently reviews full fidelity/layout; anonymity and compactness remain unresolved. method_results completed numeric_print_v3 repair, now queued for same Astra independent re-review; face-containing figure remains unresolved and numeric-only output does not fulfill request. Started sixth-row owner /root/sol_final_publication_review on gpt-6.1-sol, bounded whole-paper claim/evidence, novelty/bibliography, official requirements and anonymity audit; no duplication of Astra typeset/OCC1 checks.
+
+
+# Root review follow-through — 2026-11-14T16:13:33.996805+00:00
+
+Compute cycle 2026-11-14T16:11:56Z delegated to existing Luna compute_coordinator, no duplicate coordinator. Root read and hash-verified independent OCC1v3 print review: PASS only for ten numeric-only internal print candidates; all original numerical scales/pins unchanged. User-requested face-containing figure, face-export and publication remain HOLD.
+
+Root read and hash-verified SOL_FINAL_PUBLICATION_REVIEW.md against current main.tex and the admitted FINAL companion qualification. Assigned sol_final_publication_review a bounded F1/F4 repair: remove abbreviated MAD22 numbers from abstract and retain the full qualified results; replace vague AI-assistant disclosure with verified current Codex roles and explicit unfinished historical/author-verification item. No invented model versions, author verification or generated face use. Compile both variants; independent review of changed text/layout required. Scientific WIP and results remain unchanged.
+
+sol_reproducibility continues the separately assigned anonymous/compact supplement derivative with a complete crosswalk, preserving the original43page record. No competing author editing its files. No new cluster submission/cancellation/rental this compute cycle. New6321768 diagnostic already submitted in prior cycle, awaiting scheduler according to coordinator's fresh snapshot; no retry.
+
+
+## Root supervision follow-through — 2026-11-14T16:24:32.285751+00:00
+
+Progress heartbeat16:20:56Z: root verified independent F1/F4 review921ebf2790d6dfcde56ef8ef363779aecb45cd2fd5eb76347067456d3aba4df7 and exact currentmain75bd35e9…/unchangedresults/WIP pins, then integrated approved draft main.pdf1e7a17d5… and main_plotly.pdf2b425c09… into manuscript_cvpr2027. Previous PDFs retained in the F1_F4 repair package/root_prior_pdf_20261114T162056Z. ROOT_F1_F4_DRAFT_INTEGRATION_20261114.json records full hashes. This changes draft artifacts only; final disclosure/publication remainHOLD.
+
+Under common WCSS flock, one connection collected exactly18 completed archives (15BATTERY6316724 tasks0–14, RZ1 A512/Sb512/SbMR512 seed408 tasks0–2) plus sidecars and opaque logs.253716480 archivebytes; every remote/local/sidecar SHA256 matched, no missing. No tar members, scientific arrays or raw stdout content opened. Receipt /mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/COLLECTION_VERIFIED.json. Registered arrival is metadata/durability only, not candidate eligibility or a scientific read. Queue collection metadata updated from freshbase.
+
+Sol delivered34page anonymous reader supplement; root assigned independent Astra audit of complete2580cell crosswalk,205exactdedup, prose/qualifier dispositions, clean regeneration and fullZIP/PDF anonymity/layout. Original43page archive/WIP retained. Luna resumed existing sol_sprint_experiments for HN reader FIRST against adopted policy/inputpins, immutable adapter and synthetic/metadata-only checks, no actualcandidate read. Tail reader follows separately. No new GPU job or timer in this progress cycle.
+
+
+## Root supplement review acceptance — 2026-11-14T16:32:55.172945+00:00
+
+Root read and verified Astra reader-supplement review8d5dbebf…3e4d5, independently matched local user-output PDF455fb575… and ZIPcfb2cf57… to exact reviewed artifacts.34page reader derivative is accepted for author review only: full2580cell crosswalk,205strictduplicates, scoped anonymity/fidelity/layout and byte-identical clean regeneration independently PASS. Prior43page archive and WIP remain. No new source-image figure, final submission, scientific eligibility or read release. Exact disposition ROOT_READER_SUPPLEMENT_ACCEPTANCE_20261114.json.
+
+Compute heartbeat16:31:56Z dispatched to existing Luna, no duplicate coordinator or job mutation. Sol continues immutable HN reader implementation on synthetic/metadata-only inputs; independent code review follows frozen handoff.
+
+
+## Root completed follow-through — 2026-11-14T16:46:48.751744+00:00
+
+Opaque collection completed: MixFaceNet6310125 seeds403/404 andRZ1task3 A512seed409,3archives2234101760bytes. Freshremote/local/sidecar SHA256 verified undercommonWCSSflock; no member/score/checkpoint orrawstdout interpretation. Receipt /mnt/t7/smad_next/coordination_20261114/new_completion_collection_20261114T164056Z/COLLECTION_VERIFIED.json. Existinglocalcandidatecopies checked beforetransfer; no duplicatefound incheckedresults/recovery/coordinationroots. Scientificeligibility remainsHOLD. Queuearrivalmetadata updated.
+
+Root adoptedHNexactbinding51ae4053… andsourcea8a083a6… after independentAstra20test/metadata review916b46dd… andmanualsourceinspection, opaque1034inputpinchecks. Owned23files committed58e4e5e andclean. ROOT_INPUT_ADMISSION/ROOT_CODE_ACCEPTANCE recordcode-onlyscope; noactualcollector/read/claim.
+
+Root prospectively adoptedAstra taildiagnosticproposal1bd8504f… after independentreview12dba40a… as explicit diagnostic-uncertainty clarification beforeanycandidateaccess. Commit8cd6b8e, ROOT_TAIL_DIAGNOSTIC_ADOPTION.json3c679d59…: descriptivepointonlyAUC/quantile scope, diagnosticCI NOT_ESTIMATED/null; primarycalibration/FAR/NI/RNGunchanged. This is not completeduncertainty orlive-readGO; frozen-baseline reporting remainsrequiredHOLD. Solfrozetailprimaryv1 d2912f78…/bindingf91984a6… andnowimplementsnewtail_reader_v2 withdiagnostics, samejournal/output anddifferentialprimarytests. Bothversionsstillneedindependentreview/inputadoption.
+
+Reused existingastra_compute_unblock_plan for boundedresourceonly interactiveadapter/transitionplan foralreadyqueuedAD5diagnostic6321768. No WCSSqueries, submit,cancel orGPU byplanner. Requiresindependentpre-review androotguardeddecision, no duplicateexecution, no failure/retryclaim. Schedulerpendingiswaiting, notfailure. No timerornewGPUsubmission inthiscycle.
+
+
+## Root visual handoff and compute-cycle follow-through — 2026-11-14T17:13:03.339286+00:00
+
+Root verified the three first visual handoff file hashes and read VISUAL_EVIDENCE_PLAN.md. Concrete9-case manifest/private preview delivered, not a publication-ready panel. Author reports a compound processing-history SelfMAD response on FFHQ00010; independent evidence/permission/layout review assigned to existing astra_sprint_plan_review before root adoption/display. Do not describe sigmoid as calibrated attack probability or arbitrary0.5 crossing as a registered operating decision; pure JPEG/blur causality and prevalence remain unestablished. Source-face release remains source-specific, and current private illustrative case is a child; review adult-source alternative and actual license terms rather than infer automatic legal disposition from age.
+
+Root resumed shortcut_visual_examples to prepare a versioned, exact small VIS1 response-census prereg/input/source/environment/command package with original XAI grounding and independent pre-run review. New image-specific rights/overlap and threshold eligibility must be explicit; layer probes deferred behind the simple image-pair objective. No GPU/scheduler actions by visual owners, no candidate/sealed payload access. Main/WIP unchanged.
+
+Existing Luna compute_coordinator handles17:11:56Z heartbeat in one locked metadata batch; no new coordinator or timer. Fresh interim observation: first SPRINT5 ranking task0 running, other49 fits pending; no new completion/failure. This is routine scheduler progress, not a new scientific finding.
+
+
+## Root compute-cycle independent-review follow-through — 2026-11-14T17:33:06.807037+00:00
+
+17:31:57Z compute cycle: existing Luna dispatched for one shared-lock metadata batch. Root read VIS1 independent review5348ec994406358b68244a6783d1a7d0db70dca2d3b0c9d48631c2183ef3f0eb and exact command prerequisites. Conditional method/codeGO requires owned clean commit and private-input/root prelaunch scope; no inference executed in this cycle.
+
+Tail v2 independent implementation review2286e62c29415f8dfb5e84657a9ea0aefbb72dde5f3d4f7e83e78e73a31add64 found a real blocking binding-path variable shadow: require_committed checks last input pin rather than actualbinding. Root dispatched authorSol for versioned narrow fix plus untracked/dirty-binding regression, preserving priorfrozen revision, statistics, sharedjournal/output. No actualcandidateaccess.
+
+Astra high delivered filled per-family benchmark/ablation Markdown and6page actualCVPR reviewPDF,426mappedcells; root read tableT1 and component/outcome tables. Final crosswalk/handoff checks finish before independent review and main integration. No comparison reinterpretation or score reading.
+
+Coordinator interim snapshot now reports14SPRINT5tasks complete (9breadth,5tail),10running,26pending. Output durability/admission not yet confirmed; allfit rosters still required before their separate readers. No scientific read or partialseedfallback.
+
+
+## Root completed code/input gates and active collection
+
+VIS1 reviewed score-only source/input/prereg/commands committed734dd4e (15ownedfiles,clean). This resolves sourcecommit prerequisite only; immediate private-scope/runtime/output/contention/storage prelaunch receipt and exact rootexecutionrelease stillrequired, noGPUexecuted. Tailv2r1 R1independentdelta review56464ad8… closedbindingpathdefect. Root inspectedexactdiff/review, verified130inputpins andallversionedsourcepins, adoptedcorrectedbinding/rootinputreceipt andcommitted75ownedfiles2a1e908. Oldrevisionsretained/samejournal/output; actualcollector/reader/camera/baseline gatesHOLD. Tablesauthorv2correctedT8andprovidedhashes; rootdispatchedindependentnarrowrereview. Opaquecollection16archives5.11GBstillinprogress; rootwillonlyclaimverifiedaftercollectionreceipt. No score/memberread, no newGPUjob/timer.
+
+
+## Root final verified progress-cycle outcomes — 2026-11-14T17:47:41.799392+00:00
+
+Collection16/16 complete,5109575680archivebytes,no missing, freshremote/local/sidecarSHAallmatched: /mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/COLLECTION_VERIFIED.json.9breadth+5tail+2RZ1, no member/score interpretation. No scientificreadrelease. Tablesv2 independentdelta review1f6d6a2a…PASS and exactlocalPDF315a4dcd…/MDddb5c053…/ZIP53af24d9… verified for authorreviewdelivery. PriorT8contentblocker resolved; mainintegrationlayout and finalscientific/publicationgates remainseparate.
+
+
+## Root compute failure follow-through — 2026-11-14T17:54:03.971218+00:00
+
+Coordinator17:51:57Z reports37/50SPRINT5complete, breadth10/10 andtail15/15complete; newerarchivesstillrequireopaquearrival/eligibilityverification. Rootdidnotopenscientificoutputs. AD5firstbackward6321768FAILED1:0at18:46:20CET. Exacttraining-only8filetechnicalpacketcollectedunderWCSScommonflock; freshremote/localhashesmatch,nomissing. Receipt /mnt/t7/smad_next/coordination_20261114/ad5_firstbackward_collection_20261114T175157Z/COLLECTION_VERIFIED.json. Rawlogsdidnotappearintooloutput. Independentpostdiagnosticreviewassignedtoexistingastra_compute_unblock_plan. ResourceadapterreviewerpoinformedFAILEDinvalidatespendingmigration; noautomaticretry/cancel/interactiveallocation. Queuefreshbaseobservedcounts/failureupdated,preservingscientificgates. No newjob/rental/timer.
+
+
+## Root actionable follow-through — 2026-11-14T18:07:17.024279+00:00
+
+25known-completionopaque collections inprogress: finalbreadtharchive,remaining10tail,9HN,5RZ1. Missing[] in freshremoteheader; no archive members opened. Sol prepares exact separate completebreadth10/tail15 metadataadmissionPROPOSALS from durable receipts only; noactualcollector/read. Root foundandcorrecteditsown priorreceipt schema mismatch without changing source/scientificpolicy: ac2b2c9 newROOT_INPUT_ADMISSION_COLLECTOR_COMPAT.json uses literal baselineHOLD, diagnosticADOPTED_POINT_ONLY_NOT_ESTIMATED, explicitrequired-baselinereporting retained. Oldreceiptpreserved.
+
+Root performed exactreviewed VIS1SelfMAD privatefive-input boundedpilot after freshownedcleancommit/source/input/preflight/runtimeGB10idle/nootherprocess/storage/createonlychecks and explicitprivategrant inROOT_RELEASE. Local10mincommand exited0 at18:05:44UTC, RESULT+SHAreceipt present; exactprelaunch/native/logreceipts in/mnt/t7/smad_next/VIS1/20261114/v1_execution_selfmad. Rootdidnotdisplaynewscorevalues; independentpostresulttechnical/numericreviewassignedtoAstra. A/Bnotexecuted, separatefixedcontrolrelease stillrequired. This is localprivateillustration, no benchmarkingorpublicationGO.
+
+RootreadAD5postdiagnosticreport2e257174…: efficientSDPAbackwardlocalizedafterencoder/headerOK; rootcause/buildfix notestablished. Newoperatorprobe gotindependentdesignGO7d2b92f9… butexecutionHOLDmissinglauncher; authorassigneddurableactualsrunPTYnewnamespace, nooldfailedmigration/noauto-retry. No new WCSSsubmission/rental/timer.
+
+
+## Root collection and fixed-control completion — 2026-11-14T18:09:26.874978+00:00
+
+25/25newarchives7331860480bytescollected,no missing; allremote/local/sidecarhashverified. Receipt /mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/COLLECTION_VERIFIED.json. Combinedearlierreceipts nowbreadth10/10 andtail15/15durable; Solpreparingcompleteexactrosterproposals,noactualmember/score/readerrelease. HN9andRZ1extra5alsosecured. Queuearrivalmetadataupdatedwithoutscientificadmission.
+
+VIS1SelfMADindependentreviewfd1c5caf… passedanchor/repeatsallzeroerror,5finiteinputresponses/deltas/sigmoids andprivateconstraints. Onthattechnicalcriterion rootissuedseparatefixedA/Bcontrolreleaseandfreshprelaunchchecks, allsamefiveinputs/preciseoriginalstack/privategrant. Bothnativeexit0at18:08:48/55UTC, RESULT+SHAreceipts present. NoSelfMADrerun, no case/modelselectionbyoutcome. Rootdidnotdisplaycontrolvalues; independentpostreviewassigned. Controlsreceipts/mnt/t7/smad_next/VIS1/20261114/v1_execution_controls. No calibrateddecision/population/utility/sourcepublicationclaim. No newWCSSjob/rental/cancel/timer.
+
+
+## Root verified arrival and local-figure follow-through — 2026-11-14T18:15:18.464085+00:00
+
+HNlastself535+rankingseed501threefixedarms collected4/4,1457715200archivebytes,remote/local/sidecarSHAallmatch,no missing; receipt /mnt/t7/smad_next/coordination_20261114/hn_pair_collection_20261114T181157Z/COLLECTION_VERIFIED.json. No member/score/weightpayloadopened. HN10/10nowdurable, allthreepilotcohorts breadth/tail/HNcompletearrival, actualmetadataeligibility/scientificreadstillgated. Root updatedobservedqueue andarrivalmetadata.
+
+RootacceptedVIS1all-threeindependentnumericreviewff9d1a19… onlyforprivatepresentation; reactivatedvisualauthor to renderexacttwofixedrealphotos/allmodeloutcomeswithcredits andnooperationalthreshold. RootcreatedexactROOT_PRIVATE_RENDER_GRANT.json separatefrominference-nosave constraint. Correctedrootinstructionhistory:00042 uses1024→265,00056 uses1024→249 beforeexisting512alignment, not00010's245. No newinference orpublicsource-imageclearance.
+
+CurrentAD5stateisFAILED;postreviewhaslocalizedefficientSDPAbackwardwithoutestablishingunderlyingkerneldefect. No automaticretry oroldmigration, newsyntheticprobe stillrequireslauncherreview/newrootrelease.
+
+
+## Root completed metadata-only action — 2026-11-14T18:26:41.744612+00:00
+
+Independent complete-roster/design reviews b086df6e…(breadth/tail) and234b1bf8…(HN) verified against actualrosters/source/inputadoption/reviewhashes. RootissuedseparateexactGO_METADATA_COLLECTION_ONLY releases, committed packets andranunchangedCPUcollectorswithCUDAempty. All3nativeexit0/COLLECTION_COMPLETEtrue/noCOLLECTION_FAILED;35envelopes created. No NPZ/weightsdecoding, actualscientificreader orpermanentclaim. Currentbreadth/tailactualenvelopeindependentreviewassigned; HNactualeligibilityseparate next. Rootdidnotinfer scientificfiteligibilityfromexit0alone. Executionreceipts listedROOT_PROGRESS_EXECUTION_20261114T182257Z.json.
+
+RootvisuallyinspectedactualprivatePNGtwofixedfacepairs andall6modeloutcomes; imageproportions/captions/readabilitygoodatdisplay. IndependentactualPDF/caption/numericalprivatepresentationreviewassignedtoAstraother. No sourceimagepublicationscope ornewinferencethiscycle. SDPAnewsyntheticprobe+PTYlauncherstillneedsindependentlauncherreview/rootexecutionrelease; don'tuseoldfailedmigration.
+
+
+## Root registered primary reads completed — 2026-11-14T18:31:57.979091+00:00
+
+After exactactualmetadataeligibilityindependentreviews, rootissuedandcommittedspecificGO_READER_READ releases forbreadth10/tail15/HN10, bindingnewREADER_ROSTER/postreview andpreservingoriginalcollectorreviewhash foreachmetadataenvelope. Recheckedfixedsource/inputadoption/roster/reviewandabsentonce/output. Durabletmuxdrivers firstperformedadmit-only preflight thenactualunchangedregisteredreader exactlyonce. All3nativeexit0,result+onceexist, no retry; eachscientificjournalconsumedasregistered. Breadth/tailfinished18:29:54UTC, HN18:30:16UTC. Exactexecutionreceipts inROOT_PROGRESS_EXECUTION_20261114T182257Z.json. No sealedbenchmark/baseline/camera expansion ornewGPU. Independentpostresultreviewsassigned separately, no unreviewed numericclaimshownuser.
+
+PrivateVIS1actualfacepanel independentlyGO_PRIVATE_PACKAGE_ONLY review96ba523c…; rootreadreviewandviewedPNG, independentlyverifiedexact5deliveryhashes. BundledreviewedPDF/PNG/SVG+mandatoryEnglishcaption/manifest+QA into private_review_package.zip93940f9f… inuseroutputs. No newpixels/render/inferenceorpublicationscope; all6modeloutcomesretained. Readyforprivateauthordelivery.
+
+
+## Root accepted three qualified development pilot reports
+
+Verified exactindependentreviewhashes15b34e85…(breadth),37d8b001…(tail),0968da40…(HN) andreadallthreefullreports. Arithmetic/journalPASS, no pilotjustifiesnewprotocoladoption: breadthΔAUC+.00008529conditionalCIincludes0; HNΔ−.006465022,0/5positive,CIupper+.000017188includes0; tailallpointFA0across90cellsandnoCVaRFAadvantage,descriptiveS4sensitivitydrop10.588pp,all8NIsparse/missingINCONCLUSIVE. ExistingSb/NEXT/freshconfirmationstatusunchanged. RootassignedAstrahighseparateperformedpilotablationappendix withalladverse/inconclusiveoutcomes; no benchmarkcellsubstitution orsource/endpointchange. Exactrecord ROOT_THREE_PILOT_RESULT_ACCEPTANCE_20261114.json. No scientificreader rerun/newGPU/rental/timer inthiscompute cycle.
+
+
+## Root complete512arrival / supervision follow-through — 2026-11-14T18:46:44.929774+00:00
+
+Collected7/7recentarchives1141831680bytes,remote/local/sidecarSHAallmatch,no missing,lastreceipt /mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/COLLECTION_VERIFIED.json. Rootcombinedfivearrivalreceiptsandrehashedall15RZ1A512/Sb512/SbMR512×408–412 opaque archives/sidecars, uniquecompleteinventorysavedROOT_RZ1_FIFTEEN_OPAQUE_ARRIVAL_VERIFIED_20261114.json. No members/NPZ/checkpoints opened; currentNEXTeligibilitynotinferredfromarrival. Rankingseed502threearmsalsodurable, now6/15arrival. Queuearrivalmetadataupdated.
+
+Existingtraining_contributionSolresumedcritical-pathNEXTmetadata-onlycloseout afterthisarrival; mustreconcile8armnativeadapters/floors/crop/kernel/sourcegate andfresh413–417comparators withoutreadingcandidatepayloads. ExistingbaselineauxAstraplan2362a7b2… readyforotherreview/rootadoption, after-primaryclarification only; primaryread/journalmustnotreopen. SDPAnewlauncher independentreviewassignedotherAstra, noGPU/submissionyet. Pilotappendixv3preparedwithalladverse/inconclusiveevidence,noscientificclaimsstrengthened.
+
+
+## Root launched reviewed new synthetic diagnostic — 2026-11-14T18:50:07.917899+00:00
+
+After independentoperator+launcherreviews(rootreadexact4e88a0e4…hand off/source), committedownedsource7364262 andverifiedcleanpaths/allpinnedfiles. Onecommon-lockWCSSstaging/preflightconnectioncheckedpartitionUP/nativeinteractivequeueabsence/session/dispatch/keepabsence andstagedexactsource/evidence. Rootissuednewhash-boundreleasewithfreshsite/ownedcommitproof and>=50GiBdurablespace. Actualtmux+real srun--pty allocated NEW6323083 onlem-gpu-interactive,r18-15; nativeallocationverifiedoneH1008CPU120G150Glocal15min. CurrentlyCONFIGURING, nooperatorresultinferred. Permanentclaim/durablepipe/nativeIDguardsremain; nooldjobcancel/migration/retry. ExactROOT_SDPA_PROBE_EXECUTION_20261114T184258Z.json+localreceiptsrecordresourceverification. This is syntheticgeneratedtensoroperatorlocalizationonly, no models/dataset/weights/scientificbenchmark. Bothbackendoutcomesmustbecollectedreviewed, noautorerun.
+
+
+## Root compute-cycle correction and NEXT arrival closure — 2026-11-14T18:59:24.094721+00:00
+
+Coordinatorusedliteral/lustre/...shortcutfornewSDPAjournal, whichwasapatherror,notmissingjournal/failedlogin. Rootcorrectiveexactpathreadunderflockverifieddispatchfiles/terminalandnativejob6323083CONFIGURING(accountingRUNNING), noNODE_START/NODE_EXIT/wrapperIDyet; srunterminalwaitsresourceconfiguration. Exactpath/nativereceipt /mnt/t7/smad_next/coordination_20261114/sdpa_probe_launch_20261114T184258Z/NATIVE_OBSERVATION_2.json. No operatorPASS/failureinferred andnoautomaticretry/cancel.
+
+Opaque NEXTfinal collection11/11archives295239680bytescomplete,no missing,remote/local/sidecarsallmatch: /mnt/t7/smad_next/coordination_20261114/next_final_output_collection_20261114T185258Z/COLLECTION_VERIFIED.json. BB2LW2andall10RZ1Rsourceoutputsnowdurable; existingA408copyhashmatchedfreshproduction/preserved. No archive members/score/checkpointaccess. Rootresumedtrainingownerfordraftnativeinventories/ADMISSION_PROPOSALonly,no canonicaladmission/preflight/batch_closed/readpermission.
+
+RZ1M7andapprovedNEXT§12q4explicitlyrequireauthorinterpretationof224interiorcropfromstoredaligned512withoutfurtherresampling. Rootsubmittedoneexactasyncauthorquestionaftercompletedcrop/sourceprep; responsepending, noSbcscientificread orassumedapproval. Otherprepcontinuesindependently.
+
+Baselineauxpoint-onlyafter-primarypolicy2362a7… independentlyreviewed390733… androotadopted4e7bac3/a227479a…. Sourceimplementation/technicalmetadata/scientificaccessstillseparategates. Solauthorresumedfullimmutableauxadapter+opaquehashcollector/testing, noactualmembers/readers. Pilotappendixv3independentreview583621bb…GOqualifiedauthorreviewonly; benchmark/userdataunchanged.
+
+
+## Root closeout — progress cycle 2026-11-14T19:02:58Z
+
+Recorded 2026-11-14T19:17:33.145179+00:00. SDPA6323083 terminal evidence collected (25 files, fresh hashes/sizes verified); independent review d3ecb92faeacbc262483481eba6137bfed67315d896d53d98cb346dead5b8abe accepted for technical scope only. Default efficient-attention backward fails CUDA illegal instruction; math-only synthetic backward is finite on identical inputs/upstream gradient. Wrapper COMPLETED0 does not mean both backends pass. Full training recovery, numerical backend equivalence and scientific results remain unestablished. Root acceptance: ROOT_SDPA_TECHNICAL_RESULT_ACCEPTANCE_20261114T190258Z.json.
+
+Known next computation is being prepared now by Sol: separately registered real one-effective-step math-only smoke, unchanged original batch/data/model/runtime, no GPU until independent review/root release. NEXT owner is implementing a typed safe metadata collector after independent v2 design review; no actual members or scores opened. Baseline auxiliary immutable implementation (20 synthetic tests,604 metadata pins) has been sent to independent Astra implementation review; actual collection/read remains HOLD. AB1 ten original A/Sb408–412 opaque remote/local/sidecar receipts verified in ROOT_AB1_TEN_COMPARATOR_OPAQUE_VERIFIED_20261114.json. Pending Sbc author ruling remains pending; no duplicate question or inferred approval. No jobs submitted/cancelled or rentals made in this progress cycle.
+
+
+## Root compute-cycle follow-through — 2026-11-14T19:20:44.391569+00:00
+
+Baseline auxiliary immutable implementation independently reviewed ee36c91c…154dd85, exact code/input adoption commit45a62dba67bebbffe704b46b363d571fda119be1 and actual --require-committed metadata preflight PASS. Separate committed root technical release issued; CPU-only collector completed0, baseline member opaque hash/fixed metadata only, NO NPZ deserialization. Receipt /mnt/t7/smad_next/SPRINT5_3/baseline_aux_technical_v1/RECEIPT.json SHA619b555568d131d7c4681bfeb2d50f5225e241b1edeab3737b07e28973e3f4ae. Actual technical review/admission remains pending; scientific auxiliary release/read/claim remains HOLD. NEXT typed collector delivered14unit+154synthetic-archive tests; root verified exact source/packet hashes and dispatched independent Astra implementation review. No actual NEXT members opened; incomplete native loss/config gates stay HOLD. Sol real AD5 one-step math-only source preparation continues. No new cluster submission/cancellation/rental. Details ROOT_FOLLOWTHROUGH_20261114T191758Z.json.
+
+
+## Root follow-through: durable seed503 and auxiliary read
+
+Pair-ranking tasks6–8 seed503 triplet opaque archives collected under shared WCSS flock in one successful SSH transfer:3archives1,095,413,760bytes; fresh remote/local/sidecar SHA256 all equal. Receipt /mnt/t7/smad_next/coordination_20261114/pair_seed503_collection_20261114T191758Z/COLLECTION_VERIFIED.json. No candidate archive members opened during collection. Total durable ranking now9archives for501–503; remaining6fits not presumed complete.
+
+After independent actual baseline technical admission review7d4a2a318063efba606a849f59043a5d7caaa371dd88c7a3b8a8ae369e6376bf, root adopted exact technical inputs and issued separate committed auxiliary-only release95cc9655096a661bb59e9e8a63049524658f13f013eb07c9b14e6abf4b4ded9f. Permanent fixed auxiliary once/read completed0 at2026-11-14T19:23:11.654763Z, RESULTf6090b2f833a9ea2d4a33154a03308baf5f38bca786e6e26146eaeee30f49f37. Independent postresult review in progress. No rerun/alternate namespace. Scope remains AFTER_PRIMARY_RESULTS_SEEN, point-only, exact538baseline/468candidateIDs, noCI/NI/winner/primaryrerun/camera/sealed. No scientific conclusions adopted before postreview.
+
+
+## Root acceptance: auxiliary operating-point panel
+
+Independent postresult reviewb528f475c9762c00273a4fce3cec55e0270beb938d5091a34590aefac93f1c8d verifiescomplete16cases/allcontrasts/primarypreservation. Qualifieddescriptivepointreportaccepted in ROOT_BASELINE_AUX_RESULT_ACCEPTANCE_20261114T191758Z.json, notprotocoladoption. CommonSb408threshold2.002179622650146 givesFRGCs61FA2/26 BCEandmean versus0/26CVaR; other5cells0. S4mean94.1176%BCE/89.4118%mean/76.4706%CVaR,baseline9/17=52.9412%. CVaRvsmeanavoids2falsealarmsatcost12.9412ppS4sensitivity; independentlyowncalibratedFA0allmodels andS4BCE/mean64.7059%,CVaR54.1176%. Baselineonewarmstart/BCEcontinuation changesprecludeattributingbaselinegainssolelytoobjective; smallsamples,noauxiliaryCI,afterprimarypointonly,all8primaryNIinconclusive. Astrahigh tableownerpreparesseparatev4printappendix/fullcells+seeds beforeindependentreview; no mainintegration.
+
+NEXTboundedtechnicalcollectoradopted commit93c0d138b98d31e6bef55c59ddd6d574bca69fd2, implementationreviewce8e884a…994e4d. ActualNEXTtechnicalexecutionstillHOLDpendingseparaterelease; Astraunblockpreparessource-groundedfullnativegatesandSbMR512kernelplan. SolAD5mathone-stepdraft12CPUtestspass, finalimmutablehandoffpending; noGPUlaunchinthiscycle.
+
+
+## Root progress-cycle follow-through — 2026-11-14T19:26:58Z
+
+Luna19:26boundedprogressauditcomplete. Correction to seed503snapshot: rootalreadyclosed3opaque seed503archives1,095,413,760bytes; verifiedreceipt pair_seed503_collection_20261114T191758Z/COLLECTION_VERIFIED.json is authoritative. Source-onlyNEXTblockerconcretelyresolved: original8,752,445,440bytepn1_pack_fs.tar rehashed exactly96c31ae…9f2004; extracted ONLY65smadcvprPythoncodefiles to durable coordination/next_training_source_only_20261114T192658Z. train.pySHA cbb2cbd1b9a3eb59ab080a540a98aab0f6ead51ea69364d2debe06a984b8c1c5. No candidate-resultarchives/logs/weights/images/NPZ accessed. ROOT_NEXT_TRAINING_SOURCE_ACQUISITION_20261114T192658Z.json bindsreceipt/source. Astraunblockplan a5aaa50688cd10c9a468e88c69701fd91655c26cf0e0a02278c0d93819bea9e1 gives exactneededv2associations/nativepredicates and proposednonidentitySbMR512kernelgrid; notyetindependentlyadopted, noexecutionauthorized.
+
+RootimmediatelyreusedindependentAstrareviewerforAD5real-one-stepdraft/source-onlytests; finalGOmustbindSolimmutablehandoff. NoGPUrunfromdraft. Astrahighappendixv4all16cases/6genuine+4positive/306cellsreadytext, actual9ptPDFinlayoutQA; noauthorpresentationbeforeindependentprintreview. No newtimer/job/cancel/rental inthiscycleatthisentry.
+
+
+## Root execution closeout — 2026-11-14T19:38:26.159485+00:00
+
+After independentAD5GOa6673ac85174faa2f9a167b47d1970acb2e864cb50ecd2d83f2936e4e3b1462e rootadoptedexact66ownedsource/evidencepaths commite4697c012ad07f9ace2180aacea1db20c0211c85, trackedclean. FreshnativeWCSSpartitionStateUP/r18-15idle~, threeoriginalcompletepackSHA+sidecarsmatch, newnamespaces/tmux/queueabsent, durable95.7GiBfree. Exactsource/evidence stagedandverified; rootreleasefd84969b2f41b3bd40f78ee4d76a3083f5a9acf337c40bcd84529cec8068a42f; actualtmux→srun--ptylaunch19:36:37Z. NEW6323725 observed19:37:13Z CONFIGURING(r18-15); earlynodeIDnotyetpresentbeforestart, noresult/PASSinferred. OneH1008CPU120G150Glocal15min, fixedB401global256FP32, onefullstep+2originalAdamWupdates,noeval/checkpoint. Oldfailed6321768/synthetic6323083preserved. Durablealllaunch/nativeproofs coordination/ad5_real_math_step_launch_20261114T192658Z/. Next: actualnative/start/exit/STEP_RESULT+opaque technicalcollection andindependentpostreview; noautorun/retry/cancel.
+
+Appendixv4 independentprint/numericreview9d6762ec091e5f179ad51bb052129b23a30eea303f0495e256cc9b5e88f6d1d3 acceptsqualifiedauthorreview:2actualCVPRpages9pt,306mappedcells/all16cases/31nulls,cleanZIPrebuild andgrayscaleprintPASS; rootvisuallyinspectedbothfrozenpages. PDF91f6a50055410fcfcffbe33963d42aa03d36ce7ba39b1c4100d1cae7bb51a3aa. Mainandv2/v3unchanged; noclaim/adoption/publicationGO.
+
+NEXTsourceplanindependentlyreviewed a447905b…e265; rootboundedv2implementationadoptionROOT_NEXT_V2_IMPLEMENTATION_ADOPTION_20261114T192658Z.json permits ONLY exactfuturewhole-logfinite/presence/countbooleans withnonumeric/lineexports, preservenativeregex/conversionsemantics. ActualrealcollectionstillHOLDpendingexactcode/review/release. SbMR512scientificsupplementneedsseparateprospectiveadoption; Sbcpendingauthorrulingunchanged.
+
+
+## Root verified follow-through — 2026-11-14T19:46:49.630243+00:00
+
+Seed504tasks9–11 archivedurability CLOSED:3opaque archives1,095,413,760bytes,freshremote/local/sidecarSHA+sizeallmatch. Receipt /mnt/t7/smad_next/coordination_20261114/pair_seed504_collection_20261114T193958Z/COLLECTION_VERIFIED.json. Per-file sizes are files[].bytes (also in seed503 receipt); earlier report no-size statement is a field-name lookup error, not missing evidence. Noarchive members opened. Ranking12/15complete anddurable,3running; fullSPRINT547/50.
+
+CorrectnativehostWCSSquery19:43:56Z confirms actualJ+KEEPexists,nativeID6323725,NODE_START19:42:10,NODE_EXITworker0/node0,TERMINAL19:43:24,STEP_RESULT statusONE_REAL_EFFECTIVE_STEP_MATH_ONLY_COMPLETE. FreshacctCOMPLETED0:0,20:41:59–20:43:24CET,85s. Rootcollected30dispatch/workertechnicalfiles withfreshnative/localSHA+sizes: /mnt/t7/smad_next/coordination_20261114/ad5_real_math_step_results_20261114T193958Z/COLLECTION_VERIFIED.json SHA92f647711933aa7f5f0e1df5b85aae0dadab08fb1b0348b6eb1a7ec4b533d192. IndependentAstrapostreviewinprogress; noone-steptechnicalPASS/fulltrainingrecoveryinferredbeforeit. Prior remotejournalnegative observations were on GX10 instead of WCSS; currentevidencecorrects hostsurface, not lost files.
+
+SolSbMR51214-specproposal frozen sourcec092aee8…3460/evidencea23fd2f7…2ce6 andsenttoindependentmethodreview. Sourceonly13771crossrows/masks/coverage/3CPUfixtures,noGPUcommand; checkpoint/runtimeactualfieldsUNKNOWNawaittechnicalmetadata. Futurecollectorv2preparationcontinueswiththeseexacttypedfieldrequirements. No additionalGPUjobsubmission/cancellation/rentalinthiscycle.
+
+
+## Root accepted real AD5 one-step result — 2026-11-14T19:52:10.243389+00:00
+
+Independentpostreviewf0b1bb99c68852c7e62dee099dde3b6c70abde891b6203da9b64fa3d8544a89d: PASS_ONE_REAL_EFFECTIVE_STEP_ONLY,all30files/hash/source/runtime/batch256/48LoRA+2headerfinitegradients/clipping/oneoriginalAdamWupdateeach verified.24zeroAdata-gradientsexpected; all50updatedfinitechanged.AdamWweightdecaycanchangeA. Peak34.693227GiB,instrumented2.036171467s(notfullfitestimate),native85s. ROOT_AD5_REAL_STEP_TECHNICAL_ACCEPTANCE_20261114T193958Z.json recordsscope. No fulltraining,backend-equivalence,qualityorproductionclaim. Solimmediatelypreparesnewregistered36-updateoriginal3311list3epochsmoke+checkpoint/reload; independentprereview/newrootreleasebeforeGPU.
+
+SbMR512methodologyreviewe1720ddc…fc9d requiresbatchcontextdecision. RootprospectivelychoosesB(ii)fulloriginaleval/TT1orderedbatch64+originalflipcallsequenceforall14specs,exportcrossIDsonly,nonewcontextmetrics,nofallback/tolerancerelaxation. Sourcepreparationonly,exactnewpacket/resources/metadataadmission/runtime/exposure/rootexecutiongatesremainHOLD. ROOT_SBMR512_CONTEXT_DESIGN_CHOICE_20261114T193958Z.json bindsdecision; preserveoriginalv1.
+
+NEXTcollectorv2independentreviewidentifiednarrowpredicate-semanticmismatch(trailingspaceaddedtoRZ1nativePINS/groupchecks); trainingownerpreparesnewimmutablev2r1withsource-equivalencedifferentialtests, oldv2preserved. No actualcandidateheaders/membersopened, nocanonicalNEXTscientificpermission.
+
+
+## Root follow-through — supervision cycle 2026-11-14T19:52:58Z
+
+Luna completed the bounded six-workstream audit without querying clusters. All three new frozen packets were immediately sent to independent reviewers: AD5 original 36-update smoke; NEXT technical v2r1; SbMR512 full-context B(ii) design. No new GPU job was submitted in this cycle.
+
+NEXT v2r1 received independent technical implementation GO, review ef2928b8f17f44eafd34965d10d7ab2bb4a88da0c69034dc1814bd4aa476f2f3. Root rehashed every package entry and all87 pins, committed exact owned sources/inputs at03da23bd4166247fa92f23c3d59a34d4bae8c376, and verified tracked-clean scope. Root issued separate technical-only release f048a30ee3eedb2eef0e5c42ce0f296d4210366ee10307ece98293f29b3852d0 and launched the local CPU collector in durable tmux next-tech-v2r1-20261114, timeout900s, CUDA disabled. Driver/terminal logs: /mnt/t7/smad_next/coordination_20261114/next_technical_v2r1_execution_20261114T195258Z/. Exact output: /mnt/t7/smad_next/NEXT/technical_metadata_v2r1_collection_20261114. Output completion/hash integrity and independent actual technical review remain required. No scientific NEXT admission, preflight, claim or score read is authorized.
+
+Root also prepared a separately pinned15-record expected BB2L batch proposal from preregistration export256/1, final script/task map and dispatcher narrative6313860. Independent review b5b3394f76aa000f765a3b49f46687f4b49612aa0845d805ee7077f8318fee4f supports expected256/1 adoption only, not an independently recovered actual submission environment. Actual per-record recipe match is still required; v2r1 UNKNOWN fields were not modified post-freeze. Proposal9bec95b40e65695a2899c55ec54bc21fefd408bb699ee1060a2101ea7d19baac remains separately scoped.
+
+AD5 multi-update reviewer is checking durable evidence survival on timeout/SIGKILL before issuing final verdict. No launch from a draft or conditional review. SbMR512 B(ii) remains a source/design packet pending independent review, actual checkpoint/runtime metadata and executable source admission. Existing sealed-score restrictions and pending Sbc author ruling remain unchanged.
+
+
+## Root invocation correction and review follow-up
+
+Initial technical collector invocation exited1 before main/release/archive access: root added python -I despite frozen README requiring python without -I; isolated import could not locate native_metadata_predicates_v2. Original stdout/stderr/EXECUTION remain in coordination/next_technical_v2r1_execution_20261114T195258Z. Fixed technical output was absent. Independent preaccess review abf12b04ddea383344b2fa831c00007a00cb52288e2e8876bfbd0f6854ea5e24 confirmed this exact pre-access failure and permitted one correction by removing ONLY child -I, with same code/release/env/timeout/fixed output. Root rehashed all87 pins, verified output still absent, recorded explicit correction adoption, and launched corrected command with a new create-only DRIVER LOG namespace coordination/next_technical_v2r1_invocation_correction_20261114T195258Z. This is not an alternate technical output or scientific journal. Further failures require review, not automatic retry. Independent actual-technical postcollection review assigned; no scientific NEXT access authorized.
+
+AD5 36-update v1 source review f8694bd3b8093411cc32d3e0299de2fa8e18feb0b29c2ad02198f58f8864363f requires durable per-step/log preservation on hard timeout. Sol is preparing immutable v1r1 with TERM/KILL retention fixtures; no GPU launch from held v1. SbMR512 B(ii) independent methodology/source review68a04cb155f1d40c2332a52947369aa725eae27a32968fe63dec15561686cf37 supports prospective source plan only; ID-to-cross-export remapping and original interstage/runtime/checkpoint reconstruction remain explicit executable requirements.
+
+
+## Root delivery closeout — compute cycle 2026-11-14T20:03:59Z
+
+All50 SPRINT5 fits have completed successfully and their archives are durable. Ranking is15/15; exact final task6321090_14 completed0:0 at21:10:21CET. Final archive365137920bytes and sidecar were freshly remote/local hash-verified under the shared WCSS lock; receipt coordination/pair_seed505_final_collection_20261114T200359Z/COLLECTION_VERIFIED.json. Ranking full15 totals5477068800bytes in six verified collection receipts. No ranking member/score access occurred during collection.
+
+AD5 new36-update job6323877 completed0:0 in104seconds. All252 retained files600169203bytes were collected and hash-verified; independent postreview5e5ad6395a531f427c5d046388f6f1cf2b54578ec8b519bdfa2395422f2f1267 supports PASS36UPDATE_CHECKPOINT_SMOKE only. Root adopted all36 updates/1800 finite expected gradient records and the executed own-checkpoint strict-state/same-lastbatch bytegate. This is not full training, scientific performance, L-arm recovery or default/math equivalence. Full B401–405 producer v2 is independently source-reviewed d659d2de712cefae85a4ee0a483d42c592010b0e1e5f56010350edb77965254c; no full GPU job launched. Actual remaining original250GPU-hour budget, native placement/capacity and fresh release remain gates. Luna has a bounded accounting audit; no invented available-hour balance. New late-cohort window and corrected unchanged BGR behavior are bound in ROOT_AD5_LATE_COHORT_SCOPE_RULING_20261114T200359Z.json; original missed cutoff/failures remain preserved.
+
+NEXT minimal technical attachment was independently reviewed495f24ddccbb5b69383a9790ea7dc2c175f5ba72ee11a0d67db605ee0afd5b16 and adopted: all15 BB2L actual recorded256/1/task matches; five312981byte trainable overlays have distinct opaque SHA256. No checkpoint was semantically decoded by the collector/reviewer. Prior77inventory and five RZ1R prospective-only strict failures remain untouched; those five are not native failures. Kernel B(ii) executable source awaits narrowv1r1 NPZ-loading correction, runtime/input/technical timing admission and separate root execution release.
+
+Ranking full15 actual metadata reviewd09399c9af89b087f7f28f3cdd5eb24f53feeeaab1c8724cc66e01991c792d17 admitted all15 envelopes. Root separately issued exact GO_READER_READ releasef7f07580f6ebb194d7491c1e5688c016d8f336894b5bcadcf7dd15640ea58511, committed it and actual review, rechecked authority pins, then executed admit-only successfully with no claim. Original fixed scientific once reader subsequently completed0 at20:52:16Z. Fixed RESULT31e68aadf8e2c451ce57bd6320469a33dc107fe34cf232ebd4fe5aaf7111e601 and COMPLETE terminal exist; independent scientific postresult review assigned to training_contribution. No numerical conclusion adopted before review, no rerun or alternate journal, no historical191/NEXT-selection/still-sealed benchmark read. Full15/support119cell/calibration/10000draws/Bonferroni policies unchanged.
+
+Recorded 2026-11-14T20:57:48.557071+00:00. Main manuscript claims/WIP and original sealed read limits remain unchanged pending scientific result adoption.
+
+
+## Root scientific adoption and budget correction — compute cycle 2026-11-14T20:03:59Z
+
+Independent full15 postreview ecfe5793c23453fa107a567a8ff40a95a504f3a73cdd1b62c67c97084d71bad4 accepted by root. RESULT31e68aadf8e2c451ce57bd6320469a33dc107fe34cf232ebd4fe5aaf7111e601: ranking minus paired BCE within-D AUC +.021194, CI97.5[-.016593,+.059224], registered optimization NOT_ESTABLISHED. All15 networks retained. Genuine119 guards47PASS/5FAIL/67INCONCLUSIVE, including52 sparse; S4 noninferiority INCONCLUSIVE; operational NOT_QUALIFIED. Five FAIL concern TT1 FRGC processing-style cells. S3 is not bona fide BPCER. Primary2% nonestimable replicas retained without redraw; intervals are approximate conditional readable-replica intervals. Independent review checked source/policy/aggregate arithmetic, not independently recomputed CI. No protocol adoption, no strongC3 claim, no NEXT/sealed read or rerun. Sb remains frozen. Formal record ROOT_RANKING_FULL15_SCIENTIFIC_ACCEPTANCE_20261114T200359Z.json.
+
+Correction to earlier closeout budget wording: prereg later300 A100-hours allowance supersedes earlier250GPUh. Native filtered AD5/IDistill elapsed66.8158 physical H100-GPUh is partial accounting, not a complete remaining balance or conversion to A100h. New explicit user allocation question for late B401–405 up to30 physical H100-GPUh (or first seed6h) is pending. No full MADation B training submitted; preselected answer is not approval. Full producer/review ready; actual placement, truthful budget ledger, clean pins and root release still required.
+
+V5 tables independent review ac828fb5d2183f0db0007b5f883056932143f27368f794b87cbb2cf57fc07c81 gives GO_DRAFT_INTEGRATION_ONLY. Integration delegated with fresh11-file base guard and exact4-file patch; not declared applied before receipt. WIP/disclosure/rights limitations retained.
+
+Recorded 2026-11-14T21:53:39.005727+00:00
+
+
+## Actual V5 manuscript integration — 2026-11-14T21:56Z
+
+Root verifies completed integration commit898af413f9cb81095b64cf76650d169e4963b71b following independent reviewac828fb5d2183f0db0007b5f883056932143f27368f794b87cbb2cf57fc07c81. Exact4-file patch passed fresh11basepins and applycheck; backup manuscript_backups/ranking_v5_20261114T215319Z retained. Both live main.pdf and main_plotly.pdf rebuilt from actual live sources,9pages with science/disclosure through8 and references-only9. User PDFs SHA9afe097e8a0a8957b6fae6ba48559a41e294d1785d59a928db2d3581bacacee5 / ab14065c0acbaa27937d134f9c7583443fbe8942f2007ca7ce439e546ca991f4 independently localhashconfirmed byroot. Receipt09c40a6c74ef82393c14c508b8b27b7a5c81d50a8a5ae707ce7938951bc7c701. Draft now contains per-family MAD22 method table, actual ablation contrasts and full15 ranking summary; FRLL and strongC3/finalrights remain HOLD. No external publication/push.
+
+
+## Root actual VIS2 technical smoke — progress cycle21:57Z
+
+OTHERprereview831e612f5a0680fbec5db0d6a8d3ac1f3be6d314ad798476a3b875c117b1f1a0 GOexactsource. Root independently reran6CPUfixtures andmetadata-only package/source/input checks; allPASS. Opaque checkpoint pins rehashed, freshGPU no computeapps/GB10 0percent, T7free99963367424bytes. Committedexactownedsource29da6d932c199e9f2ef0dd923cce0dabdc1fe0e0, thennewprivate smoke release4121fd9470a73156d429ad01ec87dd9dec3e4da6; releaseSHA c745033069b983b02060a6798621c2af679d7a04a7da2dfa3838d92bc247fc58. Actualdurable driverstart22:01:54.758695Z incoordination/vis2_smoke_execution_20261114T215734Z, localGB10mutex, serialexact3models48responses/model plus12controlforwards; timeout15m/model/noautomaticretry. Original4FFHQinputs only, newprivate numerictransform expresslygranted; sourcepixel-export/render/full/501/publicationNOTgranted. Independentactualsmokepostreviewassignedtraining_contribution, beforeanyfullpromotion. AuthorseparatelypreparesrendererSOURCEONLY againstfrozenprintspec, noimages/results/placeholders. This is actual local computation, no WCSS/Athena submission or rental.
+Recorded 2026-11-14T22:02:37.996600+00:00
+
+
+## VIS2 full numeric execution and runtime-probe follow-through
+
+Root accepted OTHERsmokePASS5085f250a1b1b136029c700448adf12ba39648ec7a88f5d9de38b65edc00d6cd: all144responses/12exactbaselineanchors, allnativeexit0. Separatefullgrant04de9364ee7302c413e6279afae23bfb18325a80dc41a8deccffa21d6d19f61c committed7fcc1cd5d186f7810c62787b36ecaadcfadb8dc9, actualfull driverlaunched22:04:25Z exact512responses/model×3, noRGBexport/render. Independentactualfullnumericpostreviewassigned. Orchestrator summary copied false full_launched literal fromsmoke despiteexactCLI/release/outputFULL; originalkept and ROOT_DRIVER_METADATA_CORRECTION.json recordsTrue. No worker/math/input change orrerun. Runtimeprobe Solsourcepackage8b68d7f2cac7bc700d05c7362fb1750390529d642bb3e3087be1810454042813 ready,13generatedfixtures,actualallowlistUNKNOWN; independentAstrareviewassignedbeforeanyactualprobe.
+Recorded 2026-11-14T22:05:25.481609+00:00
+
+
+## Root corrected native snapshot — compute cycle22:15:35Z
+
+Coordinator report retained UNKNOWN after incorrect GX Slurm path and missing remote rg filter. Root performed one deliberate corrected native sacct query on WCSS under sharedflock, explicit trackedIDs, no remote text filter; exit0/empty stderr/raw1944bytes retained incoordination/wcss_metadata_correction_20261114T221535Z/{QUERY.json,stdout.psv,stderr.txt}. This is not a failed-login retry. Current authoritative state: allfive MixFaceNet tasks COMPLETED0:0 including final405; IDistill6312778 TIMEOUT after57615s, despite schedulerExitCode0:0. Prior running summaries are superseded, not carried forward. SelfMADtwoRUNNING/remainingparentPENDING. No retry/cancel/jobsubmission or scientificeligibility inferred. FinalMix405opaque collection initiated; noarchive members opened, verifyreceipt beforeclaimdurability.
+
+Root accepted fullVIS2 independenttechnicalPASSb9a6a9dd491dfd6f3189deef11855c367ccecbd6d61e8f77452d6c971b993d7c, all1536responses/12exactanchors; ROOT_VIS2_FULL_NUMERIC_ACCEPTANCE_20261114T221535Z.json. Renderer v1 independentlyHOLD9273bdad6d0a761f8373aea07f1b919c12e54c777d45acd0bc2d8c266b7b1d81 due missingwrite and PDFalphareset; authoractivelypreparesimmutablev1r1 withregressions. Noimages/render performed. SbMR512probev1 independentlyHOLD346625311eb0489534f1970373540ed7b9dd5ef0577ba6e2b721d8f6ebfd41c8 dueunallowlistedmetadatafallback and TOCTOU; Solactivelypreparesv1r1samebytesparse/descriptorreads/generatedregressions; norealprobe. FullMADationbudgetanswerstillPENDING.
+Recorded 2026-11-14T22:19:39.897481+00:00
+
+
+Final MixFaceNet405 archive1111674880bytes opaque collected and freshly remote/local/sidecarSHAverified73c3144336b32030acbc3af889e422a81c792579cca379ee9e0faca5c2281f68. Receipt /mnt/t7/smad_next/coordination_20261114/mix405_collection_20261114T221535Z/COLLECTION_VERIFIED.json. T7free98850353152bytes. First remotehashhelper failed because older Python lacks hashlib.file_digest (authenticatedSSH succeeded); originalfailure retained and deliberate compatible streamingSHAhelpercorrection recorded beforecopy; no archive member/scientificread. Final405 isdurable, all5fitscomplete, scientificeligibility/scoringHOLD. No IDistillretry or GPUlaunch inthiscycle. Recorded 2026-11-14T22:20:08.114141+00:00
+
+
+## Root progress22:21Z concrete follow-through
+
+Lunareport PROGRESS_SUPERVISOR_20261114T222135Z read. Rootadopted independentlyreviewedprobev1r1SOURCEONLY ca3f21d0fef58513638518d4408e18788ad2bfdf48e64a242bbec44153f33e37, exactsourcecommitted d4adc520eca56eb3f990a714ab7636454dfdc7fe. Noactualprobe. Astrafirstidentityacquisition concrete source fe6e8aac... uses registered /home/narolski/dmenv/bin/python path (notexecuted/hashedyet), source-only Sol OTHERreview active beforeactualallowlist collection. Rootalso stagedexact4privatePNGs+3admittedfullRESULT undernewprivategrant andsuccessfullyrenderedv1r1all12pages/3072paintrecords. Actualfirstcolorpageinspected;322mmnativeheight unsuitableA4/Letterwithoutfontshrink, soactualpacknotpresented. Authornowpreparesminimal immutablelayout_v2<=279.4mm/min8.2pt/58mm2columnpanels, unchangedmeasurements/scales/sign/fills/models, plainlanguagelegend. OTHERsource-deltareviewerwaitingactive; newlayoutgrant+actual12pageproofrequired. No newmodelinference/clusterjob/rental/benchmarkread inthiscycle; originalprivateandscientific/publicationHOLDlimitsremain.
+
+
+## Root progress closeout22:21Z — actual print-ready private visualization
+
+Actual VIS2layout_v2 full6color+6truegraypages independentlyreviewed ccff51662ed00a46c01a6968f2c3927911b92513c19a806512dd0db4823133c4; all1536responses/3072cellrecords/PDF+SVGgeometry/colors/sign/alpha/282hatchclips andexact4sourcephotographs PASS. Native180x279.4mm fitsstandardA4/Letter withoutshrink, minfont8.2pt; all12actualpagesvisuallyinspected no clipping. Rawzandredraise/bluelowerlegend clarifydirection. Rootinspectedfirstcolor+truegrayactualpage andacceptedPRIVATEpresentation+nativeprintonly. Fullpackage32,093,583bytes SHAba1e42c4e7da3cd96c9c8ab7befab1e3b189f642ce93084a1fba8899a9f3a82b includesbothPDFs/allSVG/caption/fullcredits+manifest/independentreview; userlocaloutputs/shortcut_occlusion_private_review_20261114_a4. Old322mmpackpreserved, notpresented. No publicationpermission orseamclosure:two genuinephotoshavenorealseammask; actualseam/surroundpanelremainsopen. Manuscriptunchangedbyprivatefigurestage. StrongC3/rankingNOTQUALIFIEDlimitsunchanged.
+
+SbMR512sourcev1r1implemented/reviewedGO andcommitted, concretefirstidentityacquisition reviewedseparately. RootexternallypinnedWCSSsystembootstrapPython3.9/root-managedRPMstdlib/bash/timeout beforestartup, exactstagedsource/review/grantSHAverified. Firstparentmkdirfailure pre-main preserved/corrected aftercreatingexactmissingparent; actualone120s/512MiBCPUmetadataonlyacquisition thenfailedclosed exit1 AFTERCLAIM, ValueErroronly, noRECEIPTidentityfields. OTHERfailurepostreview54dd026d34345eb9b30d3726d984fad82f2eeeb05f66b9b6be8250a14e40879e supportsHOLD/noidentityadmission;retainedtelemetrycannotidentifyfailingcondition/partialreadextent. Originalfixedclaimretained,noautomaticretry. AstraauthorpreparesnewseparatelyregisteredSOURCEONLYfinitecode diagnostic; anyrepeatmetadatareadrequiresOTHERreviewandexplicitnewtechnicalROOTgrant, notnewscientificonce. No model/GPU/image/weight/payload/sealedreadforthisacquisition.
+
+All6workstreamsremainproperlyqualified; actualprivateocclusionmaterials ready, finalprotocol/C3/comparisons/supplement/finalrights gatesremain. MADationfullbudgetquestionpending. No newGPUtraining/jobmutation/rental/timer inthissupervisioncycle.
+Recorded 2026-11-14T22:42:33.934529+00:00
+
+
+## Root follow-through22:46Z
+
+One separately preregistered CPUmetadata diagnosticv2 executed underOTHERGO/exactnewROOTrepeattechnicalreadgrant, allsource/bootstrap/toolpins freshverified; noGPU/job/scientificread. ItstoppedINTERPRETER_LINK VALIDATION_INTERPRETER_TARGET_OUTSIDE_GRANT, identitynotadmitted, originalv1/v2claimspreserved. Separatelyauthorizedexactreadlink/lstatmetadata identified registered dmenv/bin/python pointer via UVgenericdirectory to versioned cpython-3.12.15 path; targetbinary/packages NOTread/executed. Thisdoesnotretrospectivelydiagnoseoldv1 or attesthistorical/currentruntimecontents. Astra nowpreparesnewimmutablev3exact2link/canonicalonefile source scope, notbroad/home grant; Sol reviewsretainedv2failure. Noautomaticretry.
+
+UsedfreeSolslot for freshconfirmation413–417SOURCEONLY preparations underNEXTv3; existingconceptualauditreused/no executablepackagefound, nofits/branchselection/admission. Originalscientificselectorrejectsfreshseeds; anyadapterextension needsseparateAstrainstruction/independentreview beforeexecution. SbcandMADationbudgetquestionspendingunchanged. VIS2actualstandard-pageprivate12pagepresentation remainsaccepted/delivered; sourcev1HOLD ishistory, seam/surroundandpublicationrightsstillopen.
+Recorded 2026-11-14T22:53:17.712866+00:00
+
+
+## Root compute23:03Z follow-through — current metadata admitted, fresh scope prospective
+
+Luna freshsnapshot23:04UTC stable/no newstatechanges. Root separatelyexecuted independentlyreviewedexactUVv3 CPUmetadataacquisition23:05:15.628836–23:05:16.520953UTC, exit0; sixfreshnative/localhashes+COMPLETEreceipt7847e2007570f75012f36fccd9257f73231c9a28cafbfb38ba86c2286d76e61b verified. OTHERactualreview9237406448f12898ec509448c678501588e9ab22122108e63559fd384dd2f71e accepted43currentcontentrecords(binary/cfg/20metadata/21source),total34009576bytes,selectedUNKNOWN0; nativepackagebodies0, targetruntimeNOTexecuted. ROOT_SBMR512_CURRENT_IDENTITY_ADOPTION_20261114T230335Z.json admitsonlyexactcurrentfields, notimportedruntime/history/inputs/model/GPU/NEXT. No redundantgenericCPUhashprobe needed. Solsourceauthor nowprepares firstbatchtechnicaltiminglauncher, exact13selectedcrossnativecomparisons across64native+64flipimageforwards, operationalWCSSoutputpathnewimmutableextensionneeded; existingGXhardcodedoutputisnot silentlymounted/relocated. NoGPUexecutiongranted.
+
+OTHERfreshsource/roleaudit a73191c5d54d1a88c610a15e529c60090f2da7f9fa769af04d06d4a8c9631ced acceptedconditional150coretemplates. RootprospectivelychoseapplicablefullA/Sbdescriptivesupportforselectedbranchonly: SbFM20,RZ224/crop25,RZ51230,DINO20; GXrecipeHOLD. CoreNEXTbars/order/failuredenominatorsunchanged, extrasnotnewpassbars, noall-branchcomputeorder. SeeROOT_FRESH_CONFIRMATION_SCOPE_ADOPTION_20261114T230335Z.json. Actualnewproducers/confirmationadapter/runtime/resources/budget/rootreleaseandselectionrecordstillHOLD; nofreshfit/scoring/benchmarkread.
+Recorded 2026-11-14T23:11:58.153949+00:00
+
+
+## 2026-11-14T23:48:55.899002+00:00 — VIS3 controlled soft-splice SOURCE-ONLY handoff
+
+Owner: shortcut_visual_examples. Frozen package `experiments/VIS3_true_seam_private_20261115/v1/FROZEN_SOURCE_HANDOFF.json`, SHA f82a2a821b0d4fc39eb5038ef6ff95a645e7696557af324de646493e173ac194. Exact FS1 function capture + NEW reciprocal captured-source recombination, only prior fixed FFHQ42/56 inputs prospectively; no actual images/models/weights/new scores/construction/render opened or executed. Six generated-only fixtures PASS; actual generator geometry sigma11, shift[-1,-19], K4 boundary vs four corner-surround patches, equal4096px area; positional/texture confounds explicit. Astra independent design review requested by root; all real construction/numeric/render/publication HOLD pending OTHER and NEW phase-specific grants. Library + exact prereg/resource/input/source/rights metadata are design-ready, not execution-ready; later create-only private CPU driver and VIS2 numeric adapter require source review. Existing accepted VIS2 genuine maps/main/WIP unchanged; ranking NOT_QUALIFIED unchanged.
+
+
+## 2026-11-15T00:06:35.873745+00:00 — VIS3v2 source-only CPUdriver/numericadapter handoff
+
+Owner shortcut_visual_examples. Frozen `experiments/VIS3_true_seam_private_20261115/v2driverproposal/FROZEN_SOURCE_HANDOFF.json` SHA 874dbeedac2f74b347a6ca6b1d6b218bbaf7bd4505c1f0a729562057f999856a. Implements OTHERdesignGO5ce5b23b finite source requirements: separate authority before actualPNG access; unchangedfrozenFS1math with capturedshift/sigma/transformedsource/rawalpha/inputpixel/sourceAST provenance; losslesscreate-onlyCPUfourderivedPNG+actualmask+receipt; separateOTHERactualinputadmission; exactoldVIS2loading20statementAST andfouranchor gates; derivedrepeat/literalcopy; all512responses/model and separatepatchregionalmeans.13generated-onlytestsPASS,includingtemporaryconstantPNGCPUdriver and fake-runtime1536rowwriter finalization;18sourcepinsverified. NOactualphotos/modelpayload/newscientificscores/GPU/cluster/render. Oldrecipe/acceptedVIS2/livepaperWIP unchanged. OTHERsourceprereview/newROOTCPUgrant/OTHERactualinputreview/separatenumericgrants absentHOLD.
+
+
+## 2026-11-15T00:18:49.164551+00:00 — VIS3v2r1 immutable SOURCE-only snapshotfix
+
+Owner shortcut_visual_examples. Responds OTHERauthorityHOLD73d5ad5151de14adeba4ba33d793434166708fbd882557ceec9b61cd4271d850. Frozen `experiments/VIS3_true_seam_private_20261115/v2r1/FROZEN_SOURCE_HANDOFF.json` SHA 08d91fbd367c835f68c861422584b3d5708acee263b71b687f016f2a6cb032dd. ExternallysuppliedROOTgrantSHA requiredCLI; boundedregularfile samecapturedbytes hash+parse forgrant/inventory/manifest/receipt/admission/roster/smokereview; capturedhashesinSTARTED/COMPLETE/FAILED; Git supplemental.22generatedfixturesPASS,19sourcepinsPASS,old20statementloadingASTandmath/scheduleunchanged. Rootstartupsource/filesystemimmutabilitytrustboundary explicit. No actualphotos/weights/models/GPU/cluster/newscore/render. OTHERdeltaGO/newactualROOTgrants/constructedinputreview absentHOLD. Alloldv2/v1/acceptedVIS2/main/WIP/prereg preserved.
+
+
+## Runtime probe failure reconciliation — 15 November 2026
+
+Retained final accounting for WCSS job6324846 is TIMEOUT (300s, scheduler exit0:0), while its runtime-metadata child exited1 after54.295s with ValueError: aggregate body cap. This is not a successful runtime receipt or a scientific training failure. Independent actual-result review remains pending after the assigned reviewer hit workspace credits exhaustion. Original evidence/claims are preserved; no retry, new cluster poll or scientific read performed. Exact source hashes and evidence: experiments/AGENTIC_delivery_20261114/ROOT_RUNTIME_PHASE1_FAILURE_RECONCILIATION_20261115T174344Z.json.
+
+
+## Post-limit recovery — 2026-11-15T17:59:35.464042+00:00
+
+Recovered14 opaque full archives (17205616640bytes), all native-pre/post/local/sidecarSHA matches: AthenaMADationB/L five seeds each, WCSSSelfMAD401/402 plus missing fullMixFaceNet401/402. Fresh saved scheduler observations supersede old summaries: AthenaMADation both5/5COMPLETED, SelfMAD2complete/2running/1pending. No scientific read or job mutation. Report experiments/AGENTIC_delivery_20261114/POST_LIMITS_RECOVERY_20261115.md.
+
+Manuscript-only repository pushed: https://github.com/narolski/smad-cvpr-2027, main20cb913723610ad22722542082cb99d5badf4920. This is the editing copy for Overleaf; source snapshot here is preserved. New tableprovenance labels and historicalW3supplement table were applied in that separate repo; do not overwrite it from this older snapshot.
+
+## 2026-11-15T19:16Z — AUTHOR RULING: FRLL-Morphs read unsealed (FRLL read v1)
+
+Upowazniony autor unseals the FRLL-Morphs read for submission tables; full closure on the DGX GB10, no phase gates.
+Amendment `experiments/FINAL_sealed-benchmark-read/AMENDMENT_AUTHOR_RULING_FRLL_20261115.md` SHA f58383c4d117621f198b4e12b93b13e1acdb89dd9f02ccbe1fa8cc3958fdb801; filing `experiments/AGENTIC_delivery_20261114/AUTHOR_RULING_FRLL_20261115.json` (SHA below). Scope: 7,265 rows (M_amsl 2175, M_facemorpher 1222, M_opencv 1221, M_stylegan 1222, M_webmorph 1221, G_raw 204) from the registered RS1 manifest (bb397fea...); detectors: Sb s403-407 via registered rescore.py on existing native aligned frames (7,061 + 204 in smadcvpr_data/eval/frllm), released detectors READ from registered RS1 prod_v1/prod_v2 own-crop production scores (FaceMorpher cell = variant 2 only, RS1 amendment 7), SelfMAD hrnet_w18 scored once now (RS1 score.py --mode own, raw files, DGX GB10). DESCRIPTIVE read (no MAD22 verdict tests moved); tau_FFHQ from final_thresholds.json (0293c3ad...); two-way person bootstrap B=2000 rng 20261121; benign variants/E7/MorDIFF/DiM/FEI stay sealed. No new training. Outputs create-only /mnt/t7/smad_next/FRLL_READ_V1/.
