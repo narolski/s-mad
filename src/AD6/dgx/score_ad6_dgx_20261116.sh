@@ -36,7 +36,7 @@ prep() {  # prep NAME -> echo weights file ("" on failure)
       madation_*)
         [ -s "$CF/$n/1_backbone.pth" ] && [ -s "$CF/$n/1_header.pth" ] && [ -s "$CF/$n/training.log" ] || return 1
         local arch; arch=$([ $key = madation_L_sbr ] && echo vitl14 || echo vitb16)
-        df --output=avail -BG /home | tail -1 | grep -qE '^[0-9]+' || return 1
+        df --output=avail -BG /home | tail -1 | grep -qE '^[[:space:]]*[0-9]+' || return 1  # FIX 20261117T0205Z: untested line, df -BG output is right-aligned ("  12G") so '^[0-9]+' never matched -> PREP_FAILED every time; scoring path unchanged (mission: adapt ONLY prep step; documented in MONITOR_AD6_SCORING_*)
         "$PY" -I "$R/code/smadcvpr/a36_madation.py" convert --release "$n" --kind madation --arch "$arch" \
           --backbone "$CF/$n/1_backbone.pth" --header "$CF/$n/1_header.pth" --log "$CF/$n/training.log" \
           --out "$CF/$n" > "$CF/$n/convert.log" 2>&1 || { cat "$CF/$n/convert.log"; return 1; }
