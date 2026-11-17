@@ -11,6 +11,18 @@
 \usepackage{times,amsmath,amssymb,graphicx,booktabs,multirow,array,xcolor}
 \usepackage[pagebackref,breaklinks,colorlinks,allcolors=blue]{hyperref}
 \usepackage[capitalize]{cleveref}
+
+% \usepackage{titlesec}
+
+\makeatletter
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}{\z@}%
+    {0.6em \@plus 0.1ex \@minus 0.1ex}%
+    {-0.6em}%
+    {\normalfont\normalsize\bfseries}%
+}
+\makeatother
+
 \graphicspath{{figures/}{}}
 \def\confName{CVPR}\def\confYear{2027}
 \title{Don't Cut Corners: Revealing Shortcut Learning\\in Face Morphing Detection}
@@ -20,7 +32,7 @@
 %% Toggle: \TeaserEnabledfalse / \TeaserEnabledtrue.
 %%
 \ifdefined\ifTeaserEnabled\else\newif\ifTeaserEnabled\fi
-\TeaserEnabledtrue
+\TeaserEnabledfalse
 \begin{document}
 \maketitle
 \ifTeaserEnabled
@@ -39,18 +51,28 @@ A face morph detector can separate benchmark morphs from genuine photographs wit
 \end{abstract}
 
 \section{Introduction}
-Face morphing attacks belong to the most operationally consequential threats against deployed face recognition. A single morphed image passes biometric verification for each of its two or more contributing identities, so an accomplice and a criminal can share one machine-readable travel document or KYC enrollment. Feasibility was established with the ``Magic Passport'' experiments~\cite{ferrara2014magic} and confirmed by morphs found on issued documents~\cite{peng2018mogherini}. NIST FATE MORPH and the Bologna Online Evaluation Platform (BOEP) evaluate detectors against this threat publicly~\cite{nistir8584,boep}. MAD settings differ in what a detector receives: \emph{differential MAD} (D-MAD) is given a trusted live capture alongside the suspected image, whereas \emph{single-image MAD} (S-MAD) must judge the suspected image alone~\cite{venkatesh2021survey,scherhag2020deep}. We work in the S-MAD setting: screening at enrollment has no trusted reference. S-MAD remains unsolved---in-domain detection approaches $100\%$ at $1\%$~false detection rate, yet out-of-domain detection drops below $40\%$~\cite{ngan2025fatemorph}.
 
-Why should out-of-domain performance collapse? A suspicion we take seriously: a detector may latch onto acquisition and processing traces---resampling, blending, reconstruction, storage---rather than onto morphing cues. Such shortcut behaviour is documented across vision benchmarks~\cite{geirhos2020shortcut}, and recent evaluation reports substantial print--scan degradation of morph detectors~\cite{paulo2026printed}. Morph-versus-photograph accuracy cannot separate that possibility from identity-specific detection, even when performance transfers between detection engines. Before trusting any S-MAD score, one must establish what the detector actually detects.
+Face recognition systems are widely used for identity verification, from border control and passport issuance to remote authentication. A particularly challenging threat to these systems is face morphing, where facial characteristics of two individuals are combined into a single image that may be recognized as both identities~\cite{ferrara2014magic,venkatesh2021survey}. Such an image can potentially allow multiple individuals to authenticate using the same identity document. Detecting these manipulations is therefore an important problem in biometric security. In particular, single-image morphing attack detection (S-MAD) aims to determine whether a facial image is genuine or morphed without access to a trusted reference image.
 
-We test this suspicion with morph-free training and matched controls. All ten networks trained to recognize shrink-and-enlarge copies of synthetic faces achieve zero EER on native MorDIFF~\cite{damer2023mordiff} under our preprocessing. This establishes processing-cue sufficiency for that cell, but not a common mechanism across detectors or blur as the unique cause. Single-photo reconstructions, warp-only images and same-person manipulations then control progressively more of the construction, yet low-level differences can nevertheless remain.
+Recent approaches to S-MAD have achieved promising results through synthetic training data~\cite{damer2022smdd,huber2022synmad}, self-supervised manipulation synthesis~\cite{ivanovska2025selfmad,ivanovska2026selfmadpp}, and pretrained foundation models~\cite{caldeira2025madation}. However, strong performance on established benchmarks does not always translate into reliable detection of previously unseen morphing techniques or changes in image acquisition and processing~\cite{ngan2025fatemorph,paulo2026printed}. This raises an important question about what these detectors actually learn: do they recognize evidence of multiple identities, or do they exploit incidental differences between genuine and manipulated images?
 
-Our contributions are:
-\begin{enumerate}
-\item A processing-cue audit showing that a morph-free training task can attain perfect separation on a morph benchmark cell, supported by paired processing and single-photo reconstruction controls.
-\item A controlled evaluation framework separating questions about rendering, warping, blending, and contributor identity, with explicit limits on what each contrast establishes.
-\item A matched-control training study showing a count-balanced development ranking gain in the full recipe, with content and image diversity still confounded, alongside attenuated storage false alarms and a qualified benchmark comparison.
-\end{enumerate}
+We demonstrate that this distinction is not merely theoretical. In our experiments, ten networks trained without any morph examples achieve dzero equal error rate (EER) on the native MorDIFF benchmark evaluation~\cite{damer2023mordiff}, using only supervision to distinguish synthetic faces from their downsampled and enlarged copies. This result shows that image-processing cues alone can be sufficient for perfect discrimination on a morphing benchmark. More broadly, morphs and genuine photographs may differ in resolution, compression, geometric warping, blending, or generative reconstruction. Such differences can provide predictive shortcuts~\cite{geirhos2020shortcut} without requiring the detector to recognize the combination of two identities.
+
+To understand what drives detector predictions, we introduce a hierarchy of matched evaluation controls that progressively separates different aspects of morph construction. We examine whether detectors respond to image processing alone, distinguish camera photographs from single-person generative reconstructions, or recognize blending beyond geometric warping. Finally, we compare morphs constructed from two different identities with those generated from two photographs of the same individual. These comparisons allow us to investigate sensitivity to processing, rendering, and manipulation artifacts separately from evidence of identity mixing. Our experiments reveal substantial reliance on non-identity cues: existing detectors respond strongly to changes in image processing, single-person reconstructions frequently trigger morph predictions, and discrimination between blended and warped images can be explained by low-level image statistics.
+
+We further investigate whether the same controls can help reduce shortcut learning during training. Building on approaches that use synthetic blending and manipulation artifacts for supervision~\cite{li2020facexray,shiohara2022sbi}, we propose a matched-control training protocol that introduces warp-only images, processing-matched examples, and face-spliced morphs accompanied by same-person and seam-only negatives. By exposing similar processing and manipulation cues under both class labels, we aim to discourage reliance on these shortcuts and encourage discrimination between more closely matched examples. Using a fixed CLIP-based detector~\cite{radford2021clip,hu2022lora}, our full protocol improves two-person versus same-person morph ranking by 0.048 AUC across five seeds in a count-balanced development comparison. It also substantially reduces storage-induced false alarms, although the registered combined robustness criterion remains inconclusive. The ranking improvement is additionally confounded with increased image diversity, and neither result establishes identity-specific detection.
+
+Our contributions are threefold:
+\begin{itemize}
+    \item We show that face morphing detectors can exploit resolution, resampling, and image-generation artifacts rather than cues specific to morphing, allowing strong benchmark performance even without morph training.
+
+    \item We introduce controlled comparisons that distinguish sensitivity to processing, rendering, and blending artifacts from evidence of detecting two contributing identities.
+
+    \item We propose a training protocol using matched controls that reduces sensitivity to processing artifacts and improves discrimination between two-person and same-person morphs.
+\end{itemize}
+
+Together, our findings show that strong benchmark performance alone does not establish that a detector has learned to recognize identity mixing. Our controlled evaluation framework exposes alternative explanations for successful detection, while matched-control training provides a practical, though not yet comprehensive, approach to reducing reliance on these cues.
+
 
 %% OPTIONAL FIGURE INCLUDES (uncomment the %\ lines to enable; TeX-verified
 %% build via tectonic main.tex --keep-intermediates, warm cache < 2 min).
@@ -69,16 +91,12 @@ Our contributions are:
 %% actual corpus images, one identity-matched A|morph|B row per family with
 %% per-family shortcut labels; ENABLED below, discussed in results.tex.
 \input{figures/families_photos}
+
 %%
 %% Fig -- shortcut-traits verdict map (figures/shortcuts_overview.tex):
 %% TikZ requires \begin{figure}[t]\centering\input{...}\caption...\end{figure}
 %% wrapping, ENABLED below (tall single-column figure).
-\begin{figure}[tbp]
-\centering
-\input{figures/shortcuts_overview}
-\caption{A verdict map of non-identity shortcut traits in single-image morph detection. A morph candidate (center) can be separated from genuine photographs by traits that have nothing to do with combining two identities. The trait groups are those our instruments isolate: processing and storage (morph-free training reaches 0.0\% EER on the native MorDIFF cell), rendering (the render path alone is a registered \emph{used} cue), blending (the matched blend gain is inconclusive), splice construction (matched negatives attenuate, but do not remove, same-person splice flags), and contributor dependence (still open). Each trait carries its isolating instrument: morph-free training (MF), the matched-control ladder (MC), or a count-balanced ablation (CB).}
-\label{fig:shortcuts_overview}
-\end{figure}
+
 %%
 % (End OPTIONAL FIGURE INCLUDES)
 %
@@ -86,27 +104,39 @@ Our contributions are:
 \input{method}
 \input{results}
 
-\section{Discussion and Limitations}
-\paragraph{Mechanism and intervention.}
-Morph-free benchmark separation and one-photo rendering responses establish processing sensitivity, not the absence of useful identity information or a common mechanism across detectors. Count-balanced gains in the full recipe control rows, classes and positive repetition within pairs, but matched-negative content remains confounded with 312 additional unique images. Absent registered benefit without splice positives is neither zero equivalence nor an interaction test.
+\section{Discussion and Conclusion}
 
-\paragraph{Exposure and uncertainty.}
-MAD22 informed development, and new seeds do not restore independence. Its 204 FRLL photographs create exposure relevant to later FRLL-Morphs evaluation, which is not reported here. Component-only intervals condition on fitted networks and do not capture arbitrary retraining variability, and dependence also limits effective sample size. No untouched-benchmark superiority is established.
+Our experiments reveal substantial ambiguity in
+single-image morph detection. Processing-only training
+achieves perfect discrimination on native MorDIFF,
+while rendering and manipulation controls show that
+high morph scores need not indicate two contributing
+identities. Matched-control training improves
+two-person versus same-person ranking by 0.048 AUC
+and attenuates storage-induced false alarms.
 
-\paragraph{Control validity and operation.}
-Same-person manipulations test contributor dependence, not document acceptability. Blanking shifts the distribution and increases warp-only flags, and in-domain simple-cue learners are explanatory references rather than matched generalization competitors. Finite controls cannot establish universal shortcut freedom. Report ranking and perturbation responses alongside family-level attack misses and genuine false alarms, because suppressing artifact responses is useful only if attack sensitivity is retained.
+Several limitations remain. The training improvement
+is confounded with 312 additional unique images,
+and same-person manipulations still frequently trigger
+attack predictions. Our controls cannot exclude all
+low-level explanations, while development-exposed
+benchmark comparisons do not establish independent
+generalization. Fixed-threshold performance across
+unseen sources also remains unresolved.
 
-\section{Conclusion}
-This work examined what single-image morph detectors actually respond to, rather than only how well they separate benchmark morphs from genuine photos. Our evaluation framework combines three instruments: morph-free training, which shows that processing cues alone suffice for zero EER on a native benchmark cell; a ladder of matched controls that isolates rendering, blending and contributor identity; and count-balanced training ablations that attribute ranking gains to specific negative-content additions. Applied to a modern CLIP-based detector, the framework shows where current evidence is thin. Morph-free networks match morph-trained benchmark scores, single-photo reconstructions are ranked above camera photos, and matched blend-versus-warp comparisons yield no established advantage beyond low-level statistics. Training with face-spliced positives and matched negatives delivers a repeatable $+0.048$ AUC ranking improvement in a count-balanced comparison and attenuates storage-induced false alarms, yet the same-person control flags and the absent blend-control gain prevent a claim of identity-specific detection. Despite dramatic progress in S-MAD, our results indicate that reported benchmark numbers overstate operational readiness, and that matched-control evaluation should accompany every new detector.
+These findings motivate evaluating morph detectors
+with processing-, rendering-, and identity-matched
+controls alongside conventional benchmark accuracy.
+We will release the evaluation framework and
+experimental records to support reproducible analysis.
 
-Future work should target the gap our controls expose: generative models that suppress render-path and storage artifacts while preserving two-identity evidence, training objectives that use matched negatives without increasing same-person flags, and benchmark protocols that report fixed-threshold behavior across unmatched acquisition conditions. Extending the control ladder to document-ready print--scan cycles and to D-MAD settings with trusted references is a natural next step. We will release our evaluation framework, preregistrations and all per-seed records to support this line of work.
 
 \section*{AI Tools Use}
-OpenAI Astra 6, Claude Opus 5.5 and Claude Fable 5.3 assisted with organizing experiment records and auditing evidence; preparing training and evaluation code run on clusters; coordinating experiments; literature research; manuscript revision; and preparing data visualization code.
+OpenAI Astra 6, Claude Opus 5.5 and Claude Fable 5.3 assisted with organizing experiment records and auditing evidence; preparing training and evaluation code run on clusters; coordinating experiments; literature research; manuscript revision; and preparing data visualization code. Authors take full responsibility for the work and the statements within.
 
-\section*{Acknowledgements}
+%\section*{Acknowledgements}
 
-Calculations have been carried out in Wroclaw Centre for Networking and Supercomputing, grant no [grant no]. Additionally, we acknowledge Polish high-performance computing infrastructure PLGrid for awarding this project access to the LUMI supercomputer, owned by the EuroHPC Joint Undertaking, hosted by CSC (Finland) and the LUMI consortium through [grant No]. 
+%Calculations have been carried out in Wroclaw Centre for Networking and Supercomputing, grant no [grant no]. Additionally, we acknowledge Polish high-performance computing infrastructure PLGrid for awarding this project access to the LUMI supercomputer, owned by the EuroHPC Joint Undertaking, hosted by CSC (Finland) and the LUMI consortium through [grant No]. 
 
 
 

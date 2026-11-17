@@ -1,92 +1,381 @@
-\section{Controlled Evaluation of Morph Detection}
-\label{sec:controls}
 
-A detector can separate benchmark morphs from genuine photographs without identifying the property that motivates the task: contributions from different people. Our framework therefore asks two questions separately: which image transformations are sufficient to activate a detector, and whether discrimination persists when the negative example undergoes a comparable construction process. We use the term \emph{control} for an image that removes a proposed explanation from a comparison. It does not imply that every control is an unmodified bona fide photograph.
+\section{Disentangling Morphing from Shortcuts}
+\label{sec:controlled_eval}
 
-\paragraph{Morph corpora and family reconstruction.}
-A prerequisite of this evaluation framework was to establish exactly how each benchmark family used here is generated. We therefore analyzed and reconstructed the generation methods of every MAD22 morph family before running any of the controls below: the landmark-warping pipelines (AMSL, OpenCV, FaceMorpher, WebMorph), including their blending geometry, alignment and post-processing histories, and the GAN-based synthesis (MIPGAN-I/II). The reconstruction is also registered in our evaluation code: single approved warp and splice scripts replace per-family ad-hoc construction, the released aligner is unchanged (\texttt{73\_delin\_align}, \texttt{prep\_eval.align}), and every build ships a per-image manifest (source identifiers, engine, role, SHA256) with SHA256SUMS and an 8-image dry run before the full build. The same recipes were then applied to rebuild the five FRLL-Morphs families~\cite{sarkar2022frllmorphs} \`a la MAD22, which is what makes the paired controls below and the cross-corpus reads in Section~\ref{sec:results} directly comparable. Construction provenance for every family and control is tabulated in the supplementary material.
+Conventional single-image morphing attack detection (S-MAD)
+evaluates whether a detector can distinguish morphed faces
+from genuine photographs. However, these two classes may
+differ in more than the presence of multiple identities.
+Morph generation can introduce geometric transformations,
+blending artifacts, generative reconstruction traces, and
+differences in image processing or storage. Consequently,
+high classification accuracy does not reveal which of these
+properties drives the detector's predictions.
 
-\subsection{Image processing and identity mixing}
-Let $x_i$ denote a photograph of person $i$, and let $x'_i$ be a different photograph of the same person. Write $M_e(x_i,x_j)$ for an image produced by morphing engine $e$, and $P_h(x)$ for an image with processing history $h$. A conventional comparison separates $M_e(x_i,x_j)$, $i\ne j$, from $x_i$. Its class difference includes identity mixing, geometric warping, blending, rendering, storage and potentially the background. A high area under the ROC curve (AUC) on this comparison does not identify which of these differences the detector exploits.
+We introduce a framework of \emph{matched controls} to
+investigate these alternative explanations. Rather than
+treating morph detection as a single binary comparison,
+we construct pairs of image populations that share
+increasingly similar generation procedures while differing
+in selected aspects of their construction.
 
-We introduce controls that retain different parts of this construction: (i) a warp-only control undergoes geometric transformation without combining two images, (ii) a same-person morph $M_e(x_i,x'_i)$ combines two photographs but not two identities, and (iii) a one-photo reconstruction passes a single input through a generative rendering path. These comparisons narrow the interpretation of a score, although none automatically isolates an identity mechanism. In particular, two photographs of one person still differ in expression, pose, illumination and texture, while blending can change local variance and noise independently of identity.
+\subsection{Morphing and Nuisance Factors}
+\label{sec:morph_factors}
 
-% Sources: PR1/result.md, GD1/GD2; XF1/result.md; AB1/prereg.md amendment 4.
-\begin{table}[t]
-\centering
-\renewcommand{\arraystretch}{1.15}
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\caption{Complementary controls. Passing one comparison does not establish invariance to the others or prove identity-specific detection.}
-\label{tab:control-design}
-\begin{tabular}{>{\raggedright\arraybackslash}p{.38\linewidth} >{\raggedright\arraybackslash}p{.56\linewidth}}
-\toprule
-Comparison & Question addressed \\
-\midrule
-Processed vs.\ original photograph & Can processing alone alter a decision? \\
-One-photo render vs.\ camera image & Is the rendering path sufficient? \\
-Blend vs.\ matched warp-only image & Does blending add a detectable signal beyond warping? \\
-Two-person vs.\ same-person morph & Does ranking persist when both sides combine photographs? \\
-Two-person vs.\ same-person splice & Does training distinguish matched local manipulations? \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Matched constructions and regional controls}
-Our landmark construction ladder includes camera photographs, warp-only images, same-person whole-frame morphs and two-person whole-frame morphs. The splice construction places a manipulated face region into a host frame. Its positive is a two-person face splice, and its negatives include a seam-only construction and a same-person splice. These negatives retain parts of the insertion procedure while removing the intended two-person change. These examples make the mere presence of an insertion seam insufficient to reproduce the training labels, although residual seam or blending differences remain possible cues.
-
-We evaluate whole-frame and region-restricted forms separately. Removing the surround can reveal a dependence on background processing, but blanking is itself a distribution shift. In the matched FaceMorpher diagnostic, the retained region includes the face and the tool's halo ring rather than an anatomically pure face interior. We therefore interpret its AUC as a ranking diagnostic and separately report the fixed-threshold response to the blanked controls. A score change under blanking cannot, by itself, locate the original decision mechanism.
-
-% Sources: AB1/prereg.md amendment 4; XF1/result.md, Scope and Face-only form.
-The whole-frame two-person versus same-person analysis also stratifies by a splice-derived change proxy $D$. For a splice $S$, its outside-image counterpart $C$, and shared face hull $H$, define
+Let $x_i$ and $x_j$ denote photographs of individuals
+$i$ and $j$, and let
 \begin{equation}
-D(S,C)=\frac{1}{3|H|}\sum_{p\in H}\sum_{c=1}^{3}|S_{pc}-C_{pc}|.
+    x_{ij}^{m} = M_e(x_i,x_j), \qquad i \neq j,
 \end{equation}
-This mean absolute RGB difference is measured on stored 512-pixel images in the range $[0,255]$. The two-person splice copies whole-frame morph pixels into a warp-only image directed toward the two-person mean shape, and the same-person splice copies same-person morph pixels into its corresponding warp-only image. Both use the convex hull of the averaged host and other-person 106-point landmarks, rounded to integer coordinates. Pixel copying introduces no additional blur or resampling. The seam-only construction instead inserts same-person warp-only pixels into the two-person warp-only counterpart. Each splice equals its counterpart outside the hull. For whole-frame observations, the two-person morph receives its host's two-person-splice $D$, and the same-person morph receives the same-person-splice $D$. Thus, this is a proxy adjustment, not direct matching of whole-frame blend energy. Within each eligible stratum $q$, we compute an AUC $a_q$ and aggregate it as
+denote a morph produced by engine $e$.
+A conventional evaluation compares $x_{ij}^{m}$ with
+genuine photographs $x_i$.
+
+This comparison simultaneously changes several properties
+of the image. Landmark-based morphing methods introduce
+geometric warping and blending, while GAN- and diffusion-based
+approaches additionally involve generative reconstruction
+\cite{zhang2021mipgan,damer2023mordiff}.
+Moreover, morphs and genuine images may differ in their
+resizing, compression, alignment, and storage histories.
+
+Let $f(x)$ be a detector's morph score and $P_h(x)$
+an image subjected to processing history $h$.
+Our objective is to determine which image properties
+are sufficient to produce a high $f(x)$, and whether
+discrimination persists when the compared populations
+undergo similar transformations.
+
+\subsection{A Hierarchy of Matched Controls}
+\label{sec:matched_controls}
+
+We consider five complementary comparisons, progressing
+from processing artifacts to differences in contributor
+identity. Each addresses a specific alternative explanation
+for successful morph detection.
+
+
+
+
+\paragraph{Processing controls.}
+We compare genuine photographs $x_i$ with processed
+versions $P_h(x_i)$, including images subjected to
+downsampling, enlargement, or changes in storage history.
+Since identity content is unchanged, a substantial
+difference in detector responses reveals sensitivity to
+processing alone. Such sensitivity does not, however,
+establish that processing explains every correct morph
+prediction.
+
+\paragraph{Generative reconstruction controls.}
+For GAN- and diffusion-based morphing, we compare camera
+photographs with images reconstructed from a single
+individual using the corresponding generative pipeline.
+These controls contain no second identity but retain
+generation-related artifacts. A high morph score on
+single-person reconstructions indicates that the rendering
+process itself can trigger detection.
+
+\paragraph{Warp-only controls.}
+For landmark-based morphing, we construct images using
+the geometric transformations of the morphing procedure
+without blending two photographs. Comparing these
+warp-only controls against blended morphs tests whether
+blending introduces a detectable signal beyond geometric
+warping. However, differences in noise, local variance,
+and interpolation may remain, so successful discrimination
+does not necessarily indicate sensitivity to identity mixing.
+
+\paragraph{Same-person morph controls.}
+We construct morphs from two different photographs of the
+same individual:
 \begin{equation}
- a_D=\frac{\sum_q n_q^+n_q^- a_q}{\sum_q n_q^+n_q^-},
+    x_{ii'}^{m} = M_e(x_i,x_i'),
 \end{equation}
-where $n_q^+$ and $n_q^-$ count the two construction classes. The registered analysis uses quintiles of $\log D$, requires at least ten examples of each class per retained stratum, and requires retained strata to cover at least half of the rows. This reduces a measured blend-strength imbalance, but it does not match every low-level image property. We report simple image-statistic references alongside network performance rather than interpreting controlled ranking as direct proof of identity recognition.
+where $x_i$ and $x_i'$ depict the same identity.
+These images undergo the morphing procedure but do not
+combine two distinct identities. Comparing
+$x_{ij}^{m}$ with $x_{ii'}^{m}$ therefore tests whether
+detector scores distinguish two-person manipulations
+from similar same-person manipulations.
 
-\subsection{Processing-only and statistic-based references}
-% Sources: reviews/REVIEW_AD4_CLUSTER_20261113.md; XF1/result.md; PR1/result.md.
-To test whether processing can suffice without morph supervision, we evaluate networks trained to distinguish synthetic face images from their shrink-and-enlarge copies. Neither positive morph examples nor blending is needed for that training task. Success on a morph benchmark is therefore evidence that the benchmark admits a processing-based solution. It is not evidence that every detector implements the same decision rule.
+Importantly, same-person and two-person morphs may still
+differ in expression, pose, texture, and blending strength.
+This comparison measures contributor-dependent
+discrimination, rather than proving that the detector
+recognizes two identities.
 
-We additionally use hand-crafted image statistics and learned combinations of them as alternative explanations. Their scope depends on where they were fitted. A learner fitted on the detector's training list and transferred to common evaluation rows is distinct from a cross-fitted diagnostic trained within the evaluation distribution. The latter can demonstrate that local statistics are predictive, but is not a like-for-like generalization competitor to a network that never saw that distribution. We retain this distinction in the tables and conclusions.
+\paragraph{Face-splice controls.}
+Whole-frame morphs may contain artifacts outside the face,
+including changes to hair and background. To investigate
+local manipulation, we construct face-spliced morphs by
+inserting the manipulated facial region into a geometrically
+matched host image.
 
-\section{Training with Matched Controls}
-\label{sec:training}
+We consider three constructions:
+(i)~two-person face splices, containing facial information
+from different identities;
+(ii)~same-person face splices, constructed from two images
+of one individual; and
+(iii)~seam-only controls, which retain an analogous
+insertion procedure without introducing a second identity.
 
-Our intervention changes the training examples while retaining a fixed detector and optimization recipe. The detector is a CLIP ViT-B/16 image encoder adapted through low-rank attention updates and a classification head. It processes a single image at inference. No image-resolution rule, source classifier, ensemble or score fusion is added to the decision path.
 
-\subsection{Training sets}
-% Sources: PN1/prereg.md section 4 and amendment 10; AB1/prereg.md sections 0--3.
-We compare four central training sets. \textbf{A}, the plain baseline, contains photographs and two-person whole-frame morphs. \textbf{B} augments A with protocol controls: warp-only images, the morphs' individual warped input halves, and existing small-storage copies. Small-storage examples occur on both sides of the classification problem: photographs and individual halves are negatives, while two-person morph copies remain positives. This crossing prevents storage history from being exclusively associated with the attack label within those construction strata.
+\paragraph{Splice construction.}
+We construct controls using the same 106-point landmark
+geometry and averaged target shape as the corresponding
+morph. The insertion region $H$ is the convex hull of
+the averaged facial landmarks, rounded to integer
+coordinates. A two-person splice copies pixels from
+the two-person morph into its corresponding warp-only
+image, while a same-person splice uses the same-person
+morph and its warp-only counterpart. Seam-only controls
+instead insert same-person warp-only pixels into the
+two-person warp-only image. All constructions preserve
+the image outside $H$ and use direct pixel copying,
+without additional interpolation. Thus, insertion
+geometry is shared, although local texture and blending
+statistics may still differ.
 
-\textbf{Sb}, our full protocol, adds two-person face-spliced positives to B together with their seam-only and same-person splice negatives. \textbf{Sp} removes those matched splice negatives from Sb while retaining the splice positives. The splice addition comprises 124 two-person positives and 156 examples of each matched-negative construction before balancing. The resulting Sb list has 5,535 unique images and 8,386 balanced rows, while A and B contain 1,526 and 5,099 unique images, respectively. Training sources are FRGC~\cite{phillips2005frgc} and colorFERET~\cite{nistColorFeret} constructions. The FFHQ~\cite{karras2019stylegan} controls were used during development---computed and inspected while recipes were being selected---and no benchmark result is read from them. FRLL people do not enter these training manifests. FaceMorpher images are excluded from the original Sb training recipe, and later second-engine candidates are separate experiments that are not substituted into the results reported here.
 
-The original Sb--Sp removal ablation removes 312 unique images and 624 training rows, changing class composition and exposure. A count-balanced follow-up compares Sb with \textbf{SpV}, which substitutes repeated native negatives for matched splice negatives, and \textbf{BN} with \textbf{BV}, the analogous pair without splice positives. All four have 8,386 balanced rows, with unique-image counts of 5,535/5,223/5,411/5,099, respectively. Positive multisets, including repetition, match within each pair but not across all four arms. Thus row count and class balance are controlled, but matched-negative content remains confounded with 312 additional unique images per pair. Same-person and seam-only contributions are not separated.
-% Source: experiments/reviews/REVIEW_AB1_BATCHC_OPENCODE_20261114.md, Direct effects, interaction and training limitations.
+\subsection{Matched Construction and Evaluation}
+\label{sec:control_protocol}
 
-\subsection{Fixed optimization and inference}
-% Sources: PN1/prereg.md section 4; AB1/run.sh and AB1/prereg.md section 3.
-% Recovered original FS1 source identification (not full execution/dependency verification):
-% OPENCODE_PREPROCESSING_INDEPENDENT_REVIEW_20261114.md, section 4;
-% A47 ffcbc7f1d814d7482e9bba6a0b547fe9318c46f3:smadcvpr/{train.py,common.py},
-% matching extracted AD4 code/smadcvpr/ and PN1 FS1 code/smadcvpr/ links.
-% train.py SHA256 cbb2cbd1b9a3eb59ab080a540a98aab0f6ead51ea69364d2debe06a984b8c1c5.
-% common.py SHA256 b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8.
-% Original FS1 runner: de30e7f96604035f6c98598d106619d8cc73e750:src/PN1/run.sh,
-% SHA256 04998a7c274229b861b840e2b5a793854a712a7fb031fb572e34e1c791a4c87e;
-% recorded FS1 pack SHA256 96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004.
-% Source recovery supersedes the earlier missing-pin finding, not the open
-% loss/head/dependency audit; no new implementation claims are inferred here.
-All primary replication arms use 224-pixel inputs and the same registered training implementation: 6,250 updates, batch size 256, AdamW with weight decay 0.05, constant learning rates of $3.33\times10^{-6}$ for the adapted backbone and $3.33\times10^{-5}$ for the head, and horizontal-flip augmentation. Query and value attention projections receive rank-two, rank-stabilized LoRA~\cite{kalajdzievski2023rslora} updates with alpha four and dropout 0.4, and normalization parameters are not trained. Label smoothing and stochastic depth are disabled, the positive-class weight is one, and gradient clipping is five. The final checkpoint is used without validation-based checkpoint selection. Training-list balancing repeats the minority-class rows within source-database and storage strata, and repeated examples are not counted as independent images.
+To ensure consistent comparisons, we reconstruct the
+landmark-based morphing procedures used in MAD22 and
+FRLL-Morphs, including their warping geometry, alignment,
+and post-processing. The corresponding controls are
+generated with consistent construction procedures.
+Further implementation and provenance details are
+provided in the supplementary material.
 
-Each arm is trained at seeds 408--412 on H100 hardware for the primary ablation. The earlier frozen candidate uses seeds 403--407 and is reported separately. At inference we retain the original score orientation and use a positive logit as the detector's own decision rule. AUC and equal error rate (EER) summarize ranking, whereas genuine false-alarm rates and attack miss rates describe fixed-threshold behavior. EER thresholds are not presented as deployed operating points.
+We evaluate detector responses using complementary
+metrics. Area under the ROC curve (AUC) measures the
+ranking of matched image populations, while equal error
+rate (EER) enables comparison with conventional MAD
+benchmarks. We additionally report false-alarm and
+attack-miss rates at fixed decision thresholds, since
+ranking performance alone does not establish reliable
+operational behavior.
 
-\subsection{Evaluation and uncertainty}
-% Sources: AB1/prereg.md amendment 4; AB1/result.md amendments 4--5; FINAL/result.md.
-The matched whole-frame analysis pools 100 development hosts with 80 test hosts screened for development-person overlap. This screening does not imply complete construction independence, since 11 of the 80 hosts retain shape links through landmarks used in training controls. A registered sensitivity subset excludes these links and retains 69 test hosts, but it is not substituted for the primary population after observing outcomes. Shared hosts and partners create dependence, so its 2,000 bootstrap draws resample person components of the host--partner graph, using common draws for all compared networks. We average per-network statistics rather than logits. These component intervals condition on the fitted networks. The original ablation also reports seed-level intervals, while the count-balanced follow-up does not resample seeds or quantify arbitrary retraining uncertainty. The FaceMorpher diagnostic has its own host-block bootstrap and is labeled accordingly rather than assigned the same uncertainty interpretation.
+\paragraph{Controlling manipulation strength.}
+Two-person and same-person morphs can differ in the
+magnitude of image changes introduced by blending.
+To reduce this imbalance, we employ a splice-derived
+change proxy. For a splice $S$, its corresponding
+outside-image construction $C$, and facial insertion
+region $H$, define
+\begin{equation}
+    D(S,C) =
+    \frac{1}{3|H|}
+    \sum_{p \in H}
+    \sum_{c=1}^{3}
+    |S_{pc}-C_{pc}|.
+    \label{eq:splice_difference}
+\end{equation}
 
-The component-based contrasts were registered as post-hoc development analyses, with prior exposures documented. They are not untouched external confirmation. Likewise, although the five frozen Sb networks had not been scored on benchmarks before their MAD22 read, earlier seeds on MAD22 influenced recipe choice. Its genuine pool contains 204 FRLL photographs. We report that exposure explicitly and do not treat MAD22 and FRLL identity coverage as independent. These distinctions are necessary to separate a useful controlled training effect from claims of benchmark superiority or generalization.
+Here, $D$ measures the mean absolute RGB change within
+the insertion region. We stratify whole-frame comparisons
+into quintiles of $\log D$, retaining strata with at
+least ten examples from each class and requiring retained
+strata to cover at least half of the evaluated examples.
+
+
+The proxy is computed on stored $512$-pixel RGB images
+with intensities in $[0,255]$. For whole-frame
+comparisons, each image is assigned the $D$ value of
+its corresponding splice construction; this adjusts
+for splice-derived change rather than directly matching
+whole-frame blending strength. Within each retained stratum $q$, we compute the
+discrimination AUC $a_q$ and aggregate it as
+\begin{equation}
+    \mathrm{AUC}_{D} =
+    \frac{\sum_q n_q^{+}n_q^{-}a_q}
+         {\sum_q n_q^{+}n_q^{-}},
+    \label{eq:stratified_auc}
+\end{equation}
+where $n_q^{+}$ and $n_q^{-}$ are the numbers of
+two-person and same-person examples in stratum $q$.
+The resulting AUC is aggregated across retained strata,
+weighted by the numbers of positive--negative pairs.
+This reduces differences in measured manipulation
+strength but does not match all low-level image properties.
+
+% \paragraph{Statistical interpretation.}
+% Whenever possible, comparisons use the same source
+% photographs or contributor pairs. Uncertainty estimates
+% account for dependencies among images sharing identities,
+% hosts, or morphing partners through component-level
+% bootstrap resampling.
+
+% We also evaluate simple image-statistic references to
+% determine whether controlled discrimination could be
+% explained by low-level properties. Such references are
+% interpreted according to their training and evaluation
+% populations and are not automatically treated as
+% out-of-domain competitors to pretrained detectors.
+
+% Crucially, passing an individual control does not prove
+% that a detector relies on identity-specific evidence.
+% Each comparison rules out or reduces only particular
+% alternative explanations.
+
+\paragraph{From evaluation to training.}
+The controls introduced above also provide counterexamples
+for detector training. If processing history, geometric
+warping, or insertion artifacts occur under both class
+labels, these cues become less reliable predictors of
+morphing. In the following section, we use this principle
+to construct a matched-control training protocol that
+aims to reduce shortcut dependence while improving
+discrimination between two-person and same-person
+manipulations.
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Shortcut-Aware Training with Matched Controls}
+\label{sec:matched_training}
+
+The controls introduced in Section~\ref{sec:controlled_eval}
+serve not only to identify shortcut dependencies but also
+to construct training examples that challenge them.
+Conventional morph detection training can associate image
+processing, geometric warping, or blending artifacts almost
+exclusively with the morph class. As a result, these cues
+may become predictive even when they provide no evidence
+that two distinct identities contributed to the image.
+
+We investigate a simple intervention: introduce matched
+examples that share such artifacts across both class labels.
+Our goal is not to enforce complete invariance to image
+processing, but to reduce the sufficiency of particular
+shortcuts while encouraging discrimination between
+two-person morphs and comparable single-person
+manipulations. Unlike approaches that introduce new
+architectures or specialized objectives, we modify only
+the training data and keep the detector and optimization
+procedure fixed.
+
+\subsection{Training Data Construction}
+\label{sec:training_data}
+
+We construct four principal training configurations,
+progressively incorporating the controls from
+Section~\ref{sec:matched_controls}.
+
+\paragraph{Plain baseline (A).}
+The baseline consists of genuine photographs labeled
+as bona fide and conventional whole-frame morphs
+constructed from two different identities labeled
+as attacks. This represents standard supervised
+morph detection training.
+
+\paragraph{Processing-matched controls (B).}
+We augment A with three types of negative examples:
+(i) geometrically warped photographs without blending,
+(ii) individual warped input halves extracted from the
+morph construction, and
+(iii) copies of genuine images stored at reduced resolution.
+
+Importantly, reduced-resolution copies also occur in
+the positive class through corresponding two-person
+morphs. Consequently, storage history is no longer
+exclusively associated with the attack label.
+Warp-only examples and individual halves similarly
+expose geometric and preprocessing artifacts without
+requiring a second identity.
+
+\paragraph{Face-spliced positives (Sp).}
+Whole-frame morphs may alter regions outside the face,
+allowing detectors to exploit changes in hair, background,
+or image boundaries. To encourage sensitivity to local
+facial manipulation, we extend B with two-person
+face-spliced morphs.
+Each example inserts the morphed facial region into a
+geometrically matched host image, preserving the
+surrounding image content. These examples are labeled
+as attacks because they combine information from
+two distinct identities.
+However, splice positives alone may introduce a new
+shortcut: the network can learn to associate the
+presence of a splice boundary with the positive label.
+
+\paragraph{Full matched-control protocol (Sb).}
+To address this ambiguity, we supplement Sp with
+two complementary negative constructions:
+(i) same-person face splices, created from two
+photographs of the same individual, and
+(ii) seam-only controls, which reproduce an
+insertion procedure without introducing facial
+content from a second identity.
+
+These negatives retain aspects of the manipulation
+process while removing the intended two-person
+identity change. Consequently, merely detecting
+an insertion seam or a local manipulation is
+insufficient to reproduce the training labels.
+We treat these examples as negative controls for
+the specific objective of detecting two-person
+morphs, rather than as unmodified photographs.
+This distinction is important: a same-person splice
+is manipulated, but it does not constitute a
+two-identity morph.
+
+\subsection{Controlled Training Comparisons}
+\label{sec:training_comparisons}
+
+The progression A--B--Sp--Sb allows us to examine
+the effects of processing controls, face-spliced
+positives, and matched splice negatives.
+However, simply removing a training component may
+also change the number of examples, class balance,
+and effective exposure during optimization.
+We therefore introduce count-balanced comparisons
+that hold the number of training rows and positive
+examples fixed within each pair.
+
+\paragraph{Matched negatives with splice positives.}
+Our primary comparison evaluates Sb against SpV,
+a variant of Sp in which repeated ordinary negative
+examples replace the matched splice negatives.
+Both configurations contain 8,386 balanced training
+rows and the same positive examples, including
+their repetitions.
+
+The difference is that Sb introduces 312 additional
+unique matched-negative images, whereas SpV repeats
+existing negatives. Thus, the comparison evaluates
+the combined effect of matched-negative content and
+additional image diversity, rather than isolating
+the semantic effect of the controls alone.
+
+\paragraph{Matched negatives without splice positives.}
+To examine whether matched negatives are beneficial
+without two-person face-spliced examples, we additionally
+compare BN with BV. Both are derived from B and contain
+8,386 balanced training rows, but BN incorporates
+matched splice negatives whereas BV repeats ordinary
+negative examples.
+
+Together, these comparisons examine whether matched
+negatives provide useful supervision in the presence
+or absence of corresponding two-person splice positives.
+They do not, by themselves, isolate a causal interaction
+between the two components, since the positive training
+distributions differ across pairs.
+
+\paragraph{Component ablations.}
+We further examine the individual contributions of
+warp-only negatives, warped input halves, and
+reduced-resolution copies by removing each component
+from the full protocol. Additional variants test the
+effect of adding stored-small copies without the
+remaining controls. Their construction and training
+counts are detailed in the supplementary material.
