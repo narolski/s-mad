@@ -3,7 +3,7 @@
 Hsbr rows = AD6 matched-recipe retrains trained on the WCSS ad6w arrays (v3 wheel set), scored through the SAME
 Athena-registered path as AD5 (ad5_score_athena.py, frozen RS1 regen crops, score_v1/score_v2 manifests, pins
 56bb1244/42806acb asserted), tags h_<name>__ad6v1/ad6v2. v1 primary, v2 validation. Metric: EER on logit_noTTA
-(final_metrics pin; ties-halved, no threshold fitting). Id space: prod athena_manifest.csv (missing_ids 0
+(final_metrics pin; ties-halved, no threshold fitting). Id space: prod athena_manifest.csv, missing_ids 0 for all 30 npz. MorDiff v2 note: v2 population has 1000 M_mordiff rows vs 944 in v1 (per-cell n recorded); L v2 MorDiff elevated for ALL 5 seeds (25.0-40.2 vs v1 3.5-5.9) while s405 spot-check reproduced (11.26) — data observation, pipeline receipts clean
 
 ## AD6 Hsbr madation_B (ViT-B/16) retrains (matched-recipe, WCSS ad6w v3; own crops, prod id space) — 5/5 seeds
 
@@ -53,36 +53,38 @@ Athena-registered path as AD5 (ad5_score_athena.py, frozen RS1 regen crops, scor
 
 | family (n morph, n genuine) | s401 | s402 | s403 | s404 | s405 | mean±sd (v1) | mean±sd (v2) |
 |---|---|---|---|---|---|---|---|
-| FRLL/amsl (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| FRLL/facemorpher (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| FRLL/opencv (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| FRLL/stylegan (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| FRLL/webmorph (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/FaceMorpher (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/OpenCV (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/Webmorph (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/MIPGAN_I (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/MIPGAN_II (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/DiM-MvM(dim_a) (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/DiM-MvM(dim_c) (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/DiM-LM2(fast_dim) (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/DiM-LM2-ODE(fast_dim_ode) (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/DiM-MI(greedy_dim) (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/DiM-MI-Semantic(greedy_dim_s) (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
-| MAD22/MorDiff (?, ?) | n/a, n/a, n/a, n/a, n/a | n/a | n/a |
+| FRLL/amsl (2175, 204) | 24.09, 22.06, 21.01, 18.14, 11.26 | 19.31±4.99 (k=5/5) | 25.90±6.10 (k=5/5) |
+| FRLL/facemorpher (802, 204) | 1.87, 1.96, 1.50, 1.37, 0.75 | 1.49±0.48 (k=5/5) | 1.29±0.43 (k=5/5) |
+| FRLL/opencv (1211, 204) | 1.57, 1.96, 1.16, 1.24, 0.91 | 1.37±0.41 (k=5/5) | 1.14±0.30 (k=5/5) |
+| FRLL/stylegan (1222, 204) | 15.69, 17.35, 11.87, 11.95, 12.25 | 13.82±2.54 (k=5/5) | 15.98±3.95 (k=5/5) |
+| FRLL/webmorph (1221, 204) | 33.33, 25.98, 32.84, 30.14, 21.57 | 28.77±4.97 (k=5/5) | 31.30±3.96 (k=5/5) |
+| MAD22/FaceMorpher (1000, 408) | 6.86, 8.00, 6.00, 6.86, 3.50 | 6.25±1.69 (k=5/5) | 4.96±2.08 (k=5/5) |
+| MAD22/OpenCV (984, 408) | 3.66, 6.62, 5.59, 4.67, 2.85 | 4.68±1.50 (k=5/5) | 3.72±1.20 (k=5/5) |
+| MAD22/Webmorph (500, 408) | 10.78, 14.20, 14.20, 12.01, 9.40 | 12.12±2.11 (k=5/5) | 10.27±2.50 (k=5/5) |
+| MAD22/MIPGAN_I (1000, 408) | 18.63, 21.20, 10.20, 26.70, 15.40 | 18.43±6.19 (k=5/5) | 15.83±4.97 (k=5/5) |
+| MAD22/MIPGAN_II (999, 408) | 15.02, 13.48, 5.71, 13.73, 9.56 | 11.50±3.83 (k=5/5) | 10.01±3.22 (k=5/5) |
+| MAD22/DiM-MvM(dim_a) (500, 408) | 37.50, 29.66, 33.09, 29.20, 34.80 | 32.85±3.50 (k=5/5) | 30.67±2.68 (k=5/5) |
+| MAD22/DiM-MvM(dim_c) (500, 408) | 35.29, 30.15, 27.00, 28.92, 32.00 | 30.67±3.16 (k=5/5) | 29.02±2.05 (k=5/5) |
+| MAD22/DiM-LM2(fast_dim) (500, 408) | 36.76, 36.60, 32.40, 35.29, 47.79 | 37.77±5.87 (k=5/5) | 36.03±4.59 (k=5/5) |
+| MAD22/DiM-LM2-ODE(fast_dim_ode) (499, 408) | 30.06, 22.55, 18.38, 21.08, 26.85 | 23.78±4.66 (k=5/5) | 21.47±5.42 (k=5/5) |
+| MAD22/DiM-MI(greedy_dim) (500, 408) | 48.20, 43.14, 35.29, 44.61, 32.00 | 40.65±6.75 (k=5/5) | 42.41±7.61 (k=5/5) |
+| MAD22/DiM-MI-Semantic(greedy_dim_s) (500, 408) | 22.30, 27.94, 18.60, 24.02, 26.40 | 23.85±3.65 (k=5/5) | 22.24±3.51 (k=5/5) |
+| MAD22/MorDiff (944, 408) | 5.88, 4.45, 3.60, 4.24, 3.50 | 4.33±0.96 (k=5/5) | 34.02±6.96 (k=5/5) |
 
 ## Receipts (SHA256, scores npz; feat npz in scores_h_sbr/RECEIPTS_sha256.csv)
 
 ```
 HsbrB v1: seeds scored 5/5 shas d078f09d30984e1b..da0a05ea42575d04 missing_ids_total 0
 HsbrB v2: seeds scored 5/5 shas 0c71447ee6e3a949..92b605a7863464fb missing_ids_total 0
+HsbrL v1: seeds scored 5/5 shas cbea61550e5edfe8..dd3b0e760a4b0766 missing_ids_total 0
+HsbrL v2: seeds scored 5/5 shas c687ce371ddf3309..755278f18c5d20d2 missing_ids_total 0
 HsbrX v1: seeds scored 5/5 shas 7927fd92b14e9fa5..9c43f72f8c48245b missing_ids_total 0
 HsbrX v2: seeds scored 5/5 shas 93697263af918bae..9a5d29dea360ffad missing_ids_total 0
-receipts_csv /home/narolski/ad6_stage/scores_h_sbr/RECEIPTS_sha256.csv: lines 20
+receipts_csv /home/narolski/ad6_stage/scores_h_sbr/RECEIPTS_sha256.csv: lines 30
 ```
 
 Adaptation notes vs AD5 aggregate (c745230): source npz scores_h_<scriptname>__ad6<v>.npz in
 /home/narolski/ad6_stage/scores_h_sbr/ (script names; WCSS tars madation_B_v3sbr_s40N.tar renamed at pull stage
-after sha256 verification — scoring path unchanged); madation_L block pending (H2 lands ~02:30-03:30Z 17 Nov).
+after sha256 verification — scoring path unchanged); madation_L block INCLUDED (H2 landed 02:33-02:47Z, 5/5 scored 05:00-05:23Z).
 Space policy: /mnt/t7 full -> outputs under experiments/. Pulled tars + converted weights deleted by the scoring
 script per seed after receipts (sha256 preserved in RECEIPTS_sha256.csv).

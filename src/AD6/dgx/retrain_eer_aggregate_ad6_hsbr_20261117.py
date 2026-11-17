@@ -120,17 +120,19 @@ def main():
     with open(OUT / "ad6_h_sbr_eer.csv", "w", newline="") as fo:
         w = csv.writer(fo)
         w.writerow(["family", "n_morph_v1", "n_genuine_v1"] +
-                   [f"Hsbr{arm}_{v}_s{s}_eer" for arm in ("B", "X") for v in ("v1", "v2") for s in range(1, 6)] +
-                   [f"Hsbr{arm}_{v}_{k}" for arm in ("B", "X") for v in ("v1", "v2") for k in ("mean", "sd", "k", "n_morph", "n_genuine")])
+                   [f"Hsbr{arm}_{v}_s{s}_eer" for arm in ("B", "L", "X") for v in ("v1", "v2") for s in range(1, 6)] +
+                   [f"Hsbr{arm}_{v}_{k}" for arm in ("B", "L", "X") for v in ("v1", "v2") for k in ("mean", "sd", "k", "n_morph", "n_genuine")])
         for fam in fam_order:
             nm, ng = ncell.get(f"HsbrB__v1::{fam}", ([], 0, 0, 0, 0))[2:4]
             row = [fam, nm, ng]
-            for arm in ("B", "X"):
+            seed_cols, stat_cols = [], []
+            for arm in ("B", "L", "X"):
                 for v in ("v1", "v2"):
                     c = ncell.get(f"Hsbr{arm}__{v}::{fam}")
-                    row += [f"{x:.2f}" for x in c[0]] if c else [""] * 5
-                    row += ([f"{np.mean(c[0]):.2f}", f"{c[1]:.2f}", c[4], c[2], c[3]] if c else ["", "", 0, "", ""])
-            w.writerow(row)
+                    seed_cols += [f"{x:.2f}" for x in c[0]] if c else [""] * 5
+                    stat_cols += ([f"{np.mean(c[0]):.2f}", f"{c[1]:.2f}", c[4], c[2], c[3]] if c
+                                  else ["", "", 0, "", ""])
+            w.writerow(row + seed_cols + stat_cols)
 
     def block(arm, label):
         lines = [f"## AD6 Hsbr {label} retrains (matched-recipe, WCSS ad6w v3; own crops, prod id space)"
@@ -173,18 +175,23 @@ def main():
            "script per seed after receipts (sha256 preserved in RECEIPTS_sha256.csv).", ""]
     (OUT / "ad6_h_sbr_eer.md").write_text("\n".join(md))
 
-    # ---- append blocks to the cohort table (idempotent via marker) ----
-    marker = "## AD6 Hsbr madation_B (ViT-B/16)"
+    # ---- append blocks to the cohort table (idempotent per block) ----
     cohort = COHORT.read_text() if COHORT.exists() else ""
-    add = "\n".join([block("B", "madation_B (ViT-B/16)"), "", block("X", "mixfacenet_X")])
-    if ("## AD6 Hsbr madation_L" not in cohort) and any(rows.get(f"HsbrL_s{j}__v1") is not None for j in range(1, 6)):
-        add += "\n\n" + block("L", "madation_L (ViT-L/14)")
-    if marker not in cohort:
+    mB, mX, mL = "## AD6 Hsbr madation_B", "## AD6 Hsbr mixfacenet_X", "## AD6 Hsbr madation_L"
+    todo_blocks = []
+    if mB not in cohort:
+        todo_blocks.append(block("B", "madation_B (ViT-B/16)"))
+    if mX not in cohort:
+        todo_blocks.append(block("X", "mixfacenet_X"))
+    if mL not in cohort and any(rows.get(f"HsbrL_s{j}__v1") is not None for j in range(1, 6)):
+        todo_blocks.append(block("L", "madation_L (ViT-L/14)"))
+    if todo_blocks:
         with open(COHORT, "a") as fo:
-            fo.write("\n\n" + add + "\n")
-        print(f"APPENDED blocks to {COHORT}")
+            for b in todo_blocks:
+                fo.write("\n\n" + b + "\n")
+        print(f"APPENDED {len(todo_blocks)} block(s) ({', '.join(b.split(' (')[1][:30] for b in todo_blocks)}...) to {COHORT}")
     else:
-        print("cohort table already contains AD6 Hsbr blocks (marker found); not re-appending")
+        print("cohort table already contains all available AD6 Hsbr blocks; not re-appending")
     print("AD6_H_SBR_AGGREGATE_DONE", OUT)
 
 
