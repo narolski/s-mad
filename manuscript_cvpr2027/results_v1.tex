@@ -1,0 +1,212 @@
+    \section{Experiments and results}
+    \label{sec:results}
+    
+    \paragraph{Experimental scope.}
+    We separate benchmark discrimination, responses to controlled manipulations, and training ablations. Our main training ablation comprises 40 CLIP ViT-B/16 networks with LoRA, eight training variants and five seeds per variant (408--412), trained for 6,250 steps and evaluated at the last checkpoint. We denote plain training by A, training with protocol negatives by B, B augmented with face-spliced morphs and matched negatives by Sb, and Sb without matched splice negatives by Sp. All results concern individual networks, and averages summarize runs rather than combine their predictions. Development analyses and post-hoc mechanism diagnostics are identified below. Their results do not constitute independent benchmark confirmation.
+    % Source: experiments/AB1_protocol-ablation-and-replication/result.md, What was run.
+    
+    \subsection{Processing cues suffice for strong benchmark scores}
+    \label{sec:artifact_results}
+    A direct test of benchmark specificity is to train a detector without morph examples. Networks trained only to distinguish synthetic SMDD faces~\cite{damer2022smdd} from their shrink-and-enlarge copies achieve 0.0\% EER on native MorDIFF under our preprocessing in all ten evaluated networks across two recipes. The two recipes adapt CLIP ViT-B/16 and ViT-L/14 at seeds 401--405, each using 25,000 original synthetic faces and 25,000 pre-existing shrink-and-enlarge copies (scale 0.3125), 224-pixel inputs and final checkpoints after 6,250 updates. Scoring averages sigmoid outputs for the image and its horizontal flip. This establishes the sufficiency of a processing-only training task for perfect discrimination in this evaluation. It does not establish that all morph-trained detectors use precisely that cue. Shrinking and enlarging also change several image properties jointly, so the experiment does not isolate blur as a unique causal variable.
+    % Sources: experiments/reviews/REVIEW_AD4_CLUSTER_20261113.md, Verdict and synthesis; experiments/AD4/prereg.md, Data/Model/Primary metric.
+    Construction uses OpenCV AREA reduction from $256$ to $80$ pixels, lossless PNG storage, then common-loader PIL bilinear resizing to $224$ pixels (native $256\to224$, processed $80\to224$). This jointly changes several image properties and does not isolate blur. Exact provenance and the historical positional-argument correction are retained in the source companion.
+    
+    Rendering controls reveal a related ambiguity within our own candidate. The MIPGAN comparison includes 227 camera photos, 238 one-photo renders, 119 same-person and 74 two-person morphs after training-linked-partner exclusions. Sb ranks single-photo renders above camera images at .992--.998 AUC, versus .619--.690 for two-person versus same-person ranking (all five networks). Moreover, it flags 78--90\% of single-photo renders despite their containing no second identity. The presence of some separation between two-person morphs and reconstructions prevents concluding that these populations are identical to the detector. Nevertheless, rendering alone produces a strong response. The registered render-path verdict is \emph{used} (5/5 seeds, GD1) and the registered MIPGAN-control verdict is \emph{inconclusive} (GD2), with one-photo renders flagged at 78--90\%.
+    
+    Figure~\ref{fig:families_photos} shows what the five families actually look like. For one contributor pair retained in all of them, the warping families (FaceMorpher, OpenCV, Webmorph) leave the halo ring and the ghost of the second source between the aligned sources, with family-specific sharpness and shading histories, whereas MIPGAN-I and MIPGAN-II produce photorealistic faces whose separation from camera photos rests on weaker traces. This visual spread is why we report every processing-control read per family rather than averaged, and why the shortcut analysis treats landmark-warped and GAN-generated cohorts separately. These panels are illustrative samples of the corrected benchmark, not a benchmark claim.
+    % Source: experiments/PR1_protocol-reads-existing-networks/result.md, verdicts GD1/GD2.
+    These controls therefore limit the interpretation of low GAN-morph benchmark error.
+    % Source: experiments/PR1_protocol-reads-existing-networks/result.md, GD2.
+    
+    
+    
+    \subsection{Blending discrimination is not identity discrimination}
+    \label{sec:blend_results}
+    We compare FaceMorpher two-person blends against matched warp-only images on 299 FFHQ development hosts. The decision form retains the face and the morphing tool's halo ring and replaces the surround with gray. This diagnostic was registered after the frozen candidate's benchmark read and cannot provide blind confirmation. All three training variants discriminate blends from warps (Table~\ref{tab:blend_controls}). However, Sb's gain over B is only $+0.011$ AUC, with a 95\% interval of $[-0.010,0.031]$, and is positive in three of five seeds. The registered verdict is inconclusive. Host-block intervals condition on the trained networks, while a paired seed-level interval is wider at $[-0.027,0.049]$.
+    % Source: experiments/XF1_ffhq-facemorpher-matched-render/result.md.
+    
+    Hand-crafted statistics cross-fitted on these evaluation rows attain 0.925 and 0.917 AUC. These in-domain references are not directly comparable generalization baselines for networks that did not train on FFHQ or FaceMorpher. They nonetheless show that low-level statistics remain a viable explanation. No arm meets the registered criterion for performance beyond both learners trained on its own training list. Consequently, the experiment supports blend-versus-warp discrimination consistent with blending and noise averaging, not identity-specific recognition. Gray blanking also shifts decisions: 47--99\% of warp-only images are flagged across the three arms, compared with 2--14\% in their whole-frame form. Thus the face-region AUC must not be interpreted as robustness at a deployed threshold.
+    
+    \begin{table}[t]
+    \centering\small
+    \caption{Blend-versus-warp diagnostic on the face plus halo. Intervals resample 64 host blocks over 299 hosts and condition on five networks per arm.}
+    \label{tab:blend_controls}
+    \begin{tabular}{lcc}
+    \toprule
+    Training & AUC & 95\% interval \\
+    \midrule
+    Plain (A) & 0.864 & [0.848, 0.881] \\
+    Protocol negatives (B) & 0.879 & [0.862, 0.894] \\
+    Full protocol (Sb) & 0.889 & [0.873, 0.908] \\
+    \midrule
+    Sb $-$ B & +0.011 & [$-$0.010, +0.031] \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    \subsection{Matched controls improve manipulation ranking}
+    \label{sec:training_results}
+    The original matched-pipeline ablation compares two-person and same-person whole-frame morphs, pooling development hosts with 80 clean test hosts and applying the registered D-stratification. This is a post-hoc development analysis, not an untouched test. Sb improves over B by 0.042 AUC (paired development analysis). Removing its matched same-person and seam-only splice negatives loses 0.049 AUC, with all five paired differences positive. Splice positives without these negatives give no detectable pooled gain over B. The positive Sb--B and Sb--Sp contrasts retain positive 99.5\% intervals, $[0.008,0.081]$ and $[0.019,0.083]$, respectively. Their paired seed-level 95\% intervals also exclude zero. These checks support a repeatable ranking benefit in this setting. At the own-rule threshold, however, Sb still flags 85\% of same-person whole-frame morphs (92\% for B and 98\% for A, as pooled seed means).
+    % Source: experiments/AB1_protocol-ablation-and-replication/result.md, amendment-5 pipeline-matched table.
+    
+    This original removal contrast changes training count and class balance. Re-analysis of frozen seeds 403--407 yields the same direction, Sb--B $+0.051$ AUC, but reuses inspected development comparisons and is not independent confirmation.
+    
+    For two-person versus same-person face splices on the 80 clean hosts, the stratified Sb--B gain is $+0.118$ AUC $[0.069,0.245]$. This interval retains only 1,246 of 2,000 bootstrap draws with readable strata, and discarding 37.7\% was not registered, which limits its interpretation. The unstratified sensitivity is $+0.169$ $[0.136,0.204]$. At the fixed own-rule threshold, same-person splice flags fall from 70--74\% for Sp to 36--41\% for Sb. This is consistent with the supplied negative examples and does not establish rejection of same-person manipulations. In particular, improved ranking and low control false-alarm rates are distinct requirements.
+    % Source: same AB1 report, H-sp3 and pipeline-matched analyses.
+    
+    \begin{table*}[t]
+    \centering\small
+    \caption{Executed component ablations (CLIP B/16 LoRA, all five seeds 408--412, 6,250 updates, last checkpoints). Recipe flags: W = warp negatives, H = native halves, S = stored-small copies, P = splice positives, N = matched splice negatives ($\times$ = used, empty = not used, p = partial). AUC (S4 vs S3) uses the original development endpoint: it ranks two-person spliced morphs (S4) against stored-small copies (S3), and Flags (\%) is the fraction of stored-small copies flagged at the arm's operating threshold. SbZ/SbH/SbS remove one component from the full recipe Sb (Sp + N) and are not pure one-factor interventions; A/AS is not volume matched.}
+    \label{tab:executed_components}
+    \begin{tabular}{llccccccrrc}
+    \toprule
+    Arm & Recipe & W & H & S & P & N & Unique & Rows & AUC (morph vs stored) & Flags on stored (\%) \\
+    \midrule
+    A & Base: synthetic photos only & & & & & & 1526 & 1992 & 0.559-0.598 & 4.0-7.0 \\
+    AS & Base + stored-small (partial) & & & p & & & 2146 & 2850 & 0.577-0.612 & 3.0-5.0 \\
+    B & Warp neg. + halves + stored & $\times$ & $\times$ & $\times$ & & & 5099 & 7762 & 0.569-0.601 & 1.0-4.0 \\
+    Sp & B + splice positives & $\times$ & $\times$ & $\times$ & $\times$ & & 5223 & 7762 & 0.691-0.722 & 70.0-74.0 \\
+    SpV & Sp, repeated native neg. & $\times$ & $\times$ & $\times$ & $\times$ & & 5223 & 8386 & -- & -- \\
+    BV & B, repeated native neg. & $\times$ & $\times$ & $\times$ & & & 5099 & 8386 & -- & -- \\
+    BN & B + matched neg. & $\times$ & $\times$ & $\times$ & & $\times$ & 5411 & 8386 & -- & -- \\
+    Sb & Full: Sp + matched neg. & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & 5535 & 8386 & 0.755-0.804 & 36.0-41.0 \\
+    SbZ & Sb w/o warp negatives & & $\times$ & $\times$ & $\times$ & $\times$ & 4649 & 7868 & 0.754-0.805 & 29.0-41.0 \\
+    SbH & Sb w/o native halves & $\times$ & & $\times$ & $\times$ & $\times$ & 3831 & 7200 & 0.773-0.814 & 28.0-32.0 \\
+    SbS & Sb w/o stored-small & $\times$ & $\times$ & & $\times$ & $\times$ & 4552 & 8692 & 0.761-0.804 & 33.0-40.0 \\
+    \bottomrule
+    \end{tabular}
+    \par\smallskip\raggedright
+    SpV/BV substitute repeated native negatives for 312 matched negatives: counts, classes and positive multisets match within Sb/SpV and BN/BV, but unique-image diversity differs by 312. Their directly paired gains and adverse/null outcomes are in Table~\ref{tab:count_balanced}. Full component hypotheses, per-seed values and storage outcomes remain in the companion appendix.
+    \end{table*}
+    
+    
+    \paragraph{Count-balanced follow-up.}
+    The post-freeze, development- and MAD22-informed follow-up reads all 30 networks (seeds 408--412 of Sb, B, Sp, SpV, BN and BV), with no dropped seeds. Table~\ref{tab:count_balanced} reports its four registered outcomes. Primary OpenCV whole-frame ranking uses $D$-stratification on 100 development plus 80 screened test hosts. Two-person whole-frame positives occur in training, but same-person whole-frame negatives do not. Secondary splice ranking uses the 80 screened hosts, unstratified as fixed before the read. Its 2,000 draws are all usable, unlike the stratified secondary diagnostic (37.7\% unreadable), while primary stratification loses no draws. Both use paired host--partner component bootstraps (151/51 components), conditional on the five trained networks, without seed resampling.
+    
+    \begin{table}[t]
+    \centering\small
+    \caption{Count-balanced development evidence: mean AUC differences and conditional 95\% component-bootstrap intervals. Sb/SpV contain splice positives, while BN/BV do not. Repeated-native (V arms) repeats existing native negatives in place of the 312 unique matched negatives: volume matched, unique-image diversity lower by 312. Positive-seed counts retain all five seeds.}
+    \label{tab:count_balanced}
+    \footnotesize
+    \begin{tabular}{@{}p{1.28in}rp{0.95in}r@{}}
+    \toprule
+    Pair & Gain & 95\% interval & Seeds $>0$ \\
+    \midrule
+    \multicolumn{4}{l}{Primary: whole-frame, $D$-stratified} \\
+    Full (Sb) $-$ rep.-neg. (SpV) & $+$.0481 & [.0269, .0722] & 5/5 \\
+    Matched\,(BN) $-$ rep.\,(BV) & $-$.0030 & [$-$.0089, .0045] & 1/5 \\
+    \midrule
+    \multicolumn{4}{l}{Secondary: face splices, unstratified} \\
+    Full (Sb) $-$ rep.-neg. (SpV) & $+$.0818 & [.0535, .1083] & 5/5 \\
+    Matched\,(BN) $-$ rep.\,(BV) & $-$.0247 & [$-$.0455, $-$.0050] & 0/5 \\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+    
+    Sb--SpV supports the full recipe's negative replacement plus 312 additional unique images. BN--BV lacks the registered $+.03$ gain, but this is not zero-equivalence. Its negative secondary 95\% interval crosses zero at 99.5\% ($[-.0538,.0031]$), while Sb--SpV remains positive on both outcomes. These sensitivities are not a familywise correction. Between-pair differences do not isolate a universal requirement for splice positives: positives match only within pairs and no interaction interval was registered.
+    
+    \paragraph{Component hypotheses.}
+    Table~\ref{tab:executed_components} retains every executed recipe. Removing stored-small copies increases their trained-size FA effect by .054 [.038,.070], while adding copies alone (AS) passes 0/5 trained-size C2P checks. Removing warp negatives or native halves does not meet its registered necessity margin. For SbS development storage, the .018 [.013,.023] paired-seed effect falsifies the seed-mean $+.05$ claim while the secondary per-seed verdict is inconclusive. These component intervals are Student-$t$ across five paired seeds (4 degrees of freedom) for warp/half/development-storage hypotheses, distinct from Table~\ref{tab:count_balanced}'s conditional component bootstrap. Floor effects and retained stored halves limit attribution.
+    
+    \paragraph{Storage sensitivity.}
+    Paired storage perturbations increase genuine false alarms by 26.5--38.5 percentage points for A at the trained small-image size, versus 0--4.5 points for Sb. At the untrained size, the corresponding ranges are 5.5--15.2 and 0--2.1 points. However, the registered test combines flag-rate and two-sided score-movement bounds. Sb passes five of five seeds at the trained size but only three at the untrained size: two failures arise from score movement toward genuine. The overall verdict is therefore inconclusive. We report attenuation of storage-induced false alarms, not removal of the shortcut.
+    % Source: AB1 result, registered R1 verdict and C2P per-seed rows.
+    
+    The remaining registered development studies are reported here only in summary. Additional ad-hoc probes of the frozen training recipe (a CVaR tail loss, a paired-ranking objective, matched hard negatives and a breadth-narrowing pilot) did not meet their predeclared success criteria. Their completions, including all 119 robustness cells and both threshold policies, are retained in the companion appendix.
+    
+    \subsection{Development-exposed benchmark comparison}
+    \label{sec:mad22_results}
+    Table~\ref{tab:mad22_results} reports the frozen Sb networks on corrected MAD22~\cite{huber2022synmad}. No method met the registered freeze rule, and the authors froze Sb by decision before these networks were benchmark-scored. The deciding endpoint was changed before that read from development-threshold errors to EER, because the training-source threshold flagged 96--98\% of unseen-source genuine photos. Its recipe was chosen after MAD22 results from earlier seeds were available, but seeds 403--407 were new to benchmark evaluation. The genuine side comprises 204 FRLL photographs~\cite{debruine2017frll}. This is consequently a development-exposed benchmark evaluation, not an independent identity-level confirmation on FRLL. Released detectors are compared at their better raw-genuine or aligned-history form. SelfMAD's~\cite{ivanovska2025selfmad} raw form has the lowest four-family point mean among MADation B/16, MADation L/14, MixFaceNet-MAD and SelfMAD, each in raw-genuine and history-matched forms. This comparator is held fixed in bootstrap draws and is not selected separately for each table row.
+    % Sources: experiments/FINAL_sealed-benchmark-read/result.md, labels and primary endpoint; prereg.md C1--C3 (freeze and endpoint amendments).
+    
+    \begin{table*}[t]
+    \centering\small
+    \setlength{\tabcolsep}{2.4pt}
+    \caption{MAD22 under explicit processing controls, EER (\%). Each arrow compares the same checkpoint(s), not retraining. Panel A changes genuine-photo processing; Panel B additionally equalises the border for Sb. These test sensitivity to specified processing mismatches and do not remove all shortcuts. RW = released weights re-evaluated by us, and Sb averages five seeds 403--407. All five morph families are retained. LM2 averages OpenCV/Webmorph; M4 adds MIP-I/II. FaceMorpher is shortcut-saturated, and GAN discrimination is not established morph-specific. MAD22 informed development; its genuine side exposes FRLL photographs.}
+    \label{tab:mad22_results}
+    \begin{tabular}{lrrrrrrr}
+    \toprule
+    Method / source & FM & OpenCV & Webmorph & MIP-I & MIP-II & LM2 & M4 \\
+    \midrule
+    \multicolumn{8}{l}{\textbf{A. Raw genuine $\rightarrow$ aligned-history genuine (S $\rightarrow$ H)}} \\
+    Sb (5 seeds) & $2.32\!\to\!3.67$ & $2.28\!\to\!\textbf{2.26}$ & $10.69\!\to\!\textbf{10.39}$ & $0.57\!\to\!\textbf{0.57}$ & $0.28\!\to\!\textbf{0.28}$ & $6.48\!\to\!\textbf{6.32}$ & $3.45\!\to\!\textbf{3.37}$ \\
+    MADation B/16 (RW) & $0.00\!\to\!13.60$ & $3.96\!\to\!6.61$ & $11.00\!\to\!\underline{14.22}$ & $40.20\!\to\!40.70$ & $28.43\!\to\!28.33$ & $7.48\!\to\!10.41$ & $20.90\!\to\!22.46$ \\
+    MADation L/14 (RW) & $0.49\!\to\!\underline{2.45}$ & $4.78\!\to\!4.57$ & $28.43\!\to\!24.60$ & $32.30\!\to\!30.00$ & $16.32\!\to\!14.91$ & $16.60\!\to\!14.59$ & $20.46\!\to\!18.52$ \\
+    MixFaceNet-MAD (RW) & $4.90\!\to\!13.40$ & $8.43\!\to\!11.99$ & $18.20\!\to\!24.20$ & $16.30\!\to\!21.57$ & $20.59\!\to\!25.98$ & $13.32\!\to\!18.10$ & $15.88\!\to\!20.94$ \\
+    SelfMAD (RW) & $0.00\!\to\!\textbf{0.98}$ & $1.02\!\to\!\underline{2.94}$ & $13.73\!\to\!29.90$ & $2.45\!\to\!\underline{4.00}$ & $1.70\!\to\!\underline{2.70}$ & $7.37\!\to\!16.42$ & $4.72\!\to\!9.89$ \\
+    \midrule
+    \multicolumn{8}{l}{\textbf{B. History-matched $\rightarrow$ border-equalised (H $\rightarrow$ BE\_H)}} \\
+    Sb (5 seeds) & $3.67\!\to\!4.46$ & $2.26\!\to\!2.26$ & $10.39\!\to\!10.39$ & $0.57\!\to\!0.95$ & $0.28\!\to\!0.50$ & $6.32\!\to\!6.32$ & $3.37\!\to\!3.52$ \\
+    \midrule
+    \multicolumn{8}{l}{\textbf{C. Comparators retrained with our matched-control recipe (Sb), 5 seeds -- HOLD}} \\
+    MADation B/16 & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} \\
+    MADation L/14 & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} \\
+    MixFaceNet-MAD & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} & \textcolor{red}{HOLD} \\
+    \bottomrule
+    \end{tabular}
+    \par\smallskip\raggedright
+    Morph counts FM/OpenCV/Webmorph/MIP-I/MIP-II: 1000/984/500/1000/999, plus 204 genuine photos of 102 persons. H combines alignment, crop/field of view and processing history, so it does not isolate blur or JPEG. Under the registered release crops, MADation B/L and MixFaceNet BE rows equal their S/H rows and are not new blanked-image evaluations. SelfMAD has no admitted BE result and is not a comparator in Panel B. Full separate rows are retained in the supplement, and per-family FRLL-Morphs cells were afterwards read separately under the 15 November 2026 author ruling (Table~\ref{tab:frll_results}). Bold marks the best history-matched (H) EER per family and underline the second best, across the five compared methods, with lower better. Arrow first values and Panel B are unmarked. Panel C rows are pre-registered matched-control-recipe retrains of the comparators (prereg AD6) still training and unscored at writing time; HOLD cells will be replaced by their per-family EER, with bold/underline then re-evaluated over the enlarged method set.
+    \end{table*}
+    
+    
+    \paragraph{Benchmark scores change with the control.}
+    SelfMAD's Webmorph EER changes from 13.73\% to 29.90\% when genuine photos receive aligned-frame history, and its four-family mean changes from 4.72\% to 9.89\%. Sb's corresponding mean changes from 3.45\% to 3.37\%. These are descriptive responses to a composite intervention, not evidence that history-matched evaluation removes all non-identity cues. Border equalisation raises Sb's FaceMorpher seed-mean EER from 3.67\% to 4.46\%, and the registered rise is $+0.79$ points with a 95\% interval of $[-2.07,3.53]$. OpenCV and Webmorph have no border intervention. The remaining rendering response prevents interpreting the low GAN-family errors as identity-specific detection.
+    
+    The four-family difference is $-1.4$ percentage points, with a two-level 95\% interval of $[-3.51,0.98]$. Each of 2,000 paired bootstrap draws resamples the 102 contributor persons and five seed indices. A genuine photo receives its person's multinomial count, while a morph receives the product of both contributors' counts. Common draws serve all detectors and families. The registered one-point non-inferiority criterion narrowly passes: its bootstrap tail probability is 0.02499 against 0.025, and one additional exceedance among 2,000 replicates changes the verdict. Superiority is not established. The landmark-only difference is $-1.0$ points $[-4.7,3.0]$ and is not separated. Half of the primary average comprises GAN families whose identity specificity remains unresolved by our rendering controls. FaceMorpher was excluded from this endpoint because morph-free networks achieve zero EER on that cell. Finally, EER is not the fixed-threshold error: Webmorph attack misses at the own rule range from 24--58\%, while genuine false alarms range from 0--2.5\%. These results support competitive discrimination alongside, rather than proof against, remaining shortcuts.
+    
+    \paragraph{Replication of released comparators.}
+    \begin{table*}[t]
+    \centering\small
+    \setlength{\tabcolsep}{5pt}
+    \caption{Released weights versus our five-seed retrains of the same published recipe (MADation B/16, L/14, MixFaceNet-MAD), per-family EER (\%) on the canonical corrected MAD22 population. Released cells are the registered re-reads of the released checkpoints; retrained cells are mean$\pm$sd over five seeds (all five seeds retained, ties halved, no threshold fitting). These retrains follow each method's original training data and configuration, not our matched-control recipe, so the comparison measures replication and seed variability, not shortcut removal. Scoring uses regenerated release crops (byte-identity to production crops: 80.2\% v1, 74.4\% v2; the divariant full grid and SelfMAD's four of five finished seeds are in the supplement).}
+    \label{tab:retrain_replication}
+    \footnotesize
+    \begin{tabular}{@{}lcc@{\hskip 12pt}cc@{\hskip 12pt}cc@{}}
+    \toprule
+     & \multicolumn{2}{c}{MADation B/16} & \multicolumn{2}{c}{MADation L/14} & \multicolumn{2}{c}{MixFaceNet-MAD} \\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+    Family & Released & Retrained & Released & Retrained & Released & Retrained \\
+    \midrule
+    FaceMorpher & 0.10 & $0.88\pm0.62$ & 0.49 & $0.59\pm0.13$ & 5.00 & $2.98\pm2.54$ \\
+    OpenCV & 5.18 & $7.06\pm0.60$ & 4.78 & $0.77\pm0.18$ & 10.16 & $7.90\pm2.15$ \\
+    Webmorph & 11.52 & $16.61\pm0.96$ & 26.72 & $13.95\pm2.25$ & 20.00 & $20.01\pm2.00$ \\
+    MIPGAN-I & 40.69 & $35.83\pm13.56$ & 30.80 & $33.40\pm10.63$ & 18.50 & $21.10\pm6.71$ \\
+    MIPGAN-II & 28.33 & $27.40\pm9.44$ & 15.72 & $19.94\pm9.99$ & 23.04 & $27.41\pm6.46$ \\
+    \bottomrule
+    \end{tabular}
+    \end{table*}
+    
+    Table~\ref{tab:retrain_replication} re-reads the released comparator checkpoints and re-trains each from its original recipe at five seeds. Point cells of the released models that sit at or near zero (MADation B/16 on FaceMorpher, 0.10\%) rise to $0.88\pm0.62\%$ under seed variation, while the large GAN-family errors persist across every release and retrain (MADation B/16 above 27\% on MIPGAN-I, $\pm$13.56 seed-sd). Seed variability of the reported comparators is comparable to the between-processing effects we study, which strengthens the case for paired, seed-retaining comparisons of the kind used throughout this paper.
+    
+    \paragraph{Threshold transfer on unseen genuine sources.}
+    Two admitted false-alarm-only records (TT1 and its MEDS extension) test the own rule (logit $>0$) on genuine photographs unseen in training. Neither contains morphs of these sources, so neither provides attack-sensitivity or joint operational evidence. On eight unseen web sources (TT1, seeds 401/402, registered verdicts), arm A fails the 10\% bar on lfw\_calfw and agedb\_30 on both seeds. Arm B's per-family flag rates run 0.0--4.9\% with all upper bounds $\le$10\% (the family does not fail as predicted, and the prediction is registered as falsified), while these same networks flag 17.8\%/6.4\% of FFHQ development photos. Sb passes narrowly on cfp\_ff and agedb\_30 (lower bounds 0.051/0.053 against 0.05). Every network ranks each unseen source above the camera-photo pool (AUC 0.987--1.000) -- a displacement of scores, not a statement about thresholds. On 865 frontal NIST MEDS mugshots of 400 persons (seeds 403--407), all arms stay within the fixed decision rule (bootstrap upper bounds $\le$7.2\%). The false alarms that occur concentrate in the 110 small $240\times240$ mugshots whose faces are enlarged about $3\times$: the plain arm flags up to 39\% and the protocol arm up to 23\% of that group, while Sb flags at most 2.7\%, with at most one flag per network among the remaining 755 images. Laplacian-variance correlations retain the processing-response reading, and size, JPEG coding and body part cannot be separated in these pools. Per-seed tables and the complete registered verdicts, with their qualifications, are in the supplementary material.
+    
+    \paragraph{FRLL-Morphs: author-ruled descriptive read.}
+    On the 15 November 2026 author ruling (registered as a dated prereg amendment), the FRLL-Morphs families of the sealed benchmark were unsealed for one descriptive read of the frozen networks: Sb seeds 403--407, SelfMAD~\cite{ivanovska2025selfmad} (its released checkpoint, scored by us), and the released MADation B/16, L/14 and MixFaceNet-MAD comparators, each read on a frozen 7,265-row roster of 6,061 morphs in five families (aMSL 2,175, FaceMorpher 1,222, OpenCV 1,221, StyleGAN 1,222 and Webmorph 1,221) against the same 204 genuine FRLL photographs~\cite{debruine2017frll} of 102 persons that MAD22's genuine side already exposes. Table~\ref{tab:frll_results} reports per-family EER. AUC, person-level two-way bootstrap intervals (2,000 draws shared across detectors, the scheme of Table~\ref{tab:mad22_results}), and flag rates at the own rule and at the development-frozen thresholds are in the supplement.
+    
+    \begin{table*}[t]
+    \centering\small
+    \setlength{\tabcolsep}{2.4pt}
+    \caption{FRLL-Morphs per-family EER (\%), author-ruled descriptive read (15 November 2026). Sb cells are the means of seeds 403--407. FaceMorpher cells of the released comparators use variant-2 crops, because 416 of 1,222 variant-1 crops fail (release amendment 7) and 10 of 1,221 OpenCV variant-1 rows drop and are not imputed. The released comparators are read from registered score files, not rescored. The retrain block re-scores our own five-seed retrains of each comparator's original recipe on the same roster (SelfMAD: all five seeds), scored by us on regenerated release crops (byte-identity qualifier in Table~\ref{tab:retrain_replication}); these are replication and seed-variability reads, not shortcut elimination. Descriptive only: the genuine side is development-exposed through MAD22, so nothing here confirms identity-independent detection, and no SOTA or verdict claim is drawn; these numbers also use different processing than Table~\ref{tab:mad22_results} and are not comparable to its metrics.}
+    \label{tab:frll_results}
+    \begin{tabular}{lrrrrr}
+    \toprule
+    Method / source & aMSL & FaceMorpher & OpenCV & StyleGAN & Webmorph \\
+    \midrule
+    Sb (5 seeds 403--407) & 11.85 & 2.35 & 1.37 & 10.87 & 11.69 \\
+    SelfMAD (RW, scored here) & 2.94 & 0.90 & 0.16 & 16.67 & 10.78 \\
+    MADation B/16 (RW) & 3.92 & 0.57 & 1.96 & 18.58 & 2.21 \\
+    MADation L/14 (RW) & 7.95 & 0.98 & 2.73 & 39.20 & 5.32 \\
+    MixFaceNet-MAD (RW) & 15.13 & 2.95 & 4.90 & 9.08 & 12.25 \\
+    \midrule
+    \multicolumn{6}{l}{Our retrains of each method's original recipe, mean$\pm$sd (H; replication read, not shortcut removal)} \\
+    \quad MADation B/16 (5 seeds, H) & 4.93$\pm$2.36 & 2.16$\pm$0.67 & 4.90$\pm$0.77 & 14.56$\pm$4.19 & 4.12$\pm$2.26 \\
+    \quad MADation L/14 (5 seeds, H) & 9.65$\pm$5.60 & 0.61$\pm$0.21 & 0.82$\pm$0.23 & 12.75$\pm$1.94 & 5.81$\pm$3.46 \\
+    \quad MixFaceNet-MAD (5 seeds, H) & 13.95$\pm$3.98 & 2.97$\pm$0.64 & 3.91$\pm$1.53 & 11.27$\pm$3.28 & 9.95$\pm$3.52 \\
+    \quad SelfMAD (5 seeds, H) & 5.80$\pm$2.28 & 1.49$\pm$0.78 & 0.93$\pm$0.58 & 21.29$\pm$1.47 & 17.72$\pm$7.05 \\
+    \bottomrule
+    \end{tabular}
+    \par\smallskip\raggedright
+    Seed ranges (Sb): aMSL 8.33--15.95, FaceMorpher 0.98--5.39, OpenCV 0.49--2.05, StyleGAN 6.87--15.71, Webmorph 8.82--16.05. At the own rule, Sb flags 45.7--74.8\% of aMSL morphs while keeping genuine flags near zero, and the thresholds dev-frozen on FFHQ flip the picture for the released checkpoints (e.g.\ MADation B/16 on aMSL misses 0.0\% of morphs yet false-alarms 27.0\% of genuine photographs at the same frozen threshold) -- fixed thresholds do not transfer across processing paths. Full grid with intervals: the FRLL-Morphs read section of the supplement.
+    \end{table*}
+    
