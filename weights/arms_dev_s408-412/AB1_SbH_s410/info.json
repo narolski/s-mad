@@ -1,0 +1,17 @@
+{
+ "torch": "2.11.0+cu128",
+ "device": "NVIDIA H100",
+ "host": "r14-4.lem.kdm.wcss.pl",
+ "run": "/mnt/lscratch/slurm/6312037/w/runs/AB1/a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s410_ab1SbH",
+ "seed": 410,
+ "steps": 6250,
+ "train_hours": 0.5812119532956017,
+ "last_pt_sha256": "49809337f9401f5ecfc18ee92688aa475fa9fe049490cb1790137d25568fe184",
+ "n_eval": 21277,
+ "n_train_unique": 3831,
+ "train_acc_rule0": 0.9882537196554424,
+ "eval_seconds": 21.9,
+ "train_seconds": 4.5,
+ "limit": 0,
+ "common_py_sha256": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8"
+}

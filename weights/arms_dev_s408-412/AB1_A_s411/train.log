@@ -1,0 +1,69 @@
+[a12_clip_vitb16_madation] regime d0 split train90 lofo none seed 411 lr 3.33e-06: 1992 items (morph 996, bona 996, pos_weight 1.000); params 86.3M (trainable 0.1M)
+  recipe v1 sampler prior sched const wd_ssm_exempt False ls 0.0 drop_path 0.0 ft lora lora_r 2 arms []
+  A12: opt adamw momentum None sam_rho None wd 0.05 clip_grad 5.0 final last es_snaps 0 aug flip head_lr 3.33e-05 accum 1 tools None lora {'targets': 'qv', 'alpha': 4.0, 'dropout': 0.4, 'rs': True, 'train_norms': False} trainable params 74241
+  optimiser groups (lr, wd, #tensors): [('3.33e-06', 0.05, 48), ('3.33e-05', 0.05, 2)]
+step   100/6250 loss 0.6870 1.86 it/s
+step   200/6250 loss 0.6805 1.91 it/s
+step   300/6250 loss 0.6722 1.92 it/s
+step   400/6250 loss 0.6621 1.91 it/s
+step   500/6250 loss 0.6488 1.91 it/s
+step   600/6250 loss 0.6313 1.92 it/s
+step   700/6250 loss 0.6127 1.92 it/s
+step   800/6250 loss 0.5896 1.92 it/s
+step   900/6250 loss 0.5705 1.92 it/s
+step  1000/6250 loss 0.5440 1.93 it/s
+step  1100/6250 loss 0.5187 1.92 it/s
+step  1200/6250 loss 0.4846 1.93 it/s
+step  1300/6250 loss 0.4524 1.93 it/s
+step  1400/6250 loss 0.4212 1.93 it/s
+step  1500/6250 loss 0.3722 1.93 it/s
+step  1600/6250 loss 0.3395 1.93 it/s
+step  1700/6250 loss 0.3083 1.94 it/s
+step  1800/6250 loss 0.2820 1.94 it/s
+step  1900/6250 loss 0.2542 1.94 it/s
+step  2000/6250 loss 0.2344 1.94 it/s
+step  2100/6250 loss 0.2152 1.94 it/s
+step  2200/6250 loss 0.1990 1.94 it/s
+step  2300/6250 loss 0.1846 1.94 it/s
+step  2400/6250 loss 0.1719 1.94 it/s
+step  2500/6250 loss 0.1603 1.94 it/s
+step  2600/6250 loss 0.1486 1.94 it/s
+step  2700/6250 loss 0.1393 1.94 it/s
+step  2800/6250 loss 0.1300 1.94 it/s
+step  2900/6250 loss 0.1232 1.94 it/s
+step  3000/6250 loss 0.1153 1.94 it/s
+step  3100/6250 loss 0.1090 1.94 it/s
+step  3200/6250 loss 0.1028 1.94 it/s
+step  3300/6250 loss 0.0967 1.94 it/s
+step  3400/6250 loss 0.0916 1.94 it/s
+step  3500/6250 loss 0.0866 1.94 it/s
+step  3600/6250 loss 0.0825 1.94 it/s
+step  3700/6250 loss 0.0780 1.94 it/s
+step  3800/6250 loss 0.0747 1.94 it/s
+step  3900/6250 loss 0.0703 1.94 it/s
+step  4000/6250 loss 0.0675 1.94 it/s
+step  4100/6250 loss 0.0642 1.94 it/s
+step  4200/6250 loss 0.0612 1.94 it/s
+step  4300/6250 loss 0.0583 1.94 it/s
+step  4400/6250 loss 0.0555 1.94 it/s
+step  4500/6250 loss 0.0532 1.94 it/s
+step  4600/6250 loss 0.0506 1.94 it/s
+step  4700/6250 loss 0.0485 1.94 it/s
+step  4800/6250 loss 0.0466 1.94 it/s
+step  4900/6250 loss 0.0446 1.94 it/s
+step  5000/6250 loss 0.0427 1.94 it/s
+step  5100/6250 loss 0.0406 1.94 it/s
+step  5200/6250 loss 0.0391 1.94 it/s
+step  5300/6250 loss 0.0374 1.94 it/s
+step  5400/6250 loss 0.0358 1.94 it/s
+step  5500/6250 loss 0.0342 1.94 it/s
+step  5600/6250 loss 0.0329 1.94 it/s
+step  5700/6250 loss 0.0316 1.94 it/s
+step  5800/6250 loss 0.0305 1.94 it/s
+step  5900/6250 loss 0.0290 1.94 it/s
+step  6000/6250 loss 0.0277 1.94 it/s
+step  6100/6250 loss 0.0267 1.94 it/s
+step  6200/6250 loss 0.0256 1.94 it/s
+val10: no rows for regime d0; skipped (A9.6)
+composition (cell: target / first-200-batch mean): smdd/bona 0.500/0.500, smdd/morph 0.500/0.500, sbi 0.000/0.000
+DONE {"arch": "a12_clip_vitb16_madation", "regime": "d0", "split": "train90", "lofo": "none", "seed": 411, "lr": 3.33e-06, "res": 224, "steps": 6250, "snapshots": 0, "params_M": 86.267393, "trainable_M": 0.074241, "n_items": 1992, "pos_weight": 1.0, "bn_recalibrated": false, "train_hours": 0.8934820924864875, "bs": 256, "smoke": false, "recipe": "v1", "sampler": "prior", "arms": [], "ft": "lora", "lora_r": 2, "drop_path": 0.0, "drop_path_applied": 0.0, "label_smoothing": 0.0, "sched": "const", "wd_ssm_exempt": false, "lp_saved": false, "snap_steps": [], "ema": 0.0, "sbi_p": 0.0, "sbi_frac": 0.0, "sbi_kw": null, "sbi_smdd_hull": "mediapipe", "opt": "adamw", "momentum": null, "sam_rho": null, "wd": 0.05, "clip_grad": 5.0, "final": "last", "es_snaps": 0, "aug": "flip", "aug_applied": "flip", "head_lr": 3.33e-05, "lora_targets": "qv", "lora_alpha": 4.0, "lora_dropout": 0.4, "lora_rs": true, "lora_train_norms": false, "tools": null, "accum": 1, "train_forward_passes": 6250, "protocol": "A12", "a12_flags": ["wd", "clip_grad", "final", "aug", "head_lr", "lora"], "arch_extra": {"drop_path_skipped": null, "weights": "file:/mnt/lscratch/slurm/6312168/w/pn1/hf/a12/vit_base_patch16_clip_224.openai.safetensors"}, "val10_n": 0}
