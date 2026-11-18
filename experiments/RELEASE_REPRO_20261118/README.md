@@ -48,3 +48,11 @@ See the log below.
 - then seeds 404-407 the same; morph-free: `sbatch --export=ALL,REL=5737486,SEED=401,BACKBONE=vitb16 repo/mf_train.sbatch`
   (vitl14: same with BACKBONE=vitl14, ~4-8 h; copy mf_train.sbatch to repo/ first).
 - compare: `python -I src/public_release/repro/compare.py FROZEN_DIR RESULT_DIR sb|mf`
+
+## Smoke result (after hand-back)
+- WCSS 6355185 ran 20:12-20:14 (1 min 50 s) on r18-4, H100, driver 595.112.07; container python 3.10.13, torch 2.2.1,
+  CUDA 12.1, cuDNN 8902, timm 1.0.27, numpy 1.26.4, pillow 10.2.0. Loss step 100 0.6928 (frozen 0.6928), step 200
+  0.6873 (frozen 0.6874): equal to the 4th decimal at 100, 1e-4 off at 200 (H100 vs the frozen A100-PCIE; bit identity
+  unlikely, criterion (b) is the realistic target). Smoke PASSES. Result: release_repro/results/sb_s403_200_6355185.tar.
+- Athena smoke 3558886 cancelled (redundant).
+- Production (step 3) not yet submitted: next command above.
