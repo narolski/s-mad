@@ -1,0 +1,17 @@
+{
+ "torch": "2.2.1",
+ "device": "NVIDIA A100-PCIE-40GB",
+ "host": "e8bf0b3abe77",
+ "run": "/workspace/pn1/work/PN1_Sb_s407/runs/PN1/a12_clip_vitb16_madation_r224_d0_train90_none_lr3.33e-06_s407_pn1Sb",
+ "seed": 407,
+ "steps": 6250,
+ "train_hours": 1.069047903087404,
+ "last_pt_sha256": "509c9fe005e18710b218a5b506405558d041e3f6b8c1b719df6c078673e333c6",
+ "n_eval": 19797,
+ "n_train_unique": 5535,
+ "train_acc_rule0": 0.9907859078590786,
+ "eval_seconds": 42.3,
+ "train_seconds": 7.7,
+ "limit": 0,
+ "common_py_sha256": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8"
+}
