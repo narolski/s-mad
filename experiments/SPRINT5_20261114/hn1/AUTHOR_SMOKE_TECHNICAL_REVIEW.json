@@ -1,0 +1,45 @@
+{
+  "decision": "AUTHOR_TECHNICAL_PASS_INDEPENDENT_ROOT_RELEASE_REQUIRED",
+  "author_reviewer": "astra_sprint_plan_review",
+  "job": 6321237,
+  "job_status": "6321237|COMPLETED|0:0|00:07:09",
+  "scope": "author technical check, not independent methodology review; no scientific score payload opened",
+  "source_sums_sha256": "3640adc6a2204e1d82ce455167e00e433859f4b63bf63970f67d3ca0910ca793",
+  "evidence_sha256": "97b13ddddfed62307b3f1cce293eee29da880563906948180b43e9b08f4e05eb",
+  "warmstart": "same admitted AB1 Sb408 for both smoke arms",
+  "arms": [
+    {
+      "arm": "matched",
+      "sha256": "a7e3191f5ca2f28a6892993c8f8199665c5628940098f424c6056e57ddcd6b20",
+      "reference_bytegate": 2496,
+      "own_bytegate": 21277,
+      "finite_counts": {
+        "dev": 21277,
+        "tt1": 34411,
+        "meds": 1018,
+        "gd": 11042
+      },
+      "rows": 248,
+      "image_exposures": 496,
+      "checkpoint_preserved": true,
+      "task_info": "pack_sha256 96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004 overlay_sha256 171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149 arch a12_clip_vitb16_madation wall_s 214 host r18-15.lem.kdm.wcss.pl steps 2 limit 0\n"
+    },
+    {
+      "arm": "self",
+      "sha256": "29369388908da22c52c59d57a39085db40d94d39d94c1d62871c9768430abdc5",
+      "reference_bytegate": 2496,
+      "own_bytegate": 21277,
+      "finite_counts": {
+        "dev": 21277,
+        "tt1": 34411,
+        "meds": 1018,
+        "gd": 11042
+      },
+      "rows": 248,
+      "image_exposures": 496,
+      "checkpoint_preserved": true,
+      "task_info": "pack_sha256 96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004 overlay_sha256 171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149 arch a12_clip_vitb16_madation wall_s 212 host r18-15.lem.kdm.wcss.pl steps 2 limit 0\n"
+    }
+  ],
+  "next": "root independent review may release two arms x seeds531\u2013535 x100updates; separate PREREAD required for scientific outputs"
+}

@@ -1,0 +1,414 @@
+{
+  "status": "SOURCE_READY_EXECUTION_HOLD",
+  "seed": 408,
+  "worker_source_manifest_sha256": "6dc4375db303042904ca0725c631515ffaf00d7afc4266bf8334d067c0b698c7",
+  "context_sha256": "04b8580bd16629c3c58bc5351c9d8b1809b92c903f41285cda87a3bfb7b6a5bc",
+  "required_source_content": {
+    "common.py": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+    "archs_a12.py": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876",
+    "rz1_patch.py": "aced1039ec885e3b1b856e6a1cd68b916a169a42340b96a4d1b7ee3ba1857e48",
+    "rz1_kernels.py": "250fdfad014f05c09bb1a0485b111b75c72d305d4e7fdeacd2da22e284583257"
+  },
+  "overlay": {
+    "archive": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/RZ1_SbMR512_s408.tar",
+    "archive_sha256": "79ca0ba532f64e6205be288313621f26656209c45c1fa195f81246c7b98d688e",
+    "trainable_member": {
+      "status": "OPAQUE_DIGEST_ONLY",
+      "member": "RZ1_SbMR512_s408/last_trainable.pt",
+      "bytes": 312981,
+      "sha256": "d6ad8dad4238cf16582fac920ec3fbc4808bd2a879b8a03b29cc33c6464f294b",
+      "checkpoint_identity": "last_trainable.pt trainable overlay; NOT original full last.pt",
+      "decoded": false
+    },
+    "prior_source_runtime_descriptor": {
+      "archive": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/RZ1_SbMR512_s408.tar",
+      "archive_sha256": "79ca0ba532f64e6205be288313621f26656209c45c1fa195f81246c7b98d688e",
+      "full_checkpoint_descriptor": "original training run last.pt; opaque hash only if present in info.last_pt_sha256",
+      "trainable_checkpoint_member": "RZ1_SbMR512_s408/last_trainable.pt",
+      "trainable_checkpoint_sha256": null,
+      "weights_access_authorized": false,
+      "scorer_source_sha256": "9b6784290c1eb129b48370ee272074788839f60badc22b65ed26b10532fed611",
+      "runtime_TF32": null,
+      "source_TF32_prior": true,
+      "source_read_value": "float32 forward_logit without flip; source also computes separate TTA output",
+      "scientific_rebuild_or_kernel_admission": false
+    },
+    "source_runtime_scope": "Prior typed info only; fresh env TF32 not scorer attestation; reconstruction unvalidated"
+  },
+  "original_eval_rows": 24859,
+  "tt1_rows": 34411,
+  "timing_rows": [
+    {
+      "id": "val_frgc_zero_0000",
+      "path": "eval/pn1/val_frgc_zero_0000.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0001",
+      "path": "eval/pn1/val_frgc_zero_0001.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0002",
+      "path": "eval/pn1/val_frgc_zero_0002.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0003",
+      "path": "eval/pn1/val_frgc_zero_0003.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0004",
+      "path": "eval/pn1/val_frgc_zero_0004.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0005",
+      "path": "eval/pn1/val_frgc_zero_0005.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0006",
+      "path": "eval/pn1/val_frgc_zero_0006.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0007",
+      "path": "eval/pn1/val_frgc_zero_0007.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0008",
+      "path": "eval/pn1/val_frgc_zero_0008.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0009",
+      "path": "eval/pn1/val_frgc_zero_0009.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0010",
+      "path": "eval/pn1/val_frgc_zero_0010.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0011",
+      "path": "eval/pn1/val_frgc_zero_0011.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0012",
+      "path": "eval/pn1/val_frgc_zero_0012.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0013",
+      "path": "eval/pn1/val_frgc_zero_0013.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0014",
+      "path": "eval/pn1/val_frgc_zero_0014.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0015",
+      "path": "eval/pn1/val_frgc_zero_0015.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0016",
+      "path": "eval/pn1/val_frgc_zero_0016.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0017",
+      "path": "eval/pn1/val_frgc_zero_0017.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0018",
+      "path": "eval/pn1/val_frgc_zero_0018.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_zero_0019",
+      "path": "eval/pn1/val_frgc_zero_0019.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_u50_0000",
+      "path": "eval/pn1/val_frgc_u50_0000.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0001",
+      "path": "eval/pn1/val_frgc_u50_0001.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0002",
+      "path": "eval/pn1/val_frgc_u50_0002.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0003",
+      "path": "eval/pn1/val_frgc_u50_0003.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0004",
+      "path": "eval/pn1/val_frgc_u50_0004.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0005",
+      "path": "eval/pn1/val_frgc_u50_0005.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0006",
+      "path": "eval/pn1/val_frgc_u50_0006.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0007",
+      "path": "eval/pn1/val_frgc_u50_0007.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0008",
+      "path": "eval/pn1/val_frgc_u50_0008.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0009",
+      "path": "eval/pn1/val_frgc_u50_0009.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0010",
+      "path": "eval/pn1/val_frgc_u50_0010.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0011",
+      "path": "eval/pn1/val_frgc_u50_0011.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0012",
+      "path": "eval/pn1/val_frgc_u50_0012.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0013",
+      "path": "eval/pn1/val_frgc_u50_0013.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0014",
+      "path": "eval/pn1/val_frgc_u50_0014.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0015",
+      "path": "eval/pn1/val_frgc_u50_0015.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0016",
+      "path": "eval/pn1/val_frgc_u50_0016.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0017",
+      "path": "eval/pn1/val_frgc_u50_0017.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0018",
+      "path": "eval/pn1/val_frgc_u50_0018.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_u50_0019",
+      "path": "eval/pn1/val_frgc_u50_0019.png",
+      "label": "1"
+    },
+    {
+      "id": "val_frgc_photo_0000",
+      "path": "eval/pn1/val_frgc_photo_0000.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0001",
+      "path": "eval/pn1/val_frgc_photo_0001.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0002",
+      "path": "eval/pn1/val_frgc_photo_0002.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0003",
+      "path": "eval/pn1/val_frgc_photo_0003.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0004",
+      "path": "eval/pn1/val_frgc_photo_0004.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0005",
+      "path": "eval/pn1/val_frgc_photo_0005.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0006",
+      "path": "eval/pn1/val_frgc_photo_0006.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0007",
+      "path": "eval/pn1/val_frgc_photo_0007.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0008",
+      "path": "eval/pn1/val_frgc_photo_0008.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0009",
+      "path": "eval/pn1/val_frgc_photo_0009.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0010",
+      "path": "eval/pn1/val_frgc_photo_0010.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0011",
+      "path": "eval/pn1/val_frgc_photo_0011.png",
+      "label": "0"
+    },
+    {
+      "id": "val_frgc_photo_0012",
+      "path": "eval/pn1/val_frgc_photo_0012.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0000",
+      "path": "eval/pn1/val_feret_zero_0000.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0002",
+      "path": "eval/pn1/val_feret_zero_0002.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0003",
+      "path": "eval/pn1/val_feret_zero_0003.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0004",
+      "path": "eval/pn1/val_feret_zero_0004.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0005",
+      "path": "eval/pn1/val_feret_zero_0005.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0007",
+      "path": "eval/pn1/val_feret_zero_0007.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0008",
+      "path": "eval/pn1/val_feret_zero_0008.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0010",
+      "path": "eval/pn1/val_feret_zero_0010.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0012",
+      "path": "eval/pn1/val_feret_zero_0012.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0014",
+      "path": "eval/pn1/val_feret_zero_0014.png",
+      "label": "0"
+    },
+    {
+      "id": "val_feret_zero_0015",
+      "path": "eval/pn1/val_feret_zero_0015.png",
+      "label": "0"
+    }
+  ],
+  "selected_original_indices": [
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52
+  ],
+  "reference_container": {
+    "archive": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/RZ1_SbMR512_s408.tar",
+    "member": "RZ1_SbMR512_s408/scores_eval.npz",
+    "container_sha256": null,
+    "member_path_confirmation": "PENDING_EXACT_TYPED_ADMISSION",
+    "arrays_once": [
+      "id",
+      "logit",
+      "manifest_sha256"
+    ],
+    "id_exact_rows": 24859,
+    "logit_shape": [
+      24859
+    ],
+    "logit_dtype": "float32",
+    "manifest_sha256": null,
+    "tt1_access": false
+  },
+  "unknowns": {
+    "image_body_pins": null,
+    "overlay_schema": null,
+    "model_meta": null,
+    "base_weight_path_hash_and_original_factory_resolution": null,
+    "native_library_closure": null,
+    "runtime_defaults_and_imported_module_paths": null,
+    "durable_native_mount": null,
+    "worker_start_method_defaults": null,
+    "current_env_OTHER_admission": "OTHER_GO; root adoption path/hash pending final binding",
+    "root_gpu_release": null
+  },
+  "cpu_identity_v3_receipt": {
+    "path": "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v3_execution_20261114T230335Z/actual/RECEIPT.json",
+    "sha256": "7847e2007570f75012f36fccd9257f73231c9a28cafbfb38ba86c2286d76e61b",
+    "scope": "CURRENT_METADATA_ONLY; OTHER_GO; historical UNKNOWN; no repeated probe"
+  },
+  "parent_worker_source_manifest_sha256": "bb4cb53b577bc3547f494b4f26106b0e28bbd79c373eacbb5edd0fa4ff74bd6d",
+  "known_current_metadata_OTHER_review_sha256": "9237406448f12898ec509448c678501588e9ab22122108e63559fd384dd2f71e"
+}

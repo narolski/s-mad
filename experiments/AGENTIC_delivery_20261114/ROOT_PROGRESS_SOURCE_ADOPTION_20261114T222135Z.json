@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-14T22:29:16.468876+00:00",
+  "decision": "ADOPT_SBMR512_V1R1_SOURCE_ONLY",
+  "commit": "d4adc520eca56eb3f990a714ab7636454dfdc7fe",
+  "source_manifest_sha256": "92ac9a56b7cc8e976e7e69bc961114c80b3163e4f68622dd105e9d812a370ad0",
+  "review_sha256": "ca3f21d0fef58513638518d4408e18788ad2bfdf48e64a242bbec44153f33e37",
+  "actual_probe_executed": false,
+  "actual_target_env_identity": "UNKNOWN",
+  "next_step": "Concrete first-identity acquisition source authored Astra fe6e8aac...; Sol independentreview active. Registeredtarget/home/narolski/dmenv/bin/python sourceevidence only; no runtimecurrent identity claim.",
+  "root_release": "NO_ACTUAL_METADATA_EXECUTION_AUTHORITY_IN_THIS_RECORD",
+  "scientific_GPU_or_payload_access": false
+}

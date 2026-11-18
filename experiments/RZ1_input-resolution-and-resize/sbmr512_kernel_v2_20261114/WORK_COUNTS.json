@@ -1,0 +1,24 @@
+{
+  "image_samples_per_spec_per_model": 84129,
+  "eval_native": 24859,
+  "eval_flip": 24859,
+  "tt1_native": 34411,
+  "tt1_flip": 0,
+  "batched_calls_per_spec_per_model": 1316,
+  "eval_batches": 389,
+  "tt1_batches": 538,
+  "per_model_image_samples": 1177806,
+  "five_model_image_samples": 5889030,
+  "per_model_batched_calls": 18424,
+  "five_model_batched_calls": 92120,
+  "exported_float32_shape_per_model": [
+    14,
+    13771
+  ],
+  "exported_values_all_models": 963970,
+  "no_training_updates": true,
+  "runtime_seconds": "UNKNOWN",
+  "peak_memory": "UNKNOWN",
+  "disk_runtime_budget": "UNKNOWN",
+  "count_excludes": "model reconstruction/startup/technical gate administration; native target equality uses the first fullcontext native pass, no extra inference pass planned"
+}

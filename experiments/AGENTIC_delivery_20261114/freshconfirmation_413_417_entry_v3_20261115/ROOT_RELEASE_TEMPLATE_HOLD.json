@@ -1,0 +1,38 @@
+{
+  "schema": "next-common-ab1-root-release-v3",
+  "decision": "HOLD_NO_ADMITTED_SELECTION_OR_EXECUTION_GRANT",
+  "permissions": [
+    "COMMON_AB1_FIT",
+    "AB1_REGISTERED_DEV_EVAL_AND_TRAIN_NATIVE_SCORE"
+  ],
+  "sealed_access": false,
+  "scientific_confirmation_read": false,
+  "policy_sha256": "57553c3350686ccaa2b826a3019dc1ad060928df30cd843517d515053c09ca40",
+  "rule_sha256": "5188ad9a696d86c935191a4fd45bee0f0762186c199a5bbd7d8368e87bf62667",
+  "scope_adoption_sha256": "8394b1e6dc9cf4e46034e0d6b78cdc9e74cbd5fa93d7b2ee1691278d973223ab",
+  "v2_review_sha256": "1b7ada3ff9a0eff301f59041bbd6f680ba87514dd0423a905472241c0c5afcec",
+  "v2_manifest_sha256": "594a45d38146333c28cb06d0b9cfd59521f6db3deecdedab584f420b2dbb90ed",
+  "original_parent_sha256": "cfa4ed26d747e1d50f66cfc2af823ed55fd7f31634d6285cff9363a5fa796ab4",
+  "selected_branch": null,
+  "selection_record": null,
+  "selection_admission": null,
+  "selection_independent_review_sha256": null,
+  "registration": null,
+  "source_review": null,
+  "runtime_input_admission": null,
+  "resource_budget_admission": null,
+  "duplicate_check": null,
+  "owned_source_commit_clean": false,
+  "owned_source_commit": null,
+  "runtime_home": null,
+  "cuda_visible_devices": null,
+  "runtime_files": null,
+  "resources": {
+    "gpu": "H100",
+    "gpu_count": 1,
+    "cpus": 8,
+    "ram_gb": 64,
+    "local_disk_gb": 80,
+    "walltime_seconds": null
+  }
+}

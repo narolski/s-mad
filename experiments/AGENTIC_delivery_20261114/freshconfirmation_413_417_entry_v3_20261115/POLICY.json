@@ -1,0 +1,1897 @@
+{
+  "schema": "next-common-ab1-source-policy-v3",
+  "branches": [
+    "SbFM",
+    "GX",
+    "SbMR",
+    "SbM",
+    "Sb512",
+    "SbMR512",
+    "Sbc",
+    "DINOv3"
+  ],
+  "fixed": {
+    "rule_sha256": "5188ad9a696d86c935191a4fd45bee0f0762186c199a5bbd7d8368e87bf62667",
+    "scope_adoption_sha256": "8394b1e6dc9cf4e46034e0d6b78cdc9e74cbd5fa93d7b2ee1691278d973223ab",
+    "v2_review_sha256": "1b7ada3ff9a0eff301f59041bbd6f680ba87514dd0423a905472241c0c5afcec",
+    "v2_manifest_sha256": "594a45d38146333c28cb06d0b9cfd59521f6db3deecdedab584f420b2dbb90ed",
+    "original_parent_sha256": "cfa4ed26d747e1d50f66cfc2af823ed55fd7f31634d6285cff9363a5fa796ab4"
+  },
+  "hpc_root": "/lustre/pd03/hpc-narolski-1790461090/smad-next",
+  "source_dir": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/NEXTCONF_V3/source",
+  "durable_root": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/NEXTCONF_V3",
+  "original_parent_path": "/home/narolski/smad-next/src/AB1/run.sh",
+  "cohorts": {
+    "SbFM": [
+      {
+        "branch": "SbFM",
+        "seed": 413,
+        "role": "candidate",
+        "producer_arm": "SbFM",
+        "task": "NEXTCONF_SbFM_SbFM_s413"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s413"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 413,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s413"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 414,
+        "role": "candidate",
+        "producer_arm": "SbFM",
+        "task": "NEXTCONF_SbFM_SbFM_s414"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s414"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 414,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s414"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 415,
+        "role": "candidate",
+        "producer_arm": "SbFM",
+        "task": "NEXTCONF_SbFM_SbFM_s415"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s415"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 415,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s415"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 416,
+        "role": "candidate",
+        "producer_arm": "SbFM",
+        "task": "NEXTCONF_SbFM_SbFM_s416"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s416"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 416,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s416"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 417,
+        "role": "candidate",
+        "producer_arm": "SbFM",
+        "task": "NEXTCONF_SbFM_SbFM_s417"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s417"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 417,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s417"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s413"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s414"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s415"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s416"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s417"
+      }
+    ],
+    "GX": [
+      {
+        "branch": "GX",
+        "seed": 413,
+        "role": "candidate",
+        "producer_arm": "GX",
+        "task": "NEXTCONF_GX_GX_s413"
+      },
+      {
+        "branch": "GX",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_GX_AB1_Sb_s413"
+      },
+      {
+        "branch": "GX",
+        "seed": 413,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_GX_AB1_A_s413"
+      },
+      {
+        "branch": "GX",
+        "seed": 414,
+        "role": "candidate",
+        "producer_arm": "GX",
+        "task": "NEXTCONF_GX_GX_s414"
+      },
+      {
+        "branch": "GX",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_GX_AB1_Sb_s414"
+      },
+      {
+        "branch": "GX",
+        "seed": 414,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_GX_AB1_A_s414"
+      },
+      {
+        "branch": "GX",
+        "seed": 415,
+        "role": "candidate",
+        "producer_arm": "GX",
+        "task": "NEXTCONF_GX_GX_s415"
+      },
+      {
+        "branch": "GX",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_GX_AB1_Sb_s415"
+      },
+      {
+        "branch": "GX",
+        "seed": 415,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_GX_AB1_A_s415"
+      },
+      {
+        "branch": "GX",
+        "seed": 416,
+        "role": "candidate",
+        "producer_arm": "GX",
+        "task": "NEXTCONF_GX_GX_s416"
+      },
+      {
+        "branch": "GX",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_GX_AB1_Sb_s416"
+      },
+      {
+        "branch": "GX",
+        "seed": 416,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_GX_AB1_A_s416"
+      },
+      {
+        "branch": "GX",
+        "seed": 417,
+        "role": "candidate",
+        "producer_arm": "GX",
+        "task": "NEXTCONF_GX_GX_s417"
+      },
+      {
+        "branch": "GX",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_GX_AB1_Sb_s417"
+      },
+      {
+        "branch": "GX",
+        "seed": 417,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_GX_AB1_A_s417"
+      }
+    ],
+    "SbMR": [
+      {
+        "branch": "SbMR",
+        "seed": 413,
+        "role": "candidate",
+        "producer_arm": "SbMR",
+        "task": "NEXTCONF_SbMR_SbMR_s413"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR_RZ1_Sb0_s413"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 413,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR_RZ1_A0_s413"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s413"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 414,
+        "role": "candidate",
+        "producer_arm": "SbMR",
+        "task": "NEXTCONF_SbMR_SbMR_s414"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR_RZ1_Sb0_s414"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 414,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR_RZ1_A0_s414"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s414"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 415,
+        "role": "candidate",
+        "producer_arm": "SbMR",
+        "task": "NEXTCONF_SbMR_SbMR_s415"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR_RZ1_Sb0_s415"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 415,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR_RZ1_A0_s415"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s415"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 416,
+        "role": "candidate",
+        "producer_arm": "SbMR",
+        "task": "NEXTCONF_SbMR_SbMR_s416"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR_RZ1_Sb0_s416"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 416,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR_RZ1_A0_s416"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s416"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 417,
+        "role": "candidate",
+        "producer_arm": "SbMR",
+        "task": "NEXTCONF_SbMR_SbMR_s417"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR_RZ1_Sb0_s417"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 417,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR_RZ1_A0_s417"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s417"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s413"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s414"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s415"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s416"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s417"
+      }
+    ],
+    "SbM": [
+      {
+        "branch": "SbM",
+        "seed": 413,
+        "role": "candidate",
+        "producer_arm": "SbM",
+        "task": "NEXTCONF_SbM_SbM_s413"
+      },
+      {
+        "branch": "SbM",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbM_RZ1_Sb0_s413"
+      },
+      {
+        "branch": "SbM",
+        "seed": 413,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbM_RZ1_A0_s413"
+      },
+      {
+        "branch": "SbM",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s413"
+      },
+      {
+        "branch": "SbM",
+        "seed": 414,
+        "role": "candidate",
+        "producer_arm": "SbM",
+        "task": "NEXTCONF_SbM_SbM_s414"
+      },
+      {
+        "branch": "SbM",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbM_RZ1_Sb0_s414"
+      },
+      {
+        "branch": "SbM",
+        "seed": 414,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbM_RZ1_A0_s414"
+      },
+      {
+        "branch": "SbM",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s414"
+      },
+      {
+        "branch": "SbM",
+        "seed": 415,
+        "role": "candidate",
+        "producer_arm": "SbM",
+        "task": "NEXTCONF_SbM_SbM_s415"
+      },
+      {
+        "branch": "SbM",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbM_RZ1_Sb0_s415"
+      },
+      {
+        "branch": "SbM",
+        "seed": 415,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbM_RZ1_A0_s415"
+      },
+      {
+        "branch": "SbM",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s415"
+      },
+      {
+        "branch": "SbM",
+        "seed": 416,
+        "role": "candidate",
+        "producer_arm": "SbM",
+        "task": "NEXTCONF_SbM_SbM_s416"
+      },
+      {
+        "branch": "SbM",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbM_RZ1_Sb0_s416"
+      },
+      {
+        "branch": "SbM",
+        "seed": 416,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbM_RZ1_A0_s416"
+      },
+      {
+        "branch": "SbM",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s416"
+      },
+      {
+        "branch": "SbM",
+        "seed": 417,
+        "role": "candidate",
+        "producer_arm": "SbM",
+        "task": "NEXTCONF_SbM_SbM_s417"
+      },
+      {
+        "branch": "SbM",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbM_RZ1_Sb0_s417"
+      },
+      {
+        "branch": "SbM",
+        "seed": 417,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbM_RZ1_A0_s417"
+      },
+      {
+        "branch": "SbM",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s417"
+      },
+      {
+        "branch": "SbM",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s413"
+      },
+      {
+        "branch": "SbM",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s414"
+      },
+      {
+        "branch": "SbM",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s415"
+      },
+      {
+        "branch": "SbM",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s416"
+      },
+      {
+        "branch": "SbM",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s417"
+      }
+    ],
+    "Sb512": [
+      {
+        "branch": "Sb512",
+        "seed": 413,
+        "role": "candidate",
+        "producer_arm": "Sb512",
+        "task": "NEXTCONF_Sb512_Sb512_s413"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sb512_RZ1_Sb0_s413"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 413,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_Sb512_RZ1_A512_s413"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s413"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 414,
+        "role": "candidate",
+        "producer_arm": "Sb512",
+        "task": "NEXTCONF_Sb512_Sb512_s414"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sb512_RZ1_Sb0_s414"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 414,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_Sb512_RZ1_A512_s414"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s414"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 415,
+        "role": "candidate",
+        "producer_arm": "Sb512",
+        "task": "NEXTCONF_Sb512_Sb512_s415"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sb512_RZ1_Sb0_s415"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 415,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_Sb512_RZ1_A512_s415"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s415"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 416,
+        "role": "candidate",
+        "producer_arm": "Sb512",
+        "task": "NEXTCONF_Sb512_Sb512_s416"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sb512_RZ1_Sb0_s416"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 416,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_Sb512_RZ1_A512_s416"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s416"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 417,
+        "role": "candidate",
+        "producer_arm": "Sb512",
+        "task": "NEXTCONF_Sb512_Sb512_s417"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sb512_RZ1_Sb0_s417"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 417,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_Sb512_RZ1_A512_s417"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s417"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sb512_RZ1_A0_s413"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s413"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sb512_RZ1_A0_s414"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s414"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sb512_RZ1_A0_s415"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s415"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sb512_RZ1_A0_s416"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s416"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sb512_RZ1_A0_s417"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s417"
+      }
+    ],
+    "SbMR512": [
+      {
+        "branch": "SbMR512",
+        "seed": 413,
+        "role": "candidate",
+        "producer_arm": "SbMR512",
+        "task": "NEXTCONF_SbMR512_SbMR512_s413"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR512_RZ1_Sb0_s413"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 413,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_SbMR512_RZ1_A512_s413"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s413"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 414,
+        "role": "candidate",
+        "producer_arm": "SbMR512",
+        "task": "NEXTCONF_SbMR512_SbMR512_s414"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR512_RZ1_Sb0_s414"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 414,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_SbMR512_RZ1_A512_s414"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s414"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 415,
+        "role": "candidate",
+        "producer_arm": "SbMR512",
+        "task": "NEXTCONF_SbMR512_SbMR512_s415"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR512_RZ1_Sb0_s415"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 415,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_SbMR512_RZ1_A512_s415"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s415"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 416,
+        "role": "candidate",
+        "producer_arm": "SbMR512",
+        "task": "NEXTCONF_SbMR512_SbMR512_s416"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR512_RZ1_Sb0_s416"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 416,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_SbMR512_RZ1_A512_s416"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s416"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 417,
+        "role": "candidate",
+        "producer_arm": "SbMR512",
+        "task": "NEXTCONF_SbMR512_SbMR512_s417"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_SbMR512_RZ1_Sb0_s417"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 417,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "task": "NEXTCONF_SbMR512_RZ1_A512_s417"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s417"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR512_RZ1_A0_s413"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s413"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR512_RZ1_A0_s414"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s414"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR512_RZ1_A0_s415"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s415"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR512_RZ1_A0_s416"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s416"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_SbMR512_RZ1_A0_s417"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s417"
+      }
+    ],
+    "Sbc": [
+      {
+        "branch": "Sbc",
+        "seed": 413,
+        "role": "candidate",
+        "producer_arm": "Sbc",
+        "task": "NEXTCONF_Sbc_Sbc_s413"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sbc_RZ1_Sb0_s413"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 413,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sbc_RZ1_A0_s413"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s413"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 414,
+        "role": "candidate",
+        "producer_arm": "Sbc",
+        "task": "NEXTCONF_Sbc_Sbc_s414"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sbc_RZ1_Sb0_s414"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 414,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sbc_RZ1_A0_s414"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s414"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 415,
+        "role": "candidate",
+        "producer_arm": "Sbc",
+        "task": "NEXTCONF_Sbc_Sbc_s415"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sbc_RZ1_Sb0_s415"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 415,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sbc_RZ1_A0_s415"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s415"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 416,
+        "role": "candidate",
+        "producer_arm": "Sbc",
+        "task": "NEXTCONF_Sbc_Sbc_s416"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sbc_RZ1_Sb0_s416"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 416,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sbc_RZ1_A0_s416"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s416"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 417,
+        "role": "candidate",
+        "producer_arm": "Sbc",
+        "task": "NEXTCONF_Sbc_Sbc_s417"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "task": "NEXTCONF_Sbc_RZ1_Sb0_s417"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 417,
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "task": "NEXTCONF_Sbc_RZ1_A0_s417"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s417"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s413"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s414"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s415"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s416"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s417"
+      }
+    ],
+    "DINOv3": [
+      {
+        "branch": "DINOv3",
+        "seed": 413,
+        "role": "candidate",
+        "producer_arm": "DINOv3",
+        "task": "NEXTCONF_DINOv3_DINOv3_s413"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 413,
+        "role": "adequacy_control",
+        "producer_arm": "E3_A",
+        "task": "NEXTCONF_DINOv3_E3_A_s413"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 413,
+        "role": "adequacy_control",
+        "producer_arm": "E3_B",
+        "task": "NEXTCONF_DINOv3_E3_B_s413"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s413"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 414,
+        "role": "candidate",
+        "producer_arm": "DINOv3",
+        "task": "NEXTCONF_DINOv3_DINOv3_s414"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 414,
+        "role": "adequacy_control",
+        "producer_arm": "E3_A",
+        "task": "NEXTCONF_DINOv3_E3_A_s414"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 414,
+        "role": "adequacy_control",
+        "producer_arm": "E3_B",
+        "task": "NEXTCONF_DINOv3_E3_B_s414"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s414"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 415,
+        "role": "candidate",
+        "producer_arm": "DINOv3",
+        "task": "NEXTCONF_DINOv3_DINOv3_s415"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 415,
+        "role": "adequacy_control",
+        "producer_arm": "E3_A",
+        "task": "NEXTCONF_DINOv3_E3_A_s415"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 415,
+        "role": "adequacy_control",
+        "producer_arm": "E3_B",
+        "task": "NEXTCONF_DINOv3_E3_B_s415"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s415"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 416,
+        "role": "candidate",
+        "producer_arm": "DINOv3",
+        "task": "NEXTCONF_DINOv3_DINOv3_s416"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 416,
+        "role": "adequacy_control",
+        "producer_arm": "E3_A",
+        "task": "NEXTCONF_DINOv3_E3_A_s416"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 416,
+        "role": "adequacy_control",
+        "producer_arm": "E3_B",
+        "task": "NEXTCONF_DINOv3_E3_B_s416"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s416"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 417,
+        "role": "candidate",
+        "producer_arm": "DINOv3",
+        "task": "NEXTCONF_DINOv3_DINOv3_s417"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 417,
+        "role": "adequacy_control",
+        "producer_arm": "E3_A",
+        "task": "NEXTCONF_DINOv3_E3_A_s417"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 417,
+        "role": "adequacy_control",
+        "producer_arm": "E3_B",
+        "task": "NEXTCONF_DINOv3_E3_B_s417"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s417"
+      }
+    ]
+  },
+  "ab1_tasks": {
+    "SbFM": [
+      {
+        "branch": "SbFM",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s413"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 413,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s413"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s414"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 414,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s414"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s415"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 415,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s415"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s416"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 416,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s416"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbFM_AB1_Sb_s417"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 417,
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbFM_AB1_A_s417"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s413"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s414"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s415"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s416"
+      },
+      {
+        "branch": "SbFM",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "task": "NEXTCONF_SbFM_AB1_B_s417"
+      }
+    ],
+    "GX": [],
+    "SbMR": [
+      {
+        "branch": "SbMR",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s413"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s414"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s415"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s416"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR_AB1_Sb_s417"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s413"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s414"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s415"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s416"
+      },
+      {
+        "branch": "SbMR",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR_AB1_A_s417"
+      }
+    ],
+    "SbM": [
+      {
+        "branch": "SbM",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s413"
+      },
+      {
+        "branch": "SbM",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s414"
+      },
+      {
+        "branch": "SbM",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s415"
+      },
+      {
+        "branch": "SbM",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s416"
+      },
+      {
+        "branch": "SbM",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbM_AB1_Sb_s417"
+      },
+      {
+        "branch": "SbM",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s413"
+      },
+      {
+        "branch": "SbM",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s414"
+      },
+      {
+        "branch": "SbM",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s415"
+      },
+      {
+        "branch": "SbM",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s416"
+      },
+      {
+        "branch": "SbM",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbM_AB1_A_s417"
+      }
+    ],
+    "Sb512": [
+      {
+        "branch": "Sb512",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s413"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s414"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s415"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s416"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sb512_AB1_Sb_s417"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s413"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s414"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s415"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s416"
+      },
+      {
+        "branch": "Sb512",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sb512_AB1_A_s417"
+      }
+    ],
+    "SbMR512": [
+      {
+        "branch": "SbMR512",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s413"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s414"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s415"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s416"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_SbMR512_AB1_Sb_s417"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s413"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s414"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s415"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s416"
+      },
+      {
+        "branch": "SbMR512",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_SbMR512_AB1_A_s417"
+      }
+    ],
+    "Sbc": [
+      {
+        "branch": "Sbc",
+        "seed": 413,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s413"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 414,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s414"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 415,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s415"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 416,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s416"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 417,
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_Sbc_AB1_Sb_s417"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 413,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s413"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 414,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s414"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 415,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s415"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 416,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s416"
+      },
+      {
+        "branch": "Sbc",
+        "seed": 417,
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "task": "NEXTCONF_Sbc_AB1_A_s417"
+      }
+    ],
+    "DINOv3": [
+      {
+        "branch": "DINOv3",
+        "seed": 413,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s413"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 414,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s414"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 415,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s415"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 416,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s416"
+      },
+      {
+        "branch": "DINOv3",
+        "seed": 417,
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "task": "NEXTCONF_DINOv3_AB1_Sb_s417"
+      }
+    ]
+  },
+  "source_pins": {
+    "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/NEXTCONF_V3/source/test_generated.py": "3140fa4a9dccfa1ed8f51a13e2ed62e5bad2291c37e5572ac5984a21d21e1020",
+    "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/NEXTCONF_V3/source/test_policy_source.py": "0529a81cdf6cc982d75940607db4f85749c8b54a9df59c6d5f33b76cb53db6f4",
+    "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/NEXTCONF_V3/source/run_ab1_fresh.sh": "6e769ba41efaec70836613f162d70fe06e5c61d9a8d9dbd34494e550fd45cae2",
+    "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/NEXTCONF_V3/source/worker_gate.py": "8f45fe268b8b467bb3db7b682f65f605ae14e67a57b84bdfc4d7b81c5e8344d0",
+    "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/NEXTCONF_V3/source/authority_gate.py": "7afdc044f3d1b4adb6b55fdc0abbd0511f4cfb3dc4cb1f2d5661f92d92514d5c",
+    "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/NEXTCONF_V3/source/run_guarded.py": "3790d39ed570942dc53a3b6b20db3ab7b40bb57e03c2b5402c72d62a7772327e"
+  },
+  "input_files": {
+    "fs1_pack": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/BB2/pn1_pack_fs.tar",
+      "sha256": "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004"
+    },
+    "ab1_overlay": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/AB1/ab1_overlay_v2.tar",
+      "sha256": "171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149"
+    }
+  }
+}

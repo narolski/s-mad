@@ -1,0 +1,14 @@
+# Geometry-matched negatives [SPRINT5-2]: all124training construction for floors
+
+Prospective beforefullbuild,14November2026. Rootindependently reviewed correctedBcaptureprovenance and8pairconstruction (pilot8_v2):8/8pass in.832seconds, visualQC showedformedimages. Firsthost has colorH,colorB and grayscaleS; henceNdesaturation vsPcolor is a clear nuisance risk. This is recorded BEFOREfullpopulation/floorread; do notremove thathost basedonvisualfinding. Geometrymatching doesnot imply capture/color match or identity-specificcue.
+
+Authorizeafterindependentreview: construct ALL124predeclaredeligibletraininghostgroups, no outcome-basedsubsets/exclusions, exactlysameonewarp/sharedtarget/sharedWH/halfblend/PNGpath as8pairsmoke. Add`--count 124 --build` tobuilder; defaultsremain8. All32train→historicaltestpartnerhosts stayexcluded bypriorprovenance rule. Rawdata/kernelpinsunchanged. Anyfailure remains recorded aswholegroupandblocksfit; nofailure-as-exclusion shortcut.
+
+This native124population is solely construction/nuisance-floor feasibility, not heldoutevaluation or a detectorfit. No still-sealed/benchmarkinputs; allH/S/BIDs arehistoricaltrainingidentities. PreserveeveryP/NandWH/WS/WB, raw/landmark/outputhashes, target/triangles/sharedWHhash, Bidentity/secondcapture/session and actualbuilderhash. Fullstored-smallversion requiresexistingregisteredsoftenfunction pinnedbothclasses identically, not newresamplingcode; nativefirstfloor remainslabellednativeonly.
+
+Nextfloorplan: source-stratifiedpersonconnected-component crossfit usingALL124H/B groups, identicalfoldassignmentsforallfeatures. Strongprespecifiedluma/colorstatistic+existingallcueadversary features, recordfullspec andsourcehashesbeforefittingfloor. Dstratification uses matchedlayerdifferenceenergyfixedindependentlyofdetectoroutputs. ComparePvsN; retainoriginalD13pointgates <=.60bothgo,>=.75eitherleak/hold,intermediatequalifiedonlywithfloors. PrintcomponentbootstrapCI, counts andrawpergroupcuefeatures. Sourcecomponents must becomputedfromactualH/Bidentity graph; graph/splitslockedbeforeanyfloorlearner. Ifcolorfloorfails, reportconstructionleak; do nottune exclusionsor imagecolorpipeline toforcepass withoutnewreviewedregistration.
+
+Exactcommandafterindependentreview:
+`OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python /home/narolski/smad-next/src/SPRINT5/hn1/build_pilot.py --out /mnt/t7/smad_next/SPRINT5_2/train124_native_floor_v1 --build --count 124`
+
+T7>=50GiB reserveenforced. Estimate~13s from8pairtiming,notguaranteed; <1GBestimatedoutputfor620nativePNGs. Checkdiskbeforebroaderoutputs; keepallversionsandfailedpilot8_v1. NoGPUjobneeded. Anewdisjointpersonheldoutpoolremainsseparategatefordetectorfitting/generalizationclaim, anddoesnotblockthistrainingconstructionfloor.

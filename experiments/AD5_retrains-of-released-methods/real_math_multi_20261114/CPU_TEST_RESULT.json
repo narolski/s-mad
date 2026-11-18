@@ -1,0 +1,9 @@
+{
+  "scope": "CPU_AST_generated_records_and_mocked_training_launcher_only",
+  "tests": 10,
+  "passed": 10,
+  "seconds": 0.069,
+  "shell_syntax": "bash -n worker.sh allocation_entry.sh PASS",
+  "real_model_dataset_weights_or_gpu_access": false,
+  "actual_runtime_not_tested": true
+}

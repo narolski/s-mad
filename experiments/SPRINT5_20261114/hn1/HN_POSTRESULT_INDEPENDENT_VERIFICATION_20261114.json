@@ -1,0 +1,116 @@
+{
+  "status": "PASS_INDEPENDENT_SAVED_RESULT_ARITHMETIC_AND_INTEGRITY",
+  "result_sha256": "75af6d39e40126085ef05c1cbc83f3ea687c9b714af97dc74c6759290cbb3104",
+  "release_sha256": "e1938e1b14458789060974c5036d29240ff6a3f12e8e564bb186ecb3f88058ea",
+  "claim_sha256": "228b94c276455ef2266463346d4bf7d279a480c2f937ae582e41c883b7e4ee45",
+  "terminal_sha256": "2725aa21c9559907f7cd00f88d46e63ad1875b78f1352494f2a42d242cecd9cd",
+  "binding_sha256": "51ae40530ee4a848aece44693c143923a68636eb769468e5e5637904ab8eede3",
+  "reader_sums_sha256": "a8a083a686ab47cf8f02e5a7da9e6dec92a797e33c5ec9b4e75f979e30400794",
+  "roster_sha256": "cc7fb2a7b96d39dd7735281db79f9e53d7832e64676de1f4307709cfef351742",
+  "means": [
+    0.6587329417293233,
+    0.6651979636591479
+  ],
+  "effects": [
+    -0.005572525062656708,
+    -0.007133771929824673,
+    -0.005851268796992493,
+    -0.006633771929824617,
+    -0.007133771929824673
+  ],
+  "gain": -0.006465021929824633,
+  "interval": [
+    -0.017471518588054166,
+    1.7187543639292396e-05
+  ],
+  "bootstrap": {
+    "accepted": 10000,
+    "attempts": 10178,
+    "rejected": 178,
+    "rejected_fraction": 0.017488701120062882,
+    "rng": 2026111402,
+    "component_draw_sha256": "0f045d8b9e71ebd627702a362bd473356de4091bec3aa6322bf92757c87f8dbd",
+    "paired_seed_draw_sha256": "eb04e4b3ff18af8075453852642c7c0f1640b3a62e9879a01af25ccca03ab239",
+    "condition": "Every fixed D stratum contains both classes; label/input-only rejection",
+    "draw_order": "all accepted source-stratified full-component draws THEN joint10000x5seed-indexmatrix",
+    "coverage": "Conditional descriptive component/continuation bootstrap given readable fixed D strata; no unconditional95%coverage guarantee."
+  },
+  "readability_metadata": {
+    "accepted": 10000,
+    "attempts": 10178,
+    "rejected": 178,
+    "rejected_fraction": 0.017488701120062882,
+    "rng": 2026111402,
+    "component_draw_sha256": "0f045d8b9e71ebd627702a362bd473356de4091bec3aa6322bf92757c87f8dbd",
+    "paired_seed_draw_sha256": "eb04e4b3ff18af8075453852642c7c0f1640b3a62e9879a01af25ccca03ab239",
+    "condition": "Every fixed D stratum contains both classes; label/input-only rejection",
+    "draw_order": "all accepted source-stratified full-component draws THEN joint10000x5seed-indexmatrix",
+    "coverage": "Conditional descriptive component/continuation bootstrap given readable fixed D strata; no unconditional95%coverage guarantee.",
+    "scope": "Input metadata only; no candidate payloads, archives, score members or checkpoints",
+    "candidate_payload_accessed": false
+  },
+  "fits": [
+    {
+      "task": "SPRINT5_2_pilot_v1_matched_s531",
+      "metadata_sha256": "93d10bbb8da440adab09cdb7c9b8d0ec4156681c68cd652b5308350bb9977b6a",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    },
+    {
+      "task": "SPRINT5_2_pilot_v1_self_s531",
+      "metadata_sha256": "4c1398cc9388b88ffa24c7f869c68ee816bcfe7612a5b1ddda58b2add4d5cdb8",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    },
+    {
+      "task": "SPRINT5_2_pilot_v1_matched_s532",
+      "metadata_sha256": "558965ffdd3f0a4b3f50151fef99587d83bad7d8876c91fddb250df9c7535759",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    },
+    {
+      "task": "SPRINT5_2_pilot_v1_self_s532",
+      "metadata_sha256": "0bdc7969a0b074cb4a49cd9656d6e01b9ba88d7b5ef87796db7cdcc5c31e57a4",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    },
+    {
+      "task": "SPRINT5_2_pilot_v1_matched_s533",
+      "metadata_sha256": "6f1e8313a463eae7254009e70b3994923d72bf9a809ab30cb6bd507aa9fb882c",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    },
+    {
+      "task": "SPRINT5_2_pilot_v1_self_s533",
+      "metadata_sha256": "beae81647c26347319bb66d8cf9d15c08aca6fbf090a6a235a089b35667a05a5",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    },
+    {
+      "task": "SPRINT5_2_pilot_v1_matched_s534",
+      "metadata_sha256": "302bca94b42eb1d3553d93bbd98ce781a1b6361891892df890f963fd7b19145f",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    },
+    {
+      "task": "SPRINT5_2_pilot_v1_self_s534",
+      "metadata_sha256": "3004de614a506509c330d3d4cbff6cb6fd28664f5c8df8781719f927613ac442",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    },
+    {
+      "task": "SPRINT5_2_pilot_v1_matched_s535",
+      "metadata_sha256": "40ea2ebefaeaac209920874ba7ffebfbff61ab33e2acb78d59fb6aba71e3d395",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    },
+    {
+      "task": "SPRINT5_2_pilot_v1_self_s535",
+      "metadata_sha256": "c8153e8351a2c0acc38671ab52b70ece66ab578e4559457421a2364a7cddb828",
+      "training_complete": true,
+      "training_duration": "NOT_RECORDED_IN_ADMITTED_ENVELOPE"
+    }
+  ],
+  "recomputed_floor_intervals": true,
+  "source_manifest_files_verified": true
+}

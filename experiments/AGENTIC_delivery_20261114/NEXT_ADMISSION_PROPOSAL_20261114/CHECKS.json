@@ -1,0 +1,32 @@
+{
+  "arm_order": [
+    "SbFM",
+    "GX",
+    "SbMR",
+    "SbM",
+    "Sb512",
+    "SbMR512",
+    "Sbc",
+    "DINOv3"
+  ],
+  "network_count": 65,
+  "missing_archive_roles": [
+    "AB1_A_s408",
+    "AB1_A_s409",
+    "AB1_A_s410",
+    "AB1_A_s411",
+    "AB1_A_s412",
+    "AB1_Sb_s408",
+    "AB1_Sb_s409",
+    "AB1_Sb_s410",
+    "AB1_Sb_s411",
+    "AB1_Sb_s412",
+    "AB1_Sb_s408",
+    "AB1_Sb_s409",
+    "AB1_Sb_s410",
+    "AB1_Sb_s411",
+    "AB1_Sb_s412"
+  ],
+  "missing_local_paths": [],
+  "draft_only": true
+}

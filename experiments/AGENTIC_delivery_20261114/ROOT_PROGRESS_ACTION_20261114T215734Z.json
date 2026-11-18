@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-14T21:58:47.154775+00:00",
+  "cycle": "2026-11-14T21:57:34.986Z",
+  "root_action": "VIS2 source-only preparation verified; independent pre-run review assigned training_contribution",
+  "source_manifest_sha256": "31ae2f57c2212c2ac85a90360753e9f20e5db98a6ba3e5c4a9dd5efaa686b0cb",
+  "inventory_sha256": "11316da9452632614dd85ae8cd659c7e363467a6f66590a8dc6b21125b1dfcf9",
+  "actual_commands": [
+    {
+      "command": "venv-spark python -I src/VIS2/v1/test_geometry.py",
+      "exit": 0,
+      "tests_pass": 6
+    },
+    {
+      "command": "venv-spark python -I src/VIS2/v1/occlusion_worker.py --inventory experiments/VIS2_private_occlusion_20261114/v1/INVENTORY.json --metadata-only",
+      "exit": 0,
+      "stdout": "VIS2_SOURCE_INPUT_PACKAGE_METADATA_ONLY_PASS; no model, image transform, GPU or response read"
+    }
+  ],
+  "gpu_or_image_transform_executed": false,
+  "execution_release": "pending exact independent pre-review and source binding; no inference authorization from this record",
+  "cluster_poll": "none; reuse COMPUTE_HEARTBEAT_20261114T215534Z.md",
+  "full_AD5_budget_answer": "PENDING"
+}

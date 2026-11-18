@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-14T22:53:17.712866+00:00",
+  "cycle": "2026-11-14T22:46:35Z",
+  "root_action": "Executed one separately preregistered technical metadata diagnostic with OTHERreview and explicitrepeatreadgrant; no GPU/job/scientificread",
+  "source_commit": "efbd626c171e5f52a0e8004cfd402f5d3431b97f",
+  "grant_sha256": "e10a664519fc3d63b2aa464139efb85a628667c106e273d811b415161535772b",
+  "diagnostic_status": "NEW_DIAGNOSTIC_FAILED_HOLD_NO_RETRY",
+  "stage": "INTERPRETER_LINK",
+  "condition": "VALIDATION_INTERPRETER_TARGET_OUTSIDE_GRANT",
+  "identity_admission": false,
+  "retained_actual": "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/actual",
+  "separate_readlink_metadata": {
+    "source": "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z",
+    "requested_literal": "/home/narolski/dmenv/bin/python",
+    "target_literal": "/home/narolski/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/bin/python3.12",
+    "UV_directory_link_literal": "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu",
+    "target_binary_read_or_executed": false,
+    "meaning": "Pointermetadataonly; no targetcurrentidentity/version/content/historicalruntimeattestation"
+  },
+  "next_source_work": "Astra v3 exacttwo-link/canonicalonefile scopedidentitysource; OTHERfailurepostreviewactive; no new actualmetadataread granted",
+  "fresh_confirmation_source_owner": "/root/sol_training_protocol active Sol source-only; no branches selected or fits/read authorized",
+  "budget_and_Sbc_answers": "PENDING; no reasking/approval inference"
+}

@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-14T11:57:18+01:00",
+  "host": "athena.cyfronet.pl",
+  "user": "plgpnarolski",
+  "user_reports_project_approved_for_a100": true,
+  "visible_associations": [
+    "plgmultivision-gpu-a100",
+    "plgrestorearc-gpu-a100"
+  ],
+  "test_only_results": {
+    "plgmorphgeneral-gpu-a100": "Invalid account or account/partition combination specified",
+    "plgmorphgeneral": "Invalid account or account/partition combination specified"
+  },
+  "account_catalog_query": "Access/permission denied",
+  "jobs_changed": false,
+  "interpretation": "Approval acknowledged; scheduler association/partition access not yet effective for this login. Exact cause not established."
+}

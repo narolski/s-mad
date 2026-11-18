@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-14T18:18:43.979608+00:00",
+  "status": "PRIVATE_REAL_FACE_RENDER_READY_FOR_INDEPENDENT_REVIEW",
+  "directory": "/home/narolski/smad-next/experiments/VIS1_shortcut_examples_20261114/v1/PRIVATE_RENDER_v1",
+  "local_outputs": "/Users/narolski/Documents/Codex/2026-11-14/na/outputs/shortcut_private_review_20261114",
+  "pdf_sha256": "49ae8e4a86d8b667660c43adc4f2bbdfa3e59eb079f77c78fe1efeba6350d879",
+  "png_sha256": "59d5cb8d6bf5f8f74742c44c8f0df873c092c022ad7016fce6dc091e21ea44ac",
+  "svg_sha256": "bbe47d41dc6eaa697afd318f8f60241dbd2b638e8dc32e7e1ced36aef7691102",
+  "manifest_sha256": "3c0c8778c4db768aac962a88a6c24a3e272471e15c2613c0ffede21b07327b67",
+  "caption_sha256": "074a13a7b77988f5cf607bde9f1698ecbb5d04f187d3489007a9948fc27828c5",
+  "render_source_sha256": "e0f958cc36b9f4b12aa1b3be3858d58c96982bb09b182dac8d5ea7bb4a897039",
+  "root_grant_sha256": "65f93232fe6439106a6555f54a5fd799eaa88e691bdae76b6016ee7f1a63f79d",
+  "images": 4,
+  "fixed_photographs": [
+    "00042",
+    "00056"
+  ],
+  "complete_model_pairs": 6,
+  "page_mm": [
+    180,
+    280
+  ],
+  "actual_pdf_minimum_font_pt": 8.1,
+  "source_pixel_fidelity": "PDF decoded RGB pixels and SVG embedded PNG bytes match all4originalexactinputs",
+  "visual_QA": "Actual300dpiPDFcolorandgrayscaleproof personallyinspected, no clipping/overlap observed; independentreviewrequired",
+  "new_inference": false,
+  "publication": "HOLD"
+}

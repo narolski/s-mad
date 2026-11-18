@@ -1,0 +1,27 @@
+{
+  "known": {
+    "opaque_trainable_bytes": 312981,
+    "five_exact_overlay_hashes": "AUTHORITY.json, adoptedtypedhandoff0e05feb...; no decode",
+    "source_common_sha256": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8",
+    "full_context_counts": {
+      "eval": 24859,
+      "tt1": 34411,
+      "cross": 13771,
+      "calls": 92120,
+      "sample_forwards": 5889030
+    },
+    "model_source": "originalpinnedRZ/common/arch/kernels, not imported/executed",
+    "mapping": "13771metadataID/path/label/batch/offset checksPASS"
+  },
+  "UNKNOWN_HOLD": [
+    "actualtrainablekeyshapeandfinitecontent",
+    "exactfrozenpretrainedcontentandbuffers",
+    "imagebyteverificationfull59270contextrows",
+    "actualoriginaleffectivescorerruntime/defaults/workercontext",
+    "complete timm/backend mutable/cachehistory audit",
+    "rootadoption of omittrain/MEDS withoutreplay",
+    "actualnativebytegate/rebuild/timing",
+    "actualresourcewalltime/memory/diskanddurabilitylauncherrelease"
+  ],
+  "no_scientific_payload_or_models_opened": true
+}

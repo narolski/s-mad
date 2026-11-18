@@ -1,0 +1,301 @@
+{
+  "created_utc": "2026-11-14T18:18:00.042646+00:00",
+  "scope": "PRIVATE_RESEARCH_PREVIEW_NOT_PUBLICATION_CLEARED",
+  "render_permission": "Root explicit task/message grants private rendering of42/56 in protected repository and user workspace, separate from inference no-source-pixel-save constraint; no public publication grant.",
+  "rights_basis": "Verified exact per-image CC BY-NC2.0 allowing noncommercial attribution/adaptation; author/URL/change credits retained. Dataset documentation BY-NC-SA4.0. No consent/adulthood/document-acceptability claim.",
+  "result_hashes": {
+    "selfmad_hrnet_w18": "a0c7793f2596e6ddc6f653a0a6e971fcfb63dc6410bd8f66478ce274d12e1d7e",
+    "A": "18c46b3d3fced82f6162bcd2a5542601a72a08739675aa7b0421e1d82fa5bc62",
+    "B": "35fa6ad2f0a74c152ca8b8437d543942c06a51423fc15c0393fe90898d456214"
+  },
+  "independent_review_sha256": "ff9d1a19e2ad57ac1592803abc746314199c7f7b9d040ed641e86ad2181b5e81",
+  "root_private_render_grant_sha256": "65f93232fe6439106a6555f54a5fd799eaa88e691bdae76b6016ee7f1a63f79d",
+  "source_inputs": [
+    {
+      "input": {
+        "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_orig.png",
+        "sha256": "dbd11bb9c9545524c01eafd4d0f4e1478faa5aa9c9ca04d8f4643124f92592d1",
+        "id": "00042_native",
+        "photo_key": "00042",
+        "condition": "native",
+        "manifest_id": "fq005006"
+      },
+      "manifest": {
+        "id": "fq005006",
+        "path": "eval/ffhqm/ffhq_bona/00042_orig.png",
+        "set": "ffhqm",
+        "family": "ffhq_bona",
+        "label": "0",
+        "variant": "orig",
+        "aligned": "1",
+        "native_w": "1024",
+        "native_h": "1024",
+        "file_bytes": "1357309",
+        "ied": "249.75587463378906"
+      },
+      "construction_metadata": {
+        "id": "fq005006",
+        "src": "FFHQ-1024/Part1/00042.png",
+        "key": "00042",
+        "key_x": "",
+        "key_y": "",
+        "pre_w": "1024",
+        "pre_h": "1024",
+        "pre_png_bytes": "1541639",
+        "pre_ied": "249.75587463378906",
+        "scale": "1.0",
+        "border_frac": "0.03835296630859375",
+        "aligned_png_bytes": "429336"
+      },
+      "attribution": {
+        "role": "bona_fide",
+        "pair_key": "",
+        "ffhq_key": "00042",
+        "author": "Rebecca Brown",
+        "license": "Attribution-NonCommercial License",
+        "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+        "photo_url": "https://www.flickr.com/photos/rebeccacbrown13/2168341402/",
+        "photo_title": "Shirtless, bearded Josh."
+      }
+    },
+    {
+      "input": {
+        "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_resmatch_landmark_complete.png",
+        "sha256": "a1e4c13cc32bba5450e3a9b36fa19a6e1fffa130907f0f62b18d2e0002207a97",
+        "id": "00042_history",
+        "photo_key": "00042",
+        "condition": "history",
+        "manifest_id": "fq005007"
+      },
+      "manifest": {
+        "id": "fq005007",
+        "path": "eval/ffhqm/ffhq_bona/00042_resmatch_landmark_complete.png",
+        "set": "ffhqm",
+        "family": "landmark_complete",
+        "label": "0",
+        "variant": "resmatch",
+        "aligned": "1",
+        "native_w": "1024",
+        "native_h": "1024",
+        "file_bytes": "1357309",
+        "ied": "249.75587463378906"
+      },
+      "construction_metadata": {
+        "id": "fq005007",
+        "src": "FFHQ-1024/Part1/00042.png",
+        "key": "00042",
+        "key_x": "",
+        "key_y": "",
+        "pre_w": "265",
+        "pre_h": "265",
+        "pre_png_bytes": "118792",
+        "pre_ied": "64.59004211425781",
+        "scale": "0.2586968164285914",
+        "border_frac": "0.04248809814453125",
+        "aligned_png_bytes": "329717"
+      },
+      "attribution": {
+        "role": "bona_fide",
+        "pair_key": "",
+        "ffhq_key": "00042",
+        "author": "Rebecca Brown",
+        "license": "Attribution-NonCommercial License",
+        "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+        "photo_url": "https://www.flickr.com/photos/rebeccacbrown13/2168341402/",
+        "photo_title": "Shirtless, bearded Josh."
+      }
+    },
+    {
+      "input": {
+        "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_orig.png",
+        "sha256": "c07df69f9421404b37f76d05d23242d0b5c25b9584dee273cf5973d467cf22fa",
+        "id": "00056_native",
+        "photo_key": "00056",
+        "condition": "native",
+        "manifest_id": "fq005012"
+      },
+      "manifest": {
+        "id": "fq005012",
+        "path": "eval/ffhqm/ffhq_bona/00056_orig.png",
+        "set": "ffhqm",
+        "family": "ffhq_bona",
+        "label": "0",
+        "variant": "orig",
+        "aligned": "1",
+        "native_w": "1024",
+        "native_h": "1024",
+        "file_bytes": "1439231",
+        "ied": "265.3272399902344"
+      },
+      "construction_metadata": {
+        "id": "fq005012",
+        "src": "FFHQ-1024/Part1/00056.png",
+        "key": "00056",
+        "key_x": "",
+        "key_y": "",
+        "pre_w": "1024",
+        "pre_h": "1024",
+        "pre_png_bytes": "1526582",
+        "pre_ied": "265.3272399902344",
+        "scale": "1.0",
+        "border_frac": "0.07288360595703125",
+        "aligned_png_bytes": "392021"
+      },
+      "attribution": {
+        "role": "bona_fide",
+        "pair_key": "",
+        "ffhq_key": "00056",
+        "author": "RAFFI YOUREDJIAN",
+        "license": "Attribution-NonCommercial License",
+        "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+        "photo_url": "https://www.flickr.com/photos/62487011@N08/28696918755/",
+        "photo_title": "MANGAGAN-7"
+      }
+    },
+    {
+      "input": {
+        "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_resmatch_landmark_complete.png",
+        "sha256": "04629c855318c47c764bb6d5f84b5a41306203ba636bcdd511e298e77576fe16",
+        "id": "00056_history",
+        "photo_key": "00056",
+        "condition": "history",
+        "manifest_id": "fq005013"
+      },
+      "manifest": {
+        "id": "fq005013",
+        "path": "eval/ffhqm/ffhq_bona/00056_resmatch_landmark_complete.png",
+        "set": "ffhqm",
+        "family": "landmark_complete",
+        "label": "0",
+        "variant": "resmatch",
+        "aligned": "1",
+        "native_w": "1024",
+        "native_h": "1024",
+        "file_bytes": "1439231",
+        "ied": "265.3272399902344"
+      },
+      "construction_metadata": {
+        "id": "fq005013",
+        "src": "FFHQ-1024/Part1/00056.png",
+        "key": "00056",
+        "key_x": "",
+        "key_y": "",
+        "pre_w": "249",
+        "pre_h": "249",
+        "pre_png_bytes": "99216",
+        "pre_ied": "64.28042602539062",
+        "scale": "0.24351457337918897",
+        "border_frac": "0.06904220581054688",
+        "aligned_png_bytes": "295088"
+      },
+      "attribution": {
+        "role": "bona_fide",
+        "pair_key": "",
+        "ffhq_key": "00056",
+        "author": "RAFFI YOUREDJIAN",
+        "license": "Attribution-NonCommercial License",
+        "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+        "photo_url": "https://www.flickr.com/photos/62487011@N08/28696918755/",
+        "photo_title": "MANGAGAN-7"
+      }
+    }
+  ],
+  "selection": "Fixed42/56 before new scores; all3fixedmodels and6pairs retained. No hero/outcome selection among cases.",
+  "excluded_reference": "00010 numeric-reproduction control only; source pixels not displayed or embedded.",
+  "displayed_numbers": [
+    {
+      "photo_key": "00042",
+      "model": "selfmad_hrnet_w18",
+      "native_logit": 0.32592952251434326,
+      "history_logit": 4.2132368087768555,
+      "native_score": 0.5807686448097229,
+      "history_score": 0.9854174256324768,
+      "delta_logit": 3.887307286262512,
+      "displayed_score": "0,581 → 0,985",
+      "displayed_delta": "+3,887"
+    },
+    {
+      "photo_key": "00042",
+      "model": "A",
+      "native_logit": -3.381847381591797,
+      "history_logit": -3.5183634757995605,
+      "native_score": 0.03286762163043022,
+      "history_score": 0.02879422716796398,
+      "delta_logit": -0.13651609420776367,
+      "displayed_score": "0,033 → 0,029",
+      "displayed_delta": "-0,137"
+    },
+    {
+      "photo_key": "00042",
+      "model": "B",
+      "native_logit": -3.099207878112793,
+      "history_logit": -3.3830161094665527,
+      "native_score": 0.04313994199037552,
+      "history_score": 0.03283049166202545,
+      "delta_logit": -0.28380823135375977,
+      "displayed_score": "0,043 → 0,033",
+      "displayed_delta": "-0,284"
+    },
+    {
+      "photo_key": "00056",
+      "model": "selfmad_hrnet_w18",
+      "native_logit": -1.5349633693695068,
+      "history_logit": -0.4208979606628418,
+      "native_score": 0.1772686392068863,
+      "history_score": 0.39630189538002014,
+      "delta_logit": 1.114065408706665,
+      "displayed_score": "0,177 → 0,396",
+      "displayed_delta": "+1,114"
+    },
+    {
+      "photo_key": "00056",
+      "model": "A",
+      "native_logit": -3.431549549102783,
+      "history_logit": -3.467275381088257,
+      "native_score": 0.0313238799571991,
+      "history_score": 0.030257826671004295,
+      "delta_logit": -0.03572583198547363,
+      "displayed_score": "0,031 → 0,030",
+      "displayed_delta": "-0,036"
+    },
+    {
+      "photo_key": "00056",
+      "model": "B",
+      "native_logit": -3.3750040531158447,
+      "history_logit": -3.4658310413360596,
+      "native_score": 0.03308584913611412,
+      "history_score": 0.030300235375761986,
+      "delta_logit": -0.09082698822021484,
+      "displayed_score": "0,033 → 0,030",
+      "displayed_delta": "-0,091"
+    }
+  ],
+  "caption_en": "Same photograph, different detector response. Two fixed FFHQ bona-fide photographs (00042 and 00056), selected before their VIS1 scores, are shown in their existing native-aligned and landmark_complete-history variants. No second contributor was added. The history combines INTER_AREA downsampling before separate alignment/cropping: source00042 changes1024→265px before alignment to512px; source00056 changes1024→249px before alignment to512px. Consequently this is neither a JPEG-only nor a blur-only intervention, and displayed crops are not identical. Every fixed model is retained: released SelfMAD and A/B seed403 last checkpoints. Table scores are uncalibrated sigmoid outputs; delta is history-minus-native in each model's own logit units. No operational threshold, decision flip, error-rate or cross-model robustness ranking is claimed. SelfMAD was chosen as the demonstration model after an earlier private pilot; these two photographs and A/B controls were fixed before the new scores. Cases are potentially exposed development illustrations with unknown person/component/full-training overlap. Private noncommercial research preview only; publication/likeness clearance remains unresolved. No source images were generated, retouched or replaced. No heatmap is shown and no new inference was run for rendering. Source photographs: Rebecca Brown, “Shirtless, bearded Josh.” (FFHQ00042), https://www.flickr.com/photos/rebeccacbrown13/2168341402/ ; RAFFI YOUREDJIAN, “MANGAGAN-7” (FFHQ00056), https://www.flickr.com/photos/62487011@N08/28696918755/ . Both CC BY-NC2.0, https://creativecommons.org/licenses/by-nc/2.0/ . FFHQ/FFHQ-Morphs dataset documentation is BY-NC-SA4.0; technical source attribution and transformation descriptions remain in the manifest.",
+  "new_inference": false,
+  "maps": "NONE; score-only illustration",
+  "minimum_configured_font_pt": 8.1,
+  "render_source_sha256": "e0f958cc36b9f4b12aa1b3be3858d58c96982bb09b182dac8d5ea7bb4a897039",
+  "files": {
+    "same_photo_processing_private.pdf": {
+      "sha256": "49ae8e4a86d8b667660c43adc4f2bbdfa3e59eb079f77c78fe1efeba6350d879",
+      "bytes": 2776289
+    },
+    "same_photo_processing_private.svg": {
+      "sha256": "bbe47d41dc6eaa697afd318f8f60241dbd2b638e8dc32e7e1ced36aef7691102",
+      "bytes": 1935657
+    },
+    "caption_en.txt": {
+      "sha256": "074a13a7b77988f5cf607bde9f1698ecbb5d04f187d3489007a9948fc27828c5",
+      "bytes": 1779
+    },
+    "same_photo_processing_private.png": {
+      "sha256": "59d5cb8d6bf5f8f74742c44c8f0df873c092c022ad7016fce6dc091e21ea44ac",
+      "bytes": 2656716
+    },
+    "render_QA.json": {
+      "sha256": "b695f71b3c2c624df5a2f9e1c4e52ca1b6159464c43644a20957c2275f2272b3",
+      "bytes": 531
+    }
+  },
+  "QA": "ActualPDF font min8.1pt, page180x280mm/textbounds and exact4embedded source RGB pixels verified with pdfplumber/pypdf; actual300dpi color+grayscale proof visually inspected. SVG includes samefourexactPNGbytes; vector font substitution not independently certified. No clipping observed."
+}

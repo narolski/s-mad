@@ -1,2 +1,15 @@
 context/
 __pycache__/
+
+# 2026-11-18 tidy-up: local-only material (not deleted, just not tracked)
+envs/
+/_CVPR2027__MambaMorph.zip
+/smad_cvpr2027_draft.zip
+/manuscript_figure_archive_pre_tikz/
+# rendered face images and manuscript page renders stay local (dataset terms; binary size)
+experiments/VIS*/**/*.png
+experiments/VIS*/**/*.pdf
+experiments/VIS*/**/*.svg
+experiments/AGENTIC_delivery_20261114/PUBLICATION_F1_F4_REPAIR_20261114/render/
+experiments/AGENTIC_delivery_20261114/PUBLICATION_F1_F4_REPAIR_20261114/root_prior_pdf_20261114T162056Z/
+experiments/AGENTIC_delivery_20261114/PUBLICATION_F1_F4_REPAIR_20261114/source/**/*.pdf

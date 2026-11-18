@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-14T20:25:46.693386+00:00",
+  "decision": "PASS_TECHNICAL_ATTACHMENT_ONLY",
+  "result": "/mnt/t7/smad_next/NEXT/minimal_technical_extension_v1_collection_20261114/TECHNICAL_EXTENSION.json",
+  "result_sha256": "a7d4487dc9bce56bb78f618c41a5a8caa5cbc80c08dd187adb137eec9ee045b6",
+  "independent_review_path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/NEXT_MINIMAL_TECHNICAL_EXTENSION_V1_20261114/ACTUAL_TECHNICAL_POSTREVIEW_20261114.md",
+  "independent_review_sha256": "495f24ddccbb5b69383a9790ea7dc2c175f5ba72ee11a0d67db605ee0afd5b16",
+  "kernel_handoff_path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/NEXT_MINIMAL_TECHNICAL_EXTENSION_V1_20261114/ACTUAL_POSTREVIEW_CHECKS_AND_KERNEL_HANDOFF_20261114.json",
+  "kernel_handoff_sha256": "0e05feb84065b069db1e1ae708a644f880d3e5a855f7bfd9fb9bbc0c3f6cd836",
+  "actual_BB2L_expected_256_1_task_matches": 15,
+  "opaque_trainable_checkpoint_hashes": 5,
+  "checkpoint_validity_or_reconstruction_established": false,
+  "prior77inventory_modified": false,
+  "scientific_admission_read_or_claim": false
+}

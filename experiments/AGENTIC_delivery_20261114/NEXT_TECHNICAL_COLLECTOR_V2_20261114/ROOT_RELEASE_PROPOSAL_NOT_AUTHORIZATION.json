@@ -1,0 +1,13 @@
+{
+  "decision": "HOLD",
+  "packet_sha256": "1ccf3e92bcba38134ccdbf42ce4a041315e5f555e26d9561ad2c5eb3ed09bd15",
+  "collector_sha256": "c500e0922dde6c263eb07d271b97f9ff544096a544b3b4fbb217d0b0b8a691d6",
+  "predicates_sha256": "e120030bedd37f8f8c858fa6a7541f0502085ab31c59997ca1ce85e381e9dcaf",
+  "output": "/mnt/t7/smad_next/NEXT/technical_metadata_v2_collection_20261114",
+  "cpu_only": true,
+  "whole_log_original_regex_boolean_only": true,
+  "implementation_review": null,
+  "implementation_review_sha256": null,
+  "real_member_access_authorized": false,
+  "required_review": "Independent exact implementation/key-scope/serialization review; then separate root release"
+}

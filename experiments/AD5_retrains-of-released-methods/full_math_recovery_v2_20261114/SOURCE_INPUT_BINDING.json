@@ -1,0 +1,21 @@
+{
+  "status": "PROPOSED_REQUIRES_OTHER_REVIEW",
+  "pins": {
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_AD5_36_UPDATE_SMOKE_ACCEPTANCE_20261114T200359Z.json": "0eba6268b5e0c759bb89b4a051794d6944966a3c9d916d1e8aa50d0dbb21366b",
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_AD5_LATE_COHORT_SCOPE_RULING_20261114T200359Z.json": "e8a6909574a6062e7fdf0faf18a342d7697be9077f258ac1d2330466d2ea7624",
+    "/home/narolski/smad-next/experiments/AD5_retrains-of-released-methods/full_math_recovery_proposal_20261114/INDEPENDENT_FULL_RECOVERY_PROPOSAL_REVIEW_20261114.md": "8c85ba0026d3ecc401fab3cc94a3d87ddd7ef0bd7ae7ca61bcdb1d58a2993557",
+    "/home/narolski/smad-next/experiments/AD5_retrains-of-released-methods/prereg.md": "6316790fe09ad6b6da1c1781f2b9630f5d7fe2ae197b3993e1f6123adcc2ad47",
+    "/home/narolski/smad-next/src/recovery_20261114/ad5_real_math_multi_v1r1/SHA256SUMS": "6ebbe3a0b1ea18dd449a8561f8d79baf55667329d1e239035cfc9efaadec6418"
+  },
+  "full_csv_sha256": "83c01705e140843afa6cb4c89765d0528ff21e2f444aee23aa50de49eaf894a3",
+  "source_dir": "/home/narolski/smad-next/src/recovery_20261114/ad5_full_math_v2",
+  "unknowns": [
+    "actual_full_runtime",
+    "remaining_budget_accounting",
+    "fresh_native_site_capacity",
+    "clean_owned_commit",
+    "other_independent_source_launcher_review",
+    "converter_original_source_and_equivalence_gate",
+    "scientific_read_release"
+  ]
+}

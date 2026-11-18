@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-14T23:11:58.153949+00:00",
+  "decision": "ADOPT_CONDITIONAL_FRESH_CORE_AND_SELECTED_BRANCH_DESCRIPTIVE_SCOPE_BEFORE_FITS",
+  "review_sha256": "a73191c5d54d1a88c610a15e529c60090f2da7f9fa769af04d06d4a8c9631ced",
+  "owner_manifest_sha256": "8044bb312a38832a245a859b34bbbd08c7ddb05d30cde6e52f41230ac7cd933f",
+  "role_plan_sha256": "37dcb5532cfba83767fe59ea09475832307db2e0ec0b9e5dda8054043e84e363",
+  "scope_choice": "Option(a) retain applicable A/Sb/control source descriptive prints for eventualselectedqualifyingbranch only",
+  "core_and_deciding_rules": "OriginalNEXTv3 unchanged; onlyearliestqualifier, none/freshfailure->Sb; samefailuredenominators/no seedreplacement; no additional descriptive pass bars",
+  "conditional_cohorts": {
+    "SbFM": {
+      "core_fits": 15,
+      "additional_descriptive_roles": [
+        "AB1_B"
+      ],
+      "full_fits": 20
+    },
+    "GX": {
+      "core_minimum": 15,
+      "actual_recipe_roles_producer": "HOLD_UNKNOWN; no authorization inferred"
+    },
+    "SbMR_SbM_Sbc": {
+      "core_fits": 20,
+      "additional_descriptive_roles": [
+        "AB1_A"
+      ],
+      "full_fits": 25
+    },
+    "Sb512_SbMR512": {
+      "core_fits": 20,
+      "additional_descriptive_roles": [
+        "RZ1_A0",
+        "AB1_A"
+      ],
+      "full_fits": 30
+    },
+    "DINOv3": {
+      "core_and_full_fits": 20,
+      "roles": [
+        "E3_A",
+        "E3_B",
+        "E3_Sb",
+        "AB1_CLIP_Sb"
+      ],
+      "contrast": "Unpaired eachE3Sb_s minusmeanallfivefreshCLIPSb, neverseed-paired/noCLIPA requirement"
+    }
+  },
+  "all_roles_have_seeds": [
+    413,
+    414,
+    415,
+    416,
+    417
+  ],
+  "not_in_this_scope": "ExtraSb512/H-512d replicationalongSbMR512 isseparatedescriptivestudy, notaddedconfirmationpassbar; no claimallhistoricalhypothesesreplicated",
+  "all_conditional_templates_are_not_a_compute_order": true,
+  "selected_branch": "NOT_SELECTED; originaladmittedselectionrecordneeded",
+  "producer_adapter_runtime_input_budget_resource_execution": "HOLD_separately_review_and_release_required",
+  "Sbc_ruling": "PENDING_AUTHOR; no change",
+  "original_selector_and_once_journal": "unchanged;freshadapterseparateimmutableversion"
+}

@@ -1,0 +1,7 @@
+# Root review follow-through — 2026-11-14T16:13:33.996805+00:00
+
+Compute cycle 2026-11-14T16:11:56Z delegated to existing Luna compute_coordinator, no duplicate coordinator. Root read and hash-verified independent OCC1v3 print review: PASS only for ten numeric-only internal print candidates; all original numerical scales/pins unchanged. User-requested face-containing figure, face-export and publication remain HOLD.
+
+Root read and hash-verified SOL_FINAL_PUBLICATION_REVIEW.md against current main.tex and the admitted FINAL companion qualification. Assigned sol_final_publication_review a bounded F1/F4 repair: remove abbreviated MAD22 numbers from abstract and retain the full qualified results; replace vague AI-assistant disclosure with verified current Codex roles and explicit unfinished historical/author-verification item. No invented model versions, author verification or generated face use. Compile both variants; independent review of changed text/layout required. Scientific WIP and results remain unchanged.
+
+sol_reproducibility continues the separately assigned anonymous/compact supplement derivative with a complete crosswalk, preserving the original43page record. No competing author editing its files. No new cluster submission/cancellation/rental this compute cycle. New6321768 diagnostic already submitted in prior cycle, awaiting scheduler according to coordinator's fresh snapshot; no retry.

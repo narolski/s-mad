@@ -1,0 +1,66 @@
+{
+  "version": "VIS3v2driverproposal",
+  "author": "shortcut_visual_examples",
+  "status": "IMMUTABLE_SOURCE_ONLY_FOR_OTHER_PREREVIEW",
+  "files": [
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2driverproposal/construct_driver.py",
+      "sha256": "462af89b1e256a1a590a2131a5e4df4565f3f03db1b15617262fd19422f5ad46"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2driverproposal/contracts.py",
+      "sha256": "5ff4b408b3b55ee3843774c004f6d60594fd64aebd973646776ec55d70f79ba8"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2driverproposal/model_runtime.py",
+      "sha256": "5f01ac19f6f048c5ef8a02598aef23a999e173a28b86de2a2d3aab157ba5b9c6"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2driverproposal/numeric_worker.py",
+      "sha256": "61d4ee63461e584143896c5abde4b5f09b6a6a053b6f42c39f8084e58d5bc4e1"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2driverproposal/test_generated.py",
+      "sha256": "b2c6d68c72d1bbf0ffa39cdadea6a54c5600254384be401c32728f17e3822df5"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/v2driverproposal/SHA256SUMS",
+      "sha256": "ede942f1fd2a11fbfbf16f02e97d580f0e76dfd49cc9d7c2e5cc5b0f7cbcc4e0"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2driverproposal/COMMANDS.md",
+      "sha256": "fd2d57db445c0701cfa5af66428a91c18f9b75532b330af9fe62dfd8e043d285"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2driverproposal/INVENTORY.json",
+      "sha256": "9dd53a50ed15a9f5392fff9b854cd1d549a9bc78229689546eb8a6eefbd3db6b"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2driverproposal/PRINT_LAYOUT_HANDOFF.json",
+      "sha256": "c5c919652649f7de24cacb4b040b8fed260b69a221b5ee34a8c45edf4c7d270f"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2driverproposal/READ_CONTRACT.json",
+      "sha256": "d38006e5bce63d2fe655aed7681749b5c7dbf35119342bbc1bf9d65d8e060410"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2driverproposal/RELEASE_SCHEMAS.json",
+      "sha256": "ff47ea335f6ced786475fe0ae8a487a5797f9a6d3fb0df5ffe964262378d58d3"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v2driverproposal/TEST_EVIDENCE.json",
+      "sha256": "03570398f25cc84d649fb0279848c22297a01705e18c512937d89ebd60946de6"
+    }
+  ],
+  "actual_CPU_construction_grant": null,
+  "actual_derived_inputs": null,
+  "OTHER_actual_input_admission": null,
+  "numeric_phase_grants": null,
+  "new_real_scientific_scores": null,
+  "render_grant": null,
+  "publication": "HOLD",
+  "frozen_v1_constructor_prereg_and_accepted_VIS2_unchanged": true,
+  "scientific_conditions": "samefrozen4derivedcasesx2fillsx64cellsx3oldGB10models; original48response/model smoke unchanged; generatedregionalpath gate beforefull",
+  "test_scope": "13generated-onlyPASS,includingactualCPUdriveronconstantgeneratedPNGs+scalarfake-runtime1536rowfinalization; NOTscientificinference",
+  "next_gate": "OTHER sourceprereview first; then newexact ROOTCPUconstructiongrant; OTHERactualconstructedinputreview; separately newROOTnumericphasegrant; OTHERsmoke and generatedgrouping gate beforefull; NOexecutioninthishandoff"
+}

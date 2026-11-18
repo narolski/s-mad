@@ -1,0 +1,120 @@
+{
+  "at": "2026-11-14T22:54:03.904509+00:00",
+  "verdict": "ADMIT_DIAGNOSTIC_FAILURE_AND_LITERAL_POINTER_METADATA_ONLY_IDENTITY_HOLD",
+  "pins": {
+    "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_SBMR512_DIAGNOSTIC_V2_RELEASE_20261114T224635Z.json": {
+      "sha256": "e10a664519fc3d63b2aa464139efb85a628667c106e273d811b415161535772b",
+      "bytes": 2375
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/EXECUTION.json": {
+      "sha256": "9307de9d041ea40ac58955274ad531a833949cb98193c844daea215ea207b7b1",
+      "bytes": 572
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/staged_sha.stdout": {
+      "sha256": "3d1d5afa473b0c1cb11e1e5144f4ad2cf161f9bfd3c890ff670bc45ccd5508ac",
+      "bytes": 1171
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/stage.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/ssh.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/ssh.stdout": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/actual/stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/actual/FAILED.json": {
+      "sha256": "98bdf3ecc12d9078f6e5d8cfc56f477a401a425c2feb32aa03512838e7a8b011",
+      "bytes": 542
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/actual/stdout.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/actual/CLAIM.json": {
+      "sha256": "c98b81665f0a0b26fb40c609dd40aafc1b8c964dc8d25b366df71bd9988f9d4a",
+      "bytes": 119
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_diagnostic_v2_execution_20261114T224635Z/actual/EXECUTION.json": {
+      "sha256": "7bbace1d326027ebbdeaca092bc3da839dd829f4e1be93672f4dc1ff91256b69",
+      "bytes": 104
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/stdout.txt": {
+      "sha256": "f5b3521dcb00408959c4f89b43a7aa0a4a9914d1ef9db4c4272d97614fd9eba0",
+      "bytes": 83
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/ROOT_EXACT_UV_DIRECTORY_LINK_SCOPE.json": {
+      "sha256": "447bc897e78e23395d7f5959bdf16a9339f81bc0c15902ea7fd49555aea30796",
+      "bytes": 497
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_type.exit": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_link.stdout": {
+      "sha256": "f0496decb9d8e097a6d82be744e8cdef4fcec15a8a3305fa8490ec4dc0a86c0b",
+      "bytes": 71
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/ROOT_SCOPE.json": {
+      "sha256": "63a4a1cd16d7c077f8d51d07a8b25529446f327e5e29010d470f8f6b13b9e598",
+      "bytes": 560
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/stderr.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_link.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_type.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_link.exit": {
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "bytes": 2
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/uv_parent_type.stdout": {
+      "sha256": "d1e61ea4bf689712bbdb1379831fa7c6b74c639aefc8f1827e8970c4edb0cda6",
+      "bytes": 14
+    },
+    "/mnt/t7/smad_next/coordination_20261114/sbmr512_interpreter_symlink_metadata_20261114T224635Z/EXECUTION.json": {
+      "sha256": "4caa962838fd6b8763c4982a34ff0067ecdca3c7454b8b2db2999eb7341bcafa",
+      "bytes": 127
+    }
+  },
+  "source_staged_grant_tool_agreement": true,
+  "failure": {
+    "status": "NEW_DIAGNOSTIC_FAILED_HOLD_NO_RETRY",
+    "stage": "INTERPRETER_LINK",
+    "condition": "VALIDATION_INTERPRETER_TARGET_OUTSIDE_GRANT",
+    "dependency": null,
+    "parent_failure_review_sha256": "54dd026d34345eb9b30d3726d984fad82f2eeeb05f66b9b6be8250a14e40879e",
+    "parent_release_sha256": "f8c358e06b62fbc41c81bcb6ae8ce897534aa26529901119bab284aa629cb974",
+    "release_sha256": "e10a664519fc3d63b2aa464139efb85a628667c106e273d811b415161535772b",
+    "scientific_read": "HOLD",
+    "automatic_retry": false,
+    "identity_admission": false
+  },
+  "native_driver_exit": 1,
+  "retained_stdout_stderr_empty": true,
+  "pointer_native_exits": {
+    "initial_readlink": 0,
+    "directory_lstat": 0,
+    "directory_readlink": 0
+  },
+  "identity_fields_admitted": [],
+  "hop_count": "NOT_RECORDED",
+  "original_v1_cause": "UNKNOWN_UNCHANGED",
+  "new_remote_environment_package_model_GPU_payload_access_or_reexecution": false,
+  "v3_reviewed_or_released": false,
+  "original_outputs_changed": false
+}

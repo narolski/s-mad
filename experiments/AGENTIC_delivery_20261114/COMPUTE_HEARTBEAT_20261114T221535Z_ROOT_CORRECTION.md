@@ -1,0 +1,11 @@
+
+
+## Root corrected native snapshot — compute cycle22:15:35Z
+
+Coordinator report retained UNKNOWN after incorrect GX Slurm path and missing remote rg filter. Root performed one deliberate corrected native sacct query on WCSS under sharedflock, explicit trackedIDs, no remote text filter; exit0/empty stderr/raw1944bytes retained incoordination/wcss_metadata_correction_20261114T221535Z/{QUERY.json,stdout.psv,stderr.txt}. This is not a failed-login retry. Current authoritative state: allfive MixFaceNet tasks COMPLETED0:0 including final405; IDistill6312778 TIMEOUT after57615s, despite schedulerExitCode0:0. Prior running summaries are superseded, not carried forward. SelfMADtwoRUNNING/remainingparentPENDING. No retry/cancel/jobsubmission or scientificeligibility inferred. FinalMix405opaque collection initiated; noarchive members opened, verifyreceipt beforeclaimdurability.
+
+Root accepted fullVIS2 independenttechnicalPASSb9a6a9dd491dfd6f3189deef11855c367ccecbd6d61e8f77452d6c971b993d7c, all1536responses/12exactanchors; ROOT_VIS2_FULL_NUMERIC_ACCEPTANCE_20261114T221535Z.json. Renderer v1 independentlyHOLD9273bdad6d0a761f8373aea07f1b919c12e54c777d45acd0bc2d8c266b7b1d81 due missingwrite and PDFalphareset; authoractivelypreparesimmutablev1r1 withregressions. Noimages/render performed. SbMR512probev1 independentlyHOLD346625311eb0489534f1970373540ed7b9dd5ef0577ba6e2b721d8f6ebfd41c8 dueunallowlistedmetadatafallback and TOCTOU; Solactivelypreparesv1r1samebytesparse/descriptorreads/generatedregressions; norealprobe. FullMADationbudgetanswerstillPENDING.
+Recorded 2026-11-14T22:19:39.897481+00:00
+
+
+Final MixFaceNet405 archive1111674880bytes opaque collected and freshly remote/local/sidecarSHAverified73c3144336b32030acbc3af889e422a81c792579cca379ee9e0faca5c2281f68. Receipt /mnt/t7/smad_next/coordination_20261114/mix405_collection_20261114T221535Z/COLLECTION_VERIFIED.json. T7free98850353152bytes. First remotehashhelper failed because older Python lacks hashlib.file_digest (authenticatedSSH succeeded); originalfailure retained and deliberate compatible streamingSHAhelpercorrection recorded beforecopy; no archive member/scientificread. Final405 isdurable, all5fitscomplete, scientificeligibility/scoringHOLD. No IDistillretry or GPUlaunch inthiscycle. Recorded 2026-11-14T22:20:08.114141+00:00

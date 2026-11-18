@@ -1,0 +1,29 @@
+# Independent technical review: IDistill smoke and MADation backward failure
+
+2026-11-14. Reviewer: bounded Astra owner, independent of root collection and original waitfix author. No cluster queries/mutations, GPU execution, model deserialization or score reads. Evidence root: /mnt/t7/smad_next/coordination_20261114/baseline_technical_collection_20261114T153855Z.
+
+## IDistill verdict: PASS for corrected operational smoke only
+
+Independently recomputed every one of19 collection-manifest SHA256/byte counts: PASS. Opaque938291200byte smoke tar SHA256 a7fe4d1475a842b9ae442a141724f81cee3d02c078add7ff7fd30d71b5f0953c equals fresh root remote receipt, archive sidecar and DONE marker. Enumerated81tar headers without reading any model/score member body; all21expected files are regular/nonempty, including9classifier checkpoints and9score files. Verification receipt: ASTRA_BASELINE_TECHNICAL_VERIFICATION_20261114.json.
+
+Allowlisted TECHNICAL_SUMMARY (hash0bc4cdbb4caafd127dc8fd6a59753f5274ac2badce647e14016c94cb1b179ee2) gives three worker exits0, fresh DONE, H100/Python3.9.25/torch2.0.1+cu118, sm90 present, CUDA matmul success, package checks OK, completed training phase markers. Hash-verified executed waitfix is24304001f933259ffdb82f50695719f1ad82233b65def8e50c876ba871c4b541, exactly pre-reviewed. Cached native-accounting report at14:08CET gives6319494 COMPLETED0:0/3m11s; no fresh scheduler query performed. Together these satisfy PRERUN_CB1_WAIT_RECOVERY_20261114.md technical criteria. Raw IDistill stdout was hashed only; values/markers relied on root's allowlisted summary, not independently exposed raw logs. Weight integrity is opaque archive integrity, not numerical validation.
+
+Original6312775 TIMEOUT remains; implemented smoke2AEepochs/256BF+6classifier epochs/128morphs remains explicitly different from original1epoch/64prose. This pass validates shell orchestration/runtime and output presence, not reproduction, benchmark results or production6312778. No repeat smoke is recommended.
+
+## Production6312778: HOLD; propose conditional score-blind salvage
+
+Separate reviewed methodological record required before score access. Recovery pre-review explicitly excludes retroactive acceptance but permits a separate disposition; RECOVERY_20261114.md explicitly allows reviewer-approved preservation after strictly operational hang. These records do NOT explicitly require a fresh author approval for that disposition. Thus do not ask user merely because the smoke ran late; lead can register the concrete exception and obtain independent methodological review under existing authorization. This review does not itself admit production.
+
+Recommended proposed exception: retain unchanged learned outputs only after technical provenance establishes (1) exact original executed script/code/data/wheel/seed/config/AE initialization, no resume or model alterations, with differences from admitted smoke limited to registered full workload and known shell wait/packaging; (2) every required training/scoring worker exit status or equivalent complete success evidence, no hidden errors; (3) complete durable opaque archive, all three checkpoint variants/seeds and crops/latents/meta, native status, remote/local hashes; (4) preserved original failures and timestamps, explicit production-start-before-smoke deviation; (5) existing scientific crop/checkpoint/reproduction/read rules unchanged. Successful smoke after start is supporting evidence, not retroactive satisfaction of the original chronological gate.
+
+Do not cancel or touch monitor while workers run. If all workers completed but bare wait hangs, only root may preserve/verify entire output then terminate exact owned monitor with before/after PID receipt. Because old script can mask child failure, checkpoint presence alone cannot prove all workers succeeded. If statuses cannot be reconstructed from technical logs, or provenance differs beyond known operational defect, reject salvage and register fixed rerun; do not consult scores to resolve ambiguity. Preserve failed and salvaged attempts in reporting. CB1 amendment9 supersedes earlier cutoff but not scientific gates: late rows remain labelled; no automatic cutoff-driven destructive restart.
+
+## MADation: previous clipping branch is superseded
+
+Hash-verified training-only traceback5401c792c617c8d586c7419103092e441e5c3bc85366c7afeffc70f62f0a9781, launched with synchronous CUDA, identifies trainer.py194 loss_image.backward() as first failing operation. Clipping at later lines is not reached. No clipping probe or foreach fix is justified now.
+
+Opaque-hashed local /mnt/t7/smad_next/AD5/wcss/ad5w_code.tar is94964c3689aa866ad7700f4b86496590c1b353e8e8be59173158e7b46c35d6ee, equal collected remote code sidecar. Read selected .py source members only, no weights. Exact packed trainer SHA e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d; LoRA layers670d5351ac5a9129531fec3ebb973cffe41ce7c7c711c9d4ad8a1fcf37b1017c; backbone/model.py f5949ac42fc6f63ee1bd85c548f4860bdf5fb89d67c89a2879f0a608bcad005d. Packed code matters: do not substitute loose build directory merely because paths match.
+
+Actual path: float32-converted CLIP backbone, q/v LoRA, features normalized then classification header, backward, THEN clipping/AdamW. LoRA attention calls F.scaled_dot_product_attention at layers.py511 after q/k/v reshape. Thus attention backward is a plausible hypothesis, not established causal diagnosis. DDP/header/backbone/normalization also remain in backward graph.
+
+Next concrete package is ASTRA_AD5_FIRST_BACKWARD_PREREG_20261114.md plus two pinned sources. It runs original first training batch with anomaly forward traceback and synchronization, stops before clipping/optimizer/checkpoint, retains logs. It is authored by this reviewer and MUST receive separate independent pre-run review. Technical smoke verdict above is independent; package approval is not self-granted.

@@ -1,0 +1,10 @@
+{
+  "status": "PASS_SOURCE_GENERATED_ONLY",
+  "test_output": "test_generated_elf_body_metadata_and_no_follow (test_generated.Generated.test_generated_elf_body_metadata_and_no_follow) ... ok\ntest_maps_fixed_class (test_generated.Generated.test_maps_fixed_class) ... ok\ntest_phase_contract_independent_of_model_inputs (test_generated.Generated.test_phase_contract_independent_of_model_inputs) ... ok\ntest_source_control_order_and_no_model_ops (test_generated.Generated.test_source_control_order_and_no_model_ops) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n",
+  "source_AST": "PASS",
+  "shell_syntax": "PASS",
+  "actual_target_imports": false,
+  "actual_native_library_reads": false,
+  "actual_gpu_execution": false,
+  "actual_payload_reads": false
+}

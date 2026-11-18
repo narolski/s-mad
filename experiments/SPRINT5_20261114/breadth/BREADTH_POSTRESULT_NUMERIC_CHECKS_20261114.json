@@ -1,0 +1,31 @@
+{
+  "status": "PASS_SAVED_RESULT_ARITHMETIC_AND_CHAIN",
+  "result_sha256": "ac0cb7c8c8538ff8955c8239ac72dabb14506beb2933cb6883cf5ae4e35fc7ce",
+  "claim_sha256": "0ada9025521cff5139cc8fa0537f832cb0eea11143b519939a9c1b8c8dcf7284",
+  "terminal_sha256": "3719e5195ceced5bfcb46dd80fca40285a7eb52c7aaea99084d4643abc0055c7",
+  "release_sha256": "9aba4044c4bdd78b74e23ae8811fd1d990d95cec71d2532304409196d3e46b48",
+  "roster_sha256": "34796a3fd83096aabeacc8e25c79954ed41311e0585107423c88b9bd44052d3c",
+  "binding_sha256": "bf5c55bc6d6663f57be70503c68c939f6b0e0f579513548973e423cdc118e808",
+  "reader_sums_sha256": "e96b36f1abd1d132871fb1cf1358eded82d888efb289409ff10e51f41d4a5101",
+  "details": {
+    "arm_means": [
+      0.5112487781954888,
+      0.5113340695488722
+    ],
+    "primary_difference": 8.529135338344317e-05,
+    "primary_CI": [
+      -0.02371720223358348,
+      0.0237689392390181
+    ],
+    "all_seed_differences": [
+      -0.025386278195488776,
+      -0.003401159147869648,
+      0.007505012531328292,
+      0.014267543859649123,
+      0.007441337719298224
+    ],
+    "readable": 9849,
+    "undefined": 151
+  },
+  "limits": "No raw-score reconstruction; point AUC/order-statistic quantiles accepted as saved inputs; arithmetic/registered CIs reconstructed from saved summaries/replicates."
+}

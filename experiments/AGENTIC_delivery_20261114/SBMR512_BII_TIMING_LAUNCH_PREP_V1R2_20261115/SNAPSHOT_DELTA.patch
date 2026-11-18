@@ -1,0 +1,54 @@
+--- v1r1/launch.py
++++ v1r2/launch.py
+@@ -2,6 +2,7 @@
+ import datetime,hashlib,json,os,pathlib,subprocess,sys
+ sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+ from contract import validate,OUTPUT
++from authority import capture_json
+ BASE=pathlib.Path(OUTPUT).parent
+ J=BASE/'dispatch_s408'
+ SRC=BASE/'source'
+@@ -17,8 +18,8 @@
+  finally:os.close(fd)
+ def main():
+  path,expected=sys.argv[1:]
+- if sys.flags.optimize or sha(path)!=expected:raise ValueError('bootstrap/config binding')
+- c=json.loads(pathlib.Path(path).read_bytes());validate(c)
++ if sys.flags.optimize:raise ValueError('optimized bootstrap')
++ c=capture_json(path,expected);validate(c)
+  if not (os.isatty(0) and os.isatty(1) and os.environ.get('TMUX_PANE')):raise ValueError('real detached tmux PTY required')
+  # All opaque admissions/config/source checked before permanent preallocation claim.
+  for a in c['admissions'].values():
+--- v1r1/node_driver.py
++++ v1r2/node_driver.py
+@@ -2,6 +2,7 @@
+ import hashlib,json,os,pathlib,resource,subprocess,sys,time
+ sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+ from contract import validate,OUTPUT
++from authority import capture_json,capture_bytes
+ 
+ def sha(p):
+  h=hashlib.sha256()
+@@ -15,9 +16,9 @@
+  finally:os.close(fd)
+ def verify_worker(worker,expected):
+   worker=pathlib.Path(worker)
+-  if sha(worker/'SHA256SUMS')!=expected:raise ValueError('staged worker manifest')
++  manifest=capture_bytes(worker/'SHA256SUMS',expected)
+   names=set()
+-  for line in (worker/'SHA256SUMS').read_text().splitlines():
++  for line in manifest.decode('utf-8').splitlines():
+    h,n=line.split('  ',1)
+    if n in names or pathlib.Path(n).is_absolute() or '..' in pathlib.Path(n).parts:raise ValueError('unsafe worker member')
+    names.add(n);p=worker/n
+@@ -26,9 +27,7 @@
+ 
+ def main():
+  if sys.flags.optimize: raise ValueError('optimized Python forbidden')
+- config_path,expected=sys.argv[1:];raw=pathlib.Path(config_path).read_bytes()
+- if hashlib.sha256(raw).hexdigest()!=expected:raise ValueError('external config pin')
+- c=json.loads(raw);validate(c)
++ config_path,expected=sys.argv[1:];c=capture_json(config_path,expected);validate(c)
+  # Read only root-adopted typed admissions before exclusive launch claim.
+  for a in c['admissions'].values():
+   if sha(a['path'])!=a['sha256']:raise ValueError('admission changed')

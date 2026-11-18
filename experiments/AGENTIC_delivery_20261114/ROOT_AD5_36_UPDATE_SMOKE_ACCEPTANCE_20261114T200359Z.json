@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-14T20:32:34.889408+00:00",
+  "decision": "PASS36UPDATE_CHECKPOINT_SMOKE",
+  "job_id": "6323877",
+  "independent_review_path": "/home/narolski/smad-next/experiments/AD5_retrains-of-released-methods/real_math_multi_v1r1_20261114/AD5_MULTI_V1R1_POSTRESULT_INDEPENDENT_REVIEW_20261114.md",
+  "independent_review_sha256": "5e5ad6395a531f427c5d046388f6f1cf2b54578ec8b519bdfa2395422f2f1267",
+  "retained_artifact_count": 252,
+  "retained_bytes": 600169203,
+  "actual_updates_per_optimizer": 36,
+  "epochs": 3,
+  "expected_gradient_records": 1800,
+  "own_checkpoint_strict_state_and_same_lastbatch_logit_bytegate": "PASS_SOURCE_ATTESTED_AND_OPAQUE_ARTIFACT_HASH_VERIFIED",
+  "native_seconds": 104,
+  "full_training_performance_or_production_admission": false,
+  "default_math_equivalence_or_rootcause_established": false,
+  "prior_failures_preserved": true
+}

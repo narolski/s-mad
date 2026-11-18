@@ -1,0 +1,57 @@
+{
+  "schema": "next-common-ab1-prospective-control-contracts-v3",
+  "not_actual_authority": true,
+  "selection_record": {
+    "schema": "next-selection-result-v1",
+    "stage": "selection",
+    "choice": "actual admitted fixed-order winner",
+    "rule_sha256": "POLICY.fixed.rule_sha256",
+    "arms": "all eight original dispositions"
+  },
+  "selection_admission": {
+    "decision": "ADMIT_ONCE_SELECTION_FOR_FRESH_CONFIRMATION",
+    "selection_sha256": "exact actual selection result SHA",
+    "selected_branch": "same actual choice",
+    "independent_review_sha256": "exact admitted independent review SHA"
+  },
+  "registration": {
+    "schema": "next-fresh-common-ab1-registration-v3",
+    "selected_branch": "actual winner",
+    "full_cohort": "exact POLICY.cohorts[branch]",
+    "common_ab1_tasks": "exact POLICY.ab1_tasks[branch]",
+    "steps": 6250,
+    "batch": 256,
+    "final": "last",
+    "native_eval_manifest": "ab1_eval.csv",
+    "native_train_scoring": true,
+    "durable_root": "exact POLICY.durable_root",
+    "source_pins": "exact POLICY.source_pins"
+  },
+  "all_receipts_must_bind": [
+    "registration_sha256",
+    "selected_branch"
+  ],
+  "source_review": {
+    "decision": "GO_COMMON_AB1_V3_SOURCE_AND_METHOD"
+  },
+  "runtime_input_admission": {
+    "decision": "ADMIT_EXACT_AB1_RUNTIME_AND_INPUTS",
+    "runtime_files": "exact absolute python/bash/bootstrap_python file SHA descriptors",
+    "input_files": "exact POLICY.input_files",
+    "gpu_model": "H100",
+    "recipe_build": "ORIGINAL_AB1_EXACT",
+    "runtime_home": "exact admitted HOME",
+    "cuda_visible_devices": "actual admitted allocation value"
+  },
+  "resource_budget_admission": {
+    "decision": "GO_EXACT_COMMON_AB1_RESOURCES_AND_BUDGET",
+    "resources": "exact root-release resources with actual positive walltime",
+    "capacity_verified": true,
+    "budget_allocated": true,
+    "durability_verified": true
+  },
+  "duplicate_check": {
+    "decision": "NO_DUPLICATE_FRESH_TASKS"
+  },
+  "root_release": "ROOT_RELEASE_TEMPLATE_HOLD.json enumerates full external grant fields; current decision intentionally HOLD. Every control descriptor requires exact path+sha256."
+}

@@ -1,0 +1,47 @@
+{
+  "scope": "ROOT_RELEASED_SMOKE_RESULT_JSON_ONLY",
+  "total_responses": 144,
+  "old_anchor_controls_total": 12,
+  "derived_baseline_controls_total": 12,
+  "generated_regional_indexing_basis": "independent 22-fixture source review; actual CPU geometry admitted separately",
+  "summaries": {
+    "selfmad_hrnet_w18": {
+      "responses": 48,
+      "old_anchor_controls": 4,
+      "derived_baseline_controls": 4,
+      "all_finite": true,
+      "all_repeat_copy_reference_gates_pass": true,
+      "delta_arithmetic_pass": true,
+      "loop_seconds": 0.9734621439129114,
+      "seconds_per_response": 0.02028046133151899,
+      "peak_allocated_bytes": 145665536,
+      "peak_reserved_bytes": 190840832
+    },
+    "A": {
+      "responses": 48,
+      "old_anchor_controls": 4,
+      "derived_baseline_controls": 4,
+      "all_finite": true,
+      "all_repeat_copy_reference_gates_pass": true,
+      "delta_arithmetic_pass": true,
+      "loop_seconds": 0.43577070999890566,
+      "seconds_per_response": 0.009078556458310535,
+      "peak_allocated_bytes": 390036992,
+      "peak_reserved_bytes": 440401920
+    },
+    "B": {
+      "responses": 48,
+      "old_anchor_controls": 4,
+      "derived_baseline_controls": 4,
+      "all_finite": true,
+      "all_repeat_copy_reference_gates_pass": true,
+      "delta_arithmetic_pass": true,
+      "loop_seconds": 0.42678841296583414,
+      "seconds_per_response": 0.008891425270121545,
+      "peak_allocated_bytes": 390036992,
+      "peak_reserved_bytes": 440401920
+    }
+  },
+  "no_actual_boundary_claim": "registered smoke cells omit selected seam cells; full required",
+  "models_weights_pixels_inference_render_accessed": false
+}

@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-14T18:07:17.024279+00:00",
+  "VIS1_private_smoke": "EXECUTED_NATIVE_EXIT_0_RESULTS_AWAIT_INDEPENDENT_REVIEW",
+  "execution_receipt": "/mnt/t7/smad_next/VIS1/20261114/v1_execution_selfmad/EXECUTION_COMPLETE.json",
+  "execution_receipt_sha256": "07f65994be3a55b40f35a5aed01bf0f6074ecf8f313ab5e088e9fa5aefcd06b2",
+  "scope": "Fixed-five-input local GB10 SelfMAD private descriptive pilot; no new benchmark read or source-image export. Independent postresult review assigned.",
+  "tail_receipt_compat_commit": "ac2b2c9",
+  "opaque_collection": "COMPLETE_25_ARCHIVES_HASH_VERIFIED",
+  "collection_directory": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z",
+  "metadata_admission_packets": "Sol preparing separate breadth10/tail15 proposals without archive member access",
+  "SDPA": "Operator source design independently reviewed; new durablePTY launcher preparation assigned; no new WCSS job or cancellation",
+  "scientific_benchmark_read_authorized": false,
+  "updated_at": "2026-11-14T18:09:26.874978+00:00",
+  "opaque_collection_receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/COLLECTION_VERIFIED.json",
+  "opaque_collection_receipt_sha256": "9bf5baa28cedfc5f6d24e5dc8e62061bb16ad20f6b3e04fb1a0faf0a43549ae0",
+  "opaque_archive_bytes": 7331860480,
+  "VIS1_selfmad": "INDEPENDENT_TECHNICAL_AND_PRIVATE_NUMERICAL_GO",
+  "VIS1_controls": "A_AND_B_NATIVE_EXIT_0_COMPLETE_AWAIT_INDEPENDENT_POSTREVIEW",
+  "VIS1_control_execution_receipt": "/mnt/t7/smad_next/VIS1/20261114/v1_execution_controls/EXECUTION_COMPLETE.json"
+}

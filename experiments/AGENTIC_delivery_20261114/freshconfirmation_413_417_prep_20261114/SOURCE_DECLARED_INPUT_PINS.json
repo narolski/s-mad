@@ -1,0 +1,52 @@
+{
+  "not_current_input_admission": true,
+  "source_literals": {
+    "src/AB1/run.sh": [
+      {
+        "name": "PACK_SHA",
+        "sha256": "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004"
+      },
+      {
+        "name": "OVERLAY_SHA",
+        "sha256": "171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149"
+      }
+    ],
+    "src/AB1/run_fm.sh": [
+      {
+        "name": "PACK_SHA",
+        "sha256": "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004"
+      },
+      {
+        "name": "OVERLAY_SHA",
+        "sha256": "e554b84f74e5de8791fddc168b99a7c46376ee48ab7902baf358ecbe668d8e47"
+      }
+    ],
+    "src/RZ1/run_rz1.sh": [
+      {
+        "name": "PACK_SHA",
+        "sha256": "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004"
+      },
+      {
+        "name": "OV1_SHA",
+        "sha256": "171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149"
+      },
+      {
+        "name": "OVX_SHA",
+        "sha256": "e5886e72622b618cb260689820efea861b63b061749db561d256ad57116f819c"
+      },
+      {
+        "name": "TT1_SHA",
+        "sha256": "2109f742b0378c188f394a3b26c363ef2ffb0ea43eab78ecea7674884022c554"
+      },
+      {
+        "name": "MEDS_SHA",
+        "sha256": "3fb917b226c6d31fab176a4d8fdd5d6e6b22b8274cc091591f444e623a87ab61"
+      },
+      {
+        "name": "OVR_SHA",
+        "sha256": "dccf37d20ca0074780a15d99012c3302f52e4ad5a7773b66981b5d316276d383"
+      }
+    ],
+    "src/BB2/run_lr.sh": []
+  }
+}

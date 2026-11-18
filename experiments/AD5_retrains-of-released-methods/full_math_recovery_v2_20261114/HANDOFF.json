@@ -1,0 +1,14 @@
+{
+  "author": "Astra / astra_compute_unblock_plan",
+  "scope": "SOURCE_PREP_ONLY_OTHER_REVIEW_REQUIRED",
+  "source_manifest_sha256": "caa557449b6e97151c5baafdda8a80ec4b568bc33dd5e229d26efe968fe12ba5",
+  "tests": 13,
+  "passed": 13,
+  "full_training_executed": false,
+  "scientific_read": "HOLD",
+  "prior_packages_preserved": true,
+  "new_cohort": "B401-405 late root-defined cohort",
+  "bound_full_csv": "83c01705e140843afa6cb4c89765d0528ff21e2f444aee23aa50de49eaf894a3",
+  "resource_profile": "PROPOSED_BATCH_6H_CONCURRENCY1_NOT_ADOPTED",
+  "converter": "HOLD_SEPARATE"
+}

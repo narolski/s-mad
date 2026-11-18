@@ -1,0 +1,42 @@
+{
+  "mean": {
+    "finite": true,
+    "activated_detection_dual": [
+      0.02006928250193596
+    ],
+    "negative_gradients": [
+      0.0029800727497786283,
+      0.022019926458597183,
+      0.006723536178469658,
+      0.018276464194059372
+    ],
+    "positive_gradients_nextstep": [
+      -0.00883848313242197,
+      -0.00883848313242197
+    ],
+    "counts": {
+      "a/native": 2,
+      "b/native": 2
+    }
+  },
+  "cvar": {
+    "finite": true,
+    "activated_detection_dual": [
+      0.02006928250193596
+    ],
+    "negative_gradients": [
+      0.02980072982609272,
+      0.22019927203655243,
+      0.06723535805940628,
+      0.18276464939117432
+    ],
+    "positive_gradients_nextstep": [
+      -0.00883848313242197,
+      -0.00883848313242197
+    ],
+    "counts": {
+      "a/native": 2,
+      "b/native": 2
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# Exact source history audit / concrete GO blockers
+
+Original pinned scorer9b6784: modelbuild/load,trainable torch.save before model.to.eval; score(eval,TTA) then score(unique training rows,noTTA) then TT1 then MEDS thencross. B(ii) authorizes eval/TT1 only. The derivative does NOT call score.main and saves no weights/train_acc_rule0.
+
+Within each evalbatch retain original l0.float→cpu.tolist→flipforward→sigmoid-average→cpu.tolist; TT1 nativecpu.tolist. Python noncross lists transient perbatch, not accumulated; no selected-only synchronization substitution. TTAcomputedalways, not 'ifneeded'. Actual originalTF32true set; otherdefaults read/compared to independently reviewed values rather than changed. C.ImageItems augNone/sbi0 avoids itsrng branch; fixed/two Transform bypassesrng; DataLoader workerbase-seed activity remains.
+
+CLIPMADation.forward normalizes input, calls self.net,normalizesfeature and calls linearhead; no explicit sourcewrapper buffer assignment. C.forward_logit is outputaccess. However timm/HFdependencyforward source+fusedattention/kernel cache/defaults and any other executionhistory are not fully harvested/audited here. Modelstatehash unchanged perpopulation does not prove all hidden caches/backendhistory unchanged. original omittedtrain/MEDS also changes workerRNG consumption and kernel-call history. No false 'sourceprovedequivalent' conclusion.
+
+Required precise source/runtime admission: archivedactualmeta and overlaykeys/shapes/dtypes,completefrozenpretrained/source/normalization/positional-filter hashes,originaleffective torch/timm/cv2/Pillow/numpy/cuDNN/driver/defaults/workercontext,dependencyforwardmutable-state audit and OTHER/root decision that omittedtrain/MEDS need no replay under this Bii registration. Allmustbe bound beforeGPU. Exactnativegate remains necessary afterwards.
+
+If omittedpredecessors are judged necessary, STOP. A NEW prospective amendment must enumerate full original unique-training manifest and MEDS manifest identity/order/count, original per-population native/TTA traversal and transient numeric boundary, and revise fixed call/sample/resource counts BEFORE any model/input/score access. It must be separately reviewed/rootadopted without consulting perturbation outcomes. This packet neither authorizes that broadercontext nor provides adaptive replay. No A fallback/tolerance relaxation/reseed/reset can cure a failednativegate under currentregistration.
+
+Originalfirst nativeeval has no earlier training/MEDSforward predecessor, so the separately fixed timingbatch0 can narrowly test admittedrebuild/firstbatch bytegate; it does not validate the later TT1history or whole14panel. No runtime result is invented.

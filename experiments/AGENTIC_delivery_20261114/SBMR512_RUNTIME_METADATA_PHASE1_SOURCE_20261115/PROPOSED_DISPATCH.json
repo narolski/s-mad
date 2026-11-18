@@ -1,0 +1,44 @@
+{
+  "decision": "PROPOSED_NOT_AUTHORIZATION",
+  "root_authorized": false,
+  "author": "Sol",
+  "reviewer": null,
+  "scientific_read": "HOLD",
+  "automatic_retry": false,
+  "driver_dir": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/sbmr512_runtime_metadata_phase1_v1/dispatch_s408",
+  "worker_dir": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/sbmr512_runtime_metadata_phase1_v1/source",
+  "output": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/sbmr512_runtime_metadata_phase1_v1/result",
+  "input_identity_receipt_sha256": "7847e2007570f75012f36fccd9257f73231c9a28cafbfb38ba86c2286d76e61b",
+  "admissions": {
+    "current_identity_adoption": {
+      "path": null,
+      "sha256": null,
+      "status": "PENDING"
+    },
+    "OTHER_phase1_source_review": {
+      "path": null,
+      "sha256": null,
+      "status": "PENDING"
+    },
+    "runtime_import_scope": {
+      "path": null,
+      "sha256": null,
+      "status": "PENDING"
+    },
+    "native_elf_scope": {
+      "path": null,
+      "sha256": null,
+      "status": "PENDING"
+    },
+    "site_profile": {
+      "path": null,
+      "sha256": null,
+      "status": "PENDING"
+    }
+  },
+  "node_bootstrap": null,
+  "python": "/home/narolski/dmenv/bin/python",
+  "runtime_grant": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/sbmr512_runtime_metadata_phase1_v1/ROOT_RUNTIME_GRANT.json",
+  "source_manifest_path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/sbmr512_runtime_metadata_phase1_v1/source/SOURCE_SHA256SUMS",
+  "content_pins": {}
+}

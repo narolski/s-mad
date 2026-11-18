@@ -1,0 +1,129 @@
+{
+  "schema": "ad5-technical-only-v1",
+  "archives": {
+    "mixfacenet_X_s403": {
+      "archive": "/mnt/t7/smad_next/coordination_20261114/new_completion_collection_20261114T164056Z/mixfacenet_X_s403.tar",
+      "sha256": "e616e50839450ab454b298b48b447dbc0eaeb08608a2c1d32b4ef9b6e5469d81",
+      "members": {
+        "job.json": {
+          "kind": "json",
+          "schema": {
+            "task": {
+              "type": "str",
+              "equals": "mixfacenet_X_s403"
+            },
+            "seed": {
+              "type": "int",
+              "equals": 403
+            },
+            "job": {
+              "type": "str"
+            },
+            "seconds": {
+              "type": "number",
+              "nonnegative": true
+            },
+            "arm": {
+              "type": "str",
+              "equals": "X"
+            },
+            "gpus": {
+              "type": "int"
+            },
+            "train_csv_sha256": {
+              "type": "str",
+              "sha256": true
+            }
+          }
+        },
+        "mixfacenet_SMDD.pth": {
+          "kind": "header"
+        }
+      }
+    },
+    "mixfacenet_X_s404": {
+      "archive": "/mnt/t7/smad_next/coordination_20261114/new_completion_collection_20261114T164056Z/mixfacenet_X_s404.tar",
+      "sha256": "54e02b596aa30ac760e70b0a003ad2b66c694dfbd2f3e421d0b9ac3e173503fd",
+      "members": {
+        "job.json": {
+          "kind": "json",
+          "schema": {
+            "task": {
+              "type": "str",
+              "equals": "mixfacenet_X_s404"
+            },
+            "seed": {
+              "type": "int",
+              "equals": 404
+            },
+            "job": {
+              "type": "str"
+            },
+            "seconds": {
+              "type": "number",
+              "nonnegative": true
+            },
+            "arm": {
+              "type": "str",
+              "equals": "X"
+            },
+            "gpus": {
+              "type": "int"
+            },
+            "train_csv_sha256": {
+              "type": "str",
+              "sha256": true
+            }
+          }
+        },
+        "mixfacenet_SMDD.pth": {
+          "kind": "header"
+        }
+      }
+    },
+    "mixfacenet_X_s405": {
+      "archive": "/mnt/t7/smad_next/coordination_20261114/mix405_collection_20261114T221535Z/mixfacenet_X_s405.tar",
+      "sha256": "73c3144336b32030acbc3af889e422a81c792579cca379ee9e0faca5c2281f68",
+      "members": {
+        "job.json": {
+          "kind": "json",
+          "schema": {
+            "task": {
+              "type": "str",
+              "equals": "mixfacenet_X_s405"
+            },
+            "seed": {
+              "type": "int",
+              "equals": 405
+            },
+            "job": {
+              "type": "str"
+            },
+            "seconds": {
+              "type": "number",
+              "nonnegative": true
+            },
+            "arm": {
+              "type": "str",
+              "equals": "X"
+            },
+            "gpus": {
+              "type": "int"
+            },
+            "train_csv_sha256": {
+              "type": "str",
+              "sha256": true
+            }
+          }
+        },
+        "mixfacenet_SMDD.pth": {
+          "kind": "header"
+        }
+      }
+    }
+  },
+  "source_receipts": {
+    "/mnt/t7/smad_next/coordination_20261114/new_completion_collection_20261114T164056Z/COLLECTION_VERIFIED.json": "baa6fa6448dce549d762b394cd2fe77b44fc2ff761c96f3c8e8df30b4864aa1b",
+    "/mnt/t7/smad_next/coordination_20261114/mix405_collection_20261114T221535Z/COLLECTION_VERIFIED.json": "ceea7b460e9dbe796f1a3f97f5c11f82a3ed71fb52475ba3ccdd39f498d79873"
+  }
+}

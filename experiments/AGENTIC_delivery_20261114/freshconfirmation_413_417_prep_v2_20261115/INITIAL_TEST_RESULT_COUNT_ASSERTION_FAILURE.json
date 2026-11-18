@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-14T23:16:21.103388+00:00",
+  "command": "python3 source/test_source_contract.py",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_all_ab1_common_rows (__main__.Contracts.test_all_ab1_common_rows) ... FAIL\ntest_counts_core_identical (__main__.Contracts.test_counts_core_identical) ... ok\ntest_dino_scope (__main__.Contracts.test_dino_scope) ... ok\ntest_identity_and_provenance_refusal (__main__.Contracts.test_identity_and_provenance_refusal) ... ok\ntest_seed_refusal (__main__.Contracts.test_seed_refusal) ... ok\ntest_source_delta_preserves_math (__main__.Contracts.test_source_delta_preserves_math) ... ok\n\n======================================================================\nFAIL: test_all_ab1_common_rows (__main__.Contracts.test_all_ab1_common_rows)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/freshconfirmation_413_417_prep_v2_20261115/source/test_source_contract.py\", line 15, in test_all_ab1_common_rows\n    self.assertEqual(len(rows),75)\nAssertionError: 70 != 75\n\n----------------------------------------------------------------------\nRan 6 tests in 0.003s\n\nFAILED (failures=1)\n",
+  "scientific_execution": false
+}

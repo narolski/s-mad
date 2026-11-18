@@ -1,0 +1,935 @@
+{
+  "schema": "smad-compute-queue-v1",
+  "created_at": "2026-11-14T10:25:46.742341+00:00",
+  "owner": "computation_coordinator",
+  "executor": "lead",
+  "persistent_monitor": false,
+  "cutoff": "2026-11-15T18:00:00+01:00",
+  "cutoff_scope": "selection archive arrival and local hash verification; confirmation may follow",
+  "scientific_read_authorized_by_this_file": false,
+  "purchase_authorized_by_this_file": false,
+  "observations": {
+    "wcss": {
+      "source": "parent read-only query report",
+      "observed_at_approx": "2026-11-14T11:19:00+01:00",
+      "states": "all six listed submitted jobs pending"
+    },
+    "athena": {
+      "source": "ATHENA_SNAPSHOT.json",
+      "observed_at": "2026-11-14T10:22:06.525181+00:00"
+    }
+  },
+  "jobs": [
+    {
+      "job_id": "6319579",
+      "work": "paired SbFM supplementary scoring",
+      "priority_recommendation": "P1",
+      "observed_state": "COMPLETED",
+      "platform": "WCSS registered environment",
+      "scheduler_limit_hours_per_task": 2,
+      "estimated_runtime_hours_per_task": null,
+      "runtime_estimate_is_measurement": false,
+      "conditional_latest_start": "2026-11-15T15:00:00+01:00",
+      "action": "opaque collect registered archive and sidecar; verify identity/hash, then retain scientific read gate",
+      "observed_at": "2026-11-14T15:52:00Z",
+      "observation_time_precision": "approximate",
+      "evidence": "COMPUTE_HEARTBEAT_20261114T155156Z.md; Slurm sacct response",
+      "completed_at": "2026-11-14T16:41:14+01:00",
+      "exit_code": "0:0",
+      "registered_output": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1FMSUPP/AB1FMSUPP_20261114.tar",
+      "registered_sidecar": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1FMSUPP/AB1FMSUPP_20261114.tar.sha256",
+      "durable_output_verified": false,
+      "result_admission": "opaque archive durable and remote/local/sidecar SHA256 verified; scientific eligibility/read remains HOLD",
+      "collection_receipt": "/mnt/t7/smad_next/coordination_20261114/sbfm_collection_20261114T160056Z/COLLECTION_VERIFIED.json",
+      "archive_sha256": "e4c815d952b07fdc964eb3991c82ecbdf0712ecce097539e0ec01db679eb704a",
+      "archive_bytes": 51363840,
+      "collection_verified_at": "2026-11-14T16:05:23.001397+00:00"
+    },
+    {
+      "job_id": "6319491",
+      "work": "refit comparator rescore",
+      "priority_recommendation": "P1",
+      "observed_state": "COMPLETED",
+      "platform": "WCSS registered environment",
+      "scheduler_limit_hours_per_task": 2.5,
+      "estimated_runtime_hours_per_task": 0.75,
+      "runtime_estimate_is_measurement": false,
+      "conditional_latest_start": "2026-11-15T14:30:00+01:00",
+      "action": "preserve completion; collect/verify opaque output and producer identity before any gate review",
+      "observed_at": "2026-11-14T15:52:00Z",
+      "observation_time_precision": "approximate",
+      "evidence": "COMPUTE_HEARTBEAT_20261114T155156Z.md; Slurm sacct response",
+      "completed_at": "2026-11-14T13:46:15+01:00",
+      "exit_code": "0:0",
+      "result_admission": "Listed final archives durable opaquehashverified; NEXT source/exposure/eligibility/read gates remainHOLD",
+      "additional_opaque_collections": [
+        {
+          "at": "2026-11-14T18:59:24.094721+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/next_final_output_collection_20261114T185258Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "RZ1R_A_s408.tar",
+            "RZ1R_A_s409.tar",
+            "RZ1R_A_s410.tar",
+            "RZ1R_A_s411.tar",
+            "RZ1R_A_s412.tar",
+            "RZ1R_Sb_s408.tar",
+            "RZ1R_Sb_s409.tar",
+            "RZ1R_Sb_s410.tar",
+            "RZ1R_Sb_s411.tar",
+            "RZ1R_Sb_s412.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        }
+      ]
+    },
+    {
+      "job_id": "6319264",
+      "work": "DINOv3 rescoring",
+      "priority_recommendation": "P1",
+      "observed_state": "COMPLETED",
+      "platform": "WCSS registered environment",
+      "scheduler_limit_hours_per_task": 4,
+      "estimated_runtime_hours_per_task": null,
+      "runtime_estimate_is_measurement": false,
+      "conditional_latest_start": "2026-11-15T13:00:00+01:00",
+      "action": "preserve completion; collect/verify opaque output and producer identity before any gate review",
+      "observed_at": "2026-11-14T15:52:00Z",
+      "observation_time_precision": "approximate",
+      "evidence": "COMPUTE_HEARTBEAT_20261114T155156Z.md; Slurm sacct response",
+      "completed_at": "2026-11-14T13:07:42+01:00",
+      "exit_code": "0:0",
+      "result_admission": "Listed final archives durable opaquehashverified; NEXT source/exposure/eligibility/read gates remainHOLD",
+      "additional_opaque_collections": [
+        {
+          "at": "2026-11-14T18:59:24.094721+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/next_final_output_collection_20261114T185258Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "BB2LW2.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        }
+      ]
+    },
+    {
+      "job_id": "6319490",
+      "work": "15 resolution-study fits",
+      "priority_recommendation": "P1-long",
+      "observed_state": "COMPLETED",
+      "platform": "WCSS registered environment",
+      "scheduler_limit_hours_per_task": 6,
+      "estimated_runtime_hours_per_task": 4.39766,
+      "runtime_estimate_is_measurement": false,
+      "conditional_latest_start": null,
+      "action": "preserve remaining tasks; opaque collect/hash completed task archives and sidecars; keep score reader closed",
+      "observed_at": "2026-11-14T19:41:35Z",
+      "observation_time_precision": "approximate",
+      "evidence": "COMPUTE_HEARTBEAT_20261114T193958Z.md",
+      "completed_task_indices": [
+        0,
+        1,
+        2
+      ],
+      "completed_task_exit_codes": {
+        "0": "0:0",
+        "1": "0:0",
+        "2": "0:0"
+      },
+      "running_task_indices": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "completed_output_durability": "not_verified_local_archive_sidecar_receipts_absent",
+      "result_admission": "all15opaquearchiveshashverified;NEXTscientificeligibility/readnotreleased",
+      "opaque_collection": {
+        "verified_at": "2026-11-14T16:24:32.285751+00:00",
+        "receipt": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/COLLECTION_VERIFIED.json",
+        "archive_count": 3,
+        "task_ids": [
+          "6319490_0",
+          "6319490_1",
+          "6319490_2"
+        ],
+        "remote_local_sidecar_equal": true
+      },
+      "native_state_detail": {
+        "completed_tasks": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "running_tasks": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "new_completions_uncollected": []
+      },
+      "additional_opaque_collections": [
+        {
+          "verified_at": "2026-11-14T16:46:48.751744+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/new_completion_collection_20261114T164056Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "RZ1_A512_s409.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T17:47:41.799392+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "RZ1_Sb512_s409.tar",
+            "RZ1_SbMR512_s409.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T18:09:26.874978+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "RZ1_A512_s410.tar",
+            "RZ1_Sb512_s410.tar",
+            "RZ1_SbMR512_s410.tar",
+            "RZ1_A512_s411.tar",
+            "RZ1_Sb512_s411.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T18:46:44.929774+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "RZ1_SbMR512_s411.tar",
+            "RZ1_A512_s412.tar",
+            "RZ1_Sb512_s412.tar",
+            "RZ1_SbMR512_s412.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        }
+      ],
+      "native_state_counts": {
+        "completed": 15,
+        "running": 0,
+        "pending": 0
+      },
+      "complete_durable_inventory": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_RZ1_FIFTEEN_OPAQUE_ARRIVAL_VERIFIED_20261114.json"
+    },
+    {
+      "job_id": "6319494",
+      "work": "IDistill diagnostic",
+      "priority_recommendation": "P2",
+      "observed_state": "COMPLETED",
+      "platform": "WCSS registered environment",
+      "scheduler_limit_hours_per_task": 0.5,
+      "estimated_runtime_hours_per_task": null,
+      "runtime_estimate_is_measurement": false,
+      "conditional_latest_start": null,
+      "action": "preserve technical diagnostic; no scientific admission is implied",
+      "observed_at": "2026-11-14T15:52:00Z",
+      "observation_time_precision": "approximate",
+      "evidence": "COMPUTE_HEARTBEAT_20261114T155156Z.md; Slurm sacct response",
+      "completed_at": "2026-11-14T12:56:11+01:00",
+      "exit_code": "0:0",
+      "result_admission": "DIAGNOSTIC_ONLY_NOT_A_SCIENTIFIC_RESULT"
+    },
+    {
+      "job_id": "6319495",
+      "work": "MADation diagnostic",
+      "priority_recommendation": "P2",
+      "observed_state": "FAILED",
+      "platform": "WCSS registered environment",
+      "scheduler_limit_hours_per_task": 0.25,
+      "estimated_runtime_hours_per_task": null,
+      "runtime_estimate_is_measurement": false,
+      "conditional_latest_start": null,
+      "action": "preserve failure; cause unknown; no retry in this cycle",
+      "observed_at": "2026-11-14T15:52:00Z",
+      "observation_time_precision": "approximate",
+      "evidence": "COMPUTE_HEARTBEAT_20261114T155156Z.md; Slurm sacct response",
+      "completed_at": "2026-11-14T13:08:45+01:00",
+      "exit_code": "1:0",
+      "result_admission": "FAILED_DIAGNOSTIC_CAUSE_UNKNOWN"
+    },
+    {
+      "job_id": null,
+      "work": "GX ten fits and scoring",
+      "priority_recommendation": "P2",
+      "observed_state": "NOT_READY",
+      "estimated_gpu_hours_range": [
+        11,
+        17
+      ],
+      "dependencies": [
+        "reviewed image/identity admission",
+        "training manifests and runner",
+        "floors and amendment",
+        "independent review"
+      ],
+      "action": "CPU preparation; no rental while blocked"
+    },
+    {
+      "job_id": "6320883",
+      "work": "paired-ranking smoke v1",
+      "observed_state": "FAILED",
+      "observed_at": "2026-11-14T14:16:16.384292+00:00",
+      "platform": "WCSS H100",
+      "scheduler_limit_hours_per_task": 2,
+      "action": "preserve; no duplicates; root reviews before scientific admission",
+      "failure": "battery rc1 CLI unsupported expect-eval; retained"
+    },
+    {
+      "job_id": "6320908",
+      "work": "paired-ranking smoke v2",
+      "observed_state": "FAILED",
+      "observed_at": "2026-11-14T14:16:16.384292+00:00",
+      "platform": "WCSS H100",
+      "scheduler_limit_hours_per_task": 2,
+      "action": "preserve; no duplicates; root reviews before scientific admission",
+      "failure": "checksum root lookup before scoring; retained"
+    },
+    {
+      "job_id": "6320973",
+      "work": "paired-ranking smoke v3 all3arms",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T14:16:16.384292+00:00",
+      "platform": "WCSS H100",
+      "scheduler_limit_hours_per_task": 2,
+      "action": "preserve; no duplicates; root reviews before scientific admission",
+      "exit_code": "0:0",
+      "technical_review": "PASS all3exactreference+ownfitbytegates; no scientificscore read"
+    },
+    {
+      "job_id": "6321090",
+      "work": "SPRINT5-1 paired ranking15fits3arms5seeds",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T20:16:59.196360+00:00",
+      "platform": "WCSS H100",
+      "scheduler_limit_hours_per_task": 3,
+      "action": "preserve; no duplicates; root reviews before scientific admission",
+      "array": "0-14%3",
+      "source": "SPRINT5_1_v3",
+      "receipt_commit": "8f1137d",
+      "selection_cycle": "separate MAD22-informed, outsideNEXT",
+      "evidence": "/mnt/t7/smad_next/coordination_20261114/pair_seed505_final_collection_20261114T200359Z/COLLECTION_VERIFIED.json",
+      "native_state_counts": {
+        "completed": 15,
+        "running": 0,
+        "pending": 0
+      },
+      "additional_opaque_collections": [
+        {
+          "at": "2026-11-14T18:15:18.464085+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/hn_pair_collection_20261114T181157Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_1_production_v3_bce_s501.tar",
+            "SPRINT5_1_production_v3_paired_bce_s501.tar",
+            "SPRINT5_1_production_v3_paired_rank_s501.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T18:46:44.929774+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_1_production_v3_bce_s502.tar",
+            "SPRINT5_1_production_v3_paired_bce_s502.tar",
+            "SPRINT5_1_production_v3_paired_rank_s502.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T19:22:32.058256+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/pair_seed503_collection_20261114T191758Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_1_production_v3_bce_s503.tar",
+            "SPRINT5_1_production_v3_paired_bce_s503.tar",
+            "SPRINT5_1_production_v3_paired_rank_s503.tar"
+          ],
+          "archive_bytes": 1095413760,
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T19:44:18.727331+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/pair_seed504_collection_20261114T193958Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_1_production_v3_bce_s504.tar",
+            "SPRINT5_1_production_v3_paired_bce_s504.tar",
+            "SPRINT5_1_production_v3_paired_rank_s504.tar"
+          ],
+          "archive_bytes": 1095413760,
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T20:07:30.642470+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/pair_seed505_first2_collection_20261114T200359Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_1_production_v3_bce_s505.tar",
+            "SPRINT5_1_production_v3_paired_bce_s505.tar"
+          ],
+          "archive_bytes": 730275840,
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T20:17:04.780870+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/pair_seed505_final_collection_20261114T200359Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_1_production_v3_paired_rank_s505.tar"
+          ],
+          "archive_bytes": 365137920,
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        }
+      ],
+      "all15_ranking_archives_durable": true
+    },
+    {
+      "job_id": "6321076",
+      "work": "SPRINT5-4 breadth twoarm smoke",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T14:40:13.643887+00:00",
+      "platform": "WCSS H100",
+      "scheduler_limit_hours_per_task": 2,
+      "action": "preserve; root independent release required; scientific reader remains closed",
+      "node": "r18-15",
+      "partition": "lem-gpu-interactive",
+      "source": "SPRINT5_4_v1"
+    },
+    {
+      "job_id": "6321194",
+      "work": "SPRINT5-4 breadth10pilotfits",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T17:52:28Z",
+      "platform": "WCSS H100",
+      "action": "preserve; root independent release required; scientific reader remains closed",
+      "array": "0-9%3",
+      "scheduler_limit_hours_per_task": 1,
+      "additional_opaque_collections": [
+        {
+          "at": "2026-11-14T17:47:41.799392+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_4_pilot_v1_narrow_more_variants_s511.tar",
+            "SPRINT5_4_pilot_v1_broad_fewer_variants_s511.tar",
+            "SPRINT5_4_pilot_v1_narrow_more_variants_s512.tar",
+            "SPRINT5_4_pilot_v1_broad_fewer_variants_s512.tar",
+            "SPRINT5_4_pilot_v1_narrow_more_variants_s513.tar",
+            "SPRINT5_4_pilot_v1_broad_fewer_variants_s513.tar",
+            "SPRINT5_4_pilot_v1_narrow_more_variants_s514.tar",
+            "SPRINT5_4_pilot_v1_broad_fewer_variants_s514.tar",
+            "SPRINT5_4_pilot_v1_narrow_more_variants_s515.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T18:09:26.874978+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_4_pilot_v1_broad_fewer_variants_s515.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        }
+      ],
+      "evidence": "COMPUTE_HEARTBEAT_20261114T175157Z.md",
+      "native_state_counts": {
+        "completed": 10,
+        "running": 0,
+        "pending": 0
+      }
+    },
+    {
+      "job_id": "6321187",
+      "work": "SPRINT5-3 TRAIN-only baseline5535images",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T14:40:13.643887+00:00",
+      "platform": "WCSS H100",
+      "action": "preserve; root independent release required; scientific reader remains closed"
+    },
+    {
+      "job_id": "6321199",
+      "work": "SPRINT5-3 tail three-arm smoke",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T14:40:13.643887+00:00",
+      "platform": "WCSS H100",
+      "action": "preserve; root independent release required; scientific reader remains closed"
+    },
+    {
+      "job_id": "6321244",
+      "work": "SPRINT5-3 tail15pilotfits",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T17:52:28Z",
+      "platform": "WCSS H100",
+      "action": "preserve; root independent release required; scientific reader remains closed",
+      "array": "0-14%3",
+      "scheduler_limit_hours_per_task": 1,
+      "additional_opaque_collections": [
+        {
+          "at": "2026-11-14T17:47:41.799392+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_3_pilot_v1_bce_s521.tar",
+            "SPRINT5_3_pilot_v1_mean_s521.tar",
+            "SPRINT5_3_pilot_v1_cvar_s521.tar",
+            "SPRINT5_3_pilot_v1_bce_s522.tar",
+            "SPRINT5_3_pilot_v1_mean_s522.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T18:09:26.874978+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_3_pilot_v1_cvar_s522.tar",
+            "SPRINT5_3_pilot_v1_bce_s523.tar",
+            "SPRINT5_3_pilot_v1_mean_s523.tar",
+            "SPRINT5_3_pilot_v1_cvar_s523.tar",
+            "SPRINT5_3_pilot_v1_bce_s524.tar",
+            "SPRINT5_3_pilot_v1_mean_s524.tar",
+            "SPRINT5_3_pilot_v1_cvar_s524.tar",
+            "SPRINT5_3_pilot_v1_bce_s525.tar",
+            "SPRINT5_3_pilot_v1_mean_s525.tar",
+            "SPRINT5_3_pilot_v1_cvar_s525.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        }
+      ],
+      "evidence": "COMPUTE_HEARTBEAT_20261114T175157Z.md",
+      "native_state_counts": {
+        "completed": 15,
+        "running": 0,
+        "pending": 0
+      }
+    },
+    {
+      "job_id": "6321237",
+      "work": "SPRINT5-2 HN two-arm smoke",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T14:46:58.692130+00:00",
+      "platform": "WCSS H100",
+      "action": "preserve; root independent release required; scientific reader remains closed",
+      "exit_code": "0:0",
+      "technical_review": "Root independent actualarchives PASS, reference2496+own21277bytegates; sourceauthor review corroborates"
+    },
+    {
+      "job_id": "6321261",
+      "work": "SPRINT5-2 qualified HN geometry transfer10pilotfits",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T18:12:28Z",
+      "platform": "WCSS H100",
+      "array": "0-9%3",
+      "scheduler_limit_hours_per_task": 1,
+      "receipt_commit": "9b6c0d5",
+      "action": "preserve; separate preread approval before scientific interpretation",
+      "evidence": "COMPUTE_HEARTBEAT_20261114T181157Z.md",
+      "native_state_counts": {
+        "completed": 10,
+        "running": 0,
+        "pending": 0
+      },
+      "additional_opaque_collections": [
+        {
+          "at": "2026-11-14T18:09:26.874978+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_2_pilot_v1_matched_s531.tar",
+            "SPRINT5_2_pilot_v1_self_s531.tar",
+            "SPRINT5_2_pilot_v1_matched_s532.tar",
+            "SPRINT5_2_pilot_v1_self_s532.tar",
+            "SPRINT5_2_pilot_v1_matched_s533.tar",
+            "SPRINT5_2_pilot_v1_self_s533.tar",
+            "SPRINT5_2_pilot_v1_matched_s534.tar",
+            "SPRINT5_2_pilot_v1_self_s534.tar",
+            "SPRINT5_2_pilot_v1_matched_s535.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "at": "2026-11-14T18:15:18.464085+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/hn_pair_collection_20261114T181157Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "SPRINT5_2_pilot_v1_self_s535.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        }
+      ]
+    },
+    {
+      "job_id": "6321768",
+      "work": "MADation first-backward technical diagnostic; no optimizer update",
+      "observed_state": "FAILED",
+      "observed_at": "2026-11-14T17:52:28Z",
+      "platform": "WCSS H100",
+      "resources": {
+        "gpus": 1,
+        "time_limit_minutes": 15,
+        "cpus": 8,
+        "memory": "120G",
+        "partition": "lem-gpu-short",
+        "array": "401"
+      },
+      "evidence": "COMPUTE_HEARTBEAT_20261114T175157Z.md",
+      "source_commit": "2c6ee4b",
+      "observed_at_scheduler": "2026-11-14T16:12:00Z",
+      "observation_time_precision": "approximate",
+      "scheduler_reason": "Priority",
+      "result_admission": "PENDING_NO_TECHNICAL_TRACE_YET_NOT_PRODUCTION_OR_SCIENTIFIC_RELEASE",
+      "native_state_detail": {
+        "reason": "Priority",
+        "elapsed": "00:00:00",
+        "end": "Unknown"
+      },
+      "exit_code": "1:0",
+      "ended_at": "2026-11-14T18:46:20+01:00",
+      "failure_cause": "UNKNOWN_PENDING_INDEPENDENT_TECHNICAL_REVIEW",
+      "technical_collection_receipt": "/mnt/t7/smad_next/coordination_20261114/ad5_firstbackward_collection_20261114T175157Z/COLLECTION_VERIFIED.json",
+      "action": "Preserve failure; no automatic retry or pending-batch migration. Independent technical review assigned."
+    },
+    {
+      "job_id": "6316724",
+      "work": "Registered BATTERY comparator outputs",
+      "opaque_collection": {
+        "verified_at": "2026-11-14T16:24:32.285751+00:00",
+        "receipt": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/COLLECTION_VERIFIED.json",
+        "archive_count": 15,
+        "task_ids": [
+          "6316724_0",
+          "6316724_1",
+          "6316724_2",
+          "6316724_3",
+          "6316724_4",
+          "6316724_5",
+          "6316724_6",
+          "6316724_7",
+          "6316724_8",
+          "6316724_9",
+          "6316724_10",
+          "6316724_11",
+          "6316724_12",
+          "6316724_13",
+          "6316724_14"
+        ],
+        "remote_local_sidecar_equal": true
+      },
+      "result_admission": "opaque durable collection verified only; scientific eligibility/read remains HOLD",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T16:12:00Z",
+      "evidence": "COMPUTE_HEARTBEAT_20261114T161156Z.md",
+      "observation_time_precision": "approximate"
+    },
+    {
+      "job_id": "6310125",
+      "work": "MixFaceNet retrain",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T22:17:36.510610+00:00",
+      "evidence": "/mnt/t7/smad_next/coordination_20261114/wcss_metadata_correction_20261114T221535Z/QUERY.json",
+      "native_state_detail": {
+        "completed_seeds": [
+          401,
+          402,
+          403,
+          404,
+          405
+        ],
+        "running_seeds": [],
+        "new_completions_uncollected": []
+      },
+      "additional_opaque_collections": [
+        {
+          "verified_at": "2026-11-14T16:46:48.751744+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/new_completion_collection_20261114T164056Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "mixfacenet_X_s403.tar",
+            "mixfacenet_X_s404.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        },
+        {
+          "verified_at": "2026-11-14T22:19:28.422507+00:00",
+          "receipt": "/mnt/t7/smad_next/coordination_20261114/mix405_collection_20261114T221535Z/COLLECTION_VERIFIED.json",
+          "archives": [
+            "mixfacenet_X_s405.tar"
+          ],
+          "remote_local_sidecar_equal": true,
+          "scientific_read_authorized": false
+        }
+      ],
+      "result_admission": "Allfive schedulercomplete; final405opaque hashverified in newreceipt; scientific eligibility/scoring remains HOLD"
+    },
+    {
+      "job_id": "6323083",
+      "work": "New synthetic SDPA default-versus-math technical operator probe; no model/data/weights",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T19:17:33.145179+00:00",
+      "platform": "WCSS H100 lem-gpu-interactive real srun--pty",
+      "time_limit_minutes": 15,
+      "resources": {
+        "gpus": 1,
+        "gpu": "H100",
+        "cpu": 8,
+        "mem": "120G",
+        "time_limit": "00:15:00",
+        "local_storage": "150G"
+      },
+      "source_commit": "7364262b68e8d1d94e2d0e7b5026c6d28b1f3aeb",
+      "evidence": "/mnt/t7/smad_next/coordination_20261114/sdpa_probe_result_collection_20261114T190258Z/COLLECTION_VERIFIED.json",
+      "journal": "/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/dispatch/ad5_sdpa_launcher_v1_20261114",
+      "automatic_retry": false,
+      "result_admission": "TECHNICAL_SYNTHETIC_BACKEND_WORKAROUND_HYPOTHESIS_ONLY; NOT_REAL_TRAINING_RECOVERY",
+      "observation_history": [
+        {
+          "observed_state": "CONFIGURING",
+          "observed_at": "2026-11-14T18:49:36.863200+00:00",
+          "evidence": "/mnt/t7/smad_next/coordination_20261114/sdpa_probe_launch_20261114T184258Z/NATIVE_RESOURCE_VERIFICATION.json"
+        }
+      ],
+      "exit_code": "0:0",
+      "backend_exit_codes": {
+        "default": 1,
+        "math_only": 0
+      },
+      "technical_review": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/SDPA_SYNTHETIC_POSTRESULT_REVIEW_20261114.md",
+      "root_acceptance": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_SDPA_TECHNICAL_RESULT_ACCEPTANCE_20261114T190258Z.json",
+      "action": "Prepare new immutable real one-step math-only smoke; separate independent review and root release required; no retry of original failed job"
+    },
+    {
+      "job_id": "6323725",
+      "work": "New AD5 math-only one-real-effective-step technical smoke; no evaluation or checkpoint",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T19:45:07.583103+00:00",
+      "platform": "WCSS H100 lem-gpu-interactive real srun--pty",
+      "resources": {
+        "gpus": 1,
+        "cpus": 8,
+        "memory": "120G",
+        "requested_local_storage": "150G",
+        "time_limit_minutes": 15
+      },
+      "source_commit": "e4697c012ad07f9ace2180aacea1db20c0211c85",
+      "source_manifest_sha256": "40e6cb24e6a97b87020f61d47f786024b7472d651a2dfd97620a5999fdc9c9f4",
+      "independent_review_sha256": "a6673ac85174faa2f9a167b47d1970acb2e864cb50ecd2d83f2936e4e3b1462e",
+      "root_release_sha256": "fd84969b2f41b3bd40f78ee4d76a3083f5a9acf337c40bcd84529cec8068a42f",
+      "journal": "/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/dispatch/ad5_real_math_step_v1_20261114",
+      "keep": "/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/logs/keep/ad5_real_math_step_v1_20261114",
+      "evidence": "/mnt/t7/smad_next/coordination_20261114/ad5_real_math_step_results_20261114T193958Z/COLLECTION_VERIFIED.json",
+      "automatic_retry": false,
+      "old_job_action": "NONE",
+      "result_admission": "PASS_ONE_REAL_EFFECTIVE_STEP_ONLY; no full training/production/scientific utility",
+      "scientific_read_authorized": false,
+      "observation_history": [
+        {
+          "observed_state": "CONFIGURING",
+          "observed_at": "2026-11-14T19:37:13.711652+00:00",
+          "evidence": "/mnt/t7/smad_next/coordination_20261114/ad5_real_math_step_launch_20261114T192658Z/NATIVE_OBSERVATION_1.json"
+        }
+      ],
+      "exit_code": "0:0",
+      "started_at": "2026-11-14T20:41:59+01:00",
+      "ended_at": "2026-11-14T20:43:24+01:00",
+      "allocation_elapsed_seconds": 85,
+      "technical_collection_file_count": 30,
+      "technical_receipt_status": "ONE_REAL_EFFECTIVE_STEP_MATH_ONLY_COMPLETE",
+      "technical_collection_sha256": "92f647711933aa7f5f0e1df5b85aae0dadab08fb1b0348b6eb1a7ec4b533d192",
+      "independent_postreview": "/home/narolski/smad-next/experiments/AD5_retrains-of-released-methods/real_math_first_step_20261114/AD5_REAL_MATH_STEP_POSTRESULT_INDEPENDENT_REVIEW_20261114.md",
+      "independent_postreview_sha256": "f0b1bb99c68852c7e62dee099dde3b6c70abde891b6203da9b64fa3d8544a89d",
+      "root_acceptance": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_AD5_REAL_STEP_TECHNICAL_ACCEPTANCE_20261114T193958Z.json",
+      "next_action": "Source-only new original reduced-list 36-update smoke; separate prereview/release before GPU"
+    },
+    {
+      "job_id": "6323877",
+      "work": "New AD5 durable 36-update reduced-list math-only checkpoint/reload smoke",
+      "observed_state": "COMPLETED",
+      "observed_at": "2026-11-14T20:19:16.331592+00:00",
+      "exit_code": "0:0",
+      "native_allocation_seconds": 104,
+      "source_commit": "a5a4876245c68cfe17c93e48a65c6713d1452fda",
+      "root_release_sha256": "df08e6fad4a275a140f4fff951c751fb14ec56d8c45b232e5500fc536b61a667",
+      "independent_prereview_sha256": "588e30d8c6ce1a82a63aaece36b323df46bc29598abe961b129b68a3fcc120bc",
+      "journal": "/lustre/pd03/hpc-narolski-1790461090/smad-next/AD5/dispatch/ad5_real_math_multi_v1r1_20261114",
+      "technical_collection_receipt": "/mnt/t7/smad_next/coordination_20261114/ad5_real_math_multi_v1r1_results_20261114T200359Z/COLLECTION_VERIFIED.json",
+      "technical_collection_sha256": "115917baed20ad148c162957f16928e9438015af41fa07dc23a31a12df935307",
+      "result_admission": "PASS36UPDATE_CHECKPOINT_SMOKE_ONLY",
+      "resources": {
+        "gpus": 1,
+        "cpus": 8,
+        "memory": "120G",
+        "requested_local": "150G",
+        "time_limit_minutes": 15,
+        "real_PTY": true
+      },
+      "automatic_retry": false,
+      "old_job_action": "NONE",
+      "scientific_read_authorized": false,
+      "root_acceptance": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_AD5_36_UPDATE_SMOKE_ACCEPTANCE_20261114T200359Z.json",
+      "independent_postreview": "/home/narolski/smad-next/experiments/AD5_retrains-of-released-methods/real_math_multi_v1r1_20261114/AD5_MULTI_V1R1_POSTRESULT_INDEPENDENT_REVIEW_20261114.md",
+      "independent_postreview_sha256": "5e5ad6395a531f427c5d046388f6f1cf2b54578ec8b519bdfa2395422f2f1267",
+      "next_action": "Prepare separately registered NEW late-recovery full B401\u2013405 series; no full GPU release yet"
+    },
+    {
+      "job_id": "6310127",
+      "work": "SelfMAD retrain",
+      "platform": "WCSS",
+      "observed_state": "PARTIALLY_COMPLETED",
+      "recovery_record": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/POST_LIMITS_RECOVERY_20261115.md",
+      "scientific_admission": "HOLD_PENDING_INDEPENDENT_REVIEW",
+      "recovery_recorded_at_utc": "2026-11-15T17:59:35.464042+00:00"
+    },
+    {
+      "job_id": "3545813",
+      "work": "MADation L retrain",
+      "platform": "Athena",
+      "observed_state": "COMPLETED",
+      "recovery_record": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/POST_LIMITS_RECOVERY_20261115.md",
+      "scientific_admission": "HOLD_PENDING_INDEPENDENT_REVIEW",
+      "recovery_recorded_at_utc": "2026-11-15T17:59:35.464042+00:00"
+    },
+    {
+      "job_id": "3545814",
+      "work": "MADation B retrain",
+      "platform": "Athena",
+      "observed_state": "COMPLETED",
+      "recovery_record": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/POST_LIMITS_RECOVERY_20261115.md",
+      "scientific_admission": "HOLD_PENDING_INDEPENDENT_REVIEW",
+      "recovery_recorded_at_utc": "2026-11-15T17:59:35.464042+00:00"
+    }
+  ],
+  "planning_buffer_hours": 1,
+  "planning_buffer_status": "operational assumption, unmeasured; replace from transfer timings",
+  "unknowns": [
+    "actual available H100 slots and array concurrency",
+    "guaranteed scheduler start times",
+    "GX readiness completion time",
+    "current provider offers and prices",
+    "current rental balance and remaining spending authorization",
+    "transfer/hash duration for fallback workload"
+  ],
+  "conditional_512_scenarios": [
+    {
+      "parallel_gpus": 15,
+      "waves": 1,
+      "runtime_hours_per_wave": 6,
+      "latest_start": "2026-11-15T11:00:00+01:00"
+    },
+    {
+      "parallel_gpus": 5,
+      "waves": 3,
+      "runtime_hours_per_wave": 6,
+      "latest_start": "2026-11-14T23:00:00+01:00"
+    },
+    {
+      "parallel_gpus": 3,
+      "waves": 5,
+      "runtime_hours_per_wave": 6,
+      "latest_start": "2026-11-14T11:00:00+01:00"
+    }
+  ],
+  "next_actions": [
+    "repair and independently review existing batch-C reader before registered read",
+    "complete selection adapters and admission on CPU",
+    "lead query actual requested resources/concurrency and account eligibility",
+    "fill live price and balance evidence only when a ready scientifically eligible workload justifies a concrete rental proposal",
+    "Keep H100-only jobs on WCSS; prioritize Athena for compatible A100 work; evaluate cheaper GPU fallback within USD10 only if useful and admissible."
+  ],
+  "resource_policy": {
+    "updated_at": "2026-11-14T10:52:54.870488+00:00",
+    "paid_h100_allowed": false,
+    "h100_only_destination": "WCSS",
+    "a100_primary_destination": "Athena",
+    "vast_authorized_cap_usd": 10,
+    "vast_policy": "Only cheaper compatible GPU fallback when reviewed workload delivers useful result sooner; no paid H100, no request to expand H100 budget. Do not silently move registered H100-only workloads.",
+    "queue_delay_policy": "Report deadline risk and admissible scope reduction/deferment; do not weaken gates or assume additional funds."
+  },
+  "last_sprint_update_utc": "2026-11-14T14:46:58.692130+00:00",
+  "updated_at": "2026-11-14T20:32:34.889408+00:00",
+  "root_scientific_closeout_20261114T200359Z": {
+    "record": "experiments/AGENTIC_delivery_20261114/ROOT_RANKING_FULL15_SCIENTIFIC_ACCEPTANCE_20261114T200359Z.json",
+    "recorded_at": "2026-11-14T21:53:39.005727+00:00",
+    "ranking_result": "read_once_complete_reviewed_NOT_ESTABLISHED_NOT_QUALIFIED",
+    "protocol_adoption": false,
+    "full_ad5_launch": "HOLD_PENDING_EXPLICIT_BUDGET_AND_FRESH_RELEASE",
+    "new_user_budget_answer": "PENDING",
+    "old_allowance": "300 A100-hours supersedes250; incomplete balance; no implicit H100 conversion"
+  },
+  "root_native_correction_20261114T221535Z": {
+    "at": "2026-11-14T22:19:39.897481+00:00",
+    "source": "/mnt/t7/smad_next/coordination_20261114/wcss_metadata_correction_20261114T221535Z",
+    "idistill_6312778": "TIMEOUT; not eligible; no retry authorized",
+    "mixfacenet": "5/5 COMPLETED; final405opaque collection hashverified, no scientific read",
+    "supersedes_prior_running_summary": true
+  },
+  "post_limits_recovery_20261115": {
+    "recorded_at_utc": "2026-11-15T17:59:35.464042+00:00",
+    "status": "OPAQUE_RESULTS_RECOVERED",
+    "files": 14,
+    "bytes": 17205616640,
+    "receipts": {
+      "/mnt/t7/smad_next/coordination_20261114/post_limits_recovery_20261115T174931Z/SELF_COLLECTION_VERIFIED.json": "c9eea1d7d5d2175d6dbd7bf73c32c8c7a2e90839daf6c15abfb77aa19a3b2f4e",
+      "/mnt/t7/smad_next/coordination_20261114/post_limits_recovery_20261115T174931Z/MIX_COLLECTION_VERIFIED.json": "35dc81a3fefbc9468aed10b3d0aafd22f3d41d48e3ad4649980e40f562fd6037",
+      "/mnt/t7/smad_next/coordination_20261114/post_limits_recovery_20261115T174931Z/ATHENA_COLLECTION_VERIFIED.json": "5bd214060f56716af07fbec29726b5511e33921c0b54b31ff7c692d62ca4bd51"
+    },
+    "WCSS": {
+      "SelfMAD": {
+        "completed_seeds": [
+          401,
+          402
+        ],
+        "running_seeds": [
+          403,
+          404
+        ],
+        "pending_seeds": [
+          405
+        ]
+      },
+      "MixFaceNet": "5/5 completed; missing full archives401/402 now copied",
+      "IDistill": "TIMEOUT; no completed production archive found",
+      "runtime6324846": "TIMEOUT; not runtime PASS",
+      "user_held_array": "6294928_4-14 preserved"
+    },
+    "Athena": {
+      "MADation_B": "5/5 COMPLETED; all5 archives verified",
+      "MADation_L": "5/5 COMPLETED; all5 archives verified",
+      "active_queue": "empty at saved query",
+      "new_grant": "plgmorphgeneral remains unavailable; previous tasks completed on existing account"
+    },
+    "archive_members_opened": false,
+    "scientific_scores_read": false,
+    "job_mutations": false,
+    "collection_source": "/mnt/t7/smad_next/coordination_20261114/post_limits_recovery_20261115T174931Z",
+    "snapshot_note": "scheduler status is the saved17:49UTC observation; native timestamp offsets not inferred"
+  }
+}

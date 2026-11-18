@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-14T23:32:24.682062+00:00",
+  "scope": "source + fake subprocess fixtures only; no actual release/selection/runtime/pack/scorer/models",
+  "results": [
+    {
+      "command": "python3 source/test_generated.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_create_only_no_overwrite (__main__.Durability.test_create_only_no_overwrite) ... ok\ntest_kill_retention (__main__.Durability.test_kill_retention) ... ok\ntest_term_retention (__main__.Durability.test_term_retention) ... ok\ntest_control_hash_refusal_and_symlink (__main__.Fixtures.test_control_hash_refusal_and_symlink) ... ok\ntest_denial_before_task_or_staged_data (__main__.Fixtures.test_denial_before_task_or_staged_data) ... ok\ntest_source_permission_selection_and_cohort_mismatch (__main__.Fixtures.test_source_permission_selection_and_cohort_mismatch) ... ok\ntest_staged_provenance_refusal (__main__.Fixtures.test_staged_provenance_refusal) ... ok\ntest_task_role_seed_binding_and_order (__main__.Fixtures.test_task_role_seed_binding_and_order) ... ok\ntest_untrusted_task_never_executed_and_badseed (__main__.Fixtures.test_untrusted_task_never_executed_and_badseed) ... ok\ntest_valid_control_is_not_execution (__main__.Fixtures.test_valid_control_is_not_execution) ... ok\n\n----------------------------------------------------------------------\nRan 10 tests in 0.139s\n\nOK\n"
+    },
+    {
+      "command": "python3 source/test_policy_source.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_exact_cohorts_and_common_roles (__main__.PolicySource.test_exact_cohorts_and_common_roles) ... ok\ntest_original_math_text_and_last_checkpoint_retention (__main__.PolicySource.test_original_math_text_and_last_checkpoint_retention) ... ok\ntest_self_sourcepins_match (__main__.PolicySource.test_self_sourcepins_match) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
+    }
+  ]
+}

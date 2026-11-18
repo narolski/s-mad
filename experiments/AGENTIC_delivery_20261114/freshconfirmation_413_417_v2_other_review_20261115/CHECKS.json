@@ -1,0 +1,517 @@
+{
+  "at": "2026-11-14T23:23:13.658268+00:00",
+  "verdict": "GO_FRESH_CONFIRMATION_V2_CONDITIONAL_SOURCE_PREPARATION_ONLY",
+  "author_manifest": "594a45d38146333c28cb06d0b9cfd59521f6db3deecdedab584f420b2dbb90ed",
+  "all_member_pins": {
+    "ADDITIONAL_DESCRIPTIVE_TASKS.json": "9271e4fd315d5749152b9ebc47f860dbb107c248353b4676305ea73b1fe5aaa2",
+    "COHORT_COUNTS.json": "6a04e865e6fd6aad22b8343e1665204b30754d2215422067a1336fae2cdf4b5c",
+    "CORE_TASK_TEMPLATES_V1_IDENTICAL.json": "254547b326162e5f20cbbc70850c1cc69aaef7069975189cb7d884af2ac963f4",
+    "FULL_CONDITIONAL_TASKS.json": "65efb7fa7806350e05ded2385cca4079b1f01a9f55811dca6b26aa859a861f5f",
+    "HANDOFF.md": "9556170c126c418fe783b057baea7ae6ca6f60ef5b106ceda5e4b031636d3196",
+    "INITIAL_TEST_RESULT_COUNT_ASSERTION_FAILURE.json": "47a318361fe303fd16b8a2952403fefd546938d9317d427beebdf5f154cbbab7",
+    "KNOWN_AB1_PROVENANCE.json": "b3ccfbdf612b511e30d99b39926a816d9ad354e42cec52dfa8186804b07e936d",
+    "ROOT_SCOPE_ADOPTION.json": "8394b1e6dc9cf4e46034e0d6b78cdc9e74cbd5fa93d7b2ee1691278d973223ab",
+    "SOURCE_AND_AUTHORITY_PINS.json": "b0a6ca84c7ab9c2915a658490c1996dd1f2fc2e65c77633b0f86ebd03b620eed",
+    "TEST_RESULT.json": "75c2e850665c56de5954c8b406b0b8debda9ab75dbb1ee2bb62f3ddafb86b07f",
+    "source/AB1_PARENT_DELTA.patch": "19db88841609161523fc0ddfce584ff2b12ab86853fe5cba2d295d86546f4228",
+    "source/fresh_role_contract.py": "ea1d2f9f69572f1c2242438510760040931f45c9dc4b568a959f0464988c0157",
+    "source/run_ab1_fresh_DISABLED.sh": "d81e6c235caa27ef3cc8f9445cddb0b3631ff044c807feab8b167cd5b870999d",
+    "source/test_source_contract.py": "c68bbc6ec4947436bbe4dcd3508a383a1a382310aa98b387bfe18d60c3af6095"
+  },
+  "source_authority_pins_verified": {
+    "src/AB1/run.sh": "cfa4ed26d747e1d50f66cfc2af823ed55fd7f31634d6285cff9363a5fa796ab4",
+    "experiments/AGENTIC_delivery_20261114/ROOT_FRESH_CONFIRMATION_SCOPE_ADOPTION_20261114T230335Z.json": "8394b1e6dc9cf4e46034e0d6b78cdc9e74cbd5fa93d7b2ee1691278d973223ab",
+    "experiments/AGENTIC_delivery_20261114/freshconfirmation_413_417_other_review_20261115/INDEPENDENT_SOURCE_ROLE_REVIEW_20261115.md": "a73191c5d54d1a88c610a15e529c60090f2da7f9fa769af04d06d4a8c9631ced",
+    "experiments/AGENTIC_delivery_20261114/freshconfirmation_413_417_prep_20261114/PACKAGE_SHA256SUMS": "8044bb312a38832a245a859b34bbbd08c7ddb05d30cde6e52f41230ac7cd933f",
+    "experiments/AGENTIC_delivery_20261114/freshconfirmation_413_417_prep_20261114/TASK_TEMPLATES.json": "254547b326162e5f20cbbc70850c1cc69aaef7069975189cb7d884af2ac963f4",
+    "src/NEXT/read_selection.py": "f20f42578275aa3d92b8c695ab86827a526b7f62016b98ec242bf17c0b390830",
+    "src/NEXT/native_adapters.py": "ebb40edda27a08034a6087a737109509e65c3c5ad76c748767cd19a49f2ff17c",
+    "experiments/NEXT_method-selection-rule/prereg_draft_v3.md": "5188ad9a696d86c935191a4fd45bee0f0762186c199a5bbd7d8368e87bf62667"
+  },
+  "v1_all_manifest_members_preserved": true,
+  "v1_core_bytes_identical": true,
+  "root_scope_adoption_copy_identical": true,
+  "role_plan_sha256": "37dcb5532cfba83767fe59ea09475832307db2e0ec0b9e5dda8054043e84e363",
+  "summary": {
+    "conditional_total": 190,
+    "core": 150,
+    "extra_descriptive": 40,
+    "full_counts": {
+      "SbFM": 20,
+      "GX": 15,
+      "SbMR": 25,
+      "SbM": 25,
+      "Sb512": 30,
+      "SbMR512": 30,
+      "Sbc": 25,
+      "DINOv3": 20
+    },
+    "common_AB1_nonGX_rows": 70,
+    "roles": [
+      {
+        "branch": "SbFM",
+        "role": "candidate",
+        "producer_arm": "SbFM",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbFM",
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbFM",
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "GX",
+        "role": "candidate",
+        "producer_arm": "GX",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "GX",
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "GX",
+        "role": "plain_control",
+        "producer_arm": "AB1_A",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR",
+        "role": "candidate",
+        "producer_arm": "SbMR",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR",
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR",
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR",
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbM",
+        "role": "candidate",
+        "producer_arm": "SbM",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbM",
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbM",
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbM",
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sb512",
+        "role": "candidate",
+        "producer_arm": "Sb512",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sb512",
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sb512",
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sb512",
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR512",
+        "role": "candidate",
+        "producer_arm": "SbMR512",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR512",
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR512",
+        "role": "plain_control",
+        "producer_arm": "RZ1_A512",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR512",
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sbc",
+        "role": "candidate",
+        "producer_arm": "Sbc",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sbc",
+        "role": "comparator",
+        "producer_arm": "RZ1_Sb0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sbc",
+        "role": "plain_control",
+        "producer_arm": "RZ1_A0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sbc",
+        "role": "refit_yardstick",
+        "producer_arm": "AB1_Sb",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "DINOv3",
+        "role": "candidate",
+        "producer_arm": "DINOv3",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "DINOv3",
+        "role": "adequacy_control",
+        "producer_arm": "E3_A",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "DINOv3",
+        "role": "adequacy_control",
+        "producer_arm": "E3_B",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "DINOv3",
+        "role": "comparator",
+        "producer_arm": "AB1_Sb",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbFM",
+        "role": "descriptive_support",
+        "producer_arm": "AB1_B",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR",
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbM",
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sbc",
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sb512",
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "Sb512",
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR512",
+        "role": "descriptive_support",
+        "producer_arm": "RZ1_A0",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      },
+      {
+        "branch": "SbMR512",
+        "role": "descriptive_support",
+        "producer_arm": "AB1_A",
+        "seeds": [
+          413,
+          414,
+          415,
+          416,
+          417
+        ]
+      }
+    ]
+  },
+  "generated_test_methods_passed": 6,
+  "elapsed_seconds": 0.002,
+  "bash_syntax": "PASS",
+  "original_failed_75_expectation_preserved_sha256": "47a318361fe303fd16b8a2952403fefd546938d9317d427beebdf5f154cbbab7",
+  "permanent_disabled_exit": 78,
+  "all_runtime_fit_scoring_selector_journal_science_authority": "HOLD",
+  "actual_producer_runtime_model_training_scientific_preflight_selector_state_score_payload_weights_sealed_job_GPU_access": false,
+  "author_files_modified": false
+}

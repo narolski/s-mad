@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-14T22:15:29.264139+00:00",
+  "status": "IMMUTABLE_RENDERER_SOURCE_ONLY_READY_FOR_OTHER_PRE_REVIEW",
+  "source_dir": "/home/narolski/smad-next/src/VIS2/render_v1",
+  "evidence_dir": "/home/narolski/smad-next/experiments/VIS2_private_occlusion_20261114/renderer_v1",
+  "source_manifest_sha256": "4b412cbbeea8ee3375b886db80ef39ec5f28acdd97b03e81e2d7fb93f0b921b3",
+  "config_mac_sha256": "424a14a8ba367280d18dd04e9248f2d9452d40f43e035192fc605397cc09cdad",
+  "read_contract_sha256": "cc8b90e140ea2675c955ca170ffbbd23b8add3b41fe9473808227d72b4629323",
+  "commands_sha256": "8e25a303d02f7262d57a88ac86c1d5e3cd4b0829523eb0ad84d600840899e40f",
+  "generated_tests": 14,
+  "page_mm": [
+    180,
+    322
+  ],
+  "photo_and_map_width_mm": 68,
+  "minimum_configured_font_pt": 8.2,
+  "planned_pages": {
+    "signed_color": 6,
+    "gray_sign_hatching": 6
+  },
+  "scale": "sharedpermodelall512values, nointerpolation/clipping/perpanelnormalize, L0literalzero",
+  "read_source": "Onlyfutureadmitted VIS2/full/{selfmad_hrnet_w18,A,B}/RESULT.json plus exact42/56sourcePNG replicas afternewROOTgrant",
+  "actual_RGB_RESULT_model_or_GPU_access": false,
+  "real_or_mock_render_performed": false,
+  "actual_print_QA": "DEFERRED_UNTIL_MEASURED_DATA_AND_NEW_GRANT",
+  "new_root_private_render_release": "ABSENT_REQUIRED",
+  "publication": "HOLD"
+}

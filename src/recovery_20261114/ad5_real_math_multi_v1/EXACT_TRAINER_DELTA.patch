@@ -1,0 +1,53 @@
+--- original94964/trainer.py
++++ registered_multi36/trainer.py
+@@ -177,8 +177,11 @@
+                 lr_func_drop=self.config.lr_func_drop,
+         )
+ 
++        from ad5_math_multi_runtime import MultiProbe
++        probe = MultiProbe(self, optimizer_model, optimizer_header)
+         for epoch in range(self.start_epoch, self.config.num_epoch):
+             self.train_sampler.set_epoch(epoch)
++            probe.epoch(epoch)
+             for _, (images, target) in enumerate(self.dataloader):
+                 # print(images.shape, target.shape)
+                 self.global_step += 1
+@@ -188,16 +191,21 @@
+                 # sum target and div batch size
+                 # print(target.sum() / target.shape[0])
+                 # image
+-                features_image = self.model.module.encode_image(images)
+-                _, loss_image = self.header(F.normalize(features_image), target)
+-
+-                loss_image.backward()
+-
+-                clip_grad_norm_(self.model.parameters(), max_norm=self.config.max_norm, norm_type=2)
+-                clip_grad_norm_(self.header.parameters(), max_norm=self.config.max_norm, norm_type=2)
++                probe.inputs(images, target)
++                with torch.backends.cuda.sdp_kernel(enable_flash=False, enable_math=True, enable_mem_efficient=False):
++                    probe.backend()
++                    features_image = self.model.module.encode_image(images)
++                    _, loss_image = self.header(F.normalize(features_image), target)
++                    probe.loss(loss_image)
++                    loss_image.backward()
++                probe.grads()
++
++                model_preclip_norm = clip_grad_norm_(self.model.parameters(), max_norm=self.config.max_norm, norm_type=2)
++                header_preclip_norm = clip_grad_norm_(self.header.parameters(), max_norm=self.config.max_norm, norm_type=2)
+ 
+                 optimizer_model.step()
+                 optimizer_header.step()
++                probe.finish(model_preclip_norm, header_preclip_norm)
+ 
+                 self.loss_log.update(loss_image.item(), 1)
+                 self.tensorboard_callback.log_info(
+@@ -231,7 +239,9 @@
+                     # self.tensorboard_callback.log_on_epoch_end(epoch, self.model.module.visual)
+ 
+             self.callback_save_model(epoch, self.model, self.header)
++            probe.saved(epoch)
+         self.tensorboard_callback.close()
++        probe.done()
+ 
+     def MAD_training_only_header(self):
+         # Freeze the clip model

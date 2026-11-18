@@ -1,0 +1,593 @@
+CVPR                                                                                                                                        CVPR
+                                CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+
+
+
+                   Beyond Processing Artifacts: Controlled Evaluation and Training
+                            for Single-Image Morphing Attack Detection
+
+                                                  Anonymous CVPR submission
+
+
+                               Abstract                                    of the construction; low-level differences can nevertheless       039
+                                                                           remain.                                                           040
+ 001   A face morph detector can separate benchmark morphs                    Finally, a count-balanced development follow-up sup-           041
+ 002   from genuine photographs without detecting the combina-             ports improved ranking in the full splice-positive recipe,        042
+ 003   tion of two identities. We investigate this ambiguity through       controlling rows, classes and positive repetition within          043
+ 004   morph-free training, matched manipulation controls, and             pairs. Negative content remains confounded with image             044
+ 005   training ablations. Networks trained only to distinguish            diversity; the analogous pair without splice positives lacks      045
+ 006   synthetic faces from shrink-and-enlarge copies achieve zero         the registered benefit. Blend-versus-warp and reconstruc-         046
+ 007   equal error rate on the native MorDIFF evaluation in all            tion controls retain important limitations.                       047
+ 008   ten tested networks. We introduce comparisons that pro-                Our contributions are:                                         048
+ 009   gressively control rendering, warping, blending, and con-           1. A processing-cue audit showing that a morph-free train-        049
+ 010   tributor identity, revealing substantial responses to single-          ing task can attain perfect separation on a morph bench-       050
+ 011   photo reconstructions and no established advantage beyond              mark cell, supported by paired processing and single-          051
+ 012   low-level statistics in a matched blend-versus-warp diag-              photo reconstruction controls.                                 052
+ 013   nostic. We then study training with face-spliced morphs and         2. A controlled evaluation framework separating questions         053
+ 014   matched same-person and seam-only negatives. A count-                  about rendering, warping, blending, and contributor            054
+ 015   balanced development ablation improves two-person versus               identity, with explicit limits on what each contrast es-       055
+ 016   same-person ranking by 0.048 AUC across five seeds; nega-              tablishes.                                                     056
+ 017   tive content remains confounded with 312 additional unique          3. A matched-control training study showing a count-              057
+ 018   images. The full protocol attenuates storage-induced false             balanced development ranking gain in the full recipe,          058
+ 019   alarms. The development-exposed MAD22 comparison es-                   with content and image diversity still confounded, along-      059
+ 020   tablishes neither superiority nor morph-specific detection.            side attenuated storage false alarms and a qualified           060
+ 021   Together, the results provide an evaluation framework and              benchmark comparison.                                          061
+ 022   a qualified training benefit while identifying the evidence
+ 023   still needed for identity-specific detection.                       2. Related Work                                                   062
+
+                                                                           Morph generation and attack detection. Face morph-                063
+
+ 024   1. Introduction                                                     ing exploits the possibility that a single enrollment image       064
+                                                                           can resemble multiple contributors, illustrated by the pass-      065
+ 025   Face morphing attacks [5] exploit photographs combining             port attack of Ferrara et al. [5]. The SYN-MAD competi-           066
+ 026   contributors. A single-image detector can instead recognize         tion evaluates transfer from synthetic training data to real-     067
+ 027   acquisition, resampling, blending, reconstruction or storage        image attacks [8]; SMDD established synthetic-only MAD            068
+ 028   traces. Morph-versus-photograph accuracy alone cannot               training [2]. Generation methods differ substantially in how      069
+ 029   distinguish processing sensitivity from identity-specific de-       this resemblance is constructed. MIPGAN introduces iden-          070
+ 030   tection, even when performance transfers between engines.           tity constraints into GAN-based synthesis [19], whereas           071
+ 031      We test this ambiguity with morph-free training and              MorDIFF uses diffusion autoencoders for representation-           072
+ 032   matched controls. All ten networks trained to recognize             level interpolation [3]. These mechanisms introduce dif-          073
+ 033   shrink-and-enlarge copies of synthetic faces achieve zero           ferent reconstruction and processing histories in addition to     074
+ 034   EER on native MorDIFF [3] under our preprocessing. This             changes in identity content. Consequently, detecting images       075
+ 035   establishes processing-cue sufficiency for that cell, not a         produced by a morphing pipeline and detecting evidence at-        076
+ 036   common mechanism across detectors or blur as the unique             tributable to two identities are distinct empirical questions.    077
+ 037   cause. Single-photo reconstructions, warp-only images and           Our comparisons retain conventional morph-versus-photo            078
+ 038   same-person manipulations then control progressively more           evaluation but add controls that hold more of the construc-       079
+
+
+                                                                       1
+CVPR                                                                                                                                             CVPR
+                                 CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+
+
+
+         01 Processing sufficiency                     02 Controlled comparisons                     03 Matched training
+
+         Synthetic photograph                          Render / photograph                           Two-person face splices (+)
+         ↓ shrink + enlarge                            Reconstruction pipeline                       Same-person + seam-only (−)
+         Processed copy
+                                                       Blend / matched warp                          Count-balanced follow-up
+         No morphs in training                         Added blending
+                                                                                                     +0.048 ΔAUC · 5/5 seeds
+         0% EER · 10/10 networks                       Two-person / same-person                      Whole-frame: Sb − SpV
+         Native MorDIFF, tested preprocessing          Contributor dependence                        Rows and class counts controlled;
+         Sufficiency ≠ a unique mechanism              Residual cues require explicit controls       content vs diversity remains unresolved
+
+
+       Figure 1. The experimental argument (conceptual schematic). Morph-free training establishes processing-cue sufficiency on native
+       MorDIFF under the tested preprocessing. Controls ask narrower questions about rendering, warping, blending and contributor identity.
+       The original removal ablation changes count and class balance; its count-balanced follow-up still confounds negative content with image
+       diversity.
+
+
+ 080   tion process in common. We do not assume that a shared                 Shortcut learning and mechanistic evidence. Geirhos                 114
+ 081   generator eliminates all low-level differences, nor that an            et al. [6] describe shortcut learning as the use of predic-         115
+ 082   image involving two people necessarily constitutes a suc-              tive rules that succeed under benchmark conditions but fail         116
+ 083   cessful recognition attack.                                            under more challenging conditions. In morph detection,              117
+                                                                              processing history is a plausible source of such predic-            118
+                                                                              tion because the two classes can differ systematically in re-       119
+ 084   Foundation models and synthetic supervision. CLIP                      sampling, storage, reconstruction, or image boundaries. A           120
+ 085   learns transferable representations through image–text su-             strong benchmark result alone cannot distinguish these ex-          121
+ 086   pervision [17]; LoRA adapts pretrained weights using train-            planations from sensitivity to identity mixing. Conversely,         122
+ 087   able low-rank updates [7]. Their use for morph detection               a processing perturbation that changes a detector’s output          123
+ 088   precedes this work. In particular, MADation adapts CLIP                does not prove that processing explains every correct deci-         124
+ 089   with LoRA and a binary classification head [1]. Our con-               sion.                                                               125
+ 090   tribution therefore concerns training examples, controlled                 This concern also has direct MAD precedent. A recent            126
+ 091   evaluation, and the interpretation of detector responses,              print–scan study reports substantial degradation of digitally       127
+ 092   rather than a new foundation-model architecture. Holding               trained detectors across acquisition devices [15]. Our stor-        128
+ 093   the backbone and optimization recipe fixed allows compar-              age and reconstruction controls ask a complementary ques-           129
+ 094   isons of alternative training lists, although removing exam-           tion: can processing produce an attack response even when           130
+ 095   ples can still change class balance, repetition, and effective         no second identity is present? This complements domain-             131
+ 096   diversity. These quantities must be accounted for before at-           shift evaluation with matched tests of score specificity.           132
+ 097   tributing an effect specifically to the semantic content of the
+ 098   added controls.
+ 099       SelfMAD addresses cross-method generalization                      Blending as supervision and as a control. Face X-ray                133
+ 100   through self-supervised simulation of morphing artifacts in            learns a representation of blending boundaries for general          134
+ 101   pixel and frequency space [9]. This is closely related to the          face-forgery detection [13]. Self-Blended Images synthe-            135
+ 102   use of synthetic supervision, but it also highlights a central         size forgery supervision by blending transformed versions           136
+ 103   question for evaluation: which simulated artifacts remain              of a single pristine image [18]. Both establish that useful         137
+ 104   specific to an attack when acquisition and processing                  manipulation supervision can be generated without exam-             138
+ 105   change? SelfMAD++ combines such augmentation with                      ples from the target forgery method. Their objective is to          139
+ 106   a CLIP-based model, local spatial features, and auxiliary              recognize forgery traces; our same-person and seam-only             140
+ 107   segmentation [10]. We distinguish these two methods;                   negatives instead challenge the sufficiency of selected traces      141
+ 108   evaluation of the released SelfMAD detector does not                   for a two-contributor label. A self-blend can therefore be a        142
+ 109   establish superiority over SelfMAD++. Our approach                     useful positive for forgery detection and a useful negative         143
+ 110   is complementary to architecture and augmentation im-                  control for contributor dependence. This difference in tar-         144
+ 111   provements: paired controls can be used to examine their               get property, rather than a claim that blending artifacts are       145
+ 112   decision mechanisms without presuming that any particular              universally undesirable, motivates our construction.                146
+ 113   training strategy is inherently artifact-independent.                     Our contribution connects three tests: processing-only           147
+
+
+                                                                          2
+CVPR                                                                                                                                                  CVPR
+                                 CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+
+
+ 148   supervision as a benchmark counterexample, matched com-                 Comparison                      Question addressed
+ 149   parisons that separate rendering and blending from contrib-
+                                                                               Processed vs original photo- Can processing alone alter a de-
+ 150   utor changes, and a controlled study of adding matched neg-             graph                        cision?
+ 151   atives. The framework tests whether a proposed explanation              One-photo render vs camera Is the rendering path sufficient?
+ 152   survives a specified comparison. It neither introduces a new            image
+ 153   backbone nor certifies an identity mechanism; texture, noise            Blend vs matched warp- Does blending add a detectable
+ 154   averaging, geometry and the surround remain measurable                  only image                   signal beyond warping?
+ 155   alternative explanations.                                               Two-person vs same-person Does ranking persist when both
+                                                                               morph                        sides combine photographs?
+ 156   3. Controlled Evaluation of Morph Detection                             Two-person vs same-person Does        training   distinguish
+                                                                               splice                       matched local manipulations?
+ 157   A detector can separate benchmark morphs from genuine
+ 158   photographs without identifying the property that motivates            Table 1. Complementary controls. Passing one comparison does
+ 159   the task: contributions from different people. Our frame-              not establish invariance to the others or prove identity-specific de-
+ 160   work therefore asks two questions separately: which im-                tection.
+ 161   age transformations are sufficient to activate a detector, and
+ 162   whether discrimination persists when the negative example
+ 163   undergoes a comparable construction process. We use the                make the mere presence of an insertion seam insufficient                 198
+ 164   term control for an image that removes a proposed explana-             to reproduce the training labels; residual seam or blending              199
+ 165   tion from a comparison. It does not imply that every control           differences remain possible cues.                                        200
+ 166   is an unmodified bona fide photograph.                                    We evaluate whole-frame and region-restricted forms                   201
+                                                                              separately. Removing the surround can reveal a dependence                202
+ 167   3.1. Image processing and identity mixing                              on background processing, but blanking is itself a distribu-             203
+ 168   Let xi denote a photograph of person i, and let x′i be a dif-          tion shift. In the matched FaceMorpher diagnostic, the re-               204
+ 169   ferent photograph of the same person. Write Me (xi , xj ) for          tained region includes the face and the tool’s halo ring; it             205
+ 170   an image produced by morphing engine e, and Ph (x) for an              is not an anatomically pure face interior. We therefore in-              206
+ 171   image with processing history h. A conventional compari-               terpret its AUC as a ranking diagnostic and separately re-               207
+ 172   son separates Me (xi , xj ), i ̸= j, from xi . Its class differ-       port the fixed-threshold response to the blanked controls.               208
+ 173   ence includes identity mixing, geometric warping, blend-               A score change under blanking cannot, by itself, locate the              209
+ 174   ing, rendering, storage and potentially the background. A              original decision mechanism.                                             210
+ 175   high area under the ROC curve (AUC) on this comparison                    The whole-frame two-person versus same-person analy-                  211
+ 176   does not identify which of these differences the detector ex-          sis also stratifies by a splice-derived change proxy D. For              212
+ 177   ploits.                                                                a splice S, its outside-image counterpart C, and shared face             213
+ 178       We introduce controls that retain different parts of this          hull H, define                                                           214
+ 179   construction. A warp-only control undergoes geometric                                                         3
+ 180   transformation without combining two images. A same-                                               1 XX
+                                                                                         D(S, C) =               |Spc − Cpc |.                 (1)     215
+ 181   person morph Me (xi , x′i ) combines two photographs but                                         3|H| c=1
+                                                                                                              p∈H
+ 182   not two identities. A one-photo reconstruction passes a sin-
+ 183   gle input through a generative rendering path. These com-              This mean absolute RGB difference is measured on stored                  216
+ 184   parisons narrow the interpretation of a score; none automat-           512-pixel images in the range [0, 255]. The two-person                   217
+ 185   ically isolates an identity mechanism. In particular, two              splice copies whole-frame morph pixels into a warp-only                  218
+ 186   photographs of one person still differ in expression, pose,            image directed toward the two-person mean shape; the                     219
+ 187   illumination and texture, while blending can change local              same-person splice copies same-person morph pixels into                  220
+ 188   variance and noise independently of identity.                          its corresponding warp-only image. Both use the convex                   221
+                                                                              hull of the averaged host and other-person 106-point land-               222
+ 189   3.2. Matched constructions and regional controls                       marks, rounded to integer coordinates. Pixel copying intro-              223
+ 190   Our landmark construction ladder includes camera pho-                  duces no additional blur or resampling. The seam-only con-               224
+ 191   tographs, warp-only images, same-person whole-frame                    struction instead inserts same-person warp-only pixels into              225
+ 192   morphs and two-person whole-frame morphs. The splice                   the two-person warp-only counterpart. Each splice equals                 226
+ 193   construction places a manipulated face region into a host              its counterpart outside the hull. For whole-frame observa-               227
+ 194   frame. Its positive is a two-person face splice; its negatives         tions, the two-person morph receives its host’s two-person-              228
+ 195   include a seam-only construction and a same-person splice.             splice D, and the same-person morph receives the same-                   229
+ 196   These negatives retain parts of the insertion procedure while          person-splice D. Thus, this is a proxy adjustment, not di-               230
+ 197   removing the intended two-person change. These examples                rect matching of whole-frame blend energy. Within each                   231
+
+
+                                                                          3
+CVPR                                                                                                                                          CVPR
+                                 CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+
+
+ 232   eligible stratum q, we compute an AUC aq and aggregate it             copies remain positives. This crossing prevents storage his-      279
+ 233   as                        P + −                                       tory from being exclusively associated with the attack label      280
+                                   q nq nq aq                                within those construction strata.                                 281
+ 234                       aD = P + − ,                     (2)
+                                                                                 Sb, our full protocol, adds two-person face-spliced pos-      282
+                                    q nq nq
+                                                                             itives to B together with their seam-only and same-person         283
+                        −
+ 235   where n+ q and nq count the two construction classes. The             splice negatives. Sp removes those matched splice nega-           284
+ 236   registered analysis uses quintiles of log D, requires at least        tives from Sb while retaining the splice positives. The splice    285
+ 237   ten examples of each class per retained stratum, and re-              addition comprises 124 two-person positives and 156 exam-         286
+ 238   quires retained strata to cover at least half of the rows. This       ples of each matched-negative construction before balanc-         287
+ 239   reduces a measured blend-strength imbalance; it does not              ing. The resulting Sb list has 5,535 unique images and 8,386      288
+ 240   match every low-level image property. We report simple                balanced rows; A and B contain 1,526 and 5,099 unique             289
+ 241   image-statistic references alongside network performance              images, respectively. Training sources are FRGC [16] and          290
+ 242   rather than interpreting controlled ranking as direct proof           colorFERET [14] constructions; FFHQ [12] controls are de-         291
+ 243   of identity recognition.                                              velopment evaluations, not a benchmark. FRLL people do            292
+                                                                             not enter these training manifests. FaceMorpher images are        293
+ 244   3.3. Processing-only and statistic-based references                   excluded from the original Sb training recipe; later second-      294
+ 245   To test whether processing can suffice without morph super-           engine candidates are separate experiments and are not sub-       295
+ 246   vision, we evaluate networks trained to distinguish synthetic         stituted into the results reported here.                          296
+ 247   face images from their shrink-and-enlarge copies. Neither                 The original Sb–Sp removal ablation removes 312               297
+ 248   positive morph examples nor blending is needed for that               unique images and 624 training rows, changing class com-          298
+ 249   training task. Success on a morph benchmark is therefore              position and exposure. A count-balanced follow-up com-            299
+ 250   evidence that the benchmark admits a processing-based so-             pares Sb with SpV, which substitutes repeated native neg-         300
+ 251   lution. It is not evidence that every detector implements the         atives for matched splice negatives, and BN with BV,              301
+ 252   same decision rule.                                                   the analogous pair without splice positives. All four             302
+ 253       We additionally use hand-crafted image statistics and             have 8,386 balanced rows; their unique-image counts are           303
+ 254   learned combinations of them as alternative explanations.             5,535/5,223/5,411/5,099, respectively. Positive multisets,        304
+ 255   Their scope depends on where they were fitted. A learner              including repetition, match within each pair, not across all      305
+ 256   fitted on the detector’s training list and transferred to com-        four arms. Thus row count and class balance are controlled,       306
+ 257   mon evaluation rows is distinct from a cross-fitted diagnos-          but matched-negative content remains confounded with 312          307
+ 258   tic trained within the evaluation distribution. The latter can        additional unique images per pair. Same-person and seam-          308
+ 259   demonstrate that local statistics are predictive, but is not          only contributions are not separated.                             309
+ 260   a like-for-like generalization competitor to a network that
+ 261   never saw that distribution. We retain this distinction in the        4.2. Fixed optimization and inference                             310
+
+ 262   tables and conclusions.                                               All primary replication arms use 224-pixel inputs and the         311
+                                                                             same registered training implementation: 6,250 updates,           312
+ 263   4. Training with Matched Controls                                     batch size 256, AdamW with weight decay 0.05, constant            313
+                                                                             learning rates of 3.33 × 10−6 for the adapted backbone            314
+ 264   Our intervention changes the training examples while re-              and 3.33 × 10−5 for the head, and horizontal-flip aug-            315
+ 265   taining a fixed detector and optimization recipe. The de-             mentation. Query and value attention projections receive          316
+ 266   tector is a CLIP ViT-B/16 image encoder adapted through               rank-two, rank-stabilized LoRA [11] updates with alpha            317
+ 267   low-rank attention updates and a classification head. It pro-         four and dropout 0.4; normalization parameters are not            318
+ 268   cesses a single image at inference. No image-resolution               trained. Label smoothing and stochastic depth are dis-            319
+ 269   rule, source classifier, ensemble or score fusion is added to         abled, the positive-class weight is one, and gradient clip-       320
+ 270   the decision path.                                                    ping is five. The final checkpoint is used without validation-    321
+                                                                             based checkpoint selection. Training-list balancing repeats       322
+ 271   4.1. Training sets                                                    the minority-class rows within source-database and storage        323
+ 272   We compare four central training sets. A, the plain baseline,         strata; repeated examples are not counted as independent          324
+ 273   contains photographs and two-person whole-frame morphs.               images.                                                           325
+ 274   B augments A with protocol controls: warp-only images,                    Each arm is trained at seeds 408–412 on H100 hardware         326
+ 275   the morphs’ individual warped input halves, and existing              for the primary ablation. The earlier frozen candidate uses       327
+ 276   small-storage copies. Small-storage examples occur on                 seeds 403–407 and is reported separately. At inference we         328
+ 277   both sides of the classification problem: photographs and             retain the original score orientation and use a positive logit    329
+ 278   individual halves are negatives, while two-person morph               as the detector’s own decision rule. AUC and equal er-            330
+
+
+                                                                         4
+CVPR                                                                                                                                          CVPR
+                                 CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+
+
+ 331   ror rate (EER) summarize ranking, whereas genuine false-              caveat and the selectively readable splice-bootstrap limita-      381
+ 332   alarm rates and attack miss rates describe fixed-threshold            tion.]                                                            382
+ 333   behavior. EER thresholds are not presented as deployed op-
+ 334   erating points.                                                       Experimental scope. We separate benchmark discrimi-               383
+                                                                             nation, responses to controlled manipulations, and training       384
+ 335   4.3. Evaluation and uncertainty                                       ablations. Our main training ablation comprises 40 CLIP           385
+ 336   The matched whole-frame analysis pools 100 development                ViT-B/16 networks with LoRA, eight training variants and          386
+ 337   hosts with 80 test hosts screened for development-person              five seeds per variant (408–412), trained for 6,250 steps and     387
+ 338   overlap. This screening does not imply complete con-                  evaluated at the last checkpoint. We denote plain training        388
+ 339   struction independence: 11 of the 80 hosts retain shape               by A, training with protocol negatives by B, B augmented          389
+ 340   links through landmarks used in training controls. A reg-             with face-spliced morphs and matched negatives by Sb, and         390
+ 341   istered sensitivity subset excludes these links, retaining 69         Sb without matched splice negatives by Sp. All results con-       391
+ 342   test hosts; it is not substituted for the primary population          cern individual networks; averages summarize runs rather          392
+ 343   after observing outcomes. Shared hosts and partners cre-              than combine their predictions. Development analyses and          393
+ 344   ate dependence, so its 2,000 bootstrap draws resample per-            post-hoc mechanism diagnostics are identified below. Their        394
+ 345   son components of the host–partner graph, using common                results do not constitute independent benchmark confirma-         395
+ 346   draws for all compared networks. We average per-network               tion.                                                             396
+ 347   statistics rather than logits. These component intervals con-
+ 348   dition on the fitted networks. The original ablation also             5.1. Processing cues suffice for strong benchmark                 397
+ 349   reports seed-level intervals; the count-balanced follow-up                  scores                                                      398
+ 350   does not resample seeds or quantify arbitrary retraining un-          A direct test of benchmark specificity is to train a detec-       399
+ 351   certainty. The FaceMorpher diagnostic has its own host-               tor without morph examples. Networks trained only to dis-         400
+ 352   block bootstrap and is labeled accordingly rather than as-            tinguish synthetic SMDD faces [2] from their shrink-and-          401
+ 353   signed the same uncertainty interpretation.                           enlarge copies achieve 0.0% EER on native MorDIFF un-             402
+ 354       The component-based contrasts were registered as post-            der our preprocessing in all ten evaluated networks across        403
+ 355   hoc development analyses, with prior exposures docu-                  two recipes. The two recipes adapt CLIP ViT-B/16 and ViT-         404
+ 356   mented. They are not untouched external confirmation.                 L/14 at seeds 401–405, each using 25,000 original synthetic       405
+ 357   Likewise, although the five frozen Sb networks had not been           faces and 25,000 pre-existing shrink-and-enlarge copies           406
+ 358   scored on benchmarks before their MAD22 read, earlier                 (scale 0.3125), 224-pixel inputs and final checkpoints af-        407
+ 359   seeds on MAD22 influenced recipe choice. Its genuine pool             ter 6,250 updates. Scoring averages sigmoid outputs for           408
+ 360   contains 204 FRLL photographs. We report that exposure                the image and its horizontal flip. This establishes the suf-      409
+ 361   explicitly and do not treat MAD22 and FRLL identity cov-              ficiency of a processing-only training task for perfect dis-      410
+ 362   erage as independent. These distinctions are necessary to             crimination in this evaluation. It does not establish that all    411
+ 363   separate a useful controlled training effect from claims of           morph-trained detectors use precisely that cue. Shrinking         412
+ 364   benchmark superiority or generalization.                              and enlarging also change several image properties jointly;       413
+                                                                             the experiment does not isolate blur as a unique causal vari-     414
+ 365   5. Experiments and results                                            able. The pinned construction source and committed build          415
+                                                                             receipt specify OpenCV AREA reduction of the 256 × 256            416
+ 366   Draft revision targets (work in progress). [WIP–                      originals to 80 × 80, stored losslessly as PNG. This con-         417
+ 367   TRANSFER: Add a compact threshold-transfer paragraph                  struction adds no alignment or separate enlargement. The          418
+ 368   from the reviewed TT1/MEDS records, with source-specific              common loader converts both classes to RGB and resizes            419
+ 369   false alarms and the absence of attack-sensitivity evidence.          with PIL bilinear interpolation to 224 × 224: 80 → 224 for        420
+ 370   Place full per-seed tables in the supplement.]                        processed positives and 256 → 224 for native negatives.           421
+ 371      [WIP–CONFIRMATION: Update the method and abla-                         Rendering controls reveal a related ambiguity within our      422
+ 372   tion tables only after registered selection, fresh-seed confir-       own candidate. Table 2 compares camera photographs,               423
+ 373   mation and independent results review. Distinguish admit-             single-photo GAN reconstructions, and same- and different-        424
+ 374   ted results from completed jobs. Preserve MAD22/FRLL                  person MIPGAN morphs. Sb almost perfectly ranks single-           425
+ 375   exposure; do not insert projected FRLL-Morphs numbers.]               photo renders above camera images, yet its two-person ver-        426
+ 376      [WIP–REPRODUCIBILITY: Supply immutable train-                      sus same-person ranking is substantially weaker. Moreover,        427
+ 377   ing loss and preprocessing, source-person and construction            it flags 78–90% of single-photo renders despite their con-        428
+ 378   counts, exclusions, exposure map, resampling units and                taining no second identity. The presence of some separa-          429
+ 379   per-seed results. Add real paired construction examples               tion between two-person morphs and reconstructions pre-           430
+ 380   with verified provenance. Keep the 11/80 shape-linked-host            vents concluding that these populations are identical to the      431
+
+
+                                                                         5
+CVPR                                                                                                                                            CVPR
+                                 CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+
+
+       Table 2. MIPGAN mechanism controls: ranges over five Sb net-          Table 3. Blend-versus-warp diagnostic on the face plus halo. In-
+       works. High render-versus-camera AUC coexists with substantial        tervals resample 64 host blocks over 299 hosts and condition on
+       activation on images containing one identity. Pools contain 227       five networks per arm.
+       camera photos, 238 one-photo renders, 119 same-person and 74
+       two-person morphs respectively; training-linked partners reduce            Training                  AUC         95% interval
+       the two-person pool.
+                                                                                  Plain (A)                 0.864      [0.848, 0.881]
+                                                                                  Protocol negatives (B)    0.879      [0.862, 0.894]
+              Measurement                                  Sb
+                                                                                  Full protocol (Sb)        0.889      [0.873, 0.908]
+              One-photo renders flagged (%)             78–90
+                                                                                  Sb − B                   +0.011    [−0.010, +0.031]
+              Same-person morphs flagged (%)           98–100
+              Two-person morphs flagged (%)               100
+              Camera photos flagged (%)                 0–0.4
+              Render vs. camera AUC               0.992–0.998                5.3. Matched controls improve manipulation rank-                    465
+              Two-person vs. render AUC           0.864–0.932                      ing                                                           466
+              Two-person vs. same-person AUC      0.619–0.690
+                                                                             The original matched-pipeline ablation compares two-                467
+                                                                             person and same-person whole-frame morphs, pooling de-              468
+                                                                             velopment hosts with 80 clean test hosts and applying the           469
+
+ 432   detector; nevertheless, rendering alone produces a strong re-         registered D-stratification. This is a post-hoc develop-            470
+
+ 433   sponse. The registered composite rendering verdict remains            ment analysis, not an untouched test. Sb improves over              471
+
+ 434   inconclusive. These controls therefore limit the interpreta-          B by 0.042 AUC (Fig. 2). Removing its matched same-                 472
+
+ 435   tion of low GAN-morph benchmark error.                                person and seam-only splice negatives loses 0.049 AUC,              473
+                                                                             with all five paired differences positive. Splice positives         474
+                                                                             without these negatives give no detectable pooled gain over         475
+                                                                             B. The positive Sb–B and Sb–Sp contrasts retain positive            476
+ 436   5.2. Blending discrimination is not identity discrim-
+                                                                             99.5% intervals, [0.008, 0.081] and [0.019, 0.083], respec-         477
+ 437         ination
+                                                                             tively. Their paired seed-level 95% intervals also exclude          478
+ 438   We compare FaceMorpher two-person blends against                      zero. These checks support a repeatable ranking benefit in          479
+ 439   matched warp-only images on 299 FFHQ development                      this setting. At the own-rule threshold, however, Sb still          480
+ 440   hosts. The decision form retains the face and the morph-              flags 85% of same-person whole-frame morphs (B: 92%;                481
+ 441   ing tool’s halo ring and replaces the surround with gray.             A: 98%; pooled seed means).                                         482
+ 442   This diagnostic was registered after the frozen candidate’s              This original removal contrast changes training count            483
+ 443   benchmark read and cannot provide blind confirmation. All             and class balance. Re-analysis of frozen seeds 403–407              484
+ 444   three training variants discriminate blends from warps (Ta-           yields the same direction, Sb–B +0.051 AUC, but reuses              485
+ 445   ble 3). However, Sb’s gain over B is only +0.011 AUC,                 inspected development comparisons and is not independent            486
+ 446   with a 95% interval of [−0.010, 0.031], and is positive in            confirmation.                                                       487
+ 447   three of five seeds. The registered verdict is inconclusive.             For two-person versus same-person face splices on the            488
+ 448   Host-block intervals condition on the trained networks; a             80 clean hosts, the stratified Sb–B gain is +0.118 AUC              489
+ 449   paired seed-level interval is wider, [−0.027, 0.049].                 [0.069, 0.245]. This interval retains only 1,246 of 2,000           490
+                                                                             bootstrap draws with readable strata; discarding 37.7% was          491
+ 450      Hand-crafted statistics cross-fitted on these evaluation           not registered and limits its interpretation. The unstratified      492
+ 451   rows attain 0.925 and 0.917 AUC. These in-domain ref-                 sensitivity is +0.169 [0.136, 0.204]. At the fixed own-rule         493
+ 452   erences are not directly comparable generalization base-              threshold, same-person splice flags fall from 70–74% for            494
+ 453   lines for networks that did not train on FFHQ or FaceMor-             Sp to 36–41% for Sb. This is consistent with the supplied           495
+ 454   pher. They nonetheless show that low-level statistics remain          negative examples and does not establish rejection of same-         496
+ 455   a viable explanation. No arm meets the registered crite-              person manipulations. In particular, improved ranking and           497
+ 456   rion for performance beyond both learners trained on its              low control false-alarm rates are distinct requirements.            498
+ 457   own training list. Consequently, the experiment supports
+ 458   blend-versus-warp discrimination consistent with blending
+ 459   and noise averaging, not identity-specific recognition. Gray          Count-balanced          follow-up. The        post-freeze,          499
+ 460   blanking also shifts decisions: 47–99% of warp-only im-               development- and MAD22-informed follow-up reads                     500
+ 461   ages are flagged across the three arms, compared with 2–              all 30 networks (Sb, B, Sp, SpV, BN, BV; seeds 408–412),            501
+ 462   14% in their whole-frame form. Thus the face-region AUC               with no dropped seeds. Table 4 reports its four registered          502
+ 463   must not be interpreted as robustness at a deployed thresh-           outcomes. Primary OpenCV whole-frame ranking uses                   503
+ 464   old.                                                                  D-stratification on 100 development plus 80 screened test           504
+
+
+                                                                         6
+CVPR                                                                                                                                               CVPR
+                                   CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+
+
+       A Matched whole-frame controls                                            with matched negatives plus 312 additional unique images           515
+                                                                                 in the full recipe. BN–BV lacks the registered +0.03 ben-          516
+       Two-person vs same-person • D-stratified
+                                                                                 efit on both outcomes; this is not equivalence to zero. Its        517
+                                                +0.042 [+0.019, +0.070]          adverse secondary effect contradicts the expected benefit:         518
+
+       Sb − B
+                                                                                 the 95% interval is negative, but the 99.5% sensitivity inter-     519
+                                                                                 val [−0.0538, 0.0031] crosses zero. Sb–SpV remains posi-           520
+                                                +0.063 [+0.037, +0.097]          tive at 99.5% on both outcomes; these sensitivities are not        521
+       Sb − A                                                                    a familywise correction. Descriptive differences between           522
+                                                +0.049 [+0.028, +0.073]          pair effects are +0.0511 primary and +0.1064 secondary,            523
+       Sb − Sp                                                                   with no interaction interval or significance test. Positive ex-    524
+
+                                                  -0.008 [-0.033, +0.022]
+                                                                                 amples match only within pairs, so these differences do not        525
+                                                                                 isolate a universal requirement for splice positives. Inde-        526
+       Sp − B
+                                                                                 pendent numerical reconstruction exactly matched all 166           527
+                                                                                 checks for the four outcomes; this verifies arithmetic, not        528
+       B Blend vs warp
+                                                +0.011 [-0.010, +0.031]          external generalization.                                           529
+       Sb − B
+                                                +0.025 [+0.003, +0.048]          Storage sensitivity. Paired storage perturbations increase         530
+       Sb − A                                                                    genuine false alarms by 26.5–38.5 percentage points for A          531
+                                                                                 at the trained small-image size, versus 0–4.5 points for Sb.       532
+                            −.04        0      +.04       +.08                   At the untrained size, the corresponding ranges are 5.5–15.2       533
+                                      ΔAUC → higher ranking                      and 0–2.1 points. However, the registered test combines            534
+                                                                                 flag-rate and two-sided score-movement bounds. Sb passes           535
+       Figure 2. Development ranking gains. Top: two-person ver-
+                                                                                 five of five seeds at the trained size but only three at the       536
+       sus same-person whole-frame morphs, D-stratified, on devel-
+                                                                                 untrained size: two failures arise from score movement to-         537
+       opment plus 80 person-overlap-screened hosts (seeds 408–412).
+       Bottom: face-plus-halo blend-versus-warp diagnostic on FFHQ               ward genuine. The overall verdict is therefore inconclusive.       538
+       (seeds 403–407). Bars are 95% component/block bootstrap in-               We report attenuation of storage-induced false alarms, not         539
+       tervals conditional on networks, not joint seed-and-host intervals.       removal of the shortcut.                                           540
+       Filled/open points denote registered present/inconclusive verdicts.
+       Panels use different data and resampling schemes.                         5.4. Development-exposed benchmark comparison                      541
+
+                                                                                 Table 5 reports the frozen Sb networks on corrected                542
+       Table 4. Count-balanced development evidence: mean AUC                    MAD22 [8]. No method met the registered freeze rule; the           543
+       differences and conditional 95% component-bootstrap intervals.            authors froze Sb by decision before these networks were            544
+       Positive-seed counts retain all five seeds.
+                                                                                 benchmark-scored. The deciding endpoint was changed be-            545
+                                                                                 fore that read from development-threshold errors to EER,           546
+         Pair            Gain           95% interval         Seeds > 0           because the training-source threshold flagged 96–98% of            547
+         Primary: whole-frame, D-stratified                                      unseen-source genuine photos. Its recipe was chosen af-            548
+         Sb − SpV +0.0481         [0.0269, 0.0722]              5/5              ter MAD22 results from earlier seeds were available; seeds         549
+         BN − BV −0.0030         [−0.0089, 0.0045]              1/5              403–407 were new to benchmark evaluation. The genuine              550
+         Secondary: face splices, unstratified                                   side comprises 204 FRLL photographs [4]. This is conse-            551
+         Sb − SpV +0.0818            [0.0535, 0.1083]           5/5              quently a development-exposed benchmark evaluation, not            552
+         BN − BV −0.0247 [−0.0455, −0.0050]                     0/5              an independent identity-level confirmation on FRLL. Re-            553
+                                                                                 leased detectors are compared at their better raw-genuine or       554
+                                                                                 aligned-history form; SelfMAD’s [9] raw form has the low-          555
+ 505   hosts; two-person whole-frame positives occur in training,                est four-family point mean among MADation B/16, MADa-              556
+ 506   but same-person whole-frame negatives do not. Secondary                   tion L/14, MixFaceNet-MAD and SelfMAD, each in raw-                557
+ 507   splice ranking uses the 80 screened hosts, unstratified as                genuine and history-matched forms. This comparator is              558
+ 508   fixed before the read. Its 2,000 draws are all usable, unlike             held fixed in bootstrap draws; it is not selected separately       559
+ 509   the stratified secondary diagnostic (37.7% unreadable);                   for each table row.                                                560
+ 510   primary stratification loses no draws. Both use paired                        The four-family difference is −1.4 percentage points,          561
+ 511   host–partner component bootstraps (151/51 components),                    with a two-level 95% interval of [−3.51, 0.98]. Each of            562
+ 512   conditional on the five trained networks, without seed                    2,000 paired bootstrap draws resamples the 102 contrib-            563
+ 513   resampling.                                                               utor persons and five seed indices. A genuine photo re-            564
+ 514      Sb–SpV supports replacing repeated native negatives                    ceives its person’s multinomial count; a morph receives the        565
+
+
+                                                                             7
+CVPR                                                                                                                                              CVPR
+                                 CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+
+
+       Table 5. Corrected MAD22 EER (%), lower is better. Sb uses the         Control validity and operation. Same-person manipula-                600
+       registered history-matched form and is averaged over five seeds.       tions test contributor dependence, not document acceptabil-          601
+       SelfMAD uses raw genuine photographs. MAD22 influenced                 ity. Blanking shifts the distribution and increases warp-only        602
+       recipe development.
+                                                                              flags; in-domain simple-cue learners are explanatory refer-          603
+                                                                              ences, not matched generalization competitors. Finite con-           604
+                 Family (n morphs)          Sb    SelfMAD
+                                                                              trols cannot establish universal shortcut freedom. Report            605
+                 OpenCV (984)             2.26         1.02                   ranking and perturbation responses alongside family-level            606
+                 Webmorph (500)          10.39        13.73                   attack misses and genuine false alarms: suppressing artifact         607
+                 MIPGAN-I (1,000)         0.57         2.45                   responses is useful only if attack sensitivity is retained.          608
+                 MIPGAN-II (999)          0.28         1.70
+                 Four-family mean          3.37         4.72                  7. Conclusion                                                        609
+                 Landmark-only mean        6.32         7.37
+                                                                              Single-image morph detection requires evidence beyond                610
+                                                                              morph-versus-photo separation. Morph-free training and               611
+                                                                              single-photo reconstruction controls show why strong                 612
+ 566   product of both contributors’ counts. Common draws serve               benchmark performance can coexist with unresolved pro-               613
+ 567   all detectors and families. The registered one-point non-              cessing explanations. Our controlled comparisons ex-                 614
+ 568   inferiority criterion narrowly passes: its bootstrap tail prob-        pose these explanations, and matched-control training im-            615
+ 569   ability is 0.02499 against 0.025; one additional exceedance            proves selected development contrasts while attenuating              616
+ 570   among 2,000 replicates changes the verdict. Superiority                storage-induced false alarms. The remaining rendering re-            617
+ 571   is not established. The landmark-only difference is −1.0               sponse and inconclusive blend-control advantage define the           618
+ 572   points [−4.7, 3.0] and is not separated. Half of the primary           next scientific challenge: preserving attack detection while         619
+ 573   average comprises GAN families whose identity specificity              demonstrating transfer under controls that increasingly con-         620
+ 574   remains unresolved by our rendering controls. FaceMor-                 strain non-identity explanations.                                    621
+ 575   pher was excluded from this endpoint because morph-free
+ 576   networks achieve zero EER on that cell. Finally, EER is not            LLM Usage Statement                                                  622
+ 577   the fixed-threshold error: Webmorph attack misses at the
+ 578   own rule range from 24–58%, while genuine false alarms                 OpenAI Codex assisted with organizing experiment records             623
+ 579   range from 0–2.5%. These results support competitive dis-              and auditing evidence; proposing experiments; preparing              624
+ 580   crimination alongside, rather than proof against, remaining            training, analysis and infrastructure code; coordinating ex-         625
+ 581   shortcuts.                                                             periments; literature research; manuscript drafting and revi-        626
+                                                                              sion; and preparing figures derived from experimental data.          627
+                                                                              This is a draft disclosure of the confirmed Codex scope.             628
+ 582   6. Discussion and Limitations                                          Historical Claude and OpenCode records were imported as              629
+                                                                              context; the authors must verify the full historical tool usage      630
+ 583   Mechanism and intervention. Morph-free benchmark                       and its extent, and finalize this statement before submission.       631
+ 584   separation and one-photo rendering responses establish pro-
+ 585   cessing sensitivity, not the absence of useful identity infor-         References                                                           632
+ 586   mation or a common mechanism across detectors. Count-
+ 587   balanced gains in the full recipe control rows, classes and             [1] Eduarda Caldeira, Guray Ozgur, Tahar Chettaoui, Marija          633
+ 588   positive repetition within pairs, but matched-negative con-                 Ivanovska, Peter Peer, Fadi Boutros, Vitomir Struc, and         634
+                                                                                   Naser Damer. MADation: Face morphing attack detection           635
+ 589   tent remains confounded with 312 additional unique im-
+                                                                                   with foundation models. In IEEE/CVF Winter Conference           636
+ 590   ages. Absent registered benefit without splice positives is                 on Applications of Computer Vision Workshops, pages 1565–       637
+ 591   neither zero equivalence nor an interaction test.                           1575, 2025. 2                                                   638
+                                                                               [2] Naser Damer, César Augusto Fontanillo López, Meiling            639
+                                                                                   Fang, Noémie Spiller, Minh Vu Pham, and Fadi Boutros.           640
+                                                                                   Privacy-friendly synthetic data for the development of face     641
+ 592   Exposure and uncertainty. MAD22 informed develop-
+                                                                                   morphing attack detectors. In IEEE/CVF Conference on            642
+ 593   ment; new seeds do not restore independence. Its 204 FRLL                   Computer Vision and Pattern Recognition Workshops, pages        643
+ 594   photographs create exposure relevant to later FRLL-Morphs                   1606–1617, 2022. 1, 5                                           644
+ 595   evaluation, which is not reported here. Component-only in-              [3] Naser Damer, Meiling Fang, Patrick Siebke, Jan Niklas Kolf,     645
+ 596   tervals condition on fitted networks and do not capture arbi-               Marco Huber, and Fadi Boutros. MorDIFF: Recognition vul-        646
+ 597   trary retraining variability; dependence also limits effective              nerability and attack detectability of face morphing attacks    647
+ 598   sample size. No untouched-benchmark superiority is estab-                   created by diffusion autoencoders. In International Work-       648
+ 599   lished.                                                                     shop on Biometrics and Forensics, 2023. 1                       649
+
+
+                                                                          8
+CVPR                                                                                                                                              CVPR
+                                  CVPR 2027 Submission. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+
+
+ 650    [4] Lisa DeBruine and Benedict Jones. Face research lab london          [17] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya            707
+ 651        set. Figshare dataset, 2017. 7                                           Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry,         708
+ 652    [5] Matteo Ferrara, Annalisa Franco, and Davide Maltoni. The                 Amanda Askell, Pamela Mishkin, Jack Clark, Gretchen           709
+ 653        magic passport. In International Joint Conference on Bio-                Krueger, and Ilya Sutskever. Learning transferable visual     710
+ 654        metrics, pages 1–7, 2014. 1                                              models from natural language supervision. In International    711
+ 655    [6] Robert Geirhos, Jörn-Henrik Jacobsen, Claudio Michaelis,                 Conference on Machine Learning, pages 8748–8763, 2021.        712
+ 656        Richard Zemel, Wieland Brendel, Matthias Bethge, and Fe-                 2                                                             713
+ 657        lix A. Wichmann. Shortcut learning in deep neural networks.         [18] Kaede Shiohara and Toshihiko Yamasaki. Detecting deep-        714
+ 658        Nature Machine Intelligence, 2:665–673, 2020. 2                          fakes with self-blended images. In IEEE/CVF Conference        715
+ 659    [7] Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-                 on Computer Vision and Pattern Recognition, pages 18720–      716
+ 660        Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen.                   18729, 2022. 2                                                717
+ 661        LoRA: Low-rank adaptation of large language models. In In-          [19] Haoyu Zhang, Sushma Venkatesh, Raghavendra Ramachan-          718
+ 662        ternational Conference on Learning Representations, 2022.                dra, Kiran Raja, Naser Damer, and Christoph Busch.            719
+ 663        2                                                                        MIPGAN—generating strong and high quality morphing at-        720
+ 664    [8] Marco Huber, Fadi Boutros, Anh Thi Luu, Kiran Raja,                      tacks using identity prior driven GAN. IEEE Transactions      721
+ 665        Raghavendra Ramachandra, Naser Damer, Pedro C. Neto,                     on Biometrics, Behavior, and Identity Science, 2021. 1        722
+ 666        Tiago Gonçalves, Ana F. Sequeira, Jaime S. Cardoso, João
+ 667        Tremoço, Miguel Lourenço, Sergio Serra, Eduardo Cer-
+ 668        meño, Marija Ivanovska, Borut Batagelj, Andrej Kronovšek,
+ 669        Peter Peer, and Vitomir Štruc. SYN-MAD 2022: Compe-
+ 670        tition on face morphing attack detection based on privacy-
+ 671        aware synthetic training data. In International Joint Confer-
+ 672        ence on Biometrics, pages 1–10, 2022. 1, 7
+ 673    [9] Marija Ivanovska, Leon Todorov, Naser Damer, Deepak Ku-
+ 674        mar Jain, Peter Peer, and Vitomir Štruc. SelfMAD: Enhanc-
+ 675        ing generalization and robustness in morphing attack detec-
+ 676        tion via self-supervised learning. In IEEE International Con-
+ 677        ference on Automatic Face and Gesture Recognition, pages
+ 678        1–10, 2025. 2, 7
+ 679   [10] Marija Ivanovska, Leon Todorov, Peter Peer, and Vitomir
+ 680        Štruc. SelfMAD++: Self-supervised foundation model with
+ 681        local feature enhancement for generalized morphing attack
+ 682        detection. Information Fusion, 127:103921, 2026. 2
+ 683   [11] Damjan Kalajdzievski. A rank stabilization scaling factor for
+ 684        fine-tuning with LoRA. arXiv preprint arXiv:2312.03732,
+ 685        2023. 4
+ 686   [12] Tero Karras, Samuli Laine, and Timo Aila. A style-based
+ 687        generator architecture for generative adversarial networks.
+ 688        In IEEE/CVF Conference on Computer Vision and Pattern
+ 689        Recognition, pages 4401–4410, 2019. 4
+ 690   [13] Lingzhi Li, Jianmin Bao, Ting Zhang, Hao Yang, Dong
+ 691        Chen, Fang Wen, and Baining Guo. Face X-Ray for more
+ 692        general face forgery detection. In IEEE/CVF Conference
+ 693        on Computer Vision and Pattern Recognition, pages 5001–
+ 694        5010, 2020. 2
+ 695   [14] National Institute of Standards and Technology. Color
+ 696        FERET database. Dataset documentation, 2011. Updated
+ 697        September 2025. 4
+ 698   [15] Diogo J. Paulo, Hugo Proença, and João C. Neves. Printed
+ 699        and scanned: Exposing the fragility of single-image mor-
+ 700        phing attack detectors under print-scan degradation. arXiv
+ 701        preprint arXiv:2610.35682, 2026. 2
+ 702   [16] P. Jonathon Phillips, Patrick J. Flynn, W. Todd Scruggs,
+ 703        Kevin W. Bowyer, Jin Chang, Kevin Hoffman, Joe Marques,
+ 704        Jaesik Min, and William Worek. Overview of the face recog-
+ 705        nition grand challenge. In IEEE Computer Society Confer-
+ 706        ence on Computer Vision and Pattern Recognition, 2005. 4
+
+
+                                                                            9
+

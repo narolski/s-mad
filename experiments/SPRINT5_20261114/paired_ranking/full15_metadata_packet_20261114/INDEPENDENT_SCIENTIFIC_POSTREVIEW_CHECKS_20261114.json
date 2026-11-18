@@ -1,0 +1,254 @@
+{
+  "scope": "Admitted RESULT arithmetic/source/provenance only; no raw scores, arrays, archives, reader rerun or new inference. CI replicates unavailable; no independent CI recomputation.",
+  "checks": [
+    {
+      "check": "result expected hash",
+      "pass": true
+    },
+    {
+      "check": "release expected hash",
+      "pass": true
+    },
+    {
+      "check": "binding",
+      "pass": true
+    },
+    {
+      "check": "roster",
+      "pass": true
+    },
+    {
+      "check": "independent_review",
+      "pass": true
+    },
+    {
+      "check": "collector_review",
+      "pass": true
+    },
+    {
+      "check": "reader manifest",
+      "pass": true
+    },
+    {
+      "check": "source EXPECTED_PLANS.json",
+      "pass": true
+    },
+    {
+      "check": "source README.md",
+      "pass": true
+    },
+    {
+      "check": "source SUPPORT_POLICY.json",
+      "pass": true
+    },
+    {
+      "check": "source __init__.py",
+      "pass": true
+    },
+    {
+      "check": "source admit.py",
+      "pass": true
+    },
+    {
+      "check": "source collect_metadata.py",
+      "pass": true
+    },
+    {
+      "check": "source data.py",
+      "pass": true
+    },
+    {
+      "check": "source journal.py",
+      "pass": true
+    },
+    {
+      "check": "source metadata_only_check.py",
+      "pass": true
+    },
+    {
+      "check": "source ranking_statistics.py",
+      "pass": true
+    },
+    {
+      "check": "source read.py",
+      "pass": true
+    },
+    {
+      "check": "source reporting.py",
+      "pass": true
+    },
+    {
+      "check": "source test_reporting.py",
+      "pass": true
+    },
+    {
+      "check": "source test_synthetic.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/prepare_production_metadata.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/prepare_floor_inputs.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/fit_primary_floors.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/audit_calibration_provenance.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/prepare_guard_cells.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/verify_prefit.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/prereg.md",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/paired.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/patch_train.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/check_cpu.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/verify_release.py",
+      "pass": true
+    },
+    {
+      "check": "bound source /home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/check_battery_byte.py",
+      "pass": true
+    },
+    {
+      "check": "fresh external prefit guard",
+      "pass": true
+    },
+    {
+      "check": "ordered release/admit/claim",
+      "pass": true
+    },
+    {
+      "check": "terminal and driver",
+      "pass": true
+    },
+    {
+      "check": "terminal result digest",
+      "pass": true
+    },
+    {
+      "check": "all15 retained",
+      "pass": true
+    },
+    {
+      "check": "arms seeds",
+      "pass": true
+    },
+    {
+      "check": "exact contrasts",
+      "pass": true
+    },
+    {
+      "check": "ranking_minus_paired_BCE arithmetic",
+      "pass": true
+    },
+    {
+      "check": "ranking_minus_paired_BCE decision",
+      "pass": true
+    },
+    {
+      "check": "paired_BCE_minus_BCE arithmetic",
+      "pass": true
+    },
+    {
+      "check": "paired_BCE_minus_BCE decision",
+      "pass": true
+    },
+    {
+      "check": "floor arithmetic",
+      "pass": true
+    },
+    {
+      "check": "all descriptive arithmetic",
+      "pass": true
+    },
+    {
+      "check": "IUT all120",
+      "pass": true
+    },
+    {
+      "check": "qualification",
+      "pass": true
+    }
+  ],
+  "pins": {
+    "/mnt/t7/smad_next/SPRINT5_1/reader_output_v1/RESULT.json": "31e68aadf8e2c451ce57bd6320469a33dc107fe34cf232ebd4fe5aaf7111e601",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/full15_metadata_packet_20261114/ROOT_READER_READ_RELEASE.json": "f7f07580f6ebb194d7491c1e5688c016d8f336894b5bcadcf7dd15640ea58511",
+    "/mnt/t7/smad_next/SPRINT5_1/reader_once_v1/CLAIM.json": "0abd74fcac0eee4757f5dcb2b77680bd34ab6de48caa8f433d70ebdd7220bd89",
+    "/mnt/t7/smad_next/SPRINT5_1/reader_once_v1/TERMINAL.json": "57599bb326e980afa0f6fff21da1b308a8bf4a90546331025734817922e46edb",
+    "/mnt/t7/smad_next/coordination_20261114/ranking_scientific_read_20261114T200359Z/ADMIT_ONLY.json": "7af8a9cc5c22b7dbc9f7a697d4bf772cc21e5b2175faafa0a095683de8d70602",
+    "/mnt/t7/smad_next/coordination_20261114/ranking_scientific_read_20261114T200359Z/EXECUTION.json": "ec0f9de6e4d43fc15d602268dee6902ec7b7d7a1d3d33fe04c4b6cff4d612820",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/prefit_binding_v1/BINDING.json": "519546ef7002930f620610f01deb0cc4e8889acf819b829a80c05f95fff6e923",
+    "/mnt/t7/smad_next/SPRINT5_1/metadata_collection_full15_v2_20261114_v1/READER_ROSTER.json": "6c115d91a8813e66a711ed612af71476459343ffcd2cde0e1977c66e35e542ee",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/full15_metadata_packet_20261114/ACTUAL_METADATA_POSTREVIEW_20261114.md": "d09399c9af89b087f7f28f3cdd5eb24f53feeeaab1c8724cc66e01991c792d17",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/full15_metadata_packet_20261114/INDEPENDENT_OPERATIONAL_REVIEW_20261114.md": "c85710a0314b59b1b3e50e8592df613219e88bd8a18e859de375ab1fb19ccb10",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/SHA256SUMS": "93b2ff226ee337fe3a486e0077be0a774a5229ce28ada45b46e41d6ed3ef42f4",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/EXPECTED_PLANS.json": "f7db5acb7df89ac5ad6c4de4f1f1a00295fab7ffd120bb98684a250c6ec7630c",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/README.md": "65db1454c9aed58338b72077e79d7bc9f6255c6b3b37099fce580298edeed4aa",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/SUPPORT_POLICY.json": "b63206fdee0af9dc15c814cc15fef4dbbe9bb6b42d75efed94b308629208aab7",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/__init__.py": "445189d026b11d629bdbfe12d55c7bda43d2ae9c4c558b29a9e4954f146eca2d",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/admit.py": "d93f9b2791012fb51b29e224da33ee7a7a9de364f951a7597544c692afc172ec",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/collect_metadata.py": "37fff74a6847f8216cabcbef23d7081cfa54e381390df99c1881175d59949bb2",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/data.py": "7b910e922b99b2a5225361fdb8a9a2fc9ec7004a76e2ae7721fd981f04793b4d",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/journal.py": "a06a9d9f74fb8b394c2d00938d4459d0c3a18e827108063ea73aa29cf7af2e65",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/metadata_only_check.py": "5fa6996a092c6b037c7cbdbe287d528e774fb420896e0b6eb420fa21e73ddcab",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/ranking_statistics.py": "4e93a99cdb643eabef37f56bf70a770a8dec22f1a32fe6a8de1c5b1f7e81dd5e",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/read.py": "f78fd95e241264b3e2fc031c10537fb0ca9880539c283b439b3ebc31818adc91",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/reporting.py": "e1a3d13621c909ffb624451e8b0a055bda0d18e9230d591b9c6b42b5f7688a02",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/test_reporting.py": "b90851ade7709d8449e35003d8afca50a0bb7a65c5bbe4d8bd1add45f55066f2",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/test_synthetic.py": "7e95c3cf6d303137c1ae375bb910fec9fa044f2036cb59fb92eec8946fe2ca43",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/prepare_production_metadata.py": "3954b0fa23a010a974921e1c50c65c255b9ce3f5e6d4359e4198f1a5fd9120ae",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/prepare_floor_inputs.py": "2c3f68a604570f9a40c45240ebde40e3b077c8584c39a083a447880262672144",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/fit_primary_floors.py": "c607ef458d5265bb25c314d674e72338a71902a8acfc59749fbaaf9b90cbcd1a",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/audit_calibration_provenance.py": "574df04480a95ca2b1a4ef3339bef7fa88fa3f75eb12d8b0dd3399e6b9946a3e",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/prepare_guard_cells.py": "fd7c4ddba6f96ef9b266589eae0aded2dfadc31ddaacce92fb5bcbef69465960",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_prefit/verify_prefit.py": "91c730c1788ccde5c51a629c920372e0746c28cc535650b5bf538a31e6d0de84",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/prereg.md": "789b148a6a5f99bd597dbe488eff59782d33763db0463f3ba0dff9bb95625970",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/paired.py": "e5ab5ce98beaabba77c893efe42cd2d6aaec252fac79b3f144676288fe517b13",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/patch_train.py": "ed103b44ede70e5b3232e708d775907363df829779081fe7e50c623277d96eb7",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/check_cpu.py": "62fbc04cfa348270e51f5503b4960a7c70e4567d4352a085155e41049eba6681",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/verify_release.py": "1cd43b0179d00c45e545360207e8a3cdd3c7e27262cad7456e996b701fa7d9f5",
+    "/home/narolski/smad-next/src/SPRINT5/paired_ranking_v3/check_battery_byte.py": "1443d9db11bc9b946bad364210be6091064f18ea722c6ff9545fb487d09ce02c",
+    "/mnt/t7/smad_next/coordination_20261114/ranking_full15_metadata_execution_20261114T200359Z/ROOT_FRESH_PRELAUNCH_GUARD.json": "10c997aaaf21c3bfc20909835162d98313d7a753a5a2d35c8b184dcf503b40d2"
+  },
+  "rate_blocks_checked": 252,
+  "within_D_means": [
+    0.7398029605263158,
+    0.7491974937343359,
+    0.770391604010025
+  ],
+  "unstratified_means": [
+    0.77614,
+    0.7823800000000001,
+    0.8076599999999999
+  ],
+  "guard_status_counts": {
+    "INCONCLUSIVE": 68,
+    "PASS": 47,
+    "FAIL": 5
+  },
+  "disposition": "RESULT_CONSISTENT; optimization NOT_ESTABLISHED; operational NOT_QUALIFIED; root adoption pending"
+}

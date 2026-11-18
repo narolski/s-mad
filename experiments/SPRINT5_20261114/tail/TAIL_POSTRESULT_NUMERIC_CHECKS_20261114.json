@@ -1,0 +1,41 @@
+{
+  "status": "PASS_SAVED_RESULT_ARITHMETIC_AND_CHAIN",
+  "result_sha256": "b5aaf0d368dcf46f819a1fd0b1489e1067d5d00ccb70520531f9e66c3fa9599f",
+  "claim_sha256": "6bffcc81ade96e4d3ecc02bf31c0135ca6d688398fb422e8e68469e04cb0eb94",
+  "terminal_sha256": "7544fc198f46ac3949f8c9a8b5ffa5d275cd9d5173cfb29c44bdd0e1c3887f00",
+  "release_sha256": "cee816232869b06bf8097fa8204dc866b78e3d3f575b29913ce8d2062de48644",
+  "roster_sha256": "08502ee93c955e5e43c645d2a7a2230cecf52c38558aabf80dcaeae0d11c7e88",
+  "binding_sha256": "ff2aa74853658d1d318725e42eedbdd2ac16cde8d7da57971c04e4447626c6a2",
+  "reader_sums_sha256": "943d47ef9ac0638c46dc1fdaf65782cabbd43d93405ce80305c4bac58c1fce5b",
+  "details": {
+    "all_90_genuine_point_rates_zero": true,
+    "S4_sensitivity_per_network": [
+      [
+        0.6470588235294118,
+        0.6470588235294118,
+        0.6470588235294118,
+        0.6470588235294118,
+        0.6470588235294118
+      ],
+      [
+        0.6470588235294118,
+        0.6470588235294118,
+        0.6470588235294118,
+        0.6470588235294118,
+        0.6470588235294118
+      ],
+      [
+        0.5294117647058824,
+        0.5294117647058824,
+        0.5882352941176471,
+        0.5294117647058824,
+        0.5294117647058824
+      ]
+    ],
+    "cvar_minus_mean_S4_mean": -0.1058823529411765,
+    "all8_NI": "INCONCLUSIVE",
+    "diagnostic_auc_cells": 6,
+    "quantile_distributions": 8
+  },
+  "limits": "No raw-score reconstruction; point AUC/order-statistic quantiles accepted as saved inputs; arithmetic/registered CIs reconstructed from saved summaries/replicates."
+}

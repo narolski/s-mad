@@ -1,0 +1,52 @@
+{
+  "status": "OPAQUE_ONLY_NOT_NATIVE_ELIGIBILITY",
+  "source_receipt": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_RZ1_FIFTEEN_OPAQUE_ARRIVAL_VERIFIED_20261114.json",
+  "source_receipt_sha256": "e8baeeec16009f464eb85b81e81145058e9c560bda64f654fc793153eed375ba",
+  "models": [
+    {
+      "name": "RZ1_SbMR512_s408.tar",
+      "seed": 408,
+      "archive_path": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/RZ1_SbMR512_s408.tar",
+      "archive_sha256": "79ca0ba532f64e6205be288313621f26656209c45c1fa195f81246c7b98d688e",
+      "bytes": 11888640,
+      "source_receipt": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/COLLECTION_VERIFIED.json",
+      "source_receipt_sha256": "a8945a19f8dd201778ee7e938e31a85484f532671015e3f65e8bf6913f13ab14"
+    },
+    {
+      "name": "RZ1_SbMR512_s409.tar",
+      "seed": 409,
+      "archive_path": "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/RZ1_SbMR512_s409.tar",
+      "archive_sha256": "186159f33d82427ecaa2a1f446f73078c7a5b1a9fdc46abf1ad3ac7f2d1a3653",
+      "bytes": 11888640,
+      "source_receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/COLLECTION_VERIFIED.json",
+      "source_receipt_sha256": "ebfe827636af62ce6384e395dc78074f4a0823438976bdcd22c13a72e3f4e38b"
+    },
+    {
+      "name": "RZ1_SbMR512_s410.tar",
+      "seed": 410,
+      "archive_path": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/RZ1_SbMR512_s410.tar",
+      "archive_sha256": "24f01ff6e56b5c524fd617a9a843fd53f6ecdfa94d88795aad10d58f09ec72d5",
+      "bytes": 11888640,
+      "source_receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/COLLECTION_VERIFIED.json",
+      "source_receipt_sha256": "9bf5baa28cedfc5f6d24e5dc8e62061bb16ad20f6b3e04fb1a0faf0a43549ae0"
+    },
+    {
+      "name": "RZ1_SbMR512_s411.tar",
+      "seed": 411,
+      "archive_path": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/RZ1_SbMR512_s411.tar",
+      "archive_sha256": "4150d2697fc2a963875fea306a58c3a80f2bf706e228fc18df4e53e4c1125cd2",
+      "bytes": 11888640,
+      "source_receipt": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/COLLECTION_VERIFIED.json",
+      "source_receipt_sha256": "fca961c6171ce536036f6ded958db44210cc964040a76cdbad70b458a2c4fcea"
+    },
+    {
+      "name": "RZ1_SbMR512_s412.tar",
+      "seed": 412,
+      "archive_path": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/RZ1_SbMR512_s412.tar",
+      "archive_sha256": "928810c74bc919f192e6bb253e2bc4e5e5e5301d60dfbcc90ada26b9de15f3a6",
+      "bytes": 11888640,
+      "source_receipt": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/COLLECTION_VERIFIED.json",
+      "source_receipt_sha256": "fca961c6171ce536036f6ded958db44210cc964040a76cdbad70b458a2c4fcea"
+    }
+  ]
+}

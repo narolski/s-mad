@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-14T17:08:21.289775+00:00",
+  "status": "FIRST_BOUNDED_CATALOGUE_AND_PRIVATE_PREVIEW_READY_FOR_INDEPENDENT_REVIEW",
+  "files": {
+    "SHORTCUT_VISUAL_EXAMPLE_CATALOG.md": "413d1e7d95f5e5326251786bb4abc93f93da7d9f0e7bce05488d64138ad855f6",
+    "SHORTCUT_VISUAL_EXAMPLE_MANIFEST.json": "688c77fce46306ef3b3456ca6face24c8e6f0d0dfc26c3e21d8e0baad497e1dd",
+    "VISUAL_EVIDENCE_PLAN.md": "a6e897e8fa38a1951a64009364226dab7d5a160b5cd3da7cca82ff55459934ec"
+  },
+  "examples": 9,
+  "existing_private_hero": "FFHQ00010 SelfMAD score0.155714\u21920.891845, compoundhistory notJPEG-only",
+  "source_image_export": "Only existing private-licensed XAI FFHQ00010 inputs reused; noFERET export",
+  "new_gpu_or_inference": false,
+  "closed_candidate_or_sealed_payload_access": false,
+  "preview_receipt": "/mnt/t7/smad_next/VISUAL_EXAMPLES_20261114/PREVIEW_RECEIPT.json",
+  "publication": "HOLD",
+  "next_action": "Independent evidence/rights/layout review; prospective adult-source responsecensus before replacing privatechildhero; VIS1 registration and exactruntime/source pinning before GPU"
+}

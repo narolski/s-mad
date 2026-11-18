@@ -1,0 +1,99 @@
+{
+  "runner_sha256": "0ba34b628bb8ed2b6b9b291e874ce2ac8354c25a28ac3d7905c1450da28257ed",
+  "sources": [
+    {
+      "path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/XAI_PROTOCOL_20261114.md",
+      "sha256": "602ab77d2679b0b29811c863c8b9e39f1257476fbdef03b2a647e2e7e9f4e16e"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/XAI_FP32_ADDENDUM_20261114.md",
+      "sha256": "0dbb7ae93453c0e04eba500619f55d83ea0008b11b3dbe042e3d4c404245c4a1"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/XAI_FP64_ADDENDUM_20261114.md",
+      "sha256": "3f81271e589a605d613c0aaf8f387d61a2cfaffd9b63b3ca19ec0425479b6a43"
+    },
+    {
+      "path": "/home/narolski/smad-next/manuscript_cvpr2027/figures/shortcut_prototype_assets/source_manifest.json",
+      "sha256": "ad3749c0b9119dd50cc9f69005b702a2cf9a71301eb01f7342daedeb239d0fc3"
+    },
+    {
+      "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr/common.py",
+      "sha256": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8"
+    },
+    {
+      "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr/archs_a12.py",
+      "sha256": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876"
+    },
+    {
+      "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr/archs_v2.py",
+      "sha256": "15eb64589c59bc418ac741422379c4b00c754a1c7a511075fba349a3a78957de"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/common.py",
+      "sha256": "b5d42a99cae4f1f2f6dd2965d4973c8f9f65cf73212ffd0a17af4daee33bbea8"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/archs_a12.py",
+      "sha256": "bedfeb86af2c92aed717e4f43e0b6c466306756d911afc93bcbdd1aae9994876"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/archs_v2.py",
+      "sha256": "15eb64589c59bc418ac741422379c4b00c754a1c7a511075fba349a3a78957de"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/a12_released.py",
+      "sha256": "839f0cd4498577cad5410a63e1da63feeff53e05a3bed2c511ff67cac01e41da"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/a36_madation.py",
+      "sha256": "bc87465f0969dd3bb26e5511017df69d52c4d926dcc38c19aa9cdf1ba55ec876"
+    },
+    {
+      "path": "/home/narolski/mambamorph-code-a46/smadcvpr/mixfacenet_port.py",
+      "sha256": "ba35736b4a5e284b3b7dcf38e2423a85f7ede4a7c8addeec3b856e786cdadcdd"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "/home/narolski/smad-next/manuscript_cvpr2027/figures/shortcut_prototype_assets/aligned_native.png",
+      "sha256": "b7e6fec12650ff19aba14e6d2ee35db1cf3bfdf6b4e3977c88d4cb38582f8b94",
+      "condition": "native"
+    },
+    {
+      "path": "/home/narolski/smad-next/manuscript_cvpr2027/figures/shortcut_prototype_assets/existing_storage_matched.png",
+      "sha256": "b5a8251f04ae7630f2e4264b402ae6feacadef59a4cd6bb8386fd57ec278a1a1",
+      "condition": "storage"
+    },
+    {
+      "path": "/home/narolski/smad-next/manuscript_cvpr2027/figures/shortcut_prototype_assets/existing_border_matched.png",
+      "sha256": "7fd133b67a1634ae1c996bc370c7e9fedc4ad1ee140edd9aa1798817e088da33",
+      "condition": "border"
+    }
+  ],
+  "models": {
+    "Sb": {
+      "kind": "own",
+      "code": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr",
+      "meta": "/mnt/t7/smad_next/TT1/nets_fs/PN1_Sb_s403/meta.json",
+      "checkpoint": "/mnt/t7/smad_next/TT1/nets_fs/PN1_Sb_s403/last_trainable.pt",
+      "checkpoints": [
+        {
+          "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_Sb_s403/meta.json",
+          "sha256": "bdb190b803187c71b022baa3e89cce05b81de6e2932fd8539565696966baf08d"
+        },
+        {
+          "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_Sb_s403/last_trainable.pt",
+          "sha256": "a8d12d828116c5a9e596f2d0a446e513227bc79c2afa57b9334b5379614dfbc9"
+        },
+        {
+          "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/hf/a12/vit_base_patch16_clip_224.openai.safetensors",
+          "sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f"
+        }
+      ],
+      "seed": 403,
+      "checkpoint_type": "last_trainable plus pinned frozen CLIP base"
+    }
+  },
+  "hf_home": "/mnt/t7/smad_next/PN1/fs_tree/pn1/hf"
+}

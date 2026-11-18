@@ -1,0 +1,20 @@
+--- frozen_v1r1/produce.py
++++ worker_wcss_v1/produce.py
+@@ -13,7 +13,7 @@
+  try:os.fsync(fd)
+  finally:os.close(fd)
+ def authorize(r,a,mode,seed,source):
+- assert r["decision"]==("GO_SBMR512_BII_TIMING_V1R1" if mode=="timing" else "GO_SBMR512_BII_FULL_V1R1")
++ assert r["decision"]==("GO_SBMR512_BII_TIMING_WCSS_PATH_V1" if mode=="timing" else "GO_SBMR512_BII_FULL_WCSS_PATH_V1")
+  assert r["root_authorized"] is True and r["author"]!=r["reviewer"] and r["reviewer"]
+  assert r["seed"]==seed and seed in (408,409,410,411,412) and (mode!="timing" or seed==408)
+  assert r["scientific_read"]=="HOLD" and r["automatic_retry"] is False
+@@ -33,7 +33,7 @@
+  assert a["cross_ids"]==authority["cross_ids"]
+  assert sha(a["context_binding_path"])==authority["context_binding_sha256"]
+  assert a["full_checkpoint_hash_substituted_for_trainable"] is False
+- assert pathlib.Path(r["output"]).resolve()==pathlib.Path("/mnt/t7/smad_next/RZ1/SbMR512_bii_producer_v1r1")/(mode+"_s"+str(seed))
++ assert pathlib.Path(r["output"]).resolve()==pathlib.Path("/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/SbMR512_bii_timing_wcss_v1")/(mode+"_s"+str(seed))
+  assert sha(r["technical_attachment_adoption_path"])==r["technical_attachment_adoption_sha256"]
+  assert r["technical_attachment_postreview_sha256"]=="495f24ddccbb5b69383a9790ea7dc2c175f5ba72ee11a0d67db605ee0afd5b16"
+  if mode=="full":

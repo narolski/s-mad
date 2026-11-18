@@ -1,0 +1,18 @@
+{
+  "status": "SOURCE_READY_FOR_OTHER_REVIEW_EXECUTION_HOLD",
+  "author": "Sol",
+  "reviewer": null,
+  "source_manifest_sha256": "910f05bf4e8a5c341aaec1f270b0a6a82164a630a164ceca7242ab5fbdb6525e",
+  "scope": "CURRENT_ISOLATED_RUNTIME_IMPORT_METADATA_ONLY",
+  "model_input_flags_required": false,
+  "actual_execution": false,
+  "root_runtime_release": null,
+  "remaining": [
+    "OTHER source review",
+    "new explicit root import/CUDA/runtime/loadedELF grant",
+    "native bootstrap/driver-tool/source pins",
+    "site capacity/resource envelope and stage census",
+    "actual receipt OTHER review"
+  ],
+  "scientific_read": "HOLD"
+}

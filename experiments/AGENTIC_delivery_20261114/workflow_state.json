@@ -1,0 +1,92 @@
+{
+  "schema": "smad-agentic-workflow-v1",
+  "updated_at": "2026-11-14T11:01:57.594858+00:00",
+  "operational_status": "active_preparation",
+  "persistent_monitor": false,
+  "sealed_read_released": false,
+  "current_rule_commit": "dbeb940",
+  "selection_deadline": "2026-11-15T18:00:00+01:00",
+  "confirmation_seeds": [
+    413,
+    414,
+    415,
+    416,
+    417
+  ],
+  "role_count": 6,
+  "concurrent_agent_slots": 4,
+  "tasks": [
+    {
+      "id": "batch_c",
+      "status": "blocked_before_read",
+      "owner": "method + independent statistics review",
+      "blockers": [
+        "complete reader-context and external-dependency admission",
+        "exact source/output linkage before production"
+      ],
+      "evidence": [
+        "STATISTICAL_PLAN.md",
+        "METHOD_PLAN.md"
+      ],
+      "implemented_pending_review": [],
+      "completed_verified": [
+        "native task/seed/duplicate/order guards independently reviewed",
+        "18 synthetic tests passed",
+        "descriptive learner companion independently reviewed/self-tested"
+      ]
+    },
+    {
+      "id": "next_selection",
+      "status": "blocked_before_read",
+      "owner": "lead + statistics",
+      "blockers": [
+        "complete native adapters and confirmation source support",
+        "eligible batch closure",
+        "independent exact admission review"
+      ],
+      "evidence": [
+        "../NEXT_method-selection-rule/READER_20261114.md"
+      ]
+    },
+    {
+      "id": "control_audit",
+      "status": "draft_complete",
+      "owner": "controls",
+      "evidence": [
+        "CONTROL_AUDIT.md"
+      ]
+    },
+    {
+      "id": "method_plan",
+      "status": "draft_complete",
+      "owner": "method",
+      "evidence": [
+        "METHOD_PLAN.md"
+      ]
+    },
+    {
+      "id": "compute_coordination",
+      "status": "initial_plan_complete",
+      "owner": "computation_coordinator",
+      "evidence": [
+        "WCSS_SNAPSHOT.json",
+        "ATHENA_SNAPSHOT.json",
+        "COMPUTE_PLAN.md",
+        "COMPUTE_QUEUE.json"
+      ]
+    },
+    {
+      "id": "scientific_review",
+      "status": "initial_review_complete",
+      "owner": "scientific_review",
+      "evidence": [
+        "SCIENTIFIC_REVIEW.md"
+      ]
+    }
+  ],
+  "scientific_results_opened_this_workflow": false,
+  "rental_authorized_this_workflow": true,
+  "prospective_thresholds_fixed": false,
+  "resource_policy_file": "COMPUTE_POLICY.json",
+  "status_board": "../../AGENT_STATUS.md"
+}

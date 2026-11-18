@@ -1,0 +1,13 @@
+{
+  "authorized_at": "2026-11-14T10:46:22.920434+00:00",
+  "user_instruction": "We have the fallback now, $10 in Vast.ai is ready to spend right now. Let me know when we need more (and how much).",
+  "authorized_total_usd": 10,
+  "scope": "Cheaper compatible GPU fallback within USD10; H100-only workloads WCSS; A100 primarily Athena",
+  "spent_this_authorization_usd": 0,
+  "active_leases_at_check": 0,
+  "provider_credit_observed_usd": 10.530511794747582,
+  "additional_spending_requires_authorization": true,
+  "ready_runner_required": true,
+  "quote_file": "VAST_FALLBACK_QUOTE.json",
+  "paid_h100_allowed": false
+}

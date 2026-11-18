@@ -1,0 +1,49 @@
+{
+  "status": "IMMUTABLE_SOURCE_ONLY_HANDOFF_NO_REAL_EXECUTION_RELEASE",
+  "author": "shortcut_visual_examples",
+  "files": [
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/seam_v1/audit_generated.py",
+      "sha256": "9449948a77df64cb3da9deef4a397df07907cc6591f0fee0c51b08916337a505"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/seam_v1/construction.py",
+      "sha256": "8eae3af381a4bec1ba2ce1ec4b127232eb9b67070f868012589dde7672b5c6e7"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/seam_v1/test_generated.py",
+      "sha256": "c104c8ea24c81490c666f43cfda512162383c0a69a9f0431b70cb1d0e55b76b3"
+    },
+    {
+      "path": "/home/narolski/smad-next/src/VIS3/seam_v1/SHA256SUMS",
+      "sha256": "301b1034012f90acacceb92de54956c28ffe3fbb00103536ca098d810c69fed1"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v1/ASTRA_PLAN_REQUEST.md",
+      "sha256": "e713046aa1074d52b6afc47e7a0c1215d60f486cc1fd758853c75a250dd85d31"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v1/COMMANDS_AND_RESOURCES.md",
+      "sha256": "babf4799eb61613ea87df9e60eefc8d09b19679a997dd5e6aadeb26d3f1525e8"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v1/GENERATED_GEOMETRY_AUDIT.json",
+      "sha256": "11cb59f3f96c1eaebb02d105383b5e07b90cf2fb35955c908c304ebe37c21c5a"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v1/GENERATED_SOURCE_RECEIPT.json",
+      "sha256": "6b403fcf2aa5d520e785fee834b0c2c4974f0d716a71e591b0f3e8f399581131"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v1/INVENTORY.json",
+      "sha256": "46f23f8d072da825e8b670dd6aa86f211d237891e2794cce48983ab311f32b51"
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/VIS3_true_seam_private_20261115/v1/prereg.md",
+      "sha256": "636428eb3a2db72f287ee8eadbb2fd54f2dcd1606d93e309d15b0d9d9aa88e57"
+    }
+  ],
+  "no_real_pixels_models_or_new_scientific_scores_read_or_generated": true,
+  "actual_construction_inference_render_publication": "HOLD",
+  "next_gate": "OTHER Astra design review; then separatecreateonly CPUdriver andnumericadapter source+input postreview and NEWexactrootphasegrants"
+}

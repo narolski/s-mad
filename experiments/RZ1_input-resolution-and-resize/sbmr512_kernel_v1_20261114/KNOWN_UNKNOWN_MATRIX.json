@@ -1,0 +1,20 @@
+{
+  "source_pins": "KNOWN_HASHED_SOURCE_PINS.json",
+  "cross_metadata": "KNOWN13771rows/7257genuine/1000morph; remaining5514notused_in_kappa_but_allscored",
+  "same_id_path_label_coverage": "KNOWN13771/13771metadata_matches_eval_or_tt1",
+  "opaque_source_archives": "KNOWN5durable_descriptors_from_root_receipt_no_member_access",
+  "executed_source_env": "UNKNOWN_NO_ADMITTED_SbMR512_TECHNICAL_COLLECTION",
+  "checkpoint_trainable_member_sha": "UNKNOWN",
+  "original_last_pt_sha": "UNKNOWN_NOT_REHASHED",
+  "frozen_pretrained_weight_file_sha": "UNKNOWN_original_pack_descriptor_only",
+  "model_arch_res_lora_meta": "UNKNOWN_PER_MODEL; source_expected_clip_B16_res512_lora_qv_r2",
+  "source_platform_requirement": "KNOWN_registered_H100_torch2.11.0+cu128_timm1.0.30_Pillow12.3.0_OpenCV5.0.0; NOT actual_runtime_verified",
+  "actual_driver_python_numpy_cuda": "UNKNOWN",
+  "original_scorer_actual_runtime_bs_workers": "UNKNOWN_PER_MODEL; source_defaults_bs64_workers7",
+  "forward_count": "KNOWN963970image_forwards5x14x13771;216batches_per_spec_at64,3024per_model,15120total;lastbatch11",
+  "gpu_time_memory_disk_estimate": "UNKNOWN_NO_REVIEWED_TIMING_FOR_THIS_CROSS_ONLY_PANEL",
+  "native_reference_array_gate": "NOT_EXECUTED; full_IDcoverage_METADATA_only",
+  "native_batch_context_equivalence": "UNKNOWN; crossbatchorder differs from originaleval/tt1 order; exact equality may fail and cannot be weakened",
+  "candidate_read_exposure": "UNKNOWN_pending_root_attestation; nocandidatepayloadaccess_bythisauthor",
+  "methodology_code_root_execution_adoption": "HOLD"
+}

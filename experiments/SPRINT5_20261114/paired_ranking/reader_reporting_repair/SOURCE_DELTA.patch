@@ -1,0 +1,146 @@
+--- /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader/README.md	2026-11-14 15:54:29.454261919 +0100
++++ /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/README.md	2026-11-14 16:26:17.743016604 +0100
+@@ -1,3 +1,13 @@
++# Version 2 additive reporting repair — CODE ONLY, NO RELEASE
++
++Copied from frozen paired_ranking_reader source manifest02c7401529a8ca8b2a7af220f7ef36f8cbd8a71ffc50052b0a52f6e2606d1b6c. Original sources/approval remain untouched. All entry points use the explicit paired_ranking_reader_v2 package; data uses relative admit import. No implicit import of frozen statistics. Independent review and new exact source acceptance are required before ANY collector/read release. This folder does not inherit e1ee3a5 code approval.
++
++New reporting.py adds descriptive strict-threshold flag counts, denominators and rates for all3arms×5seeds, at each network's unchanged camera-derived threshold and at own-rule zero. It reports S3 control flags/S4 sensitivity overall and by existing primary source, calibration-camera BPCER, and all119 heldout genuine cells. Every population includes the registered contrast pairs plus descriptive ranking−BCE, per seed and seed mean. S3 controls are not called camera BPCER. No confidence intervals, margins, reductions, new endpoints or verdicts are added. Counts are image-row denominators, not independent-person effective sample sizes.
++
++Existing analyze inference code changes only by importing/calling the pure reporting function at result construction; reporting has no RNG/file I/O and uses existing allowlisted P/C/G arrays. The existing hardcoded once journal/output paths remain unchanged intentionally: versions cannot bypass a previous claim by changing journal names. Root must choose/review exact source before any first read. No actual archive, roster, collector or reader was invoked.
++
++New test_reporting.py uses generated fixtures, tests all fields/counts/contrasts/cells, strict ties, uniform shift invariance under camera calibration plus own-rule shift visibility, exact unchanged old statistical results/RNG, v2 import provenance and historical/wrong-population rejection. The old loader allowlist sentinel test remains in copied test_synthetic.py. Test file reads frozen source as a pure generated-fixture differential reference only; it never reads candidate files.
++
+ # Paired-ranking reader: code-only handoff
+ 
+ This implements binding9c0e252, BINDING SHA256`519546ef7002930f620610f01deb0cc4e8889acf819b829a80c05f95fff6e923`. No real candidate archive, logit or checkpoint was accessed while developing it. Only pinned input metadata, existing admitted nuisance-floor definitions and generated fixtures were used. No actual read is authorized by this folder's presence.
+@@ -27,7 +37,7 @@
+ ## Source-only verification
+ 
+ ```bash
+-OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 CUDA_VISIBLE_DEVICES= nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader/test_synthetic.py -v
++OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 MKL_NUM_THREADS=2 NUMEXPR_NUM_THREADS=2 CUDA_VISIBLE_DEVICES= nice -n10 /home/narolski/mambamorph-code/.venv-spark/bin/python -I /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/test_synthetic.py -v
+ ```
+ 
+ 23 generated-fixture tests cover ties/missing D strata, strict127threshold, empty-calibration infinity, score-shift control, component multiplicity/provider union, sparse/zero-variance/nonfinite guards, all120 IUT logic, seed-mean vs fused scores, switching floor maxima, all15eligibility, task/seed/source/review/roster mismatch, calibration overlap, floor-label alignment, no-overwrite claim/result, loader allowlist/nonfinite/order checks and favorable optimization with inconclusive operational status. No test is derived from actual candidate output.
+
+NEW FILE __init__.py
+
+--- /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader/collect_metadata.py	2026-11-14 15:52:56.620038879 +0100
++++ /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/collect_metadata.py	2026-11-14 16:25:22.888883826 +0100
+@@ -8,9 +8,9 @@
+ import sys
+ import tarfile
+ 
+-sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+-import admit
+-from journal import exclusive_json
++sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent.parent))
++from paired_ranking_reader_v2 import admit
++from paired_ranking_reader_v2.journal import exclusive_json
+ 
+ 
+ def member_bytes(t,name,limit=8<<20):
+
+--- /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader/data.py	2026-11-14 15:52:56.653038599 +0100
++++ /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/data.py	2026-11-14 16:25:22.889047057 +0100
+@@ -9,7 +9,7 @@
+ 
+ import numpy as np
+ 
+-from admit import COUNTS,ARMS,SEEDS,require,sha
++from .admit import COUNTS,ARMS,SEEDS,require,sha
+ 
+ 
+ def pinned_path(binding,suffix):
+
+--- /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader/metadata_only_check.py	2026-11-14 15:52:56.714038081 +0100
++++ /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/metadata_only_check.py	2026-11-14 16:25:22.888925905 +0100
+@@ -2,10 +2,10 @@
+ import json
+ import pathlib
+ import sys
+-sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+-import admit
+-import data
+-import ranking_statistics as S
++sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent.parent))
++from paired_ranking_reader_v2 import admit
++from paired_ranking_reader_v2 import data
++from paired_ranking_reader_v2 import ranking_statistics as S
+ 
+ p=pathlib.Path('/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/prefit_binding_v1/BINDING.json')
+ assert admit.sha(p)==admit.BINDING_SHA
+
+--- /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader/ranking_statistics.py	2026-11-14 15:52:56.747037801 +0100
++++ /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/ranking_statistics.py	2026-11-14 16:25:22.889108913 +0100
+@@ -1,6 +1,7 @@
+ """Pure score statistics for the bound paired-ranking cycle. No file access."""
+ import math
+ import numpy as np
++from .reporting import operating_point_report
+ 
+ ARMS=('bce','paired_bce','paired_rank')
+ SEEDS=(501,502,503,504,505)
+@@ -207,6 +208,7 @@
+     all_pass=all(g['status']=='PASS' for g in [detection_report,*guards])
+     return {'scope':'MAD22-informed separate cycle; no historical191/scaled benchmark metrics or NEXT winner',
+       'inference_limit':'Approximate component/seed bootstrap. IUT supports a conjunctive claim only to the extent each marginal test is valid. No finite-sample or simultaneous-cellwise coverage guarantee.',
++      'operating_point_report':operating_point_report(primary,calibration,cells,P,C,cell_scores,point_thresholds),
+       'networks':{'arms':list(ARMS),'seeds':list(SEEDS),'per_network_within_D_AUC':point.tolist(),'per_network_unstratified_AUC':plain.tolist()},
+       'optimization':contrasts,'floor':floor_report,'detection_guard':detection_report,'genuine_guards':guards,
+       'guard_IUT':{'all_pass':all_pass,'required_guards':len(guards)+1,'status_counts':{k:sum(g['status']==k for g in [detection_report,*guards]) for k in ('PASS','FAIL','INCONCLUSIVE')}},
+
+--- /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader/read.py	2026-11-14 15:52:56.779037530 +0100
++++ /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/read.py	2026-11-14 16:25:22.888782050 +0100
+@@ -7,11 +7,11 @@
+ import pathlib
+ import sys
+ 
+-sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+-import admit
+-import data
+-import ranking_statistics as stats
+-from journal import Journal,atomic_result
++sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent.parent))
++from paired_ranking_reader_v2 import admit
++from paired_ranking_reader_v2 import data
++from paired_ranking_reader_v2 import ranking_statistics as stats
++from paired_ranking_reader_v2.journal import Journal,atomic_result
+ 
+ BINDING=pathlib.Path('/home/narolski/smad-next/experiments/SPRINT5_20261114/paired_ranking/prefit_binding_v1/BINDING.json')
+ ONCE=pathlib.Path('/mnt/t7/smad_next/SPRINT5_1/reader_once_v1')
+
+NEW FILE reporting.py
+
+NEW FILE test_reporting.py
+
+--- /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader/test_synthetic.py	2026-11-14 15:52:56.809037275 +0100
++++ /home/narolski/smad-next/src/SPRINT5/paired_ranking_reader_v2/test_synthetic.py	2026-11-14 16:25:22.889009041 +0100
+@@ -9,12 +9,12 @@
+ import tempfile
+ import unittest
+ 
+-sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
++sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent.parent))
+ import numpy as np
+-import admit
+-import data
+-import ranking_statistics as S
+-from journal import Journal,atomic_result
++from paired_ranking_reader_v2 import admit
++from paired_ranking_reader_v2 import data
++from paired_ranking_reader_v2 import ranking_statistics as S
++from paired_ranking_reader_v2.journal import Journal,atomic_result
+ 
+ 
+ def envelope(arm='bce',seed=501):
+@@ -205,7 +205,7 @@
+                 with self.assertRaises(ValueError):data.read_npz_member(t,name,hashlib.sha256(b).hexdigest(),manifests['dev'])
+     def test_collector_never_opens_npz_or_checkpoint_payload(self):
+         from unittest import mock
+-        import collect_metadata
++        from paired_ranking_reader_v2 import collect_metadata
+         e,r=envelope();task=e['task'];prefix=task+'/'
+         with tempfile.TemporaryDirectory() as root:
+             p=pathlib.Path(root)/'fixture.tar';e['archive_path']=str(p);source=b'generated source pinfile\n'

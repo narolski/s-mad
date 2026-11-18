@@ -1,0 +1,10 @@
+{
+  "bash_n": true,
+  "exact_packed_trainer_patch_compile": true,
+  "patch_receipt": {
+    "original_trainer_sha256": "e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d",
+    "instrumented_trainer_sha256": "f9cfa6bcd457e21cf449c917621dd40c0122da6ea712355f74fd8380a53104f0",
+    "scope": "first backward only; no optimizer, checkpoint, score"
+  },
+  "gpu_work": false
+}

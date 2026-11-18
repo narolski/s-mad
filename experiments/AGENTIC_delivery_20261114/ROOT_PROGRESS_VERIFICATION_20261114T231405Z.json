@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-14T23:21:40.419204+00:00",
+  "cycle": "2026-11-14T23:14:05Z",
+  "root_verified_source_packages": [
+    {
+      "package": "SBMR512_BII_TIMING_LAUNCH_PREP_20261115",
+      "manifest_sha256": "cf47424b9a2ab9239b19ca6eec26da73857c74691f025aed35d7969cbf2a2225",
+      "source_members_verified": 25
+    },
+    {
+      "package": "freshconfirmation_413_417_prep_v2_20261115",
+      "manifest_sha256": "594a45d38146333c28cb06d0b9cfd59521f6db3deecdedab584f420b2dbb90ed",
+      "source_members_verified": 14
+    }
+  ],
+  "timing_worker_operational_delta": "OTHER_GO_SOURCE_ONLY",
+  "timing_launcher": "HOLD_four_controlplane_fixes;immutablev1r1authoractive",
+  "timing_native_count": "64native+64flip=128imageforwards,2batchcalls,13crossnativecomparisons",
+  "current_identity_provenance": "AcquiredonWCSSdmenv/mirroredGX;notGXtargetinstallation",
+  "next_missing_evidence": "Separatelyscopedruntime-onlyH100metadata/import/default/module/nativeidentityphase sourceprep;no17model/inputflagsrequiredjusttocapturethisphase",
+  "fresh_scope_package": "190conditionaltemplates;permanentlydisabledproducer/sourceadapter;OTHERreviewactive",
+  "no_GPU_training_payload_or_selection_execution": true
+}

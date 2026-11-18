@@ -1,0 +1,50 @@
+{
+  "SbFM": {
+    "core": 15,
+    "extra": 5,
+    "full": 20,
+    "status": "CONDITIONAL_NOT_SELECTED"
+  },
+  "GX": {
+    "core": 15,
+    "extra": 0,
+    "full": 15,
+    "status": "HOLD_UNKNOWN_SCOPE"
+  },
+  "SbMR": {
+    "core": 20,
+    "extra": 5,
+    "full": 25,
+    "status": "CONDITIONAL_NOT_SELECTED"
+  },
+  "SbM": {
+    "core": 20,
+    "extra": 5,
+    "full": 25,
+    "status": "CONDITIONAL_NOT_SELECTED"
+  },
+  "Sb512": {
+    "core": 20,
+    "extra": 10,
+    "full": 30,
+    "status": "CONDITIONAL_NOT_SELECTED"
+  },
+  "SbMR512": {
+    "core": 20,
+    "extra": 10,
+    "full": 30,
+    "status": "CONDITIONAL_NOT_SELECTED"
+  },
+  "Sbc": {
+    "core": 20,
+    "extra": 5,
+    "full": 25,
+    "status": "CONDITIONAL_NOT_SELECTED"
+  },
+  "DINOv3": {
+    "core": 20,
+    "extra": 0,
+    "full": 20,
+    "status": "CONDITIONAL_NOT_SELECTED"
+  }
+}

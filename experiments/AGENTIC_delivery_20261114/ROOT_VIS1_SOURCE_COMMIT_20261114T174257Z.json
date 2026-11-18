@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-14T17:44:46.346382+00:00",
+  "decision": "SOURCE_INPUT_REVIEW_COMMIT_ONLY",
+  "commit": "734dd4ec906d773bb9d1dd46b7017b241c8dad7c",
+  "files": [
+    "src/VIS1/v1/prepare_vis1.py",
+    "src/VIS1/v1/score_vis1.py",
+    "src/VIS1/v1/SHA256SUMS",
+    "src/VIS1/v1/test_vis1.py",
+    "experiments/VIS1_shortcut_examples_20261114/v1/PN1_DEVELOPMENT_INPUT_ADDENDUM.json",
+    "experiments/VIS1_shortcut_examples_20261114/v1/VIS1_PRERUN_REVIEW_20261114.md",
+    "experiments/VIS1_shortcut_examples_20261114/v1/HANDOFF.json",
+    "experiments/VIS1_shortcut_examples_20261114/v1/PREPARATION_CHECKS.json",
+    "experiments/VIS1_shortcut_examples_20261114/v1/GROUNDING_SOURCE_REVIEW.md",
+    "experiments/VIS1_shortcut_examples_20261114/v1/INVENTORY.json",
+    "experiments/VIS1_shortcut_examples_20261114/v1/INPUT_AUDIT.json",
+    "experiments/VIS1_shortcut_examples_20261114/v1/INVENTORY_v2.json",
+    "experiments/VIS1_shortcut_examples_20261114/v1/SYNTHETIC_TESTS.txt",
+    "experiments/VIS1_shortcut_examples_20261114/v1/COMMANDS.md",
+    "experiments/VIS1_shortcut_examples_20261114/v1/prereg.md"
+  ],
+  "source_manifest_sha256": "a16aa9e87e634bdd635c635cb109fa10f3fe464c77be2b9e453cffb8179518aa",
+  "inventory_sha256": "061924577bf7762f76d3c5672c70d1017bfdc0c8c5dbbd3365c13f189f38a31b",
+  "independent_review_sha256": "5348ec994406358b68244a6783d1a7d0db70dca2d3b0c9d48631c2183ef3f0eb",
+  "private_research_scope": "Prospective fixed-five-input descriptive response pilot; publication not granted",
+  "execution_release": "NOT_ISSUED_FRESH_PRELAUNCH_CHECKS_REQUIRED",
+  "gpu_executed": false
+}

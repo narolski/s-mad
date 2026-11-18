@@ -1,0 +1,20 @@
+{
+  "recorded_at": "2026-11-14T22:42:33.934529+00:00",
+  "cycle": "2026-11-14T22:21:35Z",
+  "decision": "ROOT_ACCEPT_ACTUAL_VIS2_PRIVATE_PRESENTATION_AND_NATIVE_PRINT_ONLY",
+  "source_commit": "ef22f193570cfd5611355ff28dd0c867682a729f",
+  "actual_review_sha256": "ccff51662ed00a46c01a6968f2c3927911b92513c19a806512dd0db4823133c4",
+  "all_responses": 1536,
+  "all_paint_records": 3072,
+  "all_pages": 12,
+  "signed_color_pdf_sha256": "958f34b74ca6c8be0cdfa9018cb11381573257f89270774f44bccb7d2e583c14",
+  "gray_pdf_sha256": "daa912fac7d0b8c9a632b73bdca4c1fc7878340ff965b75df62f05f1f6cc3062",
+  "local_user_package": "/Users/narolski/Documents/Codex/2026-11-14/na/outputs/shortcut_occlusion_private_review_20261114_a4/private_review_package.zip",
+  "package_sha256": "ba1e42c4e7da3cd96c9c8ab7befab1e3b189f642ce93084a1fba8899a9f3a82b",
+  "publication": "HOLD",
+  "seam_surround_panel": "NOT_CLOSED; genuineimageslackseam",
+  "root_native_exit_evidence": "Toolobservedexit0, posthocattestation, noindependentOSexitlog; explicitlyreviewed",
+  "SBMR512_first_identity": "FAILED_CLOSED_HOLD_NO_IDENTITY_ADMISSION;ValueErrorstageunknown;originalfixedclaimconsumed,noautomaticrerun",
+  "failure_review_sha256": "54dd026d34345eb9b30d3726d984fad82f2eeeb05f66b9b6be8250a14e40879e",
+  "scientific_selection_benchmark_reads_or_new_GPU_training": false
+}

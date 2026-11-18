@@ -1,0 +1,70 @@
+{
+  "status": "PASS_INTEGRITY_AND_SPLIT_BACKEND_CLASSIFICATION",
+  "collection_sha256": "b9d333300b5013818b1f1ca9910d0219b47aab16b5fc77a71e295af2e15fe39c",
+  "files_verified": 25,
+  "worker_manifest_sha256": "cf69efac62747e25fdf29880efd95057cf300444bd61837d80d6f41e73e96967",
+  "release_sha256": "d411bee5965641b72ae9fa004a7438e4fe4d6c5739c16647759e74663b8fd4ae",
+  "claim_sha256": "dc20fb448c1f2756bebfcc69eed819c63927676df614129a726d371805982f98",
+  "terminal_sha256": "22f8ef99b409a2d93963faee0fc166a9e514c0ad9cb934f527d34691b4cdf355",
+  "default_log_sha256": "a575a01095e0eff592034178764132c1ca33e015d8827c23c20419db66badff1",
+  "math_log_sha256": "ebe750a368098ac73ac451c6cf927bda54971b2d4ced13edcf6c0df5df89392d",
+  "native_accounting": "6323083|ad5-sdpa-probe-v1|COMPLETED|0:0|2026-11-14T19:54:59|2026-11-14T19:56:17|00:01:18|billing=8,cpu=8,energy=16781,gres/gpu:hopper=1,gres/gpu=1,mem=120G,node=1\n",
+  "default": "FAILED_1_EFFICIENT_SDPA_BACKWARD_CUDA_ILLEGAL_INSTRUCTION",
+  "math": "PASS_0_SYNTHETIC_FORWARD_BACKWARD_FINITE",
+  "identical_input_metadata": {
+    "phase": "INPUTS_READY",
+    "mode": "default",
+    "shape": [
+      256,
+      12,
+      197,
+      64
+    ],
+    "strides": [
+      [
+        768,
+        64,
+        196608,
+        1
+      ],
+      [
+        768,
+        64,
+        196608,
+        1
+      ],
+      [
+        768,
+        64,
+        196608,
+        1
+      ]
+    ],
+    "dtype": "torch.float32",
+    "input_hashes": [
+      "f63b409b838095390ac948537d99a3ea5e9fa1009e5a998b8dd96c5c7db423d7",
+      "706d195686c97fd56e189aa68e3aadcb1dbf1d8d18adce675d2265993f2bad7b",
+      "2aa2093915cfbf31ab744577c3b890800f6e8fcf11c7b77ce137c78604753ae0"
+    ],
+    "upstream_gradient_hash": "40c992fbe828c4954020f2a9353696bdada8cf90a6e1c9c70dcce377812cd196",
+    "torch": "2.0.1+cu118",
+    "cuda": "11.8",
+    "device": "NVIDIA H100",
+    "dropout": 0.0,
+    "mask": null,
+    "causal": false,
+    "shape_status": "SOURCE_INFERRED_NOT_CAPTURED_ACTIVATIONS"
+  },
+  "math_finite_record": {
+    "phase": "BACKWARD_FINITE",
+    "mode": "math",
+    "output_norm": 722.824951171875,
+    "gradient_norms": [
+      706.9850463867188,
+      711.9714965820312,
+      721.8033447265625
+    ],
+    "interpretation": "Synthetic operator completion only; no fit/smoke/production/equivalence admission"
+  },
+  "actual_gpu_or_scheduler_calls_by_reviewer": false
+}

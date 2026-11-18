@@ -1,0 +1,15 @@
+{
+  "handoff_sha256": "874dbeedac2f74b347a6ca6b1d6b218bbaf7bd4505c1f0a729562057f999856a",
+  "source_manifest_sha256": "ede942f1fd2a11fbfbf16f02e97d580f0e76dfd49cc9d7c2e5cc5b0f7cbcc4e0",
+  "inventory_sha256": "9dd53a50ed15a9f5392fff9b854cd1d549a9bc78229689546eb8a6eefbd3db6b",
+  "handoff_files_verified": 12,
+  "source_evidence_pins_verified": 18,
+  "generated_tests_passed": 13,
+  "seconds": 0.595,
+  "same_bytes_reproduction": {
+    "parsed_scope": "UNADMITTED",
+    "hashed_scope": "ADMITTED",
+    "same_path_different_snapshots_accepted_by_helpers": true
+  },
+  "real_pixels_weights_or_model_access": false
+}

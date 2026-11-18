@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-14T17:23:57.520001+00:00",
+  "decision": "SOURCE_HANDOFF_HASH_CHECK_ONLY",
+  "source_manifest_sha256": "a16aa9e87e634bdd635c635cb109fa10f3fe464c77be2b9e453cffb8179518aa",
+  "source_files_verified": [
+    "prepare_vis1.py",
+    "score_vis1.py",
+    "test_vis1.py"
+  ],
+  "source_files": 3,
+  "independent_review": "PENDING",
+  "root_inference_release": false,
+  "gpu_executed": false
+}

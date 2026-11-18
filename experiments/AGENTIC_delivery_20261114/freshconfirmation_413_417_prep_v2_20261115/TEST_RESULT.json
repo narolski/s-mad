@@ -1,0 +1,9 @@
+{
+  "at": "2026-11-14T23:16:34.752036+00:00",
+  "command": "python3 source/test_source_contract.py",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_all_ab1_common_rows (__main__.Contracts.test_all_ab1_common_rows) ... ok\ntest_counts_core_identical (__main__.Contracts.test_counts_core_identical) ... ok\ntest_dino_scope (__main__.Contracts.test_dino_scope) ... ok\ntest_identity_and_provenance_refusal (__main__.Contracts.test_identity_and_provenance_refusal) ... ok\ntest_seed_refusal (__main__.Contracts.test_seed_refusal) ... ok\ntest_source_delta_preserves_math (__main__.Contracts.test_source_delta_preserves_math) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.003s\n\nOK\n",
+  "scientific_execution": false,
+  "correction": "Initial handwritten common-AB1 row count75 corrected to70: FM15 + fiveRZ branches10each + DINO5; generated cohort/task maps unchanged. Original failed receipt preserved."
+}

@@ -1,0 +1,33 @@
+{
+  "scope": "local shell mocks; TTY and package/setup segment replaced only in temporary fixtures; no torch import/CUDA/Slurm/model",
+  "ast_compile": "PASS",
+  "branches": [
+    {
+      "default_math_exit": [
+        0,
+        0
+      ],
+      "worker_exit": 0,
+      "both_logs_preserved": true,
+      "reentry_rejected": true
+    },
+    {
+      "default_math_exit": [
+        1,
+        0
+      ],
+      "worker_exit": 0,
+      "both_logs_preserved": true,
+      "reentry_rejected": true
+    },
+    {
+      "default_math_exit": [
+        1,
+        2
+      ],
+      "worker_exit": 0,
+      "both_logs_preserved": true,
+      "reentry_rejected": true
+    }
+  ]
+}

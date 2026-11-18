@@ -1,0 +1,11 @@
+{
+  "status": "PASS_LOCAL_GENERATED_ONLY",
+  "launcher_manifest": "644ea85a9d6308c6362e7c138fa7aec85f452217e338742abbe24ae15a3e47ce",
+  "probe_manifest": "8138eb69a50c9724ca20417148e1b5373fd12d2e1c8d139710e8eb9b9bb54b5b",
+  "handoff": "d1fcf49ea70ee9a01b0877945ecd65ebdec1ba1ca80950b95a38ee284349de6e",
+  "test_stdout": "",
+  "test_stderr": "test_allocation_id_survives_python_start_failure (__main__.Launch.test_allocation_id_survives_python_start_failure) ... ok\ntest_node_retains_backend_failure_even_workerzero (__main__.Launch.test_node_retains_backend_failure_even_workerzero) ... ok\ntest_nonpty_refuses_before_claim (__main__.Launch.test_nonpty_refuses_before_claim) ... ok\ntest_one_shot_success_capacity_failure_timeout_and_exception (__main__.Launch.test_one_shot_success_capacity_failure_timeout_and_exception) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.031s\n\nOK\n",
+  "native_exit": 0,
+  "ast_compile_bash_n": "PASS",
+  "actual_tmux_slurm_cuda_executed": false
+}

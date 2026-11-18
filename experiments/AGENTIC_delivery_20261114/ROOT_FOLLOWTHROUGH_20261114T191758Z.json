@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-14T19:20:44.391569+00:00",
+  "cycle": "20261114T191758Z",
+  "auxiliary_code_adopted_commit": "45a62dba67bebbffe704b46b363d571fda119be1",
+  "auxiliary_independent_review_sha256": "ee36c91c91fd2609a9eaa78f07edbabad9a591b9f7601f27cbabf78bf154dd85",
+  "auxiliary_require_committed": "PASS",
+  "technical_capture": {
+    "receipt": "/mnt/t7/smad_next/SPRINT5_3/baseline_aux_technical_v1/RECEIPT.json",
+    "sha256": "619b555568d131d7c4681bfeb2d50f5225e241b1edeab3737b07e28973e3f4ae",
+    "exit_code": 0,
+    "array_deserialization": false,
+    "scientific_auxiliary_read": "HOLD",
+    "independent_actual_technical_review": "PENDING"
+  },
+  "NEXT_collector": {
+    "source_sha256": "52f5d02bf58c8c962b0d691491667d7e3b27e851887e0fc16ac1e7650fe927a7",
+    "packet_sha256": "eba68c0789bf7660f75843961ae876d8500718a99af8002a352b8e43a83ec384",
+    "independent_implementation_review": "IN_PROGRESS",
+    "actual_member_access": "HOLD"
+  },
+  "new_cluster_jobs_submitted": 0,
+  "jobs_cancelled": 0,
+  "gpu_rentals": 0
+}

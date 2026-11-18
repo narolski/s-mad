@@ -1,0 +1,7 @@
+{
+  "command": "python3 STATIC_PREFLIGHT.py",
+  "exit_code": 2,
+  "stdout": "{\n  \"template_integrity\": \"PASS\",\n  \"dispatch\": \"HOLD\",\n  \"unresolved_fields\": [\n    \"selected_arm\",\n    \"selection_record\",\n    \"selection_record_sha256\",\n    \"selection_independent_review\",\n    \"confirmation_registration\",\n    \"confirmation_registration_sha256\",\n    \"selected_branch_source_extension\",\n    \"exact_task_commands\",\n    \"all_inputs_sha256\",\n    \"runtime_identity\",\n    \"required_support_role_map\",\n    \"smoke_review\",\n    \"full_prerun_review\",\n    \"source_commit_clean_checkout\",\n    \"budget_allocation\",\n    \"native_capacity_and_limits\",\n    \"duplicate_check_receipt\",\n    \"durable_free_space_receipt\",\n    \"fresh_wall_time_derivation\",\n    \"leader_execution_release\",\n    \"durable_namespace\"\n  ],\n  \"source_pin_count\": 23,\n  \"conditional_task_count\": 150,\n  \"scientific_admission\": false\n}\n",
+  "stderr": "",
+  "expected": "exit 2 HOLD, with template_integrity PASS; not scientific preflight"
+}

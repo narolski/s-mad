@@ -1,0 +1,39 @@
+# Independent benchmark/ablation tables review — 2026-11-14
+
+Verdicts: GO_AUTHOR_REVIEW_DRAFT for the frozen six-page table suite; numeric transcription, scoped coverage and standalone layout PASS. HOLD_MANUSCRIPT_INTEGRATION pending the specific T8 qualifier repair below and separate integrated-page review. Missing-computation plan GO_PLANNING_ONLY, not job/read permission. Final publication remains HOLD.
+
+Reviewer astra_sprint_plan_review is independent of author astra_benchmark_ablation_tables. No author/main/WIP edits, GPU/scheduler activity, raw scores, candidate/sealed members, NPZ, checkpoints or scientific readers.
+
+## Frozen artifacts and independent checks
+
+PDF bf72190ca3b3c20934a21eddd7393ca0e655871ed81ba55b6f81516491e09c89; Markdown aafe3c73e84f30c6ed232bad31b47b0490ab6d19dba65d4cb4f1f6a73db3da2c; source ZIP04b417e9a037dd399176b75c293a10f749c1acb08ed76841a4e1dd8c0ea2b5db; missing plan f31599b1905672fd5f5254dba6ec0d5ba6d896998570ca8588b9d12d68bcc7e4; cell map099cd0126ac20b9c1062f7116c2a91ce76ca1aa0c97fbc32346346b9b2f279fb.
+
+After author's frozen handoff, independently verified every artifact_manifest file hash/size, all10 source snapshot hashes against source_manifest AND fresh hashes of the corresponding live admitted narrative files. The426 mapped cells are unique and exactly equal their table-data coordinates; all source hashes and line coordinates resolve. Table counts: T1=100,T2=20,T3=30,T4=35,T5=88,T6=56,T7=35,T8=44,T9=18, including textual/status cells. This is426mapped display cells, not426experimental estimates.
+
+Independently rederived all80T1numeric cells by source-column/form transposition,10T2operating ranges and48T6ranges directly from the admitted printed seed values (138 numeric checks, allPASS). No rounded-cell mean recomputation. Reviewed T5 component/count source rows, all T7paired endpoints/intervals and the T8/T9 source conclusions and populations. The four count-balanced effects preserve source precision under rounding. Structural crosswalk validity alone is not proof of every paraphrase; the qualifier finding below came from contextual source/prereg reading. Independent evidence JSON accompanies this review.
+
+## Fidelity and scientific interpretation
+
+T1 covers five detectors×two forms×five morph families, plus LM2/M4/M5; released checkpoints are distinguished from five own fitted seeds403–407. S/H are same trained weights with changed genuine input history, not before/after training. LM2 excludes FM/GAN, M4 includes the two GAN families and M5 adds FM. Denominators204genuine/102persons and1000/984/500/1000/999morphs agree with the admitted corrected source. The caveats preserve threshold-fragile NI/no superiority, LM2 not separated, FaceMorpher loss, one-photo rendering alternatives, MAD22 development exposure and FRLL genuine-photo exposure. No global winner formatting.
+
+T3 correctly retains25G cells for current FRLL instead of laundering historical W3/old manuscript figures. G is scoped to current final admission, not a claim of no historical evaluation. T4 keeps executed development versus missing paired-backbone experiments distinct, and cannot substitute403–407 frozen Sb for408–412. Historical W3 E7/capped50, old185genuine/4069morph population and old fused MADMamba system remain separate from corrected current204/4483single-network results. The old TeX supplies layout precedent only.
+
+T5 includes11executed recipe definitions, including312unique-image diversity difference despite matched row/positive exposure in Sb–SpV and BN–BV. It preserves omission-arm repetition/confounding and AS volume mismatch. T6 uses all five printed seeds per range; ranges summarize rather than display each seed, whose original values remain in the zipped admitted source. These are development AUC/flags/FA changes, not benchmark EER or absolute storage endpoints. T7 preserves negative BN–BV, missing registered benefit,99.5%qualification, conditional fixed-network bootstrap and the37.7%unreadable stratified-history caveat. No inference of joint retraining uncertainty or absolute AUC from a delta. T9 correctly separates XF1 blending from GD2rendering and retains inconclusive margins and lack of identity-specificity evidence.
+
+## Required repair before integration
+
+Page6/T8, “Stored-small dev effect” / H-ab3s: current verdict says only “falsified at +0.05 margin.” Admitted AB1_result explicitly says “falsified (seed-mean; per-seed rule inconclusive)”; AB1_prereg requires the secondary per-seed verdict beside the seed-mean decider. Restore “seed-mean falsified; secondary per-seed inconclusive.” Add a concise T8caption sentence identifying the H-ab2/H-ab3/H-ab3s intervals as paired five-seed Student-t95% intervals/seed-mean margin rules. They are not the conditional host-bootstrap intervals in T7. Preserve all numbers; this is a qualification repair, not a new analysis. Apply consistently to Markdown/TeX/table-data/crosswalk and regenerated package, then pin/review the small delta.
+
+Other editorial improvements are nonblocking for this review draft: use en dash or “to” for negative ranges such as−0.3to2.8 on page5; replace literal ASCII “->” in page6cells with a proper arrow; retain explicit model/family labels if shortening. No need to shrink fonts or remove adverse outcomes.
+
+## Actual PDF layout
+
+Used PDF skill, independently rendered and visually inspected all six actual pages. Page1scope/qualification; page2full-widthT1; page3T2/T3; page4T4/T5; page5T6/T7; page6T8/T9. Nine-point table source is unscaled; Poppler text/font inspection is consistent with the nine-point table face. No visible clipping, collisions, missing glyphs or broken multicolumn alignment. Dense page5CI columns and page6qualifiers remain readable at full page width. Tables spanning both columns are appropriate. Page1has substantial blank space and page3float spacing is generous, acceptable for a standalone evidence review artifact. This does not establish fit inside the eight-page main paper. Integration should keep T1fullwidth and select compact recipe/paired-effect panels, with the complete evidence suite in supplement, followed by new full-document layout review.
+
+## Coverage gaps and executable planning implications
+
+The package satisfies a transparent current-evidence matrix, not a filled current FRLL benchmark.25FRLLcurrent family cells and matched protocol/backbone benchmark endpoints genuinely remain unavailable in this audit; do not claim the user's desired empirical comparison is already complete. The plan correctly separates reuse/common-evaluator pipeline comparison from paired within-backbone protocol effects. Its core20newfits (or30ifCLIPreusefails), optional10Vimfits,60coreendpointcells and20optionalendpointcells are prospective counts, not submissions or measured GPU budgets. Exact seed reservations, manifests/adaptation/pretraining/platform/runtime, evaluator/population identity, smoke and read release remain to bind.
+
+Ready next steps are metadata reuse/eligibility inventory, exact estimand and paired recipe definition, and registered development smoke/operating-point preservation. Do not send all omission arms to restricted benchmarks. Distinct per-model pipelines cannot be relabelled architecture-only causality; SpV→Sb still includes312unique-image diversity change. Thresholds/utility, failures and all seeds must remain visible. Historical outputs cannot fill corrected cells without exact admissible compatibility; current scientific gates/NEXT confirmation remain intact. No fresh job/read authorization follows from this planning GO.
+
+Source ZIP contains internal narrative paths and historical sources; it is an auditable private source bundle, not a certified anonymous submission attachment. Scientific rights/disclosure, final anonymous-package checks and publication remain separate. This review authorizes neither manuscript integration before the specified repair nor benchmark access.

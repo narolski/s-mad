@@ -1,0 +1,9 @@
+# Prospective precision repair after failed A numerical check
+
+The original TF32-on run of fixed A_s403 passed native/storage checks, then failed the unchanged border finite-difference check. Original `A/` partial raw arrays and failure.json remain preserved and are not an accepted completed map panel. No alternative example/model was selected and no tolerance was relaxed.
+
+Before any new run: independent review of `xai_gradient_pilot_fp32.py` and new pinned inventory is required. Use float32 with TF32 disabled in matmul and cuDNN for every attribution/inference/check. Keep original two epsilon values and tolerances exactly. Record an additional unchanged-adapter historical TF32-on native/flip forward for each input, restore TF32-off immediately and report precision deltas explicitly. No equivalence conclusion or scientific benchmark result follows from those deltas. Maps explain the current FP32 noTTA morph logit, not historical TF32 outputs. No AMP or changes to checkpoints/images/preprocessing/targets.
+
+New create-only output model directories have suffix `_fp32`; never overwrite or remove original `A/`. Source/scope/seed/gradient definitions are unchanged. Head-zero remains an algebraic dependency check. Failure again means preserved failure and a new independent disposition, not automatic retry. Image tensor finite-difference probes are mathematical diagnostics only and never become stored example images or additional scientific samples.
+
+Rendering: retain raw gradient and gradient-times-input arrays. Signed sum uses symmetric max(abs) over all3fixedconditions per model. Magnitude and raw-gradient magnitude each use their own max over all3conditions per model. Preserve numerical scales/colorbars; no per-panel normalization. Storage-history and spatial-border comparisons will be separate figures as the author requested. Private noncommercial draft and publication-clearance restrictions remain unchanged.

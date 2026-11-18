@@ -1,0 +1,9 @@
+{
+  "tests": 12,
+  "passed": 12,
+  "seconds": 0.063,
+  "generated_fake_containers_only": true,
+  "logit_fetches_per_needed_container": 1,
+  "eval_only_TT1opens": 0,
+  "actual_NPZ_model_weight_image_probe_GPU_access": false
+}

@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-14T20:32:34.889408+00:00",
+  "decision": "ROOT_GO_SOURCE_PREPARATION_NEW_LATE_RECOVERY_COHORT_B401_405_ONLY",
+  "original_cutoff": "2026-11-14T18:00:00+01:00",
+  "original_failed_incomplete_ledger": "PRESERVED_NOT_RETROACTIVELY_ADMITTED",
+  "new_series": "NEW_LATE_COMPARATOR_RECOVERY_NOT_ORIGINAL_ON_TIME_COHORT",
+  "prospective_verified_archive_arrival_deadline": "2026-11-15T18:00:00+01:00",
+  "seeds": [
+    401,
+    402,
+    403,
+    404,
+    405
+  ],
+  "arm": "B",
+  "L_arm": "HOLD",
+  "missing_failed_seeds": "Retain all five, no replacement/available-seed selection; incomplete after deadline stays incomplete",
+  "preprocessing_prose_correction": "cv2.imread directly feeds ToPILImage without explicit BGR-to-RGB conversion; retain original implementation/channel behavior, correct prose only",
+  "full_recipe_change_allowed": "Explicit math-SDPA only plus technical observers/durability that preserve original computation/control flow",
+  "resource_budget_launch_profile": "Separate independent review and fresh native/account-budget/capacity checks required; six-hour proposal is not full-fit runtime guarantee",
+  "full_GPU_execution_authorized_now": false,
+  "scientific_scoring_read_authorized_now": false,
+  "NEXT_selection_rule_or_cutoff_modified": false,
+  "released_weights_vs_our_retrain": "Report distinctly; preserve late-cohort and development-exposure disclosure"
+}

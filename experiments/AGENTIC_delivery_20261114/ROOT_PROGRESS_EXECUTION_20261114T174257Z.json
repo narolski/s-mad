@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-14T17:46:47.056955+00:00",
+  "VIS1_source_commit": "734dd4ec906d773bb9d1dd46b7017b241c8dad7c",
+  "VIS1_execution_release": false,
+  "tail_corrected_reader_commit": "2a1e908",
+  "tail_input_pins_verified": 130,
+  "tail_scientific_read": "HOLD",
+  "opaque_collection_status": "COMPLETE_OPAQUE_HASH_VERIFIED",
+  "opaque_collection_directory": "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z",
+  "opaque_collection_expected_archives": 16,
+  "table_revision": "v2 independently GO_AUTHOR_REVIEW_DELIVERY; main integration and scientific/publication gates remain HOLD",
+  "new_gpu_execution": false,
+  "opaque_collection_receipt": "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/COLLECTION_VERIFIED.json",
+  "opaque_collection_receipt_sha256": "ebfe827636af62ce6384e395dc78074f4a0823438976bdcd22c13a72e3f4e38b",
+  "opaque_archive_count": 16,
+  "opaque_archive_bytes": 5109575680,
+  "table_review_sha256": "1f6d6a2ac50a44d510d75d1d4ac2fb4f677aa22a827d6b88f8c9b1413ea49631",
+  "updated_at": "2026-11-14T17:47:41.799392+00:00"
+}

@@ -1,0 +1,1 @@
+New36-update math-only technical smoke; execution HOLD. See PREREG.md,EXACT_TRAINER_DELTA.patch,LAUNCHER_DELTAS.patch. CPUtests source/mocks only; no scientific output. Original first-step source frozen untouched.

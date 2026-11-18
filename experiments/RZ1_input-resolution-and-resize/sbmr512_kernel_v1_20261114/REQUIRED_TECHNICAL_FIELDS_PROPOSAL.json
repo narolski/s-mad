@@ -1,0 +1,75 @@
+{
+  "status": "PROPOSED_TECHNICAL_SCOPE_NOT_AUTHORIZATION",
+  "collection_per_source": {
+    "unique_regular_members": [
+      "<task>/meta.json",
+      "<task>/env.txt",
+      "<task>/gpu.txt",
+      "<task>/task_info.txt",
+      "<task>/task.env",
+      "<task>/guard.log",
+      "<task>/info.json",
+      "<task>/last_pt.sha256"
+    ],
+    "opaque_only_member_headers_and_hashes": [
+      "<task>/last_trainable.pt",
+      "<task>/scores_eval.npz",
+      "<task>/scores_tt1.npz"
+    ],
+    "never_decode_in_technical_phase": [
+      "last_trainable.pt",
+      "scores_eval.npz",
+      "scores_tt1.npz",
+      "scores_cross.npz"
+    ]
+  },
+  "typed_allowlist": {
+    "meta.json": {
+      "arch": "str",
+      "res": "int_not_bool",
+      "seed": "int_not_bool",
+      "steps": "int_not_bool",
+      "bs": "int_not_bool",
+      "accum": "int_not_bool",
+      "ft": "str",
+      "lora_r": "int_not_bool",
+      "lora_alpha": "number_not_bool",
+      "lora_rs": "literal_bool_if_producer_bool",
+      "lora_targets": "source_defined_str_or_list_exact",
+      "lora_dropout": "number_not_bool",
+      "lora_train_norms": "source_defined_type_exact",
+      "drop_path": "number_or_null"
+    },
+    "info.json": {
+      "torch": "str",
+      "device": "str",
+      "seed": "int_not_bool",
+      "steps": "int_not_bool",
+      "res": "int_not_bool",
+      "primary": "str",
+      "cross": "list[str]",
+      "last_pt_sha256": "64hex",
+      "n_eval": "int_not_bool",
+      "n_cross": "int_not_bool",
+      "limit": "int_not_bool",
+      "common_py_sha256": "64hex",
+      "rz1_kernels_sha256": "64hex"
+    },
+    "env.txt": "version_tokens_only_python_torch_cuda_timm_numpy_pillow; cv2fromactualboundruntime_evidence_elseUNKNOWN",
+    "gpu.txt": "device_driver_tokens_only",
+    "task_info.txt": "exactinput_sourcepins_runtimeidentity_steps_limit_fields",
+    "task.env": "TASK_ARM_SEED_andregisteredresourceknobs",
+    "guard.log": "pre/postliteralpresence_booleans_only_no_rawtext",
+    "last_pt.sha256": "64hex_association_only_notindependentrehashedcheckpoint"
+  },
+  "explicit_exclusions": [
+    "info.train_acc_rule0",
+    "training_loss_values",
+    "allNPZarrays",
+    "imagebytes",
+    "checkpointbodies",
+    "arbitrary_errorstrings",
+    "scientificnumericmetadata"
+  ],
+  "scope_limit": "Some exactfieldtypes remain source-schema closure required before collector implementation; this proposal is not actual typed collector admission"
+}

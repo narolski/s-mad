@@ -1,0 +1,14 @@
+{
+  "scope": "exact root-authorized INPUT-CSV-only extraction; no image/weight/result body",
+  "pack_path": "/mnt/t7/smad_next/AD5/wcss/smdd_train_cropped.tar",
+  "pack_sha256": "3189e52af12e2853b06c86993b1b8b5cfef891fda749395778492e3445924900",
+  "member": "./smdd_train_cropped_rel.csv",
+  "csv_sha256": "83c01705e140843afa6cb4c89765d0528ff21e2f444aee23aa50de49eaf894a3",
+  "csv_bytes": 1967481,
+  "rows": 39723,
+  "unique_ids": 39723,
+  "labels": {
+    "bonafide": 24729,
+    "attack": 14994
+  }
+}

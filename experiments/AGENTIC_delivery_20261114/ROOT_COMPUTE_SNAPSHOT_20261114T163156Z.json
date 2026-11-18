@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-14T16:35:17.641707+00:00",
+  "commands": {
+    "squeue": {
+      "argv": [
+        "/opt/slurm/current/bin/squeue",
+        "-h",
+        "-r",
+        "-u",
+        "narolski",
+        "-o",
+        "%i|%j|%T|%M|%R"
+      ],
+      "exit_code": 0,
+      "stdout": "6310127_403|ad5w-selfmad|PENDING|0:00|(JobArrayTaskLimit)\n6310127_404|ad5w-selfmad|PENDING|0:00|(JobArrayTaskLimit)\n6310127_405|ad5w-selfmad|PENDING|0:00|(JobArrayTaskLimit)\n6321090_0|sprint5-pair|PENDING|0:00|(Priority)\n6321090_1|sprint5-pair|PENDING|0:00|(Priority)\n6321090_2|sprint5-pair|PENDING|0:00|(Priority)\n6321090_3|sprint5-pair|PENDING|0:00|(Priority)\n6321090_4|sprint5-pair|PENDING|0:00|(Priority)\n6321090_5|sprint5-pair|PENDING|0:00|(Priority)\n6321090_6|sprint5-pair|PENDING|0:00|(Priority)\n6321090_7|sprint5-pair|PENDING|0:00|(Priority)\n6321090_8|sprint5-pair|PENDING|0:00|(Priority)\n6321090_9|sprint5-pair|PENDING|0:00|(Priority)\n6321090_10|sprint5-pair|PENDING|0:00|(Priority)\n6321090_11|sprint5-pair|PENDING|0:00|(Priority)\n6321090_12|sprint5-pair|PENDING|0:00|(Priority)\n6321090_13|sprint5-pair|PENDING|0:00|(Priority)\n6321090_14|sprint5-pair|PENDING|0:00|(Priority)\n6321194_0|sprint5-breadth|PENDING|0:00|(Priority)\n6321194_1|sprint5-breadth|PENDING|0:00|(Priority)\n6321194_2|sprint5-breadth|PENDING|0:00|(Priority)\n6321194_3|sprint5-breadth|PENDING|0:00|(Priority)\n6321194_4|sprint5-breadth|PENDING|0:00|(Priority)\n6321194_5|sprint5-breadth|PENDING|0:00|(Priority)\n6321194_6|sprint5-breadth|PENDING|0:00|(Priority)\n6321194_7|sprint5-breadth|PENDING|0:00|(Priority)\n6321194_8|sprint5-breadth|PENDING|0:00|(Priority)\n6321194_9|sprint5-breadth|PENDING|0:00|(Priority)\n6321244_0|sprint5-tail|PENDING|0:00|(Priority)\n6321244_1|sprint5-tail|PENDING|0:00|(Priority)\n6321244_2|sprint5-tail|PENDING|0:00|(Priority)\n6321244_3|sprint5-tail|PENDING|0:00|(Priority)\n6321244_4|sprint5-tail|PENDING|0:00|(Priority)\n6321244_5|sprint5-tail|PENDING|0:00|(Priority)\n6321244_6|sprint5-tail|PENDING|0:00|(Priority)\n6321244_7|sprint5-tail|PENDING|0:00|(Priority)\n6321244_8|sprint5-tail|PENDING|0:00|(Priority)\n6321244_9|sprint5-tail|PENDING|0:00|(Priority)\n6321244_10|sprint5-tail|PENDING|0:00|(Priority)\n6321244_11|sprint5-tail|PENDING|0:00|(Priority)\n6321244_12|sprint5-tail|PENDING|0:00|(Priority)\n6321244_13|sprint5-tail|PENDING|0:00|(Priority)\n6321244_14|sprint5-tail|PENDING|0:00|(Priority)\n6321261_0|sprint5-hn|PENDING|0:00|(Priority)\n6321261_1|sprint5-hn|PENDING|0:00|(Priority)\n6321261_2|sprint5-hn|PENDING|0:00|(Priority)\n6321261_3|sprint5-hn|PENDING|0:00|(Priority)\n6321261_4|sprint5-hn|PENDING|0:00|(Priority)\n6321261_5|sprint5-hn|PENDING|0:00|(Priority)\n6321261_6|sprint5-hn|PENDING|0:00|(Priority)\n6321261_7|sprint5-hn|PENDING|0:00|(Priority)\n6321261_8|sprint5-hn|PENDING|0:00|(Priority)\n6321261_9|sprint5-hn|PENDING|0:00|(Priority)\n6321768_401|ad5w-firstbackward|PENDING|0:00|(Priority)\n6294928_14|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_13|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_12|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_11|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_10|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_9|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_8|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_7|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_6|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_5|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6294928_4|mv30-ABC15|PENDING|0:00|(JobHeldUser)\n6310125_405|ad5w-mixX|RUNNING|8:21|r18-14\n6312778|cb1ids_all2|RUNNING|10:52:03|r18-14\n6310127_402|ad5w-selfmad|RUNNING|9:25:53|r14-4\n6310127_401|ad5w-selfmad|RUNNING|9:27:54|r18-14\n6319490_11|rz1-512|RUNNING|2:01:54|r14-5\n6319490_12|rz1-512|RUNNING|2:01:54|r14-5\n6319490_13|rz1-512|RUNNING|2:01:54|r14-5\n6319490_14|rz1-512|RUNNING|2:01:54|r14-5\n6319490_10|rz1-512|RUNNING|2:46:10|r10-2\n6319490_6|rz1-512|RUNNING|2:51:15|r14-7\n6319490_7|rz1-512|RUNNING|2:51:15|r14-7\n6319490_8|rz1-512|RUNNING|2:51:15|r14-7\n6319490_9|rz1-512|RUNNING|2:51:15|r14-7\n6319490_5|rz1-512|RUNNING|3:46:20|r10-2\n6319490_4|rz1-512|RUNNING|3:48:22|r18-8\n",
+      "stderr": ""
+    },
+    "sacct": {
+      "argv": [
+        "/opt/slurm/current/bin/sacct",
+        "-n",
+        "-X",
+        "-P",
+        "-S",
+        "2026-11-14",
+        "-j",
+        "6316724,6319490,6319579,6319264,6319491,6319494,6319495,6310125,6310127,6312778,6321090,6321194,6321244,6321261,6321768",
+        "--format=JobID,JobName%40,State,ExitCode,Elapsed,End,NodeList"
+      ],
+      "exit_code": 0,
+      "stdout": "6310125_401|ad5w-mixX|COMPLETED|0:0|04:32:31|2026-11-14T12:53:06|r18-14\n6310125_402|ad5w-mixX|COMPLETED|0:0|04:32:33|2026-11-14T12:54:09|r10-5\n6310125_403|ad5w-mixX|COMPLETED|0:0|04:33:01|2026-11-14T17:26:15|r18-14\n6310125_404|ad5w-mixX|COMPLETED|0:0|04:34:17|2026-11-14T17:29:19|r10-5\n6310125_405|ad5w-mixX|RUNNING|0:0|00:08:21|Unknown|r18-14\n6310127_401|ad5w-selfmad|RUNNING|0:0|09:27:54|Unknown|r18-14\n6310127_402|ad5w-selfmad|RUNNING|0:0|09:25:53|Unknown|r14-4\n6310127_[403-405%2]|ad5w-selfmad|PENDING|0:0|00:00:00|Unknown|None assigned\n6312778|cb1ids_all2|RUNNING|0:0|10:52:03|Unknown|r18-14\n6316724_0|battery-nets|COMPLETED|0:0|00:02:54|2026-11-14T16:33:11|r18-12\n6316724_1|battery-nets|COMPLETED|0:0|00:02:49|2026-11-14T16:36:11|r18-12\n6316724_2|battery-nets|COMPLETED|0:0|00:02:53|2026-11-14T16:39:20|r18-12\n6316724_3|battery-nets|COMPLETED|0:0|00:02:50|2026-11-14T16:42:22|r18-12\n6316724_4|battery-nets|COMPLETED|0:0|00:03:12|2026-11-14T16:44:48|r18-12\n6316724_5|battery-nets|COMPLETED|0:0|00:02:54|2026-11-14T16:45:32|r18-12\n6316724_6|battery-nets|COMPLETED|0:0|00:03:01|2026-11-14T16:48:45|r18-12\n6316724_7|battery-nets|COMPLETED|0:0|00:03:04|2026-11-14T16:48:48|r18-12\n6316724_8|battery-nets|COMPLETED|0:0|00:03:06|2026-11-14T16:52:06|r18-12\n6316724_9|battery-nets|COMPLETED|0:0|00:03:00|2026-11-14T16:52:00|r18-12\n6316724_10|battery-nets|COMPLETED|0:0|00:03:10|2026-11-14T16:55:19|r18-12\n6316724_11|battery-nets|COMPLETED|0:0|00:03:08|2026-11-14T16:55:17|r18-12\n6316724_12|battery-nets|COMPLETED|0:0|00:03:04|2026-11-14T16:55:13|r18-12\n6316724_13|battery-nets|COMPLETED|0:0|00:03:18|2026-11-14T16:59:36|r18-12\n6316724_14|battery-nets|COMPLETED|0:0|00:03:18|2026-11-14T16:59:36|r18-12\n6319264|bb2l-w2|COMPLETED|0:0|00:44:23|2026-11-14T13:07:42|r10-14\n6319491|rz1-rescore-r1|COMPLETED|0:0|00:39:00|2026-11-14T13:46:15|r18-8\n6319490_0|rz1-512|COMPLETED|0:0|03:57:53|2026-11-14T17:07:10|r10-2\n6319490_1|rz1-512|COMPLETED|0:0|03:55:06|2026-11-14T17:04:23|r14-9\n6319490_2|rz1-512|COMPLETED|0:0|03:54:56|2026-11-14T17:12:19|r14-9\n6319490_3|rz1-512|COMPLETED|0:0|03:57:10|2026-11-14T17:14:33|r14-9\n6319490_4|rz1-512|RUNNING|0:0|03:48:22|Unknown|r18-8\n6319490_5|rz1-512|RUNNING|0:0|03:46:20|Unknown|r10-2\n6319490_6|rz1-512|RUNNING|0:0|02:51:15|Unknown|r14-7\n6319490_7|rz1-512|RUNNING|0:0|02:51:15|Unknown|r14-7\n6319490_8|rz1-512|RUNNING|0:0|02:51:15|Unknown|r14-7\n6319490_9|rz1-512|RUNNING|0:0|02:51:15|Unknown|r14-7\n6319490_10|rz1-512|RUNNING|0:0|02:46:10|Unknown|r10-2\n6319490_11|rz1-512|RUNNING|0:0|02:01:54|Unknown|r14-5\n6319490_12|rz1-512|RUNNING|0:0|02:01:54|Unknown|r14-5\n6319490_13|rz1-512|RUNNING|0:0|02:01:54|Unknown|r14-5\n6319490_14|rz1-512|RUNNING|0:0|02:01:54|Unknown|r14-5\n6319494|cb1ids_smoke_waitfix|COMPLETED|0:0|00:03:11|2026-11-14T12:56:11|r18-8\n6319495_401|ad5w-diagB-launchblocking|FAILED|1:0|00:01:30|2026-11-14T13:08:45|r18-4\n6319579|ab1fm-supplement|COMPLETED|0:0|00:11:59|2026-11-14T16:41:14|r18-12\n6321090_[0-14%3]|sprint5-pair|PENDING|0:0|00:00:00|Unknown|None assigned\n6321194_[0-9%3]|sprint5-breadth|PENDING|0:0|00:00:00|Unknown|None assigned\n6321244_[0-14%3]|sprint5-tail|PENDING|0:0|00:00:00|Unknown|None assigned\n6321261_[0-9%3]|sprint5-hn|PENDING|0:0|00:00:00|Unknown|None assigned\n6321768_[401]|ad5w-firstbackward|PENDING|0:0|00:00:00|Unknown|None assigned\n",
+      "stderr": ""
+    }
+  },
+  "gx_gpu": {
+    "at": "2026-11-14T16:35:17.709068+00:00",
+    "exit_code": 0,
+    "stdout": "NVIDIA GB10, [N/A], [N/A], 0 %\n",
+    "stderr": "",
+    "scope": "current hardware utilization only; no fit or generation admission inferred"
+  },
+  "reason": "Correct missing absolute Slurm executable path; prior SSH succeeded, no authentication failure retried. One bounded corrective metadata query."
+}

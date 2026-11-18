@@ -1,0 +1,23 @@
+{
+  "packet": "/mnt/t7/smad_next/coordination_20261114/ad5_firstbackward_collection_20261114T175157Z",
+  "packet_manifest_sha256": "f29d15e92f185fb6fac867d3aaa41b3eeccd17284f81d5ca5dd1d733a8c924b9",
+  "files": {
+    "firstbackward_launch_20261114.json": true,
+    "ad5w-ad5w-firstbackward-6321768_401.out": true,
+    "train_stdout.log": true,
+    "gpumem.csv": true,
+    "pip_freeze.txt": true,
+    "instrumentation.json": true,
+    "child_exit.txt": true,
+    "SHA256SUMS": true
+  },
+  "inner_hashes": {
+    "train_stdout.log": true,
+    "gpumem.csv": true,
+    "pip_freeze.txt": true,
+    "instrumentation.json": true,
+    "child_exit.txt": true
+  },
+  "all_pass": true,
+  "read_scope": "exact technical logs/metadata only; AD5_NO_TEST=1; no model/score/image payload"
+}

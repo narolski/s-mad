@@ -1,0 +1,16 @@
+{
+  "updated_at": "2026-11-14T10:52:54.870488+00:00",
+  "paid_h100_allowed": false,
+  "h100_only_destination": "WCSS",
+  "a100_primary_destination": "Athena",
+  "vast_authorized_cap_usd": 10,
+  "vast_policy": "Only cheaper compatible GPU fallback when reviewed workload delivers useful result sooner; no paid H100, no request to expand H100 budget. Do not silently move registered H100-only workloads.",
+  "queue_delay_policy": "Report deadline risk and admissible scope reduction/deferment; do not weaken gates or assume additional funds.",
+  "athena_requested_project": "plgmorphgeneral",
+  "athena_project_status": "Not yet available to plgpnarolski in Slurm; account association absent; test-only rejects both plgmorphgeneral and plgmorphgeneral-gpu-a100 on plgrid-gpu-a100",
+  "athena_project_checked_at": "2026-11-14T10:55:21.344514+00:00",
+  "athena_pending_jobs_preserved": [
+    "3545814_[401-405]",
+    "3545813_[402-405]"
+  ]
+}

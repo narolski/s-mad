@@ -1,0 +1,54 @@
+{
+  "status": "CONCRETE_HOLD_WITH_NO_GPU_REUSE_PATH",
+  "baseline_archive_path": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+  "baseline_archive_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+  "exact_score_member": "AB1_Sb_s408/scores_eval.npz",
+  "score_field": "logit",
+  "baseline_score_member_sha256": null,
+  "expected_manifest_sha256": "93a5ba234f91e57951829c5536fabbe0f792ee4ad0a293f074aaca72f7465bd5",
+  "expected_full_ordered_rows": 21277,
+  "source_input_image_rows_hash_verified": 538,
+  "calibration_rows": 70,
+  "positive_evaluation_rows": 180,
+  "genuine_evaluation_rows": 288,
+  "baseline_technical_members_proposed_for_future_explicit_metadata_release": [
+    "AB1_Sb_s408/meta.json",
+    "AB1_Sb_s408/info.json",
+    "AB1_Sb_s408/task_info.txt",
+    "AB1_Sb_s408/env.txt",
+    "AB1_Sb_s408/gpu.txt"
+  ],
+  "future_technical_checks": [
+    "whole archive digest exact knownpin",
+    "unique regular bounded selectedscoremember header and opaque memberdigest",
+    "metadata seed408/arch/res224/limit0/n_eval21277/exactpack+overlay/common-source provenance",
+    "independent review of existing strict reference/ownfit bytegate evidence for samebaseline; no GPU rerun bydefault"
+  ],
+  "future_auxiliary_only_payload_scope": {
+    "baseline_calibration_ids": 70,
+    "baseline_evaluation_ids": 468,
+    "candidate_evaluation_ids_per_model": 468,
+    "candidate_models": 15,
+    "candidate_calibration_read": false,
+    "baseline_checkpoint_read": false,
+    "outside_allowlist_scientific_metrics": false
+  },
+  "future_payload_admission_checks": [
+    "NPZ allow_pickleFalse, finitefloat32logit and exact fullmanifest IDorder/hash",
+    "no duplicates/unknown/missing selectedID; exact538baseline/468candidate selection",
+    "archive/member digests and completeexisting15fit eligibility pinned",
+    "separateindependentreview/rootauxrelease and auxiliary-onlydurableclaim before payload"
+  ],
+  "blocked_until": [
+    "boundeduncertainty/journalpolicyreview and rootadoption afterprimaryseen",
+    "exactbaseline technical/member metadata admission",
+    "immutableauxadapter independentcode/testsreview",
+    "separateauxiliarypayloadrelease"
+  ],
+  "primary_state": "COMPLETE_PRESERVE; no primaryrerun, no secondprimaryclaim, no modifiedNI/RNG/winner",
+  "scope_purpose": "Requiredreportcoverageclosure, not methodsearch or negativepilot rescue",
+  "runtime": "CPU-only reuse of existingbaseline+15candidateNPZ; prospective minutes with archivehash I/O dominant, not measured",
+  "camera_auxiliary": "HOLD",
+  "scientific_auxiliary_read": "HOLD",
+  "actual_archive_member_or_NPZ_accessed": false
+}

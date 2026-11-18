@@ -1,0 +1,19 @@
+{
+  "decision": "GO_HN_CONTROL_BUILD",
+  "count": 124,
+  "author": "astra_sprint_plan_review",
+  "reviewer": "root",
+  "script_sha256": "d232e098c38ec5d2476e8c35454e2b29dad18f285e5a121b693a745fad4c45ea",
+  "pins": {
+    "/home/narolski/smad-next/src/SPRINT5/hn1/build_pilot.py": "762137d28d7dd7d8ddd638d75379499cfddd474d54ab33fd1bd39c2bf5b14465",
+    "/home/narolski/mambamorph-code/scripts/68_hires_morph.py": "71643aad7deaabbead698367342434242ec6955fc654c4d19a8f504b41f96d7a",
+    "/mnt/t7/smad_next/AR1/pool.csv": "861019781e79159fe7904eb60e8cda6a57e978023722615dd46023db2f299352",
+    "/home/narolski/smad-next/experiments/PN1_protocol-network-first-tests/split/ladder_split.csv": "2299ac2b1f3a8a4798fe1730ab8722780933ba956d4b38080fdeeb730b391ec3",
+    "/mnt/t7/smad_next/SPRINT5_2/train124_native_floor_v1/pilot.json": "584511ceebba63d370c6c0a95c64a0dfeba418d96cb0bdfdd4c544ba043578a3",
+    "/home/narolski/smad-next/experiments/SPRINT5_20261114/hn1/prereg_transfer.md": "a0c8c18259d9b7ee5e78f2768178f017cbcf2a63616cbb7b935324f5dda8c266"
+  },
+  "independent_review_path": "/home/narolski/smad-next/experiments/SPRINT5_20261114/hn1/PRERUN_ROOT_CONTROL124.md",
+  "independent_review_sha256": "df6e5f1579409efa980f3d3cbcbe6b2ef299186939d2d48912f4138c760d89e8",
+  "smoke_receipt_path": "/mnt/t7/smad_next/SPRINT5_2/transfer_control8_v1/RECEIPT.json",
+  "smoke_receipt_sha256": "666ae6d549d113f7ebf28c87c9a0306c014a061ff71f56dd16b75c36105144da"
+}

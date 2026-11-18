@@ -1,0 +1,8 @@
+{
+  "reviewer": "root",
+  "author": "astra_sprint_plan_review",
+  "decision": "REPRODUCED_ALL9_POINT_AUCS",
+  "method": "independent scipy rank-sum AUC withinfixedD, equalquintileweight; no learnerrefit/candidateaccess",
+  "max_auc": 0.7433476296522621,
+  "meaning": "Residual nuisance discrimination about0.743; qualifiedtransferpilotonly, notidentitycueisolation. ReportedCI conditionalonfixedlearners; rootpointreproductiondoesnotindependentlyrecomputeCI."
+}

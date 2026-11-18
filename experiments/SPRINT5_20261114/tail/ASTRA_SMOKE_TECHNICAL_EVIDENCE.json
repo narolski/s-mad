@@ -1,0 +1,744 @@
+[
+  {
+    "arm": "bce",
+    "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SPRINT5_3/smoke_v1/SPRINT5_3_smoke_v1_bce_s521.tar",
+    "exists": true,
+    "sha256": "d7e0cd1f8844233bdf06d2450f47f046bfb4e73dfd9532b948c6a8bfd9d86df4",
+    "sidecar_sha256": "d7e0cd1f8844233bdf06d2450f47f046bfb4e73dfd9532b948c6a8bfd9d86df4",
+    "files": {
+      "info.json": 605,
+      "scores_train.npz": 1462744,
+      "sprint_schedule.json": 346,
+      "battery/logits_gd.npz": 1723570,
+      "battery/logits_dev.npz": 2894690,
+      "battery/logits_train.npz": 1462744,
+      "battery/scores_eval.npz": 2894690,
+      "battery/battery.json": 11258,
+      "battery/last_trainable.pt": 312981,
+      "battery/gate.json": 2285,
+      "battery/logits_tt1.npz": 5644422,
+      "battery/logits_meds.npz": 45810,
+      "battery/platform.json": 966,
+      "battery/meta.json": 3074,
+      "last_trainable.pt": 312981,
+      "task.env": 50,
+      "task_info.txt": 242,
+      "meta.json": 3074,
+      "battery_status.txt": 13,
+      "TRAIN_ONLY_reference.json": 1651,
+      "env.txt": 93,
+      "gpu.txt": 92,
+      "SHA256SUMS": 979,
+      "last.pt": 345147305,
+      "scores_eval.npz": 3150518,
+      "battery.log": 577,
+      "train.log": 1996,
+      "config.json": 467,
+      "last_pt.sha256": 74
+    },
+    "gate": {
+      "n": 2496,
+      "n_differ": 0,
+      "max_abs": 0.0,
+      "byte_identical": true,
+      "gate_class": "byte-gated",
+      "passed": true
+    },
+    "netcheck": {
+      "expect_eval": "/mnt/lscratch/slurm/6321199/work_bce/res/SPRINT5_3_smoke_v1_bce_s521/scores_eval.npz",
+      "expect_eval_sha256": "968686b599879ffc7eba8e24982c330266d04916f212aee78d4b4301fd7cf2ce",
+      "n_common": 21277,
+      "n_differ": 0,
+      "max_abs": 0.0,
+      "passed": true,
+      "criterion": "byte identity on every stored id, at least 19797 ids"
+    },
+    "sets": {
+      "dev": {
+        "n": 21277,
+        "n_scored": 21277,
+        "finite": true
+      },
+      "tt1": {
+        "n": 34411,
+        "n_scored": 34411,
+        "finite": true
+      },
+      "meds": {
+        "n": 1018,
+        "n_scored": 1018,
+        "finite": true
+      },
+      "gd": {
+        "n": 11042,
+        "n_scored": 11042,
+        "finite": true
+      }
+    },
+    "set_keys": {
+      "dev": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ],
+      "tt1": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ],
+      "meds": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ],
+      "gd": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ]
+    },
+    "schedule": {
+      "seed": 521,
+      "steps": 2,
+      "bs": 256,
+      "row_exposures": 512,
+      "schedule_sha256": "dbb0ebeafae6f6a2b62f5a12f21eec61b1c9ad15bfd96bf7c2c4416e3aad5b01",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+    "battery_status": "battery_rc=0\n",
+    "task_info": "pack_sha256 96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004 overlay_sha256 171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149 arch a12_clip_vitb16_madation wall_s 213 host r18-15.lem.kdm.wcss.pl steps 2 limit 0\n",
+    "reference": {
+      "scope": "TRAINING_ONLY warm-start continuation constants; not evaluation calibration or performance",
+      "reference_network": "AB1_Sb_s408",
+      "reference_meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+      "reference_weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+      "metadata_sha256": "77728aacae3b1c4f874a3993b7b4b023ac1c8bbb562a957ff2915874b5a02f77",
+      "anchor": -3.400115966796875,
+      "anchor_rule": "95th weighted quantile of training camera identity-mean logits; each source/processing group totalweight1/4, eachidentityequalwithin group; firstcumulativeweight>=.95",
+      "eta": {
+        "feret/native": 0.6930495621479031,
+        "feret/s61": 0.6929910865202704,
+        "frgc/native": 0.6531096147502455,
+        "frgc/s61": 0.6572541619011422
+      },
+      "eta_rule": "TRAINcamera identity-mean softplus(z-anchor),90%linearquantile",
+      "eta_optimizer_lr": 0.01,
+      "positive_reference": {
+        "af0_u50": 0.0011286750831048164,
+        "af0_u5061": 0.0011502558349013522,
+        "lad_R4": 0.0011169438709512129,
+        "lad_S4": 0.03401409264057112
+      },
+      "positive_epsilon": 0.02,
+      "q": 0.1,
+      "tail_weight": 0.1,
+      "dual_step": 0.01,
+      "dual_cap": 10,
+      "negative_group_identity_counts": {
+        "feret/native": 467,
+        "feret/s61": 220,
+        "frgc/native": 170,
+        "frgc/s61": 22
+      },
+      "negative_group_image_counts": {
+        "feret/native": 494,
+        "feret/s61": 229,
+        "frgc/native": 180,
+        "frgc/s61": 25
+      },
+      "evaluation_calibration": "SEPARATE; never derive adoption threshold from these constants",
+      "score_code_sha256": "2428195be1f5f334c608dba09001d422a07bb267f81fe95917f42ccfb7f1df93"
+    }
+  },
+  {
+    "arm": "mean",
+    "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SPRINT5_3/smoke_v1/SPRINT5_3_smoke_v1_mean_s521.tar",
+    "exists": true,
+    "sha256": "78868f6e59f2056cad5d514c3d3c5a24c32aa979e71e5a628d8d2d9b5f8ed3cd",
+    "sidecar_sha256": "78868f6e59f2056cad5d514c3d3c5a24c32aa979e71e5a628d8d2d9b5f8ed3cd",
+    "files": {
+      "last_pt.sha256": 74,
+      "meta.json": 3077,
+      "task.env": 52,
+      "info.json": 607,
+      "last.pt": 345147305,
+      "last_trainable.pt": 312981,
+      "gpu.txt": 92,
+      "scores_train.npz": 1462744,
+      "env.txt": 93,
+      "sprint_schedule.json": 346,
+      "task_info.txt": 242,
+      "tail_trace.jsonl": 1117,
+      "battery.log": 579,
+      "config.json": 467,
+      "battery_status.txt": 13,
+      "tail_objective_state.pt": 2975,
+      "TRAIN_ONLY_reference.json": 1651,
+      "battery/logits_dev.npz": 2894690,
+      "battery/scores_eval.npz": 2894690,
+      "battery/meta.json": 3077,
+      "battery/logits_gd.npz": 1723570,
+      "battery/battery.json": 11298,
+      "battery/gate.json": 2289,
+      "battery/logits_tt1.npz": 5644422,
+      "battery/logits_train.npz": 1462744,
+      "battery/last_trainable.pt": 312981,
+      "battery/logits_meds.npz": 45810,
+      "battery/platform.json": 966,
+      "train.log": 3136,
+      "SHA256SUMS": 979,
+      "scores_eval.npz": 3150518
+    },
+    "gate": {
+      "n": 2496,
+      "n_differ": 0,
+      "max_abs": 0.0,
+      "byte_identical": true,
+      "gate_class": "byte-gated",
+      "passed": true
+    },
+    "netcheck": {
+      "expect_eval": "/mnt/lscratch/slurm/6321199/work_mean/res/SPRINT5_3_smoke_v1_mean_s521/scores_eval.npz",
+      "expect_eval_sha256": "f24888ec96ca355c47f9bf31ba7e4e835346897b97c0a7ab94185fb6fe54e18a",
+      "n_common": 21277,
+      "n_differ": 0,
+      "max_abs": 0.0,
+      "passed": true,
+      "criterion": "byte identity on every stored id, at least 19797 ids"
+    },
+    "sets": {
+      "dev": {
+        "n": 21277,
+        "n_scored": 21277,
+        "finite": true
+      },
+      "tt1": {
+        "n": 34411,
+        "n_scored": 34411,
+        "finite": true
+      },
+      "meds": {
+        "n": 1018,
+        "n_scored": 1018,
+        "finite": true
+      },
+      "gd": {
+        "n": 11042,
+        "n_scored": 11042,
+        "finite": true
+      }
+    },
+    "set_keys": {
+      "dev": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ],
+      "tt1": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ],
+      "meds": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ],
+      "gd": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ]
+    },
+    "schedule": {
+      "seed": 521,
+      "steps": 2,
+      "bs": 256,
+      "row_exposures": 512,
+      "schedule_sha256": "dbb0ebeafae6f6a2b62f5a12f21eec61b1c9ad15bfd96bf7c2c4416e3aad5b01",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+    "battery_status": "battery_rc=0\n",
+    "task_info": "pack_sha256 96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004 overlay_sha256 171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149 arch a12_clip_vitb16_madation wall_s 213 host r18-15.lem.kdm.wcss.pl steps 2 limit 0\n",
+    "reference": {
+      "scope": "TRAINING_ONLY warm-start continuation constants; not evaluation calibration or performance",
+      "reference_network": "AB1_Sb_s408",
+      "reference_meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+      "reference_weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+      "metadata_sha256": "77728aacae3b1c4f874a3993b7b4b023ac1c8bbb562a957ff2915874b5a02f77",
+      "anchor": -3.400115966796875,
+      "anchor_rule": "95th weighted quantile of training camera identity-mean logits; each source/processing group totalweight1/4, eachidentityequalwithin group; firstcumulativeweight>=.95",
+      "eta": {
+        "feret/native": 0.6930495621479031,
+        "feret/s61": 0.6929910865202704,
+        "frgc/native": 0.6531096147502455,
+        "frgc/s61": 0.6572541619011422
+      },
+      "eta_rule": "TRAINcamera identity-mean softplus(z-anchor),90%linearquantile",
+      "eta_optimizer_lr": 0.01,
+      "positive_reference": {
+        "af0_u50": 0.0011286750831048164,
+        "af0_u5061": 0.0011502558349013522,
+        "lad_R4": 0.0011169438709512129,
+        "lad_S4": 0.03401409264057112
+      },
+      "positive_epsilon": 0.02,
+      "q": 0.1,
+      "tail_weight": 0.1,
+      "dual_step": 0.01,
+      "dual_cap": 10,
+      "negative_group_identity_counts": {
+        "feret/native": 467,
+        "feret/s61": 220,
+        "frgc/native": 170,
+        "frgc/s61": 22
+      },
+      "negative_group_image_counts": {
+        "feret/native": 494,
+        "feret/s61": 229,
+        "frgc/native": 180,
+        "frgc/s61": 25
+      },
+      "evaluation_calibration": "SEPARATE; never derive adoption threshold from these constants",
+      "score_code_sha256": "2428195be1f5f334c608dba09001d422a07bb267f81fe95917f42ccfb7f1df93"
+    },
+    "trace": [
+      {
+        "effective_negative_identities": {
+          "feret/native": 32,
+          "feret/s61": 32,
+          "frgc/native": 32,
+          "frgc/s61": 22
+        },
+        "violation": [
+          -0.019993668422102928,
+          -0.01998342014849186,
+          -0.019992733374238014,
+          -0.0211670882999897
+        ],
+        "dual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eta": [
+          0.6930495500564575,
+          0.6929910778999329,
+          0.653109610080719,
+          0.657254159450531
+        ],
+        "tail_occupancy": {
+          "feret/native": 5,
+          "feret/s61": 7,
+          "frgc/native": 8,
+          "frgc/s61": 9
+        },
+        "step": 0,
+        "dual_after": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eta_after": [
+          0.6930495500564575,
+          0.6929910778999329,
+          0.653109610080719,
+          0.657254159450531
+        ]
+      },
+      {
+        "effective_negative_identities": {
+          "feret/native": 32,
+          "feret/s61": 32,
+          "frgc/native": 32,
+          "frgc/s61": 22
+        },
+        "violation": [
+          -0.02001034840941429,
+          -0.020020443946123123,
+          -0.019997496157884598,
+          -0.028655093163251877
+        ],
+        "dual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eta": [
+          0.6930495500564575,
+          0.6929910778999329,
+          0.653109610080719,
+          0.657254159450531
+        ],
+        "tail_occupancy": {
+          "feret/native": 7,
+          "feret/s61": 4,
+          "frgc/native": 11,
+          "frgc/s61": 7
+        },
+        "step": 1,
+        "dual_after": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eta_after": [
+          0.6930495500564575,
+          0.6929910778999329,
+          0.653109610080719,
+          0.657254159450531
+        ]
+      }
+    ],
+    "objective_state_base64": "UEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAdAAUAdGFpbF9vYmplY3RpdmVfc3RhdGUvZGF0YS5wa2xGQgEAWoACfXEAKFgJAAAAb2JqZWN0aXZlcQFjY29sbGVjdGlvbnMKT3JkZXJlZERpY3QKcQIpUnEDKFgDAAAAZXRhcQRjdG9yY2guX3V0aWxzCl9yZWJ1aWxkX3RlbnNvcl92MgpxBSgoWAcAAABzdG9yYWdlcQZjdG9yY2gKRmxvYXRTdG9yYWdlCnEHWAEAAAAwcQhYBgAAAGN1ZGE6MHEJSwR0cQpRSwBLBIVxC0sBhXEMiWgCKVJxDXRxDlJxD1gEAAAAZHVhbHEQaAUoKGgGaAdYAQAAADFxEVgGAAAAY3VkYTowcRJLBHRxE1FLAEsEhXEUSwGFcRWJaAIpUnEWdHEXUnEYWAkAAAByZWZlcmVuY2VxGWgFKChoBmgHWAEAAAAycRpYBgAAAGN1ZGE6MHEbSwR0cRxRSwBLBIVxHUsBhXEeiWgCKVJxH3RxIFJxIVgOAAAAbGFzdF9kdWFsX3N0ZXBxImgFKChoBmN0b3JjaApMb25nU3RvcmFnZQpxI1gBAAAAM3EkWAYAAABjdWRhOjBxJUsBdHEmUUsAKSmJaAIpUnEndHEoUnEpdX1xKlgJAAAAX21ldGFkYXRhcStoAilScSxYAAAAAHEtfXEuWAcAAAB2ZXJzaW9ucS9LAXNzc2JYDQAAAGV0YV9vcHRpbWl6ZXJxMH1xMShYBQAAAHN0YXRlcTJ9cTNYDAAAAHBhcmFtX2dyb3Vwc3E0XXE1fXE2KFgCAAAAbHJxN0c/hHrhR64Ue1gFAAAAYmV0YXNxOEc/7MzMzMzMzUc/7/fO2RaHK4ZxOVgDAAAAZXBzcTpHPkV5juIwjDpYDAAAAHdlaWdodF9kZWNheXE7SwBYBwAAAGFtc2dyYWRxPIlYCAAAAG1heGltaXplcT2JWAcAAABmb3JlYWNocT5OWAoAAABjYXB0dXJhYmxlcT+JWA4AAABkaWZmZXJlbnRpYWJsZXFAiVgFAAAAZnVzZWRxQU5YFgAAAGRlY291cGxlZF93ZWlnaHRfZGVjYXlxQolYBgAAAHBhcmFtc3FDXXFESwBhdWF1WA4AAABlZmZlY3RpdmVfc3RlcHFFSwF1LlBLBwiBtnKWMAMAADADAABQSwMEAAAICAAAAAAAAAAAAAAAAAAAAAAAACQAPgB0YWlsX29iamVjdGl2ZV9zdGF0ZS8uZm9ybWF0X3ZlcnNpb25GQjoAWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWjFQSwcIt+/cgwEAAAABAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAnACoAdGFpbF9vYmplY3RpdmVfc3RhdGUvLnN0b3JhZ2VfYWxpZ25tZW50RkImAFpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaNjRQSwcIP3dx6QIAAAACAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAeADIAdGFpbF9vYmplY3RpdmVfc3RhdGUvYnl0ZW9yZGVyRkIuAFpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpsaXR0bGVQSwcIhT3jGQYAAAAGAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAbADEAdGFpbF9vYmplY3RpdmVfc3RhdGUvZGF0YS8wRkItAFpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWrJrMT/dZzE/MTInP89BKD9QSwcIKY6vehAAAAAQAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAbACcAdGFpbF9vYmplY3RpdmVfc3RhdGUvZGF0YS8xRkIjAFpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaAAAAAAAAAAAAAAAAAAAAAFBLBwhVS7vsEAAAABAAAABQSwMEAAAICAAAAAAAAAAAAAAAAAAAAAAAABsAJwB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLzJGQiMAWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWloN8JM6LsSWOmtmkjpcUgs9UEsHCPK20RUQAAAAEAAAAFBLAwQAAAgIAAAAAAAAAAAAAAAAAAAAAAAAGwAnAHRhaWxfb2JqZWN0aXZlX3N0YXRlL2RhdGEvM0ZCIwBaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWgEAAAAAAAAAUEsHCPffiKkIAAAACAAAAFBLAwQAAAgIAAAAAAAAAAAAAAAAAAAAAAAAHAAuAHRhaWxfb2JqZWN0aXZlX3N0YXRlL3ZlcnNpb25GQioAWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaMwpQSwcI0Z5nVQIAAAACAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAArACUAdGFpbF9vYmplY3RpdmVfc3RhdGUvLmRhdGEvc2VyaWFsaXphdGlvbl9pZEZCIQBaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWloxMDc3ODYyNzI5Nzk5ODU0MTYyNTA3MDA5MDU4MzI1ODkyOTM1MDg4UEsHCP85LkIoAAAAKAAAAFBLAQIAAAAACAgAAAAAAACBtnKWMAMAADADAAAdAAAAAAAAAAAAAAAAAAAAAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLnBrbFBLAQIAAAAACAgAAAAAAAC379yDAQAAAAEAAAAkAAAAAAAAAAAAAAAAAIADAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS8uZm9ybWF0X3ZlcnNpb25QSwECAAAAAAgIAAAAAAAAP3dx6QIAAAACAAAAJwAAAAAAAAAAAAAAAAARBAAAdGFpbF9vYmplY3RpdmVfc3RhdGUvLnN0b3JhZ2VfYWxpZ25tZW50UEsBAgAAAAAICAAAAAAAAIU94xkGAAAABgAAAB4AAAAAAAAAAAAAAAAAkgQAAHRhaWxfb2JqZWN0aXZlX3N0YXRlL2J5dGVvcmRlclBLAQIAAAAACAgAAAAAAAApjq96EAAAABAAAAAbAAAAAAAAAAAAAAAAABYFAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLzBQSwECAAAAAAgIAAAAAAAAVUu77BAAAAAQAAAAGwAAAAAAAAAAAAAAAACgBQAAdGFpbF9vYmplY3RpdmVfc3RhdGUvZGF0YS8xUEsBAgAAAAAICAAAAAAAAPK20RUQAAAAEAAAABsAAAAAAAAAAAAAAAAAIAYAAHRhaWxfb2JqZWN0aXZlX3N0YXRlL2RhdGEvMlBLAQIAAAAACAgAAAAAAAD334ipCAAAAAgAAAAbAAAAAAAAAAAAAAAAAKAGAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLzNQSwECAAAAAAgIAAAAAAAA0Z5nVQIAAAACAAAAHAAAAAAAAAAAAAAAAAAYBwAAdGFpbF9vYmplY3RpdmVfc3RhdGUvdmVyc2lvblBLAQIAAAAACAgAAAAAAAD/OS5CKAAAACgAAAArAAAAAAAAAAAAAAAAAJIHAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS8uZGF0YS9zZXJpYWxpemF0aW9uX2lkUEsGBiwAAAAAAAAAHgMtAAAAAAAAAAAACgAAAAAAAAAKAAAAAAAAAAUDAAAAAAAAOAgAAAAAAABQSwYHAAAAAD0LAAAAAAAAAQAAAFBLBQYAAAAACgAKAAUDAAA4CAAAAAA="
+  },
+  {
+    "arm": "cvar",
+    "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/SPRINT5_3/smoke_v1/SPRINT5_3_smoke_v1_cvar_s521.tar",
+    "exists": true,
+    "sha256": "83bc5483d9595d5c6717bd8128c443200e5f3ef26421fd803278a9bd44f76a0a",
+    "sidecar_sha256": "83bc5483d9595d5c6717bd8128c443200e5f3ef26421fd803278a9bd44f76a0a",
+    "files": {
+      "info.json": 607,
+      "tail_trace.jsonl": 1119,
+      "battery_status.txt": 13,
+      "last_trainable.pt": 312981,
+      "last_pt.sha256": 74,
+      "meta.json": 3077,
+      "task_info.txt": 242,
+      "task.env": 52,
+      "battery/logits_dev.npz": 2894690,
+      "battery/platform.json": 966,
+      "battery/gate.json": 2289,
+      "battery/scores_eval.npz": 2894690,
+      "battery/logits_meds.npz": 45810,
+      "battery/logits_tt1.npz": 5644422,
+      "battery/meta.json": 3077,
+      "battery/logits_gd.npz": 1723570,
+      "battery/logits_train.npz": 1462744,
+      "battery/battery.json": 11298,
+      "battery/last_trainable.pt": 312981,
+      "config.json": 467,
+      "battery.log": 579,
+      "TRAIN_ONLY_reference.json": 1651,
+      "train.log": 3138,
+      "tail_objective_state.pt": 3770,
+      "scores_train.npz": 1462744,
+      "scores_eval.npz": 3150518,
+      "SHA256SUMS": 979,
+      "last.pt": 345147305,
+      "sprint_schedule.json": 346,
+      "env.txt": 93,
+      "gpu.txt": 92
+    },
+    "gate": {
+      "n": 2496,
+      "n_differ": 0,
+      "max_abs": 0.0,
+      "byte_identical": true,
+      "gate_class": "byte-gated",
+      "passed": true
+    },
+    "netcheck": {
+      "expect_eval": "/mnt/lscratch/slurm/6321199/work_cvar/res/SPRINT5_3_smoke_v1_cvar_s521/scores_eval.npz",
+      "expect_eval_sha256": "1fc3da9f96d72bc3fcb559d53229203a431c28c30cd9c62d28851c50e2cc3242",
+      "n_common": 21277,
+      "n_differ": 0,
+      "max_abs": 0.0,
+      "passed": true,
+      "criterion": "byte identity on every stored id, at least 19797 ids"
+    },
+    "sets": {
+      "dev": {
+        "n": 21277,
+        "n_scored": 21277,
+        "finite": true
+      },
+      "tt1": {
+        "n": 34411,
+        "n_scored": 34411,
+        "finite": true
+      },
+      "meds": {
+        "n": 1018,
+        "n_scored": 1018,
+        "finite": true
+      },
+      "gd": {
+        "n": 11042,
+        "n_scored": 11042,
+        "finite": true
+      }
+    },
+    "set_keys": {
+      "dev": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ],
+      "tt1": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ],
+      "meds": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ],
+      "gd": [
+        "manifest",
+        "sha256",
+        "n",
+        "roots",
+        "image_check",
+        "logits_file",
+        "logits_sha256",
+        "n_scored",
+        "finite",
+        "seconds"
+      ]
+    },
+    "schedule": {
+      "seed": 521,
+      "steps": 2,
+      "bs": 256,
+      "row_exposures": 512,
+      "schedule_sha256": "dbb0ebeafae6f6a2b62f5a12f21eec61b1c9ad15bfd96bf7c2c4416e3aad5b01",
+      "camera_per_step": 118,
+      "positive_per_step": 128,
+      "protocol_controls_per_step": 10,
+      "smallest_camera_group_ids": 22,
+      "common_warmstart": "AB1_Sb_s408; conditional continuation"
+    },
+    "source_sums_sha256": "9b50eff7aa5a90f72be7330e3550b0f8a76917dcac9b89516cc0a64ae7086ae1",
+    "battery_status": "battery_rc=0\n",
+    "task_info": "pack_sha256 96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004 overlay_sha256 171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149 arch a12_clip_vitb16_madation wall_s 213 host r18-15.lem.kdm.wcss.pl steps 2 limit 0\n",
+    "reference": {
+      "scope": "TRAINING_ONLY warm-start continuation constants; not evaluation calibration or performance",
+      "reference_network": "AB1_Sb_s408",
+      "reference_meta_sha256": "cce5126a28b498712fe5c760fe523eea8a8b12a1c2d05be58d652a5457c57df4",
+      "reference_weights_sha256": "656bfcbe1a10c90a601babc50470c7e3b5429ae6d33612bfb60845dfa9a2f804",
+      "metadata_sha256": "77728aacae3b1c4f874a3993b7b4b023ac1c8bbb562a957ff2915874b5a02f77",
+      "anchor": -3.400115966796875,
+      "anchor_rule": "95th weighted quantile of training camera identity-mean logits; each source/processing group totalweight1/4, eachidentityequalwithin group; firstcumulativeweight>=.95",
+      "eta": {
+        "feret/native": 0.6930495621479031,
+        "feret/s61": 0.6929910865202704,
+        "frgc/native": 0.6531096147502455,
+        "frgc/s61": 0.6572541619011422
+      },
+      "eta_rule": "TRAINcamera identity-mean softplus(z-anchor),90%linearquantile",
+      "eta_optimizer_lr": 0.01,
+      "positive_reference": {
+        "af0_u50": 0.0011286750831048164,
+        "af0_u5061": 0.0011502558349013522,
+        "lad_R4": 0.0011169438709512129,
+        "lad_S4": 0.03401409264057112
+      },
+      "positive_epsilon": 0.02,
+      "q": 0.1,
+      "tail_weight": 0.1,
+      "dual_step": 0.01,
+      "dual_cap": 10,
+      "negative_group_identity_counts": {
+        "feret/native": 467,
+        "feret/s61": 220,
+        "frgc/native": 170,
+        "frgc/s61": 22
+      },
+      "negative_group_image_counts": {
+        "feret/native": 494,
+        "feret/s61": 229,
+        "frgc/native": 180,
+        "frgc/s61": 25
+      },
+      "evaluation_calibration": "SEPARATE; never derive adoption threshold from these constants",
+      "score_code_sha256": "2428195be1f5f334c608dba09001d422a07bb267f81fe95917f42ccfb7f1df93"
+    },
+    "trace": [
+      {
+        "effective_negative_identities": {
+          "feret/native": 32,
+          "feret/s61": 32,
+          "frgc/native": 32,
+          "frgc/s61": 22
+        },
+        "violation": [
+          -0.019993668422102928,
+          -0.01998342014849186,
+          -0.019992733374238014,
+          -0.0211670882999897
+        ],
+        "dual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eta": [
+          0.6930495500564575,
+          0.6929910778999329,
+          0.653109610080719,
+          0.657254159450531
+        ],
+        "tail_occupancy": {
+          "feret/native": 5,
+          "feret/s61": 7,
+          "frgc/native": 8,
+          "frgc/s61": 9
+        },
+        "step": 0,
+        "dual_after": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eta_after": [
+          0.7030495405197144,
+          0.7029910683631897,
+          0.6631096005439758,
+          0.6672541499137878
+        ]
+      },
+      {
+        "effective_negative_identities": {
+          "feret/native": 32,
+          "feret/s61": 32,
+          "frgc/native": 32,
+          "frgc/s61": 22
+        },
+        "violation": [
+          -0.020009512081742287,
+          -0.020019829273223877,
+          -0.0199966412037611,
+          -0.0279880128800869
+        ],
+        "dual": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eta": [
+          0.7030495405197144,
+          0.7029910683631897,
+          0.6631096005439758,
+          0.6672541499137878
+        ],
+        "tail_occupancy": {
+          "feret/native": 6,
+          "feret/s61": 3,
+          "frgc/native": 6,
+          "frgc/s61": 3
+        },
+        "step": 1,
+        "dual_after": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "eta_after": [
+          0.7129320502281189,
+          0.7092911005020142,
+          0.6726475954055786,
+          0.6747786998748779
+        ]
+      }
+    ],
+    "objective_state_base64": "UEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAdAAUAdGFpbF9vYmplY3RpdmVfc3RhdGUvZGF0YS5wa2xGQgEAWoACfXEAKFgJAAAAb2JqZWN0aXZlcQFjY29sbGVjdGlvbnMKT3JkZXJlZERpY3QKcQIpUnEDKFgDAAAAZXRhcQRjdG9yY2guX3V0aWxzCl9yZWJ1aWxkX3RlbnNvcl92MgpxBSgoWAcAAABzdG9yYWdlcQZjdG9yY2gKRmxvYXRTdG9yYWdlCnEHWAEAAAAwcQhYBgAAAGN1ZGE6MHEJSwR0cQpRSwBLBIVxC0sBhXEMiWgCKVJxDXRxDlJxD1gEAAAAZHVhbHEQaAUoKGgGaAdYAQAAADFxEVgGAAAAY3VkYTowcRJLBHRxE1FLAEsEhXEUSwGFcRWJaAIpUnEWdHEXUnEYWAkAAAByZWZlcmVuY2VxGWgFKChoBmgHWAEAAAAycRpYBgAAAGN1ZGE6MHEbSwR0cRxRSwBLBIVxHUsBhXEeiWgCKVJxH3RxIFJxIVgOAAAAbGFzdF9kdWFsX3N0ZXBxImgFKChoBmN0b3JjaApMb25nU3RvcmFnZQpxI1gBAAAAM3EkWAYAAABjdWRhOjBxJUsBdHEmUUsAKSmJaAIpUnEndHEoUnEpdX1xKlgJAAAAX21ldGFkYXRhcStoAilScSxYAAAAAHEtfXEuWAcAAAB2ZXJzaW9ucS9LAXNzc2JYDQAAAGV0YV9vcHRpbWl6ZXJxMH1xMShYBQAAAHN0YXRlcTJ9cTNLAH1xNChYBAAAAHN0ZXBxNWgFKChoBmgHWAEAAAA0cTZYAwAAAGNwdXE3SwF0cThRSwApKYloAilScTl0cTpScTtYBwAAAGV4cF9hdmdxPGgFKChoBmgHWAEAAAA1cT1YBgAAAGN1ZGE6MHE+SwR0cT9RSwBLBIVxQEsBhXFBiWgCKVJxQnRxQ1JxRFgKAAAAZXhwX2F2Z19zcXFFaAUoKGgGaAdYAQAAADZxRlgGAAAAY3VkYTowcUdLBHRxSFFLAEsEhXFJSwGFcUqJaAIpUnFLdHFMUnFNdXNYDAAAAHBhcmFtX2dyb3Vwc3FOXXFPfXFQKFgCAAAAbHJxUUc/hHrhR64Ue1gFAAAAYmV0YXNxUkc/7MzMzMzMzUc/7/fO2RaHK4ZxU1gDAAAAZXBzcVRHPkV5juIwjDpYDAAAAHdlaWdodF9kZWNheXFVSwBYBwAAAGFtc2dyYWRxVolYCAAAAG1heGltaXplcVeJWAcAAABmb3JlYWNocVhOWAoAAABjYXB0dXJhYmxlcVmJWA4AAABkaWZmZXJlbnRpYWJsZXFaiVgFAAAAZnVzZWRxW05YFgAAAGRlY291cGxlZF93ZWlnaHRfZGVjYXlxXIlYBgAAAHBhcmFtc3FdXXFeSwBhdWF1WA4AAABlZmZlY3RpdmVfc3RlcHFfSwF1LlBLBwgZM/AlCwQAAAsEAABQSwMEAAAICAAAAAAAAAAAAAAAAAAAAAAAACQAIwB0YWlsX29iamVjdGl2ZV9zdGF0ZS8uZm9ybWF0X3ZlcnNpb25GQh8AWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWjFQSwcIt+/cgwEAAAABAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAnACoAdGFpbF9vYmplY3RpdmVfc3RhdGUvLnN0b3JhZ2VfYWxpZ25tZW50RkImAFpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaNjRQSwcIP3dx6QIAAAACAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAeADIAdGFpbF9vYmplY3RpdmVfc3RhdGUvYnl0ZW9yZGVyRkIuAFpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpsaXR0bGVQSwcIhT3jGQYAAAAGAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAbADEAdGFpbF9vYmplY3RpdmVfc3RhdGUvZGF0YS8wRkItAFpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWreCNj8alDU/ojIsP0y+LD9QSwcIrWDWzBAAAAAQAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAbACcAdGFpbF9vYmplY3RpdmVfc3RhdGUvZGF0YS8xRkIjAFpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaAAAAAAAAAAAAAAAAAAAAAFBLBwhVS7vsEAAAABAAAABQSwMEAAAICAAAAAAAAAAAAAAAAAAAAAAAABsAJwB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLzJGQiMAWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWloN8JM6LsSWOmtmkjpcUgs9UEsHCPK20RUQAAAAEAAAAFBLAwQAAAgIAAAAAAAAAAAAAAAAAAAAAAAAGwAnAHRhaWxfb2JqZWN0aXZlX3N0YXRlL2RhdGEvM0ZCIwBaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWgEAAAAAAAAAUEsHCPffiKkIAAAACAAAAFBLAwQAAAgIAAAAAAAAAAAAAAAAAAAAAAAAGwAvAHRhaWxfb2JqZWN0aXZlX3N0YXRlL2RhdGEvNEZCKwBaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaAAAAQFBLBwiMnphXBAAAAAQAAABQSwMEAAAICAAAAAAAAAAAAAAAAAAAAAAAABsAMwB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLzVGQi8AWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlrSTWK7L90ku6JFtrt81gC8UEsHCFS4L/kQAAAAEAAAAFBLAwQAAAgIAAAAAAAAAAAAAAAAAAAAAAAAGwAnAHRhaWxfb2JqZWN0aXZlX3N0YXRlL2RhdGEvNkZCIwBaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWkx7NTX1AG01vsf8NcbtyjZQSwcI+SYZ2RAAAAAQAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAAcACYAdGFpbF9vYmplY3RpdmVfc3RhdGUvdmVyc2lvbkZCIgBaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaMwpQSwcI0Z5nVQIAAAACAAAAUEsDBAAACAgAAAAAAAAAAAAAAAAAAAAAAAArACUAdGFpbF9vYmplY3RpdmVfc3RhdGUvLmRhdGEvc2VyaWFsaXphdGlvbl9pZEZCIQBaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlpaWlowNjg5NTI5NTY0Nzg1MjA2NTU3ODAwODQ2MTMxNzc4ODcwODgxMDUzUEsHCB67H2UoAAAAKAAAAFBLAQIAAAAACAgAAAAAAAAZM/AlCwQAAAsEAAAdAAAAAAAAAAAAAAAAAAAAAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLnBrbFBLAQIAAAAACAgAAAAAAAC379yDAQAAAAEAAAAkAAAAAAAAAAAAAAAAAFsEAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS8uZm9ybWF0X3ZlcnNpb25QSwECAAAAAAgIAAAAAAAAP3dx6QIAAAACAAAAJwAAAAAAAAAAAAAAAADRBAAAdGFpbF9vYmplY3RpdmVfc3RhdGUvLnN0b3JhZ2VfYWxpZ25tZW50UEsBAgAAAAAICAAAAAAAAIU94xkGAAAABgAAAB4AAAAAAAAAAAAAAAAAUgUAAHRhaWxfb2JqZWN0aXZlX3N0YXRlL2J5dGVvcmRlclBLAQIAAAAACAgAAAAAAACtYNbMEAAAABAAAAAbAAAAAAAAAAAAAAAAANYFAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLzBQSwECAAAAAAgIAAAAAAAAVUu77BAAAAAQAAAAGwAAAAAAAAAAAAAAAABgBgAAdGFpbF9vYmplY3RpdmVfc3RhdGUvZGF0YS8xUEsBAgAAAAAICAAAAAAAAPK20RUQAAAAEAAAABsAAAAAAAAAAAAAAAAA4AYAAHRhaWxfb2JqZWN0aXZlX3N0YXRlL2RhdGEvMlBLAQIAAAAACAgAAAAAAAD334ipCAAAAAgAAAAbAAAAAAAAAAAAAAAAAGAHAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLzNQSwECAAAAAAgIAAAAAAAAjJ6YVwQAAAAEAAAAGwAAAAAAAAAAAAAAAADYBwAAdGFpbF9vYmplY3RpdmVfc3RhdGUvZGF0YS80UEsBAgAAAAAICAAAAAAAAFS4L/kQAAAAEAAAABsAAAAAAAAAAAAAAAAAVAgAAHRhaWxfb2JqZWN0aXZlX3N0YXRlL2RhdGEvNVBLAQIAAAAACAgAAAAAAAD5JhnZEAAAABAAAAAbAAAAAAAAAAAAAAAAAOAIAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS9kYXRhLzZQSwECAAAAAAgIAAAAAAAA0Z5nVQIAAAACAAAAHAAAAAAAAAAAAAAAAABgCQAAdGFpbF9vYmplY3RpdmVfc3RhdGUvdmVyc2lvblBLAQIAAAAACAgAAAAAAAAeux9lKAAAACgAAAArAAAAAAAAAAAAAAAAANIJAAB0YWlsX29iamVjdGl2ZV9zdGF0ZS8uZGF0YS9zZXJpYWxpemF0aW9uX2lkUEsGBiwAAAAAAAAAHgMtAAAAAAAAAAAADQAAAAAAAAANAAAAAAAAAOADAAAAAAAAeAoAAAAAAABQSwYHAAAAAFgOAAAAAAAAAQAAAFBLBQYAAAAADQANAOADAAB4CgAAAAA="
+  }
+]

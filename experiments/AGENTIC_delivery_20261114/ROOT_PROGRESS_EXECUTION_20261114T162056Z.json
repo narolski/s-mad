@@ -1,0 +1,155 @@
+{
+  "at": "2026-11-14T16:24:32.285751+00:00",
+  "collection_receipt": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/COLLECTION_VERIFIED.json",
+  "collection_receipt_sha256": "a8945a19f8dd201778ee7e938e31a85484f532671015e3f65e8bf6913f13ab14",
+  "archives": [
+    {
+      "job_id": "6316724_0",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_Sb_s408_6316724_0.tar",
+      "name": "BATTERY_AB1_Sb_s408_6316724_0.tar",
+      "size": 15032320,
+      "mtime_ns": 1794670391000000000,
+      "sha256": "2b294b472a62d2df74447a9cd340fa9973c09fa82a3404035504f3e47fc52824"
+    },
+    {
+      "job_id": "6316724_1",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_A_s408_6316724_1.tar",
+      "name": "BATTERY_AB1_A_s408_6316724_1.tar",
+      "size": 13895680,
+      "mtime_ns": 1794670571000000000,
+      "sha256": "758f69ab7338cab4e9a798d0bea8621150ccc6ede07867562399c6996c99f267"
+    },
+    {
+      "job_id": "6316724_2",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_B_s408_6316724_2.tar",
+      "name": "BATTERY_AB1_B_s408_6316724_2.tar",
+      "size": 14909440,
+      "mtime_ns": 1794670760000000000,
+      "sha256": "06c4fa7d821e1fafc14736a6cfec3c6620f5ef3439c24fac9f700619d0478204"
+    },
+    {
+      "job_id": "6316724_3",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_A_s409_6316724_3.tar",
+      "name": "BATTERY_AB1_A_s409_6316724_3.tar",
+      "size": 13895680,
+      "mtime_ns": 1794670942000000000,
+      "sha256": "8edc52d691a516bdf0005b604797920f708a76323d3d952ea11f819848ba2baf"
+    },
+    {
+      "job_id": "6316724_4",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_B_s409_6316724_4.tar",
+      "name": "BATTERY_AB1_B_s409_6316724_4.tar",
+      "size": 14909440,
+      "mtime_ns": 1794671088000000000,
+      "sha256": "9ed394ee9022d62af53e62bfe1226c85ffc3367b744d9437fc4be1c8bea30a09"
+    },
+    {
+      "job_id": "6316724_5",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_Sb_s409_6316724_5.tar",
+      "name": "BATTERY_AB1_Sb_s409_6316724_5.tar",
+      "size": 15032320,
+      "mtime_ns": 1794671132000000000,
+      "sha256": "6e29fd6b0c15e99da0943056f72260aaf88bbfad490ad8076dfcf68ff702a993"
+    },
+    {
+      "job_id": "6316724_6",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_A_s410_6316724_6.tar",
+      "name": "BATTERY_AB1_A_s410_6316724_6.tar",
+      "size": 13895680,
+      "mtime_ns": 1794671325000000000,
+      "sha256": "6411ec861764824bc9f43acaad965242a87c9efa378a381559a321611619b757"
+    },
+    {
+      "job_id": "6316724_7",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_B_s410_6316724_7.tar",
+      "name": "BATTERY_AB1_B_s410_6316724_7.tar",
+      "size": 14909440,
+      "mtime_ns": 1794671328000000000,
+      "sha256": "1c1319e8db7bc28773d80466e0afb2433a4650c77ac62598ecc134d5f8df9d3b"
+    },
+    {
+      "job_id": "6316724_8",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_Sb_s410_6316724_8.tar",
+      "name": "BATTERY_AB1_Sb_s410_6316724_8.tar",
+      "size": 15032320,
+      "mtime_ns": 1794671526000000000,
+      "sha256": "44573f554186ccfb50e074eac6466b575ca6aa1dedabf1f4e824539acd60029d"
+    },
+    {
+      "job_id": "6316724_9",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_A_s411_6316724_9.tar",
+      "name": "BATTERY_AB1_A_s411_6316724_9.tar",
+      "size": 13895680,
+      "mtime_ns": 1794671520000000000,
+      "sha256": "6096471646509c994e97944dc5c487a8944f9aa017390e646e7a3b820559ec21"
+    },
+    {
+      "job_id": "6316724_10",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_B_s411_6316724_10.tar",
+      "name": "BATTERY_AB1_B_s411_6316724_10.tar",
+      "size": 14909440,
+      "mtime_ns": 1794671719000000000,
+      "sha256": "e5f061d0a6d8a3a955491f25c8936bbbb6d534054f2369b88b14f7ce081fa86f"
+    },
+    {
+      "job_id": "6316724_11",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_Sb_s411_6316724_11.tar",
+      "name": "BATTERY_AB1_Sb_s411_6316724_11.tar",
+      "size": 15032320,
+      "mtime_ns": 1794671717000000000,
+      "sha256": "c4f1cdcd26af399bb74803a2fd31947f3ccf6929e7cd4f26c72c9bbd012ad9cc"
+    },
+    {
+      "job_id": "6316724_12",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_A_s412_6316724_12.tar",
+      "name": "BATTERY_AB1_A_s412_6316724_12.tar",
+      "size": 13895680,
+      "mtime_ns": 1794671713000000000,
+      "sha256": "e4eab66fc3dd7aa08b3cb58a9d961ed7a005db6b361bf21c7ba375239f025667"
+    },
+    {
+      "job_id": "6316724_13",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_B_s412_6316724_13.tar",
+      "name": "BATTERY_AB1_B_s412_6316724_13.tar",
+      "size": 14909440,
+      "mtime_ns": 1794671976000000000,
+      "sha256": "39efc8af7f1c69aa51486169c20cfe823d7d7f209174036d0d4b9d4b5a2a50b8"
+    },
+    {
+      "job_id": "6316724_14",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/BATTERY/nets/BATTERY_AB1_Sb_s412_6316724_14.tar",
+      "name": "BATTERY_AB1_Sb_s412_6316724_14.tar",
+      "size": 15032320,
+      "mtime_ns": 1794671976000000000,
+      "sha256": "f584e58d02a4f118b3ec56fc0a18d25f7da6c5a376a86d791c2e8e9758a10694"
+    },
+    {
+      "job_id": "6319490_0",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/RZ1/RZ1_A512_s408.tar",
+      "name": "RZ1_A512_s408.tar",
+      "size": 10752000,
+      "mtime_ns": 1794672430000000000,
+      "sha256": "cd426b47dba47e51262f00f8308026f715d8b7eadd11c42a41f31eda0984ef53"
+    },
+    {
+      "job_id": "6319490_1",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/RZ1/RZ1_Sb512_s408.tar",
+      "name": "RZ1_Sb512_s408.tar",
+      "size": 11888640,
+      "mtime_ns": 1794672263000000000,
+      "sha256": "c11a0a9265465d6b845598bc5fed8758097fe29c66fa6b8dd59d24d35a54cc86"
+    },
+    {
+      "job_id": "6319490_2",
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/RZ1/RZ1_SbMR512_s408.tar",
+      "name": "RZ1_SbMR512_s408.tar",
+      "size": 11888640,
+      "mtime_ns": 1794672739000000000,
+      "sha256": "79ca0ba532f64e6205be288313621f26656209c45c1fa195f81246c7b98d688e"
+    }
+  ],
+  "scope": "15 BATTERY comparator outputs and 3 RZ1 seed408 fit outputs; opaque only",
+  "archive_members_opened": false,
+  "scientific_read_authorized": false,
+  "paper_draft_integration_receipt": "ROOT_F1_F4_DRAFT_INTEGRATION_20261114.json"
+}

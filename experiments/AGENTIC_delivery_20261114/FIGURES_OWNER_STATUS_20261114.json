@@ -1,0 +1,27 @@
+{
+  "owner_row": "Figury wyjaśniające zachowanie modeli",
+  "owner_model_role": "Sol",
+  "bounded_turn_state": "READY_TO_RELEASE_SLOT",
+  "user_facing_complete": false,
+  "OCC1_state": "FIVE_COMPLETE_SWEEPS_VERIFIED_BY_AUTHOR_TWO_EXPLICIT_FAILED_SMOKES",
+  "OCC1_complete_full_models": ["A", "B", "Sb", "mixfacenet_mad_smdd", "selfmad_hrnet_w18"],
+  "OCC1_actual_full_occluded_forwards": 5120,
+  "OCC1_failed_smokes": {
+    "madation_vitb16": "fixed batch1/batch8 parity gate; no full or retry",
+    "madation_vitl14": "CUDA OOM during model.to; no full or retry"
+  },
+  "OCC1_source_pixels_exported": false,
+  "OCC1_numeric_output_root": "/mnt/t7/smad_next/OCC1/20261114",
+  "OCC1_numeric_verification_sha256": "193ec7ff4c57353b8bc79486abaf7028ff7f37659e610e48b2c8ee4d8e8495d8",
+  "OCC1_print_candidate": "numeric_print_v2:180x210mm,min8pt,colorandgrayscale,no sourcefaces",
+  "independent_postrun_review": "PENDING",
+  "independent_print_review": "PENDING",
+  "source_image_display_rights": "NOT_RELEASED; separate applicable-license disposition",
+  "additional_OCC1_dispatch_ready": false,
+  "additional_OCC1_reason": "Successful sweeps already complete. Two failed models require prospectively reviewed diagnostic/recovery plan; no improvised repair.",
+  "astra_plan_status": "Parent existing /root/astra_compute_unblock_plan covers recovery; no duplicate",
+  "astra_spawn_attempt": "gpt-6-astra fork_turns=none rejected:agent thread limit reached",
+  "handoff": "FIGURES_OWNER_HANDOFF_20261114.md",
+  "recovery_request": "ASTRA_PLAN_OCC1_REQUEST_20261114.md",
+  "constraints": ["No sourceface or overlay export", "No sealed/challenger payload", "No cluster mutations or spending", "No commits/push or deletions", "No outcome-driven tolerance/example changes", "Do not present OCC1 as finished before independent review"]
+}

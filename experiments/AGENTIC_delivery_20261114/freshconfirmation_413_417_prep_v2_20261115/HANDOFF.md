@@ -1,0 +1,21 @@
+# Fresh confirmation V2: adopted source-only support extension
+
+V1 is preserved. CORE_TASK_TEMPLATES_V1_IDENTICAL.json copies its150 core rows byte for byte. ADDITIONAL_DESCRIPTIVE_TASKS.json adds40 scope-adopted rows: FM5 AB1B; SbMR/SbM/Sbc5 AB1A each; Sb512/SbMR5125 RZ1A0+5 AB1A each. Combined190 templates are conditional, never an aggregate compute order. GX15 remains an unknown-scope placeholder with no producer authority. No extraSb512/H512d pass bar; DINO20 stays unpaired with no CLIPA requirement. ROOT_SCOPE_ADOPTION.json binds actual scope; authority/source pins retain original review/source identities.
+
+## Materialized common AB1 proposal
+
+source/run_ab1_fresh_DISABLED.sh is a concrete delta from pinned src/AB1/run.sh. It is permanently disabled at entry (exit78), so this version cannot train. The proposed structural delta permits only A/B/Sb at413–417, requires a new durable result root, fixes6250steps/scorelimit0/workers7 and refuses container substitution. Original scientific training/scoring command text remains byte-identical, as do literal source-declared pack/overlay pins. Historical comments are ancestry, not guards. OTHER review and separate version must integrate preread/fit-release admission before removing the unconditional HOLD.
+
+source/fresh_role_contract.py is a pure source-template provenance adapter: exact task/branch/role/seed/arm, parent/pack/overlay/recipe pins, explicit GX/non-AB1 refusal. It always returns executionHOLD; it does not parse selection results, scores or journals and is not wired into original selector. Generated source tests exercise all70 admitted-scope commonAB1 task templates, invalid seeds/provenance/roles, core-byte preservation, counts, DINO scope, shell syntax and command-text equivalence. No model/runtime imports or training occur.
+
+KNOWN_AB1_PROVENANCE.json fills established source facts rather than generic nulls: exact architecture/manifests/pack/overlay/6250steps/batch256/last/LRs/scorer and expected historical H100 runtime recipe. Actual interpreter/build/driver identity, staged pack verification, selected branch, support scorer/bitgate, budget/walltime/output namespace remain HOLD. Do not confuse source-declared pins with actual staged input/runtime admission. Old sources and all old seed guards remain untouched.
+
+The parent uses ab1_eval.csv and pn1_score.py; do not claim it supplies full TT1/MEDS/border support. Future AB1 support/refit scoring must inherit original reviewed sources and exact bit-identity/same-path gates. Existing last_trainable reconstruction and last-checkpoint provenance should be verified, not replaced with warmstarts. No inference that full last.pt is required if exact frozen-tower+trainable reconstruction is admitted. Timeout/partial-output durability needs separate review.
+
+## Next concrete implementation/review step
+
+OTHER review this exact immutable package, adopted full-role counts, pure contract and disabled shell delta. Then prepare executable-v1r1 with admission BEFORE any I/O: exact committed confirmation registration and actual independently admitted fixed-order winner; only its adopted scoped role rows; exact producer/runtime/input pins; clean owned-source checkout; separate stage-specific root fit-only release; duplicate/namespace/resource/budget evidence. A string winner argument is not a selection authority. Do not remove exit78 from this version or use its source-template PASS as release.
+
+The source-scientific adapter remains a separately reviewed extension: registered fresh native origin/task identities, DINO five-fresh-comparator mean and unchanged independent-seed/component draws, unchanged RZ refit/control/margins, fixed /mnt/t7/smad_next/NEXT/confirmation_rule_v3_once. This V2 opens no journal or scientific preflight. See V1 PRODUCER_DELTA_AND_COMMAND_TEMPLATES.md for other branch parent maps. Kernel/timing/UV identity remains with current SbMR512 owner, crop author ruling pending; do not duplicate/reask. No recipe inference for GX.
+
+No scientific output/payload/weights/NPZ/model/GPU/runtime import, scheduler query, job mutation or scientific preflight was used. This package has no scientific execution authority. Independent source/method review, actual selection, runtime/input/resource/budget pins and exact root release remain required.

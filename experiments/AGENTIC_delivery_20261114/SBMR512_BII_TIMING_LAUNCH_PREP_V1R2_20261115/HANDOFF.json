@@ -1,0 +1,13 @@
+{
+  "status": "SOURCE_READY_FOR_OTHER_DELTA_REVIEW_EXECUTION_HOLD",
+  "author": "Sol",
+  "reviewer": null,
+  "parent_package_sha256": "d3f9e7f737d7878db1a0b7c546fd97b7b3f408347df217368a024819f3abe5b8",
+  "OTHER_HOLD_review_sha256": "e742a0f53b60fd8cb122db98416eaeffefe3357b97d79d6e317e0eff446a02d3",
+  "unchanged_operational_worker_manifest_sha256": "6dc4375db303042904ca0725c631515ffaf00d7afc4266bf8334d067c0b698c7",
+  "delta": "bounded single snapshot authority JSON and source manifest;exact captured bytes drive validation/intent/argv; no worker changes",
+  "source_validation": "10 methods PASS;full mocked config-A-to-B swap never selects B bootstrap;oversize/parse binding;parentchecks",
+  "actual_execution": false,
+  "scientific_read": "HOLD",
+  "root_release": null
+}

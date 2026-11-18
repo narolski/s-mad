@@ -1,0 +1,208 @@
+--- frozen_v1/PREREG.md
++++ v1r1/PREREG.md
+@@ -1,29 +1,29 @@
+-# SbMR512 B(ii) executable derivative v1 — prospective SOURCE-ONLY package
++# SbMR512 B(ii) producer v1r1 — narrow reference cache/scope revision
+ 
+-Status SOURCE_PREPARED_FOR_OTHER_PREREVIEW; actual source/model/input/GPU execution HOLD. Parent v1/v2, canonical RZ/NEXT and accepted statistical once policy remain untouched. Root B(ii) design choice and independent methodreview68a04cb... are source-preparation authority only. Actual technical attachment495f24dd.../handoff0e05feb... records five unique312981byte trainable overlay digests, NOT original full last.pt hashes. AUTHORITY.json binds these5exact archived identities; no substitution.
++SOURCE_ONLY_PREPARATION; actual reference/model/weight/image/GPU/worker execution and scientific access HOLD. Parentv1 source7d22f492d102daebfea395b383055aa305668c09100a0c99531e66bc180c5990 remains byte-identical. Incorporate prior14-spec/five-seed/fullcontext/nativegate/reconstruction design by PREREG_PARENT_V1.md; unchanged scientific kernel criterion,labels,masks,denominator5,RNG,native/flip forward ordering and existing NEXTonce policy. This supersedes only repeated reference-deserialization behavior, private producer namespace/version and overstrong historical-cache wording.
+ 
+-## Fixed scientific target and context
++## Exact narrow fix
+ 
+-Five SbMR512408–412, unchanged failed denominator5; exact14specs from reviewed v2design. Full original eval24859+TT134411 order/batch64 for EACHspec, eval native→hosttransfer→flip→TTAhosttransfer, TT1 native→hosttransfer only. Finalbatches27/43. Fixed all5:5,889,030image-forward samples,92,120batched calls,963,970sealedcross values. No A/cross-only fallback,adaptive schedule,model reseed/reset per spec,extra populations or tolerance relaxation. No new kappa/metrics/winner before existing registered NEXTonce.
++Before any NPZopen, derive needed populations from fixed requested targetIDs. If noTT1targets, TT1container is not opened at all. For each needed container, fetch id,logit,manifest_sha256 ONCE, validate sameoriginalIDs/shape/dtype/manifest,select requestednumericvalues only,discard containerarrays. No repeated z['logit'] perselectedID. No nonselected statistics/export, threshold selection or other numerical disclosure.
+ 
+-Cross IDs13771, targetgenuine7257/morph1000 unchanged. FULL_CONTEXT target_mapping order is NOT output order: engine explicitly maps cross_id to exact cross_ids index and rejectsduplicate/missing/contextpath/label/batchoffset mismatch. Native exact float32 selectedtarget bytegate completes BEFORE anyperturbation; failednative meansterminalHOLD/no retry. All14specs fullcontext scheduled on one rebuiltmodel per seed. Only crossnative-logit rows are sealed into14×13771float32; noncross/nativeflip/TTA values never exported or aggregated into scientific statistics.
++Timing remains seed408/originaleval batch0 indices0..63,64eval images/native+flip=128forward samples, selectedcrossnative exactbytecomparison only. Consequently reference access is eval-only, noTT1container. Future explicit ROOT compressed full-container deserialization/schema/finite technical permission remains mandatory; narrowing selectedtargetscope does not make compressed NPZ indexing a metadata-only operation. No original reference NPZ was opened now.
+ 
+-## Exact source-derived operation choices
++Full remains this supplement's fixed FIVE SbMR512408–412, exact14specs permodel,fulloriginaleval24859/TT134411,batch64 and native→host→flip→TTAhost for eval/nativehost forTT1.5,889,030samples/92,120batchedcalls/963,970sealedvalues. Fulltargetnativebytegate over ALL13771 precedes perturbation and is never certified by timingPASS. No A,fallback,reseed/rebuild,state-reset,extra train/MEDS replay or tolerance relaxation. Existing outputremap crossID→cross_ids index and boundaries63/64 unchanged.
+ 
+-Backend retains original C.ImageItems defaults aug=None,sbi_p0,with_indexFalse; original DataLoader batch64/workers7 defaults no shuffle/drop_last; fixed/two transform no transformRNG. Newworkers can consume RNG; no zero-global-RNG claim. No stochastic augment/init choice invented. Model source path rz1_patch.apply→C.build_run_model→archs_a12/timm, RZ1_RES512 beforebuild,original single14×14→32×32 bicubic positional rebuild,trainable-overlay exactkeyset and missingkeys=frozen,zero unexpected. Actual schema/baseweights/runtime/defaults/worker/sourcebytes must be independently admitted; opaque overlaydigests alone prove none of these.
++## Conditional empirical compatibility, not hidden-cache theorem
+ 
+-Native l0.cpu().tolist occurs before flip exactly as original. Fullbatch hostlist is transient to retain original CPUtransfer/synchronization; extract target indices then discard. Eval l1flip and ((sigmoid(l0)+sigmoid(l1))/2).cpu().tolist run exactly, transientdiscard. No fullpopulation noncross list accumulation or output. Selectedfloat32cast, exactoriginalreference IDorder/manifest and bytegate. Whole reference NPZcontainer materialization requires explicit byte-deserialization exception after producerclaim; numeric equality/finiteness returns only13771fulltargets or fixedtimingbatchtargets, no noncross metric/summary. State digest checks before/after each population detect any registered-state mutation; these technical hostcopies are explicitly extraobservations, not a proof of complete backendhistory identity.
++A prospectively fixed falsifiable firstbatch empiricalbytegate does NOT require proof of every hidden historical cache. Firstoriginalevalbatch0 has no priortrain/MEDSforward. A pass means only that fixedbatch's selectednativebytes and technicalexecution, notTT1history/all14panel/historicalidentity/productionrecovery. Inherited omitted_train_meds_without_replay_reviewed admission flag means root adopted this limited conditional policy, not fabricated empirical evidence or a hiddenstate-equivalence theorem; timing needs no assertion of fullTT1equivalence.
+ 
+-Original scorer train pass between eval/TT1 and MEDS pass afterTT1 are OMITTED; model.eval/no_grad and sourceCLIPMADation.forward have no explicit runningstate update, but current uninspected timm/backend cache history is NOT source-proven harmless. Therefore omitted_train_meds_without_replay_reviewed MUST be independently adopted true in actualstagingadmission before executableGO. If reviewer cannot justify it, SOURCE_EXECUTION_HOLD until a separately bounded context-amendment is reviewed; no implicit train/MEDS access/replay,hidden reset or outcome-driven fallback. Nativebytegate remains terminal validation, not prospectiveproof. See SOURCE_HISTORY_DISPOSITION.md.
++Full retains omittedtrain/MEDS history difference; separately adopted conditionalinterpretation plus strictfullnativegate beforeperturbation required. Forwardstate digests detect registeredstate mutation, not every hiddenPython/kernelcache. Any fullnative mismatch is terminalHOLD. Today's environment/sourceprobe can identify current prospective reconstruction environment but cannot establish historical executedidentity.
+ 
+-## Separately proposed tiny technical stage, not full release
++## Runtime/source probe preparation contract
+ 
+-Mode timing:seed408,first originaleval batch0 indices0..63 (contains preboundcross rows; selected by metadata only),native+flip64each=2calls128imageforwards,no perturbation or scientifictensoroutput. Same rebuiltmodel/source/path/defaults, source-first context; same selectedoriginalnative bytegate,state-digest equality,return only timing/peakmemory/count/technicalpass. Reference numeric scope restricted to cross IDs in this fixedbatch; fullcontainer exception still explicit. Not anotherbenchmark or κread. Fullmode requires independent technical timing/rebuild admission with exactreceiptdigest. No GPUseconds/resources guessed; tiny timing still requires separate source/runtime/actualinput/OTHERreview/rootrelease.
++ENVIRONMENT_SOURCE_PROBE_CONTRACT.md specifies a future create-only standardlibraryCPUmetadata probe bound to exactinterpreter hash; sys/sysconfig/importlib.metadata versions/location/RECORD hashes and installedPython/native sourcecontent pins. No torch/timm/model import,CUDA/driverquery,modelcache/weights/data/NPZ/download. The probe was NOT implemented/run as part of this narrowfix. Actual backenddefaults require separately scoped runtimeevidence;metadata alone cannot attest them. Actualsource/schema/baseweights/imagebytes/runtime/worker/sanitizedunoptimizedlauncher/durability/resource/rootrelease stillHOLD.
+ 
+-## Control plane, payload boundary and limits
++Timing elapsed_seconds remains specifically the interval AFTER Backend construction, including workers/statehash/referencevalidation; not total cold reconstruction or pureGPUforward. Future reviewedwrapper must record total setup/process/collection separately; peakmemory is processpeak, not batch-only measurement. No runtime or GPUtime estimate invented.
+ 
+-produce.py refuses unless exact mode/seed/rootdecision,nonselfreview,source/hash,technicalattachmentrootadoption,allactualstaging/schema/runtime/defaults/frozenweights/imagebytes/statehistory flags and reference-container scope are bound. It creates exclusive fsyncedclaim/fresh fixed mode-seedoutput BEFORE any source/bodyhashing,modelimports/checkpoint/image/NPZ access. No liveadmission/release exists. Actual model loading and libraryimports have not been executed by author. Standardlib toyengine/AST/metadata-only fixtures only.
++## Tests and preservation
+ 
+-Fulloutput SEALED_CROSS.npz plus technicalreceipt; no checkpointsave,trainaccuracy,scientificmetrics,rawimages/labels/fullmeta export. Only registered NEXTonce consumer may subsequently decode/interpret sealedvalues. adapter_contract validates all5associations/specs/shape/nativegates, never computesκorchanges canonicalNEXT. Executionclaim namespace is producer intent, not alternative scientificclaim; scientificonce/output remains existingNEXTownercontrolled. Fresh fixed /mnt/t7/smad_next/RZ1/SbMR512_bii_producer_v1/{timing|full}_sSEED, nooverwrite/autoretry. Failure durableFAILED technicalreceipt; arbitraryhardnode failure/durability/launcher/resource admission remains a future exactworker control-plane review, not claimed complete here.
++Twelve standardlibraryCPUgenerated/AST/metadata fixturesPASS. Newinstrumented fakecontainers exercise actualBackend._references: <=1logitfetch/neededcontainer, IDs/manifest eachonce, eval-only timingzeroTT1opens includingTT1open-canary,fullmixedrequestedorder,boundary63/64,emptytargetzeroopens,duplicate/unknown/schema/nonfinite rejection. No numpy/torch/model or actualNPZload in tests. Existingpermutedmapping,all14schedule,referencefailure-beforeperturbation,state-mutationand13771metadata checksretainPASS.
+ 
+-ConcreteHOLDs: no actual schema/baseweight/imagebyte/runtime/backenddefaults/worker/statehistory admission or roottechnicalattachment adoption bytes in this sourcepacket; nofullrebuild/nativebytegate/timing executed. Sourceexpected torch2.11cu128/H100 is not freshscorerattestation; no originalfullcheckpoint rehash claimed. This executable derivative is reviewable source, NOT productionGO.
++New privateproducer namespace/rootdecisions are v1r1; this is NOT a second scientificjournal. Existing canonicalNEXT and v1/v2 untouched. All live scopes remain separately review/rootgated. Opaque technicalattachment adopted ROOT_NEXT_MINIMAL_ATTACHMENT_ADOPTION only binds fiveoverlay312981byte hashes; it grants no decode/reconstruction.
+--- frozen_v1/PREREG_PARENT_V1.md
++++ v1r1/PREREG_PARENT_V1.md
+@@ -0,0 +1,29 @@
++# SbMR512 B(ii) executable derivative v1 — prospective SOURCE-ONLY package
++
++Status SOURCE_PREPARED_FOR_OTHER_PREREVIEW; actual source/model/input/GPU execution HOLD. Parent v1/v2, canonical RZ/NEXT and accepted statistical once policy remain untouched. Root B(ii) design choice and independent methodreview68a04cb... are source-preparation authority only. Actual technical attachment495f24dd.../handoff0e05feb... records five unique312981byte trainable overlay digests, NOT original full last.pt hashes. AUTHORITY.json binds these5exact archived identities; no substitution.
++
++## Fixed scientific target and context
++
++Five SbMR512408–412, unchanged failed denominator5; exact14specs from reviewed v2design. Full original eval24859+TT134411 order/batch64 for EACHspec, eval native→hosttransfer→flip→TTAhosttransfer, TT1 native→hosttransfer only. Finalbatches27/43. Fixed all5:5,889,030image-forward samples,92,120batched calls,963,970sealedcross values. No A/cross-only fallback,adaptive schedule,model reseed/reset per spec,extra populations or tolerance relaxation. No new kappa/metrics/winner before existing registered NEXTonce.
++
++Cross IDs13771, targetgenuine7257/morph1000 unchanged. FULL_CONTEXT target_mapping order is NOT output order: engine explicitly maps cross_id to exact cross_ids index and rejectsduplicate/missing/contextpath/label/batchoffset mismatch. Native exact float32 selectedtarget bytegate completes BEFORE anyperturbation; failednative meansterminalHOLD/no retry. All14specs fullcontext scheduled on one rebuiltmodel per seed. Only crossnative-logit rows are sealed into14×13771float32; noncross/nativeflip/TTA values never exported or aggregated into scientific statistics.
++
++## Exact source-derived operation choices
++
++Backend retains original C.ImageItems defaults aug=None,sbi_p0,with_indexFalse; original DataLoader batch64/workers7 defaults no shuffle/drop_last; fixed/two transform no transformRNG. Newworkers can consume RNG; no zero-global-RNG claim. No stochastic augment/init choice invented. Model source path rz1_patch.apply→C.build_run_model→archs_a12/timm, RZ1_RES512 beforebuild,original single14×14→32×32 bicubic positional rebuild,trainable-overlay exactkeyset and missingkeys=frozen,zero unexpected. Actual schema/baseweights/runtime/defaults/worker/sourcebytes must be independently admitted; opaque overlaydigests alone prove none of these.
++
++Native l0.cpu().tolist occurs before flip exactly as original. Fullbatch hostlist is transient to retain original CPUtransfer/synchronization; extract target indices then discard. Eval l1flip and ((sigmoid(l0)+sigmoid(l1))/2).cpu().tolist run exactly, transientdiscard. No fullpopulation noncross list accumulation or output. Selectedfloat32cast, exactoriginalreference IDorder/manifest and bytegate. Whole reference NPZcontainer materialization requires explicit byte-deserialization exception after producerclaim; numeric equality/finiteness returns only13771fulltargets or fixedtimingbatchtargets, no noncross metric/summary. State digest checks before/after each population detect any registered-state mutation; these technical hostcopies are explicitly extraobservations, not a proof of complete backendhistory identity.
++
++Original scorer train pass between eval/TT1 and MEDS pass afterTT1 are OMITTED; model.eval/no_grad and sourceCLIPMADation.forward have no explicit runningstate update, but current uninspected timm/backend cache history is NOT source-proven harmless. Therefore omitted_train_meds_without_replay_reviewed MUST be independently adopted true in actualstagingadmission before executableGO. If reviewer cannot justify it, SOURCE_EXECUTION_HOLD until a separately bounded context-amendment is reviewed; no implicit train/MEDS access/replay,hidden reset or outcome-driven fallback. Nativebytegate remains terminal validation, not prospectiveproof. See SOURCE_HISTORY_DISPOSITION.md.
++
++## Separately proposed tiny technical stage, not full release
++
++Mode timing:seed408,first originaleval batch0 indices0..63 (contains preboundcross rows; selected by metadata only),native+flip64each=2calls128imageforwards,no perturbation or scientifictensoroutput. Same rebuiltmodel/source/path/defaults, source-first context; same selectedoriginalnative bytegate,state-digest equality,return only timing/peakmemory/count/technicalpass. Reference numeric scope restricted to cross IDs in this fixedbatch; fullcontainer exception still explicit. Not anotherbenchmark or κread. Fullmode requires independent technical timing/rebuild admission with exactreceiptdigest. No GPUseconds/resources guessed; tiny timing still requires separate source/runtime/actualinput/OTHERreview/rootrelease.
++
++## Control plane, payload boundary and limits
++
++produce.py refuses unless exact mode/seed/rootdecision,nonselfreview,source/hash,technicalattachmentrootadoption,allactualstaging/schema/runtime/defaults/frozenweights/imagebytes/statehistory flags and reference-container scope are bound. It creates exclusive fsyncedclaim/fresh fixed mode-seedoutput BEFORE any source/bodyhashing,modelimports/checkpoint/image/NPZ access. No liveadmission/release exists. Actual model loading and libraryimports have not been executed by author. Standardlib toyengine/AST/metadata-only fixtures only.
++
++Fulloutput SEALED_CROSS.npz plus technicalreceipt; no checkpointsave,trainaccuracy,scientificmetrics,rawimages/labels/fullmeta export. Only registered NEXTonce consumer may subsequently decode/interpret sealedvalues. adapter_contract validates all5associations/specs/shape/nativegates, never computesκorchanges canonicalNEXT. Executionclaim namespace is producer intent, not alternative scientificclaim; scientificonce/output remains existingNEXTownercontrolled. Fresh fixed /mnt/t7/smad_next/RZ1/SbMR512_bii_producer_v1/{timing|full}_sSEED, nooverwrite/autoretry. Failure durableFAILED technicalreceipt; arbitraryhardnode failure/durability/launcher/resource admission remains a future exactworker control-plane review, not claimed complete here.
++
++ConcreteHOLDs: no actual schema/baseweight/imagebyte/runtime/backenddefaults/worker/statehistory admission or roottechnicalattachment adoption bytes in this sourcepacket; nofullrebuild/nativebytegate/timing executed. Sourceexpected torch2.11cu128/H100 is not freshscorerattestation; no originalfullcheckpoint rehash claimed. This executable derivative is reviewable source, NOT productionGO.
+--- frozen_v1/backend.py
++++ v1r1/backend.py
+@@ -62,21 +62,25 @@
+    h.update(n.encode());h.update(str(a.dtype).encode());h.update(str(tuple(a.shape)).encode());h.update(a.numpy().tobytes())
+   return h.hexdigest()
+  def _references(self,requested_ids):
+-  # Container deserialization exception requires explicit post-claim root admission.
+-  np=self.np;out={}
++  # Explicit future root permission covers compressed full-container schema decode.
++  # No population with zero fixed requested targets may even be opened.
++  np=self.np;out={};requested=set(requested_ids)
++  assert len(requested)==len(requested_ids)
+   for pop in ("ab1x_eval","tt1"):
+    rows=self.context["ordered_context_rows"][pop]
++   prefix="ab1x:" if pop=="ab1x_eval" else "tt1:"
++   wanted=[(i,prefix+r["id"]) for i,r in enumerate(rows) if prefix+r["id"] in requested]
++   if not wanted:continue
+    with np.load(self.admission["reference_paths"][pop],allow_pickle=False) as z:
+-    assert z["id"].tolist()==[r["id"] for r in rows]
+-    assert z["logit"].shape==(len(rows),) and z["logit"].dtype==np.float32
+-    assert str(z["manifest_sha256"])==self.admission["reference_manifest_sha256"][pop]
+-    # Only selected IDs enter output/equality; noncross numerical values receive no statistic/export.
+-    prefix="ab1x:" if pop=="ab1x_eval" else "tt1:"
+-    allowed=set(requested_ids)
+-    for i,r in enumerate(rows):
+-     cid=prefix+r["id"]
+-     if cid in allowed:
+-      value=z["logit"][i];assert np.isfinite(value);out[cid]=value
++    # NpzFile indexing may decompress: exactly ONE access to each required array.
++    ids=z["id"];logits=z["logit"];manifest=z["manifest_sha256"]
++    assert ids.tolist()==[r["id"] for r in rows]
++    assert logits.shape==(len(rows),) and logits.dtype==np.float32
++    assert str(manifest)==self.admission["reference_manifest_sha256"][pop]
++    for i,cid in wanted:
++     value=logits[i];assert np.isfinite(value);out[cid]=value
++   del ids,logits,manifest
++  assert set(out)==requested
+   return out
+  def native_reference_equal(self,ids,values):
+   if self.reference is None:self.reference=self._references(ids)
+--- frozen_v1/produce.py
++++ v1r1/produce.py
+@@ -13,7 +13,7 @@
+  try:os.fsync(fd)
+  finally:os.close(fd)
+ def authorize(r,a,mode,seed,source):
+- assert r["decision"]==("GO_SBMR512_BII_TIMING_V1" if mode=="timing" else "GO_SBMR512_BII_FULL_V1")
++ assert r["decision"]==("GO_SBMR512_BII_TIMING_V1R1" if mode=="timing" else "GO_SBMR512_BII_FULL_V1R1")
+  assert r["root_authorized"] is True and r["author"]!=r["reviewer"] and r["reviewer"]
+  assert r["seed"]==seed and seed in (408,409,410,411,412) and (mode!="timing" or seed==408)
+  assert r["scientific_read"]=="HOLD" and r["automatic_retry"] is False
+@@ -33,7 +33,7 @@
+  assert a["cross_ids"]==authority["cross_ids"]
+  assert sha(a["context_binding_path"])==authority["context_binding_sha256"]
+  assert a["full_checkpoint_hash_substituted_for_trainable"] is False
+- assert pathlib.Path(r["output"]).resolve()==pathlib.Path("/mnt/t7/smad_next/RZ1/SbMR512_bii_producer_v1")/(mode+"_s"+str(seed))
++ assert pathlib.Path(r["output"]).resolve()==pathlib.Path("/mnt/t7/smad_next/RZ1/SbMR512_bii_producer_v1r1")/(mode+"_s"+str(seed))
+  assert sha(r["technical_attachment_adoption_path"])==r["technical_attachment_adoption_sha256"]
+  assert r["technical_attachment_postreview_sha256"]=="495f24ddccbb5b69383a9790ea7dc2c175f5ba72ee11a0d67db605ee0afd5b16"
+  if mode=="full":
+--- frozen_v1/test_cpu.py
++++ v1r1/test_cpu.py
+@@ -46,7 +46,7 @@
+    with self.assertRaises(AssertionError):mapping(c,ids)
+  def test_full_real_metadata_mapping_no_payload(self):
+   auth=json.loads((HERE/"AUTHORITY.json").read_text())
+-  p=HERE.parents[2]/"experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1_20261114/FULL_CONTEXT_BINDING.json"
++  p=HERE.parents[2]/"experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/FULL_CONTEXT_BINDING.json"
+   c=json.loads(p.read_text());m=mapping(c,auth["cross_ids"]);self.assertEqual(len(m),13771)
+   w=work_counts();self.assertEqual(w["total_samples"],5889030);self.assertEqual(w["total_calls"],92120)
+  def test_runtime_source_hostsync_and_no_broad_main_or_scientific_metrics(self):
+--- frozen_v1/test_reference_cache.py
++++ v1r1/test_reference_cache.py
+@@ -0,0 +1,55 @@
++"""Instrument actual Backend._references with generated containers; no numpy/torch/model imports."""
++import math,pathlib,sys,unittest
++sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
++from backend import Backend
++from test_cpu import fixture
++class Array:
++ def __init__(self,values,dtype):self.values=values;self.dtype=dtype;self.shape=(len(values),)
++ def tolist(self):return list(self.values)
++ def __getitem__(self,i):return self.values[i]
++class Container:
++ def __init__(self,arrays):self.arrays=arrays;self.fetches={}
++ def __enter__(self):return self
++ def __exit__(self,*a):pass
++ def __getitem__(self,k):self.fetches[k]=self.fetches.get(k,0)+1;return self.arrays[k]
++class FakeNP:
++ float32="float32"
++ def __init__(self,containers):self.containers=containers;self.opens=[]
++ def load(self,path,allow_pickle):assert allow_pickle is False;self.opens.append(path);return self.containers[path]
++ def isfinite(self,x):return math.isfinite(x)
++def backend():
++ c,ids=fixture();b=Backend.__new__(Backend);b.context=c
++ b.admission={"reference_paths":{"ab1x_eval":"E","tt1":"T"},"reference_manifest_sha256":{"ab1x_eval":"eval-sha","tt1":"tt1-sha"}}
++ z={}
++ for pop,name in (("ab1x_eval","E"),("tt1","T")):
++  rows=c["ordered_context_rows"][pop];base=0 if pop=="ab1x_eval" else 1000
++  z[name]=Container({"id":Array([r["id"] for r in rows],"str"),"logit":Array([float(i+base) for i in range(len(rows))],"float32"),"manifest_sha256":b.admission["reference_manifest_sha256"][pop]})
++ b.np=FakeNP(z);return b,z
++class References(unittest.TestCase):
++ def test_eval_only_boundary_targets_open_eval_once_and_never_tt1(self):
++  b,z=backend();r=b._references(["ab1x:64","ab1x:63"])
++  self.assertEqual(r,{"ab1x:63":63.,"ab1x:64":64.})
++  self.assertEqual(b.np.opens,["E"]);self.assertEqual(z["E"].fetches,{"id":1,"logit":1,"manifest_sha256":1});self.assertEqual(z["T"].fetches,{})
++ def test_full_requested_containers_each_array_fetched_once_permutation_preserved_by_id(self):
++  b,z=backend();ids=["tt1:64","ab1x:129","ab1x:64","tt1:0","ab1x:63"];r=b._references(ids)
++  self.assertEqual([r[i] for i in ids],[1064.,129.,64.,1000.,63.])
++  self.assertEqual(b.np.opens,["E","T"])
++  for v in z.values():self.assertEqual(v.fetches,{"id":1,"logit":1,"manifest_sha256":1})
++ def test_unrequested_container_canary_would_raise_if_opened(self):
++  b,z=backend()
++  class Forbidden:
++   def __enter__(self):raise AssertionError("TT1 must not be opened")
++  b.np.containers["T"]=Forbidden()
++  self.assertEqual(b._references(["ab1x:0"]),{"ab1x:0":0.})
++ def test_duplicate_unknown_schema_and_selected_nonfinite_failclosed(self):
++  for mode in ("duplicate","unknown","ids","shape","nan"):
++   b,z=backend();ids=["ab1x:63"]
++   if mode=="duplicate":ids*=2
++   if mode=="unknown":ids=["foreign:63"]
++   if mode=="ids":z["E"].arrays["id"].values[0]="foreign"
++   if mode=="shape":z["E"].arrays["logit"].shape=(1,)
++   if mode=="nan":z["E"].arrays["logit"].values[63]=float("nan")
++   with self.assertRaises(AssertionError):b._references(ids)
++ def test_empty_targets_opens_no_container(self):
++  b,z=backend();self.assertEqual(b._references([]),{});self.assertEqual(b.np.opens,[])
++if __name__=="__main__":unittest.main()

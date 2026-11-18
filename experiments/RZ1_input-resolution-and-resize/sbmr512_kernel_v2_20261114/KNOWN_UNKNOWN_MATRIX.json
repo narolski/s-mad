@@ -1,0 +1,10 @@
+{
+  "known": "fixed14specs; complete source-bound fullcontext metadata order24859+34411; unchanged \u03bamasks7257+1000; target13771; samples5889030/calls92120",
+  "actual_runtime_weights_checkpoint_images": "UNKNOWN_NO_ACTUAL_COLLECTION",
+  "native_reference_gate": "NOT_EXECUTED",
+  "numeric_bit_equivalence": "NOT_GUARANTEED_BY_CONTEXT; exact gate must pass",
+  "source_precision_state": "sourceTF32on/model.eval/no_grad/noautocast; actualmetadataUNKNOWN",
+  "exposure": "root no-new-kernel-read statement only; global prior exposure separateUNKNOWN",
+  "methodology": "rootBii source-prepchoice made; newpacket independentreview/adoptionpending",
+  "execution": "HOLD"
+}

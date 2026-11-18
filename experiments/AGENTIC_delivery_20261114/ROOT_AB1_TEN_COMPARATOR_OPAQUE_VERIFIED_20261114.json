@@ -1,0 +1,134 @@
+{
+  "at": "2026-11-14T19:04:29.948091+00:00",
+  "status": "FRESH_OPAQUE_HASH_VERIFICATION_EXISTING_LOCAL_AB1_COMPARATORS",
+  "archives": {
+    "AB1_A_s408.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_A_s408.tar",
+      "sha256": "bb1a0e9c4fd49c322839ea552994836066668246cef7b3749729ef725cba30e2",
+      "bytes": 3829760,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_A_s408.tar.sha256",
+      "local_sidecar_sha256": "f9f9228de84dd31c19e1107408039f66c602400b038b0cf5a1ef0cd89d6f9fe1"
+    },
+    "AB1_A_s409.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_A_s409.tar",
+      "sha256": "d9a8c1b8ceb78f735e37fdf14b69eb0a957d8233d6523285fe9517d85c211f0d",
+      "bytes": 3829760,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_A_s409.tar.sha256",
+      "local_sidecar_sha256": "b9f71a6c3d970c24afb0f60662ec99f692856b837e489f41587959da74415f16"
+    },
+    "AB1_A_s410.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_A_s410.tar",
+      "sha256": "78ef2e47b1c1feec3cb5bb59ed9c22206126d249bc6a47be4194d57845905b56",
+      "bytes": 3829760,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_A_s410.tar.sha256",
+      "local_sidecar_sha256": "0dbc6e086a4449fd07ca792871b37da968d2350722ba0f12559e86a15d077e2d"
+    },
+    "AB1_A_s411.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_A_s411.tar",
+      "sha256": "fd71be56dd4858b9d03ec94a74c9d4c5546fc0c22d8c66ef6e57e2b1ba9d293a",
+      "bytes": 3829760,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_A_s411.tar.sha256",
+      "local_sidecar_sha256": "daab9fd90315f75ca10aab2cb2370b3ba774e0f723ebbd44bd08da6c1fa036c5"
+    },
+    "AB1_A_s412.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_A_s412.tar",
+      "sha256": "c0496a0f219e747f9d606b69c0392dec7f20edebce23fae2b1286068fac510a3",
+      "bytes": 3829760,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_A_s412.tar.sha256",
+      "local_sidecar_sha256": "c1bdfb98aa2354873ae078c5fc81d0aeed62bf70771b607b74509fe288dcbcbf"
+    },
+    "AB1_Sb_s408.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar",
+      "sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+      "bytes": 4966400,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s408.tar.sha256",
+      "local_sidecar_sha256": "ce505dc0f0792bdb532d5115405e710b849c81cf8c489665b6ff7768354a77f6"
+    },
+    "AB1_Sb_s409.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s409.tar",
+      "sha256": "dd575673e437b2ad34aa50e9f2785ee2c17a1b89b424b2324b4beb6ae5f32352",
+      "bytes": 4966400,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s409.tar.sha256",
+      "local_sidecar_sha256": "b2fa42c0a458b076b03a3366e48d57d30492bdf7aa8153ad42425a41c465d526"
+    },
+    "AB1_Sb_s410.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s410.tar",
+      "sha256": "40b47155a7a1ca1a13bc9ae101b135b3d0730d70d968af6e7ad235453ca96875",
+      "bytes": 4966400,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s410.tar.sha256",
+      "local_sidecar_sha256": "13f2590b073b4a4badbb85fc542b945f9d825072b8c4fb51c217c9fdfa6a1252"
+    },
+    "AB1_Sb_s411.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s411.tar",
+      "sha256": "764a4e5e6a5692cb974a15957cf55ac88d475a519381d8ef827f932791144aa6",
+      "bytes": 4966400,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s411.tar.sha256",
+      "local_sidecar_sha256": "eccb3f899c2586bc8d26073a8edc936cfb14bc36d21be082f451fe763c60ab20"
+    },
+    "AB1_Sb_s412.tar": {
+      "path": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s412.tar",
+      "sha256": "c1e0f081194ffb46395e896bd872f509a930967b8ed5da101823d95659070c84",
+      "bytes": 4966400,
+      "local_sidecar": "/mnt/t7/smad_next/AB1/results/AB1_Sb_s412.tar.sha256",
+      "local_sidecar_sha256": "ebb91a2fc585405c3c7503291ec7fab9a27504aa7cc12473775f5fe59d6e4c71"
+    }
+  },
+  "remote_archives": {
+    "AB1_A_s408.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_A_s408.tar",
+      "sha256": "bb1a0e9c4fd49c322839ea552994836066668246cef7b3749729ef725cba30e2",
+      "bytes": 3829760
+    },
+    "AB1_A_s409.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_A_s409.tar",
+      "sha256": "d9a8c1b8ceb78f735e37fdf14b69eb0a957d8233d6523285fe9517d85c211f0d",
+      "bytes": 3829760
+    },
+    "AB1_A_s410.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_A_s410.tar",
+      "sha256": "78ef2e47b1c1feec3cb5bb59ed9c22206126d249bc6a47be4194d57845905b56",
+      "bytes": 3829760
+    },
+    "AB1_A_s411.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_A_s411.tar",
+      "sha256": "fd71be56dd4858b9d03ec94a74c9d4c5546fc0c22d8c66ef6e57e2b1ba9d293a",
+      "bytes": 3829760
+    },
+    "AB1_A_s412.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_A_s412.tar",
+      "sha256": "c0496a0f219e747f9d606b69c0392dec7f20edebce23fae2b1286068fac510a3",
+      "bytes": 3829760
+    },
+    "AB1_Sb_s408.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar",
+      "sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+      "bytes": 4966400
+    },
+    "AB1_Sb_s409.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s409.tar",
+      "sha256": "dd575673e437b2ad34aa50e9f2785ee2c17a1b89b424b2324b4beb6ae5f32352",
+      "bytes": 4966400
+    },
+    "AB1_Sb_s410.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s410.tar",
+      "sha256": "40b47155a7a1ca1a13bc9ae101b135b3d0730d70d968af6e7ad235453ca96875",
+      "bytes": 4966400
+    },
+    "AB1_Sb_s411.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s411.tar",
+      "sha256": "764a4e5e6a5692cb974a15957cf55ac88d475a519381d8ef827f932791144aa6",
+      "bytes": 4966400
+    },
+    "AB1_Sb_s412.tar": {
+      "path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s412.tar",
+      "sha256": "c1e0f081194ffb46395e896bd872f509a930967b8ed5da101823d95659070c84",
+      "bytes": 4966400
+    }
+  },
+  "count": 10,
+  "remote_local_sidecar_equal": true,
+  "archive_members_opened": false,
+  "verified_at_interpretation": "Current fresh hash verification of already present original files; not an invented historical arrival or copy timestamp.",
+  "NEXT_scientific_read_authorized": false,
+  "no_copy_or_overwrite": true
+}

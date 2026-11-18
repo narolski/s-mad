@@ -1,0 +1,21 @@
+{
+  "decision": "PROPOSED_NOT_AUTHORIZATION",
+  "root_authorized": false,
+  "author": "Sol",
+  "reviewer": null,
+  "mode": "full",
+  "seed": 408,
+  "scientific_read": "HOLD",
+  "automatic_retry": false,
+  "staging_admission_path": null,
+  "staging_admission_sha256": null,
+  "independent_review_path": null,
+  "independent_review_sha256": null,
+  "technical_attachment_adoption_path": null,
+  "technical_attachment_adoption_sha256": null,
+  "technical_attachment_postreview_sha256": "495f24ddccbb5b69383a9790ea7dc2c175f5ba72ee11a0d67db605ee0afd5b16",
+  "native_bytegate_scope": "SAME_ORIGINAL_TARGETS_EXACT_FLOAT32_BYTES_NO_FALLBACK",
+  "output": "/mnt/t7/smad_next/RZ1/SbMR512_bii_producer_v1/full_s408",
+  "timing_rebuild_independently_admitted": false,
+  "source_manifest_sha256": "7d22f492d102daebfea395b383055aa305668c09100a0c99531e66bc180c5990"
+}

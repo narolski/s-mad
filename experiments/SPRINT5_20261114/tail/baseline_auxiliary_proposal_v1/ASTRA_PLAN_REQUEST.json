@@ -1,0 +1,22 @@
+{
+  "status": "ASTRA_PLAN_REQUEST_NO_SELF_ADOPTION",
+  "primary_results_already_seen_and_independently_reviewed": true,
+  "auxiliary_requirement_registered_before_primary_read": true,
+  "fixed_preexisting_parts": [
+    "single admittedAB1Sb408 archive a84b551f\u2026",
+    "SAME original70positive calibration IDs",
+    "strict score>nextafter(sortedpositive[floor(.10*n)],-inf) float64",
+    "original180positiveeval+288genuine rows, sixcells/fourfamily slots",
+    "all15candidate cases and both fixedcontrasts, no favorablethreshold/model selection"
+  ],
+  "questions": [
+    "Is the required frozen-original-baseline-threshold panel point-only with explicit uncertainty NOT_ESTIMATED, or must a separately defined auxiliary bootstrap be added? Original baseline tau must remain fixed for point reporting; no resampled/tuned replacement may alter that displayed threshold.",
+    "May a separate single-use auxiliary journal/release reopen ONLY the15candidate evaluation468IDs and baseline538IDs, fenced to original completed primary claim/result, without rerunning any primary statistics/RNG or issuing another primary claim?",
+    "Confirm companion own-recalibrated FA/sensitivity values must be copied from the exact admitted primary result rather than reestimated, and that any newly completed uncertainty/journal policy is labelled after-primary-results-seen clarification rather than pre-read preregistration."
+  ],
+  "bounded_proposal": "point-only originalbaseline panel plus existing own-recalibrated companion, no newrng/CI/winner, separateauxclaim only after explicitreview/rootadoption; proposal not authority",
+  "baseline_score_member_digest_and_NPZ_alignment": "HOLD; source/ID/image mapping verified, no baselinearchive/member/NPZ opened",
+  "candidate_payload_read": false,
+  "GPU_needed": false,
+  "scientific_auxiliary_read": "HOLD"
+}

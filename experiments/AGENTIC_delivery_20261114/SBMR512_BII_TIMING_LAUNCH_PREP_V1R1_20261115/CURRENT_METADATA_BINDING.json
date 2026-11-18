@@ -1,0 +1,364 @@
+{
+  "status": "KNOWN_CURRENT_ONLY_METADATA_NOT_RUNTIME_IMPORT",
+  "receipt_sha256": "7847e2007570f75012f36fccd9257f73231c9a28cafbfb38ba86c2286d76e61b",
+  "OTHER_review_sha256": "9237406448f12898ec509448c678501588e9ab22122108e63559fd384dd2f71e",
+  "content_pins": {
+    "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/bin/python3.12": "0886fb76ceec8ff568d23079b5da6342bb41675e216e11525d4d6a9e65988d10",
+    "/home/narolski/dmenv/pyvenv.cfg": "8cf78dd50f972fdffad37581534a8f5212292cd1bbd6e8732803a5f334bc659f",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/huggingface_hub-1.33.0.dist-info/RECORD": "2c80b9272e9136f33314972cf69512a3d93a8459b57e3cfcd224a255be1d098f",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/huggingface_hub-1.33.0.dist-info/METADATA": "bee565776d66f486d224f74024b656a69ed42e2639d80b18811fca4365adc42e",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/numpy-2.5.2.dist-info/RECORD": "464b7e27633d7e9bb306867a522291c46998d3722827d5bc435dad9e59bc6a24",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/numpy-2.5.2.dist-info/METADATA": "9a895d801184d2176f926af84eb47f2db1af2756afac99d64a2bf482d5d5e024",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/opencv_python_headless-5.0.0.93.dist-info/RECORD": "a4172fa37f8a5c3352f206f392daabe05cfa35010d3b7dd9dd9d9f404be49abb",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/opencv_python_headless-5.0.0.93.dist-info/METADATA": "f8e9104b4dce58f708d4cc7af95ebd8a5d65a3e36209d42386eb61065ae50e1a",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/pillow-12.3.0.dist-info/RECORD": "e29a8853b254fcc14a7b13ab9df938bcdea09e57c5e345ad9819c611a62ac46f",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/pillow-12.3.0.dist-info/METADATA": "8fc07146cab33ef7582361dab6eac596d340b03ec648f18217da7894f73838c8",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/safetensors-0.8.0.dist-info/RECORD": "c5110881c0c39a4f163a23b2ccc88cad19ce1823b6dce1ceef353d33f16c004b",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/safetensors-0.8.0.dist-info/METADATA": "645be7b8d55e91534f991d144dc9e279581ea8dbea1a8c5b0be14e529d01e345",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm-1.0.30.dist-info/RECORD": "a84840ff49875d578dcaba10de3414114270a4b529928fb5d1ddd60d429e948f",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm-1.0.30.dist-info/METADATA": "385c77b58e59de4193487c5056e92ac0f3c8422df103880f5a5e521afef1b815",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/tokenizers-0.23.3.dist-info/RECORD": "594502c82016a506018a24f94c695aedbb52432e63e705b29c75e80e886500a5",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/tokenizers-0.23.3.dist-info/METADATA": "87032ea29ec14be956ce0f15d164a8f436d6f1adbe19b261d6c179d9184f5cba",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torch-2.11.0+cu128.dist-info/RECORD": "56e43cb98a1b5b911c7fcba6711fcfc187472911bcd646cefc28cafafc645bf8",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torch-2.11.0+cu128.dist-info/METADATA": "de881a744ff66b27fffc338c1624660cf7c87d3019574ad71e3dda886b2a172b",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torchvision-0.26.0+cu128.dist-info/RECORD": "5676091cf89752a1a4a08e10ffaf33dabc624917ba86e1d98546eda7b795d34e",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torchvision-0.26.0+cu128.dist-info/METADATA": "ed84a853aefa31a229ba89c179202f6a7292f8a589e7b0dd21c7b85c14563ac4",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/transformers-5.19.0.dist-info/RECORD": "da3a796d539eb8520fb3553779841e4284f3379dc3ce5572d7a27c916fc56fb2",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/transformers-5.19.0.dist-info/METADATA": "25c2bda8ef027a2e2146093b78d8989c59c4cda0d7686429c6aaffe06302879a",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torch/__init__.py": "0387d8b811b289287479c8bfdf4e1dac3a71b246f938d82da1331cf2dc8bf001",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torch/version.py": "c5a512fcd13f6195c117da82802740abd5eafbec7b21709ed8d9babec6c9f5d9",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torch/nn/functional.py": "06f330c5ce12f7a7b5be938fb4fd1b78dadcc4a345c49aac58dbb923b3a3a405",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torch/backends/cuda/__init__.py": "c70bd54e7d4b995ddd822cb70d7d8e140b95a2d8e61635bf2c580b8045d83c11",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torchvision/transforms/transforms.py": "673f3baacde591b3cb7224c5fbfc7ad35200dbd1f9a2147f3fa0b4226e735023",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/torchvision/transforms/functional.py": "0b2fdf8e6764f4be0113acd95b58d3b14158c13fa2374ed93fbbe1f4b8730ded",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm/__init__.py": "9668df8ff48b33f846428cd7607399cf14b4f0feef157930eabf6defe932b1d3",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm/models/_factory.py": "5c9437a1be7e9a4e07cb6b623484b17a53b0eeb17e004fc87f61672c6cb7c812",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm/models/_builder.py": "bda088022ec2733c64d428108e6251f5a9231b6cf2c4d623f5a18a2f00cf9062",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm/models/_helpers.py": "c680cfe4740447ac7cf82c735da24e65c5228370d2875a07754078799a82b411",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm/models/vision_transformer.py": "88891e4af894a7797b2d625db1be93c85c9843110d8491fd6aba927320b06df7",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm/layers/pos_embed.py": "06b469fbe07a42fa6ef485874678a847e209aa188d09902258af44fdb57834c1",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm/layers/attention.py": "91094ccb54a743b7e70f38431c7e330e750ce4f575d49ba34153b16829bb5622",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm/layers/mlp.py": "c024128a1c7e2a55ebc5e33a7c94c585ae1e960cd032b39b08445ea30f05c5a5",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/timm/layers/patch_embed.py": "fb308cdb0bd12576baf851fe5cfc1abd49d0079e2e0e7dc2751fbfbd8b3f8d9d",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/PIL/Image.py": "04af3f2db7ffdd61e829fa7aa8f5481d394a0a4129a8fd8aa5b13908928fcd6d",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/numpy/__init__.py": "09295a80660f17925ae23765ce8cbd7ff7ceae968d5f2f89349f1cb74c0b9e11",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/cv2/__init__.py": "69192904dead3ada37c8b305ee850ac7474924730881a9d5e0b2390944eb5aae",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/huggingface_hub/__init__.py": "284be6e001a015f9933e756c6f6552b7266d811aff7b5124c960b5f1fc66b27e",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/safetensors/__init__.py": "92c988289b8c225a92f25e487ad5d7a1eb7e326eec0fedfc6b75e6f04d85e32f",
+    "/home/narolski/dmenv/lib/python3.12/site-packages/transformers/__init__.py": "af7867325306501e495acaca93c1c4d603849cca6614ed23510bb17c2da63ac6"
+  },
+  "distribution_fields": [
+    {
+      "Name": "huggingface_hub",
+      "Version": "1.33.0"
+    },
+    {
+      "Name": "numpy",
+      "Version": "2.5.2"
+    },
+    {
+      "Name": "opencv-python-headless",
+      "Version": "5.0.0.93"
+    },
+    {
+      "Name": "pillow",
+      "Version": "12.3.0"
+    },
+    {
+      "Name": "safetensors",
+      "Version": "0.8.0"
+    },
+    {
+      "Name": "timm",
+      "Version": "1.0.30"
+    },
+    {
+      "Name": "tokenizers",
+      "Version": "0.23.3"
+    },
+    {
+      "Name": "torch",
+      "Version": "2.11.0+cu128"
+    },
+    {
+      "Name": "torchvision",
+      "Version": "0.26.0+cu128"
+    },
+    {
+      "Name": "transformers",
+      "Version": "5.19.0"
+    }
+  ],
+  "native_libraries_hashed": 0,
+  "interpreter_executed": false,
+  "historical_identity": "UNKNOWN",
+  "content_records": [
+    {
+      "path": "/home/narolski/.local/share/uv/python/cpython-3.12.15-linux-x86_64-gnu/bin/python3.12",
+      "sha256": "0886fb76ceec8ff568d23079b5da6342bb41675e216e11525d4d6a9e65988d10",
+      "bytes": 30975640,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/pyvenv.cfg",
+      "sha256": "8cf78dd50f972fdffad37581534a8f5212292cd1bbd6e8732803a5f334bc659f",
+      "bytes": 174,
+      "status": "CONTENT_HASHED_CURRENT_ONLY",
+      "selected_fields": {
+        "home": "/home/narolski/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/bin",
+        "version_info": "3.12",
+        "include-system-site-packages": "false"
+      }
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/huggingface_hub-1.33.0.dist-info/RECORD",
+      "sha256": "2c80b9272e9136f33314972cf69512a3d93a8459b57e3cfcd224a255be1d098f",
+      "bytes": 19460,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/huggingface_hub-1.33.0.dist-info/METADATA",
+      "sha256": "bee565776d66f486d224f74024b656a69ed42e2639d80b18811fca4365adc42e",
+      "bytes": 16334,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/numpy-2.5.2.dist-info/RECORD",
+      "sha256": "464b7e27633d7e9bb306867a522291c46998d3722827d5bc435dad9e59bc6a24",
+      "bytes": 86055,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/numpy-2.5.2.dist-info/METADATA",
+      "sha256": "9a895d801184d2176f926af84eb47f2db1af2756afac99d64a2bf482d5d5e024",
+      "bytes": 6635,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/opencv_python_headless-5.0.0.93.dist-info/RECORD",
+      "sha256": "a4172fa37f8a5c3352f206f392daabe05cfa35010d3b7dd9dd9d9f404be49abb",
+      "bytes": 5724,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/opencv_python_headless-5.0.0.93.dist-info/METADATA",
+      "sha256": "f8e9104b4dce58f708d4cc7af95ebd8a5d65a3e36209d42386eb61065ae50e1a",
+      "bytes": 19758,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/pillow-12.3.0.dist-info/RECORD",
+      "sha256": "e29a8853b254fcc14a7b13ab9df938bcdea09e57c5e345ad9819c611a62ac46f",
+      "bytes": 11523,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/pillow-12.3.0.dist-info/METADATA",
+      "sha256": "8fc07146cab33ef7582361dab6eac596d340b03ec648f18217da7894f73838c8",
+      "bytes": 9093,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/safetensors-0.8.0.dist-info/RECORD",
+      "sha256": "c5110881c0c39a4f163a23b2ccc88cad19ce1823b6dce1ceef353d33f16c004b",
+      "bytes": 1425,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/safetensors-0.8.0.dist-info/METADATA",
+      "sha256": "645be7b8d55e91534f991d144dc9e279581ea8dbea1a8c5b0be14e529d01e345",
+      "bytes": 4189,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm-1.0.30.dist-info/RECORD",
+      "sha256": "a84840ff49875d578dcaba10de3414114270a4b529928fb5d1ddd60d429e948f",
+      "bytes": 27008,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm-1.0.30.dist-info/METADATA",
+      "sha256": "385c77b58e59de4193487c5056e92ac0f3c8422df103880f5a5e521afef1b815",
+      "bytes": 33005,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/tokenizers-0.23.3.dist-info/RECORD",
+      "sha256": "594502c82016a506018a24f94c695aedbb52432e63e705b29c75e80e886500a5",
+      "bytes": 2987,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/tokenizers-0.23.3.dist-info/METADATA",
+      "sha256": "87032ea29ec14be956ce0f15d164a8f436d6f1adbe19b261d6c179d9184f5cba",
+      "bytes": 9830,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torch-2.11.0+cu128.dist-info/RECORD",
+      "sha256": "56e43cb98a1b5b911c7fcba6711fcfc187472911bcd646cefc28cafafc645bf8",
+      "bytes": 1251044,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torch-2.11.0+cu128.dist-info/METADATA",
+      "sha256": "de881a744ff66b27fffc338c1624660cf7c87d3019574ad71e3dda886b2a172b",
+      "bytes": 29852,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torchvision-0.26.0+cu128.dist-info/RECORD",
+      "sha256": "5676091cf89752a1a4a08e10ffaf33dabc624917ba86e1d98546eda7b795d34e",
+      "bytes": 18283,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torchvision-0.26.0+cu128.dist-info/METADATA",
+      "sha256": "ed84a853aefa31a229ba89c179202f6a7292f8a589e7b0dd21c7b85c14563ac4",
+      "bytes": 5482,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/transformers-5.19.0.dist-info/RECORD",
+      "sha256": "da3a796d539eb8520fb3553779841e4284f3379dc3ce5572d7a27c916fc56fb2",
+      "bytes": 293199,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/transformers-5.19.0.dist-info/METADATA",
+      "sha256": "25c2bda8ef027a2e2146093b78d8989c59c4cda0d7686429c6aaffe06302879a",
+      "bytes": 32344,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torch/__init__.py",
+      "sha256": "0387d8b811b289287479c8bfdf4e1dac3a71b246f938d82da1331cf2dc8bf001",
+      "bytes": 107845,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torch/version.py",
+      "sha256": "c5a512fcd13f6195c117da82802740abd5eafbec7b21709ed8d9babec6c9f5d9",
+      "bytes": 317,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torch/nn/functional.py",
+      "sha256": "06f330c5ce12f7a7b5be938fb4fd1b78dadcc4a345c49aac58dbb923b3a3a405",
+      "bytes": 261223,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torch/backends/cuda/__init__.py",
+      "sha256": "c70bd54e7d4b995ddd822cb70d7d8e140b95a2d8e61635bf2c580b8045d83c11",
+      "bytes": 21553,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torchvision/transforms/transforms.py",
+      "sha256": "673f3baacde591b3cb7224c5fbfc7ad35200dbd1f9a2147f3fa0b4226e735023",
+      "bytes": 85981,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/torchvision/transforms/functional.py",
+      "sha256": "0b2fdf8e6764f4be0113acd95b58d3b14158c13fa2374ed93fbbe1f4b8730ded",
+      "bytes": 67861,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm/__init__.py",
+      "sha256": "9668df8ff48b33f846428cd7607399cf14b4f0feef157930eabf6defe932b1d3",
+      "bytes": 604,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm/models/_factory.py",
+      "sha256": "5c9437a1be7e9a4e07cb6b623484b17a53b0eeb17e004fc87f61672c6cb7c812",
+      "bytes": 8438,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm/models/_builder.py",
+      "sha256": "bda088022ec2733c64d428108e6251f5a9231b6cf2c4d623f5a18a2f00cf9062",
+      "bytes": 22084,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm/models/_helpers.py",
+      "sha256": "c680cfe4740447ac7cf82c735da24e65c5228370d2875a07754078799a82b411",
+      "bytes": 11799,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm/models/vision_transformer.py",
+      "sha256": "88891e4af894a7797b2d625db1be93c85c9843110d8491fd6aba927320b06df7",
+      "bytes": 218502,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm/layers/pos_embed.py",
+      "sha256": "06b469fbe07a42fa6ef485874678a847e209aa188d09902258af44fdb57834c1",
+      "bytes": 2835,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm/layers/attention.py",
+      "sha256": "91094ccb54a743b7e70f38431c7e330e750ce4f575d49ba34153b16829bb5622",
+      "bytes": 13347,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm/layers/mlp.py",
+      "sha256": "c024128a1c7e2a55ebc5e33a7c94c585ae1e960cd032b39b08445ea30f05c5a5",
+      "bytes": 10659,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/timm/layers/patch_embed.py",
+      "sha256": "fb308cdb0bd12576baf851fe5cfc1abd49d0079e2e0e7dc2751fbfbd8b3f8d9d",
+      "bytes": 28392,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/PIL/Image.py",
+      "sha256": "04af3f2db7ffdd61e829fa7aa8f5481d394a0a4129a8fd8aa5b13908928fcd6d",
+      "bytes": 153786,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/numpy/__init__.py",
+      "sha256": "09295a80660f17925ae23765ce8cbd7ff7ceae968d5f2f89349f1cb74c0b9e11",
+      "bytes": 25220,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/cv2/__init__.py",
+      "sha256": "69192904dead3ada37c8b305ee850ac7474924730881a9d5e0b2390944eb5aae",
+      "bytes": 6630,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/huggingface_hub/__init__.py",
+      "sha256": "284be6e001a015f9933e756c6f6552b7266d811aff7b5124c960b5f1fc66b27e",
+      "bytes": 61134,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/safetensors/__init__.py",
+      "sha256": "92c988289b8c225a92f25e487ad5d7a1eb7e326eec0fedfc6b75e6f04d85e32f",
+      "bytes": 210,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    },
+    {
+      "path": "/home/narolski/dmenv/lib/python3.12/site-packages/transformers/__init__.py",
+      "sha256": "af7867325306501e495acaca93c1c4d603849cca6614ed23510bb17c2da63ac6",
+      "bytes": 42112,
+      "status": "CONTENT_HASHED_CURRENT_ONLY"
+    }
+  ],
+  "root_adoption_path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_SBMR512_CURRENT_IDENTITY_ADOPTION_20261114T230335Z.json",
+  "acquisition_host": "WCSS",
+  "GX_receipt_location": "MIRROR_ONLY",
+  "worker_startup_runtime_equivalence": "NOT_PROVEN"
+}

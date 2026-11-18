@@ -1,0 +1,23 @@
+{
+  "status": "SOURCE_READY_FOR_OTHER_REVIEW_EXECUTION_HOLD",
+  "author": "Sol",
+  "reviewer": null,
+  "root_execution_release": null,
+  "parent_worker_manifest_sha256": "bb4cb53b577bc3547f494b4f26106b0e28bbd79c373eacbb5edd0fa4ff74bd6d",
+  "operational_worker_manifest_sha256": "6dc4375db303042904ca0725c631515ffaf00d7afc4266bf8334d067c0b698c7",
+  "delta": "produce.py decision namespaces and fixed Lustre output path ONLY",
+  "runtime_actual": "NOT_EXECUTED",
+  "runtime_metadata": "43 admitted current content records reused; root adoption and OTHER review bound in CURRENT_METADATA_BINDING.json",
+  "scientific_read": "HOLD",
+  "scope": "first original eval64 seed408 native+flip128 images;13 exact native target bytes;eval-container technical decode exception still required",
+  "primary_blockers": [
+    "native runtime library/import/defaults identity",
+    "base weight/content and positional reconstruction",
+    "overlay schema/meta",
+    "64 input image body pins",
+    "exact original eval container/manifest permission/pins",
+    "native staging capacity/source commits",
+    "independent prereview and separate root GPU release"
+  ],
+  "validation": "4 stdlib fixture methods;31 negative subcases plus one valid;source preservation only produce.py differs;AST/bash syntax"
+}

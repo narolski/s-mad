@@ -1,0 +1,1151 @@
+{
+  "created_utc": "2026-11-14T17:05:02.117802+00:00",
+  "owner": "shortcut_visual_examples",
+  "scope": "metadata-selected catalogue and previously admitted private XAI summaries only",
+  "new_inference": false,
+  "new_candidate_or_sealed_access": false,
+  "score_driven_candidate_selection": false,
+  "examples": [
+    {
+      "example_id": "history_00010",
+      "shortcut": "existing compound resolution/storage history; NOT JPEG-only or blur-only",
+      "selection": "first three lexicographic licensed bona-fide keys; hero00010 fixed by earlier prereg before scores",
+      "photo_key": "00010",
+      "rights": {
+        "attribution": {
+          "role": "bona_fide",
+          "pair_key": "",
+          "ffhq_key": "00010",
+          "author": "Anjul Sahu",
+          "license": "Attribution-NonCommercial License",
+          "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+          "photo_url": "https://www.flickr.com/photos/chiku86/5931089028/",
+          "photo_title": "Naughty Naughty..."
+        },
+        "scope": "documented noncommercial redistribution/adaptation basis with credit; project publication/privacy disposition still pending"
+      },
+      "inputs": [
+        {
+          "manifest_row": {
+            "id": "fq005000",
+            "path": "eval/ffhqm/ffhq_bona/00010_orig.png",
+            "set": "ffhqm",
+            "family": "ffhq_bona",
+            "label": "0",
+            "variant": "orig",
+            "aligned": "1",
+            "native_w": "1024",
+            "native_h": "1024",
+            "file_bytes": "1318949",
+            "ied": "269.8346252441406"
+          },
+          "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00010_orig.png",
+          "sha256": "b7e6fec12650ff19aba14e6d2ee35db1cf3bfdf6b4e3977c88d4cb38582f8b94",
+          "bytes": 416207
+        },
+        {
+          "manifest_row": {
+            "id": "fq005001",
+            "path": "eval/ffhqm/ffhq_bona/00010_resmatch_landmark_complete.png",
+            "set": "ffhqm",
+            "family": "landmark_complete",
+            "label": "0",
+            "variant": "resmatch",
+            "aligned": "1",
+            "native_w": "1024",
+            "native_h": "1024",
+            "file_bytes": "1318949",
+            "ied": "269.8346252441406"
+          },
+          "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00010_resmatch_landmark_complete.png",
+          "sha256": "b5a8251f04ae7630f2e4264b402ae6feacadef59a4cd6bb8386fd57ec278a1a1",
+          "bytes": 339316
+        }
+      ],
+      "approved_per_image_score_status": "XAI pilot only for00010; others NOT_READ_NO_NEW_INFERENCE",
+      "role": "hero_private"
+    },
+    {
+      "example_id": "history_00042",
+      "shortcut": "existing compound resolution/storage history; NOT JPEG-only or blur-only",
+      "selection": "first three lexicographic licensed bona-fide keys; hero00010 fixed by earlier prereg before scores",
+      "photo_key": "00042",
+      "rights": {
+        "attribution": {
+          "role": "bona_fide",
+          "pair_key": "",
+          "ffhq_key": "00042",
+          "author": "Rebecca Brown",
+          "license": "Attribution-NonCommercial License",
+          "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+          "photo_url": "https://www.flickr.com/photos/rebeccacbrown13/2168341402/",
+          "photo_title": "Shirtless, bearded Josh."
+        },
+        "scope": "documented noncommercial redistribution/adaptation basis with credit; project publication/privacy disposition still pending"
+      },
+      "inputs": [
+        {
+          "manifest_row": {
+            "id": "fq005006",
+            "path": "eval/ffhqm/ffhq_bona/00042_orig.png",
+            "set": "ffhqm",
+            "family": "ffhq_bona",
+            "label": "0",
+            "variant": "orig",
+            "aligned": "1",
+            "native_w": "1024",
+            "native_h": "1024",
+            "file_bytes": "1357309",
+            "ied": "249.75587463378906"
+          },
+          "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_orig.png",
+          "sha256": "dbd11bb9c9545524c01eafd4d0f4e1478faa5aa9c9ca04d8f4643124f92592d1",
+          "bytes": 429336
+        },
+        {
+          "manifest_row": {
+            "id": "fq005007",
+            "path": "eval/ffhqm/ffhq_bona/00042_resmatch_landmark_complete.png",
+            "set": "ffhqm",
+            "family": "landmark_complete",
+            "label": "0",
+            "variant": "resmatch",
+            "aligned": "1",
+            "native_w": "1024",
+            "native_h": "1024",
+            "file_bytes": "1357309",
+            "ied": "249.75587463378906"
+          },
+          "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00042_resmatch_landmark_complete.png",
+          "sha256": "a1e4c13cc32bba5450e3a9b36fa19a6e1fffa130907f0f62b18d2e0002207a97",
+          "bytes": 329717
+        }
+      ],
+      "approved_per_image_score_status": "XAI pilot only for00010; others NOT_READ_NO_NEW_INFERENCE",
+      "role": "prospective support/counterexample candidate; effect not known"
+    },
+    {
+      "example_id": "history_00056",
+      "shortcut": "existing compound resolution/storage history; NOT JPEG-only or blur-only",
+      "selection": "first three lexicographic licensed bona-fide keys; hero00010 fixed by earlier prereg before scores",
+      "photo_key": "00056",
+      "rights": {
+        "attribution": {
+          "role": "bona_fide",
+          "pair_key": "",
+          "ffhq_key": "00056",
+          "author": "RAFFI YOUREDJIAN",
+          "license": "Attribution-NonCommercial License",
+          "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+          "photo_url": "https://www.flickr.com/photos/62487011@N08/28696918755/",
+          "photo_title": "MANGAGAN-7"
+        },
+        "scope": "documented noncommercial redistribution/adaptation basis with credit; project publication/privacy disposition still pending"
+      },
+      "inputs": [
+        {
+          "manifest_row": {
+            "id": "fq005012",
+            "path": "eval/ffhqm/ffhq_bona/00056_orig.png",
+            "set": "ffhqm",
+            "family": "ffhq_bona",
+            "label": "0",
+            "variant": "orig",
+            "aligned": "1",
+            "native_w": "1024",
+            "native_h": "1024",
+            "file_bytes": "1439231",
+            "ied": "265.3272399902344"
+          },
+          "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_orig.png",
+          "sha256": "c07df69f9421404b37f76d05d23242d0b5c25b9584dee273cf5973d467cf22fa",
+          "bytes": 392021
+        },
+        {
+          "manifest_row": {
+            "id": "fq005013",
+            "path": "eval/ffhqm/ffhq_bona/00056_resmatch_landmark_complete.png",
+            "set": "ffhqm",
+            "family": "landmark_complete",
+            "label": "0",
+            "variant": "resmatch",
+            "aligned": "1",
+            "native_w": "1024",
+            "native_h": "1024",
+            "file_bytes": "1439231",
+            "ied": "265.3272399902344"
+          },
+          "path": "/mnt/t7/smad_heldout/ffhq_morphs/eval/ffhqm/ffhq_bona/00056_resmatch_landmark_complete.png",
+          "sha256": "04629c855318c47c764bb6d5f84b5a41306203ba636bcdd511e298e77576fe16",
+          "bytes": 295088
+        }
+      ],
+      "approved_per_image_score_status": "XAI pilot only for00010; others NOT_READ_NO_NEW_INFERENCE",
+      "role": "prospective support/counterexample candidate; effect not known"
+    },
+    {
+      "example_id": "render_65572",
+      "shortcut": "warp/blend/surround alternatives, not proof of identity cue",
+      "selection": "excl_border metadata quantile0.25; floor((299-1)*q) sorted ascending, host tie-break; no score selection",
+      "host": "ffhq:65572",
+      "partner": "ffhq:65542",
+      "metadata_population": 299,
+      "metadata_border_fraction": "0.010788",
+      "rights": {
+        "host_attribution": null,
+        "partner_attribution": null,
+        "scope": "individual attribution missing in checked local list; export/publication HOLD; no assumption dataset licence alone clears these keys"
+      },
+      "inputs": [
+        {
+          "manifest_row": {
+            "id": "xf1b_FMHB_whole_65572",
+            "path": "eval/xf1b/FMHB/whole/65572.png",
+            "label": "1",
+            "klass": "FMHB",
+            "form": "whole",
+            "host": "ffhq:65572",
+            "partner": "ffhq:65542",
+            "component": "5",
+            "block": "40",
+            "excl_border": "0.010788",
+            "excl_border_t": "0",
+            "ied_gap": "2.452200000000005",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.09484213590621948",
+            "sha256": "9ddcfef4e2977839f98b24992334bdd9d7a2fe024acd599bda16369ead1b16ce",
+            "src": "/mnt/t7/smad_next/DATA/D12a/facemorpher/R4/65572__65542.png"
+          },
+          "path": "/mnt/t7/smad_next/DATA/D12a/facemorpher/R4/65572__65542.png",
+          "sha256": "9ddcfef4e2977839f98b24992334bdd9d7a2fe024acd599bda16369ead1b16ce",
+          "bytes": 412757
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_WARP_whole_65572",
+            "path": "eval/xf1b/WARP/whole/65572.png",
+            "label": "0",
+            "klass": "WARP",
+            "form": "whole",
+            "host": "ffhq:65572",
+            "partner": "ffhq:65542",
+            "component": "5",
+            "block": "40",
+            "excl_border": "0.010788",
+            "excl_border_t": "0",
+            "ied_gap": "2.452200000000005",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.09484213590621948",
+            "sha256": "082797fd3f76ada232864f880f628263c0a475704114f47219a70d8c69967235",
+            "src": "/mnt/t7/smad_next/DATA/D12b/facemorpher/R2w4/65572__65542.png"
+          },
+          "path": "/mnt/t7/smad_next/DATA/D12b/facemorpher/R2w4/65572__65542.png",
+          "sha256": "082797fd3f76ada232864f880f628263c0a475704114f47219a70d8c69967235",
+          "bytes": 465827
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_H_whole_65572",
+            "path": "eval/xf1b/H/whole/65572.png",
+            "label": "0",
+            "klass": "H",
+            "form": "whole",
+            "host": "ffhq:65572",
+            "partner": "ffhq:65542",
+            "component": "5",
+            "block": "40",
+            "excl_border": "0.010788",
+            "excl_border_t": "0",
+            "ied_gap": "2.452200000000005",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.09484213590621948",
+            "sha256": "1888dd1d07a90ebf10b01db17dafce01920474e3387ffd6548c1a18b74f126eb",
+            "src": "/mnt/t7/smad_next/MS1/ffhq/src/65572.png"
+          },
+          "path": "/mnt/t7/smad_next/MS1/ffhq/src/65572.png",
+          "sha256": "1888dd1d07a90ebf10b01db17dafce01920474e3387ffd6548c1a18b74f126eb",
+          "bytes": 473185
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_FMHB_face_65572",
+            "path": "eval/xf1b/FMHB/face/65572.png",
+            "label": "1",
+            "klass": "FMHB",
+            "form": "face",
+            "host": "ffhq:65572",
+            "partner": "ffhq:65542",
+            "component": "5",
+            "block": "40",
+            "excl_border": "0.010788",
+            "excl_border_t": "0",
+            "ied_gap": "2.452200000000005",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.09484213590621948",
+            "sha256": "da5c233f3a73e43cf098f18f43c98c4cdc1b4ed79c575db82d6daeaf52871df1",
+            "src": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_FMHB_face_65572.png"
+          },
+          "path": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_FMHB_face_65572.png",
+          "sha256": "da5c233f3a73e43cf098f18f43c98c4cdc1b4ed79c575db82d6daeaf52871df1",
+          "bytes": 111607
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_WARP_face_65572",
+            "path": "eval/xf1b/WARP/face/65572.png",
+            "label": "0",
+            "klass": "WARP",
+            "form": "face",
+            "host": "ffhq:65572",
+            "partner": "ffhq:65542",
+            "component": "5",
+            "block": "40",
+            "excl_border": "0.010788",
+            "excl_border_t": "0",
+            "ied_gap": "2.452200000000005",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.09484213590621948",
+            "sha256": "db8efcc73ae52b5949517c29c85782d87e058fee1168a58bb7239bfda74f865b",
+            "src": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_WARP_face_65572.png"
+          },
+          "path": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_WARP_face_65572.png",
+          "sha256": "db8efcc73ae52b5949517c29c85782d87e058fee1168a58bb7239bfda74f865b",
+          "bytes": 119894
+        }
+      ],
+      "approved_per_image_score_status": "XF1 aggregate result admitted; per-example score NOT_READ; no maps computed",
+      "role": "geometry-stratified supporting candidate; not statistically representative of score effect"
+    },
+    {
+      "example_id": "render_30319",
+      "shortcut": "warp/blend/surround alternatives, not proof of identity cue",
+      "selection": "excl_border metadata quantile0.5; floor((299-1)*q) sorted ascending, host tie-break; no score selection",
+      "host": "ffhq:30319",
+      "partner": "ffhq:34314",
+      "metadata_population": 299,
+      "metadata_border_fraction": "0.020264",
+      "rights": {
+        "host_attribution": null,
+        "partner_attribution": null,
+        "scope": "individual attribution missing in checked local list; export/publication HOLD; no assumption dataset licence alone clears these keys"
+      },
+      "inputs": [
+        {
+          "manifest_row": {
+            "id": "xf1b_FMHB_whole_30319",
+            "path": "eval/xf1b/FMHB/whole/30319.png",
+            "label": "1",
+            "klass": "FMHB",
+            "form": "whole",
+            "host": "ffhq:30319",
+            "partner": "ffhq:34314",
+            "component": "5",
+            "block": "50",
+            "excl_border": "0.020264",
+            "excl_border_t": "1",
+            "ied_gap": "1.5853999999999928",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.04770438000559807",
+            "sha256": "2a56bd4ab332574e2a248049766ed4a0b9d369419afada69b0dbf87c6cee2198",
+            "src": "/mnt/t7/smad_next/DATA/D12a/facemorpher/R4/30319__34314.png"
+          },
+          "path": "/mnt/t7/smad_next/DATA/D12a/facemorpher/R4/30319__34314.png",
+          "sha256": "2a56bd4ab332574e2a248049766ed4a0b9d369419afada69b0dbf87c6cee2198",
+          "bytes": 399552
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_WARP_whole_30319",
+            "path": "eval/xf1b/WARP/whole/30319.png",
+            "label": "0",
+            "klass": "WARP",
+            "form": "whole",
+            "host": "ffhq:30319",
+            "partner": "ffhq:34314",
+            "component": "5",
+            "block": "50",
+            "excl_border": "0.020264",
+            "excl_border_t": "1",
+            "ied_gap": "1.5853999999999928",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.04770438000559807",
+            "sha256": "79723143f2bfb732444d809e980ffb21b21e8b0207046063a5eab83b32d88abe",
+            "src": "/mnt/t7/smad_next/DATA/D12b/facemorpher/R2w4/30319__34314.png"
+          },
+          "path": "/mnt/t7/smad_next/DATA/D12b/facemorpher/R2w4/30319__34314.png",
+          "sha256": "79723143f2bfb732444d809e980ffb21b21e8b0207046063a5eab83b32d88abe",
+          "bytes": 451041
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_H_whole_30319",
+            "path": "eval/xf1b/H/whole/30319.png",
+            "label": "0",
+            "klass": "H",
+            "form": "whole",
+            "host": "ffhq:30319",
+            "partner": "ffhq:34314",
+            "component": "5",
+            "block": "50",
+            "excl_border": "0.020264",
+            "excl_border_t": "1",
+            "ied_gap": "1.5853999999999928",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.04770438000559807",
+            "sha256": "01cd5d2a4a3bf3f798ee6eb26917a29d543a6e59ee53978800c02301879a68c2",
+            "src": "/mnt/t7/smad_next/MS1/ffhq/src/30319.png"
+          },
+          "path": "/mnt/t7/smad_next/MS1/ffhq/src/30319.png",
+          "sha256": "01cd5d2a4a3bf3f798ee6eb26917a29d543a6e59ee53978800c02301879a68c2",
+          "bytes": 455947
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_FMHB_face_30319",
+            "path": "eval/xf1b/FMHB/face/30319.png",
+            "label": "1",
+            "klass": "FMHB",
+            "form": "face",
+            "host": "ffhq:30319",
+            "partner": "ffhq:34314",
+            "component": "5",
+            "block": "50",
+            "excl_border": "0.020264",
+            "excl_border_t": "1",
+            "ied_gap": "1.5853999999999928",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.04770438000559807",
+            "sha256": "a1c2e4348c2357bcb46e04add17edf68c5de0d41f8a167dfc69bb9f10b373819",
+            "src": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_FMHB_face_30319.png"
+          },
+          "path": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_FMHB_face_30319.png",
+          "sha256": "a1c2e4348c2357bcb46e04add17edf68c5de0d41f8a167dfc69bb9f10b373819",
+          "bytes": 105445
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_WARP_face_30319",
+            "path": "eval/xf1b/WARP/face/30319.png",
+            "label": "0",
+            "klass": "WARP",
+            "form": "face",
+            "host": "ffhq:30319",
+            "partner": "ffhq:34314",
+            "component": "5",
+            "block": "50",
+            "excl_border": "0.020264",
+            "excl_border_t": "1",
+            "ied_gap": "1.5853999999999928",
+            "ied_gap_t": "0",
+            "cos_HB": "-0.04770438000559807",
+            "sha256": "66e4d4251174b5a3df9d180e808dc78ea1adcc27460badce412e427ece2c6740",
+            "src": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_WARP_face_30319.png"
+          },
+          "path": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_WARP_face_30319.png",
+          "sha256": "66e4d4251174b5a3df9d180e808dc78ea1adcc27460badce412e427ece2c6740",
+          "bytes": 111338
+        }
+      ],
+      "approved_per_image_score_status": "XF1 aggregate result admitted; per-example score NOT_READ; no maps computed",
+      "role": "geometry-stratified supporting candidate; not statistically representative of score effect"
+    },
+    {
+      "example_id": "render_63202",
+      "shortcut": "warp/blend/surround alternatives, not proof of identity cue",
+      "selection": "excl_border metadata quantile0.75; floor((299-1)*q) sorted ascending, host tie-break; no score selection",
+      "host": "ffhq:63202",
+      "partner": "ffhq:33222",
+      "metadata_population": 299,
+      "metadata_border_fraction": "0.038815",
+      "rights": {
+        "host_attribution": null,
+        "partner_attribution": null,
+        "scope": "individual attribution missing in checked local list; export/publication HOLD; no assumption dataset licence alone clears these keys"
+      },
+      "inputs": [
+        {
+          "manifest_row": {
+            "id": "xf1b_FMHB_whole_63202",
+            "path": "eval/xf1b/FMHB/whole/63202.png",
+            "label": "1",
+            "klass": "FMHB",
+            "form": "whole",
+            "host": "ffhq:63202",
+            "partner": "ffhq:33222",
+            "component": "3",
+            "block": "25",
+            "excl_border": "0.038815",
+            "excl_border_t": "2",
+            "ied_gap": "6.3851999999999975",
+            "ied_gap_t": "2",
+            "cos_HB": "-0.0437159463763237",
+            "sha256": "9e7ad64e390a45e4e8d08e11c50687a536cc64635545a0719db0fa77bd536f1e",
+            "src": "/mnt/t7/smad_next/DATA/D12a/facemorpher/R4/63202__33222.png"
+          },
+          "path": "/mnt/t7/smad_next/DATA/D12a/facemorpher/R4/63202__33222.png",
+          "sha256": "9e7ad64e390a45e4e8d08e11c50687a536cc64635545a0719db0fa77bd536f1e",
+          "bytes": 408798
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_WARP_whole_63202",
+            "path": "eval/xf1b/WARP/whole/63202.png",
+            "label": "0",
+            "klass": "WARP",
+            "form": "whole",
+            "host": "ffhq:63202",
+            "partner": "ffhq:33222",
+            "component": "3",
+            "block": "25",
+            "excl_border": "0.038815",
+            "excl_border_t": "2",
+            "ied_gap": "6.3851999999999975",
+            "ied_gap_t": "2",
+            "cos_HB": "-0.0437159463763237",
+            "sha256": "34031d9337035cb20b866166e58ac06be01bbaa72be8289a6d1738986678ca1d",
+            "src": "/mnt/t7/smad_next/DATA/D12b/facemorpher/R2w4/63202__33222.png"
+          },
+          "path": "/mnt/t7/smad_next/DATA/D12b/facemorpher/R2w4/63202__33222.png",
+          "sha256": "34031d9337035cb20b866166e58ac06be01bbaa72be8289a6d1738986678ca1d",
+          "bytes": 445816
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_H_whole_63202",
+            "path": "eval/xf1b/H/whole/63202.png",
+            "label": "0",
+            "klass": "H",
+            "form": "whole",
+            "host": "ffhq:63202",
+            "partner": "ffhq:33222",
+            "component": "3",
+            "block": "25",
+            "excl_border": "0.038815",
+            "excl_border_t": "2",
+            "ied_gap": "6.3851999999999975",
+            "ied_gap_t": "2",
+            "cos_HB": "-0.0437159463763237",
+            "sha256": "6678ebf768039c6e08bd5178d33e7b120c1c380e67ca7dcb6ce431916046f70b",
+            "src": "/mnt/t7/smad_next/MS1/ffhq/src/63202.png"
+          },
+          "path": "/mnt/t7/smad_next/MS1/ffhq/src/63202.png",
+          "sha256": "6678ebf768039c6e08bd5178d33e7b120c1c380e67ca7dcb6ce431916046f70b",
+          "bytes": 447235
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_FMHB_face_63202",
+            "path": "eval/xf1b/FMHB/face/63202.png",
+            "label": "1",
+            "klass": "FMHB",
+            "form": "face",
+            "host": "ffhq:63202",
+            "partner": "ffhq:33222",
+            "component": "3",
+            "block": "25",
+            "excl_border": "0.038815",
+            "excl_border_t": "2",
+            "ied_gap": "6.3851999999999975",
+            "ied_gap_t": "2",
+            "cos_HB": "-0.0437159463763237",
+            "sha256": "6e50e6008158096abafc9cdd1ef187bbf7d1859bd489dac589796e3c30f25f52",
+            "src": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_FMHB_face_63202.png"
+          },
+          "path": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_FMHB_face_63202.png",
+          "sha256": "6e50e6008158096abafc9cdd1ef187bbf7d1859bd489dac589796e3c30f25f52",
+          "bytes": 77551
+        },
+        {
+          "manifest_row": {
+            "id": "xf1b_WARP_face_63202",
+            "path": "eval/xf1b/WARP/face/63202.png",
+            "label": "0",
+            "klass": "WARP",
+            "form": "face",
+            "host": "ffhq:63202",
+            "partner": "ffhq:33222",
+            "component": "3",
+            "block": "25",
+            "excl_border": "0.038815",
+            "excl_border_t": "2",
+            "ied_gap": "6.3851999999999975",
+            "ied_gap_t": "2",
+            "cos_HB": "-0.0437159463763237",
+            "sha256": "994958a1a77c121bf79e19b374a7088ca2570569a5ee7e7b3a69b04208110dcf",
+            "src": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_WARP_face_63202.png"
+          },
+          "path": "/mnt/t7/smad_next/XF1/blank/bg/xf1b_WARP_face_63202.png",
+          "sha256": "994958a1a77c121bf79e19b374a7088ca2570569a5ee7e7b3a69b04208110dcf",
+          "bytes": 83222
+        }
+      ],
+      "approved_per_image_score_status": "XF1 aggregate result admitted; per-example score NOT_READ; no maps computed",
+      "role": "geometry-stratified supporting candidate; not statistically representative of score effect"
+    },
+    {
+      "example_id": "seam_feret_00026",
+      "shortcut": "same-person seam/surround sensitivity",
+      "selection": "first three lexicographic development hosts with complete same-hull OpenCV S0/S3/S4; scores not consulted",
+      "host": "feret:00026",
+      "partner": "feret:00140",
+      "rights": {
+        "scope": "restricted source; image export/publication HOLD; existing OCC1numeric-only permission does not transfer"
+      },
+      "inputs": [
+        {
+          "manifest_row": {
+            "id": "sp2_S0_opencv_feret_00026",
+            "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S0/feret_00026.png",
+            "pool": "frgcferet",
+            "tool": "opencv",
+            "rung": "S0",
+            "p1": "feret:00026",
+            "p2": "feret:00026",
+            "variant": "native",
+            "box_src": "",
+            "lm_src": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S0/feret_00026.png"
+          },
+          "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S0/feret_00026.png",
+          "sha256": "9abbad2c796ab4728228709300e36bd942d3fb13826105b61913cfb188c99005",
+          "bytes": 266583
+        },
+        {
+          "manifest_row": {
+            "id": "sp2_S3_opencv_feret_00026",
+            "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S3/feret_00026.png",
+            "pool": "frgcferet",
+            "tool": "opencv",
+            "rung": "S3",
+            "p1": "feret:00026",
+            "p2": "feret:00026",
+            "variant": "native",
+            "box_src": "",
+            "lm_src": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S3/feret_00026.png"
+          },
+          "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S3/feret_00026.png",
+          "sha256": "62567892b7358a35d519e2ff871bc79aba6a8858b3833e3cd2a76bba081d4838",
+          "bytes": 279252
+        },
+        {
+          "manifest_row": {
+            "id": "sp2_S4_opencv_feret_00026",
+            "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S4/feret_00026.png",
+            "pool": "frgcferet",
+            "tool": "opencv",
+            "rung": "S4",
+            "p1": "feret:00026",
+            "p2": "feret:00140",
+            "variant": "native",
+            "box_src": "",
+            "lm_src": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S4/feret_00026.png"
+          },
+          "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S4/feret_00026.png",
+          "sha256": "38da7063cc8234699cab416aa4734cdb9a4d5b2e460da364017b318b9f5060c9",
+          "bytes": 278746
+        }
+      ],
+      "approved_per_image_score_status": "OCC1numeric-only admitted forferet00026 only; no other per-image responses/maps read",
+      "role": "candidate; requires rights and new registered numeric sweeps unless00026"
+    },
+    {
+      "example_id": "seam_feret_00107",
+      "shortcut": "same-person seam/surround sensitivity",
+      "selection": "first three lexicographic development hosts with complete same-hull OpenCV S0/S3/S4; scores not consulted",
+      "host": "feret:00107",
+      "partner": "feret:00750",
+      "rights": {
+        "scope": "restricted source; image export/publication HOLD; existing OCC1numeric-only permission does not transfer"
+      },
+      "inputs": [
+        {
+          "manifest_row": {
+            "id": "sp2_S0_opencv_feret_00107",
+            "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S0/feret_00107.png",
+            "pool": "frgcferet",
+            "tool": "opencv",
+            "rung": "S0",
+            "p1": "feret:00107",
+            "p2": "feret:00107",
+            "variant": "native",
+            "box_src": "",
+            "lm_src": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S0/feret_00107.png"
+          },
+          "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S0/feret_00107.png",
+          "sha256": "140564ece484fb1075ed927a822b2794c3ca1225c93481a50718b0dcb9ab6727",
+          "bytes": 267406
+        },
+        {
+          "manifest_row": {
+            "id": "sp2_S3_opencv_feret_00107",
+            "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S3/feret_00107.png",
+            "pool": "frgcferet",
+            "tool": "opencv",
+            "rung": "S3",
+            "p1": "feret:00107",
+            "p2": "feret:00107",
+            "variant": "native",
+            "box_src": "",
+            "lm_src": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S3/feret_00107.png"
+          },
+          "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S3/feret_00107.png",
+          "sha256": "8d81360eef70dd3983209942e7188e28351c535b6ede584e4c9678ba6facdd07",
+          "bytes": 275868
+        },
+        {
+          "manifest_row": {
+            "id": "sp2_S4_opencv_feret_00107",
+            "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S4/feret_00107.png",
+            "pool": "frgcferet",
+            "tool": "opencv",
+            "rung": "S4",
+            "p1": "feret:00107",
+            "p2": "feret:00750",
+            "variant": "native",
+            "box_src": "",
+            "lm_src": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S4/feret_00107.png"
+          },
+          "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S4/feret_00107.png",
+          "sha256": "d79389ec800580895434ce7ad0d88d4090757563270391818ef8e7fb673ac41e",
+          "bytes": 267469
+        }
+      ],
+      "approved_per_image_score_status": "OCC1numeric-only admitted forferet00026 only; no other per-image responses/maps read",
+      "role": "candidate; requires rights and new registered numeric sweeps unless00026"
+    },
+    {
+      "example_id": "seam_feret_00146",
+      "shortcut": "same-person seam/surround sensitivity",
+      "selection": "first three lexicographic development hosts with complete same-hull OpenCV S0/S3/S4; scores not consulted",
+      "host": "feret:00146",
+      "partner": "feret:00711",
+      "rights": {
+        "scope": "restricted source; image export/publication HOLD; existing OCC1numeric-only permission does not transfer"
+      },
+      "inputs": [
+        {
+          "manifest_row": {
+            "id": "sp2_S0_opencv_feret_00146",
+            "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S0/feret_00146.png",
+            "pool": "frgcferet",
+            "tool": "opencv",
+            "rung": "S0",
+            "p1": "feret:00146",
+            "p2": "feret:00146",
+            "variant": "native",
+            "box_src": "",
+            "lm_src": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S0/feret_00146.png"
+          },
+          "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S0/feret_00146.png",
+          "sha256": "eaff3bf8f5dafe5673bb48b8541682c9dea5d115c67375ab3e4da0429366f0f9",
+          "bytes": 321401
+        },
+        {
+          "manifest_row": {
+            "id": "sp2_S3_opencv_feret_00146",
+            "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S3/feret_00146.png",
+            "pool": "frgcferet",
+            "tool": "opencv",
+            "rung": "S3",
+            "p1": "feret:00146",
+            "p2": "feret:00146",
+            "variant": "native",
+            "box_src": "",
+            "lm_src": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S3/feret_00146.png"
+          },
+          "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S3/feret_00146.png",
+          "sha256": "3a4cb19e60509326b9e2dadb37d4ccb2aa16d4577507417a7ab20a10fb34bbc7",
+          "bytes": 311388
+        },
+        {
+          "manifest_row": {
+            "id": "sp2_S4_opencv_feret_00146",
+            "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S4/feret_00146.png",
+            "pool": "frgcferet",
+            "tool": "opencv",
+            "rung": "S4",
+            "p1": "feret:00146",
+            "p2": "feret:00711",
+            "variant": "native",
+            "box_src": "",
+            "lm_src": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S4/feret_00146.png"
+          },
+          "path": "/mnt/t7/smad_next/AR1/img/frgcferet/opencv/S4/feret_00146.png",
+          "sha256": "a33c6494df1d3cd1d67b0a548cdc60d0d9bd3c9c580d9f909ab681aa961606fc",
+          "bytes": 314403
+        }
+      ],
+      "approved_per_image_score_status": "OCC1numeric-only admitted forferet00026 only; no other per-image responses/maps read",
+      "role": "candidate; requires rights and new registered numeric sweeps unless00026"
+    }
+  ],
+  "approved_existing_pilot": {
+    "A_fp32": {
+      "receipt": {
+        "path": "/mnt/t7/smad_next/XAI/backup_20261114/shortcut_attribution_20261114__20261114T123518_431783Z/A_fp32/result.json",
+        "sha256": "9be210712a92a4ab7b18a1b25b93573dcf3daf3061753dedcd1bc9af45aeb98f",
+        "bytes": 6322
+      },
+      "model_config": {
+        "kind": "own",
+        "code": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr",
+        "meta": "/mnt/t7/smad_next/TT1/nets_fs/PN1_A_s403/meta.json",
+        "checkpoint": "/mnt/t7/smad_next/TT1/nets_fs/PN1_A_s403/last_trainable.pt",
+        "checkpoints": [
+          {
+            "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_A_s403/meta.json",
+            "sha256": "701731d57f43f616b174acd3f77a779565ec2c1fab2db6990aa12fbd60a54f93"
+          },
+          {
+            "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_A_s403/last_trainable.pt",
+            "sha256": "3532c7bcf4da29a02e81bfd12112c91b821be25b938509a2a3745957fd2349df"
+          },
+          {
+            "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/hf/a12/vit_base_patch16_clip_224.openai.safetensors",
+            "sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f"
+          }
+        ],
+        "seed": 403,
+        "checkpoint_type": "last_trainable plus pinned frozen CLIP base"
+      },
+      "conditions": [
+        {
+          "condition": "native",
+          "logit_morph": -3.5239243507385254,
+          "score_noTTA": 0.02863912284374237,
+          "raw_npz_sha256": "d20c38b9fd13f229c2d3034b5cd80e132825d84fc8e1926a1da30574b2488418",
+          "logit_delta_from_native": 0.0
+        },
+        {
+          "condition": "storage",
+          "logit_morph": -3.532825469970703,
+          "score_noTTA": 0.02839253842830658,
+          "raw_npz_sha256": "d2f8c05584797627fa2c4b435192fe7081c8f3c03b62b3bb5333eee5f230a403",
+          "logit_delta_from_native": -0.008901119232177734
+        },
+        {
+          "condition": "border",
+          "logit_morph": -3.4360859394073486,
+          "score_noTTA": 0.031186526641249657,
+          "raw_npz_sha256": "5672526898da72b4f8cb3b6f8b0326ca2e00ece14f1b010d9258c25c287ad22c",
+          "logit_delta_from_native": 0.08783841133117676
+        }
+      ]
+    },
+    "B_fp32": {
+      "receipt": {
+        "path": "/mnt/t7/smad_next/XAI/backup_20261114/shortcut_attribution_20261114__20261114T123518_431783Z/B_fp32/result.json",
+        "sha256": "7aad7f7ef891439c6d70d9231aaeb52bdd4fab1952dd9232461aa848a89b9ee5",
+        "bytes": 6321
+      },
+      "model_config": {
+        "kind": "own",
+        "code": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr",
+        "meta": "/mnt/t7/smad_next/TT1/nets_fs/PN1_B_s403/meta.json",
+        "checkpoint": "/mnt/t7/smad_next/TT1/nets_fs/PN1_B_s403/last_trainable.pt",
+        "checkpoints": [
+          {
+            "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_B_s403/meta.json",
+            "sha256": "46f076c1c487fa5639d7bfef11fdea66d7a8e6ff2ba7a66a972e02c3577bbe93"
+          },
+          {
+            "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_B_s403/last_trainable.pt",
+            "sha256": "da9c57491e3e0cba1aa3a7b1523ca5104fe5707dc9bb769bbcb294a2a354fd27"
+          },
+          {
+            "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/hf/a12/vit_base_patch16_clip_224.openai.safetensors",
+            "sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f"
+          }
+        ],
+        "seed": 403,
+        "checkpoint_type": "last_trainable plus pinned frozen CLIP base"
+      },
+      "conditions": [
+        {
+          "condition": "native",
+          "logit_morph": -3.3419947624206543,
+          "score_noTTA": 0.034158285707235336,
+          "raw_npz_sha256": "5fb854cd6e43defb25868a58434a1bea59aa1a574272db350265debda71f7753",
+          "logit_delta_from_native": 0.0
+        },
+        {
+          "condition": "storage",
+          "logit_morph": -3.469479560852051,
+          "score_noTTA": 0.03019321709871292,
+          "raw_npz_sha256": "7989b43ee499e3e0d21b2ebaab35827346796768ed1ab1ef21f5f58124eb5ab1",
+          "logit_delta_from_native": -0.12748479843139648
+        },
+        {
+          "condition": "border",
+          "logit_morph": -3.1430606842041016,
+          "score_noTTA": 0.04136557877063751,
+          "raw_npz_sha256": "3874f2839f5f024a75b938c87080ab98e0a124fbd22ef2ec5269d70575d948b4",
+          "logit_delta_from_native": 0.19893407821655273
+        }
+      ]
+    },
+    "Sb_fp64": {
+      "receipt": {
+        "path": "/mnt/t7/smad_next/XAI/backup_20261114/shortcut_attribution_20261114__20261114T123518_431783Z/Sb_fp64/result.json",
+        "sha256": "8144971373e3fa5386f2a508f75fff49efc56e747b18294c6232246fea862c68",
+        "bytes": 6845
+      },
+      "model_config": {
+        "kind": "own",
+        "code": "/mnt/t7/smad_next/PN1/fs_tree/pn1/code/smadcvpr",
+        "meta": "/mnt/t7/smad_next/TT1/nets_fs/PN1_Sb_s403/meta.json",
+        "checkpoint": "/mnt/t7/smad_next/TT1/nets_fs/PN1_Sb_s403/last_trainable.pt",
+        "checkpoints": [
+          {
+            "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_Sb_s403/meta.json",
+            "sha256": "bdb190b803187c71b022baa3e89cce05b81de6e2932fd8539565696966baf08d"
+          },
+          {
+            "path": "/mnt/t7/smad_next/TT1/nets_fs/PN1_Sb_s403/last_trainable.pt",
+            "sha256": "a8d12d828116c5a9e596f2d0a446e513227bc79c2afa57b9334b5379614dfbc9"
+          },
+          {
+            "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/hf/a12/vit_base_patch16_clip_224.openai.safetensors",
+            "sha256": "4b8699299b1e8997753c64b052ba32031449d5d853f55a039148560ee02b820f"
+          }
+        ],
+        "seed": 403,
+        "checkpoint_type": "last_trainable plus pinned frozen CLIP base"
+      },
+      "conditions": [
+        {
+          "condition": "native",
+          "logit_morph": -2.118330717086792,
+          "score_noTTA": 0.107327900826931,
+          "raw_npz_sha256": "a5831ccf501ac4b0333529a41615a70e315934b93b1d0f38237069603e65842c",
+          "logit_delta_from_native": 0.0
+        },
+        {
+          "condition": "storage",
+          "logit_morph": -2.3576619625091553,
+          "score_noTTA": 0.08645868301391602,
+          "raw_npz_sha256": "0b40e2e8d8ffcb92685bf44fa83197b8ed5d9239851837378629ff10bb32553b",
+          "logit_delta_from_native": -0.23933124542236328
+        },
+        {
+          "condition": "border",
+          "logit_morph": -2.191082715988159,
+          "score_noTTA": 0.10055412352085114,
+          "raw_npz_sha256": "03725860d100e57b1c12842590ffd8f9f6cd95e14b7696b45c9f4702b831f27e",
+          "logit_delta_from_native": -0.07275199890136719
+        }
+      ]
+    },
+    "madation_vitb16_fp32": {
+      "receipt": {
+        "path": "/mnt/t7/smad_next/XAI/backup_20261114/shortcut_attribution_20261114__20261114T123518_431783Z/madation_vitb16_fp32/result.json",
+        "sha256": "745bf3a921125dca21f431b7a1d93ead269830c0ad0c2e4474b1919981f5e868",
+        "bytes": 5983
+      },
+      "model_config": {
+        "kind": "release",
+        "code": "/home/narolski/mambamorph-code-a46/smadcvpr",
+        "checkpoint": "/mnt/t7/smad_heldout/mad22_production_cpu_stage_v1/payload/models/ddb1455bae4b72331aff4806590bd88ba2447563d803e207099c6b712d6bbe2f.safetensors",
+        "checkpoints": [
+          {
+            "path": "/mnt/t7/smad_heldout/mad22_production_cpu_stage_v1/payload/models/ddb1455bae4b72331aff4806590bd88ba2447563d803e207099c6b712d6bbe2f.safetensors",
+            "sha256": "ddb1455bae4b72331aff4806590bd88ba2447563d803e207099c6b712d6bbe2f"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "condition": "native",
+          "logit_morph": -11.441482543945312,
+          "score_noTTA": 1.0740453035396058e-05,
+          "raw_npz_sha256": "9ce8710cbbb885797aa1a4f2b0d13b718131b0e4595606fe9a4062635259cf45",
+          "logit_delta_from_native": 0.0
+        },
+        {
+          "condition": "storage",
+          "logit_morph": -11.100021362304688,
+          "score_noTTA": 1.5111773791431915e-05,
+          "raw_npz_sha256": "ffc8d076039a3c945a6ec529ed32f596e06294b8edbf30325f074930fe5aeebd",
+          "logit_delta_from_native": 0.341461181640625
+        },
+        {
+          "condition": "border",
+          "logit_morph": -11.365079879760742,
+          "score_noTTA": 1.1593204362725373e-05,
+          "raw_npz_sha256": "78975072058807b3a885eabab8dbde9cb91f2efcbfc75389e4e604e9045fd564",
+          "logit_delta_from_native": 0.07640266418457031
+        }
+      ]
+    },
+    "madation_vitl14_fp32": {
+      "receipt": {
+        "path": "/mnt/t7/smad_next/XAI/backup_20261114/shortcut_attribution_20261114__20261114T123518_431783Z/madation_vitl14_fp32/result.json",
+        "sha256": "6bf8a3aa8472f797c36889fca9a6b96ec9f147a4d4fa627759625a2cb9b61b5d",
+        "bytes": 5984
+      },
+      "model_config": {
+        "kind": "release",
+        "code": "/home/narolski/mambamorph-code-a46/smadcvpr",
+        "checkpoint": "/mnt/t7/smad_heldout/mad22_production_cpu_stage_v1/payload/models/bb452ded624ffce2dc85168f8dde9293fc3709ec8cce755d8ecf1d5f5370e980.safetensors",
+        "checkpoints": [
+          {
+            "path": "/mnt/t7/smad_heldout/mad22_production_cpu_stage_v1/payload/models/bb452ded624ffce2dc85168f8dde9293fc3709ec8cce755d8ecf1d5f5370e980.safetensors",
+            "sha256": "bb452ded624ffce2dc85168f8dde9293fc3709ec8cce755d8ecf1d5f5370e980"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "condition": "native",
+          "logit_morph": -12.551070213317871,
+          "score_noTTA": 3.541097612469457e-06,
+          "raw_npz_sha256": "4098ba25fbb36c530beefd964f5274049dd6f83b41920dd8f3e84301d41ef3b2",
+          "logit_delta_from_native": 0.0
+        },
+        {
+          "condition": "storage",
+          "logit_morph": -12.548160552978516,
+          "score_noTTA": 3.551416284608422e-06,
+          "raw_npz_sha256": "e9aab6222271f892acbc557ed04c945d0e73f590a39d7a99e46584a02cf432ff",
+          "logit_delta_from_native": 0.0029096603393554688
+        },
+        {
+          "condition": "border",
+          "logit_morph": -12.533197402954102,
+          "score_noTTA": 3.6049559639650397e-06,
+          "raw_npz_sha256": "7893720453cd08a19dbc6e0df33328a2592d9594ab09edada67ddf60d0909194",
+          "logit_delta_from_native": 0.01787281036376953
+        }
+      ]
+    },
+    "mixfacenet_mad_smdd_fp32": {
+      "receipt": {
+        "path": "/mnt/t7/smad_next/XAI/backup_20261114/shortcut_attribution_20261114__20261114T123518_431783Z/mixfacenet_mad_smdd_fp32/result.json",
+        "sha256": "b3ad4d709f4f4ce0c37e41a1525922cbebf4632714108884201e2095f49e3822",
+        "bytes": 5760
+      },
+      "model_config": {
+        "kind": "release",
+        "code": "/home/narolski/mambamorph-code-a46/smadcvpr",
+        "checkpoint": "/mnt/t7/mixfacenet_mad_official/mixfacenet_SMDD.pth",
+        "checkpoints": [
+          {
+            "path": "/mnt/t7/mixfacenet_mad_official/mixfacenet_SMDD.pth",
+            "sha256": "3d507c8bbd5dbd06bd735ae809fa0095e589c17c0c94cd2ed530cf34a014ab1c"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "condition": "native",
+          "logit_morph": -48.92405700683594,
+          "score_noTTA": 5.656555267444363e-22,
+          "raw_npz_sha256": "c84c2e85ec13ebcbb726208e4ac4874eb8d253260ec622d944e5734eddeb5d40",
+          "logit_delta_from_native": 0.0
+        },
+        {
+          "condition": "storage",
+          "logit_morph": -35.91502380371094,
+          "score_noTTA": 2.5252439731770766e-16,
+          "raw_npz_sha256": "b409dbbd9665c0062574c4dd389b19ed86cbaf5ab9e1f60e0f18765ac91eb706",
+          "logit_delta_from_native": 13.009033203125
+        },
+        {
+          "condition": "border",
+          "logit_morph": -57.23381423950195,
+          "score_noTTA": 1.3920995114365756e-25,
+          "raw_npz_sha256": "42ff9afdc577cb72a51c8e1d2af3d9abe12567d580dcc4d58cc6fb65d4868a2e",
+          "logit_delta_from_native": -8.309757232666016
+        }
+      ]
+    },
+    "selfmad_hrnet_w18_fp32": {
+      "receipt": {
+        "path": "/mnt/t7/smad_next/XAI/backup_20261114/shortcut_attribution_20261114__20261114T123518_431783Z/selfmad_hrnet_w18_fp32/result.json",
+        "sha256": "5011ac4f0952134aed92473a753ff843cf34ae4caf33745043e9c94695b96e87",
+        "bytes": 5827
+      },
+      "model_config": {
+        "kind": "release",
+        "code": "/home/narolski/mambamorph-code-a46/smadcvpr",
+        "checkpoint": "/mnt/t7/smad_next/AR1/weights/selfmad_release/hrnet_w18_checkpoint.model.safetensors",
+        "checkpoints": [
+          {
+            "path": "/mnt/t7/smad_next/AR1/weights/selfmad_release/hrnet_w18_checkpoint.model.safetensors",
+            "sha256": "0ad8db6f8f156cb21606e03ab32c88d122640cb835f7a93c77cca30c01386a26"
+          }
+        ]
+      },
+      "conditions": [
+        {
+          "condition": "native",
+          "logit_morph": -1.6904696226119995,
+          "score_noTTA": 0.15571407973766327,
+          "raw_npz_sha256": "5541b7d0829379227da87f35a7cccf3f52fc97717294203c867e0a5012d97188",
+          "logit_delta_from_native": 0.0
+        },
+        {
+          "condition": "storage",
+          "logit_morph": 2.109729290008545,
+          "score_noTTA": 0.8918452262878418,
+          "raw_npz_sha256": "dfd5a48215ad9e37ec31a3eaa4f63a3ba6a935c92a73ba762069959b86dadfe3",
+          "logit_delta_from_native": 3.8001989126205444
+        },
+        {
+          "condition": "border",
+          "logit_morph": -1.5329689979553223,
+          "score_noTTA": 0.17755970358848572,
+          "raw_npz_sha256": "d62049f0c2c7e00a9b0f1601d54ffae92eb322204120f26c4a86abb57041d6d6",
+          "logit_delta_from_native": 0.15750062465667725
+        }
+      ]
+    }
+  },
+  "source_pins": [
+    {
+      "path": "/mnt/t7/smad_heldout/ffhq_morphs/manifests/ffhqm.csv",
+      "sha256": "732b53c8a8c4b875645c99f11f81b401550a4050361090dea90998d45035234c",
+      "bytes": 2134562
+    },
+    {
+      "path": "/mnt/t7/smad_heldout/ffhq_morphs/licence/attribution_ffhq_images.csv",
+      "sha256": "c1666d32a892fd23cf22beedc98e18e4aa1a74becc7b36a14bf8d76d3fdb62c1",
+      "bytes": 757771
+    },
+    {
+      "path": "/mnt/t7/smad_heldout/ffhq_morphs/licence/LICENSE_FFHQ.txt",
+      "sha256": "620105e38526e788e422e21599ecbad75e78216cb594ea7680b2c2431a2433d9",
+      "bytes": 1610
+    },
+    {
+      "path": "/mnt/t7/smad_heldout/ffhq_morphs/licence/LICENSE_FFHQ-Morphs.txt",
+      "sha256": "005fbfe6ebddaa69c3a9f409c3c9aee8a035211bb9a5bad59d16b0ad4ba777f5",
+      "bytes": 2002
+    },
+    {
+      "path": "/mnt/t7/smad_next/XF1/xf1b_rows.csv",
+      "sha256": "4adcf914fba651f3b1b1ccfc5ea4b3e03155357aa5c84804180513da5925b271",
+      "bytes": 392927
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ASTRA_XAI_RESULTS_REVIEW_20261114.md",
+      "sha256": "b0275313b13e7fde3d08ef9c814b8a97684cc9238a03b7b5748e2d7d71e6fc6a",
+      "bytes": 6232
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/OCC1_seam-surround-pilot_20261114/INPUT_MODEL_PINS.json",
+      "sha256": "42f6f16c17a34b501dbb87ce98872186a6ffcb3510743a95ede29a9eda9057d4",
+      "bytes": 15067
+    },
+    {
+      "path": "/home/narolski/smad-next/experiments/OCC1_seam-surround-pilot_20261114/PRINT_V3_INDEPENDENT_REVIEW.md",
+      "sha256": "71a311494e15613738c3a8ba227ae5711da2ced0db55c53ebbc30e14bf2bc534",
+      "bytes": 4630
+    }
+  ],
+  "preview": {
+    "path": "/mnt/t7/smad_next/VISUAL_EXAMPLES_20261114/hero_private_review.png",
+    "sha256": "8b3057856b5410eb03338a16e477c0a7fe05623e9ef2d536390dfc5abfa46cac",
+    "bytes": 754420
+  },
+  "preview_scope": "private descriptive draft only; child image recognized visually; do not use as publication hero without separate likeness/privacy disposition; prefer new adult-source panel"
+}

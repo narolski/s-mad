@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "launch.py": {
+      "sha256": "a269f5df5a6f9ddd4eee07a3291f8f071554e0b9d1261de24d64648558882ab4",
+      "compile_ast_pass": true
+    },
+    "worker.py": {
+      "sha256": "0ce8edfd861098443c9008950d8ee3aff0396112353d64d6f5cacba2e1779ffd",
+      "compile_ast_pass": true
+    }
+  },
+  "execution": "NONE: source compilation only, no launcher import",
+  "gpu_or_scheduler": false
+}

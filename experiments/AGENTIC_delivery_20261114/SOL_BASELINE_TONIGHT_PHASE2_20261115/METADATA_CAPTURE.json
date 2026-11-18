@@ -1,0 +1,40 @@
+{
+  "source": "/mnt/t7/smad_next/RS1/athena/athena_manifest.csv",
+  "source_sha256": "11cef1c5b285fba6d50f7828a2d2fb8fe11e0b653facbbe631409572949f1b7e",
+  "fields": [
+    "id",
+    "set",
+    "label",
+    "persons",
+    "photo",
+    "expr",
+    "origin",
+    "relpath",
+    "src_path"
+  ],
+  "selected_rows": 7127,
+  "counts": {
+    "a43_B": 200,
+    "a43_B20": 200,
+    "a43_C": 102,
+    "a43_C20": 102,
+    "a43_D": 204,
+    "a43_D20": 204,
+    "a43_E": 204,
+    "G22_raw": 204,
+    "M22_FaceMorpher": 1000,
+    "M22_MIPGAN_I": 1000,
+    "M22_MIPGAN_II": 999,
+    "M22_OpenCV": 984,
+    "M22_Webmorph": 500,
+    "G22_aln": 204,
+    "E7aln22_FaceMorpher": 204,
+    "E7aln22_MIPGAN_I": 204,
+    "E7aln22_MIPGAN_II": 204,
+    "E7aln22_OpenCV": 204,
+    "E7aln22_Webmorph": 204
+  },
+  "excluded": "all other sets including a43_A and FRLL/FEI/MorDIFF/DiM",
+  "source_scores_read": false,
+  "image_pixels_read": false
+}

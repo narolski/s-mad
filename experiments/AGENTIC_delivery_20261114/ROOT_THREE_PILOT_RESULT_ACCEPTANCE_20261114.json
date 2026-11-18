@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-14T18:35:09.259103+00:00",
+  "decision": "ACCEPT_QUALIFIED_DEVELOPMENT_PILOT_REPORTS_ONLY",
+  "review_hashes": {
+    "breadth/BREADTH_POSTRESULT_INDEPENDENT_REVIEW_20261114.md": "15b34e85ed3ac83a68a848211731de0ee43c7f584dda0d7ad2485cb540a6ed8b",
+    "tail/TAIL_POSTRESULT_INDEPENDENT_REVIEW_20261114.md": "37d8b001e6bcd2c3d8451a761f742b2c565b6907d592e795c4ffe2f24a8af8a1",
+    "hn1/HN_POSTRESULT_INDEPENDENT_REVIEW_20261114.md": "0968da406d38894f2a61dc70426515ddd681317486581f22d80b56c7ec8ff8f9"
+  },
+  "breadth": "No demonstrated broad-allocation improvement, not equivalence; tiny32image/100update confoundedbreadth/capture pilot.",
+  "tail": "No demonstrated CVaR falsealarm advantage, adverse descriptive S4 sensitivity point; all8NIinconclusive.",
+  "HN": "Prespecified descriptive supportcriteria notmet; all5pointdifferencesnegative but95%conditionalintervalincludeszero.",
+  "method_protocol_change": "NONE",
+  "original_NEXT_selection": "UNCHANGED_NOT_ADMITTED",
+  "fresh_confirmation413_417": "NOT_COMPLETED",
+  "benchmark_or_SOTA_claim": "NOT_AUTHORIZED",
+  "posthoc_retry_or_reader_rerun": "NOT_AUTHORIZED",
+  "next_work": "Preserveallresults, addseparatelymarkedpilotablationsappendix, completeexistingrankingfits andrequiredbaselineauxscope, no favorablethreshold/family/seedselection."
+}

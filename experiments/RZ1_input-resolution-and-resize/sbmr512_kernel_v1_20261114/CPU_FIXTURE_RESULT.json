@@ -1,0 +1,9 @@
+{
+  "scope": "generated512checkerboard_only_no_model_or_real_image",
+  "command": "cd src/RZ1/sbmr512_kernel_v1 && OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 CUDA_VISIBLE_DEVICES= /home/narolski/mambamorph-code/.venv-spark/bin/python -m unittest -v test_source_fixtures.py",
+  "tests": 3,
+  "passed": 3,
+  "duration_s": 0.069,
+  "assertions": "spec order+unique14; failed denominator5; fixed native identity; all13perturbations nonidentity/shape/determinism; RNGcall forbidden",
+  "actual_candidate_or_original_image_access": false
+}

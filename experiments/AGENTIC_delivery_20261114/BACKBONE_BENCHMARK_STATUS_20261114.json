@@ -1,0 +1,108 @@
+{
+  "observed_at": "2026-11-14T17:20:48.196009+00:00",
+  "scope": "Narrative/protocol-only audit; no score arrays, checkpoint/member access, scientific reader, GPU or scheduler",
+  "rows": [
+    {
+      "model": "ConvNeXt-T scratch",
+      "pretraining": "none, W3 league L0",
+      "recipe": "historical d1/train90, recipe v3, A9/A10 selected configuration",
+      "seeds": "11\u201320 (10)",
+      "MAD22": "COMPLETED_DESCRIPTIVE_NARRATIVE",
+      "FRLL_Morphs": "COMPLETED_DESCRIPTIVE_NARRATIVE",
+      "current_Sb_before_after": "NOT_FOUND",
+      "reported_historical_EER_percent": {
+        "MAD22": 12.99,
+        "FRLL_Morphs": 21.86
+      }
+    },
+    {
+      "model": "ConvNeXt-T IN1k",
+      "pretraining": "ImageNet-1k, W3 league L1",
+      "recipe": "historical full-finetune L1 inheritance at frozen resolution; different from Sb",
+      "seeds": "11\u201320 (10), W3 programme-level completion",
+      "MAD22": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "FRLL_Morphs": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "current_Sb_before_after": "NOT_FOUND"
+    },
+    {
+      "model": "ConvNeXt-T IN22k",
+      "pretraining": "ImageNet-22k, W3 L2",
+      "recipe": "historical full-finetune, freq none, 384 after six-seed W2 selection",
+      "seeds": "11\u201320 (10), W3 programme-level completion",
+      "MAD22": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "FRLL_Morphs": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "current_Sb_before_after": "NOT_FOUND"
+    },
+    {
+      "model": "ConvNeXt-T DINOv3",
+      "pretraining": "DINOv3-distilled LVD-1689M, W3 L2",
+      "recipe": "historical full-finetune, freq none, 384; not equal pretraining budget",
+      "seeds": "11\u201320 (10), W3 programme-level completion",
+      "MAD22": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "FRLL_Morphs": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "current_Sb_before_after": "NOT_FOUND"
+    },
+    {
+      "model": "VMamba-T",
+      "pretraining": "ImageNet-1k, W3 L1",
+      "recipe": "historical plain VMamba, freq pruned to none, 384; not Vision Mamba/Vim",
+      "seeds": "11\u201320 (10), W3 programme-level completion",
+      "MAD22": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "FRLL_Morphs": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "current_Sb_before_after": "NOT_FOUND"
+    },
+    {
+      "model": "VMamba-S / VMamba-B",
+      "pretraining": "ImageNet-1k, larger L2 entries",
+      "recipe": "historical full-finetune L1 strategy inheritance, freq none, 384",
+      "seeds": "11\u201320 (10), W3 programme-level completion",
+      "MAD22": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "FRLL_Morphs": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "current_Sb_before_after": "NOT_FOUND"
+    },
+    {
+      "model": "MambaVision-B-21K",
+      "pretraining": "ImageNet-21k, W3 L2",
+      "recipe": "historical 384 full-finetune entry; later independent A30 study has separate technical admission restrictions",
+      "seeds": "11\u201320 (10), W3 programme-level completion",
+      "MAD22": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "FRLL_Morphs": "HISTORICAL_W3_REPORTED_PROGRAMME",
+      "current_Sb_before_after": "NOT_FOUND"
+    },
+    {
+      "model": "Vision Mamba / Vim",
+      "pretraining": "exact checkpoint not selected",
+      "recipe": "distinct hustvl/Vim model; no completed entry located in audited narrative index",
+      "seeds": "UNKNOWN",
+      "MAD22": "NO_VERIFIED_COMPLETED_ENTRY_FOUND",
+      "FRLL_Morphs": "NO_VERIFIED_COMPLETED_ENTRY_FOUND",
+      "current_Sb_before_after": "NOT_FOUND"
+    },
+    {
+      "model": "current Sb CLIP ViT-B/16 LoRA",
+      "pretraining": "OpenAI CLIP",
+      "recipe": "smad-next frozen Sb, last checkpoint",
+      "seeds": "403\u2013407 (5)",
+      "MAD22": "CORRECTED_FINAL_READ_REVIEWED_20261113",
+      "FRLL_Morphs": "NO_CURRENT_FINAL_READ_FOUND_SEALED_GATES_APPLY",
+      "current_Sb_before_after": "CURRENT_ABLATIONS_EXIST_BUT_NO_BACKBONE_FACTORIAL_FOUND",
+      "reported_current_MAD22_four_family_EER_percent": 3.37
+    }
+  ],
+  "source_pins": {
+    "/home/narolski/mambamorph-code/experiments/A9-W3_frozen-list/README.md": "e8e78ea0369d415de07d9081dcde8f1c073f5a816a03969b903d8afcc344ce62",
+    "/home/narolski/mambamorph-code/experiments/A9-W2L1_imagenet-league/README.md": "9aef15f7cf20e60548d8949dceac5758b4a3064b84e013c18246a76e43fe6a73",
+    "/home/narolski/mambamorph-code/experiments/A9-W2L2_large-pretraining-league/README.md": "2a5374b57561f5626233be881fbaf2dd2733e4f60500568701d0fa4e53db8a65",
+    "/home/narolski/mambamorph-code/smadcvpr/PROTOCOL.md": "2c1bf25ade44a1dc772310314550d741b5ff003f35b9e6a642542eef118ce467",
+    "/home/narolski/mambamorph-code/docs/next_arch/audit_science.md": "ba29b559c2719398467a8a87a73421f564c04ca52c85c03f74b2d441a0c4b411",
+    "/home/narolski/mambamorph/research_notes/MAMBAVISION_AA6297832_QUALIFIED_PROTOCOL_ADDENDUM_20261110.md": "399e1a206e2c2a2de3228cc05f38bb7c1c7ada51b6d10f9f7f0827ea16d59238",
+    "/home/narolski/mambamorph-code/experiments/MAD22_WORKING_DECISION_20261108.md": "e83338c335a9ac3a48db00e00e659e6912c7cc1205d30f32f4ff4e93cc5ea711",
+    "/home/narolski/smad-next/experiments/FINAL_sealed-benchmark-read/result.md": "100cdb4e05f2ff08515396f54411c0065194354b00bf17e0548536628b46c835"
+  },
+  "limitations": [
+    "W3 L1/L2 status is programme-level evidence from curated README, not newly independently checked per-network raw outputs.",
+    "Historical numbers cannot be appended to current corrected MAD22 table without exact population/preprocessing/metric bridge.",
+    "Old FRLL development exposure is documented and current restricted FRLL evaluation cannot be described as globally unseen.",
+    "No current Sb vs ConvNeXt/VMamba/Vim matched before-after benchmark comparison was found in audited sources."
+  ]
+}

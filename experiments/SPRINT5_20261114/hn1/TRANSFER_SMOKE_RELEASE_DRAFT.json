@@ -1,0 +1,27 @@
+{
+  "decision": "PENDING_ROOT_REVIEW",
+  "id": "SPRINT5_2",
+  "seeds": [
+    531,
+    532,
+    533,
+    534,
+    535
+  ],
+  "fresh_seed_allocation_pass": false,
+  "author": "astra_sprint_plan_review",
+  "reviewer": "UNASSIGNED",
+  "source_sums_sha256": "3640adc6a2204e1d82ce455167e00e433859f4b63bf63970f67d3ca0910ca793",
+  "independent_review_path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/packs/SPRINT5_2_v1/PRERUN_ROOT_HN_SMOKE.md",
+  "independent_review_sha256": "PENDING",
+  "baseline_archive_path": "/lustre/pd03/hpc-narolski-1790461090/smad-next/results/AB1/AB1_Sb_s408.tar",
+  "baseline_archive_sha256": "a84b551f2f18c51898213f4932965f89b88fe7eac0398ac28cd37c04e4b3b0aa",
+  "native_only_qualified_transfer": true,
+  "training_rows_per_arm": 248,
+  "steps": 100,
+  "control124_pass": true,
+  "hn_overlay_sha256": "9ea1afaf76be77efe319753398bdf944d7f524ca3867fd17813e66275dbfc80c",
+  "control_receipt_sha256": "4e32562e7e450fc4ea0304f01cfe85a85e97606ca7ba8a85c483777fb053d3b8",
+  "exclusion_audit_sha256": "dca24cd494baa21c3f37f7683704b0340e0dacae40a1db06fa09feccbb3893cb",
+  "prereg_sha256": "a0c8c18259d9b7ee5e78f2768178f017cbcf2a63616cbb7b935324f5dda8c266"
+}

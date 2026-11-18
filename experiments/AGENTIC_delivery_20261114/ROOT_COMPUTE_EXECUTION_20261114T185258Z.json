@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-14T18:59:24.094721+00:00",
+  "NEXT_final_outputs_arrived": 11,
+  "archive_bytes": 295239680,
+  "receipt": "/mnt/t7/smad_next/coordination_20261114/next_final_output_collection_20261114T185258Z/COLLECTION_VERIFIED.json",
+  "receipt_sha256": "e211ff8c24d213c423be88736227c58b0482489f26dd78227f6364877178d639",
+  "NEXT_scientific_read_authorized": false,
+  "Sbc_author_ruling": "REQUESTED_ASYNC_PENDING_EXPLICIT_RESPONSE",
+  "Sbc_question_source": [
+    "approved NEXT v3 section12 question4",
+    "RZ1 prereg M7"
+  ],
+  "SDPA_state": "CONFIGURING from correct exactjournal/nativeobservation2; allocation known6323083; noNODE_START/nativewrapperID yet. No operator inference.",
+  "baseline_aux_policy_commit": "4e7bac3",
+  "baseline_aux_live_member_or_scientific_release": "NOT_ISSUED"
+}

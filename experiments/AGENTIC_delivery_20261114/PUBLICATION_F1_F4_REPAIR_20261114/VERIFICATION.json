@@ -1,0 +1,52 @@
+{
+  "status": "AUTHOR_PATCH_READY_FOR_INDEPENDENT_REVIEW_NOT_PUBLICATION_GO",
+  "utc": "2026-11-14T16:15:33.798724+00:00",
+  "changed_repository_files": [
+    "manuscript_cvpr2027/main.tex"
+  ],
+  "main_before_sha256": "146ffd5db00f6f8c80de3b8be7566c4c6ea23289d4f358140984eacebedebaf6",
+  "main_after_sha256": "75bd35e99d5254750863c40ac8af6649c403e3e059ed704062ac8ba420e5c5c6",
+  "unchanged_sources_guarded": "All copied .tex/.bib/.bst/.sty sources except main.tex checked remotely immediately before write",
+  "builds": {
+    "main": {
+      "command": "latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex",
+      "exit": 0,
+      "pages": 9,
+      "last_content_page": 8,
+      "LLM_statement_page": 8,
+      "references_start_page": 8,
+      "page9_references_only": true,
+      "overfull_hbox_count": 0,
+      "overfull_vbox_count": 0,
+      "undefined_reference_warning": false,
+      "visual_review": "All 9 pages in contact; pages1/8/9 inspected separately at1500px",
+      "pdf_sha256": "1e7a17d57c7b4d1901ef66c59e9bcbf437e737c25d58ed25b17abf6fb7d0d442"
+    },
+    "main_plotly": {
+      "command": "latexmk -pdf -interaction=nonstopmode -halt-on-error main_plotly.tex",
+      "exit": 0,
+      "pages": 9,
+      "last_content_page": 8,
+      "LLM_statement_page": 8,
+      "references_start_page": 8,
+      "page9_references_only": true,
+      "overfull_hbox_count": 0,
+      "overfull_vbox_count": 0,
+      "undefined_reference_warning": false,
+      "visual_review": "All 9 pages in contact; pages1/8/9 inspected separately at1500px",
+      "pdf_sha256": "2b425c099fd35a798f424692b35113b32d4990a712aea13ad973dd70373ef706"
+    }
+  },
+  "protected": [
+    "results.tex unchanged; full MAD22 numbers and companion qualifications retained",
+    "publication_wip.tex unchanged and input at results.tex:3",
+    "main_plotly.tex unchanged; shared main.tex provides both edits",
+    "supplement untouched; separate owner"
+  ],
+  "review_limits": [
+    "Author must verify full historical tool usage; no final F4 compliance claim",
+    "Official-template provenance remains separate audit item; compiled actual current repository cvpr.sty without alteration",
+    "Independent Astra scientific/text review pending",
+    "Existing repository main.pdf/main_plotly.pdf not overwritten; revised PDFs in this review package"
+  ]
+}

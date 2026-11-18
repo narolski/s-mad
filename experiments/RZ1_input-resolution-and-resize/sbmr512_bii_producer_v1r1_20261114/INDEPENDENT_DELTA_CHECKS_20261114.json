@@ -1,0 +1,46 @@
+{
+  "pins": {
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/AUTHORITY.json": "c009a0d0309771b26bed4b23eff5628f6e64f2e31658439236a8b1c4aadbfa6e",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/PREREG.md": "1f3cfae6f9db858a493206ccde36c2c7dda70e12fe221dc435d6451baa84bdff",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/PREREG_PARENT_V1.md": "18e3f5ebf0df618bbd9c12ab61bc2417fa1175f83bc5a7402112bd7bc92f6503",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/REFERENCE_CACHE_DELTA.patch": "3427a302f5c6695600542545b280626324ffd9e64c1a63257c5550a0d55f8077",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/adapter_contract.py": "3abe21ad047a685b92255233f2b34e59e308e729873de3656edd7271174168f4",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/backend.py": "b52a61124c824dc60304039a9ffb6c4c355aade968dde6abeaaba2df0e89c789",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/design.py": "db832436c32c7f6b934e748c689c9175605170b37148f600a6119aafceaaa2aa",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/engine.py": "7f725f186114b5641c652d2c9b7a448ca769753e8b221bfbccf9684a0fcb1640",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/produce.py": "5165c118222236031f821e9d548f600d936202b9bfe26b44fbe3d15678756208",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/test_cpu.py": "3f55bb23f5085a2180ebd25b077766c7a61eecc5fec37cd7ced9b26f2f3dba3c",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/test_reference_cache.py": "e6d19b4b797f68a3cd9b0cdcd3cca826b26733faf896d2d1e4b72aa298a656a6",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1/AUTHORITY.json": "c009a0d0309771b26bed4b23eff5628f6e64f2e31658439236a8b1c4aadbfa6e",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1/PREREG.md": "18e3f5ebf0df618bbd9c12ab61bc2417fa1175f83bc5a7402112bd7bc92f6503",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1/adapter_contract.py": "3abe21ad047a685b92255233f2b34e59e308e729873de3656edd7271174168f4",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1/backend.py": "aa26d7dd8a046503893dda7e0e77afa73c348b70e6aaa1650822a7032a69d5d9",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1/design.py": "db832436c32c7f6b934e748c689c9175605170b37148f600a6119aafceaaa2aa",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1/engine.py": "7f725f186114b5641c652d2c9b7a448ca769753e8b221bfbccf9684a0fcb1640",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1/produce.py": "de5a567c0566849a14b09fb6fcc0b3d7c638039b1fb434c6927d7218e9f232a7",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1/test_cpu.py": "fa1229748b9dabfb27b0d6e1040749477adbc08f245ddd0ae8c6a6d2520abea1",
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/AUTHORITY_AND_PRESERVATION.json": "b30f1a14219373934db2957f2792dd8718fe9abd2e07e9c28fcf2ac7133d36a0",
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/CPU_TEST_RESULT.json": "079979b2e94be76d739451f51c708d943f4a93feef1a2bfc4cefd78fc0583f1c",
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/ENVIRONMENT_SOURCE_PROBE_CONTRACT.md": "06a5bda0b1c6b7d5c5b43b1ec22f254dac72f5c09d0a9b0e00cd11dddf5f3686",
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/FULL_CONTEXT_BINDING.json": "04b8580bd16629c3c58bc5351c9d8b1809b92c903f41285cda87a3bfb7b6a5bc",
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/HANDOFF.md": "9bbbb8bb4d60eb25609430ec2ff8ac13d548426bb7fa2399716ee63c92a61b71",
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/INPUT_BINDING_PROPOSAL.json": "41f693ddabd1134fcae04c89c8d934f77793b2dd74780798c066cffed6ccecc2",
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/PREREG.md": "1f3cfae6f9db858a493206ccde36c2c7dda70e12fe221dc435d6451baa84bdff",
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/PROPOSED_FULL_RELEASE.json": "d8f055666971428b0f1b4260fd3b233e61ecc2e07e8c96c1a12ef37fda6fdd3f",
+    "/home/narolski/smad-next/experiments/RZ1_input-resolution-and-resize/sbmr512_bii_producer_v1r1_20261114/PROPOSED_TIMING_RELEASE.json": "5006bb898fdf17522a01cc8f945e8616f159c5d0aeb084a92614c3395a76b0e3",
+    "/home/narolski/smad-next/src/RZ1/sbmr512_bii_producer_v1r1/SHA256SUMS": "bb4cb53b577bc3547f494b4f26106b0e28bbd79c373eacbb5edd0fa4ff74bd6d"
+  },
+  "immutable_parent_manifest": "7d22f492d102daebfea395b383055aa305668c09100a0c99531e66bc180c5990",
+  "unchanged": [
+    "engine.py",
+    "design.py",
+    "adapter_contract.py",
+    "AUTHORITY.json"
+  ],
+  "tests": {
+    "passed": 12,
+    "seconds": 0.062,
+    "real_payloads": false
+  },
+  "scope": "source/generated metadata fixtures only"
+}

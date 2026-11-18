@@ -1,0 +1,5 @@
+# GO eight self-target negative controls
+
+14November2026 root independentreviewofAstra control_build.py d232e098c38ec5d2476e8c35454e2b29dad18f285e5a121b693a745fad4c45ea andprospectivetransferregistration. Reusesoriginalpinnedkernel/geometry/warp, H/S one warpeach toselfmeanlandmarktarget, samefloat32halfblend/uint8/PNG asmatchedarm. CommonP and matchedN oldbytesverifiedratherthan regenerated. Samefirst8sortedtraininghosts, each input/outputpin revalidated, native512dimensions/triangles assertsinunchangedwrapper; failurestops and remainsrecorded. T7reserve50GiB. Thischangesonlynegativewarp target relative to matchedH/Barm; targetgeometryandresampling areintendedtreatment, cannotclaimidentityspecificity. KnownstrongHNnuisancefloor.743 retained.
+
+Approve8CPUconstructions only, nofit. Full124requiresseparaterootadmissionof8receipt,sameexactsource. Native-only boundedtransferpilot isexplicitexceptiontofuturefullHNstored-smallrecipe; botharmsnative, no newresampling. OneprespecifiedAB1Sb408commonwarmstartfuture, conditionalreplicatesnotfreshfulltrains. Noevaluation/benchmarkread.

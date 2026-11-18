@@ -1,0 +1,17 @@
+# NEXT proposal v2 — zamknięcie map źródłowych
+
+**NOT_ADMITTED.** Osobny pakiet v2 zachowuje v1 bez zmian. 75 unikatowych sieci (65 poprzednich + 10 oryginalnych AB1 A/Sb), dwa supplementy, 15 uzupełnionych referencji ról. Wszystkie osiem dyspozycji HOLD w oryginalnej kolejności. Nie ma canonical ADMISSION, closed batch, independent GO, preflight ani journal.
+
+Nowe AB1 używają rzeczywistych `/mnt/t7/smad_next/AB1/results/AB1_{A,Sb}_s{408..412}.tar` oraz receipt ROOT_AB1_TEN_COMPARATOR_OPAQUE_VERIFIED_20261114.json. verified_at=2026-11-14T19:04:29.948091+00:00 oznacza świeżą weryfikację, bez wnioskowania o historycznym przybyciu. RZ nadal porównuje z RZ1_Sb0; RZ1R_Sb jest yardstick, nie replacement AB1 dla SbFM/E3. E3 ma wszystkie pięć oryginalnych AB1_Sb, bez parowania z seedami403–407.
+
+NATIVE_MANIFEST_BINDINGS_DRAFT.json wiąże dziesięć wymaganych manifestów z rzeczywistymi ścieżkami. Świeże hashowanie całych plików manifestów zgadza się z wcześniejszymi hardpins/support priors (10/10); nie wyświetlano wierszy danych. Train refs Sb/SbFM są związane z właściwymi manifestami. To kontrola bajtów, nie nowa analiza populacji. Pełny MS1 pozostaje manifestem42366, jego ms1ffhq subset1480 jest wymogiem istniejącego adaptera, nie nowym endpointem.
+
+TECHNICAL_METADATA_ALLOWLIST_PROPOSAL.json rozwija konkretne nazwy metadata members dla75 sieci+2supplementów; approved=false i execution_authorized=false. Lista jest propozycją zakresu, nie dowodem że members istnieją ani że bramki przeszły. Źródła load_fit/load_rz_network/load_sbfm_supplement/load_dinov3_w2 pozostają niezmienione względem v1/F1. Każdy zapis listy wiąże archive+sha. Runtime producer evidence nadal nieodczytane; arrival producer_sha256=null celowo nie utożsamia źródłowego programu z faktycznym wykonaniem.
+
+Najbliższy krok to niezależny przegląd v2 normalizacji i zaproponowanego collectora, potem implementacja bez importów readera i jawny release tylko techniczny. CPU lokalny, CUDA wyłączone, brak NPZ/header/weights. Odrzucać unsafe/duplicate/alias/symlink members, bez extractall/discovery; limit8MiB/member. Raw train.log nie może trafić do raportu: tylko sprawdzenie finite-loss wymagane przez istniejący parser. Nie ujawniać score metrics. Metadane gate source/byte-agreement są osobno autoryzowanym zakresem, nie automatycznie dostępne przez tę propozycję. Failures zachować, bez dobierania seedów.
+
+Nadal HOLD: wszystkie per-arm exposure/eligibility attestations; actual runtime producer/gate evidence; czysty dokładny final admission/pins i niezależna recenzja; GX provenance/inputs/floors/native support; Sbc author ruling M7/§12q4; SbMR512 prospective kernel registration i reviewed adapter. Braki implementacji nie stanowią final ineligibility. Nie zmieniać v3 cutoff15 XI18CET, kolejności, metryk, populacji ani seedów.
+
+Świeża faza413–417 pozostaje odrębna po selekcji: pełne candidate/comparator/control/yardstick roles, E3 A/B/Sb plus5świeżych CLIP_Sb, SbFM wspólny supplement obu ról, wszystkie istniejące support/transfer/floor/identity/fit/kernel gates. Current native source identities i hardpins nie dopuszczają tych seedów: potrzebny prospektywny producer/stage-adapter review, nie same winner fits. Nie dodano nowej semantyki ani polecenia treningowego.
+
+SOURCE_BINDINGS.json wiąże źródła/receipts/v1 SHA, CHECKS.json dokumentuje przeprowadzone kontrole. PACKAGE_SHA256SUMS zamraża ten pakiet do niezależnego review. Nie uruchomiono żadnego scientific readera ani cluster/GPU action.

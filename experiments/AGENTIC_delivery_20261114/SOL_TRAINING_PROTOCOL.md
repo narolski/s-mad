@@ -1,0 +1,64 @@
+# Sol training protocol: bounded metadata readiness audit
+
+Observed 2026-11-14T15:02:05Z (16:02:05 CET), gx10-c326, repository HEAD `e1ee3a59302abe54529ca95013b655477685a99f`. Owner: Sol training-protocol bounded workstream. **Status: preparation complete for this handoff; NEXT selection NOT ADMITTED; fresh confirmation NOT READY.** No scientific GO, chosen challenger, new fit, final arm exclusion or benchmark release is issued.
+
+## Scope and controlling sources
+
+Read `/home/narolski/mambamorph/AGENTS.md`, its `.codex/imports/smad-2026-11-14/CONTINUE.md`, manuscript `CLAUDE.md` (there is no smad-next root CLAUDE.md), live NOTEBOOK/AGENT_STATUS, delivery README and WORKSTREAMS_SOL, approved v3, eligibility/readiness/reader handoffs, independent native review and its appended F1 recheck, current selector/adapter/freeze sources and compute heartbeat. SSH only reached gx10 for repository/metadata reads and this report. No WCSS/Athena poll, jobs, candidate tar/member access, score parsing, sealed access, production selector/preflight or journal claim occurred. Hashing floor/input files did not inspect their values. No source/rule edits, commits or unrelated changes were made.
+
+## Exact evidence and gates
+
+- Author approval is binding at `dbeb9404b2e1bd0db1ef8a60b18e18457e324af2`, committed 2026-11-14T10:16:24+01:00. Current approved rule SHA256 is `5188ad9a696d86c935191a4fd45bee0f0762186c199a5bbd7d8368e87bf62667`.
+- Native implementation was independently reviewed and committed `78490ba` (13:00:45 CET). The appended **Independent F1 recheck**, not the initial superseded changes-required verdict, records 42 passing synthetic tests. F1 is resolved. Four observed DINO candidates are supported against the fixed five comparator mean; the failed fifth remains a failure in denominator five. Three or fewer read candidates are not read. No reduced comparator mean is allowed.
+- Current selector SHA256 `f20f42578275aa3d92b8c695ab86827a526b7f62016b98ec242bf17c0b390830` and native adapter `ebb40edda27a08034a6087a737109509e65c3c5ad76c748767cd19a49f2ff17c` exactly match the independent recheck. No test rerun was needed for this unchanged bounded metadata audit.
+- Re-executed `sha256sum -c` on both pinfiles **from repo root**: all 44 input and 20 support entries OK. A preliminary call from inputs/ used the wrong relative base and could not locate files; the correctly based root checks resolved this invocation error. No input pin failed.
+- This 64-file integrity pass does not certify the complete native admission. The shared tree is dirty with unrelated work; do not discard/stage it wholesale. Historical clean input-package verification at `8d00996` remains separate from a future clean exact production admission checkout.
+- `experiments/NEXT_method-selection-rule/OPENCODE_ADMISSION_READINESS_20261114.{md,json}` remains a readiness schema with null final arm dispositions, not production admission. Its existing SbFM transfer artifact is committed/pinned (SHA256 `50de9a543c4d8aaa9c4ccb2e229369c82026d05285717d7832fee55b73817aa5`); do not recompute it or substitute Sb.
+- `experiments/BB2_second-backbone/seed_mode_L.json` remains absent at observation time. Earlier `seed_mode.json` authenticates a different BB2 run and is not a substitute. E3's 15 recovered fit entries are already documented; a formal source freeze is a metadata/provenance gap, not a request for more fits.
+- Durable NEXT directory listing contains only `pre_review_input_package_20261114_1024`, with no selection or confirmation journal directory observed. This directory inventory establishes neither a completed selection nor a winning arm.
+
+## All eight challengers retained in fixed order
+
+| Order / arm | Remaining readiness blocker and executable handoff |
+|---|---|
+| 1 SbFM | Supplement 6319579 is still PENDING Priority in the latest inspected heartbeat. Preserve existing submission. Collect final opaque output/sidecars when done; bind candidate and comparator TT1/MEDS/development-border rows to the same supplement, exact producer/config and original AB1 comparator/control sources. Retain H-fm3 and all fit/gate checks for admitted execution. |
+| 2 GX | Generation completion is not image/identity admission. Admitted manifest, pre-fit floors/transfer rows, training amendment/producer/schema/review/smoke and ten fit/support route are unestablished. Complete those gates in order; do not make adapter absence a losing scientific result. Retain stricter complete-five-seed requirement. |
+| 3 SbMR | Five recovered wave-1 candidates. 6319491 completion now recorded, but final opaque arrival/hash/source closure must be supplied. Use Sb0 paired comparator and A0 control, not AB1 Sb as comparator; AB1 Sb is refit yardstick. Both nine-training and four-held-out kernel tests remain. |
+| 4 SbM | Same shared yardstick/receipt closure as SbMR; same comparator/control discipline and both kernel criteria. |
+| 5 Sb512 | All 15 tasks 6319490 RUNNING in latest heartbeat; wait for genuine arrivals and hashes. Bind A512 control, Sb0 comparator and refit yardstick. Aligned target-frame availability is already documented; no sealed access is needed. |
+| 6 SbMR512 | V3 prohibits qualification without its kernel test registered before read. Existing runner has no cross table. Supply permitted preread registration/adapter/review or authoritative registered missing-prerequisite disposition; do not fabricate cost-drop or prebinding-ablation status. |
+| 7 Sbc | Exact author's 224 interior-crop scope ruling not found in current records; lead's crop GO/general approval is not that interpretation. Supply existing explicit ruling or resolve that narrow scientific scope. Use A0, not Ac, control; retain refit closure. |
+| 8 DINOv3 E3 | W2 6319264 completion now recorded; production gate results remain closed. Supply formal BB2L five-seed freeze, final opaque arrival/producer/source receipts and all five fixed AB1 comparator sources. Preserve per-network exact gates and registered adequacy/splice gates at admitted read. |
+
+Scheduler evidence is second-hand, explicitly dated: `experiments/AGENTIC_delivery_20261114/COMPUTE_HEARTBEAT_20261114T144955Z.md` reports an actual capture approximately **14:55 UTC / 15:55 CET**, later than its filename: 6319264 COMPLETED/0:0 (ended 13:07 CET), 6319491 COMPLETED/0:0 (ended 13:46 CET), 6319490 all 15 RUNNING, 6319579 PENDING. Completion is not hash-verified arrival or gate success. No live refresh was made here. Existing submission/intent receipts in `/mnt/t7/smad_next/coordination_20261114/` prevent duplicate replay.
+
+## Fresh seeds 413–417: concrete preparation contract
+
+The rule reserves five fresh confirmation seeds, after the registered once-only development choice, with the same rows/margins/comparator and all criteria before freeze. The selection archive-arrival/hash cutoff is **15 November 2026 18:00 CET**; fresh confirmation follows and is not forced inside that arrival cutoff. Selection numbers remain selection-biased.
+
+No NEXT confirmation registration/producer/source-pin package was located in the bounded experiment filename/source search; old PN1 fresh-seed registrations are not NEXT confirmation. No completed fresh-seed workload or submission is established. This is an evidence gap, not proof about every external session.
+
+Current source intentionally blocks these sources: `native_adapters.py:source_identity` permits AB1/AB1FM 408–412 and BB2L 403–407 only; `read_selection.py:prepare_native_context` retains selection seed maps, and its DINO comparator loop is fixed to 408–412. Existing RZ1 refit pins likewise authenticate the original sources. A stage label `confirmation` alone does not make fresh producers usable. Do not weaken original selection pins globally.
+
+Prepare the following **conditional registration and reviewed extension before any fresh fit**, then bind only the actual prior fixed-order winner:
+
+1. Pin actual selection result, approved rule, selected arm and unchanged full recipe; no speculative winner or observed-gain tie-break.
+2. Register candidate seeds 413–417 plus appropriate comparator/control and required support scoring. SbFM/GX need fresh matched CLIP Sb comparator and plain control; RZ1 needs fresh Sb0, appropriate A0/A512 and fresh same-seed AB1 Sb refit yardstick; DINO needs fresh E3 A/B/Sb adequacy/control fits plus its corresponding fresh five-CLIP-Sb comparator. Do not infer that only five winner fits suffice. Fixed DINO unpaired estimand/confirmation mapping requires independent interpretation/review against v3, not a silent paired conversion.
+3. Preserve trained GPU/software recipe, input manifests, loss/steps/batch/learning rates and last checkpoints. Reuse pinned floor inputs only where their training-list/row provenance remains exact; register any necessary new training-list learner before payload read.
+4. Pin immutable commands/configs, actual platform/environment, measured runtime/resource estimate, smoke/fit/exact-gate criteria, failure policy, durable output namespace and collection receipts. Freeze source IDs before any score access. No reseeding or replacement of failures.
+5. Extend native/refit and supplemental producer mappings to the registered fresh sources; keep selection source pins immutable. Independently test four-of-five candidate failure, missing comparator refusal, same-path border substitution, correct fresh role maps and fixed confirmation journal before scientific use.
+6. Obtain independent prerun and exact confirmation-admission reviews. Pin `selection_record`, `confirmation_registration`, all fresh sources/receipts and exact `NEXT_ADMISSION_GO <sha256-of-admission-json>` in a clean committed checkout. Only then execute the registered confirmation once. Failure retains Sb; no sealed read is authorized by this report.
+
+## Dispatch package and next executable action
+
+**No new GPU job is dispatch-ready from this audit.** Necessary current GPU jobs are already submitted. Preserve them; no duplicate/resubmission request. WCSS H100 only for registered H100 recipes; no paid H100. `lem-gpu-interactive` is eligible only for actual `srun --pty` work under current limits, not sbatch relocation; a prospective runner needs reviewed log/status/durable-output handling. Fresh-fit resource/time estimates cannot be truthfully fixed before selected recipe and reviewed confirmation producer exist.
+
+**Immediate zero-GPU action for lead:** reconcile current opaque E3 fit digests/sidecars and fetch evidence, then execute the registered `src/BB2/freeze_mode_L.py` on gx10 using isolated Python after checking no concurrent freeze exists. Source SHA256 `c993e12adad7e25f01afd0ff5e3995f491495d8e44acb808ee5c02044fb7965b`; canonical source directory `/mnt/t7/smad_next/BB2/results_L`; output `experiments/BB2_second-backbone/seed_mode_L.json`. It hashes binaries and records source map/time/fetch evidence; it does not need candidate members or a GPU. Preserve actual freeze time; commit/review exact output. Do not use `--failed` without authoritative failures. The source's stale reason-string date is not cutoff authority; actual CUT and amendment 6 specify 15 November. This owner did not execute it because delegated scope was read/report only.
+
+**Parallel lead collection action:** collect/hash completed 6319264 and 6319491 outputs opaquely, verify original producer/job identity and truthful timezone-aware per-network `verified_at` records. Existing collection summary schemas must be normalized with provenance, not fabricated. Complete all eight authoritative dispositions only when the batch really closes. Assemble final code/native inventories, source manifests, floor columns, receipts and exact independent admission review, then metadata-only preflight from a clean committed checkout before any scientific invocation.
+
+## Remaining decision and permitted claim
+
+The blocker is **missing exact admission/eligibility/source receipt closure**, including E3 freeze, outstanding supplement/512 arrivals and GX/crop/kernel prerequisites; confirmation additionally lacks registered fresh producers and reviewed source maps. This is not evidence that a challenger lost. Until an admitted selection and successful fresh confirmation establish otherwise, **Sb remains the frozen method**. If no challenger qualifies or confirmation fails, retain Sb permanently for this cycle under v3. Current permissible scientific wording remains narrow: corrected MAD22 parity is threshold-fragile/comparable, not separated; MAD22 is seen during further development. Batch-C and SPRINT5 do not supply NEXT qualification or fresh confirmation. No superiority, generalisation, shortcut-free or GAN-morph detection claim follows.
+
+This bounded owner releases its slot after report delivery. Next owner action requires evidence/review, not elapsed-time monitoring.

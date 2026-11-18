@@ -1,0 +1,34 @@
+{
+  "recorded_at": "2026-11-14T21:53:39.005727+00:00",
+  "cycle": "2026-11-14T20:03:59Z",
+  "decision": "ACCEPT_REVIEWED_NEGATIVE_AND_INCONCLUSIVE_RESULT_NO_PROTOCOL_ADOPTION",
+  "result": "/mnt/t7/smad_next/SPRINT5_1/reader_output_v1/RESULT.json",
+  "result_sha256": "31e68aadf8e2c451ce57bd6320469a33dc107fe34cf232ebd4fe5aaf7111e601",
+  "independent_review": "experiments/SPRINT5_20261114/paired_ranking/full15_metadata_packet_20261114/INDEPENDENT_SCIENTIFIC_POSTREVIEW_20261114.md",
+  "independent_review_sha256": "ecfe5793c23453fa107a567a8ff40a95a504f3a73cdd1b62c67c97084d71bad4",
+  "optimization": "NOT_ESTABLISHED",
+  "operational": "NOT_QUALIFIED",
+  "all_networks": 15,
+  "ranking_minus_paired_bce_within_D_auc": 0.021194,
+  "ci_97_5": [
+    -0.016593,
+    0.059224
+  ],
+  "genuine_guards": {
+    "PASS": 47,
+    "FAIL": 5,
+    "INCONCLUSIVE": 67,
+    "sparse_inconclusive": 52
+  },
+  "S4_noninferiority": "INCONCLUSIVE",
+  "scientific_limitations": [
+    "Development population, not external validation",
+    "2 percent primary bootstrap replicas nonestimable; readable-replica conditional approximate intervals, no unconditional coverage claim",
+    "No independent CI recomputation; reviewer audited source, policy and aggregate arithmetic",
+    "S3 is same-person splice flagging, not bona fide BPCER",
+    "Five failing cells are TT1 FRGC processing-style cells, not tests of whole external datasets",
+    "No rerun, alternate journal, retrospective criterion change or strongest-C3 claim"
+  ],
+  "protocol": "Sb remains frozen; original NEXT selection and fresh413-417 confirmation remain separate and closed",
+  "new_read_authorized": false
+}

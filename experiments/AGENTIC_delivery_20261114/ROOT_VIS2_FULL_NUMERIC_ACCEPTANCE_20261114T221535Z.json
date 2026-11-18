@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-14T22:19:39.897481+00:00",
+  "decision": "ACCEPT_VIS2_ALL3_FULL_NUMERIC_FOR_SUBSEQUENT_REVIEWED_PRIVATE_RENDER_ONLY",
+  "review_sha256": "b9a6a9dd491dfd6f3189deef11855c367ccecbd6d61e8f77452d6c971b993d7c",
+  "review_path": "/home/narolski/smad-next/experiments/VIS2_private_occlusion_20261114/v1/INDEPENDENT_FULL_POSTREVIEW_20261114.md",
+  "all_responses": 1536,
+  "models": [
+    "selfmad_hrnet_w18",
+    "A",
+    "B"
+  ],
+  "baseline_anchors": 12,
+  "max_anchor_residual": 0,
+  "limitations": [
+    "Not efficacy or causal shortcut evidence",
+    "Same genuine photographs lack splice seam",
+    "Compound resampling/alignment/crop history",
+    "No publication or501 extension permission"
+  ],
+  "render_execution_authorized_by_this_record": false,
+  "renderer_v1": "HOLD pending immutablefixes and independentreview"
+}

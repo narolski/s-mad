@@ -1,0 +1,22 @@
+{
+  "arm_order": [
+    "SbFM",
+    "GX",
+    "SbMR",
+    "SbM",
+    "Sb512",
+    "SbMR512",
+    "Sbc",
+    "DINOv3"
+  ],
+  "network_count": 75,
+  "new_unique_original_AB1": 10,
+  "filled_role_references": 15,
+  "native_manifests": 10,
+  "all_manifest_hashes_match": true,
+  "missing_archive_roles": [],
+  "source_reader_unchanged_from_v1": true,
+  "all_status_HOLD": true,
+  "archive_members_opened": false,
+  "scientific_read": false
+}

@@ -1,0 +1,669 @@
+{
+  "schema": "next-fresh-conditional-branches-v1",
+  "fixed_order": [
+    "SbFM",
+    "GX",
+    "SbMR",
+    "SbM",
+    "Sb512",
+    "SbMR512",
+    "Sbc",
+    "DINOv3"
+  ],
+  "all_branches_conditional": true,
+  "branches": [
+    {
+      "order": 1,
+      "arm": "SbFM",
+      "selected": false,
+      "dispatch": "HOLD",
+      "roles_at_every_seed": [
+        [
+          "candidate",
+          "SbFM"
+        ],
+        [
+          "comparator",
+          "AB1_Sb"
+        ],
+        [
+          "plain_control",
+          "AB1_A"
+        ]
+      ],
+      "fresh_seeds": [
+        413,
+        414,
+        415,
+        416,
+        417
+      ],
+      "minimum_role_tasks": 15,
+      "additional_support_not_in_minimum": [],
+      "source_parent": "src/AB1/run_fm.sh",
+      "source_parent_sha256": "48fe853c13d7ab77ed362300c3984c7640f9dfcae1ff9237457015268d927bf4",
+      "recipe": {
+        "steps": 6250,
+        "final": "last",
+        "augmentation": "flip",
+        "sampler": "prior",
+        "recipe": "v1",
+        "optimizer": "adamw",
+        "weight_decay": 0.05,
+        "head_lr": 3.33e-05,
+        "lora_targets": "qv",
+        "lora_rank": 2,
+        "lora_alpha": 4,
+        "lora_rs": true,
+        "lora_dropout": 0.4,
+        "lora_train_norms": false,
+        "label_smoothing": 0,
+        "drop_path": 0,
+        "schedule": "const",
+        "clip_grad": 5,
+        "pos_weight": 1,
+        "warmstart": false,
+        "arch": "a12_clip_vitb16_madation",
+        "lr": 3.33e-06,
+        "resolution": 224,
+        "batch": 256,
+        "accumulation": 1,
+        "train_transform": "fixed:pil_bilinear"
+      },
+      "input_manifest": "train_SbFM.csv",
+      "resource_parent": {
+        "gpu": "WCSS H100 x1",
+        "cpus": 8,
+        "ram_gb": 64,
+        "local_disk_gb": 80,
+        "workers": 7,
+        "partition": "lem-gpu-short",
+        "extra": "FORCE_RM_TMPDIR",
+        "all_are_historical_templates_not_current_capacity": true
+      },
+      "historical_wall_limit": "01:15:00",
+      "fresh_wall_limit": null,
+      "runtime_identity": null,
+      "checkpoint_retention": "Verify existing last_trainable.pt + last_pt.sha256 + pinned frozen tower/meta/source reconstruction and strict reload bytegate; full last.pt is not required if the exact reconstruction route is admitted. Timeout/partial-output durability still needs prereview.",
+      "output_namespace": null,
+      "source_extension": null,
+      "source_input_pins": null,
+      "registered_support_scoring": null,
+      "prerun_review": null,
+      "root_release": null
+    },
+    {
+      "order": 2,
+      "arm": "GX",
+      "selected": false,
+      "dispatch": "HOLD",
+      "roles_at_every_seed": [
+        [
+          "candidate",
+          "GX"
+        ],
+        [
+          "comparator",
+          "AB1_Sb"
+        ],
+        [
+          "plain_control",
+          "AB1_A"
+        ]
+      ],
+      "fresh_seeds": [
+        413,
+        414,
+        415,
+        416,
+        417
+      ],
+      "minimum_role_tasks": 15,
+      "additional_support_not_in_minimum": [
+        "Training amendment/manifest/producer absent: every recipe field HOLD; do not copy SbFM or SPRINT."
+      ],
+      "source_parent": null,
+      "source_parent_sha256": null,
+      "recipe": null,
+      "input_manifest": "HOLD",
+      "resource_parent": {
+        "gpu": "WCSS H100 x1",
+        "cpus": 8,
+        "ram_gb": 64,
+        "local_disk_gb": 80,
+        "workers": 7,
+        "partition": "lem-gpu-short",
+        "extra": "FORCE_RM_TMPDIR",
+        "all_are_historical_templates_not_current_capacity": true
+      },
+      "historical_wall_limit": null,
+      "fresh_wall_limit": null,
+      "runtime_identity": null,
+      "checkpoint_retention": "Verify existing last_trainable.pt + last_pt.sha256 + pinned frozen tower/meta/source reconstruction and strict reload bytegate; full last.pt is not required if the exact reconstruction route is admitted. Timeout/partial-output durability still needs prereview.",
+      "output_namespace": null,
+      "source_extension": null,
+      "source_input_pins": null,
+      "registered_support_scoring": null,
+      "prerun_review": null,
+      "root_release": null
+    },
+    {
+      "order": 3,
+      "arm": "SbMR",
+      "selected": false,
+      "dispatch": "HOLD",
+      "roles_at_every_seed": [
+        [
+          "candidate",
+          "SbMR"
+        ],
+        [
+          "comparator",
+          "RZ1_Sb0"
+        ],
+        [
+          "plain_control",
+          "RZ1_A0"
+        ],
+        [
+          "refit_yardstick",
+          "AB1_Sb"
+        ]
+      ],
+      "fresh_seeds": [
+        413,
+        414,
+        415,
+        416,
+        417
+      ],
+      "minimum_role_tasks": 20,
+      "additional_support_not_in_minimum": [
+        "RZ1_A0 + AB1_A at each fresh seed are a provisional additional refit-support cohort; exact necessity requires source interpretation/review. Do not silently reuse historical yardsticks."
+      ],
+      "source_parent": "src/RZ1/run_rz1.sh",
+      "source_parent_sha256": "dc5d0838277721df004f46950fe29ee79495892c3dcc8e1b7f78a188cc01abdc",
+      "recipe": {
+        "steps": 6250,
+        "final": "last",
+        "augmentation": "flip",
+        "sampler": "prior",
+        "recipe": "v1",
+        "optimizer": "adamw",
+        "weight_decay": 0.05,
+        "head_lr": 3.33e-05,
+        "lora_targets": "qv",
+        "lora_rank": 2,
+        "lora_alpha": 4,
+        "lora_rs": true,
+        "lora_dropout": 0.4,
+        "lora_train_norms": false,
+        "label_smoothing": 0,
+        "drop_path": 0,
+        "schedule": "const",
+        "clip_grad": 5,
+        "pos_weight": 1,
+        "warmstart": false,
+        "arch": "a12_clip_vitb16_madation",
+        "lr": 3.33e-06,
+        "resolution": 224,
+        "batch": 256,
+        "accumulation": 1,
+        "train_transform": "mixR"
+      },
+      "input_manifest": "train_Sb.csv",
+      "resource_parent": {
+        "gpu": "WCSS H100 x1",
+        "cpus": 8,
+        "ram_gb": 64,
+        "local_disk_gb": 80,
+        "workers": 7,
+        "partition": "lem-gpu-short",
+        "extra": "FORCE_RM_TMPDIR",
+        "all_are_historical_templates_not_current_capacity": true
+      },
+      "historical_wall_limit": "02:00:00",
+      "fresh_wall_limit": null,
+      "runtime_identity": null,
+      "checkpoint_retention": "Verify existing last_trainable.pt + last_pt.sha256 + pinned frozen tower/meta/source reconstruction and strict reload bytegate; full last.pt is not required if the exact reconstruction route is admitted. Timeout/partial-output durability still needs prereview.",
+      "output_namespace": null,
+      "source_extension": null,
+      "source_input_pins": null,
+      "registered_support_scoring": null,
+      "prerun_review": null,
+      "root_release": null
+    },
+    {
+      "order": 4,
+      "arm": "SbM",
+      "selected": false,
+      "dispatch": "HOLD",
+      "roles_at_every_seed": [
+        [
+          "candidate",
+          "SbM"
+        ],
+        [
+          "comparator",
+          "RZ1_Sb0"
+        ],
+        [
+          "plain_control",
+          "RZ1_A0"
+        ],
+        [
+          "refit_yardstick",
+          "AB1_Sb"
+        ]
+      ],
+      "fresh_seeds": [
+        413,
+        414,
+        415,
+        416,
+        417
+      ],
+      "minimum_role_tasks": 20,
+      "additional_support_not_in_minimum": [
+        "RZ1_A0 + AB1_A at each fresh seed are a provisional additional refit-support cohort; exact necessity requires source interpretation/review. Do not silently reuse historical yardsticks."
+      ],
+      "source_parent": "src/RZ1/run_rz1.sh",
+      "source_parent_sha256": "dc5d0838277721df004f46950fe29ee79495892c3dcc8e1b7f78a188cc01abdc",
+      "recipe": {
+        "steps": 6250,
+        "final": "last",
+        "augmentation": "flip",
+        "sampler": "prior",
+        "recipe": "v1",
+        "optimizer": "adamw",
+        "weight_decay": 0.05,
+        "head_lr": 3.33e-05,
+        "lora_targets": "qv",
+        "lora_rank": 2,
+        "lora_alpha": 4,
+        "lora_rs": true,
+        "lora_dropout": 0.4,
+        "lora_train_norms": false,
+        "label_smoothing": 0,
+        "drop_path": 0,
+        "schedule": "const",
+        "clip_grad": 5,
+        "pos_weight": 1,
+        "warmstart": false,
+        "arch": "a12_clip_vitb16_madation",
+        "lr": 3.33e-06,
+        "resolution": 224,
+        "batch": 256,
+        "accumulation": 1,
+        "train_transform": "mix"
+      },
+      "input_manifest": "train_Sb.csv",
+      "resource_parent": {
+        "gpu": "WCSS H100 x1",
+        "cpus": 8,
+        "ram_gb": 64,
+        "local_disk_gb": 80,
+        "workers": 7,
+        "partition": "lem-gpu-short",
+        "extra": "FORCE_RM_TMPDIR",
+        "all_are_historical_templates_not_current_capacity": true
+      },
+      "historical_wall_limit": "02:00:00",
+      "fresh_wall_limit": null,
+      "runtime_identity": null,
+      "checkpoint_retention": "Verify existing last_trainable.pt + last_pt.sha256 + pinned frozen tower/meta/source reconstruction and strict reload bytegate; full last.pt is not required if the exact reconstruction route is admitted. Timeout/partial-output durability still needs prereview.",
+      "output_namespace": null,
+      "source_extension": null,
+      "source_input_pins": null,
+      "registered_support_scoring": null,
+      "prerun_review": null,
+      "root_release": null
+    },
+    {
+      "order": 5,
+      "arm": "Sb512",
+      "selected": false,
+      "dispatch": "HOLD",
+      "roles_at_every_seed": [
+        [
+          "candidate",
+          "Sb512"
+        ],
+        [
+          "comparator",
+          "RZ1_Sb0"
+        ],
+        [
+          "plain_control",
+          "RZ1_A512"
+        ],
+        [
+          "refit_yardstick",
+          "AB1_Sb"
+        ]
+      ],
+      "fresh_seeds": [
+        413,
+        414,
+        415,
+        416,
+        417
+      ],
+      "minimum_role_tasks": 20,
+      "additional_support_not_in_minimum": [
+        "RZ1_A0 + AB1_A at each fresh seed are a provisional additional refit-support cohort; exact necessity requires source interpretation/review. Do not silently reuse historical yardsticks."
+      ],
+      "source_parent": "src/RZ1/run_rz1.sh",
+      "source_parent_sha256": "dc5d0838277721df004f46950fe29ee79495892c3dcc8e1b7f78a188cc01abdc",
+      "recipe": {
+        "steps": 6250,
+        "final": "last",
+        "augmentation": "flip",
+        "sampler": "prior",
+        "recipe": "v1",
+        "optimizer": "adamw",
+        "weight_decay": 0.05,
+        "head_lr": 3.33e-05,
+        "lora_targets": "qv",
+        "lora_rank": 2,
+        "lora_alpha": 4,
+        "lora_rs": true,
+        "lora_dropout": 0.4,
+        "lora_train_norms": false,
+        "label_smoothing": 0,
+        "drop_path": 0,
+        "schedule": "const",
+        "clip_grad": 5,
+        "pos_weight": 1,
+        "warmstart": false,
+        "arch": "a12_clip_vitb16_madation",
+        "lr": 3.33e-06,
+        "resolution": 512,
+        "batch": 64,
+        "accumulation": 4,
+        "train_transform": "fixed:pil_bilinear"
+      },
+      "input_manifest": "train_Sb.csv",
+      "resource_parent": {
+        "gpu": "WCSS H100 x1",
+        "cpus": 8,
+        "ram_gb": 64,
+        "local_disk_gb": 80,
+        "workers": 7,
+        "partition": "lem-gpu-short",
+        "extra": "FORCE_RM_TMPDIR",
+        "all_are_historical_templates_not_current_capacity": true
+      },
+      "historical_wall_limit": "09:00:00",
+      "fresh_wall_limit": null,
+      "runtime_identity": null,
+      "checkpoint_retention": "Verify existing last_trainable.pt + last_pt.sha256 + pinned frozen tower/meta/source reconstruction and strict reload bytegate; full last.pt is not required if the exact reconstruction route is admitted. Timeout/partial-output durability still needs prereview.",
+      "output_namespace": null,
+      "source_extension": null,
+      "source_input_pins": null,
+      "registered_support_scoring": null,
+      "prerun_review": null,
+      "root_release": null
+    },
+    {
+      "order": 6,
+      "arm": "SbMR512",
+      "selected": false,
+      "dispatch": "HOLD",
+      "roles_at_every_seed": [
+        [
+          "candidate",
+          "SbMR512"
+        ],
+        [
+          "comparator",
+          "RZ1_Sb0"
+        ],
+        [
+          "plain_control",
+          "RZ1_A512"
+        ],
+        [
+          "refit_yardstick",
+          "AB1_Sb"
+        ]
+      ],
+      "fresh_seeds": [
+        413,
+        414,
+        415,
+        416,
+        417
+      ],
+      "minimum_role_tasks": 20,
+      "additional_support_not_in_minimum": [
+        "RZ1_A0 + AB1_A at each fresh seed are a provisional additional refit-support cohort; exact necessity requires source interpretation/review. Do not silently reuse historical yardsticks.",
+        "Existing B(ii) kernel and UV identity diagnostic owner remains authoritative. No duplicate probe. Fresh-seed kernel extension and independent preread registration required."
+      ],
+      "source_parent": "src/RZ1/run_rz1.sh",
+      "source_parent_sha256": "dc5d0838277721df004f46950fe29ee79495892c3dcc8e1b7f78a188cc01abdc",
+      "recipe": {
+        "steps": 6250,
+        "final": "last",
+        "augmentation": "flip",
+        "sampler": "prior",
+        "recipe": "v1",
+        "optimizer": "adamw",
+        "weight_decay": 0.05,
+        "head_lr": 3.33e-05,
+        "lora_targets": "qv",
+        "lora_rank": 2,
+        "lora_alpha": 4,
+        "lora_rs": true,
+        "lora_dropout": 0.4,
+        "lora_train_norms": false,
+        "label_smoothing": 0,
+        "drop_path": 0,
+        "schedule": "const",
+        "clip_grad": 5,
+        "pos_weight": 1,
+        "warmstart": false,
+        "arch": "a12_clip_vitb16_madation",
+        "lr": 3.33e-06,
+        "resolution": 512,
+        "batch": 64,
+        "accumulation": 4,
+        "train_transform": "mixR"
+      },
+      "input_manifest": "train_Sb.csv",
+      "resource_parent": {
+        "gpu": "WCSS H100 x1",
+        "cpus": 8,
+        "ram_gb": 64,
+        "local_disk_gb": 80,
+        "workers": 7,
+        "partition": "lem-gpu-short",
+        "extra": "FORCE_RM_TMPDIR",
+        "all_are_historical_templates_not_current_capacity": true
+      },
+      "historical_wall_limit": "09:00:00",
+      "fresh_wall_limit": null,
+      "runtime_identity": null,
+      "checkpoint_retention": "Verify existing last_trainable.pt + last_pt.sha256 + pinned frozen tower/meta/source reconstruction and strict reload bytegate; full last.pt is not required if the exact reconstruction route is admitted. Timeout/partial-output durability still needs prereview.",
+      "output_namespace": null,
+      "source_extension": null,
+      "source_input_pins": null,
+      "registered_support_scoring": null,
+      "prerun_review": null,
+      "root_release": null
+    },
+    {
+      "order": 7,
+      "arm": "Sbc",
+      "selected": false,
+      "dispatch": "HOLD",
+      "roles_at_every_seed": [
+        [
+          "candidate",
+          "Sbc"
+        ],
+        [
+          "comparator",
+          "RZ1_Sb0"
+        ],
+        [
+          "plain_control",
+          "RZ1_A0"
+        ],
+        [
+          "refit_yardstick",
+          "AB1_Sb"
+        ]
+      ],
+      "fresh_seeds": [
+        413,
+        414,
+        415,
+        416,
+        417
+      ],
+      "minimum_role_tasks": 20,
+      "additional_support_not_in_minimum": [
+        "RZ1_A0 + AB1_A at each fresh seed are a provisional additional refit-support cohort; exact necessity requires source interpretation/review. Do not silently reuse historical yardsticks.",
+        "Existing author crop ruling question remains pending; do not reask."
+      ],
+      "source_parent": "src/RZ1/run_rz1.sh",
+      "source_parent_sha256": "dc5d0838277721df004f46950fe29ee79495892c3dcc8e1b7f78a188cc01abdc",
+      "recipe": {
+        "steps": 6250,
+        "final": "last",
+        "augmentation": "flip",
+        "sampler": "prior",
+        "recipe": "v1",
+        "optimizer": "adamw",
+        "weight_decay": 0.05,
+        "head_lr": 3.33e-05,
+        "lora_targets": "qv",
+        "lora_rank": 2,
+        "lora_alpha": 4,
+        "lora_rs": true,
+        "lora_dropout": 0.4,
+        "lora_train_norms": false,
+        "label_smoothing": 0,
+        "drop_path": 0,
+        "schedule": "const",
+        "clip_grad": 5,
+        "pos_weight": 1,
+        "warmstart": false,
+        "arch": "a12_clip_vitb16_madation",
+        "lr": 3.33e-06,
+        "resolution": 224,
+        "batch": 256,
+        "accumulation": 1,
+        "train_transform": "crop:144:160"
+      },
+      "input_manifest": "train_Sb.csv",
+      "resource_parent": {
+        "gpu": "WCSS H100 x1",
+        "cpus": 8,
+        "ram_gb": 64,
+        "local_disk_gb": 80,
+        "workers": 7,
+        "partition": "lem-gpu-short",
+        "extra": "FORCE_RM_TMPDIR",
+        "all_are_historical_templates_not_current_capacity": true
+      },
+      "historical_wall_limit": "02:00:00",
+      "fresh_wall_limit": null,
+      "runtime_identity": null,
+      "checkpoint_retention": "Verify existing last_trainable.pt + last_pt.sha256 + pinned frozen tower/meta/source reconstruction and strict reload bytegate; full last.pt is not required if the exact reconstruction route is admitted. Timeout/partial-output durability still needs prereview.",
+      "output_namespace": null,
+      "source_extension": null,
+      "source_input_pins": null,
+      "registered_support_scoring": null,
+      "prerun_review": null,
+      "root_release": null
+    },
+    {
+      "order": 8,
+      "arm": "DINOv3",
+      "selected": false,
+      "dispatch": "HOLD",
+      "roles_at_every_seed": [
+        [
+          "candidate",
+          "DINOv3"
+        ],
+        [
+          "adequacy_control",
+          "E3_A"
+        ],
+        [
+          "adequacy_control",
+          "E3_B"
+        ],
+        [
+          "comparator",
+          "AB1_Sb"
+        ]
+      ],
+      "fresh_seeds": [
+        413,
+        414,
+        415,
+        416,
+        417
+      ],
+      "minimum_role_tasks": 20,
+      "additional_support_not_in_minimum": [
+        "Keep unpaired d_s = candidate_s minus fresh five-CLIP-comparator mean. Same fresh labels do not authorize paired inference. Independent interpretation and reader extension required."
+      ],
+      "source_parent": "src/BB2/run_lr.sh",
+      "source_parent_sha256": "916bef3b0f62054c9d2281915d4a3146753c0438b6a4ee6b26435ce0b9bf50f5",
+      "recipe": {
+        "steps": 6250,
+        "final": "last",
+        "augmentation": "flip",
+        "sampler": "prior",
+        "recipe": "v1",
+        "optimizer": "adamw",
+        "weight_decay": 0.05,
+        "head_lr": 3.33e-05,
+        "lora_targets": "qv",
+        "lora_rank": 2,
+        "lora_alpha": 4,
+        "lora_rs": true,
+        "lora_dropout": 0.4,
+        "lora_train_norms": false,
+        "label_smoothing": 0,
+        "drop_path": 0,
+        "schedule": "const",
+        "clip_grad": 5,
+        "pos_weight": 1,
+        "warmstart": false,
+        "arch": "a12_dinov3_vitl16_madation",
+        "lr": 1.17e-05,
+        "resolution": 224,
+        "batch": 256,
+        "accumulation": 1,
+        "train_transform": "fixed:pil_bilinear"
+      },
+      "input_manifest": "train_Sb.csv",
+      "resource_parent": {
+        "gpu": "WCSS H100 x1",
+        "cpus": 8,
+        "ram_gb": 64,
+        "local_disk_gb": 80,
+        "workers": 7,
+        "partition": "lem-gpu-short",
+        "extra": "FORCE_RM_TMPDIR",
+        "all_are_historical_templates_not_current_capacity": true
+      },
+      "historical_wall_limit": null,
+      "fresh_wall_limit": null,
+      "runtime_identity": null,
+      "checkpoint_retention": "Verify existing last_trainable.pt + last_pt.sha256 + pinned frozen tower/meta/source reconstruction and strict reload bytegate; full last.pt is not required if the exact reconstruction route is admitted. Timeout/partial-output durability still needs prereview.",
+      "output_namespace": null,
+      "source_extension": null,
+      "source_input_pins": null,
+      "registered_support_scoring": null,
+      "prerun_review": null,
+      "root_release": null
+    }
+  ]
+}

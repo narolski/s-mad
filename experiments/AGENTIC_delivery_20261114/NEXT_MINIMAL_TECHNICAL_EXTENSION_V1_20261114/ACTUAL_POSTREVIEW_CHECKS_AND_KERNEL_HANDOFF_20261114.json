@@ -1,0 +1,856 @@
+{
+  "status": "PASS_TECHNICAL_ATTACHMENT_ONLY_REQUIRES_ROOT_ADOPTION",
+  "result_sha256": "a7d4487dc9bce56bb78f618c41a5a8caa5cbc80c08dd187adb137eec9ee045b6",
+  "release_sha256": "1c4b49a490e74781aa523fd249d27e5d4c169109c8c2ef15147ab98461adc703",
+  "scope_sha256": "3e28b8bfe947dbaa278086f7d8379b089a1637a3852adf3bc648b4cd2e8f6e47",
+  "collector_sha256": "6fcd47517bfde9861108707980fb7908d9dc17820238741f023a26bd27750f01",
+  "input_pins_verified": 21,
+  "execution_files": {
+    "driver.py": "68fa8451e6e44f1a519f00fd6a193a24366a20a308dd6951287c429ee1d05982",
+    "STDOUT.txt": "66e1fc47e513c556546af9670a9809392a80ec8441bdc1fd268c9a3ead2837a7",
+    "STDERR.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "EXECUTION.json": "ae224ed3219faa7f6be8cc7c88731e97142ea397573cd5f5feb27d778b8a8958"
+  },
+  "prior77_result_sha256": "26e4c677da313ce39583a4a9cb9877089fbec325f0bfc319362fc2861dbc602b",
+  "all20_records_and35_members_complete": true,
+  "batch_matches": {
+    "BB2L_A_s403": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_A_s403.tar",
+      "archive_sha256": "05801590be80109c6d5c5e69812905d8888702a60da796ca2653f41b32e3e79b",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_A_s403/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "dc2a3105cd65f3407f48d11b1272c1e3d7ae0611ccb8bdc855dcbd7b1224692e"
+        },
+        "BB2L_A_s403/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "f1db645ba7f4b3347bbb9508abfcb5dd8e68ea86f03f53dd823d2ea3b7bf3304"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_B_s403": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_B_s403.tar",
+      "archive_sha256": "1dc497e00417688fbf318ad662ece565f831bafb9f46f4ee99c2986b1590fe6e",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_B_s403/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "648675511a9a9d184b10225c613dc133ce1852a05fe077fb7a18ed164d07ee5f"
+        },
+        "BB2L_B_s403/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "31325cac13d006f3ca228dd3b563bb22558e65bb74113b597dcd4c71fe4a720c"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_Sb_s403": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_Sb_s403.tar",
+      "archive_sha256": "47dd6d476b0fc7fdbd637a35fd5ec13cf42993e41be744fcdbf770b3f6b1ce59",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_Sb_s403/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "40ee71c1dbe81be29942b70cf3261f303174aca4863ac9b311bb61f14ac2c816"
+        },
+        "BB2L_Sb_s403/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "6faec37c2922589158aebb5f0c1fd7cca5206a84d7f07637bcfd38101883e771"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_A_s404": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_A_s404.tar",
+      "archive_sha256": "9592513115fb9fd7f9274fef4849001ee8153cb1a86fc21ad7ce7444bf14f7ae",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_A_s404/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "8ce49944f4b42af6ebf7827bbcb8fa340e71070c10f1bf099e8fbdc084d7d296"
+        },
+        "BB2L_A_s404/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "5123211d781e37582f8adb85cfdcec5987c5589f90bca3926c559555f52071b3"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_B_s404": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_B_s404.tar",
+      "archive_sha256": "41513d2260fa3b493eb5fe17bbd557caa1bc0a43efa30f6815051091262d395e",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_B_s404/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "bf31c3f8dec63eb531b94830b9523383fd0b16cdd45193685544deb9af5715ef"
+        },
+        "BB2L_B_s404/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "4810be4929e6363bb3e49b287e103a561eae757381b61ec202dc50a3b2feef0e"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_Sb_s404": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_Sb_s404.tar",
+      "archive_sha256": "483abd92b639d12f6b336fa17f19a5159a972c6d6b0651da3e9738f25bc6fd04",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_Sb_s404/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "4e8f153463111c87f088eac5a9cf82d3998a88312a04678bcdd4974fe556c819"
+        },
+        "BB2L_Sb_s404/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "8802f6650940dee21f20785ae7d992e81791cfc174eca72b9730df31bc5d38ca"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_A_s405": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_A_s405.tar",
+      "archive_sha256": "7abeaff12f646c1b20092ff5f44ce4e4c2edaf12e4ad209e11fa42db9f1b7e6c",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_A_s405/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "a0c19dca4d92e64d1cd8f8b28e0db5eb62985bf94ebf50b73a32e8a818835e0c"
+        },
+        "BB2L_A_s405/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "de9c5c555088b9a40592e314c2095c2e05d2793f6a8a2e0179335255e003300b"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_B_s405": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_B_s405.tar",
+      "archive_sha256": "4299e070a3b178fd6519bcfe5281b540ddc605e08e2bbe42f16d0af822af56f9",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_B_s405/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "b7ac50f753e0fdbcaf56d46c22545f966d4a87afbafdf17baa89080b53014435"
+        },
+        "BB2L_B_s405/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "47fb6e89556a613b61f285c67a888d4003127a31cc5351da076ef8bd6839eecb"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_Sb_s405": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_Sb_s405.tar",
+      "archive_sha256": "a0df590bbd1456e66c7c8155a8b3b21b2175126353967cbc92a6de336d3029a9",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_Sb_s405/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "7b4de61e0000f9bafc01acc3eae36ef597cfb3bd6eb8719b60a2b52864acb0e2"
+        },
+        "BB2L_Sb_s405/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "c45dae0851fb9e90f76aed8c2599c5a1ddf90c40e6e8310e1f914beb78fbdab7"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_A_s406": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_A_s406.tar",
+      "archive_sha256": "408920ddeab64974223f8253421390f3d6013cebe1d84c79f7df6e943bbe075a",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_A_s406/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "b88106c8b1688d69790250e90db5a16be53d8a096b9736e2e9833c026b129f98"
+        },
+        "BB2L_A_s406/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "110b74911b5fc0953bf89e09a3d42768df57497f167673e334413929445371b1"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_B_s406": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_B_s406.tar",
+      "archive_sha256": "94d49861e89dab289ca7613eb627112c58786be4a002730ee4303922056aea46",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_B_s406/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "a6eddc61ff7d7a6b0dfaa61450472e548e121a26ab20070d93ca821ed09e248e"
+        },
+        "BB2L_B_s406/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "12ba43927b33e71489419c937a094bc11af104a702e405b0a47663aa279647dd"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_Sb_s406": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_Sb_s406.tar",
+      "archive_sha256": "afe67059700d2cbb953cad1e409c4773bdcf99b77088e0811169c03c4791071a",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_Sb_s406/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "e15008f218e9456cc1190c715b5e5912e24fa6ba317bb53f4dad2775ed2547c2"
+        },
+        "BB2L_Sb_s406/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "7725facc02fb9b440ddef81d1ae900f0f9e27ca697061b6725ec279711777104"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_A_s407": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_A_s407.tar",
+      "archive_sha256": "2c91e98ce0e02e21283f914d31c4081c55dbd3a7dd851a647ed1dc6c14a40cee",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_A_s407/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "c910fe1978a13a376e4964212c56b40f64de03dc9592bfc85212e1fb077418bf"
+        },
+        "BB2L_A_s407/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "7cf3a449a572e98ce8831bca10a8d8166e86c0c1162415ac3a975917e75e2a6c"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_B_s407": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_B_s407.tar",
+      "archive_sha256": "f081b723d2e6b2887126e65a43bc321329f300ba4813e728bda6280126751e93",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_B_s407/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "ae46ce6fbb2e5f0e4aa66f316ab2dbedd009e59c307a093ab5041b7e1aafb93b"
+        },
+        "BB2L_B_s407/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "45f39742ef58f998c62fdd9a830d114a95818c96292c6d56889f7362ea51beca"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    },
+    "BB2L_Sb_s407": {
+      "archive": "/mnt/t7/smad_next/recovery_20261114_MAIN/archives/BB2L/BB2L_Sb_s407.tar",
+      "archive_sha256": "972ddbd7906eaa413f7502ee244f2c2d141b927428aa667acacf8e59ce0c8246",
+      "expected_batch": 256,
+      "expected_accumulation": 1,
+      "actual_token_and_task_match": "PASS",
+      "members": {
+        "BB2L_Sb_s407/task.env": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "TASK": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "ARM": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            },
+            "SEED": {
+              "status": "PASS",
+              "native_exact_line_once": true,
+              "strict_unique_key_match": true
+            }
+          },
+          "opaque_sha256": "0f8540e90014fa743d3315e84852ac67a8ee83f2891f9e651abb732cdc32a11e"
+        },
+        "BB2L_Sb_s407/task_info.txt": {
+          "status": "TECHNICAL_COMPARISONS_ONLY",
+          "checks": {
+            "bs": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            },
+            "accum": {
+              "status": "PASS",
+              "native_unique_token_match": true,
+              "reason": "EXPECTED_MATCH"
+            }
+          },
+          "opaque_sha256": "610aeccef69d389e35daf9cc431c5cd86779534ac6a69b6d29ea862f7a5c33b7"
+        }
+      },
+      "native_job_export_provenance": "NOT_ESTABLISHED_BY_THIS_MATCH"
+    }
+  },
+  "kernel_handoff": {
+    "RZ1_SbMR512_s408": {
+      "archive": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/RZ1_SbMR512_s408.tar",
+      "archive_sha256": "79ca0ba532f64e6205be288313621f26656209c45c1fa195f81246c7b98d688e",
+      "trainable_member": {
+        "status": "OPAQUE_DIGEST_ONLY",
+        "member": "RZ1_SbMR512_s408/last_trainable.pt",
+        "bytes": 312981,
+        "sha256": "d6ad8dad4238cf16582fac920ec3fbc4808bd2a879b8a03b29cc33c6464f294b",
+        "checkpoint_identity": "last_trainable.pt trainable overlay; NOT original full last.pt",
+        "decoded": false
+      },
+      "prior_source_runtime_descriptor": {
+        "archive": "/mnt/t7/smad_next/coordination_20261114/battery_rz1_collection_20261114T162056Z/RZ1_SbMR512_s408.tar",
+        "archive_sha256": "79ca0ba532f64e6205be288313621f26656209c45c1fa195f81246c7b98d688e",
+        "full_checkpoint_descriptor": "original training run last.pt; opaque hash only if present in info.last_pt_sha256",
+        "trainable_checkpoint_member": "RZ1_SbMR512_s408/last_trainable.pt",
+        "trainable_checkpoint_sha256": null,
+        "weights_access_authorized": false,
+        "scorer_source_sha256": "9b6784290c1eb129b48370ee272074788839f60badc22b65ed26b10532fed611",
+        "runtime_TF32": null,
+        "source_TF32_prior": true,
+        "source_read_value": "float32 forward_logit without flip; source also computes separate TTA output",
+        "scientific_rebuild_or_kernel_admission": false
+      },
+      "source_runtime_scope": "Prior typed info only; fresh env TF32 not scorer attestation; reconstruction unvalidated"
+    },
+    "RZ1_SbMR512_s409": {
+      "archive": "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/RZ1_SbMR512_s409.tar",
+      "archive_sha256": "186159f33d82427ecaa2a1f446f73078c7a5b1a9fdc46abf1ad3ac7f2d1a3653",
+      "trainable_member": {
+        "status": "OPAQUE_DIGEST_ONLY",
+        "member": "RZ1_SbMR512_s409/last_trainable.pt",
+        "bytes": 312981,
+        "sha256": "d23775e5a06faa608480cec73530eb116e54b6d4bb1ad7591eb12275138f3089",
+        "checkpoint_identity": "last_trainable.pt trainable overlay; NOT original full last.pt",
+        "decoded": false
+      },
+      "prior_source_runtime_descriptor": {
+        "archive": "/mnt/t7/smad_next/coordination_20261114/sprint_rz1_collection_20261114T174257Z/RZ1_SbMR512_s409.tar",
+        "archive_sha256": "186159f33d82427ecaa2a1f446f73078c7a5b1a9fdc46abf1ad3ac7f2d1a3653",
+        "full_checkpoint_descriptor": "original training run last.pt; opaque hash only if present in info.last_pt_sha256",
+        "trainable_checkpoint_member": "RZ1_SbMR512_s409/last_trainable.pt",
+        "trainable_checkpoint_sha256": null,
+        "weights_access_authorized": false,
+        "scorer_source_sha256": "9b6784290c1eb129b48370ee272074788839f60badc22b65ed26b10532fed611",
+        "runtime_TF32": null,
+        "source_TF32_prior": true,
+        "source_read_value": "float32 forward_logit without flip; source also computes separate TTA output",
+        "scientific_rebuild_or_kernel_admission": false
+      },
+      "source_runtime_scope": "Prior typed info only; fresh env TF32 not scorer attestation; reconstruction unvalidated"
+    },
+    "RZ1_SbMR512_s410": {
+      "archive": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/RZ1_SbMR512_s410.tar",
+      "archive_sha256": "24f01ff6e56b5c524fd617a9a843fd53f6ecdfa94d88795aad10d58f09ec72d5",
+      "trainable_member": {
+        "status": "OPAQUE_DIGEST_ONLY",
+        "member": "RZ1_SbMR512_s410/last_trainable.pt",
+        "bytes": 312981,
+        "sha256": "65b82dcbefcac82d1b3eaf7c9d79afb66774ad93c6950c86f288d1470e53fc7a",
+        "checkpoint_identity": "last_trainable.pt trainable overlay; NOT original full last.pt",
+        "decoded": false
+      },
+      "prior_source_runtime_descriptor": {
+        "archive": "/mnt/t7/smad_next/coordination_20261114/sprint_complete_cohorts_20261114T180257Z/RZ1_SbMR512_s410.tar",
+        "archive_sha256": "24f01ff6e56b5c524fd617a9a843fd53f6ecdfa94d88795aad10d58f09ec72d5",
+        "full_checkpoint_descriptor": "original training run last.pt; opaque hash only if present in info.last_pt_sha256",
+        "trainable_checkpoint_member": "RZ1_SbMR512_s410/last_trainable.pt",
+        "trainable_checkpoint_sha256": null,
+        "weights_access_authorized": false,
+        "scorer_source_sha256": "9b6784290c1eb129b48370ee272074788839f60badc22b65ed26b10532fed611",
+        "runtime_TF32": null,
+        "source_TF32_prior": true,
+        "source_read_value": "float32 forward_logit without flip; source also computes separate TTA output",
+        "scientific_rebuild_or_kernel_admission": false
+      },
+      "source_runtime_scope": "Prior typed info only; fresh env TF32 not scorer attestation; reconstruction unvalidated"
+    },
+    "RZ1_SbMR512_s411": {
+      "archive": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/RZ1_SbMR512_s411.tar",
+      "archive_sha256": "4150d2697fc2a963875fea306a58c3a80f2bf706e228fc18df4e53e4c1125cd2",
+      "trainable_member": {
+        "status": "OPAQUE_DIGEST_ONLY",
+        "member": "RZ1_SbMR512_s411/last_trainable.pt",
+        "bytes": 312981,
+        "sha256": "ebfe3896027cbb03fdb1b6460618c9e09271180006ae928d37bbdbc495b8fb23",
+        "checkpoint_identity": "last_trainable.pt trainable overlay; NOT original full last.pt",
+        "decoded": false
+      },
+      "prior_source_runtime_descriptor": {
+        "archive": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/RZ1_SbMR512_s411.tar",
+        "archive_sha256": "4150d2697fc2a963875fea306a58c3a80f2bf706e228fc18df4e53e4c1125cd2",
+        "full_checkpoint_descriptor": "original training run last.pt; opaque hash only if present in info.last_pt_sha256",
+        "trainable_checkpoint_member": "RZ1_SbMR512_s411/last_trainable.pt",
+        "trainable_checkpoint_sha256": null,
+        "weights_access_authorized": false,
+        "scorer_source_sha256": "9b6784290c1eb129b48370ee272074788839f60badc22b65ed26b10532fed611",
+        "runtime_TF32": null,
+        "source_TF32_prior": true,
+        "source_read_value": "float32 forward_logit without flip; source also computes separate TTA output",
+        "scientific_rebuild_or_kernel_admission": false
+      },
+      "source_runtime_scope": "Prior typed info only; fresh env TF32 not scorer attestation; reconstruction unvalidated"
+    },
+    "RZ1_SbMR512_s412": {
+      "archive": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/RZ1_SbMR512_s412.tar",
+      "archive_sha256": "928810c74bc919f192e6bb253e2bc4e5e5e5301d60dfbcc90ada26b9de15f3a6",
+      "trainable_member": {
+        "status": "OPAQUE_DIGEST_ONLY",
+        "member": "RZ1_SbMR512_s412/last_trainable.pt",
+        "bytes": 312981,
+        "sha256": "aa63ce188649b7233b3fa59c0f79bee218ba48fe52c1d41ce6bf082e9eb32e19",
+        "checkpoint_identity": "last_trainable.pt trainable overlay; NOT original full last.pt",
+        "decoded": false
+      },
+      "prior_source_runtime_descriptor": {
+        "archive": "/mnt/t7/smad_next/coordination_20261114/rz1_pair_final_collection_20261114T184258Z/RZ1_SbMR512_s412.tar",
+        "archive_sha256": "928810c74bc919f192e6bb253e2bc4e5e5e5301d60dfbcc90ada26b9de15f3a6",
+        "full_checkpoint_descriptor": "original training run last.pt; opaque hash only if present in info.last_pt_sha256",
+        "trainable_checkpoint_member": "RZ1_SbMR512_s412/last_trainable.pt",
+        "trainable_checkpoint_sha256": null,
+        "weights_access_authorized": false,
+        "scorer_source_sha256": "9b6784290c1eb129b48370ee272074788839f60badc22b65ed26b10532fed611",
+        "runtime_TF32": null,
+        "source_TF32_prior": true,
+        "source_read_value": "float32 forward_logit without flip; source also computes separate TTA output",
+        "scientific_rebuild_or_kernel_admission": false
+      },
+      "source_runtime_scope": "Prior typed info only; fresh env TF32 not scorer attestation; reconstruction unvalidated"
+    }
+  },
+  "scientific_admission": false
+}

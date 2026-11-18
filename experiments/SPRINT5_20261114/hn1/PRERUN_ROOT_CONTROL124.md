@@ -1,0 +1,3 @@
+# GO full124 native self-target controls
+
+Root reviewed8PASSreceipt andindependentlyrehashedall24controlPNGs, sameone-warp/halfblend state, source d232e098c38ec5d2476e8c35454e2b29dad18f285e5a121b693a745fad4c45ea unchanged. Approveall124prospectivelyfixedtrainhosts, no exclusions/sourcechanges, samecode/newoutputdir. No detectorfit orscientificreadrelease. Preserveallfailures andstopfirstfailure; no replacement.

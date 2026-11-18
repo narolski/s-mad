@@ -1,0 +1,20 @@
+AD5_INTERACTIVE_LAUNCH_FINISHED 0
+AD5_INTERACTIVE_LAUNCH_FINISHED 1
+AD5_INTERACTIVE_LAUNCH_FINISHED -15
+{
+  "scope": "local transformed-path launcher subprocess mocks only; no scheduler/tmux/GPU real calls",
+  "ast_compile": [
+    "launch",
+    "worker"
+  ],
+  "branches": [
+    "launch rc0 native exit + clean env + no retry PASS",
+    "launch rc1 native exit + clean env + no retry PASS",
+    "launch rc-15 native exit + clean env + no retry PASS",
+    "started rejected without srun PASS",
+    "hash rejected without srun PASS",
+    "pipe rejected without srun PASS",
+    "tty rejected without srun PASS"
+  ],
+  "worker": "source reviewed only; not executed"
+}

@@ -1,0 +1,112 @@
+{
+  "package_sha256": "debb0d12b58a657202b1ed9148abd8153751b70595e4604a9605f1a8c93afd25",
+  "checks": {
+    "experiments/AD5_retrains-of-released-methods/prereg.md": {
+      "expected": "6316790fe09ad6b6da1c1781f2b9630f5d7fe2ae197b3993e1f6123adcc2ad47",
+      "actual": "6316790fe09ad6b6da1c1781f2b9630f5d7fe2ae197b3993e1f6123adcc2ad47",
+      "pass": true
+    },
+    "experiments/AD5_retrains-of-released-methods/RECOVERY_20261114.md": {
+      "expected": "de84d2d74ff0a1b98aeb8e389ecb74984104d5546871e1aed21c967f19830f13",
+      "actual": "de84d2d74ff0a1b98aeb8e389ecb74984104d5546871e1aed21c967f19830f13",
+      "pass": true
+    },
+    "src/AD5/wcss/ad5w_train.sbatch": {
+      "expected": "32abe90db8b43ce3390db164fa3302e859e3dd308e47b5d19bb3097a6d438edb",
+      "actual": "32abe90db8b43ce3390db164fa3302e859e3dd308e47b5d19bb3097a6d438edb",
+      "pass": true
+    },
+    "src/AD5/env/madation_requirements.txt": {
+      "expected": "5b370b16905aba7465e5dffc79c42061e29298d1a55c996d62ec56e86dffe05d",
+      "actual": "5b370b16905aba7465e5dffc79c42061e29298d1a55c996d62ec56e86dffe05d",
+      "pass": true
+    },
+    "src/AD5/score/ad5_score_athena.py": {
+      "expected": "d578344120799f7a09a535ca2b553a0268f5501e448c9022edf9789bebf1ff2a",
+      "actual": "d578344120799f7a09a535ca2b553a0268f5501e448c9022edf9789bebf1ff2a",
+      "pass": true
+    },
+    "src/AD5/checks/dgx_wrapper_check.sh": {
+      "expected": "305a857f0ee293b3a40332ec85fd4bdfdebe77df010c2ccdda53665dd31e25c7",
+      "actual": "305a857f0ee293b3a40332ec85fd4bdfdebe77df010c2ccdda53665dd31e25c7",
+      "pass": true
+    },
+    "src/AD5/athena/ad5_score_rel.sbatch": {
+      "expected": "4bc7b896f786deed9c24fd71b923df0be4e5555fb18e5c2e560f995b0a42e7e0",
+      "actual": "4bc7b896f786deed9c24fd71b923df0be4e5555fb18e5c2e560f995b0a42e7e0",
+      "pass": true
+    },
+    "src/recovery_20261114/ad5_real_math_multi_v1/grounding/build/madation_src/src/training/trainer.py": {
+      "expected": "e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d",
+      "actual": "e905cc241327d0a6f809ef3188ac395353ee4e502e3d91409892f89890b5f55d",
+      "pass": true
+    },
+    "src/recovery_20261114/ad5_real_math_multi_v1/grounding/build/madation_src/src/training/scheduler.py": {
+      "expected": "23baa4df4c65b7d6ecd3acacdbcfa6bc619e5f96f01f376782d9857c9b7ab2f0",
+      "actual": "23baa4df4c65b7d6ecd3acacdbcfa6bc619e5f96f01f376782d9857c9b7ab2f0",
+      "pass": true
+    },
+    "src/recovery_20261114/ad5_real_math_multi_v1/grounding/build/madation_src/src/training/losses.py": {
+      "expected": "2aba7095b94cb2ad5596dff2cf5c74b6ffb07c9d6de137acf0ae347731797826",
+      "actual": "2aba7095b94cb2ad5596dff2cf5c74b6ffb07c9d6de137acf0ae347731797826",
+      "pass": true
+    },
+    "src/recovery_20261114/ad5_real_math_multi_v1/grounding/build/madation_src/src/config.py": {
+      "expected": "931f682a0f6cd0e01eb3b13f394f6ee42defd5bd4e03821324b3c97e866232dd",
+      "actual": "931f682a0f6cd0e01eb3b13f394f6ee42defd5bd4e03821324b3c97e866232dd",
+      "pass": true
+    },
+    "src/recovery_20261114/ad5_real_math_multi_v1/grounding/build/madation_src/src/data/loaders.py": {
+      "expected": "af7639a616fa32a01a6455c9ac0c8857c7313193f1ea196e268d7656220d3f96",
+      "actual": "af7639a616fa32a01a6455c9ac0c8857c7313193f1ea196e268d7656220d3f96",
+      "pass": true
+    },
+    "src/recovery_20261114/ad5_real_math_multi_v1/grounding/build/madation_src/src/utils/logging.py": {
+      "expected": "246659def6685ef112ba80efa52279e6bbe4ffa1d2b7885a99ea081f78d23859",
+      "actual": "246659def6685ef112ba80efa52279e6bbe4ffa1d2b7885a99ea081f78d23859",
+      "pass": true
+    },
+    "experiments/AD5_retrains-of-released-methods/real_math_multi_v1r1_20261114/AD5_MULTI_V1R1_INDEPENDENT_DELTA_REVIEW_20261114.md": {
+      "expected": "588e30d8c6ce1a82a63aaece36b323df46bc29598abe961b129b68a3fcc120bc",
+      "actual": "588e30d8c6ce1a82a63aaece36b323df46bc29598abe961b129b68a3fcc120bc",
+      "pass": true
+    },
+    "experiments/AD5_retrains-of-released-methods/real_math_first_step_20261114/AD5_REAL_MATH_STEP_POSTRESULT_INDEPENDENT_REVIEW_20261114.md": {
+      "expected": "f0b1bb99c68852c7e62dee099dde3b6c70abde891b6203da9b64fa3d8544a89d",
+      "actual": "f0b1bb99c68852c7e62dee099dde3b6c70abde891b6203da9b64fa3d8544a89d",
+      "pass": true
+    },
+    "experiments/AGENTIC_delivery_20261114/AD5_FIRST_BACKWARD_POSTRESULT_REVIEW_20261114.md": {
+      "expected": "2e257174ad1ee548613c58f0914101e7b1618028fbaa4b5d6e9f6d36113b9125",
+      "actual": "2e257174ad1ee548613c58f0914101e7b1618028fbaa4b5d6e9f6d36113b9125",
+      "pass": true
+    },
+    "CONDITIONAL_FULL_RECOVERY_AMENDMENT.md": {
+      "expected": "186466f39d5803811840bf015bcf3350cf287a39c58cb99dced3a8e0f59e65bb",
+      "actual": "186466f39d5803811840bf015bcf3350cf287a39c58cb99dced3a8e0f59e65bb",
+      "pass": true
+    },
+    "PROPOSED_MATH_ONLY_TRAINER.patch": {
+      "expected": "7980caa9105473fd96cccfac21c872c1e3970f3c93170575e0ac5cf7003a499b",
+      "actual": "7980caa9105473fd96cccfac21c872c1e3970f3c93170575e0ac5cf7003a499b",
+      "pass": true
+    },
+    "SOURCE_PROOF_MATRIX.json": {
+      "expected": "31cabce835b87f23a8204ee4ab4a9ed4980013072fcef8891e47dd63369b109d",
+      "actual": "31cabce835b87f23a8204ee4ab4a9ed4980013072fcef8891e47dd63369b109d",
+      "pass": true
+    }
+  },
+  "math_patch_exact_diff": true,
+  "inverse_AST_equal": true,
+  "prospective_trainer_sha256": "355a3223152882669ad2e5f39fede88578d43ddd720b5aadec1c379ec219f976",
+  "smoke_review_sha256": "5e5ad6395a531f427c5d046388f6f1cf2b54578ec8b519bdfa2395422f2f1267",
+  "counts": {
+    "rows": 39723,
+    "batches": 155,
+    "discarded_per_epoch": 43,
+    "updates_per_seed": 6200,
+    "five_seed_exposures": 7936000
+  },
+  "scope": "SOURCE_AND_ADMITTED_TECHNICAL_REPORT_ONLY"
+}

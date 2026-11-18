@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-14T18:14:17.836591+00:00",
+  "decision": "GO_PRIVATE_RESEARCH_RENDER_ONLY",
+  "authorizer": "root",
+  "basis": "Author explicitly requested actual face images intelligible to a lay reader; fixed-five-input VIS1 research scope and all-three-model numerical review. Source CC BY-NC 2.0 attribution/derivative conditions verified by image owner and retained in source manifest.",
+  "photos": [
+    "FFHQ00042",
+    "FFHQ00056"
+  ],
+  "source_export_scope": "Only private research preview to protected repository and author workspace; this does not authorize public publication or dataset redistribution. No FERET source pixels, no reference00010 child illustration.",
+  "models": [
+    "selfmad_hrnet_w18",
+    "A",
+    "B"
+  ],
+  "inputs": "Exact INVENTORY_v2.json and input audit, no new transformations, inferencing or synthetic images",
+  "figures": "Two fixed original/history face pairs; all six admitted paired outcomes; neutral uncalibrated score/logit/delta labels; no operating threshold or decision flips",
+  "exact_history_correction": {
+    "00042": "1024\u2192265px\u2192existing alignment512",
+    "00056": "1024\u2192249px\u2192existing alignment512",
+    "00010": "1024\u2192245 applies only to reference, not new photos"
+  },
+  "credits_required": [
+    "Rebecca Brown CC BY-NC 2.0 with original source URL",
+    "RAFFI YOUREDJIAN CC BY-NC 2.0 with original source URL"
+  ],
+  "independent_numeric_review_sha256": "ff9d1a19e2ad57ac1592803abc746314199c7f7b9d040ed641e86ad2181b5e81",
+  "age": "manual adult-appearing only; no age certificate or consent inference",
+  "overlap": "unknown training/person/component exposure remains explicit",
+  "publication": "HOLD",
+  "independent_print_caption_review": "REQUIRED"
+}

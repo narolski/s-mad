@@ -1,0 +1,3 @@
+# GO bounded native training construction for nuisance floors
+
+Root independently reviewed Sol AMENDMENT_TRAIN124_FLOOR.md and exactbuilder762137d28d7dd7d8ddd638d75379499cfddd474d54ab33fd1bd39c2bf5b14465. Onlyconstructioncount extension8to124, sameprior124eligible and32excluded metadata/kernelpath, unchanged transformationsandlabels. Rootobservedpilot8_v2PASS andall8contactsheet; color/captureconfounding prospectivelyrecorded, noneexcluded. ApproveALL124nativeP/N(+WH/WS/WB)constructionsolelyforfloorfeasibility, estimate<1GB with50GiBreserveassertion. Noheldoutpool/fitting/scientificdetectorreadrelease. Anyfailure retainedwholepair and blocksfit. Floorfeatures/learners requireseparateprereview. Source/code hashes recorded in output.

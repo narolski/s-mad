@@ -1,0 +1,15 @@
+{
+  "status": "PASS_SOURCE_PREPARATION_ONLY",
+  "author": "Astra",
+  "independent_review": "REQUIRED_OTHER_AGENT",
+  "tests": 7,
+  "passed": 7,
+  "duration_s": 0.076,
+  "command": "cd src/RZ1/sbmr512_kernel_v2 && OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 CUDA_VISIBLE_DEVICES= /home/narolski/mambamorph-code/.venv-spark/bin/python -m unittest -v test_source_fixtures.py",
+  "fixtures": "generatedcheckerboard+integercontextschedule+invalid\u03ba; no real images/model/archive/NPZ",
+  "v1_package_and_sources_unchanged": true,
+  "cross_ids_masks_mapping_unchanged": true,
+  "fullcontext_rows": 59270,
+  "target_mappings_verified": 13771,
+  "actual_checkpoint_image_score_access": false
+}

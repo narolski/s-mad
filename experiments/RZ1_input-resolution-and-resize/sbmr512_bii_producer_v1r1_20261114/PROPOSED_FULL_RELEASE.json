@@ -1,0 +1,15 @@
+{
+  "decision": "PROPOSED_NOT_AUTHORIZATION",
+  "root_authorized": false,
+  "author": "Sol",
+  "reviewer": null,
+  "mode": "full",
+  "source_manifest_sha256": "bb4cb53b577bc3547f494b4f26106b0e28bbd79c373eacbb5edd0fa4ff74bd6d",
+  "future_required_decision": "GO_SBMR512_BII_FULL_V1R1",
+  "source_runtime_input_worker_release": "HOLD",
+  "technical_attachment_adoption_path": "/home/narolski/smad-next/experiments/AGENTIC_delivery_20261114/ROOT_NEXT_MINIMAL_ATTACHMENT_ADOPTION_20261114T200359Z.json",
+  "technical_attachment_adoption_sha256": "52cfaef427e339fa60989cee9f7611313d760291c3ecf4d40a24bdb667def9cf",
+  "reference_scope": "ALL_REGISTERED_CROSS_TARGETS_FROM_EVAL_AND_TT1",
+  "full_container_decode_permission": "REQUIRED_BUT_NOT_GRANTED",
+  "scientific_read": "HOLD"
+}

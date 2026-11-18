@@ -1,0 +1,14 @@
+{
+  "observed_at": "2026-11-14T22:54:47.138851+00:00",
+  "host": "gx10-c326",
+  "head": "869430cabcb99990b3458f96622638247511f439",
+  "binding_commit": "dbeb9404b2e1bd0db1ef8a60b18e18457e324af2",
+  "status": "SOURCE_ONLY_HOLD",
+  "existing_prep": "SOL_TRAINING_PROTOCOL.md inspected; conceptual contract reused. PN1 fresh preregs are different experiments. No existing NEXT-specific fresh executable package located in bounded filename/source audit.",
+  "no_scheduler_query": true,
+  "no_candidate_payload_access": true,
+  "no_scientific_preflight": true,
+  "no_job_mutation": true,
+  "independent_review": "PENDING",
+  "foreign_changes": "Preserved; source pins are observed bytes, not clean-tree admission."
+}

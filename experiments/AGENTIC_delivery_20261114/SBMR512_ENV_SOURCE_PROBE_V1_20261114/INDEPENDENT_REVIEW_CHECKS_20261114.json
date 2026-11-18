@@ -1,0 +1,25 @@
+{
+  "pins": {
+    "ALLOWLIST_REQUEST_UNSIGNED.json": "180b53e1f8682ba8cf2135d2d7e89d44efb74ba8936862641c3a79c8fb5ee4bb",
+    "CPU_TEST_RESULT.json": "735faf0aece98a671b8fc9c01da8e0114ec498be65add436612d2ab3fcfb13a6",
+    "HANDOFF_20261114.json": "9ca355b7de057d9e984ef5c42769dd3b339616c0509d5e2c15f0705539dc535c",
+    "METADATA_RELEASE_UNSIGNED.json": "7a654e7db16ab9af1b30be249c5bbce089bc5da0b9d80b31554f0845ad03eb29",
+    "PARENT_SOURCE_PINS.json": "d367282ce60686480208a0fe501f464f761a1ceb13efbbd2269637f6627c2baf",
+    "README.md": "167b73eef36e26668383ab415843f546e16d2da7f356479095fba1838424bc33",
+    "probe.py": "f0051c1c4f817c1d9c103d2397f188f0cdf1a3e04ed2e60bacfeed8fd0bb16d4",
+    "test_probe.py": "e39edd2b77cc969baa7f30e0bb9728f032fb3abd1bc1935fb7f35ff42ffc437d"
+  },
+  "manifest": "8b68d7f2cac7bc700d05c7362fb1750390529d642bb3e3087be1810454042813",
+  "tests": {
+    "author_tests_passed": 13,
+    "seconds": 0.007,
+    "command": "/usr/bin/python3 -I -S -B <packet>/test_probe.py",
+    "first_incorrect_reviewer_unittest_module_invocation": "preimport ModuleNotFoundError under -I; no probe main/collection"
+  },
+  "generated_reproductions": {
+    "empty_pinned_METADATA_unpinned_PKG_INFO": "CONTENT_HASHED version UNPINNED_FALLBACK_CANARY",
+    "path_swap_after_regular_before_sha": "unallowlisted generated symlink target opened before mismatch rejection"
+  },
+  "actual_environment_or_payload_access": false,
+  "verdict": "HOLD_IMPLEMENTATION"
+}

@@ -1,0 +1,22 @@
+{
+  "parent_source": "src/AB1/run.sh",
+  "parent_sha256": "cfa4ed26d747e1d50f66cfc2af823ed55fd7f31634d6285cff9363a5fa796ab4",
+  "pack_sha256": "96c31ae29c4118947e3fd0a7a97600805cbfa5a82369c8ecbc6ee3d6349f2004",
+  "overlay_sha256": "171fdb213444442762d4a716b7470dd885cd5879ba9ddda0c542060af4b4d149",
+  "arch": "a12_clip_vitb16_madation",
+  "steps": 6250,
+  "batch": 256,
+  "accum": 1,
+  "final": "last",
+  "lr": 3.33e-06,
+  "head_lr": 3.33e-05,
+  "eval_manifest": "ab1_eval.csv",
+  "scorer": "pn1/src/pn1_score.py",
+  "train_manifest_by_arm": {
+    "A": "train_A.csv",
+    "B": "train_B.csv",
+    "Sb": "train_Sb.csv"
+  },
+  "runtime_expected": "WCSS H100, original AB1 torch2.11/cu128 host dmenv; actual runtime identity HOLD",
+  "actual_input_verification": "HOLD; source literals only, no pack/payload accessed"
+}

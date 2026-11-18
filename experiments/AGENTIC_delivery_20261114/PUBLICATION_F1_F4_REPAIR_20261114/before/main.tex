@@ -1,0 +1,64 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\usepackage[review]{cvpr}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[T1]{fontenc}
+\usepackage{times,amsmath,amssymb,graphicx,booktabs,multirow,array,xcolor}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=blue]{hyperref}
+\usepackage[capitalize]{cleveref}
+\def\confName{CVPR}\def\confYear{2027}
+\title{Beyond Processing Artifacts: Controlled Evaluation and Training\\for Single-Image Morphing Attack Detection}
+\author{Anonymous submission}
+\begin{document}
+\maketitle
+\begin{abstract}
+A face morph detector can separate benchmark morphs from genuine photographs without detecting the combination of two identities. We investigate this ambiguity through morph-free training, matched manipulation controls, and training ablations. Networks trained only to distinguish synthetic faces from shrink-and-enlarge copies achieve zero equal error rate on the native MorDIFF evaluation in all ten tested networks. We introduce comparisons that progressively control rendering, warping, blending, and contributor identity, revealing substantial responses to single-photo reconstructions and no established advantage beyond low-level statistics in a matched blend-versus-warp diagnostic. We then study training with face-spliced morphs and matched same-person and seam-only negatives. A count-balanced development ablation improves two-person versus same-person ranking by 0.048 AUC across five seeds; negative content remains confounded with 312 additional unique images. The full protocol attenuates storage-induced false alarms. On development-exposed MAD22, it achieves 3.37\% mean EER versus SelfMAD's 4.72\%, without establishing superiority. Together, the results provide an evaluation framework and a qualified training benefit while identifying the evidence still needed for identity-specific detection.
+\end{abstract}
+
+\section{Introduction}
+Face morphing attacks~\cite{ferrara2014magic} exploit photographs combining contributors. A single-image detector can instead recognize acquisition, resampling, blending, reconstruction or storage traces. Morph-versus-photograph accuracy alone cannot distinguish processing sensitivity from identity-specific detection, even when performance transfers between engines.
+
+We test this ambiguity with morph-free training and matched controls. All ten networks trained to recognize shrink-and-enlarge copies of synthetic faces achieve zero EER on native MorDIFF~\cite{damer2023mordiff} under our preprocessing. This establishes processing-cue sufficiency for that cell, not a common mechanism across detectors or blur as the unique cause. Single-photo reconstructions, warp-only images and same-person manipulations then control progressively more of the construction; low-level differences can nevertheless remain.
+
+Finally, a count-balanced development follow-up supports improved ranking in the full splice-positive recipe, controlling rows, classes and positive repetition within pairs. Negative content remains confounded with image diversity; the analogous pair without splice positives lacks the registered benefit. Blend-versus-warp and reconstruction controls retain important limitations.
+
+Our contributions are:
+\begin{enumerate}
+\item A processing-cue audit showing that a morph-free training task can attain perfect separation on a morph benchmark cell, supported by paired processing and single-photo reconstruction controls.
+\item A controlled evaluation framework separating questions about rendering, warping, blending, and contributor identity, with explicit limits on what each contrast establishes.
+\item A matched-control training study showing a count-balanced development ranking gain in the full recipe, with content and image diversity still confounded, alongside attenuated storage false alarms and a qualified benchmark comparison.
+\end{enumerate}
+
+\begin{figure*}[t]
+\centering
+\ifdefined\UsePlotlyFigures
+\includegraphics[width=\textwidth]{figures/plotly_js/controls_overview_js.pdf}
+\else
+\input{figures/controls_overview.tex}
+\fi
+\caption{The experimental argument (conceptual schematic). Morph-free training establishes processing-cue sufficiency on native MorDIFF under the tested preprocessing. Controls ask narrower questions about rendering, warping, blending and contributor identity. The original removal ablation changes count and class balance; its count-balanced follow-up still confounds negative content with image diversity.}
+\label{fig:argument}
+\end{figure*}
+
+\input{related}
+\input{method}
+\input{results}
+
+\section{Discussion and Limitations}
+\paragraph{Mechanism and intervention.}
+Morph-free benchmark separation and one-photo rendering responses establish processing sensitivity, not the absence of useful identity information or a common mechanism across detectors. Count-balanced gains in the full recipe control rows, classes and positive repetition within pairs, but matched-negative content remains confounded with 312 additional unique images. Absent registered benefit without splice positives is neither zero equivalence nor an interaction test.
+
+\paragraph{Exposure and uncertainty.}
+MAD22 informed development; new seeds do not restore independence. Its 204 FRLL photographs create exposure relevant to later FRLL-Morphs evaluation, which is not reported here. Component-only intervals condition on fitted networks and do not capture arbitrary retraining variability; dependence also limits effective sample size. No untouched-benchmark superiority is established.
+
+\paragraph{Control validity and operation.}
+Same-person manipulations test contributor dependence, not document acceptability. Blanking shifts the distribution and increases warp-only flags; in-domain simple-cue learners are explanatory references, not matched generalization competitors. Finite controls cannot establish universal shortcut freedom. Report ranking and perturbation responses alongside family-level attack misses and genuine false alarms: suppressing artifact responses is useful only if attack sensitivity is retained.
+
+\section{Conclusion}
+Single-image morph detection requires evidence beyond morph-versus-photo separation. Morph-free training and single-photo reconstruction controls show why strong benchmark performance can coexist with unresolved processing explanations. Our controlled comparisons expose these explanations, and matched-control training improves selected development contrasts while attenuating storage-induced false alarms. The remaining rendering response and inconclusive blend-control advantage define the next scientific challenge: preserving attack detection while demonstrating transfer under controls that increasingly constrain non-identity explanations.
+
+\section*{LLM Usage Statement}
+An AI coding and writing assistant was used to organize experiment records, prepare analysis-code changes and assist manuscript drafting. This statement describes the current draft; the authors must verify and finalize the disclosure and all scientific claims before submission.
+
+{\small\bibliographystyle{ieeenat_fullname}\bibliography{references}}
+\end{document}

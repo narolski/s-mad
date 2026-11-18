@@ -1,0 +1,640 @@
+{
+  "synthetic_only": true,
+  "real_images_opened": false,
+  "models_loaded": false,
+  "sigma": 11,
+  "alpha_raw_float32_sha256": "4b38529ef70b6f72836e1bfee50a4649a63096897450636146c2e1fb092ed57c",
+  "alpha_dtype": "float32",
+  "alpha_shape": [
+    512,
+    512,
+    1
+  ],
+  "alpha_range": [
+    0.0,
+    0.5
+  ],
+  "region_plan": {
+    "selection": "row-major first K=min(candidate seam,surround) before scores; all64views retained",
+    "seam_candidates": [
+      3,
+      4,
+      10,
+      13,
+      17,
+      22,
+      25,
+      30,
+      33,
+      38,
+      41,
+      46,
+      50,
+      53,
+      59,
+      60,
+      61
+    ],
+    "surround_candidates": [
+      0,
+      7,
+      56,
+      63
+    ],
+    "K": 4,
+    "selected_seam": [
+      3,
+      4,
+      10,
+      13
+    ],
+    "selected_surround": [
+      0,
+      7,
+      56,
+      63
+    ],
+    "area_per_patch": 4096,
+    "total_masked_area_per_region": 16384,
+    "region_contrast_status": "READY_DESCRIPTIVE_ONLY",
+    "cells": [
+      {
+        "cell": 0,
+        "native_y": 0,
+        "native_x": 0,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": true
+      },
+      {
+        "cell": 1,
+        "native_y": 0,
+        "native_x": 64,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 2,
+        "native_y": 0,
+        "native_x": 128,
+        "area": 4096,
+        "transition_fraction": 0.0859375,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 3,
+        "native_y": 0,
+        "native_x": 192,
+        "area": 4096,
+        "transition_fraction": 0.433349609375,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 4,
+        "native_y": 0,
+        "native_x": 256,
+        "area": 4096,
+        "transition_fraction": 0.43505859375,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 5,
+        "native_y": 0,
+        "native_x": 320,
+        "area": 4096,
+        "transition_fraction": 0.09326171875,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 6,
+        "native_y": 0,
+        "native_x": 384,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 7,
+        "native_y": 0,
+        "native_x": 448,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": true
+      },
+      {
+        "cell": 8,
+        "native_y": 64,
+        "native_x": 0,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 9,
+        "native_y": 64,
+        "native_x": 64,
+        "area": 4096,
+        "transition_fraction": 0.06884765625,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 10,
+        "native_y": 64,
+        "native_x": 128,
+        "area": 4096,
+        "transition_fraction": 0.51025390625,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 11,
+        "native_y": 64,
+        "native_x": 192,
+        "area": 4096,
+        "transition_fraction": 0.02978515625,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 12,
+        "native_y": 64,
+        "native_x": 256,
+        "area": 4096,
+        "transition_fraction": 0.0263671875,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 13,
+        "native_y": 64,
+        "native_x": 320,
+        "area": 4096,
+        "transition_fraction": 0.50341796875,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 14,
+        "native_y": 64,
+        "native_x": 384,
+        "area": 4096,
+        "transition_fraction": 0.076171875,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 15,
+        "native_y": 64,
+        "native_x": 448,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 16,
+        "native_y": 128,
+        "native_x": 0,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 17,
+        "native_y": 128,
+        "native_x": 64,
+        "area": 4096,
+        "transition_fraction": 0.4296875,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 18,
+        "native_y": 128,
+        "native_x": 128,
+        "area": 4096,
+        "transition_fraction": 0.045166015625,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 19,
+        "native_y": 128,
+        "native_x": 192,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 20,
+        "native_y": 128,
+        "native_x": 256,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 21,
+        "native_y": 128,
+        "native_x": 320,
+        "area": 4096,
+        "transition_fraction": 0.038818359375,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 22,
+        "native_y": 128,
+        "native_x": 384,
+        "area": 4096,
+        "transition_fraction": 0.43603515625,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 23,
+        "native_y": 128,
+        "native_x": 448,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 24,
+        "native_y": 192,
+        "native_x": 0,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 25,
+        "native_y": 192,
+        "native_x": 64,
+        "area": 4096,
+        "transition_fraction": 0.4443359375,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 26,
+        "native_y": 192,
+        "native_x": 128,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 27,
+        "native_y": 192,
+        "native_x": 192,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 28,
+        "native_y": 192,
+        "native_x": 256,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 29,
+        "native_y": 192,
+        "native_x": 320,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 30,
+        "native_y": 192,
+        "native_x": 384,
+        "area": 4096,
+        "transition_fraction": 0.4443359375,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 31,
+        "native_y": 192,
+        "native_x": 448,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 32,
+        "native_y": 256,
+        "native_x": 0,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 33,
+        "native_y": 256,
+        "native_x": 64,
+        "area": 4096,
+        "transition_fraction": 0.444091796875,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 34,
+        "native_y": 256,
+        "native_x": 128,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 35,
+        "native_y": 256,
+        "native_x": 192,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 36,
+        "native_y": 256,
+        "native_x": 256,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 37,
+        "native_y": 256,
+        "native_x": 320,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 38,
+        "native_y": 256,
+        "native_x": 384,
+        "area": 4096,
+        "transition_fraction": 0.444091796875,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 39,
+        "native_y": 256,
+        "native_x": 448,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 40,
+        "native_y": 320,
+        "native_x": 0,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 41,
+        "native_y": 320,
+        "native_x": 64,
+        "area": 4096,
+        "transition_fraction": 0.433837890625,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 42,
+        "native_y": 320,
+        "native_x": 128,
+        "area": 4096,
+        "transition_fraction": 0.040283203125,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 43,
+        "native_y": 320,
+        "native_x": 192,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 44,
+        "native_y": 320,
+        "native_x": 256,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 45,
+        "native_y": 320,
+        "native_x": 320,
+        "area": 4096,
+        "transition_fraction": 0.0341796875,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 46,
+        "native_y": 320,
+        "native_x": 384,
+        "area": 4096,
+        "transition_fraction": 0.43994140625,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 47,
+        "native_y": 320,
+        "native_x": 448,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 48,
+        "native_y": 384,
+        "native_x": 0,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 49,
+        "native_y": 384,
+        "native_x": 64,
+        "area": 4096,
+        "transition_fraction": 0.073486328125,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 50,
+        "native_y": 384,
+        "native_x": 128,
+        "area": 4096,
+        "transition_fraction": 0.50634765625,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 51,
+        "native_y": 384,
+        "native_x": 192,
+        "area": 4096,
+        "transition_fraction": 0.024658203125,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 52,
+        "native_y": 384,
+        "native_x": 256,
+        "area": 4096,
+        "transition_fraction": 0.021484375,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 53,
+        "native_y": 384,
+        "native_x": 320,
+        "area": 4096,
+        "transition_fraction": 0.49951171875,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 54,
+        "native_y": 384,
+        "native_x": 384,
+        "area": 4096,
+        "transition_fraction": 0.0810546875,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 55,
+        "native_y": 384,
+        "native_x": 448,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 56,
+        "native_y": 448,
+        "native_x": 0,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": true
+      },
+      {
+        "cell": 57,
+        "native_y": 448,
+        "native_x": 64,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 58,
+        "native_y": 448,
+        "native_x": 128,
+        "area": 4096,
+        "transition_fraction": 0.093994140625,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 59,
+        "native_y": 448,
+        "native_x": 192,
+        "area": 4096,
+        "transition_fraction": 0.4384765625,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 60,
+        "native_y": 448,
+        "native_x": 256,
+        "area": 4096,
+        "transition_fraction": 0.43994140625,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 61,
+        "native_y": 448,
+        "native_x": 320,
+        "area": 4096,
+        "transition_fraction": 0.1015625,
+        "transition_patch": true,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 62,
+        "native_y": 448,
+        "native_x": 384,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": false
+      },
+      {
+        "cell": 63,
+        "native_y": 448,
+        "native_x": 448,
+        "area": 4096,
+        "transition_fraction": 0.0,
+        "transition_patch": false,
+        "strict_surround_patch": true
+      }
+    ],
+    "scope": "Patch overlapping actual new soft blend transition; not pure seam removal, position/texture not matched."
+  }
+}

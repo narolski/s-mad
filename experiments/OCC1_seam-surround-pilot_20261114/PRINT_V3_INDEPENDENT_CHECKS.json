@@ -1,0 +1,108 @@
+{
+  "verdict": "PASS_NUMERIC_ONLY_PRINT_METADATA_AND_DISPLAY_FIDELITY",
+  "unchanged_previously_reviewed_files": 50,
+  "display_records_verified": 30,
+  "pdfs": [
+    {
+      "file": "A_color.pdf",
+      "sha256": "74b44d58f9aa5de92bb6afefd805cddea65d638a8d73be6f5f60bd7f0ddc9967",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    },
+    {
+      "file": "A_grayscale.pdf",
+      "sha256": "6c882c2170a77a6713fd69a5e696ed3e774d56b6fcb8118ba3d0fe5614a2852f",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    },
+    {
+      "file": "B_color.pdf",
+      "sha256": "c19181459bc6e5944733a01276f64c1c980eabd559165e9b5754d92f76108c0a",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    },
+    {
+      "file": "B_grayscale.pdf",
+      "sha256": "51ad459a16b67d740dfd369dc72600aedd888522c9dc8cc94b3f84ae7daca337",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    },
+    {
+      "file": "Sb_color.pdf",
+      "sha256": "e9e995db978e63e10282d034be75c660036ad94c2f9c053514ee686a738341bc",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    },
+    {
+      "file": "Sb_grayscale.pdf",
+      "sha256": "4762991e00ba288a9ce9d4bf84e5c40f81a1f0a9d7ec80cea13669f36d4ce806",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    },
+    {
+      "file": "mixfacenet_mad_smdd_color.pdf",
+      "sha256": "fb4a038ed5e24cd0938b6b5628cff342f77945a32b12937dc9bb116a70af2fea",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    },
+    {
+      "file": "mixfacenet_mad_smdd_grayscale.pdf",
+      "sha256": "095b35b4e604453ab0f1ceedda1bc1bb955422413eccd62a876d9cac43a53a15",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    },
+    {
+      "file": "selfmad_hrnet_w18_color.pdf",
+      "sha256": "dcf6258aa751555ceab2850be023106c4c0f75cdaf0836b4b6ba7b685282e9e6",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    },
+    {
+      "file": "selfmad_hrnet_w18_grayscale.pdf",
+      "sha256": "fc1a76355b79b81d30d7ada08718d8341c7dfedeaf09672d52a1cddd5f28db90",
+      "min_font_pt": 8.0,
+      "page_points": [
+        510.236,
+        595.276
+      ]
+    }
+  ],
+  "pins": {
+    "/mnt/t7/smad_next/OCC1/20261114/numeric_print_v3/FIGURE_MANIFEST.json": "cd5c409f562955df89191d1b39708f2521ae40e362988750b19f34af4024bf90",
+    "/mnt/t7/smad_next/OCC1/20261114/numeric_print_v3/DISPLAY_VALUES.json": "d36e2bde5ed16facee85184de850f44536e4e123789c38b425b4a733113a8519",
+    "/mnt/t7/smad_next/OCC1/20261114/numeric_print_v3/POPPLER_PRINT_QA.json": "edcfbd4b9faaf5153dd52319c99b9973250ae515eaf0c72dbaae726c3c75558d",
+    "/mnt/t7/smad_next/OCC1/20261114/numeric_print_v3/MPL_LAYOUT_QA.json": "a9c0c4a950097252453362e909bbc1d81570797a914b5170d73cf0eaab536137",
+    "/home/narolski/smad-next/src/OCC1/render_numeric_v3.py": "1ce9e66dda7bbadd1cf2665b74b3657dfc19d2b791fff83e6702b70afde9585a",
+    "/home/narolski/smad-next/src/OCC1/qa_numeric_v3.py": "d81fdbd72035e599a2224203e889e72fe186705b861b5d565347bbfd8f6b1432",
+    "/home/narolski/smad-next/experiments/OCC1_seam-surround-pilot_20261114/PRINT_V3_OWNER_REPORT_20261114.md": "fe6b540c50617b528cc3dee21f2c3232ec5a51b2fff94b02d178d2abf4304490"
+  },
+  "no_inference": true,
+  "source_face_export": false
+}

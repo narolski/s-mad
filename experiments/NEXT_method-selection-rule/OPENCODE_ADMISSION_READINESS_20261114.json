@@ -1,0 +1,173 @@
+{
+  "schema": "next-admission-readiness-audit-v1",
+  "audit_at": "2026-11-14T12:02:53.478584+00:00",
+  "reviewed_head": "78490ba",
+  "status": "NOT_ADMITTED",
+  "is_production_admission": false,
+  "deadline": "2026-11-15T18:00:00+01:00",
+  "scope": "Local metadata, registrations, source formats, receipt records, manifest metadata and binary hashes of pin files/inputs only. No score values, archive members, scientific invocation, production journal, cluster query or commit.",
+  "pin_recheck": {
+    "method": "SHA256 of each listed file; repository-local bytes compared with HEAD; no numerical validator executed",
+    "input_count": 44,
+    "support_count": 20,
+    "hash_mismatches": [],
+    "repository_HEAD_mismatches": [],
+    "shared_worktree_clean": false,
+    "historical_clean_receipt": "/mnt/t7/smad_next/coordination_20261114/pre_read_receipt.json",
+    "historical_clean_commit": "8d009968d902801c47970ca1cd45c0464cdc8462",
+    "historical_receipt_sha256": "9a02d57b1decb4035360992c1f89a777d9d03cc282121ef1ad7ff1f00ae17bd0",
+    "inputs_pinfile_sha256": "24725bb96179ab07363abf2c1f0e77cb8720ebb28550dae0cb3e18ad4d9e4259",
+    "support_pinfile_sha256": "5e8d39f02345b39755ffbcd13def8af26a1be057e15f7499d7d5649784c2b02a",
+    "scope_limit": "Byte-current historical input/support verification only, not a clean current admission checkout or proof of complete native admission closure."
+  },
+  "resolved_inventory_gaps": {
+    "SbFM_transfer": {
+      "status": "EXISTS_COMMITTED_AND_BYTE_CURRENT",
+      "source": "experiments/ADV_shortcut-floors/floors/transfer_SbFM_rows.csv",
+      "admission_copy": "experiments/NEXT_method-selection-rule/inputs/floors/transfer_SbFM_rows.csv",
+      "sha256": "50de9a543c4d8aaa9c4ccb2e229369c82026d05285717d7832fee55b73817aa5",
+      "source_commit": "bf96003b42b23b0eb364d4ed11d7c7dd321a444b",
+      "package_commit": "076a5f9207d2e1f60151fde83538fa96f2a1676c",
+      "training_manifest_sha256": "1231204496664287e4513ac4cf004156a5140386987e3b6cc8a83084c242e491",
+      "reported_rows": 4080,
+      "row_count_basis": "Previously reviewed input manifest; no score CSV parsed during this audit",
+      "producer": "src/adversary/amend5.py:transfer_rows invokes contrasts.train_rows(SbFM), whose TRAIN map selects AB1/fm/manifests/train_SbFM.csv; first-occurrence unique paths",
+      "action": "Index existing committed artifact as transfer_files.SbFM and bind transfer_training_sha256.SbFM; do not refit or substitute Sb rows."
+    },
+    "E3_freeze": {
+      "status": "FORMAL_FREEZE_NOT_FOUND_LOCALLY_BUT_COMPLETE_FIT_METADATA_EXISTS",
+      "required_path": "experiments/BB2_second-backbone/seed_mode_L.json",
+      "required_path_exists": false,
+      "git_all_refs_history_found": false,
+      "wrong_substitute": "experiments/BB2_second-backbone/seed_mode.json",
+      "wrong_substitute_sha256": "dc00c7fec6ef40bd1b5326f5caabdd34da210c2901d36055d74e8ca87475c2df",
+      "wrong_substitute_reason": "Earlier BB2_* fits, not E3 BB2L_* sources",
+      "canonical_fit_directory": "/mnt/t7/smad_next/BB2/results_L",
+      "receipt": "/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json",
+      "receipt_fit_count": 15,
+      "canonical_presence_size_sidecar_matches": 15,
+      "archive_hashes_recomputed": false,
+      "action": "MAIN reconcile opaque fit digests/fetch evidence, then run or reproduce the registered metadata-only freeze_mode_L procedure and commit/review exact five-seed source map before member access. No new fit needed to resolve this indexing/freeze gap.",
+      "search_scope": "Canonical repository mode path, all-ref history for that path, experiment filenames and /mnt/t7/smad_next filename inventory to depth five; no claim about remote or unindexed session-only files"
+    }
+  },
+  "arms": [
+    {
+      "order": 1,
+      "arm": "SbFM",
+      "final_admission_disposition": null,
+      "readiness": "PENDING_SUPPLEMENT_AND_ADMISSION",
+      "seeds": [408, 409, 410, 411, 412],
+      "source_format": "native_fit AB1FM_SbFM; original AB1_Sb comparator; AB1_A control; shared AB1FMSUPP-v1 supplement",
+      "evidence": ["experiments/AB1_protocol-ablation-and-replication/prereg_fm.md", "experiments/AB1_protocol-ablation-and-replication/prereg.md amendment 8", "/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json", "/mnt/t7/smad_next/coordination_20261114/SBFM_SUPPLEMENT_SUBMISSION_RECEIPT.json"],
+      "known": "Five v2-overlay fit receipt entries; committed train_SbFM transfer artifact already available; supplement submitted as 6319579",
+      "blockers": ["No final supplement arrival/hash receipt in inspected metadata", "Exact native source inventory, control/comparator receipts and eligibility review not assembled into admission"],
+      "actions": ["MAIN collect final supplemental archive and producer-bound receipt once complete; diagnostic partials are not final", "Bind submitted config and exact paired sources, training-specific floor and complete manifests", "Preserve H-fm3 and fit/identity checks for the admitted once-only execution; do not inspect scores for this audit"]
+    },
+    {
+      "order": 2,
+      "arm": "GX",
+      "final_admission_disposition": null,
+      "readiness": "PENDING_IMAGE_ADMISSION_REGISTRATION_AND_IMPLEMENTATION",
+      "seeds": [408, 409, 410, 411, 412],
+      "source_format": "Not registered/admitted; no speculative GX native schema",
+      "evidence": ["experiments/GX1_gan-morphs-in-training/prereg.md", "experiments/GX1_gan-morphs-in-training/READINESS_20261114.md", "experiments/GX1_gan-morphs-in-training/GENERATION_METADATA_20261114.json"],
+      "known": "20 generation tasks reported complete; draft gx1_admission.py is unreviewed; prereg has amendments 1 and 1b, no amendment 2",
+      "blockers": ["Admitted images/identity checks and training manifests absent from reviewed inventory", "Pre-fit floor and GX transfer rows not established", "Training amendment 2, producer/schema, smoke, ten fits and comparator/support route not established", "Native reader unsupported"],
+      "actions": ["Review/run registered image-admission gates separately, then pin admitted manifests and pre-fit floors", "Register/review actual training and support producers and smoke; implement/review adapter against actual format", "Record any eventual deadline/infrastructure/missing-seed disposition with authoritative evidence; missing schema alone cannot exclude GX or justify default Sb", "Retain GX requirement for complete five-seed arms; GXp is control only"]
+    },
+    {
+      "order": 3,
+      "arm": "SbMR",
+      "final_admission_disposition": null,
+      "readiness": "PENDING_REFIT_YARDSTICK_AND_ADMISSION",
+      "seeds": [408, 409, 410, 411, 412],
+      "source_format": "rz1_fit SbMR/Sb0/A0; rz1_refit original AB1 Sb yardstick",
+      "evidence": ["experiments/RZ1_input-resolution-and-resize/prereg.md", "experiments/RZ1_input-resolution-and-resize/RESCORE_RECOVERY_20261114.md", "/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json", "/mnt/t7/smad_next/coordination_20261114/RZ1_REVIEWED_SUBMISSION_RECEIPT.json"],
+      "known": "Wave-1 fit recovery includes five candidates and controls; 6319491 is the registered first refit retry",
+      "blockers": ["Required Sb refit yardstick receipt batch not in inspected collection; recovered A408 is not Sb yardstick", "Final source/receipt and eligibility admission absent"],
+      "actions": ["MAIN collect 6319491 outputs; bind original AB1 Sb source pins and per-network receipts", "Keep Sb0 as paired comparator and A0 as control", "Retain refit, nine-training/four-held-out kernel and fit guards in once-only read"]
+    },
+    {
+      "order": 4,
+      "arm": "SbM",
+      "final_admission_disposition": null,
+      "readiness": "PENDING_REFIT_YARDSTICK_AND_ADMISSION",
+      "seeds": [408, 409, 410, 411, 412],
+      "source_format": "rz1_fit SbM/Sb0/A0; rz1_refit original AB1 Sb yardstick",
+      "evidence": ["experiments/RZ1_input-resolution-and-resize/prereg.md", "/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json", "/mnt/t7/smad_next/coordination_20261114/RZ1_REVIEWED_SUBMISSION_RECEIPT.json"],
+      "blockers": ["Same missing Sb refit-yardstick receipt closure as SbMR", "Final source/receipt and eligibility admission absent"],
+      "actions": ["Reuse common admitted Sb0/A0 and yardstick evidence without substituting AB1 for Sb0", "Collect retry outputs and retain both kernel guards"]
+    },
+    {
+      "order": 5,
+      "arm": "Sb512",
+      "final_admission_disposition": null,
+      "readiness": "PENDING_PRODUCTION_ARRIVALS_AND_REFIT",
+      "seeds": [408, 409, 410, 411, 412],
+      "source_format": "rz1_fit Sb512/Sb0/A512; rz1_refit AB1 Sb yardstick",
+      "evidence": ["experiments/RZ1_input-resolution-and-resize/ADMISSION_512_20261114.md", "/mnt/t7/smad_next/coordination_20261114/RZ1_REVIEWED_SUBMISSION_RECEIPT.json", "DATA_CATALOG.md section 7a"],
+      "known": "Reviewed smoke/M6 submission 6319490; aligned 512 target frames documented without opening sealed inputs",
+      "blockers": ["No production fit/scoring arrival receipts in inspected metadata", "Common refit-yardstick closure pending"],
+      "actions": ["MAIN obtain fit/scoring receipts for candidate and A512 control by cutoff", "Bind 512 provenance, Sb0 comparator and exact-gated yardstick; no new target-frame inventory question needed"]
+    },
+    {
+      "order": 6,
+      "arm": "SbMR512",
+      "final_admission_disposition": null,
+      "readiness": "CANNOT_QUALIFY_UNLESS_REGISTERED_KERNEL_PREREQUISITE_MET",
+      "seeds": [408, 409, 410, 411, 412],
+      "source_format": "Current rz1_fit format has no cross table; reader globally refuses read admission for this arm",
+      "evidence": ["experiments/NEXT_method-selection-rule/prereg_draft_v3.md sections 3 and 5(e)", "experiments/RZ1_input-resolution-and-resize/prereg.md section 2 and M6", "src/RZ1/run_rz1.sh:54", "/mnt/t7/smad_next/coordination_20261114/RZ1_REVIEWED_SUBMISSION_RECEIPT.json"],
+      "blockers": ["No registered kernel test found; source sets CROSS empty", "Production arrivals/refit closure pending"],
+      "actions": ["Find or complete the explicitly permitted pre-read kernel registration and its reviewed scoring/adapter support, or bind authoritative nonqualification disposition", "Do not invent a cost exclusion: M6 reviewed submission includes this arm", "Do not use ablation status merely as a software workaround; admission schema reserves ablation reason for pre-binding exposure"]
+    },
+    {
+      "order": 7,
+      "arm": "Sbc",
+      "final_admission_disposition": null,
+      "readiness": "PENDING_AUTHOR_SCOPE_EVIDENCE_AND_REFIT",
+      "seeds": [408, 409, 410, 411, 412],
+      "source_format": "rz1_fit Sbc/Sb0/A0; rz1_refit AB1 Sb yardstick",
+      "evidence": ["experiments/RZ1_input-resolution-and-resize/prereg.md section 0 and M7", "experiments/FINAL_sealed-benchmark-read/SELECTION_RULE_V3_APPROVAL_20261114.md", "experiments/NEXT_method-selection-rule/ELIGIBILITY_20261114.md", "/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json"],
+      "known": "Five crop fits recovered; author explicitly approved experiments with input size 512; lead approved 224 interior crops, but author's interpretation remained open",
+      "blockers": ["No exact affirmative or negative author ruling on 224 interior-crop scope located in reviewed records", "Common refit closure pending"],
+      "actions": ["MAIN attach existing exact author scope ruling if elsewhere, otherwise resolve that specific interpretation before read; general continuation and v3 approval do not separately answer it", "Do not presume exclusion or cancellation; preserve completed fits", "Use A0 control under v3, not an invented Ac selection control"]
+    },
+    {
+      "order": 8,
+      "arm": "DINOv3",
+      "final_admission_disposition": null,
+      "readiness": "PENDING_FORMAL_E3_FREEZE_W2_ARRIVAL_AND_ADMISSION",
+      "seeds": [403, 404, 405, 406, 407],
+      "comparator_seeds": [408, 409, 410, 411, 412],
+      "source_format": "native_fit BB2L Sb/A/B; five original AB1 Sb; dinov3_w2 supplement",
+      "evidence": ["experiments/BB2_second-backbone/prereg.md amendments 4, 6, 7c, 7d", "src/BB2/freeze_mode_L.py", "/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json", "/mnt/t7/smad_next/recovery_20261114_MAIN/BB2_W2_SUBMIT_RECEIPT.json"],
+      "known": "All 15 fit receipt entries and matching canonical sidecars; W2 job 6319264 running in 11:24:55 UTC local snapshot",
+      "blockers": ["Formal E3 seed_mode_L freeze not located", "No final W2 arrival/hash receipt in inspected collections", "Exact role inventory and native manifest pin closure not assembled"],
+      "actions": ["Complete reviewed metadata-only E3 freeze before score access; do not reuse earlier seed_mode.json", "MAIN collect W2 and producer-bound receipt, including all five fixed comparator sources", "Add native manifest/source pins; retain gate/splice/adequacy checks for admitted execution", "Four observed candidates are supported with planned denominator five; no reduced-comparator mean"]
+    }
+  ],
+  "native_manifest_inventory_additions": [
+    {"key": "ab1_eval", "path": "/mnt/t7/smad_next/AB1/manifests/ab1_eval.csv", "sha256": "93a5ba234f91e57951829c5536fabbe0f792ee4ad0a293f074aaca72f7465bd5"},
+    {"key": "fs_eval", "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/pn1_eval.csv", "sha256": "f0f29f2201bd3a1dc67f24772347960ba7a383a9e5c1fa8920d0cc1b854a5045"},
+    {"key": "train_B", "path": "/mnt/t7/smad_next/PN1/fs_tree/pn1/data/manifests/train_B.csv", "sha256": "bd53dc3252a767671bd5b35651e9108a35f7b363fe4642bae593fa88a442da70"},
+    {"key": "ms1", "path": "/mnt/t7/smad_next/MS1/pack_tree/pn1/data/manifests/pn1_eval.csv", "sha256": "d1fab6ad4b20f0ec9dd426374ccd56e96368bf7b658b48e3ef31867e1fe470c5", "manifest_rows": 42366, "ms1ffhq_rows": 1480, "action": "Pin complete original manifest; authenticate against registered W2 MS1 pack provenance, not merely family count"}
+  ],
+  "receipt_evidence": [
+    {"path": "/mnt/t7/smad_next/recovery_20261114_MAIN/COLLECTION_VERIFIED.json", "sha256": "da918e251af1c26529ba37aacce50e99b42917cb52f921d0254fcef46bf79372", "at": "2026-11-14T08:34:59.305446+00:00", "relevant_counts": {"AB1FM": 5, "BB2L": 15, "RZ1": 45}},
+    {"path": "/mnt/t7/smad_next/coordination_20261114/RZ1_REVIEWED_SUBMISSION_RECEIPT.json", "sha256": "0074cd308f57012ca214f10d1e446464a9b72ea688a6f90e169f006bcb7d7203", "jobs": ["6319490", "6319491"]},
+    {"path": "/mnt/t7/smad_next/coordination_20261114/SBFM_SUPPLEMENT_SUBMISSION_RECEIPT.json", "sha256": "c0fd8803f0fed11b6afcd7cb949426842d16555623b6300e7f7bedad5d36b680", "jobs": ["6319579"]},
+    {"path": "/mnt/t7/smad_next/recovery_20261114_MAIN/BB2_W2_SUBMIT_RECEIPT.json", "sha256": "9d3b84229535f61e7ad3183b396f74a3ac3ff170ebd4238fb8e8ce8e75411f00", "jobs": ["6319264"], "limit": "Minimal submission response; not an arrival receipt or self-contained producer provenance"},
+    {"path": "/mnt/t7/smad_next/coordination_20261114/opencode_takeover/WCSS_SNAPSHOT.json", "sha256": "0fd06564a0873c766e74eae01d31fd791fccb2539a358507b2a60bd411a24e72", "at": "2026-11-14T11:24:55.726924+00:00", "states": {"6319264": "RUNNING", "6319490": "PENDING", "6319491": "PENDING", "6319579": "PENDING"}, "limit": "Historical local capture only; MAIN obtains fresh state separately"}
+  ],
+  "common_remaining": [
+    "Final authoritative dispositions for all eight arms; no final disposition is assigned by this readiness audit",
+    "Closed batch based on legitimate registered reasons, not current queue forecasts or decoder limitations",
+    "Exact native module, manifest, inventory, producer, config, seed-mode, source and receipt pin closure in clean committed checkout",
+    "Arrival/hash evidence by cutoff normalized to per-network archive/path/sha256/hash_verified/verified_at and supplemental producer identity; existing collection format is not directly reader receipt format",
+    "Per-arm eligibility/pre-binding exposure review pinned; prior absence-of-evidence audit alone is not proof",
+    "Independent exact admission review after assembly; no NEXT_ADMISSION_GO provided here",
+    "Fresh 413-417 confirmation registration, comparator/control mapping and source pins remain required after selection"
+  ]
+}

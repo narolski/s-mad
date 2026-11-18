@@ -1,0 +1,11 @@
+{
+  "decision": "ADMIT_PINNED_PRIMARY_FLOOR_OUTPUT_ONLY",
+  "author": "astra_sprint_plan_review",
+  "reviewer": "root",
+  "sha256": "ea2326dba40b43821e0d92aa864d9d2fead92491b455b3638f18989669bbf6de",
+  "path": "/mnt/t7/smad_next/SPRINT5_1/floor_execution_v1/primary_floors_v1/primary_floors.csv",
+  "rows": 200,
+  "components": 40,
+  "finite_learners": 15,
+  "scope": "exact prospective module/release; independently checked size, uniqueIDs, finiteall15columns and40components. No candidate score read or production release."
+}

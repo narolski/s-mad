@@ -1,0 +1,14 @@
+{
+  "scope": "source and generated fixtures only",
+  "source_manifest_sha256": "910f05bf4e8a5c341aaec1f270b0a6a82164a630a164ceca7242ab5fbdb6525e",
+  "package_sha256": "2331bd103e55c3234449058c8a31ff67705d42d581ec0fc3e2a72a9580d33b35",
+  "source_members_verified": 6,
+  "package_members_verified": 14,
+  "author_tests_pass": 4,
+  "bash_syntax": "PASS",
+  "python_AST": "PASS",
+  "generated_ancestor_symlink_escape": "REPRODUCED: outside-grant synthetic ELF hashed",
+  "generated_dotdot_escape": "REPRODUCED: outside-grant synthetic ELF hashed",
+  "actual_environment_access": false,
+  "verdict": "HOLD_SOURCE_FIX"
+}

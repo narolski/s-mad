@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-14T22:57:11.233660+00:00",
+  "status": "SOURCE_ONLY_PREPARATION_HANDOFF",
+  "scientific_admission": false,
+  "fresh_execution_authorized": false,
+  "independent_package_review": "PENDING",
+  "astra_source_interpretation": "/root/sol_training_protocol/astra_fresh_role_plan active; separate immutable artifact/review required, not covered by owner manifest",
+  "core_conditional_task_templates": 150,
+  "sources": 23,
+  "static_integrity": "PASS; expected exit2/HOLD",
+  "root_next_action": "Review exact source package; receive Astra cohort interpretation, prospectively resolve descriptive support scope, then prepare/review separate fresh producer extension. Do not submit from these templates.",
+  "original_and_foreign_changes": "preserved",
+  "manifest_scope": "owner files directly in this directory only; future Astra subdirectory is separate evidence"
+}

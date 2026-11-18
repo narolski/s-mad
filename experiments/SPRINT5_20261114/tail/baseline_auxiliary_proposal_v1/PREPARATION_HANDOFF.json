@@ -1,0 +1,18 @@
+{
+  "status": "SOURCE_IMAGE_METADATA_AND_SYNTHETIC_PROPOSAL_PASS_AUXILIARY_HOLD",
+  "source_sums_sha256": "0af907330e1d827486c8965630d3a54d1d502b574aa5aa39ca14defc8a6df099",
+  "binding_sha256": "d5587ad6c87cee2ddc13e4cb101d9c9887276bd3d0cdc4d9b09f36c89ada7987",
+  "mapping_sha256": "3e20efb6336f2a9aed2439b154539d30bdfe7630e37118455dab3c8a03c61138",
+  "candidate_aux_metadata_sha256": "090770040496d687e12aa13e579c2d9504ef3681061d777932142853cb084972",
+  "synthetic_tests": 6,
+  "test_receipt_sha256": "c6b9b1f09add0403cc07e90bfdf272129b1ddfa2f8f7675ea8218862f2516371",
+  "all538inputimagehashes_verified": true,
+  "candidate_models_metadata_bound": 15,
+  "baseline_score_member_digest": "UNKNOWN_NOT_GUESSED",
+  "actual_archive_member_or_NPZ_or_checkpoint_access": false,
+  "actual_reader_or_claim": false,
+  "primary_journal_remains_complete": true,
+  "new_primary_claim": false,
+  "auxiliary_policy_review_root_adoption_and_payload_release": "HOLD",
+  "camera": "HOLD"
+}

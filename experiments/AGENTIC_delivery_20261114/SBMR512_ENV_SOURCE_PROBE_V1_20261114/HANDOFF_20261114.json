@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-14T22:04:18.610702+00:00",
+  "status": "FROZEN_SOURCE_PREPARATION_ONLY_PENDING_OTHER_REVIEW_AND_ROOT_RELEASE",
+  "gap_filled": "Executable stdlib metadata/source probe, not actual metadata collection",
+  "source_sha256": "f0051c1c4f817c1d9c103d2397f188f0cdf1a3e04ed2e60bacfeed8fd0bb16d4",
+  "tests_sha256": "e39edd2b77cc969baa7f30e0bb9728f032fb3abd1bc1935fb7f35ff42ffc437d",
+  "other_files_modified": false,
+  "actual_access": false,
+  "all_real_timing_full_runs": "HOLD",
+  "known_limits": [
+    "Actual interpreter/source/install allowlist remains UNKNOWN",
+    "Exact-directory Distribution.at instead of suggested discovery requires review",
+    "Root must separately freeze sanitized timeout/memory/durable process wrapper",
+    "Current content is not historical executed identity"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "scope": "synthetic RGB only, no sourcefaces/models/scores",
+  "checks": [
+    {
+      "fixture": 0,
+      "res": 224,
+      "exact_equal": true
+    },
+    {
+      "fixture": 0,
+      "res": 384,
+      "exact_equal": true
+    },
+    {
+      "fixture": 1,
+      "res": 224,
+      "exact_equal": true
+    },
+    {
+      "fixture": 1,
+      "res": 384,
+      "exact_equal": true
+    },
+    {
+      "fixture": 2,
+      "res": 224,
+      "exact_equal": true
+    },
+    {
+      "fixture": 2,
+      "res": 384,
+      "exact_equal": true
+    },
+    {
+      "fixture": 3,
+      "res": 224,
+      "exact_equal": true
+    },
+    {
+      "fixture": 3,
+      "res": 384,
+      "exact_equal": true
+    },
+    {
+      "fixture": 4,
+      "res": 224,
+      "exact_equal": true
+    },
+    {
+      "fixture": 4,
+      "res": 384,
+      "exact_equal": true
+    },
+    {
+      "fixture": 5,
+      "res": 224,
+      "exact_equal": true
+    },
+    {
+      "fixture": 5,
+      "res": 384,
+      "exact_equal": true
+    },
+    {
+      "fixture": 6,
+      "res": 224,
+      "exact_equal": true
+    },
+    {
+      "fixture": 6,
+      "res": 384,
+      "exact_equal": true
+    },
+    {
+      "fixture": 7,
+      "res": 224,
+      "exact_equal": true
+    },
+    {
+      "fixture": 7,
+      "res": 384,
+      "exact_equal": true
+    }
+  ],
+  "passed": true
+}

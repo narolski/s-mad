@@ -1,0 +1,19 @@
+{
+  "decision": "SOURCE_METADATA_AND_SYNTHETIC_CHECKS_PASS_NOT_EXECUTION",
+  "package_sha256": "3f19af962230acb0be2284eb916ac23c532bc863d6f60bb1548ef31ad1115367",
+  "source_manifest_sha256": "88c63f27f829d15d52f0ba62d6ae7762a6b0f4986f9ac8b952d48504a330a4dc",
+  "package_entries_verified": 15,
+  "source_pins_verified": 21,
+  "context_rows": 59270,
+  "target_mapping_rows_verified": 13771,
+  "target_mapping_array_order_is_cross_export_order": false,
+  "required_output_order": "INPUT_BINDING_PROPOSAL.cross_ids via explicit ID-to-output-index remap",
+  "genuine": 7257,
+  "morph": 1000,
+  "excluded_from_kappa": 5514,
+  "samples": 5889030,
+  "batched_calls": 92120,
+  "exported_values": 963970,
+  "synthetic_tests_independently_passed": 7,
+  "actual_archive_image_model_access": false
+}

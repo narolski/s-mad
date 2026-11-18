@@ -1,0 +1,86 @@
+{
+  "status": "PROPOSED_V2_SOURCE_PREPARATION_ONLY_INDEPENDENT_REVIEW_REQUIRED",
+  "design_timing": "NEW_PROSPECTIVE_EXTENSION_BEFORE_KERNEL_OUTCOME_READ; no claim existing224criterion already defined512",
+  "arm": "SbMR512",
+  "seeds": [
+    408,
+    409,
+    410,
+    411,
+    412
+  ],
+  "specs": [
+    "fixed:pil_bilinear",
+    "two:300:pil_bilinear:pil_bilinear",
+    "two:300:pil_nearest:pil_nearest",
+    "two:300:pil_bicubic:pil_bicubic",
+    "two:300:pil_lanczos:pil_lanczos",
+    "two:300:pil_box:pil_box",
+    "two:300:cv_area:cv_area",
+    "two:300:cv_linear:cv_linear",
+    "two:300:cv_cubic:cv_cubic",
+    "two:300:cv_lanczos4:cv_lanczos4",
+    "two:300:pil_hamming:pil_hamming",
+    "two:300:cv_nearest:cv_nearest",
+    "two:300:cv_linear_exact:cv_linear_exact",
+    "two:300:pil_hamming:cv_linear_exact"
+  ],
+  "train_spec_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "heldout_spec_indices": [
+    10,
+    11,
+    12,
+    13
+  ],
+  "res": 512,
+  "intermediate": 300,
+  "threshold_logit": 0,
+  "flag_comparison": ">",
+  "network_forwards_per_seed": 1177806,
+  "total_network_image_forwards": 5889030,
+  "training_updates": 0,
+  "tta": "eval_flip_computed_transient_for_original_context_only; never export or average for endpoint",
+  "precision": "original float32, TF32 matmul/cudnn true; no autocast",
+  "rule": {
+    "per_spec": "max(abs(genuine_flag_share(spec)-reference),abs(morph_flag_share(spec)-reference))",
+    "kappa_train512": "max over9 training perturbations",
+    "kappa_ho512": "max over4 heldout perturbations",
+    "each_quantity": "<=0.05 on >=4 of fixed5 seeds; missing/failed never pass"
+  },
+  "inference_limits": "compound512->300->512 robustness; heldout kernel names, not unseen scale; not all81mixed pairs; no optimization",
+  "scorer_implementation": "PLAN_ONLY_NOT_EXECUTABLE_MODEL_CODE",
+  "output_root_proposed": "/mnt/t7/smad_next/RZ1/SbMR512_kernel_v2",
+  "gpu_release": "HOLD",
+  "author": "Astra; author not independent reviewer",
+  "context": "ROOT_SELECTED_BII_FULL_ORIGINAL_CONTEXT_FOR_ALL14",
+  "reference_portability_fallback": "FORBIDDEN",
+  "context_manifest_order": [
+    "ab1x_eval",
+    "tt1"
+  ],
+  "batch_size": 64,
+  "workers": 7,
+  "eval_call_sequence": [
+    "native",
+    "horizontal_flip_after_native"
+  ],
+  "tt1_call_sequence": [
+    "native_only"
+  ],
+  "exported_cross_values_per_seed": 192794,
+  "total_exported_cross_values": 963970,
+  "batched_model_calls_per_seed": 18424,
+  "total_batched_model_calls": 92120,
+  "root_choice_sha256": "6dbc69617632d162e0781a1577334b2a578f49ce22d3c3baca36beec6203e665",
+  "execution": "HOLD_NO_MODEL_EXECUTABLE"
+}

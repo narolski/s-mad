@@ -1,0 +1,142 @@
+{
+  "decision": "PROPOSED_NOT_AUTHORIZATION",
+  "root_authorized": false,
+  "author": "Sol",
+  "reviewer": null,
+  "mode": "timing",
+  "seed": 408,
+  "worker_source_manifest_sha256": "6dc4375db303042904ca0725c631515ffaf00d7afc4266bf8334d067c0b698c7",
+  "scientific_read": "HOLD",
+  "automatic_retry": false,
+  "output": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/SbMR512_bii_timing_wcss_v1/timing_s408",
+  "profile": {
+    "partition": "lem-gpu-interactive",
+    "gpus": 1,
+    "cpus": 8,
+    "memory": "32G",
+    "local_scratch": "8G",
+    "walltime": "00:15:00"
+  },
+  "reference_scope": {
+    "population": "ab1x_eval",
+    "container_decode": true,
+    "selected_indices": [
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52
+    ],
+    "tt1_open": false
+  },
+  "runtime_defaults": {
+    "historical_identity": "UNKNOWN",
+    "prospective_runtime_reviewed": false
+  },
+  "admissions": {
+    "worker_source": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "original_model_source": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "python_runtime": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "python_package_sources": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "native_libraries": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "bootstrap_tools": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "input_images64": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "base_weights": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "trainable_overlay": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "trainable_schema": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "model_metadata": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "original_eval_reference": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "runtime_defaults": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "positional_rebuild": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "durable_output_mount": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "worker_policy": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    },
+    "exposure_permission": {
+      "status": "PENDING",
+      "path": null,
+      "sha256": null
+    }
+  },
+  "content_pins": {},
+  "worker_release": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/SbMR512_bii_timing_wcss_v1/stage/ROOT_WORKER_RELEASE.json",
+  "worker_admission": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/SbMR512_bii_timing_wcss_v1/stage/ROOT_STAGING_ADMISSION.json",
+  "worker_dir": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/SbMR512_bii_timing_wcss_v1/source/worker_wcss_v1",
+  "python": null,
+  "driver_dir": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/SbMR512_bii_timing_wcss_v1/dispatch_s408",
+  "durable_parent": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/SbMR512_bii_timing_wcss_v1",
+  "runtime_env": {},
+  "isolated_home": "/lustre/pd03/hpc-narolski-1790461090/smad-next/RZ1/SbMR512_bii_timing_wcss_v1/stage/home",
+  "node_bootstrap": null,
+  "bulk_io_policy": null
+}

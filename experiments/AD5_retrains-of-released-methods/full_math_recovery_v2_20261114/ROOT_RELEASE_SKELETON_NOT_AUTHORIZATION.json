@@ -1,0 +1,43 @@
+{
+  "decision": "PROPOSED_NOT_AUTHORIZATION",
+  "root_authorized": false,
+  "seed": null,
+  "cohort_seeds": [
+    401,
+    402,
+    403,
+    404,
+    405
+  ],
+  "arm": "B",
+  "automatic_retry": false,
+  "scientific_read": "HOLD",
+  "converter_execution": "HOLD",
+  "cohort": "NEW_LATE_RECOVERY",
+  "arrival_deadline": "2026-11-15T18:00:00+01:00",
+  "resource_profile": {
+    "partition": "lem-gpu-short",
+    "gpus": 1,
+    "cpus": 8,
+    "mem_gib": 120,
+    "local_gib": 150,
+    "wall_seconds": 21600,
+    "child_seconds": 21000,
+    "collection_seconds": 300,
+    "concurrency": 1
+  },
+  "author": "Astra / astra_compute_unblock_plan",
+  "reviewer": null,
+  "owned_source_clean_committed": false,
+  "source_manifest_sha256": null,
+  "full_csv_sha256": "83c01705e140843afa6cb4c89765d0528ff21e2f444aee23aa50de49eaf894a3",
+  "required_hashed_files": [
+    "independent_review",
+    "prereg",
+    "root_late_ruling",
+    "root_smoke_acceptance",
+    "commit_check",
+    "site_capacity",
+    "budget_ledger"
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "status": "V2_SOURCE_TYPED_PROPOSAL_ACTUAL_RUNTIME_ALL_UNKNOWN",
+  "collection_per_source": {
+    "unique_regular_members": [
+      "<task>/meta.json",
+      "<task>/env.txt",
+      "<task>/gpu.txt",
+      "<task>/task_info.txt",
+      "<task>/task.env",
+      "<task>/guard.log",
+      "<task>/info.json",
+      "<task>/last_pt.sha256"
+    ],
+    "opaque_only_member_headers_and_hashes": [
+      "<task>/last_trainable.pt",
+      "<task>/scores_eval.npz",
+      "<task>/scores_tt1.npz"
+    ],
+    "never_decode_in_technical_phase": [
+      "last_trainable.pt",
+      "scores_eval.npz",
+      "scores_tt1.npz",
+      "scores_cross.npz"
+    ]
+  },
+  "typed_allowlist": {
+    "meta.json": {
+      "arch": {
+        "type": "str",
+        "expected": "a12_clip_vitb16_madation"
+      },
+      "res": {
+        "type": "int_not_bool",
+        "expected": 512
+      },
+      "seed": {
+        "type": "int_not_bool",
+        "one_of": [
+          408,
+          409,
+          410,
+          411,
+          412
+        ]
+      },
+      "steps": {
+        "type": "int_not_bool",
+        "expected": 6250
+      },
+      "bs": {
+        "type": "int_not_bool",
+        "expected": 64
+      },
+      "accum": {
+        "type": "int_not_bool",
+        "expected": 4
+      },
+      "ft": {
+        "type": "str",
+        "expected": "lora"
+      },
+      "lora_r": {
+        "type": "int_not_bool",
+        "expected": 2
+      },
+      "lora_alpha": {
+        "type": "number_not_bool",
+        "expected": 4
+      },
+      "lora_rs": {
+        "type": "literal_bool",
+        "expected": true
+      },
+      "lora_targets": {
+        "type": "str",
+        "expected": "qv"
+      },
+      "lora_dropout": {
+        "type": "number_not_bool",
+        "expected": 0.4
+      },
+      "lora_train_norms": {
+        "type": "literal_bool",
+        "expected": false
+      },
+      "drop_path": {
+        "type": "number_not_bool",
+        "expected": 0
+      },
+      "final": {
+        "type": "str",
+        "expected": "last"
+      },
+      "bn_recalibrated": {
+        "type": "literal_bool",
+        "actual": "UNKNOWN"
+      }
+    },
+    "info.json": {
+      "torch": "str",
+      "device": "str",
+      "seed": "int_not_bool",
+      "steps": "int_not_bool",
+      "res": "int_not_bool",
+      "primary": "str",
+      "cross": "list[str]",
+      "last_pt_sha256": "64hex",
+      "n_eval": "int_not_bool",
+      "n_cross": "int_not_bool",
+      "limit": "int_not_bool",
+      "common_py_sha256": "64hex",
+      "rz1_kernels_sha256": "64hex"
+    },
+    "env.txt": "version_tokens_only_python_torch_cuda_timm_numpy_pillow; cv2fromactualboundruntime_evidence_elseUNKNOWN",
+    "gpu.txt": "device_driver_tokens_only",
+    "task_info.txt": "exactinput_sourcepins_runtimeidentity_steps_limit_fields",
+    "task.env": "TASK_ARM_SEED_andregisteredresourceknobs",
+    "guard.log": "pre/postliteralpresence_booleans_only_no_rawtext",
+    "last_pt.sha256": "64hex_association_only_notindependentrehashedcheckpoint"
+  },
+  "explicit_exclusions": [
+    "info.train_acc_rule0",
+    "training_loss_values",
+    "allNPZarrays",
+    "imagebytes",
+    "checkpointbodies",
+    "arbitrary_errorstrings",
+    "scientificnumericmetadata"
+  ],
+  "scope_limit": "No implementation or technical release. All string/token schemas require exact equality to pinned identities, no raw dumps. meta.args and info.train_acc_rule0 forbidden. Source expected fields do not certify actual checkpoint reconstruction.",
+  "type_source": "packed train.py lines929-952 serialization, common.lora_settings, original run_rz1.sh flags; these are source-expected values, not admitted actual evidence",
+  "actual_required_runtime": "exact torch/timm/cv2/Pillow/numpy/python/CUDA/driver/GPU; TF32/cudnn flags; scorer bs64 workers7; DataLoader defaults; original image/pretrained/state-buffer hashes; allUNKNOWN until separately admitted"
+}

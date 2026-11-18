@@ -1,0 +1,13 @@
+{
+  "verdict": "PASS_SOURCE_TABLE_FIDELITY",
+  "manifest_members_verified": 21,
+  "source_tables": 33,
+  "panels": 84,
+  "source_cells": 2580,
+  "displayed_cells": 3124,
+  "displayed_blanks": 16,
+  "package_manifest_sha256": "9d75d613be9c1e54d883012fe330e8e0d29af84e8d440cbaf27af1c8942cd58a",
+  "pdf_sha256": "d6edc16afd4458e884caa12a750ccb4e5fe2f4aee599574dab56f744e5ab295b",
+  "tex_sha256": "ed66434ceca97d01418f3d95c4790ef4ef68c26355ab4167dda6de4c59ae7138",
+  "method": "Independent state-aware Markdown table extraction compared with all recorded source cells, then every panel header and row re-converted via Pandoc with reviewed typography mappings and compared exactly with actual TeX. No model/data/score reads."
+}
