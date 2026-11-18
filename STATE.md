@@ -68,6 +68,7 @@ pairs of same-person / two-person splices that differ only in the donor; design 
 - Weights: `weights/` (118 small networks in git); comparator retrains on Google Drive
   `pwrdrive:smad-cvpr2027-weights/` and T7.
 - Training data pack of Sb: `/mnt/t7/smad_next/PN1/pn1_pack_fs.tar`; manifests in `experiments/`.
+- Public-release repo (private until publication): `narolski/dont-cut-corners`, local `/home/narolski/work/dont-cut-corners`; score-file builders in `src/public_release/`.
 - Paper: repo `smad-cvpr-2027` (main = submitted version; branch `supplement-reorg` = supplement,
   due 23 Nov AoE).
 - History and all older experiments: `NOTEBOOK.md`.
