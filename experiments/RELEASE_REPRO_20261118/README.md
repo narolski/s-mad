@@ -56,3 +56,21 @@ See the log below.
   unlikely, criterion (b) is the realistic target). Smoke PASSES. Result: release_repro/results/sb_s403_200_6355185.tar.
 - Athena smoke 3558886 cancelled (redundant).
 - Production (step 3) not yet submitted: next command above.
+
+## Result: Sb seed 403, full retrain from the release code (19 Nov 2026)
+
+- Smoke 6355185 (WCSS H100, release 5737486, 200 updates): loss 0.6928 / 0.6873 at updates 100 / 200; frozen log
+  0.6928 / 0.6874. PASS.
+- Production 6355899 (WCSS H100, 6,250 updates, 37 min; then re-scoring of the pack's development and training lists):
+  - weights: sha256 differs (frozen a8d12d82..., retrain 97be432a...); 50 of 50 tensors not bit-equal; max abs
+    difference 0.067 (max |w| 0.242).
+  - development scores (19,797 images): correlation 0.99962; median |diff| 0.015 logits; 99th percentile 0.41;
+    max 0.89; decisions differ on 0.42% of images.
+  - reference, seed change (frozen s404 vs frozen s403, same images): correlation 0.955; median |diff| 0.094;
+    99th percentile 4.1; decisions differ on 4.44%.
+- Verdict: reproduced within hardware divergence (criterion b). Not bit-identical: the frozen network was trained on
+  an A100-PCIE, the retrain on an H100; the difference is about ten times smaller than between two seeds.
+  No benchmark was scored.
+- Step 4 submitted 01:57: Sb seeds 404-407 = 6357219-6357222; morph-free seed 401 ViT-B/16 = 6357223,
+  ViT-L/14 = 6357224 (both re-score only their own training images).
+- Athena jobs 3558886 (smoke) and 3559185 (production twin) were cancelled while pending.
